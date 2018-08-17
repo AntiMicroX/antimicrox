@@ -255,7 +255,7 @@ void JoyGradientButton::wheelEventVertical()
     {
         if (lastWheelVerticalDistance > 0.0)
         {
-            oldInterval = 1000 / wheelSpeedY / lastWheelVerticalDistance;
+            oldInterval = 1000 / wheelSpeedY / static_cast<int>(lastWheelVerticalDistance);
         }
         else
         {
@@ -409,7 +409,7 @@ void JoyGradientButton::wheelEventHorizontal()
     {
         if (lastWheelHorizontalDistance > 0.0)
         {
-            oldInterval = 1000 / wheelSpeedX / lastWheelHorizontalDistance;
+            oldInterval = 1000 / wheelSpeedX / static_cast<int>(lastWheelHorizontalDistance);
         }
         else
         {

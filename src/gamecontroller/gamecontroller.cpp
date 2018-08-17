@@ -148,7 +148,7 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
         QHash<int, SDL_GameControllerAxis> axes;
         QList<SDL_GameControllerButtonBind> hatButtons;
 
-        for (int i = 0; i < SDL_JoystickNumHats(this->joyhandle); i++)
+        for (int i = 0; i < SDL_JoystickNumHats(m_joyhandle); i++)
         {
 
             SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
@@ -164,7 +164,7 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
             }
         }
 
-        for (int i = 0; i < SDL_JoystickNumButtons(this->joyhandle); i++)
+        for (int i = 0; i < SDL_JoystickNumButtons(m_joyhandle); i++)
         {
             #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Button " << (i + 1);
@@ -178,7 +178,7 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
             }
         }
 
-        for (int i = 0; i < SDL_JoystickNumAxes(this->joyhandle); i++)
+        for (int i = 0; i < SDL_JoystickNumAxes(m_joyhandle); i++)
         {
             #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Axis " << (i + 1);
@@ -845,14 +845,14 @@ QString GameController::getBindStringForButton(int index, bool trueIndex)
 SDL_GameControllerButtonBind GameController::getBindForAxis(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-    SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForAxis(controller, (SDL_GameControllerAxis)index);
+    SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForAxis(controller, static_cast<SDL_GameControllerAxis>(index));
     return bind;
 }
 
 SDL_GameControllerButtonBind GameController::getBindForButton(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-    SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForButton(controller, (SDL_GameControllerButton)index);
+    SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForButton(controller, static_cast<SDL_GameControllerButton>(index));
     return bind;
 }
 
@@ -903,6 +903,7 @@ void GameController::axisActivatedEvent(int setindex, int axisindex, int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     Q_UNUSED(setindex);
+    Q_UNUSED(value);
 
     SDL_GameControllerButtonBind bind = getBindForAxis(axisindex); // static_cast<SDL_GameControllerButton>
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)

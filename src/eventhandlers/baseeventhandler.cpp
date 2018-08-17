@@ -88,11 +88,14 @@ void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis,
  */
 void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
+    Q_UNUSED(xDis);
+    Q_UNUSED(yDis);
 qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 void BaseEventHandler::sendTextEntryEvent(QString maintext)
 {
+    Q_UNUSED(maintext);
 qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 

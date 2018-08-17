@@ -51,11 +51,11 @@ public slots:
     void setMaxZone(JoyAxis* axis, int deadZone);
 
 private:
-    JoyAxis* axis;
-    int deadZone;
-    int maxZone;
+    JoyAxis* m_axis;
+    int m_deadZone;
+    int m_maxZone;
     int joyValue;
-    int throttle;
+    int m_throttle;
     int boxwidth;
     int boxheight;
     int lboxstart;

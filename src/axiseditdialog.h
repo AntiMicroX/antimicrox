@@ -47,7 +47,7 @@ protected:
 private:
     Ui::AxisEditDialog *ui;
 
-    JoyAxis *axis;
+    JoyAxis *m_axis;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
     int initialThrottleState;
 

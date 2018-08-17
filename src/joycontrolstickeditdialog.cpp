@@ -110,8 +110,8 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->fromSafeZoneValueLabel->setText(QString::number(validDistance));
 
     double circleValue = stick->getCircleAdjust();
-    ui->squareStickSlider->setValue(circleValue * 100);
-    ui->squareStickSpinBox->setValue(circleValue * 100);
+    ui->squareStickSlider->setValue(static_cast<int>(circleValue) * 100);
+    ui->squareStickSpinBox->setValue(static_cast<int>(circleValue) * 100);
 
     int stickDelay = stick->getStickDelay();
     ui->stickDelaySlider->setValue(stickDelay * .1);

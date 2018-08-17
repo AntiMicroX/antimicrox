@@ -339,8 +339,8 @@ void MouseAxisSettingsDialog::calculateExtraAccelerationMultiplier()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((axis->getPAxisButton()->getExtraAccelerationMultiplier()) ==
-        (axis->getNAxisButton()->getExtraAccelerationMultiplier()))
+    if (qFuzzyCompare(axis->getPAxisButton()->getExtraAccelerationMultiplier(),
+        axis->getNAxisButton()->getExtraAccelerationMultiplier()))
     {
         double temp = axis->getPAxisButton()->getExtraAccelerationMultiplier();
         ui->extraAccelDoubleSpinBox->setValue(temp);
@@ -352,8 +352,8 @@ void MouseAxisSettingsDialog::calculateStartAccelerationMultiplier()
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((axis->getPAxisButton()->getStartAccelMultiplier()) ==
-        (axis->getNAxisButton()->getStartAccelMultiplier()))
+    if (qFuzzyCompare(axis->getPAxisButton()->getStartAccelMultiplier(),
+        axis->getNAxisButton()->getStartAccelMultiplier()))
     {
         double temp = axis->getPAxisButton()->getStartAccelMultiplier();
         ui->minMultiDoubleSpinBox->setValue(temp);
@@ -364,8 +364,8 @@ void MouseAxisSettingsDialog::calculateMinAccelerationThreshold()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((axis->getPAxisButton()->getMinAccelThreshold()) ==
-        (axis->getNAxisButton()->getMinAccelThreshold()))
+    if (qFuzzyCompare(axis->getPAxisButton()->getMinAccelThreshold(),
+        axis->getNAxisButton()->getMinAccelThreshold()))
     {
         double temp = axis->getPAxisButton()->getMinAccelThreshold();
         ui->minThresholdDoubleSpinBox->setValue(temp);
@@ -376,8 +376,8 @@ void MouseAxisSettingsDialog::calculateMaxAccelerationThreshold()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((axis->getPAxisButton()->getMaxAccelThreshold()) ==
-        (axis->getNAxisButton()->getMaxAccelThreshold()))
+    if (qFuzzyCompare(axis->getPAxisButton()->getMaxAccelThreshold(),
+        axis->getNAxisButton()->getMaxAccelThreshold()))
     {
         double temp = axis->getPAxisButton()->getMaxAccelThreshold();
         ui->maxThresholdDoubleSpinBox->setValue(temp);
@@ -388,8 +388,8 @@ void MouseAxisSettingsDialog::calculateAccelExtraDuration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((axis->getPAxisButton()->getAccelExtraDuration()) ==
-        (axis->getNAxisButton()->getAccelExtraDuration()))
+    if (qFuzzyCompare(axis->getPAxisButton()->getAccelExtraDuration(),
+        axis->getNAxisButton()->getAccelExtraDuration()))
     {
         double temp = axis->getPAxisButton()->getAccelExtraDuration();
         ui->accelExtraDurationDoubleSpinBox->setValue(temp);

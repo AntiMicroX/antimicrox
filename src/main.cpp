@@ -99,7 +99,8 @@ static void termSignalIntHandler(int signal)
 
 #endif
 
-void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
+// was non static
+static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -108,7 +109,7 @@ void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
     while (iter.hasNext())
     {
         InputDevice *joystick = iter.next().value();
-        if (joystick)
+        if (joystick != nullptr)
         {
             delete joystick;
             joystick = nullptr;
@@ -121,7 +122,6 @@ void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 int main(int argc, char *argv[])
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 
     QApplication antimicro(argc, argv);
     QCoreApplication::setApplicationName("antimicro");
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
 	// Update log info based on config values
 	if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
 	    settings.contains("LogLevel")) {
-	  appLogger.setLogLevel( (Logger::LogLevel) settings.value("LogLevel").toInt() );
+      appLogger.setLogLevel( static_cast<Logger::LogLevel>(settings.value("LogLevel").toInt()) );
 	}
 	if( cmdutility.getCurrentLogFile().isEmpty() &&
 	    settings.contains("LogFile")) {
@@ -506,7 +506,7 @@ int main(int argc, char *argv[])
     // Update log info based on config values
     if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
 	settings->contains("LogLevel")) {
-      appLogger.setLogLevel( (Logger::LogLevel)settings->value("LogLevel").toInt() );
+      appLogger.setLogLevel( static_cast<Logger::LogLevel>(settings->value("LogLevel").toInt()) );
     }
     if( cmdutility.getCurrentLogFile().isEmpty() &&
 	settings->contains("LogFile")) {
@@ -548,7 +548,7 @@ int main(int argc, char *argv[])
     sigemptyset(&termaction.sa_mask);
     termaction.sa_flags = 0;
 
-    sigaction(SIGTERM, &termaction, 0);
+    sigaction(SIGTERM, &termaction, nullptr);
 
     // Have program handle SIGINT
     struct sigaction termint;
@@ -556,7 +556,7 @@ int main(int argc, char *argv[])
     sigemptyset(&termint.sa_mask);
     termint.sa_flags = 0;
 
-    sigaction(SIGINT, &termint, 0);
+    sigaction(SIGINT, &termint, nullptr);
 
 #endif
 
@@ -640,7 +640,7 @@ int main(int argc, char *argv[])
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
-        X11Extras::getInstance()->closeDisplay();
+            X11Extras::getInstance()->closeDisplay();
         }
 
 #endif
@@ -677,7 +677,7 @@ int main(int argc, char *argv[])
         appLogger.LogInfo(QObject::trUtf8("Attempting to use fallback option %1 for event generation.")
                                      .arg(eventDisplayName));
 
-        if (keyMapper)
+        if (keyMapper != nullptr)
         {
             keyMapper->deleteInstance();
             keyMapper = nullptr;
@@ -711,7 +711,7 @@ int main(int argc, char *argv[])
         delete localServer;
         localServer = nullptr;
 
-        if (keyMapper)
+        if (keyMapper != nullptr)
         {
             keyMapper->deleteInstance();
             keyMapper = nullptr;
@@ -749,9 +749,14 @@ int main(int argc, char *argv[])
     QObject::connect(w, &MainWindow::joystickRefreshRequested, joypad_worker, &InputDaemon::refresh);
     QObject::connect(joypad_worker, static_cast<void (InputDaemon::*)(InputDevice*)>(&InputDaemon::joystickRefreshed),
                      [w](InputDevice* dev) { w->fillButtons(dev); });
+
+   // QObject::connect(joypad_worker,
+   //                  static_cast<void (InputDaemon::*)(QMap<SDL_JoystickID, InputDevice*>*)>(&InputDaemon::joysticksRefreshed),
+   //                  [w](QMap<SDL_JoystickID, InputDevice*>* map) { w->fillButtons(map); });
+
     QObject::connect(joypad_worker,
-                     static_cast<void (InputDaemon::*)(QMap<SDL_JoystickID, InputDevice*>*)>(&InputDaemon::joysticksRefreshed),
-                     [w](QMap<SDL_JoystickID, InputDevice*>* map) { w->fillButtons(map); });
+                     SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
+                     w, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
 
     QObject::connect(&antimicro, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
     QObject::connect(&antimicro, &QApplication::aboutToQuit, w, &MainWindow::saveAppConfig);

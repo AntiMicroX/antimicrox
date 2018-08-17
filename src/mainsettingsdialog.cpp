@@ -749,7 +749,7 @@ void MainSettingsDialog::saveNewSettings()
             JoyButton::setMouseHistorySize(historySize);
         }
 
-        if (weightModifier)
+        if (weightModifier != 0.0)
         {
             JoyButton::setWeightModifier(weightModifier);
         }
@@ -784,7 +784,7 @@ void MainSettingsDialog::saveNewSettings()
     settings->setValue("Mouse/SpringScreen", QString::number(springScreen));
 
     int pollIndex = ui->gamepadPollRateComboBox->currentIndex();
-    int gamepadPollRate = ui->gamepadPollRateComboBox->itemData(pollIndex).toUInt();
+    int gamepadPollRate = ui->gamepadPollRateComboBox->itemData(pollIndex).toInt();
     if (gamepadPollRate != JoyButton::getGamepadRefreshRate())
     {
         JoyButton::setGamepadRefreshRate(gamepadPollRate);

@@ -45,7 +45,7 @@ void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
 
     if (xml->isStartElement() && (xml->name() == JoyAxisButton::xmlName))
     {
-        disconnect(this, &GameControllerTriggerButton::slotsChanged, parentSet->getInputDevice(), &InputDevice::profileEdited);
+        disconnect(this, &GameControllerTriggerButton::slotsChanged, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
 
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != JoyAxisButton::xmlName))
@@ -59,6 +59,6 @@ void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
             xml->readNextStartElement();
         }
 
-        connect(this, &GameControllerTriggerButton::slotsChanged, parentSet->getInputDevice(), &InputDevice::profileEdited);
+        connect(this, &GameControllerTriggerButton::slotsChanged, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
     }
 }

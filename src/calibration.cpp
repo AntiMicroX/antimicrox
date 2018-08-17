@@ -617,7 +617,16 @@ void Calibration::createAxesConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    qDeleteAll(ui->axesWidget->findChildren<QWidget*>());
+    while(!ui->progressBarsLayout->isEmpty()) {
+        QLayout *hb = ui->progressBarsLayout->takeAt(0)->layout();
+        while(!hb->isEmpty()) {
+            QWidget *w = hb->takeAt(0)->widget();
+            delete w;
+        }
+        delete hb;
+    }
+
+    update();
 
     QPointer<JoyControlStick> controlstick = joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getJoyStick(ui->axesBox->currentIndex());
     this->stick = controlstick.data();

@@ -141,7 +141,7 @@ protected:
     int rawAxisDeadZone;
     int keyPressTime; // unsigned
     QString profileName;
-    SDL_Joystick* joyhandle;
+    SDL_Joystick* m_joyhandle;
 
 signals:
     void setChangeActivated(int index);
@@ -223,7 +223,7 @@ private:
 
     QHash<int, SetJoystick*> joystick_sets;
     QHash<int, JoyAxis::ThrottleTypes> cali;
-    AntiMicroSettings *settings;
+    AntiMicroSettings *m_settings;
     int active_set;
     int joyNumber;
     int buttonDownCount;

@@ -60,7 +60,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     ui->winClassLabel->setVisible(false);
     ui->winClassHeadLabel->setVisible(false);
 #elif defined(Q_OS_UNIX)
-    winClass = info->getWindowClass(window);
+    winClass = info->getWindowClass(static_cast<Window>(window));
     ui->winClassLabel->setText(winClass);
     if (winClass.isEmpty())
     {
@@ -80,7 +80,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 #ifdef Q_OS_WIN
     winName = WinExtras::getCurrentWindowText();
 #elif defined(Q_OS_UNIX)
-    winName = info->getWindowTitle(window);
+    winName = info->getWindowTitle(static_cast<Window>(window));
 #endif
 
     ui->winTitleLabel->setText(winName);
@@ -113,7 +113,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     }
 
 #elif defined(Q_OS_UNIX)
-    int pid = info->getApplicationPid(window);
+    int pid = info->getApplicationPid(static_cast<Window>(window));
     if (pid > 0)
     {
         QString exepath = X11Extras::getInstance()->getApplicationLocation(pid);

@@ -34,14 +34,14 @@ JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystic
     JoyGradientButton(index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-    this->axis = axis;
+    m_axis = axis;
 }
 
-QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
+QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString(axis->getPartialName(forceFullFormat, displayNames));
+    QString temp = QString(m_axis->getPartialName(forceFullFormat, displayNames));
     temp.append(": ");
 
     if (!buttonName.isEmpty() && displayNames)
@@ -63,11 +63,11 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames)
     else
     {
         QString buttontype = QString();
-        if (index == 0)
+        if (m_index == 0)
         {
             buttontype = trUtf8("Negative");
         }
-        else if (index == 1)
+        else if (m_index == 1)
         {
             buttontype = trUtf8("Positive");
         }
@@ -100,12 +100,12 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(index, this->axis->getIndex(), setSelection, condition);
+            emit setAssignmentChanged(m_index, m_axis->getIndex(), setSelection, condition);
         }
         else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(index, this->axis->getIndex(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index, m_axis->getIndex(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
@@ -140,7 +140,7 @@ double JoyAxisButton::getDistanceFromDeadZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return axis->getDistanceFromDeadZone();
+    return m_axis->getDistanceFromDeadZone();
 }
 
 /**
@@ -158,9 +158,9 @@ void JoyAxisButton::setVDPad(VDPad *vdpad)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (axis->isPartControlStick())
+    if (m_axis->isPartControlStick())
     {
-        axis->removeControlStick();
+        m_axis->removeControlStick();
     }
 
     JoyButton::setVDPad(vdpad);
@@ -198,7 +198,7 @@ double JoyAxisButton::getAccelerationDistance()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double distance = 0.0;
-    distance = axis->getRawDistance(axis->getCurrentThrottledValue());
+    distance = m_axis->getRawDistance(m_axis->getCurrentThrottledValue());
     return distance;
 }
 
@@ -207,7 +207,7 @@ double JoyAxisButton::getLastAccelerationDistance()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double distance = 0.0;
-    distance = axis->getRawDistance(axis->getLastKnownThrottleValue());
+    distance = m_axis->getRawDistance(m_axis->getLastKnownThrottleValue());
 
     return distance;
 }
@@ -217,9 +217,9 @@ double JoyAxisButton::getLastMouseDistanceFromDeadZone()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double distance = 0.0;
-    if (axis->getAxisButtonByValue(axis->getLastKnownThrottleValue()) == this)
+    if (m_axis->getAxisButtonByValue(m_axis->getLastKnownThrottleValue()) == this)
     {
-        distance = axis->getDistanceFromDeadZone(axis->getLastKnownThrottleValue());
+        distance = m_axis->getDistanceFromDeadZone(m_axis->getLastKnownThrottleValue());
     }
 
     return distance;
@@ -228,5 +228,5 @@ double JoyAxisButton::getLastMouseDistanceFromDeadZone()
 
 JoyAxis* JoyAxisButton::getAxis() const {
 
-    return axis;
+    return m_axis;
 }

@@ -212,10 +212,11 @@ int VirtualKeyPushButton::calculateFontSize()
     QFont tempScaledFont(this->font());
     tempScaledFont.setPointSize(10);
     QFontMetrics fm(tempScaledFont);
+    int less_width = this->width() - 4;
 
-    while (((this->width()-4) < fm.boundingRect(this->rect(), Qt::AlignCenter, this->text()).width()) && tempScaledFont.pointSize() >= 6)
+    while ((less_width < fm.boundingRect(this->rect(), Qt::AlignCenter, this->text()).width()) && (tempScaledFont.pointSize() > 5))
     {
-        tempScaledFont.setPointSize(tempScaledFont.pointSize()-1);
+        tempScaledFont.setPointSize(tempScaledFont.pointSize() - 1);
         fm = QFontMetrics(tempScaledFont);
     }
 

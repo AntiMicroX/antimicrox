@@ -30,11 +30,11 @@ class JoyDPadButton : public JoyButton
 public:
     JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent=0);
 
-    virtual int getRealJoyNumber();
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
+    virtual int getRealJoyNumber() const;
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const;
     virtual QString getXmlName();
 
-    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false, bool updateActiveString=true);
 
     enum JoyDPadDirections {
         DpadCentered = 0, DpadUp = 1, DpadRight = 2,
@@ -56,8 +56,8 @@ public slots:
     virtual void reset(int index);
 
 private:
-    int direction;
-    JoyDPad *dpad;
+    int m_direction;
+    JoyDPad *m_dpad;
 };
 
 #endif // JOYDPADBUTTON_H

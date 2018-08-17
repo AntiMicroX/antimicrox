@@ -32,7 +32,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->joyhandle = joyhandle;
+    m_joyhandle = joyhandle;
 
     joystickID = SDL_JoystickInstanceID(joyhandle);
 
@@ -57,9 +57,9 @@ QString Joystick::getSDLName()
 
     QString temp = QString();
 
-    if (joyhandle != nullptr)
+    if (m_joyhandle != nullptr)
     {
-        temp = SDL_JoystickName(joyhandle);
+        temp = SDL_JoystickName(m_joyhandle);
     }
 
     return temp;
@@ -71,7 +71,7 @@ QString Joystick::getGUIDString()
 
     QString temp = QString();
 
-    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joyhandle);
+    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(m_joyhandle);
     char guidString[65] = {'0'};
     SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
     temp = QString(guidString);
@@ -91,9 +91,9 @@ void Joystick::closeSDLDevice()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((joyhandle != nullptr) && SDL_JoystickGetAttached(joyhandle))
+    if ((m_joyhandle != nullptr) && SDL_JoystickGetAttached(m_joyhandle))
     {
-        SDL_JoystickClose(joyhandle);
+        SDL_JoystickClose(m_joyhandle);
     }
 }
 
@@ -101,7 +101,7 @@ int Joystick::getNumberRawButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int numbuttons = SDL_JoystickNumButtons(joyhandle);
+    int numbuttons = SDL_JoystickNumButtons(m_joyhandle);
     return numbuttons;
 }
 
@@ -109,7 +109,7 @@ int Joystick::getNumberRawAxes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int numaxes = SDL_JoystickNumAxes(joyhandle);
+    int numaxes = SDL_JoystickNumAxes(m_joyhandle);
     return numaxes;
 }
 
@@ -117,7 +117,7 @@ int Joystick::getNumberRawHats()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int numhats = SDL_JoystickNumHats(joyhandle);
+    int numhats = SDL_JoystickNumHats(m_joyhandle);
     return numhats;
 }
 
@@ -130,5 +130,5 @@ SDL_JoystickID Joystick::getSDLJoystickID()
 
 SDL_Joystick* Joystick::getJoyhandle() const {
 
-    return joyhandle;
+    return m_joyhandle;
 }

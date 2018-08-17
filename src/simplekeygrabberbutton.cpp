@@ -80,7 +80,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             controlcode = 2;
         }
         else {
-            controlcode = mouseEve->button();
+            controlcode = static_cast<int>(mouseEve->button());
         }
 
         buttonslot.setSlotCode(controlcode);
@@ -96,8 +96,8 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     else if (grabNextAction && (event->type() == QEvent::KeyRelease))
     {
         QKeyEvent *keyEve = static_cast<QKeyEvent*>(event);
-        int tempcode = keyEve->nativeScanCode();
-        int virtualactual = keyEve->nativeVirtualKey();
+        int tempcode = static_cast<int>(keyEve->nativeScanCode());
+        int virtualactual = static_cast<int>(keyEve->nativeVirtualKey());
 
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 

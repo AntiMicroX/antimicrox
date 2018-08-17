@@ -36,7 +36,7 @@ JoyControlStickModifierButton::JoyControlStickModifierButton(JoyControlStick *st
     this->stick = stick;
 }
 
-QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool displayNames)
+QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -99,8 +99,10 @@ double JoyControlStickModifierButton::getMouseDistanceFromDeadZone()
     return getDistanceFromDeadZone();
 }
 
-void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
+    Q_UNUSED(updateActiveString);
+
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Q_UNUSED(condition);

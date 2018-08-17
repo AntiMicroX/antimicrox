@@ -53,7 +53,7 @@ private:
     QXmlStreamReader *xml;
     QString fileName;
     QFile *configFile;
-    InputDevice* joystick;
+    InputDevice* m_joystick;
     QStringList deviceTypes;
 
 };

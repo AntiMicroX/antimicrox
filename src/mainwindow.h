@@ -149,16 +149,16 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QMap<SDL_JoystickID, InputDevice*> *joysticks;
+    QMap<SDL_JoystickID, InputDevice*> *m_joysticks;
     QMap<int, QList<QAction*> > profileActions;
 
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
     AboutDialog *aboutDialog;
-    CommandLineUtility *cmdutility;
-    AntiMicroSettings *settings;
-    QTranslator *translator;
-    QTranslator *appTranslator;
+    CommandLineUtility *m_cmdutility;
+    AntiMicroSettings *m_settings;
+    QTranslator *m_translator;
+    QTranslator *m_appTranslator;
     AutoProfileWatcher *appWatcher;
 
     QAction *hideAction;
@@ -168,7 +168,7 @@ private:
 
     bool signalDisconnect;
     bool showTrayIcon;
-    bool graphical;
+    bool m_graphical;
 
 };
 

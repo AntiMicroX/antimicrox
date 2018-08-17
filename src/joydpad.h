@@ -39,7 +39,7 @@ public:
 
     enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
 
-    JoyDPadButton* getJoyButton(int index);
+    JoyDPadButton* getJoyButton(int index_local);
     QHash<int, JoyDPadButton*>* getJoyButtons();
 
     int getCurrentDirection();
@@ -154,12 +154,12 @@ private:
     QString dpadName;
     QString defaultDPadName;
 
-    SetJoystick *parentSet;
+    SetJoystick *m_parentSet;
     QTimer directionDelayTimer;
     JoyMode currentMode;
 
-    int index;
-    int originset;
+    int m_index;
+    int m_originset;
     int dpadDelay; // unsigned
     int pendingEventDirection;
 

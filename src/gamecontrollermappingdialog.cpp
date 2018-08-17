@@ -386,7 +386,7 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
 
         for (int i = 0; i < controller->getNumberButtons(); i++)
         {
-            int associatedRow = buttonPlacement.value((SDL_GameControllerButton)i);
+            int associatedRow = buttonPlacement.value(static_cast<SDL_GameControllerButton>(i));
             SDL_GameControllerButtonBind bind = controller->getBindForButton(i);
             QString temptext = bindingString(bind);
 
@@ -411,7 +411,7 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
         for (int i = 0; i < controller->getNumberAxes(); i++)
         {
 
-            int associatedRow = axisPlacement.value((SDL_GameControllerAxis)i);
+            int associatedRow = axisPlacement.value(static_cast<SDL_GameControllerAxis>(i));
             SDL_GameControllerButtonBind bind = controller->getBindForAxis(i);
             QString temptext = bindingString(bind);
 
@@ -543,13 +543,13 @@ void GameControllerMappingDialog::disableDeviceConnections()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(device, &InputDevice::rawButtonClick, this, 0);
-    disconnect(device, &InputDevice::rawButtonRelease, this, 0);
-    disconnect(device, &InputDevice::rawAxisMoved, this, 0);
-    disconnect(device, &InputDevice::rawAxisActivated, this, 0);
-    disconnect(device, &InputDevice::rawAxisReleased, this, 0);
-    disconnect(device, &InputDevice::rawDPadButtonClick, this, 0);
-    disconnect(device, &InputDevice::rawDPadButtonRelease, this, 0);
+    disconnect(device, &InputDevice::rawButtonClick, this, nullptr);
+    disconnect(device, &InputDevice::rawButtonRelease, this, nullptr);
+    disconnect(device, &InputDevice::rawAxisMoved, this, nullptr);
+    disconnect(device, &InputDevice::rawAxisActivated, this, nullptr);
+    disconnect(device, &InputDevice::rawAxisReleased, this, nullptr);
+    disconnect(device, &InputDevice::rawDPadButtonClick, this, nullptr);
+    disconnect(device, &InputDevice::rawDPadButtonRelease, this, nullptr);
 }
 
 void GameControllerMappingDialog::enableButtonEvents(int code)

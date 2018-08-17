@@ -52,35 +52,35 @@ QString JoyControlStickButton::getDirectionName() const
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString();
-    if (index == static_cast<int>(JoyControlStick::StickUp))
+    if (m_index == static_cast<int>(JoyControlStick::StickUp))
     {
         label.append(trUtf8("Up"));
     }
-    else if (index == static_cast<int>(JoyControlStick::StickDown))
+    else if (m_index == static_cast<int>(JoyControlStick::StickDown))
     {
         label.append(trUtf8("Down"));
     }
-    else if (index == static_cast<int>(JoyControlStick::StickLeft))
+    else if (m_index == static_cast<int>(JoyControlStick::StickLeft))
     {
         label.append(trUtf8("Left"));
     }
-    else if (index == static_cast<int>(JoyControlStick::StickRight))
+    else if (m_index == static_cast<int>(JoyControlStick::StickRight))
     {
         label.append(trUtf8("Right"));
     }
-    else if (index == static_cast<int>(JoyControlStick::StickLeftUp))
+    else if (m_index == static_cast<int>(JoyControlStick::StickLeftUp))
     {
         label.append(trUtf8("Up")).append("+").append(trUtf8("Left"));
     }
-    else if (index == static_cast<int>(JoyControlStick::StickLeftDown))
+    else if (m_index == static_cast<int>(JoyControlStick::StickLeftDown))
     {
         label.append(trUtf8("Down")).append("+").append(trUtf8("Left"));
     }
-    else if (index == static_cast<int>(JoyControlStick::StickRightUp))
+    else if (m_index == static_cast<int>(JoyControlStick::StickRightUp))
     {
         label.append(trUtf8("Up")).append("+").append(trUtf8("Right"));
     }
-    else if (index == static_cast<int>(JoyControlStick::StickRightDown))
+    else if (m_index == static_cast<int>(JoyControlStick::StickRightDown))
     {
         label.append(trUtf8("Down")).append("+").append(trUtf8("Right"));
     }
@@ -88,7 +88,7 @@ QString JoyControlStickButton::getDirectionName() const
     return label;
 }
 
-QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames)
+QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -152,8 +152,10 @@ double JoyControlStickButton::getMouseDistanceFromDeadZone()
     return stick->calculateMouseDirectionalDistance(this);
 }
 
-void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
+    Q_UNUSED(updateActiveString);
+
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetChangeCondition oldCondition = setSelectionCondition;
@@ -163,12 +165,12 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, condition);
+            emit setAssignmentChanged(m_index, this->stick->getIndex(), setSelection, condition);
         }
         else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index, this->stick->getIndex(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
@@ -190,18 +192,18 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
     }
 }
 
-int JoyControlStickButton::getRealJoyNumber()
+int JoyControlStickButton::getRealJoyNumber() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index;
+    return m_index;
 }
 
 JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return static_cast<JoyStickDirectionsType::JoyStickDirections>(index);
+    return static_cast<JoyStickDirectionsType::JoyStickDirections>(m_index);
 }
 
 /**
@@ -303,16 +305,16 @@ double JoyControlStickButton::getCurrentSpringDeadCircle()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double result = (springDeadCircleMultiplier * 0.01);
-    if ((index == static_cast<int>(JoyControlStick::StickLeft)) || (index == static_cast<int>(JoyControlStick::StickRight)))
+    if ((m_index == static_cast<int>(JoyControlStick::StickLeft)) || (m_index == static_cast<int>(JoyControlStick::StickRight)))
     {
         result = stick->getSpringDeadCircleX() * (springDeadCircleMultiplier * 0.01);
     }
-    else if ((index == static_cast<int>(JoyControlStick::StickUp)) || (index == static_cast<int>(JoyControlStick::StickDown)))
+    else if ((m_index == static_cast<int>(JoyControlStick::StickUp)) || (m_index == static_cast<int>(JoyControlStick::StickDown)))
     {
         result = stick->getSpringDeadCircleY() * (springDeadCircleMultiplier * 0.01);
     }
-    else if ((index == static_cast<int>(JoyControlStick::StickRightUp)) || (index == static_cast<int>(JoyControlStick::StickRightDown)) ||
-             (index == static_cast<int>(JoyControlStick::StickLeftDown)) || (index == static_cast<int>(JoyControlStick::StickLeftUp)))
+    else if ((m_index == static_cast<int>(JoyControlStick::StickRightUp)) || (m_index == static_cast<int>(JoyControlStick::StickRightDown)) ||
+             (m_index == static_cast<int>(JoyControlStick::StickLeftDown)) || (m_index == static_cast<int>(JoyControlStick::StickLeftUp)))
     {
         result = 0.0;
     }

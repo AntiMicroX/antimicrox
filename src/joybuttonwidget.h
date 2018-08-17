@@ -46,7 +46,7 @@ private slots:
     void showContextMenu(const QPoint &point);
 
 private:
-    JoyButton* button;
+    JoyButton* m_button;
 };
 
 #endif // JOYBUTTONWIDGET_H

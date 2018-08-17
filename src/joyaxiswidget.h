@@ -48,7 +48,7 @@ private slots:
     void showContextMenu(const QPoint &point);
 
 private:
-    JoyAxis *axis;
+    JoyAxis *m_axis;
 };
 
 #endif // JOYAXISWIDGET_H

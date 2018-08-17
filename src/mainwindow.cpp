@@ -85,11 +85,11 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     ui->stackedWidget->setCurrentIndex(0);
 
-    this->translator = nullptr;
-    this->appTranslator = nullptr;
-    this->cmdutility = cmdutility;
-    this->graphical = graphical;
-    this->settings = settings;
+    m_translator = nullptr;
+    m_appTranslator = nullptr;
+    m_cmdutility = cmdutility;
+    m_graphical = graphical;
+    m_settings = settings;
 
     ui->actionStick_Pad_Assign->setVisible(false);
 
@@ -117,7 +117,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     showTrayIcon = !cmdutility->isTrayHidden() && graphical &&
                    !cmdutility->shouldListControllers() && !cmdutility->shouldMapController();
 
-    this->joysticks = joysticks;
+    m_joysticks = joysticks;
 
     if (showTrayIcon)
     {
@@ -221,30 +221,29 @@ void MainWindow::alterConfigFromSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (cmdutility->shouldListControllers())
+    if (m_cmdutility->shouldListControllers())
     {
-        graphical = false;
-        this->graphical = graphical;
+        m_graphical = false;
     }
-    else if (cmdutility->hasProfile())
+    else if (m_cmdutility->hasProfile())
     {
-        if (cmdutility->hasControllerNumber())
+        if (m_cmdutility->hasControllerNumber())
         {
-            loadConfigFile(cmdutility->getProfileLocation(),
-                           cmdutility->getControllerNumber());
+            loadConfigFile(m_cmdutility->getProfileLocation(),
+                           m_cmdutility->getControllerNumber());
         }
-        else if (cmdutility->hasControllerID())
+        else if (m_cmdutility->hasControllerID())
         {
-            loadConfigFile(cmdutility->getProfileLocation(),
-                           cmdutility->hasControllerID());
+            loadConfigFile(m_cmdutility->getProfileLocation(),
+                           m_cmdutility->hasControllerID());
         }
         else
         {
-            loadConfigFile(cmdutility->getProfileLocation());
+            loadConfigFile(m_cmdutility->getProfileLocation());
         }
     }
 
-    const QList<ControllerOptionsInfo> tempList = cmdutility->getControllerOptionsList();
+    const QList<ControllerOptionsInfo> tempList = m_cmdutility->getControllerOptionsList();
     //unsigned int optionListSize = tempList->size();
 
     QListIterator<ControllerOptionsInfo> optionIter(tempList);
@@ -308,18 +307,17 @@ void MainWindow::controllerMapOpening()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (cmdutility->shouldMapController())
+    if (m_cmdutility->shouldMapController())
     {
-        graphical = false;
-        this->graphical = graphical;
+        m_graphical = false;
 
-        const QList<ControllerOptionsInfo> tempList = cmdutility->getControllerOptionsList();
+        const QList<ControllerOptionsInfo> tempList = m_cmdutility->getControllerOptionsList();
         ControllerOptionsInfo temp = tempList.at(0);
 
         if (temp.hasControllerNumber())
         {
 
-            int joypadIndex = cmdutility->getControllerNumber();
+            int joypadIndex = m_cmdutility->getControllerNumber();
 
             #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It was antimicro --map controllerNumber";
@@ -333,7 +331,7 @@ void MainWindow::controllerMapOpening()
         {
 
 
-            QString joypadGUID = cmdutility->getControllerID();
+            QString joypadGUID = m_cmdutility->getControllerID();
 
             #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It was antimicro --map controllerID";
@@ -361,7 +359,7 @@ void MainWindow::fillButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    fillButtons(joysticks);
+    fillButtons(m_joysticks);
 }
 
 void MainWindow::makeJoystickTabs()
@@ -374,7 +372,7 @@ void MainWindow::makeJoystickTabs()
     // Make temporary QMap with devices inserted using the device index as the
     // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
-    QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
+    QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*m_joysticks);
 
     while (iterTemp.hasNext())
     {
@@ -391,13 +389,13 @@ void MainWindow::makeJoystickTabs()
         iter.next();
 
         InputDevice *joystick = iter.value();
-        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, settings, this);
+        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, m_settings, this);
         QString joytabName = joystick->getSDLName();
         joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
     }
 
-    if (joysticks != nullptr)
+    if (m_joysticks != nullptr)
     {
         ui->tabWidget->setCurrentIndex(0);
         ui->stackedWidget->setCurrentIndex(1);
@@ -440,7 +438,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 
         InputDevice *joystick = iter.value();
 
-        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, settings, this);
+        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, m_settings, this);
         QString joytabName = joystick->getSDLName();
         joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
@@ -498,12 +496,12 @@ void MainWindow::populateTrayIcon()
 
     trayIconMenu->clear();
     profileActions.clear();
-    int joystickCount = joysticks->size();
+    int joystickCount = m_joysticks->size();
 
     if (joystickCount > 0)
     {
-        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-        bool useSingleList = settings->value("TrayProfileList", false).toBool();
+        QMapIterator<SDL_JoystickID, InputDevice*> iter(*m_joysticks);
+        bool useSingleList = m_settings->value("TrayProfileList", false).toBool();
         if (!useSingleList && (joystickCount == 1))
         {
             useSingleList = true;
@@ -722,13 +720,13 @@ void MainWindow::saveAppConfig()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (joysticks->size() > 0)
+    if (m_joysticks->size() > 0)
     {
         JoyTabWidget *temptabwidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(0)); // static_cast
-        settings->setValue("DisplayNames",
+        m_settings->setValue("DisplayNames",
             temptabwidget->isDisplayingNames() ? "1" : "0");
 
-        settings->beginGroup("Controllers");
+        m_settings->beginGroup("Controllers");
         QStringList tempIdentifierHolder = QStringList();
 
         for (int i=0; i < ui->tabWidget->count(); i++)
@@ -760,11 +758,11 @@ void MainWindow::saveAppConfig()
             }
         }
 
-        settings->endGroup();
+        m_settings->endGroup();
     }
 
-    settings->setValue("WindowSize", size());
-    settings->setValue("WindowPosition", pos());
+    m_settings->setValue("WindowSize", size());
+    m_settings->setValue("WindowPosition", pos());
 }
 
 void MainWindow::loadAppConfig(bool forceRefresh)
@@ -1006,7 +1004,7 @@ void MainWindow::changeEvent(QEvent *event)
         QWindowStateChangeEvent *e = static_cast<QWindowStateChangeEvent*>(event);
         if (e->oldState() != Qt::WindowMinimized && isMinimized())
         {
-            bool minimizeToTaskbar = settings->value("MinimizeToTaskbar", false).toBool();
+            bool minimizeToTaskbar = m_settings->value("MinimizeToTaskbar", false).toBool();
             if (QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon && !minimizeToTaskbar)
             {
                 this->hideWindow();
@@ -1039,7 +1037,7 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((joystickIndex > 0) && joysticks->contains(joystickIndex - 1))
+    if ((joystickIndex > 0) && m_joysticks->contains(joystickIndex - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex-1)); // static_cast
         if (widget != nullptr)
@@ -1105,7 +1103,7 @@ void MainWindow::handleInstanceDisconnect()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    settings->sync();
+    m_settings->sync();
     loadAppConfig(true);
 }
 
@@ -1165,13 +1163,13 @@ void MainWindow::openCalibration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (joysticks->isEmpty()) {
+    if (m_joysticks->isEmpty()) {
 
         QMessageBox::information(this, trUtf8("Calibration couldn't be opened"), trUtf8("You must connect at least one controller to open the window"));
 
     } else {
 
-        QPointer<Calibration> calibration = new Calibration(joysticks);
+        QPointer<Calibration> calibration = new Calibration(m_joysticks);
         calibration.data()->show();
 
         if (calibration.isNull())
@@ -1185,7 +1183,7 @@ void MainWindow::unloadCurrentConfig(int joystickIndex)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((joystickIndex > 0) && joysticks->contains(joystickIndex - 1))
+    if ((joystickIndex > 0) && m_joysticks->contains(joystickIndex - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*> (ui->tabWidget->widget(joystickIndex - 1)); // static_cast
         if (widget != nullptr)
@@ -1275,7 +1273,7 @@ void MainWindow::changeStartSetNumber(int startSetNumber, int joystickIndex)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((joystickIndex > 0) && joysticks->contains(joystickIndex - 1))
+    if ((joystickIndex > 0) && m_joysticks->contains(joystickIndex - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(joystickIndex - 1));  // static_cast
         if (widget != nullptr)
@@ -1306,8 +1304,8 @@ void MainWindow::openMainSettingsDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QList<InputDevice*> *devices = new QList<InputDevice*>(joysticks->values());
-    MainSettingsDialog *dialog = new MainSettingsDialog(settings, devices, this);
+    QList<InputDevice*> *devices = new QList<InputDevice*>(m_joysticks->values());
+    MainSettingsDialog *dialog = new MainSettingsDialog(m_settings, devices, this);
     connect(dialog, &MainSettingsDialog::changeLanguage, this, &MainWindow::changeLanguage);
 
     if (appWatcher != nullptr)
@@ -1350,9 +1348,9 @@ void MainWindow::changeLanguage(QString language)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((translator != nullptr) && (appTranslator != nullptr))
+    if ((m_translator != nullptr) && (m_appTranslator != nullptr))
     {
-        PadderCommon::reloadTranslations(translator, appTranslator, language);
+        PadderCommon::reloadTranslations(m_translator, m_appTranslator, language);
     }
 }
 
@@ -1366,7 +1364,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    bool closeToTray = settings->value("CloseToTray", false).toBool();
+    bool closeToTray = m_settings->value("CloseToTray", false).toBool();
     if (closeToTray && QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
     {
         this->hideWindow();
@@ -1575,11 +1573,11 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
         InputDevice *joystick = joyTab->getJoystick();
         if (joystick != nullptr)
         {
-            GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, settings, this);
+            GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, m_settings, this);
 
             if (openAsMain)
             {
-                dialog->setParent(0);
+                dialog->setParent(nullptr);
                 dialog->setWindowFlags(Qt::Window);
                 connect(dialog, &GameControllerMappingDialog::finished, qApp, &QApplication::quit);
             }
@@ -1617,7 +1615,7 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
         tab = nullptr;
     }
 
-    JoyTabWidget *tabwidget = new JoyTabWidget(device, settings, this);
+    JoyTabWidget *tabwidget = new JoyTabWidget(device, m_settings, this);
     QString joytabName = device->getSDLName();
     joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
     ui->tabWidget->insertTab(index, tabwidget, joytabName);
@@ -1691,7 +1689,7 @@ void MainWindow::addJoyTab(InputDevice *device)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyTabWidget *tabwidget = new JoyTabWidget(device, settings, this);
+    JoyTabWidget *tabwidget = new JoyTabWidget(device, m_settings, this);
     QString joytabName = device->getSDLName();
     joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
     ui->tabWidget->addTab(tabwidget, joytabName);
@@ -1704,10 +1702,10 @@ void MainWindow::addJoyTab(InputDevice *device)
         JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
         if (tab != nullptr)
         {
-            InputDevice *device = tab->getJoystick();
-            QString joytabName = device->getSDLName();
-            joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
-            ui->tabWidget->setTabText(i, joytabName);
+            InputDevice *device_in_loop = tab->getJoystick();
+            QString joytabName_in_loop = device_in_loop->getSDLName();
+            joytabName_in_loop.append(" ").append(trUtf8("(%1)").arg(device_in_loop->getName()));
+            ui->tabWidget->setTabText(i, joytabName_in_loop);
         }
     }
 
@@ -1831,7 +1829,7 @@ void MainWindow::checkAutoProfileWatcherTimer()
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
-    QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
+    QString autoProfileActive = m_settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
     if (autoProfileActive == "1")
     {
         appWatcher->startTimer();
@@ -1880,7 +1878,7 @@ void MainWindow::selectControllerJoyTab(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((index > 0) && joysticks->contains(index - 1))
+    if ((index > 0) && m_joysticks->contains(index - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*> (ui->tabWidget->widget(index - 1));  // static_cast
         if (widget != nullptr)
@@ -1910,7 +1908,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
     if (!GUID.isEmpty())
     {
         InputDevice *device = nullptr;
-        QMapIterator<SDL_JoystickID, InputDevice*> deviceIter(*joysticks);
+        QMapIterator<SDL_JoystickID, InputDevice*> deviceIter(*m_joysticks);
         while (deviceIter.hasNext())
         {
             deviceIter.next();
@@ -1945,15 +1943,15 @@ void MainWindow::changeWindowStatus()
 
     // Check flags to see if user requested for the main window and the tray icon
     // to not be displayed.
-    if (graphical)
+    if (m_graphical)
     {
-        bool launchInTraySetting = settings->runtimeValue("LaunchInTray", false).toBool();
-        if (!cmdutility->isHiddenRequested() &&
+        bool launchInTraySetting = m_settings->runtimeValue("LaunchInTray", false).toBool();
+        if (!m_cmdutility->isHiddenRequested() &&
             (!launchInTraySetting || !QSystemTrayIcon::isSystemTrayAvailable()))
         {
             show();
         }
-        else if (cmdutility->isHiddenRequested() && cmdutility->isTrayHidden())
+        else if (m_cmdutility->isHiddenRequested() && m_cmdutility->isTrayHidden())
         {
             // Window should already be hidden but make sure
             // to disable flashing buttons.
@@ -1961,7 +1959,7 @@ void MainWindow::changeWindowStatus()
 
             setEnabled(false); // Should already be disabled. Do it again just to be sure.
         }
-        else if (cmdutility->isHiddenRequested() || launchInTraySetting)
+        else if (m_cmdutility->isHiddenRequested() || launchInTraySetting)
         {
             // Window should already be hidden but make sure
             // to disable flashing buttons.
@@ -1974,35 +1972,35 @@ bool MainWindow::getGraphicalStatus()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return graphical;
+    return m_graphical;
 }
 
 void MainWindow::setTranslator(QTranslator *translator)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->translator = translator;
+    m_translator = translator;
 }
 
 QTranslator* MainWindow::getTranslator() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return translator;
+    return m_translator;
 }
 
 void MainWindow::setAppTranslator(QTranslator *translator)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->appTranslator = translator;
+    m_appTranslator = translator;
 }
 
 QTranslator* MainWindow::getAppTranslator() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return appTranslator;
+    return m_appTranslator;
 }
 
 void MainWindow::retranslateUi()
