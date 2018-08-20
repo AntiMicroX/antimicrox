@@ -24,7 +24,9 @@
 #include <QXmlStreamReader>
 #include <QDebug>
 
+
 const QString GameControllerDPad::xmlName = "dpad";
+
 
 
 GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
@@ -34,9 +36,11 @@ GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButto
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
+
 QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     QString label = QString();
 
     if (!getDpadName().isEmpty() && displayName)
@@ -66,21 +70,27 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
     return label;
 }
 
+
 QString GameControllerDPad::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     return this->xmlName;
 }
+
 
 void GameControllerDPad::readJoystickConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     if (xml->isStartElement() && (xml->name() == VDPad::xmlName))
     {
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != VDPad::xmlName))
+
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != VDPad::xmlName)))
         {
             bool found = readMainConfig(xml);
+
             if (!found)
             {
                 xml->skipCurrentElement();

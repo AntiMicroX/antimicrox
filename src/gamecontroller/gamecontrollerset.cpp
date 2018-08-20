@@ -26,23 +26,29 @@
 #include <QXmlStreamReader>
 #include <QDebug>
 
+
 GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *parent) :
     SetJoystick(device, index, false, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     reset();
 }
+
 
 void GameControllerSet::reset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     SetJoystick::reset();
     populateSticksDPad();
 }
 
+
 void GameControllerSet::populateSticksDPad()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     // Left Stick Assignment
     JoyAxis *axisX = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTX);
     JoyAxis *axisY = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTY);
@@ -85,18 +91,72 @@ void GameControllerSet::populateSticksDPad()
     getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)->setDefaultAxisName(trUtf8("R Trigger"));
 }
 
+
+template <typename T>
+void readConf(T* x, QXmlStreamReader *xml)
+{
+    if (x != nullptr)
+    {
+        x->readConfig(xml);
+    }
+    else
+    {
+        xml->skipCurrentElement();
+    }
+}
+
+
+void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists, bool dpadExists)
+{
+    int index = xml->attributes().value("index").toString().toInt();
+    index = index - 1;
+    bool found = false;
+    QListIterator<SDL_GameControllerButtonBind> iter(hatButtons);
+    SDL_GameControllerButtonBind current;
+
+    while (iter.hasNext())
+    {
+        current = iter.next();
+
+        if (current.value.hat.hat == index)
+        {
+            found = true;
+            iter.toBack();
+        }
+    }
+
+    VDPad *dpad = nullptr;
+
+    if (found)
+    {
+        dpad = getVDPad(0);
+    }
+
+    if ((dpad != nullptr) && !vdpadExists)
+    {
+        dpadExists = true;
+        dpad->readConfig(xml);
+    }
+    else
+    {
+        xml->skipCurrentElement();
+    }
+}
+
+
 void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
                                            QHash<int, SDL_GameControllerButton> &buttons,
                                            QHash<int, SDL_GameControllerAxis> &axes,
                                            QList<SDL_GameControllerButtonBind> &hatButtons)
 {
+
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (xml->isStartElement() && (xml->name() == "set"))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "set"))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "set")))
         {
             bool dpadExists = false;
             bool vdpadExists = false;
@@ -105,25 +165,21 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyButton *button = nullptr;
+
                 if (buttons.contains(index-1))
                 {
                     SDL_GameControllerButton current = buttons.value(index-1);
                     button = getJoyButton(current);
                 }
 
-                if (button != nullptr)
-                {
-                    button->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                readConf(button, xml);
+
             }
             else if ((xml->name() == "axis") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 GameControllerTrigger *trigger = nullptr;
+
                 if (axes.contains(index-1))
                 {
                     SDL_GameControllerAxis current = axes.value(index-1);
@@ -141,96 +197,20 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
             }
             else if ((xml->name() == "dpad") && xml->isStartElement())
             {
-                int index = xml->attributes().value("index").toString().toInt();
-                index = index - 1;
-                bool found = false;
-                QListIterator<SDL_GameControllerButtonBind> iter(hatButtons);
-                SDL_GameControllerButtonBind current;
-                while (iter.hasNext())
-                {
-                    current = iter.next();
-                    if (current.value.hat.hat == index)
-                    {
-                        found = true;
-                        iter.toBack();
-                    }
-                }
-
-                VDPad *dpad = nullptr;
-                if (found)
-                {
-                    dpad = getVDPad(0);
-                }
-
-                if ((dpad != nullptr) && !vdpadExists)
-                {
-                    dpadExists = true;
-                    dpad->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                readConfDpad(xml, hatButtons, vdpadExists, dpadExists);
             }
             else if ((xml->name() == "stick") && xml->isStartElement())
             {
-                int stickIndex = xml->attributes().value("index").toString().toInt();
-
-                if (stickIndex > 0)
-                {
-                    stickIndex -= 1;
-                    JoyControlStick *stick = getJoyStick(stickIndex);
-                    if (stick != nullptr)
-                    {
-                        stick->readConfig(xml);
-                    }
-                    else
-                    {
-                        xml->skipCurrentElement();
-                    }
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                getElemFromXml("stick", xml);
             }
             else if ((xml->name() == "vdpad") && xml->isStartElement())
             {
-                int index = xml->attributes().value("index").toString().toInt();
-                index = index - 1;
-                bool found = false;
-                QListIterator<SDL_GameControllerButtonBind> iter(hatButtons);
-                SDL_GameControllerButtonBind current;
-                while (iter.hasNext())
-                {
-                    current = iter.next();
-                    if (current.value.hat.hat == index)
-                    {
-                        found = true;
-                        iter.toBack();
-                    }
-                }
-
-                VDPad *dpad = nullptr;
-                if (found)
-                {
-                    dpad = getVDPad(0);
-                }
-
-                if ((dpad != nullptr) && !dpadExists)
-                {
-                    vdpadExists = true;
-
-                    dpad->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+               readConfDpad(xml, hatButtons, vdpadExists, dpadExists);
             }
             else if ((xml->name() == "name") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
+
                 if (!temptext.isEmpty())
                 {
                     setName(temptext);
@@ -246,6 +226,7 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
         }
     }
 }
+
 
 void GameControllerSet::readConfig(QXmlStreamReader *xml)
 {
@@ -254,72 +235,29 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
     if (xml->isStartElement() && (xml->name() == "set"))
     {
         xml->readNextStartElement();
+
         while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "set"))
         {
             if ((xml->name() == "button") && xml->isStartElement())
             {
-                int index = xml->attributes().value("index").toString().toInt();
-                JoyButton *button = getJoyButton(index-1);
-                if (button != nullptr)
-                {
-                    button->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                getElemFromXml("button", xml);
             }
             else if ((xml->name() == "trigger") && xml->isStartElement())
             {
-                int index = xml->attributes().value("index").toString().toInt();
-                GameControllerTrigger *axis = qobject_cast<GameControllerTrigger*>(getJoyAxis((index-1) + SDL_CONTROLLER_AXIS_TRIGGERLEFT));
-                if (axis != nullptr)
-                {
-                    axis->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                getElemFromXml("trigger", xml);
             }
             else if ((xml->name() == "stick") && xml->isStartElement())
             {
-                int stickIndex = xml->attributes().value("index").toString().toInt();
-
-                if (stickIndex > 0)
-                {
-                    stickIndex -= 1;
-                    JoyControlStick *stick = getJoyStick(stickIndex);
-                    if (stick != nullptr)
-                    {
-                        stick->readConfig(xml);
-                    }
-                    else
-                    {
-                        xml->skipCurrentElement();
-                    }
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                getElemFromXml("stick", xml);
             }
             else if ((xml->name() == "dpad") && xml->isStartElement())
             {
-                int index = xml->attributes().value("index").toString().toInt();
-                GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(getVDPad(index-1));
-                if (vdpad != nullptr)
-                {
-                    vdpad->readConfig(xml);
-                }
-                else
-                {
-                    xml->skipCurrentElement();
-                }
+                getElemFromXml("dpad", xml);
             }
             else if ((xml->name() == "name") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
+
                 if (!temptext.isEmpty())
                 {
                     setName(temptext);
@@ -336,16 +274,47 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
     }
 }
 
+
+void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
+{
+    int index = xml->attributes().value("index").toString().toInt();
+
+    if (elemName == "button") {
+        JoyButton *button = getJoyButton(index-1);
+        readConf(button, xml);
+    }
+    else if (elemName == "dpad") {
+        GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(getVDPad(index-1));
+        readConf(vdpad, xml);
+    }
+    else if (elemName == "trigger") {
+        GameControllerTrigger *axis = qobject_cast<GameControllerTrigger*>(getJoyAxis((index-1) + SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+        readConf(axis, xml);
+    }
+    else if (elemName == "stick") {
+        if (index > 0)
+        {
+            JoyControlStick *stick = getJoyStick(index);
+            readConf(stick, xml);
+        }
+        else
+        {
+            xml->skipCurrentElement();
+        }
+    }
+}
+
+
 void GameControllerSet::refreshAxes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteAxes();
 
-    for (int i=0; i < getInputDevice()->getNumberRawAxes(); i++)
+    for (int i = 0; i < getInputDevice()->getNumberRawAxes(); i++)
     {
-        if ((i == SDL_CONTROLLER_AXIS_TRIGGERLEFT) ||
-            (i == SDL_CONTROLLER_AXIS_TRIGGERRIGHT))
+        if ((i == static_cast<int>(SDL_CONTROLLER_AXIS_TRIGGERLEFT)) ||
+            (i == static_cast<int>(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)))
         {
             GameControllerTrigger *trigger = new GameControllerTrigger(i, getIndex(), this, this);
             getAxes()->insert(i, trigger);
