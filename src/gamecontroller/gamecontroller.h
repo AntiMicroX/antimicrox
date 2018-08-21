@@ -89,6 +89,21 @@ private:
     SDL_JoystickID joystickID;
     SDL_GameController *controller;
 
+    void writeXmlForButtons(SetJoystick *tempSet, QXmlStreamWriter *xml);
+    void writeXmlForAxes(SetJoystick *tempSet, QXmlStreamWriter *xml);
+    void writeXmlAxBtn(JoyAxis *axis, JoyAxisButton *naxisbutton, QXmlStreamWriter *xml);
+    void writeXmlForSticks(SetJoystick *tempSet, QXmlStreamWriter *xml);
+    void writeXmlForVDpad(QXmlStreamWriter *xml);
+    void readXmlNamesShort(QString name, QXmlStreamReader *xml);
+    void readXmlNamesMiddle(QString name, QXmlStreamReader *xml);
+    void readXmlNamesLong(QString name, QXmlStreamReader *xml);
+    void readJoystickConfigXmlLong(QList<SDL_GameControllerButtonBind>& hatButtons, bool& dpadNameExists, bool& vdpadNameExists, QXmlStreamReader *xml);
+    void fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes, QList<SDL_GameControllerButtonBind> &hatButtons);
+
+    inline void assignVariables(QXmlStreamReader *xml, int& index, int& buttonIndex, QString& temp, bool buttonDecreased);
+    inline void assignVariablesShort(QXmlStreamReader *xml, int& index, QString& temp);
+
+
 };
 
 #endif // GAMECONTROLLER_H

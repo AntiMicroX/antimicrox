@@ -48,6 +48,10 @@ protected:
 
 public slots:
     virtual void reset();
+
+private:
+    void getElemFromXml(QString elemName, QXmlStreamReader *xml);
+    void readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists, bool dpadExists);
 };
 
 #endif // GAMECONTROLLERSET_H

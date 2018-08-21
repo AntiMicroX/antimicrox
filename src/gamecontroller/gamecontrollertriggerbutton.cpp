@@ -25,7 +25,9 @@
 #include <QXmlStreamReader>
 #include <QDebug>
 
+
 const QString GameControllerTriggerButton::xmlName = "triggerbutton";
+
 
 GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyAxisButton(axis, index, originset, parentSet, parent)
@@ -33,24 +35,31 @@ GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int inde
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
+
 QString GameControllerTriggerButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     return this->xmlName;
 }
+
 
 void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
 
     if (xml->isStartElement() && (xml->name() == JoyAxisButton::xmlName))
     {
         disconnect(this, &GameControllerTriggerButton::slotsChanged, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
 
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != JoyAxisButton::xmlName))
+
+
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != JoyAxisButton::xmlName)))
         {
             bool found = readButtonConfig(xml);
+
             if (!found)
             {
                 xml->skipCurrentElement();
