@@ -78,6 +78,9 @@ private:
     int springMouseFileHandler;
     QString uinputDeviceLocation;
 
+    void testAndAppend(bool tested, QList<unsigned int>& tempList, unsigned int key);
+    void initDevice(int device, QString name, bool& result);
+
 };
 
 #endif // UINPUTEVENTHANDLER_H
