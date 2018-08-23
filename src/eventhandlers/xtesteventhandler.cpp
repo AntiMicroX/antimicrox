@@ -167,7 +167,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                 if (temp.modifiers != Qt::NoModifier)
                 {
                     if (temp.modifiers.testFlag(Qt::ShiftModifier))
-                                        {
+                                       {
                                             int shiftcode = 0;
 
                                             if (shiftcode == 0)
@@ -220,7 +220,8 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                                             int modifiercode = metacode;
                                             XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
                                             tempList.append(modifiercode);
-                                        }                }
+                                        }
+                }
 
                 XTestFakeKeyEvent(display, static_cast<unsigned int>(tempcode), 1, 0);
                 tempList.append(tempcode);
