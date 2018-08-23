@@ -20,7 +20,6 @@
 
 #include "baseeventhandler.h"
 
-#include "x11extras.h"
 
 class JoyButtonSlot;
 
@@ -50,10 +49,6 @@ public:
     QString getName() override;
     QString getIdentifier() override;
     void printPostMessages() override;
-
-private:
-    void appendModifierCode(bool tested, QList<int>& tempList, Display* display, KeySym key);
-
 
 };
 

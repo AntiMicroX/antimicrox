@@ -18,6 +18,9 @@
 
 #include "simplekeygrabberbutton.h"
 
+#include <QKeyEvent>
+#include <QMouseEvent>
+
 #include "messagehandler.h"
 #include "event.h"
 #include "antkeymapper.h"
@@ -31,8 +34,7 @@
 #include <QApplication>
 #endif
 
-#include <QKeyEvent>
-#include <QMouseEvent>
+
 #include <QMetaType>
 #include <QWidget>
 #include <QDebug>
@@ -93,7 +95,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         grabNextAction = grabbingWheel = false;
         emit buttonCodeChanged(controlcode);
     }
-    else if (grabNextAction && (event->type() == QEvent::KeyRelease))
+    else if (grabNextAction && (event->type() == static_cast<QEvent::Type>(7)))
     {
         QKeyEvent *keyEve = static_cast<QKeyEvent*>(event);
         int tempcode = static_cast<int>(keyEve->nativeScanCode());

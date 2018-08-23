@@ -223,37 +223,48 @@ void MouseSettingsDialog::updateAccelerationCurvePresetComboBox(JoyButton::JoyMo
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (mouseCurve == JoyButton::EnhancedPrecisionCurve)
+    switch(mouseCurve)
     {
-        ui->accelerationComboBox->setCurrentIndex(1);
-    }
-    else if (mouseCurve == JoyButton::LinearCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(2);
-    }
-    else if (mouseCurve == JoyButton::QuadraticCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(3);
-    }
-    else if (mouseCurve == JoyButton::CubicCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(4);
-    }
-    else if (mouseCurve == JoyButton::QuadraticExtremeCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(5);
-    }
-    else if (mouseCurve == JoyButton::PowerCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(6);
-    }
-    else if (mouseCurve == JoyButton::EasingQuadraticCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(7);
-    }
-    else if (mouseCurve == JoyButton::EasingCubicCurve)
-    {
-        ui->accelerationComboBox->setCurrentIndex(8);
+        case JoyButton::EnhancedPrecisionCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(1);
+            break;
+        }
+        case JoyButton::LinearCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(2);
+            break;
+        }
+        case JoyButton::QuadraticCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(3);
+            break;
+        }
+        case JoyButton::CubicCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(4);
+            break;
+        }
+        case JoyButton::QuadraticExtremeCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(5);
+            break;
+        }
+        case JoyButton::PowerCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(6);
+            break;
+        }
+        case JoyButton::EasingQuadraticCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(7);
+            break;
+        }
+        case JoyButton::EasingCubicCurve:
+        {
+            ui->accelerationComboBox->setCurrentIndex(8);
+            break;
+        }
     }
 }
 
@@ -263,37 +274,49 @@ JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
 
     JoyButton::JoyMouseCurve temp = JoyButton::DEFAULTMOUSECURVE;
 
-    if (index == 1)
+    switch(index)
     {
-        temp = JoyButton::EnhancedPrecisionCurve;
-    }
-    else if (index == 2)
-    {
-        temp = JoyButton::LinearCurve;
-    }
-    else if (index == 3)
-    {
-        temp = JoyButton::QuadraticCurve;
-    }
-    else if (index == 4)
-    {
-        temp = JoyButton::CubicCurve;
-    }
-    else if (index == 5)
-    {
-        temp = JoyButton::QuadraticExtremeCurve;
-    }
-    else if (index == 6)
-    {
-        temp = JoyButton::PowerCurve;
-    }
-    else if (index == 7)
-    {
-        temp = JoyButton::EasingQuadraticCurve;
-    }
-    else if (index == 8)
-    {
-        temp = JoyButton::EasingCubicCurve;
+
+        case 1:
+        {
+            temp = JoyButton::EnhancedPrecisionCurve;
+            break;
+        }
+        case 2:
+        {
+            temp = JoyButton::LinearCurve;
+            break;
+        }
+        case 3:
+        {
+            temp = JoyButton::QuadraticCurve;
+            break;
+        }
+        case 4:
+        {
+            temp = JoyButton::CubicCurve;
+            break;
+        }
+        case 5:
+        {
+            temp = JoyButton::QuadraticExtremeCurve;
+            break;
+        }
+        case 6:
+        {
+            temp = JoyButton::PowerCurve;
+            break;
+        }
+        case 7:
+        {
+            temp = JoyButton::EasingQuadraticCurve;
+            break;
+        }
+        case 8:
+        {
+            temp = JoyButton::EasingCubicCurve;
+            break;
+        }
     }
 
     return temp;
@@ -400,21 +423,30 @@ JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForI
 
     JoyButton::JoyExtraAccelerationCurve temp = JoyButton::LinearAccelCurve;
 
-    if (index == 1)
+    switch(index)
     {
-        temp = JoyButton::LinearAccelCurve;
-    }
-    else if (index == 2)
-    {
-        temp = JoyButton::EaseOutSineCurve;
-    }
-    else if (index == 3)
-    {
-        temp = JoyButton::EaseOutQuadAccelCurve;
-    }
-    else if (index == 4)
-    {
-        temp = JoyButton::EaseOutCubicAccelCurve;
+
+        case 1:
+        {
+            temp = JoyButton::LinearAccelCurve;
+            break;
+        }
+        case 2:
+        {
+            temp = JoyButton::EaseOutSineCurve;
+            break;
+        }
+        case 3:
+        {
+            temp = JoyButton::EaseOutQuadAccelCurve;
+            break;
+        }
+        case 4:
+        {
+            temp = JoyButton::EaseOutCubicAccelCurve;
+            break;
+        }
+
     }
 
     return temp;
@@ -428,21 +460,30 @@ MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
 
     int temp = 0;
 
-    if (curve == JoyButton::LinearAccelCurve)
+    switch(curve)
     {
-        temp = 1;
-    }
-    else if (curve == JoyButton::EaseOutSineCurve)
-    {
-        temp = 2;
-    }
-    else if (curve == JoyButton::EaseOutQuadAccelCurve)
-    {
-        temp = 3;
-    }
-    else if (curve == JoyButton::EaseOutCubicAccelCurve)
-    {
-        temp = 4;
+
+        case JoyButton::LinearAccelCurve:
+        {
+            temp = 1;
+            break;
+        }
+        case JoyButton::EaseOutSineCurve:
+        {
+            temp = 2;
+            break;
+        }
+        case JoyButton::EaseOutQuadAccelCurve:
+        {
+            temp = 3;
+            break;
+        }
+        case JoyButton::EaseOutCubicAccelCurve:
+        {
+            temp = 4;
+            break;
+        }
+
     }
 
     ui->extraAccelCurveComboBox->setCurrentIndex(temp);

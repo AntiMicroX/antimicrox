@@ -165,41 +165,59 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (direction == JoyDPadButton::DpadUp)
+    switch(direction)
     {
-        if (upButton != nullptr)
+
+        case JoyDPadButton::DpadUp:
         {
-            upButton->removeVDPad();
+            if (upButton != nullptr)
+            {
+                upButton->removeVDPad();
+            }
+
+            upButton = button;
+            upButton->setVDPad(this);
+
+            break;
         }
-        upButton = button;
-        upButton->setVDPad(this);
-    }
-    else if (direction == JoyDPadButton::DpadDown)
-    {
-        if (downButton != nullptr)
+        case JoyDPadButton::DpadDown:
         {
-            downButton->removeVDPad();
+
+            if (downButton != nullptr)
+            {
+                downButton->removeVDPad();
+            }
+
+            downButton = button;
+            downButton->setVDPad(this);
+
+            break;
         }
-        downButton = button;
-        downButton->setVDPad(this);
-    }
-    else if (direction == JoyDPadButton::DpadLeft)
-    {
-        if (leftButton != nullptr)
+        case JoyDPadButton::DpadLeft:
         {
-            leftButton->removeVDPad();
+            if (leftButton != nullptr)
+            {
+                leftButton->removeVDPad();
+            }
+
+            leftButton = button;
+            leftButton->setVDPad(this);
+
+            break;
         }
-        leftButton = button;
-        leftButton->setVDPad(this);
-    }
-    else if (direction == JoyDPadButton::DpadRight)
-    {
-        if (rightButton != nullptr)
+        case JoyDPadButton::DpadRight:
         {
-            rightButton->removeVDPad();
+            if (rightButton != nullptr)
+            {
+                rightButton->removeVDPad();
+            }
+
+            rightButton = button;
+            rightButton->setVDPad(this);
+
+            break;
         }
-        rightButton = button;
-        rightButton->setVDPad(this);
+
     }
 }
 
@@ -274,21 +292,31 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton *button = nullptr;
-    if (direction == JoyDPadButton::DpadUp)
+
+    switch(direction)
     {
-        button = upButton;
-    }
-    else if (direction == JoyDPadButton::DpadDown)
-    {
-        button = downButton;
-    }
-    else if (direction == JoyDPadButton::DpadLeft)
-    {
-        button = leftButton;
-    }
-    else if (direction == JoyDPadButton::DpadRight)
-    {
-        button = rightButton;
+
+        case JoyDPadButton::DpadUp:
+        {
+            button = upButton;
+            break;
+        }
+        case JoyDPadButton::DpadDown:
+        {
+            button = downButton;
+            break;
+        }
+        case JoyDPadButton::DpadLeft:
+        {
+            button = leftButton;
+            break;
+        }
+        case JoyDPadButton::DpadRight:
+        {
+            button = rightButton;
+            break;
+        }
+
     }
 
     return button;

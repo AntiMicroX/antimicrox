@@ -840,53 +840,71 @@ void MainSettingsDialog::checkLocaleChange()
     else
     {
         QString newLocale = "en";
-        if (row == 1)
+
+        switch(row)
         {
-            newLocale = "br";
-        }
-        else if (row == 2)
-        {
-            newLocale = "en";
-        }
-        else if (row == 3)
-        {
-            newLocale = "fr";
-        }
-        else if (row == 4)
-        {
-            newLocale = "de";
-        }
-        else if (row == 5)
-        {
-            newLocale = "it";
-        }
-        else if (row == 6)
-        {
-            newLocale = "ja";
-        }
-        else if (row == 7)
-        {
-            newLocale = "ru";
-        }
-        else if (row == 8)
-        {
-            newLocale = "sr";
-        }
-        else if (row == 9)
-        {
-            newLocale = "zh_CN";
-        }
-        else if (row == 10)
-        {
-            newLocale = "es";
-        }
-        else if (row == 11)
-        {
-            newLocale = "uk";
-        }
-        else if (row == 12)
-        {
-            newLocale = "pl";
+
+            case 1:
+            {
+                newLocale = "br";
+                break;
+            }
+            case 2:
+            {
+                newLocale = "en";
+                break;
+            }
+            case 3:
+            {
+                newLocale = "fr";
+                break;
+            }
+            case 4:
+            {
+                newLocale = "de";
+                break;
+            }
+            case 5:
+            {
+                newLocale = "it";
+                break;
+            }
+            case 6:
+            {
+                newLocale = "ja";
+                break;
+            }
+            case 7:
+            {
+                newLocale = "ru";
+                break;
+            }
+            case 8:
+            {
+                newLocale = "sr";
+                break;
+            }
+            case 9:
+            {
+                newLocale = "zh_CN";
+                break;
+            }
+            case 10:
+            {
+                newLocale = "es";
+                break;
+            }
+            case 11:
+            {
+                newLocale = "uk";
+                break;
+            }
+           case 12:
+            {
+                newLocale = "pl";
+                break;
+            }
+
         }
 
         settings->setValue("Language", newLocale);
