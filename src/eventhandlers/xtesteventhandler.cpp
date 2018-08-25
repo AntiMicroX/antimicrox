@@ -164,63 +164,36 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
             {
                 QList<int> tempList;
 
-                if (temp.modifiers != Qt::NoModifier)
+                if ((temp.modifiers != Qt::NoModifier) && temp.modifiers.testFlag(Qt::ShiftModifier))
                 {
-                    if (temp.modifiers.testFlag(Qt::ShiftModifier))
-                       {
-                          int shiftcode = 0;
+                  int shiftcode = XKeysymToKeycode(display, XK_Shift_L);
+                  int modifiercode = shiftcode;
+                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  tempList.append(modifiercode);
+                }
 
-                          if (shiftcode == 0)
-                          {
-                             shiftcode = XKeysymToKeycode(display, XK_Shift_L);
-                          }
+                if ((temp.modifiers != Qt::NoModifier) && temp.modifiers.testFlag(Qt::ControlModifier))
+                {
+                  int controlcode = XKeysymToKeycode(display, XK_Control_L);
+                  int modifiercode = controlcode;
+                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  tempList.append(modifiercode);
+                }
 
-                          int modifiercode = shiftcode;
-                          XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
-                          tempList.append(modifiercode);
-                        }
+                if ((temp.modifiers != Qt::NoModifier) && temp.modifiers.testFlag(Qt::AltModifier))
+                {
+                  int altcode = XKeysymToKeycode(display, XK_Alt_L);
+                  int modifiercode = altcode;
+                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  tempList.append(modifiercode);
+                }
 
-                     if (temp.modifiers.testFlag(Qt::ControlModifier))
-                       {
-                          int controlcode = 0;
-
-                          if (controlcode == 0)
-                          {
-                             controlcode = XKeysymToKeycode(display, XK_Control_L);
-                          }
-
-                          int modifiercode = controlcode;
-                          XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
-                          tempList.append(modifiercode);
-                        }
-
-                   if (temp.modifiers.testFlag(Qt::AltModifier))
-                       {
-                          int altcode = 0;
-
-                          if (altcode == 0)
-                          {
-                            altcode = XKeysymToKeycode(display, XK_Alt_L);
-                          }
-
-                          int modifiercode = altcode;
-                          XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
-                          tempList.append(modifiercode);
-                        }
-
-                  if (temp.modifiers.testFlag(Qt::MetaModifier))
-                   {
-                     int metacode = 0;
-
-                     if (metacode == 0)
-                     {
-                       metacode = XKeysymToKeycode(display, XK_Meta_L);
-                     }
-
-                     int modifiercode = metacode;
-                     XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
-                     tempList.append(modifiercode);
-                   }
+                if ((temp.modifiers != Qt::NoModifier) && temp.modifiers.testFlag(Qt::MetaModifier))
+                {
+                  int metacode = XKeysymToKeycode(display, XK_Meta_L);
+                  int modifiercode = metacode;
+                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  tempList.append(modifiercode);
                 }
 
                 XTestFakeKeyEvent(display, static_cast<unsigned int>(tempcode), 1, 0);

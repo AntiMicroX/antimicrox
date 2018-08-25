@@ -83,9 +83,7 @@ QString GameController::getGUIDString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = getRawGUIDString();
-
-    return temp;
+    return getRawGUIDString();
 }
 
 
@@ -227,7 +225,7 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
                         {
                             SDL_GameControllerButton current = buttons.value(index);
 
-                            if (current)
+                            if (static_cast<int>(current) != -1)
                             {
                                 setButtonName(current, temp);
                             }
@@ -305,7 +303,7 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
                                 {
                                     JoyDPadButton *dpadbutton = dpad->getJoyButton(buttonIndex);
 
-                                    if ((dpad != nullptr) && dpadbutton->getActionName().isEmpty())
+                                    if ((dpad != nullptr) && (dpadbutton != nullptr) && dpadbutton->getActionName().isEmpty())
                                     {
                                         setVDPadButtonName(index, buttonIndex, temp);
                                     }
@@ -342,7 +340,7 @@ void GameController::readJoystickConfig(QXmlStreamReader *xml)
                                 {
                                     JoyDPadButton *dpadbutton = dpad->getJoyButton(buttonIndex);
 
-                                    if ((dpad != nullptr) && dpadbutton->getActionName().isEmpty())
+                                    if ((dpad != nullptr) && (dpadbutton != nullptr) && dpadbutton->getActionName().isEmpty())
                                     {
                                         setVDPadButtonName(index, buttonIndex, temp);
                                     }
@@ -489,13 +487,12 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
 
 void GameController::readJoystickConfigXmlLong(QList<SDL_GameControllerButtonBind>& hatButtons, bool& dpadNameExists, bool& vdpadNameExists, QXmlStreamReader *xml)
 {
-
-    int index = xml->attributes().value("index").toString().toInt();
-    QString temp = xml->readElementText();
-    index = index - 1;
-
+    int index = -1;
     bool first = false;
     bool second = false;
+    QString temp = QString();
+
+    assignVariablesShort(xml, index, temp);
 
 
     if (xml->name() == "vdpadname")
@@ -658,9 +655,10 @@ void GameController::readConfig(QXmlStreamReader *xml)
 
 void GameController::readXmlNamesShort(QString name, QXmlStreamReader *xml)
 {
-    int index = xml->attributes().value("index").toString().toInt();
-    QString temp = xml->readElementText();
-    index = index - 1;
+    int index = -1;
+    QString temp = QString();
+
+    assignVariablesShort(xml, index, temp);
 
     if ((index >= 0) && !temp.isEmpty())
     {
@@ -673,16 +671,14 @@ void GameController::readXmlNamesShort(QString name, QXmlStreamReader *xml)
 
 void GameController::readXmlNamesMiddle(QString name, QXmlStreamReader *xml)
 {
-    int index = xml->attributes().value("index").toString().toInt();
-    int buttonIndex = xml->attributes().value("button").toString().toInt();
-    QString temp = xml->readElementText();
-    index = index - 1;
+    int index = -1;
+    int buttonIndex = -1;
+    QString temp = QString();
 
-    if ((index >= 0) && !temp.isEmpty())
-    {
-        if (name == "dpadbuttonname") setVDPadButtonName(index, buttonIndex, temp);
-        else if (name == "controlstickbuttonname") setStickButtonName(index, buttonIndex, temp);
-    }
+    assignVariables(xml, index, buttonIndex, temp, false);
+
+    if ((name == "dpadbuttonname") && (index >= 0) && !temp.isEmpty()) setVDPadButtonName(index, buttonIndex, temp);
+    else if ((name == "controlstickbuttonname") && (index >= 0) && !temp.isEmpty()) setStickButtonName(index, buttonIndex, temp);
 }
 
 
@@ -695,7 +691,10 @@ void GameController::readXmlNamesLong(QString name, QXmlStreamReader *xml)
     if ((index == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
          index == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) && !temp.isEmpty())
     {
-        if (name == "triggername") setAxisName(index, temp);
+        if (name == "triggername")
+        {
+            setAxisName(index, temp);
+        }
         else if (name == "triggerbuttonname")
         {
             int buttonIndex = xml->attributes().value("button").toString().toInt();
@@ -786,11 +785,8 @@ void GameController::writeXmlForAxes(SetJoystick *tempSet, QXmlStreamWriter *xml
                 xml->writeEndElement();
             }
 
-            JoyAxisButton *naxisbutton = axis->getNAxisButton();
-            writeXmlAxBtn(axis, naxisbutton, xml);
-
-            JoyAxisButton *paxisbutton = axis->getPAxisButton();
-            writeXmlAxBtn(axis, paxisbutton, xml);
+            writeXmlAxBtn(axis, axis->getNAxisButton(), xml);
+            writeXmlAxBtn(axis, axis->getPAxisButton(), xml);
 
         }
     }
@@ -864,7 +860,6 @@ void GameController::writeXmlForVDpad(QXmlStreamWriter *xml)
                 }
 
                 QHash<int, JoyDPadButton*> *temp = vdpad->getButtons();
-
                 QHashIterator<int, JoyDPadButton*> iter(*temp);
 
                 while (iter.hasNext())
@@ -895,17 +890,14 @@ QString GameController::getBindStringForAxis(int index, bool)
             SDL_GameControllerGetBindForAxis(controller,
                                              static_cast<SDL_GameControllerAxis>(index));
 
-    if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
-    {
 
-        if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
-        {
-            temp.append(QString("Button %1").arg(bind.value.button)); // bind.value.button + offset
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
-        {
-            temp.append(QString("Axis %1").arg(bind.value.axis + 1));
-        }
+    if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
+    {
+        temp.append(QString("Button %1").arg(bind.value.button));
+    }
+    else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
+    {
+        temp.append(QString("Axis %1").arg(bind.value.axis + 1));
     }
 
     return temp;
@@ -922,13 +914,11 @@ QString GameController::getBindStringForButton(int index, bool trueIndex)
             SDL_GameControllerGetBindForButton(controller,
                                                static_cast<SDL_GameControllerButton>(index));
 
-    if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
-    {
-        int offset = trueIndex ? 0 : 1;
 
-        int bindInt = static_cast<int>(bind.bindType);
+    int offset = trueIndex ? 0 : 1;
+    int bindInt = static_cast<int>(bind.bindType);
 
-        switch(bindInt) {
+    switch(bindInt) {
 
             case SDL_CONTROLLER_BINDTYPE_BUTTON:
                 temp.append(QString("Button %1").arg(bind.value.button + offset));
@@ -944,7 +934,6 @@ QString GameController::getBindStringForButton(int index, bool trueIndex)
                 temp.append(QString("Hat %1.%2").arg(bind.value.hat.hat + offset)
                     .arg(bind.value.hat.hat_mask));
             break;
-        }
     }
 
     return temp;
@@ -955,8 +944,7 @@ SDL_GameControllerButtonBind GameController::getBindForAxis(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForAxis(controller, static_cast<SDL_GameControllerAxis>(index));
-    return bind;
+    return SDL_GameControllerGetBindForAxis(controller, static_cast<SDL_GameControllerAxis>(index));
 }
 
 
@@ -964,85 +952,25 @@ SDL_GameControllerButtonBind GameController::getBindForButton(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForButton(controller, static_cast<SDL_GameControllerButton>(index));
-    return bind;
+    return SDL_GameControllerGetBindForButton(controller, static_cast<SDL_GameControllerButton>(index));
 }
 
-void GameController::buttonClickEvent(int buttonindex)
+
+void GameController::buttonClickEvent(int)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    SDL_GameControllerButtonBind bind = getBindForButton(buttonindex); // static_cast<SDL_GameControllerButton>
-
-
-    if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
-    {
-        if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
-        {
-           // emit rawAxisButtonClick(bind.value.axis, 0);
-           // emit rawAxisActivated(bind.value.axis, JoyAxis::AXISMAX);
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
-        {
-           // emit rawButtonClick(bind.value.button);
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
-        {
-           // emit rawDPadButtonClick(bind.value.hat.hat, bind.value.hat.hat_mask);
-        }
-    }
 }
 
-void GameController::buttonReleaseEvent(int buttonindex)
+
+void GameController::buttonReleaseEvent(int)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    SDL_GameControllerButtonBind bind = getBindForButton(buttonindex); // static_cast<SDL_GameControllerButton>
-
-
-    if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
-    {
-        if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
-        {
-           // emit rawAxisButtonRelease(bind.value.axis, 0);
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
-        {
-           // emit rawButtonRelease(bind.value.button);
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
-        {
-           // emit rawDPadButtonRelease(bind.value.hat.hat, bind.value.hat.hat_mask);
-        }
-    }
 }
 
-void GameController::axisActivatedEvent(int setindex, int axisindex, int value)
+
+void GameController::axisActivatedEvent(int, int, int)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    Q_UNUSED(setindex);
-    Q_UNUSED(value);
-
-    SDL_GameControllerButtonBind bind = getBindForAxis(axisindex); // static_cast<SDL_GameControllerButton>
-
-
-    if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
-    {
-        if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
-        {
-           // emit rawAxisButtonClick(bind.value.axis, 0);
-           // emit rawAxisActivated(bind.value.axis, value);
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
-        {
-           // emit rawButtonClick(bind.value.button);
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
-        {
-           // emit rawDPadButtonClick(bind.value.hat.hat, bind.value.hat.hat_mask);
-        }
-    }
 }
 
 
@@ -1052,7 +980,6 @@ SDL_JoystickID GameController::getSDLJoystickID()
 
     return joystickID;
 }
-
 
 /**
  * @brief Check if device is using the SDL Game Controller API
@@ -1076,14 +1003,7 @@ bool GameController::isRelevantGUID(QString tempGUID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    bool result = false;
-
-    if (InputDevice::isRelevantGUID(tempGUID))// || isEmptyGUID(tempGUID))
-    {
-        result = true;
-    }
-
-    return result;
+    return InputDevice::isRelevantGUID(tempGUID);
 }
 
 
