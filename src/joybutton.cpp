@@ -869,6 +869,8 @@ void JoyButton::activateSlots()
             int tempcode = slot->getSlotCode();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
+
+
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
                 i++;
@@ -1300,22 +1302,21 @@ void JoyButton::mouseEvent()
 
                 if (mousemode == JoyButton::MouseCursor)
                 {
-                    if (mousedirection == static_cast<int>(JoyButtonSlot::MouseRight))
+                    switch(mousedirection)
                     {
-                        mousespeed = mouseSpeedX;
+
+                        case 1:
+                        case 2:
+                            mousespeed = mouseSpeedY;
+                            break;
+
+                        case 3:
+                        case 4:
+                            mousespeed = mouseSpeedX;
+                            break;
+
                     }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseLeft))
-                    {
-                        mousespeed = mouseSpeedX;
-                    }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseDown))
-                    {
-                        mousespeed = mouseSpeedY;
-                    }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseUp))
-                    {
-                        mousespeed = mouseSpeedY;
-                    }
+
 
                     double difference = getMouseDistanceFromDeadZone();
 
@@ -1588,22 +1589,26 @@ void JoyButton::mouseEvent()
                     sumDist += difference * (mousespeed * JoyButtonSlot::JOYSPEED * timeElapsed) * 0.001;
                     distance = sumDist;
 
-                    if (mousedirection == static_cast<int>(JoyButtonSlot::MouseRight))
+                    switch(mousedirection)
                     {
-                        mouse1 = distance;
+                        case 1:
+                            mouse2 = -distance;
+                            break;
+
+                        case 2:
+                            mouse2 = distance;
+                            break;
+
+                        case 3:
+                            mouse1 = -distance;
+                           break;
+
+                        case 4:
+                            mouse1 = distance;
+                            break;
+
                     }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseLeft))
-                    {
-                        mouse1 = -distance;
-                    }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseDown))
-                    {
-                        mouse2 = distance;
-                    }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseUp))
-                    {
-                        mouse2 = -distance;
-                    }
+
 
                     mouseCursorInfo infoX;
                     infoX.code = mouse1;
@@ -1624,36 +1629,11 @@ void JoyButton::mouseEvent()
                     double mouse2 = -2.0;
                     double difference = getMouseDistanceFromDeadZone();
 
-                    if (mousedirection == static_cast<int>(JoyButtonSlot::MouseRight))
+                    switch(mousedirection)
                     {
-                        mouse1 = difference;
-                        if (mouseHelper.getFirstSpringStatus())
-                        {
-                            mouse2 = 0.0;
-                            mouseHelper.setFirstSpringStatus(false);
-                        }
-                    }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseLeft))
-                    {
-                        mouse1 = -difference;
-                        if (mouseHelper.getFirstSpringStatus())
-                        {
-                            mouse2 = 0.0;
-                            mouseHelper.setFirstSpringStatus(false);
-                        }
-                    }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseDown))
-                    {
-                        if (mouseHelper.getFirstSpringStatus())
-                        {
-                            mouse1 = 0.0;
-                            mouseHelper.setFirstSpringStatus(false);
-                        }
 
-                        mouse2 = difference;
-                    }
-                    else if (mousedirection == static_cast<int>(JoyButtonSlot::MouseUp))
-                    {
+                    case 1:
+
                         if (mouseHelper.getFirstSpringStatus())
                         {
                             mouse1 = 0.0;
@@ -1661,7 +1641,46 @@ void JoyButton::mouseEvent()
                         }
 
                         mouse2 = -difference;
+
+                        break;
+
+                    case 2:
+
+                        if (mouseHelper.getFirstSpringStatus())
+                        {
+                            mouse1 = 0.0;
+                            mouseHelper.setFirstSpringStatus(false);
+                        }
+
+                        mouse2 = difference;
+
+                        break;
+
+                    case 3:
+
+                        mouse1 = -difference;
+
+                        if (mouseHelper.getFirstSpringStatus())
+                        {
+                            mouse2 = 0.0;
+                            mouseHelper.setFirstSpringStatus(false);
+                        }
+
+                        break;
+
+                    case 4:
+
+                        mouse1 = difference;
+
+                        if (mouseHelper.getFirstSpringStatus())
+                        {
+                            mouse2 = 0.0;
+                            mouseHelper.setFirstSpringStatus(false);
+                        }
+
+                        break;
                     }
+
 
                     PadderCommon::springModeInfo infoX;
                     infoX.displacementX = mouse1;
@@ -1952,38 +1971,42 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
 
         if (mouseCurve != DEFAULTMOUSECURVE)
         {
-            if (mouseCurve == LinearCurve)
+            switch(mouseCurve)
             {
-                xml->writeTextElement("mouseacceleration", "linear");
-            }
-            else if (mouseCurve == QuadraticCurve)
-            {
-                xml->writeTextElement("mouseacceleration", "quadratic");
-            }
-            else if (mouseCurve == CubicCurve)
-            {
-                xml->writeTextElement("mouseacceleration", "cubic");
-            }
-            else if (mouseCurve == QuadraticExtremeCurve)
-            {
-                xml->writeTextElement("mouseacceleration", "quadratic-extreme");
-            }
-            else if (mouseCurve == PowerCurve)
-            {
-                xml->writeTextElement("mouseacceleration", "power");
-                xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
-            }
-            else if (mouseCurve == EnhancedPrecisionCurve)
-            {
-                xml->writeTextElement("mouseacceleration", "precision");
-            }
-            else if (mouseCurve == EasingQuadraticCurve)
-            {
-                xml->writeTextElement("mouseacceleration", "easing-quadratic");
-            }
-            else if (mouseCurve == EasingCubicCurve)
-            {
-                xml->writeTextElement("mouseacceleration", "easing-cubic");
+
+                case LinearCurve:
+                    xml->writeTextElement("mouseacceleration", "linear");
+                    break;
+
+                case QuadraticCurve:
+                    xml->writeTextElement("mouseacceleration", "quadratic");
+                    break;
+
+                case CubicCurve:
+                    xml->writeTextElement("mouseacceleration", "cubic");
+                    break;
+
+                case QuadraticExtremeCurve:
+                    xml->writeTextElement("mouseacceleration", "quadratic-extreme");
+                    break;
+
+                case PowerCurve:
+                    xml->writeTextElement("mouseacceleration", "power");
+                    xml->writeTextElement("mousesensitivity", QString::number(sensitivity));
+                    break;
+
+                case EnhancedPrecisionCurve:
+                    xml->writeTextElement("mouseacceleration", "precision");
+                    break;
+
+                case EasingQuadraticCurve:
+                    xml->writeTextElement("mouseacceleration", "easing-quadratic");
+                    break;
+
+                case EasingCubicCurve:
+                    xml->writeTextElement("mouseacceleration", "easing-cubic");
+                    break;
+
             }
         }
 
@@ -2004,18 +2027,24 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
                 xml->writeTextElement("setselect", QString::number(setSelection+1));
 
                 QString temptext = QString();
-                if (setSelectionCondition == SetChangeOneWay)
+
+                switch(setSelectionCondition)
                 {
+
+                case SetChangeOneWay:
                     temptext = "one-way";
-                }
-                else if (setSelectionCondition == SetChangeTwoWay)
-                {
+                    break;
+
+                case SetChangeTwoWay:
                     temptext = "two-way";
-                }
-                else if (setSelectionCondition == SetChangeWhileHeld)
-                {
+                    break;
+
+                case SetChangeWhileHeld:
                     temptext = "while-held";
+                    break;
+
                 }
+
                 xml->writeTextElement("setselectcondition", temptext);
             }
         }
@@ -2083,21 +2112,26 @@ void JoyButton::writeConfig(QXmlStreamWriter *xml)
         if (extraAccelCurve != DEFAULTEXTRAACCELCURVE)
         {
             QString temp = QString();
-            if (extraAccelCurve == LinearAccelCurve)
+
+            switch(extraAccelCurve)
             {
-                temp = "linear";
-            }
-            else if (extraAccelCurve == EaseOutSineCurve)
-            {
-                temp = "easeoutsine";
-            }
-            else if (extraAccelCurve == EaseOutQuadAccelCurve)
-            {
-                temp = "easeoutquad";
-            }
-            else if (extraAccelCurve == EaseOutCubicAccelCurve)
-            {
-                temp = "easeoutcubic";
+
+                 case LinearAccelCurve:
+                    temp = "linear";
+                    break;
+
+                 case EaseOutSineCurve:
+                    temp = "easeoutsine";
+                    break;
+
+                 case EaseOutQuadAccelCurve:
+                    temp = "easeoutquad";
+                    break;
+
+                 case EaseOutCubicAccelCurve:
+                    temp = "easeoutcubic";
+                    break;
+
             }
 
             if (!temp.isEmpty())
@@ -4303,6 +4337,7 @@ void JoyButton::releaseActiveSlots()
             int tempcode = slot->getSlotCode();
             JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
+
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
                 int referencecount = activeKeys.value(tempcode, 1) - 1;
@@ -4692,17 +4727,15 @@ void JoyButton::findReleaseEventEnd()
         JoyButtonSlot *currentSlot = slotiter->next();
         JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
 
-        if (mode == JoyButtonSlot::JoyRelease)
+        switch(mode)
         {
-            found = true;
-        }
-        else if (mode == JoyButtonSlot::JoyCycle)
-        {
-            found = true;
-        }
-        else if (mode == JoyButtonSlot::JoyHold)
-        {
-            found = true;
+
+            case JoyButtonSlot::JoyRelease:
+            case JoyButtonSlot::JoyCycle:
+            case JoyButtonSlot::JoyHold:
+                found = true;
+                break;
+
         }
     }
 
@@ -4729,17 +4762,15 @@ void JoyButton::findReleaseEventIterEnd(QListIterator<JoyButtonSlot*> *tempiter)
             JoyButtonSlot *currentSlot = tempiter->next();
             JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
 
-            if (mode == JoyButtonSlot::JoyRelease)
+            switch(mode)
             {
-                found = true;
-            }
-            else if (mode == JoyButtonSlot::JoyCycle)
-            {
-                found = true;
-            }
-            else if (mode == JoyButtonSlot::JoyHold)
-            {
-                found = true;
+
+                case JoyButtonSlot::JoyRelease:
+                case JoyButtonSlot::JoyCycle:
+                case JoyButtonSlot::JoyHold:
+                    found = true;
+                    break;
+
             }
         }
 
@@ -4765,17 +4796,15 @@ void JoyButton::findHoldEventEnd()
         JoyButtonSlot *currentSlot = slotiter->next();
         JoyButtonSlot::JoySlotInputAction mode = currentSlot->getSlotMode();
 
-        if (mode == JoyButtonSlot::JoyRelease)
+        switch(mode)
         {
-            found = true;
-        }
-        else if (mode == JoyButtonSlot::JoyCycle)
-        {
-            found = true;
-        }
-        else if (mode == JoyButtonSlot::JoyHold)
-        {
-            found = true;
+
+            case JoyButtonSlot::JoyRelease:
+            case JoyButtonSlot::JoyCycle:
+            case JoyButtonSlot::JoyHold:
+                found = true;
+                break;
+
         }
     }
 

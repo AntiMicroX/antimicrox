@@ -186,21 +186,26 @@ QString JoyButtonSlot::movementString()
     if (m_mode == JoyMouseMovement)
     {
         newlabel.append(trUtf8("Mouse")).append(" ");
-        if (deviceCode == JoyButtonSlot::MouseUp)
+
+        switch(deviceCode)
         {
-            newlabel.append(trUtf8("Up"));
-        }
-        else if (deviceCode == JoyButtonSlot::MouseDown)
-        {
-            newlabel.append(trUtf8("Down"));
-        }
-        else if (deviceCode == JoyButtonSlot::MouseLeft)
-        {
-            newlabel.append(trUtf8("Left"));
-        }
-        else if (deviceCode == JoyButtonSlot::MouseRight)
-        {
-            newlabel.append(trUtf8("Right"));
+
+            case 1:
+                newlabel.append(trUtf8("Up"));
+                break;
+
+            case 2:
+                newlabel.append(trUtf8("Down"));
+                break;
+
+            case 3:
+                newlabel.append(trUtf8("Left"));
+                break;
+
+            case 4:
+                newlabel.append(trUtf8("Right"));
+                break;
+
         }
     }
 
@@ -467,66 +472,72 @@ void JoyButtonSlot::writeConfig(QXmlStreamWriter *xml)
     }
 
     xml->writeStartElement("mode");
-    if (m_mode == JoyKeyboard)
+
+    switch(m_mode)
     {
-        xml->writeCharacters("keyboard");
+
+        case JoyKeyboard:
+            xml->writeCharacters("keyboard");
+            break;
+
+        case JoyMouseButton:
+            xml->writeCharacters("mousebutton");
+            break;
+
+        case JoyMouseMovement:
+            xml->writeCharacters("mousemovement");
+            break;
+
+        case JoyPause:
+            xml->writeCharacters("pause");
+            break;
+
+        case JoyHold:
+            xml->writeCharacters("hold");
+            break;
+
+        case JoyCycle:
+            xml->writeCharacters("cycle");
+            break;
+
+        case JoyDistance:
+            xml->writeCharacters("distance");
+            break;
+
+        case JoyRelease:
+            xml->writeCharacters("release");
+            break;
+
+        case JoyMouseSpeedMod:
+            xml->writeCharacters("mousespeedmod");
+            break;
+
+        case JoyKeyPress:
+            xml->writeCharacters("keypress");
+            break;
+
+        case JoyDelay:
+            xml->writeCharacters("delay");
+            break;
+
+        case JoyLoadProfile:
+            xml->writeCharacters("loadprofile");
+            break;
+
+        case JoySetChange:
+            xml->writeCharacters("setchange");
+            break;
+
+        case JoyTextEntry:
+            xml->writeCharacters("textentry");
+            break;
+
+        case JoyExecute:
+            xml->writeCharacters("execute");
+            break;
+
     }
-    else if (m_mode == JoyMouseButton)
-    {
-        xml->writeCharacters("mousebutton");
-    }
-    else if (m_mode == JoyMouseMovement)
-    {
-        xml->writeCharacters("mousemovement");
-    }
-    else if (m_mode == JoyPause)
-    {
-        xml->writeCharacters("pause");
-    }
-    else if (m_mode == JoyHold)
-    {
-        xml->writeCharacters("hold");
-    }
-    else if (m_mode == JoyCycle)
-    {
-        xml->writeCharacters("cycle");
-    }
-    else if (m_mode == JoyDistance)
-    {
-        xml->writeCharacters("distance");
-    }
-    else if (m_mode == JoyRelease)
-    {
-        xml->writeCharacters("release");
-    }
-    else if (m_mode == JoyMouseSpeedMod)
-    {
-        xml->writeCharacters("mousespeedmod");
-    }
-    else if (m_mode == JoyKeyPress)
-    {
-        xml->writeCharacters("keypress");
-    }
-    else if (m_mode == JoyDelay)
-    {
-        xml->writeCharacters("delay");
-    }
-    else if (m_mode == JoyLoadProfile)
-    {
-        xml->writeCharacters("loadprofile");
-    }
-    else if (m_mode == JoySetChange)
-    {
-        xml->writeCharacters("setchange");
-    }
-    else if (m_mode == JoyTextEntry)
-    {
-        xml->writeCharacters("textentry");
-    }
-    else if (m_mode == JoyExecute)
-    {
-        xml->writeCharacters("execute");
-    }
+
 
     xml->writeEndElement();
 
@@ -548,186 +559,219 @@ QString JoyButtonSlot::getSlotString()
 
     if (deviceCode >= 0)
     {
-        if (m_mode == JoyButtonSlot::JoyKeyboard)
+        switch(m_mode)
         {
-            int tempDeviceCode = deviceCode;
-#ifdef Q_OS_WIN
-            QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
-            if (nativeWinKeyMapper)
+
+            case JoyButtonSlot::JoyKeyboard:
             {
-                tempDeviceCode = nativeWinKeyMapper->returnVirtualKey(qkeyaliasCode);
+
+                int tempDeviceCode = deviceCode;
+    #ifdef Q_OS_WIN
+                QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+                if (nativeWinKeyMapper)
+                {
+                    tempDeviceCode = nativeWinKeyMapper->returnVirtualKey(qkeyaliasCode);
+                }
+    #endif
+                newlabel = newlabel.append(keysymToKeyString(tempDeviceCode, qkeyaliasCode).toUpper());
+            break;
+
             }
-#endif
-            newlabel = newlabel.append(keysymToKeyString(tempDeviceCode, qkeyaliasCode).toUpper());
-        }
-        else if (m_mode == JoyButtonSlot::JoyMouseButton)
-        {
-            newlabel.append(trUtf8("Mouse")).append(" ");
-            switch (deviceCode)
+            case JoyButtonSlot::JoyMouseButton:
             {
-                case 1:
-                    newlabel.append(trUtf8("LB"));
-                    break;
-                case 2:
-                    newlabel.append(trUtf8("MB"));
-                    break;
-                case 3:
-                    newlabel.append(trUtf8("RB"));
-                    break;
-#ifdef Q_OS_WIN
-                case 8:
-                    newlabel.append(trUtf8("B4"));
-                    break;
-                case 9:
-                    newlabel.append(trUtf8("B5"));
-                    break;
-#endif
-                default:
-                    newlabel.append(QString::number(deviceCode));
-                    break;
+                newlabel.append(trUtf8("Mouse")).append(" ");
+                switch (deviceCode)
+                {
+                    case 1:
+                        newlabel.append(trUtf8("LB"));
+                        break;
+                    case 2:
+                        newlabel.append(trUtf8("MB"));
+                        break;
+                    case 3:
+                        newlabel.append(trUtf8("RB"));
+                        break;
+    #ifdef Q_OS_WIN
+                    case 8:
+                        newlabel.append(trUtf8("B4"));
+                        break;
+                    case 9:
+                        newlabel.append(trUtf8("B5"));
+                        break;
+    #endif
+                    default:
+                        newlabel.append(QString::number(deviceCode));
+                        break;
+                }
+
+                break;
             }
-        }
-        else if (m_mode == JoyMouseMovement)
-        {
-            newlabel.append(movementString());
-        }
-        else if (m_mode == JoyPause)
-        {
-            int minutes = deviceCode / 1000 / 60;
-            int seconds = (deviceCode / 1000 % 60);
-            int hundredths = deviceCode % 1000 / 10;
-
-            newlabel.append(trUtf8("Pause")).append(" ");
-            if (minutes > 0)
+            case JoyMouseMovement:
             {
-                newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                newlabel.append(movementString());
+                break;
             }
-
-            newlabel.append(QString("%1.%2")
-                    .arg(seconds, 2, 10, QChar('0'))
-                    .arg(hundredths, 2, 10, QChar('0')));
-        }
-        else if (m_mode == JoyHold)
-        {
-            int minutes = deviceCode / 1000 / 60;
-            int seconds = (deviceCode / 1000 % 60);
-            int hundredths = deviceCode % 1000 / 10;
-
-            newlabel.append(trUtf8("Hold")).append(" ");
-            if (minutes > 0)
+            case JoyPause:
             {
-                newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                int minutes = deviceCode / 1000 / 60;
+                int seconds = (deviceCode / 1000 % 60);
+                int hundredths = deviceCode % 1000 / 10;
+
+                newlabel.append(trUtf8("Pause")).append(" ");
+                if (minutes > 0)
+                {
+                    newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                }
+
+                newlabel.append(QString("%1.%2")
+                        .arg(seconds, 2, 10, QChar('0'))
+                        .arg(hundredths, 2, 10, QChar('0')));
+
+                break;
             }
-
-            newlabel.append(QString("%1.%2")
-                    .arg(seconds, 2, 10, QChar('0'))
-                    .arg(hundredths, 2, 10, QChar('0')));
-        }
-        else if (m_mode == JoyButtonSlot::JoyCycle)
-        {
-            newlabel.append(trUtf8("Cycle"));
-        }
-        else if (m_mode == JoyDistance)
-        {
-            QString temp(trUtf8("Distance"));
-            temp.append(" ").append(QString::number(deviceCode).append("%"));
-            newlabel.append(temp);
-        }
-        else if (m_mode == JoyRelease)
-        {
-            int minutes = deviceCode / 1000 / 60;
-            int seconds = (deviceCode / 1000 % 60);
-            int hundredths = deviceCode % 1000 / 10;
-
-            newlabel.append(trUtf8("Release")).append(" ");
-            if (minutes > 0)
+            case JoyHold:
             {
-                newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                int minutes = deviceCode / 1000 / 60;
+                int seconds = (deviceCode / 1000 % 60);
+                int hundredths = deviceCode % 1000 / 10;
+
+                newlabel.append(trUtf8("Hold")).append(" ");
+                if (minutes > 0)
+                {
+                    newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                }
+
+                newlabel.append(QString("%1.%2")
+                        .arg(seconds, 2, 10, QChar('0'))
+                        .arg(hundredths, 2, 10, QChar('0')));
+
+                break;
             }
-
-            newlabel.append(QString("%1.%2")
-                    .arg(seconds, 2, 10, QChar('0'))
-                    .arg(hundredths, 2, 10, QChar('0')));
-        }
-        else if (m_mode == JoyMouseSpeedMod)
-        {
-            QString temp = QString();
-            temp.append(trUtf8("Mouse Mod")).append(" ");
-            temp.append(QString::number(deviceCode).append("%"));
-            newlabel.append(temp);
-        }
-        else if (m_mode == JoyKeyPress)
-        {
-            int minutes = deviceCode / 1000 / 60;
-            int seconds = (deviceCode / 1000 % 60);
-            int hundredths = deviceCode % 1000 / 10;
-
-            QString temp = QString();
-            temp.append(trUtf8("Press Time")).append(" ");
-            if (minutes > 0)
+            case JoyButtonSlot::JoyCycle:
             {
-                temp.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                newlabel.append(trUtf8("Cycle"));
+                break;
             }
-
-            temp.append(QString("%1.%2")
-                    .arg(seconds, 2, 10, QChar('0'))
-                    .arg(hundredths, 2, 10, QChar('0')));
-
-            newlabel.append(temp);
-        }
-        else if (m_mode == JoyDelay)
-        {
-            int minutes = deviceCode / 1000 / 60;
-            int seconds = (deviceCode / 1000 % 60);
-            int hundredths = deviceCode % 1000 / 10;
-
-            QString temp = QString();
-            temp.append(trUtf8("Delay")).append(" ");
-            if (minutes > 0)
+            case JoyDistance:
             {
-                temp.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
-            }
-
-            temp.append(QString("%1.%2")
-                    .arg(seconds, 2, 10, QChar('0'))
-                    .arg(hundredths, 2, 10, QChar('0')));
-
-            newlabel.append(temp);
-        }
-        else if (m_mode == JoyLoadProfile)
-        {
-            if (!m_textData.isEmpty())
-            {
-                QFileInfo profileInfo(m_textData);
-                QString temp = QString();
-                temp.append(trUtf8("Load %1").arg(PadderCommon::getProfileName(profileInfo)));
+                QString temp(trUtf8("Distance"));
+                temp.append(" ").append(QString::number(deviceCode).append("%"));
                 newlabel.append(temp);
-            }
-        }
-        else if (m_mode == JoySetChange)
-        {
-            newlabel.append(trUtf8("Set Change %1").arg(deviceCode+1));
-        }
-        else if (m_mode == JoyTextEntry)
-        {
-            QString temp = m_textData;
-            if (temp.length() > MAXTEXTENTRYDISPLAYLENGTH)
-            {
-                temp.truncate(MAXTEXTENTRYDISPLAYLENGTH - 3);
-                temp.append("...");
-            }
-            newlabel.append(trUtf8("[Text] %1").arg(temp));
-        }
-        else if (m_mode == JoyExecute)
-        {
-            QString temp = QString();
-            if (!m_textData.isEmpty())
-            {
-                QFileInfo tempFileInfo(m_textData);
-                temp.append(tempFileInfo.fileName());
-            }
 
-            newlabel.append(trUtf8("[Exec] %1").arg(temp));
+                break;
+            }
+            case JoyRelease:
+            {
+                int minutes = deviceCode / 1000 / 60;
+                int seconds = (deviceCode / 1000 % 60);
+                int hundredths = deviceCode % 1000 / 10;
+
+                newlabel.append(trUtf8("Release")).append(" ");
+                if (minutes > 0)
+                {
+                    newlabel.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                }
+
+                newlabel.append(QString("%1.%2")
+                        .arg(seconds, 2, 10, QChar('0'))
+                        .arg(hundredths, 2, 10, QChar('0')));
+
+                break;
+            }
+            case JoyMouseSpeedMod:
+            {
+                QString temp = QString();
+                temp.append(trUtf8("Mouse Mod")).append(" ");
+                temp.append(QString::number(deviceCode).append("%"));
+                newlabel.append(temp);
+
+                break;
+            }
+            case JoyKeyPress:
+            {
+                int minutes = deviceCode / 1000 / 60;
+                int seconds = (deviceCode / 1000 % 60);
+                int hundredths = deviceCode % 1000 / 10;
+
+                QString temp = QString();
+                temp.append(trUtf8("Press Time")).append(" ");
+                if (minutes > 0)
+                {
+                    temp.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                }
+
+                temp.append(QString("%1.%2")
+                        .arg(seconds, 2, 10, QChar('0'))
+                        .arg(hundredths, 2, 10, QChar('0')));
+
+                newlabel.append(temp);
+
+                break;
+            }
+            case JoyDelay:
+            {
+                int minutes = deviceCode / 1000 / 60;
+                int seconds = (deviceCode / 1000 % 60);
+                int hundredths = deviceCode % 1000 / 10;
+
+                QString temp = QString();
+                temp.append(trUtf8("Delay")).append(" ");
+                if (minutes > 0)
+                {
+                    temp.append(QString("%1:").arg(minutes, 2, 10, QChar('0')));
+                }
+
+                temp.append(QString("%1.%2")
+                        .arg(seconds, 2, 10, QChar('0'))
+                        .arg(hundredths, 2, 10, QChar('0')));
+
+                newlabel.append(temp);
+
+                break;
+            }
+            case JoyLoadProfile:
+            {
+                if (!m_textData.isEmpty())
+                {
+                    QFileInfo profileInfo(m_textData);
+                    QString temp = QString();
+                    temp.append(trUtf8("Load %1").arg(PadderCommon::getProfileName(profileInfo)));
+                    newlabel.append(temp);
+                }
+
+                break;
+            }
+            case JoySetChange:
+            {
+                newlabel.append(trUtf8("Set Change %1").arg(deviceCode+1));
+
+                break;
+            }
+            case JoyTextEntry:
+            {
+                QString temp = m_textData;
+                if (temp.length() > MAXTEXTENTRYDISPLAYLENGTH)
+                {
+                    temp.truncate(MAXTEXTENTRYDISPLAYLENGTH - 3);
+                    temp.append("...");
+                }
+                newlabel.append(trUtf8("[Text] %1").arg(temp));
+
+                break;
+            }
+            case JoyExecute:
+            {
+                QString temp = QString();
+                if (!m_textData.isEmpty())
+                {
+                    QFileInfo tempFileInfo(m_textData);
+                    temp.append(tempFileInfo.fileName());
+                }
+
+                newlabel.append(trUtf8("[Exec] %1").arg(temp));
+
+                break;
+            }
         }
     }
     else

@@ -167,18 +167,22 @@ void JoyButtonContextMenu::switchSetMode(QAction* action)
     int setChangeCondition = item % 3;
     JoyButton::SetChangeCondition temp = JoyButton::SetChangeOneWay;
 
-    if (setChangeCondition == 0)
+    switch(setChangeCondition)
     {
-        temp = JoyButton::SetChangeOneWay;
+
+        case 0:
+            temp = JoyButton::SetChangeOneWay;
+            break;
+
+        case 1:
+            temp = JoyButton::SetChangeTwoWay;
+            break;
+
+        case 2:
+            temp = JoyButton::SetChangeWhileHeld;
+            break;
     }
-    else if (setChangeCondition == 1)
-    {
-        temp = JoyButton::SetChangeTwoWay;
-    }
-    else if (setChangeCondition == 2)
-    {
-        temp = JoyButton::SetChangeWhileHeld;
-    }
+
 
     PadderCommon::inputDaemonMutex.lock();
     // First, remove old condition for the button in both sets.

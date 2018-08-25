@@ -54,21 +54,28 @@ bool QtKeyMapperBase::isModifier(int qkey)
     bool modifier = false;
     int qtKeyValue = qkey & 0x0FFFFFFF;
 
-    if (qtKeyValue == Qt::Key_Shift)
+    switch(qtKeyValue)
     {
-        modifier = true;
-    }
-    else if (qtKeyValue == Qt::Key_Control)
-    {
-        modifier = true;
-    }
-    else if (qtKeyValue == Qt::Key_Alt)
-    {
-        modifier = true;
-    }
-    else if (qtKeyValue == Qt::Key_Meta)
-    {
-        modifier = true;
+        case Qt::Key_Shift:
+        {
+            modifier = true;
+            break;
+        }
+        case Qt::Key_Control:
+        {
+            modifier = true;
+            break;
+        }
+        case Qt::Key_Alt:
+        {
+            modifier = true;
+            break;
+        }
+        case Qt::Key_Meta:
+        {
+            modifier = true;
+            break;
+        }
     }
 
     return modifier;

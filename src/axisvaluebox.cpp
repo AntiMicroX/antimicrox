@@ -78,25 +78,29 @@ void AxisValueBox::setValue(int value)
         qDebug() << "Value for axis from value box is between : " << JoyAxis::AXISMIN << " and " << JoyAxis::AXISMAX;
         #endif
 
-        if (m_throttle == static_cast<int>(JoyAxis::NormalThrottle))
+        switch(m_throttle)
         {
-            this->joyValue = value;
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::NegativeThrottle))
-        {
-            this->joyValue = ((value + JoyAxis::AXISMIN) / 2);
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::PositiveThrottle))
-        {
-            this->joyValue = (value + JoyAxis::AXISMAX) / 2;
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
-        {
-            this->joyValue = (value <= 0) ? value : (-value);
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle))
-        {
-            this->joyValue = (value >= 0) ? value : (-value);
+
+            case -2:
+                this->joyValue = (value <= 0) ? value : (-value);
+                break;
+
+            case -1:
+                this->joyValue = ((value + JoyAxis::AXISMIN) / 2);
+                break;
+
+            case 0:
+                this->joyValue = value;
+                break;
+
+            case 1:
+                this->joyValue = (value + JoyAxis::AXISMAX) / 2;
+                break;
+
+            case 2:
+                this->joyValue = (value >= 0) ? value : (-value);
+                break;
+
         }
     }
 
@@ -120,25 +124,29 @@ void AxisValueBox::setValue(JoyAxis* axis, int value)
         qDebug() << "Value for axis from value box is between : " << axis->getAxisMinCal() << " and " << axis->getAxisMaxCal();
         #endif
 
-        if (m_throttle == static_cast<int>(JoyAxis::NormalThrottle))
+        switch(m_throttle)
         {
-            this->joyValue = value;
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::NegativeThrottle))
-        {
-            this->joyValue = ((value + axis->getAxisMinCal()) / 2);
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::PositiveThrottle))
-        {
-            this->joyValue = (value + axis->getAxisMaxCal()) / 2;
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
-        {
-            this->joyValue = (value <= 0) ? value : (-value);
-        }
-        else if (m_throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle))
-        {
-            this->joyValue = (value >= 0) ? value : (-value);
+
+            case -2:
+                this->joyValue = (value <= 0) ? value : (-value);
+                break;
+
+            case -1:
+                this->joyValue = ((value + axis->getAxisMinCal()) / 2);
+                break;
+
+            case 0:
+                this->joyValue = value;
+                break;
+
+            case 1:
+                this->joyValue = (value + axis->getAxisMaxCal()) / 2;
+                break;
+
+            case 2:
+                this->joyValue = (value >= 0) ? value : (-value);
+                break;
+
         }
     }
 
@@ -301,6 +309,7 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     paint.setPen(Qt::blue);
     brush.setColor(Qt::blue);
     QBrush maxBrush(Qt::red);
+
 
     if (m_throttle == static_cast<int>(JoyAxis::NormalThrottle))
     {

@@ -437,21 +437,11 @@ QString GameControllerMappingDialog::bindingString(SDL_GameControllerButtonBind 
 
     QString temp = QString();
 
+
+
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
     {
-        if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
-        {
-            temp.append(QString("Button %1").arg(bind.value.button+1));
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
-        {
-            temp.append(QString("Axis %1").arg(bind.value.axis+1));
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
-        {
-            temp.append(QString("Hat %1.%2").arg(bind.value.hat.hat+1)
-                    .arg(bind.value.hat.hat_mask));
-        }
+
     }
 
     return temp;
@@ -465,20 +455,20 @@ QList<QVariant> GameControllerMappingDialog::bindingValues(SDL_GameControllerBut
 
     if (bind.bindType != SDL_CONTROLLER_BINDTYPE_NONE)
     {
-        if (bind.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
+        switch(bind.bindType)
         {
-            temp.append(QVariant(0));
-            temp.append(QVariant(bind.value.button));
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
-        {
-            temp.append(QVariant(bind.value.axis+1));
-            temp.append(QVariant(0));
-        }
-        else if (bind.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
-        {
-            temp.append(QVariant(-bind.value.hat.hat-1));
-            temp.append(QVariant(bind.value.hat.hat_mask));
+            case SDL_CONTROLLER_BINDTYPE_BUTTON:
+                temp.append(QString("Button %1").arg(bind.value.button+1));
+                break;
+
+            case SDL_CONTROLLER_BINDTYPE_AXIS:
+                temp.append(QString("Axis %1").arg(bind.value.axis+1));
+                break;
+
+            case SDL_CONTROLLER_BINDTYPE_HAT:
+                temp.append(QString("Hat %1.%2").arg(bind.value.hat.hat+1)
+                        .arg(bind.value.hat.hat_mask));
+                break;
         }
     }
 

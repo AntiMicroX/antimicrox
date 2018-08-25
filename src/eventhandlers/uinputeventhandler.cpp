@@ -27,7 +27,6 @@
 #include <QFileInfo>
 #include <QTimer>
 
-
 #include <antkeymapper.h>
 #include <logger.h>
 #include <common.h>
@@ -37,6 +36,7 @@ static const QString mouseDeviceName = PadderCommon::mouseDeviceName;
 static const QString keyboardDeviceName = PadderCommon::keyboardDeviceName;
 static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName;
 
+
 #ifdef WITH_X11
     #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
       #include <QApplication>
@@ -45,8 +45,10 @@ static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName
   #include <x11extras.h>
 #endif
 
+
 #include "uinputeventhandler.h"
 #include "messagehandler.h"
+
 
 UInputEventHandler::UInputEventHandler(QObject *parent) :
     BaseEventHandler(parent)
@@ -55,6 +57,7 @@ UInputEventHandler::UInputEventHandler(QObject *parent) :
     mouseFileHandler = 0;
     springMouseFileHandler = 0;
 }
+
 
 UInputEventHandler::~UInputEventHandler()
 {
@@ -72,67 +75,77 @@ bool UInputEventHandler::init()
     bool result = true;
 
     // Open file handle for keyboard emulation.
-    keyboardFileHandler = openUInputHandle();
-    if (keyboardFileHandler > 0)
-    {
-        setKeyboardEvents(keyboardFileHandler);
-        populateKeyCodes(keyboardFileHandler);
-        createUInputKeyboardDevice(keyboardFileHandler);
-    }
-    else
-    {
-        result = false;
-    }
+    initDevice(keyboardFileHandler, "keyboardFileHandler", result);
 
     if (result)
     {
         // Open mouse file handle to use for relative mouse emulation.
-        mouseFileHandler = openUInputHandle();
-        if (mouseFileHandler > 0)
-        {
-            setRelMouseEvents(mouseFileHandler);
-            createUInputMouseDevice(mouseFileHandler);
-        }
-        else
-        {
-            result = false;
-        }
+        initDevice(mouseFileHandler, "mouseFileHandler", result);
     }
 
     if (result)
     {
         // Open mouse file handle to use for absolute mouse emulation.
-        springMouseFileHandler = openUInputHandle();
-        if (springMouseFileHandler > 0)
-        {
-            setSpringMouseEvents(springMouseFileHandler);
-            createUInputSpringMouseDevice(springMouseFileHandler);
-        }
-        else
-        {
-            result = false;
-        }
+        initDevice(springMouseFileHandler, "springMouseFileHandler", result);
     }
 
 #ifdef WITH_X11
+
     if (result)
     {
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 
-    if (QApplication::platformName() == QStringLiteral("xcb"))
-    {
-    #endif
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+
+        #endif
+
     // Some time needs to elapse after device creation before changing
     // pointer settings. Otherwise, settings will not take effect.
     QTimer::singleShot(2000, this, SLOT(x11ResetMouseAccelerationChange()));
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+        #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+
+        }
+
+        #endif
     }
-    #endif
-    }
+
 #endif
 
     return result;
 }
+
+
+void UInputEventHandler::initDevice(int device, QString name, bool& result)
+{
+    device = openUInputHandle();
+
+    if (device > 0)
+    {
+        if (name == "springMouseFileHandler")
+        {
+            setSpringMouseEvents(device);
+            createUInputSpringMouseDevice(device);
+        }
+        else if (name == "mouseFileHandler")
+        {
+            setRelMouseEvents(device);
+            createUInputMouseDevice(device);
+        }
+        else if (name == "keyboardFileHandler")
+        {
+            setKeyboardEvents(device);
+            populateKeyCodes(device);
+            createUInputKeyboardDevice(device);
+        }
+    }
+    else
+    {
+        result = false;
+    }
+}
+
 
 #ifdef WITH_X11
 void UInputEventHandler::x11ResetMouseAccelerationChange()
@@ -143,6 +156,7 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
     }
 }
 #endif
+
 
 bool UInputEventHandler::cleanup()
 {
@@ -167,6 +181,7 @@ bool UInputEventHandler::cleanup()
     return true;
 }
 
+
 void UInputEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 {
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
@@ -177,6 +192,7 @@ void UInputEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
         write_uinput_event(keyboardFileHandler, EV_KEY, code, pressed ? 1 : 0);
     }
 }
+
 
 void UInputEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
 {
@@ -249,11 +265,13 @@ void UInputEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
     }
 }
 
+
 void UInputEventHandler::sendMouseEvent(int xDis, int yDis)
 {
     write_uinput_event(mouseFileHandler, EV_REL, REL_X, xDis, false);
     write_uinput_event(mouseFileHandler, EV_REL, REL_Y, yDis);
 }
+
 
 void UInputEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
@@ -263,10 +281,11 @@ void UInputEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
     write_uinput_event(springMouseFileHandler, EV_ABS, ABS_Y, yDis);
 }
 
+
 void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
                                               int width, int height)
 {
-    if (width > 0 && height > 0)
+    if ((width > 0) && (height > 0))
     {
         double midwidth = static_cast<double>(width) / 2.0;
         double midheight = static_cast<double>(height) / 2.0;
@@ -276,6 +295,7 @@ void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
         sendMouseAbsEvent(fx, fy, -1);
     }
 }
+
 
 void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
@@ -288,6 +308,7 @@ void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis)
     }
 }
 
+
 int UInputEventHandler::openUInputHandle()
 {
     int filehandle = -1;
@@ -299,10 +320,12 @@ int UInputEventHandler::openUInputHandle()
 
     QString possibleLocation;
     QStringListIterator iter(locations);
+
     while (iter.hasNext())
     {
         QString temp = iter.next();
         QFileInfo tempFileInfo(temp);
+
         if (tempFileInfo.exists())
         {
             possibleLocation = temp;
@@ -320,6 +343,7 @@ int UInputEventHandler::openUInputHandle()
     {
         QByteArray tempArray = possibleLocation.toUtf8();
         filehandle = open(tempArray.constData(), O_WRONLY | O_NONBLOCK);
+
         if (filehandle < 0)
         {
             lastErrorString = tr("Could not open uinput device file\n"
@@ -342,9 +366,9 @@ void UInputEventHandler::setKeyboardEvents(int filehandle)
     ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
 }
 
+
 void UInputEventHandler::setRelMouseEvents(int filehandle)
 {
-
     ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
     ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
     ioctl(filehandle, UI_SET_EVBIT, EV_REL);
@@ -361,9 +385,9 @@ void UInputEventHandler::setRelMouseEvents(int filehandle)
     ioctl(filehandle, UI_SET_KEYBIT, BTN_EXTRA);
 }
 
+
 void UInputEventHandler::setSpringMouseEvents(int filehandle)
 {
-
     ioctl(filehandle, UI_SET_EVBIT, EV_KEY);
     ioctl(filehandle, UI_SET_EVBIT, EV_SYN);
 
@@ -377,19 +401,21 @@ void UInputEventHandler::setSpringMouseEvents(int filehandle)
     ioctl(filehandle, UI_SET_ABSBIT, ABS_X);
     ioctl(filehandle, UI_SET_ABSBIT, ABS_Y);
     ioctl(filehandle, UI_SET_KEYBIT, BTN_TOUCH);
+
     // BTN_TOOL_PEN is required for the mouse to be seen as an
     // absolute mouse as opposed to a relative mouse.
     ioctl(filehandle, UI_SET_KEYBIT, BTN_TOOL_PEN);
 }
 
+
 void UInputEventHandler::populateKeyCodes(int filehandle)
 {
-
-    for (unsigned int i=KEY_ESC; i <= KEY_MICMUTE; i++)
+    for (unsigned int i = KEY_ESC; i <= KEY_MICMUTE; i++)
     {
         ioctl(filehandle, UI_SET_KEYBIT, i);
     }
 }
+
 
 void UInputEventHandler::createUInputKeyboardDevice(int filehandle)
 {
@@ -403,10 +429,10 @@ void UInputEventHandler::createUInputKeyboardDevice(int filehandle)
     uidev.id.product = 0x0;
     uidev.id.version = 1;
 
-
     write(filehandle, &uidev, sizeof(uidev));
     ioctl(filehandle, UI_DEV_CREATE);
 }
+
 
 void UInputEventHandler::createUInputMouseDevice(int filehandle)
 {
@@ -420,10 +446,10 @@ void UInputEventHandler::createUInputMouseDevice(int filehandle)
     uidev.id.product = 0x0;
     uidev.id.version = 1;
 
-
     write(filehandle, &uidev, sizeof(uidev));
     ioctl(filehandle, UI_DEV_CREATE);
 }
+
 
 void UInputEventHandler::createUInputSpringMouseDevice(int filehandle)
 {
@@ -445,14 +471,13 @@ void UInputEventHandler::createUInputSpringMouseDevice(int filehandle)
     uidev.absmax[ABS_Y] = 32767;
     uidev.absflat[ABS_Y] = 0;
 
-
     write(filehandle, &uidev, sizeof(uidev));
     ioctl(filehandle, UI_DEV_CREATE);
 }
 
+
 void UInputEventHandler::closeUInputDevice(int filehandle)
 {
-
     ioctl(filehandle, UI_DEV_DESTROY);
     close(filehandle);
 }
@@ -484,10 +509,12 @@ void UInputEventHandler::write_uinput_event(int filehandle, int type,
     }
 }
 
+
 QString UInputEventHandler::getName()
 {
     return QString("uinput");
 }
+
 
 QString UInputEventHandler::getIdentifier()
 {
@@ -510,21 +537,24 @@ void UInputEventHandler::printPostMessages()
     }
 }
 
+
 void UInputEventHandler::sendTextEntryEvent(QString maintext)
 {
     AntKeyMapper *mapper = AntKeyMapper::getInstance();
 
-    if (mapper && mapper->getKeyMapper())
+    if ((mapper != nullptr) && mapper->getKeyMapper())
     {
         QtUInputKeyMapper *keymapper = qobject_cast<QtUInputKeyMapper*>(mapper->getKeyMapper());
         QtX11KeyMapper *nativeWinKeyMapper = nullptr;
+
         if (mapper->getNativeKeyMapper())
         {
             nativeWinKeyMapper = qobject_cast<QtX11KeyMapper*>(mapper->getNativeKeyMapper());
         }
 
         QList<unsigned int> tempList;
-        for (int i=0; i < maintext.size(); i++)
+
+        for (int i = 0; i < maintext.size(); i++)
         {
             tempList.clear();
 
@@ -537,6 +567,7 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
                 QtX11KeyMapper::charKeyInformation tempX11 = nativeWinKeyMapper->getCharKeyInformation(maintext.at(i));
                 tempX11.virtualkey = X11Extras::getInstance()->getGroup1KeySym(tempX11.virtualkey);
                 unsigned int tempQtKey = static_cast<unsigned int>(nativeWinKeyMapper->returnQtKey(tempX11.virtualkey));
+
                 if (tempQtKey > 0)
                 {
                     temp.virtualkey = keymapper->returnVirtualKey(static_cast<int>(tempQtKey));
@@ -556,29 +587,10 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
             {
                 if (temp.modifiers != Qt::NoModifier)
                 {
-                    if (temp.modifiers.testFlag(Qt::ShiftModifier))
-                    {
-                        tempList.append(KEY_LEFTSHIFT);
-                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTSHIFT, 1, false);
-                    }
-
-                    if (temp.modifiers.testFlag(Qt::ControlModifier))
-                    {
-                        tempList.append(KEY_LEFTCTRL);
-                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTCTRL, 1, false);
-                    }
-
-                    if (temp.modifiers.testFlag(Qt::AltModifier))
-                    {
-                        tempList.append(KEY_LEFTALT);
-                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTALT, 1, false);
-                    }
-
-                    if (temp.modifiers.testFlag(Qt::MetaModifier))
-                    {
-                        tempList.append(KEY_LEFTMETA);
-                        write_uinput_event(keyboardFileHandler, EV_KEY, KEY_LEFTMETA, 1, false);
-                    }
+                    testAndAppend(temp.modifiers.testFlag(Qt::ShiftModifier), tempList, KEY_LEFTSHIFT);
+                    testAndAppend(temp.modifiers.testFlag(Qt::ControlModifier), tempList, KEY_LEFTCTRL);
+                    testAndAppend(temp.modifiers.testFlag(Qt::AltModifier), tempList, KEY_LEFTALT);
+                    testAndAppend(temp.modifiers.testFlag(Qt::MetaModifier), tempList, KEY_LEFTMETA);
                 }
 
                 tempList.append(static_cast<unsigned int>(temp.virtualkey));
@@ -589,6 +601,7 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
             {
                 QListIterator<unsigned int> tempiter(tempList);
                 tempiter.toBack();
+
                 while (tempiter.hasPrevious())
                 {
                     unsigned int currentcode = tempiter.previous();
@@ -599,6 +612,17 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
         }
     }
 }
+
+
+void UInputEventHandler::testAndAppend(bool tested, QList<unsigned int>& tempList, unsigned int key)
+{
+    if (tested)
+    {
+        tempList.append(key);
+        write_uinput_event(keyboardFileHandler, EV_KEY, static_cast<int>(key), 1, false);
+    }
+}
+
 
 int UInputEventHandler::getKeyboardFileHandler() {
 

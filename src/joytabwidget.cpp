@@ -1682,33 +1682,47 @@ void JoyTabWidget::checkForUnsavedProfile(int newindex)
         }
 
         int status = msg.exec();
-        if (status == QMessageBox::Save)
+
+        switch(status)
         {
-            saveConfigFile();
-            reconnectCheckUnsavedEvent();
-            reconnectMainComboBoxEvents();
-            if (newindex > -1)
+
+            case QMessageBox::Save:
             {
-                configBox->setCurrentIndex(newindex);
+                saveConfigFile();
+                reconnectCheckUnsavedEvent();
+                reconnectMainComboBoxEvents();
+
+                if (newindex > -1)
+                {
+                    configBox->setCurrentIndex(newindex);
+                }
+
+                break;
+
+            }
+            case QMessageBox::Discard:
+            {
+                m_joystick->revertProfileEdited();
+                configBox->setItemText(comboBoxIndex, oldProfileName);
+                reconnectCheckUnsavedEvent();
+                reconnectMainComboBoxEvents();
+
+                if (newindex > -1)
+                {
+                    configBox->setCurrentIndex(newindex);
+                }
+
+                break;
+
+            }
+            case QMessageBox::Cancel:
+            {
+                reconnectCheckUnsavedEvent();
+                reconnectMainComboBoxEvents();
+
+                break;
             }
 
-        }
-        else if (status == QMessageBox::Discard)
-        {
-            m_joystick->revertProfileEdited();
-            configBox->setItemText(comboBoxIndex, oldProfileName);
-            reconnectCheckUnsavedEvent();
-            reconnectMainComboBoxEvents();
-            if (newindex > -1)
-            {
-                configBox->setCurrentIndex(newindex);
-            }
-
-        }
-        else if (status == QMessageBox::Cancel)
-        {
-            reconnectCheckUnsavedEvent();
-            reconnectMainComboBoxEvents();
         }
     }
 }
@@ -1738,23 +1752,34 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
         }
 
         int status = msg.exec();
-        if (status == QMessageBox::Save)
+
+        switch(status)
         {
-            saveConfigFile();
-            if ((currentIndex == 0) && (currentIndex == configBox->currentIndex()))
+
+            case QMessageBox::Save:
+            {
+                saveConfigFile();
+                if ((currentIndex == 0) && (currentIndex == configBox->currentIndex()))
+                {
+                    discarded = false;
+                }
+
+                break;
+            }
+            case QMessageBox::Discard:
+            {
+                m_joystick->revertProfileEdited();
+                configBox->setItemText(currentIndex, oldProfileName);
+                resetJoystick();
+
+                break;
+            }
+            case QMessageBox::Cancel:
             {
                 discarded = false;
+                break;
             }
-        }
-        else if (status == QMessageBox::Discard)
-        {
-            m_joystick->revertProfileEdited();
-            configBox->setItemText(currentIndex, oldProfileName);
-            resetJoystick();
-        }
-        else if (status == QMessageBox::Cancel)
-        {
-            discarded = false;
+
         }
 
         disconnectMainComboBoxEvents();

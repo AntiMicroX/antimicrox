@@ -324,40 +324,45 @@ int JoyAxis::calculateThrottledValue(int value)
 
     int temp = value;
 
-    if (throttle == static_cast<int>(NegativeHalfThrottle))
+    switch(throttle)
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "It's a negative half throttle";
-        #endif
 
-        value = (value <= 0) ? value : -value;
-        temp = value;
-    }
-    else if (throttle == static_cast<int>(NegativeThrottle))
-    {
-        #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "It's a negative throttle";
-        #endif
+    case -2:
+            #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "It's a negative half throttle";
+            #endif
 
-        temp = (value + getAxisMinCal()) / 2;
-    }
-    else if (throttle == static_cast<int>(PositiveThrottle))
-    {
-        #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "It's a positive throttle";
-        #endif
+            value = (value <= 0) ? value : -value;
+            temp = value;
+        break;
 
-        temp = (value + getAxisMaxCal()) / 2;
-    }
-    else if (throttle == static_cast<int>(PositiveHalfThrottle))
-    {
-        #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "It's a positive half throttle";
-        #endif
+    case -1:
+            #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "It's a negative throttle";
+            #endif
 
-        value = (value >= 0) ? value : -value;
-        temp = value;
+            temp = (value + getAxisMinCal()) / 2;
+        break;
+
+    case 1:
+            #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "It's a positive throttle";
+            #endif
+
+            temp = (value + getAxisMaxCal()) / 2;
+        break;
+
+    case 2:
+            #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "It's a positive half throttle";
+            #endif
+
+            value = (value >= 0) ? value : -value;
+            temp = value;
+        break;
+
     }
+
 
     #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Calculated value of throttle is: " << temp;
@@ -575,26 +580,31 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 
         xml->writeStartElement("throttle");
 
-        if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
+        switch(throttle)
         {
-            xml->writeCharacters("negativehalf");
+
+        case -2:
+                xml->writeCharacters("negativehalf");
+            break;
+
+        case -1:
+                xml->writeCharacters("negative");
+            break;
+
+        case 0:
+                xml->writeCharacters("normal");
+            break;
+
+        case 1:
+                xml->writeCharacters("positive");
+            break;
+
+        case 2:
+                xml->writeCharacters("positivehalf");
+            break;
+
         }
-        else if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
-        {
-            xml->writeCharacters("negative");
-        }
-        else if (throttle == static_cast<int>(JoyAxis::NormalThrottle))
-        {
-            xml->writeCharacters("normal");
-        }
-        else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
-        {
-            xml->writeCharacters("positive");
-        }
-        else if (throttle == JoyAxis::PositiveHalfThrottle)
-        {
-            xml->writeCharacters("positivehalf");
-        }
+
 
         xml->writeEndElement();
 

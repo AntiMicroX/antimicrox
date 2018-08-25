@@ -84,42 +84,54 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
         JoyButtonSlot *buttonslot = iter.next();
         SimpleKeyGrabberButton *existingCode = new SimpleKeyGrabberButton(this);
         existingCode->setText(buttonslot->getSlotString());
-        if (buttonslot->getSlotMode() == JoyButtonSlot::JoyLoadProfile)
-        {
-            if (!buttonslot->getTextData().isEmpty())
-            {
-                existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyLoadProfile);
-                existingCode->setToolTip(buttonslot->getTextData());
-            }
-        }
-        else if (buttonslot->getSlotMode() == JoyButtonSlot::JoyTextEntry)
-        {
-            if (!buttonslot->getTextData().isEmpty())
-            {
-                existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyTextEntry);
-                existingCode->setToolTip(buttonslot->getTextData());
-            }
-        }
-        else if (buttonslot->getSlotMode() == JoyButtonSlot::JoyExecute)
-        {
-            if (!buttonslot->getTextData().isEmpty())
-            {
-                existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyExecute);
-                existingCode->setToolTip(buttonslot->getTextData());
 
-                if (buttonslot->getExtraData().canConvert<QString>())
-                {
-                    QString argumentsTemp = buttonslot->getExtraData().toString();
-                    existingCode->getValue()->setExtraData(argumentsTemp);
-                }
-            }
-        }
-        else
+        switch(static_cast<int>(buttonslot->getSlotMode()))
         {
-            existingCode->setValue(buttonslot->getSlotCode(),
+            case 11:
+
+                if (!buttonslot->getTextData().isEmpty())
+                {
+                    existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyLoadProfile);
+                    existingCode->setToolTip(buttonslot->getTextData());
+                }
+
+            break;
+
+            case 13:
+
+                if (!buttonslot->getTextData().isEmpty())
+                {
+                    existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyTextEntry);
+                    existingCode->setToolTip(buttonslot->getTextData());
+                }
+
+            break;
+
+            case 14:
+
+                if (!buttonslot->getTextData().isEmpty())
+                {
+                    existingCode->setValue(buttonslot->getTextData(), JoyButtonSlot::JoyExecute);
+                    existingCode->setToolTip(buttonslot->getTextData());
+
+                    if (buttonslot->getExtraData().canConvert<QString>())
+                    {
+                        QString argumentsTemp = buttonslot->getExtraData().toString();
+                        existingCode->getValue()->setExtraData(argumentsTemp);
+                    }
+                }
+
+            break;
+
+            default:
+
+                existingCode->setValue(buttonslot->getSlotCode(),
                                    buttonslot->getSlotCodeAlias(),
                                    buttonslot->getSlotMode());
+            break;
+
         }
+
 
         QListWidgetItem *item = new QListWidgetItem(ui->slotListWidget);
         item->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton*>(existingCode));
@@ -387,80 +399,86 @@ void AdvanceButtonDialog::insertSlot()
     int count = ui->slotListWidget->count();
     int slotTypeIndex = ui->slotTypeComboBox->currentIndex();
 
-    if (slotTypeIndex == static_cast<int>(KBMouseSlot))
+
+    switch(slotTypeIndex)
     {
-        if (current != (count - 1))
-        {
-            SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
-            QListWidgetItem *item = new QListWidgetItem();
-            ui->slotListWidget->insertItem(current, item);
-            item->setData(Qt::UserRole,
-                          QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
+        case 0:
 
-            QHBoxLayout *layout= new QHBoxLayout();
-            layout->addWidget(blankButton);
-            QWidget *widget = new QWidget();
-            widget->setLayout(layout);
-            item->setSizeHint(widget->sizeHint());
-            ui->slotListWidget->setItemWidget(item, widget);
-            ui->slotListWidget->setCurrentItem(item);
-            connectButtonEvents(blankButton);
-            blankButton->refreshButtonLabel();
+            if (current != (count - 1))
+            {
+                SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
+                QListWidgetItem *item = new QListWidgetItem();
+                ui->slotListWidget->insertItem(current, item);
+                item->setData(Qt::UserRole,
+                              QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
 
-            QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection,
-                                      Q_ARG(int, 0), Q_ARG(uint, 0),
-                                      Q_ARG(int, current));
+                QHBoxLayout *layout= new QHBoxLayout();
+                layout->addWidget(blankButton);
+                QWidget *widget = new QWidget();
+                widget->setLayout(layout);
+                item->setSizeHint(widget->sizeHint());
+                ui->slotListWidget->setItemWidget(item, widget);
+                ui->slotListWidget->setCurrentItem(item);
+                connectButtonEvents(blankButton);
+                blankButton->refreshButtonLabel();
 
-            updateSlotsScrollArea(0);
-        }
-    }
-    else if (slotTypeIndex == static_cast<int>(CycleSlot))
-    {
+                QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection,
+                                          Q_ARG(int, 0), Q_ARG(uint, 0),
+                                          Q_ARG(int, current));
+
+                updateSlotsScrollArea(0);
+            }
+
+        break;
+
+    case 1:
         insertCycleSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(DelaySlot))
-    {
+        break;
+
+    case 2:
         insertDelaySlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(DistanceSlot))
-    {
+        break;
+
+    case 3:
         insertDistanceSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(HoldSlot))
-    {
-        insertHoldSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(LoadSlot))
-    {
-        showSelectProfileWindow();
-    }
-    else if (slotTypeIndex == static_cast<int>(MouseModSlot))
-    {
-        insertMouseSpeedModSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(PauseSlot))
-    {
-        insertPauseSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(PressTimeSlot))
-    {
-        insertKeyPressSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(ReleaseSlot))
-    {
-        insertReleaseSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(SetChangeSlot))
-    {
-        insertSetChangeSlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(TextEntry))
-    {
-        insertTextEntrySlot();
-    }
-    else if (slotTypeIndex == static_cast<int>(ExecuteSlot))
-    {
+        break;
+
+    case 4:
         insertExecuteSlot();
+        break;
+
+    case 5:
+        insertHoldSlot();
+        break;
+
+    case 6:
+        showSelectProfileWindow();
+        break;
+
+    case 7:
+        insertMouseSpeedModSlot();
+        break;
+
+    case 8:
+        insertPauseSlot();
+        break;
+
+    case 9:
+        insertKeyPressSlot();
+        break;
+
+    case 10:
+        insertReleaseSlot();
+        break;
+
+    case 11:
+        insertSetChangeSlot();
+        break;
+
+    case 12:
+        insertTextEntrySlot();
+        break;
+
     }
 }
 
@@ -801,17 +819,21 @@ void AdvanceButtonDialog::updateSetSelection()
         qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
         #endif
 
-        if (condition_choice == 0)
+
+        switch(condition_choice)
         {
+        case 0:
             set_selection_condition = JoyButton::SetChangeOneWay;
-        }
-        else if (condition_choice == 1)
-        {
+            break;
+
+        case 1:
             set_selection_condition = JoyButton::SetChangeTwoWay;
-        }
-        else if (condition_choice == 2)
-        {
+            break;
+
+        case 2:
             set_selection_condition = JoyButton::SetChangeWhileHeld;
+            break;
+
         }
 
         #ifndef QT_DEBUG_NO_OUTPUT
@@ -1451,17 +1473,22 @@ void AdvanceButtonDialog::findTurboModeComboIndex()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButton::TurboMode currentTurboMode = m_button->getTurboMode();
-    if (currentTurboMode == JoyButton::NormalTurbo)
+
+    switch(static_cast<int>(currentTurboMode))
     {
-        ui->turboModeComboBox->setCurrentIndex(0);
-    }
-    else if (currentTurboMode == JoyButton::GradientTurbo)
-    {
-        ui->turboModeComboBox->setCurrentIndex(1);
-    }
-    else if (currentTurboMode == JoyButton::PulseTurbo)
-    {
-        ui->turboModeComboBox->setCurrentIndex(2);
+
+        case 0:
+            ui->turboModeComboBox->setCurrentIndex(0);
+            break;
+
+        case 1:
+            ui->turboModeComboBox->setCurrentIndex(1);
+            break;
+
+        case 2:
+            ui->turboModeComboBox->setCurrentIndex(2);
+            break;
+
     }
 }
 
@@ -1469,17 +1496,19 @@ void AdvanceButtonDialog::setButtonTurboMode(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (value == 0)
+    switch(value)
     {
-        m_button->setTurboMode(JoyButton::NormalTurbo);
-    }
-    else if (value == 1)
-    {
-        m_button->setTurboMode(JoyButton::GradientTurbo);
-    }
-    else if (value == 2)
-    {
-        m_button->setTurboMode(JoyButton::PulseTurbo);
+        case 0:
+            m_button->setTurboMode(JoyButton::NormalTurbo);
+            break;
+
+        case 1:
+            m_button->setTurboMode(JoyButton::GradientTurbo);
+            break;
+
+        case 2:
+            m_button->setTurboMode(JoyButton::PulseTurbo);
+            break;
     }
 }
 
@@ -1538,57 +1567,44 @@ void AdvanceButtonDialog::changeSlotTypeDisplay(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (index == static_cast<int>(KBMouseSlot))
+    switch(index)
     {
-        ui->slotControlsStackedWidget->setCurrentIndex(0);
-    }
-    else if (index == static_cast<int>(CycleSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(3);
-    }
-    else if (index == static_cast<int>(DelaySlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(0);
-    }
-    else if (index == static_cast<int>(DistanceSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(2);
-    }
-    else if (index == static_cast<int>(HoldSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(0);
-    }
-    else if (index == static_cast<int>(LoadSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(4);
-    }
-    else if (index == static_cast<int>(MouseModSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(1);
-    }
-    else if (index == static_cast<int>(PauseSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(0);
-    }
-    else if (index == static_cast<int>(PressTimeSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(0);
-    }
-    else if (index == static_cast<int>(ReleaseSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(0);
-    }
-    else if (index == static_cast<int>(SetChangeSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(5);
-    }
-    else if (index == static_cast<int>(TextEntry))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(6);
-    }
-    else if (index == static_cast<int>(ExecuteSlot))
-    {
-        ui->slotControlsStackedWidget->setCurrentIndex(7);
+        case 0:
+        case 2:
+        case 5:
+        case 8:
+        case 9:
+        case 10:
+            ui->slotControlsStackedWidget->setCurrentIndex(0);
+        break;
+
+        case 1:
+            ui->slotControlsStackedWidget->setCurrentIndex(3);
+        break;
+
+        case 3:
+            ui->slotControlsStackedWidget->setCurrentIndex(2);
+        break;
+
+        case 4:
+            ui->slotControlsStackedWidget->setCurrentIndex(7);
+        break;
+
+        case 6:
+            ui->slotControlsStackedWidget->setCurrentIndex(4);
+        break;
+
+        case 7:
+            ui->slotControlsStackedWidget->setCurrentIndex(1);
+        break;
+
+        case 11:
+            ui->slotControlsStackedWidget->setCurrentIndex(5);
+        break;
+
+        case 12:
+            ui->slotControlsStackedWidget->setCurrentIndex(6);
+        break;
     }
 }
 
@@ -1596,72 +1612,75 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (index == static_cast<int>(KBMouseSlot))
+    switch(index)
     {
-        ui->slotTypeHelpLabel->setText(trUtf8("Insert a new blank slot."));
-    }
-    else if (index == static_cast<int>(CycleSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Slots past a Cycle action will be executed "
+        case 0:
+            ui->slotTypeHelpLabel->setText(trUtf8("Insert a new blank slot."));
+        break;
+
+        case 1:
+            ui->slotTypeHelpLabel->setText(trUtf8("Slots past a Cycle action will be executed "
                                           "on the next button press. Multiple cycles can be added "
                                           "in order to create partitions in a sequence."));
-    }
-    else if (index == static_cast<int>(DelaySlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Delays the time that the next slot is activated "
+        break;
+
+        case 2:
+            ui->slotTypeHelpLabel->setText(trUtf8("Delays the time that the next slot is activated "
                                           "by the time specified. Slots activated before the "
                                           "delay will remain active after the delay time "
                                           "has passed."));
-    }
-    else if (index == static_cast<int>(DistanceSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Distance action specifies that the slots afterwards "
+        break;
+
+        case 3:
+            ui->slotTypeHelpLabel->setText(trUtf8("Distance action specifies that the slots afterwards "
                                           "will only be executed when an axis is moved "
                                           "a certain range past the designated dead zone."));
-    }
-    else if (index == static_cast<int>(HoldSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Insert a hold action. Slots after the action will only be "
+        break;
+
+        case 4:
+            ui->slotTypeHelpLabel->setText(trUtf8("Execute program when slot is activated."));
+        break;
+
+        case 5:
+            ui->slotTypeHelpLabel->setText(trUtf8("Insert a hold action. Slots after the action will only be "
                                           "executed if the button is held past the interval specified."));
-    }
-    else if (index == static_cast<int>(LoadSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Chose a profile to load when this slot is activated."));
-    }
-    else if (index == static_cast<int>(MouseModSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Mouse mod action will modify all mouse speed settings "
+        break;
+
+        case 6:
+            ui->slotTypeHelpLabel->setText(trUtf8("Chose a profile to load when this slot is activated."));
+        break;
+
+        case 7:
+            ui->slotTypeHelpLabel->setText(trUtf8("Mouse mod action will modify all mouse speed settings "
                                           "by a specified percentage while the action is being processed. "
                                           "This can be useful for slowing down the mouse while "
                                           "sniping."));
-    }
-    else if (index == static_cast<int>(PauseSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Insert a pause that occurs in between key presses."));
-    }
-    else if (index == static_cast<int>(PressTimeSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Specify the time that keys past this slot should be "
+        break;
+
+        case 8:
+            ui->slotTypeHelpLabel->setText(trUtf8("Insert a pause that occurs in between key presses."));
+        break;
+
+        case 9:
+            ui->slotTypeHelpLabel->setText(trUtf8("Specify the time that keys past this slot should be "
                                           "held down."));
-    }
-    else if (index == static_cast<int>(ReleaseSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Insert a release action. Slots after the action will only be "
+        break;
+
+        case 10:
+            ui->slotTypeHelpLabel->setText(trUtf8("Insert a release action. Slots after the action will only be "
                                           "executed after a button release if the button was held "
                                           "past the interval specified."));
-    }
-    else if (index == static_cast<int>(SetChangeSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Change to selected set once slot is activated."));
-    }
-    else if (index == static_cast<int>(TextEntry))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Full string will be typed when a "
+        break;
+
+        case 11:
+            ui->slotTypeHelpLabel->setText(trUtf8("Change to selected set once slot is activated."));
+        break;
+
+        case 12:
+            ui->slotTypeHelpLabel->setText(trUtf8("Full string will be typed when a "
                                           "slot is activated."));
-    }
-    else if (index == static_cast<int>(ExecuteSlot))
-    {
-        ui->slotTypeHelpLabel->setText(trUtf8("Execute program when slot is activated."));
+        break;
+
     }
 }
 
