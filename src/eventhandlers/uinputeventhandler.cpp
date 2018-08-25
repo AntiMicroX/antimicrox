@@ -77,6 +77,8 @@ bool UInputEventHandler::init()
     // Open file handle for keyboard emulation.
     initDevice(keyboardFileHandler, "keyboardFileHandler", result);
 
+    // two separate statements for "result" are needed anyway because of possible changing its
+    // statement in "initDevice" method
     if (result)
     {
         // Open mouse file handle to use for relative mouse emulation.
@@ -299,8 +301,8 @@ void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
 
 void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
-    if (xDis >= -1.0 && xDis <= 1.0 &&
-        yDis >= -1.0 && yDis <= 1.0)
+    if ((xDis >= -1.0) && (xDis <= 1.0) &&
+        (yDis >= -1.0) && (yDis <= 1.0))
     {
         int fx = static_cast<int>(ceil(32767 * xDis));
         int fy = static_cast<int>(ceil(32767 * yDis));
