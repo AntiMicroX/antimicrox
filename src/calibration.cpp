@@ -249,9 +249,6 @@ void Calibration::startCalibration()
                     center_calibrated_y = 0;
                 }
 
-               // deadzone_calibrated_x = calibratedDeadZone(center_calibrated_x, joyAxisX->getDeadZone());
-               // deadzone_calibrated_y = calibratedDeadZone(center_calibrated_y, joyAxisY->getDeadZone());
-
                 QString text = QString();
                 text.append(trUtf8("\n\nCenter X: %1").arg(center_calibrated_x));
                 text.append(trUtf8("\nCenter Y: %1").arg(center_calibrated_y));
@@ -296,7 +293,6 @@ void Calibration::startSecondStep()
                 int min_y = 0;
 
                 for (int i = 0; i < x_es_val.count(QString("-")); i++) {
-                  //  if ((abs(x_es_val.values(QString("-")).at(i)) > deadzone_calibrated_x))
                     if (i > 0) {
                         if (x_es_val.values(QString("-")).at(i) < x_es_val.values(QString("-")).at(i-1))  {
                             min_x = x_es_val.values(QString("-")).at(i);
@@ -307,7 +303,6 @@ void Calibration::startSecondStep()
                 }
 
                 for (int i = 0; i < y_es_val.count(QString("-")); i++) {
-                  //  if ((abs(y_es_val.values(QString("-")).at(i)) > deadzone_calibrated_y))
                     if (i > 0) {
                         if (y_es_val.values(QString("-")).at(i) < y_es_val.values(QString("-")).at(i-1))  {
                             min_y = y_es_val.values(QString("-")).at(i);
@@ -361,7 +356,6 @@ void Calibration::startLastStep()
                 int max_y = 0;
 
                 for (int i = 0; i < x_es_val.count(QString("+")); i++) {
-                  //  if ((x_es_val.values(QString("+")).at(i) > deadzone_calibrated_x))
                         if (i > 0) {
                             if (x_es_val.values(QString("+")).at(i) > x_es_val.values(QString("+")).at(i-1))  {
                                 max_x = x_es_val.values(QString("+")).at(i);
@@ -372,7 +366,6 @@ void Calibration::startLastStep()
                 }
 
                 for (int i = 0; i < y_es_val.count(QString("+")); i++) {
-                 //   if ((y_es_val.values(QString("+")).at(i) > deadzone_calibrated_y))
                     if (i > 0) {
                         if (y_es_val.values(QString("+")).at(i) > y_es_val.values(QString("+")).at(i-1))  {
                             max_y = y_es_val.values(QString("+")).at(i);
