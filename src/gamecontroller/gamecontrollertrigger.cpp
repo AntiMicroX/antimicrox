@@ -115,7 +115,7 @@ void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
                     case 1:
                         found = true;
                         triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(naxisbutton); // static_cast
+                            qobject_cast<GameControllerTriggerButton*>(naxisbutton);
                         triggerButton->readJoystickConfig(xml);
                     break;
 
@@ -123,7 +123,7 @@ void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
                     case 2:
                         found = true;
                         triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(paxisbutton); // static_cast
+                            qobject_cast<GameControllerTriggerButton*>(paxisbutton);
                         triggerButton->readJoystickConfig(xml);
                     break;
                 }
@@ -172,20 +172,19 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
     xml->writeStartElement(getXmlName());
     xml->writeAttribute("index", QString::number((m_index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
 
-    if (!currentlyDefault)
-    {
-        if (deadZone != AXISDEADZONE)
-        {
-            xml->writeTextElement("deadZone", QString::number(deadZone));
-        }
 
-        if (maxZoneValue != AXISMAXZONE)
-        {
-            xml->writeTextElement("maxZone", QString::number(maxZoneValue));
-        }
+    if (!currentlyDefault && (deadZone != AXISDEADZONE))
+    {
+      xml->writeTextElement("deadZone", QString::number(deadZone));
     }
 
-        xml->writeStartElement("throttle");
+    if (!currentlyDefault && (maxZoneValue != AXISMAXZONE))
+    {
+      xml->writeTextElement("maxZone", QString::number(maxZoneValue));
+    }
+
+
+    xml->writeStartElement("throttle");
 
 
         switch(throttle)
