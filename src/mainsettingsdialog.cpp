@@ -387,12 +387,14 @@ MainSettingsDialog::~MainSettingsDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    delete ui;
     if (connectedDevices != nullptr)
     {
         delete connectedDevices;
         connectedDevices = nullptr;
     }
+
+    delete ui;
+
 }
 
 void MainSettingsDialog::fillControllerMappingsTable()
@@ -1510,10 +1512,11 @@ void MainSettingsDialog::openAddAutoProfileDialog()
     QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
     AutoProfileInfo *info = new AutoProfileInfo(this);
     AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
-    connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] {
-        addNewAutoProfile(dialog);
-    });
+   // connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] {
+   //     addNewAutoProfile(dialog);
+   // });
 
+    connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
     connect(dialog, &AddEditAutoProfileDialog::rejected, info, &AutoProfileInfo::deleteLater);
     dialog->show();
 }
@@ -1748,13 +1751,14 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
     changeDeviceForProfileTable(currentIndex);
 }
 
-void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
+void MainSettingsDialog::addNewAutoProfile()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
     AutoProfileInfo *info = dialog->getAutoProfile();
-
     bool found = false;
+
     if (info->isCurrentDefault())
     {
         if (defaultAutoProfiles.contains(info->getGUID()))

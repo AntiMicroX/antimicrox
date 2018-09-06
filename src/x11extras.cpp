@@ -59,7 +59,7 @@ X11Extras::~X11Extras()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    freeDisplay(_display);
+    freeDisplay();
 }
 
 
@@ -74,11 +74,11 @@ void freeWindow(T* window)
 }
 
 
-void X11Extras::freeDisplay(Display* _display)
+void X11Extras::freeDisplay()
 {
     if (_display != nullptr)
     {
-        XCloseDisplay(display());
+        XCloseDisplay(_display);
         _display = nullptr;
     }
 }
@@ -140,7 +140,7 @@ void X11Extras::closeDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    freeDisplay(_display);
+    freeDisplay();
 }
 
 /**
@@ -235,7 +235,7 @@ Window X11Extras::findParentClient(Window window)
     Window finalwindow = 0;
     Display *display = this->display();
 
-    checkPropertyOnWin(windowIsViewable(display, window) && isWindowRelevant(display, window), window, parent, finalwindow, root, children, display, &num_children);
+    checkPropertyOnWin(windowIsViewable(display, window) && isWindowRelevant(display, window), window, parent, finalwindow, root, children, display, num_children);
 
     return finalwindow;
 }
@@ -263,7 +263,7 @@ int X11Extras::getApplicationPid(Window window)
     Display *display = this->display();
     atom = XInternAtom(display, "_NET_WM_PID", True);
 
-    checkPropertyOnWin(windowHasProperty(display, window, atom), window, parent, finalwindow, root, children, display, &num_children);
+    checkPropertyOnWin(windowHasProperty(display, window, atom), window, parent, finalwindow, root, children, display, num_children);
 
     if (finalwindow)
     {
@@ -283,7 +283,7 @@ int X11Extras::getApplicationPid(Window window)
 }
 
 
-void X11Extras::checkPropertyOnWin(bool windowCorrected, Window& window, Window& parent, Window& finalwindow, Window& root, Window *children, Display *display, unsigned int* num_children)
+void X11Extras::checkPropertyOnWin(bool windowCorrected, Window& window, Window& parent, Window& finalwindow, Window& root, Window *children, Display *display, unsigned int& num_children)
 {
     if (windowCorrected)
     {
@@ -297,7 +297,7 @@ void X11Extras::checkPropertyOnWin(bool windowCorrected, Window& window, Window&
         {
             children = nullptr;
 
-            if (XQueryTree(display, window, &root, &parent, &children, num_children))
+            if (XQueryTree(display, window, &root, &parent, &children, &num_children))
             {
                 if (children != nullptr)
                 {
