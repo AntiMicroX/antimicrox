@@ -88,7 +88,7 @@ protected slots:
     void changeAutoProfileButtonsState();
     void transferEditsToCurrentTableRow(AddEditAutoProfileDialog *dialog);
     void transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog* dialog);
-    void addNewAutoProfile(AddEditAutoProfileDialog *dialog);
+    void addNewAutoProfile();
     void autoProfileButtonsActiveState(bool enabled);
     void changeKeyRepeatWidgetsStatus(bool enabled);
     void checkSmoothingWidgetStatus(bool enabled);

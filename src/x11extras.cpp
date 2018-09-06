@@ -22,9 +22,6 @@
 #include <unistd.h>
 #include <X11/Xatom.h>
 #include <X11/XKBlib.h>
-#include <X11/extensions/XInput.h>
-#include <X11/extensions/XInput2.h>
-
 
 #include <QDebug>
 #include <QFileInfo>
@@ -62,18 +59,37 @@ X11Extras::~X11Extras()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    freeDisplay();
+}
+
+
+template <typename T>
+void freeWindow(T* window)
+{
+    if (window != nullptr)
+    {
+        XFree(window);
+        window = nullptr;
+    }
+}
+
+
+void X11Extras::freeDisplay()
+{
     if (_display != nullptr)
     {
-        XCloseDisplay(display());
+        XCloseDisplay(_display);
         _display = nullptr;
     }
 }
+
 
 X11Extras *X11Extras::getInstance()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     X11Extras *temp = nullptr;
+
     if (!displays.hasLocalData())
     {
         temp = new X11Extras();
@@ -114,8 +130,7 @@ bool X11Extras::hasValidDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    bool result = (_display != nullptr);
-    return result;
+    return (_display != nullptr);
 }
 
 /**
@@ -125,11 +140,7 @@ void X11Extras::closeDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (_display != nullptr)
-    {
-        XCloseDisplay(display());
-        _display = nullptr;
-    }
+    freeDisplay();
 }
 
 /**
@@ -185,6 +196,7 @@ QString X11Extras::getDisplayString(QString xcodestring)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
+
     if (knownAliases.contains(xcodestring))
     {
         temp = knownAliases.value(xcodestring);
@@ -223,58 +235,7 @@ Window X11Extras::findParentClient(Window window)
     Window finalwindow = 0;
     Display *display = this->display();
 
-    if (windowIsViewable(display, window) &&
-        isWindowRelevant(display, window))
-    {
-        finalwindow = window;
-    }
-    else
-    {
-        bool quitTraversal = false;
-        while (!quitTraversal)
-        {
-            children = nullptr;
-
-            if (XQueryTree(display, window, &root, &parent, &children, &num_children))
-            {
-                if (children != nullptr)
-                {
-                    // must be a test for NULL
-                    XFree(children);
-                }
-
-                if (parent)
-                {
-                    if (windowIsViewable(display, parent) &&
-                        isWindowRelevant(display, parent))
-                    {
-                        quitTraversal = true;
-                        finalwindow = parent;
-                    }
-                    else if (parent == 0)
-                    {
-                        quitTraversal = true;
-                    }
-                    else if (parent == root)
-                    {
-                        quitTraversal = true;
-                    }
-                    else
-                    {
-                        window = parent;
-                    }
-                }
-                else
-                {
-                    quitTraversal = true;
-                }
-            }
-            else
-            {
-                quitTraversal = true;
-            }
-        }
-    }
+    checkPropertyOnWin(windowIsViewable(display, window) && isWindowRelevant(display, window), window, parent, finalwindow, root, children, display, num_children);
 
     return finalwindow;
 }
@@ -295,19 +256,41 @@ int X11Extras::getApplicationPid(Window window)
     unsigned char *prop = nullptr;
     int pid = 0;
     Window finalwindow = 0;
-
+    Window parent = 0;
+    Window root = 0;
+    Window *children = nullptr;
+    unsigned int num_children;
     Display *display = this->display();
     atom = XInternAtom(display, "_NET_WM_PID", True);
-    if (windowHasProperty(display, window, atom))
+
+    checkPropertyOnWin(windowHasProperty(display, window, atom), window, parent, finalwindow, root, children, display, num_children);
+
+    if (finalwindow)
+    {
+        int status = 0;
+
+        status = XGetWindowProperty(display, finalwindow, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+
+        if ((status == 0) && (prop != nullptr))
+        {
+            pid = prop[1] << 8;
+            pid += prop[0];
+            XFree(prop);
+        }
+    }
+
+    return pid;
+}
+
+
+void X11Extras::checkPropertyOnWin(bool windowCorrected, Window& window, Window& parent, Window& finalwindow, Window& root, Window *children, Display *display, unsigned int& num_children)
+{
+    if (windowCorrected)
     {
         finalwindow = window;
     }
     else
     {
-        Window parent = 0;
-        Window root = 0;
-        Window *children;
-        unsigned int num_children;
         bool quitTraversal = false;
 
         while (!quitTraversal)
@@ -324,7 +307,7 @@ int X11Extras::getApplicationPid(Window window)
 
                 if (parent)
                 {
-                    if (windowHasProperty(display, parent, atom))
+                    if (windowCorrected)
                     {
                         quitTraversal = true;
                         finalwindow = parent;
@@ -353,21 +336,6 @@ int X11Extras::getApplicationPid(Window window)
             }
         }
     }
-
-    if (finalwindow)
-    {
-        int status = 0;
-
-        status = XGetWindowProperty(display, finalwindow, atom, 0, 1024, false, AnyPropertyType, &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-        if ((status == 0) && (prop != nullptr))
-        {
-            pid = prop[1] << 8;
-            pid += prop[0];
-            XFree(prop);
-        }
-    }
-
-    return pid;
 }
 
 /**
@@ -380,15 +348,18 @@ QString X11Extras::getApplicationLocation(int pid)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString exepath = QString();
+
     if (pid > 0)
     {
         QString procString = QString("/proc/%1/exe").arg(pid);
         QFileInfo procFileInfo(procString);
+
         if (procFileInfo.exists())
         {
             char buf[1024];
             QByteArray tempByteArray = procString.toLocal8Bit();
             ssize_t len = readlink(tempByteArray.constData(), buf, sizeof(buf)-1);
+
             if (len != -1)
             {
                 buf[len] = '\0';
@@ -397,6 +368,7 @@ QString X11Extras::getApplicationLocation(int pid)
             if (len > 0)
             {
                 QString temp = QString::fromUtf8(buf);
+
                 if (!temp.isEmpty())
                 {
                     exepath = temp;
@@ -435,6 +407,7 @@ Window X11Extras::findClientWindow(Window window)
     else
     {
         XQueryTree(display, window, &root, &parent, &children, &num_children);
+
         if (children != nullptr)
         {
             for (unsigned int i = 0; (i < num_children) && !finalwindow; i++)
@@ -455,11 +428,7 @@ Window X11Extras::findClientWindow(Window window)
             }
         }
 
-        if (children != nullptr)
-        {
-            XFree(children);
-            children = nullptr;
-        }
+        freeWindow(children);
     }
 
     return finalwindow;
@@ -486,11 +455,7 @@ bool X11Extras::windowHasProperty(Display *display, Window window, Atom atom)
         result = true;
     }
 
-    if (prop != nullptr)
-    {
-        XFree(prop);
-        prop = nullptr;
-    }
+    freeWindow(prop);
 
     return result;
 }
@@ -502,6 +467,7 @@ bool X11Extras::windowIsViewable(Display *display, Window window)
     bool result = false;
     XWindowAttributes xwa;
     XGetWindowAttributes(display, window, &xwa);
+
     if ((xwa.c_class == InputOutput) && (xwa.map_state == IsViewable))
     {
         result = true;
@@ -530,9 +496,11 @@ bool X11Extras::isWindowRelevant(Display *display, Window window)
     temp.append(XInternAtom(display, "_NW_WM_NAME", True));
 
     QListIterator<Atom> iter(temp);
+
     while (iter.hasNext())
     {
         Atom current_atom = iter.next();
+
         if (windowHasProperty(display, window, current_atom))
         {
             iter.toBack();
@@ -569,9 +537,11 @@ QString X11Extras::getWindowTitle(Window window)
     tempList.append(wm_name);
     tempList.append(net_wm_name);
     QListIterator<Atom> iter(tempList);
+
     while (iter.hasNext())
     {
         Atom temp_atom = iter.next();
+
         if (windowHasProperty(display, window, temp_atom))
         {
             iter.toBack();
@@ -593,11 +563,7 @@ QString X11Extras::getWindowTitle(Window window)
         #endif
     }
 
-    if (prop != nullptr)
-    {
-        XFree(prop);
-        prop = nullptr;
-    }
+    freeWindow(prop);
 
     return temp;
 }
@@ -621,7 +587,7 @@ QString X11Extras::getWindowClass(Window window)
                                 &actual_type, &actual_format, &nitems, &bytes_after,
                                 &prop);
 
-    if ((status == Success) && prop)
+    if ((status == Success) && (prop != nullptr))
     {
         #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << nitems;
@@ -642,25 +608,21 @@ QString X11Extras::getWindowClass(Window window)
         #endif
     }
 
-    if (prop != nullptr)
-    {
-        XFree(prop);
-        prop = nullptr;
-    }
+    freeWindow(prop);
 
     return temp;
 }
+
 
 unsigned long X11Extras::getWindowInFocus()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     unsigned long result = 0;
-
     Window currentWindow = 0;
     int focusState = 0;
-
     Display *display = this->display();
+
     XGetInputFocus(display, &currentWindow, &focusState);
 
     if (currentWindow > 0)
@@ -686,13 +648,10 @@ int X11Extras::getGroup1KeySym(int virtualkey)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int result = 0;
     Display *display = this->display();
-
     int temp = XKeysymToKeycode(display, static_cast<KeySym>(virtualkey));
-    result = static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(temp), 0, 0));
 
-    return result;
+    return static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(temp), 0, 0));
 }
 
 void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
@@ -702,8 +661,8 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
     int xi_opcode, event, error;
     xi_opcode = event = error = 0;
     Display *display = this->display();
-
     bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
+
     if (!result)
     {
         Logger::LogInfo(trUtf8("xinput extension was not found. No mouse acceleration changes will occur."));
@@ -711,6 +670,7 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
     else
     {
         int ximajor = 2, ximinor = 0;
+
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
             Logger::LogInfo(trUtf8("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
@@ -726,16 +686,8 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
         int num_devices = 0;
         all_devices = XIQueryDevice(display, XIAllDevices, &num_devices);
-        for (int i=0; i < num_devices; i++)
-        {
-            current_devices = &all_devices[i];
-            if ((current_devices->use == XISlavePointer) &&
-                (QString::fromUtf8(current_devices->name) == pointerName))
-            {
-                Logger::LogInfo(trUtf8("Virtual pointer found with id=%1.").arg(current_devices->deviceid));
-                mouse_device = current_devices;
-            }
-        }
+
+        findVirtualPtr(num_devices, current_devices, mouse_device, all_devices, pointerName);
 
         if (mouse_device != nullptr)
         {
@@ -745,18 +697,8 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
             int feedback_id = -1;
             XFeedbackState *feedbacks = XGetFeedbackControl(display, device, &num_feedbacks);
             XFeedbackState *temp = feedbacks;
-            for (int i=0; (i < num_feedbacks) && (feedback_id == -1); i++)
-            {
-                if (temp->c_class == PtrFeedbackClass)
-                {
-                    feedback_id = static_cast<int>(temp->id);
-                }
 
-                if ((i + 1) < num_feedbacks)
-                {
-                    temp = reinterpret_cast<XFeedbackState*>(reinterpret_cast<char*>(temp) + temp->length);
-                }
-            }
+            checkFeedback(temp, num_feedbacks, feedback_id);
 
             XFree(feedbacks);
             feedbacks = temp = nullptr;
@@ -814,9 +756,11 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
     Display *display = this->display();
 
     bool result = XQueryExtension(display, "XInputExtension", &xi_opcode, &event, &error);
+
     if (result)
     {
         int ximajor = 2, ximinor = 0;
+
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
             Logger::LogInfo(QObject::trUtf8("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
@@ -832,15 +776,8 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
 
         int num_devices = 0;
         all_devices = XIQueryDevice(display, XIAllDevices, &num_devices);
-        for (int i=0; i < num_devices; i++)
-        {
-            current_devices = &all_devices[i];
-            if ((current_devices->use == XISlavePointer) &&
-                (QString::fromUtf8(current_devices->name) == pointerName))
-            {
-                mouse_device = current_devices;
-            }
-        }
+
+        findVirtualPtr(num_devices, current_devices, mouse_device, all_devices, pointerName);
 
         if (mouse_device != nullptr)
         {
@@ -850,18 +787,8 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
             int feedback_id = -1;
             XFeedbackState *feedbacks = XGetFeedbackControl(display, device, &num_feedbacks);
             XFeedbackState *temp = feedbacks;
-            for (int i=0; (i < num_feedbacks) && (feedback_id == -1); i++)
-            {
-                if (temp->c_class == PtrFeedbackClass)
-                {
-                    feedback_id = static_cast<int>(temp->id);
-                }
 
-                if ((feedback_id == -1) && ((i + 1) < num_feedbacks))
-                {
-                    temp = reinterpret_cast<XFeedbackState*>(reinterpret_cast<char*>(temp) + temp->length);
-                }
-            }
+            checkFeedback(temp, num_feedbacks, feedback_id);
 
             if (feedback_id <= -1)
             {
@@ -888,6 +815,38 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
     }
 
     return tempInfo;
+}
+
+
+void X11Extras::findVirtualPtr(int num_devices, XIDeviceInfo *current_devices, XIDeviceInfo *mouse_device, XIDeviceInfo *all_devices, QString pointerName)
+{
+    for (int i = 0; i < num_devices; i++)
+    {
+        current_devices = &all_devices[i];
+
+        if ((current_devices->use == XISlavePointer) &&
+            (QString::fromUtf8(current_devices->name) == pointerName))
+        {
+            mouse_device = current_devices;
+        }
+    }
+}
+
+
+void X11Extras::checkFeedback(XFeedbackState *temp, int& num_feedbacks, int& feedback_id)
+{
+    for (int i = 0; (i < num_feedbacks) && (feedback_id == -1); i++)
+    {
+        if (temp->c_class == PtrFeedbackClass)
+        {
+            feedback_id = static_cast<int>(temp->id);
+        }
+
+        if ((i + 1) < num_feedbacks)
+        {
+            temp = reinterpret_cast<XFeedbackState*>(reinterpret_cast<char*>(temp) + temp->length);
+        }
+    }
 }
 
 struct X11Extras::ptrInformation X11Extras::getPointInformation()

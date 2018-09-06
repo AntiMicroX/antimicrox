@@ -294,6 +294,7 @@ void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
     else if (elemName == "stick") {
         if (index > 0)
         {
+            index -= 1;
             JoyControlStick *stick = getJoyStick(index);
             readConf(stick, xml);
         }

@@ -23,7 +23,10 @@
 #include <QHash>
 #include <QPoint>
 
+#include <X11/extensions/XInput.h>
+#include <X11/extensions/XInput2.h>
 #include <X11/Xlib.h>
+
 
 
 class X11Extras : public QObject
@@ -97,6 +100,11 @@ public slots:
     QPoint getPos();
 
 private:
+    void checkPropertyOnWin(bool windowCorrected, Window& window, Window& parent, Window& finalwindow, Window& root, Window *children, Display *display, unsigned int& num_children);
+    void freeDisplay();
+    void checkFeedback(XFeedbackState *temp, int& num_feedbacks, int& feedback_id);
+    void findVirtualPtr(int num_devices, XIDeviceInfo *current_devices, XIDeviceInfo *mouse_device, XIDeviceInfo *all_devices, QString pointerName);
+
     QHash<QString, QString> knownAliases;
     Display *_display;
 };
