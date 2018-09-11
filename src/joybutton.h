@@ -187,8 +187,6 @@ public:
     static int getGamepadRefreshRate();
 
     static double getWeightModifier();
-    static double cursorRemainderX;
-    static double cursorRemainderY;
 
     static bool hasCursorEvents();
     static bool hasSpringEvents();
@@ -209,61 +207,14 @@ public:
 
     static JoyButtonMouseHelper* getMouseHelper();
     static QList<JoyButton*>* getPendingMouseButtons();
-    static QList<double> mouseHistoryX;
-    static QList<double> mouseHistoryY;
 
     JoyExtraAccelerationCurve getExtraAccelerationCurve();
 
-    static const QString xmlName;
-
-    // Define default values for many properties.
-    static const int ENABLEDTURBODEFAULT;
-    static const double DEFAULTMOUSESPEEDMOD;
-    static const int DEFAULTKEYREPEATDELAY; // unsigned
-    static const int DEFAULTKEYREPEATRATE; // unsigned
     static const JoyMouseCurve DEFAULTMOUSECURVE;
-    static const bool DEFAULTTOGGLE;
-    static const int DEFAULTTURBOINTERVAL;
-    static const bool DEFAULTUSETURBO;
-    static const int DEFAULTMOUSESPEEDX;
-    static const int DEFAULTMOUSESPEEDY;
-    static const int DEFAULTSETSELECTION;
     static const SetChangeCondition DEFAULTSETCONDITION;
     static const JoyMouseMovementMode DEFAULTMOUSEMODE;
-    static const int DEFAULTSPRINGWIDTH;
-    static const int DEFAULTSPRINGHEIGHT;
-    static const double DEFAULTSENSITIVITY;
-    static const int DEFAULTWHEELX;
-    static const int DEFAULTWHEELY;
-    static const bool DEFAULTCYCLERESETACTIVE;
-    static const int DEFAULTCYCLERESET;
-    static const bool DEFAULTRELATIVESPRING;
     static const TurboMode DEFAULTTURBOMODE;
-    static const double DEFAULTEASINGDURATION;
-    static const double MINIMUMEASINGDURATION;
-    static const double MAXIMUMEASINGDURATION;
-
-    static const int DEFAULTMOUSEHISTORYSIZE;
-    static const double DEFAULTWEIGHTMODIFIER;
-
-    static const int MAXIMUMMOUSEHISTORYSIZE;
-    static const double MAXIMUMWEIGHTMODIFIER;
-
-    static const int MAXIMUMMOUSEREFRESHRATE;
-    static const int DEFAULTIDLEMOUSEREFRESHRATE;
-    static int IDLEMOUSEREFRESHRATE;
-
-    static const int MINCYCLERESETTIME; // unsigned
-    static const int MAXCYCLERESETTIME; // unsigned
-
-    static const double DEFAULTEXTRACCELVALUE;
-    static const double DEFAULTMINACCELTHRESHOLD;
-    static const double DEFAULTMAXACCELTHRESHOLD;
-    static const double DEFAULTSTARTACCELMULTIPLIER;
-    static const double DEFAULTACCELEASINGDURATION;
     static const JoyExtraAccelerationCurve DEFAULTEXTRAACCELCURVE;
-
-    static const int DEFAULTSPRINGRELEASERADIUS;
 
 
 protected:
@@ -302,7 +253,6 @@ protected:
         double code;
     } mouseCursorInfo;
 
-    static double mouseSpeedModifier;
     static QList<JoyButtonSlot*> mouseSpeedModList;
     static QList<mouseCursorInfo> cursorXSpeeds;
     static QList<mouseCursorInfo> cursorYSpeeds;
@@ -310,20 +260,12 @@ protected:
     static QList<PadderCommon::springModeInfo> springYSpeeds;
     static QList<JoyButton*> pendingMouseButtons;
 
-    static QHash<int, int> activeKeys; // QHash<unsigned int, int
-    static QHash<int, int> activeMouseButtons; // QHash<unsigned int, int
-
 #ifdef Q_OS_WIN
     static JoyKeyRepeatHelper repeatHelper;
 #endif
 
     static JoyButtonSlot *lastActiveKey;
     static JoyButtonMouseHelper mouseHelper;
-    static double weightModifier;
-    static int mouseHistorySize;
-    static int mouseRefreshRate;
-    static int springModeScreen;
-    static int gamepadRefreshRate;
 
     int m_index; // Used to denote the SDL index of the actual joypad button
     int turboInterval;

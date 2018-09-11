@@ -155,16 +155,7 @@ public:
 
     virtual void eventReset();
 
-    // Define default values for many properties.
-    static const int AXISMIN;
-    static const int AXISMAX;
-    static const int AXISDEADZONE;
-    static const int AXISMAXZONE;
     static const ThrottleTypes DEFAULTTHROTTLE;
-
-    static const float JOYSPEED;
-
-    static const QString xmlName;
 
 protected:
     void createDeskEvent(bool ignoresets = false);

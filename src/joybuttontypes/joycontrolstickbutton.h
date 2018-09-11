@@ -55,8 +55,6 @@ public:
     QString getDirectionName() const;
     JoyStickDirectionsType::JoyStickDirections getDirection() const;
 
-    static const QString xmlName;
-
 protected:
     virtual double getCurrentSpringDeadCircle();
 

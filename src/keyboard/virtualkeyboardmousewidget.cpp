@@ -39,9 +39,6 @@
 
 #include <SDL2/SDL_power.h>
 
-
-
-
 #include <QFont>
 #include <QSizePolicy>
 #include <QSpacerItem>

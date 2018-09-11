@@ -17,6 +17,7 @@
 
 #include "joybuttoncontextmenu.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "common.h"
@@ -75,7 +76,7 @@ void JoyButtonContextMenu::buildMenu()
 
     setSectionMenu->addSeparator();
 
-    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         QMenu *tempSetMenu = setSectionMenu->addMenu(trUtf8("Set %1").arg(i+1));
         int setSelection = i*3;

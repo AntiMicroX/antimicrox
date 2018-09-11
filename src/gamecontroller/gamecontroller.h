@@ -67,8 +67,6 @@ public:
 
     SDL_GameController *getController() const;
 
-    static const QString xmlName;
-
 protected:
     void readJoystickConfig(QXmlStreamReader *xml);
 

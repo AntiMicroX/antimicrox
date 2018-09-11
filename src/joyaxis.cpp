@@ -17,6 +17,7 @@
 
 #include "joyaxis.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "setjoystick.h"
@@ -31,18 +32,7 @@
 #include <QtGlobal>
 #include <QDebug>
 
-// Set default values for many properties.
-const int JoyAxis::AXISMIN = -32767;
-const int JoyAxis::AXISMAX = 32767;
-const int JoyAxis::AXISDEADZONE = 6000;
-const int JoyAxis::AXISMAXZONE = 32000;
-
-// Speed in pixels/second
-const float JoyAxis::JOYSPEED = 20.0;
 const JoyAxis::ThrottleTypes JoyAxis::DEFAULTTHROTTLE = JoyAxis::NormalThrottle;
-const QString JoyAxis::xmlName = "axis";
-
-
 
 JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
                  QObject *parent) :
@@ -562,12 +552,12 @@ void JoyAxis::writeConfig(QXmlStreamWriter *xml)
 
     if (!currentlyDefault)
     {
-        if (deadZone != AXISDEADZONE)
+        if (deadZone != GlobalVariables::JoyAxis::AXISDEADZONE)
         {
             xml->writeTextElement("deadZone", QString::number(deadZone));
         }
 
-        if (maxZoneValue != AXISMAXZONE)
+        if (maxZoneValue != GlobalVariables::JoyAxis::AXISMAXZONE)
         {
             xml->writeTextElement("maxZone", QString::number(maxZoneValue));
         }
@@ -1267,21 +1257,21 @@ QString JoyAxis::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyAxis::xmlName;
 }
 
 int JoyAxis::getDefaultDeadZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->AXISDEADZONE;
+    return GlobalVariables::JoyAxis::AXISDEADZONE;
 }
 
 int JoyAxis::getDefaultMaxZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->AXISMAXZONE;
+    return GlobalVariables::JoyAxis::AXISMAXZONE;
 }
 
 JoyAxis::ThrottleTypes JoyAxis::getDefaultThrottle()
@@ -1381,7 +1371,7 @@ double JoyAxis::getButtonsEasingDuration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTEASINGDURATION;
+    double result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
     if (qFuzzyCompare(paxisbutton->getEasingDuration(), naxisbutton->getEasingDuration()))
     {
         result = paxisbutton->getEasingDuration();
@@ -1488,7 +1478,7 @@ void JoyAxis::setAxisMinCal(int value) {
 
 int JoyAxis::getAxisMinCal() {
 
-    return ((axis_min_cal != -1) ? axis_min_cal : JoyAxis::AXISMIN);
+    return ((axis_min_cal != -1) ? axis_min_cal : GlobalVariables::JoyAxis::AXISMIN);
 }
 
 void JoyAxis::setAxisMaxCal(int value) {
@@ -1498,7 +1488,7 @@ void JoyAxis::setAxisMaxCal(int value) {
 
 int JoyAxis::getAxisMaxCal() {
 
-    return ((axis_max_cal != -1) ? axis_max_cal : JoyAxis::AXISMAX);
+    return ((axis_max_cal != -1) ? axis_max_cal : GlobalVariables::JoyAxis::AXISMAX);
 }
 
 void JoyAxis::setAxisCenterCal(int value) {

@@ -17,13 +17,12 @@
 
 #include "joycontrolstick.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
 #include "joyaxis.h"
-
-#include <cmath>
 
 #include <QDebug>
 #include <QHashIterator>
@@ -32,16 +31,7 @@
 #include <QXmlStreamWriter>
 #include <QLabel>
 
-// Define Pi here.
-const double JoyControlStick::PI = acos(-1.0);
-
-// Set default values used for stick properties.
-const int JoyControlStick::DEFAULTDEADZONE = 8000;
-const int JoyControlStick::DEFAULTMAXZONE = JoyAxis::AXISMAXZONE;
-const int JoyControlStick::DEFAULTDIAGONALRANGE = 90;
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
-const double JoyControlStick::DEFAULTCIRCLE = 0.0;
-const int JoyControlStick::DEFAULTSTICKDELAY = 0;
 
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2,
                                  int index, int originset, QObject *parent) :
@@ -422,7 +412,7 @@ double JoyControlStick::calculateBearing(int axisXValue, int axisYValue)
         double temp1 = axis1Value;
         double temp2 = axis2Value;
 
-        double angle = (atan2(temp1, -temp2) * 180) / PI;
+        double angle = (atan2(temp1, -temp2) * 180) / GlobalVariables::JoyControlStick::PI ;
 
         if ((axis1Value >= 0) && (axis2Value <= 0))
         {
@@ -554,7 +544,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
 
             double minangle = tempangles.at(1);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadY = fabs(square_dist * sin(minangle * PI / 180.0));
+            double mindeadY = fabs(square_dist * sin(minangle * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadY = qMax(adjustedDeadYZone, mindeadY);
             double maxRange = static_cast<double>(maxZone) - currentDeadY;
             double tempdist4 = 0.0;
@@ -571,7 +561,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
 
             double minangle = tempfuck.at(4);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadY = fabs(square_dist * sin((minangle - 90.0) * PI / 180.0));
+            double mindeadY = fabs(square_dist * sin((minangle - 90.0) * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadY = qMax(adjustedDeadYZone, mindeadY);
             double maxRange = static_cast<double>(maxZone) - currentDeadY;
             double tempdist4 = 0.0;
@@ -588,7 +578,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
 
             double minangle = tempangles.at(6);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadY = fabs(square_dist * sin((minangle - 180.0) * PI / 180.0));
+            double mindeadY = fabs(square_dist * sin((minangle - 180.0) * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadY = qMax(adjustedDeadYZone, mindeadY);
             double maxRange = static_cast<double>(maxZone) - currentDeadY;
             double tempdist4 = 0.0;
@@ -605,7 +595,7 @@ double JoyControlStick::calculateYDistanceFromDeadZone(int axisXValue,
 
             double minangle = tempangles.at(8);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadY = fabs(square_dist * sin((minangle - 270.0) * PI / 180.0));
+            double mindeadY = fabs(square_dist * sin((minangle - 270.0) * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadY = qMax(adjustedDeadYZone, mindeadY);
             double maxRange = static_cast<double>(maxZone) - currentDeadY;
             double tempdist4 = 0.0;
@@ -701,7 +691,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
 
             double maxangle = tempangles.at(3);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadX = fabs(square_dist * cos(maxangle * PI / 180.0));
+            double mindeadX = fabs(square_dist * cos(maxangle * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
             double maxRange = static_cast<double>(maxZone) - currentDeadX;
             double tempdist4 = 0.0;
@@ -718,7 +708,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
 
             double maxangle = tempangles.at(5);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadX = fabs(square_dist * cos((maxangle - 90.0) * PI / 180.0));
+            double mindeadX = fabs(square_dist * cos((maxangle - 90.0) * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
             double maxRange = static_cast<double>(maxZone) - currentDeadX;
             double tempdist4 = 0.0;
@@ -735,7 +725,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
 
             double maxangle = tempangles.at(7);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadX = fabs(square_dist * cos((maxangle - 180.0) * PI / 180.0));
+            double mindeadX = fabs(square_dist * cos((maxangle - 180.0) * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
             double maxRange = static_cast<double>(maxZone) - currentDeadX;
             double tempdist4 = 0.0;
@@ -752,7 +742,7 @@ double JoyControlStick::calculateXDistanceFromDeadZone(int axisXValue,
 
             double maxangle = tempangles.at(1);
             double square_dist = getAbsoluteRawDistance(axis1Value, axis2Value);
-            double mindeadX = fabs(square_dist * cos((maxangle - 270.0) * PI / 180.0));
+            double mindeadX = fabs(square_dist * cos((maxangle - 270.0) * GlobalVariables::JoyControlStick::PI  / 180.0));
             double currentDeadX = qMax(mindeadX, adjustedDeadXZone);
             double maxRange = static_cast<double>(maxZone) - currentDeadX;
             double tempdist4 = 0.0;
@@ -1027,7 +1017,7 @@ void JoyControlStick::reset()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deadZone = 8000;
-    maxZone = JoyAxis::AXISMAXZONE;
+    maxZone = GlobalVariables::JoyAxis::AXISMAXZONE;
     diagonalRange = 45;
     isActive = false;
     pendingStickEvent = false;
@@ -1039,8 +1029,8 @@ void JoyControlStick::reset()
     currentDirection = StickCentered;
     currentMode = StandardMode;
     stickName.clear();
-    circle = DEFAULTCIRCLE;
-    stickDelay = DEFAULTSTICKDELAY;
+    circle = GlobalVariables::JoyControlStick::DEFAULTCIRCLE;
+    stickDelay = GlobalVariables::JoyControlStick::DEFAULTSTICKDELAY;
     resetButtons();
 }
 
@@ -1237,7 +1227,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                     this->setCircleAdjust(tempchoice / 100.0);
                 }
             }
-            else if ((xml->name() == JoyControlStickButton::xmlName) && xml->isStartElement())
+            else if ((xml->name() == GlobalVariables::JoyControlStickButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = buttons.value(static_cast<JoyStickDirections>(index));
@@ -1251,7 +1241,7 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                     xml->skipCurrentElement();
                 }
             }
-            else if ((xml->name() == JoyControlStickModifierButton::xmlName) && xml->isStartElement())
+            else if ((xml->name() == GlobalVariables::JoyControlStickModifierButton::xmlName) && xml->isStartElement())
             {
                 modifierButton->readConfig(xml);
             }
@@ -1285,12 +1275,12 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         xml->writeStartElement("stick");
         xml->writeAttribute("index", QString::number(index+1));
 
-        if (deadZone != DEFAULTDEADZONE)
+        if (deadZone != GlobalVariables::JoyControlStick::DEFAULTDEADZONE)
         {
             xml->writeTextElement("deadZone", QString::number(deadZone));
         }
 
-        if (maxZone != DEFAULTMAXZONE)
+        if (maxZone != GlobalVariables::JoyControlStick::DEFAULTMAXZONE)
         {
             xml->writeTextElement("maxZone", QString::number(maxZone));
         }
@@ -1301,7 +1291,7 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 
         if ((currentMode == StandardMode) || (currentMode == EightWayMode))
         {
-            if (diagonalRange != DEFAULTDIAGONALRANGE)
+            if (diagonalRange != GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE)
             {
                 xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
             }
@@ -1324,12 +1314,12 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 
         }
 
-        if (circle > DEFAULTCIRCLE)
+        if (circle > GlobalVariables::JoyControlStick::DEFAULTCIRCLE)
         {
             xml->writeTextElement("squareStick", QString::number(circle * 100));
         }
 
-        if (stickDelay > DEFAULTSTICKDELAY)
+        if (stickDelay > GlobalVariables::JoyControlStick::DEFAULTSTICKDELAY)
         {
             xml->writeTextElement("stickDelay", QString::number(stickDelay));
         }
@@ -2256,12 +2246,12 @@ bool JoyControlStick::isDefault()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool value = true;
-    value = value && (deadZone == DEFAULTDEADZONE);
-    value = value && (maxZone == DEFAULTMAXZONE);
-    value = value && (diagonalRange == DEFAULTDIAGONALRANGE);
+    value = value && (deadZone == GlobalVariables::JoyControlStick::DEFAULTDEADZONE);
+    value = value && (maxZone == GlobalVariables::JoyControlStick::DEFAULTMAXZONE);
+    value = value && (diagonalRange == GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE);
     value = value && (currentMode == DEFAULTMODE);
-    value = value && qFuzzyCompare(circle, DEFAULTCIRCLE);
-    value = value && (stickDelay == DEFAULTSTICKDELAY);
+    value = value && qFuzzyCompare(circle, GlobalVariables::JoyControlStick::DEFAULTCIRCLE);
+    value = value && (stickDelay == GlobalVariables::JoyControlStick::DEFAULTSTICKDELAY);
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
     while (iter.hasNext())
@@ -3323,7 +3313,7 @@ double JoyControlStick::getButtonsEasingDuration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTEASINGDURATION;
+    double result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
 
     QHash<JoyStickDirections, JoyControlStickButton*> temphash = getApplicableButtons();
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(temphash);
@@ -3340,7 +3330,7 @@ double JoyControlStick::getButtonsEasingDuration()
             double temp = button->getEasingDuration();
             if (!qFuzzyCompare(temp, result))
             {
-                result = JoyButton::DEFAULTEASINGDURATION;
+                result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
                 iter.toBack();
             }
         }
@@ -3454,7 +3444,7 @@ double JoyControlStick::getButtonsExtraAccelerationMultiplier()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTEXTRACCELVALUE;
+    double result = GlobalVariables::JoyButton::DEFAULTEXTRACCELVALUE;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
     while (iter.hasNext())
@@ -3475,7 +3465,7 @@ double JoyControlStick::getButtonsExtraAccelerationMultiplier()
                 double temp = button->getExtraAccelerationMultiplier();
                 if (!qFuzzyCompare(temp, result))
                 {
-                    result = JoyButton::DEFAULTEXTRACCELVALUE;
+                    result = GlobalVariables::JoyButton::DEFAULTEXTRACCELVALUE;
                     iter.toBack();
                 }
             }
@@ -3505,7 +3495,7 @@ double JoyControlStick::getButtonsStartAccelerationMultiplier()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTSTARTACCELMULTIPLIER;
+    double result = GlobalVariables::JoyButton::DEFAULTSTARTACCELMULTIPLIER;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
     while (iter.hasNext())
@@ -3526,7 +3516,7 @@ double JoyControlStick::getButtonsStartAccelerationMultiplier()
                 double temp = button->getStartAccelMultiplier();
                 if (!qFuzzyCompare(temp, result))
                 {
-                    result = JoyButton::DEFAULTSTARTACCELMULTIPLIER;
+                    result = GlobalVariables::JoyButton::DEFAULTSTARTACCELMULTIPLIER;
                     iter.toBack();
                 }
             }
@@ -3555,7 +3545,7 @@ double JoyControlStick::getButtonsMinAccelerationThreshold()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTMINACCELTHRESHOLD;
+    double result = GlobalVariables::JoyButton::DEFAULTMINACCELTHRESHOLD;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
     while (iter.hasNext())
@@ -3576,7 +3566,7 @@ double JoyControlStick::getButtonsMinAccelerationThreshold()
                 double temp = button->getMinAccelThreshold();
                 if (!qFuzzyCompare(temp, result))
                 {
-                    result = JoyButton::DEFAULTMINACCELTHRESHOLD;
+                    result = GlobalVariables::JoyButton::DEFAULTMINACCELTHRESHOLD;
                     iter.toBack();
                 }
             }
@@ -3605,7 +3595,7 @@ double JoyControlStick::getButtonsMaxAccelerationThreshold()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTMAXACCELTHRESHOLD;
+    double result = GlobalVariables::JoyButton::DEFAULTMAXACCELTHRESHOLD;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
     while (iter.hasNext())
@@ -3626,7 +3616,7 @@ double JoyControlStick::getButtonsMaxAccelerationThreshold()
                 double temp = button->getMaxAccelThreshold();
                 if (!qFuzzyCompare(temp, result))
                 {
-                    result = JoyButton::DEFAULTMAXACCELTHRESHOLD;
+                    result = GlobalVariables::JoyButton::DEFAULTMAXACCELTHRESHOLD;
                     iter.toBack();
                 }
             }
@@ -3656,7 +3646,7 @@ double JoyControlStick::getButtonsAccelerationEasingDuration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTACCELEASINGDURATION;
+    double result = GlobalVariables::JoyButton::DEFAULTACCELEASINGDURATION;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
     while (iter.hasNext())
@@ -3677,7 +3667,7 @@ double JoyControlStick::getButtonsAccelerationEasingDuration()
                 double temp = button->getAccelExtraDuration();
                 if (!qFuzzyCompare(temp, result))
                 {
-                    result = JoyButton::DEFAULTACCELEASINGDURATION;
+                    result = GlobalVariables::JoyButton::DEFAULTACCELEASINGDURATION;
                     iter.toBack();
                 }
             }
@@ -3706,7 +3696,7 @@ int JoyControlStick::getButtonsSpringDeadCircleMultiplier()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int result = JoyButton::DEFAULTSPRINGRELEASERADIUS;
+    int result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
 
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(getApplicableButtons());
     while (iter.hasNext())
@@ -3727,7 +3717,7 @@ int JoyControlStick::getButtonsSpringDeadCircleMultiplier()
                 int temp = button->getSpringDeadCircleMultiplier();
                 if (temp != result)
                 {
-                    result = JoyButton::DEFAULTSPRINGRELEASERADIUS;
+                    result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
                     iter.toBack();
                 }
             }
@@ -4365,7 +4355,7 @@ double JoyControlStick::calculateXDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempangles = getDiagonalZoneAngles();
 
             double maxangle = tempangles.at(3);
-            double mindeadX = fabs(deadZone * cos(maxangle * PI / 180.0));
+            double mindeadX = fabs(deadZone * cos(maxangle * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadX;
         }
         else if ((direction == StickRightDown) || (direction == StickDown))
@@ -4373,7 +4363,7 @@ double JoyControlStick::calculateXDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempangles = getDiagonalZoneAngles();
 
             double maxangle = tempangles.at(5);
-            double mindeadX = fabs(deadZone * cos((maxangle - 90.0) * PI / 180.0));
+            double mindeadX = fabs(deadZone * cos((maxangle - 90.0) * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadX;
         }
         else if ((direction == StickLeftDown) || (direction == StickLeft))
@@ -4381,7 +4371,7 @@ double JoyControlStick::calculateXDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempangles = getDiagonalZoneAngles();
 
             double maxangle = tempangles.at(7);
-            double mindeadX = fabs(deadZone * cos((maxangle - 180.0) * PI / 180.0));
+            double mindeadX = fabs(deadZone * cos((maxangle - 180.0) * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadX;
         }
         else if ((direction == StickLeftUp) || (direction == StickUp))
@@ -4389,7 +4379,7 @@ double JoyControlStick::calculateXDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempangles = getDiagonalZoneAngles();
 
             double maxangle = tempangles.at(1);
-            double mindeadX = fabs(deadZone * cos((maxangle - 270.0) * PI / 180.0));
+            double mindeadX = fabs(deadZone * cos((maxangle - 270.0) * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadX;
         }
         else
@@ -4419,7 +4409,7 @@ double JoyControlStick::calculateYDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempangles = getDiagonalZoneAngles();
 
             double minangle = tempangles.at(1);
-            double mindeadY = fabs(deadZone * sin(minangle * PI / 180.0));
+            double mindeadY = fabs(deadZone * sin(minangle * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadY;
         }
         else if ((direction == StickRightDown) || (direction == StickRight))
@@ -4427,7 +4417,7 @@ double JoyControlStick::calculateYDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempfuck = getDiagonalZoneAngles();
 
             double minangle = tempfuck.at(4);
-            double mindeadY = fabs(deadZone * sin((minangle - 90.0) * PI / 180.0));
+            double mindeadY = fabs(deadZone * sin((minangle - 90.0) * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadY;
         }
         else if ((direction == StickLeftDown) || (direction == StickDown))
@@ -4435,7 +4425,7 @@ double JoyControlStick::calculateYDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempangles = getDiagonalZoneAngles();
 
             double minangle = tempangles.at(6);
-            double mindeadY = fabs(deadZone * sin((minangle - 180.0) * PI / 180.0));
+            double mindeadY = fabs(deadZone * sin((minangle - 180.0) * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadY;
         }
         else if ((direction == StickLeftUp) || (direction == StickLeft))
@@ -4443,7 +4433,7 @@ double JoyControlStick::calculateYDiagonalDeadZone(int axisXValue, int axisYValu
             QList<double> tempangles = getDiagonalZoneAngles();
 
             double minangle = tempangles.at(8);
-            double mindeadY = fabs(deadZone * sin((minangle - 270.0) * PI / 180.0));
+            double mindeadY = fabs(deadZone * sin((minangle - 270.0) * GlobalVariables::JoyControlStick::PI / 180.0));
             diagonalDeadZone = mindeadY;
         }
         else

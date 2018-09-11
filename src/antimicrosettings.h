@@ -37,11 +37,6 @@ public:
     QMutex* getLock();
     QSettings& getCmdSettings();
 
-    static const bool defaultDisabledWinEnhanced;
-    static const bool defaultAssociateProfiles;
-    static const int defaultSpringScreen;
-    static const int defaultSDLGamepadPollRate; // unsigned
-
 protected:
     QSettings cmdSettings;
     QMutex lock;

@@ -80,9 +80,6 @@ public:
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
-
-    static const int JOYSPEED;
-    static const QString xmlName;
     
 private:
     int deviceCode;
@@ -95,8 +92,6 @@ private:
     bool easingActive;
     QString m_textData;
     QVariant extraData;
-
-    static const int MAXTEXTENTRYDISPLAYLENGTH;
     
 };
 

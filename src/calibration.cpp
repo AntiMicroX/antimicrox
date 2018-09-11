@@ -1,6 +1,7 @@
 #include "calibration.h"
 #include "ui_calibration.h"
 
+#include "globalvariables.h"
 #include "joycontrolstick.h"
 #include "joytabwidget.h"
 #include "inputdevice.h"
@@ -128,16 +129,16 @@ void Calibration::resetSettings()
 
         joyAxisX->setAxisCenterCal(center_calibrated_x);
         joyAxisY->setAxisCenterCal(center_calibrated_y);
-        joyAxisX->setDeadZone(JoyAxis::AXISDEADZONE);
-        joyAxisY->setDeadZone(JoyAxis::AXISDEADZONE);
+        joyAxisX->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
+        joyAxisY->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
         joyAxisX->setAxisMinCal(min_axis_val_x);
         joyAxisY->setAxisMinCal(min_axis_val_y);
         joyAxisX->setAxisMaxCal(max_axis_val_x);
         joyAxisY->setAxisMaxCal(max_axis_val_y);
-        joyAxisX->setMaxZoneValue(JoyAxis::AXISMAXZONE);
-        joyAxisY->setMaxZoneValue(JoyAxis::AXISMAXZONE);
-        stick->setDeadZone(JoyAxis::AXISDEADZONE);
-        stick->setMaxZone(JoyAxis::AXISMAXZONE);
+        joyAxisX->setMaxZoneValue(GlobalVariables::JoyAxis::AXISMAXZONE);
+        joyAxisY->setMaxZoneValue(GlobalVariables::JoyAxis::AXISMAXZONE);
+        stick->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
+        stick->setMaxZone(GlobalVariables::JoyAxis::AXISMAXZONE);
         calibrated = false;
         stick->setCalibrationFlag(false);
         stick->setCalibrationSummary(QString());
@@ -658,12 +659,12 @@ void Calibration::setProgressBars(JoyControlStick* controlstick)
             axisLabel2->setText(trUtf8("Axis %1").arg(joyAxisY->getRealJoyIndex()));
             axisBarX = new QProgressBar();
             axisBarY = new QProgressBar();
-            axisBarX->setMinimum(JoyAxis::AXISMIN);
-            axisBarX->setMaximum(JoyAxis::AXISMAX);
+            axisBarX->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
+            axisBarX->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
             axisBarX->setFormat("%v");
             axisBarX->setValue(joyAxisX->getCurrentRawValue());
-            axisBarY->setMinimum(JoyAxis::AXISMIN);
-            axisBarY->setMaximum(JoyAxis::AXISMAX);
+            axisBarY->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
+            axisBarY->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
             axisBarY->setFormat("%v");
             axisBarY->setValue(joyAxisY->getCurrentRawValue());
             hbox->addWidget(axisLabel);
@@ -714,12 +715,12 @@ void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
             axisLabel2->setText(trUtf8("Axis %1").arg(joyAxisY->getRealJoyIndex()));
             axisBarX = new QProgressBar();
             axisBarY = new QProgressBar();
-            axisBarX->setMinimum(JoyAxis::AXISMIN);
-            axisBarX->setMaximum(JoyAxis::AXISMAX);
+            axisBarX->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
+            axisBarX->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
             axisBarX->setFormat("%v");
             axisBarX->setValue(joyAxisX->getCurrentRawValue());
-            axisBarY->setMinimum(JoyAxis::AXISMIN);
-            axisBarY->setMaximum(JoyAxis::AXISMAX);
+            axisBarY->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
+            axisBarY->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
             axisBarY->setFormat("%v");
             axisBarY->setValue(joyAxisY->getCurrentRawValue());
             hbox->addWidget(axisLabel);

@@ -246,6 +246,7 @@ set(antimicro_SOURCES
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
     src/calibration.cpp
+    src/globalvariables.cpp
 )
 
 set(antimicro_HEADERS
@@ -343,6 +344,7 @@ set(antimicro_HEADERS
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
     src/calibration.h
+    src/globalvariables.h
 )
 
 set(antimicro_FORMS src/mainwindow.ui

@@ -43,9 +43,6 @@ public:
     JoyButton *getButton() const;
     AdvanceButtonDialogHelper const& getHelper();
 
-    static const int MINIMUMTURBO;
-
-
 protected:
     void connectButtonEvents(SimpleKeyGrabberButton *button);
     void appendBlankKeyGrabber();

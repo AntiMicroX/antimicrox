@@ -18,6 +18,7 @@
 #include "mainsettingsdialog.h"
 #include "ui_mainsettingsdialog.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "addeditautoprofiledialog.h"
 #include "editalldefaultautoprofiledialog.h"
@@ -285,18 +286,18 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     }
 
     int historySize = settings->value("Mouse/HistorySize", 0).toInt();
-    if ((historySize > 0) && (historySize <= JoyButton::MAXIMUMMOUSEHISTORYSIZE))
+    if ((historySize > 0) && (historySize <= GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE))
     {
         ui->historySizeSpinBox->setValue(historySize);
     }
 
     double weightModifier = settings->value("Mouse/WeightModifier", 0).toDouble();
-    if ((weightModifier > 0.0) && (weightModifier <= JoyButton::MAXIMUMWEIGHTMODIFIER))
+    if ((weightModifier > 0.0) && (weightModifier <= GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER))
     {
         ui->weightModifierDoubleSpinBox->setValue(weightModifier);
     }
 
-    for (int i = 1; i <= JoyButton::MAXIMUMMOUSEREFRESHRATE; i++)
+    for (int i = 1; i <= GlobalVariables::JoyButton::MAXIMUMMOUSEREFRESHRATE; i++)
     {
         ui->mouseRefreshRateComboBox->addItem(QString("%1 ms").arg(i), i);
     }
@@ -1918,7 +1919,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
 
     ui->springScreenComboBox->clear();
     ui->springScreenComboBox->addItem(trUtf8("Default"),
-                                      QVariant(AntiMicroSettings::defaultSpringScreen));
+                                      QVariant(GlobalVariables::AntimicroSettings::defaultSpringScreen));
 
     QDesktopWidget deskWid;
     for (int i=0; i < deskWid.screenCount(); i++)
@@ -1948,7 +1949,7 @@ void MainSettingsDialog::refreshExtraMouseInfo()
         }
         else if (handler == "xtest")
         {
-            temp = X11Extras::getInstance()->getPointInformation(X11Extras::xtestMouseDeviceName);
+            temp = X11Extras::getInstance()->getPointInformation(GlobalVariables::X11Extras::xtestMouseDeviceName);
         }
 
         if (temp.id >= 0)

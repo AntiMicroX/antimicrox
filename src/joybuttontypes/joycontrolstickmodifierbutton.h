@@ -47,8 +47,6 @@ public:
 
     JoyControlStick *getStick() const;
 
-    static const QString xmlName;
-
 private:
     JoyControlStick *stick;
 

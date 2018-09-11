@@ -50,8 +50,6 @@ public:
     JoyButton *getRightButton() const;
     bool getPendingVDPadEvent() const;
 
-    static const QString xmlName;
-
 public slots:
     void activatePendingEvent();
 

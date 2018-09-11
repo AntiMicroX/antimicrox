@@ -17,6 +17,7 @@
 
 #include "xtesteventhandler.h"
 
+#include "globalvariables.h"
 #include "joybuttonslot.h"
 #include "antkeymapper.h"
 #include "messagehandler.h"
@@ -30,7 +31,6 @@
 #include <X11/extensions/XTest.h>
 
 #include "x11extras.h"
-
 
 
 XTestEventHandler::XTestEventHandler(QObject *parent) :
@@ -54,7 +54,7 @@ bool XTestEventHandler::init()
 
     if (instance != nullptr)
     {
-        instance->x11ResetMouseAccelerationChange(X11Extras::xtestMouseDeviceName);
+        instance->x11ResetMouseAccelerationChange(GlobalVariables::X11Extras::xtestMouseDeviceName);
     }
 
     return true;

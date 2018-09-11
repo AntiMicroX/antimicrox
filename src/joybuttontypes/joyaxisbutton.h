@@ -51,7 +51,6 @@ public:
     virtual double getLastAccelerationDistance();
 
     JoyAxis* getAxis() const;
-    static const QString xmlName;
 
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);

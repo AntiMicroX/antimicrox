@@ -276,7 +276,6 @@ JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
 
     switch(index)
     {
-
         case 1:
         {
             temp = JoyButton::EnhancedPrecisionCurve;

@@ -17,6 +17,7 @@
 
 #include "joystick.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "antimicrosettings.h"
 
@@ -24,7 +25,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-const QString Joystick::xmlName = "joystick";
+
 
 Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
                    AntiMicroSettings *settings, QObject *parent) :
@@ -36,7 +37,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
 
     joystickID = SDL_JoystickInstanceID(joyhandle);
 
-    for (int i = 0; i < NUMBER_JOYSETS; i++)
+    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *setstick = new SetJoystick(this, i, this);
         getJoystick_sets().insert(i, setstick);
@@ -84,7 +85,7 @@ QString Joystick::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::Joystick::xmlName;
 }
 
 void Joystick::closeSDLDevice()

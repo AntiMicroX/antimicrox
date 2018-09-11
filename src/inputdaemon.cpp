@@ -17,6 +17,7 @@
 
 #include "inputdaemon.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "logger.h"
 #include "common.h"
@@ -34,8 +35,6 @@
 #include <QThread>
 
 #define USE_NEW_REFRESH
-
-const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                          AntiMicroSettings *settings,
@@ -765,7 +764,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         }
                         else
                         {
-                            temp->changeAxesStatus(event.caxis.axis, event.caxis.value == GAMECONTROLLERTRIGGERRELEASE);
+                            temp->changeAxesStatus(event.caxis.axis, event.caxis.value == GlobalVariables::InputDaemon::GAMECONTROLLERTRIGGERRELEASE);
                         }
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);

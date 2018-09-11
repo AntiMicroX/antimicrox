@@ -17,6 +17,7 @@
 
 #include "common.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 
 #include <unistd.h>
@@ -30,13 +31,6 @@
 
 #include "x11extras.h"
 
-
-
-const QString X11Extras::mouseDeviceName = PadderCommon::mouseDeviceName;
-const QString X11Extras::keyboardDeviceName = PadderCommon::keyboardDeviceName;
-const QString X11Extras::xtestMouseDeviceName = QString("Virtual core XTEST pointer");
-
-QString X11Extras::_customDisplayString = QString("");
 
 static QThreadStorage<X11Extras*> displays;
 
@@ -170,7 +164,7 @@ void X11Extras::setCustomDisplay(QString displayString)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    _customDisplayString = displayString;
+    GlobalVariables::X11Extras::_customDisplayString = displayString;
 }
 
 /**
@@ -641,7 +635,7 @@ QString X11Extras::getXDisplayString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return _customDisplayString;
+    return GlobalVariables::X11Extras::_customDisplayString;
 }
 
 int X11Extras::getGroup1KeySym(int virtualkey)
@@ -742,7 +736,7 @@ void X11Extras::x11ResetMouseAccelerationChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    x11ResetMouseAccelerationChange(mouseDeviceName);
+    x11ResetMouseAccelerationChange(GlobalVariables::X11Extras::mouseDeviceName);
 }
 
 struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerName)
@@ -853,7 +847,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return getPointInformation(mouseDeviceName);
+    return getPointInformation(GlobalVariables::X11Extras::mouseDeviceName);
 }
 
 QPoint X11Extras::getPos()

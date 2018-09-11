@@ -17,6 +17,7 @@
 
 #include "applaunchhelper.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "joybutton.h"
@@ -98,7 +99,7 @@ void AppLaunchHelper::changeGamepadPollRate()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int pollRate = settings->value("GamepadPollRate",
-                                            AntiMicroSettings::defaultSDLGamepadPollRate).toInt();
+                                            GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toInt();
     if (pollRate > 0)
     {
         JoyButton::setGamepadRefreshRate(pollRate);
@@ -146,13 +147,13 @@ void AppLaunchHelper::changeSpringModeScreen()
 
     QDesktopWidget deskWid;
     int springScreen = settings->value("Mouse/SpringScreen",
-                                       AntiMicroSettings::defaultSpringScreen).toInt();
+                                       GlobalVariables::AntimicroSettings::defaultSpringScreen).toInt();
 
     if (springScreen >= deskWid.screenCount())
     {
         springScreen = -1;
         settings->setValue("Mouse/SpringScreen",
-                           AntiMicroSettings::defaultSpringScreen);
+                           GlobalVariables::AntimicroSettings::defaultSpringScreen);
         settings->sync();
     }
 
@@ -165,7 +166,7 @@ void AppLaunchHelper::checkPointerPrecision()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     WinExtras::grabCurrentPointerPrecision();
     bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
-                                                AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
+                                                GlobalVariables::defaultDisabledWinEnhanced).toBool();
     if (disableEnhandedPoint)
     {
         WinExtras::disablePointerPrecision();
@@ -177,7 +178,7 @@ void AppLaunchHelper::appQuitPointerPrecision()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool disableEnhancedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
-                                                AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
+                                                GlobalVariables::defaultDisabledWinEnhanced).toBool();
     if (disableEnhancedPoint && !WinExtras::isUsingEnhancedPointerPrecision())
     {
         WinExtras::enablePointerPrecision();

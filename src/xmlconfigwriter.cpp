@@ -27,7 +27,6 @@
 #include <QDebug>
 
 
-
 XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     QObject(parent)
 {

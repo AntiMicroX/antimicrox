@@ -17,6 +17,7 @@
 
 #include "joycontrolstickmodifierbutton.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "setjoystick.h"
@@ -25,8 +26,6 @@
 
 #include <QDebug>
 #include <QString>
-
-const QString JoyControlStickModifierButton::xmlName = "stickmodifierbutton";
 
 
 JoyControlStickModifierButton::JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet, QObject *parent) :
@@ -77,7 +76,7 @@ QString JoyControlStickModifierButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyControlStickModifierButton::xmlName;
 }
 
 /**

@@ -17,6 +17,7 @@
 
 #include "sdleventreader.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
@@ -42,7 +43,7 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
     this->settings = settings;
     settings->getLock()->lock();
     this->pollRate = settings->value("GamepadPollRate",
-                                     AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
+                                     GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toUInt();
     settings->getLock()->unlock();
 
     pollRateTimer.setParent(this);

@@ -17,16 +17,13 @@
 
 #include "gamecontrollerdpad.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "setjoystick.h"
 #include "joybutton.h"
 
 #include <QXmlStreamReader>
 #include <QDebug>
-
-
-const QString GameControllerDPad::xmlName = "dpad";
-
 
 
 GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
@@ -75,7 +72,7 @@ QString GameControllerDPad::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::GameControllerDPad::xmlName;
 }
 
 
@@ -83,11 +80,11 @@ void GameControllerDPad::readJoystickConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (xml->isStartElement() && (xml->name() == VDPad::xmlName))
+    if (xml->isStartElement() && (xml->name() == GlobalVariables::VDPad::xmlName))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != VDPad::xmlName)))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::VDPad::xmlName)))
         {
             bool found = readMainConfig(xml);
 

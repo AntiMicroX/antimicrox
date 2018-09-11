@@ -18,6 +18,7 @@
 #include "setnamesdialog.h"
 #include "ui_setnamesdialog.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 
@@ -36,7 +37,7 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
 
     this->device = device;
 
-    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         QString tempSetName = device->getSetJoystick(i)->getName();
         ui->setNamesTableWidget->setItem(i, 0, new QTableWidgetItem(tempSetName));
