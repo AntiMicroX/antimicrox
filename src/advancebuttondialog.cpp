@@ -885,13 +885,13 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
     ui->actionHundredthsComboBox->clear();
     ui->actionTenthsComboBox->clear();
 
-    for (double i=0; i <= 10; i++)
+    for (int i=0; i <= 10; i++)
     {
         QString temp = QString::number(i, 'g', 2).append("m");
         ui->actionMinutesComboBox->addItem(temp);
     }
 
-    for (double i=0; i <= 59; i++)
+    for (int i=0; i <= 59; i++)
     {
         QString temp = QString::number(i, 'g', 2);
         ui->actionSecondsComboBox->addItem(temp);
