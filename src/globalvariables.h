@@ -15,13 +15,16 @@ namespace GlobalVariables
 
       static int IDLEMOUSEREFRESHRATE;
       static int mouseHistorySize;
+      // Get active mouse movement refresh rate
       static int mouseRefreshRate;
       static int springModeScreen;
+      // gamepad poll rate used by the application in ms
       static int gamepadRefreshRate;
 
       static double cursorRemainderX;
       static double cursorRemainderY;
       static double mouseSpeedModifier;
+      // Weight modifier in the range of 0.0 - 1.0
       static double weightModifier;
 
       static const bool DEFAULTTOGGLE;
@@ -106,6 +109,9 @@ namespace GlobalVariables
       static const QString xmlName;
   };
 
+#if defined(Q_OS_UNIX)
+    #ifdef WITH_X11
+
   class X11Extras
   {
       public:
@@ -116,6 +122,9 @@ namespace GlobalVariables
 
       static QString _customDisplayString;
   };
+
+    #endif
+#endif
 
   class GameController
   {

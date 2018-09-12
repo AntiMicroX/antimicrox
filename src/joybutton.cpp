@@ -1251,7 +1251,7 @@ void JoyButton::mouseEvent()
         // partial.
         if (staticMouseEventTimer.interval() < GlobalVariables::JoyButton::mouseRefreshRate)
         {
-            timeElapsed = getMouseRefreshRate() + (timeElapsed - staticMouseEventTimer.interval());
+            timeElapsed = GlobalVariables::JoyButton::mouseRefreshRate + (timeElapsed - staticMouseEventTimer.interval());
         }
 
         while (buttonslot != nullptr)
@@ -5077,29 +5077,29 @@ QString JoyButton::getDefaultButtonName()
  * @brief Take cursor mouse information provided by all buttons and
  *     send a cursor mode mouse event to the display server.
  */
-void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
+void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QList<double>* mouseHistoryX, QList<double>* mouseHistoryY, QTime* testOldMouseTime, QTimer* staticMouseEventTimer, int mouseRefreshRate, int mouseHistorySize, QList<JoyButton::mouseCursorInfo>* cursorXSpeeds, QList<JoyButton::mouseCursorInfo>* cursorYSpeeds, double& cursorRemainderX, double& cursorRemainderY, double weightModifier, int idleMouseRefrRate, QList<JoyButton*>* pendingMouseButtons)
 {
    // qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     movedX = 0;
     movedY = 0;
-    int elapsedTime = testOldMouseTime.elapsed();
+    int elapsedTime = testOldMouseTime->elapsed();
 
     movedElapsed = elapsedTime;
-    if (staticMouseEventTimer.interval() < GlobalVariables::JoyButton::mouseRefreshRate)
+    if (staticMouseEventTimer->interval() < mouseRefreshRate)
     {
-        elapsedTime = GlobalVariables::JoyButton::mouseRefreshRate + (elapsedTime - staticMouseEventTimer.interval());
+        elapsedTime = mouseRefreshRate + (elapsedTime - staticMouseEventTimer->interval());
         movedElapsed = elapsedTime;
     }
 
-    if (GlobalVariables::JoyButton::mouseHistoryX.size() >= GlobalVariables::JoyButton::mouseHistorySize)
+    if (mouseHistoryX->size() >= mouseHistorySize)
     {
-        GlobalVariables::JoyButton::mouseHistoryX.removeLast();
+        mouseHistoryX->removeLast();
     }
 
-    if (GlobalVariables::JoyButton::mouseHistoryY.size() >= GlobalVariables::JoyButton::mouseHistorySize)
+    if (mouseHistoryY->size() >= mouseHistorySize)
     {
-        GlobalVariables::JoyButton::mouseHistoryY.removeLast();
+        mouseHistoryY->removeLast();
     }
 
     /*
@@ -5108,17 +5108,17 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
      * The mouse smoothing technique used is an interpretation of the method
      * outlined at http://flipcode.net/archives/Smooth_Mouse_Filtering.shtml.
      */
-    if ((cursorXSpeeds.length() == cursorYSpeeds.length()) &&
-        (cursorXSpeeds.length() > 0))
+    if ((cursorXSpeeds->length() == cursorYSpeeds->length()) &&
+        (cursorXSpeeds->length() > 0))
     {
-        int queueLength = cursorXSpeeds.length();
+        int queueLength = cursorXSpeeds->length();
         double finalx = 0.0;
         double finaly = 0.0;
 
         for (int i=0; i < queueLength; i++)
         {
-            mouseCursorInfo infoX = cursorXSpeeds.takeFirst();
-            mouseCursorInfo infoY = cursorYSpeeds.takeFirst();
+            mouseCursorInfo infoX = cursorXSpeeds->takeFirst();
+            mouseCursorInfo infoY = cursorYSpeeds->takeFirst();
             if (!qFuzzyIsNull(infoX.code))
             {
                 finalx = (infoX.code < 0) ? qMin(infoX.code, finalx) :
@@ -5137,9 +5137,9 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
 
         // Only apply remainder if both current displacement and remainder
         // follow the same direction.
-        if ((GlobalVariables::JoyButton::cursorRemainderX >= 0) == (finalx >= 0))
+        if ((cursorRemainderX >= 0) == (finalx >= 0))
         {
-            finalx += GlobalVariables::JoyButton::cursorRemainderX;
+            finalx += cursorRemainderX;
         }
 
         // Cap maximum relative mouse movement.
@@ -5148,13 +5148,13 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             finalx = (finalx < 0) ? -127 : 127;
         }
 
-        GlobalVariables::JoyButton::mouseHistoryX.prepend(finalx);
+        mouseHistoryX->prepend(finalx);
 
         // Only apply remainder if both current displacement and remainder
         // follow the same direction.
-        if ((GlobalVariables::JoyButton::cursorRemainderY >= 0) == (finaly >= 0))
+        if ((cursorRemainderY >= 0) == (finaly >= 0))
         {
-            finaly += GlobalVariables::JoyButton::cursorRemainderY;
+            finaly += cursorRemainderY;
         }
 
         // Cap maximum relative mouse movement.
@@ -5163,17 +5163,17 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             finaly = (finaly < 0) ? -127 : 127;
         }
 
-        GlobalVariables::JoyButton::mouseHistoryY.prepend(finaly);
+        mouseHistoryY->prepend(finaly);
 
-        GlobalVariables::JoyButton::cursorRemainderX = 0;
-        GlobalVariables::JoyButton::cursorRemainderY = 0;
+        cursorRemainderX = 0;
+        cursorRemainderY = 0;
 
         double adjustedX = 0;
         double adjustedY = 0;
 
-        QListIterator<double> iterX(GlobalVariables::JoyButton::mouseHistoryX);
+        QListIterator<double> iterX(*mouseHistoryX);
         double currentWeight = 1.0;
-        double weightModifier_local = GlobalVariables::JoyButton::weightModifier;
+        double weightModifier_local = weightModifier;
         double finalWeight = 0.0;
 
         while (iterX.hasNext())
@@ -5192,18 +5192,18 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             {
                 double oldX = adjustedX;
                 adjustedX = floor(adjustedX);
-                GlobalVariables::JoyButton::cursorRemainderX = oldX - adjustedX;
+                cursorRemainderX = oldX - adjustedX;
             }
             else
             {
                 double oldX = adjustedX;
                 adjustedX = static_cast<int>(ceil(adjustedX));
-                GlobalVariables::JoyButton::cursorRemainderX = oldX - adjustedX;
+                cursorRemainderX = oldX - adjustedX;
             }
 
         }
 
-        QListIterator<double> iterY(GlobalVariables::JoyButton::mouseHistoryY);
+        QListIterator<double> iterY(*mouseHistoryY);
         currentWeight = 1.0;
         finalWeight = 0.0;
 
@@ -5222,13 +5222,13 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
             {
                 double oldY = adjustedY;
                 adjustedY = floor(adjustedY);
-                GlobalVariables::JoyButton::cursorRemainderY = oldY - adjustedY;
+                cursorRemainderY = oldY - adjustedY;
             }
             else
             {
                 double oldY = adjustedY;
                 adjustedY = ceil(adjustedY);
-                GlobalVariables::JoyButton::cursorRemainderY = oldY - adjustedY;
+                cursorRemainderY = oldY - adjustedY;
             }
         }
 
@@ -5244,69 +5244,69 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed)
     }
     else
     {
-        GlobalVariables::JoyButton::mouseHistoryX.prepend(0);
-        GlobalVariables::JoyButton::mouseHistoryY.prepend(0);
+        mouseHistoryX->prepend(0);
+        mouseHistoryY->prepend(0);
     }
 
     // Check if mouse event timer should use idle time.
-    if (pendingMouseButtons.length() == 0)
+    if (pendingMouseButtons->length() == 0)
     {
-        if (staticMouseEventTimer.interval() != GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE)
+        if (staticMouseEventTimer->interval() != idleMouseRefrRate)
         {
-            staticMouseEventTimer.start(GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE);
+            staticMouseEventTimer->start(idleMouseRefrRate);
 
             // Clear current mouse history
-            GlobalVariables::JoyButton::mouseHistoryX.clear();
-            GlobalVariables::JoyButton::mouseHistoryY.clear();
+            mouseHistoryX->clear();
+            mouseHistoryY->clear();
 
             // Fill history with zeroes.
-            for (int i=0; i < GlobalVariables::JoyButton::mouseHistorySize; i++)
+            for (int i=0; i < mouseHistorySize; i++)
             {
-                GlobalVariables::JoyButton::mouseHistoryX.append(0);
-                GlobalVariables::JoyButton::mouseHistoryY.append(0);
+                mouseHistoryX->append(0);
+                mouseHistoryY->append(0);
             }
         }
 
-        GlobalVariables::JoyButton::cursorRemainderX = 0;
-        GlobalVariables::JoyButton::cursorRemainderY = 0;
+        cursorRemainderX = 0;
+        cursorRemainderY = 0;
     }
     else
     {
-        if (staticMouseEventTimer.interval() != GlobalVariables::JoyButton::mouseRefreshRate)
+        if (staticMouseEventTimer->interval() != mouseRefreshRate)
         {
             // Restore intended QTimer interval.
-            staticMouseEventTimer.start(GlobalVariables::JoyButton::mouseRefreshRate);
+            staticMouseEventTimer->start(mouseRefreshRate);
         }
     }
 
 
-    cursorXSpeeds.clear();
-    cursorYSpeeds.clear();
+    cursorXSpeeds->clear();
+    cursorYSpeeds->clear();
 }
 
 /**
  * @brief Take spring mouse information provided by all buttons and
  *     send a spring mode mouse event to the display server.
  */
-void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
+void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved, int springModeScreen, QList<PadderCommon::springModeInfo>* springXSpeeds, QList<PadderCommon::springModeInfo>* springYSpeeds, QList<JoyButton*>* pendingMouseButtons, int mouseRefreshRate, int idleMouseRefrRate, QTimer* staticMouseEventTimer)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::springModeInfo fullSpring = {
-        -2.0, -2.0, 0, 0, false, GlobalVariables::JoyButton::springModeScreen, 0.0, 0.0
+        -2.0, -2.0, 0, 0, false, springModeScreen, 0.0, 0.0
     };
     PadderCommon::springModeInfo relativeSpring = {
-        -2.0, -2.0, 0, 0, false, GlobalVariables::JoyButton::springModeScreen, 0.0, 0.0
+        -2.0, -2.0, 0, 0, false, springModeScreen, 0.0, 0.0
     };
 
     int realMouseX = movedX = 0;
     int realMouseY = movedY = 0;
     hasMoved = false;
 
-    if ((springXSpeeds.length() == springYSpeeds.length()) &&
-        (springXSpeeds.length() > 0))
+    if ((springXSpeeds->length() == springYSpeeds->length()) &&
+        (springXSpeeds->length() > 0))
     {
-        int queueLength = springXSpeeds.length();
+        int queueLength = springXSpeeds->length();
         bool complete = false;
         for (int i=queueLength-1; i >= 0 && !complete; i--)
         {
@@ -5319,8 +5319,8 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
             PadderCommon::springModeInfo infoX;
             PadderCommon::springModeInfo infoY;
 
-            infoX = springXSpeeds.takeLast();
-            infoY = springYSpeeds.takeLast();
+            infoX = springXSpeeds->takeLast();
+            infoY = springYSpeeds->takeLast();
 
             tempx = infoX.displacementX;
             tempy = infoY.displacementY;
@@ -5399,8 +5399,8 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
             }
         }
 
-        fullSpring.screen = GlobalVariables::JoyButton::springModeScreen;
-        relativeSpring.screen = GlobalVariables::JoyButton::springModeScreen;
+        fullSpring.screen = springModeScreen;
+        relativeSpring.screen = springModeScreen;
 
         if (relativeSpring.relative)
         {
@@ -5408,7 +5408,7 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
         }
         else
         {
-            if (!hasFutureSpringEvents())
+            if (!hasFutureSpringEvents(JoyButton::getPendingMouseButtons()))
             {
                 if (fullSpring.springDeadX != 0.0)
                 {
@@ -5435,21 +5435,21 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved)
     }
 
     // Check if mouse event timer should use idle time.
-    if (pendingMouseButtons.length() == 0)
+    if (pendingMouseButtons->length() == 0)
     {
-        staticMouseEventTimer.start(GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE);
+        staticMouseEventTimer->start(idleMouseRefrRate);
     }
     else
     {
-        if (staticMouseEventTimer.interval() != GlobalVariables::JoyButton::mouseRefreshRate)
+        if (staticMouseEventTimer->interval() != mouseRefreshRate)
         {
             // Restore intended QTimer interval.
-            staticMouseEventTimer.start(GlobalVariables::JoyButton::mouseRefreshRate);
+            staticMouseEventTimer->start(mouseRefreshRate);
         }
     }
 
-    springXSpeeds.clear();
-    springYSpeeds.clear();
+    springXSpeeds->clear();
+    springYSpeeds->clear();
 }
 
 void JoyButton::keyPressEvent()
@@ -5788,11 +5788,11 @@ bool JoyButton::isPartRealAxis()
  * @param Mouse speed value
  * @return Final mouse speed
  */
-int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value)
+int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value, const float joyspeed)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int result = static_cast<int>(GlobalVariables::JoyAxis::JOYSPEED) * value;
+    int result = static_cast<int>(joyspeed) * value;
     switch (curve)
     {
         case QuadraticExtremeCurve:
@@ -5864,151 +5864,150 @@ QList<JoyButton*>* JoyButton::getPendingMouseButtons()
     return &pendingMouseButtons;
 }
 
-bool JoyButton::hasCursorEvents()
+
+QList<JoyButton::mouseCursorInfo>* JoyButton::getCursorXSpeeds()
+{
+    return &cursorXSpeeds;
+}
+
+
+QList<JoyButton::mouseCursorInfo>* JoyButton::getCursorYSpeeds()
+{
+    return &cursorYSpeeds;
+}
+
+
+QList<PadderCommon::springModeInfo>* JoyButton::getSpringXSpeeds()
+{
+    return &springXSpeeds;
+}
+
+
+QList<PadderCommon::springModeInfo>* JoyButton::getSpringYSpeeds()
+{
+    return &springYSpeeds;
+}
+
+
+QTimer* JoyButton::getStaticMouseEventTimer()
+{
+    return &staticMouseEventTimer;
+}
+
+
+QTime* JoyButton::getTestOldMouseTime()
+{
+    return &testOldMouseTime;
+}
+
+
+bool JoyButton::hasCursorEvents(QList<JoyButton::mouseCursorInfo>* cursorXSpeedsList, QList<JoyButton::mouseCursorInfo>* cursorYSpeedsList)
 {
   //  qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return (cursorXSpeeds.length() != 0) || (cursorYSpeeds.length() != 0);
+    return (cursorXSpeedsList->length() != 0) || (cursorYSpeedsList->length() != 0);
 }
 
-bool JoyButton::hasSpringEvents()
+
+bool JoyButton::hasSpringEvents(QList<PadderCommon::springModeInfo>* springXSpeedsList, QList<PadderCommon::springModeInfo>* springYSpeedsList)
 {
    // qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return (springXSpeeds.length() != 0) || (springYSpeeds.length() != 0);
-}
-
-/**
- * @brief Get the weight modifier being used for mouse smoothing.
- * @return Weight modifier in the range of 0.0 - 1.0.
- */
-double JoyButton::getWeightModifier()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyButton::weightModifier;
+    return (springXSpeedsList->length() != 0) || (springYSpeedsList->length() != 0);
 }
 
 /**
  * @brief Set the weight modifier to use for mouse smoothing.
  * @param Weight modifier in the range of 0.0 - 1.0.
  */
-void JoyButton::setWeightModifier(double modifier)
+void JoyButton::setWeightModifier(double modifier, double maxWeightModifier, double& weightModifier)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((modifier >= 0.0) && (modifier <= GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER))
+    if ((modifier >= 0.0) && (modifier <= maxWeightModifier))
     {
-        GlobalVariables::JoyButton::weightModifier = modifier;
+        weightModifier = modifier;
     }
 }
 
-/**
- * @brief Get mouse history buffer size.
- * @return Mouse history buffer size
- */
-int JoyButton::getMouseHistorySize()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyButton::mouseHistorySize;
-}
 
 /**
  * @brief Set mouse history buffer size used for mouse smoothing.
  * @param Mouse history buffer size
  */
-void JoyButton::setMouseHistorySize(int size)
+// GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY
+void JoyButton::setMouseHistorySize(int size, int maxMouseHistSize, int& mouseHistSize, QList<double>* mouseHistoryX, QList<double>* mouseHistoryY)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((size >= 1) && (size <= GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE))
+    if ((size >= 1) && (size <= maxMouseHistSize))
     {
-        GlobalVariables::JoyButton::mouseHistoryX.clear();
-        GlobalVariables::JoyButton::mouseHistoryY.clear();
-        GlobalVariables::JoyButton::mouseHistorySize = size;
+        mouseHistoryX->clear();
+        mouseHistoryY->clear();
+        mouseHistSize = size;
     }
-}
-
-/**
- * @brief Get active mouse movement refresh rate.
- * @return
- */
-int JoyButton::getMouseRefreshRate()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyButton::mouseRefreshRate;
 }
 
 /**
  * @brief Set the mouse refresh rate when a mouse slot is active.
  * @param Refresh rate in ms.
  */
-void JoyButton::setMouseRefreshRate(int refresh)
+// GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(), GlobalVariables::JoyButton::mouseHistoryX, GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer()
+void JoyButton::setMouseRefreshRate(int refresh, int& mouseRefreshRate, int idleMouseRefrRate, JoyButtonMouseHelper* mouseHelper, QList<double>* mouseHistoryX, QList<double>* mouseHistoryY, QTime* testOldMouseTime, QTimer* staticMouseEventTimer)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((refresh >= 1) && (refresh <= 16))
     {
-        GlobalVariables::JoyButton::mouseRefreshRate = refresh;
-        int temp = GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE;
+        mouseRefreshRate = refresh;
+        int temp = idleMouseRefrRate;
 
-        if (staticMouseEventTimer.isActive())
+        if (staticMouseEventTimer->isActive())
         {
-            testOldMouseTime.restart();
 
-            int tempInterval = staticMouseEventTimer.interval();
+            testOldMouseTime->restart();
+
+            int tempInterval = staticMouseEventTimer->interval();
 
             if (tempInterval != temp &&
                 tempInterval != 0)
             {
-                QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
-                                          Q_ARG(int, GlobalVariables::JoyButton::mouseRefreshRate));
+                QMetaObject::invokeMethod(staticMouseEventTimer, "start",
+                                          Q_ARG(int, mouseRefreshRate));
             }
             else
             {
                 // Restart QTimer to keep QTimer in line with QTime
-                QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
+                QMetaObject::invokeMethod(staticMouseEventTimer, "start",
                                           Q_ARG(int, temp));
             }
 
             // Clear current mouse history
-            GlobalVariables::JoyButton::mouseHistoryX.clear();
-            GlobalVariables::JoyButton::mouseHistoryY.clear();
+            mouseHistoryX->clear();
+            mouseHistoryY->clear();
         }
         else
         {
-            staticMouseEventTimer.setInterval(GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE);
+            staticMouseEventTimer->setInterval(idleMouseRefrRate);
         }
 
-        mouseHelper.carryMouseRefreshRateUpdate(GlobalVariables::JoyButton::mouseRefreshRate);
+        mouseHelper->carryMouseRefreshRateUpdate(mouseRefreshRate);
     }
-}
-
-/**
- * @brief Get the gamepad poll rate used by the application.
- * @return Poll rate in ms.
- */
-int JoyButton::getGamepadRefreshRate()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyButton::gamepadRefreshRate;
 }
 
 /**
  * @brief Set the gamepad poll rate to be used in the application.
  * @param Poll rate in ms.
  */
-void JoyButton::setGamepadRefreshRate(int refresh)
+
+void JoyButton::setGamepadRefreshRate(int refresh, int& gamepadRefreshRate, JoyButtonMouseHelper* mouseHelper)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if ((refresh >= 1) && (refresh <= 16))
     {
-        GlobalVariables::JoyButton::gamepadRefreshRate = refresh;
-        mouseHelper.carryGamePollRateUpdate(GlobalVariables::JoyButton::gamepadRefreshRate);
+        gamepadRefreshRate = refresh;
+        mouseHelper->carryGamePollRateUpdate(gamepadRefreshRate);
     }
 }
 
@@ -6166,11 +6165,11 @@ bool JoyButton::isModifierButton()
     return false;
 }
 
-void JoyButton::resetActiveButtonMouseDistances()
+void JoyButton::resetActiveButtonMouseDistances(JoyButtonMouseHelper* mouseHelper)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    mouseHelper.resetButtonMouseDistances();
+    mouseHelper->resetButtonMouseDistances();
 }
 
 void JoyButton::resetAccelerationDistances()
@@ -6334,20 +6333,13 @@ double JoyButton::getStartAccelMultiplier()
     return startAccelMultiplier;
 }
 
-int JoyButton::getSpringModeScreen()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyButton::springModeScreen;
-}
-
-void JoyButton::setSpringModeScreen(int screen)
+void JoyButton::setSpringModeScreen(int screen, int& springModeScreen)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (screen >= -1)
     {
-        GlobalVariables::JoyButton::springModeScreen = screen;
+        springModeScreen = screen;
     }
 }
 
@@ -6369,12 +6361,13 @@ double JoyButton::getAccelExtraDuration()
     return accelDuration;
 }
 
-bool JoyButton::hasFutureSpringEvents()
+
+bool JoyButton::hasFutureSpringEvents(QList<JoyButton*>* pendingMouseButtons)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
-    QListIterator<JoyButton*> iter(pendingMouseButtons);
+    QListIterator<JoyButton*> iter(*pendingMouseButtons);
     while (iter.hasNext())
     {
         JoyButton *temp = iter.next();
@@ -6409,55 +6402,58 @@ double JoyButton::getCurrentSpringDeadCircle()
     return (springDeadCircleMultiplier * 0.01);
 }
 
-void JoyButton::restartLastMouseTime()
+void JoyButton::restartLastMouseTime(QTime* testOldMouseTime)
 {
-    testOldMouseTime.restart();
+    testOldMouseTime->restart();
 }
 
-void JoyButton::setStaticMouseThread(QThread *thread)
+
+void JoyButton::setStaticMouseThread(QThread *thread, QTimer* staticMouseEventTimer, QTime* testOldMouseTime, int idleMouseRefrRate, JoyButtonMouseHelper* mouseHelper)
 {
-    int oldInterval = staticMouseEventTimer.interval();
+    int oldInterval = staticMouseEventTimer->interval();
 
     if (oldInterval == 0)
     {
-        oldInterval = GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE;
+        oldInterval = idleMouseRefrRate;
     }
 
-    staticMouseEventTimer.moveToThread(thread);
-    mouseHelper.moveToThread(thread);
+    staticMouseEventTimer->moveToThread(thread);
+    mouseHelper->moveToThread(thread);
 
-    QMetaObject::invokeMethod(&staticMouseEventTimer, "start",
+    QMetaObject::invokeMethod(staticMouseEventTimer, "start",
                               Q_ARG(int, oldInterval));
 
-    testOldMouseTime.start();
+    testOldMouseTime->start();
 
 #ifdef Q_OS_WIN
     repeatHelper.moveToThread(thread);
 #endif
 }
 
-void JoyButton::indirectStaticMouseThread(QThread *thread)
+
+void JoyButton::indirectStaticMouseThread(QThread *thread, QTimer* staticMouseEventTimer, JoyButtonMouseHelper* mouseHelper)
 {
-    QMetaObject::invokeMethod(&staticMouseEventTimer, "stop");
+    QMetaObject::invokeMethod(staticMouseEventTimer, "stop");
 #ifdef Q_OS_WIN
     QMetaObject::invokeMethod(repeatHelper.getRepeatTimer(), "stop");
 #endif
-    QMetaObject::invokeMethod(&mouseHelper, "changeThread",
+    QMetaObject::invokeMethod(mouseHelper, "changeThread",
                               Q_ARG(QThread*, thread));
 }
 
-bool JoyButton::shouldInvokeMouseEvents()
+
+bool JoyButton::shouldInvokeMouseEvents(QList<JoyButton*>* pendingMouseButtons, QTimer* staticMouseEventTimer, QTime* testOldMouseTime)
 {
     bool result = false;
 
-    if ((pendingMouseButtons.size() > 0) && staticMouseEventTimer.isActive())
+    if ((pendingMouseButtons->size() > 0) && staticMouseEventTimer->isActive())
     {
-        int timerInterval = staticMouseEventTimer.interval();
+        int timerInterval = staticMouseEventTimer->interval();
         if (timerInterval == 0)
         {
             result = true;
         }
-        else if (testOldMouseTime.elapsed() >= timerInterval)
+        else if (testOldMouseTime->elapsed() >= timerInterval)
         {
             result = true;
         }
@@ -6466,9 +6462,9 @@ bool JoyButton::shouldInvokeMouseEvents()
     return result;
 }
 
-void JoyButton::invokeMouseEvents()
+void JoyButton::invokeMouseEvents(JoyButtonMouseHelper* mouseHelper)
 {
-    mouseHelper.mouseEvent();
+    mouseHelper->mouseEvent();
 }
 
 bool JoyButton::hasActiveSlots()

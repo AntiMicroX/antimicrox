@@ -64,6 +64,7 @@ double GlobalVariables::JoyButton::cursorRemainderX = 0.0;
 double GlobalVariables::JoyButton::cursorRemainderY = 0.0;
 
 double GlobalVariables::JoyButton::weightModifier = 0;
+// Mouse history buffer size
 int GlobalVariables::JoyButton::mouseHistorySize = 1;
 
 int GlobalVariables::JoyButton::mouseRefreshRate = 5;
@@ -102,6 +103,9 @@ const float GlobalVariables::JoyAxis::JOYSPEED = 20.0;
 const QString GlobalVariables::JoyAxis::xmlName = "axis";
 
 
+#if defined(Q_OS_UNIX)
+    #ifdef WITH_X11
+
 // ---- X11EXTRAS ---- //
 
 const QString GlobalVariables::X11Extras::mouseDeviceName = PadderCommon::mouseDeviceName;
@@ -109,6 +113,9 @@ const QString GlobalVariables::X11Extras::keyboardDeviceName = PadderCommon::key
 const QString GlobalVariables::X11Extras::xtestMouseDeviceName = QString("Virtual core XTEST pointer");
 
 QString GlobalVariables::X11Extras::_customDisplayString = QString("");
+
+    #endif
+#endif
 
 
 // ---- GameController ---- //

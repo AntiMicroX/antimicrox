@@ -18,6 +18,7 @@
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 
 #include <QString>
@@ -125,7 +126,7 @@ void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 
     int currentCurveIndex = ui->accelerationComboBox->currentIndex();
     JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
-    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value);
+    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value, GlobalVariables::JoyAxis::JOYSPEED);
 
     label = label.append(" = ").append(QString::number(finalSpeed)).append(" pps");
     ui->horizontalSpeedLabel->setText(label);
@@ -139,7 +140,7 @@ void MouseSettingsDialog::updateVerticalSpeedConvertLabel(int value)
 
     int currentCurveIndex = ui->accelerationComboBox->currentIndex();
     JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
-    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value);
+    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value, GlobalVariables::JoyAxis::JOYSPEED);
 
     label = label.append(" = ").append(QString::number(finalSpeed)).append(" pps");
     ui->verticalSpeedLabel->setText(label);

@@ -62,6 +62,12 @@ public:
                                     EaseOutQuadAccelCurve, EaseOutCubicAccelCurve};
     enum TurboMode {NormalTurbo=0, GradientTurbo, PulseTurbo};
 
+    typedef struct _mouseCursorInfo
+    {
+        JoyButtonSlot *slot;
+        double code;
+    } mouseCursorInfo;
+
     void joyEvent(bool pressed, bool ignoresets=false);
     void queuePendingEvent(bool pressed, bool ignoresets=false);
     void activatePendingEvent();
@@ -179,34 +185,33 @@ public:
 
     TurboMode getTurboMode();
 
+    static int calculateFinalMouseSpeed(JoyMouseCurve curve, int value, const float joyspeed);
 
-    static int calculateFinalMouseSpeed(JoyMouseCurve curve, int value);
-    static int getMouseHistorySize();
-    static int getSpringModeScreen();
-    static int getMouseRefreshRate();
-    static int getGamepadRefreshRate();
+    static bool hasCursorEvents(QList<JoyButton::mouseCursorInfo>* cursorXSpeedsList, QList<JoyButton::mouseCursorInfo>* cursorYSpeedsList);
+    static bool hasSpringEvents(QList<PadderCommon::springModeInfo>* springXSpeedsList, QList<PadderCommon::springModeInfo>* springYSpeedsList);
+    static bool shouldInvokeMouseEvents(QList<JoyButton*>* pendingMouseButtons, QTimer* staticMouseEventTimer, QTime* testOldMouseTime);
 
-    static double getWeightModifier();
-
-    static bool hasCursorEvents();
-    static bool hasSpringEvents();
-    static bool shouldInvokeMouseEvents();
-
-    static void setWeightModifier(double modifier);
-    static void moveMouseCursor(int &movedX, int &movedY, int &movedElapsed);
-    static void moveSpringMouse(int &movedX, int &movedY, bool &hasMoved);
-    static void setMouseHistorySize(int size);
-    static void setMouseRefreshRate(int refresh);
-    static void setSpringModeScreen(int screen);
-    static void resetActiveButtonMouseDistances();
-    static void setGamepadRefreshRate(int refresh);
-    static void restartLastMouseTime();
-    static void setStaticMouseThread(QThread *thread);
-    static void indirectStaticMouseThread(QThread *thread);
-    static void invokeMouseEvents();
+    static void setWeightModifier(double modifier, double maxWeightModifier, double& weightModifier);
+    static void moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QList<double>* mouseHistoryX, QList<double>* mouseHistoryY, QTime* testOldMouseTime, QTimer* staticMouseEventTimer, int mouseRefreshRate, int mouseHistorySize, QList<JoyButton::mouseCursorInfo>* cursorXSpeeds, QList<JoyButton::mouseCursorInfo>* cursorYSpeeds, double& cursorRemainderX, double& cursorRemainderY, double weightModifier, int idleMouseRefrRate, QList<JoyButton*>* pendingMouseButtonse);
+    static void moveSpringMouse(int &movedX, int &movedY, bool &hasMoved, int springModeScreen, QList<PadderCommon::springModeInfo>* springXSpeeds, QList<PadderCommon::springModeInfo>* springYSpeeds, QList<JoyButton*>* pendingMouseButtons, int mouseRefreshRate, int idleMouseRefrRate, QTimer* staticMouseEventTimer);
+    static void setMouseHistorySize(int size, int maxMouseHistSize, int& mouseHistSize, QList<double>* mouseHistoryX, QList<double>* mouseHistoryY);
+    static void setMouseRefreshRate(int refresh, int& mouseRefreshRate, int idleMouseRefrRate, JoyButtonMouseHelper* mouseHelper, QList<double>* mouseHistoryX, QList<double>* mouseHistoryY, QTime* testOldMouseTime, QTimer* staticMouseEventTimer);
+    static void setSpringModeScreen(int screen, int& springModeScreen);
+    static void resetActiveButtonMouseDistances(JoyButtonMouseHelper* mouseHelper);
+    static void setGamepadRefreshRate(int refresh, int& gamepadRefreshRate, JoyButtonMouseHelper* mouseHelper);
+    static void restartLastMouseTime(QTime* testOldMouseTime);
+    static void setStaticMouseThread(QThread *thread, QTimer* staticMouseEventTimer, QTime* testOldMouseTime, int idleMouseRefrRate, JoyButtonMouseHelper* mouseHelper);
+    static void indirectStaticMouseThread(QThread *thread, QTimer* staticMouseEventTimer, JoyButtonMouseHelper* mouseHelper);
+    static void invokeMouseEvents(JoyButtonMouseHelper* mouseHelper);
 
     static JoyButtonMouseHelper* getMouseHelper();
     static QList<JoyButton*>* getPendingMouseButtons();
+    static QList<JoyButton::mouseCursorInfo>* getCursorXSpeeds();
+    static QList<JoyButton::mouseCursorInfo>* getCursorYSpeeds();
+    static QList<PadderCommon::springModeInfo>* getSpringXSpeeds();
+    static QList<PadderCommon::springModeInfo>* getSpringYSpeeds();
+    static QTimer* getStaticMouseEventTimer();
+    static QTime* getTestOldMouseTime();
 
     JoyExtraAccelerationCurve getExtraAccelerationCurve();
 
@@ -236,7 +241,7 @@ protected:
     void vdpadPassEvent(bool pressed, bool ignoresets=false);
     void localBuildActiveZoneSummaryString();
 
-    static bool hasFutureSpringEvents();
+    static bool hasFutureSpringEvents(QList<JoyButton*>* pendingMouseButtons);
 
     virtual double getCurrentSpringDeadCircle();
 
@@ -245,13 +250,6 @@ protected:
     TurboMode currentTurboMode;
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot*> &tempList);
-
-
-    typedef struct _mouseCursorInfo
-    {
-        JoyButtonSlot *slot;
-        double code;
-    } mouseCursorInfo;
 
     static QList<JoyButtonSlot*> mouseSpeedModList;
     static QList<mouseCursorInfo> cursorXSpeeds;
