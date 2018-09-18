@@ -19,6 +19,7 @@
 #define SPRINGMOUSEMOVEINFO_H
 
 namespace PadderCommon {
+
     typedef struct _springModeInfo
     {
         // Displacement of the X axis
@@ -35,6 +36,7 @@ namespace PadderCommon {
         int screen;
         double springDeadX;
         double springDeadY;
+
     } springModeInfo;
 }
 
