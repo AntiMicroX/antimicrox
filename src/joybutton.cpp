@@ -1263,7 +1263,6 @@ void JoyButton::mouseEvent()
 
                     double mintravel = minMouseDistanceAccelThreshold * 0.01;
                     double minstop = qMax(0.05, mintravel);
-                    //double currentTravel = getAccelerationDistance() - lastAccelerationDistance;
 
                     // Last check ensures that acceleration is only applied for the same direction.
                     if (extraAccelerationEnabled && isPartRealAxis() &&
@@ -4588,66 +4587,8 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QLi
         double adjustedX = 0;
         double adjustedY = 0;
 
-        QListIterator<double> iterX(*mouseHistoryX);
-        double currentWeight = 1.0;
-        double weightModifier_local = weightModifier;
-        double finalWeight = 0.0;
-
-        while (iterX.hasNext())
-        {
-            double temp = iterX.next();
-            adjustedX += temp * currentWeight;
-            finalWeight += currentWeight;
-            currentWeight *= weightModifier_local;
-        }
-
-        if (fabs(adjustedX) > 0)
-        {
-            adjustedX = adjustedX / finalWeight;
-
-            if (adjustedX > 0)
-            {
-                double oldX = adjustedX;
-                adjustedX = floor(adjustedX);
-                cursorRemainderX = oldX - adjustedX;
-            }
-            else
-            {
-                double oldX = adjustedX;
-                adjustedX = static_cast<int>(ceil(adjustedX));
-                cursorRemainderX = oldX - adjustedX;
-            }
-        }
-
-        QListIterator<double> iterY(*mouseHistoryY);
-        currentWeight = 1.0;
-        finalWeight = 0.0;
-
-        while (iterY.hasNext())
-        {
-            double temp = iterY.next();
-            adjustedY += temp * currentWeight;
-            finalWeight += currentWeight;
-            currentWeight *= weightModifier_local;
-        }
-
-        if (fabs(adjustedY) > 0)
-        {
-            adjustedY = adjustedY / finalWeight;
-
-            if (adjustedY > 0)
-            {
-                double oldY = adjustedY;
-                adjustedY = floor(adjustedY);
-                cursorRemainderY = oldY - adjustedY;
-            }
-            else
-            {
-                double oldY = adjustedY;
-                adjustedY = ceil(adjustedY);
-                cursorRemainderY = oldY - adjustedY;
-            }
-        }
+        adjustAxForCursor(mouseHistoryX, adjustedX, cursorRemainderX, weightModifier);
+        adjustAxForCursor(mouseHistoryY, adjustedY, cursorRemainderY, weightModifier);
 
         // This check is more of a precaution than anything. No need to cause
         // a sync to happen when not needed.
@@ -4694,6 +4635,33 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QLi
 
     cursorXSpeeds->clear();
     cursorYSpeeds->clear();
+}
+
+
+void JoyButton::adjustAxForCursor(QList<double>* mouseHistoryList, double& adjustedAx, double& cursorRemainder, double weightModifier)
+{
+    double currentWeight = 1.0;
+    double finalWeight = 0.0;
+
+    QListIterator<double> mouseHist(*mouseHistoryList);
+    while (mouseHist.hasNext())
+    {
+        double temp = mouseHist.next();
+        adjustedAx += temp * currentWeight;
+        finalWeight += currentWeight;
+        currentWeight *= weightModifier;
+    }
+
+    if (fabs(adjustedAx) > 0)
+    {
+        adjustedAx = adjustedAx / finalWeight;
+        double oldAx = adjustedAx;
+
+        if (adjustedAx > 0) adjustedAx = floor(adjustedAx);
+        else adjustedAx = ceil(adjustedAx);
+
+        cursorRemainder = oldAx - adjustedAx;
+    }
 }
 
 /**
@@ -5310,7 +5278,6 @@ void JoyButton::setMouseHistorySize(int size, int maxMouseHistSize, int& mouseHi
  * @brief Set the mouse refresh rate when a mouse slot is active.
  * @param Refresh rate in ms.
  */
-// GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(), GlobalVariables::JoyButton::mouseHistoryX, GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer()
 void JoyButton::setMouseRefreshRate(int refresh, int& mouseRefreshRate, int idleMouseRefrRate, JoyButtonMouseHelper* mouseHelper, QList<double>* mouseHistoryX, QList<double>* mouseHistoryY, QTime* testOldMouseTime, QTimer* staticMouseEventTimer)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

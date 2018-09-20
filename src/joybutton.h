@@ -490,6 +490,7 @@ private:
         activeZoneStringLock.unlock();
     }
 
+    static void adjustAxForCursor(QList<double>* mouseHistoryList, double& adjustedAx, double& cursorRemainder, double weightModifier);
     void setDistanceForSpring(JoyButtonMouseHelper& mouseHelper, double& mouseFirstAx, double& mouseSecondAx, double distanceFromDeadZone);
     void changeTurboParams(bool _isKeyPressed, bool isButtonPressed);
     void updateParamsAfterDistEvent();
