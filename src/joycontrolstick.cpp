@@ -2595,7 +2595,7 @@ void JoyControlStick::setButtonsWheelSpeedX(int value)
     while (iter.hasNext())
     {
         JoyControlStickButton *button = iter.next().value();
-        button->setWheelSpeedX(value);
+        button->setWheelSpeed(value, 'X');
     }
 }
 
@@ -2607,7 +2607,7 @@ void JoyControlStick::setButtonsWheelSpeedY(int value)
     while (iter.hasNext())
     {
         JoyControlStickButton *button = iter.next().value();
-        button->setWheelSpeedY(value);
+        button->setWheelSpeed(value, 'Y');
     }
 }
 

@@ -231,12 +231,8 @@ protected:
     bool distanceEvent();
     bool checkForDelaySequence();
     bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true);
-
     void clearAssignedSlots(bool signalEmit=true);
     void releaseSlotEvent();
-    void findReleaseEventEnd();
-    void findReleaseEventIterEnd(QListIterator<JoyButtonSlot*> *tempiter);
-    void findHoldEventEnd();
     void checkForPressedSetChange();
     void checkTurboCondition(JoyButtonSlot *slot);
     void vdpadPassEvent(bool pressed, bool ignoresets=false);
@@ -325,8 +321,7 @@ public slots:
     void setUseTurbo(bool useTurbo);
     void setMouseSpeedX(int speed);
     void setMouseSpeedY(int speed);
-    void setWheelSpeedX(int speed);
-    void setWheelSpeedY(int speed);
+    void setWheelSpeed(int speed, QChar ax);
     void setSpringWidth(int value);
     void setSpringHeight(int value);
     void setSensitivity(double value);
@@ -490,6 +485,15 @@ private:
         activeZoneStringLock.unlock();
     }
 
+    void restartAllForSetChange();
+    void startTimerOverrun(int slotCode, QTime* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
+    void findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter);
+    void changeStatesQueue(bool currentReleased);
+    void countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash);
+    void releaseMoveSlots(QList<JoyButton::mouseCursorInfo>& cursorSpeeds, JoyButtonSlot *slot, QList<int>& indexesToRemove);
+    void setSpringDeadCircle(double& springDeadCircle, int mouseDirection);
+    void checkSpringDeadCircle(int tempcode, double& springDeadCircle, int mouseSlot1, int mouseSlot2);
+    static void distanceForMovingAx(double& finalAx, mouseCursorInfo infoAx);
     static void adjustAxForCursor(QList<double>* mouseHistoryList, double& adjustedAx, double& cursorRemainder, double weightModifier);
     void setDistanceForSpring(JoyButtonMouseHelper& mouseHelper, double& mouseFirstAx, double& mouseSecondAx, double distanceFromDeadZone);
     void changeTurboParams(bool _isKeyPressed, bool isButtonPressed);

@@ -113,11 +113,15 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     connect(ui->sensitivityDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &MouseButtonSettingsDialog::updateSensitivity);
 
-    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button, &JoyButton::setWheelSpeedX);
-    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button, &JoyButton::setWheelSpeedY);
+    QChar x = 'X';
+    QChar y = 'Y';
+
+    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button, [button, x](int value)
+    { button->setWheelSpeed(value, x); });
+    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button, [button, y](int value)
+    { button->setWheelSpeed(value, y); });
 
     connect(ui->easingDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), button, &JoyButton::setEasingDuration);
-
     connect(ui->extraAccelerationGroupBox, &QGroupBox::clicked, &helper, &MouseButtonSettingsDialogHelper::updateExtraAccelerationStatus);
     connect(ui->extraAccelDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateExtraAccelerationMultiplier);
     connect(ui->minMultiDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateStartMultiPercentage);
@@ -321,4 +325,3 @@ MouseButtonSettingsDialogHelper& MouseButtonSettingsDialog::getHelperLocal() {
 
     return helper;
 }
-

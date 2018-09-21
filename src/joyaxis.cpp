@@ -1195,16 +1195,16 @@ void JoyAxis::setButtonsWheelSpeedX(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    paxisbutton->setWheelSpeedX(value);
-    naxisbutton->setWheelSpeedX(value);
+    paxisbutton->setWheelSpeed(value, 'X');
+    naxisbutton->setWheelSpeed(value, 'X');
 }
 
 void JoyAxis::setButtonsWheelSpeedY(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    paxisbutton->setWheelSpeedY(value);
-    naxisbutton->setWheelSpeedY(value);
+    paxisbutton->setWheelSpeed(value, 'Y');
+    naxisbutton->setWheelSpeed(value, 'Y');
 }
 
 void JoyAxis::setDefaultAxisName(QString tempname)

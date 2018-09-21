@@ -770,7 +770,7 @@ void JoyDPad::setButtonsWheelSpeedX(int value)
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        button->setWheelSpeedX(value);
+        button->setWheelSpeed(value, 'X');
     }
 }
 
@@ -782,7 +782,7 @@ void JoyDPad::setButtonsWheelSpeedY(int value)
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        button->setWheelSpeedY(value);
+        button->setWheelSpeed(value, 'Y');
     }
 }
 
