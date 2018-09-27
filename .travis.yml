@@ -24,7 +24,6 @@ addons:
     - gcc-4.8
     - g++-4.8
     - cmake
-    - extra-cmake-modules
     - qttools5-dev
     - qttools5-dev-tools
     - libsdl2-dev
@@ -39,5 +38,13 @@ addons:
     notification_email: "juliagoda.pl@protonmail.com"
     build_command: make
     branch_pattern: coverity_scan
+    
+before_install:
+  # Install nodejs via nvm
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      sudo add-apt-repository ppa:beineri/opt-qt-5.10.0-xenial;
+      sudo apt-get update;
+      sudo apt-get --yes install extra-cmake-modules;
+    fi;
       
 script: cmake .. && make && make test
