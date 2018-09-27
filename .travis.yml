@@ -18,6 +18,5 @@ addons:
       version: 2.24.0
       description: "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."
     notification_email: juliagoda.pl@protonmail.com
-    build_command_prepend:
-    build_command: make
+    build_command: "make"
     branch_pattern: coverity_scan
