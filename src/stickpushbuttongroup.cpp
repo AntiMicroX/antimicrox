@@ -30,6 +30,8 @@
 #include <QWidget>
 #include <QDebug>
 
+
+
 StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {

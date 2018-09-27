@@ -177,16 +177,7 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    static const double PI;
-
-    // Define default values for stick properties.
-    static const int DEFAULTDEADZONE;
-    static const int DEFAULTMAXZONE;
-    static const int DEFAULTDIAGONALRANGE;
     static const JoyMode DEFAULTMODE;
-    static const double DEFAULTCIRCLE;
-    static const int DEFAULTSTICKDELAY; // unsigned
-
 
 protected:
     virtual void populateButtons();

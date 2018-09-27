@@ -80,11 +80,6 @@ public:
 
     QHash<QString, QString> const& getKnownAliases();
 
-    static const QString mouseDeviceName;
-    static const QString keyboardDeviceName;
-    static const QString xtestMouseDeviceName;
-
-
 protected:
     explicit X11Extras(QObject *parent = nullptr);
 
@@ -94,7 +89,6 @@ protected:
     bool isWindowRelevant(Display *display, Window window);
 
     static X11Extras *_instance;  
-    static QString _customDisplayString;
     
 public slots:
     QPoint getPos();

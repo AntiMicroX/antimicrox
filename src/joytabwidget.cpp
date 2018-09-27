@@ -17,6 +17,7 @@
 
 #include "joytabwidget.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
@@ -568,7 +569,7 @@ void JoyTabWidget::fillButtons()
     m_joystick->establishPropertyUpdatedConnection();
     connect(m_joystick, &InputDevice::setChangeActivated, this, &JoyTabWidget::changeCurrentSet, Qt::QueuedConnection);
 
-    for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *currentSet = m_joystick->getSetJoystick(i);
         fillSetButtons(currentSet);
@@ -1432,7 +1433,7 @@ void JoyTabWidget::removeCurrentButtons()
     m_joystick->disconnectPropertyUpdatedConnection();
     disconnect(m_joystick, &InputDevice::setChangeActivated, this, &JoyTabWidget::changeCurrentSet);
 
-    for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *currentSet = m_joystick->getSetJoystick(i);
         removeSetButtons(currentSet);
@@ -1524,7 +1525,7 @@ void JoyTabWidget::refreshSetButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    for (int i = 0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         QPushButton *tempSetButton = nullptr;
         QAction *tempSetAction = nullptr;
@@ -2479,7 +2480,7 @@ void JoyTabWidget::refreshCopySetActions()
 
     copySetMenu->clear();
 
-    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *tempSet = m_joystick->getSetJoystick(i);
         QAction *newaction = nullptr;

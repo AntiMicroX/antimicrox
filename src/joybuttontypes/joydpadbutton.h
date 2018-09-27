@@ -46,8 +46,6 @@ public:
     int getDirection() const;
     JoyDPad *getDPad() const;
 
-    static const QString xmlName;
-
 signals:
     void setAssignmentChanged(int current_button, int dpad_index, int associated_set, int mode);
 

@@ -17,6 +17,7 @@
 
 #include "xmlconfigreader.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "xmlconfigmigration.h"
@@ -32,7 +33,6 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 #include <QFile>
-
 
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
@@ -120,7 +120,7 @@ bool XMLConfigReader::read()
         {
             xml->raiseError("Root node is not a joystick or controller");
         }
-        else if (xml->name() == Joystick::xmlName)
+        else if (xml->name() == GlobalVariables::Joystick::xmlName)
         {
             XMLConfigMigration migration(xml);
             if (migration.requiresMigration())
@@ -210,8 +210,8 @@ void XMLConfigReader::initDeviceTypes()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceTypes.clear();
-    deviceTypes.append(Joystick::xmlName);
-    deviceTypes.append(GameController::xmlName);
+    deviceTypes.append(GlobalVariables::Joystick::xmlName);
+    deviceTypes.append(GlobalVariables::GameController::xmlName);
 
 }
 

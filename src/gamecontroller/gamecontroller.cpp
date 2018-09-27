@@ -17,6 +17,7 @@
 
 #include "gamecontroller.h"
 
+#include "globalvariables.h"
 #include "gamecontrollerdpad.h"
 #include "gamecontrollerset.h"
 #include "antimicrosettings.h"
@@ -33,8 +34,6 @@
 #include <QDebug>
 
 
-const QString GameController::xmlName = "gamecontroller";
-
 GameController::GameController(SDL_GameController *controller, int deviceIndex,
                                AntiMicroSettings *settings, QObject *parent) :
     InputDevice(deviceIndex, settings, parent)
@@ -47,7 +46,7 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex,
     SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
     joystickID = SDL_JoystickInstanceID(joyhandle);
 
-    for (int i = 0; i < NUMBER_JOYSETS; i++)
+    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         GameControllerSet *controllerset = new GameControllerSet(this, i, this);
         getJoystick_sets().insert(i, controllerset);
@@ -114,7 +113,7 @@ QString GameController::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::GameController::xmlName;
 }
 
 
@@ -734,7 +733,7 @@ void GameController::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeEndElement(); // </names>
 
-    if ((keyPressTime > 0) && (keyPressTime != DEFAULTKEYPRESSTIME))
+    if ((keyPressTime > 0) && (keyPressTime != GlobalVariables::InputDevice::DEFAULTKEYPRESSTIME))
     {
         xml->writeTextElement("keyPressTime", QString::number(keyPressTime));
     }

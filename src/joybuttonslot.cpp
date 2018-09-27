@@ -17,6 +17,7 @@
 
 #include "joybuttonslot.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "antkeymapper.h"
@@ -27,9 +28,6 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-const int JoyButtonSlot::JOYSPEED = 20;
-const QString JoyButtonSlot::xmlName = "slot";
-const int JoyButtonSlot::MAXTEXTENTRYDISPLAYLENGTH = 40;
 
 JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     QObject(parent),
@@ -388,7 +386,7 @@ void JoyButtonSlot::readConfig(QXmlStreamReader *xml)
         }
         else if (this->getSlotMode() == JoySetChange)
         {
-            if (!(this->getSlotCode() >= 0) && !(this->getSlotCode() < InputDevice::NUMBER_JOYSETS))
+            if (!(this->getSlotCode() >= 0) && !(this->getSlotCode() < GlobalVariables::InputDevice::NUMBER_JOYSETS))
             {
                 this->setSlotCode(-1);
             }
@@ -548,7 +546,7 @@ QString JoyButtonSlot::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyButtonSlot::xmlName;
 }
 
 QString JoyButtonSlot::getSlotString()
@@ -750,9 +748,9 @@ QString JoyButtonSlot::getSlotString()
             case JoyTextEntry:
             {
                 QString temp = m_textData;
-                if (temp.length() > MAXTEXTENTRYDISPLAYLENGTH)
+                if (temp.length() > GlobalVariables::JoyButtonSlot::MAXTEXTENTRYDISPLAYLENGTH)
                 {
-                    temp.truncate(MAXTEXTENTRYDISPLAYLENGTH - 3);
+                    temp.truncate(GlobalVariables::JoyButtonSlot::MAXTEXTENTRYDISPLAYLENGTH - 3);
                     temp.append("...");
                 }
                 newlabel.append(trUtf8("[Text] %1").arg(temp));

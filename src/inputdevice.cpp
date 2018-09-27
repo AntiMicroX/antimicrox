@@ -17,6 +17,7 @@
 
 #include "inputdevice.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "common.h"
 #include "antimicrosettings.h"
@@ -32,14 +33,6 @@
 #include <QXmlStreamWriter>
 #include <QDebug>
 
-
-const int InputDevice::NUMBER_JOYSETS = 8;
-const int InputDevice::DEFAULTKEYPRESSTIME = 100;
-const int InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
-const int InputDevice::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
-const int InputDevice::RAISEDDEADZONE = 20000;
-
-QRegExp InputDevice::emptyGUID("^[0]+$");
 
 InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
@@ -60,7 +53,7 @@ InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *
 
     keyRepeatDelay = 0;
     keyRepeatRate = 0;
-    rawAxisDeadZone = RAISEDDEADZONE;
+    rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;
     m_settings = settings;
 }
 
@@ -105,7 +98,7 @@ void InputDevice::reset()
     deviceEdited = false;
     profileName = "";
 
-    for (int i = 0; i < NUMBER_JOYSETS; i++)
+    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick* set = getJoystick_sets().value(i);
         set->reset();
@@ -185,7 +178,7 @@ void InputDevice::setActiveSetNumber(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (((index >= 0) && (index < NUMBER_JOYSETS)) && (index != active_set))
+    if (((index >= 0) && (index < GlobalVariables::InputDevice::NUMBER_JOYSETS)) && (index != active_set))
     {
         QList<bool> buttonstates;
         QList<int> axesstates;
@@ -1277,7 +1270,7 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
     }
 
 
-    if ((keyPressTime > 0) && (keyPressTime != DEFAULTKEYPRESSTIME))
+    if ((keyPressTime > 0) && (keyPressTime != GlobalVariables::InputDevice::DEFAULTKEYPRESSTIME))
     {
         xml->writeTextElement("keyPressTime", QString::number(keyPressTime));
     }
@@ -1375,7 +1368,7 @@ void InputDevice::removeControlStick(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    for (int i=0; i < NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *currentset = getSetJoystick(i);
         if (currentset->getJoyStick(index))
@@ -2022,7 +2015,7 @@ int InputDevice::getKeyRepeatDelay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int tempKeyRepeatDelay = DEFAULTKEYREPEATDELAY;
+    int tempKeyRepeatDelay = GlobalVariables::InputDevice::DEFAULTKEYREPEATDELAY;
     if (keyRepeatDelay != 0)
     {
         tempKeyRepeatDelay = keyRepeatDelay;
@@ -2035,7 +2028,7 @@ int InputDevice::getKeyRepeatRate()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int tempKeyRepeatRate = DEFAULTKEYREPEATRATE;
+    int tempKeyRepeatRate = GlobalVariables::InputDevice::DEFAULTKEYREPEATRATE;
     if (keyRepeatRate != 0)
     {
         tempKeyRepeatRate = keyRepeatRate;
@@ -2122,7 +2115,7 @@ void InputDevice::setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes thr
 
     if (!getCali().contains(axisNum))
     {
-        for (int i = 0; i < NUMBER_JOYSETS; i++)
+        for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
         {
             getJoystick_sets().value(i)->setAxisThrottle(axisNum, throttle);
         }
@@ -2404,7 +2397,7 @@ bool InputDevice::isEmptyGUID(QString tempGUID)
 
     bool result = false;
 
-    if (tempGUID.contains(emptyGUID))
+    if (tempGUID.contains(GlobalVariables::InputDevice::emptyGUID))
     {
         result = true;
     }
@@ -2458,13 +2451,13 @@ void InputDevice::setRawAxisDeadZone(int deadZone)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((deadZone > 0) && (deadZone <= JoyAxis::AXISMAX))
+    if ((deadZone > 0) && (deadZone <= GlobalVariables::JoyAxis::AXISMAX))
     {
         this->rawAxisDeadZone = deadZone;
     }
     else
     {
-        this->rawAxisDeadZone = RAISEDDEADZONE;
+        this->rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;
     }
 }
 

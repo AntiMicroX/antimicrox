@@ -17,6 +17,7 @@
 
 #include "setjoystick.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
@@ -31,9 +32,6 @@
 #include <QXmlStreamWriter>
 #include <QtAlgorithms>
 
-
-const int SetJoystick::MAXNAMELENGTH = 30;
-const int SetJoystick::RAISEDDEADZONE = 20000;
 
 SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     QObject(parent)
@@ -1112,15 +1110,15 @@ void SetJoystick::setName(QString name)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (name.length() <= MAXNAMELENGTH)
+    if (name.length() <= GlobalVariables::SetJoystick::MAXNAMELENGTH)
     {
         m_name = name;
         emit propertyUpdated();
     }
-    else if (name.length() > MAXNAMELENGTH)
+    else if (name.length() > GlobalVariables::SetJoystick::MAXNAMELENGTH)
     {
         // Truncate name to 27 characters. Add ellipsis at the end.
-        name.truncate(MAXNAMELENGTH-3);
+        name.truncate(GlobalVariables::SetJoystick::MAXNAMELENGTH-3);
         m_name = QString(name).append("...");
         emit propertyUpdated();
     }
@@ -1236,7 +1234,7 @@ void SetJoystick::raiseAxesDeadZones(int deadZone)
     int tempDeadZone = deadZone;
     if ((deadZone <= 0) || (deadZone > 32767))
     {
-        tempDeadZone = RAISEDDEADZONE;
+        tempDeadZone = GlobalVariables::SetJoystick::RAISEDDEADZONE;
     }
 
     QHashIterator<int, JoyAxis*> axisIter(axes);

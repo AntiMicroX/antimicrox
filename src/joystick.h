@@ -44,8 +44,6 @@ public:
 
     SDL_Joystick* getJoyhandle() const;
 
-    static const QString xmlName;
-
 private:
     SDL_Joystick *m_joyhandle;
     SDL_JoystickID joystickID;

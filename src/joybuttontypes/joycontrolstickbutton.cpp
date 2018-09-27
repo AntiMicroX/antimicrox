@@ -17,6 +17,7 @@
 
 #include "joycontrolstickbutton.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "joycontrolstickmodifierbutton.h"
@@ -28,8 +29,6 @@
 #include <QStringList>
 #include <QDebug>
 
-
-const QString JoyControlStickButton::xmlName = "stickbutton";
 
 JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyGradientButton(index, originset, parentSet, parent)
@@ -135,7 +134,7 @@ QString JoyControlStickButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyControlStickButton::xmlName;
 }
 
 /**

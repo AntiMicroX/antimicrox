@@ -18,6 +18,7 @@
 #include "advancebuttondialog.h"
 #include "ui_advancebuttondialog.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "event.h"
 #include "inputdevice.h"
@@ -39,8 +40,6 @@
 #include <QLabel>
 #include <QListWidgetItem>
 
-
-const int AdvanceButtonDialog::MINIMUMTURBO = 2;
 
 AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     QDialog(parent, Qt::Window),
@@ -71,9 +70,9 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     }
 
     int interval = m_button->getTurboInterval() / 10;
-    if (interval < MINIMUMTURBO)
+    if (interval < GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO)
     {
-        interval = JoyButton::ENABLEDTURBODEFAULT / 10;
+        interval = GlobalVariables::JoyButton::ENABLEDTURBODEFAULT / 10;
     }
     ui->turboSlider->setValue(interval);
     this->changeTurboText(interval);
@@ -206,7 +205,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     PadderCommon::inputDaemonMutex.unlock();
 
-    ui->resetCycleDoubleSpinBox->setMaximum(JoyButton::MAXCYCLERESETTIME * 0.001); // static_cast<double>
+    ui->resetCycleDoubleSpinBox->setMaximum(GlobalVariables::JoyButton::MAXCYCLERESETTIME * 0.001); // static_cast<double>
 
     connect(ui->turboCheckbox, &QCheckBox::clicked, ui->turboSlider, &QSlider::setEnabled);
     connect(ui->turboSlider, &QSlider::valueChanged, this, &AdvanceButtonDialog::checkTurboIntervalValue);
@@ -261,7 +260,7 @@ void AdvanceButtonDialog::changeTurboText(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (value >= MINIMUMTURBO)
+    if (value >= GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO)
     {
         double delay = value / 100.0;
         double clicks = 100.0 / static_cast<double>(value);
@@ -763,7 +762,7 @@ void AdvanceButtonDialog::updateTurboIntervalValue(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (value >= MINIMUMTURBO)
+    if (value >= GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO)
     {
         m_button->setTurboInterval(value * 10);
     }
@@ -783,7 +782,7 @@ void AdvanceButtonDialog::checkTurboSetting(bool state)
 
     changeTurboForSequences();
     m_button->setUseTurbo(state);
-    if ((m_button->getTurboInterval() / 10) >= MINIMUMTURBO)
+    if ((m_button->getTurboInterval() / 10) >= GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO)
     {
         ui->turboSlider->setValue(m_button->getTurboInterval() / 10);
     }
@@ -866,14 +865,14 @@ void AdvanceButtonDialog::checkTurboIntervalValue(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (value >= MINIMUMTURBO)
+    if (value >= GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO)
     {
         changeTurboText(value);
         updateTurboIntervalValue(value);
     }
     else
     {
-        ui->turboSlider->setValue(MINIMUMTURBO);
+        ui->turboSlider->setValue(GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO);
     }
 }
 
@@ -886,13 +885,13 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
     ui->actionHundredthsComboBox->clear();
     ui->actionTenthsComboBox->clear();
 
-    for (double i=0; i <= 10; i++)
+    for (int i=0; i <= 10; i++)
     {
         QString temp = QString::number(i, 'g', 2).append("m");
         ui->actionMinutesComboBox->addItem(temp);
     }
 
-    for (double i=0; i <= 59; i++)
+    for (int i=0; i <= 59; i++)
     {
         QString temp = QString::number(i, 'g', 2);
         ui->actionSecondsComboBox->addItem(temp);
@@ -1397,7 +1396,7 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     ui->setSelectionComboBox->insertItem(0, trUtf8("Disabled"));
 
     int currentIndex = 1;
-    for (int i = 0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         if (m_button->getOriginSet() != i)
         {
@@ -1443,7 +1442,7 @@ void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
     ui->slotSetChangeComboBox->clear();
 
     int currentIndex = 0;
-    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         if (m_button->getOriginSet() != i)
         {

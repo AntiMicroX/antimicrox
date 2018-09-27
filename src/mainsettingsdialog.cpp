@@ -18,6 +18,7 @@
 #include "mainsettingsdialog.h"
 #include "ui_mainsettingsdialog.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "addeditautoprofiledialog.h"
 #include "editalldefaultautoprofiledialog.h"
@@ -285,23 +286,23 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     }
 
     int historySize = settings->value("Mouse/HistorySize", 0).toInt();
-    if ((historySize > 0) && (historySize <= JoyButton::MAXIMUMMOUSEHISTORYSIZE))
+    if ((historySize > 0) && (historySize <= GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE))
     {
         ui->historySizeSpinBox->setValue(historySize);
     }
 
     double weightModifier = settings->value("Mouse/WeightModifier", 0).toDouble();
-    if ((weightModifier > 0.0) && (weightModifier <= JoyButton::MAXIMUMWEIGHTMODIFIER))
+    if ((weightModifier > 0.0) && (weightModifier <= GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER))
     {
         ui->weightModifierDoubleSpinBox->setValue(weightModifier);
     }
 
-    for (int i = 1; i <= JoyButton::MAXIMUMMOUSEREFRESHRATE; i++)
+    for (int i = 1; i <= GlobalVariables::JoyButton::MAXIMUMMOUSEREFRESHRATE; i++)
     {
         ui->mouseRefreshRateComboBox->addItem(QString("%1 ms").arg(i), i);
     }
 
-    int refreshIndex = ui->mouseRefreshRateComboBox->findData(JoyButton::getMouseRefreshRate());
+    int refreshIndex = ui->mouseRefreshRateComboBox->findData(GlobalVariables::JoyButton::mouseRefreshRate);
     if (refreshIndex >= 0)
     {
         ui->mouseRefreshRateComboBox->setCurrentIndex(refreshIndex);
@@ -323,7 +324,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->gamepadPollRateComboBox->addItem(QString("%1 ms").arg(i), QVariant(i));
     }
 
-    int gamepadPollIndex = ui->gamepadPollRateComboBox->findData(JoyButton::getGamepadRefreshRate());
+    int gamepadPollIndex = ui->gamepadPollRateComboBox->findData(GlobalVariables::JoyButton::gamepadRefreshRate);
     if (gamepadPollIndex >= 0)
     {
         ui->gamepadPollRateComboBox->setCurrentIndex(gamepadPollIndex);
@@ -748,18 +749,18 @@ void MainSettingsDialog::saveNewSettings()
     {
         if (historySize > 0)
         {
-            JoyButton::setMouseHistorySize(historySize);
+            JoyButton::setMouseHistorySize(historySize, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
         }
 
         if (weightModifier != 0.0)
         {
-            JoyButton::setWeightModifier(weightModifier);
+            JoyButton::setWeightModifier(weightModifier, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER, GlobalVariables::JoyButton::weightModifier);
         }
     }
     else
     {
-        JoyButton::setMouseHistorySize(1);
-        JoyButton::setWeightModifier(0.0);
+        JoyButton::setMouseHistorySize(1, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
+        JoyButton::setWeightModifier(0.0, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER, GlobalVariables::JoyButton::weightModifier);
     }
 
     if (historySize > 0)
@@ -774,22 +775,22 @@ void MainSettingsDialog::saveNewSettings()
 
     int refreshIndex = ui->mouseRefreshRateComboBox->currentIndex();
     int mouseRefreshRate = ui->mouseRefreshRateComboBox->itemData(refreshIndex).toInt();
-    if (mouseRefreshRate != JoyButton::getMouseRefreshRate())
+    if (mouseRefreshRate != GlobalVariables::JoyButton::mouseRefreshRate)
     {
         settings->setValue("Mouse/RefreshRate", mouseRefreshRate);
-        JoyButton::setMouseRefreshRate(mouseRefreshRate);
+        JoyButton::setMouseRefreshRate(mouseRefreshRate, GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(), &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer());
     }
 
     int springIndex = ui->springScreenComboBox->currentIndex();
     int springScreen = ui->springScreenComboBox->itemData(springIndex).toInt();
-    JoyButton::setSpringModeScreen(springScreen);
+    JoyButton::setSpringModeScreen(springScreen, GlobalVariables::JoyButton::springModeScreen);
     settings->setValue("Mouse/SpringScreen", QString::number(springScreen));
 
     int pollIndex = ui->gamepadPollRateComboBox->currentIndex();
     int gamepadPollRate = ui->gamepadPollRateComboBox->itemData(pollIndex).toInt();
-    if (gamepadPollRate != JoyButton::getGamepadRefreshRate())
+    if (gamepadPollRate != GlobalVariables::JoyButton::gamepadRefreshRate)
     {
-        JoyButton::setGamepadRefreshRate(gamepadPollRate);
+        JoyButton::setGamepadRefreshRate(gamepadPollRate, GlobalVariables::JoyButton::gamepadRefreshRate, JoyButton::getMouseHelper());
         settings->setValue("GamepadPollRate", QString::number(gamepadPollRate));
     }
 
@@ -1918,7 +1919,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
 
     ui->springScreenComboBox->clear();
     ui->springScreenComboBox->addItem(trUtf8("Default"),
-                                      QVariant(AntiMicroSettings::defaultSpringScreen));
+                                      QVariant(GlobalVariables::AntimicroSettings::defaultSpringScreen));
 
     QDesktopWidget deskWid;
     for (int i=0; i < deskWid.screenCount(); i++)
@@ -1926,7 +1927,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
         ui->springScreenComboBox->addItem(QString(":%1").arg(i), QVariant(i));
     }
 
-    int screenIndex = ui->springScreenComboBox->findData(JoyButton::getSpringModeScreen());
+    int screenIndex = ui->springScreenComboBox->findData(GlobalVariables::JoyButton::springModeScreen);
     if (screenIndex > -1)
     {
         ui->springScreenComboBox->setCurrentIndex(screenIndex);
@@ -1948,7 +1949,7 @@ void MainSettingsDialog::refreshExtraMouseInfo()
         }
         else if (handler == "xtest")
         {
-            temp = X11Extras::getInstance()->getPointInformation(X11Extras::xtestMouseDeviceName);
+            temp = X11Extras::getInstance()->getPointInformation(GlobalVariables::X11Extras::xtestMouseDeviceName);
         }
 
         if (temp.id >= 0)
@@ -2083,7 +2084,7 @@ void MainSettingsDialog::resetGeneralSett()
 {
     ui->profileDefaultDirLineEdit->setText(PadderCommon::preferredProfileDir(settings));
     ui->numberRecentProfileSpinBox->setValue(5);
-    int gamepadPollIndex = ui->gamepadPollRateComboBox->findData(JoyButton::getGamepadRefreshRate());
+    int gamepadPollIndex = ui->gamepadPollRateComboBox->findData(GlobalVariables::JoyButton::gamepadRefreshRate);
 
     if (gamepadPollIndex >= 0)
     {
@@ -2161,13 +2162,13 @@ void MainSettingsDialog::resetMouseSett()
     ui->weightModifierDoubleSpinBox->setValue(0.20);
     ui->weightModifierDoubleSpinBox->setEnabled(false);
 
-    int refreshIndex = ui->mouseRefreshRateComboBox->findData(JoyButton::getMouseRefreshRate());
+    int refreshIndex = ui->mouseRefreshRateComboBox->findData(GlobalVariables::JoyButton::mouseRefreshRate);
     if (refreshIndex >= 0)
     {
         ui->mouseRefreshRateComboBox->setCurrentIndex(refreshIndex);
     }
 
-    int screenIndex = ui->springScreenComboBox->findData(JoyButton::getSpringModeScreen());
+    int screenIndex = ui->springScreenComboBox->findData(GlobalVariables::JoyButton::springModeScreen);
     if (screenIndex > -1)
     {
         ui->springScreenComboBox->setCurrentIndex(screenIndex);

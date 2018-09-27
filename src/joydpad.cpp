@@ -17,6 +17,7 @@
 
 #include "joydpad.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 
@@ -25,9 +26,6 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-
-const QString JoyDPad::xmlName = "dpad";
-const int JoyDPad::DEFAULTDPADDELAY = 0;
 
 JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
@@ -42,7 +40,7 @@ JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *pare
     m_originset = originset;
     currentMode = StandardMode;
     m_parentSet = parentSet;
-    this->dpadDelay = DEFAULTDPADDELAY;
+    this->dpadDelay = GlobalVariables::JoyDPad::DEFAULTDPADDELAY;
 
     populateButtons();
 
@@ -162,7 +160,7 @@ QString JoyDPad::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyDPad::xmlName;
 }
 
 void JoyDPad::readConfig(QXmlStreamReader *xml)
@@ -254,7 +252,7 @@ void JoyDPad::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("mode", "diagonal");
         }
 
-        if (dpadDelay > DEFAULTDPADDELAY)
+        if (dpadDelay > GlobalVariables::JoyDPad::DEFAULTDPADDELAY)
         {
             xml->writeTextElement("dpadDelay", QString::number(dpadDelay));
         }
@@ -427,7 +425,7 @@ bool JoyDPad::isDefault()
 
     bool value = true;
     value = value && (currentMode == StandardMode);
-    value = value && (dpadDelay == DEFAULTDPADDELAY);
+    value = value && (dpadDelay == GlobalVariables::JoyDPad::DEFAULTDPADDELAY);
 
     QHashIterator<int, JoyDPadButton*> iter(buttons);
     while (iter.hasNext())
@@ -772,7 +770,7 @@ void JoyDPad::setButtonsWheelSpeedX(int value)
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        button->setWheelSpeedX(value);
+        button->setWheelSpeed(value, 'X');
     }
 }
 
@@ -784,7 +782,7 @@ void JoyDPad::setButtonsWheelSpeedY(int value)
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
-        button->setWheelSpeedY(value);
+        button->setWheelSpeed(value, 'Y');
     }
 }
 
@@ -1218,7 +1216,7 @@ double JoyDPad::getButtonsEasingDuration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double result = JoyButton::DEFAULTEASINGDURATION;
+    double result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
     QHashIterator<int, JoyDPadButton*> iter(temphash);
@@ -1235,7 +1233,7 @@ double JoyDPad::getButtonsEasingDuration()
             double temp = button->getEasingDuration();
             if (!qFuzzyCompare(temp, result))
             {
-                result = JoyButton::DEFAULTEASINGDURATION;
+                result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
                 iter.toBack();
             }
         }
@@ -1261,7 +1259,7 @@ int JoyDPad::getButtonsSpringDeadCircleMultiplier()
 {
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-    int result = JoyButton::DEFAULTSPRINGRELEASERADIUS;
+    int result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
 
     QHash<int, JoyDPadButton*> temphash = getApplicableButtons();
     QHashIterator<int, JoyDPadButton*> iter(temphash);
@@ -1278,7 +1276,7 @@ int JoyDPad::getButtonsSpringDeadCircleMultiplier()
             int temp = button->getSpringDeadCircleMultiplier();
             if (temp != result)
             {
-                result = JoyButton::DEFAULTSPRINGRELEASERADIUS;
+                result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
                 iter.toBack();
             }
         }

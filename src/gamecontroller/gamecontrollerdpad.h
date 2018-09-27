@@ -39,8 +39,6 @@ public:
 
     void readJoystickConfig(QXmlStreamReader *xml);
 
-    static const QString xmlName;
-
 };
 
 #endif // GAMECONTROLLERDPAD_H

@@ -17,6 +17,7 @@
 
 #include "joyaxisbutton.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joyaxis.h"
 #include "joybutton.h"
@@ -27,9 +28,6 @@
 #include <cmath>
 
 #include <QDebug>
-
-const QString JoyAxisButton::xmlName = "axisbutton";
-
 
 
 JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
@@ -98,7 +96,7 @@ QString JoyAxisButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyAxisButton::xmlName;
 }
 
 

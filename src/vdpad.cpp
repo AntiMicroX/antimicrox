@@ -17,11 +17,11 @@
 
 #include "vdpad.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 
 #include <QDebug>
 
-const QString VDPad::xmlName = "vdpad";
 
 VDPad::VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyDPad(index, originset, parentSet, parent)
@@ -90,7 +90,7 @@ QString VDPad::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::VDPad::xmlName;
 }
 
 QString VDPad::getName(bool forceFullFormat, bool displayName)

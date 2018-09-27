@@ -46,11 +46,7 @@ public:
 
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    static const int AXISDEADZONE;
-    static const int AXISMAXZONE;
     static const ThrottleTypes DEFAULTTHROTTLE;
-
-    static const QString xmlName;
 
 protected:
     void correctJoystickThrottle();

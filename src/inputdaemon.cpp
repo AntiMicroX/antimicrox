@@ -17,6 +17,7 @@
 
 #include "inputdaemon.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "logger.h"
 #include "common.h"
@@ -34,8 +35,6 @@
 #include <QThread>
 
 #define USE_NEW_REFRESH
-
-const int InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                          AntiMicroSettings *settings,
@@ -77,8 +76,8 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         // poll.
         pollResetTimer.setSingleShot(true);
         pollResetTimer.setInterval(
-                    qMax(JoyButton::getMouseRefreshRate(),
-                         JoyButton::getGamepadRefreshRate()) + 1);
+                    qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                         GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
 
         connect(&pollResetTimer, &QTimer::timeout, this,
                 &InputDaemon::resetActiveButtonMouseDistances);
@@ -124,7 +123,7 @@ void InputDaemon::run ()
 
     if (!stopped)
     {
-        JoyButton::resetActiveButtonMouseDistances();
+        JoyButton::resetActiveButtonMouseDistances(JoyButton::getMouseHelper());
 
         QQueue<SDL_Event> sdlEventQueue;
 
@@ -765,7 +764,7 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                         }
                         else
                         {
-                            temp->changeAxesStatus(event.caxis.axis, event.caxis.value == GAMECONTROLLERTRIGGERRELEASE);
+                            temp->changeAxesStatus(event.caxis.axis, event.caxis.value == GlobalVariables::InputDaemon::GAMECONTROLLERTRIGGERRELEASE);
                         }
 
                         InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
@@ -1157,10 +1156,10 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             tempDevice->activatePossibleButtonEvents();
         }
 
-        if (JoyButton::shouldInvokeMouseEvents())
+        if (JoyButton::shouldInvokeMouseEvents(JoyButton::getPendingMouseButtons(), JoyButton::getStaticMouseEventTimer(), JoyButton::getTestOldMouseTime()))
         {
             // Do not wait for next event loop run. Execute immediately.
-            JoyButton::invokeMouseEvents();
+            JoyButton::invokeMouseEvents(JoyButton::getMouseHelper());
         }
     }
 }
@@ -1202,7 +1201,7 @@ void InputDaemon::resetActiveButtonMouseDistances()
 
     pollResetTimer.stop();
 
-    JoyButton::resetActiveButtonMouseDistances();
+    JoyButton::resetActiveButtonMouseDistances(JoyButton::getMouseHelper());
 }
 
 void InputDaemon::updatePollResetRate(int tempPollRate)
@@ -1216,8 +1215,8 @@ void InputDaemon::updatePollResetRate(int tempPollRate)
     pollResetTimer.stop();
 
     pollResetTimer.setInterval(
-                qMax(JoyButton::getMouseRefreshRate(),
-                     JoyButton::getGamepadRefreshRate()) + 1);
+                qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                     GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
 
     if (wasActive)
     {

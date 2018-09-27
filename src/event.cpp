@@ -28,7 +28,7 @@
 #include <QDebug>
 
 #include "event.h"
-
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "eventhandlerfactory.h"
 #include "joybutton.h"
@@ -481,8 +481,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 }
 #endif
                 PadderCommon::mouseHelperObj.mouseTimer.start(
-                            qMax(JoyButton::getMouseRefreshRate(),
-                                 JoyButton::getGamepadRefreshRate()) + 1);
+                            qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                                 GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
             }
             else if (!PadderCommon::mouseHelperObj.springMouseMoving &&
                      ((diffx >= (destSpringWidth * .013)) || (diffy >= (destSpringHeight * .013))))
@@ -528,8 +528,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 #endif
 
                 PadderCommon::mouseHelperObj.mouseTimer.start(
-                            qMax(JoyButton::getMouseRefreshRate(),
-                                 JoyButton::getGamepadRefreshRate()) + 1);
+                            qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                                 GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
             }
 
             else if (PadderCommon::mouseHelperObj.springMouseMoving && ((diffx < 2) && (diffy < 2)))
@@ -577,8 +577,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 #endif
 
                 PadderCommon::mouseHelperObj.mouseTimer.start(
-                            qMax(JoyButton::getMouseRefreshRate(),
-                                 JoyButton::getGamepadRefreshRate()) + 1);
+                            qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                                 GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
             }
 
 
@@ -600,8 +600,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             PadderCommon::mouseHelperObj.pivotPoint[1] = fullSpringDestY;
 
             PadderCommon::mouseHelperObj.mouseTimer.start(
-                        qMax(JoyButton::getMouseRefreshRate(),
-                             JoyButton::getGamepadRefreshRate()) + 1);
+                        qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                             GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
         }
     }
     else

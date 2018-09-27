@@ -57,8 +57,6 @@ protected:
 
     void clearBitArrayStatusInstances();
 
-    static const int GAMECONTROLLERTRIGGERRELEASE;
-
 signals:
     void joystickRefreshed (InputDevice *joystick);
     void joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*> *joysticks);
