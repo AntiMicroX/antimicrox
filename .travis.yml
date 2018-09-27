@@ -1,4 +1,5 @@
 language: cpp
+sudo: required
 compiler:
   - gcc
   - clang
@@ -38,10 +39,5 @@ addons:
     notification_email: "juliagoda.pl@protonmail.com"
     build_command: make
     branch_pattern: coverity_scan
-      
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get update;
-    fi;
       
 script: cmake .. && make && make test
