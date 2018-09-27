@@ -42,9 +42,7 @@ before_install:
       sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty;
       sudo apt-get update;
       sudo apt-get install --yes qt510-meta-full build-essential;
-      #sudo apt-get --purge remove qtbase5-dev;
       sudo ln -s /opt/qt510/lib/* /usr/lib/x86_64-linux-gnu/;
-      #sudo ldconfig -c /opt/qt510/lib/ /usr/lib/x86_64-linux-gnu/;
       git clone git://anongit.kde.org/extra-cmake-modules;
       cd extra-cmake-modules;
       mkdir extra-cmake-modules-build;
