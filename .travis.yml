@@ -40,11 +40,16 @@ addons:
     branch_pattern: coverity_scan
     
 before_install:
-  # Install nodejs via nvm
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo add-apt-repository -y ppa:kubuntu-ppa/backports;
-      sudo apt-get update;
-      sudo apt-get --yes install extra-cmake-modules;
+      git clone git://anongit.kde.org/extra-cmake-modules
+      cd extra-cmake-modules
+      mkdir extra-cmake-modules-build
+      cd extra-cmake-modules-build
+      cmake ..
+      make
+      sudo make install
+      cd ..
+      cd ..
     fi;
       
 script: cmake .. && make && make test
