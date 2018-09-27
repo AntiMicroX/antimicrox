@@ -53,4 +53,11 @@ before_install:
       cd ..;
     fi;
       
-script: export QT_SELECT=qt5 && cmake .. && make && make test
+script: 
+  - /opt/qt510/bin/qt510-env.sh
+  - export QT_SELECT=qt5
+  - cmake -DCMAKE_BUILD_TYPE=debug -DCMAKE_INSTALL_PREFIX="/usr" -DCMAKE_PREFIX_PATH="/opt/qt510/"
+  - make -j$(nproc)
+  - export PATH=$PATH:/opt/qt510/bin/
+  - sudo ldconfig -c /opt/qt510/lib/ /usr/lib/x86_64-linux-gnu/
+  - cmake .. && make && make test
