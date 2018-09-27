@@ -8,7 +8,6 @@ os:
 before_script:
   - mkdir build
   - cd build
-  - cmake ..
 
 env:
   global:
@@ -24,5 +23,18 @@ addons:
     notification_email: "juliagoda.pl@protonmail.com"
     build_command: make
     branch_pattern: coverity_scan
-    
-script: make && make test
+    packages:
+      - qttools5-dev
+      - qttools5-dev-tools
+      - libsdl2-dev
+      - libxi-dev
+      - libxtst-dev
+      - libx11-dev
+      
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    - sudo apt-get update
+    - sudo apt-get install -y g++ cmake extra-cmake-modules
+    fi
+      
+script: cmake .. && make && make test
