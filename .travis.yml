@@ -41,7 +41,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty;
       sudo apt-get update;
-      sudo apt-get install --yes qt510-meta-full build-essential;
+      sudo apt-get install --yes qt510tools build-essential;
       sudo ln -s /opt/qt510/lib/* /usr/lib/x86_64-linux-gnu/;
       git clone git://anongit.kde.org/extra-cmake-modules;
       cd extra-cmake-modules;
