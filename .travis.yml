@@ -42,6 +42,8 @@ before_install:
       sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty;
       sudo apt-get update;
       sudo apt-get install --yes qt510-meta-full build-essential;
+      sudo apt-get --purge remove qtbase5-dev;
+      sudo ln -s /opt/qt510/lib/* /usr/lib/x86_64-linux-gnu/;
       git clone git://anongit.kde.org/extra-cmake-modules;
       cd extra-cmake-modules;
       mkdir extra-cmake-modules-build;
@@ -49,15 +51,8 @@ before_install:
       cmake ..;
       make;
       sudo make install;
-      cd ..;
-      cd ..;
+      cd ..; # to extra-cmake-modules directory
+      cd ..; # to build directory
     fi;
       
-script: 
-  - /opt/qt510/bin/qt510-env.sh
-  - export QT_SELECT=qt5
-  - cmake -DCMAKE_BUILD_TYPE=debug -DCMAKE_INSTALL_PREFIX="/usr" -DCMAKE_PREFIX_PATH="/opt/qt510/"
-  - make -j$(nproc)
-  - export PATH=$PATH:/opt/qt510/bin/
-  - sudo ldconfig -c /opt/qt510/lib/ /usr/lib/x86_64-linux-gnu/
-  - cmake .. && make && make test
+script: cmake .. && make && make test
