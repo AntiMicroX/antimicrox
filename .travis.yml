@@ -1,0 +1,23 @@
+language: c++
+compiler:
+  - g++
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "i0r9fAiajMxOc6CK2cn0TEzOrhCD0quBaspCxkf8vql+WFBnFIwJMImQdLVoGFicjGWVU/LdY4Fy4WKcCAOsAwaRbmCcpNWPGl0tZ3/o4s9CY0orz6mmxQF1OexOXf1MjXU7bgDDtdsDM4bpn0H4VA+c7PxDwmHMVPFOhk7QTi6IaILVN30cLoG7GpO3eKXtXqLHCn9hMcxHq/swT77oUAEELae1SQ4kNnrbAJsTpjdIpMtm18Yk+/fx4jrtlbbvTkWq4wjDI0y5xuVuTLugW57duq9tnBSb9kU5p21BRGeX4f3VJxPwPK1rKLqJw3StBR0izaLy46r8nivrEmUFc4ydGoa+d7O75idcQWzVlaSqL7eXSaZ2loJG45bZ3m/YjanqSDPD+wEhLtkK3wsDukeRdHKm0lFDqUQtYTNiuVtQ5qng7InB6pu3M7jBGorXWx/QpX81QtjXQ1rJvBEQAqarYAkPfeZdTUtPDr+5GwnHxDrmCA08dITOZEZ0CTx/k9H8XoxzNoAv3MLV6E8gi3yeXpYse74ylTG1yfoKDV/Sl7Yk4qtPkvdntHtFUjBfg4Z13idQAHWWoIl48+k2hvoOWEbCA57DMR/TNG0JJlPcyoDArERi1JOJ0GkvFrPbziMtv2QhezwQtq/mUoh0E8HF5HZHIP2ajRBHb+wdCO0="
+
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "juliagoda/antimicro"
+      version: 2.24.0
+      description: "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."
+    notification_email: juliagoda.pl@protonmail.com
+    build_command_prepend:
+    build_command: make
+    branch_pattern: coverity_scan
