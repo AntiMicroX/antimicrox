@@ -6,7 +6,7 @@ env:
   global:
    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
    #   via the "travis encrypt" command using the project repo's public key
-   - secure: "mADtay0HNbunQLcXitk3Qt8DqO+lg4ORi2KWznJb6HctTTkFlcDLXDLoa3xuv67u9CoGFY2yPdNoF9+mfuHRmWO+lSa9bNEwavlfDSN1r4dGTR7y/y3nGmi7Zh4NRQsJm+pLKLuAr8CdQZt3LHvXvbkRkmGz9kp3+lHY+LYj6YYZcl9sZ00Aw/+ffL5SK3BU+S3vZZUo6WtFpRtDoFCLRn4/9sPubrPtB7MxGSWS1xaVO5u+Ji3dptq+zZ4y5NNjEz5pjuaXwndI28rl0/12bl1vattE0Un/PnnqCqvXMDX81jTXFOoUCTk0JPPFisEg8U9PJVpoiZeLvcFz9PD/D2RaANs0SMeuD2icX+O9m65/Q4E/sBesNUcE/Vo+i8LNgebWbHIIyFaMMHJXDRKy3VYHA9r1Xj/NZA56veMNjP9UVwEseQSgSEq6RFLwC8zwXF2ABbO3KQnI0sDxbs20DVKPNjeoGpww/XRag9NMbsXzCxJXONdvfRI4JCok41i4Rz6Z52F388BLmhx9q/oLdFr53bYHOIOwXrerU6mRHXLLNPQpMTvd20u4gkgpsSvhetzo7SIqatHncD+ts4eGTRfNdq/siLFMs3janTkiQD3fYKAps3AaT04rpRHRN5IfiO4gEvnLEOewjJ95KDZUVeaun5CmvaAPskVuBBTG8/c="
+   - secure: "gG1166BJe0xo5kJuFz07BCrd/8UZvxgK96s8/cc6PRAylxb8DMbn2K7tRnLMxJkVAx6s/GXJf/bpMpxQXK3KmLMRY3pDtpz2MX0e+e0Zva0N2Nt6Qyo9w00SJT/85ctGdVY9WhgIWfhPsDfzIkq5UZmWzci/6mNl8N//jKiuxw/WJLFqeZWfQa/i2PoLkcDIDEZDmPWufwo1n5vCjvzOqL7muAuSs2ccEy4HG1xuDfgCACCPsGsSKLERI1icEqrlouJrpGdbPji8CvL+9xdSJVpO/iwm0xSMUX24DYi0ogIKJ63xFPwOa7zr/ky6yi7UJV/exjYgkYFhU5CGGC/LXlCWxVEcoPg4Bv950TndHTWs24SJK9XbxEUKYyRWK/mmgLufyflWJLub0g6Bd+UeyLvUOPPV7s/OqaxY4wauNsUYTH9n+TB/3wXKVD9bh9MmwhkH6orgzUjjKZMFKQ7eACcDKrwi/fjBd3fUImcRxpfrXxBXrk73im8h+Bwk/fu7qqWzTq4oGk5Jeik7yW2rmZaQ/YLCYXo6G+U2t3QmXQUX4dhSQR/h2E6WLLxb0xkuXn7Ac4dphNbQ1WJ8kWsc6IgAvYMTIV3uQ21HTZrnD1xLFz0bvEEkG/DIQwD6rt0Y6RDtsBL6hxqeXrf5yvKoPnthGNqMpbONBkbEESlkB9A="
 addons:
   coverity_scan:
     project:
@@ -14,5 +14,6 @@ addons:
       version: "2.24.0"
       description: "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."
     notification_email: "juliagoda.pl@protonmail.com"
+    build_command_prepend: "cmake ."
     build_command: "make"
     branch_pattern: "coverity_scan"
