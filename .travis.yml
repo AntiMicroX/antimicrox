@@ -39,9 +39,9 @@ addons:
     
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty
-      sudo apt-get update
-      sudo apt-get install --yes qt510-meta-full build-essential
+      sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty;
+      sudo apt-get update;
+      sudo apt-get install --yes qt510-meta-full build-essential;
       git clone git://anongit.kde.org/extra-cmake-modules;
       cd extra-cmake-modules;
       mkdir extra-cmake-modules-build;
