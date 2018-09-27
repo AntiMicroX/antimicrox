@@ -53,4 +53,4 @@ before_install:
       cd ..;
     fi;
       
-script: cmake .. && make && make test
+script: export QT_SELECT=qt5 && cmake .. && make && make test
