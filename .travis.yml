@@ -41,15 +41,15 @@ addons:
     
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      git clone git://anongit.kde.org/extra-cmake-modules
-      cd extra-cmake-modules
-      mkdir extra-cmake-modules-build
-      cd extra-cmake-modules-build
-      cmake ..
-      make
-      sudo make install
-      cd ..
-      cd ..
+      git clone git://anongit.kde.org/extra-cmake-modules;
+      cd extra-cmake-modules;
+      mkdir extra-cmake-modules-build;
+      cd extra-cmake-modules-build;
+      cmake ..;
+      make;
+      sudo make install;
+      cd ..;
+      cd ..;
     fi;
       
 script: cmake .. && make && make test
