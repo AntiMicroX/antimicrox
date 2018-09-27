@@ -15,6 +15,20 @@ env:
    #   via the "travis encrypt" command using the project repo's public key
    - secure: "Hz0hyZv6IxfQGvv+E82BoP4vpRm5iq74bg4I0HLvXRnJjnZxsd3aD2iS+bYYgWD/clGVYttaW8hQoDCe36Pz/QgKDwmJLKcdoWryPpNhaPb1cQhf54vaF6yG1/QsPZMZxvtAvDKGgSHm5fbfi9gU5QXRgV3y1zc8i6g2GyadCfLPAka29gwTB6T0Vg13mjVbSqgYTOwreM+u7thEjzo67jgv7AGjTFMxqrqu33zqa3YDnr31SNnve9BFNTfg3jgQKZ7FyX2gpqSHzrXcFDXQbe6zwNYYDi9ilR7a0RkmqrASMI6ekohMxxP/BJVV68OMDiMjupm48Lk8nNmZ2UeOThdM/C1EpN7NrGEhMtBVloyDnFpDEXJyyY7Fni5dxgNLgH0Q+ojOsKh6nhJkpOwIIw5N99VDa4WXZXEGLHpkJeRc6ADhX0EW07lLLLftkT90jaqt2IKxfvkpPU/HU5UxDjQdZZOX+RYNEIrSe0XIpvkMWPsh16rX/wV/mcgks9BGszRCkLcPSJoVrsbtaVJBbohsbSZS1l1HNcG+CYX12iV+vLmGQ//44Rmcn99yFu46altnWlIG2Mcs3EU1589zodIjWLkLhT3au6ucsqLqsp2hwqiG1dQkkKcoYsx+obgV1mrbcjspJOgKJGJOMAyQwIdPo0V6wrKg74JvJILZlyI="
 addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+    - cmake
+    - extra-cmake-modules
+    - qttools5-dev
+    - qttools5-dev-tools
+    - libsdl2-dev
+    - libxi-dev
+    - libxtst-dev
+    - libx11-dev
   coverity_scan:
     project:
       name: "juliagoda/antimicro"
@@ -23,16 +37,6 @@ addons:
     notification_email: "juliagoda.pl@protonmail.com"
     build_command: make
     branch_pattern: coverity_scan
-    packages:
-      - g++
-      - cmake
-      - extra-cmake-modules
-      - qttools5-dev
-      - qttools5-dev-tools
-      - libsdl2-dev
-      - libxi-dev
-      - libxtst-dev
-      - libx11-dev
       
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
