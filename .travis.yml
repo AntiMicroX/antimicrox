@@ -54,4 +54,4 @@ before_install:
       cd ..;
     fi;
       
-script: cmake .. -DCMAKE_PREFIX_PATH="/opt/qt510/" && make && make test
+script: cmake .. -DCMAKE_PREFIX_PATH="/opt/qt510/" && make
