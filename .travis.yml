@@ -32,9 +32,7 @@ addons:
       - libx11-dev
       
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    - sudo apt-get update ;
-    - sudo apt-get install -y g++ cmake extra-cmake-modules ;
-    fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y g++ cmake extra-cmake-modules; fi
       
 script: cmake .. && make && make test
