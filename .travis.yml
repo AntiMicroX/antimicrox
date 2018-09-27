@@ -33,8 +33,8 @@ addons:
       
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    - sudo apt-get update
-    - sudo apt-get install -y g++ cmake extra-cmake-modules
+    - sudo apt-get update ;
+    - sudo apt-get install -y g++ cmake extra-cmake-modules ;
     fi
       
 script: cmake .. && make && make test
