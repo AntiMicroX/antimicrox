@@ -1,6 +1,6 @@
-language: c++
+language: "c++"
 compiler:
-  - g++
+  - "g++"
 
 env:
   global:
@@ -11,8 +11,8 @@ addons:
   coverity_scan:
     project:
       name: "juliagoda/antimicro"
-      version: 2.24.0
+      version: "2.24.0"
       description: "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."
-    notification_email: juliagoda.pl@protonmail.com
+    notification_email: "juliagoda.pl@protonmail.com"
     build_command: "make"
-    branch_pattern: coverity_scan
+    branch_pattern: "coverity_scan"
