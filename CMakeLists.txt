@@ -455,33 +455,6 @@ elseif(WIN32)
     endif(WITH_VMULTI)
 endif(UNIX)
 
-set(USE_QT5 OFF)
-
-if(UNIX)
-    # Check if Qt 5 was specified using an environment variable
-    # or by specifying -DQT_QMAKE_EXECUTABLE.
-    # Otherwise, check for Qt libraries.
-    if("$ENV{QT_SELECT}" EQUAL 5)
-        set(USE_QT5 ON)
-    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt5")
-        set(USE_QT5 ON)
-    else()
-        find_package(Qt5Core QUIET)
-        if(Qt5Core_FOUND)
-            set(USE_QT5 ON)
-        endif(Qt5Core_FOUND)
-    endif("$ENV{QT_SELECT}" EQUAL 5)
-elseif(WIN32)
-    # Use Qt5 on Windows.
-    set(USE_QT5 ON)
-endif(UNIX)
-
-if(USE_QT5)
-    message("Qt5 has been found")
-else()
-    message(FATAL_ERROR "No Qt version was specified.")
-endif(USE_QT5)
-
 if(USE_SDL_2)
     add_definitions(-DUSE_SDL_2)
 endif(USE_SDL_2)
@@ -507,7 +480,6 @@ if(UNIX)
 endif(UNIX)
 
 if (UNIX)
-    if (USE_QT5)
 
         find_package(Qt5Widgets REQUIRED)
         find_package(Qt5Core REQUIRED)
@@ -521,8 +493,6 @@ if (UNIX)
         add_subdirectory("share/antimicro/translations")
 
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-    endif(USE_QT5)
 
 elseif(WIN32)
 
@@ -636,7 +606,7 @@ if(UNIX)
 endif(UNIX)
 
 
-if(USE_QT5)
+
     if(UNIX)
         add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC})
         target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
@@ -647,7 +617,7 @@ if(USE_QT5)
     endif(UNIX)
 
     target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
-endif(USE_QT5)
+
 
 # Add link libraries.
 #message(${LIBS})
