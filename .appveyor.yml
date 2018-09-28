@@ -28,7 +28,7 @@ install:
 
 environment:
   matrix:
-  - QTDIR: C:\Qt\5.10.1\mingw53_32\bin;C:\Qt\Tools\mingw530_32\bin;C:\MinGW
+  - QTDIR: C:\Qt\Tools\mingw530_32\bin;C:\MinGW\bin;C:\Qt\5.10.1\mingw53_32;
     MSVC: "false"
     PLATFORM_GENERATOR: "\"MinGW Makefiles\""
     VCVARSALL: x86
@@ -78,6 +78,6 @@ before_build:
 
 
 build_script:
-  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Debug .. && make
+  - cmake --version && cmake .. -G %PLATFORM_GENERATOR% -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=%QTDIR%\bin -DCMAKE_INSTALL_PREFIX=%INSTALL_PATH% && make
 
 test: off
