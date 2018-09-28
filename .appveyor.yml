@@ -21,7 +21,7 @@ install:
   - 7z x cmake.zip -oC:\projects\deps > nul
   - move C:\projects\deps\cmake-* C:\projects\deps\cmake
   - cmake --version
-  - set PATH=%QTDIR%\bin;C:\projects\deps\cmake\bin;%PATH%
+  - set PATH=%QTDIR%\bin;C:\projects\deps\cmake\bin;C:\projects\antimicro\src;%PATH%
   - cd C:\projects\antimicro
   - curl -L -o SDL2-devel-2.0.8-mingw.tar.gz https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz
   - cmake -E tar zxf SDL2-devel-2.0.8-mingw.tar.gz
@@ -79,7 +79,7 @@ before_build:
 
 
 build_script:
-  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=%QTDIR% -DCMAKE_INSTALL_PREFIX=%INSTALL_PATH% .. && make && dir /s && cd .\antimicro
+  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=%INSTALL_PATH% .. && make && dir /s && cd .\antimicro
   - antimicro.exe
 
 
