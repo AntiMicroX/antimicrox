@@ -78,6 +78,6 @@ before_build:
 
 
 build_script:
-  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_BUILD_TYPE=Debug .. && make
+  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Debug .. && make
 
 test: off
