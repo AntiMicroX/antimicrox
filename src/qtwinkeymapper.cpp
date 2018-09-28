@@ -406,5 +406,5 @@ void QtWinKeyMapper::populateCharKeyInformation()
 
     }
 
-    //qDebug() << "TOTAL: " << total;
+    qDebug() << "TOTAL: " << total;
 }

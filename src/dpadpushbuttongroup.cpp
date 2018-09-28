@@ -49,12 +49,9 @@ void DPadPushButtonGroup::generateButtons()
 
     QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
 
-    JoyDPadButton *button = nullptr;
-    JoyDPadButtonWidget *pushbutton = nullptr;
-
-    button = buttons->value(JoyDPadButton::DpadLeftUp);
+    JoyDPadButton *button = buttons->value(JoyDPadButton::DpadLeftUp);
     upLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = upLeftButton;
+    JoyDPadButtonWidget *pushbutton = upLeftButton;
     connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
         openDPadButtonDialog(pushbutton);
     });

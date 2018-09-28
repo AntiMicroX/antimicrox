@@ -142,11 +142,10 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
         finalvirtual = X11Extras::getInstance()->getGroup1KeySym(virtualkey);
 
         #ifdef WITH_UINPUT
-        int tempalias = 0;
         QtKeyMapperBase *nativeKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
         if (nativeKeyMapper && (nativeKeyMapper->getIdentifier() == "xtest"))
         {
-            tempalias = nativeKeyMapper->returnQtKey(virtualkey);
+            int tempalias = nativeKeyMapper->returnQtKey(virtualkey);
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempalias);
         }
         #endif

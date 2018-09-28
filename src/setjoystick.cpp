@@ -41,7 +41,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     m_device = device;
     m_index = index;
 
-    reset();
+    resetBtnsConf();
 }
 
 SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent) :
@@ -54,7 +54,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject 
 
     if (runreset)
     {
-        reset();
+        resetBtnsConf();
     }
 }
 
@@ -110,6 +110,11 @@ void SetJoystick::refreshButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    refreshBtnsConf();
+}
+
+void SetJoystick::refreshBtnsConf()
+{
     deleteButtons();
 
     for (int i=0; i < m_device->getNumberRawButtons(); i++)
@@ -124,6 +129,11 @@ void SetJoystick::refreshAxes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    refreshAxesConf();
+}
+
+void SetJoystick::refreshAxesConf()
+{
     deleteAxes();
 
     InputDevice *device = getInputDevice();
@@ -146,6 +156,11 @@ void SetJoystick::refreshHats()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    refreshHatsConf();
+}
+
+void SetJoystick::refreshHatsConf()
+{
     deleteHats();
 
     for (int i=0; i < m_device->getNumberRawHats(); i++)
@@ -287,11 +302,16 @@ void SetJoystick::reset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    resetBtnsConf();
+}
+
+void SetJoystick::resetBtnsConf()
+{
     deleteSticks();
     deleteVDpads();
-    refreshAxes();
-    refreshButtons();
-    refreshHats();
+    refreshAxesConf();
+    refreshBtnsConf();
+    refreshHatsConf();
     m_name = QString();
 }
 
@@ -1115,7 +1135,7 @@ void SetJoystick::setName(QString name)
         m_name = name;
         emit propertyUpdated();
     }
-    else if (name.length() > GlobalVariables::SetJoystick::MAXNAMELENGTH)
+    else
     {
         // Truncate name to 27 characters. Add ellipsis at the end.
         name.truncate(GlobalVariables::SetJoystick::MAXNAMELENGTH-3);

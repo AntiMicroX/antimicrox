@@ -37,7 +37,6 @@ public:
 
 protected:
     JoyButton *button;
-    bool firstStart;
 
 public slots:
     void setAssignedSlot(int code,

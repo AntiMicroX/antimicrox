@@ -50,7 +50,7 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2,
     this->modifierButton = nullptr;
     reset();
 
-    populateButtons();
+    populateStickBtns();
 
     directionDelayTimer.setSingleShot(true);
 
@@ -183,6 +183,11 @@ void JoyControlStick::populateButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    populateStickBtns();
+}
+
+void JoyControlStick::populateStickBtns()
+{
     JoyControlStickButton *button = new JoyControlStickButton(this, StickUp,
                                                               originset, getParentSet(), this);
     buttons.insert(StickUp, button);
@@ -801,23 +806,18 @@ double JoyControlStick::getAbsoluteRawDistance(int axisXValue, int axisYValue)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double distance = 0.0;
-
     int axis1Value = axisXValue;
     int axis2Value = axisYValue;
 
     int square_dist = (axis1Value * axis1Value) +
             (axis2Value * axis2Value);
 
-    distance = sqrt(square_dist);
-    return distance;
+    return sqrt(square_dist);
 }
 
 double JoyControlStick::getNormalizedAbsoluteDistance()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    double distance = 0.0;
 
     int axis1Value = axisX->getCurrentRawValue();
     int axis2Value = axisY->getCurrentRawValue();
@@ -825,15 +825,10 @@ double JoyControlStick::getNormalizedAbsoluteDistance()
     int square_dist = (axis1Value * axis1Value)
             + (axis2Value * axis2Value);
 
-    distance = sqrt(square_dist)/static_cast<double>(maxZone);
-    if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
+    double distance = sqrt(square_dist)/static_cast<double>(maxZone);
+
+    if (distance > 1.0) distance = 1.0;
+    else if (distance < 0.0) distance = 0.0;
 
     return distance;
 }
@@ -842,23 +837,16 @@ double JoyControlStick::getRadialDistance(int axisXValue, int axisYValue)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double distance = 0.0;
-
     int axis1Value = axisXValue;
     int axis2Value = axisYValue;
 
     int square_dist = (axis1Value * axis1Value)
             + (axis2Value * axis2Value);
 
-    distance = sqrt(square_dist)/static_cast<double>(maxZone);
-    if (distance > 1.0)
-    {
-        distance = 1.0;
-    }
-    else if (distance < 0.0)
-    {
-        distance = 0.0;
-    }
+    double distance = sqrt(square_dist)/static_cast<double>(maxZone);
+
+    if (distance > 1.0) distance = 1.0;
+    else if (distance < 0.0) distance = 0.0;
 
     return distance;
 }
@@ -4274,10 +4262,9 @@ double JoyControlStick::calculateYAxisDistance(int axisYValue)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double distance = 0.0;
     int axis2Value = axisYValue;
+    double distance = axis2Value / static_cast<double>(maxZone);
 
-    distance = axis2Value / static_cast<double>(maxZone);
     if (distance < -1.0)
     {
         distance = -1.0;
@@ -4294,9 +4281,8 @@ double JoyControlStick::calculateEightWayDiagonalDistanceFromDeadZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double temp = calculateEightWayDiagonalDistanceFromDeadZone(axisX->getCurrentRawValue(),
+    return calculateEightWayDiagonalDistanceFromDeadZone(axisX->getCurrentRawValue(),
                                                                 axisY->getCurrentRawValue());
-    return temp;
 }
 
 double JoyControlStick::calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue)

@@ -43,6 +43,10 @@ AxisValueBox::AxisValueBox(QWidget *parent) :
     lboxend = 0;
     rboxstart = 0;
     rboxend = 0;
+    boxwidth = 0;
+    boxheight = 0;
+    singlewidth = 0;
+    singleend = 0;
 }
 
 void AxisValueBox::setThrottle(int throttle)

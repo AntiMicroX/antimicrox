@@ -120,7 +120,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
     establishMouseTimerConnections();
 
     // Make sure to call before calling reset
-    this->resetProperties();
+    resetAllProperties();
 
     m_index = index;
     m_originset = originset;
@@ -131,7 +131,7 @@ JoyButton::~JoyButton()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    reset();
+    resetPrivVars();
 }
 
 void JoyButton::queuePendingEvent(bool pressed, bool ignoresets)
@@ -427,12 +427,17 @@ void JoyButton::reset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    resetPrivVars();
+}
+
+void JoyButton::resetPrivVars()
+{
     disconnectPropertyUpdatedConnections();
     stopTimers(false, false, true);
     releaseActiveSlots();
     clearAssignedSlots();
     clearQueues();
-    resetProperties(); // quitEvent changed here
+    resetAllProperties(); // quitEvent changed here
 }
 
 void JoyButton::reset(int index)
@@ -1169,7 +1174,7 @@ void JoyButton::mouseEvent()
                                 // offset.
                                 difference = (difference - 0.252);
                             }
-                            else if (temp > 0.75)
+                            else
                             {
                                 // Perform mouse acceleration. Make up the difference
                                 // due to the previous two segments. Maxes out at 1.0.
@@ -1210,7 +1215,7 @@ void JoyButton::mouseEvent()
                                     buttonslot->getEasingTime()->restart();
                                 }
                             }
-                            else if (temp > 0.75)
+                            else
                             {
                                 // Gradually increase the mouse speed until the specified elapsed duration
                                 // time has passed.
@@ -3966,7 +3971,7 @@ void JoyButton::releaseSlotEvent()
                 tempElapsed += tempcode;
 
                 if (tempElapsed <= timeElapsed) temp = currentSlot;
-                else if (tempElapsed > timeElapsed) iter.toBack();
+                else iter.toBack();
             }
             else if (mode == JoyButtonSlot::JoyCycle)
             {
@@ -4477,21 +4482,16 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved, int sp
 
         for (int i = (springXSpeeds->length() - 1); (i >= 0) && !complete; i--)
         {
-            double tempx = -2.0;
-            double tempy = -2.0;
-            double tempSpringDeadX = 0.0;
-            double tempSpringDeadY = 0.0;
-
             PadderCommon::springModeInfo infoX;
             PadderCommon::springModeInfo infoY;
 
             infoX = springXSpeeds->takeLast();
             infoY = springYSpeeds->takeLast();
 
-            tempx = infoX.displacementX;
-            tempy = infoY.displacementY;
-            tempSpringDeadX = infoX.springDeadX;
-            tempSpringDeadY = infoY.springDeadY;
+            double tempx = infoX.displacementX;
+            double tempy = infoY.displacementY;
+            double tempSpringDeadX = infoX.springDeadX;
+            double tempSpringDeadY = infoY.springDeadY;
 
             if (infoX.relative)
             {
@@ -5134,6 +5134,11 @@ void JoyButton::resetProperties()
     qDebug() << "all current slots and previous slots ale cleared";
     #endif
 
+    resetAllProperties();
+}
+
+void JoyButton::resetAllProperties()
+{
     resetSlotsProp(true);
 
     m_toggle = false;

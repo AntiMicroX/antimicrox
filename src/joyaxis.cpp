@@ -51,7 +51,7 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
     naxisbutton = new JoyAxisButton(this, 0, originset, parentSet, this);
     paxisbutton = new JoyAxisButton(this, 1, originset, parentSet, this);
 
-    reset();
+    resetPrivateVars();
     m_index = index;
 }
 
@@ -59,7 +59,7 @@ JoyAxis::~JoyAxis()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    reset();
+    resetPrivateVars();
 }
 
 void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValues)
@@ -523,8 +523,7 @@ void JoyAxis::readConfig(QXmlStreamReader *xml)
         xml->readNextStartElement();
         while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != getXmlName())))
         {
-            bool found = false;
-            found = readMainConfig(xml);
+            bool found = readMainConfig(xml);
             if (!found && (xml->name() == naxisbutton->getXmlName()) && xml->isStartElement())
             {
                 found = true;
@@ -744,12 +743,17 @@ void JoyAxis::reset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    deadZone = getDefaultDeadZone();
+    resetPrivateVars();
+}
+
+void JoyAxis::resetPrivateVars()
+{
+    deadZone = GlobalVariables::JoyAxis::AXISDEADZONE;
     isActive = false;
 
     eventActive = false;
-    maxZoneValue = getDefaultMaxZone();
-    throttle = getDefaultThrottle();
+    maxZoneValue = GlobalVariables::JoyAxis::AXISMAXZONE;
+    throttle = this->DEFAULTTHROTTLE;
 
     paxisbutton->reset();
     naxisbutton->reset();
@@ -862,13 +866,7 @@ double JoyAxis::getRawDistance(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double distance = 0.0;
-    int currentValue = value;
-
-    distance = static_cast<double>(currentValue / maxZoneValue);
-    distance = qBound(-1.0, distance, 1.0);
-
-    return distance;
+    return qBound(-1.0, static_cast<double>(value / maxZoneValue), 1.0);
 }
 
 void JoyAxis::propogateThrottleChange()

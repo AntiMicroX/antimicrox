@@ -71,15 +71,14 @@ QString XMLConfigMigration::migrate()
     QString tempXmlString = QString();
     if (requiresMigration())
     {
-        int tempFileVersion = fileVersion;
         QString initialData = readConfigToString();
         reader->clear();
         reader->addData(initialData);
 
-        if ((tempFileVersion >= 2) && (tempFileVersion <= 5))
+        if ((fileVersion >= 2) && (fileVersion <= 5))
         {
             tempXmlString = version0006Migration();
-            tempFileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
+            fileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
         }
     }
 

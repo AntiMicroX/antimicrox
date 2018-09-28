@@ -31,7 +31,7 @@ public:
     explicit JoyDPadButtonWidget(JoyButton* button, bool displayNames, QWidget *parent = nullptr);
 
 protected:
-    virtual QString generateLabel();
+    virtual QString generateLabel() override;
 
 };
 

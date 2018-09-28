@@ -33,8 +33,8 @@ public:
     static const int consumerUsagePagePrefix = 0x12000; // unsigned
 
 protected:
-    void populateMappingHashes();
-    void populateCharKeyInformation();
+    void populateMappingHashes() override;
+    void populateCharKeyInformation() override;
 
 };
 

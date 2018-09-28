@@ -437,7 +437,7 @@ inline void GameController::assignVariablesShort(QXmlStreamReader *xml, int& ind
 void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes, QList<SDL_GameControllerButtonBind> &hatButtons)
 {
 
-    for (int i = 0; i < SDL_JoystickNumHats(m_joyhandle); i++)
+    for (int i = 0; i < SDL_JoystickNumHats(getJoyHandle()); i++)
     {
         SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
         SDL_GameControllerButtonBind bound = SDL_GameControllerGetBindForButton(this->controller, currentButton);
@@ -452,7 +452,7 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
         }
     }
 
-    for (int i = 0; i < SDL_JoystickNumButtons(m_joyhandle); i++)
+    for (int i = 0; i < SDL_JoystickNumButtons(getJoyHandle()); i++)
     {
         #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Button " << (i + 1);
@@ -467,7 +467,7 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
         }
     }
 
-    for (int i = 0; i < SDL_JoystickNumAxes(m_joyhandle); i++)
+    for (int i = 0; i < SDL_JoystickNumAxes(getJoyHandle()); i++)
     {
         #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Axis " << (i + 1);

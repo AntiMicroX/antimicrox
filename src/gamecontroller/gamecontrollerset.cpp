@@ -32,7 +32,7 @@ GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *pa
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    reset();
+    resetSticks();
 }
 
 
@@ -40,10 +40,14 @@ void GameControllerSet::reset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    resetSticks();
+}
+
+void GameControllerSet::resetSticks()
+{
     SetJoystick::reset();
     populateSticksDPad();
 }
-
 
 void GameControllerSet::populateSticksDPad()
 {

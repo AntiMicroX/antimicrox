@@ -338,8 +338,8 @@ void QtX11KeyMapper::populateCharKeyInformation()
             }
 
             int testsym = static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(i),
-                                                      dicis & Qt::MetaModifier ? 1 : 0,
-                                                      dicis & Qt::ShiftModifier ? 1 : 0));
+                                                      (dicis & Qt::MetaModifier) ? 1 : 0,
+                                                      (dicis & Qt::ShiftModifier) ? 1 : 0));
             if (testsym != NoSymbol)
             {
                 XKeyPressedEvent tempevent;
@@ -388,8 +388,7 @@ void QtX11KeyMapper::populateCharKeyInformation()
         }
     }
 
-    //qDebug() << "TOTAL: " << total;
-    //qDebug() << "";
+    qDebug() << "TOTAL: " << total;
 
     QChar tempa('*');
     if (virtualkeyToCharKeyInformation.contains(tempa.unicode()))

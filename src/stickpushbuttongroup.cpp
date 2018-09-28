@@ -52,12 +52,9 @@ void StickPushButtonGroup::generateButtons()
 
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
 
-    JoyControlStickButton *button = nullptr;
-    JoyControlStickButtonPushButton *pushbutton = nullptr;
-
-    button = stickButtons->value(JoyControlStick::StickLeftUp);
+    JoyControlStickButton *button = stickButtons->value(JoyControlStick::StickLeftUp);
     upLeftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-    pushbutton = upLeftButton;
+    JoyControlStickButtonPushButton *pushbutton = upLeftButton;
     connect(pushbutton, &JoyControlStickButtonPushButton::clicked, this, [this, pushbutton] {
         openStickButtonDialog(pushbutton);
     });

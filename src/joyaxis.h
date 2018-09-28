@@ -228,6 +228,7 @@ private:
     bool pendingEvent;
     bool pendingIgnoreSets;
 
+    void resetPrivateVars();
 };
 
 #endif // JOYAXIS_H

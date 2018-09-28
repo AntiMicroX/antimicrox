@@ -989,10 +989,8 @@ void MainWindow::showEvent(QShowEvent *event)
         }
     }
 
-    if (propogate)
-    {
-        QMainWindow::showEvent(event);
-    }
+    QMainWindow::showEvent(event);
+
 }
 
 void MainWindow::changeEvent(QEvent *event)

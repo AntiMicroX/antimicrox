@@ -289,6 +289,8 @@ private:
 
     QHash<JoyStickDirections, JoyControlStickButton*> buttons;
     JoyControlStickModifierButton *modifierButton;
+
+    void populateStickBtns();
 };
 
 #endif // JOYCONTROLSTICK_H

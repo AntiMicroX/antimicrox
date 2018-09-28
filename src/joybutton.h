@@ -485,6 +485,8 @@ private:
         activeZoneStringLock.unlock();
     }
 
+    void resetAllProperties();
+    void resetPrivVars();
     void restartAllForSetChange();
     void startTimerOverrun(int slotCode, QTime* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
     void findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter);

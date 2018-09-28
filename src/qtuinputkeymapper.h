@@ -30,8 +30,8 @@ public:
     explicit QtUInputKeyMapper(QObject *parent = nullptr);
 
 protected:
-    void populateMappingHashes();
-    void populateCharKeyInformation();
+    void populateMappingHashes() override;
+    void populateCharKeyInformation() override;
 
     void populateAlphaHashes();
     void populateFKeyHashes();

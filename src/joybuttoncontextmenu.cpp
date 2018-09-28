@@ -42,11 +42,9 @@ void JoyButtonContextMenu::buildMenu()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = nullptr;
-
     PadderCommon::inputDaemonMutex.lock();
 
-    action = this->addAction(trUtf8("Toggle"));
+    QAction *action = this->addAction(trUtf8("Toggle"));
     action->setCheckable(true);
     action->setChecked(button->getToggleState());
     connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);

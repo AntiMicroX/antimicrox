@@ -740,7 +740,6 @@ QString keycodeToKeyString(int keycode, int alias)
     }
 
 #elif defined (Q_OS_WIN)
-    wchar_t buffer[50] = {0};
 
     QString tempalias = WinExtras::getDisplayString(keycode);
     if (!tempalias.isEmpty())
@@ -757,6 +756,7 @@ QString keycodeToKeyString(int keycode, int alias)
         }
         else
         {
+            wchar_t buffer[50] = {0};
             int length = GetKeyNameTextW(scancode << 16, buffer, sizeof(buffer));
             if (length > 0)
             {

@@ -61,7 +61,7 @@ UInputEventHandler::UInputEventHandler(QObject *parent) :
 
 UInputEventHandler::~UInputEventHandler()
 {
-    cleanup();
+    cleanupUinputEvHand();
 }
 
 /**
@@ -161,6 +161,12 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
 
 
 bool UInputEventHandler::cleanup()
+{
+    return cleanupUinputEvHand();
+}
+
+
+bool UInputEventHandler::cleanupUinputEvHand()
 {
     if (keyboardFileHandler > 0)
     {

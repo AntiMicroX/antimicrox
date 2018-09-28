@@ -2504,3 +2504,8 @@ QList<int>& InputDevice::getDpadstatesLocal() {
 
     return dpadstates;
 }
+
+SDL_Joystick* InputDevice::getJoyHandle() const
+{
+    return m_joyhandle;
+}

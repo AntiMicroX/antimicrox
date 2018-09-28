@@ -47,13 +47,11 @@ void DPadContextMenu::buildMenu()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = nullptr;
-
     QActionGroup *presetGroup = new QActionGroup(this);
     int presetMode = 0;
     int currentPreset = getPresetIndex();
 
-    action = this->addAction(trUtf8("Mouse (Normal)"));
+    QAction* action = this->addAction(trUtf8("Mouse (Normal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));

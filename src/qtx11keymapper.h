@@ -31,8 +31,8 @@ public:
     explicit QtX11KeyMapper(QObject *parent = nullptr);
 
 protected:
-    void populateMappingHashes();
-    void populateCharKeyInformation();
+    void populateMappingHashes() override;
+    void populateCharKeyInformation() override;
 
 };
 

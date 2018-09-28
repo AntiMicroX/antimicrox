@@ -127,6 +127,7 @@ public:
 protected:
     void enableSetConnections(SetJoystick *setstick);
     bool elementsHaveNames();
+    SDL_Joystick* getJoyHandle() const;
 
     QHash<int, SetJoystick*>& getJoystick_sets();
     QHash<int, JoyAxis::ThrottleTypes>& getCali();
@@ -135,7 +136,7 @@ protected:
     int rawAxisDeadZone;
     int keyPressTime; // unsigned
     QString profileName;
-    SDL_Joystick* m_joyhandle;
+
 
 signals:
     void setChangeActivated(int index);
@@ -215,6 +216,7 @@ private:
     QList<int>& getAxesstatesLocal();
     QList<int>& getDpadstatesLocal();
 
+    SDL_Joystick* m_joyhandle;
     QHash<int, SetJoystick*> joystick_sets;
     QHash<int, JoyAxis::ThrottleTypes> cali;
     AntiMicroSettings *m_settings;

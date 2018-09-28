@@ -211,9 +211,7 @@ double JoyAxisButton::getAccelerationDistance()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double distance = 0.0;
-    distance = m_axis->getRawDistance(m_axis->getCurrentThrottledValue());
-    return distance;
+    return m_axis->getRawDistance(m_axis->getCurrentThrottledValue());
 }
 
 
@@ -221,10 +219,7 @@ double JoyAxisButton::getLastAccelerationDistance()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double distance = 0.0;
-    distance = m_axis->getRawDistance(m_axis->getLastKnownThrottleValue());
-
-    return distance;
+    return m_axis->getRawDistance(m_axis->getLastKnownThrottleValue());
 }
 
 

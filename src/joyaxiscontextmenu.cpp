@@ -69,13 +69,11 @@ void JoyAxisContextMenu::buildAxisMenu()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = nullptr;
-
     QActionGroup *presetGroup = new QActionGroup(this);
     int presetMode = 0;
     int currentPreset = getPresetIndex();
 
-    action = this->addAction(trUtf8("Mouse (Horizontal)"));
+    QAction *action = this->addAction(trUtf8("Mouse (Horizontal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -380,13 +378,11 @@ void JoyAxisContextMenu::buildTriggerMenu()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QAction *action = nullptr;
-
     QActionGroup *presetGroup = new QActionGroup(this);
     int presetMode = 0;
     int currentPreset = getTriggerPresetIndex();
 
-    action = this->addAction(trUtf8("Left Mouse Button"));
+    QAction *action = this->addAction(trUtf8("Left Mouse Button"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
