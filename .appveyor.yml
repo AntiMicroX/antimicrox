@@ -1,0 +1,82 @@
+version: '{build}'
+
+
+init:
+- git config --global core.autocrlf input
+
+
+clone_folder: c:\projects\antimicro
+clone_depth: 5
+
+
+install:
+  - md C:\projects\deps
+  - cd C:\projects\deps
+  - if %VCVARSALL%==x86 set CMAKE_URL="https://cmake.org/files/v3.10/cmake-3.10.0-win32-x86.zip" else set CMAKE_URL="https://cmake.org/files/v3.10/cmake-3.10.0-win64-x64.zip"
+  - appveyor DownloadFile %CMAKE_URL% -FileName cmake.zip
+  - 7z x cmake.zip -oC:\projects\deps > nul
+  - move C:\projects\deps\cmake-* C:\projects\deps\cmake
+  - cmake --version
+  - set PATH=%QTDIR%\bin;C:\projects\deps\cmake\bin;%PATH%
+  - cd C:\projects\antimicro
+  - curl -L -o "SDL2-devel-2.0.8-mingw.tar.gz https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz" &&
+  - cmake -E tar zxf "SDL2-devel-2.0.8-mingw.tar.gz"
+
+
+environment:
+  matrix:
+  - QTDIR: C:\Qt\5.10.1\mingw53_32\bin;C:\Qt\Tools\mingw530_32\bin;C:\MinGW
+    MSVC: "false"
+    PLATFORM_GENERATOR: "MinGW Makefiles"
+    VCVARSALL: x86
+    TARGET_ARCH: x86
+    INSTALL_PATH: C:\"Program Files"\AntiMicro
+  - QTDIR: C:\Qt\5.10.1\msvc2013_64
+    MSVC: "true"
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 12.0"\VC\vcvarsall.bat
+    VCVARSALL: x64
+    TARGET_ARCH: x86_64
+    PLATFORM_GENERATOR: "Visual Studio 12 2013 Win64"
+    INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
+  - QTDIR: C:\Qt\5.10.1\msvc2015
+    MSVC: "true"
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
+    VCVARSALL: x86
+    TARGET_ARCH: x86
+    PLATFORM_GENERATOR: "Visual Studio 14 2015 ARM"
+    INSTALL_PATH: C:\"Program Files"\AntiMicro
+  - QTDIR: C:\Qt\5.10.1\msvc2015_64
+    MSVC: "true"
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
+    VCVARSALL: x64
+    TARGET_ARCH: x86_64
+    PLATFORM_GENERATOR: "Visual Studio 14 2015 Win64"
+    INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
+  - QTDIR: C:\Qt\5.10.1\msvc2017_64 
+    MSVC: "true"
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    VCVARSALL: x64
+    TARGET_ARCH: x86_64
+    PLATFORM_GENERATOR: "Visual Studio 15 2017 Win64"
+    INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
+
+
+matrix:
+  fast_finish: true
+
+
+before_build:
+  - if [%MSVC%]==[true] (
+      call %VCVARSALLPATH% %VCVARSALL%
+    )
+  - git submodule update --init --recursive
+  - md build
+  - cd build
+
+
+build_script:
+  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=%QTDIR% -DCMAKE_INSTALL_PREFIX=%INSTALL_PATH% -DTARGET_ARCH=%TARGET_ARCH% .. && make && dir /s && cd .\antimicro
+  - antimicro.exe
+
+
+test: off
