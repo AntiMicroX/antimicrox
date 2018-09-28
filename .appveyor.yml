@@ -1,5 +1,9 @@
 version: '{build}'
 
+skip_commits:
+  files:
+    - ".travis.yml"
+
 
 init:
 - git config --global core.autocrlf input
