@@ -69,7 +69,6 @@ before_build:
   - if [%MSVC%]==[true] (
       call %VCVARSALLPATH% %VCVARSALL%
     )
-  - git submodule update --init --recursive
   - md build
   - cd build
 
