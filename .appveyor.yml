@@ -78,8 +78,6 @@ before_build:
 
 
 build_script:
-  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=%INSTALL_PATH% .. && make && dir /s && cd .\antimicro
-  - antimicro.exe
-
+  - cmake --version && cmake -G %PLATFORM_GENERATOR% -DCMAKE_BUILD_TYPE=Debug .. && make
 
 test: off
