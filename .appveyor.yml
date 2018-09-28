@@ -27,7 +27,7 @@ environment:
   matrix:
   - QTDIR: C:\Qt\5.10.1\mingw53_32\bin;C:\Qt\Tools\mingw530_32\bin;C:\MinGW
     MSVC: "false"
-    PLATFORM_GENERATOR: "MinGW Makefiles"
+    PLATFORM_GENERATOR: "\"MinGW Makefiles\""
     VCVARSALL: x86
     TARGET_ARCH: x86
     INSTALL_PATH: C:\"Program Files"\AntiMicro
@@ -36,28 +36,28 @@ environment:
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 12.0"\VC\vcvarsall.bat
     VCVARSALL: x64
     TARGET_ARCH: x86_64
-    PLATFORM_GENERATOR: "Visual Studio 12 2013 Win64"
+    PLATFORM_GENERATOR: "\"Visual Studio 12 2013 Win64\""
     INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
   - QTDIR: C:\Qt\5.10.1\msvc2015
     MSVC: "true"
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
     VCVARSALL: x86
     TARGET_ARCH: x86
-    PLATFORM_GENERATOR: "Visual Studio 14 2015 ARM"
+    PLATFORM_GENERATOR: "\"Visual Studio 14 2015 ARM\""
     INSTALL_PATH: C:\"Program Files"\AntiMicro
   - QTDIR: C:\Qt\5.10.1\msvc2015_64
     MSVC: "true"
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
     VCVARSALL: x64
     TARGET_ARCH: x86_64
-    PLATFORM_GENERATOR: "Visual Studio 14 2015 Win64"
+    PLATFORM_GENERATOR: "\"Visual Studio 14 2015 Win64\""
     INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
   - QTDIR: C:\Qt\5.10.1\msvc2017_64 
     MSVC: "true"
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x64
     TARGET_ARCH: x86_64
-    PLATFORM_GENERATOR: "Visual Studio 15 2017 Win64"
+    PLATFORM_GENERATOR: "\"Visual Studio 15 2017 Win64\""
     INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
 
 
