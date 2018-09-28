@@ -19,8 +19,8 @@ install:
   - cmake --version
   - set PATH=%QTDIR%\bin;C:\projects\deps\cmake\bin;%PATH%
   - cd C:\projects\antimicro
-  - cmd: curl -L -o SDL2-devel-2.0.8-mingw.tar.gz https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz
-  - cmd: cmake -E tar zxf SDL2-devel-2.0.8-mingw.tar.gz
+  - curl -L -o SDL2-devel-2.0.8-mingw.tar.gz https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz
+  - cmake -E tar zxf SDL2-devel-2.0.8-mingw.tar.gz
 
 
 environment:
@@ -69,6 +69,7 @@ before_build:
   - if [%MSVC%]==[true] (
       call %VCVARSALLPATH% %VCVARSALL%
     )
+  - git submodule update --init --recursive
   - md build
   - cd build
 
