@@ -530,7 +530,7 @@ elseif (WIN32)
         if(SDL2_LIBRARY_DIR AND SDL2_INCLUDE_DIR)
             list(APPEND LIBS ${SDL2_LIBRARY})
             include_directories(${SDL2_INCLUDE_DIR})
-        endif(SDL2_LIBRARY_DIR)
+        endif(SDL2_LIBRARY_DIR AND SDL2_INCLUDE_DIR)
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
