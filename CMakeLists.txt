@@ -526,59 +526,11 @@ if(UNIX)
     endif(USE_SDL_2)
 elseif (WIN32)
     if(USE_SDL_2)
-        set(SDL2_LIBRARY "")
-        set(SDL2_LIBRARY_DIR "")
-        set(SDL2_INCLUDE_DIR "")
-        set(SDL2_DLL_LOCATION_DIR "")
-
-        if (MSYS OR MINGW)
-            find_package(PkgConfig QUIET)
-            if(PKG_CONFIG_FOUND)
-                #include(FindPkgConfig)
-
-                pkg_check_modules(SDL2 QUIET sdl2)
-                if(SDL2_FOUND)
-                    #find_path(SDL2_INCLUDE_DIR "SDL2/SDL.h" HINTS ${SDL2_INCLUDE_DIRS})
-
-                    set(SDL2_LIBRARY ${SDL2_LIBRARIES})
-                    set(SDL2_LIBRARY_DIR ${SDL2_LIBRARY_DIRS})
-                    set(SDL2_INCLUDE_DIR ${SDL2_INCLUDE_DIRS})
-                    unset(SDL2_DLL_LOCATION_DIR)
-                    find_path(SDL2_DLL_LOCATION_DIR "SDL2.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
-                    #set(SDL2_DLL_LOCATION_DIR "${SDL2_LIBRARY_DIRS}/../bin")
-
-                    list(APPEND LIBS ${SDL2_LIBRARIES})
-                endif(SDL2_FOUND)
-            endif(PKG_CONFIG_FOUND)
-        endif(MSYS OR MINGW)
-
-        if (NOT SDL2_LIBRARY)
-            # Perform extra voodoo to get proper library paths and include
-            # proper headers.
-	    file(GLOB SDL2_BASE_DIR "${PROJECT_SOURCE_DIR}/SDL2-*.*.*/")
-
-	    if (SDL2_BASE_DIR)
-                unset(SDL2_LIBRARY)
-
-                if(TARGET_ARCH STREQUAL "x86_64")
-                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/lib")
-                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/include")
-                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin")
-
-                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                    list(APPEND LIBS ${SDL2_LIBRARY})
-                    include_directories(${SDL2_INCLUDE_DIR})
-                else()
-                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/lib")
-                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/include")
-                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/bin")
-
-                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                    list(APPEND LIBS ${SDL2_LIBRARY})
-                    include_directories(${SDL2_INCLUDE_DIR})
-                endif(TARGET_ARCH STREQUAL "x86_64")
-	    endif(SDL2_BASE_DIR)  
-        endif(NOT SDL2_LIBRARY)
+    
+        if(SDL2_LIBRARY_DIR AND SDL2_INCLUDE_DIR)
+            list(APPEND LIBS ${SDL2_LIBRARY})
+            include_directories(${SDL2_INCLUDE_DIR})
+        endif(SDL2_LIBRARY_DIR)
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
