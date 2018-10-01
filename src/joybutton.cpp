@@ -1019,7 +1019,7 @@ void JoyButton::activateSlots()
 
 #ifdef Q_OS_WIN
         else if (handler && (handler->getIdentifier() == "sendinput") &&
-                 changeRepeatState && !useTurbo)
+                 changeRepeatState && !m_useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
             if (device->isKeyRepeatEnabled())
@@ -3696,9 +3696,7 @@ void JoyButton::releaseActiveSlots()
     {
         QWriteLocker tempLocker(&activeZoneLock);
 
-        #ifdef Q_OS_WIN
-            bool changeRepeatState = false;
-        #endif
+        bool changeRepeatState = false;
 
         QListIterator<JoyButtonSlot*> iter(getActiveSlots());
         iter.toBack();
@@ -3712,7 +3710,7 @@ void JoyButton::releaseActiveSlots()
 
             if (mode == JoyButtonSlot::JoyKeyboard)
             {
-                countActiveSlots(tempcode, references, slot, GlobalVariables::JoyButton::activeKeys);
+                countActiveSlots(tempcode, references, slot, GlobalVariables::JoyButton::activeKeys, changeRepeatState, true);
 
                 if ((lastActiveKey == slot) && (references <= 0))
                     lastActiveKey = nullptr;
@@ -3724,7 +3722,7 @@ void JoyButton::releaseActiveSlots()
                     (tempcode != static_cast<int>(JoyButtonSlot::MouseWheelLeft)) &&
                     (tempcode != static_cast<int>(JoyButtonSlot::MouseWheelRight)))
                 {
-                    countActiveSlots(tempcode, references, slot, GlobalVariables::JoyButton::activeMouseButtons);
+                    countActiveSlots(tempcode, references, slot, GlobalVariables::JoyButton::activeMouseButtons, changeRepeatState);
                 }
                 else if ((tempcode == static_cast<int>(JoyButtonSlot::MouseWheelUp)) ||
                          (tempcode == static_cast<int>(JoyButtonSlot::MouseWheelDown)))
@@ -3836,7 +3834,7 @@ void JoyButton::releaseActiveSlots()
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
         if (handler && (handler->getIdentifier() == "sendinput") &&
-            changeRepeatState && lastActiveKey && !useTurbo)
+            changeRepeatState && lastActiveKey && !m_useTurbo)
         {
             InputDevice *device = getParentSet()->getInputDevice();
             if (device->isKeyRepeatEnabled())
@@ -3859,8 +3857,9 @@ void JoyButton::releaseActiveSlots()
     }
 }
 
-void JoyButton::countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash)
+void JoyButton::countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash, bool& changeRepeatState, bool activeSlotHashWindows)
 {
+    changeRepeatState = false;
     references = activeSlotsHash.value(tempcode, 1) - 1;
 
     if (references <= 0)
@@ -3870,7 +3869,7 @@ void JoyButton::countActiveSlots(int tempcode, int& references, JoyButtonSlot* s
 
         // only if activeKeys
         #ifdef Q_OS_WIN
-            changeRepeatState = true;
+            if (activeSlotHashWindows) changeRepeatState = true;
         #endif
     }
     else
