@@ -3,6 +3,11 @@ version: '{build}'
 skip_commits:
   files:
     - ".travis.yml"
+    
+branches:
+  only:
+  - coverity_scan
+
 
 init:
 - git config --global core.autocrlf input
