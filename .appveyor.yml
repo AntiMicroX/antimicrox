@@ -15,7 +15,7 @@ clone_depth: 5
 install:
   - md C:\projects\deps
   - cd C:\projects\deps
-  - if %VCVARSALL%==x86 set CMAKE_URL="https://cmake.org/files/v3.10/cmake-3.10.0-win32-x86.zip" else set CMAKE_URL="https://cmake.org/files/v3.10/cmake-3.10.0-win64-x64.zip"
+  - if %VCVARSALL%==x86 set CMAKE_URL=https://cmake.org/files/v3.10/cmake-3.10.0-win32-x86.zip else set CMAKE_URL=https://cmake.org/files/v3.10/cmake-3.10.0-win64-x64.zip
   - appveyor DownloadFile %CMAKE_URL% -FileName cmake.zip
   - 7z x cmake.zip -oC:\projects\deps > nul
   - move C:\projects\deps\cmake-* C:\projects\deps\cmake
@@ -36,42 +36,50 @@ environment:
     SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\include
     SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\lib
     SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\bin
-  - QTDIR: C:\Qt\5.10.1\msvc2013_64
-    MSVC: "true"
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 12.0"\VC\vcvarsall.bat
+  - QTDIR: C:\Qt\Tools\mingw530_32\bin;C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;C:\msys64\usr\bin;C:\Qt\5.10.1\mingw53_32;
+    MSVC: "false"
+    PLATFORM_GENERATOR: "\"MinGW Makefiles\""
     VCVARSALL: x64
-    PLATFORM_GENERATOR: "\"Visual Studio 12 2013 Win64\""
     INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
     SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\include
     SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\lib
     SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\bin
-  - QTDIR: C:\Qt\5.10.1\msvc2015
-    MSVC: "true"
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
-    VCVARSALL: x86
-    PLATFORM_GENERATOR: "\"Visual Studio 14 2015 ARM\""
-    INSTALL_PATH: C:\"Program Files"\AntiMicro
-    SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\include
-    SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\lib
-    SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\bin
-  - QTDIR: C:\Qt\5.10.1\msvc2015_64
-    MSVC: "true"
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
-    VCVARSALL: x64
-    PLATFORM_GENERATOR: "\"Visual Studio 14 2015 Win64\""
-    INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
-    SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\include
-    SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\lib
-    SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\bin
-  - QTDIR: C:\Qt\5.10.1\msvc2017_64 
-    MSVC: "true"
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
-    VCVARSALL: x64
-    PLATFORM_GENERATOR: "\"Visual Studio 15 2017 Win64\""
-    INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
-    SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\include
-    SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\lib
-    SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\bin
+  #- QTDIR: C:\Qt\5.10.1\msvc2013_64
+  #  MSVC: "true"
+  #  VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 12.0"\VC\vcvarsall.bat
+  #  VCVARSALL: x64
+  #  PLATFORM_GENERATOR: "\"Visual Studio 12 2013 Win64\""
+  #  INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
+  #  SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\include
+  #  SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\lib
+  #  SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\bin
+  #- QTDIR: C:\Qt\5.10.1\msvc2015
+  #  MSVC: "true"
+  #  VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
+  #  VCVARSALL: x86
+  #  PLATFORM_GENERATOR: "\"Visual Studio 14 2015 ARM\""
+  #  INSTALL_PATH: C:\"Program Files"\AntiMicro
+  #  SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\include
+  #  SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\lib
+  #  SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\i686-w64-mingw32\bin
+  #- QTDIR: C:\Qt\5.10.1\msvc2015_64
+  #  MSVC: "true"
+  #  VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio 14.0"\VC\vcvarsall.bat
+  #  VCVARSALL: x64
+  #  PLATFORM_GENERATOR: "\"Visual Studio 14 2015 Win64\""
+  #  INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
+  #  SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\include
+  #  SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\lib
+  #  SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\bin
+  #- QTDIR: C:\Qt\5.10.1\msvc2017_64 
+  #  MSVC: "true"
+  #  VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+  #  VCVARSALL: x64
+  #  PLATFORM_GENERATOR: "\"Visual Studio 15 2017 Win64\""
+  #  INSTALL_PATH: C:\"Program Files (x86)"\AntiMicro
+  #  SDL2_INC_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\include
+  #  SDL2_LIB_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\lib
+  #  SDL2_DLL_DIR: C:\projects\antimicro\SDL2-2.0.8\x86_64-w64-mingw32\bin
 
 
 matrix:
