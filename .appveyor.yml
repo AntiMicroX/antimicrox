@@ -12,6 +12,8 @@ branches:
 init:
 - git config --global core.autocrlf input
 
+verbosity: detailed
+
 
 clone_folder: c:\projects\antimicro
 clone_depth: 5
