@@ -491,7 +491,7 @@ private:
     void startTimerOverrun(int slotCode, QTime* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
     void findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter);
     void changeStatesQueue(bool currentReleased);
-    void countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash);
+    void countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash, bool& changeRepeatState, bool activeSlotHashWindows = false);
     void releaseMoveSlots(QList<JoyButton::mouseCursorInfo>& cursorSpeeds, JoyButtonSlot *slot, QList<int>& indexesToRemove);
     void setSpringDeadCircle(double& springDeadCircle, int mouseDirection);
     void checkSpringDeadCircle(int tempcode, double& springDeadCircle, int mouseSlot1, int mouseSlot2);
