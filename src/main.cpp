@@ -33,10 +33,8 @@
 #include "messagehandler.h"
 #include "logger.h"
 
-#ifdef Q_OS_UNIX
-#include <QApplication>
-#endif
 
+#include <QApplication>
 #include <QtGlobal>
 #include <QMainWindow>
 #include <QMap>
