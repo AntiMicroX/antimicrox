@@ -15,7 +15,7 @@ clone_depth: 5
 install:
   - md C:\projects\deps
   - cd C:\projects\deps
-  - if %VCVARSALL%==x86 set CMAKE_URL=https://cmake.org/files/v3.10/cmake-3.10.0-win32-x86.zip else set CMAKE_URL=https://cmake.org/files/v3.10/cmake-3.10.0-win64-x64.zip
+  - if %VCVARSALL%==x86 ( set CMAKE_URL=https://cmake.org/files/v3.10/cmake-3.10.0-win32-x86.zip ) else ( set CMAKE_URL=https://cmake.org/files/v3.10/cmake-3.10.0-win64-x64.zip )
   - appveyor DownloadFile %CMAKE_URL% -FileName cmake.zip
   - 7z x cmake.zip -oC:\projects\deps > nul
   - move C:\projects\deps\cmake-* C:\projects\deps\cmake
