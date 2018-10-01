@@ -90,6 +90,6 @@ before_build:
 
 build_script:
   - cmake -G %PLATFORM_GENERATOR% -DSDL2_BASE_DIR=C:\projects\antimicro\SDL2-2.0.8 -DSDL2_LIBRARY_DIR=%SDL2_LIB_DIR% -DSDL2_INCLUDE_DIR=%SDL2_INC_DIR% -DSDL2_DLL_LOCATION_DIR=%SDL2_DLL_DIR% -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=%QTDIR%\bin ..
-  - mingw32-make
+  - if [%MSVC%]==[true] nmake else mingw32-make
 
 test: off
