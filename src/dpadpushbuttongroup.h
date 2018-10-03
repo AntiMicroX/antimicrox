@@ -25,6 +25,7 @@ class QWidget;
 class JoyDPadButtonWidget;
 class DPadPushButton;
 class JoyButtonWidget;
+class JoyDPadButton;
 
 class DPadPushButtonGroup : public QGridLayout
 {
@@ -65,6 +66,8 @@ private:
     JoyDPadButtonWidget *downRightButton;
 
     DPadPushButton *dpadWidget;
+
+    void generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons, JoyDPadButton *button, JoyDPadButtonWidget *pushbutton, int cellRow, int cellCol);
 };
 
 #endif // DPADPUSHBUTTONGROUP_H

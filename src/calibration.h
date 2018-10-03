@@ -26,10 +26,7 @@ public:
     ~Calibration();
 
     int chooseMinMax(QString min_max_sign, QList<int> ax_values);
-    bool ifGtkJstestRunToday();
-    const QString getSetfromGtkJstest();
     void setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y);
-
 
 protected:
     void setProgressBars(int inputDevNr, int setJoyNr, int stickNr);
@@ -69,7 +66,6 @@ public slots:
     void checkY(int value);
     void createAxesConnection();
     void setController(QString controllerName);
-    void loadSetFromJstest();
     void startCalibration();
     void startSecondStep();
     void startLastStep();

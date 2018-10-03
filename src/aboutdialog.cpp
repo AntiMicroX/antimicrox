@@ -77,6 +77,7 @@ void AboutDialog::fillInfoTextBrowser()
 
     BaseEventHandler *handler = nullptr;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance();
+
     if (factory != nullptr)
     {
         handler = factory->handler();
@@ -103,10 +104,7 @@ void AboutDialog::changeEvent(QEvent *event)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (event->type() == QEvent::LanguageChange)
-    {
-        retranslateUi();
-    }
+    if (event->type() == QEvent::LanguageChange) retranslateUi();
 
     QDialog::changeEvent(event);
 }

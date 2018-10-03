@@ -67,15 +67,18 @@ void AppLaunchHelper::enablePossibleMouseSmoothing()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
+
     if (smoothingEnabled)
     {
         int historySize = settings->value("Mouse/HistorySize", 0).toInt();
+
         if (historySize > 0)
         {
             JoyButton::setMouseHistorySize(historySize, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
         }
 
         double weightModifier = settings->value("Mouse/WeightModifier", 0.0).toDouble();
+
         if (weightModifier > 0.0)
         {
             JoyButton::setWeightModifier(weightModifier, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER, GlobalVariables::JoyButton::weightModifier);
@@ -88,6 +91,7 @@ void AppLaunchHelper::changeMouseRefreshRate()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int refreshRate = settings->value("Mouse/RefreshRate", 0).toInt();
+
     if (refreshRate > 0)
     {
         JoyButton::setMouseRefreshRate(refreshRate, GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(), &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer());
@@ -118,6 +122,7 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
     outstream << QObject::trUtf8("---------------") << endl;
     QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
     int indexNumber = 1;
+
     while (iter.hasNext())
     {
         InputDevice *tempdevice = iter.next().value();
@@ -159,6 +164,7 @@ void AppLaunchHelper::changeSpringModeScreen()
 
     JoyButton::setSpringModeScreen(springScreen, GlobalVariables::JoyButton::springModeScreen);
 }
+
 #ifdef Q_OS_WIN
 void AppLaunchHelper::checkPointerPrecision()
 {

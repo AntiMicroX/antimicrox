@@ -65,6 +65,7 @@ void AxisValueBox::setThrottle(int throttle)
         m_throttle = throttle;
         setValue(joyValue);
     }
+
     update();
 }
 
@@ -85,7 +86,6 @@ void AxisValueBox::setValue(int value)
 
         switch(m_throttle)
         {
-
             case -2:
                 this->joyValue = (value <= 0) ? value : (-value);
                 break;
@@ -105,7 +105,6 @@ void AxisValueBox::setValue(int value)
             case 2:
                 this->joyValue = (value >= 0) ? value : (-value);
                 break;
-
         }
     }
 
@@ -151,7 +150,6 @@ void AxisValueBox::setValue(JoyAxis* axis, int value)
             case 2:
                 this->joyValue = (value >= 0) ? value : (-value);
                 break;
-
         }
     }
 
@@ -292,6 +290,7 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     {
         innerColor = Qt::blue;
     }
+
     paint.setPen(innerColor);
     paint.setBrush(innerColor);
 
@@ -314,7 +313,6 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     paint.setPen(Qt::blue);
     brush.setColor(Qt::blue);
     QBrush maxBrush(Qt::red);
-
 
     if (m_throttle == static_cast<int>(JoyAxis::NormalThrottle))
     {

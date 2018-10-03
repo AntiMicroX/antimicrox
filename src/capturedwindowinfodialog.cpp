@@ -60,8 +60,10 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     ui->winClassLabel->setVisible(false);
     ui->winClassHeadLabel->setVisible(false);
 #elif defined(Q_OS_UNIX)
+
     winClass = info->getWindowClass(static_cast<Window>(window));
     ui->winClassLabel->setText(winClass);
+
     if (winClass.isEmpty())
     {
         ui->winClassCheckBox->setEnabled(false);
@@ -84,6 +86,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 #endif
 
     ui->winTitleLabel->setText(winName);
+
     if (winName.isEmpty())
     {
         ui->winTitleCheckBox->setEnabled(false);
@@ -114,13 +117,16 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 
 #elif defined(Q_OS_UNIX)
     int pid = info->getApplicationPid(static_cast<Window>(window));
+
     if (pid > 0)
     {
         QString exepath = X11Extras::getInstance()->getApplicationLocation(pid);
+
         if (!exepath.isEmpty())
         {
             ui->winPathLabel->setText(exepath);
             winPath = exepath;
+
             if (!setRadioDefault)
             {
                 ui->winTitleCheckBox->setChecked(true);
@@ -162,27 +168,17 @@ void CapturedWindowInfoDialog::populateOption()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (ui->winClassCheckBox->isChecked())
-    {
         selectedMatch = selectedMatch | WindowClass;
-    }
 
     if (ui->winTitleCheckBox->isChecked())
-    {
         selectedMatch = selectedMatch | WindowName;
-    }
 
     if (ui->winPathCheckBox->isChecked())
     {
         selectedMatch = selectedMatch | WindowPath;
 
-        if (ui->winPathChoiceComboBox->currentIndex() == 0)
-        {
-            fullWinPath = true;
-        }
-        else
-        {
-            fullWinPath = false;
-        }
+        if (ui->winPathChoiceComboBox->currentIndex() == 0) fullWinPath = true;
+        else fullWinPath = false;
     }
 }
 

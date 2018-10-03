@@ -53,7 +53,6 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent) :
 
     switch(dpad->getJoyMode())
     {
-
         case JoyDPad::StandardMode:
             ui->joyModeComboBox->setCurrentIndex(0);
         break;
@@ -247,7 +246,6 @@ void DPadEditDialog::implementPresets(int index)
         break;
     }
 
-
     QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> tempHash;
     tempHash.insert(JoyDPadButton::DpadUp, upButtonSlot);
     tempHash.insert(JoyDPadButton::DpadDown, downButtonSlot);
@@ -273,22 +271,21 @@ void DPadEditDialog::implementModes(int index)
 
     switch(index)
     {
-    case 0:
-        dpad->setJoyMode(JoyDPad::StandardMode);
-        break;
+        case 0:
+            dpad->setJoyMode(JoyDPad::StandardMode);
+            break;
 
-    case 1:
-        dpad->setJoyMode(JoyDPad::EightWayMode);
-        break;
+        case 1:
+            dpad->setJoyMode(JoyDPad::EightWayMode);
+            break;
 
-    case 2:
-        dpad->setJoyMode(JoyDPad::FourWayCardinal);
-        break;
+        case 2:
+            dpad->setJoyMode(JoyDPad::FourWayCardinal);
+            break;
 
-    case 3:
-        dpad->setJoyMode(JoyDPad::FourWayDiagonal);
-        break;
-
+        case 3:
+            dpad->setJoyMode(JoyDPad::FourWayDiagonal);
+            break;
     }
 
     PadderCommon::inputDaemonMutex.unlock();
@@ -300,10 +297,13 @@ void DPadEditDialog::selectCurrentPreset()
 
     JoyDPadButton *upButton = dpad->getJoyButton(JoyDPadButton::DpadUp);
     QList<JoyButtonSlot*> *upslots = upButton->getAssignedSlots();
+
     JoyDPadButton *downButton = dpad->getJoyButton(JoyDPadButton::DpadDown);
     QList<JoyButtonSlot*> *downslots = downButton->getAssignedSlots();
+
     JoyDPadButton *leftButton = dpad->getJoyButton(JoyDPadButton::DpadLeft);
     QList<JoyButtonSlot*> *leftslots = leftButton->getAssignedSlots();
+
     JoyDPadButton *rightButton = dpad->getJoyButton(JoyDPadButton::DpadRight);
     QList<JoyButtonSlot*> *rightslots = rightButton->getAssignedSlots();
 
@@ -410,10 +410,11 @@ void DPadEditDialog::updateDPadDelaySlider(double value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int temp = static_cast<int>(value) * 100;
-    if (ui->dpadDelaySlider->value() != temp)
+    int currentDpadDelay = static_cast<int>(value) * 100;
+
+    if (ui->dpadDelaySlider->value() != currentDpadDelay)
     {
-        ui->dpadDelaySlider->setValue(temp);
+        ui->dpadDelaySlider->setValue(currentDpadDelay);
     }
 }
 
@@ -423,21 +424,15 @@ void DPadEditDialog::updateWindowTitleDPadName()
 
     QString temp = QString(trUtf8("Set")).append(" ");
 
-    if (!dpad->getDpadName().isEmpty())
-    {
-        temp.append(dpad->getName(false, true));
-    }
-    else
-    {
-        temp.append(dpad->getName());
-    }
+    if (!dpad->getDpadName().isEmpty()) temp.append(dpad->getName(false, true));
+    else temp.append(dpad->getName());
 
     if (dpad->getParentSet()->getIndex() != 0)
     {
         int setIndex = dpad->getParentSet()->getRealIndex();
         temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
-
         QString setName = dpad->getParentSet()->getName();
+
         if (!setName.isEmpty())
         {
             temp.append(": ").append(setName);
