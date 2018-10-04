@@ -59,11 +59,12 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
     temp = temp.arg(joystick->getSDLName()).arg(joystick->getName());
     ui->joystickDialogLabel->setText(temp);
 
-    for (int i=0; i < currentset->getNumberSticks(); i++)
+    for (int i = 0; i < currentset->getNumberSticks(); i++)
     {
         JoyControlStick *stick = currentset->getJoyStick(i);
         QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
         QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stickButtons);
+
         while (iter.hasNext())
         {
             JoyControlStickButton *stickbutton = iter.next().value();
@@ -94,7 +95,7 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
         }
     }
 
-    for (int i=0; i < currentset->getNumberAxes(); i++)
+    for (int i = 0; i < currentset->getNumberAxes(); i++)
     {
         JoyAxis *axis = currentset->getJoyAxis(i);
 

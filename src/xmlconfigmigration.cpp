@@ -52,11 +52,8 @@ bool XMLConfigMigration::requiresMigration()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool toMigrate = false;
-    if (fileVersion == 0)
-    {
-        toMigrate = false;
-    }
-    else if ((fileVersion >= 2) && (fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION))
+
+    if ((fileVersion >= 2) && (fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION))
     {
         toMigrate = true;
     }
@@ -69,6 +66,7 @@ QString XMLConfigMigration::migrate()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString tempXmlString = QString();
+
     if (requiresMigration())
     {
         QString initialData = readConfigToString();
@@ -92,6 +90,7 @@ QString XMLConfigMigration::readConfigToString()
     QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);
     writer.setAutoFormatting(true);
+
     while (!reader->atEnd())
     {
         writer.writeCurrentToken(*reader);
@@ -155,6 +154,7 @@ QString XMLConfigMigration::version0006Migration()
                     slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
 #elif defined(Q_OS_UNIX)
                     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
                     if (handler->getIdentifier() == "xtest")
                     {
                         slotcode = AntKeyMapper::getInstance()->returnQtKey(X11KeyCodeToX11KeySym(slotcode));
@@ -182,12 +182,14 @@ QString XMLConfigMigration::version0006Migration()
 
                 writer.writeTextElement("mode", slotmode);
             }
+
             writer.writeCurrentToken(*reader);
         }
         else
         {
             writer.writeCurrentToken(*reader);
         }
+
         reader->readNext();
     }
 

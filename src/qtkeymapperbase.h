@@ -82,10 +82,10 @@ protected:
     virtual void populateMappingHashes() = 0;
     virtual void populateCharKeyInformation() = 0;
 
-    QHash<int, int> qtKeyToVirtualKey; // unsigned, unsigned
-    QHash<int, int> virtualKeyToQtKey; // unsigned, unsigned
+    QHash<int, int> qtKeyToVirtKeyHash; // unsigned, unsigned
+    QHash<int, int> virtKeyToQtKeyHash; // unsigned, unsigned
     // Unicode representation -> VK+Modifier information
-    QHash<int, charKeyInformation> virtualkeyToCharKeyInformation; // unsigned, ..
+    QHash<int, charKeyInformation> virtkeyToCharKeyInfo; // unsigned, ..
     QString identifier;
 
 };

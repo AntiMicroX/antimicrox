@@ -46,9 +46,7 @@ XMLConfigWriter::~XMLConfigWriter()
     if (configFile != nullptr)
     {
         if (configFile->isOpen())
-        {
             configFile->close();
-        }
 
         delete configFile;
         configFile = nullptr;
@@ -86,9 +84,7 @@ void XMLConfigWriter::write(InputDevice *joystick)
     }
 
     if (configFile->isOpen())
-    {
         configFile->close();
-    }
 }
 
 void XMLConfigWriter::setFileName(QString filename)

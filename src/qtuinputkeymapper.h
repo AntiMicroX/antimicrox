@@ -26,6 +26,7 @@
 class QtUInputKeyMapper : public QtKeyMapperBase
 {
     Q_OBJECT
+
 public:
     explicit QtUInputKeyMapper(QObject *parent = nullptr);
 
@@ -37,6 +38,16 @@ protected:
     void populateFKeyHashes();
     void populateNumPadHashes();
     void populateSpecialCharHashes();
+
+private:
+    void addVirtualKeyToHash(int key, QChar character, charKeyInformation& charKeyInfo);
+    void mapMiscKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
+    void mapCursorMovesKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
+    void mapModifiersKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
+    void mapKeypadKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
+    void mapJapanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
+    void mapKoreanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
+    void mapMediaKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
 
 };
 

@@ -21,6 +21,7 @@
 
 #include <QDebug>
 
+
 const int QtKeyMapperBase::customQtKeyPrefix;
 const int QtKeyMapperBase::customKeyPrefix;
 const int QtKeyMapperBase::nativeKeyPrefix;
@@ -37,14 +38,14 @@ int QtKeyMapperBase::returnQtKey(int key, int scancode)
 
     Q_UNUSED(scancode);
 
-    return virtualKeyToQtKey.value(key);
+    return virtKeyToQtKeyHash.value(key);
 }
 
 int QtKeyMapperBase::returnVirtualKey(int qkey)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return qtKeyToVirtualKey.value(qkey);
+    return qtKeyToVirtKeyHash.value(qkey);
 }
 
 bool QtKeyMapperBase::isModifier(int qkey)
@@ -89,10 +90,8 @@ QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar
     temp.virtualkey = 0;
     temp.modifiers = Qt::NoModifier;
 
-    if (virtualkeyToCharKeyInformation.contains(value.unicode()))
-    {
-        temp = virtualkeyToCharKeyInformation.value(value.unicode());
-    }
+    if (virtkeyToCharKeyInfo.contains(value.unicode()))
+        temp = virtkeyToCharKeyInfo.value(value.unicode());
 
     return temp;
 }

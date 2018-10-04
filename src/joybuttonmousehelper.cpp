@@ -44,10 +44,9 @@ void JoyButtonMouseHelper::moveMouseCursor()
     int finaly = 0;
     int elapsedTime = 5;
     JoyButton::moveMouseCursor(finalx, finaly, elapsedTime, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer(), GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::mouseHistorySize, JoyButton::getCursorXSpeeds(), JoyButton::getCursorYSpeeds(), GlobalVariables::JoyButton::cursorRemainderX, GlobalVariables::JoyButton::cursorRemainderY, GlobalVariables::JoyButton::weightModifier, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getPendingMouseButtons());
+
     if ((finalx != 0) || (finaly != 0))
-    {
         emit mouseCursorMoved(finalx, finaly, elapsedTime);
-    }
 }
 
 /**
@@ -63,9 +62,7 @@ void JoyButtonMouseHelper::moveSpringMouse()
     JoyButton::moveSpringMouse(finalx, finaly, hasMoved, GlobalVariables::JoyButton::springModeScreen, JoyButton::getSpringXSpeeds(), JoyButton::getSpringYSpeeds(), JoyButton::getPendingMouseButtons(), GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getStaticMouseEventTimer());
 
     if (hasMoved)
-    {
         emit mouseSpringMoved(finalx, finaly);
-    }
 }
 
 /**
@@ -79,6 +76,7 @@ void JoyButtonMouseHelper::mouseEvent()
     {
         QList<JoyButton*> *buttonList = JoyButton::getPendingMouseButtons();
         QListIterator<JoyButton*> iter(*buttonList);
+
         while (iter.hasNext())
         {
             JoyButton *temp = iter.next();
@@ -103,6 +101,7 @@ void JoyButtonMouseHelper::resetButtonMouseDistances()
 
     QList<JoyButton*> *buttonList = JoyButton::getPendingMouseButtons();
     QListIterator<JoyButton*> iter(*buttonList);
+
     while (iter.hasNext())
     {
         JoyButton *temp = iter.next();

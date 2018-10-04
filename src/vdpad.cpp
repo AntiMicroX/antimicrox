@@ -102,18 +102,15 @@ QString VDPad::getName(bool forceFullFormat, bool displayName)
     if (!getDpadName().isEmpty() && displayName)
     {
         if (forceFullFormat)
-        {
             label.append(trUtf8("VDPad")).append(" ");
-        }
 
         label.append(getDpadName());
     }
     else if (!getDefaultDpadName().isEmpty())
     {
         if (forceFullFormat)
-        {
             label.append(trUtf8("VDPad")).append(" ");
-        }
+
         label.append(getDefaultDpadName());
     }
     else
@@ -167,13 +164,10 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
 
     switch(direction)
     {
-
         case JoyDPadButton::DpadUp:
         {
             if (upButton != nullptr)
-            {
                 upButton->removeVDPad();
-            }
 
             upButton = button;
             upButton->setVDPad(this);
@@ -182,11 +176,8 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
         }
         case JoyDPadButton::DpadDown:
         {
-
             if (downButton != nullptr)
-            {
                 downButton->removeVDPad();
-            }
 
             downButton = button;
             downButton->setVDPad(this);
@@ -196,9 +187,7 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
         case JoyDPadButton::DpadLeft:
         {
             if (leftButton != nullptr)
-            {
                 leftButton->removeVDPad();
-            }
 
             leftButton = button;
             leftButton->setVDPad(this);
@@ -208,9 +197,7 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
         case JoyDPadButton::DpadRight:
         {
             if (rightButton != nullptr)
-            {
                 rightButton->removeVDPad();
-            }
 
             rightButton = button;
             rightButton->setVDPad(this);
@@ -295,7 +282,6 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
 
     switch(direction)
     {
-
         case JoyDPadButton::DpadUp:
         {
             button = upButton;
@@ -316,7 +302,6 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
             button = rightButton;
             break;
         }
-
     }
 
     return button;
@@ -346,11 +331,10 @@ void VDPad::activatePendingEvent()
     {
         // Always use true. The proper direction value will be determined
         // in the joyEvent method.
-        joyEvent(true);
 
+        joyEvent(true);
         pendingVDPadEvent = false;
     }
-
 }
 
 void VDPad::clearPendingEvent()

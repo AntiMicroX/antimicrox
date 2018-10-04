@@ -166,7 +166,6 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->horizontalSpinBox->setEnabled(false);
         ui->verticalSpinBox->setEnabled(false);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(false);
-
         ui->extraAccelerationGroupBox->setChecked(false);
         ui->extraAccelerationGroupBox->setEnabled(false);
     }
@@ -175,12 +174,10 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->horizontalSpinBox->setEnabled(true);
         ui->verticalSpinBox->setEnabled(true);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(true);
-
         ui->extraAccelerationGroupBox->setEnabled(true);
+
         if (ui->extraAccelerationGroupBox->isChecked())
-        {
             ui->extraAccelerationGroupBox->setEnabled(true);
-        }
     }
 }
 
@@ -334,10 +331,9 @@ void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
     {
         int currentCurveIndex = ui->accelerationComboBox->currentIndex();
         JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(currentCurveIndex);
+
         if (temp == JoyButton::PowerCurve)
-        {
             ui->sensitivityDoubleSpinBox->setEnabled(true);
-        }
     }
     else
     {
@@ -425,7 +421,6 @@ JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForI
 
     switch(index)
     {
-
         case 1:
         {
             temp = JoyButton::LinearAccelCurve;
@@ -446,7 +441,6 @@ JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForI
             temp = JoyButton::EaseOutCubicAccelCurve;
             break;
         }
-
     }
 
     return temp;
@@ -462,7 +456,6 @@ MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
 
     switch(curve)
     {
-
         case JoyButton::LinearAccelCurve:
         {
             temp = 1;
@@ -483,9 +476,7 @@ MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
             temp = 4;
             break;
         }
-
     }
 
     ui->extraAccelCurveComboBox->setCurrentIndex(temp);
 }
-

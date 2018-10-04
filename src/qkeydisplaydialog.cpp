@@ -36,7 +36,6 @@
 
 #include <QApplication>
 
-
   #ifdef WITH_X11
     #include "x11extras.h"
   #endif
@@ -56,31 +55,6 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
     ui->eventHandlerLabel->setText(handler->getName());
-
-#ifdef Q_OS_UNIX
-    #if defined(WITH_UINPUT)
-
-    if (QApplication::platformName() == QStringLiteral("xcb"))
-    {
-
-    /*ui->formLayout->removeWidget(ui->nativeTitleLabel);
-    ui->formLayout->removeWidget(ui->nativeKeyLabel);
-    ui->nativeTitleLabel->setVisible(false);
-    ui->nativeKeyLabel->setVisible(false);
-    */
-
-    }
-        #endif
-
-
-#else
-    /*ui->formLayout->removeWidget(ui->eventHandlerTitleLabel);
-    ui->formLayout->removeWidget(ui->eventHandlerLabel);
-    ui->eventHandlerTitleLabel->setVisible(false);
-    ui->eventHandlerLabel->setVisible(false);
-    */
-#endif
-
 }
 
 QKeyDisplayDialog::~QKeyDisplayDialog()
@@ -95,13 +69,13 @@ void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 
     switch (event->key())
     {
-    case Qt::Key_Escape:
-    case Qt::Key_Enter:
-    case Qt::Key_Return:
-        break;
+        case Qt::Key_Escape:
+        case Qt::Key_Enter:
+        case Qt::Key_Return:
+            break;
 
-    default:
-        QDialog::keyPressEvent(event);
+        default:
+            QDialog::keyPressEvent(event);
     }
 }
 
@@ -120,13 +94,13 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     if (handler->getIdentifier() == "vmulti")
     {
         QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+
         if (nativeWinKeyMapper)
         {
             int tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
+
             if (tempQtKey > 0)
-            {
                 tempvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
-            }
         }
     }
   #endif
@@ -143,28 +117,24 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 
         #ifdef WITH_UINPUT
         QtKeyMapperBase *nativeKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+
         if (nativeKeyMapper && (nativeKeyMapper->getIdentifier() == "xtest"))
         {
             int tempalias = nativeKeyMapper->returnQtKey(virtualkey);
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempalias);
         }
         #endif
-
-
     }
     else
     {
         finalvirtual = scancode;
     }
 
-
     #else
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-
-    finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
-
+        finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
     }
     else
     {

@@ -34,10 +34,9 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
-
     this->device = device;
 
-    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
+    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         QString tempSetName = device->getSetJoystick(i)->getName();
         ui->setNamesTableWidget->setItem(i, 0, new QTableWidgetItem(tempSetName));
@@ -57,15 +56,14 @@ void SetNamesDialog::saveSetNameChanges()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    for (int i=0; i < ui->setNamesTableWidget->rowCount(); i++)
+    for (int i = 0; i < ui->setNamesTableWidget->rowCount(); i++)
     {
         QTableWidgetItem *setNameItem = ui->setNamesTableWidget->item(i, 0);
         QString setNameText = setNameItem->text();
         QString oldSetNameText = device->getSetJoystick(i)->getName();
+
         if (setNameText != oldSetNameText)
-        {
             device->getSetJoystick(i)->setName(setNameText);
-        }
     }
 }
 
