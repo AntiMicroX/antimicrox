@@ -130,28 +130,19 @@ void VDPad::joyEvent(bool pressed, bool ignoresets)
 
     int tempDirection = static_cast<int>(JoyDPadButton::DpadCentered);
 
-    /*
-     * Check which buttons are currently active
-     */
+    // Check which buttons are currently active
+
     if ((upButton != nullptr) && upButton->getButtonState())
-    {
         tempDirection |= JoyDPadButton::DpadUp;
-    }
 
     if (downButton && downButton->getButtonState())
-    {
         tempDirection |= JoyDPadButton::DpadDown;
-    }
 
     if (leftButton && leftButton->getButtonState())
-    {
         tempDirection |= JoyDPadButton::DpadLeft;
-    }
 
     if (rightButton && rightButton->getButtonState())
-    {
         tempDirection |= JoyDPadButton::DpadRight;
-    }
 
     JoyDPad::joyEvent(tempDirection, ignoresets);
 
@@ -204,7 +195,6 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
 
             break;
         }
-
     }
 }
 

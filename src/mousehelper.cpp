@@ -48,10 +48,7 @@ void MouseHelper::initDeskWid()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (deskWid == nullptr)
-    {
-        deskWid = new QDesktopWidget;
-    }
+    if (deskWid == nullptr) deskWid = new QDesktopWidget;
 }
 
 void MouseHelper::deleteDeskWid()

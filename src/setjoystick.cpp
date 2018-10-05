@@ -491,7 +491,6 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
     if (!isSetEmpty())
     {
         xml->writeStartElement("set");
-
         xml->writeAttribute("index", QString::number(m_index+1));
 
         if (!m_name.isEmpty())
@@ -526,7 +525,7 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
             dpad->writeConfig(xml);
         }
 
-        for (int i =0 ; i < getNumberButtons(); i++)
+        for (int i = 0 ; i < getNumberButtons(); i++)
         {
             JoyButton *button = getJoyButton(i);
 
@@ -653,7 +652,7 @@ void SetJoystick::addVDPad(int index, VDPad *vdpad)
     {
         JoyDPadButton *button = iter.next().value();
 
-        if (button)
+        if (button != nullptr)
         {
             connect(button, &JoyDPadButton::setChangeActivated, this, &SetJoystick::propogateSetChange);
             connect(button, &JoyDPadButton::setAssignmentChanged, this, &SetJoystick::propogateSetVDPadButtonAssociation);
@@ -697,18 +696,15 @@ void SetJoystick::propogateSetButtonClick(int button)
 
     JoyButton* jButton = qobject_cast<JoyButton*>(sender());
 
-    if (jButton != nullptr)
+    if (jButton != nullptr && !jButton->getIgnoreEventState())
     {
-        if (!jButton->getIgnoreEventState())
-        {
-            emit setButtonClick(m_index, button);
-            lastClickedButtons.append(jButton);
+        emit setButtonClick(m_index, button);
+        lastClickedButtons.append(jButton);
 
-            #ifndef QT_DEBUG_NO_OUTPUT
-                qDebug() << "Added button " << jButton->getPartialName(false,true) << " to list";
-                qDebug() << "List has " << getLastClickedButtons().count() << " buttons";
-            #endif
-        }
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "Added button " << jButton->getPartialName(false,true) << " to list";
+            qDebug() << "List has " << getLastClickedButtons().count() << " buttons";
+        #endif
     }
 }
 
@@ -721,7 +717,6 @@ void SetJoystick::removeAllBtnFromQueue() {
 
     if (!getLastClickedButtons().isEmpty())
         lastClickedButtons.clear();
-
 }
 
 int SetJoystick::getCountBtnInList(QString partialName) {
@@ -850,7 +845,7 @@ void SetJoystick::propogateSetButtonNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButton *button = qobject_cast<JoyButton*>(sender()); // static_cast
+    JoyButton *button = qobject_cast<JoyButton*>(sender());
     disconnect(button, &JoyButton::buttonNameChanged, this, &SetJoystick::propogateSetButtonNameChange);
     emit setButtonNameChange(button->getJoyNumber());
     connect(button, &JoyButton::buttonNameChanged, this, &SetJoystick::propogateSetButtonNameChange);
@@ -860,7 +855,7 @@ void SetJoystick::propogateSetAxisButtonNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyAxisButton *button = qobject_cast<JoyAxisButton*>(sender()); // static_cast
+    JoyAxisButton *button = qobject_cast<JoyAxisButton*>(sender());
     disconnect(button, &JoyAxisButton::buttonNameChanged, this, &SetJoystick::propogateSetAxisButtonNameChange);
     emit setAxisButtonNameChange(button->getAxis()->getIndex(), button->getJoyNumber());
     connect(button, &JoyAxisButton::buttonNameChanged, this, &SetJoystick::propogateSetAxisButtonNameChange);
@@ -870,7 +865,7 @@ void SetJoystick::propogateSetStickButtonNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyControlStickButton *button = qobject_cast<JoyControlStickButton*>(sender()); // static_cast
+    JoyControlStickButton *button = qobject_cast<JoyControlStickButton*>(sender());
     disconnect(button, &JoyControlStickButton::buttonNameChanged, this, &SetJoystick::propogateSetStickButtonNameChange);
     emit setStickButtonNameChange(button->getStick()->getIndex(), button->getJoyNumber());
     connect(button, &JoyControlStickButton::buttonNameChanged, this, &SetJoystick::propogateSetStickButtonNameChange);
@@ -880,7 +875,7 @@ void SetJoystick::propogateSetDPadButtonNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender()); // static_cast
+    JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender());
     disconnect(button, &JoyDPadButton::buttonNameChanged, this, &SetJoystick::propogateSetDPadButtonNameChange);
     emit setDPadButtonNameChange(button->getDPad()->getIndex(), button->getJoyNumber());
     connect(button, &JoyDPadButton::buttonNameChanged, this, &SetJoystick::propogateSetDPadButtonNameChange);
@@ -890,7 +885,7 @@ void SetJoystick::propogateSetVDPadButtonNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender()); // static_cast
+    JoyDPadButton *button = qobject_cast<JoyDPadButton*>(sender());
     disconnect(button, &JoyDPadButton::buttonNameChanged, this, &SetJoystick::propogateSetVDPadButtonNameChange);
     emit setVDPadButtonNameChange(button->getDPad()->getIndex(), button->getJoyNumber());
     connect(button, &JoyDPadButton::buttonNameChanged, this, &SetJoystick::propogateSetVDPadButtonNameChange);
@@ -900,7 +895,7 @@ void SetJoystick::propogateSetAxisNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyAxis *axis = qobject_cast<JoyAxis*>(sender()); // static_cast
+    JoyAxis *axis = qobject_cast<JoyAxis*>(sender());
     disconnect(axis, &JoyAxis::axisNameChanged, this, &SetJoystick::propogateSetAxisNameChange);
     emit setAxisNameChange(axis->getIndex());
     connect(axis, &JoyAxis::axisNameChanged, this, &SetJoystick::propogateSetAxisNameChange);
@@ -910,7 +905,7 @@ void SetJoystick::propogateSetStickNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyControlStick *stick = qobject_cast<JoyControlStick*>(sender()); // static_cast
+    JoyControlStick *stick = qobject_cast<JoyControlStick*>(sender());
     disconnect(stick, &JoyControlStick::stickNameChanged, this, &SetJoystick::propogateSetStickNameChange);
     emit setStickNameChange(stick->getIndex());
     connect(stick, &JoyControlStick::stickNameChanged, this, &SetJoystick::propogateSetStickNameChange);
@@ -920,7 +915,7 @@ void SetJoystick::propogateSetDPadNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyDPad *dpad = qobject_cast<JoyDPad*>(sender()); // static_cast
+    JoyDPad *dpad = qobject_cast<JoyDPad*>(sender());
     disconnect(dpad, &JoyDPad::dpadNameChanged, this, &SetJoystick::propogateSetDPadButtonNameChange);
     emit setDPadNameChange(dpad->getIndex());
     connect(dpad, &JoyDPad::dpadNameChanged, this, &SetJoystick::propogateSetDPadButtonNameChange);
@@ -930,7 +925,7 @@ void SetJoystick::propogateSetVDPadNameChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    VDPad *vdpad = qobject_cast<VDPad*>(sender()); // static_cast
+    VDPad *vdpad = qobject_cast<VDPad*>(sender());
     disconnect(vdpad, &VDPad::dpadNameChanged, this, &SetJoystick::propogateSetVDPadNameChange);
     emit setVDPadNameChange(vdpad->getIndex());
     connect(vdpad, &VDPad::dpadNameChanged, this, &SetJoystick::propogateSetVDPadNameChange);
@@ -1022,7 +1017,6 @@ void SetJoystick::setIgnoreEventState(bool ignore)
             }
         }
     }
-
 }
 
 void SetJoystick::propogateSetAxisActivated(int value)
@@ -1141,8 +1135,7 @@ void SetJoystick::copyAssignments(SetJoystick *destSet)
         JoyAxis *sourceAxis = axes.value(i);
         JoyAxis *destAxis = destSet->axes.value(i);
 
-        if (sourceAxis && destAxis)
-            sourceAxis->copyAssignments(destAxis);
+        if (sourceAxis && destAxis) sourceAxis->copyAssignments(destAxis);
     }
 
     QHashIterator<int, JoyControlStick*> stickIter(getSticks());

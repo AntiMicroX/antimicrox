@@ -37,6 +37,7 @@ XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->reader = reader;
+
     if (reader->device() && reader->device()->isOpen())
     {
         this->fileVersion = reader->attributes().value("configversion").toString().toInt();

@@ -192,9 +192,7 @@ QString X11Extras::getDisplayString(QString xcodestring)
     QString temp = QString();
 
     if (knownAliases.contains(xcodestring))
-    {
         temp = knownAliases.value(xcodestring);
-    }
 
     return temp;
 }
@@ -354,19 +352,13 @@ QString X11Extras::getApplicationLocation(int pid)
             QByteArray tempByteArray = procString.toLocal8Bit();
             ssize_t len = readlink(tempByteArray.constData(), buf, sizeof(buf)-1);
 
-            if (len != -1)
-            {
-                buf[len] = '\0';
-            }
+            if (len != -1) buf[len] = '\0';
 
             if (len > 0)
             {
                 QString temp = QString::fromUtf8(buf);
 
-                if (!temp.isEmpty())
-                {
-                    exepath = temp;
-                }
+                if (!temp.isEmpty()) exepath = temp;
             }
         }
     }
@@ -553,7 +545,7 @@ QString X11Extras::getWindowTitle(Window window)
         temp.append(QString::fromUtf8(tempprop));
 
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << temp;
+            qDebug() << temp;
         #endif
     }
 
@@ -584,7 +576,7 @@ QString X11Extras::getWindowClass(Window window)
     if ((status == Success) && (prop != nullptr))
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << nitems;
+            qDebug() << nitems;
         #endif
 
         char *null_char = strchr(reinterpret_cast<char*>(prop), '\0');
@@ -597,8 +589,8 @@ QString X11Extras::getWindowClass(Window window)
         temp.append(QString::fromUtf8(tempprop));
 
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << temp;
-        qDebug() << reinterpret_cast<char*>(prop);
+            qDebug() << temp;
+            qDebug() << reinterpret_cast<char*>(prop);
         #endif
     }
 
@@ -620,9 +612,7 @@ unsigned long X11Extras::getWindowInFocus()
     XGetInputFocus(display, &currentWindow, &focusState);
 
     if (currentWindow > 0)
-    {
         result = static_cast<unsigned long>(currentWindow);
-    }
 
     return result;
 }
@@ -725,10 +715,7 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
             XCloseDevice(display, device);
         }
 
-        if (all_devices != nullptr)
-        {
-            XIFreeDeviceInfo(all_devices);
-        }
+        if (all_devices != nullptr) XIFreeDeviceInfo(all_devices);
      }
  }
 
@@ -802,10 +789,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
             XCloseDevice(display, device);
         }
 
-        if (all_devices != nullptr)
-        {
-            XIFreeDeviceInfo(all_devices);
-        }
+        if (all_devices != nullptr) XIFreeDeviceInfo(all_devices);
     }
 
     return tempInfo;
