@@ -50,23 +50,12 @@ void StickPushButtonGroup::generateButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
+    JoyControlStickButtonPushButton *pushbutton = nullptr;
 
-    JoyControlStickButton *button = stickButtons->value(JoyControlStick::StickLeftUp);
-    upLeftButton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-    JoyControlStickButtonPushButton *pushbutton = upLeftButton;
-    connect(pushbutton, &JoyControlStickButtonPushButton::clicked, this, [this, pushbutton] {
-        openStickButtonDialog(pushbutton);
-    });
-
-    button->establishPropertyUpdatedConnections();
-    connect(button, &JoyControlStickButton::slotsChanged, this, &StickPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 0, 0);
-
-    generateBtnToGrid(pushbutton, upButton, stick, JoyControlStick::StickUp, 0, 1);
-    generateBtnToGrid(pushbutton, upRightButton, stick, JoyControlStick::StickRightUp, 0, 2);
-    generateBtnToGrid(pushbutton, leftButton, stick, JoyControlStick::StickLeft, 1, 0);
+    upLeftButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickLeftUp, 0, 0);
+    upButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickUp, 0, 1);
+    upRightButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickRightUp, 0, 2);
+    leftButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickLeft, 1, 0);
 
     stickWidget = new JoyControlStickPushButton(stick, displayNames, parentWidget());
     stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
@@ -74,17 +63,16 @@ void StickPushButtonGroup::generateButtons()
 
     addWidget(stickWidget, 1, 1);
 
-    generateBtnToGrid(pushbutton, rightButton, stick, JoyControlStick::StickRight, 1, 2);
-    generateBtnToGrid(pushbutton, downLeftButton, stick, JoyControlStick::StickLeftDown, 2, 0);
-    generateBtnToGrid(pushbutton, downButton, stick, JoyControlStick::StickDown, 2, 1);
-    generateBtnToGrid(pushbutton, downRightButton, stick, JoyControlStick::StickRightDown, 2, 2);
+    rightButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickRight, 1, 2);
+    downLeftButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickLeftDown, 2, 0);
+    downButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickDown, 2, 1);
+    downRightButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickRightDown, 2, 2);
 }
 
-void StickPushButtonGroup::generateBtnToGrid(JoyControlStickButtonPushButton *pushbutton, JoyControlStickButtonPushButton *pushbuttonLocal, JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections stickValue, int gridRow, int gridCol)
+JoyControlStickButtonPushButton* StickPushButtonGroup::generateBtnToGrid(JoyControlStickButtonPushButton *pushbutton, JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections stickValue, int gridRow, int gridCol)
 {
     JoyControlStickButton* button = stick->getButtons()->value(stickValue);
-    pushbuttonLocal = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
-    pushbutton = pushbuttonLocal;
+    pushbutton = new JoyControlStickButtonPushButton(button, displayNames, parentWidget());
 
     connect(pushbutton, &JoyControlStickButtonPushButton::clicked, this, [this, pushbutton] {
         openStickButtonDialog(pushbutton);
@@ -94,6 +82,7 @@ void StickPushButtonGroup::generateBtnToGrid(JoyControlStickButtonPushButton *pu
     connect(button, &JoyControlStickButton::slotsChanged, this, &StickPushButtonGroup::propogateSlotsChanged);
 
     addWidget(pushbutton, gridRow, gridCol);
+    return pushbutton;
 }
 
 void StickPushButtonGroup::changeButtonLayout()

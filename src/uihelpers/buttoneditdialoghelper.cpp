@@ -37,8 +37,6 @@ ButtonEditDialogHelper::ButtonEditDialogHelper(QObject *parent) :
     QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    button = nullptr;
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code,

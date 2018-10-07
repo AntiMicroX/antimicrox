@@ -49,41 +49,26 @@ void DPadPushButtonGroup::generateButtons()
 
     QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
 
-    JoyDPadButton *button = buttons->value(JoyDPadButton::DpadLeftUp);
-    generateBtnForGrid(buttons, button, upLeftButton, 0, 0);
-
-    button = buttons->value(JoyDPadButton::DpadUp);
-    generateBtnForGrid(buttons, button, upButton, 0, 1);
-
-    button = buttons->value(JoyDPadButton::DpadRightUp);
-    generateBtnForGrid(buttons, button, upRightButton, 0, 2);
-
-    button = buttons->value(JoyDPadButton::DpadLeft);
-    generateBtnForGrid(buttons, button, leftButton, 1, 0);
+    upLeftButton = generateBtnForGrid(buttons, 9, 0, 0);
+    upButton = generateBtnForGrid(buttons, 1, 0, 1);
+    upRightButton = generateBtnForGrid(buttons, 3, 0, 2);
+    leftButton = generateBtnForGrid(buttons, 8, 1, 0);
 
     dpadWidget = new DPadPushButton(dpad, displayNames, parentWidget());
     dpadWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
     connect(dpadWidget, &DPadPushButton::clicked, this, &DPadPushButtonGroup::showDPadDialog);
     addWidget(dpadWidget, 1, 1);
 
-    button = buttons->value(JoyDPadButton::DpadRight);
-    generateBtnForGrid(buttons, button, rightButton, 1, 2);
-
-    button = buttons->value(JoyDPadButton::DpadLeftDown);
-    generateBtnForGrid(buttons, button, downLeftButton, 2, 0);
-
-    button = buttons->value(JoyDPadButton::DpadDown);
-    generateBtnForGrid(buttons, button, downButton, 2, 1);
-
-    button = buttons->value(JoyDPadButton::DpadRightDown);
-    generateBtnForGrid(buttons, button, downRightButton, 2, 2);
+    rightButton = generateBtnForGrid(buttons, 2, 1, 2);
+    downLeftButton = generateBtnForGrid(buttons, 12, 2, 0);
+    downButton = generateBtnForGrid(buttons, 4, 2, 1);
+    downRightButton = generateBtnForGrid(buttons, 6, 2, 2);
 }
 
-void DPadPushButtonGroup::generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons, JoyDPadButton *button, JoyDPadButtonWidget *pushbutton, int cellRow, int cellCol)
+JoyDPadButtonWidget* DPadPushButtonGroup::generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons, int dpadDirection, int cellRow, int cellCol)
 {
-    button = buttons->value(JoyDPadButton::DpadUp);
-    upButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = upButton;
+    JoyDPadButton *button = buttons->value(static_cast<JoyDPadButton::JoyDPadDirections>(dpadDirection));
+    JoyDPadButtonWidget *pushbutton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
 
     connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
         openDPadButtonDialog(pushbutton);
@@ -92,6 +77,8 @@ void DPadPushButtonGroup::generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons
     button->establishPropertyUpdatedConnections();
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
     addWidget(pushbutton, cellRow, cellCol);
+
+    return pushbutton;
 }
 
 void DPadPushButtonGroup::changeButtonLayout()

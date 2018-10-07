@@ -67,7 +67,7 @@ private:
 
     DPadPushButton *dpadWidget;
 
-    void generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons, JoyDPadButton *button, JoyDPadButtonWidget *pushbutton, int cellRow, int cellCol);
+    JoyDPadButtonWidget * generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons, int dpadDirection , int cellRow, int cellCol);
 };
 
 #endif // DPADPUSHBUTTONGROUP_H

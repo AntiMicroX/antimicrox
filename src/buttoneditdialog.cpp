@@ -463,9 +463,6 @@ void ButtonEditDialog::checkTurboSetting(bool state)
             ui->turboCheckBox->setChecked(state);
             ui->turboCheckBox->setEnabled(true);
         }
-
-        getHelperLocal().setUseTurbo(state);
-
     }
 }
 

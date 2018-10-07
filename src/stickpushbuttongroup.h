@@ -81,7 +81,7 @@ private:
 
     JoyControlStickPushButton *stickWidget;
 
-    void generateBtnToGrid(JoyControlStickButtonPushButton *pushbutton, JoyControlStickButtonPushButton *pushbuttonLocal, JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections stickValue, int gridRow, int gridCol);
+    JoyControlStickButtonPushButton * generateBtnToGrid(JoyControlStickButtonPushButton *pushbutton, JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections stickValue, int gridRow, int gridCol);
 };
 
 #endif // STICKPUSHBUTTONGROUP_H
