@@ -1029,7 +1029,7 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
 
             if (typeid(*button) == typeid(JoyAxisButton))
             {
-                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button); // static_cast
+                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button);
                 xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
                 xml->writeAttribute("button", QString::number(button->getJoyNumber()));
             }
@@ -1051,7 +1051,7 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
 
             if (typeid(*button) == typeid(JoyAxisButton))
             {
-                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button); // static_cast
+                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button);
                 xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
                 xml->writeAttribute("button", QString::number(button->getJoyNumber()));
             }
@@ -1073,7 +1073,7 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
 
             if (typeid(*button) == typeid(JoyAxisButton))
             {
-                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button); // static_cast
+                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button);
                 xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
                 xml->writeAttribute("button", QString::number(button->getJoyNumber()));
             }
@@ -1095,7 +1095,7 @@ void InputDevice::writeConfig(QXmlStreamWriter *xml)
 
             if (typeid(*button) == typeid(JoyAxisButton))
             {
-                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button); // static_cast
+                JoyAxisButton *axisbutton = qobject_cast<JoyAxisButton*>(button);
                 xml->writeAttribute("axis", QString::number(axisbutton->getAxis()->getRealJoyIndex()));
                 xml->writeAttribute("button", QString::number(button->getJoyNumber()));
             }

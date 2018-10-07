@@ -398,7 +398,7 @@ void DPadEditDialog::updateDPadDelaySpinBox(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double temp = (value * 0.001); // static_cast<double>
+    double temp = value * 0.001;
     ui->dpadDelayDoubleSpinBox->setValue(temp);
 }
 
@@ -410,7 +410,7 @@ void DPadEditDialog::updateDPadDelaySlider(double value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int currentDpadDelay = static_cast<int>(value) * 100;
+    int currentDpadDelay = value * 100;
 
     if (ui->dpadDelaySlider->value() != currentDpadDelay)
     {

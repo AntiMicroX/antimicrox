@@ -250,7 +250,7 @@ void AdvanceButtonDialog::changeTurboText(int value)
     if (value >= GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO)
     {
         double delay = value / 100.0;
-        double clicks = 100.0 / static_cast<double>(value);
+        double clicks = 100.0 / value;
         QString delaytext = QString::number(delay, 'g', 3).append(" ").append(trUtf8("sec."));
         QString labeltext = QString::number(clicks, 'g', 2).append(" ").append(trUtf8("/sec."));
 
@@ -1134,7 +1134,7 @@ void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int milliseconds = (static_cast<int>(value) * 1000) + (static_cast<int>(fmod(value, 1.0)) * 1000);
+    int milliseconds = (value * 1000) + (fmod(value, 1.0) * 1000);
     m_button->setCycleResetTime(milliseconds);
 }
 

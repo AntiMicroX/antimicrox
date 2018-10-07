@@ -4362,7 +4362,7 @@ double JoyControlStick::getSpringDeadCircleX()
     double ang_sin = sin(angle2);
     double ang_cos = cos(angle2);
 
-    int deadX = abs(static_cast<int>(floor(deadZone * ang_sin + 0.5)));
+    int deadX = abs(floor(deadZone * ang_sin + 0.5));
     double diagonalDeadX = calculateXDiagonalDeadZone(axis1Value, axis2Value);
 
     double squareStickFullPhi = qMin(ang_sin != 0.0 ? 1/fabs(ang_sin) : 2, ang_cos != 0.0 ? 1/fabs(ang_cos) : 2);
@@ -4407,7 +4407,7 @@ double JoyControlStick::getSpringDeadCircleY()
     double ang_sin = sin(angle2);
     double ang_cos = cos(angle2);
 
-    int deadY = abs(static_cast<int>(static_cast<int>(floor(deadZone * ang_cos + 0.5))));
+    int deadY = abs(floor(deadZone * ang_cos + 0.5));
     double diagonalDeadY = calculateYDiagonalDeadZone(axis1Value, axis2Value);
 
     double squareStickFullPhi = qMin(ang_sin != 0.0 ? 1/fabs(ang_sin) : 2, ang_cos != 0.0 ? 1/fabs(ang_cos) : 2);

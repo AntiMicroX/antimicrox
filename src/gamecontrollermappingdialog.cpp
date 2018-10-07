@@ -697,7 +697,7 @@ void GameControllerMappingDialog::updateLastAxisLineEdit(JoyAxis *tempAxis, int 
 
         if (device->isGameController())
         {
-            GameController *controller = qobject_cast<GameController*>(device); // static_cast
+            GameController *controller = qobject_cast<GameController*>(device);
             axisText = QString("%1: %2").arg(controller->getBindStringForAxis(tempAxis->getIndex(), true))
                                     .arg(value);
         }
