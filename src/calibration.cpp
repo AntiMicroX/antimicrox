@@ -237,8 +237,6 @@ void Calibration::startCalibration()
         calibrated = false;
 
         ui->steps->setText(trUtf8("Place the joystick in the center position.\n\nIt's the part, where often you don't have to move. Just skip it in such situation."));
-        update();
-
         this->setWindowTitle(trUtf8("Calibrating center"));
         ui->startButton->setText(trUtf8("Start second step"));
         update();
@@ -271,8 +269,8 @@ void Calibration::startCalibration()
         y_es_val.clear();
         sumX = 0;
         sumY = 0;
-        update();
 
+        update();
         disconnect(ui->startButton, &QPushButton::clicked, this, nullptr);
         connect(ui->startButton, &QPushButton::clicked, this, &Calibration::startSecondStep);
     }
@@ -289,8 +287,6 @@ void Calibration::startSecondStep()
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr)) {
 
             ui->steps->setText(trUtf8("\nPlace the joystick in the top-left corner many times"));
-            update();
-
             this->setWindowTitle(trUtf8("Calibrating position"));
             update();
 
@@ -298,7 +294,7 @@ void Calibration::startSecondStep()
             qDebug() << "Y_ES_VAL: " << y_es_val.count(QString("-"));
 
 
-            if (enoughProb(x_es_val.count(QString("-")), y_es_val.count(QString("-")))) {
+            if (enoughProb(x_es_val.count(QString("-")), y_es_val.count(QString("-")), QString("-"))) {
 
                 int min_x = 0;
                 int min_y = 0;
@@ -331,16 +327,17 @@ void Calibration::startSecondStep()
                 text.append(trUtf8("\nY: %1").arg(min_axis_val_y));
                 ui->Informations->setText(text);
                 this->text = text;
-                update();
 
                 x_es_val.clear();
                 y_es_val.clear();
                 sumX = 0;
                 sumY = 0;
 
+                update();
                 disconnect(ui->startButton, &QPushButton::clicked, this, nullptr);
                 connect(ui->startButton, &QPushButton::clicked, this, &Calibration::startLastStep);
-        }
+
+            }
     }
 }
 
@@ -355,13 +352,11 @@ void Calibration::startLastStep()
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr)) {
 
             ui->steps->setText(trUtf8("\nPlace the joystick in the bottom-right corner"));
-            update();
-
             this->setWindowTitle(trUtf8("Calibrating position"));
             ui->startButton->setText(trUtf8("Start final step"));
             update();
 
-            if (enoughProb(x_es_val.count(QString("+")), y_es_val.count(QString("+")))) {
+            if (enoughProb(x_es_val.count(QString("+")), y_es_val.count(QString("+")), QString("+"))) {
 
                 int max_x = 0;
                 int max_y = 0;
@@ -419,6 +414,8 @@ void Calibration::startLastStep()
                 this->setWindowTitle(trUtf8("Calibration"));
                 update();
 
+                x_es_val.clear();
+                y_es_val.clear();
                 sumX = 0;
                 sumY = 0;
 
@@ -470,14 +467,24 @@ void Calibration::saveSettings()
  * @param counts of ax Y moving values
  * @return if counts of values for X and Y axes were greater than 4
  */
-bool Calibration::enoughProb(int x_count, int y_count)
+bool Calibration::enoughProb(int x_count, int y_count, QString character)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool enough = true;
 
-    if (x_count < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the right at least five times! Keep moving!")); }
-    else if (y_count < 5) { enough = false; QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You must move X axis to the left at least five times! Keep moving!")); }
+    if ((x_count < 5) || (y_count < 5)) {
+        if (character == QString("-"))
+        {
+            enough = false;
+            QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You have to move axes to the top-left corner at least five times."));
+        }
+        else if (character == QString("+"))
+        {
+            enough = false;
+            QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You have to move axes to the bottom-right corner at least five times."));
+        }
+    }
 
     return enough;
 }

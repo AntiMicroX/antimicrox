@@ -673,7 +673,7 @@ void MainWindow::quitProgram()
         discard = tab->discardUnsavedProfileChanges();
     }
 
-    qApp->quit();
+    if (discard) qApp->quit();
 
 }
 

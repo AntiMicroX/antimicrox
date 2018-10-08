@@ -708,65 +708,73 @@ void JoyTabWidget::resetJoystick()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int currentIndex = configBox->currentIndex();
-    if (currentIndex != 0)
-    {
-        QString filename = configBox->itemData(currentIndex).toString();
+    QMessageBox msg;
+    msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msg.setText(trUtf8("Do you really want to reset buttons settings for joystick?"));
+    int result = msg.exec();
 
-        removeCurrentButtons();
+    if (result == QMessageBox::Yes) {
 
-        QMetaObject::invokeMethod(&tabHelper, "readConfigFileWithRevert", Qt::BlockingQueuedConnection,
-                                  Q_ARG(QString, filename));
-
-        fillButtons();
-        refreshSetButtons();
-        refreshCopySetActions();
-
-        XMLConfigReader *reader = tabHelper.getReader();
-        if (!reader->hasError())
+        int currentIndex = configBox->currentIndex();
+        if (currentIndex != 0)
         {
-            configBox->setItemIcon(currentIndex, QIcon());
+            QString filename = configBox->itemData(currentIndex).toString();
 
-            QString tempProfileName = QString();
-            if (!m_joystick->getProfileName().isEmpty())
+            removeCurrentButtons();
+
+            QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+
+            fillButtons();
+            refreshSetButtons();
+            refreshCopySetActions();
+
+            XMLConfigReader *reader = tabHelper.getReader();
+            if (!reader->hasError())
             {
-                tempProfileName = m_joystick->getProfileName();
-                configBox->setItemText(currentIndex, tempProfileName);
+                configBox->setItemIcon(currentIndex, QIcon());
+
+                QString tempProfileName = QString();
+
+                if (!m_joystick->getProfileName().isEmpty())
+                {
+                    tempProfileName = m_joystick->getProfileName();
+                    configBox->setItemText(currentIndex, tempProfileName);
+                }
+                else
+                {
+                    tempProfileName = oldProfileName;
+                    configBox->setItemText(currentIndex, oldProfileName);
+                }
+
+                oldProfileName = tempProfileName;
             }
-            else
+            else if (reader->hasError() && this->window()->isEnabled())
             {
-                tempProfileName = oldProfileName;
-                configBox->setItemText(currentIndex, oldProfileName);
+                QMessageBox msg;
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setText(reader->getErrorString());
+                msg.setModal(true);
+                msg.exec();
             }
-
-            oldProfileName = tempProfileName;
+            else if (reader->hasError() && !this->window()->isEnabled())
+            {
+                QTextStream error(stderr);
+                error << reader->getErrorString() << endl;
+            }
         }
-        else if (reader->hasError() && this->window()->isEnabled())
+        else
         {
-            QMessageBox msg;
-            msg.setStandardButtons(QMessageBox::Close);
-            msg.setText(reader->getErrorString());
-            msg.setModal(true);
-            msg.exec();
+            configBox->setItemText(0, trUtf8("<New>"));
+            configBox->setItemIcon(0, QIcon());
+
+            removeCurrentButtons();
+
+            QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+
+            fillButtons();
+            refreshSetButtons();
+            refreshCopySetActions();
         }
-        else if (reader->hasError() && !this->window()->isEnabled())
-        {
-            QTextStream error(stderr);
-            error << reader->getErrorString() << endl;
-        }
-    }
-    else
-    {
-        configBox->setItemText(0, trUtf8("<New>"));
-        configBox->setItemIcon(0, QIcon());
-
-        removeCurrentButtons();
-
-        QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
-
-        fillButtons();
-        refreshSetButtons();
-        refreshCopySetActions();
     }
 }
 
@@ -1103,6 +1111,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     {
         configBox->setCurrentIndex(-1);
     }
+
 
     int shouldisplaynames = m_settings->value("DisplayNames", "0").toInt();
     if (shouldisplaynames == 1)

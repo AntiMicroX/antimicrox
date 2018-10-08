@@ -33,7 +33,7 @@ protected:
     void setProgressBars(JoyControlStick* controlstick);
     void updateAxesBox();
     void restoreCalValues();
-    bool enoughProb(int x_count, int y_count);
+    bool enoughProb(int x_count, int y_count, QString character);
     int calibratedDeadZone(int center, int deadzone);
 
 
