@@ -116,9 +116,6 @@ public:
 
     virtual void eventReset();
 
-    static const QString xmlName;
-    static const int DEFAULTDPADDELAY; // unsigned
-
 signals:
     void active(int value);
     void released(int value);

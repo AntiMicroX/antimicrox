@@ -41,6 +41,7 @@ private slots:
     void switchSetMode(QAction* action);
     void disableSetMode();
     void clearButton();
+    void createActionForGroup(QActionGroup *tempGroup, QString actionText, QAction *action, QMenu *tempSetMenu, int setSelection, int currentSelection, int setDataInc, int setCondition);
 };
 
 #endif // JOYBUTTONCONTEXTMENU_H

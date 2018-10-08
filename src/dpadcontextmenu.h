@@ -46,6 +46,9 @@ private:
 
     JoyDPad *dpad;
     DPadContextMenuHelper helper;
+
+    void generateActionPreset(QAction* action, QString actionText, int currentPreset, int& presetMode, QActionGroup* presetGroup);
+    void generateActionMode(QActionGroup *modesGroup, QAction* action, QString actionText, int currentPreset, int presetMode);
 };
 
 #endif // DPADCONTEXTMENU_H

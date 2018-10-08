@@ -23,7 +23,9 @@
 class Joystick;
 class JoyAxisButton;
 class JoyButton;
-
+class QComboBox;
+class QCheckBox;
+class JoyControlStick;
 
 namespace Ui {
 class AdvanceStickAssignmentDialog;
@@ -45,15 +47,15 @@ signals:
     void vdpadConfigurationChanged();
 
 private slots:
-    void refreshStickConfiguration();
-    void refreshVDPadConfiguration();
+    void refreshStickConfiguration(JoyControlStick *stick1, JoyControlStick *stick2);
+    void refreshVDPadsConfiguration();
 
     void checkForAxisAssignmentStickOne(QWidget* comboBox);
     void checkForAxisAssignmentStickTwo(QWidget* comboBox);
 
     void changeStateStickOneWidgets(bool enabled);
     void changeStateStickTwoWidgets(bool enabled);
-    void changeStateVDPadWidgets(bool enabled);
+    void changeStateVDPadWidgets(bool enabledVDPads);
 
     void populateDPadComboBoxes();
 
@@ -89,6 +91,9 @@ private:
 
     Joystick *joystick;
 
+    void checkForAxisAssignmentSticks(QWidget* comboBox, QComboBox* xAxisComboBox, QComboBox* yAxisComboBox, int controlStickNumber);
+    void refreshSticksForAxes(bool axesExist, int xAxisComboBoxIndex, int yAxisComboBoxIndex, QComboBox* xAxisComboBox, QComboBox* yAxisComboBox, QCheckBox* enabledSticksCheckbox, QPushButton* quickAssignBtn);
+    void refreshVDPadConf(JoyButton *vdpadButton, QComboBox* vpadComboBox);
 };
 
 #endif // ADVANCESTICKASSIGNMENTDIALOG_H

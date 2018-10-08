@@ -37,11 +37,11 @@ public:
     void tryFlash();
 
 protected:
-    QString generateLabel();
+    QString generateLabel() override;
 
 public slots:
-    void disableFlashes();
-    void enableFlashes();
+    void disableFlashes() override;
+    void enableFlashes() override;
 
 private slots:
     void showContextMenu(const QPoint &point);

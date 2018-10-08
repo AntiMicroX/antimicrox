@@ -56,6 +56,7 @@ void JoyButtonWidget::disableFlashes()
 
     disconnect(m_button, &JoyButton::clicked, this, &JoyButtonWidget::flash);
     disconnect(m_button, &JoyButton::released, this, &JoyButtonWidget::unflash);
+
     this->unflash();
 }
 
@@ -71,11 +72,10 @@ QString JoyButtonWidget::generateLabel()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString();
-    temp = m_button->getName(false, ifDisplayNames()).replace("&", "&&");
+    QString temp = m_button->getName(false, ifDisplayNames()).replace("&", "&&");
 
     #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << "Name of joy button is: " << temp;
+        qDebug() << "Name of joy button is: " << temp;
     #endif
 
     return temp;
@@ -95,8 +95,5 @@ void JoyButtonWidget::tryFlash()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (m_button->getButtonState())
-    {
-        flash();
-    }
+    if (m_button->getButtonState()) flash();
 }

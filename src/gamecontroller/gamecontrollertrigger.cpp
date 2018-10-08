@@ -19,6 +19,7 @@
 
 #include "gamecontrollertrigger.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "gamecontrollertriggerbutton.h"
 
@@ -29,12 +30,7 @@
 #include <QDebug>
 
 
-const int GameControllerTrigger::AXISDEADZONE = 2000;
-const int GameControllerTrigger::AXISMAXZONE = 32000;
 const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTLE = GameControllerTrigger::PositiveHalfThrottle;
-
-const QString GameControllerTrigger::xmlName = "trigger";
-
 
 GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyAxis(index, originset, parentSet, parent)
@@ -51,7 +47,7 @@ QString GameControllerTrigger::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::GameControllerTrigger::xmlName;
 }
 
 
@@ -93,15 +89,15 @@ void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (xml->isStartElement() && (xml->name() == JoyAxis::xmlName))
+    if (xml->isStartElement() && (xml->name() == GlobalVariables::JoyAxis::xmlName))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != JoyAxis::xmlName)))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::JoyAxis::xmlName)))
         {
             bool found = readMainConfig(xml);
 
-            if (!found && (xml->name() == JoyAxisButton::xmlName) && xml->isStartElement())
+            if (!found && (xml->name() == GlobalVariables::JoyAxisButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 GameControllerTriggerButton *triggerButton = nullptr;
@@ -173,12 +169,12 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
     xml->writeAttribute("index", QString::number((m_index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
 
 
-    if (!currentlyDefault && (deadZone != AXISDEADZONE))
+    if (!currentlyDefault && (deadZone != GlobalVariables::GameControllerTrigger::AXISDEADZONE))
     {
       xml->writeTextElement("deadZone", QString::number(deadZone));
     }
 
-    if (!currentlyDefault && (maxZoneValue != AXISMAXZONE))
+    if (!currentlyDefault && (maxZoneValue != GlobalVariables::GameControllerTrigger::AXISMAXZONE))
     {
       xml->writeTextElement("maxZone", QString::number(maxZoneValue));
     }
@@ -229,7 +225,7 @@ int GameControllerTrigger::getDefaultDeadZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->AXISDEADZONE;
+    return GlobalVariables::GameControllerTrigger::AXISDEADZONE;
 }
 
 
@@ -237,7 +233,7 @@ int GameControllerTrigger::getDefaultMaxZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->AXISMAXZONE;
+    return GlobalVariables::GameControllerTrigger::AXISMAXZONE;
 }
 
 

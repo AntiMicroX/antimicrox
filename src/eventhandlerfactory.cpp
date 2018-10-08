@@ -45,6 +45,8 @@ QHash<QString, QString> handlerDisplayNames = buildDisplayNames();
 
 EventHandlerFactory* EventHandlerFactory::instance = nullptr;
 
+
+
 EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
     QObject(parent)
 {
@@ -52,17 +54,17 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
 
 #ifdef Q_OS_UNIX
     #ifdef WITH_UINPUT
+
     if (handler == "uinput")
-    {
         eventHandler = new UInputEventHandler(this);
-    }
-    #endif
+
+#endif
 
     #ifdef WITH_XTEST
+
     if (handler == "xtest")
-    {
         eventHandler = new XTestEventHandler(this);
-    }
+
     #endif
 #elif defined(Q_OS_WIN)
     if (handler == "sendinput")
@@ -96,14 +98,9 @@ EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
     if (instance == nullptr)
     {
         QStringList temp = buildEventGeneratorList();
-        if (!handler.isEmpty() && temp.contains(handler))
-        {
-            instance = new EventHandlerFactory(handler);
-        }
-        else
-        {
-            instance = new EventHandlerFactory(fallBackIdentifier());
-        }
+
+        if (!handler.isEmpty() && temp.contains(handler)) instance = new EventHandlerFactory(handler);
+        else instance = new EventHandlerFactory(fallBackIdentifier());
     }
 
     return instance;
@@ -169,11 +166,10 @@ QString EventHandlerFactory::handlerDisplayName(QString handler)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString();
-    if (handlerDisplayNames.contains(handler))
-    {
-        temp = handlerDisplayNames.value(handler);
-    }
+    QString handlerDispName = QString();
 
-    return temp;
+    if (handlerDisplayNames.contains(handler))
+        handlerDispName = handlerDisplayNames.value(handler);
+
+    return handlerDispName;
 }

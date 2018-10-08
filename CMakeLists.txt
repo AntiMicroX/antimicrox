@@ -28,7 +28,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} "${CMAKE_CURRENT_S
 
 
 if (NOT WIN32)
-find_package(ECM 5.43.0 REQUIRED CONFIG)
+find_package(ECM REQUIRED CONFIG)
 endif(NOT WIN32)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -246,6 +246,7 @@ set(antimicro_SOURCES
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
     src/calibration.cpp
+    src/globalvariables.cpp
 )
 
 set(antimicro_HEADERS
@@ -343,6 +344,7 @@ set(antimicro_HEADERS
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
     src/calibration.h
+    src/globalvariables.h
 )
 
 set(antimicro_FORMS src/mainwindow.ui
@@ -453,33 +455,6 @@ elseif(WIN32)
     endif(WITH_VMULTI)
 endif(UNIX)
 
-set(USE_QT5 OFF)
-
-if(UNIX)
-    # Check if Qt 5 was specified using an environment variable
-    # or by specifying -DQT_QMAKE_EXECUTABLE.
-    # Otherwise, check for Qt libraries.
-    if("$ENV{QT_SELECT}" EQUAL 5)
-        set(USE_QT5 ON)
-    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt5")
-        set(USE_QT5 ON)
-    else()
-        find_package(Qt5Core QUIET)
-        if(Qt5Core_FOUND)
-            set(USE_QT5 ON)
-        endif(Qt5Core_FOUND)
-    endif("$ENV{QT_SELECT}" EQUAL 5)
-elseif(WIN32)
-    # Use Qt5 on Windows.
-    set(USE_QT5 ON)
-endif(UNIX)
-
-if(USE_QT5)
-    message("Qt5 has been found")
-else()
-    message(FATAL_ERROR "No Qt version was specified.")
-endif(USE_QT5)
-
 if(USE_SDL_2)
     add_definitions(-DUSE_SDL_2)
 endif(USE_SDL_2)
@@ -505,7 +480,6 @@ if(UNIX)
 endif(UNIX)
 
 if (UNIX)
-    if (USE_QT5)
 
         find_package(Qt5Widgets REQUIRED)
         find_package(Qt5Core REQUIRED)
@@ -519,8 +493,6 @@ if (UNIX)
         add_subdirectory("share/antimicro/translations")
 
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-    endif(USE_QT5)
 
 elseif(WIN32)
 
@@ -554,59 +526,11 @@ if(UNIX)
     endif(USE_SDL_2)
 elseif (WIN32)
     if(USE_SDL_2)
-        set(SDL2_LIBRARY "")
-        set(SDL2_LIBRARY_DIR "")
-        set(SDL2_INCLUDE_DIR "")
-        set(SDL2_DLL_LOCATION_DIR "")
-
-        if (MSYS OR MINGW)
-            find_package(PkgConfig QUIET)
-            if(PKG_CONFIG_FOUND)
-                #include(FindPkgConfig)
-
-                pkg_check_modules(SDL2 QUIET sdl2)
-                if(SDL2_FOUND)
-                    #find_path(SDL2_INCLUDE_DIR "SDL2/SDL.h" HINTS ${SDL2_INCLUDE_DIRS})
-
-                    set(SDL2_LIBRARY ${SDL2_LIBRARIES})
-                    set(SDL2_LIBRARY_DIR ${SDL2_LIBRARY_DIRS})
-                    set(SDL2_INCLUDE_DIR ${SDL2_INCLUDE_DIRS})
-                    unset(SDL2_DLL_LOCATION_DIR)
-                    find_path(SDL2_DLL_LOCATION_DIR "SDL2.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
-                    #set(SDL2_DLL_LOCATION_DIR "${SDL2_LIBRARY_DIRS}/../bin")
-
-                    list(APPEND LIBS ${SDL2_LIBRARIES})
-                endif(SDL2_FOUND)
-            endif(PKG_CONFIG_FOUND)
-        endif(MSYS OR MINGW)
-
-        if (NOT SDL2_LIBRARY)
-            # Perform extra voodoo to get proper library paths and include
-            # proper headers.
-	    file(GLOB SDL2_BASE_DIR "${PROJECT_SOURCE_DIR}/SDL2-*.*.*/")
-
-	    if (SDL2_BASE_DIR)
-                unset(SDL2_LIBRARY)
-
-                if(TARGET_ARCH STREQUAL "x86_64")
-                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/lib")
-                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/include")
-                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin")
-
-                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                    list(APPEND LIBS ${SDL2_LIBRARY})
-                    include_directories(${SDL2_INCLUDE_DIR})
-                else()
-                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/lib")
-                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/include")
-                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/bin")
-
-                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                    list(APPEND LIBS ${SDL2_LIBRARY})
-                    include_directories(${SDL2_INCLUDE_DIR})
-                endif(TARGET_ARCH STREQUAL "x86_64")
-	    endif(SDL2_BASE_DIR)  
-        endif(NOT SDL2_LIBRARY)
+    
+        if(SDL2_LIBRARY_DIR AND SDL2_INCLUDE_DIR)
+            list(APPEND LIBS ${SDL2_LIBRARY})
+            include_directories(${SDL2_INCLUDE_DIR})
+        endif(SDL2_LIBRARY_DIR AND SDL2_INCLUDE_DIR)
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
@@ -634,7 +558,7 @@ if(UNIX)
 endif(UNIX)
 
 
-if(USE_QT5)
+
     if(UNIX)
         add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC})
         target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
@@ -644,8 +568,8 @@ if(USE_QT5)
         target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
     endif(UNIX)
 
-    target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
-endif(USE_QT5)
+    #target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
+
 
 # Add link libraries.
 #message(${LIBS})

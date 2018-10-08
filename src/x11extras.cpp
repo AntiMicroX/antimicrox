@@ -17,6 +17,7 @@
 
 #include "common.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 
 #include <unistd.h>
@@ -30,13 +31,6 @@
 
 #include "x11extras.h"
 
-
-
-const QString X11Extras::mouseDeviceName = PadderCommon::mouseDeviceName;
-const QString X11Extras::keyboardDeviceName = PadderCommon::keyboardDeviceName;
-const QString X11Extras::xtestMouseDeviceName = QString("Virtual core XTEST pointer");
-
-QString X11Extras::_customDisplayString = QString("");
 
 static QThreadStorage<X11Extras*> displays;
 
@@ -170,7 +164,7 @@ void X11Extras::setCustomDisplay(QString displayString)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    _customDisplayString = displayString;
+    GlobalVariables::X11Extras::_customDisplayString = displayString;
 }
 
 /**
@@ -198,9 +192,7 @@ QString X11Extras::getDisplayString(QString xcodestring)
     QString temp = QString();
 
     if (knownAliases.contains(xcodestring))
-    {
         temp = knownAliases.value(xcodestring);
-    }
 
     return temp;
 }
@@ -360,19 +352,13 @@ QString X11Extras::getApplicationLocation(int pid)
             QByteArray tempByteArray = procString.toLocal8Bit();
             ssize_t len = readlink(tempByteArray.constData(), buf, sizeof(buf)-1);
 
-            if (len != -1)
-            {
-                buf[len] = '\0';
-            }
+            if (len != -1) buf[len] = '\0';
 
             if (len > 0)
             {
                 QString temp = QString::fromUtf8(buf);
 
-                if (!temp.isEmpty())
-                {
-                    exepath = temp;
-                }
+                if (!temp.isEmpty()) exepath = temp;
             }
         }
     }
@@ -559,7 +545,7 @@ QString X11Extras::getWindowTitle(Window window)
         temp.append(QString::fromUtf8(tempprop));
 
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << temp;
+            qDebug() << temp;
         #endif
     }
 
@@ -590,7 +576,7 @@ QString X11Extras::getWindowClass(Window window)
     if ((status == Success) && (prop != nullptr))
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << nitems;
+            qDebug() << nitems;
         #endif
 
         char *null_char = strchr(reinterpret_cast<char*>(prop), '\0');
@@ -603,8 +589,8 @@ QString X11Extras::getWindowClass(Window window)
         temp.append(QString::fromUtf8(tempprop));
 
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << temp;
-        qDebug() << reinterpret_cast<char*>(prop);
+            qDebug() << temp;
+            qDebug() << reinterpret_cast<char*>(prop);
         #endif
     }
 
@@ -626,9 +612,7 @@ unsigned long X11Extras::getWindowInFocus()
     XGetInputFocus(display, &currentWindow, &focusState);
 
     if (currentWindow > 0)
-    {
         result = static_cast<unsigned long>(currentWindow);
-    }
 
     return result;
 }
@@ -641,7 +625,7 @@ QString X11Extras::getXDisplayString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return _customDisplayString;
+    return GlobalVariables::X11Extras::_customDisplayString;
 }
 
 int X11Extras::getGroup1KeySym(int virtualkey)
@@ -731,10 +715,7 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
             XCloseDevice(display, device);
         }
 
-        if (all_devices != nullptr)
-        {
-            XIFreeDeviceInfo(all_devices);
-        }
+        if (all_devices != nullptr) XIFreeDeviceInfo(all_devices);
      }
  }
 
@@ -742,7 +723,7 @@ void X11Extras::x11ResetMouseAccelerationChange()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    x11ResetMouseAccelerationChange(mouseDeviceName);
+    x11ResetMouseAccelerationChange(GlobalVariables::X11Extras::mouseDeviceName);
 }
 
 struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerName)
@@ -808,10 +789,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
             XCloseDevice(display, device);
         }
 
-        if (all_devices != nullptr)
-        {
-            XIFreeDeviceInfo(all_devices);
-        }
+        if (all_devices != nullptr) XIFreeDeviceInfo(all_devices);
     }
 
     return tempInfo;
@@ -853,7 +831,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return getPointInformation(mouseDeviceName);
+    return getPointInformation(GlobalVariables::X11Extras::mouseDeviceName);
 }
 
 QPoint X11Extras::getPos()

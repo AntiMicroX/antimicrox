@@ -40,7 +40,6 @@ public slots:
     void updateAccelExtraDuration(double value);
     void updateReleaseSpringRadius(int value);
     void updateSpringRelativeStatus(bool value);
-    //void updateExtraAccelerationCurve(int index);
 
 private:
     JoyButton *button;

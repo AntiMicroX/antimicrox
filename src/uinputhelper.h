@@ -45,6 +45,10 @@ protected:
     QHash<QString, int> knownAliasesX11SymVK; // <.., unsigned>
     QHash<int, QString> knownAliasesVKStrings; // <unsigned, ..>
 
+private:
+    void populateXVkStrings(QHash<int, QString>& knownAliasesVKStrings);
+    void populateX11SymVk(QHash<QString, int>& knownAliasesX11SymVK);
+
 };
 
 #endif // UINPUTHELPER_H

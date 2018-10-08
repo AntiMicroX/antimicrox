@@ -17,6 +17,7 @@
 
 #include "xmlconfigreader.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "xmlconfigmigration.h"
@@ -32,7 +33,6 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 #include <QFile>
-
 
 
 XMLConfigReader::XMLConfigReader(QObject *parent) :
@@ -53,9 +53,7 @@ XMLConfigReader::~XMLConfigReader()
     if (configFile != nullptr)
     {
         if (configFile->isOpen())
-        {
             configFile->close();
-        }
 
         delete configFile;
         configFile = nullptr;
@@ -80,6 +78,7 @@ void XMLConfigReader::setFileName(QString filename)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QFile *temp = new QFile(filename);
+
     if (temp->exists())
     {
         configFile = temp;
@@ -116,29 +115,27 @@ bool XMLConfigReader::read()
         }
 
         xml->readNextStartElement();
+
         if (!deviceTypes.contains(xml->name().toString()))
         {
             xml->raiseError("Root node is not a joystick or controller");
         }
-        else if (xml->name() == Joystick::xmlName)
+        else if (xml->name() == GlobalVariables::Joystick::xmlName)
         {
             XMLConfigMigration migration(xml);
+
             if (migration.requiresMigration())
             {
                 QString migrationString = migration.migrate();
+
                 if (migrationString.length() > 0)
                 {
-                    // Remove QFile from reader and clear state
-                    xml->clear();
-                    // Add converted XML string to reader
-                    xml->addData(migrationString);
-                    // Skip joystick root node
-                    xml->readNextStartElement();
-                    // Close current config file
-                    configFile->close();
+                    xml->clear(); // Remove QFile from reader and clear state
+                    xml->addData(migrationString); // Add converted XML string to reader
+                    xml->readNextStartElement(); // Skip joystick root node
+                    configFile->close(); // Close current config file
+                    configFile->open(QFile::WriteOnly | QFile::Text); // Write converted XML to file
 
-                    // Write converted XML to file
-                    configFile->open(QFile::WriteOnly | QFile::Text);
                     if (configFile->isOpen())
                     {
                         configFile->write(migrationString.toLocal8Bit());
@@ -168,9 +165,7 @@ bool XMLConfigReader::read()
         }
 
         if (configFile->isOpen())
-        {
             configFile->close();
-        }
 
         if (xml->hasError() && (xml->error() != QXmlStreamReader::PrematureEndOfDocumentError))
         {
@@ -190,10 +185,9 @@ const QString XMLConfigReader::getErrorString()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
+
     if (xml->hasError())
-    {
         temp = xml->errorString();
-    }
 
     return temp;
 }
@@ -210,9 +204,8 @@ void XMLConfigReader::initDeviceTypes()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deviceTypes.clear();
-    deviceTypes.append(Joystick::xmlName);
-    deviceTypes.append(GameController::xmlName);
-
+    deviceTypes.append(GlobalVariables::Joystick::xmlName);
+    deviceTypes.append(GlobalVariables::GameController::xmlName);
 }
 
 const QXmlStreamReader* XMLConfigReader::getXml() {

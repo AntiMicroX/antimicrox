@@ -17,6 +17,7 @@
 
 #include "gamecontrollermappingdialoghelper.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 
@@ -36,7 +37,7 @@ void GameControllerMappingDialogHelper::raiseDeadZones()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    device->setRawAxisDeadZone(InputDevice::RAISEDDEADZONE);
+    device->setRawAxisDeadZone(GlobalVariables::InputDevice::RAISEDDEADZONE);
     device->getActiveSetJoystick()->raiseAxesDeadZones();
 }
 
@@ -58,7 +59,7 @@ void GameControllerMappingDialogHelper::setupDeadZones()
     device->getActiveSetJoystick()->currentAxesDeadZones(&originalAxesDeadZones);
     device->getActiveSetJoystick()->raiseAxesDeadZones();
 
-    device->setRawAxisDeadZone(InputDevice::RAISEDDEADZONE);
+    device->setRawAxisDeadZone(GlobalVariables::InputDevice::RAISEDDEADZONE);
 }
 
 void GameControllerMappingDialogHelper::restoreDeviceDeadZones()
@@ -69,5 +70,5 @@ void GameControllerMappingDialogHelper::restoreDeviceDeadZones()
     device->getActiveSetJoystick()->release();
     device->getActiveSetJoystick()->setAxesDeadZones(&originalAxesDeadZones);
 
-    device->setRawAxisDeadZone(InputDevice::RAISEDDEADZONE);
+    device->setRawAxisDeadZone(GlobalVariables::InputDevice::RAISEDDEADZONE);
 }

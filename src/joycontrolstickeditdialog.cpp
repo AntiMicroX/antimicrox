@@ -119,8 +119,8 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     ui->fromSafeZoneValueLabel->setText(QString::number(validDistance));
 
     double circleValue = stick->getCircleAdjust();
-    ui->squareStickSlider->setValue(static_cast<int>(circleValue) * 100);
-    ui->squareStickSpinBox->setValue(static_cast<int>(circleValue) * 100);
+    ui->squareStickSlider->setValue(circleValue * 100);
+    ui->squareStickSpinBox->setValue(circleValue * 100);
 
     int stickDelay = stick->getStickDelay();
     ui->stickDelaySlider->setValue(stickDelay * .1);
@@ -596,7 +596,7 @@ void JoyControlStickEditDialog::updateStickDelaySpinBox(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    double temp = value * 0.001; // static_cast<double>
+    double temp = value * 0.001;
     ui->stickDelayDoubleSpinBox->setValue(temp);
 }
 
@@ -608,7 +608,8 @@ void JoyControlStickEditDialog::updateStickDelaySlider(double value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int temp = static_cast<int>(value) * 100;
+    int temp = value * 100;
+
     if (ui->stickDelaySlider->value() != temp)
     {
         ui->stickDelaySlider->setValue(temp);

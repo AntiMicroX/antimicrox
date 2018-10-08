@@ -29,12 +29,14 @@
 #include <QWidget>
 #include <QDebug>
 
+
 EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
                                                                  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditAllDefaultAutoProfileDialog)
 {
     ui->setupUi(this);
+
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setAttribute(Qt::WA_DeleteOnClose);
@@ -43,9 +45,7 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
     this->settings = settings;
 
     if (!info->getProfileLocation().isEmpty())
-    {
         ui->profileLineEdit->setText(info->getProfileLocation());
-    }
 
     connect(ui->profileBrowsePushButton, &QPushButton::clicked, this, &EditAllDefaultAutoProfileDialog::openProfileBrowseDialog);
     connect(this, &EditAllDefaultAutoProfileDialog::accepted, this, &EditAllDefaultAutoProfileDialog::saveAutoProfileInformation);
@@ -62,12 +62,10 @@ void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString lookupDir = PadderCommon::preferredProfileDir(settings);
-    QString filename = QFileDialog::getOpenFileName(this, trUtf8("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
-    if (!filename.isNull() && !filename.isEmpty())
-    {
-        ui->profileLineEdit->setText(filename);
-    }
+    QString preferredProfileDir = PadderCommon::preferredProfileDir(settings);
+    QString profileFilename = QFileDialog::getOpenFileName(this, trUtf8("Open Config"), preferredProfileDir, QString("Config Files (*.amgp *.xml)"));
+
+    if (!profileFilename.isNull() && !profileFilename.isEmpty()) ui->profileLineEdit->setText(profileFilename);
 }
 
 void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
@@ -92,11 +90,12 @@ void EditAllDefaultAutoProfileDialog::accept()
 
     bool validForm = true;
     QString errorString = QString();
+
     if (ui->profileLineEdit->text().length() > 0)
     {
-        QString profileFilename = ui->profileLineEdit->text();
-        QFileInfo info(profileFilename);
-        if (!info.exists())
+        QFileInfo profileInfo(ui->profileLineEdit->text());
+
+        if (!profileInfo.exists())
         {
             validForm = false;
             errorString = trUtf8("Profile file path is invalid.");

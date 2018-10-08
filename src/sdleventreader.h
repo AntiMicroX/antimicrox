@@ -50,7 +50,7 @@ protected:
     void initSDL();
     void closeSDL();
     void clearEvents();
-    int CheckForEvents();
+    int eventStatus();
 
 signals:
     void eventRaised();

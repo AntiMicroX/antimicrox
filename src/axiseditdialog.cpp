@@ -41,27 +41,23 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
 {
     ui->setupUi(this);
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setAttribute(Qt::WA_DeleteOnClose);
 
     setAxisThrottleConfirm = new SetAxisThrottleDialog(axis, this);
-
     m_axis = axis;
 
     updateWindowTitleAxisName();
 
     initialThrottleState = axis->getThrottle();
     bool actAsTrigger = false;
+
     if ((initialThrottleState == static_cast<int>(JoyAxis::PositiveThrottle)) ||
         (initialThrottleState == static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {
         actAsTrigger = true;
     }
 
-    if (actAsTrigger)
-    {
-        buildTriggerPresetsMenu();
-    }
+    if (actAsTrigger) buildTriggerPresetsMenu();
 
     ui->horizontalSlider->setValue(axis->getDeadZone());
     ui->lineEdit->setText(QString::number(axis->getDeadZone()));
@@ -115,18 +111,10 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     ui->joyValueLabel->setText(QString::number(axis->getCurrentRawValue()));
     ui->axisstatusBox->setValue(axis->getCurrentRawValue());
 
-    if (!actAsTrigger)
-    {
-        selectAxisCurrentPreset();
-    }
-    else
-    {
-        selectTriggerPreset();
-    }
+    if (!actAsTrigger) selectAxisCurrentPreset();
+    else selectTriggerPreset();
 
     ui->axisNameLineEdit->setText(axis->getAxisName());
-
-
 
     connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
 
@@ -179,20 +167,15 @@ void AxisEditDialog::implementPresets(int index)
 
     bool actAsTrigger = false;
     int currentThrottle = m_axis->getThrottle();
+
     if ((currentThrottle == static_cast<int>(JoyAxis::PositiveThrottle)) ||
         (currentThrottle == static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {
         actAsTrigger = true;
     }
 
-    if (actAsTrigger)
-    {
-        implementTriggerPresets(index);
-    }
-    else
-    {
-        implementAxisPresets(index);
-    }
+    if (actAsTrigger) implementTriggerPresets(index);
+    else implementAxisPresets(index);
 }
 
 void AxisEditDialog::implementAxisPresets(int index)
@@ -323,6 +306,7 @@ void AxisEditDialog::updateThrottleUi(int index)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempthrottle = 0;
+
     if ((index == 0) || (index == 1))
     {
         ui->nPushButton->setEnabled(true);
@@ -358,6 +342,7 @@ void AxisEditDialog::updateDeadZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
+
     if ((temp >= m_axis->getAxisMinCal()) && (temp <= m_axis->getAxisMaxCal()))
     {
         ui->horizontalSlider->setValue(temp);
@@ -369,6 +354,7 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = value.toInt();
+
     if ((temp >= m_axis->getAxisMinCal()) && (temp <= m_axis->getAxisMaxCal()))
     {
         ui->horizontalSlider_2->setValue(temp);
@@ -417,9 +403,7 @@ void AxisEditDialog::checkFinalSettings()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (m_axis->getThrottle() != initialThrottleState)
-    {
         setAxisThrottleConfirm->exec();
-    }
 }
 
 void AxisEditDialog::selectAxisCurrentPreset()
@@ -435,6 +419,7 @@ void AxisEditDialog::selectAxisCurrentPreset()
     {
         JoyButtonSlot *nslot = naxisslots->at(0);
         JoyButtonSlot *pslot = paxisslots->at(0);
+
         if ((nslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (nslot->getSlotCode() == JoyButtonSlot::MouseLeft) &&
             (pslot->getSlotMode() == JoyButtonSlot::JoyMouseMovement) && (pslot->getSlotCode() == JoyButtonSlot::MouseRight))
         {
@@ -510,6 +495,7 @@ void AxisEditDialog::selectTriggerPreset()
     if (paxisslots->length() == 1)
     {
         JoyButtonSlot *pslot = paxisslots->at(0);
+
         if ((pslot->getSlotMode() == JoyButtonSlot::JoyMouseButton) && (pslot->getSlotCode() == JoyButtonSlot::MouseLB))
         {
             ui->presetsComboBox->setCurrentIndex(1);
@@ -561,9 +547,9 @@ void AxisEditDialog::implementTriggerPresets(int index)
 
     if (pbuttonslot != nullptr)
     {
-
         JoyAxisButton *nbutton = m_axis->getNAxisButton();
         JoyAxisButton *pbutton = m_axis->getPAxisButton();
+
         if (nbutton->getAssignedSlots()->length() > 0)
         {
             QMetaObject::invokeMethod(nbutton, "clearSlotsEventReset", Qt::BlockingQueuedConnection,
@@ -636,10 +622,7 @@ void AxisEditDialog::updateWindowTitleAxisName()
         temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
 
         QString setName = m_axis->getParentSet()->getName();
-        if (!setName.isEmpty())
-        {
-            temp.append(": ").append(setName);
-        }
+        if (!setName.isEmpty()) temp.append(": ").append(setName);
 
         temp.append("]");
     }
@@ -652,7 +635,6 @@ void AxisEditDialog::buildAxisPresetsMenu()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->presetsComboBox->clear();
-
     ui->presetsComboBox->addItem(trUtf8(""));
     ui->presetsComboBox->addItem(trUtf8("Mouse (Horizontal)"));
     ui->presetsComboBox->addItem(trUtf8("Mouse (Inverted Horizontal)"));
@@ -672,7 +654,6 @@ void AxisEditDialog::buildTriggerPresetsMenu()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->presetsComboBox->clear();
-
     ui->presetsComboBox->addItem(trUtf8(""));
     ui->presetsComboBox->addItem(trUtf8("Left Mouse Button"));
     ui->presetsComboBox->addItem(trUtf8("Right Mouse Button"));
@@ -687,6 +668,7 @@ void AxisEditDialog::presetForThrottleChange(int index)
 
     bool actAsTrigger = false;
     int currentThrottle = m_axis->getThrottle();
+
     if ((currentThrottle == static_cast<int>(JoyAxis::PositiveThrottle)) ||
         (currentThrottle == static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {
@@ -694,6 +676,7 @@ void AxisEditDialog::presetForThrottleChange(int index)
     }
 
     disconnect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AxisEditDialog::implementPresets);
+
     if (actAsTrigger)
     {
         buildTriggerPresetsMenu();

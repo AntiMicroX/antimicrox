@@ -21,7 +21,7 @@
 #include "joybutton.h"
 
 #include <QDebug>
-#include <QMessageBox>
+
 
 ButtonEditDialogHelper::ButtonEditDialogHelper(JoyButton *button, QObject *parent) :
     QObject(parent)
@@ -37,7 +37,6 @@ ButtonEditDialogHelper::ButtonEditDialogHelper(QObject *parent) :
     QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code,
@@ -47,7 +46,6 @@ void ButtonEditDialogHelper::setAssignedSlot(int code,
 
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, mode);
-
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code, int alias,
@@ -57,7 +55,6 @@ void ButtonEditDialogHelper::setAssignedSlot(int code, int alias,
 
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, mode);
-
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code, int alias, int index,
@@ -67,7 +64,6 @@ void ButtonEditDialogHelper::setAssignedSlot(int code, int alias, int index,
 
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, index, mode);
-
 }
 
 void ButtonEditDialogHelper::setUseTurbo(bool useTurbo)

@@ -18,6 +18,7 @@
 #include "mousesettingsdialog.h"
 #include "ui_mousesettingsdialog.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 
 #include <QString>
@@ -125,7 +126,7 @@ void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 
     int currentCurveIndex = ui->accelerationComboBox->currentIndex();
     JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
-    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value);
+    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value, GlobalVariables::JoyAxis::JOYSPEED);
 
     label = label.append(" = ").append(QString::number(finalSpeed)).append(" pps");
     ui->horizontalSpeedLabel->setText(label);
@@ -139,7 +140,7 @@ void MouseSettingsDialog::updateVerticalSpeedConvertLabel(int value)
 
     int currentCurveIndex = ui->accelerationComboBox->currentIndex();
     JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
-    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value);
+    int finalSpeed = JoyButton::calculateFinalMouseSpeed(tempCurve, value, GlobalVariables::JoyAxis::JOYSPEED);
 
     label = label.append(" = ").append(QString::number(finalSpeed)).append(" pps");
     ui->verticalSpeedLabel->setText(label);
@@ -165,7 +166,6 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->horizontalSpinBox->setEnabled(false);
         ui->verticalSpinBox->setEnabled(false);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(false);
-
         ui->extraAccelerationGroupBox->setChecked(false);
         ui->extraAccelerationGroupBox->setEnabled(false);
     }
@@ -174,12 +174,10 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->horizontalSpinBox->setEnabled(true);
         ui->verticalSpinBox->setEnabled(true);
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(true);
-
         ui->extraAccelerationGroupBox->setEnabled(true);
+
         if (ui->extraAccelerationGroupBox->isChecked())
-        {
             ui->extraAccelerationGroupBox->setEnabled(true);
-        }
     }
 }
 
@@ -276,7 +274,6 @@ JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
 
     switch(index)
     {
-
         case 1:
         {
             temp = JoyButton::EnhancedPrecisionCurve;
@@ -334,10 +331,9 @@ void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
     {
         int currentCurveIndex = ui->accelerationComboBox->currentIndex();
         JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(currentCurveIndex);
+
         if (temp == JoyButton::PowerCurve)
-        {
             ui->sensitivityDoubleSpinBox->setEnabled(true);
-        }
     }
     else
     {
@@ -425,7 +421,6 @@ JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForI
 
     switch(index)
     {
-
         case 1:
         {
             temp = JoyButton::LinearAccelCurve;
@@ -446,7 +441,6 @@ JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForI
             temp = JoyButton::EaseOutCubicAccelCurve;
             break;
         }
-
     }
 
     return temp;
@@ -462,7 +456,6 @@ MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
 
     switch(curve)
     {
-
         case JoyButton::LinearAccelCurve:
         {
             temp = 1;
@@ -483,9 +476,7 @@ MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
             temp = 4;
             break;
         }
-
     }
 
     ui->extraAccelCurveComboBox->setCurrentIndex(temp);
 }
-

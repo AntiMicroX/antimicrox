@@ -78,7 +78,7 @@ void FlashButtonWidget::refreshLabel()
     setText(generateLabel());
 
     #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << "label has been set: " << generateLabel();
+        qDebug() << "label has been set: " << generateLabel();
     #endif
 }
 
@@ -123,7 +123,8 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
     QFontMetrics fm(tempScaledFont);
 
     bool reduce = false;
-    while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 7)
+
+    while ((this->width() < fm.width(text())) && (tempScaledFont.pointSize() >= 7))
     {
         tempScaledFont.setPointSize(tempScaledFont.pointSize()-1);
         painter.setFont(tempScaledFont);
@@ -132,6 +133,7 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
     }
 
     bool changeFontSize = this->font().pointSize() != tempScaledFont.pointSize();
+
     if (changeFontSize)
     {
         if (reduce && !leftAlignText)

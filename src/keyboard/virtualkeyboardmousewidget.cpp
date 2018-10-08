@@ -39,9 +39,6 @@
 
 #include <SDL2/SDL_power.h>
 
-
-
-
 #include <QFont>
 #include <QSizePolicy>
 #include <QSpacerItem>
@@ -489,10 +486,9 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     QVBoxLayout *tempVBoxLayout = new QVBoxLayout();
     QGridLayout *tempGridLayout = new QGridLayout();
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout(mouseTab);
-    VirtualMousePushButton *pushButton = nullptr;
     QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-    pushButton = new VirtualMousePushButton(trUtf8("Left", "Mouse"), JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
+    VirtualMousePushButton *pushButton = new VirtualMousePushButton(trUtf8("Left", "Mouse"), JoyButtonSlot::MouseLeft, JoyButtonSlot::JoyMouseMovement, this);
     pushButton->setSizePolicy(sizePolicy);
     pushButton->setMinimumHeight(50);
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 50, QSizePolicy::Minimum, QSizePolicy::Expanding));

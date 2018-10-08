@@ -60,8 +60,8 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     Window target_window = None;
     int status = 0;
     Display *display = nullptr;
-
     QString potentialXDisplayString = X11Extras::getInstance()->getXDisplayString();
+
     if (!potentialXDisplayString.isEmpty())
     {
         QByteArray tempByteArray = potentialXDisplayString.toLocal8Bit();
@@ -78,6 +78,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     status = XGrabPointer(display, rootWin, False, ButtonPressMask,
                  GrabModeSync, GrabModeAsync, None,
                  cursor, CurrentTime);
+
     if (status == Success)
     {
         XGrabKey(display, XKeysymToKeycode(display, static_cast<KeySym>(x11KeyMapper.returnVirtualKey(Qt::Key_Escape))), 0, rootWin,
@@ -86,17 +87,18 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
         XEvent event;
         XAllowEvents(display, SyncPointer, CurrentTime);
         XWindowEvent(display, rootWin, ButtonPressMask|KeyPressMask, &event);
+
         switch (event.type)
         {
             case (ButtonPress):
+
                 target_window = event.xbutton.subwindow;
+
                 if (target_window == None)
-                {
                     target_window = event.xbutton.window;
-                }
 
                 #ifndef QT_DEBUG_NO_OUTPUT
-                qDebug() << QString::number(target_window, 16);
+                    qDebug() << QString::number(target_window, 16);
                 #endif
 
                 break;
@@ -117,14 +119,8 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
         XFlush(display);
     }
 
-    if (target_window != None)
-    {
-        targetWindow = static_cast<long>(target_window);
-    }
-    else if (!escaped)
-    {
-        failed = true;
-    }
+    if (target_window != None) targetWindow = static_cast<long>(target_window);
+    else if (!escaped) failed = true;
 
     XCloseDisplay(display);
     emit captureFinished();

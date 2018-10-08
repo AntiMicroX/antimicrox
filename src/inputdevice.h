@@ -124,15 +124,10 @@ public:
     int getRawAxisDeadZone();
     void rawAxisEvent(int index, int value);
 
-    static const int NUMBER_JOYSETS;
-    static const int DEFAULTKEYPRESSTIME;
-    static const int DEFAULTKEYREPEATDELAY; // unsigned
-    static const int DEFAULTKEYREPEATRATE; // unsigned
-    static const int RAISEDDEADZONE;
-
 protected:
     void enableSetConnections(SetJoystick *setstick);
     bool elementsHaveNames();
+    SDL_Joystick* getJoyHandle() const;
 
     QHash<int, SetJoystick*>& getJoystick_sets();
     QHash<int, JoyAxis::ThrottleTypes>& getCali();
@@ -141,7 +136,7 @@ protected:
     int rawAxisDeadZone;
     int keyPressTime; // unsigned
     QString profileName;
-    SDL_Joystick* m_joyhandle;
+
 
 signals:
     void setChangeActivated(int index);
@@ -221,6 +216,7 @@ private:
     QList<int>& getAxesstatesLocal();
     QList<int>& getDpadstatesLocal();
 
+    SDL_Joystick* m_joyhandle;
     QHash<int, SetJoystick*> joystick_sets;
     QHash<int, JoyAxis::ThrottleTypes> cali;
     AntiMicroSettings *m_settings;
@@ -237,8 +233,6 @@ private:
     QList<bool> buttonstates;
     QList<int> axesstates;
     QList<int> dpadstates;
-
-    static QRegExp emptyGUID;
 };
 
 Q_DECLARE_METATYPE(InputDevice*)

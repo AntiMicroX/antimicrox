@@ -17,6 +17,7 @@
 
 #include "xtesteventhandler.h"
 
+#include "globalvariables.h"
 #include "joybuttonslot.h"
 #include "antkeymapper.h"
 #include "messagehandler.h"
@@ -30,7 +31,6 @@
 #include <X11/extensions/XTest.h>
 
 #include "x11extras.h"
-
 
 
 XTestEventHandler::XTestEventHandler(QObject *parent) :
@@ -54,7 +54,7 @@ bool XTestEventHandler::init()
 
     if (instance != nullptr)
     {
-        instance->x11ResetMouseAccelerationChange(X11Extras::xtestMouseDeviceName);
+        instance->x11ResetMouseAccelerationChange(GlobalVariables::X11Extras::xtestMouseDeviceName);
     }
 
     return true;
@@ -153,7 +153,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
     if ((mapper != nullptr) && mapper->getKeyMapper())
     {
         Display* display = X11Extras::getInstance()->display();
-        QtX11KeyMapper *keymapper = qobject_cast<QtX11KeyMapper*>(mapper->getKeyMapper()); // static_cast
+        QtX11KeyMapper *keymapper = qobject_cast<QtX11KeyMapper*>(mapper->getKeyMapper());
 
         for (int i = 0; i < maintext.size(); i++)
         {

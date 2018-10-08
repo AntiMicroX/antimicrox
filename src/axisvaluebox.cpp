@@ -17,6 +17,7 @@
 
 #include "axisvaluebox.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joyaxis.h"
 
@@ -42,6 +43,10 @@ AxisValueBox::AxisValueBox(QWidget *parent) :
     lboxend = 0;
     rboxstart = 0;
     rboxend = 0;
+    boxwidth = 0;
+    boxheight = 0;
+    singlewidth = 0;
+    singleend = 0;
 }
 
 void AxisValueBox::setThrottle(int throttle)
@@ -60,6 +65,7 @@ void AxisValueBox::setThrottle(int throttle)
         m_throttle = throttle;
         setValue(joyValue);
     }
+
     update();
 }
 
@@ -72,21 +78,20 @@ void AxisValueBox::setValue(int value)
     qDebug() << "throttle variable has value: " << m_throttle;
     #endif
 
-    if ((value >= JoyAxis::AXISMIN) && (value <= JoyAxis::AXISMAX))
+    if ((value >= GlobalVariables::JoyAxis::AXISMIN) && (value <= GlobalVariables::JoyAxis::AXISMAX))
     {
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "Value for axis from value box is between : " << JoyAxis::AXISMIN << " and " << JoyAxis::AXISMAX;
+        qDebug() << "Value for axis from value box is between : " << GlobalVariables::JoyAxis::AXISMIN << " and " << GlobalVariables::JoyAxis::AXISMAX;
         #endif
 
         switch(m_throttle)
         {
-
             case -2:
                 this->joyValue = (value <= 0) ? value : (-value);
                 break;
 
             case -1:
-                this->joyValue = ((value + JoyAxis::AXISMIN) / 2);
+                this->joyValue = ((value + GlobalVariables::JoyAxis::AXISMIN) / 2);
                 break;
 
             case 0:
@@ -94,13 +99,12 @@ void AxisValueBox::setValue(int value)
                 break;
 
             case 1:
-                this->joyValue = (value + JoyAxis::AXISMAX) / 2;
+                this->joyValue = (value + GlobalVariables::JoyAxis::AXISMAX) / 2;
                 break;
 
             case 2:
                 this->joyValue = (value >= 0) ? value : (-value);
                 break;
-
         }
     }
 
@@ -146,7 +150,6 @@ void AxisValueBox::setValue(JoyAxis* axis, int value)
             case 2:
                 this->joyValue = (value >= 0) ? value : (-value);
                 break;
-
         }
     }
 
@@ -157,7 +160,7 @@ void AxisValueBox::setDeadZone(int deadZone)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((deadZone >= JoyAxis::AXISMIN) && (deadZone <= JoyAxis::AXISMAX))
+    if ((deadZone >= GlobalVariables::JoyAxis::AXISMIN) && (deadZone <= GlobalVariables::JoyAxis::AXISMAX))
     {
         m_deadZone = deadZone;
     }
@@ -190,7 +193,7 @@ void AxisValueBox::setMaxZone(int maxZone)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((maxZone >= JoyAxis::AXISMIN) && (maxZone <= JoyAxis::AXISMAX))
+    if ((maxZone >= GlobalVariables::JoyAxis::AXISMIN) && (maxZone <= GlobalVariables::JoyAxis::AXISMAX))
     {
         m_maxZone = maxZone;
     }
@@ -287,6 +290,7 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     {
         innerColor = Qt::blue;
     }
+
     paint.setPen(innerColor);
     paint.setBrush(innerColor);
 
@@ -309,7 +313,6 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
     paint.setPen(Qt::blue);
     brush.setColor(Qt::blue);
     QBrush maxBrush(Qt::red);
-
 
     if (m_throttle == static_cast<int>(JoyAxis::NormalThrottle))
     {
@@ -341,7 +344,7 @@ int AxisValueBox::getMaxAxValue() {
     bool axisDefined = false;
     if (m_axis != nullptr) axisDefined = true;
 
-    return (axisDefined && (m_axis->getAxisMaxCal() != -1)) ? m_axis->getAxisMaxCal() : JoyAxis::AXISMAX;
+    return (axisDefined && (m_axis->getAxisMaxCal() != -1)) ? m_axis->getAxisMaxCal() : GlobalVariables::JoyAxis::AXISMAX;
 }
 
 
@@ -350,6 +353,6 @@ int AxisValueBox::getMinAxValue() {
     bool axisDefined = false;
     if (m_axis != nullptr) axisDefined = true;
 
-    return (axisDefined && (m_axis->getAxisMinCal() != -1)) ? m_axis->getAxisMinCal() : JoyAxis::AXISMIN;
+    return (axisDefined && (m_axis->getAxisMinCal() != -1)) ? m_axis->getAxisMinCal() : GlobalVariables::JoyAxis::AXISMIN;
 
 }

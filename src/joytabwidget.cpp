@@ -17,6 +17,7 @@
 
 #include "joytabwidget.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
@@ -568,7 +569,7 @@ void JoyTabWidget::fillButtons()
     m_joystick->establishPropertyUpdatedConnection();
     connect(m_joystick, &InputDevice::setChangeActivated, this, &JoyTabWidget::changeCurrentSet, Qt::QueuedConnection);
 
-    for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *currentSet = m_joystick->getSetJoystick(i);
         fillSetButtons(currentSet);
@@ -707,65 +708,73 @@ void JoyTabWidget::resetJoystick()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int currentIndex = configBox->currentIndex();
-    if (currentIndex != 0)
-    {
-        QString filename = configBox->itemData(currentIndex).toString();
+    QMessageBox msg;
+    msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msg.setText(trUtf8("Do you really want to reset buttons settings for joystick?"));
+    int result = msg.exec();
 
-        removeCurrentButtons();
+    if (result == QMessageBox::Yes) {
 
-        QMetaObject::invokeMethod(&tabHelper, "readConfigFileWithRevert", Qt::BlockingQueuedConnection,
-                                  Q_ARG(QString, filename));
-
-        fillButtons();
-        refreshSetButtons();
-        refreshCopySetActions();
-
-        XMLConfigReader *reader = tabHelper.getReader();
-        if (!reader->hasError())
+        int currentIndex = configBox->currentIndex();
+        if (currentIndex != 0)
         {
-            configBox->setItemIcon(currentIndex, QIcon());
+            QString filename = configBox->itemData(currentIndex).toString();
 
-            QString tempProfileName = QString();
-            if (!m_joystick->getProfileName().isEmpty())
+            removeCurrentButtons();
+
+            QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+
+            fillButtons();
+            refreshSetButtons();
+            refreshCopySetActions();
+
+            XMLConfigReader *reader = tabHelper.getReader();
+            if (!reader->hasError())
             {
-                tempProfileName = m_joystick->getProfileName();
-                configBox->setItemText(currentIndex, tempProfileName);
+                configBox->setItemIcon(currentIndex, QIcon());
+
+                QString tempProfileName = QString();
+
+                if (!m_joystick->getProfileName().isEmpty())
+                {
+                    tempProfileName = m_joystick->getProfileName();
+                    configBox->setItemText(currentIndex, tempProfileName);
+                }
+                else
+                {
+                    tempProfileName = oldProfileName;
+                    configBox->setItemText(currentIndex, oldProfileName);
+                }
+
+                oldProfileName = tempProfileName;
             }
-            else
+            else if (reader->hasError() && this->window()->isEnabled())
             {
-                tempProfileName = oldProfileName;
-                configBox->setItemText(currentIndex, oldProfileName);
+                QMessageBox msg;
+                msg.setStandardButtons(QMessageBox::Close);
+                msg.setText(reader->getErrorString());
+                msg.setModal(true);
+                msg.exec();
             }
-
-            oldProfileName = tempProfileName;
+            else if (reader->hasError() && !this->window()->isEnabled())
+            {
+                QTextStream error(stderr);
+                error << reader->getErrorString() << endl;
+            }
         }
-        else if (reader->hasError() && this->window()->isEnabled())
+        else
         {
-            QMessageBox msg;
-            msg.setStandardButtons(QMessageBox::Close);
-            msg.setText(reader->getErrorString());
-            msg.setModal(true);
-            msg.exec();
+            configBox->setItemText(0, trUtf8("<New>"));
+            configBox->setItemIcon(0, QIcon());
+
+            removeCurrentButtons();
+
+            QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
+
+            fillButtons();
+            refreshSetButtons();
+            refreshCopySetActions();
         }
-        else if (reader->hasError() && !this->window()->isEnabled())
-        {
-            QTextStream error(stderr);
-            error << reader->getErrorString() << endl;
-        }
-    }
-    else
-    {
-        configBox->setItemText(0, trUtf8("<New>"));
-        configBox->setItemIcon(0, QIcon());
-
-        removeCurrentButtons();
-
-        QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
-
-        fillButtons();
-        refreshSetButtons();
-        refreshCopySetActions();
     }
 }
 
@@ -1103,6 +1112,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         configBox->setCurrentIndex(-1);
     }
 
+
     int shouldisplaynames = m_settings->value("DisplayNames", "0").toInt();
     if (shouldisplaynames == 1)
     {
@@ -1432,7 +1442,7 @@ void JoyTabWidget::removeCurrentButtons()
     m_joystick->disconnectPropertyUpdatedConnection();
     disconnect(m_joystick, &InputDevice::setChangeActivated, this, &JoyTabWidget::changeCurrentSet);
 
-    for (int i=0; i < Joystick::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *currentSet = m_joystick->getSetJoystick(i);
         removeSetButtons(currentSet);
@@ -1524,7 +1534,7 @@ void JoyTabWidget::refreshSetButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    for (int i = 0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         QPushButton *tempSetButton = nullptr;
         QAction *tempSetAction = nullptr;
@@ -2479,7 +2489,7 @@ void JoyTabWidget::refreshCopySetActions()
 
     copySetMenu->clear();
 
-    for (int i=0; i < InputDevice::NUMBER_JOYSETS; i++)
+    for (int i=0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         SetJoystick *tempSet = m_joystick->getSetJoystick(i);
         QAction *newaction = nullptr;

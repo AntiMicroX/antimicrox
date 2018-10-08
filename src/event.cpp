@@ -28,7 +28,7 @@
 #include <QDebug>
 
 #include "event.h"
-
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "eventhandlerfactory.h"
 #include "joybutton.h"
@@ -107,7 +107,6 @@ void fakeAbsMouseCoordinates(double springX, double springY,
 // Create the event used by the operating system.
 void sendevent(JoyButtonSlot *slot, bool pressed)
 {
-
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
@@ -126,16 +125,15 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
     }
     else if ((device == JoyButtonSlot::JoyExecute) && pressed && !slot->getTextData().isEmpty())
     {
-        QString execString = slot->getTextData();
         if (slot->getExtraData().canConvert<QString>())
         {
             QString argumentsString = slot->getExtraData().toString();
             QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
-            QProcess::startDetached(execString, argumentsTempList);
+            QProcess::startDetached(slot->getTextData(), argumentsTempList);
         }
         else
         {
-            QProcess::startDetached(execString);
+            QProcess::startDetached(slot->getTextData());
         }
     }
 }
@@ -200,31 +198,25 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
             int pivotY = 0;
 
             if (PadderCommon::mouseHelperObj.pivotPoint[0] != -1)
-            {
                 pivotX = PadderCommon::mouseHelperObj.pivotPoint[0];
-            }
 
             if (PadderCommon::mouseHelperObj.pivotPoint[1] != -1)
-            {
                 pivotY = PadderCommon::mouseHelperObj.pivotPoint[1];
-            }
 
-            if ((pivotX >= 0) && (pivotY >= 0)) {
+            if ((pivotX >= 0) && (pivotY >= 0))
+            {
+
                 // Find a use for this routine in this context.
                 int destRelativeWidth = relativeSpring->width;
                 int destRelativeHeight = relativeSpring->height;
-
                 int xRelativeMoovCoor = 0;
-                if (relativeSpring->displacementX >= -1.0)
-                {
-                    xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
-                }
-
                 int yRelativeMoovCoor = 0;
+
+                if (relativeSpring->displacementX >= -1.0)
+                    xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
+
                 if (relativeSpring->displacementY >= -1.0)
-                {
                     yRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementY) * destRelativeHeight) / 2;
-                }
 
                 xmovecoor += xRelativeMoovCoor;
                 ymovecoor += yRelativeMoovCoor;
@@ -239,7 +231,6 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
         }
         else if (handler->getIdentifier() == "uinput")
         {
-
             fakeAbsMouseCoordinates(displacementX, displacementY,
                                     springWidth, springHeight, xmovecoor, ymovecoor,
                                     fullSpring->screen);
@@ -273,14 +264,17 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
     {
         int xmovecoor = 0;
         int ymovecoor = 0;
+
         int width = 0;
         int height = 0;
         int midwidth = 0;
         int midheight = 0;
+
         int destSpringWidth = 0;
         int destSpringHeight = 0;
         int destMidWidth = 0;
         int destMidHeight = 0;
+
         int currentMouseX = 0;
         int currentMouseY = 0;
 
@@ -335,6 +329,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 
         int pivotX = currentMouseX;
         int pivotY = currentMouseY;
+
         if (relativeSpring != nullptr)
         {
             if (PadderCommon::mouseHelperObj.pivotPoint[0] != -1)
@@ -364,36 +359,28 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 
         int destRelativeWidth = 0;
         int destRelativeHeight = 0;
+
         if ((relativeSpring != nullptr) && (relativeSpring->width >= 2) && (relativeSpring->height >= 2))
         {
             destRelativeWidth = relativeSpring->width;
             destRelativeHeight = relativeSpring->height;
 
             int xRelativeMoovCoor = 0;
-            if (relativeSpring->displacementX >= -1.0)
-            {
-                xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
-            }
-
             int yRelativeMoovCoor = 0;
+
+            if (relativeSpring->displacementX >= -1.0)
+                xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
+
             if (relativeSpring->displacementY >= -1.0)
-            {
                 yRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementY) * destRelativeHeight) / 2;
-            }
 
             xmovecoor += xRelativeMoovCoor;
             ymovecoor += yRelativeMoovCoor;
         }
 
-        if (mousePosX)
-        {
-            *mousePosX = xmovecoor;
-        }
+        if (mousePosX) *mousePosX = xmovecoor;
 
-        if (mousePosY)
-        {
-            *mousePosY = ymovecoor;
-        }
+        if (mousePosY) *mousePosY = ymovecoor;
 
         if ((xmovecoor != currentMouseX) || (ymovecoor != currentMouseY))
         {
@@ -404,6 +391,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             if ((xmovecoor == (deskRect.x() + midwidth)) || (ymovecoor == (deskRect.y() + midheight)))
             {
 #if defined(Q_OS_UNIX)
+
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
                 if (fullSpring->screen <= -1)
                 {
@@ -481,8 +469,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                 }
 #endif
                 PadderCommon::mouseHelperObj.mouseTimer.start(
-                            qMax(JoyButton::getMouseRefreshRate(),
-                                 JoyButton::getGamepadRefreshRate()) + 1);
+                            qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                                 GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
             }
             else if (!PadderCommon::mouseHelperObj.springMouseMoving &&
                      ((diffx >= (destSpringWidth * .013)) || (diffy >= (destSpringHeight * .013))))
@@ -528,8 +516,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 #endif
 
                 PadderCommon::mouseHelperObj.mouseTimer.start(
-                            qMax(JoyButton::getMouseRefreshRate(),
-                                 JoyButton::getGamepadRefreshRate()) + 1);
+                            qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                                 GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
             }
 
             else if (PadderCommon::mouseHelperObj.springMouseMoving && ((diffx < 2) && (diffy < 2)))
@@ -577,8 +565,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 #endif
 
                 PadderCommon::mouseHelperObj.mouseTimer.start(
-                            qMax(JoyButton::getMouseRefreshRate(),
-                                 JoyButton::getGamepadRefreshRate()) + 1);
+                            qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                                 GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
             }
 
 
@@ -600,8 +588,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             PadderCommon::mouseHelperObj.pivotPoint[1] = fullSpringDestY;
 
             PadderCommon::mouseHelperObj.mouseTimer.start(
-                        qMax(JoyButton::getMouseRefreshRate(),
-                             JoyButton::getGamepadRefreshRate()) + 1);
+                        qMax(GlobalVariables::JoyButton::mouseRefreshRate,
+                             GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
         }
     }
     else
@@ -653,6 +641,7 @@ int X11KeySymToKeycode(QString key)
             tempcode = VkKeyScan(ordinal);
             int modifiers = tempcode >> 8;
             tempcode = tempcode & 0xff;
+
             if ((modifiers & 1) != 0) tempcode |= VK_SHIFT;
             if ((modifiers & 2) != 0) tempcode |= VK_CONTROL;
             if ((modifiers & 4) != 0) tempcode |= VK_MENU;
@@ -689,6 +678,7 @@ QString keycodeToKeyString(int keycode, int alias)
             newkey = QString("0x%1").arg(keycode, 0, 16);
             QString tempkey = XKeysymToString(XkbKeycodeToKeysym(display, static_cast<KeyCode>(keycode), 0, 0));
             QString tempalias = X11Extras::getInstance()->getDisplayString(tempkey);
+
             if (!tempalias.isEmpty())
             {
                 newkey = tempalias;
@@ -705,14 +695,15 @@ QString keycodeToKeyString(int keycode, int alias)
                 memset(tempstring, 0, sizeof(tempstring));
                 int bitestoreturn = sizeof(tempstring) - 1;
                 int numchars = XLookupString(&tempevent, tempstring, bitestoreturn, nullptr, nullptr);
+
                 if (numchars > 0)
                 {
                     tempstring[numchars] = '\0';
                     newkey = QString::fromUtf8(tempstring);
 
                     #ifndef QT_DEBUG_NO_OUTPUT
-                    qDebug() << "NEWKEY:" << newkey << endl;
-                    qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
+                        qDebug() << "NEWKEY:" << newkey << endl;
+                        qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
                     #endif
                 }
                 else
@@ -727,20 +718,14 @@ QString keycodeToKeyString(int keycode, int alias)
         if (handler->getIdentifier() == "uinput")
         {
             QString tempalias = UInputHelper::getInstance()->getDisplayString(keycode);
-            if (!tempalias.isEmpty())
-            {
-                newkey = tempalias;
-            }
-            else
-            {
-                newkey = QString("0x%1").arg(keycode, 0, 16);
-            }
+
+            if (!tempalias.isEmpty()) newkey = tempalias;
+            else newkey = QString("0x%1").arg(keycode, 0, 16);
         }
 #endif
     }
 
 #elif defined (Q_OS_WIN)
-    wchar_t buffer[50] = {0};
 
     QString tempalias = WinExtras::getDisplayString(keycode);
     if (!tempalias.isEmpty())
@@ -757,15 +742,11 @@ QString keycodeToKeyString(int keycode, int alias)
         }
         else
         {
+            wchar_t buffer[50] = {0};
             int length = GetKeyNameTextW(scancode << 16, buffer, sizeof(buffer));
-            if (length > 0)
-            {
-                newkey = QString::fromWCharArray(buffer);
-            }
-            else
-            {
-                newkey.append(QString("0x%1").arg(keycode, 0, 16));
-            }
+
+            if (length > 0) newkey = QString::fromWCharArray(buffer);
+            else newkey.append(QString("0x%1").arg(keycode, 0, 16));
         }
     }
 
@@ -779,17 +760,21 @@ int X11KeyCodeToX11KeySym(int keycode)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 #ifdef Q_OS_WIN
+
     Q_UNUSED(keycode);
     return 0;
+
 #elif defined(Q_OS_UNIX)
     #ifdef WITH_X11
+
     Display* display = X11Extras::getInstance()->display();
-    int tempcode = static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(keycode), 0, 0));
-    return tempcode;
+    return static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(keycode), 0, 0));
+
     #else
 
     Q_UNUSED(keycode);
     return 0;
+
     #endif
 #endif
 }
@@ -809,10 +794,10 @@ QString keysymToKeyString(int keysym, int alias)
     {
         Display* display = X11Extras::getInstance()->display();
         int keycode = 0;
+
         if (keysym > 0)
-        {
             keycode = XKeysymToKeycode(display, static_cast<KeySym>(keysym));
-        }
+
         newkey = keycodeToKeyString(keycode);
     }
     else if (handler->getIdentifier() == "uinput")
@@ -823,5 +808,6 @@ QString keysymToKeyString(int keysym, int alias)
 #elif defined(Q_OS_WIN)
     newkey = keycodeToKeyString(keysym, alias);
 #endif
+
     return newkey;
 }

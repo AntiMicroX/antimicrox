@@ -34,21 +34,21 @@ class GameController : public InputDevice
 public:
     explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
 
-    virtual QString getName();
-    virtual QString getSDLName();
+    virtual QString getName() override;
+    virtual QString getSDLName() override;
 
     // GUID available on SDL 2.
-    virtual QString getGUIDString();
-    virtual QString getRawGUIDString();
+    virtual QString getGUIDString() override;
+    virtual QString getRawGUIDString() override;
 
-    virtual QString getXmlName();
-    virtual bool isGameController();
-    virtual void closeSDLDevice();
-    virtual SDL_JoystickID getSDLJoystickID();
+    virtual QString getXmlName() override;
+    virtual bool isGameController() override;
+    virtual void closeSDLDevice() override;
+    virtual SDL_JoystickID getSDLJoystickID() override;
 
-    virtual int getNumberRawButtons();
-    virtual int getNumberRawAxes();
-    virtual int getNumberRawHats();
+    virtual int getNumberRawButtons() override;
+    virtual int getNumberRawAxes() override;
+    virtual int getNumberRawHats() override;
 
     QString getBindStringForAxis(int index, bool trueIndex=true);
     QString getBindStringForButton(int index, bool trueIndex=true);
@@ -67,19 +67,17 @@ public:
 
     SDL_GameController *getController() const;
 
-    static const QString xmlName;
-
 protected:
     void readJoystickConfig(QXmlStreamReader *xml);
 
 public slots:
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
+    virtual void readConfig(QXmlStreamReader *xml) override;
+    virtual void writeConfig(QXmlStreamWriter *xml) override;
 
 protected slots:
-    virtual void axisActivatedEvent(int setindex, int axisindex, int value);
-    virtual void buttonClickEvent(int buttonindex);
-    virtual void buttonReleaseEvent(int buttonindex);
+    virtual void axisActivatedEvent(int setindex, int axisindex, int value) override;
+    virtual void buttonClickEvent(int buttonindex) override;
+    virtual void buttonReleaseEvent(int buttonindex) override;
 
 private:
     QHash<int, bool> rawbuttons;

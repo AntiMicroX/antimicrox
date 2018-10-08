@@ -43,9 +43,6 @@ public:
     JoyButton *getButton() const;
     AdvanceButtonDialogHelper const& getHelper();
 
-    static const int MINIMUMTURBO;
-
-
 protected:
     void connectButtonEvents(SimpleKeyGrabberButton *button);
     void appendBlankKeyGrabber();
@@ -61,8 +58,6 @@ protected:
     void populateSetSelectionComboBox();
     void populateSlotSetSelectionComboBox();
     void findTurboModeComboIndex();
-
-
 
 signals:
     void toggleChanged(bool state);
@@ -83,15 +78,7 @@ private slots:
     void deleteSlot();
     void insertSlot();
 
-    void insertPauseSlot();
-    void insertHoldSlot();
     void insertCycleSlot();
-    void insertDistanceSlot();
-    void insertReleaseSlot();
-    void insertMouseSpeedModSlot();
-    void insertKeyPressSlot();
-    void insertDelaySlot();
-    void insertSetChangeSlot();
     void insertTextEntrySlot();
     void insertExecuteSlot();
 
@@ -130,6 +117,8 @@ private:
     int oldRow;
     JoyButton *m_button;
     AdvanceButtonDialogHelper helper;
+
+    void insertKindOfSlot(int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction);
 
 };
 

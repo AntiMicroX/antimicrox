@@ -17,14 +17,13 @@
 
 #include "joydpadbutton.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joydpad.h"
 #include "setjoystick.h"
 #include "event.h"
 
 #include <QDebug>
-
-const QString JoyDPadButton::xmlName = "dpadbutton";
 
 
 // Initially, qualify direction as the button's index
@@ -87,7 +86,7 @@ QString JoyDPadButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyDPadButton::xmlName;
 }
 
 

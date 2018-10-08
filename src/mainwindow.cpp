@@ -41,7 +41,7 @@
 #include "calibration.h"
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
-#include "autoprofileinfo.h"
+    #include "autoprofileinfo.h"
 #endif
 
 #ifdef Q_OS_WIN
@@ -49,7 +49,7 @@
 #endif
 
 #ifdef Q_OS_UNIX
-#include <QApplication>
+    #include <QApplication>
 #endif
 
 #include <QHideEvent>
@@ -69,10 +69,13 @@
 #include <QUrl>
 #include <QMessageBox>
 #include <QLibraryInfo>
+#include <QFileInfo>
 
 #ifdef Q_OS_WIN
-#include <QSysInfo>
+    #include <QSysInfo>
 #endif
+
+
 
 MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
                        CommandLineUtility *cmdutility, AntiMicroSettings *settings,
@@ -178,10 +181,10 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionGameController_Mapping, &QAction::triggered, this, &MainWindow::openGameControllerMappingWindow);
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
-    if (QApplication::platformName() == QStringLiteral("xcb"))
-    {
-    connect(appWatcher, &AutoProfileWatcher::foundApplicableProfile, this, &MainWindow::autoprofileLoad);
-    }
+        if (QApplication::platformName() == QStringLiteral("xcb"))
+        {
+            connect(appWatcher, &AutoProfileWatcher::foundApplicableProfile, this, &MainWindow::autoprofileLoad);
+        }
     #elif defined(Q_OS_WIN)
         connect(appWatcher, &AutoProfileWatcher::foundApplicableProfile, this, &MainWindow::autoprofileLoad);
     #endif
@@ -496,6 +499,23 @@ void MainWindow::populateTrayIcon()
 
     trayIconMenu->clear();
     profileActions.clear();
+
+    closeAction = new QAction(trUtf8("&Quit"), trayIconMenu);
+    closeAction->setIcon(QIcon::fromTheme("application-exit"));
+    connect(closeAction, &QAction::triggered, this, &MainWindow::quitProgram, Qt::DirectConnection);
+
+    hideAction = new QAction(trUtf8("&Hide"), trayIconMenu);
+    hideAction->setIcon(QIcon::fromTheme("view-restore"));
+    connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
+
+    restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
+    restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
+    connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
+
+    updateJoy = new QAction(trUtf8("&Update Joysticks"), trayIconMenu);
+    updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
+    connect(updateJoy, &QAction::triggered, this, &MainWindow::startJoystickRefresh);
+
     int joystickCount = m_joysticks->size();
 
     if (joystickCount > 0)
@@ -544,7 +564,13 @@ void MainWindow::populateTrayIcon()
                     newaction->setCheckable(true);
                     newaction->setChecked(false);
 
-                    if (configIter.key() == widget->getCurrentConfigIndex())
+                    QString identifier = current->getStringIdentifier();
+                    QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
+
+                    QFileInfo fileInfo(m_settings->value(controlEntryLastSelected).toString());
+
+
+                    if ((configIter.value() == fileInfo.baseName()) || (configIter.value() == widget->getCurrentConfigName()))
                     {
                         newaction->setChecked(true);
                     }
@@ -553,6 +579,7 @@ void MainWindow::populateTrayIcon()
                     tempmap.insert(QString::number(i), QVariant (configIter.key()));
                     QVariant tempvar (tempmap);
                     newaction->setData(tempvar);
+
                     connect(newaction, &QAction::triggered, this, [this, newaction](bool checked) {
                         profileTrayActionTriggered(newaction, checked);
                     });
@@ -623,22 +650,6 @@ void MainWindow::populateTrayIcon()
         trayIconMenu->addSeparator();
     }
 
-    hideAction = new QAction(trUtf8("&Hide"), trayIconMenu);
-    hideAction->setIcon(QIcon::fromTheme("view-restore"));
-    connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
-
-    restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
-    restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
-    connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
-
-    closeAction = new QAction(trUtf8("&Quit"), trayIconMenu);
-    closeAction->setIcon(QIcon::fromTheme("application-exit"));
-    connect(closeAction, &QAction::triggered, this, &MainWindow::quitProgram);
-
-    updateJoy = new QAction(trUtf8("&Update Joysticks"), trayIconMenu);
-    updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
-    connect(updateJoy, &QAction::triggered, this, &MainWindow::startJoystickRefresh);
-
     trayIconMenu->addAction(hideAction);
     trayIconMenu->addAction(restoreAction);
     trayIconMenu->addAction(updateJoy);
@@ -654,16 +665,16 @@ void MainWindow::quitProgram()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool discard = true;
-    for (int i=0; i < ui->tabWidget->count() && discard; i++)
+    AutoProfileWatcher::getAutoProfileWatcherInstance()->disconnectWindowTimer();
+
+    for (int i = 0; (i < ui->tabWidget->count()) && discard; i++)
     {
-        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
         discard = tab->discardUnsavedProfileChanges();
     }
 
-    if (discard)
-    {
-        qApp->quit();
-    }
+    if (discard) qApp->quit();
+
 }
 
 void MainWindow::refreshTrayIconMenu()
@@ -989,10 +1000,8 @@ void MainWindow::showEvent(QShowEvent *event)
         }
     }
 
-    if (propogate)
-    {
-        QMainWindow::showEvent(event);
-    }
+    QMainWindow::showEvent(event);
+
 }
 
 void MainWindow::changeEvent(QEvent *event)
@@ -1909,6 +1918,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
     {
         InputDevice *device = nullptr;
         QMapIterator<SDL_JoystickID, InputDevice*> deviceIter(*m_joysticks);
+
         while (deviceIter.hasNext())
         {
             deviceIter.next();
@@ -1943,6 +1953,7 @@ void MainWindow::changeWindowStatus()
 
     // Check flags to see if user requested for the main window and the tray icon
     // to not be displayed.
+
     if (m_graphical)
     {
         bool launchInTraySetting = m_settings->runtimeValue("LaunchInTray", false).toBool();
@@ -1964,6 +1975,8 @@ void MainWindow::changeWindowStatus()
             // Window should already be hidden but make sure
             // to disable flashing buttons.
             hideWindow();
+
+            setEnabled(true);
         }
     }
 }

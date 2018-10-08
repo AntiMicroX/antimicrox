@@ -88,9 +88,6 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    static const int MAXNAMELENGTH;
-    static const int RAISEDDEADZONE;
-
 protected:
     bool isSetEmpty();
     void deleteButtons();
@@ -184,6 +181,11 @@ private:
     int m_index;
     InputDevice *m_device;
     QString m_name;
+
+    void resetBtnsConf();
+    void refreshAxesConf();
+    void refreshBtnsConf();
+    void refreshHatsConf();
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

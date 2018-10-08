@@ -61,7 +61,7 @@ UInputEventHandler::UInputEventHandler(QObject *parent) :
 
 UInputEventHandler::~UInputEventHandler()
 {
-    cleanup();
+    cleanupUinputEvHand();
 }
 
 /**
@@ -161,6 +161,12 @@ void UInputEventHandler::x11ResetMouseAccelerationChange()
 
 
 bool UInputEventHandler::cleanup()
+{
+    return cleanupUinputEvHand();
+}
+
+
+bool UInputEventHandler::cleanupUinputEvHand()
 {
     if (keyboardFileHandler > 0)
     {
@@ -289,8 +295,8 @@ void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis,
 {
     if ((width > 0) && (height > 0))
     {
-        double midwidth = static_cast<double>(width) / 2.0;
-        double midheight = static_cast<double>(height) / 2.0;
+        double midwidth = width / 2.0;
+        double midheight = height / 2.0;
 
         int fx = static_cast<int>(ceil(32767 * ((xDis - midwidth) / midwidth)));
         int fy = static_cast<int>(ceil(32767 * ((yDis - midheight) / midheight)));
