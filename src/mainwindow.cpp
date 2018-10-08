@@ -1962,6 +1962,8 @@ void MainWindow::changeWindowStatus()
             // Window should already be hidden but make sure
             // to disable flashing buttons.
             hideWindow();
+
+            setEnabled(true);
         }
     }
 }

@@ -110,7 +110,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Prof&amp;ile Directory:</string>
+              <string>Profile Direc&amp;tory:</string>
              </property>
              <property name="buddy">
               <cstring>profileDefaultDirLineEdit</cstring>
