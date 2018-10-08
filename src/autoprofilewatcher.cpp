@@ -37,6 +37,10 @@
 #endif
 
 
+AutoProfileWatcher* AutoProfileWatcher::_instance = nullptr;
+QTimer AutoProfileWatcher::checkWindowTimer;
+
+
 AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
@@ -45,13 +49,36 @@ AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *par
     this->settings = settings;
     allDefaultInfo = nullptr;
     currentApplication = "";
+    _instance = this;
 
     syncProfileAssignment();
 
     checkWindowTimer.setInterval(2000);
     checkWindowTimer.start();
 
-    connect(&(checkWindowTimer), &QTimer::timeout, this, &AutoProfileWatcher::runAppCheck);
+    connect(&(checkWindowTimer), &QTimer::timeout, _instance, &AutoProfileWatcher::runAppCheck);
+}
+
+AutoProfileWatcher::~AutoProfileWatcher()
+{
+    if (checkWindowTimer.isActive()) {
+
+        checkWindowTimer.stop();
+        disconnect(&(checkWindowTimer), &QTimer::timeout, _instance, nullptr);
+    }
+
+    _instance = nullptr;
+}
+
+AutoProfileWatcher* AutoProfileWatcher::getAutoProfileWatcherInstance()
+{
+    return _instance;
+}
+
+void AutoProfileWatcher::disconnectWindowTimer()
+{
+    checkWindowTimer.stop();
+    disconnect(&(checkWindowTimer), &QTimer::timeout, _instance, nullptr);
 }
 
 void AutoProfileWatcher::startTimer()
