@@ -32,6 +32,7 @@ protected:
     void setProgressBars(int inputDevNr, int setJoyNr, int stickNr);
     void setProgressBars(JoyControlStick* controlstick);
     void updateAxesBox();
+    void restoreCalValues();
     bool enoughProb(int x_count, int y_count);
     int calibratedDeadZone(int center, int deadzone);
 
@@ -71,7 +72,7 @@ public slots:
     void startLastStep();
 
 protected slots:
-    void resetSettings();
+    void resetSettings(bool silentReset, bool clicked = false);
 
 signals:
     void deadZoneChanged(int value);
