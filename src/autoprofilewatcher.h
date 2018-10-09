@@ -66,7 +66,6 @@ private slots:
 private:
     QSet<QString>& getGuidSetLocal();
 
-    QTimer appTimer;
     static AutoProfileWatcher* _instance;
     static QTimer checkWindowTimer;
     AntiMicroSettings *settings;

@@ -53,9 +53,6 @@ AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *par
 
     syncProfileAssignment();
 
-    checkWindowTimer.setInterval(2000);
-    checkWindowTimer.start();
-
     connect(&(checkWindowTimer), &QTimer::timeout, _instance, &AutoProfileWatcher::runAppCheck);
 }
 
@@ -85,14 +82,14 @@ void AutoProfileWatcher::startTimer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    appTimer.start(CHECKTIME);
+    checkWindowTimer.start(CHECKTIME);
 }
 
 void AutoProfileWatcher::stopTimer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    appTimer.stop();
+    checkWindowTimer.stop();
 }
 
 void AutoProfileWatcher::runAppCheck()
@@ -181,8 +178,8 @@ void AutoProfileWatcher::runAppCheck()
         currentAppWindowTitle = nowWindowName;
 
         Logger::LogDebug(QObject::trUtf8("Active window changed to: Title = \"%1\", "
-				     "Class = \"%2\", Program = \"%3\" or \"%4\".").
-			 arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName));
+                     "Class = \"%2\", Program = \"%3\" or \"%4\".").
+             arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName));
 
         QSet<AutoProfileInfo*> fullSet;
 
