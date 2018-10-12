@@ -475,6 +475,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     ui->actionUpdate_Joysticks->setEnabled(true);
     ui->actionHide->setEnabled(true);
     ui->actionQuit->setEnabled(true);
+
 }
 
 // Intermediate slot to be used in Form Designer

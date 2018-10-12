@@ -296,6 +296,7 @@ void InputDaemon::stop()
 void InputDaemon::refresh()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+    qDebug() << "REFRESH";
 
     stop();
 

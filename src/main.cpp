@@ -745,7 +745,7 @@ int main(int argc, char *argv[])
     inputEventThread = new QThread();
 
     MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, settings);
-    QTimer::singleShot(0, mainWindow, &MainWindow::changeWindowStatus);
+
 
     mainWindow->setAppTranslator(&qtTranslator);
     mainWindow->setTranslator(&myappTranslator);
@@ -753,9 +753,8 @@ int main(int argc, char *argv[])
     AppLaunchHelper mainAppHelper(settings, mainWindow->getGraphicalStatus());
 
     QObject::connect(mainWindow, &MainWindow::joystickRefreshRequested, joypad_worker, &InputDaemon::refresh);
-    QObject::connect(joypad_worker, static_cast<void (InputDaemon::*)(InputDevice*)>(&InputDaemon::joystickRefreshed),
-                     [mainWindow](InputDevice* dev) { mainWindow->fillButtons(dev); });
-
+    QObject::connect(joypad_worker, SIGNAL(joystickRefreshed(InputDevice*)),
+                     mainWindow, SLOT(fillButtons(InputDevice*)));
     QObject::connect(joypad_worker,
                      SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
                      mainWindow, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
@@ -797,8 +796,9 @@ int main(int argc, char *argv[])
 #endif
 
     mainAppHelper.initRunMethods();
-    QTimer::singleShot(0, [mainWindow]() { mainWindow->fillButtons(); });
-    QTimer::singleShot(0, mainWindow, &MainWindow::alterConfigFromSettings);
+    QTimer::singleShot(0, mainWindow, SLOT(fillButtons()));
+    QTimer::singleShot(0, mainWindow, SLOT(alterConfigFromSettings()));
+    QTimer::singleShot(0, mainWindow, SLOT(changeWindowStatus()));
 
 
     mainAppHelper.changeMouseThread(inputEventThread);

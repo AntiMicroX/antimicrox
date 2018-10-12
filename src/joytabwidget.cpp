@@ -1172,6 +1172,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     m_settings->endGroup();
     m_settings->getLock()->unlock();
 
+
     if (!lastfile.isEmpty())
     {
         QString lastFileAbsolute = lastfile;
@@ -1180,9 +1181,6 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
         QFileInfo lastFileInfo(lastfile);
         lastFileAbsolute = lastFileInfo.absoluteFilePath();
 #endif
-
-        // preventing checkForUnsavedProfile(int) at program start-up
-        disconnectCheckUnsavedEvent();
 
         int lastindex = configBox->findData(lastFileAbsolute);
         if (lastindex > 0)
@@ -1196,7 +1194,6 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
             emit joystickConfigChanged(m_joystick->getJoyNumber());
         }
 
-        reconnectCheckUnsavedEvent();
     }
     else if (configBox->currentIndex() != 0)
     {
