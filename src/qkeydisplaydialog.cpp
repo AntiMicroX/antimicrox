@@ -83,8 +83,8 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int scancode = static_cast<int>(event->nativeScanCode());
-    int virtualkey = static_cast<int>(event->nativeVirtualKey());
+    int scancode = event->nativeScanCode();
+    int virtualkey = event->nativeVirtualKey();
 
 #ifdef Q_OS_WIN
     int finalvirtual = WinExtras::correctVirtualKey(scancode, virtualkey);

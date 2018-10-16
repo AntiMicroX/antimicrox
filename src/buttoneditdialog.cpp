@@ -239,8 +239,8 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
     }
     else if (ui->virtualKeyMouseTabWidget->isKeyboardTabVisible())
     {
-        int controlcode = static_cast<int>(event->nativeScanCode());
-        int virtualactual = static_cast<int>(event->nativeVirtualKey());
+        int controlcode = event->nativeScanCode();
+        int virtualactual = event->nativeVirtualKey();
 
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 

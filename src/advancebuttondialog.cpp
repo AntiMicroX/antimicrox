@@ -146,7 +146,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     if ((m_button->getSetSelection() > -1) &&
         (m_button->getChangeSetCondition() != JoyButton::SetChangeDisabled))
     {
-        int selectIndex = static_cast<int>(m_button->getChangeSetCondition());
+        int selectIndex = m_button->getChangeSetCondition();
         selectIndex += m_button->getSetSelection() * 3;
 
         if (m_button->getOriginSet() < m_button->getSetSelection()) selectIndex -= 3;

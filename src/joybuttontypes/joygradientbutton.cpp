@@ -90,18 +90,18 @@ void JoyGradientButton::turboEvent()
             {
                 if (getTurboMode() == GradientTurbo)
                 {
-                    tempInterval2 = static_cast<int>(floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5));
+                    tempInterval2 = floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
                 }
                 else
                 {
-                    tempInterval2 = static_cast<int>(floor((turboInterval * 0.5) + 0.5));
+                    tempInterval2 = floor((turboInterval * 0.5) + 0.5);
                 }
             }
             else
             {
                 if (getTurboMode() == GradientTurbo)
                 {
-                    tempInterval2 = static_cast<int>(floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5));
+                    tempInterval2 = floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
                 }
                 else
                 {
@@ -109,7 +109,7 @@ void JoyGradientButton::turboEvent()
 
                     if (distance > 0.0)
                     {
-                        tempInterval2 = static_cast<int>(floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5));
+                        tempInterval2 = floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
                     }
                     else
                     {
@@ -169,11 +169,11 @@ void JoyGradientButton::turboEvent()
                 {
                     if (getTurboMode() == GradientTurbo)
                     {
-                        tempTurboInterval = static_cast<int>(floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5));
+                        tempTurboInterval = floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
                     }
                     else
                     {
-                        tempTurboInterval = static_cast<int>(floor((turboInterval * 0.5) + 0.5));
+                        tempTurboInterval = floor((turboInterval * 0.5) + 0.5);
                     }
 
                     int timerInterval = qMin(tempTurboInterval, 5);
@@ -207,7 +207,7 @@ void JoyGradientButton::turboEvent()
                 {
                     if (getTurboMode() == GradientTurbo)
                     {
-                        tempTurboInterval = static_cast<int>(floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5));
+                        tempTurboInterval = floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
                     }
                     else
                     {
@@ -215,7 +215,7 @@ void JoyGradientButton::turboEvent()
 
                         if (distance > 0.0)
                         {
-                            tempTurboInterval = static_cast<int>(floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5));
+                            tempTurboInterval = floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
                         }
                         else
                         {
@@ -261,7 +261,7 @@ void JoyGradientButton::wheelEventVertical()
     {
         if (lastWheelVerticalDistance > 0.0)
         {
-            oldInterval = 1000 / wheelSpeedY / static_cast<int>(lastWheelVerticalDistance);
+            oldInterval = 1000 / wheelSpeedY / lastWheelVerticalDistance;
         }
         else
         {
@@ -291,7 +291,7 @@ void JoyGradientButton::wheelEventVertical()
 
             if (distance > 0.0)
             {
-                tempInterval = 1000 / wheelSpeedY / static_cast<int>(distance);
+                tempInterval = 1000 / wheelSpeedY / distance;
             }
             else
             {
@@ -331,7 +331,7 @@ void JoyGradientButton::wheelEventVertical()
 
             if (distance > 0.0)
             {
-                tempInterval = 1000 / wheelSpeedY / static_cast<int>(distance);
+                tempInterval = 1000 / wheelSpeedY / distance;
             }
             else
             {
@@ -378,7 +378,7 @@ void JoyGradientButton::wheelEventVertical()
 
             if (distance > 0.0)
             {
-                tempInterval = 1000 / wheelSpeedY / static_cast<int>(distance);
+                tempInterval = 1000 / wheelSpeedY / distance;
             }
             else
             {
@@ -424,7 +424,7 @@ void JoyGradientButton::wheelEventHorizontal()
     {
         if (lastWheelHorizontalDistance > 0.0)
         {
-            oldInterval = 1000 / wheelSpeedX / static_cast<int>(lastWheelHorizontalDistance);
+            oldInterval = 1000 / wheelSpeedX / lastWheelHorizontalDistance;
         }
         else
         {
@@ -454,7 +454,7 @@ void JoyGradientButton::wheelEventHorizontal()
 
             if (distance > 0.0)
             {
-                tempInterval = 1000 / wheelSpeedX / static_cast<int>(distance);
+                tempInterval = 1000 / wheelSpeedX / distance;
             }
             else
             {
@@ -493,7 +493,7 @@ void JoyGradientButton::wheelEventHorizontal()
 
             if (distance > 0.0)
             {
-                tempInterval = 1000 / wheelSpeedX / static_cast<int>(distance);
+                tempInterval = 1000 / wheelSpeedX / distance;
             }
             else
             {
@@ -535,7 +535,7 @@ void JoyGradientButton::wheelEventHorizontal()
 
             if (distance > 0.0)
             {
-                tempInterval = 1000 / wheelSpeedX / static_cast<int>(distance);
+                tempInterval = 1000 / wheelSpeedX / distance;
             }
             else
             {

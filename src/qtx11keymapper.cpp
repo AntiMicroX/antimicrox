@@ -153,13 +153,14 @@ void QtX11KeyMapper::populateCharKeyInformation()
             if ((j == 1) || (j == 3))
                 dicis |= Qt::ShiftModifier;
 
-            int testsym = static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(i),
-                                                      (dicis & Qt::MetaModifier) ? 1 : 0,
-                                                      (dicis & Qt::ShiftModifier) ? 1 : 0));
+            int testsym = XkbKeycodeToKeysym(display, i,
+                                            (dicis & Qt::MetaModifier) ? 1 : 0,
+                                            (dicis & Qt::ShiftModifier) ? 1 : 0);
+
             if (testsym != NoSymbol)
             {
                 XKeyPressedEvent tempevent;
-                tempevent.keycode = static_cast<unsigned int>(i);
+                tempevent.keycode = i;
                 tempevent.type = KeyPress;
                 tempevent.display = display;
                 tempevent.state = 0;

@@ -20,6 +20,7 @@
 
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QObject>
 
 #include "messagehandler.h"
 #include "event.h"
@@ -74,7 +75,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
         if (mouseEve->button() == Qt::RightButton) controlcode = 3;
         else if (mouseEve->button() == Qt::MiddleButton) controlcode = 2;
-        else controlcode = static_cast<int>(mouseEve->button());
+        else controlcode = mouseEve->button();
 
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
@@ -89,8 +90,8 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
     else if (grabNextAction && (event->type() == static_cast<QEvent::Type>(7)))
     {
         QKeyEvent *keyEve = static_cast<QKeyEvent*>(event);
-        int tempcode = static_cast<int>(keyEve->nativeScanCode());
-        int virtualactual = static_cast<int>(keyEve->nativeVirtualKey());
+        int tempcode = keyEve->nativeScanCode();
+        int virtualactual = keyEve->nativeVirtualKey();
 
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 

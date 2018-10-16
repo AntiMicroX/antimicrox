@@ -119,7 +119,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
         XFlush(display);
     }
 
-    if (target_window != None) targetWindow = static_cast<long>(target_window);
+    if (target_window != None) targetWindow = target_window;
     else if (!escaped) failed = true;
 
     XCloseDisplay(display);

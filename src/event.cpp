@@ -100,8 +100,8 @@ void fakeAbsMouseCoordinates(double springX, double springY,
     destMidWidth = destSpringWidth / 2;
     destMidHeight = destSpringHeight / 2;
 
-    finalx = (screenMidwidth + (static_cast<int>(springX) * destMidWidth) + deskRect.x());
-    finaly = (screenMidheight + (static_cast<int>(springY) * destMidHeight) + deskRect.y());
+    finalx = (screenMidwidth + (springX * destMidWidth) + deskRect.x());
+    finaly = (screenMidheight + (springY * destMidHeight) + deskRect.y());
 }
 
 // Create the event used by the operating system.
@@ -213,10 +213,10 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
                 int yRelativeMoovCoor = 0;
 
                 if (relativeSpring->displacementX >= -1.0)
-                    xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
+                    xRelativeMoovCoor = (relativeSpring->displacementX * destRelativeWidth) / 2;
 
                 if (relativeSpring->displacementY >= -1.0)
-                    yRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementY) * destRelativeHeight) / 2;
+                    yRelativeMoovCoor = (relativeSpring->displacementY * destRelativeHeight) / 2;
 
                 xmovecoor += xRelativeMoovCoor;
                 ymovecoor += yRelativeMoovCoor;
@@ -351,8 +351,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             }
         }
 
-        xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (static_cast<int>(fullSpring->displacementX) * destMidWidth) + deskRect.x()): pivotX;
-        ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (static_cast<int>(fullSpring->displacementY) * destMidHeight) + deskRect.y()) : pivotY;
+        xmovecoor = (fullSpring->displacementX >= -1.0) ? (midwidth + (fullSpring->displacementX * destMidWidth) + deskRect.x()): pivotX;
+        ymovecoor = (fullSpring->displacementY >= -1.0) ? (midheight + (fullSpring->displacementY * destMidHeight) + deskRect.y()) : pivotY;
 
         int fullSpringDestX = xmovecoor;
         int fullSpringDestY = ymovecoor;
@@ -369,10 +369,10 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             int yRelativeMoovCoor = 0;
 
             if (relativeSpring->displacementX >= -1.0)
-                xRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementX) * destRelativeWidth) / 2;
+                xRelativeMoovCoor = (relativeSpring->displacementX * destRelativeWidth) / 2;
 
             if (relativeSpring->displacementY >= -1.0)
-                yRelativeMoovCoor = (static_cast<int>(relativeSpring->displacementY) * destRelativeHeight) / 2;
+                yRelativeMoovCoor = (relativeSpring->displacementY * destRelativeHeight) / 2;
 
             xmovecoor += xRelativeMoovCoor;
             ymovecoor += yRelativeMoovCoor;
@@ -686,7 +686,7 @@ QString keycodeToKeyString(int keycode, int alias)
             else
             {
                 XKeyPressedEvent tempevent;
-                tempevent.keycode = static_cast<unsigned int>(keycode);
+                tempevent.keycode = keycode;
                 tempevent.type = KeyPress;
                 tempevent.display = display;
                 tempevent.state = 0;
@@ -768,7 +768,7 @@ int X11KeyCodeToX11KeySym(int keycode)
     #ifdef WITH_X11
 
     Display* display = X11Extras::getInstance()->display();
-    return static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(keycode), 0, 0));
+    return XkbKeycodeToKeysym(display, static_cast<KeyCode>(keycode), 0, 0);
 
     #else
 

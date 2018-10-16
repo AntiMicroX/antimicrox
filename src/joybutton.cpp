@@ -4376,10 +4376,10 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QLi
         // This check is more of a precaution than anything. No need to cause
         // a sync to happen when not needed.
         if (!qFuzzyIsNull(adjustedX) || !qFuzzyIsNull(adjustedY))
-            sendevent(static_cast<int>(adjustedX), static_cast<int>(adjustedY));
+            sendevent(adjustedX, adjustedY);
 
-        movedX = static_cast<int>(adjustedX);
-        movedY = static_cast<int>(adjustedY);
+        movedX = adjustedX;
+        movedY = adjustedY;
     }
     else
     {
@@ -4902,7 +4902,7 @@ int JoyButton::calculateFinalMouseSpeed(JoyMouseCurve curve, int value, const fl
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int result = static_cast<int>(joyspeed) * value;
+    int result = joyspeed * value;
 
     switch (curve)
     {

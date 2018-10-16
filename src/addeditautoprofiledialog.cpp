@@ -357,7 +357,7 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility* u
             qDebug() << "ORIGINAL: " << QString::number(targetWindow, 16);
             #endif
 
-            long tempWindow = static_cast<long>(X11Extras::getInstance()->findClientWindow(static_cast<Window>(targetWindow)));
+            long tempWindow = X11Extras::getInstance()->findClientWindow(targetWindow);
             if (tempWindow > 0)
             {
                 targetWindow = tempWindow;

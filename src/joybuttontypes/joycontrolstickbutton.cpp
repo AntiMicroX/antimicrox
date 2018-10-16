@@ -40,7 +40,7 @@ JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, 
 
 
 JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent) :
-    JoyGradientButton(static_cast<int>(index), originset, parentSet, parent)
+    JoyGradientButton(index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 

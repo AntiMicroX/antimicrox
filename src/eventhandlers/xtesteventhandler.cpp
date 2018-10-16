@@ -84,7 +84,7 @@ void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 
         if (tempcode > 0)
         {
-            XTestFakeKeyEvent(display, static_cast<unsigned int>(tempcode), pressed, 0);
+            XTestFakeKeyEvent(display, tempcode, pressed, 0);
             XFlush(display);
         }
     }
@@ -102,7 +102,7 @@ void XTestEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
 
     if (device == JoyButtonSlot::JoyMouseButton)
     {
-        XTestFakeButtonEvent(display, static_cast<unsigned int>(code), pressed, 0);
+        XTestFakeButtonEvent(display, code, pressed, 0);
         XFlush(display);
     }
 }
@@ -168,7 +168,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                 {
                   int shiftcode = XKeysymToKeycode(display, XK_Shift_L);
                   int modifiercode = shiftcode;
-                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  XTestFakeKeyEvent(display, modifiercode, 1, 0);
                   tempList.append(modifiercode);
                 }
 
@@ -176,7 +176,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                 {
                   int controlcode = XKeysymToKeycode(display, XK_Control_L);
                   int modifiercode = controlcode;
-                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  XTestFakeKeyEvent(display, modifiercode, 1, 0);
                   tempList.append(modifiercode);
                 }
 
@@ -184,7 +184,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                 {
                   int altcode = XKeysymToKeycode(display, XK_Alt_L);
                   int modifiercode = altcode;
-                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  XTestFakeKeyEvent(display, modifiercode, 1, 0);
                   tempList.append(modifiercode);
                 }
 
@@ -192,11 +192,11 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                 {
                   int metacode = XKeysymToKeycode(display, XK_Meta_L);
                   int modifiercode = metacode;
-                  XTestFakeKeyEvent(display, static_cast<unsigned int>(modifiercode), 1, 0);
+                  XTestFakeKeyEvent(display, modifiercode, 1, 0);
                   tempList.append(modifiercode);
                 }
 
-                XTestFakeKeyEvent(display, static_cast<unsigned int>(tempcode), 1, 0);
+                XTestFakeKeyEvent(display, tempcode, 1, 0);
                 tempList.append(tempcode);
 
                 XFlush(display);
@@ -209,7 +209,7 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
                     while (tempiter.hasPrevious())
                     {
                         int currentcode = tempiter.previous();
-                        XTestFakeKeyEvent(display, static_cast<unsigned int>(currentcode), 0, 0);
+                        XTestFakeKeyEvent(display, currentcode, 0, 0);
                     }
 
                     XFlush(display);

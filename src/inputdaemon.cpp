@@ -865,7 +865,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                         {
                                             if (axis->getThrottle() != static_cast<int>(JoyAxis::NormalThrottle))
                                             {
-                                                event.jaxis.value = static_cast<short>(axis->getProperReleaseValue());
+                                                event.jaxis.value = axis->getProperReleaseValue();
                                             }
                                         }
                                     }
@@ -900,7 +900,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                                             if ((event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT) ||
                                                 (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT))
                                             {
-                                                event.caxis.value = static_cast<short>(axis->getProperReleaseValue());
+                                                event.caxis.value = axis->getProperReleaseValue();
                                             }
                                         }
                                     }

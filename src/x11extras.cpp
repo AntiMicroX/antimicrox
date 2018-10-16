@@ -612,7 +612,7 @@ unsigned long X11Extras::getWindowInFocus()
     XGetInputFocus(display, &currentWindow, &focusState);
 
     if (currentWindow > 0)
-        result = static_cast<unsigned long>(currentWindow);
+         result = static_cast<unsigned long>(currentWindow);
 
     return result;
 }
@@ -633,9 +633,9 @@ int X11Extras::getGroup1KeySym(int virtualkey)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Display *display = this->display();
-    int temp = XKeysymToKeycode(display, static_cast<KeySym>(virtualkey));
+    int temp = XKeysymToKeycode(display, virtualkey);
 
-    return static_cast<int>(XkbKeycodeToKeysym(display, static_cast<KeyCode>(temp), 0, 0));
+    return XkbKeycodeToKeysym(display, temp, 0, 0);
 }
 
 void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
@@ -817,12 +817,12 @@ void X11Extras::checkFeedback(XFeedbackState *temp, int& num_feedbacks, int& fee
     {
         if (temp->c_class == PtrFeedbackClass)
         {
-            feedback_id = static_cast<int>(temp->id);
+            feedback_id = temp->id;
         }
 
         if ((i + 1) < num_feedbacks)
         {
-            temp = reinterpret_cast<XFeedbackState*>(reinterpret_cast<char*>(temp) + temp->length);
+            temp = (XFeedbackState*) ((char*) temp + temp->length);
         }
     }
 }

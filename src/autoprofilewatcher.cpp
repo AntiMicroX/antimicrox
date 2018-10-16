@@ -131,11 +131,11 @@ void AutoProfileWatcher::runAppCheck()
     nowWindowName = WinExtras::getCurrentWindowText();
 #elif defined(Q_OS_UNIX)
 
-    long currentWindow = static_cast<long>(X11Extras::getInstance()->getWindowInFocus());
+    long currentWindow = X11Extras::getInstance()->getWindowInFocus();
 
     if (currentWindow > 0)
     {
-        long tempWindow = static_cast<long>(X11Extras::getInstance()->findParentClient(static_cast<Window>(currentWindow)));
+        long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
 
         if (tempWindow > 0) currentWindow = tempWindow;
 
