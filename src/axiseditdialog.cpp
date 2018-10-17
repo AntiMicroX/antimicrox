@@ -365,7 +365,7 @@ void AxisEditDialog::openAdvancedPDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(m_axis->getPAxisButton(), m_axis->getControlStick()->getParentSet()->getInputDevice(),  this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(m_axis->getPAxisButton(), m_axis->getPAxisButton()->getParentSet()->getInputDevice(),  this);
     dialog->show();
 
     connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshPButtonLabel);
@@ -376,7 +376,7 @@ void AxisEditDialog::openAdvancedNDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(m_axis->getNAxisButton(), m_axis->getControlStick()->getParentSet()->getInputDevice(), this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(m_axis->getNAxisButton(), m_axis->getNAxisButton()->getParentSet()->getInputDevice(), this);
     dialog->show();
 
     connect(dialog, &ButtonEditDialog::finished, this, &AxisEditDialog::refreshNButtonLabel);
