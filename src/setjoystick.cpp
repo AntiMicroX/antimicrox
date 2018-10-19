@@ -41,7 +41,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
     m_device = device;
     m_index = index;
 
-    resetBtnsConf();
+    reset();
 }
 
 SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent) :
@@ -52,7 +52,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject 
     m_device = device;
     m_index = index;
 
-    if (runreset) resetBtnsConf();
+    if (runreset) reset();
 }
 
 SetJoystick::~SetJoystick()
@@ -107,14 +107,9 @@ void SetJoystick::refreshButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    refreshBtnsConf();
-}
-
-void SetJoystick::refreshBtnsConf()
-{
     deleteButtons();
 
-    for (int i = 0; i < m_device->getNumberRawButtons(); i++)
+    for (int i=0; i < m_device->getNumberRawButtons(); i++)
     {
         JoyButton *button = new JoyButton (i, m_index, this, this);
         m_buttons.insert(i, button);
@@ -126,16 +121,10 @@ void SetJoystick::refreshAxes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    refreshAxesConf();
-}
-
-void SetJoystick::refreshAxesConf()
-{
     deleteAxes();
 
     InputDevice *device = getInputDevice();
-
-    for (int i = 0; i < device->getNumberRawAxes(); i++)
+    for (int i=0; i < device->getNumberRawAxes(); i++)
     {
         JoyAxis *axis = new JoyAxis(i, m_index, this, this);
         axes.insert(i, axis);
@@ -154,14 +143,9 @@ void SetJoystick::refreshHats()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    refreshHatsConf();
-}
-
-void SetJoystick::refreshHatsConf()
-{
     deleteHats();
 
-    for (int i = 0; i < m_device->getNumberRawHats(); i++)
+    for (int i=0; i < m_device->getNumberRawHats(); i++)
     {
         JoyDPad *dpad = new JoyDPad(i, m_index, this, this);
         hats.insert(i, dpad);
@@ -310,16 +294,11 @@ void SetJoystick::reset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    resetBtnsConf();
-}
-
-void SetJoystick::resetBtnsConf()
-{
     deleteSticks();
     deleteVDpads();
-    refreshAxesConf();
-    refreshBtnsConf();
-    refreshHatsConf();
+    refreshAxes();
+    refreshButtons();
+    refreshHats();
     m_name = QString();
 }
 

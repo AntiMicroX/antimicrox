@@ -30,7 +30,7 @@ class UInputEventHandler : public BaseEventHandler
 
 public:
     explicit UInputEventHandler(QObject *parent = nullptr);
-    ~UInputEventHandler() override;
+    ~UInputEventHandler();
 
     virtual bool init() override;
     virtual bool cleanup() override;
@@ -40,7 +40,7 @@ public:
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen) override;
 
     virtual void sendMouseSpringEvent(int xDis, int yDis,
-                                      int width, int height) override; // unsigned, unsigned, unsigned, unsigned
+                                      int width, int height) override;
     virtual void sendMouseSpringEvent(int xDis, int yDis) override;
 
     virtual QString getName() override;

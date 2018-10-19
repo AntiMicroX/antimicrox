@@ -181,11 +181,6 @@ private:
     int m_index;
     InputDevice *m_device;
     QString m_name;
-
-    void resetBtnsConf();
-    void refreshAxesConf();
-    void refreshBtnsConf();
-    void refreshHatsConf();
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

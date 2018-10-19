@@ -4481,16 +4481,22 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved, int sp
 
         for (int i = (springXSpeeds->length() - 1); (i >= 0) && !complete; i--)
         {
+
+            double tempx = -2.0;
+            double tempy = -2.0;
+            double tempSpringDeadX = 0.0;
+            double tempSpringDeadY = 0.0;
+
             PadderCommon::springModeInfo infoX;
             PadderCommon::springModeInfo infoY;
 
             infoX = springXSpeeds->takeLast();
             infoY = springYSpeeds->takeLast();
 
-            double tempx = infoX.displacementX;
-            double tempy = infoY.displacementY;
-            double tempSpringDeadX = infoX.springDeadX;
-            double tempSpringDeadY = infoY.springDeadY;
+            tempx = infoX.displacementX;
+            tempy = infoY.displacementY;
+            tempSpringDeadX = infoX.springDeadX;
+            tempSpringDeadY = infoY.springDeadY;
 
             if (infoX.relative)
             {

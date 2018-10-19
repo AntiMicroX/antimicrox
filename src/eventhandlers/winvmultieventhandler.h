@@ -36,7 +36,7 @@ class WinVMultiEventHandler : public BaseEventHandler
 
 public:
     explicit WinVMultiEventHandler(QObject *parent = nullptr);
-    ~WinVMultiEventHandler() override;
+    ~WinVMultiEventHandler();
 
     virtual bool init() override;
     virtual bool cleanup() override;

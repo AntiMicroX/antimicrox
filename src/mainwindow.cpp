@@ -972,8 +972,6 @@ void MainWindow::showEvent(QShowEvent *event)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    bool propogate = true;
-
     // Check if hideEvent has been processed
     if (signalDisconnect && isVisible())
     {

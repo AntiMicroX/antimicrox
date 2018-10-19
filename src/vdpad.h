@@ -29,7 +29,7 @@ public:
     explicit VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
     explicit VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
                    int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
-    ~VDPad() override;
+    ~VDPad();
 
     void joyEvent(bool pressed, bool ignoresets=false);
     void addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *button);
