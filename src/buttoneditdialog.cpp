@@ -33,11 +33,10 @@
 #include "common.h"
 
 #ifdef Q_OS_WIN
-#include <qt_windows.h>
-#include "winextras.h"
-
+    #include <qt_windows.h>
+    #include "winextras.h"
 #elif defined(Q_OS_UNIX)
-#include <QApplication>
+    #include <QApplication>
 #endif
 
 #include <QDebug>
@@ -58,9 +57,10 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    withoutQuickSetDialog = false;
+
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(trUtf8("Choose your keyboard key"));
-    ui->advancedPushButton->setEnabled(false);
     update();
 
     instance = this;
@@ -88,7 +88,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
 
     ui->virtualKeyMouseTabWidget->hide();
     ui->virtualKeyMouseTabWidget->deleteLater();
-    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick ,&helper, currentQuickDialog, this);
+    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick , &helper, currentQuickDialog, nullptr, this);
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
 
     PadderCommon::inputDaemonMutex.unlock();
@@ -112,13 +112,15 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
 
 ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWidget *parent) :
     QDialog(parent, Qt::Window),
+    helper(),
     ui(new Ui::ButtonEditDialog)
 {
     ui->setupUi(this);
 
+    withoutQuickSetDialog = true;
+
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(trUtf8("Choose your keyboard key"));
-    ui->advancedPushButton->setEnabled(false);
     update();
 
     instance = this;
@@ -142,13 +144,12 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
 
     ui->virtualKeyMouseTabWidget->hide();
     ui->virtualKeyMouseTabWidget->deleteLater();
-    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick, &helper, currentQuickDialog, this);
+    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick, &helper, currentQuickDialog, button, this);
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
 
     PadderCommon::inputDaemonMutex.unlock();
 
     connect(qApp, &QApplication::focusChanged, this, &ButtonEditDialog::checkForKeyboardWidgetFocus);
-
 
     connect(ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::selectionCleared, this, &ButtonEditDialog::refreshSlotSummaryLabel);
 
@@ -477,7 +478,7 @@ void ButtonEditDialog::closedAdvancedDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ui->advancedPushButton->setEnabled(true);
+    refreshForLastBtn();
 
     disconnect(ui->virtualKeyMouseTabWidget, static_cast<void (VirtualKeyboardMouseWidget::*)(int,int)>(&VirtualKeyboardMouseWidget::selectionMade), this, nullptr);
 
@@ -490,22 +491,28 @@ void ButtonEditDialog::closedAdvancedDialog()
 
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
-
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if ((currentQuickDialog == nullptr) && (buttonEventInterval.isNull() || (buttonEventInterval.elapsed() > 1000)))
+    if (withoutQuickSetDialog)
     {
-        // for better security, force pausing for 1 sec between key presses,
-        // because mapped joystick buttons and axes become keys too
-        // it's good for oversensitive buttons and axes, which can
-        // create QuickSetDialog windows many times for one key
+        invokeMethodLastBtn(lastJoyButton, &helper, "setAssignedSlot", tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), -1, tempslot->getSlotMode(), false, false, Qt::QueuedConnection, Qt::QueuedConnection, Qt::QueuedConnection);
+    }
+    else
+    {
+        if ((currentQuickDialog == nullptr) && (buttonEventInterval.isNull() || (buttonEventInterval.elapsed() > 1000)))
+        {
+            // for better security, force pausing for 1 sec between key presses,
+            // because mapped joystick buttons and axes become keys too
+            // it's good for oversensitive buttons and axes, which can
+            // create QuickSetDialog windows many times for one key
 
-        if (buttonEventInterval.isNull()) buttonEventInterval.start();
-        else buttonEventInterval.restart();
+            if (buttonEventInterval.isNull()) buttonEventInterval.start();
+            else buttonEventInterval.restart();
 
-        currentQuickDialog = new QuickSetDialog(joystick, &helper, "setAssignedSlot", tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), -1, tempslot->getSlotMode(), false, false, this);
-        currentQuickDialog->show();
-        connect(currentQuickDialog, &QuickSetDialog::finished, this, &ButtonEditDialog::nullifyDialogPointer);
+            currentQuickDialog = new QuickSetDialog(joystick, &helper, "setAssignedSlot", tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), -1, tempslot->getSlotMode(), false, false, this);
+            currentQuickDialog->show();
+            connect(currentQuickDialog, &QuickSetDialog::finished, this, &ButtonEditDialog::nullifyDialogPointer);
+        }
     }
 
     tempslot->deleteLater();
@@ -576,7 +583,6 @@ void ButtonEditDialog::refreshForLastBtn() {
 
     if (lastJoyButton != nullptr) {
 
-        ui->advancedPushButton->setEnabled(true);
         ui->slotSummaryLabel->setText(lastJoyButton->getSlotsString());
 
         updateWindowTitleButtonName();
@@ -590,6 +596,36 @@ void ButtonEditDialog::refreshForLastBtn() {
         if (!lastJoyButton->getButtonName().isEmpty())
             ui->buttonNameLineEdit->setText(lastJoyButton->getButtonName());
 
+        if ((lastJoyButton->getAssignedSlots()->count() > 0) || (ui->slotSummaryLabel->text() != trUtf8("[NO KEY]")))
+        {
+            ui->advancedPushButton->setEnabled(true);
+            ui->advancedPushButton->setEnabled(true);
+        }
+        else
+        {
+            ui->advancedPushButton->setEnabled(false);
+        }
+
+        if (lastJoyButton != nullptr) {
+
+            QListIterator<JoyButtonSlot*> iter(*(lastJoyButton->getAssignedSlots()));
+
+            ui->virtualKeyMouseTabWidget->disableMouseSettingButton();
+
+            while (iter.hasNext())
+            {
+                JoyButtonSlot *buttonslot = iter.next();
+
+                switch(buttonslot->getSlotMode())
+                {
+                    case JoyButtonSlot::JoyMouseMovement:
+                    case JoyButtonSlot::JoyMouseButton:
+                        ui->virtualKeyMouseTabWidget->enableMouseSettingButton();
+                    break;
+                }
+            }
+        }
+
         connect(ui->actionNameLineEdit, &QLineEdit::textEdited, lastJoyButton, &JoyButton::setActionName);
         connect(ui->buttonNameLineEdit, &QLineEdit::textEdited, lastJoyButton, &JoyButton::setButtonName);
 
@@ -600,6 +636,56 @@ void ButtonEditDialog::refreshForLastBtn() {
     }
 
     update();
+}
+
+void ButtonEditDialog::invokeMethodLastBtn(JoyButton* lastJoyBtn, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll)
+{
+    QPointer<JoyButton> lastBtn = lastJoyBtn;
+    if (helper != nullptr) helper = new ButtonEditDialogHelper();
+
+    QPointer<ButtonEditDialogHelper> btnEditDHelper = helper;
+
+    if (lastJoyBtn != nullptr)
+    {
+        helper->setThisButton(lastJoyBtn);
+        helper->moveToThread(lastJoyBtn->thread());
+
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "Thread in QuickSetDialog";
+        #endif
+
+        if (withClear) QMetaObject::invokeMethod(lastJoyBtn, "clearSlotsEventReset", Q_ARG(bool, withTrue));
+
+        // when alias exists but not index
+        if ((alias != -1) && (index == -1)) {
+
+            QMetaObject::invokeMethod(helper, invokeString, connTypeForAlias,
+                                      Q_ARG(int, code),
+                                      Q_ARG(int, alias),
+                                      Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
+
+         // when alias doesn't exists and index too
+        } else if ((alias == -1) && (index == -1)) {
+
+            QMetaObject::invokeMethod(helper, invokeString, connTypeForNothing,
+                                      Q_ARG(int, code),
+                                      Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
+
+         // when all exist (code, alias, index)
+        } else {
+
+            if (lastJoyBtn->isPartVDPad()) connTypeForAll = Qt::BlockingQueuedConnection;
+
+            QMetaObject::invokeMethod(helper, invokeString, connTypeForAll,
+                                      Q_ARG(int, code),
+                                      Q_ARG(int, alias),
+                                      Q_ARG(int, index),
+                                      Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
+        }
+    }
+
+    if (lastBtn.isNull()) lastBtn.clear();
+    if (btnEditDHelper.isNull()) btnEditDHelper.clear();
 }
 
 
