@@ -127,7 +127,8 @@ bool VirtualKeyboardMouseWidget::is_numlock_activated()
 #endif
 
 #ifdef Q_OS_UNIX
-    Display *dpy = XOpenDisplay(":0"); // X11Extras::getInstance()->display();
+    Display *dpy = XOpenDisplay(":0");
+    if (dpy == nullptr) dpy = XOpenDisplay(X11Extras::getInstance()->getEnvVariable("DISPLAY"));
     XKeyboardState x;
     XGetKeyboardControl(dpy, &x);
     XCloseDisplay(dpy);

@@ -109,6 +109,19 @@ void X11Extras::deleteInstance()
     }
 }
 
+#ifdef Q_OS_UNIX
+const char* X11Extras::getEnvVariable( const char* var )
+{
+     const char * val = ::getenv( var );
+     if ( val == 0 ) {
+         return "";
+     }
+     else {
+         return val;
+     }
+}
+#endif
+
 /**
  * @brief Get display instance
  * @return Display struct
