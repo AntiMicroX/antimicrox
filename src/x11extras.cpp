@@ -110,7 +110,7 @@ void X11Extras::deleteInstance()
 }
 
 #ifdef Q_OS_UNIX
-const char* X11Extras::getEnvVariable( const char* var )
+const char* X11Extras::getEnvVariable( const char* var ) const
 {
      const char * val = ::getenv( var );
      if ( val == 0 ) {
