@@ -22,6 +22,7 @@
 #include "eventhandlerfactory.h"
 
 #include <SDL2/SDL_version.h>
+#include <SDL2/SDL_gamecontroller.h>
 
 #include <QtGlobal>
 #include <QResource>
@@ -36,6 +37,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
+
+
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
