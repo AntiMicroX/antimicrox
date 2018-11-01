@@ -24,7 +24,7 @@ if(POLICY CMP0071)
   cmake_policy(SET CMP0071 NEW)
 endif()
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules" "/usr/local")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
 
 if (NOT WIN32)
@@ -70,7 +70,12 @@ set(ANTIMICRO_MAJOR_VERSION 2)
 set(ANTIMICRO_MINOR_VERSION 24)
 set(ANTIMICRO_PATCH_VERSION 0)
 
+option(WITH_TESTS "Allow tests for classes" OFF)
 option(USE_SDL_2 "Use SDL 2 libraries." ON)
+
+if(WITH_TESTS)
+    message("Tests enabled")
+endif(WITH_TESTS)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
@@ -490,6 +495,7 @@ if (UNIX)
         QT5_WRAP_CPP(antimicro_HEADERS_MOC ${antimicro_HEADERS})
         QT5_WRAP_UI(antimicro_FORMS_HEADERS ${antimicro_FORMS})
         QT5_ADD_RESOURCES(antimicro_RESOURCES_RCC ${antimicro_RESOURCES})
+
         add_subdirectory("share/antimicro/translations")
 
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -557,29 +563,51 @@ if(UNIX)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 endif(UNIX)
 
-
-
     if(UNIX)
-        add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC})
-        target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
+            add_library( antilib
+                SHARED
+                ${antimicro_HEADERS_MOC}
+                ${antimicro_SOURCES}
+                ${antimicro_FORMS_HEADERS}
+                ${antimicro_RESOURCES_RCC}
+            )
+
+            target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network ${SDL2_LIBRARIES} ${LIBS})
+
+            add_executable(antimicro ${antimicro_MAIN})
+            target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
+
     elseif(WIN32)
+
+        add_library( antilib
+            SHARED
+            ${antimicro_HEADERS_MOC}
+            ${antimicro_SOURCES}
+            ${antimicro_FORMS_HEADERS}
+            ${antimicro_RESOURCES_RCC}
+            src/antimicro.rc
+        )
+
         # The WIN32 is required to specify a GUI application.
-        add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC} src/antimicro.rc)
-        target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
+        add_executable(antimicro ${antimicro_MAIN})
+        target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network ${LIBS})
     endif(UNIX)
 
-    target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
+    #target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
 
-
-# Add link libraries.
-#message(${LIBS})
-target_link_libraries(antimicro ${LIBS})
 
 # Specify out directory for final executable.
 if(UNIX)
 	install(TARGETS antimicro RUNTIME DESTINATION "bin")
+        install(TARGETS antilib DESTINATION lib)
+        install(FILES ${antimicro_HEADERS} DESTINATION include/antimicro)
 elseif(WIN32)
 	install(TARGETS antimicro RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+        install(TARGETS antilib
+             RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX} COMPONENT runtime
+             ARCHIVE DESTINATION lib COMPONENT devel
+             PUBLIC_HEADER DESTINATION include COMPONENT devel)
+        install(FILES ${antimicro_HEADERS} DESTINATION include)
 endif(UNIX)
 
 if(UNIX)
@@ -782,3 +810,10 @@ if(WIN32)
     install(FILES gpl.txt Changelog README.md ProfileTips.md
             DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif(WIN32)
+
+
+
+if(WITH_TESTS)
+    enable_testing ()
+    add_subdirectory (tests)
+endif(WITH_TESTS)

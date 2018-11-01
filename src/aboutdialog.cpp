@@ -38,8 +38,6 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
-
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->versionLabel->setText(PadderCommon::programVersion);

@@ -46,6 +46,7 @@
 #include <QLocalSocket>
 #include <QSettings>
 #include <QThread>
+#include <QPointer>
 #include <QCommandLineParser>
 
 #ifdef Q_OS_UNIX
@@ -71,6 +72,8 @@
     #include <QStyle>
     #include <QStyleFactory>
 #endif
+
+
 
 
 
