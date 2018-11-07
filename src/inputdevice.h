@@ -124,12 +124,14 @@ public:
     int getRawAxisDeadZone();
     void rawAxisEvent(int index, int value);
 
+    QHash<int, SetJoystick*>& getJoystick_sets();
+
 protected:
     void enableSetConnections(SetJoystick *setstick);
     bool elementsHaveNames();
     SDL_Joystick* getJoyHandle() const;
 
-    QHash<int, SetJoystick*>& getJoystick_sets();
+
     QHash<int, JoyAxis::ThrottleTypes>& getCali();
     SDL_JoystickID* getJoystickID();
 

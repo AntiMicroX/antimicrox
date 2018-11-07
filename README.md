@@ -11,6 +11,7 @@
 7. [Bugs](#bugs)  
 8. [Shoutout](#shoutout)  
 9. [Credits](#credits)  
+10. [Break](#break)  
 
 
 
@@ -296,3 +297,8 @@ burunduk - Ukrainian
 Flavio HR <flavio.hrx@gmail.com> - Spanish  
 WAZAAAAA - wazaaaaa00<@>gmail<.>com - Italian  
 juliagoda <juliagoda.pl@protonmail.com> - Polish
+
+
+## Break
+
+Temporarily I am not developing the application because of tiredness. However I will be answering any questions and fixing new issues.

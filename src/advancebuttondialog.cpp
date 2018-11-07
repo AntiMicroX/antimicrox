@@ -1241,23 +1241,20 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     ui->setSelectionComboBox->insertItem(0, trUtf8("Disabled"));
     int currentIndex = 1;
 
-    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
+    QHash<int, SetJoystick*>::iterator set;
+    int originset = 0;
+
+    for (set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin(); set != m_button->getParentSet()->getInputDevice()->getJoystick_sets().end(); ++set)
     {
-        if (m_button->getOriginSet() != i)
+        if (m_button->getOriginSet() != originset)
         {
-            QString selectedSetText = QString(trUtf8("Select Set %1").arg(i+1));
-            InputDevice *tempdevice = m_button->getParentSet()->getInputDevice();
-            SetJoystick *tempset = tempdevice->getSetJoystick(i);
+            QString selectedSetText = QString(trUtf8("Select Set %1").arg(originset+1));
+            QString setName = set.value()->getName();
 
-            if (tempset != nullptr)
+            if (!setName.isEmpty())
             {
-                QString setName = tempset->getName();
-
-                if (!setName.isEmpty())
-                {
-                    selectedSetText.append(" ").append("[");
-                    selectedSetText.append(setName).append("]").append(" ");
-                }
+                selectedSetText.append(" ").append("[");
+                selectedSetText.append(setName).append("]").append(" ");
             }
 
             QString oneWayText = QString(selectedSetText).append(" ").append(trUtf8("One Way"));
@@ -1272,6 +1269,8 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
             ui->setSelectionComboBox->insertItems(currentIndex, setChoices);
             currentIndex += 3;
         }
+
+        originset++;
     }
 }
 
@@ -1283,28 +1282,27 @@ void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
     ui->slotSetChangeComboBox->clear();
     int currentIndex = 0;
 
-    for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
+    QHash<int, SetJoystick*>::iterator set;
+    int originset = 0;
+
+    for (set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin(); set != m_button->getParentSet()->getInputDevice()->getJoystick_sets().end(); ++set)
     {
-        if (m_button->getOriginSet() != i)
+        if (m_button->getOriginSet() != originset)
         {
-            QString selectedSetSlotText = QString(trUtf8("Select Set %1").arg(i+1));
-            InputDevice *tempdevice = m_button->getParentSet()->getInputDevice();
-            SetJoystick *tempset = tempdevice->getSetJoystick(i);
+            QString selectedSetSlotText = QString(trUtf8("Select Set %1").arg(originset+1));
+            QString setName = set.value()->getName();
 
-            if (tempset != nullptr)
+            if (!setName.isEmpty())
             {
-                QString setName = tempset->getName();
-
-                if (!setName.isEmpty())
-                {
-                    selectedSetSlotText.append(" ").append("[");
-                    selectedSetSlotText.append(setName).append("]").append(" ");
-                }
+                selectedSetSlotText.append(" ").append("[");
+                selectedSetSlotText.append(setName).append("]").append(" ");
             }
 
-            ui->slotSetChangeComboBox->insertItem(currentIndex, selectedSetSlotText, QVariant(i));
+            ui->slotSetChangeComboBox->insertItem(currentIndex, selectedSetSlotText, QVariant(originset));
             currentIndex++;
         }
+
+        originset++;
     }
 }
 
