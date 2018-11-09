@@ -825,11 +825,11 @@ double JoyAxis::getDistanceFromDeadZone(int value)
 
     if (value >= deadZone)
     {
-        distance = static_cast<double>((value - deadZone)/(maxZoneValue - deadZone));
+        distance = static_cast<double>(value - deadZone)/(maxZoneValue - deadZone);
     }
     else if (value <= -deadZone)
     {
-        distance = static_cast<double>((value + deadZone)/( (-maxZoneValue) + deadZone));
+        distance = static_cast<double>(value + deadZone)/( (-maxZoneValue) + deadZone);
     }
 
     return qBound(0.0, distance, 1.0);
@@ -845,7 +845,7 @@ double JoyAxis::getRawDistance(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return qBound(-1.0, static_cast<double>(value / maxZoneValue), 1.0);
+    return qBound(-1.0, static_cast<double>(value) / maxZoneValue, 1.0);
 }
 
 void JoyAxis::propogateThrottleChange()
