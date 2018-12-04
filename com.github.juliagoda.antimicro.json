@@ -4,6 +4,10 @@
     "runtime-version": "5.11",
     "sdk": "org.kde.Sdk",
     "command": "antimicro",
+    "finish-args": [
+        "--device=all",
+        "--socket=x11"
+    ],
     "modules": [
         {
             "name": "antimicro",
