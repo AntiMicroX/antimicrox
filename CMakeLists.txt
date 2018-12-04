@@ -41,6 +41,7 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
+include(GNUInstallDirs)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
 
@@ -79,7 +80,7 @@ endif(WITH_TESTS)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
-    option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
+    option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." OFF)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
     option(APPDATA "Build project with AppData file support." ON)
 endif(UNIX)
@@ -598,22 +599,28 @@ endif(UNIX)
 
 # Specify out directory for final executable.
 if(UNIX)
-	install(TARGETS antimicro RUNTIME DESTINATION "bin")
-        install(TARGETS antilib DESTINATION lib)
-        install(FILES ${antimicro_HEADERS} DESTINATION include/antimicro)
+	install(TARGETS antimicro RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
+        install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+        install(FILES ${antimicro_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicro")
 elseif(WIN32)
 	install(TARGETS antimicro RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
         install(TARGETS antilib
              RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX} COMPONENT runtime
-             ARCHIVE DESTINATION lib COMPONENT devel
-             PUBLIC_HEADER DESTINATION include COMPONENT devel)
-        install(FILES ${antimicro_HEADERS} DESTINATION include)
+             ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT devel
+             PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}" COMPONENT devel)
+        install(FILES ${antimicro_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 endif(UNIX)
 
 if(UNIX)
-    install(FILES src/images/antimicro.png DESTINATION "share/pixmaps")
-    install(FILES other/antimicro.desktop DESTINATION "share/applications")
-    install(FILES other/antimicro.xml DESTINATION "share/mime/packages")
+    install(FILES src/images/16x16/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/16x16/apps")
+    install(FILES src/images/24x24/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/24x24/apps")
+    install(FILES src/images/32x32/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/32x32/apps")
+    install(FILES src/images/48x48/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/48x48/apps")
+    install(FILES src/images/64x64/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/64x64/apps")
+
+    
+    install(FILES other/com.github.juliagoda.antimicro.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+    install(FILES other/com.github.juliagoda.antimicro.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
 endif(UNIX)
 
 # Add man page for *nix platforms.
@@ -701,7 +708,7 @@ if(WIN32)
       
       list(APPEND EXTRA_DLL_FILES
 	${GCC_DLL}
-        "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll"
+        "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDIRDL2.dll"
         )
     endif(TARGET_ARCH STREQUAL "x86_64")
     
@@ -755,7 +762,6 @@ if(WIN32)
       install(CODE "execute_process(COMMAND \"C:/Program Files (x86)/Windows Kits/8.1/bin/x64/signtool.exe\"
               sign /v /a /s ROOT /n antimicro ${CMAKE_INSTALL_PREFIX}/antimicro.exe)")
     endif(PERFORM_SIGNING)
-
     # Set variables needed for MSI building.
     set(MSIFOLDER "${PROJECT_SOURCE_DIR}/windows")
     set(WIXENV $ENV{WIX})
@@ -776,7 +782,7 @@ if(WIN32)
         set(MSIFILENAME "${MSIFILENAME}.${ANTIMICRO_PATCH_VERSION}")
     endif(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
 
-    # Change output file depending on the target architecture.
+    # Change outputlib file depending on the target architecture.
     if(TARGET_ARCH STREQUAL "x86_64")
         set(WIXMSI "${MSIFOLDER}/antimicro-${MSIFILENAME}-win64.msi")
     else()

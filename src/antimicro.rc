@@ -1,6 +1,6 @@
 #include "winuser.h"
 
- IDI_ICON1               ICON    DISCARDABLE     "images/antimicro.ico"
+ IDI_ICON1               ICON    DISCARDABLE     "images/32x32/antimicro.ico"
 #ifndef PERFORM_SIGNING
  CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "antimicro.exe.manifest"
 #else

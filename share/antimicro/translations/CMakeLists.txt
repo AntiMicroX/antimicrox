@@ -16,6 +16,6 @@ if(USE_QT5)
 endif(USE_QT5)
 
 add_custom_target(updateqm DEPENDS ${antimicro_QMFILES})
-install(FILES ${antimicro_QMFILES} DESTINATION "share/antimicro/translations")
+install(FILES ${antimicro_QMFILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicro/translations")
 
 set_directory_properties(PROPERTIES CLEAN_NO_CUSTOM true)

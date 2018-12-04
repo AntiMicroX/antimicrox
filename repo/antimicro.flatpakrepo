@@ -1,8 +1,0 @@
-[Flatpak Repo]
-Title=com.github.antimicro
-Name=com.github.antimicro
-Url=https://github.com/juliagoda/antimicro/tree/master/repo
-Homepage=https://github.com/juliagoda/antimicro
-Comment=Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.
-Description=antimicro is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. However, you can use this program to control any desktop application with a gamepad; on Linux, this means that your system has to be running an X environment in order to run this program.
-Icon=https://github.com/juliagoda/antimicro/tree/master/src/images/antimicro.png

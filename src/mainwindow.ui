@@ -24,7 +24,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/images/antimicro.png</normaloff>:/images/antimicro.png</iconset>
+    <normaloff>:/images/16x16/com.github.juliagoda.antimicro.png</normaloff>:/images/16x16/com.github.juliagoda.antimicro.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],

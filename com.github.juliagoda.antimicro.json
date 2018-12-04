@@ -1,0 +1,24 @@
+{
+    "app-id": "com.github.juliagoda.antimicro",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.11",
+    "sdk": "org.kde.Sdk",
+    "command": "antimicro",
+    "modules": [
+        {
+            "name": "antimicro",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DAPPDATA=ON",
+                "-DUSE_SDL_2=ON",
+                "-DWITH_UINPUT=OFF",
+                "-DWITH_XTEST=ON"
+            ],
+            "sources": [{
+                "type": "git",
+                "url": "https://github.com/juliagoda/antimicro.git"
+            }]
+        }
+    ]
+}

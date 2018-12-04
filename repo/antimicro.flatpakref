@@ -1,7 +1,0 @@
-[Flatpak Ref]
-Title=com.github.antimicro
-Name=com.github.antimicro
-Branch=stable
-Url=https://github.com/juliagoda/antimicro/tree/master/repo
-IsRuntime=false
-RuntimeRepo=https://raw.githubusercontent.com/juliagoda/antimicro/master/repo/antimicro.flatpakrepo
