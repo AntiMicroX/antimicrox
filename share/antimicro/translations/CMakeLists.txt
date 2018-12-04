@@ -5,7 +5,7 @@ list(APPEND antimicro_TRANSLATIONS antimicro.ts)
 file(GLOB_RECURSE antimicro_BASE_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE antimicro_BASE_FORMS ${PROJECT_SOURCE_DIR}/src/*.ui)
 
-if(USE_QT5)
+
     if(UPDATE_TRANSLATIONS)
             message("Update translations - lupdate ON")
             QT5_CREATE_TRANSLATION(antimicro_QMFILES ${antimicro_BASE_SOURCES}
@@ -13,7 +13,7 @@ if(USE_QT5)
     else()
         QT5_ADD_TRANSLATION(antimicro_QMFILES ${antimicro_TRANSLATIONS})
     endif(UPDATE_TRANSLATIONS)
-endif(USE_QT5)
+
 
 add_custom_target(updateqm DEPENDS ${antimicro_QMFILES})
 install(FILES ${antimicro_QMFILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicro/translations")

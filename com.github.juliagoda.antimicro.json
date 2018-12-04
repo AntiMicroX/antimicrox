@@ -6,20 +6,31 @@
     "command": "antimicro",
     "finish-args": [
         "--device=all",
-        "--socket=x11"
+        "--socket=x11",
+        "--socket=fallback-x11",
+        "--share=ipc",
+        "--share=network",
+        "--talk-name=org.freedesktop.Notifications",
+        "--talk-name=org.freedesktop.secrets",
+        "--talk-name=org.kde.StatusNotifierWatcher",
+        "--filesystem=home:rw",
+        "--sdk=org.kde.Sdk//5.11",
+        "--runtime=org.kde.Platform//5.11"
     ],
     "modules": [
         {
             "name": "antimicro",
-            "buildsystem": "cmake-ninja",
+            "buildsystem": "cmake",
             "builddir": true,
             "config-opts": [
                 "-DAPPDATA=ON",
                 "-DUSE_SDL_2=ON",
                 "-DWITH_UINPUT=OFF",
-                "-DWITH_XTEST=ON"
+                "-DWITH_XTEST=ON",
+                "-DCMAKE_BUILD_TYPE=Release"
             ],
-            "sources": [{
+            "sources": [
+            {
                 "type": "git",
                 "url": "https://github.com/juliagoda/antimicro.git"
             }]

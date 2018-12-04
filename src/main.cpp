@@ -525,7 +525,17 @@ int main(int argc, char *argv[])
     QTranslator qtTranslator;
 
 #if defined(Q_OS_UNIX)
-    qtTranslator.load(QString("qt_").append(targetLang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    QString transPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+    
+    if(QDir(transPath).entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() == 0) 
+    {
+        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicro/translations");
+    }
+    else
+    {
+       qtTranslator.load(QString("qt_").append(targetLang), transPath); 
+    }
+    
 #elif defined(Q_OS_WIN)
   #ifdef QT_DEBUG
     qtTranslator.load(QString("qt_").append(targetLang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
@@ -539,7 +549,15 @@ int main(int argc, char *argv[])
     QTranslator myappTranslator;
 
 #if defined(Q_OS_UNIX)
-    myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+    if(QDir("/app/share/antimicro").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0) 
+    {
+        myappTranslator.load(QString("antimicro_").append(targetLang), "app/share/antimicro/translations"); 
+    }
+    else
+    {
+       myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicro/translations")); 
+    }
+    
 #elif defined(Q_OS_WIN)
     myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
 #endif

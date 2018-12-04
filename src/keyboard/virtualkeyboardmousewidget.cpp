@@ -153,18 +153,18 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
     QVBoxLayout *tempAuxKeyLayout = new QVBoxLayout();
     QVBoxLayout *tempNumKeyPadLayout = new QVBoxLayout();
 
-    if (is_numlock_activated())
+   /* if (is_numlock_activated())
     {
         tempNumKeyPadLayout = setupKeyboardNumPadLayout();
     }
     else
-    {
+    {*/
         QPushButton *othersKeysButton = createOtherKeysMenu();
 
         tempNumKeyPadLayout->addWidget(noneButton);
         tempNumKeyPadLayout->addWidget(othersKeysButton);
         tempNumKeyPadLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding));
-    }
+    //}
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->addLayout(tempMainKeyLayout);
