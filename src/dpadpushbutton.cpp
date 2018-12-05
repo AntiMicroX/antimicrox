@@ -23,7 +23,6 @@
 
 #include <QDebug>
 
-
 DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
@@ -54,14 +53,9 @@ QString DPadPushButton::generateLabel()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-    if (!dpad->getDpadName().isEmpty())
-    {
-        temp.append(dpad->getName(false, ifDisplayNames()));
-    }
-    else
-    {
-        temp.append(dpad->getName());
-    }
+
+    if (!dpad->getDpadName().isEmpty()) temp.append(dpad->getName(false, ifDisplayNames()));
+    else temp.append(dpad->getName());
 
     #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Dpad button name is: " << temp;
@@ -76,6 +70,7 @@ void DPadPushButton::disableFlashes()
 
     disconnect(dpad, &JoyDPad::active, this, &DPadPushButton::flash);
     disconnect(dpad, &JoyDPad::released, this, &DPadPushButton::unflash);
+
     this->unflash();
 }
 
@@ -93,6 +88,7 @@ void DPadPushButton::showContextMenu(const QPoint &point)
 
     QPoint globalPos = this->mapToGlobal(point);
     DPadContextMenu *contextMenu = new DPadContextMenu(dpad, this);
+
     contextMenu->buildMenu();
     contextMenu->popup(globalPos);
 }

@@ -57,8 +57,6 @@ protected:
 
     void clearBitArrayStatusInstances();
 
-    static const int GAMECONTROLLERTRIGGERRELEASE;
-
 signals:
     void joystickRefreshed (InputDevice *joystick);
     void joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*> *joysticks);
@@ -93,7 +91,7 @@ private:
     QHash<InputDevice*, InputDeviceBitArrayStatus*>& getReleaseEventsGeneratedLocal();
     QHash<InputDevice*, InputDeviceBitArrayStatus*>& getPendingEventValuesLocal();
 
-    QMap<SDL_JoystickID, InputDevice*> *joysticks;
+    QMap<SDL_JoystickID, InputDevice*> *m_joysticks;
     QHash<SDL_JoystickID, Joystick*> trackjoysticks;
     QHash<SDL_JoystickID, GameController*> trackcontrollers;
 
@@ -101,11 +99,11 @@ private:
     QHash<InputDevice*, InputDeviceBitArrayStatus*> pendingEventValues;
 
     bool stopped;
-    bool graphical;
+    bool m_graphical;
 
     SDLEventReader *eventWorker;
     QThread *sdlWorkerThread;
-    AntiMicroSettings *settings;
+    AntiMicroSettings *m_settings;
     QTimer pollResetTimer;
 };
 

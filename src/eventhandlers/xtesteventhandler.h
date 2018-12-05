@@ -20,6 +20,7 @@
 
 #include "baseeventhandler.h"
 
+
 class JoyButtonSlot;
 
 
@@ -48,7 +49,6 @@ public:
     QString getName() override;
     QString getIdentifier() override;
     void printPostMessages() override;
-
 
 };
 

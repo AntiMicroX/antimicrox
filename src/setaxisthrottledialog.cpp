@@ -24,7 +24,6 @@
 #include <QDebug>
 #include <QWidget>
 
-
 SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SetAxisThrottleDialog)

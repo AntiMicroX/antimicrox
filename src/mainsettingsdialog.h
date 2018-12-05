@@ -88,12 +88,15 @@ protected slots:
     void changeAutoProfileButtonsState();
     void transferEditsToCurrentTableRow(AddEditAutoProfileDialog *dialog);
     void transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog* dialog);
-    void addNewAutoProfile(AddEditAutoProfileDialog *dialog);
+    void addNewAutoProfile();
     void autoProfileButtonsActiveState(bool enabled);
     void changeKeyRepeatWidgetsStatus(bool enabled);
     void checkSmoothingWidgetStatus(bool enabled);
     void resetMouseAcceleration();
     void selectLogFile();
+
+private slots:
+    void on_resetBtn_clicked();
 
 private:
     Ui::MainSettingsDialog *ui;
@@ -109,6 +112,11 @@ private:
 
     AutoProfileInfo* allDefaultProfile;
     QList<InputDevice*> *connectedDevices;
+
+    void resetGeneralSett();
+    void resetAutoProfSett();
+    void resetMouseSett();
+    void resetAdvancedSett();
 };
 
 #endif // MAINSETTINGSDIALOG_H

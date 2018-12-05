@@ -37,8 +37,8 @@ public:
     void removeVButton(JoyButton *button);
     JoyButton* getVButton(JoyDPadButton::JoyDPadDirections direction);
     bool isEmpty();
-    virtual QString getName(bool forceFullFormat=false, bool displayName=false);
-    virtual QString getXmlName();
+    virtual QString getName(bool forceFullFormat=false, bool displayName=false) override;
+    virtual QString getXmlName() override;
 
     void queueJoyEvent(bool ignoresets=false);
     bool hasPendingEvent();
@@ -49,8 +49,6 @@ public:
     JoyButton *getLeftButton() const;
     JoyButton *getRightButton() const;
     bool getPendingVDPadEvent() const;
-
-    static const QString xmlName;
 
 public slots:
     void activatePendingEvent();

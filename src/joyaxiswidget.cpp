@@ -23,13 +23,12 @@
 
 #include <QDebug>
 
-
 JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
     FlashButtonWidget(displayNames, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->axis = axis;
+    m_axis = axis;
 
     refreshLabel();
     enableFlashes();
@@ -37,19 +36,19 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &JoyAxisWidget::customContextMenuRequested, this, &JoyAxisWidget::showContextMenu);
 
-    JoyAxisButton *nAxisButton = axis->getNAxisButton();
-    JoyAxisButton *pAxisButton = axis->getPAxisButton();
+    JoyAxisButton *nAxisButton = m_axis->getNAxisButton();
+    JoyAxisButton *pAxisButton = m_axis->getPAxisButton();
 
     tryFlash();
 
-    connect(axis, &JoyAxis::throttleChanged, this, &JoyAxisWidget::refreshLabel);
-    connect(axis, &JoyAxis::axisNameChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(m_axis, &JoyAxis::throttleChanged, this, &JoyAxisWidget::refreshLabel);
+    connect(m_axis, &JoyAxis::axisNameChanged, this, &JoyAxisWidget::refreshLabel);
     connect(nAxisButton, &JoyAxisButton::propertyUpdated, this, &JoyAxisWidget::refreshLabel);
     connect(pAxisButton, &JoyAxisButton::propertyUpdated, this, &JoyAxisWidget::refreshLabel);
     connect(nAxisButton, &JoyAxisButton::activeZoneChanged, this, &JoyAxisWidget::refreshLabel);
     connect(pAxisButton, &JoyAxisButton::activeZoneChanged, this, &JoyAxisWidget::refreshLabel);
 
-    axis->establishPropertyUpdatedConnection();
+    m_axis->establishPropertyUpdatedConnection();
     nAxisButton->establishPropertyUpdatedConnections();
     pAxisButton->establishPropertyUpdatedConnections();
 }
@@ -58,15 +57,15 @@ JoyAxis* JoyAxisWidget::getAxis() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return axis;
+    return m_axis;
 }
 
 void JoyAxisWidget::disableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(axis, &JoyAxis::active, this, &JoyAxisWidget::flash);
-    disconnect(axis, &JoyAxis::released, this, &JoyAxisWidget::unflash);
+    disconnect(m_axis, &JoyAxis::active, this, &JoyAxisWidget::flash);
+    disconnect(m_axis, &JoyAxis::released, this, &JoyAxisWidget::unflash);
     this->unflash();
 }
 
@@ -74,8 +73,8 @@ void JoyAxisWidget::enableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(axis, &JoyAxis::active, this, &JoyAxisWidget::flash, Qt::QueuedConnection);
-    connect(axis, &JoyAxis::released, this, &JoyAxisWidget::unflash, Qt::QueuedConnection);
+    connect(m_axis, &JoyAxis::active, this, &JoyAxisWidget::flash, Qt::QueuedConnection);
+    connect(m_axis, &JoyAxis::released, this, &JoyAxisWidget::unflash, Qt::QueuedConnection);
 }
 
 /**
@@ -86,11 +85,10 @@ QString JoyAxisWidget::generateLabel()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString();
-    temp = axis->getName(false, ifDisplayNames()).replace("&", "&&");
+    QString temp = m_axis->getName(false, ifDisplayNames()).replace("&", "&&");
 
     #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << "Name of joy axis is: " << temp;
+        qDebug() << "Name of joy axis is: " << temp;
     #endif
 
     return temp;
@@ -101,7 +99,7 @@ void JoyAxisWidget::showContextMenu(const QPoint &point)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPoint globalPos = this->mapToGlobal(point);
-    JoyAxisContextMenu *contextMenu = new JoyAxisContextMenu(axis, this);
+    JoyAxisContextMenu *contextMenu = new JoyAxisContextMenu(m_axis, this);
     contextMenu->buildMenu();
     contextMenu->popup(globalPos);
 }
@@ -110,8 +108,8 @@ void JoyAxisWidget::tryFlash()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyAxisButton *nAxisButton = axis->getNAxisButton();
-    JoyAxisButton *pAxisButton = axis->getPAxisButton();
+    JoyAxisButton *nAxisButton = m_axis->getNAxisButton();
+    JoyAxisButton *pAxisButton = m_axis->getPAxisButton();
 
     if (nAxisButton->getButtonState() || pAxisButton->getButtonState())
     {

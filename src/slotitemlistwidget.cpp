@@ -26,6 +26,7 @@
 #include <QDebug>
 
 
+
 SlotItemListWidget::SlotItemListWidget(QWidget *parent) :
     QListWidget(parent)
 {
@@ -41,12 +42,11 @@ void SlotItemListWidget::keyPressEvent(QKeyEvent *event)
 
     QListWidgetItem *currentItem = this->item(this->currentRow());
     SimpleKeyGrabberButton *tempbutton = nullptr;
-    if (currentItem)
-    {
-        tempbutton = currentItem->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-    }
 
-    if (tempbutton && tempbutton->isGrabbing())
+    if (currentItem != nullptr)
+        tempbutton = currentItem->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+
+    if (tempbutton != nullptr && tempbutton->isGrabbing())
     {
         switch (event->key())
         {
@@ -56,11 +56,11 @@ void SlotItemListWidget::keyPressEvent(QKeyEvent *event)
                 propogate = false;
                 break;
             }
+
+            default:
+            break;
         }
     }
 
-    if (propogate)
-    {
-        QListWidget::keyPressEvent(event);
-    }
+    if (propogate) QListWidget::keyPressEvent(event);
 }

@@ -58,7 +58,7 @@ protected slots:
 
 private:
     bool isflashing;
-    bool displayNames;
+    bool m_displayNames;
     bool leftAlignText;
 
 };

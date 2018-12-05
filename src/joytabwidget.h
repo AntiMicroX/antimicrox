@@ -209,9 +209,9 @@ private:
     QPushButton *pushButton;
     QSpacerItem *verticalSpacer_3;
 
-    InputDevice *joystick;
+    InputDevice *m_joystick;
     bool displayingNames;
-    AntiMicroSettings *settings;
+    AntiMicroSettings *m_settings;
     int comboBoxIndex;
     bool hideEmptyButtons;
     QString oldProfileName;

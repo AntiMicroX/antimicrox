@@ -33,8 +33,12 @@ class AutoProfileWatcher : public QObject
 
 public:
     explicit AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent = nullptr);
+    ~AutoProfileWatcher();
+
     void startTimer();
     void stopTimer();
+    static void disconnectWindowTimer();
+    static AutoProfileWatcher* getAutoProfileWatcherInstance();
     QList<AutoProfileInfo*>* getCustomDefaults();
     AutoProfileInfo* getDefaultAllProfile();
     bool isGUIDLocked(QString guid);
@@ -44,6 +48,7 @@ public:
     QHash<QString, AutoProfileInfo*> const& getDefaultProfileAssignments();
 
     static const int CHECKTIME = 500; // time in ms
+
 
 protected:
     QString findAppLocation();
@@ -61,8 +66,8 @@ private slots:
 private:
     QSet<QString>& getGuidSetLocal();
 
-    QTimer appTimer;
-    QTimer checkWindowTimer;
+    static AutoProfileWatcher* _instance;
+    static QTimer checkWindowTimer;
     AntiMicroSettings *settings;
     QHash<QString, QList<AutoProfileInfo*> > appProfileAssignments;
     QHash<QString, QList<AutoProfileInfo*> > windowClassProfileAssignments;

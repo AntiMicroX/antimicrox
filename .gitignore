@@ -4,6 +4,7 @@
 *.qm
 *.diff
 *.mo
+.flatpak-builder
 Makefile
 antimicro
 !share/antimicro
@@ -19,6 +20,7 @@ vmulti/
 windows/*.msi
 windows/*.wix*
 build/
+build-dir/
 Build/
 CMakeLists.txt.user*
 other/antimicro.1.gz

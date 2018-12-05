@@ -24,7 +24,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/images/antimicro.png</normaloff>:/images/antimicro.png</iconset>
+    <normaloff>:/images/16x16/com.github.juliagoda.antimicro.png</normaloff>:/images/16x16/com.github.juliagoda.antimicro.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
@@ -192,14 +192,13 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <x>0</x>
      <y>0</y>
      <width>650</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQuit">
     <property name="title">
      <string>&amp;App</string>
     </property>
-    <addaction name="actionImportProfile"/>
     <addaction name="actionHide"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -334,11 +333,6 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionCalibration">
    <property name="text">
     <string>&amp;Calibration</string>
-   </property>
-  </action>
-  <action name="actionImportProfile">
-   <property name="text">
-    <string>Import profile</string>
    </property>
   </action>
  </widget>

@@ -34,7 +34,7 @@ class JoyAxisButton : public JoyGradientButton
 public:
     explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent=0);
 
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const;
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
 
@@ -51,13 +51,12 @@ public:
     virtual double getLastAccelerationDistance();
 
     JoyAxis* getAxis() const;
-    static const QString xmlName;
 
 signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
 
 private:
-    JoyAxis *axis;
+    JoyAxis *m_axis;
 };
 
 #endif // JOYAXISBUTTON_H

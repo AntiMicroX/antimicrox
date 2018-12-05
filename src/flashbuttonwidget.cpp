@@ -33,7 +33,7 @@ FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = false;
-    displayNames = false;
+    m_displayNames = false;
     leftAlignText = false;
 }
 
@@ -43,7 +43,7 @@ FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent) :
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     isflashing = false;
-    this->displayNames = displayNames;
+    m_displayNames = displayNames;
     leftAlignText = false;
 }
 
@@ -78,7 +78,7 @@ void FlashButtonWidget::refreshLabel()
     setText(generateLabel());
 
     #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << "label has been set: " << generateLabel();
+        qDebug() << "label has been set: " << generateLabel();
     #endif
 }
 
@@ -93,7 +93,7 @@ void FlashButtonWidget::toggleNameDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    displayNames = !displayNames;
+    m_displayNames = !m_displayNames;
     refreshLabel();
 }
 
@@ -101,14 +101,14 @@ void FlashButtonWidget::setDisplayNames(bool display)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    displayNames = display;
+    m_displayNames = display;
 }
 
 bool FlashButtonWidget::isDisplayingNames()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return displayNames;
+    return m_displayNames;
 }
 
 void FlashButtonWidget::paintEvent(QPaintEvent *event)
@@ -123,7 +123,8 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
     QFontMetrics fm(tempScaledFont);
 
     bool reduce = false;
-    while ((this->width() < fm.width(text())) && tempScaledFont.pointSize() >= 7)
+
+    while ((this->width() < fm.width(text())) && (tempScaledFont.pointSize() >= 7))
     {
         tempScaledFont.setPointSize(tempScaledFont.pointSize()-1);
         painter.setFont(tempScaledFont);
@@ -132,6 +133,7 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
     }
 
     bool changeFontSize = this->font().pointSize() != tempScaledFont.pointSize();
+
     if (changeFontSize)
     {
         if (reduce && !leftAlignText)
@@ -164,5 +166,5 @@ void FlashButtonWidget::retranslateUi()
 
 bool FlashButtonWidget::ifDisplayNames() {
 
-    return displayNames;
+    return m_displayNames;
 }

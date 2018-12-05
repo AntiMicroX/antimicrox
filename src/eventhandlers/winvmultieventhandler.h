@@ -38,20 +38,20 @@ public:
     explicit WinVMultiEventHandler(QObject *parent = nullptr);
     ~WinVMultiEventHandler();
 
-    virtual bool init();
-    virtual bool cleanup();
-    virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed);
-    virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
-    virtual void sendMouseEvent(int xDis, int yDis);
-    virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
+    virtual bool init() override;
+    virtual bool cleanup() override;
+    virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed) override;
+    virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed) override;
+    virtual void sendMouseEvent(int xDis, int yDis) override;
+    virtual void sendMouseAbsEvent(int xDis, int yDis, int screen) override;
     virtual void sendMouseSpringEvent(int xDis, int yDis,
-                                      int width, int height); // unsigned, unsigned, unsigned, unsigned
+                                      int width, int height) override; // unsigned, unsigned, unsigned, unsigned
 
     // TODO: Implement text event using information from QtWinKeyMapper.
-    virtual void sendTextEntryEvent(QString maintext);
+    virtual void sendTextEntryEvent(QString maintext) override;
 
-    virtual QString getName();
-    virtual QString getIdentifier();
+    virtual QString getName() override;
+    virtual QString getIdentifier() override;
 
 protected:
     pvmulti_client vmulti;
@@ -62,6 +62,8 @@ protected:
     QVector<BYTE> keyboardKeys;
     WinSendInputEventHandler sendInputHandler;
     QtKeyMapperBase *nativeKeyMapper;
+
+    bool cleanupWinVmEvHand();
 
 };
 

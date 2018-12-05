@@ -28,7 +28,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} "${CMAKE_CURRENT_S
 
 
 if (NOT WIN32)
-find_package(ECM 5.43.0 REQUIRED CONFIG)
+find_package(ECM REQUIRED CONFIG)
 endif(NOT WIN32)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -41,11 +41,14 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
+include(GNUInstallDirs)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+
 
 if(COMPILER_SUPPORTS_CXX11)
     if (NOT WIN32)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden -Werror -Wall -Wextra -Wno-unused-parameter -Wunused-function -Wunused-label -Wunused-value -Wunused-variable -Wunused-but-set-parameter -pedantic -Wno-reorder -std=c++11")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+        #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++11")
     else()
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
     endif()
@@ -68,11 +71,16 @@ set(ANTIMICRO_MAJOR_VERSION 2)
 set(ANTIMICRO_MINOR_VERSION 24)
 set(ANTIMICRO_PATCH_VERSION 0)
 
+option(WITH_TESTS "Allow tests for classes" OFF)
 option(USE_SDL_2 "Use SDL 2 libraries." ON)
+
+if(WITH_TESTS)
+    message("Tests enabled")
+endif(WITH_TESTS)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
-    option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
+    option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." OFF)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
     option(APPDATA "Build project with AppData file support." ON)
 endif(UNIX)
@@ -230,7 +238,6 @@ set(antimicro_SOURCES
     src/slotitemlistwidget.cpp
     src/eventhandlers/baseeventhandler.cpp
     src/eventhandlerfactory.cpp
-    src/profileimporter.cpp
     src/uihelpers/advancebuttondialoghelper.cpp
     src/uihelpers/buttoneditdialoghelper.cpp
     src/uihelpers/joytabwidgethelper.cpp
@@ -245,6 +252,7 @@ set(antimicro_SOURCES
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
     src/calibration.cpp
+    src/globalvariables.cpp
 )
 
 set(antimicro_HEADERS
@@ -328,7 +336,6 @@ set(antimicro_HEADERS
     src/slotitemlistwidget.h
     src/eventhandlers/baseeventhandler.h
     src/eventhandlerfactory.h
-    src/profileimporter.h
     src/uihelpers/advancebuttondialoghelper.h
     src/uihelpers/buttoneditdialoghelper.h
     src/uihelpers/joytabwidgethelper.h
@@ -343,6 +350,7 @@ set(antimicro_HEADERS
     src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
     src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
     src/calibration.h
+    src/globalvariables.h
 )
 
 set(antimicro_FORMS src/mainwindow.ui
@@ -366,7 +374,6 @@ set(antimicro_FORMS src/mainwindow.ui
     src/extraprofilesettingsdialog.ui
     src/capturedwindowinfodialog.ui
     src/calibration.ui
-    src/profileimporter.ui
 )
 
 set(antimicro_RESOURCES src/resources.qrc)
@@ -454,33 +461,6 @@ elseif(WIN32)
     endif(WITH_VMULTI)
 endif(UNIX)
 
-set(USE_QT5 OFF)
-
-if(UNIX)
-    # Check if Qt 5 was specified using an environment variable
-    # or by specifying -DQT_QMAKE_EXECUTABLE.
-    # Otherwise, check for Qt libraries.
-    if("$ENV{QT_SELECT}" EQUAL 5)
-        set(USE_QT5 ON)
-    elseif(QT_QMAKE_EXECUTABLE MATCHES ".*/qmake-qt5")
-        set(USE_QT5 ON)
-    else()
-        find_package(Qt5Core QUIET)
-        if(Qt5Core_FOUND)
-            set(USE_QT5 ON)
-        endif(Qt5Core_FOUND)
-    endif("$ENV{QT_SELECT}" EQUAL 5)
-elseif(WIN32)
-    # Use Qt5 on Windows.
-    set(USE_QT5 ON)
-endif(UNIX)
-
-if(USE_QT5)
-    message("Qt5 has been found")
-else()
-    message(FATAL_ERROR "No Qt version was specified.")
-endif(USE_QT5)
-
 if(USE_SDL_2)
     add_definitions(-DUSE_SDL_2)
 endif(USE_SDL_2)
@@ -506,7 +486,6 @@ if(UNIX)
 endif(UNIX)
 
 if (UNIX)
-    if (USE_QT5)
 
         find_package(Qt5Widgets REQUIRED)
         find_package(Qt5Core REQUIRED)
@@ -517,11 +496,10 @@ if (UNIX)
         QT5_WRAP_CPP(antimicro_HEADERS_MOC ${antimicro_HEADERS})
         QT5_WRAP_UI(antimicro_FORMS_HEADERS ${antimicro_FORMS})
         QT5_ADD_RESOURCES(antimicro_RESOURCES_RCC ${antimicro_RESOURCES})
+
         add_subdirectory("share/antimicro/translations")
 
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-    endif(USE_QT5)
 
 elseif(WIN32)
 
@@ -555,59 +533,11 @@ if(UNIX)
     endif(USE_SDL_2)
 elseif (WIN32)
     if(USE_SDL_2)
-        set(SDL2_LIBRARY "")
-        set(SDL2_LIBRARY_DIR "")
-        set(SDL2_INCLUDE_DIR "")
-        set(SDL2_DLL_LOCATION_DIR "")
-
-        if (MSYS OR MINGW)
-            find_package(PkgConfig QUIET)
-            if(PKG_CONFIG_FOUND)
-                #include(FindPkgConfig)
-
-                pkg_check_modules(SDL2 QUIET sdl2)
-                if(SDL2_FOUND)
-                    #find_path(SDL2_INCLUDE_DIR "SDL2/SDL.h" HINTS ${SDL2_INCLUDE_DIRS})
-
-                    set(SDL2_LIBRARY ${SDL2_LIBRARIES})
-                    set(SDL2_LIBRARY_DIR ${SDL2_LIBRARY_DIRS})
-                    set(SDL2_INCLUDE_DIR ${SDL2_INCLUDE_DIRS})
-                    unset(SDL2_DLL_LOCATION_DIR)
-                    find_path(SDL2_DLL_LOCATION_DIR "SDL2.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
-                    #set(SDL2_DLL_LOCATION_DIR "${SDL2_LIBRARY_DIRS}/../bin")
-
-                    list(APPEND LIBS ${SDL2_LIBRARIES})
-                endif(SDL2_FOUND)
-            endif(PKG_CONFIG_FOUND)
-        endif(MSYS OR MINGW)
-
-        if (NOT SDL2_LIBRARY)
-            # Perform extra voodoo to get proper library paths and include
-            # proper headers.
-	    file(GLOB SDL2_BASE_DIR "${PROJECT_SOURCE_DIR}/SDL2-*.*.*/")
-
-	    if (SDL2_BASE_DIR)
-                unset(SDL2_LIBRARY)
-
-                if(TARGET_ARCH STREQUAL "x86_64")
-                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/lib")
-                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/include")
-                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin")
-
-                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                    list(APPEND LIBS ${SDL2_LIBRARY})
-                    include_directories(${SDL2_INCLUDE_DIR})
-                else()
-                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/lib")
-                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/include")
-                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/bin")
-
-                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                    list(APPEND LIBS ${SDL2_LIBRARY})
-                    include_directories(${SDL2_INCLUDE_DIR})
-                endif(TARGET_ARCH STREQUAL "x86_64")
-	    endif(SDL2_BASE_DIR)  
-        endif(NOT SDL2_LIBRARY)
+    
+        if(SDL2_LIBRARY_DIR AND SDL2_INCLUDE_DIR)
+            list(APPEND LIBS ${SDL2_LIBRARY})
+            include_directories(${SDL2_INCLUDE_DIR})
+        endif(SDL2_LIBRARY_DIR AND SDL2_INCLUDE_DIR)
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
@@ -634,35 +564,64 @@ if(UNIX)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 endif(UNIX)
 
-
-if(USE_QT5)
     if(UNIX)
-        add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC})
-        target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
+            add_library( antilib
+                SHARED
+                ${antimicro_HEADERS_MOC}
+                ${antimicro_SOURCES}
+                ${antimicro_FORMS_HEADERS}
+                ${antimicro_RESOURCES_RCC}
+            )
+
+            target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network ${SDL2_LIBRARIES} ${LIBS})
+
+            add_executable(antimicro ${antimicro_MAIN})
+            target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
+
     elseif(WIN32)
+
+        add_library( antilib
+            SHARED
+            ${antimicro_HEADERS_MOC}
+            ${antimicro_SOURCES}
+            ${antimicro_FORMS_HEADERS}
+            ${antimicro_RESOURCES_RCC}
+            src/antimicro.rc
+        )
+
         # The WIN32 is required to specify a GUI application.
-        add_executable(antimicro ${antimicro_MAIN} ${antimicro_HEADERS_MOC} ${antimicro_SOURCES} ${antimicro_FORMS_HEADERS} ${antimicro_RESOURCES_RCC} src/antimicro.rc)
-        target_link_libraries (antimicro Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
+        add_executable(antimicro ${antimicro_MAIN})
+        target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network ${LIBS})
     endif(UNIX)
 
     target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
-endif(USE_QT5)
 
-# Add link libraries.
-#message(${LIBS})
-target_link_libraries(antimicro ${LIBS})
 
 # Specify out directory for final executable.
 if(UNIX)
-	install(TARGETS antimicro RUNTIME DESTINATION "bin")
+	install(TARGETS antimicro RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
+        install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+        install(FILES ${antimicro_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicro")
 elseif(WIN32)
 	install(TARGETS antimicro RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+        install(TARGETS antilib
+             RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX} COMPONENT runtime
+             ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT devel
+             PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}" COMPONENT devel)
+        install(FILES ${antimicro_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 endif(UNIX)
 
 if(UNIX)
-    install(FILES src/images/antimicro.png DESTINATION "share/pixmaps")
-    install(FILES other/antimicro.desktop DESTINATION "share/applications")
-    install(FILES other/antimicro.xml DESTINATION "share/mime/packages")
+    install(FILES src/images/32x32/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
+    install(FILES src/images/16x16/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/16x16/apps")
+    install(FILES src/images/24x24/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/24x24/apps")
+    install(FILES src/images/32x32/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/32x32/apps")
+    install(FILES src/images/48x48/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/48x48/apps")
+    install(FILES src/images/64x64/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/64x64/apps")
+
+    
+    install(FILES other/com.github.juliagoda.antimicro.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+    install(FILES other/com.github.juliagoda.antimicro.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
 endif(UNIX)
 
 # Add man page for *nix platforms.
@@ -750,7 +709,7 @@ if(WIN32)
       
       list(APPEND EXTRA_DLL_FILES
 	${GCC_DLL}
-        "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll"
+        "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDIRDL2.dll"
         )
     endif(TARGET_ARCH STREQUAL "x86_64")
     
@@ -804,7 +763,6 @@ if(WIN32)
       install(CODE "execute_process(COMMAND \"C:/Program Files (x86)/Windows Kits/8.1/bin/x64/signtool.exe\"
               sign /v /a /s ROOT /n antimicro ${CMAKE_INSTALL_PREFIX}/antimicro.exe)")
     endif(PERFORM_SIGNING)
-
     # Set variables needed for MSI building.
     set(MSIFOLDER "${PROJECT_SOURCE_DIR}/windows")
     set(WIXENV $ENV{WIX})
@@ -825,7 +783,7 @@ if(WIN32)
         set(MSIFILENAME "${MSIFILENAME}.${ANTIMICRO_PATCH_VERSION}")
     endif(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
 
-    # Change output file depending on the target architecture.
+    # Change outputlib file depending on the target architecture.
     if(TARGET_ARCH STREQUAL "x86_64")
         set(WIXMSI "${MSIFOLDER}/antimicro-${MSIFILENAME}-win64.msi")
     else()
@@ -859,3 +817,10 @@ if(WIN32)
     install(FILES gpl.txt Changelog README.md ProfileTips.md
             DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif(WIN32)
+
+
+
+if(WITH_TESTS)
+    enable_testing ()
+    add_subdirectory (tests)
+endif(WITH_TESTS)

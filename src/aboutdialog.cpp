@@ -22,6 +22,7 @@
 #include "eventhandlerfactory.h"
 
 #include <SDL2/SDL_version.h>
+#include <SDL2/SDL_gamecontroller.h>
 
 #include <QtGlobal>
 #include <QResource>
@@ -29,7 +30,6 @@
 #include <QEvent>
 #include <QFile>
 #include <QStringList>
-#include <QDate>
 #include <QDebug>
 
 AboutDialog::AboutDialog(QWidget *parent) :
@@ -58,8 +58,7 @@ void AboutDialog::fillInfoTextBrowser()
     QStringList finalInfoText = QStringList();
 
     finalInfoText.append(trUtf8("Program Version %1").arg(PadderCommon::programVersion));
-    // __DATE__, __TIME__
-    finalInfoText.append(trUtf8("Program Compiled on %1 at %2").arg(QDate::currentDate().toString("MMM dd yyyy")).arg(QTime::currentTime().toString("hh:mm:ss")));
+    finalInfoText.append(trUtf8("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
 
     QString sdlCompiledVersionNumber("%1.%2.%3");
     QString sdlLinkedVersionNumber("%1.%2.%3");
@@ -79,6 +78,7 @@ void AboutDialog::fillInfoTextBrowser()
 
     BaseEventHandler *handler = nullptr;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance();
+
     if (factory != nullptr)
     {
         handler = factory->handler();
@@ -105,10 +105,7 @@ void AboutDialog::changeEvent(QEvent *event)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (event->type() == QEvent::LanguageChange)
-    {
-        retranslateUi();
-    }
+    if (event->type() == QEvent::LanguageChange) retranslateUi();
 
     QDialog::changeEvent(event);
 }

@@ -87,17 +87,22 @@ void GameControllerExample::paintEvent(QPaintEvent *event)
     ButtonImagePlacement current = buttonLocations[currentIndex];
 
     paint.setOpacity(0.85);
-    if (current.buttontype == Button)
+
+    switch(current.buttontype)
     {
+
+    case Button:
         paint.drawImage(QRect(current.x, current.y, buttonimage.width(), buttonimage.height()), buttonimage);
-    }
-    else if (current.buttontype == AxisX)
-    {
+        break;
+
+    case AxisX:
         paint.drawImage(QRect(current.x, current.y, axisimage.width(), axisimage.height()), axisimage);
-    }
-    else if (current.buttontype == AxisY)
-    {
+        break;
+
+    case AxisY:
         paint.drawImage(QRect(current.x, current.y, rotatedaxisimage.width(), rotatedaxisimage.height()), rotatedaxisimage);
+        break;
+
     }
 
     paint.setOpacity(1.0);

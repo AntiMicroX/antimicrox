@@ -38,20 +38,22 @@ class ButtonEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWidget *parent = nullptr);
-    explicit ButtonEditDialog(InputDevice* joystick, QWidget *parent = nullptr);
+    explicit ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWidget *parent = nullptr); // called for chosen button
+    explicit ButtonEditDialog(InputDevice* joystick, QWidget *parent = nullptr); // Accessed by pressing the "Quick Set" button
     ~ButtonEditDialog();
 
     static ButtonEditDialog* getInstance();
     JoyButton* getLastJoyButton();
     void setUpLastJoyButton(JoyButton*);
     void refreshForLastBtn();
+    void invokeMethodLastBtn(JoyButton* lastJoyBtn, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll);
     
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
 
 private:
+    ButtonEditDialogHelper helper;
     Ui::ButtonEditDialog *ui;
     ButtonEditDialogHelper& getHelperLocal();
 
@@ -59,8 +61,9 @@ private:
     InputDevice *joystick;
     QuickSetDialog *currentQuickDialog;
     bool ignoreRelease;
+    bool withoutQuickSetDialog;
     JoyButton* lastJoyButton;
-    ButtonEditDialogHelper helper;
+
     static ButtonEditDialog *instance;
 
 signals:

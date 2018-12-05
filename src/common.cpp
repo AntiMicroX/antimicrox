@@ -40,27 +40,25 @@ namespace PadderCommon
         if (!defaultProfileDir.isEmpty())
         {
             QFileInfo dirinfo(defaultProfileDir);
-            if (dirinfo.isDir() && dirinfo.isReadable())
-            {
-                lookupDir = defaultProfileDir;
-            }
+
+            if (dirinfo.isDir() && dirinfo.isReadable()) lookupDir = defaultProfileDir;
         }
 
         if (lookupDir.isEmpty() && !lastProfileDir.isEmpty())
         {
             QFileInfo dirinfo(lastProfileDir);
-            if (dirinfo.isDir() && dirinfo.isReadable())
-            {
-                lookupDir = lastProfileDir;
-            }
+
+            if (dirinfo.isDir() && dirinfo.isReadable()) lookupDir = lastProfileDir;
         }
 
         if (lookupDir.isEmpty())
         {
 #ifdef Q_OS_WIN
     #ifdef WIN_PORTABLE_PACKAGE
+
             QString portableProDir = QDir::currentPath().append("/profiles");
             QFileInfo portableProDirInfo(portableProDir);
+
             if (portableProDirInfo.isDir() && portableProDirInfo.isReadable())
             {
                 lookupDir = portableProDir;
@@ -86,9 +84,8 @@ namespace PadderCommon
 
         QStringList list = QStringList();
 
-        for (int a = 0; a < argc; ++a) {
+        for (int a = 0; a < argc; ++a)
             list << QString::fromLocal8Bit(argv[a]);
-        }
 
         return list;
     }
@@ -101,17 +98,13 @@ namespace PadderCommon
         QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
         QStringList finalList = QStringList();
         QStringListIterator iter(tempList);
+
         while (iter.hasNext())
         {
             QString temp = iter.next();
-            if (inside)
-            {
-                finalList.append(temp);
-            }
-            else
-            {
-                finalList.append(temp.split(QRegExp("\\s+"), QString::SkipEmptyParts));
-            }
+
+            if (inside) finalList.append(temp);
+            else finalList.append(temp.split(QRegExp("\\s+"), QString::SkipEmptyParts));
 
             inside = !inside;
         }

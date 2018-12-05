@@ -80,23 +80,18 @@ public:
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
-
-    static const int JOYSPEED;
-    static const QString xmlName;
     
 private:
     int deviceCode;
     int qkeyaliasCode; // unsigned
-    JoySlotInputAction mode;
-    double distance;
+    JoySlotInputAction m_mode;
+    double m_distance;
     double previousDistance;
     QElapsedTimer mouseInterval;
     QTime easingTime;
     bool easingActive;
-    QString textData;
+    QString m_textData;
     QVariant extraData;
-
-    static const int MAXTEXTENTRYDISPLAYLENGTH;
     
 };
 

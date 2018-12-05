@@ -23,7 +23,6 @@
 #include <QHashIterator>
 #include <QDebug>
 
-
 DPadEditDialogHelper::DPadEditDialogHelper(JoyDPad *dpad, QObject *parent) :
     QObject(parent)
 {

@@ -22,7 +22,6 @@
 
 #include <QDebug>
 
-
 JoyAxisContextMenuHelper::JoyAxisContextMenuHelper(JoyAxis *axis, QObject *parent) :
     QObject(parent)
 {

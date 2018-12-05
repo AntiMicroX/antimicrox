@@ -22,7 +22,6 @@
 
 #include <QDebug>
 
-
 AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button,
                                                      QObject *parent) :
     QObject(parent)

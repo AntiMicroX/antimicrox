@@ -35,9 +35,11 @@ BaseEventHandler::~BaseEventHandler()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
+
 QString BaseEventHandler::getErrorString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     return lastErrorString;
 }
 
@@ -59,6 +61,7 @@ void BaseEventHandler::printPostMessages()
 void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(screen);
@@ -75,6 +78,7 @@ void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis,
                                             int width, int height)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(width);
@@ -100,6 +104,3 @@ void BaseEventHandler::sendTextEntryEvent(QString maintext)
 
     Q_UNUSED(maintext);
 }
-
-
-

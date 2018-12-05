@@ -40,7 +40,7 @@ class VirtualKeyboardMouseWidget : public QTabWidget
     Q_OBJECT
 
 public:
-    explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog = nullptr, QWidget *parent = nullptr);
+    explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog = nullptr, JoyButton* button = nullptr, QWidget *parent = nullptr);
     explicit VirtualKeyboardMouseWidget(QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
     bool is_numlock_activated();
@@ -84,6 +84,8 @@ public slots:
     void establishVirtualMouseSignalConnections();
     void establishVirtualKeyboardAdvancedSignalConnections();
     void establishVirtualMouseAdvancedSignalConnections();
+    void enableMouseSettingButton();
+    void disableMouseSettingButton();
 
 private slots:
     void processSingleKeyboardSelection(int keycode, int alias); // (.., unsigned)
@@ -93,7 +95,6 @@ private slots:
     void clearButtonSlots();
     void clearButtonSlotsFinish();
     void openMouseSettingsDialog();
-    void enableMouseSettingButton();
     void setButtonFontSizes();
     void otherKeysActionSingle(QAction* action, bool triggered);
     void otherKeysActionAdvanced(QAction* action, bool triggered);
@@ -101,7 +102,9 @@ private slots:
 
 private:
     bool isLaptopDevice;
+    bool withoutQuickSetDialog;
     InputDevice *joystick;
+    JoyButton* lastPressedBtn;
     ButtonEditDialogHelper* helper;
     QWidget *keyboardTab;
     QWidget *mouseTab;

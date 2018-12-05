@@ -37,6 +37,7 @@ XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->reader = reader;
+
     if (reader->device() && reader->device()->isOpen())
     {
         this->fileVersion = reader->attributes().value("configversion").toString().toInt();
@@ -52,11 +53,8 @@ bool XMLConfigMigration::requiresMigration()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool toMigrate = false;
-    if (fileVersion == 0)
-    {
-        toMigrate = false;
-    }
-    else if ((fileVersion >= 2) && (fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION))
+
+    if ((fileVersion >= 2) && (fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION))
     {
         toMigrate = true;
     }
@@ -69,17 +67,17 @@ QString XMLConfigMigration::migrate()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString tempXmlString = QString();
+
     if (requiresMigration())
     {
-        int tempFileVersion = fileVersion;
         QString initialData = readConfigToString();
         reader->clear();
         reader->addData(initialData);
 
-        if ((tempFileVersion >= 2) && (tempFileVersion <= 5))
+        if ((fileVersion >= 2) && (fileVersion <= 5))
         {
             tempXmlString = version0006Migration();
-            tempFileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
+            fileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
         }
     }
 
@@ -93,6 +91,7 @@ QString XMLConfigMigration::readConfigToString()
     QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);
     writer.setAutoFormatting(true);
+
     while (!reader->atEnd())
     {
         writer.writeCurrentToken(*reader);
@@ -156,6 +155,7 @@ QString XMLConfigMigration::version0006Migration()
                     slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
 #elif defined(Q_OS_UNIX)
                     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
                     if (handler->getIdentifier() == "xtest")
                     {
                         slotcode = AntKeyMapper::getInstance()->returnQtKey(X11KeyCodeToX11KeySym(slotcode));
@@ -183,12 +183,14 @@ QString XMLConfigMigration::version0006Migration()
 
                 writer.writeTextElement("mode", slotmode);
             }
+
             writer.writeCurrentToken(*reader);
         }
         else
         {
             writer.writeCurrentToken(*reader);
         }
+
         reader->readNext();
     }
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>478</width>
-    <height>408</height>
+    <height>418</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Profile:</string>
+        <string>Pro&amp;file:</string>
        </property>
        <property name="buddy">
         <cstring>profileLineEdit</cstring>
@@ -80,7 +80,7 @@ in the form.</string>
         <item>
          <widget class="QLabel" name="winClassLabel">
           <property name="text">
-           <string>Class:</string>
+           <string>&amp;Class:</string>
           </property>
           <property name="buddy">
            <cstring>applicationLineEdit</cstring>
@@ -97,7 +97,7 @@ in the form.</string>
         <item>
          <widget class="QLabel" name="winNameLabel">
           <property name="text">
-           <string>Title:  </string>
+           <string>T&amp;itle:  </string>
           </property>
           <property name="buddy">
            <cstring>applicationLineEdit</cstring>

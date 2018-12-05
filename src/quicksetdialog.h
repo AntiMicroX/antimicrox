@@ -26,6 +26,8 @@
 
 class InputDevice;
 class QWidget;
+class SetJoystick;
+class JoyControlStick;
 class JoyButton;
 class JoyControlStickButton;
 class JoyDPadButton;
@@ -58,9 +60,21 @@ private slots:
     void showButtonDialog(JoyButton* joybtn);
     void showStickButtonDialog(JoyControlStickButton* joyctrlstickbtn);
     void showDPadButtonDialog(JoyDPadButton* joydpadbtn);
-    void restoreButtonStates();
+    void restoreJoystickState();
 
 private:
+    void invokeMethodLastBtn(JoyButton* lastJoyBtn, Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll, bool possibleAxisAction = false);
+    void restoreSticksStates(SetJoystick *currentset);
+    void restoreAxesStates(SetJoystick *currentset);
+    void restoreHatsStates(SetJoystick *currentset);
+    void restoreVDPadsStates(SetJoystick *currentset);
+    void restoreButtonsStates(SetJoystick *currentset);
+    void connectSticksForDialog(SetJoystick* currentset);
+    void connectAxesForDialog(SetJoystick* currentset);
+    void connectDpadForDialog(SetJoystick* currentset);
+    void connectVDpadForDialog(SetJoystick* currentset);
+    void connectBtnForDialog(SetJoystick* currentset);
+
     Ui::QuickSetDialog *ui;
 
     InputDevice *joystick;

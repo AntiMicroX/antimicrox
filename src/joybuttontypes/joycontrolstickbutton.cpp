@@ -17,6 +17,7 @@
 
 #include "joycontrolstickbutton.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joycontrolstick.h"
 #include "joycontrolstickmodifierbutton.h"
@@ -29,8 +30,6 @@
 #include <QDebug>
 
 
-const QString JoyControlStickButton::xmlName = "stickbutton";
-
 JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyGradientButton(index, originset, parentSet, parent)
 {
@@ -39,56 +38,63 @@ JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, 
     this->stick = stick;
 }
 
+
 JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent) :
-    JoyGradientButton(static_cast<int>(index), originset, parentSet, parent)
+    JoyGradientButton(index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->stick = stick;
 }
 
+
 QString JoyControlStickButton::getDirectionName() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString();
-    if (index == static_cast<int>(JoyControlStick::StickUp))
+
+    switch(m_index)
     {
+    case 1:
         label.append(trUtf8("Up"));
-    }
-    else if (index == static_cast<int>(JoyControlStick::StickDown))
-    {
-        label.append(trUtf8("Down"));
-    }
-    else if (index == static_cast<int>(JoyControlStick::StickLeft))
-    {
-        label.append(trUtf8("Left"));
-    }
-    else if (index == static_cast<int>(JoyControlStick::StickRight))
-    {
-        label.append(trUtf8("Right"));
-    }
-    else if (index == static_cast<int>(JoyControlStick::StickLeftUp))
-    {
-        label.append(trUtf8("Up")).append("+").append(trUtf8("Left"));
-    }
-    else if (index == static_cast<int>(JoyControlStick::StickLeftDown))
-    {
-        label.append(trUtf8("Down")).append("+").append(trUtf8("Left"));
-    }
-    else if (index == static_cast<int>(JoyControlStick::StickRightUp))
-    {
+        break;
+
+    case 2:
         label.append(trUtf8("Up")).append("+").append(trUtf8("Right"));
-    }
-    else if (index == static_cast<int>(JoyControlStick::StickRightDown))
-    {
+        break;
+
+    case 3:
+        label.append(trUtf8("Right"));
+        break;
+
+    case 4:
         label.append(trUtf8("Down")).append("+").append(trUtf8("Right"));
+        break;
+
+    case 5:
+        label.append(trUtf8("Down"));
+        break;
+
+    case 6:
+        label.append(trUtf8("Down")).append("+").append(trUtf8("Left"));
+        break;
+
+    case 7:
+        label.append(trUtf8("Left"));
+        break;
+
+    case 8:
+        label.append(trUtf8("Up")).append("+").append(trUtf8("Left"));
+        break;
+
     }
 
     return label;
 }
 
-QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames)
+
+QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -119,14 +125,16 @@ QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool display
         temp.append(trUtf8("Button")).append(" ");
         temp.append(getDirectionName());
     }
+
     return temp;
 }
+
 
 QString JoyControlStickButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyControlStickButton::xmlName;
 }
 
 /**
@@ -152,8 +160,11 @@ double JoyControlStickButton::getMouseDistanceFromDeadZone()
     return stick->calculateMouseDirectionalDistance(this);
 }
 
-void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+
+void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
+    Q_UNUSED(updateActiveString);
+
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetChangeCondition oldCondition = setSelectionCondition;
@@ -163,12 +174,12 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, condition);
+            emit setAssignmentChanged(m_index, this->stick->getIndex(), setSelection, condition);
         }
         else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(index, this->stick->getIndex(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index, this->stick->getIndex(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
@@ -190,18 +201,20 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
     }
 }
 
-int JoyControlStickButton::getRealJoyNumber()
+
+int JoyControlStickButton::getRealJoyNumber() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index;
+    return m_index;
 }
+
 
 JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return static_cast<JoyStickDirectionsType::JoyStickDirections>(index);
+    return static_cast<JoyStickDirectionsType::JoyStickDirections>(m_index);
 }
 
 /**
@@ -231,6 +244,7 @@ bool JoyControlStickButton::isPartRealAxis()
     return true;
 }
 
+
 double JoyControlStickButton::getLastAccelerationDistance()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -238,6 +252,7 @@ double JoyControlStickButton::getLastAccelerationDistance()
     double temp = stick->calculateLastAccelerationButtonDistance(this);
     return temp;
 }
+
 
 double JoyControlStickButton::getAccelerationDistance()
 {
@@ -262,6 +277,7 @@ QString JoyControlStickButton::getActiveZoneSummary()
     QString temp = buildActiveZoneSummary(tempList);
     return temp;
 }
+
 
 QString JoyControlStickButton::getCalculatedActiveZoneSummary()
 {
@@ -291,6 +307,7 @@ QString JoyControlStickButton::getCalculatedActiveZoneSummary()
     return temp;
 }
 
+
 double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -298,21 +315,23 @@ double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
     return stick->calculateLastMouseDirectionalDistance(this);
 }
 
+
 double JoyControlStickButton::getCurrentSpringDeadCircle()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     double result = (springDeadCircleMultiplier * 0.01);
-    if ((index == static_cast<int>(JoyControlStick::StickLeft)) || (index == static_cast<int>(JoyControlStick::StickRight)))
+
+    if ((m_index == static_cast<int>(JoyControlStick::StickLeft)) || (m_index == static_cast<int>(JoyControlStick::StickRight)))
     {
         result = stick->getSpringDeadCircleX() * (springDeadCircleMultiplier * 0.01);
     }
-    else if ((index == static_cast<int>(JoyControlStick::StickUp)) || (index == static_cast<int>(JoyControlStick::StickDown)))
+    else if ((m_index == static_cast<int>(JoyControlStick::StickUp)) || (m_index == static_cast<int>(JoyControlStick::StickDown)))
     {
         result = stick->getSpringDeadCircleY() * (springDeadCircleMultiplier * 0.01);
     }
-    else if ((index == static_cast<int>(JoyControlStick::StickRightUp)) || (index == static_cast<int>(JoyControlStick::StickRightDown)) ||
-             (index == static_cast<int>(JoyControlStick::StickLeftDown)) || (index == static_cast<int>(JoyControlStick::StickLeftUp)))
+    else if ((m_index == static_cast<int>(JoyControlStick::StickRightUp)) || (m_index == static_cast<int>(JoyControlStick::StickRightDown)) ||
+             (m_index == static_cast<int>(JoyControlStick::StickLeftDown)) || (m_index == static_cast<int>(JoyControlStick::StickLeftUp)))
     {
         result = 0.0;
     }

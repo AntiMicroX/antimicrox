@@ -88,9 +88,6 @@ public:
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-    static const int MAXNAMELENGTH;
-    static const int RAISEDDEADZONE;
-
 protected:
     bool isSetEmpty();
     void deleteButtons();
@@ -173,7 +170,7 @@ protected slots:
     void propogateSetVDPadNameChange();
 
 private:
-    QHash<int, JoyButton*> buttons;
+    QHash<int, JoyButton*> m_buttons;
     QHash<int, JoyAxis*> axes;
     QHash<int, JoyDPad*> hats;
     QHash<int, JoyControlStick*> sticks;
@@ -181,9 +178,9 @@ private:
 
     QList<JoyButton*> lastClickedButtons;
 
-    int index;
-    InputDevice *device;
-    QString name;
+    int m_index;
+    InputDevice *m_device;
+    QString m_name;
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

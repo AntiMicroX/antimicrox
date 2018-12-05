@@ -37,6 +37,10 @@
 #endif
 
 
+AutoProfileWatcher* AutoProfileWatcher::_instance = nullptr;
+QTimer AutoProfileWatcher::checkWindowTimer;
+
+
 AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
@@ -45,28 +49,47 @@ AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *par
     this->settings = settings;
     allDefaultInfo = nullptr;
     currentApplication = "";
+    _instance = this;
 
     syncProfileAssignment();
 
-    checkWindowTimer.setInterval(1000);
-    checkWindowTimer.start();
+    connect(&(checkWindowTimer), &QTimer::timeout, _instance, &AutoProfileWatcher::runAppCheck);
+}
 
-    connect(&(checkWindowTimer), &QTimer::timeout, this, &AutoProfileWatcher::runAppCheck);
+AutoProfileWatcher::~AutoProfileWatcher()
+{
+    if (checkWindowTimer.isActive()) {
 
+        checkWindowTimer.stop();
+        disconnect(&(checkWindowTimer), &QTimer::timeout, _instance, nullptr);
+    }
+
+    _instance = nullptr;
+}
+
+AutoProfileWatcher* AutoProfileWatcher::getAutoProfileWatcherInstance()
+{
+    return _instance;
+}
+
+void AutoProfileWatcher::disconnectWindowTimer()
+{
+    checkWindowTimer.stop();
+    disconnect(&(checkWindowTimer), &QTimer::timeout, _instance, nullptr);
 }
 
 void AutoProfileWatcher::startTimer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    appTimer.start(CHECKTIME);
+    checkWindowTimer.start(CHECKTIME);
 }
 
 void AutoProfileWatcher::stopTimer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    appTimer.stop();
+    checkWindowTimer.stop();
 }
 
 void AutoProfileWatcher::runAppCheck()
@@ -74,7 +97,7 @@ void AutoProfileWatcher::runAppCheck()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << qApp->applicationFilePath();
+        qDebug() << qApp->applicationFilePath();
     #endif
 
     QString appLocation = QString();
@@ -100,7 +123,6 @@ void AutoProfileWatcher::runAppCheck()
     // More portable check for whether antimicro is the current application
     // with focus.
     QWidget *focusedWidget = qApp->activeWindow();
-
     QString nowWindow = QString();
     QString nowWindowClass = QString();
     QString nowWindowName = QString();
@@ -109,21 +131,21 @@ void AutoProfileWatcher::runAppCheck()
     nowWindowName = WinExtras::getCurrentWindowText();
 #elif defined(Q_OS_UNIX)
 
-    long currentWindow = static_cast<long>(X11Extras::getInstance()->getWindowInFocus());
+    long currentWindow = X11Extras::getInstance()->getWindowInFocus();
+
     if (currentWindow > 0)
     {
-        long tempWindow = static_cast<long>(X11Extras::getInstance()->findParentClient(static_cast<Window>(currentWindow)));
-        if (tempWindow > 0)
-        {
-            currentWindow = tempWindow;
-        }
+        long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
+
+        if (tempWindow > 0) currentWindow = tempWindow;
+
         nowWindow = QString::number(currentWindow);
         nowWindowClass = X11Extras::getInstance()->getWindowClass(static_cast<Window>(currentWindow));
         nowWindowName = X11Extras::getInstance()->getWindowTitle(static_cast<Window>(currentWindow));
 
         #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << nowWindowClass;
-        qDebug() << nowWindowName;
+            qDebug() << nowWindowClass;
+            qDebug() << nowWindowName;
         #endif
     }
 #endif
@@ -155,9 +177,9 @@ void AutoProfileWatcher::runAppCheck()
 
         currentAppWindowTitle = nowWindowName;
 
-    Logger::LogDebug(QObject::trUtf8("Active window changed to: Title = \"%1\", "
-				     "Class = \"%2\", Program = \"%3\" or \"%4\".").
-			 arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName));
+        Logger::LogDebug(QObject::trUtf8("Active window changed to: Title = \"%1\", "
+                     "Class = \"%2\", Program = \"%3\" or \"%4\".").
+             arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName));
 
         QSet<AutoProfileInfo*> fullSet;
 
@@ -274,27 +296,25 @@ void AutoProfileWatcher::runAppCheck()
                 }
 
 
-                if (numProps == numMatched)
+                if (numProps == numMatched && highestMatchCount.contains(info->getGUID()))
                 {
-                    if (highestMatchCount.contains(info->getGUID()))
-                    {
-                        int currentHigh = highestMatchCount.value(info->getGUID());
-                        if (numMatched > currentHigh)
-                        {
-                            highestMatchCount.insert(info->getGUID(), numMatched);
-                            highestMatches.insert(info->getGUID(), info);
-                        }
-                    }
-                    else
+                    int currentHigh = highestMatchCount.value(info->getGUID());
+                    if (numMatched > currentHigh)
                     {
                         highestMatchCount.insert(info->getGUID(), numMatched);
                         highestMatches.insert(info->getGUID(), info);
                     }
                 }
+                else if (numProps == numMatched && !highestMatchCount.contains(info->getGUID()))
+                {
+                    highestMatchCount.insert(info->getGUID(), numMatched);
+                    highestMatches.insert(info->getGUID(), info);
+                }
             }
         }
 
         QHashIterator<QString, AutoProfileInfo*> highIter(highestMatches);
+
         while (highIter.hasNext())
         {
             AutoProfileInfo *info = highIter.next().value();
@@ -304,19 +324,18 @@ void AutoProfileWatcher::runAppCheck()
 
         if ((!getDefaultProfileAssignments().isEmpty() || allDefaultInfo) && !focusedWidget)
         {
-            if (allDefaultInfo != nullptr)
+            if (allDefaultInfo != nullptr && allDefaultInfo->isActive() && !getGuidSetLocal().contains("all"))
             {
-                if (allDefaultInfo->isActive() && !getGuidSetLocal().contains("all"))
-                {
-                    emit foundApplicableProfile(allDefaultInfo);
-                }
+               emit foundApplicableProfile(allDefaultInfo);
             }
 
             QHashIterator<QString, AutoProfileInfo*> iter(getDefaultProfileAssignments());
+
             while (iter.hasNext())
             {
                 iter.next();
                 AutoProfileInfo *info = iter.value();
+
                 if (info->isActive() && !getGuidSetLocal().contains(info->getGUID()))
                 {
                     emit foundApplicableProfile(info);
@@ -352,6 +371,7 @@ void AutoProfileWatcher::syncProfileAssignment()
 
     // Handle overall Default profile assignment
     bool defaultActive = allActive == "1" ? true : false;
+
     if (defaultActive)
     {
         allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, 0, this);
@@ -360,17 +380,18 @@ void AutoProfileWatcher::syncProfileAssignment()
 
     // Handle device specific Default profile assignments
     QStringListIterator iter(registeredGUIDs);
+
     while (iter.hasNext())
     {
         QString tempkey = iter.next();
         QString guid = QString(tempkey).replace("GUID", "");
-
         QString profile = settings->value(QString("DefaultAutoProfile-%1/Profile").arg(guid), "").toString();
         QString active = settings->value(QString("DefaultAutoProfile-%1/Active").arg(guid), "").toString();
 
         if (!guid.isEmpty() && !profile.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
+
             if (profileActive && guid != "all")
             {
                 AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, 0, this);
@@ -406,6 +427,7 @@ void AutoProfileWatcher::syncProfileAssignment()
             !guid.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
+
             if (profileActive)
             {
                 AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, partialTitleBool, this);
@@ -415,16 +437,14 @@ void AutoProfileWatcher::syncProfileAssignment()
                     info->setWindowClass(windowClass);
 
                     QList<AutoProfileInfo*> templist;
+
                     if (getWindowClassProfileAssignments().contains(windowClass))
-                    {
                         templist = getWindowClassProfileAssignments().value(windowClass);
-                    }
 
                     templist.append(info);
                     windowClassProfileAssignments.insert(windowClass, templist);
                 }
 
-                // look here!
                 // partly watching is needed for window title
                 if (!windowName.isEmpty())
                 {
@@ -440,7 +460,6 @@ void AutoProfileWatcher::syncProfileAssignment()
                     while(windows.hasNext()) {
 
                         windows.next();
-
                         qDebug() << windows.key();
                     }
 
@@ -463,22 +482,20 @@ void AutoProfileWatcher::syncProfileAssignment()
                     info->setExe(exe);
 
                     QList<AutoProfileInfo*> templist;
+
                     if (getAppProfileAssignments().contains(exe))
-                    {
                         templist = getAppProfileAssignments().value(exe);
-                    }
 
                     templist.append(info);
                     appProfileAssignments.insert(exe, templist);
-
                     QString baseExe = QFileInfo(exe).fileName();
+
                     if (!baseExe.isEmpty() && baseExe != exe)
                     {
                         QList<AutoProfileInfo*> templist;
+
                         if (getAppProfileAssignments().contains(baseExe))
-                        {
                             templist = getAppProfileAssignments().value(baseExe);
-                        }
 
                         templist.append(info);
                         appProfileAssignments.insert(baseExe, templist);
@@ -501,36 +518,42 @@ void AutoProfileWatcher::clearProfileAssignments()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QSet<AutoProfileInfo*> terminateProfiles;
-
     QListIterator<QList<AutoProfileInfo*> > iterDelete(getAppProfileAssignments().values());
+
     while (iterDelete.hasNext())
     {
         QList<AutoProfileInfo*> templist = iterDelete.next();
         terminateProfiles.unite(templist.toSet());
     }
+
     appProfileAssignments.clear();
 
     QListIterator<QList<AutoProfileInfo*> > iterClassDelete(getWindowClassProfileAssignments().values());
+
     while (iterClassDelete.hasNext())
     {
         QList<AutoProfileInfo*> templist = iterClassDelete.next();
         terminateProfiles.unite(templist.toSet());
     }
+
     windowClassProfileAssignments.clear();
 
     QListIterator<QList<AutoProfileInfo*> > iterNameDelete(getWindowNameProfileAssignments().values());
+
     while (iterNameDelete.hasNext())
     {
         QList<AutoProfileInfo*> templist = iterNameDelete.next();
         terminateProfiles.unite(templist.toSet());
     }
+
     windowNameProfileAssignments.clear();
 
     QSetIterator<AutoProfileInfo*> iterTerminate(terminateProfiles);
+
     while (iterTerminate.hasNext())
     {
         AutoProfileInfo *info = iterTerminate.next();
-        if (info)
+        if (info != nullptr)
         {
             delete info;
             info = nullptr;
@@ -538,17 +561,18 @@ void AutoProfileWatcher::clearProfileAssignments()
     }
 
     QListIterator<AutoProfileInfo*> iterDefaultsDelete(getDefaultProfileAssignments().values());
+
     while (iterDefaultsDelete.hasNext())
     {
         AutoProfileInfo *info = iterDefaultsDelete.next();
-        if (info)
+        if (info != nullptr)
         {
             delete info;
             info = nullptr;
         }
     }
-    defaultProfileAssignments.clear();
 
+    defaultProfileAssignments.clear();
     allDefaultInfo = nullptr;
     getGuidSetLocal().clear();
 }
@@ -565,15 +589,8 @@ QString AutoProfileWatcher::findAppLocation()
     int pid = 0;
 
     currentWindow = X11Extras::getInstance()->getWindowInFocus();
-    if (currentWindow)
-    {
-        pid = X11Extras::getInstance()->getApplicationPid(currentWindow);
-    }
-
-    if (pid > 0)
-    {
-        exepath = X11Extras::getInstance()->getApplicationLocation(pid);
-    }
+    if (currentWindow) pid = X11Extras::getInstance()->getApplicationPid(currentWindow);
+    if (pid > 0) exepath = X11Extras::getInstance()->getApplicationLocation(pid);
     #endif
 
 #elif defined(Q_OS_WIN)
@@ -592,11 +609,13 @@ QList<AutoProfileInfo*>* AutoProfileWatcher::getCustomDefaults()
 
     QList<AutoProfileInfo*> *temp = new QList<AutoProfileInfo*>();
     QHashIterator<QString, AutoProfileInfo*> iter(getDefaultProfileAssignments());
+
     while (iter.hasNext())
     {
         iter.next();
         temp->append(iter.value());
     }
+
     return temp;
 }
 

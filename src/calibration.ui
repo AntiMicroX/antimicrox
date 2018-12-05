@@ -151,13 +151,6 @@
           <widget class="QComboBox" name="axesBox"/>
          </item>
          <item>
-          <widget class="QCheckBox" name="jstestgtkCheckbox">
-           <property name="text">
-            <string>Use settings from jstest-gtk</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <spacer name="verticalSpacer_2">
            <property name="orientation">
             <enum>Qt::Vertical</enum>

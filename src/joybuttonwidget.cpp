@@ -29,7 +29,7 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->button = button;
+    m_button = button;
 
     refreshLabel();
     enableFlashes();
@@ -47,15 +47,16 @@ JoyButton* JoyButtonWidget::getJoyButton() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return button;
+    return m_button;
 }
 
 void JoyButtonWidget::disableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(button, &JoyButton::clicked, this, &JoyButtonWidget::flash);
-    disconnect(button, &JoyButton::released, this, &JoyButtonWidget::unflash);
+    disconnect(m_button, &JoyButton::clicked, this, &JoyButtonWidget::flash);
+    disconnect(m_button, &JoyButton::released, this, &JoyButtonWidget::unflash);
+
     this->unflash();
 }
 
@@ -63,19 +64,18 @@ void JoyButtonWidget::enableFlashes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(button, &JoyButton::clicked, this, &JoyButtonWidget::flash, Qt::QueuedConnection);
-    connect(button, &JoyButton::released, this, &JoyButtonWidget::unflash, Qt::QueuedConnection);
+    connect(m_button, &JoyButton::clicked, this, &JoyButtonWidget::flash, Qt::QueuedConnection);
+    connect(m_button, &JoyButton::released, this, &JoyButtonWidget::unflash, Qt::QueuedConnection);
 }
 
 QString JoyButtonWidget::generateLabel()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString();
-    temp = button->getName(false, ifDisplayNames()).replace("&", "&&");
+    QString temp = m_button->getName(false, ifDisplayNames()).replace("&", "&&");
 
     #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << "Name of joy button is: " << temp;
+        qDebug() << "Name of joy button is: " << temp;
     #endif
 
     return temp;
@@ -86,7 +86,7 @@ void JoyButtonWidget::showContextMenu(const QPoint &point)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPoint globalPos = this->mapToGlobal(point);
-    JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(button, this);
+    JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(m_button, this);
     contextMenu->buildMenu();
     contextMenu->popup(globalPos);
 }
@@ -95,8 +95,5 @@ void JoyButtonWidget::tryFlash()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (button->getButtonState())
-    {
-        flash();
-    }
+    if (m_button->getButtonState()) flash();
 }

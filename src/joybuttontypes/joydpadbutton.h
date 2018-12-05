@@ -30,11 +30,11 @@ class JoyDPadButton : public JoyButton
 public:
     JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent=0);
 
-    virtual int getRealJoyNumber();
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
-    virtual QString getXmlName();
+    virtual int getRealJoyNumber() const override;
+    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const override;
+    virtual QString getXmlName() override;
 
-    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false);
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false, bool updateActiveString=true) override;
 
     enum JoyDPadDirections {
         DpadCentered = 0, DpadUp = 1, DpadRight = 2,
@@ -46,18 +46,16 @@ public:
     int getDirection() const;
     JoyDPad *getDPad() const;
 
-    static const QString xmlName;
-
 signals:
     void setAssignmentChanged(int current_button, int dpad_index, int associated_set, int mode);
 
 public slots:
-    virtual void reset();
-    virtual void reset(int index);
+    virtual void reset() override;
+    virtual void reset(int index) override;
 
 private:
-    int direction;
-    JoyDPad *dpad;
+    int m_direction;
+    JoyDPad *m_dpad;
 };
 
 #endif // JOYDPADBUTTON_H

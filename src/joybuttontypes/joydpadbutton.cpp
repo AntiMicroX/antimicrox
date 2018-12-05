@@ -17,6 +17,7 @@
 
 #include "joydpadbutton.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joydpad.h"
 #include "setjoystick.h"
@@ -24,7 +25,6 @@
 
 #include <QDebug>
 
-const QString JoyDPadButton::xmlName = "dpadbutton";
 
 // Initially, qualify direction as the button's index
 JoyDPadButton::JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent) :
@@ -32,76 +32,85 @@ JoyDPadButton::JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoy
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->direction = direction;
-    this->dpad = dpad;
+    m_direction = direction;
+    m_dpad = dpad;
 }
+
 
 QString JoyDPadButton::getDirectionName() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString label = QString ();
-    if (direction == DpadUp)
+
+    switch(m_direction)
     {
-        label.append(trUtf8("Up"));
-    }
-    else if (direction == DpadDown)
-    {
-        label.append(trUtf8("Down"));
-    }
-    else if (direction == DpadLeft)
-    {
-        label.append(trUtf8("Left"));
-    }
-    else if (direction == DpadRight)
-    {
-        label.append(trUtf8("Right"));
-    }
-    else if (direction == DpadLeftUp)
-    {
-        label.append(trUtf8("Up")).append("+").append(trUtf8("Left"));
-    }
-    else if (direction == DpadLeftDown)
-    {
-        label.append(trUtf8("Down")).append("+").append(trUtf8("Left"));
-    }
-    else if (direction == DpadRightUp)
-    {
-        label.append(trUtf8("Up")).append("+").append(trUtf8("Right"));
-    }
-    else if (direction == DpadRightDown)
-    {
-        label.append(trUtf8("Down")).append("+").append(trUtf8("Right"));
+        case 1:
+            label.append(trUtf8("Up"));
+        break;
+
+        case 2:
+            label.append(trUtf8("Right"));
+        break;
+
+        case 3:
+            label.append(trUtf8("Up")).append("+").append(trUtf8("Right"));
+        break;
+
+        case 4:
+            label.append(trUtf8("Down"));
+        break;
+
+        case 6:
+            label.append(trUtf8("Down")).append("+").append(trUtf8("Right"));
+        break;
+
+        case 8:
+            label.append(trUtf8("Left"));
+        break;
+
+        case 9:
+            label.append(trUtf8("Up")).append("+").append(trUtf8("Left"));
+        break;
+
+        case 12:
+            label.append(trUtf8("Down")).append("+").append(trUtf8("Left"));
+        break;
     }
 
     return label;
 }
 
+
 QString JoyDPadButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::JoyDPadButton::xmlName;
 }
 
-int JoyDPadButton::getRealJoyNumber()
+
+int JoyDPadButton::getRealJoyNumber() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return index;
+    return m_index;
 }
 
-QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames)
+
+QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = dpad->getName().append(" - ");
+    QString temp = m_dpad->getName().append(" - ");
+
     if (!buttonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {
             temp.append(trUtf8("Button")).append(" ");
         }
+
         temp.append(buttonName);
     }
     else if (!defaultButtonName.isEmpty() && displayNames)
@@ -110,6 +119,7 @@ QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames)
         {
             temp.append(trUtf8("Button")).append(" ");
         }
+
         temp.append(defaultButtonName);
     }
     else
@@ -117,6 +127,7 @@ QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames)
         temp.append(trUtf8("Button")).append(" ");
         temp.append(getDirectionName());
     }
+
     return temp;
 }
 
@@ -128,6 +139,7 @@ void JoyDPadButton::reset()
     JoyButton::reset();
 }
 
+
 void JoyDPadButton::reset(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -136,8 +148,11 @@ void JoyDPadButton::reset(int index)
     reset();
 }
 
-void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool passive)
+
+void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
+    Q_UNUSED(updateActiveString);
+
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     SetChangeCondition oldCondition = setSelectionCondition;
@@ -147,12 +162,12 @@ void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool pas
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(index, this->dpad->getJoyNumber(), setSelection, condition);
+            emit setAssignmentChanged(m_index, m_dpad->getJoyNumber(), setSelection, condition);
         }
         else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(index, this->dpad->getJoyNumber(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index, m_dpad->getJoyNumber(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
@@ -174,16 +189,18 @@ void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     }
 }
 
+
 JoyDPad* JoyDPadButton::getDPad() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return dpad;
+    return m_dpad;
 }
+
 
 int JoyDPadButton::getDirection() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return direction;
+    return m_direction;
 }

@@ -17,11 +17,11 @@
 
 #include "sdleventreader.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "common.h"
-
 //#include "logger.h"
 
 #include <QDebug>
@@ -43,7 +43,7 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
     this->settings = settings;
     settings->getLock()->lock();
     this->pollRate = settings->value("GamepadPollRate",
-                                     AntiMicroSettings::defaultSDLGamepadPollRate).toUInt();
+                                     GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toUInt();
     settings->getLock()->unlock();
 
     pollRateTimer.setParent(this);
@@ -72,18 +72,19 @@ void SDLEventReader::initSDL()
     // SDL_INIT_GAMECONTROLLER should automatically initialize SDL_INIT_JOYSTICK
     // but it doesn't seem to be the case with v2.0.4
     SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK);
-
     SDL_JoystickEventState(SDL_ENABLE);
-    sdlIsOpen = true;
 
+    sdlIsOpen = true;
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
     QStringList mappings = settings->allKeys();
     QStringListIterator iter(mappings);
+
     while (iter.hasNext())
     {
         QString tempstring = iter.next();
         QString mappingSetting = settings->value(tempstring, QString()).toString();
+
         if (!mappingSetting.isEmpty())
         {
             QByteArray temparray = mappingSetting.toUtf8();
@@ -112,9 +113,8 @@ void SDLEventReader::closeSDL()
     closeDevices();
 
     // Clear any pending events
-    while (SDL_PollEvent(&event) > 0)
-    {
-    }
+    while (SDL_PollEvent(&event) > 0) {}
+
     SDL_Quit();
 
     sdlIsOpen = false;
@@ -124,16 +124,10 @@ void SDLEventReader::closeSDL()
 
 void SDLEventReader::performWork()
 {
-
-    if (sdlIsOpen)
+    if (sdlIsOpen && (eventStatus() > 0))
     {
-        int status = CheckForEvents();
-
-        if (status)
-        {
-            pollRateTimer.stop();
-            emit eventRaised();
-        }
+        pollRateTimer.stop();
+        emit eventRaised();
     }
 }
 
@@ -158,7 +152,6 @@ void SDLEventReader::refresh()
     if (sdlIsOpen)
     {
         stop();
-
         QTimer::singleShot(0, this, SLOT(secondaryRefresh()));
     }
 }
@@ -167,10 +160,7 @@ void SDLEventReader::secondaryRefresh()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (sdlIsOpen)
-    {
-        closeSDL();
-    }
+    if (sdlIsOpen) closeSDL();
 
     initSDL();
 }
@@ -182,9 +172,7 @@ void SDLEventReader::clearEvents()
     if (sdlIsOpen)
     {
         SDL_Event event;
-        while (SDL_PollEvent(&event) > 0)
-        {
-        }
+        while (SDL_PollEvent(&event) > 0) {}
     }
 }
 
@@ -195,16 +183,17 @@ bool SDLEventReader::isSDLOpen()
     return sdlIsOpen;
 }
 
-int SDLEventReader::CheckForEvents()
+int SDLEventReader::eventStatus()
 {
     int result = 0;
 
     SDL_PumpEvents();
+
     switch (SDL_PeepEvents(nullptr, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
     {
         case -1:
         {
-	  Logger::LogError(QString("SDL Error: %1").
+            Logger::LogError(QString("SDL Error: %1").
 			   arg(QString(SDL_GetError())),
 			   true, true);
             result = 0;
@@ -213,10 +202,7 @@ int SDLEventReader::CheckForEvents()
         }
         case 0:
         {
-            if (!pollRateTimer.isActive())
-            {
-                pollRateTimer.start();
-            }
+            if (!pollRateTimer.isActive()) pollRateTimer.start();
 
             break;
         }
@@ -236,16 +222,13 @@ void SDLEventReader::updatePollRate(int tempPollRate)
 
     if ((tempPollRate >= 1) && (tempPollRate <= 16))
     {
-        bool wasActive = pollRateTimer.isActive();
+        bool pollTimerWasActive = pollRateTimer.isActive();
         pollRateTimer.stop();
 
         this->pollRate = tempPollRate;
         pollRateTimer.setInterval(pollRate);
 
-        if (wasActive)
-        {
-            pollRateTimer.start();
-        }
+        if (pollTimerWasActive) pollRateTimer.start();
     }
 }
 
@@ -271,17 +254,15 @@ void SDLEventReader::closeDevices()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (sdlIsOpen)
+    if (sdlIsOpen && (joysticks != nullptr))
     {
-        if (joysticks)
+        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+
+        while (iter.hasNext())
         {
-            QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
-            while (iter.hasNext())
-            {
-                iter.next();
-                InputDevice *current = iter.value();
-                current->closeSDLDevice();
-            }
+            iter.next();
+            InputDevice *current = iter.value();
+            current->closeSDLDevice();
         }
     }
 }

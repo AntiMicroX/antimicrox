@@ -19,6 +19,7 @@
 
 #include "gamecontrollertrigger.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "gamecontrollertriggerbutton.h"
 
@@ -29,11 +30,7 @@
 #include <QDebug>
 
 
-const int GameControllerTrigger::AXISDEADZONE = 2000;
-const int GameControllerTrigger::AXISMAXZONE = 32000;
 const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTLE = GameControllerTrigger::PositiveHalfThrottle;
-
-const QString GameControllerTrigger::xmlName = "trigger";
 
 GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     JoyAxis(index, originset, parentSet, parent)
@@ -45,12 +42,14 @@ GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoysti
     reset(index);
 }
 
+
 QString GameControllerTrigger::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->xmlName;
+    return GlobalVariables::GameControllerTrigger::xmlName;
 }
+
 
 QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool displayNames)
 {
@@ -85,38 +84,46 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
     return label;
 }
 
+
 void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (xml->isStartElement() && (xml->name() == JoyAxis::xmlName))
+    if (xml->isStartElement() && (xml->name() == GlobalVariables::JoyAxis::xmlName))
     {
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != JoyAxis::xmlName)))
+
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::JoyAxis::xmlName)))
         {
             bool found = readMainConfig(xml);
-            if (!found && (xml->name() == JoyAxisButton::xmlName) && xml->isStartElement())
+
+            if (!found && (xml->name() == GlobalVariables::JoyAxisButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
+                GameControllerTriggerButton *triggerButton = nullptr;
 
                 #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "Index for axis in readJoystickConfig is: " << index;
                 #endif
 
-                if (index == 1)
-                {
-                    found = true;
-                    GameControllerTriggerButton *triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(naxisbutton); // static_cast
-                    triggerButton->readJoystickConfig(xml);
+                switch (index) {
+
+                    case 1:
+                        found = true;
+                        triggerButton =
+                            qobject_cast<GameControllerTriggerButton*>(naxisbutton);
+                        triggerButton->readJoystickConfig(xml);
+                    break;
+
+
+                    case 2:
+                        found = true;
+                        triggerButton =
+                            qobject_cast<GameControllerTriggerButton*>(paxisbutton);
+                        triggerButton->readJoystickConfig(xml);
+                    break;
                 }
-                else if (index == 2)
-                {
-                    found = true;
-                    GameControllerTriggerButton *triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(paxisbutton); // static_cast
-                    triggerButton->readJoystickConfig(xml);
-                }
+
             }
 
             if (!found)
@@ -137,6 +144,7 @@ void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
     }
 }
 
+
 void GameControllerTrigger::correctJoystickThrottle()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -150,6 +158,7 @@ void GameControllerTrigger::correctJoystickThrottle()
     }
 }
 
+
 void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -157,43 +166,47 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
     bool currentlyDefault = isDefault();
 
     xml->writeStartElement(getXmlName());
-    xml->writeAttribute("index", QString::number((index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+    xml->writeAttribute("index", QString::number((m_index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
 
-    if (!currentlyDefault)
+
+    if (!currentlyDefault && (deadZone != GlobalVariables::GameControllerTrigger::AXISDEADZONE))
     {
-        if (deadZone != AXISDEADZONE)
-        {
-            xml->writeTextElement("deadZone", QString::number(deadZone));
-        }
-
-        if (maxZoneValue != AXISMAXZONE)
-        {
-            xml->writeTextElement("maxZone", QString::number(maxZoneValue));
-        }
+      xml->writeTextElement("deadZone", QString::number(deadZone));
     }
 
-        xml->writeStartElement("throttle");
+    if (!currentlyDefault && (maxZoneValue != GlobalVariables::GameControllerTrigger::AXISMAXZONE))
+    {
+      xml->writeTextElement("maxZone", QString::number(maxZoneValue));
+    }
 
-        if (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle))
+
+    xml->writeStartElement("throttle");
+
+
+        switch(throttle)
         {
-            xml->writeCharacters("negativehalf");
+            case -2:
+                xml->writeCharacters("negativehalf");
+            break;
+
+            case -1:
+                xml->writeCharacters("negative");
+            break;
+
+            case 0:
+                xml->writeCharacters("normal");
+            break;
+
+            case 1:
+                xml->writeCharacters("positive");
+            break;
+
+            case 2:
+                xml->writeCharacters("positivehalf");
+            break;
+
         }
-        else if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
-        {
-            xml->writeCharacters("negative");
-        }
-        else if (throttle == static_cast<int>(JoyAxis::NormalThrottle))
-        {
-            xml->writeCharacters("normal");
-        }
-        else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
-        {
-            xml->writeCharacters("positive");
-        }
-        else if (throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle))
-        {
-            xml->writeCharacters("positivehalf");
-        }
+
 
         xml->writeEndElement();
 
@@ -207,19 +220,22 @@ void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
     xml->writeEndElement();
 }
 
+
 int GameControllerTrigger::getDefaultDeadZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->AXISDEADZONE;
+    return GlobalVariables::GameControllerTrigger::AXISDEADZONE;
 }
+
 
 int GameControllerTrigger::getDefaultMaxZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return this->AXISMAXZONE;
+    return GlobalVariables::GameControllerTrigger::AXISMAXZONE;
 }
+
 
 JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 {

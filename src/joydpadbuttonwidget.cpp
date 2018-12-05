@@ -23,7 +23,6 @@
 #include <QWidget>
 #include <QDebug>
 
-
 JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
     JoyButtonWidget(button, displayNames, parent)
 {

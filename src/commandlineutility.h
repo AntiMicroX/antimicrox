@@ -188,6 +188,12 @@ private:
     QList<ControllerOptionsInfo> controllerOptionsList;
 
     static QStringList eventGeneratorsList;
+
+    void parseArgsProfile(QCommandLineParser* parser);
+    void parseArgsPrControle(QCommandLineParser* parser);
+    void parseArgsUnload(QCommandLineParser* parser);
+    void parseArgsStartSet(QCommandLineParser* parser);
+    void parseArgsMap(QCommandLineParser* parser);
     
 };
 

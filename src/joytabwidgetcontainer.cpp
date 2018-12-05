@@ -25,7 +25,6 @@
 #include <QTabBar>
 #include <QDebug>
 
-
 JoyTabWidgetContainer::JoyTabWidgetContainer(QWidget *parent) :
     QTabWidget(parent)
 {

@@ -481,15 +481,7 @@ QString WinExtras::getCurrentWindowText()
 
 bool WinExtras::raiseProcessPriority()
 {
-    bool result = false;
-    result = SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
-    /*if (!result)
-    {
-        qDebug() << "COULD NOT RAISE PROCESS PRIORITY";
-    }
-    */
-
-    return result;
+    return SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
 }
 
 QPoint WinExtras::getCursorPos()

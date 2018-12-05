@@ -23,7 +23,10 @@
 #include <QHash>
 #include <QPoint>
 
+#include <X11/extensions/XInput.h>
+#include <X11/extensions/XInput2.h>
 #include <X11/Xlib.h>
+
 
 
 class X11Extras : public QObject
@@ -72,15 +75,14 @@ public:
 
     static void setCustomDisplay(QString displayString);
 
+    #ifdef Q_OS_UNIX
+    const char* getEnvVariable(const char* var) const;
+    #endif
+
     static X11Extras* getInstance();
     static void deleteInstance();
 
     QHash<QString, QString> const& getKnownAliases();
-
-    static const QString mouseDeviceName;
-    static const QString keyboardDeviceName;
-    static const QString xtestMouseDeviceName;
-
 
 protected:
     explicit X11Extras(QObject *parent = nullptr);
@@ -91,12 +93,16 @@ protected:
     bool isWindowRelevant(Display *display, Window window);
 
     static X11Extras *_instance;  
-    static QString _customDisplayString;
     
 public slots:
     QPoint getPos();
 
 private:
+    void checkPropertyOnWin(bool windowCorrected, Window& window, Window& parent, Window& finalwindow, Window& root, Window *children, Display *display, unsigned int& num_children);
+    void freeDisplay();
+    void checkFeedback(XFeedbackState *temp, int& num_feedbacks, int& feedback_id);
+    void findVirtualPtr(int num_devices, XIDeviceInfo *current_devices, XIDeviceInfo *mouse_device, XIDeviceInfo *all_devices, QString pointerName);
+
     QHash<QString, QString> knownAliases;
     Display *_display;
 };

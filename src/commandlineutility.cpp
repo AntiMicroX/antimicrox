@@ -31,7 +31,6 @@
 
 QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
 
-
 CommandLineUtility::CommandLineUtility(QObject *parent) :
     QObject(parent)
 {
@@ -57,6 +56,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent) :
 
     eventGenerator = EventHandlerFactory::fallBackIdentifier();
 }
+
 
 void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
 
@@ -86,57 +86,11 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
         }
         else if (parser->isSet("profile"))
         {
-
-            QFileInfo fileInfo(parser->value("profile"));
-                if (fileInfo.exists())
-                {
-                    if ((fileInfo.suffix() != "amgp") && (fileInfo.suffix() != "xml"))
-                    {
-                        setErrorMessage(QObject::trUtf8("Profile location %1 is not an XML file.").arg(parser->value("profile")));
-                    }
-                    else
-                    {
-                        QString tempProfileLocation = fileInfo.absoluteFilePath();
-                        ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-                        tempInfo.setProfileLocation(tempProfileLocation);
-                        controllerOptionsList.replace(currentListsIndex, tempInfo);
-                    }
-                }
-                else
-                {
-                    setErrorMessage(QObject::trUtf8("Profile location %1 does not exist.").arg(parser->value("profile")));
-                }
+            parseArgsProfile(parser);
         }
         else if (parser->isSet("profile-controller"))
         {
-                bool validNumber = false;
-                int tempNumber = parser->value("profile-controller").toInt(&validNumber);
-                if (validNumber)
-                {
-                    if (controllerNumber == 0)
-                    {
-                        controllerNumber = tempNumber;
-                    }
-
-                    ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-                    tempInfo.setControllerNumber(tempNumber);
-                    controllerOptionsList.replace(currentListsIndex, tempInfo);
-                }
-                else if (!parser->value("profile-controller").isEmpty())
-                {
-                    if (controllerIDString.isEmpty())
-                    {
-                        controllerIDString = parser->value("profile-controller");
-                    }
-
-                    ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-                    tempInfo.setControllerID(parser->value("profile-controller"));
-                    controllerOptionsList.replace(currentListsIndex, tempInfo);
-                }
-                else
-                {
-                    setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
-                }
+            parseArgsPrControle(parser);
         }
         else if (parser->isSet("hidden"))
         {
@@ -144,154 +98,35 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
         }
         else if (parser->isSet("unload"))
         {
-            ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-            tempInfo.setProfileLocation("");
-            tempInfo.setUnloadRequest(true);
-            controllerOptionsList.replace(currentListsIndex, tempInfo);
-
-            QStringList values = QStringList() << parser->values("unload");
-            QListIterator<QString> unloaded_profile(values);
-            QString temp = QString();
-
-            if (unloaded_profile.hasNext())
-            {
-
-                temp = unloaded_profile.next();
-
-                    // A value has been passed. Attempt
-                    // to validate the value.
-                    bool validNumber = false;
-                    int tempNumber = temp.toInt(&validNumber);
-                    if (validNumber)
-                    {
-                        controllerNumber = tempNumber;
-                        tempInfo = getControllerOptionsList().at(currentListsIndex);
-                        tempInfo.setControllerNumber(controllerNumber);
-                        controllerOptionsList.replace(currentListsIndex, tempInfo);
-                    }
-                    else if (!temp.isEmpty())
-                    {
-                        controllerIDString = temp;
-                        tempInfo = getControllerOptionsList().at(currentListsIndex);
-                        tempInfo.setControllerID(controllerIDString);
-                        controllerOptionsList.replace(currentListsIndex, tempInfo);
-                    }
-                    else
-                    {
-                        setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
-                    }
-
-            }
-            else
-            {
-                unloadProfile = true;
-                profileLocation = "";
-            }
+            parseArgsUnload(parser);
         }
         else if (parser->isSet("startSet"))
         {
-            QStringList values = QStringList() << parser->values("startSet");
-            QListIterator<QString> unloaded_profile(values);
-            QString temp = QString();
-
-            if (unloaded_profile.hasNext())
-            {
-                temp = unloaded_profile.next();
-
-                bool validNumber = false;
-                int tempNumber = temp.toInt(&validNumber);
-                if (validNumber && (tempNumber >= 1) && (tempNumber <= 8))
-                {
-                    startSetNumber = tempNumber;
-                    ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-                    tempInfo.setStartSetNumber(startSetNumber);
-                    controllerOptionsList.replace(currentListsIndex, tempInfo);
-                }
-                else if (validNumber)
-                {
-                    setErrorMessage(QObject::trUtf8("An invalid set number '%1' was specified.").arg(tempNumber));
-                }
-
-                if (unloaded_profile.hasNext())
-                {
-                    temp = unloaded_profile.next();
-
-                        if (validNumber)
-                        {
-                            controllerNumber = tempNumber;
-                            ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-                            tempInfo.setControllerNumber(controllerNumber);
-                            controllerOptionsList.replace(currentListsIndex, tempInfo);
-                        }
-                        else if (!temp.isEmpty())
-                        {
-                            controllerIDString = temp;
-                            ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-                            tempInfo.setControllerID(controllerIDString);
-                            controllerOptionsList.replace(currentListsIndex, tempInfo);
-                        }
-                        else
-                        {
-                            setErrorMessage(QObject::trUtf8("Controller identifier '%s'' is not a valid value.").arg(temp));
-                        }
-                }
-            }
-            else
-            {
-                setErrorMessage(QObject::trUtf8("No set number was specified."));
-            }
+            parseArgsStartSet(parser);
         }
         else if (parser->isSet("next"))
         {
             currentListsIndex++;
-
             ControllerOptionsInfo tempInfo;
             controllerOptionsList.append(tempInfo);
-
         }
-
-#ifdef USE_SDL_2
+        #ifdef USE_SDL_2
         else if (parser->isSet("list"))
         {
             listControllers = true;
         }
         else if (parser->isSet("map"))
         {
-                QString temp = parser->value("map");
-
-         if (!temp.isEmpty()) {
-
-                bool validNumber = false;
-                int tempNumber = temp.toInt(&validNumber);
-                if (validNumber)
-                {
-                    controllerNumber = tempNumber;
-                    mappingController = true;
-                }
-                else if (!temp.isEmpty())
-                {
-                    controllerIDString = temp;
-                    mappingController = true;
-                }
-                else
-                {
-                    setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
-                }
-            }
-            else
-            {
-                setErrorMessage(QObject::trUtf8("No controller was specified."));
-            }
-
+            parseArgsMap(parser);
         }
-#endif
+        #endif
 
-#ifdef Q_OS_UNIX
+     #ifdef Q_OS_UNIX
         else if (parser->isSet("daemon"))
         {
             daemonMode = true;
         }
-  #ifdef WITH_X11
+        #ifdef WITH_X11
         else if (parser->isSet("display"))
         {
             if (!parser->value("display").isEmpty())
@@ -303,55 +138,39 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
                 setErrorMessage(QObject::trUtf8("No display string was specified."));
             }
         }
-  #endif
-#endif
+        #endif
+    #endif
 
-#if (defined (Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) \
+    #if (defined (Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) \
      || (defined(Q_OS_WIN) && defined(WITH_VMULTI))
+
         else if (parser->isSet("eventgen"))
         {
-                QString temp = parser->value("eventgen");
+           QString eventGenText = parser->value("eventgen");
 
-
-           if (!temp.isEmpty()) {
-
-                if (!eventGeneratorsList.contains(temp))
-                {
-                    eventGenerator = "";
-                    setErrorMessage(QObject::trUtf8("An invalid event generator was specified."));
-                }
-                else
-                {
-                    eventGenerator = temp;
-                }
+           if (!eventGenText.isEmpty() && !eventGeneratorsList.contains(eventGenText))
+           {
+               eventGenerator = "";
+               setErrorMessage(QObject::trUtf8("An invalid event generator was specified."));
+            }
+            else if (!eventGenText.isEmpty() && eventGeneratorsList.contains(eventGenText))
+            {
+                eventGenerator = eventGenText;
             }
             else
             {
                 setErrorMessage(QObject::trUtf8("No event generator string was specified."));
             }
         }
-
-#endif
-
+    #endif
         else if (parser->isSet("log-level"))
         {
-                QString temp = parser->value("log-level");
-                if (temp == "debug")
-                {
-                    currentLogLevel = Logger::LOG_DEBUG;
-                }
-                else if (temp == "info")
-                {
-                    currentLogLevel = Logger::LOG_INFO;
-                }
-                else if (temp == "warn")
-                {
-                    currentLogLevel = Logger::LOG_WARNING;
-                }
-                else if (temp == "error")
-                {
-                    currentLogLevel = Logger::LOG_ERROR;
-                }
+            QString logLevelText = parser->value("log-level");
+
+            if (logLevelText == "debug") currentLogLevel = Logger::LOG_DEBUG;
+            else if (logLevelText == "info") currentLogLevel = Logger::LOG_INFO;
+            else if (logLevelText == "warn") currentLogLevel = Logger::LOG_WARNING;
+            else if (logLevelText == "error") currentLogLevel = Logger::LOG_ERROR;
         }
         else if (parser->isSet("log-file"))
         {
@@ -366,6 +185,186 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
         }
 
         i++;
+    }
+}
+
+void CommandLineUtility::parseArgsProfile(QCommandLineParser* parser)
+{
+    QFileInfo profileFileInfo(parser->value("profile"));
+
+    if (profileFileInfo.exists() && (profileFileInfo.suffix() != "amgp") && (profileFileInfo.suffix() != "xml"))
+    {
+        setErrorMessage(QObject::trUtf8("Profile location %1 is not an XML file.").arg(parser->value("profile")));
+    }
+    else if (profileFileInfo.exists() && ((profileFileInfo.suffix() == "amgp") || (profileFileInfo.suffix() == "xml")))
+    {
+        QString tempProfileLocation = profileFileInfo.absoluteFilePath();
+        ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
+        tempInfo.setProfileLocation(tempProfileLocation);
+        controllerOptionsList.replace(currentListsIndex, tempInfo);
+    }
+    else
+    {
+        setErrorMessage(QObject::trUtf8("Profile location %1 does not exist.").arg(parser->value("profile")));
+    }
+}
+
+void CommandLineUtility::parseArgsPrControle(QCommandLineParser* parser)
+{
+    bool validNumber = false;
+    int tempNumber = parser->value("profile-controller").toInt(&validNumber);
+
+    if (validNumber)
+    {
+        if (controllerNumber == 0) controllerNumber = tempNumber;
+
+        ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
+        tempInfo.setControllerNumber(tempNumber);
+        controllerOptionsList.replace(currentListsIndex, tempInfo);
+    }
+    else if (!parser->value("profile-controller").isEmpty())
+    {
+        if (controllerIDString.isEmpty()) controllerIDString = parser->value("profile-controller");
+
+        ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
+        tempInfo.setControllerID(parser->value("profile-controller"));
+        controllerOptionsList.replace(currentListsIndex, tempInfo);
+    }
+    else
+    {
+        setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
+    }
+}
+
+void CommandLineUtility::parseArgsUnload(QCommandLineParser* parser)
+{
+    ControllerOptionsInfo gameControllerOptionInfo = getControllerOptionsList().at(currentListsIndex);
+    gameControllerOptionInfo.setProfileLocation("");
+    gameControllerOptionInfo.setUnloadRequest(true);
+    controllerOptionsList.replace(currentListsIndex, gameControllerOptionInfo);
+
+    QStringList parserVals = QStringList() << parser->values("unload");
+    QListIterator<QString> profileForUnload(parserVals);
+    QString unloadedProfText = QString();
+
+    if (profileForUnload.hasNext())
+    {
+        unloadedProfText = profileForUnload.next();
+
+        // A value has been passed. Attempt
+        // to validate the value.
+
+        bool validNumber = false;
+        int tempNumber = unloadedProfText.toInt(&validNumber);
+
+        if (validNumber)
+        {
+            controllerNumber = tempNumber;
+            gameControllerOptionInfo = getControllerOptionsList().at(currentListsIndex);
+            gameControllerOptionInfo.setControllerNumber(controllerNumber);
+            controllerOptionsList.replace(currentListsIndex, gameControllerOptionInfo);
+        }
+        else if (!unloadedProfText.isEmpty())
+        {
+            controllerIDString = unloadedProfText;
+            gameControllerOptionInfo = getControllerOptionsList().at(currentListsIndex);
+            gameControllerOptionInfo.setControllerID(controllerIDString);
+            controllerOptionsList.replace(currentListsIndex, gameControllerOptionInfo);
+        }
+        else
+        {
+            setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
+        }
+    }
+    else
+    {
+        unloadProfile = true;
+        profileLocation = "";
+    }
+}
+
+void CommandLineUtility::parseArgsStartSet(QCommandLineParser* parser)
+{
+    QStringList parserValues = QStringList() << parser->values("startSet");
+    QListIterator<QString> profileForStartset(parserValues);
+    QString startSetText = QString();
+
+    if (profileForStartset.hasNext())
+    {
+        startSetText = profileForStartset.next();
+
+        bool validNumber = false;
+        int tempNumber = startSetText.toInt(&validNumber);
+
+        if (validNumber && (tempNumber >= 1) && (tempNumber <= 8))
+        {
+            startSetNumber = tempNumber;
+            ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
+            tempInfo.setStartSetNumber(startSetNumber);
+            controllerOptionsList.replace(currentListsIndex, tempInfo);
+        }
+        else if (validNumber)
+        {
+            setErrorMessage(QObject::trUtf8("An invalid set number '%1' was specified.").arg(tempNumber));
+        }
+
+        if (profileForStartset.hasNext())
+        {
+            startSetText = profileForStartset.next();
+
+            if (validNumber)
+            {
+                controllerNumber = tempNumber;
+                ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
+                tempInfo.setControllerNumber(controllerNumber);
+                controllerOptionsList.replace(currentListsIndex, tempInfo);
+            }
+            else if (!startSetText.isEmpty())
+            {
+                controllerIDString = startSetText;
+                ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
+                tempInfo.setControllerID(controllerIDString);
+                controllerOptionsList.replace(currentListsIndex, tempInfo);
+            }
+            else
+            {
+                setErrorMessage(QObject::trUtf8("Controller identifier '%s'' is not a valid value.").arg(startSetText));
+            }
+        }
+    }
+    else
+    {
+        setErrorMessage(QObject::trUtf8("No set number was specified."));
+    }
+}
+
+void CommandLineUtility::parseArgsMap(QCommandLineParser* parser)
+{
+    QString mapOptionText = parser->value("map");
+
+    if (!mapOptionText.isEmpty()) {
+
+        bool validNumber = false;
+        int tempNumber = mapOptionText.toInt(&validNumber);
+
+        if (validNumber)
+        {
+            controllerNumber = tempNumber;
+            mappingController = true;
+        }
+        else if (!mapOptionText.isEmpty())
+        {
+            controllerIDString = mapOptionText;
+            mappingController = true;
+        }
+        else
+        {
+            setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
+        }
+    }
+    else
+    {
+        setErrorMessage(QObject::trUtf8("No controller was specified."));
     }
 }
 
@@ -539,11 +538,12 @@ bool CommandLineUtility::hasProfileInOptions()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
-
     QListIterator<ControllerOptionsInfo> iter(getControllerOptionsList());
+
     while (iter.hasNext())
     {
         ControllerOptionsInfo temp = iter.next();
+
         if (temp.hasProfile())
         {
             result = true;

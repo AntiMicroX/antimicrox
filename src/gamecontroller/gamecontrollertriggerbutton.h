@@ -36,8 +36,6 @@ public:
     virtual QString getXmlName();
     void readJoystickConfig(QXmlStreamReader *xml);
 
-    static const QString xmlName;
-
 };
 
 #endif // GAMECONTROLLERBUTTON_H

@@ -18,7 +18,10 @@
 #ifndef STICKPUSHBUTTONGROUP_H
 #define STICKPUSHBUTTONGROUP_H
 
+#include "joycontrolstickdirectionstype.h"
+
 #include <QGridLayout>
+
 
 class JoyControlStick;
 class QWidget;
@@ -77,6 +80,8 @@ private:
     JoyControlStickButtonPushButton *downRightButton;
 
     JoyControlStickPushButton *stickWidget;
+
+    JoyControlStickButtonPushButton * generateBtnToGrid(JoyControlStickButtonPushButton *pushbutton, JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections stickValue, int gridRow, int gridCol);
 };
 
 #endif // STICKPUSHBUTTONGROUP_H

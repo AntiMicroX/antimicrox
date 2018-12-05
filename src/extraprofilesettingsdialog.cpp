@@ -34,8 +34,8 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
-
     ui->pressValueLabel->setText(QString::number(0.10, 'g', 3).append("").append(trUtf8("s")));
+
     if (device->getDeviceKeyPressTime() > 0)
     {
         int temppress = device->getDeviceKeyPressTime();
@@ -44,9 +44,7 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
     }
 
     if (!device->getProfileName().isEmpty())
-    {
         ui->profileNameLineEdit->setText(device->getProfileName());
-    }
 
     connect(ui->keyPressHorizontalSlider, &QSlider::valueChanged, this, &ExtraProfileSettingsDialog::changeDeviceKeyPress);
     connect(ui->profileNameLineEdit, &QLineEdit::textChanged, device, &InputDevice::setProfileName);

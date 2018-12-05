@@ -110,6 +110,7 @@ void AutoProfileInfo::setExe(QString exe)
     if (!exe.isEmpty())
     {
         QFileInfo info(exe);
+
         if ((exe != this->exe) && info.exists() && info.isExecutable())
         {
             this->exe = exe;

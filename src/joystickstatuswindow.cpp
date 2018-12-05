@@ -18,6 +18,7 @@
 #include "joystickstatuswindow.h"
 #include "ui_joystickstatuswindow.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "joybuttonstatusbox.h"
 #include "inputdevice.h"
@@ -74,8 +75,8 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
             QLabel *axisLabel = new QLabel();
             axisLabel->setText(trUtf8("Axis %1").arg(axis->getRealJoyIndex()));
             QProgressBar *axisBar = new QProgressBar();
-            axisBar->setMinimum(JoyAxis::AXISMIN);
-            axisBar->setMaximum(JoyAxis::AXISMAX);
+            axisBar->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
+            axisBar->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
             axisBar->setFormat("%v");
             axisBar->setValue(axis->getCurrentRawValue());
             hbox->addWidget(axisLabel);

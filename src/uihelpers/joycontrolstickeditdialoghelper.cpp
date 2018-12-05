@@ -23,7 +23,6 @@
 
 #include <QDebug>
 
-
 JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent) :
     QObject(parent)
 {

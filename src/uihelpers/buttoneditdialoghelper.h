@@ -35,10 +35,8 @@ public:
     explicit ButtonEditDialogHelper(QObject *parent = nullptr);
     void setThisButton(JoyButton *btn);
 
-
 protected:
     JoyButton *button;
-    bool firstStart;
 
 public slots:
     void setAssignedSlot(int code,

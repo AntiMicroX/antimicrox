@@ -29,7 +29,6 @@
 #include <QWidget>
 #include <QDebug>
 
-
 DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
@@ -50,115 +49,36 @@ void DPadPushButtonGroup::generateButtons()
 
     QHash<int, JoyDPadButton*> *buttons = dpad->getJoyButtons();
 
-    JoyDPadButton *button = nullptr;
-    JoyDPadButtonWidget *pushbutton = nullptr;
-
-    button = buttons->value(JoyDPadButton::DpadLeftUp);
-    upLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = upLeftButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
-        openDPadButtonDialog(pushbutton);
-    });
-
-    button->establishPropertyUpdatedConnections();
-
-    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 0, 0);
-
-
-    button = buttons->value(JoyDPadButton::DpadUp);
-    upButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = upButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
-        openDPadButtonDialog(pushbutton);
-    });
-
-    button->establishPropertyUpdatedConnections();
-
-    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 0, 1);
-
-    button = buttons->value(JoyDPadButton::DpadRightUp);
-    upRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = upRightButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
-        openDPadButtonDialog(pushbutton);
-    });
-
-    button->establishPropertyUpdatedConnections();
-
-    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 0, 2);
-
-    button = buttons->value(JoyDPadButton::DpadLeft);
-    leftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = leftButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
-        openDPadButtonDialog(pushbutton);
-    });
-
-    button->establishPropertyUpdatedConnections();
-
-    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 1, 0);
+    upLeftButton = generateBtnForGrid(buttons, 9, 0, 0);
+    upButton = generateBtnForGrid(buttons, 1, 0, 1);
+    upRightButton = generateBtnForGrid(buttons, 3, 0, 2);
+    leftButton = generateBtnForGrid(buttons, 8, 1, 0);
 
     dpadWidget = new DPadPushButton(dpad, displayNames, parentWidget());
     dpadWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
     connect(dpadWidget, &DPadPushButton::clicked, this, &DPadPushButtonGroup::showDPadDialog);
     addWidget(dpadWidget, 1, 1);
 
-    button = buttons->value(JoyDPadButton::DpadRight);
-    rightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = rightButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
-        openDPadButtonDialog(pushbutton);
-    });
+    rightButton = generateBtnForGrid(buttons, 2, 1, 2);
+    downLeftButton = generateBtnForGrid(buttons, 12, 2, 0);
+    downButton = generateBtnForGrid(buttons, 4, 2, 1);
+    downRightButton = generateBtnForGrid(buttons, 6, 2, 2);
+}
 
-    button->establishPropertyUpdatedConnections();
+JoyDPadButtonWidget* DPadPushButtonGroup::generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons, int dpadDirection, int cellRow, int cellCol)
+{
+    JoyDPadButton *button = buttons->value(static_cast<JoyDPadButton::JoyDPadDirections>(dpadDirection));
+    JoyDPadButtonWidget *pushbutton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
 
-    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 1, 2);
-
-    button = buttons->value(JoyDPadButton::DpadLeftDown);
-    downLeftButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = downLeftButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
-        openDPadButtonDialog(pushbutton);
-    });
-
-    button->establishPropertyUpdatedConnections();
-    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 2, 0);
-
-    button = buttons->value(JoyDPadButton::DpadDown);
-    downButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = downButton;
     connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
         openDPadButtonDialog(pushbutton);
     });
 
     button->establishPropertyUpdatedConnections();
     connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
+    addWidget(pushbutton, cellRow, cellCol);
 
-    addWidget(pushbutton, 2, 1);
-
-    button = buttons->value(JoyDPadButton::DpadRightDown);
-    downRightButton = new JoyDPadButtonWidget(button, displayNames, parentWidget());
-    pushbutton = downRightButton;
-    connect(pushbutton, &JoyDPadButtonWidget::clicked, this, [this, pushbutton] {
-        openDPadButtonDialog(pushbutton);
-    });
-
-    button->establishPropertyUpdatedConnections();
-    connect(button, &JoyDPadButton::slotsChanged, this, &DPadPushButtonGroup::propogateSlotsChanged);
-
-    addWidget(pushbutton, 2, 2);
+    return pushbutton;
 }
 
 void DPadPushButtonGroup::changeButtonLayout()

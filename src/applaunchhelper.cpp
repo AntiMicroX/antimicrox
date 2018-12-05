@@ -17,6 +17,7 @@
 
 #include "applaunchhelper.h"
 
+#include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "joybutton.h"
@@ -66,18 +67,21 @@ void AppLaunchHelper::enablePossibleMouseSmoothing()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
+
     if (smoothingEnabled)
     {
         int historySize = settings->value("Mouse/HistorySize", 0).toInt();
+
         if (historySize > 0)
         {
-            JoyButton::setMouseHistorySize(historySize);
+            JoyButton::setMouseHistorySize(historySize, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
         }
 
         double weightModifier = settings->value("Mouse/WeightModifier", 0.0).toDouble();
+
         if (weightModifier > 0.0)
         {
-            JoyButton::setWeightModifier(weightModifier);
+            JoyButton::setWeightModifier(weightModifier, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER, GlobalVariables::JoyButton::weightModifier);
         }
     }
 }
@@ -87,9 +91,10 @@ void AppLaunchHelper::changeMouseRefreshRate()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int refreshRate = settings->value("Mouse/RefreshRate", 0).toInt();
+
     if (refreshRate > 0)
     {
-        JoyButton::setMouseRefreshRate(refreshRate);
+        JoyButton::setMouseRefreshRate(refreshRate, GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(), &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer());
     }
 }
 
@@ -98,10 +103,10 @@ void AppLaunchHelper::changeGamepadPollRate()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int pollRate = settings->value("GamepadPollRate",
-                                            AntiMicroSettings::defaultSDLGamepadPollRate).toInt();
+                                            GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toInt();
     if (pollRate > 0)
     {
-        JoyButton::setGamepadRefreshRate(pollRate);
+        JoyButton::setGamepadRefreshRate(pollRate, GlobalVariables::JoyButton::gamepadRefreshRate, JoyButton::getMouseHelper());
     }
 }
 
@@ -117,6 +122,7 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
     outstream << QObject::trUtf8("---------------") << endl;
     QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
     int indexNumber = 1;
+
     while (iter.hasNext())
     {
         InputDevice *tempdevice = iter.next().value();
@@ -146,18 +152,19 @@ void AppLaunchHelper::changeSpringModeScreen()
 
     QDesktopWidget deskWid;
     int springScreen = settings->value("Mouse/SpringScreen",
-                                       AntiMicroSettings::defaultSpringScreen).toInt();
+                                       GlobalVariables::AntimicroSettings::defaultSpringScreen).toInt();
 
     if (springScreen >= deskWid.screenCount())
     {
         springScreen = -1;
         settings->setValue("Mouse/SpringScreen",
-                           AntiMicroSettings::defaultSpringScreen);
+                           GlobalVariables::AntimicroSettings::defaultSpringScreen);
         settings->sync();
     }
 
-    JoyButton::setSpringModeScreen(springScreen);
+    JoyButton::setSpringModeScreen(springScreen, GlobalVariables::JoyButton::springModeScreen);
 }
+
 #ifdef Q_OS_WIN
 void AppLaunchHelper::checkPointerPrecision()
 {
@@ -165,7 +172,7 @@ void AppLaunchHelper::checkPointerPrecision()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     WinExtras::grabCurrentPointerPrecision();
     bool disableEnhandedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
-                                                AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
+                                                GlobalVariables::defaultDisabledWinEnhanced).toBool();
     if (disableEnhandedPoint)
     {
         WinExtras::disablePointerPrecision();
@@ -177,7 +184,7 @@ void AppLaunchHelper::appQuitPointerPrecision()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool disableEnhancedPoint = settings->value("Mouse/DisableWinEnhancedPointer",
-                                                AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
+                                                GlobalVariables::defaultDisabledWinEnhanced).toBool();
     if (disableEnhancedPoint && !WinExtras::isUsingEnhancedPointerPrecision())
     {
         WinExtras::enablePointerPrecision();
@@ -190,14 +197,14 @@ void AppLaunchHelper::revertMouseThread()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButton::indirectStaticMouseThread(QThread::currentThread());
+    JoyButton::indirectStaticMouseThread(QThread::currentThread(), JoyButton::getStaticMouseEventTimer(), JoyButton::getMouseHelper());
 }
 
 void AppLaunchHelper::changeMouseThread(QThread *thread)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButton::setStaticMouseThread(thread);
+    JoyButton::setStaticMouseThread(thread, JoyButton::getStaticMouseEventTimer(), JoyButton::getTestOldMouseTime(), GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper());
 }
 
 void AppLaunchHelper::establishMouseTimerConnections()

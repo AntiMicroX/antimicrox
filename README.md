@@ -1,4 +1,4 @@
-# antimicro 2.23
+# antimicro 2.24
 
 1. [Description](#description)  
 2. [License](#license)  

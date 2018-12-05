@@ -24,7 +24,6 @@
 #include <QHashIterator>
 #include <QDebug>
 
-
 DPadContextMenuHelper::DPadContextMenuHelper(JoyDPad *dpad, QObject *parent) :
     QObject(parent)
 {

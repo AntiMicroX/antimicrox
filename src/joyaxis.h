@@ -155,16 +155,7 @@ public:
 
     virtual void eventReset();
 
-    // Define default values for many properties.
-    static const int AXISMIN;
-    static const int AXISMAX;
-    static const int AXISDEADZONE;
-    static const int AXISMAXZONE;
     static const ThrottleTypes DEFAULTTHROTTLE;
-
-    static const float JOYSPEED;
-
-    static const QString xmlName;
 
 protected:
     void createDeskEvent(bool ignoresets = false);
@@ -189,7 +180,7 @@ protected:
     int currentRawValue;
     int currentThrottledValue;
     int currentThrottledDeadValue;
-    int index;
+    int m_index;
     int axis_center_cal;
     int axis_min_cal;
     int axis_max_cal;
@@ -225,11 +216,11 @@ private:
     bool eventActive;
 
     JoyAxisButton *activeButton;
-    int originset;
+    int m_originset;
 
-    JoyControlStick *stick;
+    JoyControlStick *m_stick;
 
-    SetJoystick *parentSet;
+    SetJoystick *m_parentSet;
     int lastKnownThottledValue;
     int lastKnownRawValue;
 
@@ -237,6 +228,7 @@ private:
     bool pendingEvent;
     bool pendingIgnoreSets;
 
+    void resetPrivateVars();
 };
 
 #endif // JOYAXIS_H

@@ -25,7 +25,6 @@
 #include <QLocalServer>
 #include <QDebug>
 
-
 LocalAntiMicroServer::LocalAntiMicroServer(QObject *parent) :
     QObject(parent)
 {
