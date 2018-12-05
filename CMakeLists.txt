@@ -594,7 +594,7 @@ endif(UNIX)
         target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network ${LIBS})
     endif(UNIX)
 
-    #target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
+    target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
 
 
 # Specify out directory for final executable.
@@ -612,6 +612,7 @@ elseif(WIN32)
 endif(UNIX)
 
 if(UNIX)
+    install(FILES src/images/32x32/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
     install(FILES src/images/16x16/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/16x16/apps")
     install(FILES src/images/24x24/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/24x24/apps")
     install(FILES src/images/32x32/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/32x32/apps")
