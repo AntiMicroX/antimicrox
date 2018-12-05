@@ -11,11 +11,9 @@
         "--share=ipc",
         "--share=network",
         "--talk-name=org.freedesktop.Notifications",
-        "--talk-name=org.freedesktop.secrets",
         "--talk-name=org.kde.StatusNotifierWatcher",
         "--filesystem=home:rw",
-        "--sdk=org.kde.Sdk//5.11",
-        "--runtime=org.kde.Platform//5.11"
+        "--socket=system-bus"
     ],
     "modules": [
         {
