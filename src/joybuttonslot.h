@@ -44,7 +44,7 @@ public:
 
     explicit JoyButtonSlot(QObject *parent = nullptr);
     explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent=nullptr);
-    explicit JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent=nullptr); // .., .., unsigned
+    explicit JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent=nullptr);
     explicit JoyButtonSlot(JoyButtonSlot *slot, QObject *parent=nullptr);
     explicit JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent=nullptr);
 
@@ -60,8 +60,8 @@ public:
     void restartMouseInterval();
     QString getXmlName();
     QString getSlotString();
-    void setSlotCode(int code,int alias); // (.., unsigned)
-    int getSlotCodeAlias(); // unsigned
+    void setSlotCode(int code,int alias);
+    int getSlotCodeAlias();
     void setPreviousDistance(double distance);
     double getPreviousDistance();
     bool isModifierKey();
@@ -83,7 +83,7 @@ public:
     
 private:
     int deviceCode;
-    int qkeyaliasCode; // unsigned
+    int qkeyaliasCode;
     JoySlotInputAction m_mode;
     double m_distance;
     double previousDistance;

@@ -38,7 +38,7 @@ public:
         WindowName = (1 << 1),
         WindowPath = (1 << 2)
     };
-    typedef int DialogWindowOption; // unsigned
+    typedef int DialogWindowOption;
 
     QString getWindowClass() const;
     QString getWindowName() const;

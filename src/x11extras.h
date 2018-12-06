@@ -65,8 +65,8 @@ public:
     static QString getXDisplayString();
     QString getWindowTitle(Window window);
     QString getWindowClass(Window window);
-    unsigned long getWindowInFocus(); // unsigned
-    int getGroup1KeySym(int virtualkey); // unsigned (unsigned)
+    unsigned long getWindowInFocus();
+    int getGroup1KeySym(int virtualkey);
 
     void x11ResetMouseAccelerationChange();
     void x11ResetMouseAccelerationChange(QString pointerName);

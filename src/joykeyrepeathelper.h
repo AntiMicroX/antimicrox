@@ -34,8 +34,8 @@ public:
     void setLastActiveKey(JoyButtonSlot *slot);
     JoyButtonSlot* getLastActiveKey();
 
-    void setKeyRepeatRate(int repeatRate); // (unsigned)
-    int getKeyRepeatRate(); // unsigned
+    void setKeyRepeatRate(int repeatRate);
+    int getKeyRepeatRate();
 
 private slots:
     void repeatKeysEvent();
@@ -43,8 +43,8 @@ private slots:
 protected:
     QTimer keyRepeatTimer;
     JoyButtonSlot *lastActiveKey;
-    int keyRepeatDelay; // unsigned
-    int keyRepeatRate; // unsigned
+    int keyRepeatDelay;
+    int keyRepeatRate;
 };
 
 #endif // JOYKEYREPEATHELPER_H

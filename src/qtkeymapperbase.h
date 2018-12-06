@@ -31,18 +31,18 @@ public:
     typedef struct _charKeyInformation
     {
         Qt::KeyboardModifiers modifiers;
-        int virtualkey; // unsigned
+        int virtualkey;
     } charKeyInformation;
 
-    virtual int returnVirtualKey(int qkey); // unsigned (unsigned)
-    virtual int returnQtKey(int key, int scancode=0); // unsigned (unsigned, unsigned)
-    virtual bool isModifier(int qkey); // .. (unsigned)
+    virtual int returnVirtualKey(int qkey);
+    virtual int returnQtKey(int key, int scancode=0);
+    virtual bool isModifier(int qkey);
     charKeyInformation getCharKeyInformation(QChar value);
     QString getIdentifier();
 
-    static const int customQtKeyPrefix = 0x10000000; // unsigned
-    static const int customKeyPrefix = 0x20000000; // unsigned
-    static const int nativeKeyPrefix = 0x60000000; // unsigned
+    static const int customQtKeyPrefix = 0x10000000;
+    static const int customKeyPrefix = 0x20000000;
+    static const int nativeKeyPrefix = 0x60000000;
 
     enum {
         AntKey_Shift_R = Qt::Key_Shift | customQtKeyPrefix,
@@ -82,10 +82,9 @@ protected:
     virtual void populateMappingHashes() = 0;
     virtual void populateCharKeyInformation() = 0;
 
-    QHash<int, int> qtKeyToVirtKeyHash; // unsigned, unsigned
-    QHash<int, int> virtKeyToQtKeyHash; // unsigned, unsigned
-    // Unicode representation -> VK+Modifier information
-    QHash<int, charKeyInformation> virtkeyToCharKeyInfo; // unsigned, ..
+    QHash<int, int> qtKeyToVirtKeyHash;
+    QHash<int, int> virtKeyToQtKeyHash;
+    QHash<int, charKeyInformation> virtkeyToCharKeyInfo; // Unicode representation -> VK+Modifier information
     QString identifier;
 
 };

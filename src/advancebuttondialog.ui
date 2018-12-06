@@ -97,7 +97,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -349,7 +349,7 @@
          <item>
           <widget class="QStackedWidget" name="slotControlsStackedWidget">
            <property name="currentIndex">
-            <number>8</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="timePage">
             <layout class="QVBoxLayout" name="verticalLayout_12">

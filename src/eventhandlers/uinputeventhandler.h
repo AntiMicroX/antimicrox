@@ -65,7 +65,7 @@ protected:
     void createUInputSpringMouseDevice(int filehandle);
     void closeUInputDevice(int filehandle);
     void write_uinput_event(int filehandle, int type,
-                            int code, int value, bool syn=true); // .., .., unsigned, unsigned, .., ..
+                            int code, int value, bool syn=true);
 
 private slots:
 #ifdef WITH_X11

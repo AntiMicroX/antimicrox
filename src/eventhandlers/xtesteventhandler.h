@@ -41,7 +41,7 @@ public:
     void sendMouseAbsEvent(int xDis, int yDis, int screen) override;
 
     void sendMouseSpringEvent(int xDis, int yDis,
-                              int width, int height) override; // unsigned, unsigned, unsigned, unsigned
+                              int width, int height) override;
     void sendMouseSpringEvent(int xDis, int yDis) override;
 
     void sendTextEntryEvent(QString maintext) override;

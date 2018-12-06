@@ -42,8 +42,8 @@ void fakeAbsMouseCoordinates(double springX, double springY,
                              int &finalx, int &finaly, int screen=-1);
 
 int X11KeySymToKeycode(QString key);
-QString keycodeToKeyString(int keycode, int alias=0); // .., .., unsigned
-int X11KeyCodeToX11KeySym(int keycode); // unsigned, unisigned
-QString keysymToKeyString(int keysym, int alias=0); // .., .., unsigned
+QString keycodeToKeyString(int keycode, int alias=0);
+int X11KeyCodeToX11KeySym(int keycode);
+QString keysymToKeyString(int keysym, int alias=0);
 
 #endif // EVENT_H

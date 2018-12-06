@@ -57,12 +57,12 @@ public:
         return (controllerNumber > 0);
     }
 
-    int getControllerNumber() // unsigned
+    int getControllerNumber()
     {
         return controllerNumber;
     }
 
-    void setControllerNumber(int temp) // .., unsigned
+    void setControllerNumber(int temp)
     {
         controllerNumber = temp;
     }
@@ -92,17 +92,17 @@ public:
         unloadProfile = status;
     }
 
-    int getStartSetNumber() // unsigned
+    int getStartSetNumber()
     {
         return startSetNumber;
     }
 
-    int getJoyStartSetNumber() // unsigned
+    int getJoyStartSetNumber()
     {
         return startSetNumber - 1;
     }
 
-    void setStartSetNumber(int temp) //.., unsigned
+    void setStartSetNumber(int temp)
     {
         if ((temp >= 1) && (temp <= 8))
         {
@@ -112,9 +112,9 @@ public:
 
 private:
     QString profileLocation;
-    int controllerNumber; // unsigned
+    int controllerNumber;
     QString controllerIDString;
-    int startSetNumber; // unsigned
+    int startSetNumber;
     bool unloadProfile;
 };
 
@@ -139,9 +139,9 @@ public:
     bool hasProfileInOptions();
     bool hasError();
 
-    int getControllerNumber(); // unsigned
-    int getStartSetNumber(); // unsigned
-    int getJoyStartSetNumber(); // unsigned
+    int getControllerNumber();
+    int getStartSetNumber();
+    int getJoyStartSetNumber();
 
     QString getControllerID();
     QString getProfileLocation();
@@ -149,7 +149,7 @@ public:
     QString getCurrentLogFile();
     QString getErrorText();
 
-    QList<int>* getJoyStartSetNumberList(); // unsigned
+    QList<int>* getJoyStartSetNumberList();
     QList<ControllerOptionsInfo> const& getControllerOptionsList();
 
 #ifdef Q_OS_UNIX
@@ -172,9 +172,9 @@ private:
     bool listControllers;
     bool mappingController;
 
-    int startSetNumber; // unsigned
-    int controllerNumber; // unsigned
-    int currentListsIndex; // unsigned
+    int startSetNumber;
+    int controllerNumber;
+    int currentListsIndex;
 
     QString profileLocation;
     QString controllerIDString;

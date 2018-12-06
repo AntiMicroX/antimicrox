@@ -75,7 +75,7 @@ private:
     QMap<SDL_JoystickID, InputDevice*> *joysticks;
     bool sdlIsOpen;
     AntiMicroSettings *settings;
-    int pollRate; // unsigned
+    int pollRate;
     QTimer pollRateTimer;
 
 };

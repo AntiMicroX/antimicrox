@@ -41,7 +41,7 @@ public:
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
 
     virtual void sendMouseSpringEvent(int xDis, int yDis,
-                                      int width, int height); //.., unsigned, unsigned, unsigned, unsigned
+                                      int width, int height);
     virtual void sendMouseSpringEvent(int xDis, int yDis);
 
     virtual void sendTextEntryEvent(QString maintext);

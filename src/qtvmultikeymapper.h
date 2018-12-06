@@ -30,7 +30,7 @@ class QtVMultiKeyMapper : public QtKeyMapperBase
 public:
     explicit QtVMultiKeyMapper(QObject *parent = nullptr);
 
-    static const int consumerUsagePagePrefix = 0x12000; // unsigned
+    static const int consumerUsagePagePrefix = 0x12000;
 
 protected:
     void populateMappingHashes() override;

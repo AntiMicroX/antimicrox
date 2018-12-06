@@ -11,11 +11,11 @@ class WinExtras : public QObject
     Q_OBJECT
 
 public:
-    static QString getDisplayString(int virtualkey); // (unsigned)
-    static int getVirtualKey(QString codestring); // unsigned
+    static QString getDisplayString(int virtualkey);
+    static int getVirtualKey(QString codestring);
     static int correctVirtualKey(int scancode,
-                                          int virtualkey); // unsigned (unsigned, unsigned)
-    static int scancodeFromVirtualKey(int virtualkey, int alias=0); // unsigned (unsigned, unsigned)
+                                          int virtualkey);
+    static int scancodeFromVirtualKey(int virtualkey, int alias=0);
 
     static const int EXTENDED_FLAG; // unsigned
     static QString getForegroundWindowExePath();
@@ -37,8 +37,8 @@ protected:
     void populateKnownAliases();
 
     static WinExtras _instance;
-    QHash<QString, int> knownAliasesX11SymVK; // <.., unsigned>
-    QHash<int, QString> knownAliasesVKStrings; // <unsigned, ..>
+    QHash<QString, int> knownAliasesX11SymVK;
+    QHash<int, QString> knownAliasesVKStrings;
     static int originalMouseAccel;
 
 };

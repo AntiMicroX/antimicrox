@@ -88,7 +88,7 @@ private:
 
     InputDevice *device;
     AntiMicroSettings *settings;
-    int buttonGrabs; // unsigned
+    int buttonGrabs;
     QList<int> eventTriggerAxes;
     GameControllerMappingDialogHelper helper;
     int currentDeadZoneValue;

@@ -81,7 +81,7 @@ private slots:
     void changeTurboSetting();
     void openAdvancedDialog();
     void closedAdvancedDialog();
-    void createTempSlot(int keycode, int alias); // .., .., unsigned
+    void createTempSlot(int keycode, int alias);
 
     void checkTurboSetting(bool state);
     void setTurboButtonEnabled(bool state);
