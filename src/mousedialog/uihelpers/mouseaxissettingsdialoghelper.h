@@ -43,6 +43,7 @@ public slots:
 
 private:
     JoyAxis *axis;
+
 };
 
 #endif // MOUSEAXISSETTINGSDIALOGHELPER_H

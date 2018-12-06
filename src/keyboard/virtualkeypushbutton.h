@@ -34,7 +34,7 @@ public:
     QString getXcodestring() const;
     QString getDisplayString() const;
     int getKeycode() const;
-    int getQkeyalias() const; // unsigned
+    int getQkeyalias() const;
     bool getCurrentlyActive() const;
     bool getOnCurrentButton() const;
 

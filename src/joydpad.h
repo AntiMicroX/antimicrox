@@ -48,16 +48,16 @@ public:
     int getRealJoyNumber();
     virtual QString getName(bool fullForceFormat=false, bool displayNames=false);
 
-    void joyEvent(int value, bool ignoresets=false);
-    void queuePendingEvent(int value, bool ignoresets=false);
-    void activatePendingEvent();
-    bool hasPendingEvent();
-    void clearPendingEvent();
+    void joyEvent(int value, bool ignoresets=false); // JoyDPadEvent class
+    void queuePendingEvent(int value, bool ignoresets=false); // JoyDPadEvent class
+    void activatePendingEvent(); // JoyDPadEvent class
+    bool hasPendingEvent(); // JoyDPadEvent class
+    void clearPendingEvent(); // JoyDPadEvent class
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();
 
-    void releaseButtonEvents();
+    void releaseButtonEvents(); // JoyDPadEvent class
 
     void setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode);
     bool hasSameButtonsMouseMode();
@@ -86,10 +86,10 @@ public:
 
     QHash<int, JoyDPadButton*>* getButtons();
 
-    void readConfig(QXmlStreamReader *xml);
-    void writeConfig(QXmlStreamWriter *xml);
+    void readConfig(QXmlStreamReader *xml); // JoyDPadXml class
+    void writeConfig(QXmlStreamWriter *xml); // JoyDPadXml class
 
-    virtual QString getXmlName();
+    virtual QString getXmlName(); // JoyDPadXml class
 
     virtual void setDefaultDPadName(QString tempname);
     virtual QString getDefaultDPadName();
@@ -100,7 +100,7 @@ public:
     bool isRelativeSpring();
     void copyAssignments(JoyDPad *destDPad);
 
-    int getDPadDelay(); // unsigned
+    int getDPadDelay();
     double getButtonsEasingDuration();
 
     void setButtonsSpringDeadCircleMultiplier(int value);
@@ -114,7 +114,7 @@ public:
     void setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections direction, bool state);
     void copyLastDistanceValues(JoyDPad *srcDPad);
 
-    virtual void eventReset();
+    virtual void eventReset(); // JoyDPadEvent class
 
 signals:
     void active(int value);
@@ -137,9 +137,9 @@ private slots:
 
 protected:
     void populateButtons();
-    void createDeskEvent(bool ignoresets = false);
+    void createDeskEvent(bool ignoresets = false); // JoyDPadEvent class
     QHash<int, JoyDPadButton*> getApplicableButtons();
-    bool readMainConfig(QXmlStreamReader *xml);
+    bool readMainConfig(QXmlStreamReader *xml); // JoyDPadXml class
 
 private:
     QHash<int, JoyDPadButton*> buttons;

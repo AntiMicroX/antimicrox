@@ -43,8 +43,8 @@ public:
     explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog = nullptr, JoyButton* button = nullptr, QWidget *parent = nullptr);
     explicit VirtualKeyboardMouseWidget(QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
-    bool is_numlock_activated();
-    bool isLaptop();
+    bool is_numlock_activated(); // RealSystemInfo class
+    bool isLaptop(); // RealSystemInfo class
 
     InputDevice *getJoystick() const;
     ButtonEditDialogHelper* getHelper() const;

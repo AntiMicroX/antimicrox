@@ -35,16 +35,16 @@ class GameControllerTrigger : public JoyAxis
 public:
     explicit GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
-    virtual QString getXmlName();
+    virtual QString getXmlName(); // GameControllerTriggerXml class
     virtual QString getPartialName(bool forceFullFormat, bool displayNames);
 
     virtual int getDefaultDeadZone();
     virtual int getDefaultMaxZone();
     virtual ThrottleTypes getDefaultThrottle();
 
-    void readJoystickConfig(QXmlStreamReader *xml);
+    void readJoystickConfig(QXmlStreamReader *xml); // GameControllerTriggerXml class
 
-    virtual void writeConfig(QXmlStreamWriter *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml); // GameControllerTriggerXml class
 
     static const ThrottleTypes DEFAULTTHROTTLE;
 

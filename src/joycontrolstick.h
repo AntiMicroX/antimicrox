@@ -45,16 +45,16 @@ public:
 
     enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
 
-    void joyEvent(bool ignoresets=false);
+    void joyEvent(bool ignoresets=false); // JoyControlStickEvent class
     void setIndex(int index);
-    void replaceXAxis(JoyAxis *axis);
-    void replaceYAxis(JoyAxis *axis);
-    void replaceAxes(JoyAxis *axisX, JoyAxis* axisY);
-    void releaseButtonEvents();
+    void replaceXAxis(JoyAxis *axis); // JoyControlStickAxes class
+    void replaceYAxis(JoyAxis *axis); // JoyControlStickAxes class
+    void replaceAxes(JoyAxis *axisX, JoyAxis* axisY); // JoyControlStickAxes class
+    void releaseButtonEvents(); // JoyControlStickEvent class
     void copyAssignments(JoyControlStick *destStick);
-    void queueJoyEvent(bool ignoresets);
-    void activatePendingEvent();
-    void clearPendingEvent();
+    void queueJoyEvent(bool ignoresets); // JoyControlStickEvent class
+    void activatePendingEvent(); // JoyControlStickEvent class
+    void clearPendingEvent(); // JoyControlStickEvent class
     void setCalibrationFlag(bool flag);
     void setCalibrationSummary(QString text);
 
@@ -63,7 +63,7 @@ public:
     bool inDeadZone();
     bool hasSlotsAssigned();
     bool isRelativeSpring();
-    bool hasPendingEvent();
+    bool hasPendingEvent(); // JoyControlStickEvent class
     bool wasCalibrated();
 
     int getDeadZone();
@@ -78,45 +78,45 @@ public:
     int getCircleYCoordinate();
     int getStickDelay();
 
-    double getDistanceFromDeadZone();
-    double getDistanceFromDeadZone(int axisXValue, int axisYValue);
-    double getAbsoluteRawDistance();
-    double getAbsoluteRawDistance(int axisXValue, int axisYValue);
-    double getNormalizedAbsoluteDistance();
-    double calculateBearing();
-    double calculateBearing(int axisXValue, int axisYValue);
-    double calculateMouseDirectionalDistance(JoyControlStickButton *button);
-    double calculateDirectionalDistance();
-    double calculateLastDirectionalDistance();
-    double calculateLastMouseDirectionalDistance(JoyControlStickButton *button);
-    double calculateLastAccelerationButtonDistance(JoyControlStickButton *button);
-    double calculateAccelerationDistance(JoyControlStickButton *button);
-    double calculateXAxisDistance(int axisXValue);
-    double calculateYAxisDistance(int axisYValue);
-    double calculateLastAccelerationDirectionalDistance();
-    double getRadialDistance(int axisXValue, int axisYValue);
-    double getCircleAdjust();
+    double getDistanceFromDeadZone(); // JoyControlStickAxes class
+    double getDistanceFromDeadZone(int axisXValue, int axisYValue); // JoyControlStickAxes class
+    double getAbsoluteRawDistance(); // JoyControlStickAxes class
+    double getAbsoluteRawDistance(int axisXValue, int axisYValue); // JoyControlStickAxes class
+    double getNormalizedAbsoluteDistance(); // JoyControlStickAxes class
+    double calculateBearing(); // JoyControlStickAxes class
+    double calculateBearing(int axisXValue, int axisYValue); // JoyControlStickAxes class
+    double calculateMouseDirectionalDistance(JoyControlStickButton *button); // JoyControlStickAxes class
+    double calculateDirectionalDistance(); // JoyControlStickAxes class
+    double calculateLastDirectionalDistance(); // JoyControlStickAxes class
+    double calculateLastMouseDirectionalDistance(JoyControlStickButton *button); // JoyControlStickAxes class
+    double calculateLastAccelerationButtonDistance(JoyControlStickButton *button); // JoyControlStickAxes class
+    double calculateAccelerationDistance(JoyControlStickButton *button); // JoyControlStickAxis class
+    double calculateXAxisDistance(int axisXValue); // JoyControlStickAxis class
+    double calculateYAxisDistance(int axisYValue); // JoyControlStickAxis class
+    double calculateLastAccelerationDirectionalDistance(); // JoyControlStickAxis class
+    double getRadialDistance(int axisXValue, int axisYValue); // JoyControlStickAxis class
+    double getCircleAdjust(); // JoyControlStickAxis class
     double getButtonsEasingDuration();
-    double getSpringDeadCircleX();
-    double getSpringDeadCircleY();
+    double getSpringDeadCircleX(); // JoyControlStickAxis class
+    double getSpringDeadCircleY(); // JoyControlStickAxis class
 
     QString getStickName();
 
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
 
-    JoyStickDirections getCurrentDirection();
+    JoyStickDirections getCurrentDirection(); // JoyControlStickAxes class
 
-    QList<double> getDiagonalZoneAngles();
-    QList<int> getFourWayCardinalZoneAngles();
-    QList<int> getFourWayDiagonalZoneAngles();
+    QList<double> getDiagonalZoneAngles(); // JoyControlStickAxes class
+    QList<int> getFourWayCardinalZoneAngles(); // JoyControlStickAxes class
+    QList<int> getFourWayDiagonalZoneAngles(); // JoyControlStickAxes class
     QHash<JoyStickDirections, JoyControlStickButton*>* getButtons();
 
-    JoyControlStickButton* getDirectionButton(JoyStickDirections direction);
+    JoyControlStickButton* getDirectionButton(JoyStickDirections direction); // JoyControlStickAxes class
     JoyControlStickModifierButton* getModifierButton();
     SetJoystick* getParentSet();
-    JoyAxis* getAxisX();
-    JoyAxis* getAxisY();
+    JoyAxis* getAxisX(); // JoyControlStickAxes class
+    JoyAxis* getAxisY(); // JoyControlStickAxes class
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();
@@ -165,43 +165,43 @@ public:
     void setButtonsExtraAccelCurve(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyExtraAccelerationCurve getButtonsExtraAccelerationCurve();
 
-    QHash<JoyStickDirections, JoyControlStickButton*> getButtonsForDirection(JoyControlStick::JoyStickDirections direction);
-    void setDirButtonsUpdateInitAccel(JoyControlStick::JoyStickDirections direction, bool state);
+    QHash<JoyStickDirections, JoyControlStickButton*> getButtonsForDirection(JoyControlStick::JoyStickDirections direction); // JoyControlStickAxes class
+    void setDirButtonsUpdateInitAccel(JoyControlStick::JoyStickDirections direction, bool state); // JoyControlStickAxes class
 
-    double calculateXDiagonalDeadZone(int axisXValue, int axisYValue);
-    double calculateYDiagonalDeadZone(int axisXValue, int axisYValue);
+    double calculateXDiagonalDeadZone(int axisXValue, int axisYValue); // JoyControlStickAxes class
+    double calculateYDiagonalDeadZone(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
     virtual bool isDefault();
     virtual void setDefaultStickName(QString tempname);
     virtual QString getDefaultStickName();
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
+    virtual void readConfig(QXmlStreamReader *xml); // JoyControlStickXml class
+    virtual void writeConfig(QXmlStreamWriter *xml); // JoyControlStickXml class
 
     static const JoyMode DEFAULTMODE;
 
 protected:
     virtual void populateButtons();
 
-    void createDeskEvent(bool ignoresets = false);
-    void determineStandardModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2);
-    void determineEightWayModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2, JoyControlStickButton *&eventbutton3);
-    void determineFourWayCardinalEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2);
-    void determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3);
+    void createDeskEvent(bool ignoresets = false); // JoyControlStickEvent class
+    void determineStandardModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2); // JoyControlStickEvent class
+    void determineEightWayModeEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2, JoyControlStickButton *&eventbutton3); // JoyControlStickEvent class
+    void determineFourWayCardinalEvent(JoyControlStickButton *&eventbutton1, JoyControlStickButton *&eventbutton2); // JoyControlStickEvent class
+    void determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3); // JoyControlStickEvent class
 
-    JoyControlStick::JoyStickDirections determineStandardModeDirection();
-    JoyControlStick::JoyStickDirections determineStandardModeDirection(int axisXValue, int axisYValue);
+    JoyControlStick::JoyStickDirections determineStandardModeDirection(); // JoyControlStickAxes class
+    JoyControlStick::JoyStickDirections determineStandardModeDirection(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
-    JoyControlStick::JoyStickDirections determineEightWayModeDirection();
-    JoyControlStick::JoyStickDirections determineEightWayModeDirection(int axisXValue, int axisYValue);
+    JoyControlStick::JoyStickDirections determineEightWayModeDirection(); // JoyControlStickAxes class
+    JoyControlStick::JoyStickDirections determineEightWayModeDirection(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
-    JoyControlStick::JoyStickDirections determineFourWayCardinalDirection();
-    JoyControlStick::JoyStickDirections determineFourWayCardinalDirection(int axisXValue, int axisYValue);
+    JoyControlStick::JoyStickDirections determineFourWayCardinalDirection(); // JoyControlStickAxes class
+    JoyControlStick::JoyStickDirections determineFourWayCardinalDirection(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
-    JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection();
-    JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection(int axisXValue, int axisYValue);
+    JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection(); // JoyControlStickAxes class
+    JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
-    JoyControlStick::JoyStickDirections calculateStickDirection();
-    JoyControlStick::JoyStickDirections calculateStickDirection(int axisXValue, int axisYValue);
+    JoyControlStick::JoyStickDirections calculateStickDirection(); // JoyControlStickAxes class
+    JoyControlStick::JoyStickDirections calculateStickDirection(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
     void performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets);
@@ -210,30 +210,30 @@ protected:
     void deleteButtons();
     void resetButtons();
 
-    double calculateXDistanceFromDeadZone(bool interpolate=false);
-    double calculateXDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false);
+    double calculateXDistanceFromDeadZone(bool interpolate=false); // JoyControlStickAxes class
+    double calculateXDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false); // JoyControlStickAxes class
 
-    double calculateYDistanceFromDeadZone(bool interpolate=false);
-    double calculateYDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false);
+    double calculateYDistanceFromDeadZone(bool interpolate=false); // JoyControlStickAxes class
+    double calculateYDistanceFromDeadZone(int axisXValue, int axisYValue, bool interpolate=false); // JoyControlStickAxes class
 
-    int calculateCircleXValue(int axisXValue, int axisYValue);
-    int calculateCircleYValue(int axisXValue, int axisYValue);
+    int calculateCircleXValue(int axisXValue, int axisYValue); // JoyControlStickAxes class
+    int calculateCircleYValue(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
-    double calculateEightWayDiagonalDistanceFromDeadZone();
-    double calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue);
-    double calculateEightWayDiagonalDistance(int axisXValue, int axisYValue);
+    double calculateEightWayDiagonalDistanceFromDeadZone(); // JoyControlStickAxes class
+    double calculateEightWayDiagonalDistanceFromDeadZone(int axisXValue, int axisYValue); // JoyControlStickAxes class
+    double calculateEightWayDiagonalDistance(int axisXValue, int axisYValue); // JoyControlStickAxes class
 
     QHash<JoyStickDirections, JoyControlStickButton*> getApplicableButtons();
-    void clearPendingAxisEvents();
+    void clearPendingAxisEvents(); // JoyControlStickEvent class
 
 signals:
-    void moved(int xaxis, int yaxis);
-    void active(int xaxis, int yaxis);
-    void released(int axis, int yaxis);
-    void deadZoneChanged(int value);
-    void diagonalRangeChanged(int value);
-    void maxZoneChanged(int value);
-    void circleAdjustChange(double circle);
+    void moved(int xaxis, int yaxis); // JoyControlStickAxes class
+    void active(int xaxis, int yaxis); // JoyControlStickAxes class
+    void released(int axis, int yaxis); // JoyControlStickAxes class
+    void deadZoneChanged(int value); // JoyControlStickAxes class
+    void diagonalRangeChanged(int value); // JoyControlStickAxes class
+    void maxZoneChanged(int value); // JoyControlStickAxes class
+    void circleAdjustChange(double circle); // JoyControlStickAxes class
     void stickDelayChanged(int value);
     void stickNameChanged();
     void joyModeChanged();
@@ -241,19 +241,19 @@ signals:
 
 public slots:
     void reset();
-    void setDeadZone(int value);
-    void setMaxZone(int value);
-    void setDiagonalRange(int value);
+    void setDeadZone(int value); // JoyControlStickAxes class
+    void setMaxZone(int value); // JoyControlStickAxes class
+    void setDiagonalRange(int value); // JoyControlStickAxes class
     void setStickName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
-    void setCircleAdjust(double circle);
+    void setCircleAdjust(double circle); // JoyControlStickAxes class
     void setStickDelay(int value);
     void setButtonsEasingDuration(double value);
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 
 private slots:
-    void stickDirectionChangeEvent();
+    void stickDirectionChangeEvent(); // JoyControlStickEvent class
 
 private:
     int originset;

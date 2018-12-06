@@ -2028,7 +2028,7 @@ void MainWindow::refreshTabHelperThreads()
 
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
         if (widget != nullptr)
         {
             widget->refreshHelperThread();

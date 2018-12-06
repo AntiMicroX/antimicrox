@@ -74,29 +74,29 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
 
     void retranslateUi();
-    void loadConfigFile(QString fileLocation, int joystickIndex=0);
-    void loadConfigFile(QString fileLocation, QString controllerID);
-    void unloadCurrentConfig(int joystickIndex=0);
-    void unloadCurrentConfig(QString controllerID);
-    void changeStartSetNumber(int startSetNumber, QString controllerID); // (unsigned, ..)
-    void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // (unsigned, unsigned)
+    void loadConfigFile(QString fileLocation, int joystickIndex=0); // MainConfiguration class
+    void loadConfigFile(QString fileLocation, QString controllerID); // MainConfiguration class
+    void unloadCurrentConfig(int joystickIndex=0); // MainConfiguration class
+    void unloadCurrentConfig(QString controllerID); // MainConfiguration class
+    void changeStartSetNumber(int startSetNumber, QString controllerID); // MainConfiguration class
+    void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // MainConfiguration class
 
 signals:
     void joystickRefreshRequested();
-    void readConfig(int index);
+    void readConfig(int index); // MainConfiguration class
     void mappingUpdated(QString mapping, InputDevice *device);
 
 
 public slots:
     void fillButtons();
     void makeJoystickTabs();
-    void alterConfigFromSettings();
+    void alterConfigFromSettings(); // MainConfiguration class
     void fillButtons(InputDevice *joystick);
     void fillButtons(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void startJoystickRefresh();
     void hideWindow();
-    void saveAppConfig();
-    void loadAppConfig(bool forceRefresh=false);
+    void saveAppConfig(); // MainConfiguration class
+    void loadAppConfig(bool forceRefresh=false); // MainConfiguration class
     void removeJoyTabs();
     void quitProgram();
     void changeWindowStatus();
@@ -106,7 +106,7 @@ public slots:
     void removeJoyTab(SDL_JoystickID deviceID);
     void addJoyTab(InputDevice *device);
     void selectControllerJoyTab(QString GUID);
-    void selectControllerJoyTab(int index); // (unsigned)
+    void selectControllerJoyTab(int index);
     void handleInstanceDisconnect();
 
 
@@ -130,7 +130,7 @@ private slots:
     void openWikiPage();
     void openCalibration();
     void propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames);
-    void changeLanguage(QString language);
+    void changeLanguage(QString language); // MainConfiguration class
     void openMainSettingsDialog();
     void showStickAssignmentDialog();
     void checkHideEmptyOption();
@@ -142,8 +142,8 @@ private slots:
 
     void openGameControllerMappingWindow(bool openAsMain=false);
     void propogateMappingUpdate(QString mapping, InputDevice *device);
-    void autoprofileLoad(AutoProfileInfo *info);
-    void checkAutoProfileWatcherTimer();
+    void autoprofileLoad(AutoProfileInfo *info); // MainConfiguration class
+    void checkAutoProfileWatcherTimer(); // MainConfiguration class
     void updateMenuOptions();
 
 private:
