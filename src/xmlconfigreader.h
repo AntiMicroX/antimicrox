@@ -22,6 +22,7 @@
 
 class InputDevice;
 class QXmlStreamReader;
+class InputDeviceXml;
 class QFile;
 
 class XMLConfigReader : public QObject
@@ -54,6 +55,7 @@ private:
     QString fileName;
     QFile *configFile;
     InputDevice* m_joystick;
+    InputDeviceXml* m_joystickXml;
     QStringList deviceTypes;
 
 };

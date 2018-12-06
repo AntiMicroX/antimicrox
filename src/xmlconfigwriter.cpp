@@ -20,6 +20,7 @@
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "common.h"
+#include "xml/inputdevicexml.h"
 
 #include <QDir>
 #include <QFile>
@@ -36,6 +37,7 @@ XMLConfigWriter::XMLConfigWriter(QObject *parent) :
     xml->setAutoFormatting(true);
     configFile = nullptr;
     m_joystick = nullptr;
+    m_joystickXml = nullptr;
     writerError = false;
 }
 
@@ -59,7 +61,7 @@ XMLConfigWriter::~XMLConfigWriter()
     }
 }
 
-void XMLConfigWriter::write(InputDevice *joystick)
+void XMLConfigWriter::write(InputDeviceXml *joystickXml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -79,7 +81,7 @@ void XMLConfigWriter::write(InputDevice *joystick)
     if (!writerError)
     {
         xml->writeStartDocument();
-        joystick->writeConfig(xml);
+        joystickXml->writeConfig(xml);
         xml->writeEndDocument();
     }
 

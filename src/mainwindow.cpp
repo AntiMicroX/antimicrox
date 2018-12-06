@@ -39,6 +39,7 @@
 #include "common.h"
 #include "gamecontrollermappingdialog.h"
 #include "calibration.h"
+#include "xml/inputdevicexml.h"
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
     #include "autoprofileinfo.h"

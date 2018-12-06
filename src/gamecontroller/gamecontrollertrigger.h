@@ -42,10 +42,6 @@ public:
     virtual int getDefaultMaxZone();
     virtual ThrottleTypes getDefaultThrottle();
 
-    void readJoystickConfig(QXmlStreamReader *xml); // GameControllerTriggerXml class
-
-    virtual void writeConfig(QXmlStreamWriter *xml); // GameControllerTriggerXml class
-
     static const ThrottleTypes DEFAULTTHROTTLE;
 
 protected:

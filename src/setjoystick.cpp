@@ -25,6 +25,8 @@
 #include "joybutton.h"
 #include "vdpad.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
+#include "xml/joydpadxml.h"
+#include "xml/joyaxisxml.h"
 
 #include <QDebug>
 #include <QHashIterator>
@@ -79,6 +81,7 @@ JoyAxis* SetJoystick::getJoyAxis(int index) const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    Q_ASSERT(!axes.isEmpty());
     return axes.value(index);
 }
 
@@ -410,16 +413,20 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyAxis *axis = getJoyAxis(index - 1);
+                axis = nullptr;
+                Q_ASSERT(axis != nullptr);
+                joyAxisXml = new JoyAxisXml(axis);
 
-                if (axis != nullptr) axis->readConfig(xml);
+                if (axis != nullptr) joyAxisXml->readConfig(xml);
                 else xml->skipCurrentElement();
             }
             else if ((xml->name() == "dpad") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyDPad *dpad = getJoyDPad(index - 1);
+                joydpadXml = new JoyDPadXml(dpad);
 
-                if (dpad != nullptr) dpad->readConfig(xml);
+                if (dpad != nullptr && joydpadXml != nullptr) joydpadXml->readConfig(xml);
                 else xml->skipCurrentElement();
             }
             else if ((xml->name() == "stick") && xml->isStartElement())
@@ -443,8 +450,9 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 VDPad *vdpad = getVDPad(index - 1);
+                joydpadXml = new JoyDPadXml(vdpad);
 
-                if (vdpad != nullptr) vdpad->readConfig(xml);
+                if (joydpadXml != nullptr) joydpadXml->readConfig(xml);
                 else xml->skipCurrentElement();
             }
             else if ((xml->name() == "name") && xml->isStartElement())
@@ -485,23 +493,26 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
         {
             VDPad *vdpad = getVDPad(i);
 
-            if (vdpad != nullptr) vdpad->writeConfig(xml);
+            joydpadXml = new JoyDPadXml(vdpad);
+            if (joydpadXml != nullptr) joydpadXml->writeConfig(xml);
         }
 
         for (int i = 0; i < getNumberAxes(); i++)
         {
             JoyAxis *axis = getJoyAxis(i);
+            joyAxisXml = new JoyAxisXml(axis);
 
             if (!axis->isPartControlStick() && axis->hasControlOfButtons())
             {
-                axis->writeConfig(xml);
+                joyAxisXml->writeConfig(xml);
             }
         }
 
         for (int i = 0; i < getNumberHats(); i++)
         {
             JoyDPad *dpad = getJoyDPad(i);
-            dpad->writeConfig(xml);
+            joydpadXml = new JoyDPadXml(dpad);
+            joydpadXml->writeConfig(xml);
         }
 
         for (int i = 0 ; i < getNumberButtons(); i++)

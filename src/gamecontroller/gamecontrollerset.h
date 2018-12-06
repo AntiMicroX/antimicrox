@@ -27,7 +27,7 @@
 
 class QXmlStreamReader;
 class InputDevice;
-
+class JoyDPadXml;
 
 
 class GameControllerSet : public SetJoystick
@@ -55,6 +55,8 @@ private:
     void getElemFromXml(QString elemName, QXmlStreamReader *xml); // GameControllerSetXml class
     void readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists, bool dpadExists); // GameControllerSetXml class
     void resetSticks();
+
+    JoyDPadXml* dpadXml;
 };
 
 #endif // GAMECONTROLLERSET_H

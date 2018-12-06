@@ -86,9 +86,6 @@ public:
 
     QHash<int, JoyDPadButton*>* getButtons();
 
-    void readConfig(QXmlStreamReader *xml); // JoyDPadXml class
-    void writeConfig(QXmlStreamWriter *xml); // JoyDPadXml class
-
     virtual QString getXmlName(); // JoyDPadXml class
 
     virtual void setDefaultDPadName(QString tempname);
@@ -139,7 +136,6 @@ protected:
     void populateButtons();
     void createDeskEvent(bool ignoresets = false); // JoyDPadEvent class
     QHash<int, JoyDPadButton*> getApplicableButtons();
-    bool readMainConfig(QXmlStreamReader *xml); // JoyDPadXml class
 
 private:
     QHash<int, JoyDPadButton*> buttons;

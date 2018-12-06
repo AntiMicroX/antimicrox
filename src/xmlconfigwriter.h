@@ -23,6 +23,7 @@
 
 class InputDevice;
 class QXmlStreamWriter;
+class InputDeviceXml;
 class QFile;
 
 class XMLConfigWriter : public QObject
@@ -42,13 +43,14 @@ public:
     const InputDevice* getJoystick();
     
 public slots:
-    void write(InputDevice* joystick);
+    void write(InputDeviceXml *joystickXml);
 
 private:
     QXmlStreamWriter *xml;
     QString fileName;
     QFile *configFile;
     InputDevice* m_joystick;
+    InputDeviceXml* m_joystickXml;
     bool writerError;
     QString writerErrorString;
 

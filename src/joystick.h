@@ -22,6 +22,7 @@
 
 #include "inputdevice.h"
 
+
 class AntiMicroSettings;
 
 class Joystick : public InputDevice
@@ -34,7 +35,6 @@ public:
     virtual QString getName() override;
     virtual QString getSDLName() override;
     virtual QString getGUIDString() override; // GUID available on SDL 2.
-    virtual QString getXmlName() override;
     virtual void closeSDLDevice() override;
     virtual SDL_JoystickID getSDLJoystickID() override;
 
@@ -43,10 +43,14 @@ public:
     virtual int getNumberRawHats() override;
 
     SDL_Joystick* getJoyhandle() const;
+    virtual QString getXmlName() override;
+
+    InputDevice* getInputDevice();
 
 private:
     SDL_Joystick *m_joyhandle;
     SDL_JoystickID joystickID;
+    InputDevice* m_inputDevice;
 
 };
 

@@ -165,8 +165,10 @@ set(antimicro_SOURCES
     src/event.cpp
     src/inputdaemon.cpp
     src/joyaxis.cpp
+    src/xml/joyaxisxml.cpp
     src/joyaxiswidget.cpp
     src/joydpad.cpp
+    src/xml/joydpadxml.cpp
     src/joybuttontypes/joydpadbutton.cpp
     src/axiseditdialog.cpp
     src/xmlconfigreader.cpp
@@ -215,6 +217,7 @@ set(antimicro_SOURCES
     src/qkeydisplaydialog.cpp
     src/antkeymapper.cpp
     src/inputdevice.cpp
+    src/xml/inputdevicexml.cpp
     src/mainsettingsdialog.cpp
     src/gamecontroller/gamecontrollertriggerbutton.cpp
     src/setnamesdialog.cpp
@@ -264,8 +267,10 @@ set(antimicro_HEADERS
     src/joybuttontypes/joygradientbutton.h
     src/inputdaemon.h
     src/joyaxis.h
+    src/xml/joyaxisxml.h
     src/joyaxiswidget.h
     src/joydpad.h
+    src/xml/joydpadxml.h
     src/joybuttontypes/joydpadbutton.h
     src/axiseditdialog.h
     src/xmlconfigreader.h
@@ -314,6 +319,7 @@ set(antimicro_HEADERS
     src/qkeydisplaydialog.h
     src/antkeymapper.h
     src/inputdevice.h
+    src/xml/inputdevicexml.h
     src/mainsettingsdialog.h
     src/gamecontroller/gamecontrollertriggerbutton.h
     src/setnamesdialog.h
@@ -380,12 +386,15 @@ set(antimicro_RESOURCES src/resources.qrc)
 
 # Files that require SDL 2 support.
 if(USE_SDL_2)
-    LIST(APPEND antimicro_SOURCES src/gamecontroller/gamecontroller.cpp
+    LIST(APPEND antimicro_SOURCES
+         src/gamecontroller/gamecontroller.cpp
          src/gamecontroller/gamecontrollerdpad.cpp
          src/gamecontroller/gamecontrollerset.cpp
          src/gamecontroller/gamecontrollertrigger.cpp
          src/gamecontrollermappingdialog.cpp
          src/gamecontrollerexample.cpp
+         src/gamecontroller/xml/gamecontrollerxml.cpp
+         src/gamecontroller/xml/gamecontrollertriggerxml.cpp
     )
     LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
@@ -393,6 +402,8 @@ if(USE_SDL_2)
         src/gamecontroller/gamecontrollertrigger.h
         src/gamecontrollermappingdialog.h
         src/gamecontrollerexample.h
+        src/gamecontroller/xml/gamecontrollerxml.h
+        src/gamecontroller/xml/gamecontrollertriggerxml.h
     )
 endif(USE_SDL_2)
 

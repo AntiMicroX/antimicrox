@@ -72,6 +72,7 @@ public:
     int getMaxZoneValue();
     void setThrottle(int value);
     void setInitialThrottle(int value);
+    void updateCurrentThrottledValue(int newValue);
     int getThrottle();
     int getCurrentThrottledValue();
     int getCurrentRawValue();
@@ -82,9 +83,6 @@ public:
     double getDistanceFromDeadZone();
     double getDistanceFromDeadZone(int value);
     double getRawDistance(int value);
-
-    virtual void readConfig(QXmlStreamReader *xml); // JoyAxisXml class
-    virtual void writeConfig(QXmlStreamWriter *xml); // JoyAxisXml class
 
     void setControlStick(JoyControlStick *stick);
     void removeControlStick(bool performRelease = true);
@@ -154,17 +152,14 @@ public:
     virtual void eventReset(); // JoyAxisEvent class
 
     static const ThrottleTypes DEFAULTTHROTTLE;
+    int calculateThrottledValue(int value);
 
 protected:
     void createDeskEvent(bool ignoresets = false); // JoyAxisEvent class
     void adjustRange();
-    int calculateThrottledValue(int value);
 
     void performCalibration(int value);
     void stickPassEvent(int value, bool ignoresets=false, bool updateLastValues=true); // JoyAxisEvent class
-
-    virtual bool readMainConfig(QXmlStreamReader *xml); // JoyAxisXml class
-    virtual bool readButtonConfig(QXmlStreamReader *xml); // JoyAxisXml class
 
     JoyAxisButton *paxisbutton;
     JoyAxisButton *naxisbutton;

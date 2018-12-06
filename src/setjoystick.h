@@ -32,6 +32,8 @@ class JoyControlStick;
 class VDPad;
 class QXmlStreamReader;
 class QXmlStreamWriter;
+class JoyDPadXml;
+class JoyAxisXml;
 
 class SetJoystick : public QObject
 {
@@ -181,6 +183,9 @@ private:
     int m_index;
     InputDevice *m_device;
     QString m_name;
+
+    JoyDPadXml* joydpadXml;
+    JoyAxisXml* joyAxisXml;
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

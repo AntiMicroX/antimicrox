@@ -23,6 +23,7 @@
 class InputDevice;
 class XMLConfigReader;
 class XMLConfigWriter;
+class InputDeviceXml;
 
 class JoyTabWidgetHelper : public QObject
 {
@@ -43,6 +44,7 @@ public:
 
 protected:
     InputDevice *device;
+    InputDeviceXml *deviceXml;
     XMLConfigReader *reader;
     XMLConfigWriter *writer;
     bool errorOccurred;

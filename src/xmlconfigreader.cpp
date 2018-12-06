@@ -26,6 +26,7 @@
 #include "joystick.h"
 
 #include "gamecontroller/gamecontroller.h"
+#include "gamecontroller/xml/gamecontrollerxml.h"
 #include "common.h"
 
 #include <QDebug>
@@ -43,6 +44,7 @@ XMLConfigReader::XMLConfigReader(QObject *parent) :
     xml = new QXmlStreamReader();
     configFile = nullptr;
     m_joystick = nullptr;
+    m_joystickXml = nullptr;
     initDeviceTypes();
 }
 
@@ -71,6 +73,7 @@ void XMLConfigReader::setJoystick(InputDevice *joystick)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     m_joystick = joystick;
+    m_joystickXml = new InputDeviceXml(joystick);
 }
 
 void XMLConfigReader::setFileName(QString filename)
@@ -95,6 +98,7 @@ void XMLConfigReader::configJoystick(InputDevice *joystick)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     m_joystick = joystick;
+    m_joystickXml = new InputDeviceXml(joystick);
     read();
 }
 
@@ -153,7 +157,7 @@ bool XMLConfigReader::read()
         {
             if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
-                m_joystick->readConfig(xml);
+                m_joystickXml->readConfig(xml);
             }
             else
             {

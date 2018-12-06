@@ -56,6 +56,7 @@ public:
     bool isActive();
     int getButtonDownCount();
 
+    virtual QString getXmlName() = 0;
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
 
@@ -64,18 +65,17 @@ public:
     virtual QString getRawGUIDString();
 
     virtual QString getStringIdentifier();
-    virtual QString getXmlName() = 0; // InputDeviceXml class
     virtual void closeSDLDevice() = 0;
     virtual SDL_JoystickID getSDLJoystickID() = 0;
     QString getSDLPlatform();
     virtual bool isGameController();
     virtual bool isKnownController();
 
-    void setButtonName(int index, QString tempName); // InputDeviceButton class
-    void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName); // InputDeviceAxisButton class
-    void setStickButtonName(int stickIndex, int buttonIndex, QString tempName); // InputDeviceStick class
-    void setDPadButtonName(int dpadIndex, int buttonIndex, QString tempName); // InputDeviceHat class
-    void setVDPadButtonName(int vdpadIndex, int buttonIndex, QString tempName); // InputDeviceVDPad class
+    void setButtonName(int index, QString tempName); // InputDeviceXml class
+    void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName); // InputDeviceXml class
+    void setStickButtonName(int stickIndex, int buttonIndex, QString tempName); // InputDeviceXml class
+    void setDPadButtonName(int dpadIndex, int buttonIndex, QString tempName); // InputDeviceXml class
+    void setVDPadButtonName(int vdpadIndex, int buttonIndex, QString tempName); // InputDeviceXml class
 
     void setAxisName(int axisIndex, QString tempName); // InputDeviceAxis class
     void setStickName(int stickIndex, QString tempName); // InputDeviceStick class
@@ -123,12 +123,13 @@ public:
     void setRawAxisDeadZone(int deadZone); // InputDeviceAxis class
     int getRawAxisDeadZone(); // InputDeviceAxis class
     void rawAxisEvent(int index, int value); // InputDeviceAxis class
+    bool elementsHaveNames();
 
     QHash<int, SetJoystick*>& getJoystick_sets();
 
 protected:
     void enableSetConnections(SetJoystick *setstick);
-    bool elementsHaveNames();
+
     SDL_Joystick* getJoyHandle() const;
 
 
@@ -178,8 +179,6 @@ public slots:
     void haltServices();
     void finalRemoval();
 
-    virtual void readConfig(QXmlStreamReader *xml); // InputDeviceXml class
-    virtual void writeConfig(QXmlStreamWriter *xml); // InputDeviceXml class
     virtual void buttonClickEvent(int buttonindex); // InputDeviceButton class
     virtual void buttonReleaseEvent(int buttonindex); // InputDeviceButton class
     virtual void dpadButtonClickEvent(int buttonindex); // InputDeviceHat class
