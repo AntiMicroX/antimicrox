@@ -5,6 +5,7 @@
 #include <QObject>
 
 class JoyAxis;
+class JoyButtonXml;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
@@ -23,7 +24,8 @@ public:
 
 private:
     JoyAxis* m_joyAxis;
-
+    JoyButtonXml* joyButtonXmlNAxis;
+    JoyButtonXml* joyButtonXmlPAxis;
 };
 
 #endif // JOYAXISXML_H

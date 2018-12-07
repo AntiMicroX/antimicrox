@@ -4,6 +4,7 @@
 #include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
+#include "xml/joybuttonxml.h"
 
 #include <QDebug>
 #include <QHashIterator>
@@ -68,7 +69,8 @@ void JoyDPadXml::writeConfig(QXmlStreamWriter *xml)
         while (iter.hasNext())
         {
             JoyDPadButton *button = iter.next().value();
-            button->writeConfig(xml);
+            JoyButtonXml* joyBtnXml = new JoyButtonXml(button);
+            joyBtnXml->writeConfig(xml);
         }
 
         xml->writeEndElement();
@@ -88,7 +90,8 @@ bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
         JoyDPadButton* button = m_joydpad->getJoyButton(index_local);
         if (button != nullptr)
         {
-            button->readConfig(xml);
+            JoyButtonXml* joyBtnXml = new JoyButtonXml(button);
+            joyBtnXml->readConfig(xml);
         }
         else
         {

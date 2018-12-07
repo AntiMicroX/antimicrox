@@ -2,6 +2,8 @@
 #include "joyaxis.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
+#include "xml/joybuttonxml.h"
+#include "joybuttontypes/joyaxisbutton.h"
 
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -11,6 +13,8 @@
 JoyAxisXml::JoyAxisXml(JoyAxis* axis, QObject *parent) : QObject(parent)
 {
     m_joyAxis = axis;
+    joyButtonXmlNAxis = new JoyButtonXml(axis->getNAxisButton());
+    joyButtonXmlPAxis = new JoyButtonXml(axis->getPAxisButton());
 }
 
 
@@ -89,8 +93,8 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 
     if (!currentlyDefault)
     {
-        m_joyAxis->getNAxisButton()->writeConfig(xml);
-        m_joyAxis->getPAxisButton()->writeConfig(xml);
+        joyButtonXmlNAxis->writeConfig(xml);
+        joyButtonXmlPAxis->writeConfig(xml);
     }
 
     xml->writeEndElement();
@@ -220,12 +224,12 @@ bool JoyAxisXml::readButtonConfig(QXmlStreamReader *xml)
     if (index_local == 1)
     {
         found = true;
-        m_joyAxis->getNAxisButton()->readConfig(xml);
+        joyButtonXmlNAxis->readConfig(xml);
     }
     else if (index_local == 2)
     {
         found = true;
-        m_joyAxis->getPAxisButton()->readConfig(xml);
+        joyButtonXmlPAxis->readConfig(xml);
     }
 
     return found;

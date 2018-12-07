@@ -2,6 +2,7 @@
 #include "gamecontroller/gamecontrollertrigger.h"
 #include "gamecontroller/gamecontrollertriggerbutton.h"
 #include "xml/joyaxisxml.h"
+#include "xml/joybuttonxml.h"
 
 #include "messagehandler.h"
 
@@ -15,6 +16,8 @@
 GameControllerTriggerXml::GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, JoyAxis* joyAxis, QObject *parent) : JoyAxisXml(joyAxis, parent)
 {
     m_gameContrTrigger = gameContrTrigger;
+    joyButtonXmlNAxis = new JoyButtonXml(gameContrTrigger->getNAxisButton());
+    joyButtonXmlPAxis = new JoyButtonXml(gameContrTrigger->getPAxisButton());
 }
 
 void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
@@ -121,8 +124,8 @@ void GameControllerTriggerXml::writeConfig(QXmlStreamWriter *xml)
 
     if (!currentlyDefault)
     {
-        m_gameContrTrigger->getNAxisButton()->writeConfig(xml);
-        m_gameContrTrigger->getPAxisButton()->writeConfig(xml);
+        joyButtonXmlNAxis->writeConfig(xml);
+        joyButtonXmlPAxis->writeConfig(xml);
     }
 
     xml->writeEndElement();

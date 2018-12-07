@@ -25,6 +25,7 @@
 #include "xml/joydpadxml.h"
 #include "xml/joyaxisxml.h"
 #include "gamecontroller/xml/gamecontrollertriggerxml.h"
+#include "xml/joybuttonxml.h"
 
 #include <QXmlStreamReader>
 #include <QDebug>
@@ -175,14 +176,16 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyButton *button = nullptr;
+                JoyButtonXml* joyButtonXml = nullptr;
 
                 if (buttons.contains(index-1))
                 {
                     SDL_GameControllerButton current = buttons.value(index-1);
                     button = getJoyButton(current);
+                    joyButtonXml = new JoyButtonXml(button);
                 }
 
-                readConf(button, xml);
+                readConf(joyButtonXml, xml);
 
             }
             else if ((xml->name() == "axis") && xml->isStartElement())
@@ -294,7 +297,8 @@ void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
 
     if (elemName == "button") {
         JoyButton *button = getJoyButton(index-1);
-        readConf(button, xml);
+        JoyButtonXml* joyButtonXml = new JoyButtonXml(button);
+        readConf(joyButtonXml, xml);
     }
     else if (elemName == "dpad") {
         GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(getVDPad(index-1));

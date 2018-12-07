@@ -27,6 +27,7 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "xml/joydpadxml.h"
 #include "xml/joyaxisxml.h"
+#include "xml/joybuttonxml.h"
 
 #include <QDebug>
 #include <QHashIterator>
@@ -405,16 +406,15 @@ void SetJoystick::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyButton *button = getJoyButton(index - 1);
+                joyButtonXml = new JoyButtonXml(button);
 
-                if (button != nullptr) button->readConfig(xml);
+                if (button != nullptr) joyButtonXml->readConfig(xml);
                 else xml->skipCurrentElement();
             }
             else if ((xml->name() == "axis") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyAxis *axis = getJoyAxis(index - 1);
-                axis = nullptr;
-                Q_ASSERT(axis != nullptr);
                 joyAxisXml = new JoyAxisXml(axis);
 
                 if (axis != nullptr) joyAxisXml->readConfig(xml);
@@ -521,7 +521,8 @@ void SetJoystick::writeConfig(QXmlStreamWriter *xml)
 
             if ((button != nullptr) && !button->isPartVDPad())
             {
-                button->writeConfig(xml);
+                joyButtonXml = new JoyButtonXml(button);
+                joyButtonXml->writeConfig(xml);
             }
         }
 

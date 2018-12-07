@@ -161,6 +161,7 @@ set(antimicro_SOURCES
     src/joybuttonwidget.cpp
     src/joystick.cpp
     src/joybutton.cpp
+    src/xml/joybuttonxml.cpp
     src/joybuttontypes/joygradientbutton.cpp
     src/event.cpp
     src/inputdaemon.cpp
@@ -264,6 +265,7 @@ set(antimicro_HEADERS
     src/joybuttonwidget.h
     src/joystick.h
     src/joybutton.h
+    src/xml/joybuttonxml.h
     src/joybuttontypes/joygradientbutton.h
     src/inputdaemon.h
     src/joyaxis.h

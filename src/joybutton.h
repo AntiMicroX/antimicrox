@@ -157,8 +157,6 @@ public:
     virtual void copyLastMouseDistanceFromDeadZone(JoyButton *srcButton); // Don't use direct assignment but copying from a current button.
     virtual void copyLastAccelerationDistance(JoyButton *srcButton);
     virtual void setVDPad(VDPad *vdpad);
-    virtual void readConfig(QXmlStreamReader *xml); // JoyButtonXml class
-    virtual void writeConfig(QXmlStreamWriter *xml); // JoyButtonXml class
     virtual void setChangeSetCondition(SetChangeCondition condition,
                                        bool passive=false, bool updateActiveString=true);
 
@@ -222,6 +220,9 @@ public:
     static const TurboMode DEFAULTTURBOMODE;
     static const JoyExtraAccelerationCurve DEFAULTEXTRAACCELCURVE;
 
+    bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true); // JoyButtonSlots class
+
+
 
 protected:
     int getPreferredKeyPressTime(); // unsigned
@@ -230,7 +231,6 @@ protected:
 
     bool distanceEvent(); // JoyButtonEvents class
     bool checkForDelaySequence();
-    bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true); // JoyButtonSlots class
     void clearAssignedSlots(bool signalEmit=true); // JoyButtonSlots class
     void releaseSlotEvent(); // JoyButtonEvents class
     void checkForPressedSetChange();
@@ -241,8 +241,6 @@ protected:
     static bool hasFutureSpringEvents(QList<JoyButton*>* pendingMouseButtons);
 
     virtual double getCurrentSpringDeadCircle();
-
-    virtual bool readButtonConfig(QXmlStreamReader *xml); // JoyButtonXml class
 
     TurboMode currentTurboMode;
 
@@ -356,6 +354,7 @@ public slots:
     bool insertAssignedSlot(int code, int alias, int index,
                             JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class
 
+    void buildActiveZoneSummaryString();
 
 protected slots:
     virtual void turboEvent(); // JoyButtonEvents class
@@ -364,7 +363,7 @@ protected slots:
 
     void createDeskEvent(); // JoyButtonEvents class
     void releaseDeskEvent(bool skipsetchange=false); // JoyButtonEvents class
-    void buildActiveZoneSummaryString();
+
 
 private slots:
     void releaseActiveSlots(); // JoyButtonSlots class

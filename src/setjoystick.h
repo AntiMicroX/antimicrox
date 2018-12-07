@@ -34,6 +34,7 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class JoyDPadXml;
 class JoyAxisXml;
+class JoyButtonXml;
 
 class SetJoystick : public QObject
 {
@@ -186,6 +187,7 @@ private:
 
     JoyDPadXml* joydpadXml;
     JoyAxisXml* joyAxisXml;
+    JoyButtonXml* joyButtonXml;
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

@@ -19,6 +19,8 @@ class GameControllerTriggerXml : public JoyAxisXml
 
     private:
         GameControllerTrigger* m_gameContrTrigger;
+        JoyButtonXml* joyButtonXmlNAxis;
+        JoyButtonXml* joyButtonXmlPAxis;
 };
 
 #endif // GAMECONTROLLERTRIGGERXML_H
