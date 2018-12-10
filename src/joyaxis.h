@@ -28,6 +28,8 @@
 class JoyControlStick;
 class SetJoystick;
 class JoyAxisButton;
+class QXmlStreamReader;
+class QXmlStreamWriter;
 class JoyAxis;
 
 

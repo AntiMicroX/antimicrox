@@ -2,12 +2,9 @@
 #define INPUTDEVICEXML_H
 
 #include <QObject>
-#include <QPointer>
 
 class QXmlStreamReader;
 class QXmlStreamWriter;
-class SetJoystickXml;
-class InputDeviceXml;
 class InputDevice;
 class AntiMicroSettings;
 
@@ -24,8 +21,8 @@ public slots:
     virtual void writeConfig(QXmlStreamWriter *xml); // InputDeviceXml class
 
 private:
+
     InputDevice* m_inputDevice;
-    QPointer<SetJoystickXml> m_setJoystickXml;
 
 };
 

@@ -28,9 +28,7 @@ void GameContrTriggBtnXml::readJoystickConfig(QXmlStreamReader *xml)
 
         while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::JoyAxisButton::xmlName)))
         {
-            if (!m_joyButtonXml.isNull()) m_joyButtonXml.clear();
-            m_joyButtonXml = new JoyButtonXml(m_gameContrTriggBtn);
-            bool found = m_joyButtonXml->readButtonConfig(xml);
+            bool found = readButtonConfig(xml);
 
             if (!found)
             {

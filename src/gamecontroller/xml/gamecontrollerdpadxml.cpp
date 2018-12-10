@@ -7,7 +7,7 @@
 #include <QXmlStreamReader>
 #include <QDebug>
 
-GameControllerDPadXml::GameControllerDPadXml(GameControllerDPad* gameContrDPad, VDPad* vdpad, QObject* parent) : JoyDPadXml(vdpad, parent)
+GameControllerDPadXml::GameControllerDPadXml(GameControllerDPad* gameContrDPad, VDPad* vdpad, QObject* parent) : VDPadXml(vdpad, parent)
 {
     m_gameContrDPad = gameContrDPad;
 }

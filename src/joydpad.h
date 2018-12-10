@@ -18,6 +18,7 @@
 #ifndef JOYDPAD_H
 #define JOYDPAD_H
 
+
 #include "joybuttontypes/joydpadbutton.h"
 
 #include <QObject>
@@ -25,6 +26,8 @@
 #include <QString>
 #include <QTimer>
 
+class QXmlStreamReader;
+class QXmlStreamWriter;
 
 class JoyDPad : public QObject
 {

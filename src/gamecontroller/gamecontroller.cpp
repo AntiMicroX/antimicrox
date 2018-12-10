@@ -25,7 +25,12 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "common.h"
 #include "messagehandler.h"
+//#include "logger.h"
 
+#include <cmath>
+
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 #include <QDebug>
 
 

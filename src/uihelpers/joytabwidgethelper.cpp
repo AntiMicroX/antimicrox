@@ -35,7 +35,6 @@ JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent) :
     Q_ASSERT(device);
 
     this->device = device;
-    this->deviceXml = new InputDeviceXml(device);
     this->reader = nullptr;
     this->writer = nullptr;
     this->errorOccurred = false;
@@ -153,7 +152,9 @@ bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 
     this->writer = new XMLConfigWriter;
     this->writer->setFileName(filepath);
+    InputDeviceXml* deviceXml = new InputDeviceXml(device);
     this->writer->write(deviceXml);
+    delete deviceXml;
 
     result = !this->writer->hasError();
     return result;

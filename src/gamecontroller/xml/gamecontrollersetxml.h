@@ -2,6 +2,7 @@
 #define GAMECONTROLLERSETXML_H
 
 #include "xml/setjoystickxml.h"
+#include "gamecontroller/xml/gamecontrollerdpadxml.h"
 #include <SDL2/SDL_gamecontroller.h>
 
 #include <QObject>
@@ -12,7 +13,10 @@
 class GameControllerSet;
 class SetJoystick;
 class JoyDPadXml;
+class VDPadXml;
 class JoyControlStickXml;
+class GameControllerTriggerXml;
+class GameControllerDPadXml;
 
 class QXmlStreamReader;
 
@@ -32,7 +36,11 @@ public:
 private:
     GameControllerSet* m_gameContrSet;
     QPointer<JoyDPadXml> dpadXml;
+    QPointer<VDPadXml> vdpadXml;
     QPointer<JoyControlStickXml> joyContrStickXml;
+    QPointer<JoyButtonXml> joyBtnXml;
+    QPointer<GameControllerTriggerXml> triggerAxisXml;
+    QPointer<GameControllerDPadXml> gameContrDPadXml;
 
     void getElemFromXml(QString elemName, QXmlStreamReader *xml); // GameControllerSetXml class
     void readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists, bool dpadExists); // GameControllerSetXml class

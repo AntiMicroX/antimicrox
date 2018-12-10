@@ -7,6 +7,7 @@
 #include "xml/joybuttonxml.h"
 
 #include <QDebug>
+#include <QPointer>
 #include <QHashIterator>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -90,8 +91,10 @@ bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
         JoyDPadButton* button = m_joydpad->getJoyButton(index_local);
         if (button != nullptr)
         {
-            JoyButtonXml* joyBtnXml = new JoyButtonXml(button);
+            QPointer<JoyButtonXml> joyBtnXml = new JoyButtonXml(button);
             joyBtnXml->readConfig(xml);
+
+            if (!joyBtnXml.isNull()) delete joyBtnXml;
         }
         else
         {

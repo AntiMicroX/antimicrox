@@ -87,14 +87,14 @@ void JoyControlStickXml::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = m_stick->getButtons()->value(static_cast<JoyStickDirections>(index));
-                JoyButtonXml* joyButtonXml = new JoyButtonXml(button);
+                joyButtonXml = new JoyButtonXml(button);
 
                 if (button != nullptr) joyButtonXml->readConfig(xml);
                 else xml->skipCurrentElement();
             }
             else if ((xml->name() == GlobalVariables::JoyControlStickModifierButton::xmlName) && xml->isStartElement())
             {
-                JoyButtonXml* joyButtonXml = new JoyButtonXml(m_stick->getModifierButton());
+                joyButtonXml = new JoyButtonXml(m_stick->getModifierButton());
                 joyButtonXml->readConfig(xml);
             }
             else if ((xml->name() == "stickDelay") && xml->isStartElement())
@@ -168,14 +168,14 @@ void JoyControlStickXml::writeConfig(QXmlStreamWriter *xml)
         while (iter.hasNext())
         {
             JoyControlStickButton *button = iter.next().value();
-            JoyButtonXml* joyButtonXml = new JoyButtonXml(button);
+            joyButtonXml = new JoyButtonXml(button);
             joyButtonXml->writeConfig(xml);
         }
 
         if (!m_stick->getModifierButton()->isDefault())
         {
-            JoyButtonXml* joyButtonXmlModif = new JoyButtonXml(m_stick->getModifierButton());
-            joyButtonXmlModif->writeConfig(xml);
+            joyButtonXml = new JoyButtonXml(m_stick->getModifierButton());
+            joyButtonXml->writeConfig(xml);
         }
 
         xml->writeEndElement();

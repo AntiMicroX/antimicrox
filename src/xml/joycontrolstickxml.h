@@ -3,10 +3,12 @@
 
 #include "joycontrolstickdirectionstype.h"
 #include <QObject>
+#include <QPointer>
 
 class JoyControlStick;
 class QXmlStreamReader;
 class QXmlStreamWriter;
+class JoyButtonXml;
 
 class JoyControlStickXml : public QObject, public JoyStickDirectionsType
 {
@@ -23,6 +25,7 @@ public slots:
 
 private:
     JoyControlStick* m_stick;
+    QPointer<JoyButtonXml> joyButtonXml;
 };
 
 #endif // JOYCONTROLSTICKXML_H

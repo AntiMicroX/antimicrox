@@ -28,6 +28,9 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 
 #include <typeinfo>
+
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 #include <QDebug>
 
 

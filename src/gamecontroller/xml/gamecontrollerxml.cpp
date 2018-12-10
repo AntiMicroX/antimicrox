@@ -10,8 +10,6 @@
 #include "gamecontroller/gamecontrollerset.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
-#include "xml/setjoystickxml.h"
-#include "gamecontroller/xml/gamecontrollersetxml.h"
 
 #include <cmath>
 
@@ -19,12 +17,10 @@
 #include <QXmlStreamWriter>
 #include <QDebug>
 
-
-GameControllerXml::GameControllerXml(GameController* gameController, InputDevice* inputDevice, QObject *parent) : InputDeviceXml(inputDevice, parent)
+GameControllerXml::GameControllerXml(GameController* gameController, QObject *parent) : InputDeviceXml(gameController, parent)
 {
     m_gameController = gameController;
 }
-
 
 void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
 {
@@ -63,10 +59,7 @@ void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
                         if ((index >= 0) && (index < m_gameController->getJoystick_sets().size()))
                         {
                             GameControllerSet *currentSet = qobject_cast<GameControllerSet*>(m_gameController->getJoystick_sets().value(index)); // static_cast
-
-                            if (!m_gameContrSetXml.isNull()) m_gameContrSetXml.clear();
-                            m_gameContrSetXml = new GameControllerSetXml(currentSet, const_cast<SetJoystick*>(m_gameController->getJoystick_sets().value(index)));
-                            m_gameContrSetXml->readJoystickConfig(xml, buttons, axes, hatButtons);
+                            currentSet->readJoystickConfig(xml, buttons, axes, hatButtons);
                         }
                     }
                     else
@@ -312,9 +305,7 @@ void GameControllerXml::readConfig(QXmlStreamReader *xml)
 
                         if ((index >= 0) && (index < m_gameController->getJoystick_sets().size()))
                         {
-                            if (!m_setJoystickXml.isNull()) m_setJoystickXml.clear();
-                            m_setJoystickXml = new SetJoystickXml(const_cast<SetJoystick*>(m_gameController->getJoystick_sets().value(index)));
-                            m_setJoystickXml.data()->readConfig(xml);
+                            m_gameController->getJoystick_sets().value(index)->readConfig(xml);
                         }
                     }
                     else
@@ -436,16 +427,15 @@ void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
         xml->writeTextElement("keyPressTime", QString::number(m_gameController->getDeviceKeyPressTime()));
     }
 
-        xml->writeStartElement("sets");
+    xml->writeStartElement("sets");
 
     for (int i = 0; i < m_gameController->getJoystick_sets().size(); i++)
     {
-        if (!m_setJoystickXml.isNull()) m_setJoystickXml.clear();
-        m_setJoystickXml = new SetJoystickXml(m_gameController->getJoystick_sets().value(i));
-        m_setJoystickXml->writeConfig(xml);
+        m_gameController->getJoystick_sets().value(i)->writeConfig(xml);
     }
 
-        xml->writeEndElement();
+    xml->writeEndElement();
+
     xml->writeEndElement();
 }
 

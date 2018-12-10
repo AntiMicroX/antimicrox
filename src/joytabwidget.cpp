@@ -43,7 +43,6 @@
 
 #include "gamecontroller/gamecontroller.h"
 #include "gamecontrollermappingdialog.h"
-#include "xml/inputdevicexml.h"
 
 #include <QDebug>
 #include <QCoreApplication>
@@ -72,7 +71,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     m_joystick = joystick;
-    m_joystickXml = new InputDeviceXml(joystick);
     m_settings = settings;
 
     tabHelper.moveToThread(joystick->thread());

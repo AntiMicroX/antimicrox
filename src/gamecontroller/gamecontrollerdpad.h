@@ -22,8 +22,10 @@
 
 #include "vdpad.h"
 
+class QXmlStreamReader;
 class JoyButton;
 class SetJoystick;
+class JoyDPadXml;
 class DPad;
 
 // holds information about gamecontroller dpad
@@ -37,9 +39,15 @@ public:
                                 int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
     virtual QString getName(bool forceFullFormat, bool displayName);
-    virtual QString getXmlName();
+    virtual QString getXmlName(); // GameControllerDPadXml class
+
+    void readJoystickConfig(QXmlStreamReader *xml); // GameControllerDPadXml class
 
     VDPad* getDPad();
+
+private:
+    JoyDPadXml* dpadXml;
+
 };
 
 #endif // GAMECONTROLLERDPAD_H

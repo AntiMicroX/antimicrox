@@ -1,16 +1,12 @@
 #ifndef GAMECONTROLLERXML_H
 #define GAMECONTROLLERXML_H
 
-#include <QObject>
-#include <QPointer>
 
-#include "xml/inputdevicexml.h"
+#include <QObject>
 #include "gamecontroller/gamecontroller.h"
 #include <SDL2/SDL_gamecontroller.h>
 
 class SetJoystick;
-class SetJoystickXml;
-class GameControllerSetXml;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 class JoyAxisButton;
@@ -21,7 +17,7 @@ class GameControllerXml : public InputDeviceXml
     Q_OBJECT
 
 public:
-    explicit GameControllerXml(GameController* gameController, InputDevice* inputDevice, QObject *parent = nullptr);
+    explicit GameControllerXml(GameController* gameController, QObject *parent = nullptr);
 
 protected:
     void readJoystickConfig(QXmlStreamReader *xml); // GameControllerXml class
@@ -33,8 +29,6 @@ public slots:
 private:
 
     GameController* m_gameController;
-    QPointer<SetJoystickXml> m_setJoystickXml;
-    QPointer<GameControllerSetXml> m_gameContrSetXml;
 
     void writeXmlForButtons(SetJoystick *tempSet, QXmlStreamWriter *xml); // GameControllerXml class
     void writeXmlForAxes(SetJoystick *tempSet, QXmlStreamWriter *xml); // GameControllerXml class

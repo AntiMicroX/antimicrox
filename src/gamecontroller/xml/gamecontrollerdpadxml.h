@@ -1,14 +1,16 @@
 #ifndef GAMECONTROLLERDPADXML_H
 #define GAMECONTROLLERDPADXML_H
 
-#include "xml/joydpadxml.h"
+#include "xml/vdpadxml.h"
 
 #include <QObject>
 
 class GameControllerDPad;
 class VDPad;
+class QXmlStreamReader;
 
-class GameControllerDPadXml : public JoyDPadXml
+
+class GameControllerDPadXml : public VDPadXml
 {
 public:
     GameControllerDPadXml(GameControllerDPad* gameContrDPad, VDPad* vdpad, QObject* parent = nullptr);

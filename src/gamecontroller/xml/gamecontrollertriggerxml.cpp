@@ -1,8 +1,6 @@
 #include "gamecontrollertriggerxml.h"
 #include "gamecontroller/gamecontrollertrigger.h"
 #include "gamecontroller/gamecontrollertriggerbutton.h"
-#include "gamecontroller/xml/gamecontrtriggbtnxml.h"
-
 #include "xml/joyaxisxml.h"
 #include "xml/joybuttonxml.h"
 
@@ -15,11 +13,11 @@
 #include <QDebug>
 
 
-GameControllerTriggerXml::GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, JoyAxis* joyAxis, QObject *parent) : JoyAxisXml(joyAxis, parent)
+GameControllerTriggerXml::GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, QObject *parent) : JoyAxisXml(gameContrTrigger, parent)
 {
     m_gameContrTrigger = gameContrTrigger;
-    m_joyButtonXmlNAxis = new JoyButtonXml(gameContrTrigger->getNAxisButton());
-    m_joyButtonXmlPAxis = new JoyButtonXml(gameContrTrigger->getPAxisButton());
+    joyButtonXmlNAxis = new JoyButtonXml(gameContrTrigger->getNAxisButton(), this);
+    joyButtonXmlPAxis = new JoyButtonXml(gameContrTrigger->getPAxisButton(), this);
 }
 
 void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
@@ -37,6 +35,7 @@ void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
             if (!found && (xml->name() == GlobalVariables::JoyAxisButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
+                GameControllerTriggerButton *triggerButton = nullptr;
 
                 #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "Index for axis in readJoystickConfig is: " << index;
@@ -46,20 +45,16 @@ void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
 
                     case 1:
                         found = true;
-
-                        if (!m_gameContrTriggBtnXml.isNull()) m_gameContrTriggBtnXml.clear();
-                        m_gameContrTriggBtnXml = new GameContrTriggBtnXml(qobject_cast<GameControllerTriggerButton*>(m_gameContrTrigger->getNAxisButton()), m_gameContrTrigger->getNAxisButton());
-                        m_gameContrTriggBtnXml->readJoystickConfig(xml);
+                        triggerButton =
+                            qobject_cast<GameControllerTriggerButton*>(m_gameContrTrigger->getNAxisButton());
+                        triggerButton->readJoystickConfig(xml);
                     break;
 
                     case 2:
                         found = true;
-
-                        if (!m_gameContrTriggBtnXml.isNull()) m_gameContrTriggBtnXml.clear();
-
-                        if (!m_gameContrTriggBtnXml.isNull()) m_gameContrTriggBtnXml.clear();
-                        m_gameContrTriggBtnXml = new GameContrTriggBtnXml(qobject_cast<GameControllerTriggerButton*>(m_gameContrTrigger->getPAxisButton()), m_gameContrTrigger->getPAxisButton());
-                        m_gameContrTriggBtnXml->readJoystickConfig(xml);
+                        triggerButton =
+                            qobject_cast<GameControllerTriggerButton*>(m_gameContrTrigger->getPAxisButton());
+                        triggerButton->readJoystickConfig(xml);
                     break;
                 }
             }
@@ -129,8 +124,8 @@ void GameControllerTriggerXml::writeConfig(QXmlStreamWriter *xml)
 
     if (!currentlyDefault)
     {
-        m_joyButtonXmlNAxis.data()->writeConfig(xml);
-        m_joyButtonXmlPAxis.data()->writeConfig(xml);
+        joyButtonXmlNAxis->writeConfig(xml);
+        joyButtonXmlPAxis->writeConfig(xml);
     }
 
     xml->writeEndElement();

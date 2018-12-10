@@ -24,14 +24,17 @@
 #include <QHash>
 #include <QList>
 #include <QTimer>
-#include <QPointer>
 
 class InputDevice;
 class JoyButton;
 class JoyDPad;
 class JoyControlStick;
 class VDPad;
-
+class QXmlStreamReader;
+class QXmlStreamWriter;
+class JoyDPadXml;
+class JoyAxisXml;
+class JoyButtonXml;
 
 class SetJoystick : public QObject
 {
@@ -85,9 +88,11 @@ public:
     void removeAllBtnFromQueue();
     int getCountBtnInList(QString partialName);
 
-    bool isSetEmpty();
+    virtual void readConfig(QXmlStreamReader *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml);
 
 protected:
+    bool isSetEmpty();
     void deleteButtons(); // SetButton class
     void deleteAxes(); // SetAxis class
     void deleteHats(); // SetHat class
@@ -180,6 +185,9 @@ private:
     InputDevice *m_device;
     QString m_name;
 
+    JoyDPadXml* joydpadXml;
+    JoyAxisXml* joyAxisXml;
+    JoyButtonXml* joyButtonXml;
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

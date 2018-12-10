@@ -9,6 +9,7 @@ class JoyDPadXml;
 class JoyAxisXml;
 class JoyButtonXml;
 class JoyControlStickXml;
+class VDPadXml;
 
 class QXmlStreamReader;
 class QXmlStreamWriter;
@@ -28,6 +29,7 @@ private:
     QPointer<JoyAxisXml> joyAxisXml;
     QPointer<JoyButtonXml> joyButtonXml;
     QPointer<JoyControlStickXml> joyControlStickXml;
+    QPointer<VDPadXml> vdpadXml;
 };
 
 #endif // SETJOYSTICKXML_H

@@ -41,7 +41,6 @@ class AxisEditDialog;
 class QAction;
 class QMenu;
 class QStackedWidget;
-class InputDeviceXml;
 
 class JoyTabWidget : public QWidget
 {
@@ -211,7 +210,6 @@ private:
     QSpacerItem *verticalSpacer_3;
 
     InputDevice *m_joystick;
-    InputDeviceXml *m_joystickXml;
     bool displayingNames;
     AntiMicroSettings *m_settings;
     int comboBoxIndex;

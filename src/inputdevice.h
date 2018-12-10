@@ -29,6 +29,8 @@
 
 class AntiMicroSettings;
 class SetJoystick;
+class QXmlStreamReader;
+class QXmlStreamWriter;
 
 
 class InputDevice : public QObject
