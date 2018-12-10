@@ -4,8 +4,10 @@
 #include "xml/joyaxisxml.h"
 
 #include <QObject>
+#include <QPointer>
 
 class GameControllerTrigger;
+class GameContrTriggBtnXml;
 
 
 class GameControllerTriggerXml : public JoyAxisXml
@@ -19,8 +21,9 @@ class GameControllerTriggerXml : public JoyAxisXml
 
     private:
         GameControllerTrigger* m_gameContrTrigger;
-        JoyButtonXml* joyButtonXmlNAxis;
-        JoyButtonXml* joyButtonXmlPAxis;
+        QPointer<GameContrTriggBtnXml> m_gameContrTriggBtnXml;
+        QPointer<JoyButtonXml> m_joyButtonXmlNAxis;
+        QPointer<JoyButtonXml> m_joyButtonXmlPAxis;
 };
 
 #endif // GAMECONTROLLERTRIGGERXML_H

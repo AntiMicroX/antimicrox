@@ -13,8 +13,8 @@
 JoyAxisXml::JoyAxisXml(JoyAxis* axis, QObject *parent) : QObject(parent)
 {
     m_joyAxis = axis;
-    joyButtonXmlNAxis = new JoyButtonXml(axis->getNAxisButton());
-    joyButtonXmlPAxis = new JoyButtonXml(axis->getPAxisButton());
+    m_joyButtonXmlNAxis = new JoyButtonXml(axis->getNAxisButton());
+    m_joyButtonXmlPAxis = new JoyButtonXml(axis->getPAxisButton());
 }
 
 
@@ -93,8 +93,8 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 
     if (!currentlyDefault)
     {
-        joyButtonXmlNAxis->writeConfig(xml);
-        joyButtonXmlPAxis->writeConfig(xml);
+        m_joyButtonXmlNAxis->writeConfig(xml);
+        m_joyButtonXmlPAxis->writeConfig(xml);
     }
 
     xml->writeEndElement();
@@ -224,12 +224,12 @@ bool JoyAxisXml::readButtonConfig(QXmlStreamReader *xml)
     if (index_local == 1)
     {
         found = true;
-        joyButtonXmlNAxis->readConfig(xml);
+        m_joyButtonXmlNAxis->readConfig(xml);
     }
     else if (index_local == 2)
     {
         found = true;
-        joyButtonXmlPAxis->readConfig(xml);
+        m_joyButtonXmlPAxis->readConfig(xml);
     }
 
     return found;

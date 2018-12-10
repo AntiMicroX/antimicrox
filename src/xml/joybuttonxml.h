@@ -2,7 +2,10 @@
 #define JOYBUTTONXML_H
 
 #include <QObject>
+#include <QPointer>
+
 class JoyButton;
+class JoyButtonSlotXml;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
@@ -19,6 +22,7 @@ public:
 
 private:
     JoyButton* m_joyButton;
+    QPointer<JoyButtonSlotXml> m_btnSlotXml;
 
 };
 

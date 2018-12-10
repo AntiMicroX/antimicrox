@@ -23,8 +23,6 @@
 
 #include <QDebug>
 #include <QHashIterator>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 
 
 JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :

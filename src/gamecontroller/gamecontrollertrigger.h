@@ -23,9 +23,6 @@
 #include <QObject>
 #include <QString>
 
-
-class QXmlStreamReader;
-class QXmlStreamWriter;
 class SetJoystick;
 
 class GameControllerTrigger : public JoyAxis

@@ -26,6 +26,7 @@ class QXmlStreamReader;
 class SetJoystick;
 class JoyAxis;
 
+
 class GameControllerTriggerButton : public JoyAxisButton
 {
     Q_OBJECT
@@ -33,9 +34,7 @@ class GameControllerTriggerButton : public JoyAxisButton
 public:
     explicit GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
-    virtual QString getXmlName(); // GameContrTriggerBtnXml class
-    void readJoystickConfig(QXmlStreamReader *xml); // GameContrTriggerBtnXml class
-
+    virtual QString getXmlName();
 };
 
 #endif // GAMECONTROLLERBUTTON_H

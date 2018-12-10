@@ -24,8 +24,6 @@
 #include <QMetaType>
 #include <QVariant>
 
-class QXmlStreamReader;
-class QXmlStreamWriter;
 
 class JoyButtonSlot : public QObject
 {
@@ -77,9 +75,6 @@ public:
     QVariant getExtraData();
 
     bool isValidSlot();
-
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
     
 private:
     int deviceCode;

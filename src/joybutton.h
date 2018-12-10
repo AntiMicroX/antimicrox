@@ -40,8 +40,6 @@
 
 class VDPad;
 class SetJoystick;
-class QXmlStreamReader;
-class QXmlStreamWriter;
 class QThread;
 
 class JoyButton : public QObject
@@ -100,12 +98,12 @@ public:
     bool getToggleState();
     bool isUsingTurbo();
     bool getButtonState();
-    bool containsSequence();
-    bool containsDistanceSlots(); // JoyButtonSlots class
-    bool containsReleaseSlots(); // JoyButtonSlots class
+    bool containsSequence(); // JoyButtonSlots class *
+    bool containsDistanceSlots(); // JoyButtonSlots class *
+    bool containsReleaseSlots(); // JoyButtonSlots class *
     bool getIgnoreEventState(); // JoyButtonEvents class
     bool getWhileHeldStatus();
-    bool hasActiveSlots(); // JoyButtonSlots class
+    bool hasActiveSlots(); // JoyButtonSlots class *
     bool isCycleResetActive();
     bool isRelativeSpring();
     bool isPartVDPad();
@@ -136,8 +134,8 @@ public:
     QString getActionName();
     QString getButtonName();
 
-    QList<JoyButtonSlot*>* getAssignedSlots(); // JoyButtonSlots class
-    QList<JoyButtonSlot*> const& getActiveSlots(); // JoyButtonSlots class
+    QList<JoyButtonSlot*>* getAssignedSlots(); // JoyButtonSlots class *
+    QList<JoyButtonSlot*> const& getActiveSlots(); // JoyButtonSlots class *
 
     virtual bool isPartRealAxis();
     virtual bool isModifierButton();
@@ -161,8 +159,8 @@ public:
                                        bool passive=false, bool updateActiveString=true);
 
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const;
-    virtual QString getSlotsSummary(); // JoyButtonSlots class
-    virtual QString getSlotsString(); // JoyButtonSlots class
+    virtual QString getSlotsSummary(); // JoyButtonSlots class *
+    virtual QString getSlotsString(); // JoyButtonSlots class *
     virtual QString getActiveZoneSummary();
     virtual QString getCalculatedActiveZoneSummary();
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
@@ -220,7 +218,7 @@ public:
     static const TurboMode DEFAULTTURBOMODE;
     static const JoyExtraAccelerationCurve DEFAULTEXTRAACCELCURVE;
 
-    bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true); // JoyButtonSlots class
+    bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true); // JoyButtonSlots class *
 
 
 
@@ -231,10 +229,10 @@ protected:
 
     bool distanceEvent(); // JoyButtonEvents class
     bool checkForDelaySequence();
-    void clearAssignedSlots(bool signalEmit=true); // JoyButtonSlots class
+    void clearAssignedSlots(bool signalEmit=true); // JoyButtonSlots class *
     void releaseSlotEvent(); // JoyButtonEvents class
     void checkForPressedSetChange();
-    void checkTurboCondition(JoyButtonSlot *slot);
+    void checkTurboCondition(JoyButtonSlot *slot); // JoyButtonSlots class *
     void vdpadPassEvent(bool pressed, bool ignoresets=false); // JoyButtonEvents class
     void localBuildActiveZoneSummaryString();
 
@@ -257,7 +255,7 @@ protected:
     static JoyKeyRepeatHelper repeatHelper;
 #endif
 
-    static JoyButtonSlot *lastActiveKey; // JoyButtonSlots class
+    static JoyButtonSlot *lastActiveKey; // JoyButtonSlots class*
     static JoyButtonMouseHelper mouseHelper;
 
     int m_index; // Used to denote the SDL index of the actual joypad button
@@ -307,7 +305,7 @@ signals:
     void turboChanged(bool state);
     void toggleChanged(bool state);
     void turboIntervalChanged(int interval);
-    void slotsChanged(); // JoyButtonSlots class
+    void slotsChanged(); // JoyButtonSlots class *
     void actionNameChanged();
     void buttonNameChanged();
     void propertyUpdated();
@@ -329,7 +327,7 @@ public slots:
     void setEasingDuration(double value);
     void establishPropertyUpdatedConnections();
     void disconnectPropertyUpdatedConnections();
-    void removeAssignedSlot(int index);
+    void removeAssignedSlot(int index); // JoyButtonSlots class *
 
     virtual void reset();
     virtual void reset(int index);
@@ -341,18 +339,18 @@ public slots:
     static void establishMouseTimerConnections();
 
     bool setAssignedSlot(int code, int alias, int index,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class *
 
     bool setAssignedSlot(int code,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class *
 
     bool setAssignedSlot(int code, int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class *
 
-    bool setAssignedSlot(JoyButtonSlot *otherSlot, int index); // JoyButtonSlots class
+    bool setAssignedSlot(JoyButtonSlot *otherSlot, int index); // JoyButtonSlots class *
 
     bool insertAssignedSlot(int code, int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // JoyButtonSlots class *
 
     void buildActiveZoneSummaryString();
 
@@ -366,7 +364,7 @@ protected slots:
 
 
 private slots:
-    void releaseActiveSlots(); // JoyButtonSlots class
+    void releaseActiveSlots(); // JoyButtonSlots class *
     void activateSlots(); // JoyButtonSlots class
     void waitForDeskEvent(); // JoyButtonEvents class
     void waitForReleaseDeskEvent(); // JoyButtonEvents class
@@ -393,7 +391,7 @@ private:
         updateOldAccelMulti = oldAccelMultiVal;
     }
 
-    inline void resetSlotsProp(bool currentChangedSlot = false) // JoyButtonSlots class
+    inline void resetSlotsProp(bool currentChangedSlot = false) // JoyButtonSlots class *
     {
         currentCycle = nullptr;
         previousCycle = nullptr;
@@ -488,10 +486,10 @@ private:
     void resetPrivVars();
     void restartAllForSetChange();
     void startTimerOverrun(int slotCode, QTime* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
-    void findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter);
+    void findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter); // JoyButtonSlots class *
     void changeStatesQueue(bool currentReleased);
-    void countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash, bool& changeRepeatState, bool activeSlotHashWindows = false); // JoyButtonSlots class
-    void releaseMoveSlots(QList<JoyButton::mouseCursorInfo>& cursorSpeeds, JoyButtonSlot *slot, QList<int>& indexesToRemove); // JoyButtonSlots class
+    void countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash, bool& changeRepeatState, bool activeSlotHashWindows = false); // JoyButtonSlots class *
+    void releaseMoveSlots(QList<JoyButton::mouseCursorInfo>& cursorSpeeds, JoyButtonSlot *slot, QList<int>& indexesToRemove); // JoyButtonSlots class *
     void setSpringDeadCircle(double& springDeadCircle, int mouseDirection);
     void checkSpringDeadCircle(int tempcode, double& springDeadCircle, int mouseSlot1, int mouseSlot2);
     static void distanceForMovingAx(double& finalAx, mouseCursorInfo infoAx);
@@ -500,8 +498,8 @@ private:
     void changeTurboParams(bool _isKeyPressed, bool isButtonPressed);
     void updateParamsAfterDistEvent(); // JoyButtonEvents class
     void startSequenceOfPressActive(bool isTurbo, QString debugText);
-    QList<JoyButtonSlot*>& getAssignmentsLocal();
-    QList<JoyButtonSlot*>& getActiveSlotsLocal(); // JoyButtonSlots class
+    QList<JoyButtonSlot*>& getAssignmentsLocal(); // JoyButtonSlots class *
+    QList<JoyButtonSlot*>& getActiveSlotsLocal(); // JoyButtonSlots class *
     void updateMouseProperties(double newAxisValue, double newSpringDead, int newSpringWidth, int newSpringHeight, bool relatived, int modeScreen, QList<PadderCommon::springModeInfo>& springSpeeds, QChar axis, double newAxisValueY = 0,  double newSpringDeadY = 0);
 
     bool m_toggle;
@@ -564,6 +562,7 @@ private:
     QString actionName;
     QString activeZoneString;
 
+    // copied
     QList<JoyButtonSlot*> assignments;
     QList<JoyButtonSlot*> activeSlots;
     QListIterator<JoyButtonSlot*> *slotiter;
@@ -578,6 +577,7 @@ private:
     JoyButtonSlot *currentKeyPress;
     JoyButtonSlot *currentDelay;
     JoyButtonSlot *currentSetChangeSlot;
+    //
 
     QTime buttonHold;
     QTime pauseHold;

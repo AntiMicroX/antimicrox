@@ -32,8 +32,6 @@
 #include <QDebug>
 #include <QThread>
 #include <QStringList>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 #include <QSharedPointer>
 
 const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;

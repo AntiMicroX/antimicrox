@@ -23,11 +23,8 @@
 #include <SDL2/SDL_gamecontroller.h>
 
 #include <QObject>
-#include <QHash>
 
-class QXmlStreamReader;
 class InputDevice;
-class JoyDPadXml;
 
 
 class GameControllerSet : public SetJoystick
@@ -39,11 +36,6 @@ public:
 
     virtual void refreshAxes();
 
-    virtual void readConfig(QXmlStreamReader *xml); // GameControllerSetXml
-    virtual void readJoystickConfig(QXmlStreamReader *xml,
-                            QHash<int, SDL_GameControllerButton> &buttons,
-                            QHash<int, SDL_GameControllerAxis> &axes,
-                            QList<SDL_GameControllerButtonBind> &hatButtons); // GameControllerSetXml class
 
 protected:
     void populateSticksDPad();
@@ -52,11 +44,8 @@ public slots:
     virtual void reset();
 
 private:
-    void getElemFromXml(QString elemName, QXmlStreamReader *xml); // GameControllerSetXml class
-    void readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists, bool dpadExists); // GameControllerSetXml class
     void resetSticks();
 
-    JoyDPadXml* dpadXml;
 };
 
 #endif // GAMECONTROLLERSET_H

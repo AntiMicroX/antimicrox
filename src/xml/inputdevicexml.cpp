@@ -3,6 +3,7 @@
 #include "vdpad.h"
 #include "joycontrolstick.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
+#include "xml/setjoystickxml.h"
 
 #include "globalvariables.h"
 #include "messagehandler.h"
@@ -48,7 +49,10 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
                         index = index - 1;
 
                         if ((index >= 0) && (index < m_inputDevice->getJoystick_sets().size()))
-                            m_inputDevice->getJoystick_sets().value(index)->readConfig(xml);
+
+                            if (!m_setJoystickXml.isNull()) m_setJoystickXml.clear();
+                            m_setJoystickXml = new SetJoystickXml(const_cast<SetJoystick*>(m_inputDevice->getJoystick_sets().value(index)));
+                            m_setJoystickXml.data()->readConfig(xml);
                     }
                     else
                     {
@@ -617,12 +621,16 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
     if ((m_inputDevice->getDeviceKeyPressTime() > 0) && (m_inputDevice->getDeviceKeyPressTime() != GlobalVariables::InputDevice::DEFAULTKEYPRESSTIME))
         xml->writeTextElement("keyPressTime", QString::number(m_inputDevice->getDeviceKeyPressTime()));
 
-    xml->writeStartElement("sets");
+        xml->writeStartElement("sets");
 
     for (int i = 0; i < m_inputDevice->getJoystick_sets().size(); i++)
-        m_inputDevice->getJoystick_sets().value(i)->writeConfig(xml);
+    {
+        if (!m_setJoystickXml.isNull()) m_setJoystickXml.clear();
+        m_setJoystickXml = new SetJoystickXml(m_inputDevice->getJoystick_sets().value(i));
+        m_setJoystickXml->writeConfig(xml);
+    }
 
-    xml->writeEndElement();
+        xml->writeEndElement();
     xml->writeEndElement();
 }
 

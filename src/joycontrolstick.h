@@ -30,8 +30,6 @@
 class JoyAxis;
 class JoyControlStickButton;
 class JoyControlStickModifierButton;
-class QXmlStreamReader;
-class QXmlStreamWriter;
 
 
 class JoyControlStick : public QObject, public JoyStickDirectionsType
@@ -174,8 +172,6 @@ public:
     virtual bool isDefault();
     virtual void setDefaultStickName(QString tempname);
     virtual QString getDefaultStickName();
-    virtual void readConfig(QXmlStreamReader *xml); // JoyControlStickXml class
-    virtual void writeConfig(QXmlStreamWriter *xml); // JoyControlStickXml class
 
     static const JoyMode DEFAULTMODE;
 

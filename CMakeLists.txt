@@ -161,6 +161,7 @@ set(antimicro_SOURCES
     src/joybuttonwidget.cpp
     src/joystick.cpp
     src/joybutton.cpp
+    #src/joybuttonslotslist.cpp
     src/xml/joybuttonxml.cpp
     src/joybuttontypes/joygradientbutton.cpp
     src/event.cpp
@@ -179,9 +180,11 @@ set(antimicro_SOURCES
     src/advancebuttondialog.cpp
     src/simplekeygrabberbutton.cpp
     src/joybuttonslot.cpp
+    src/xml/joybuttonslotxml.cpp
     src/joybuttontypes/joyaxisbutton.cpp
     src/aboutdialog.cpp
     src/setjoystick.cpp
+    src/xml/setjoystickxml.cpp
     src/sdleventreader.cpp
     src/setaxisthrottledialog.cpp
     src/keyboard/virtualkeypushbutton.cpp
@@ -190,6 +193,7 @@ set(antimicro_SOURCES
     src/buttoneditdialog.cpp
     src/commandlineutility.cpp
     src/joycontrolstick.cpp
+    src/xml/joycontrolstickxml.cpp
     src/joybuttontypes/joycontrolstickbutton.cpp
     src/joybuttontypes/joycontrolstickmodifierbutton.cpp
     src/joycontrolstickeditdialog.cpp
@@ -220,7 +224,6 @@ set(antimicro_SOURCES
     src/inputdevice.cpp
     src/xml/inputdevicexml.cpp
     src/mainsettingsdialog.cpp
-    src/gamecontroller/gamecontrollertriggerbutton.cpp
     src/setnamesdialog.cpp
     src/autoprofileinfo.cpp
     src/addeditautoprofiledialog.cpp
@@ -265,6 +268,7 @@ set(antimicro_HEADERS
     src/joybuttonwidget.h
     src/joystick.h
     src/joybutton.h
+    #src/joybuttonslotslist.h
     src/xml/joybuttonxml.h
     src/joybuttontypes/joygradientbutton.h
     src/inputdaemon.h
@@ -282,9 +286,11 @@ set(antimicro_HEADERS
     src/advancebuttondialog.h
     src/simplekeygrabberbutton.h
     src/joybuttonslot.h
+    src/xml/joybuttonslotxml.h
     src/joybuttontypes/joyaxisbutton.h
     src/aboutdialog.h
     src/setjoystick.h
+    src/xml/setjoystickxml.h
     src/sdleventreader.h
     src/setaxisthrottledialog.h
     src/keyboard/virtualkeypushbutton.h
@@ -293,6 +299,7 @@ set(antimicro_HEADERS
     src/buttoneditdialog.h
     src/commandlineutility.h
     src/joycontrolstick.h
+    src/xml/joycontrolstickxml.h
     src/joybuttontypes/joycontrolstickbutton.h
     src/joybuttontypes/joycontrolstickmodifierbutton.h
     src/joycontrolstickeditdialog.h
@@ -323,7 +330,6 @@ set(antimicro_HEADERS
     src/inputdevice.h
     src/xml/inputdevicexml.h
     src/mainsettingsdialog.h
-    src/gamecontroller/gamecontrollertriggerbutton.h
     src/setnamesdialog.h
     src/autoprofileinfo.h
     src/addeditautoprofiledialog.h
@@ -395,8 +401,12 @@ if(USE_SDL_2)
          src/gamecontroller/gamecontrollertrigger.cpp
          src/gamecontrollermappingdialog.cpp
          src/gamecontrollerexample.cpp
+         src/gamecontroller/gamecontrollertriggerbutton.cpp
+         src/gamecontroller/xml/gamecontrtriggbtnxml.cpp
          src/gamecontroller/xml/gamecontrollerxml.cpp
          src/gamecontroller/xml/gamecontrollertriggerxml.cpp
+         src/gamecontroller/xml/gamecontrollerdpadxml.cpp
+         src/gamecontroller/xml/gamecontrollersetxml.cpp
     )
     LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
@@ -404,8 +414,12 @@ if(USE_SDL_2)
         src/gamecontroller/gamecontrollertrigger.h
         src/gamecontrollermappingdialog.h
         src/gamecontrollerexample.h
+        src/gamecontroller/gamecontrollertriggerbutton.h
+        src/gamecontroller/xml/gamecontrtriggbtnxml.h
         src/gamecontroller/xml/gamecontrollerxml.h
         src/gamecontroller/xml/gamecontrollertriggerxml.h
+        src/gamecontroller/xml/gamecontrollerdpadxml.h
+        src/gamecontroller/xml/gamecontrollersetxml.h
     )
 endif(USE_SDL_2)
 

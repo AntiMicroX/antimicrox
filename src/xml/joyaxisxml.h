@@ -1,7 +1,7 @@
 #ifndef JOYAXISXML_H
 #define JOYAXISXML_H
 
-
+#include <QPointer>
 #include <QObject>
 
 class JoyAxis;
@@ -24,8 +24,8 @@ public:
 
 private:
     JoyAxis* m_joyAxis;
-    JoyButtonXml* joyButtonXmlNAxis;
-    JoyButtonXml* joyButtonXmlPAxis;
+    QPointer<JoyButtonXml> m_joyButtonXmlNAxis;
+    QPointer<JoyButtonXml> m_joyButtonXmlPAxis;
 };
 
 #endif // JOYAXISXML_H

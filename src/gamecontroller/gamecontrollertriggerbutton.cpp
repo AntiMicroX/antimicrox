@@ -21,10 +21,7 @@
 #include "messagehandler.h"
 #include "setjoystick.h"
 #include "joyaxis.h"
-#include "inputdevice.h"
-#include "xml/joybuttonxml.h"
 
-#include <QXmlStreamReader>
 #include <QDebug>
 
 
@@ -40,34 +37,4 @@ QString GameControllerTriggerButton::getXmlName()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return GlobalVariables::GameControllerTriggerButton::xmlName;
-}
-
-
-void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-
-    if (xml->isStartElement() && (xml->name() == GlobalVariables::JoyAxisButton::xmlName))
-    {
-        disconnect(this, &GameControllerTriggerButton::slotsChanged, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
-
-        xml->readNextStartElement();
-
-
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::JoyAxisButton::xmlName)))
-        {
-            JoyButtonXml* joyButtonXml = new JoyButtonXml(this);
-            bool found = joyButtonXml->readButtonConfig(xml);
-
-            if (!found)
-            {
-                xml->skipCurrentElement();
-            }
-
-            xml->readNextStartElement();
-        }
-
-        connect(this, &GameControllerTriggerButton::slotsChanged, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
-    }
 }

@@ -22,14 +22,11 @@
 #include "inputdevice.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
-#include "xml/joybuttonxml.h"
 #include "joyaxis.h"
 
 #include <QDebug>
 #include <QHashIterator>
 #include <QStringList>
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 #include <QLabel>
 #include <QPointer>
 
@@ -1087,173 +1084,6 @@ void JoyControlStick::deleteButtons()
     {
         delete modifierButton;
         modifierButton = nullptr;
-    }
-}
-
-/**
- * @brief Take a XML stream and set the stick and direction button properties
- *     according to the values contained within the stream.
- * @param QXmlStreamReader instance that will be used to read property values.
- */
-void JoyControlStick::readConfig(QXmlStreamReader *xml)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    if (xml->isStartElement() && (xml->name() == "stick"))
-    {
-        xml->readNextStartElement();
-
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "stick")))
-        {
-            if ((xml->name() == "deadZone") && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setDeadZone(tempchoice);
-            }
-            else if ((xml->name() == "maxZone") && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setMaxZone(tempchoice);
-            }
-            else if ((xml->name() == "calibrated") && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                bool tempchoice = (temptext == "true") ? true : false;
-                this->setCalibrationFlag(tempchoice);
-            }
-            else if ((xml->name() == "summary") && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                this->setCalibrationSummary(temptext);
-            }
-            else if ((xml->name() == "diagonalRange") && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setDiagonalRange(tempchoice);
-            }
-            else if ((xml->name() == "mode") && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-
-                if (temptext == "eight-way")
-                {
-                    this->setJoyMode(EightWayMode);
-                }
-                else if (temptext == "four-way")
-                {
-                    this->setJoyMode(FourWayCardinal);
-                }
-                else if (temptext == "diagonal")
-                {
-                    this->setJoyMode(FourWayDiagonal);
-                }
-            }
-            else if ((xml->name() == "squareStick") && xml->isStartElement())
-            {
-                int tempchoice = xml->readElementText().toInt();
-
-                if ((tempchoice > 0) && (tempchoice <= 100))
-                    this->setCircleAdjust(tempchoice / 100.0);
-            }
-            else if ((xml->name() == GlobalVariables::JoyControlStickButton::xmlName) && xml->isStartElement())
-            {
-                int index = xml->attributes().value("index").toString().toInt();
-                JoyControlStickButton *button = buttons.value(static_cast<JoyStickDirections>(index));
-                JoyButtonXml* joyButtonXml = new JoyButtonXml(button);
-
-                if (button != nullptr) joyButtonXml->readConfig(xml);
-                else xml->skipCurrentElement();
-            }
-            else if ((xml->name() == GlobalVariables::JoyControlStickModifierButton::xmlName) && xml->isStartElement())
-            {
-                JoyButtonXml* joyButtonXml = new JoyButtonXml(modifierButton);
-                joyButtonXml->readConfig(xml);
-            }
-            else if ((xml->name() == "stickDelay") && xml->isStartElement())
-            {
-                QString temptext = xml->readElementText();
-                int tempchoice = temptext.toInt();
-                this->setStickDelay(tempchoice);
-            }
-            else
-            {
-                xml->skipCurrentElement();
-            }
-
-            xml->readNextStartElement();
-        }
-    }
-}
-
-/**
- * @brief Write the status of the properties of a stick and direction buttons
- *     to an XML stream.
- * @param QXmlStreamWriter instance that will be used to write a profile.
- */
-void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    if (!isDefault())
-    {
-        xml->writeStartElement("stick");
-        xml->writeAttribute("index", QString::number(index+1));
-
-        if (deadZone != GlobalVariables::JoyControlStick::DEFAULTDEADZONE)
-            xml->writeTextElement("deadZone", QString::number(deadZone));
-
-        if (maxZone != GlobalVariables::JoyControlStick::DEFAULTMAXZONE)
-            xml->writeTextElement("maxZone", QString::number(maxZone));
-
-        xml->writeTextElement("calibrated", (calibrated ? "true" : "false"));
-        xml->writeTextElement("summary", (getCalibrationSummary().isEmpty() ? "" : calibrationSummary));
-
-
-        if ((currentMode == StandardMode || currentMode == EightWayMode) && (diagonalRange != GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE))
-        {
-            xml->writeTextElement("diagonalRange", QString::number(diagonalRange));
-        }
-
-        switch(currentMode)
-        {
-            case EightWayMode:
-                xml->writeTextElement("mode", "eight-way");
-            break;
-
-            case FourWayCardinal:
-                xml->writeTextElement("mode", "four-way");
-            break;
-
-            case FourWayDiagonal:
-                xml->writeTextElement("mode", "diagonal");
-            break;
-        }
-
-        if (circle > GlobalVariables::JoyControlStick::DEFAULTCIRCLE)
-            xml->writeTextElement("squareStick", QString::number(circle * 100));
-
-        if (stickDelay > GlobalVariables::JoyControlStick::DEFAULTSTICKDELAY)
-            xml->writeTextElement("stickDelay", QString::number(stickDelay));
-
-        QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(buttons);
-
-        while (iter.hasNext())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            JoyButtonXml* joyButtonXml = new JoyButtonXml(button);
-            joyButtonXml->writeConfig(xml);
-        }
-
-        if (!modifierButton->isDefault())
-        {
-            JoyButtonXml* joyButtonXmlModif = new JoyButtonXml(modifierButton);
-            joyButtonXmlModif->writeConfig(xml);
-        }
-
-        xml->writeEndElement();
     }
 }
 
