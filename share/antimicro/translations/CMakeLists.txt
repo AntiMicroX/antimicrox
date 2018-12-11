@@ -7,9 +7,15 @@ file(GLOB_RECURSE antimicro_BASE_FORMS ${PROJECT_SOURCE_DIR}/src/*.ui)
 
 
     if(UPDATE_TRANSLATIONS)
-            message("Update translations - lupdate ON")
+        message("Update translations - lupdate ON")
+        if(TRANS_KEEP_OBSOLETE)
+            message("getting rid of old text entries: \"lupdate -noobsolete\" ON")
             QT5_CREATE_TRANSLATION(antimicro_QMFILES ${antimicro_BASE_SOURCES}
-                ${antimicro_BASE_FORMS} ${antimicro_TRANSLATIONS})
+            ${antimicro_BASE_FORMS} ${antimicro_TRANSLATIONS} OPTIONS -Inobsolete)
+        else()
+            QT5_CREATE_TRANSLATION(antimicro_QMFILES ${antimicro_BASE_SOURCES}
+            ${antimicro_BASE_FORMS} ${antimicro_TRANSLATIONS})
+        endif(TRANS_KEEP_OBSOLETE)
     else()
         QT5_ADD_TRANSLATION(antimicro_QMFILES ${antimicro_TRANSLATIONS})
     endif(UPDATE_TRANSLATIONS)
