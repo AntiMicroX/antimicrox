@@ -109,7 +109,8 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     removeButton->setObjectName(QString::fromUtf8("removeButton"));
     removeButton->setToolTip(trUtf8("Remove configuration from recent list."));
     removeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    removeButton->setIcon(QIcon::fromTheme("edit_clear_list"));
+    removeButton->setIcon(QIcon::fromTheme(QString::fromUtf8("edit_clear_list"),
+                          QIcon(":/icons/icons/16x16/actions/16-actions-edit_clear_list.png")));
     configHorizontalLayout->addWidget(removeButton);
 
     loadButton = new QPushButton(trUtf8("Load"), this);
@@ -117,21 +118,26 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     loadButton->setToolTip(trUtf8("Load configuration file."));
     loadButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     qDebug() << " Application theme has icon named document_open: " << QIcon::hasThemeIcon("document_open");
-    loadButton->setIcon(QIcon::fromTheme("document_open"));
+    loadButton->setIcon(QIcon::fromTheme(QString::fromUtf8("document_open"),
+                        QIcon(":/icons/icons/16x16/actions/16-actions-document_open.png")));
+
     configHorizontalLayout->addWidget(loadButton);
 
     saveButton = new QPushButton(trUtf8("Save"), this);
     saveButton->setObjectName(QString::fromUtf8("saveButton"));
     saveButton->setToolTip(trUtf8("Save changes to configuration file."));
     saveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    saveButton->setIcon(QIcon::fromTheme("document_save"));
+    saveButton->setIcon(QIcon::fromTheme(QString::fromUtf8("document_save"),
+                        QIcon(":/icons/icons/16x16/actions/16-actions-document_save.png")));
     configHorizontalLayout->addWidget(saveButton);
 
     saveAsButton = new QPushButton(trUtf8("Save As"), this);
     saveAsButton->setObjectName(QString::fromUtf8("saveAsButton"));
     saveAsButton->setToolTip(trUtf8("Save changes to a new configuration file."));
     saveAsButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    saveAsButton->setIcon(QIcon::fromTheme("document_save_as"));
+    saveAsButton->setIcon(QIcon::fromTheme(QString::fromUtf8("document_save_as"),
+                                           QIcon(":/icons/icons/16x16/actions/16-actions-document_save_as.png")));
+
     configHorizontalLayout->addWidget(saveAsButton);
 
     verticalLayout->addLayout(configHorizontalLayout);
@@ -426,13 +432,17 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
     stickAssignPushButton = new QPushButton(trUtf8("Stick/Pad Assign"), this);
     stickAssignPushButton->setObjectName(QString::fromUtf8("stickAssignPushButton"));
-    QIcon icon7(QIcon::fromTheme(QString::fromUtf8("games_config_options")));
+    QIcon icon7(QIcon::fromTheme(QString::fromUtf8("games_config_options"),
+                                 QIcon(":/icons/icons/16x16/actions/16-actions-games_config_options.png")));
+
     stickAssignPushButton->setIcon(icon7);
     horizontalLayout_3->addWidget(stickAssignPushButton);
 
     gameControllerMappingPushButton = new QPushButton(trUtf8("Controller Mapping"), this);
     gameControllerMappingPushButton->setObjectName(QString::fromUtf8("gameControllerMappingPushButton"));
-    gameControllerMappingPushButton->setIcon(QIcon::fromTheme("games_config_options"));
+    gameControllerMappingPushButton->setIcon(QIcon::fromTheme(QString::fromUtf8("games_config_options"),
+                                                              QIcon(":/icons/icons/16x16/actions/16-actions-games_config_options.png")));
+
     gameControllerMappingPushButton->setEnabled(false);
     gameControllerMappingPushButton->setVisible(false);
     horizontalLayout_3->addWidget(gameControllerMappingPushButton);
@@ -449,7 +459,9 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     namesPushButton->setObjectName(QString::fromUtf8("namesPushButton"));
     namesPushButton->setToolTip(trUtf8("Toggle button name displaying."));
     namesPushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    namesPushButton->setIcon(QIcon::fromTheme("text_field"));
+    namesPushButton->setIcon(QIcon::fromTheme(QString::fromUtf8("text_field"),
+                                              QIcon(":/icons/icons/16x16/actions/16-actions-text_field.png")));
+
     horizontalLayout_3->addWidget(namesPushButton);
 
     delayButton = new QPushButton(trUtf8("Pref"), this);
@@ -462,7 +474,9 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     resetButton->setObjectName(QString::fromUtf8("resetButton"));
     resetButton->setToolTip(trUtf8("Revert changes to the configuration. Reload configuration file."));
     resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    resetButton->setIcon(QIcon::fromTheme("document_revert"));
+    resetButton->setIcon(QIcon::fromTheme(QString::fromUtf8("document_revert"),
+                                          QIcon(":/icons/icons/16x16/actions/16-actions-document_revert.png")));
+
     horizontalLayout_3->addWidget(resetButton);
 
     verticalLayout->addLayout(horizontalLayout_3);
@@ -1615,7 +1629,7 @@ void JoyTabWidget::displayProfileEditNotification()
 
     int currentIndex = configBox->currentIndex();
     configBox->setItemIcon(currentIndex, QIcon::fromTheme("document_save_as",
-                                         QIcon(":/icons/icons/16x16/actions/16-document_save.png")));
+                                         QIcon(":/icons/icons/16x16/actions/16-document_save_as.png")));
 }
 
 void JoyTabWidget::removeProfileEditNotification()
