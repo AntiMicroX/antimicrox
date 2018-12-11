@@ -24,9 +24,10 @@ if(POLICY CMP0071)
   cmake_policy(SET CMP0071 NEW)
 endif()
 
-
-find_package(ECM REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
+if(UNIX)
+    find_package(ECM REQUIRED NO_MODULE)
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
+endif(UNIX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
@@ -40,8 +41,11 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
-include(GNUInstallDirs)
-include(ECMInstallIcons)
+
+if (UNIX)
+    include(GNUInstallDirs)
+    include(ECMInstallIcons)
+endif(UNIX)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
