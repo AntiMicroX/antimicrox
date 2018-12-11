@@ -1,16 +1,35 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/16x16/com.github.juliagoda.antimicro.png</file>
-        <file>images/24x24/com.github.juliagoda.antimicro.png</file>
-        <file>images/32x32/com.github.juliagoda.antimicro.png</file>
-        <file>images/48x48/com.github.juliagoda.antimicro.png</file>
-        <file>images/64x64/com.github.juliagoda.antimicro.png</file>
-        <file>images/antimicro_trayicon.png</file>
-        <file>images/controllermap.png</file>
-        <file>images/axis.png</file>
-        <file>images/button.png</file>
-        <file>Changelog</file>
-        <file>icons/16x16/actions/document-save.png</file>
-        <file>icons/16x16/actions/document-open-folder.png</file>
+        <file>icons/index.theme</file>
+        <file>icons/icons/16x16/actions/16-actions-application_exit.png</file>
+        <file>icons/icons/16x16/actions/16-actions-archive_insert.png</file>
+        <file>icons/icons/16x16/actions/16-actions-dialog_cancel.png</file>
+        <file>icons/icons/16x16/actions/16-actions-dialog_close.png</file>
+        <file>icons/icons/16x16/actions/16-actions-dialog_ok.png</file>
+        <file>icons/icons/16x16/actions/16-actions-document_close.png</file>
+        <file>icons/icons/16x16/actions/16-actions-document_open.png</file>
+        <file>icons/icons/16x16/actions/16-actions-document_open_folder.png</file>
+        <file>icons/icons/16x16/actions/16-actions-document_revert.png</file>
+        <file>icons/icons/16x16/actions/16-actions-document_revert_small.png</file>
+        <file>icons/icons/16x16/actions/16-actions-document_save.png</file>
+        <file>icons/icons/16x16/actions/16-actions-document_save_as.png</file>
+        <file>icons/icons/16x16/actions/16-actions-edit_clear.png</file>
+        <file>icons/icons/16x16/actions/16-actions-edit_clear_list.png</file>
+        <file>icons/icons/16x16/actions/16-actions-edit_delete.png</file>
+        <file>icons/icons/16x16/actions/16-actions-edit_select.png</file>
+        <file>icons/icons/16x16/actions/16-actions-edit_table_delete_row.png</file>
+        <file>icons/icons/16x16/actions/16-actions-edit_table_insert_row_below.png</file>
+        <file>icons/icons/16x16/actions/16-actions-games_config_custom.png</file>
+        <file>icons/icons/16x16/actions/16-actions-games_config_options.png</file>
+        <file>icons/icons/16x16/actions/16-actions-help_about.png</file>
+        <file>icons/icons/16x16/actions/16-actions-text_field.png</file>
+        <file>icons/icons/16x16/actions/16-actions-view_fullscreen.png</file>
+        <file>icons/icons/16x16/actions/16-actions-view_refresh.png</file>
+        <file>icons/icons/16x16/actions/16-actions-view_restore.png</file>
+        <file>icons/application/16x16/apps/16-apps-com.github.juliagoda.antimicro.png</file>
+        <file>icons/application/24x24/apps/24-apps-com.github.juliagoda.antimicro.png</file>
+        <file>icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicro.png</file>
+        <file>icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicro.png</file>
+        <file>icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicro.png</file>
     </qresource>
 </RCC>

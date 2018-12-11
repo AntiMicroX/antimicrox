@@ -24,7 +24,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/images/16x16/com.github.juliagoda.antimicro.png</normaloff>:/images/16x16/com.github.juliagoda.antimicro.png</iconset>
+    <normaloff>:/icons/application/16x16/16-apps-com.github.juliagoda.antimicro.png</normaloff>:/icons/application/16x16/16-apps-com.github.juliagoda.antimicro.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
@@ -231,7 +231,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </widget>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="application-exit">
+    <iconset theme="application_exit">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -246,7 +246,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="view-refresh">
+    <iconset theme="view_refresh">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -258,7 +258,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionHide">
    <property name="icon">
-    <iconset theme="view-restore">
+    <iconset theme="view_restore">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -270,7 +270,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about">
+    <iconset theme="help_about">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">

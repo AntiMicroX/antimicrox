@@ -24,12 +24,11 @@ if(POLICY CMP0071)
   cmake_policy(SET CMP0071 NEW)
 endif()
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
+find_package(ECM REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
 
-if (NOT WIN32)
-find_package(ECM REQUIRED CONFIG)
-endif(NOT WIN32)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -42,6 +41,9 @@ endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
+include(ECMInstallIcons)
+include(ECMAddAppIcon)
+
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
 
@@ -625,14 +627,47 @@ elseif(WIN32)
 endif(UNIX)
 
 if(UNIX)
-    install(FILES src/images/32x32/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pixmaps")
-    install(FILES src/images/16x16/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/16x16/apps")
-    install(FILES src/images/24x24/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/24x24/apps")
-    install(FILES src/images/32x32/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/32x32/apps")
-    install(FILES src/images/48x48/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/48x48/apps")
-    install(FILES src/images/64x64/com.github.juliagoda.antimicro.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/64x64/apps")
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-application_exit.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-archive_insert.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_cancel.png DESTINATION share/antimicro/icons)
 
-    
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_close.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_ok.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_close.png DESTINATION share/antimicro/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_open.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_open_folder.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_revert.png DESTINATION share/antimicro/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_revert_small.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_save.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_save_as.png DESTINATION share/antimicro/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_clear.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_clear_list.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_delete.png DESTINATION share/antimicro/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_select.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_table_delete_row.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_table_insert_row_below.png DESTINATION share/antimicro/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-games_config_custom.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-games_config_options.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-help_about.png DESTINATION share/antimicro/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-text_field.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_fullscreen.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION share/antimicro/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION share/antimicro/icons)
+
+
+    ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
+    ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
+    ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
+    ecm_install_icons(ICONS src/icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
+    ecm_install_icons(ICONS src/icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
+
+    install(FILES src/icons/index.theme DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicro/icons/hicolor")
     install(FILES other/com.github.juliagoda.antimicro.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
     install(FILES other/com.github.juliagoda.antimicro.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
 endif(UNIX)

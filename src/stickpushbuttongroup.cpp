@@ -58,7 +58,7 @@ void StickPushButtonGroup::generateButtons()
     leftButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickLeft, 1, 0);
 
     stickWidget = new JoyControlStickPushButton(stick, displayNames, parentWidget());
-    stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games-config-options")));
+    stickWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games_config_options")));
     connect(stickWidget, &JoyControlStickPushButton::clicked, this, &StickPushButtonGroup::showStickDialog);
 
     addWidget(stickWidget, 1, 1);

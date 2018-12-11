@@ -539,7 +539,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-delete-row">
+              <iconset theme="edit_table_delete_row">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -550,7 +550,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Insert</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-insert-row-below">
+              <iconset theme="edit_table_insert_row_below">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -833,7 +833,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Add</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-insert-row-below">
+              <iconset theme="edit_table_insert_row_below">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -847,7 +847,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Edit</string>
              </property>
              <property name="icon">
-              <iconset theme="document-edit">
+              <iconset theme="document_edit">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -861,7 +861,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-delete-row">
+              <iconset theme="edit_table_delete_row">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>

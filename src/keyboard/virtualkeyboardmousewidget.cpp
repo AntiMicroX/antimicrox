@@ -622,7 +622,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
     mouseSettingsPushButton = new QPushButton(trUtf8("Mouse Settings"), this);
-    mouseSettingsPushButton->setIcon(QIcon::fromTheme(QString::fromUtf8("edit-select")));
+    mouseSettingsPushButton->setIcon(QIcon::fromTheme(QString::fromUtf8("edit_select")));
     tempVBoxLayout->addWidget(mouseSettingsPushButton);
 
     mouseSettingsPushButton->setEnabled(false);

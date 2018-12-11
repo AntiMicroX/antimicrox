@@ -274,7 +274,7 @@ to a diagonal zone.</string>
       <string>Mouse Settings</string>
      </property>
      <property name="icon">
-      <iconset theme="edit-select">
+      <iconset theme="edit_select">
        <normaloff/>
       </iconset>
      </property>

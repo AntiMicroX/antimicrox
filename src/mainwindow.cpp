@@ -503,19 +503,19 @@ void MainWindow::populateTrayIcon()
     profileActions.clear();
 
     closeAction = new QAction(trUtf8("&Quit"), trayIconMenu);
-    closeAction->setIcon(QIcon::fromTheme("application-exit"));
+    closeAction->setIcon(QIcon::fromTheme("application_exit"));
     connect(closeAction, &QAction::triggered, this, &MainWindow::quitProgram, Qt::DirectConnection);
 
     hideAction = new QAction(trUtf8("&Hide"), trayIconMenu);
-    hideAction->setIcon(QIcon::fromTheme("view-restore"));
+    hideAction->setIcon(QIcon::fromTheme("view_restore"));
     connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
 
     restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
-    restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
+    restoreAction->setIcon(QIcon::fromTheme("view_fullscreen"));
     connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
 
     updateJoy = new QAction(trUtf8("&Update Joysticks"), trayIconMenu);
-    updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
+    updateJoy->setIcon(QIcon::fromTheme("view_refresh"));
     connect(updateJoy, &QAction::triggered, this, &MainWindow::startJoystickRefresh);
 
     int joystickCount = m_joysticks->size();
@@ -609,7 +609,7 @@ void MainWindow::populateTrayIcon()
                     newaction = new QAction(trUtf8("Open File"), trayIconMenu);
                 }
 
-                newaction->setIcon(QIcon::fromTheme("document-open"));
+                newaction->setIcon(QIcon::fromTheme("document_open"));
                 connect(newaction, &QAction::triggered, widget, &JoyTabWidget::openConfigFileDialog);
 
                 if (useSingleList)
@@ -949,7 +949,7 @@ void MainWindow::joystickTrayShow(QMenu* tempmenu)
 
                 if (widget->getJoystick()->isDeviceEdited())
                 {
-                    action->setIcon(QIcon::fromTheme("document-save-as"));
+                    action->setIcon(QIcon::fromTheme("document_save_as"));
                 }
                 else if (!action->icon().isNull())
                 {
@@ -1445,7 +1445,7 @@ void MainWindow::singleTrayProfileMenuShow()
 
                         if (widget->getJoystick()->isDeviceEdited())
                         {
-                            action->setIcon(QIcon::fromTheme("document-save-as"));
+                            action->setIcon(QIcon::fromTheme("document_save_as"));
                         }
                         else if (!action->icon().isNull())
                         {

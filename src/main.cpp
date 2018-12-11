@@ -48,6 +48,7 @@
 #include <QThread>
 #include <QPointer>
 #include <QCommandLineParser>
+#include <QStandardPaths>
 
 #ifdef Q_OS_UNIX
     #include <signal.h>
@@ -496,6 +497,26 @@ int main(int argc, char *argv[])
     }
 
     QIcon::setThemeName("/");
+#elif defined(Q_OS_LINUX)
+
+    QStringList appDirsLocations = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    QStringList themePathsTries = QStringList();
+
+    QList<QString>::const_iterator i;
+    for (i = appDirsLocations.constBegin(); i != appDirsLocations.constEnd(); ++i) {
+        themePathsTries.append(QString("%1%2").arg(*i).arg("/icons"));
+        qDebug() << QString("%1%2").arg(*i).arg("/icons");
+    }
+
+    QIcon::setThemeSearchPaths(themePathsTries);
+    QIcon::setThemeName("hicolor");
+    bool tr = QIcon::hasThemeIcon("games_config_custom"); // real
+    bool tr2 = QIcon::hasThemeIcon("xxx"); // fake
+    qDebug() << "Theme name: " << QIcon::themeName();
+    qDebug() << "has icon theme named games_config_custom: " << tr;
+    qDebug() << "if icon theme always returns true: " << tr2;
+
+
 #endif
 
     AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath(),
