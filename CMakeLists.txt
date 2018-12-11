@@ -24,10 +24,10 @@ if(POLICY CMP0071)
   cmake_policy(SET CMP0071 NEW)
 endif()
 
-if (NOT WIN32)
+if(UNIX)
     find_package(ECM REQUIRED NO_MODULE)
     set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
-endif(NOT WIN32)
+endif(UNIX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
@@ -42,10 +42,10 @@ endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
 
-if (NOT WIN32)
+if (UNIX)
     include(GNUInstallDirs)
     include(ECMInstallIcons)
-endif(NOT WIN32)
+endif(UNIX)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
