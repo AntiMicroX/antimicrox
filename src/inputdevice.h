@@ -56,6 +56,7 @@ public:
     bool isActive();
     int getButtonDownCount();
 
+    virtual QString getXmlName() = 0;
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
 
@@ -64,23 +65,22 @@ public:
     virtual QString getRawGUIDString();
 
     virtual QString getStringIdentifier();
-    virtual QString getXmlName() = 0;
     virtual void closeSDLDevice() = 0;
     virtual SDL_JoystickID getSDLJoystickID() = 0;
     QString getSDLPlatform();
     virtual bool isGameController();
     virtual bool isKnownController();
 
-    void setButtonName(int index, QString tempName);
-    void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName);
-    void setStickButtonName(int stickIndex, int buttonIndex, QString tempName);
-    void setDPadButtonName(int dpadIndex, int buttonIndex, QString tempName);
-    void setVDPadButtonName(int vdpadIndex, int buttonIndex, QString tempName);
+    void setButtonName(int index, QString tempName); // InputDeviceXml class
+    void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName); // InputDeviceXml class
+    void setStickButtonName(int stickIndex, int buttonIndex, QString tempName); // InputDeviceXml class
+    void setDPadButtonName(int dpadIndex, int buttonIndex, QString tempName); // InputDeviceXml class
+    void setVDPadButtonName(int vdpadIndex, int buttonIndex, QString tempName); // InputDeviceXml class
 
-    void setAxisName(int axisIndex, QString tempName);
-    void setStickName(int stickIndex, QString tempName);
-    void setDPadName(int dpadIndex, QString tempName);
-    void setVDPadName(int vdpadIndex, QString tempName);
+    void setAxisName(int axisIndex, QString tempName); // InputDeviceAxis class
+    void setStickName(int stickIndex, QString tempName); // InputDeviceStick class
+    void setDPadName(int dpadIndex, QString tempName); // InputDeviceHat class
+    void setVDPadName(int vdpadIndex, QString tempName); // InputDeviceVDPad class
 
     virtual int getNumberRawButtons() = 0;
     virtual int getNumberRawAxes() = 0;
@@ -111,24 +111,25 @@ public:
     AntiMicroSettings *getSettings();
 
     void activatePossiblePendingEvents();
-    void activatePossibleControlStickEvents();
-    void activatePossibleAxisEvents();
-    void activatePossibleDPadEvents();
-    void activatePossibleVDPadEvents();
-    void activatePossibleButtonEvents();
+    void activatePossibleControlStickEvents(); // InputDeviceStick class
+    void activatePossibleAxisEvents(); // InputDeviceAxis class
+    void activatePossibleDPadEvents(); // InputDeviceHat class
+    void activatePossibleVDPadEvents(); // InputDeviceVDPad class
+    void activatePossibleButtonEvents(); // InputDeviceButton class
 
     bool isEmptyGUID(QString tempGUID);
     bool isRelevantGUID(QString tempGUID);
 
-    void setRawAxisDeadZone(int deadZone);
-    int getRawAxisDeadZone();
-    void rawAxisEvent(int index, int value);
+    void setRawAxisDeadZone(int deadZone); // InputDeviceAxis class
+    int getRawAxisDeadZone(); // InputDeviceAxis class
+    void rawAxisEvent(int index, int value); // InputDeviceAxis class
+    bool elementsHaveNames();
 
     QHash<int, SetJoystick*>& getJoystick_sets();
 
 protected:
     void enableSetConnections(SetJoystick *setstick);
-    bool elementsHaveNames();
+
     SDL_Joystick* getJoyHandle() const;
 
 
@@ -142,19 +143,19 @@ protected:
 
 signals:
     void setChangeActivated(int index);
-    void setAxisThrottleActivated(int index);
+    void setAxisThrottleActivated(int index); // InputDeviceAxis class
     void clicked(int index);
     void released(int index);
 
-    void rawButtonClick(int index);
-    void rawButtonRelease(int index);
-    void rawAxisButtonClick(int axis, int buttonindex);
-    void rawAxisButtonRelease(int axis, int buttonindex);
-    void rawDPadButtonClick(int dpad, int buttonindex);
-    void rawDPadButtonRelease(int dpad, int buttonindex);
-    void rawAxisActivated(int axis, int value);
-    void rawAxisReleased(int axis, int value);
-    void rawAxisMoved(int axis, int value);
+    void rawButtonClick(int index); // InputDeviceButton class
+    void rawButtonRelease(int index); // InputDeviceButton class
+    void rawAxisButtonClick(int axis, int buttonindex); // InputDeviceAxisBtn class
+    void rawAxisButtonRelease(int axis, int buttonindex); // InputDeviceAxisBtn class
+    void rawDPadButtonClick(int dpad, int buttonindex); // InputDeviceHat class
+    void rawDPadButtonRelease(int dpad, int buttonindex); // InputDeviceHat class
+    void rawAxisActivated(int axis, int value); // InputDeviceAxis class
+    void rawAxisReleased(int axis, int value); // InputDeviceAxis class
+    void rawAxisMoved(int axis, int value); // InputDeviceAxis class
     void profileUpdated();
     void propertyUpdated();
     void profileNameEdited(QString text);
@@ -167,23 +168,21 @@ public slots:
     void reInitButtons();
     void resetButtonDownCount();
     void setActiveSetNumber(int index);
-    void changeSetButtonAssociation(int button_index, int originset, int newset, int mode);
-    void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode);
-    void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode);
-    void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
-    void changeSetVDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode);
+    void changeSetButtonAssociation(int button_index, int originset, int newset, int mode); // InputDeviceButton class
+    void changeSetAxisButtonAssociation(int button_index, int axis_index, int originset, int newset, int mode); // InputDeviceAxisBtn class
+    void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode); // InputDeviceStick class
+    void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode); // InputDeviceHat class
+    void changeSetVDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode); // InputDeviceVDPad class
     void setDeviceKeyPressTime(int newPressTime); // .., unsigned
     void profileEdited();
     void setProfileName(QString value);
     void haltServices();
     void finalRemoval();
 
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
-    virtual void buttonClickEvent(int buttonindex);
-    virtual void buttonReleaseEvent(int buttonindex);
-    virtual void dpadButtonClickEvent(int buttonindex);
-    virtual void dpadButtonReleaseEvent(int buttonindex);
+    virtual void buttonClickEvent(int buttonindex); // InputDeviceButton class
+    virtual void buttonReleaseEvent(int buttonindex); // InputDeviceButton class
+    virtual void dpadButtonClickEvent(int buttonindex); // InputDeviceHat class
+    virtual void dpadButtonReleaseEvent(int buttonindex); // InputDeviceHat class
 
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
@@ -191,27 +190,27 @@ public slots:
 protected slots:
     void propogateSetChange(int index);
     void propogateSetAxisThrottleChange(int index, int originset);
-    void buttonDownEvent(int setindex, int buttonindex);
-    void buttonUpEvent(int setindex, int buttonindex);
-    virtual void axisActivatedEvent(int setindex, int axisindex, int value);
-    virtual void axisReleasedEvent(int setindex, int axisindex, int value);
-    virtual void axisButtonDownEvent(int setindex, int axisindex, int buttonindex);
-    virtual void axisButtonUpEvent(int setindex, int axisindex, int buttonindex);
-    virtual void dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex);
-    virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);
-    virtual void stickButtonDownEvent(int setindex, int stickindex, int buttonindex);
-    virtual void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);
+    void buttonDownEvent(int setindex, int buttonindex); // InputDeviceButton class
+    void buttonUpEvent(int setindex, int buttonindex); // InputDeviceButton class
+    virtual void axisActivatedEvent(int setindex, int axisindex, int value); // InputDeviceAxis class
+    virtual void axisReleasedEvent(int setindex, int axisindex, int value); // InputDeviceAxis class
+    virtual void axisButtonDownEvent(int setindex, int axisindex, int buttonindex); // InputDeviceAxisBtn class
+    virtual void axisButtonUpEvent(int setindex, int axisindex, int buttonindex); // InputDeviceAxisBtn class
+    virtual void dpadButtonDownEvent(int setindex, int dpadindex, int buttonindex); // InputDeviceHat class
+    virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex); // InputDeviceHat class
+    virtual void stickButtonDownEvent(int setindex, int stickindex, int buttonindex); // InputDeviceStick class
+    virtual void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);  // InputDeviceStick class
 
-    void updateSetButtonNames(int index);
-    void updateSetAxisButtonNames(int axisIndex, int buttonIndex);
-    void updateSetStickButtonNames(int stickIndex, int buttonIndex);
-    void updateSetDPadButtonNames(int dpadIndex, int buttonIndex);
-    void updateSetVDPadButtonNames(int vdpadIndex, int buttonIndex);
+    void updateSetButtonNames(int index); // InputDeviceButton class
+    void updateSetAxisButtonNames(int axisIndex, int buttonIndex); // InputDeviceAxis class
+    void updateSetStickButtonNames(int stickIndex, int buttonIndex); // InputDeviceStick class
+    void updateSetDPadButtonNames(int dpadIndex, int buttonIndex); // InputDeviceHat class
+    void updateSetVDPadButtonNames(int vdpadIndex, int buttonIndex); // InputDeviceVDPad class
 
-    void updateSetAxisNames(int axisIndex);
-    void updateSetStickNames(int stickIndex);
-    void updateSetDPadNames(int dpadIndex);
-    void updateSetVDPadNames(int vdpadIndex);
+    void updateSetAxisNames(int axisIndex); // InputDeviceAxis class
+    void updateSetStickNames(int stickIndex); // InputDeviceStick class
+    void updateSetDPadNames(int dpadIndex); // InputDeviceHat class
+    void updateSetVDPadNames(int vdpadIndex); // InputDeviceVDPad class
 
 private:
     QList<bool>& getButtonstatesLocal();

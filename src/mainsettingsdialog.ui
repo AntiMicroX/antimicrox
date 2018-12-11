@@ -92,7 +92,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -110,7 +110,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Profile Direc&amp;tory:</string>
+              <string>Pro&amp;file Directory:</string>
              </property>
              <property name="buddy">
               <cstring>profileDefaultDirLineEdit</cstring>
@@ -539,7 +539,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-delete-row">
+              <iconset theme="edit_table_delete_row">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -550,7 +550,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Insert</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-insert-row-below">
+              <iconset theme="edit_table_insert_row_below">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -833,7 +833,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Add</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-insert-row-below">
+              <iconset theme="edit_table_insert_row_below">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -847,7 +847,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Edit</string>
              </property>
              <property name="icon">
-              <iconset theme="document-edit">
+              <iconset theme="document_edit">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -861,7 +861,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-table-delete-row">
+              <iconset theme="edit_table_delete_row">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -944,7 +944,7 @@ precise.</string>
               <item row="1" column="0">
                <widget class="QLabel" name="label_7">
                 <property name="text">
-                 <string>Weight &amp;Modifier:</string>
+                 <string>Weight Modi&amp;fier:</string>
                 </property>
                 <property name="buddy">
                  <cstring>weightModifierDoubleSpinBox</cstring>

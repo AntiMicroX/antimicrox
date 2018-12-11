@@ -20,12 +20,14 @@
 
 #include <SDL2/SDL_gamecontroller.h>
 #include <inputdevice.h>
+#include <xml/inputdevicexml.h>
 
 
 class QXmlStreamReader;
 class QXmlStreamWriter;
 class AntiMicroSettings;
 
+// holds information about gamecontrollers
 
 class GameController : public InputDevice
 {
@@ -36,12 +38,12 @@ public:
 
     virtual QString getName() override;
     virtual QString getSDLName() override;
+    virtual QString getXmlName() override;
 
     // GUID available on SDL 2.
     virtual QString getGUIDString() override;
     virtual QString getRawGUIDString() override;
 
-    virtual QString getXmlName() override;
     virtual bool isGameController() override;
     virtual void closeSDLDevice() override;
     virtual SDL_JoystickID getSDLJoystickID() override;
@@ -67,12 +69,7 @@ public:
 
     SDL_GameController *getController() const;
 
-protected:
-    void readJoystickConfig(QXmlStreamReader *xml);
-
-public slots:
-    virtual void readConfig(QXmlStreamReader *xml) override;
-    virtual void writeConfig(QXmlStreamWriter *xml) override;
+    void fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes, QList<SDL_GameControllerButtonBind> &hatButtons);
 
 protected slots:
     virtual void axisActivatedEvent(int setindex, int axisindex, int value) override;
@@ -86,21 +83,6 @@ private:
 
     SDL_JoystickID joystickID;
     SDL_GameController *controller;
-
-    void writeXmlForButtons(SetJoystick *tempSet, QXmlStreamWriter *xml);
-    void writeXmlForAxes(SetJoystick *tempSet, QXmlStreamWriter *xml);
-    void writeXmlAxBtn(JoyAxis *axis, JoyAxisButton *naxisbutton, QXmlStreamWriter *xml);
-    void writeXmlForSticks(SetJoystick *tempSet, QXmlStreamWriter *xml);
-    void writeXmlForVDpad(QXmlStreamWriter *xml);
-    void readXmlNamesShort(QString name, QXmlStreamReader *xml);
-    void readXmlNamesMiddle(QString name, QXmlStreamReader *xml);
-    void readXmlNamesLong(QString name, QXmlStreamReader *xml);
-    void readJoystickConfigXmlLong(QList<SDL_GameControllerButtonBind>& hatButtons, bool& dpadNameExists, bool& vdpadNameExists, QXmlStreamReader *xml);
-    void fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes, QList<SDL_GameControllerButtonBind> &hatButtons);
-
-    inline void assignVariables(QXmlStreamReader *xml, int& index, int& buttonIndex, QString& temp, bool buttonDecreased);
-    inline void assignVariablesShort(QXmlStreamReader *xml, int& index, QString& temp);
-
 
 };
 

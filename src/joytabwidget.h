@@ -49,21 +49,21 @@ class JoyTabWidget : public QWidget
 public:
     explicit JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent = nullptr);
 
-    void saveSettings();
-    void loadSettings(bool forceRefresh=false);
-    void setCurrentConfig(int index);
-    void unloadConfig();
+    void saveSettings(); // JoyTabSettings class
+    void loadSettings(bool forceRefresh=false); // JoyTabSettings class
+    void setCurrentConfig(int index); // JoyTabSettings class
+    void unloadConfig(); // JoyTabSettings class
     void checkHideEmptyOption();
     void refreshHelperThread();
 
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();
 
-    int getCurrentConfigIndex();
+    int getCurrentConfigIndex(); // JoyTabSettings class
 
-    QHash<int, QString>* recentConfigs();
+    QHash<int, QString>* recentConfigs(); // JoyTabSettings class
 
-    QString getCurrentConfigName();
+    QString getCurrentConfigName(); // JoyTabSettings class
     QString getConfigName(int index);
 
     InputDevice *getJoystick();
@@ -81,50 +81,50 @@ protected:
     void reconnectMainComboBoxEvents();
     void disconnectCheckUnsavedEvent();
     void reconnectCheckUnsavedEvent();
-    void fillSetButtons(SetJoystick *set);
-    void removeSetButtons(SetJoystick *set);
+    void fillSetButtons(SetJoystick *set); // JoyTabWidgetSets class
+    void removeSetButtons(SetJoystick *set); // JoyTabWidgetSets class
 
     static const int DEFAULTNUMBERPROFILES = 5;
 
 signals:
-    void joystickConfigChanged(int index);
+    void joystickConfigChanged(int index); // JoyTabSettings class
     void joystickAxisRefreshLabels(int axisIndex);
     void namesDisplayChanged(bool status);
     void forceTabUnflash(JoyTabWidget *tabWidget);
     void mappingUpdated(QString mapping, InputDevice *device);
 
 public slots:
-    void openConfigFileDialog();
-    void fillButtons();
-    void saveDeviceSettings(bool sync=false);
-    void loadDeviceSettings();
+    void openConfigFileDialog(); // JoyTabSettings class
+    void fillButtons(); // JoyTabWidgetSets class
+    void saveDeviceSettings(bool sync=false); // JoyTabSettings class
+    void loadDeviceSettings(); // JoyTabSettings class
     void changeNameDisplay(bool displayNames);
-    void changeCurrentSet(int index);
-    void loadConfigFile(QString fileLocation);
+    void changeCurrentSet(int index); // JoyTabWidgetSets class
+    void loadConfigFile(QString fileLocation); // JoyTabSettings class
     void refreshButtons();
 
 private slots:
-    void saveConfigFile();
+    void saveConfigFile(); // JoyTabSettings class
     void resetJoystick();
-    void saveAsConfig();
-    void removeConfig();
-    void changeJoyConfig(int index);
+    void saveAsConfig(); // JoyTabSettings class
+    void removeConfig(); // JoyTabSettings class
+    void changeJoyConfig(int index); // JoyTabSettings class
     void showAxisDialog();
     void showButtonDialog();
     void showStickAssignmentDialog();
     void showQuickSetDialog();
     void showKeyDelayDialog();
-    void showSetNamesDialog();
+    void showSetNamesDialog(); // JoyTabWidgetSets class
     void toggleNames();
 
-    void changeSetOne();
-    void changeSetTwo();
-    void changeSetThree();
-    void changeSetFour();
-    void changeSetFive();
-    void changeSetSix();
-    void changeSetSeven();
-    void changeSetEight();
+    void changeSetOne(); // JoyTabWidgetSets class
+    void changeSetTwo(); // JoyTabWidgetSets class
+    void changeSetThree(); // JoyTabWidgetSets class
+    void changeSetFour(); // JoyTabWidgetSets class
+    void changeSetFive(); // JoyTabWidgetSets class
+    void changeSetSix(); // JoyTabWidgetSets class
+    void changeSetSeven(); // JoyTabWidgetSets class
+    void changeSetEight(); // JoyTabWidgetSets class
     void displayProfileEditNotification();
     void removeProfileEditNotification();
     void checkForUnsavedProfile(int newindex=-1);
@@ -139,10 +139,10 @@ private slots:
     void checkAxisButtonEmptyDisplay();
     void checkButtonEmptyDisplay();
     void editCurrentProfileItemText(QString text);
-    void refreshCopySetActions();
-    void performSetCopy();
-    void disableCopyCurrentSet();
-    void refreshSetButtons();
+    void refreshCopySetActions(); // JoyTabWidgetSets class
+    void performSetCopy(); // JoyTabWidgetSets class
+    void disableCopyCurrentSet(); // JoyTabWidgetSets class
+    void refreshSetButtons(); // JoyTabWidgetSets class
     void openGameControllerMappingWindow();
     void propogateMappingUpdate(QString mapping, InputDevice *device);
 

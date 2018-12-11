@@ -62,12 +62,12 @@ namespace GlobalVariables
       static const int MAXIMUMMOUSEHISTORYSIZE;
       static const int MAXIMUMMOUSEREFRESHRATE;
       static const int DEFAULTIDLEMOUSEREFRESHRATE;
-      static const int MINCYCLERESETTIME; // unsigned
-      static const int MAXCYCLERESETTIME; // unsigned
+      static const int MINCYCLERESETTIME;
+      static const int MAXCYCLERESETTIME;
       static const int DEFAULTSPRINGRELEASERADIUS;
 
-      static QHash<int, int> activeKeys; // QHash<unsigned int, int
-      static QHash<int, int> activeMouseButtons; // QHash<unsigned int, int
+      static QHash<int, int> activeKeys;
+      static QHash<int, int> activeMouseButtons;
       static QList<double> mouseHistoryX;
       static QList<double> mouseHistoryY;
   };
@@ -79,7 +79,7 @@ namespace GlobalVariables
       static const bool defaultDisabledWinEnhanced;
       static const bool defaultAssociateProfiles;
       static const int defaultSpringScreen;
-      static const int defaultSDLGamepadPollRate; // unsigned
+      static const int defaultSDLGamepadPollRate;
   };
 
   class InputDevice
@@ -89,8 +89,8 @@ namespace GlobalVariables
       static const int NUMBER_JOYSETS;
       static const int DEFAULTKEYPRESSTIME;
       static const int RAISEDDEADZONE;
-      static const int DEFAULTKEYREPEATDELAY; // unsigned
-      static const int DEFAULTKEYREPEATRATE; // unsigned
+      static const int DEFAULTKEYREPEATDELAY;
+      static const int DEFAULTKEYREPEATRATE;
 
       static QRegExp emptyGUID;
   };
@@ -205,7 +205,7 @@ namespace GlobalVariables
       static const int DEFAULTMAXZONE;
       static const int DEFAULTDIAGONALRANGE;
       static const double DEFAULTCIRCLE;
-      static const int DEFAULTSTICKDELAY; // unsigned
+      static const int DEFAULTSTICKDELAY;
   };
 
   class JoyButtonSlot

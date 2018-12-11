@@ -21,6 +21,7 @@
 #include "messagehandler.h"
 #include "setjoystick.h"
 #include "joybutton.h"
+#include "xml/joydpadxml.h"
 
 #include <QXmlStreamReader>
 #include <QDebug>
@@ -31,6 +32,14 @@ GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButto
     VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+    dpadXml = new JoyDPadXml(getDPad(), this);
+}
+
+
+VDPad* GameControllerDPad::getDPad()
+{
+    VDPad* vdpad = (GameControllerDPad*) this;
+    return vdpad;
 }
 
 
@@ -86,7 +95,7 @@ void GameControllerDPad::readJoystickConfig(QXmlStreamReader *xml)
 
         while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::VDPad::xmlName)))
         {
-            bool found = readMainConfig(xml);
+            bool found = dpadXml->readMainConfig(xml);
 
             if (!found)
             {

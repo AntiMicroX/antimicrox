@@ -39,9 +39,9 @@ protected:
 public slots:
     void setAssignedSlot(JoyButtonSlot *otherSlot, int index);
     void setAssignedSlot(int code, int alias, int index,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
+                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void insertAssignedSlot(int code, int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
+                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void removeAssignedSlot(int index);
 };
 

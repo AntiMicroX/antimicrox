@@ -97,7 +97,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -283,7 +283,7 @@
                 <string>Insert</string>
                </property>
                <property name="icon">
-                <iconset theme="archive-insert">
+                <iconset theme="archive_insert">
                  <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
@@ -297,7 +297,7 @@
                 <string>Delete</string>
                </property>
                <property name="icon">
-                <iconset theme="edit-delete">
+                <iconset theme="edit_delete">
                  <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
@@ -311,7 +311,7 @@
                 <string>Clear All</string>
                </property>
                <property name="icon">
-                <iconset theme="edit-clear">
+                <iconset theme="edit_clear">
                  <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
@@ -349,7 +349,7 @@
          <item>
           <widget class="QStackedWidget" name="slotControlsStackedWidget">
            <property name="currentIndex">
-            <number>8</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="timePage">
             <layout class="QVBoxLayout" name="verticalLayout_12">

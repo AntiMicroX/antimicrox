@@ -43,8 +43,8 @@ public:
     explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog = nullptr, JoyButton* button = nullptr, QWidget *parent = nullptr);
     explicit VirtualKeyboardMouseWidget(QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
-    bool is_numlock_activated();
-    bool isLaptop();
+    bool is_numlock_activated(); // RealSystemInfo class
+    bool isLaptop(); // RealSystemInfo class
 
     InputDevice *getJoystick() const;
     ButtonEditDialogHelper* getHelper() const;
@@ -75,7 +75,7 @@ protected:
 signals:
     void selectionFinished();
     void selectionCleared();
-    void selectionMade(int keycode, int alias); // (.., unsigned)
+    void selectionMade(int keycode, int alias);
     void selectionMade(JoyButtonSlot *slot);
     void buttonDialogClosed();
 
@@ -88,8 +88,8 @@ public slots:
     void disableMouseSettingButton();
 
 private slots:
-    void processSingleKeyboardSelection(int keycode, int alias); // (.., unsigned)
-    void processAdvancedKeyboardSelection(int keycode, int alias); // (.., unsigned)
+    void processSingleKeyboardSelection(int keycode, int alias);
+    void processAdvancedKeyboardSelection(int keycode, int alias);
     void processSingleMouseSelection(JoyButtonSlot *tempslot);
     void processAdvancedMouseSelection(JoyButtonSlot *tempslot);
     void clearButtonSlots();

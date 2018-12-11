@@ -19,9 +19,11 @@
 #define XMLCONFIGREADER_H
 
 #include <QObject>
+#include <QPointer>
 
 class InputDevice;
 class QXmlStreamReader;
+class InputDeviceXml;
 class QFile;
 
 class XMLConfigReader : public QObject
@@ -41,6 +43,7 @@ public:
     QString const& getFileName();
     const QFile* getConfigFile();
     const InputDevice* getJoystick();
+    QPointer<InputDeviceXml> m_joystickXml;
     QStringList const& getDeviceTypes();
 
 protected:

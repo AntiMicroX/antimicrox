@@ -84,7 +84,7 @@ public slots:
 private slots:
     void stop();
     void resetActiveButtonMouseDistances();
-    void updatePollResetRate(int tempPollRate); //.., unsigned
+    void updatePollResetRate(int tempPollRate);
 
 private:
     QHash<SDL_JoystickID, Joystick*>& getTrackjoysticksLocal();

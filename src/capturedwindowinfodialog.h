@@ -47,7 +47,7 @@ public:
         WindowName = (1 << 1),
         WindowPath = (1 << 2),
     };
-    typedef int CapturedWindowOption; // typedef unsigned int
+    typedef int CapturedWindowOption;
 
     QString getWindowClass();
     QString getWindowName();

@@ -22,6 +22,7 @@
 #include "globalvariables.h"
 #include "messagehandler.h"
 #include "gamecontrollertriggerbutton.h"
+#include "xml/joyaxisxml.h"
 
 #include <SDL2/SDL_gamecontroller.h>
 
@@ -84,67 +85,6 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
     return label;
 }
 
-
-void GameControllerTrigger::readJoystickConfig(QXmlStreamReader *xml)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    if (xml->isStartElement() && (xml->name() == GlobalVariables::JoyAxis::xmlName))
-    {
-        xml->readNextStartElement();
-
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::JoyAxis::xmlName)))
-        {
-            bool found = readMainConfig(xml);
-
-            if (!found && (xml->name() == GlobalVariables::JoyAxisButton::xmlName) && xml->isStartElement())
-            {
-                int index = xml->attributes().value("index").toString().toInt();
-                GameControllerTriggerButton *triggerButton = nullptr;
-
-                #ifndef QT_DEBUG_NO_OUTPUT
-                qDebug() << "Index for axis in readJoystickConfig is: " << index;
-                #endif
-
-                switch (index) {
-
-                    case 1:
-                        found = true;
-                        triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(naxisbutton);
-                        triggerButton->readJoystickConfig(xml);
-                    break;
-
-
-                    case 2:
-                        found = true;
-                        triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(paxisbutton);
-                        triggerButton->readJoystickConfig(xml);
-                    break;
-                }
-
-            }
-
-            if (!found)
-            {
-                xml->skipCurrentElement();
-            }
-
-            xml->readNextStartElement();
-        }
-    }
-
-    if (this->throttle != static_cast<int>(PositiveHalfThrottle))
-    {
-        this->setThrottle(static_cast<int>(PositiveHalfThrottle));
-
-        setCurrentRawValue(currentThrottledDeadValue);
-        currentThrottledValue = calculateThrottledValue(currentRawValue);
-    }
-}
-
-
 void GameControllerTrigger::correctJoystickThrottle()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -156,68 +96,6 @@ void GameControllerTrigger::correctJoystickThrottle()
         setCurrentRawValue(currentThrottledDeadValue);
         currentThrottledValue = calculateThrottledValue(currentRawValue);
     }
-}
-
-
-void GameControllerTrigger::writeConfig(QXmlStreamWriter *xml)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    bool currentlyDefault = isDefault();
-
-    xml->writeStartElement(getXmlName());
-    xml->writeAttribute("index", QString::number((m_index+1)-SDL_CONTROLLER_AXIS_TRIGGERLEFT));
-
-
-    if (!currentlyDefault && (deadZone != GlobalVariables::GameControllerTrigger::AXISDEADZONE))
-    {
-      xml->writeTextElement("deadZone", QString::number(deadZone));
-    }
-
-    if (!currentlyDefault && (maxZoneValue != GlobalVariables::GameControllerTrigger::AXISMAXZONE))
-    {
-      xml->writeTextElement("maxZone", QString::number(maxZoneValue));
-    }
-
-
-    xml->writeStartElement("throttle");
-
-
-        switch(throttle)
-        {
-            case -2:
-                xml->writeCharacters("negativehalf");
-            break;
-
-            case -1:
-                xml->writeCharacters("negative");
-            break;
-
-            case 0:
-                xml->writeCharacters("normal");
-            break;
-
-            case 1:
-                xml->writeCharacters("positive");
-            break;
-
-            case 2:
-                xml->writeCharacters("positivehalf");
-            break;
-
-        }
-
-
-        xml->writeEndElement();
-
-    if (!currentlyDefault)
-    {
-        naxisbutton->writeConfig(xml);
-        paxisbutton->writeConfig(xml);
-    }
-
-
-    xml->writeEndElement();
 }
 
 

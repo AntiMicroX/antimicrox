@@ -44,17 +44,17 @@ public:
     AdvanceButtonDialogHelper const& getHelper();
 
 protected:
-    void connectButtonEvents(SimpleKeyGrabberButton *button);
-    void appendBlankKeyGrabber();
-    int actionTimeConvert();
+    void connectButtonEvents(SimpleKeyGrabberButton *button); // AdvanceBtnDlgAssign class
+    void appendBlankKeyGrabber(); // AdvanceBtnDlgAssign class
+    int actionTimeConvert(); // AdvanceBtnDlgAssign class
     void changeTurboForSequences();
-    void fillTimeComboBoxes();
-    void refreshTimeComboBoxes(JoyButtonSlot *slot);
-    void updateWindowTitleButtonName();
-    void populateAutoResetInterval();
-    void disconnectTimeBoxesEvents();
-    void connectTimeBoxesEvents();
-    void resetTimeBoxes();
+    void fillTimeComboBoxes(); // AdvanceBtnDlgAssign class
+    void refreshTimeComboBoxes(JoyButtonSlot *slot); // AdvanceBtnDlgAssign class
+    void updateWindowTitleButtonName(); // AdvanceBtnDlgAssign class
+    void populateAutoResetInterval(); // AdvanceBtnDlgAssign class
+    void disconnectTimeBoxesEvents(); // AdvanceBtnDlgAssign class
+    void connectTimeBoxesEvents(); // AdvanceBtnDlgAssign class
+    void resetTimeBoxes(); // AdvanceBtnDlgAssign class
     void populateSetSelectionComboBox();
     void populateSlotSetSelectionComboBox();
     void findTurboModeComboIndex();
@@ -62,45 +62,45 @@ protected:
 signals:
     void toggleChanged(bool state);
     void turboChanged(bool state);
-    void slotsChanged();
+    void slotsChanged(); // AdvanceBtnDlgAssign class
     void turboButtonEnabledChange(bool state);
 
 public slots:
-    void placeNewSlot(JoyButtonSlot *slot);
-    void clearAllSlots();
+    void placeNewSlot(JoyButtonSlot *slot); // AdvanceBtnDlgAssign class
+    void clearAllSlots(); // AdvanceBtnDlgAssign class
 
 private slots:
     void changeTurboText(int value);
     void updateTurboIntervalValue(int value);
     void checkTurboSetting(bool state);
 
-    void updateSlotsScrollArea(int value);
-    void deleteSlot();
-    void insertSlot();
+    void updateSlotsScrollArea(int value); // AdvanceBtnDlgAssign class
+    void deleteSlot();  // AdvanceBtnDlgAssign class
+    void insertSlot(); // AdvanceBtnDlgAssign class
 
-    void insertCycleSlot();
-    void insertTextEntrySlot();
-    void insertExecuteSlot();
+    void insertCycleSlot(); // AdvanceBtnDlgAssign class
+    void insertTextEntrySlot(); // AdvanceBtnDlgAssign class
+    void insertExecuteSlot(); // AdvanceBtnDlgAssign class
 
     void updateActionTimeLabel();
     void updateSetSelection();
     void checkTurboIntervalValue(int value);
     void performStatsWidgetRefresh(QListWidgetItem *item);
 
-    void checkSlotTimeUpdate();
-    void checkSlotMouseModUpdate();
-    void checkSlotDistanceUpdate();
-    void checkSlotSetChangeUpdate();
+    void checkSlotTimeUpdate(); // AdvanceBtnDlgAssign class
+    void checkSlotMouseModUpdate(); // AdvanceBtnDlgAssign class
+    void checkSlotDistanceUpdate(); // AdvanceBtnDlgAssign class
+    void checkSlotSetChangeUpdate(); // AdvanceBtnDlgAssign class
 
-    void checkCycleResetWidgetStatus(bool enabled);
-    void setButtonCycleResetInterval(double value);
-    void setButtonCycleReset(bool enabled);
+    void checkCycleResetWidgetStatus(bool enabled); // AdvanceBtnDlgAssign class
+    void setButtonCycleResetInterval(double value); // AdvanceBtnDlgAssign class
+    void setButtonCycleReset(bool enabled); // AdvanceBtnDlgAssign class
     void setButtonTurboMode(int value);
     void showSelectProfileWindow();
-    void showFindExecutableWindow(bool);
+    void showFindExecutableWindow(bool); // AdvanceBtnDlgAssign class
 
-    void changeSlotTypeDisplay(int index);
-    void changeSlotHelpText(int index);
+    void changeSlotTypeDisplay(int index); // AdvanceBtnDlgAssign class
+    void changeSlotHelpText(int index); // AdvanceBtnDlgAssign class
 
 private:
 
@@ -118,7 +118,7 @@ private:
     JoyButton *m_button;
     AdvanceButtonDialogHelper helper;
 
-    void insertKindOfSlot(int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction);
+    void insertKindOfSlot(int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction); // AdvanceBtnDlgAssign class
 
 };
 

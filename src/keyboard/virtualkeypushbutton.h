@@ -34,7 +34,7 @@ public:
     QString getXcodestring() const;
     QString getDisplayString() const;
     int getKeycode() const;
-    int getQkeyalias() const; // unsigned
+    int getQkeyalias() const;
     bool getCurrentlyActive() const;
     bool getOnCurrentButton() const;
 
@@ -45,14 +45,14 @@ protected:
     void populateKnownAliases();
 
 signals:
-    void keycodeObtained(int code, int alias); // (.., unsigned)
+    void keycodeObtained(int code, int alias);
 
 private slots:
     void processSingleSelection();
 
 private:
     int keycode;
-    int qkeyalias; // unsigned
+    int qkeyalias;
     QString xcodestring;
     QString displayString;
     bool currentlyActive;

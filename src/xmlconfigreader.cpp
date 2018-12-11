@@ -26,6 +26,7 @@
 #include "joystick.h"
 
 #include "gamecontroller/gamecontroller.h"
+#include "gamecontroller/xml/gamecontrollerxml.h"
 #include "common.h"
 
 #include <QDebug>
@@ -64,6 +65,8 @@ XMLConfigReader::~XMLConfigReader()
         delete xml;
         xml = nullptr;
     }
+
+    if (!m_joystickXml.isNull()) delete m_joystickXml;
 }
 
 void XMLConfigReader::setJoystick(InputDevice *joystick)
@@ -153,7 +156,10 @@ bool XMLConfigReader::read()
         {
             if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
-                m_joystick->readConfig(xml);
+
+                m_joystickXml = new InputDeviceXml(m_joystick);
+                m_joystickXml->readConfig(xml);
+               // if (!m_joystickXml.isNull()) delete m_joystickXml;
             }
             else
             {

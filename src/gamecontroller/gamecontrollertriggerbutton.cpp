@@ -22,6 +22,7 @@
 #include "setjoystick.h"
 #include "joyaxis.h"
 #include "inputdevice.h"
+#include "xml/joybuttonxml.h"
 
 #include <QXmlStreamReader>
 #include <QDebug>
@@ -56,7 +57,8 @@ void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
 
         while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != GlobalVariables::JoyAxisButton::xmlName)))
         {
-            bool found = readButtonConfig(xml);
+            JoyButtonXml* joyButtonXml = new JoyButtonXml(this);
+            bool found = joyButtonXml->readButtonConfig(xml);
 
             if (!found)
             {

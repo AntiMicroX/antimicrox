@@ -49,16 +49,16 @@ public:
         PositiveHalfThrottle = 2
     };
 
-    void joyEvent(int value, bool ignoresets=false, bool updateLastValues=true);
-    void queuePendingEvent(int value, bool ignoresets=false, bool updateLastValues=true);
-    void activatePendingEvent();
-    bool hasPendingEvent();
-    void clearPendingEvent();
+    void joyEvent(int value, bool ignoresets=false, bool updateLastValues=true); // JoyAxisEvent class
+    void queuePendingEvent(int value, bool ignoresets=false, bool updateLastValues=true); // JoyAxisEvent class
+    void activatePendingEvent(); // JoyAxisEvent class
+    bool hasPendingEvent(); // JoyAxisEvent class
+    void clearPendingEvent(); // JoyAxisEvent class
     bool inDeadZone(int value);
 
     virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
     virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
-    virtual QString getXmlName();
+    virtual QString getXmlName(); // JoyAxisXml class
 
     void setIndex(int index);
     int getIndex();
@@ -72,11 +72,10 @@ public:
     int getMaxZoneValue();
     void setThrottle(int value);
     void setInitialThrottle(int value);
+    void updateCurrentThrottledValue(int newValue);
     int getThrottle();
     int getCurrentThrottledValue();
     int getCurrentRawValue();
-    //int getCurrentThrottledMin();
-    //int getCurrentThrottledMax();
     int getCurrentThrottledDeadValue();
     int getCurrentlyAssignedSet();
     JoyAxisButton* getAxisButtonByValue(int value);
@@ -84,9 +83,6 @@ public:
     double getDistanceFromDeadZone();
     double getDistanceFromDeadZone(int value);
     double getRawDistance(int value);
-
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
 
     void setControlStick(JoyControlStick *stick);
     void removeControlStick(bool performRelease = true);
@@ -153,20 +149,17 @@ public:
     void setExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyExtraAccelerationCurve getExtraAccelerationCurve();
 
-    virtual void eventReset();
+    virtual void eventReset(); // JoyAxisEvent class
 
     static const ThrottleTypes DEFAULTTHROTTLE;
-
-protected:
-    void createDeskEvent(bool ignoresets = false);
-    void adjustRange();
     int calculateThrottledValue(int value);
 
-    void performCalibration(int value);
-    void stickPassEvent(int value, bool ignoresets=false, bool updateLastValues=true);
+protected:
+    void createDeskEvent(bool ignoresets = false); // JoyAxisEvent class
+    void adjustRange();
 
-    virtual bool readMainConfig(QXmlStreamReader *xml);
-    virtual bool readButtonConfig(QXmlStreamReader *xml);
+    void performCalibration(int value);
+    void stickPassEvent(int value, bool ignoresets=false, bool updateLastValues=true); // JoyAxisEvent class
 
     JoyAxisButton *paxisbutton;
     JoyAxisButton *naxisbutton;

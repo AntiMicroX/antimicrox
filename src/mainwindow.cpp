@@ -39,6 +39,7 @@
 #include "common.h"
 #include "gamecontrollermappingdialog.h"
 #include "calibration.h"
+#include "xml/inputdevicexml.h"
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
     #include "autoprofileinfo.h"
@@ -100,8 +101,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     #if defined(USE_SDL_2) && defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    this->appWatcher = new AutoProfileWatcher(settings, this);
-    checkAutoProfileWatcherTimer();
+        this->appWatcher = new AutoProfileWatcher(settings, this);
+        checkAutoProfileWatcherTimer();
     }
     else
     {
@@ -109,6 +110,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         qDebug() << "appWatcher instance set to null pointer";
     }
     #endif
+
 #elif defined(Q_OS_WIN)
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
@@ -216,6 +218,16 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 MainWindow::~MainWindow()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    qDebug() << "removing main window";
+
+    if (trayIconMenu != nullptr) trayIconMenu->clear();
+
+    installEventFilter(trayIconMenu);
+    installEventFilter(trayIcon);
+
+    if (trayIconMenu != nullptr) delete trayIconMenu;
+    if (trayIcon != nullptr) delete trayIcon;
 
     delete ui;
 }
@@ -425,6 +437,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
     QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
+
     while (iterTemp.hasNext())
     {
         iterTemp.next();
@@ -502,19 +515,28 @@ void MainWindow::populateTrayIcon()
     profileActions.clear();
 
     closeAction = new QAction(trUtf8("&Quit"), trayIconMenu);
-    closeAction->setIcon(QIcon::fromTheme("application-exit"));
+    closeAction->setIcon(QIcon::fromTheme(QString::fromUtf8("application_exit"),
+                                          QIcon(":/icons/icons/16x16/actions/16-actions-application_exit.png")));
+
     connect(closeAction, &QAction::triggered, this, &MainWindow::quitProgram, Qt::DirectConnection);
 
     hideAction = new QAction(trUtf8("&Hide"), trayIconMenu);
-    hideAction->setIcon(QIcon::fromTheme("view-restore"));
+    hideAction->setIcon(QIcon::fromTheme(QString::fromUtf8("view_restore"),
+                                         QIcon(":/icons/icons/16x16/actions/16-actions-view_restore.png")));
+
     connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
 
     restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
-    restoreAction->setIcon(QIcon::fromTheme("view-fullscreen"));
+    qDebug() << " Application theme has icon named view_fullscreen: " << QIcon::hasThemeIcon("view_fullscreen");
+    restoreAction->setIcon(QIcon::fromTheme(QString::fromUtf8("view_fullscreen"),
+                                            QIcon(":/icons/icons/16x16/actions/16-actions-view_fullscreen.png")));
+
     connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
 
     updateJoy = new QAction(trUtf8("&Update Joysticks"), trayIconMenu);
-    updateJoy->setIcon(QIcon::fromTheme("view-refresh"));
+    updateJoy->setIcon(QIcon::fromTheme(QString::fromUtf8("view_refresh"),
+                                        QIcon(":/icons/icons/16x16/actions/16-actions-view_refresh.png")));
+
     connect(updateJoy, &QAction::triggered, this, &MainWindow::startJoystickRefresh);
 
     int joystickCount = m_joysticks->size();
@@ -535,7 +557,9 @@ void MainWindow::populateTrayIcon()
             InputDevice *current = iter.value();
 
             QString joytabName = current->getSDLName();
-            joytabName.append(" ").append(trUtf8("(%1)").arg(current->getName()));
+            joytabName.append(" ")
+                    .append(trUtf8("(%1)")
+                    .arg(current->getName()));
             QMenu *joysticksubMenu = nullptr;
 
             if (!useSingleList)
@@ -544,15 +568,18 @@ void MainWindow::populateTrayIcon()
             }
 
             JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+
             if (widget != nullptr)
             {
                 QHash<int, QString> *configs = widget->recentConfigs();
                 QHashIterator<int, QString> configIter(*configs);
                 QList<QAction*> tempProfileList;
+
                 while (configIter.hasNext())
                 {
                     configIter.next();
                     QAction *newaction = nullptr;
+
                     if (joysticksubMenu != nullptr)
                     {
                         newaction = new QAction(configIter.value(), joysticksubMenu);
@@ -608,7 +635,9 @@ void MainWindow::populateTrayIcon()
                     newaction = new QAction(trUtf8("Open File"), trayIconMenu);
                 }
 
-                newaction->setIcon(QIcon::fromTheme("document-open"));
+                newaction->setIcon(QIcon::fromTheme(QString::fromUtf8("document_open"),
+                                                    QIcon(":/icons/icons/16x16/actions/16-actions-document_open.png")));
+
                 connect(newaction, &QAction::triggered, widget, &JoyTabWidget::openConfigFileDialog);
 
                 if (useSingleList)
@@ -948,7 +977,9 @@ void MainWindow::joystickTrayShow(QMenu* tempmenu)
 
                 if (widget->getJoystick()->isDeviceEdited())
                 {
-                    action->setIcon(QIcon::fromTheme("document-save-as"));
+                    action->setIcon(QIcon::fromTheme(QString::fromUtf8("document_save_as"),
+                                                     QIcon(":/icons/icons/16x16/actions/16-actions-document_save_as.png")));
+
                 }
                 else if (!action->icon().isNull())
                 {
@@ -1444,7 +1475,8 @@ void MainWindow::singleTrayProfileMenuShow()
 
                         if (widget->getJoystick()->isDeviceEdited())
                         {
-                            action->setIcon(QIcon::fromTheme("document-save-as"));
+                            action->setIcon(QIcon::fromTheme(QString::fromUtf8("document_save_as"),
+                                                             QIcon(":/icons/icons/16x16/actions/16-actions-document_save_as.png")));
                         }
                         else if (!action->icon().isNull())
                         {
@@ -2028,7 +2060,7 @@ void MainWindow::refreshTabHelperThreads()
 
     for (int i=0; i < ui->tabWidget->count(); i++)
     {
-        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+        JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));
         if (widget != nullptr)
         {
             widget->refreshHelperThread();
@@ -2039,4 +2071,13 @@ void MainWindow::refreshTabHelperThreads()
 QMap<int, QList<QAction*> > const& MainWindow::getProfileActions() {
 
     return profileActions;
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::Hide && (obj != nullptr)) {
+        obj->deleteLater();
+    }
+
+    return false;
 }

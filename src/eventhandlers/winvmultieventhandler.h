@@ -45,7 +45,7 @@ public:
     virtual void sendMouseEvent(int xDis, int yDis) override;
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen) override;
     virtual void sendMouseSpringEvent(int xDis, int yDis,
-                                      int width, int height) override; // unsigned, unsigned, unsigned, unsigned
+                                      int width, int height) override;
 
     // TODO: Implement text event using information from QtWinKeyMapper.
     virtual void sendTextEntryEvent(QString maintext) override;

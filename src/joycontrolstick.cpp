@@ -22,6 +22,7 @@
 #include "inputdevice.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
+#include "xml/joybuttonxml.h"
 #include "joyaxis.h"
 
 #include <QDebug>
@@ -30,6 +31,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QLabel>
+#include <QPointer>
 
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
 
@@ -1160,13 +1162,17 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = buttons.value(static_cast<JoyStickDirections>(index));
+                QPointer<JoyButtonXml> joyButtonXml = new JoyButtonXml(button);
 
-                if (button != nullptr) button->readConfig(xml);
+                if (button != nullptr) joyButtonXml->readConfig(xml);
                 else xml->skipCurrentElement();
+
+                if (!joyButtonXml.isNull()) delete joyButtonXml;
             }
             else if ((xml->name() == GlobalVariables::JoyControlStickModifierButton::xmlName) && xml->isStartElement())
             {
-                modifierButton->readConfig(xml);
+                JoyButtonXml* joyButtonXml = new JoyButtonXml(modifierButton);
+                joyButtonXml->readConfig(xml);
             }
             else if ((xml->name() == "stickDelay") && xml->isStartElement())
             {
@@ -1239,11 +1245,15 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         while (iter.hasNext())
         {
             JoyControlStickButton *button = iter.next().value();
-            button->writeConfig(xml);
+            JoyButtonXml* joyButtonXml = new JoyButtonXml(button);
+            joyButtonXml->writeConfig(xml);
         }
 
         if (!modifierButton->isDefault())
-            modifierButton->writeConfig(xml);
+        {
+            JoyButtonXml* joyButtonXmlModif = new JoyButtonXml(modifierButton);
+            joyButtonXmlModif->writeConfig(xml);
+        }
 
         xml->writeEndElement();
     }

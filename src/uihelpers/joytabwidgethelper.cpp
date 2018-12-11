@@ -23,6 +23,7 @@
 #include "joybuttonslot.h"
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"
+#include "xml/inputdevicexml.h"
 
 #include <QDebug>
 
@@ -151,7 +152,9 @@ bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 
     this->writer = new XMLConfigWriter;
     this->writer->setFileName(filepath);
-    this->writer->write(device);
+    InputDeviceXml* deviceXml = new InputDeviceXml(device);
+    this->writer->write(deviceXml);
+    delete deviceXml;
 
     result = !this->writer->hasError();
     return result;

@@ -30,10 +30,10 @@ public:
     static UInputHelper* getInstance();
     void deleteInstance();
 
-    QString getDisplayString(int virtualkey); // unsigned
-    int getVirtualKey(QString codestring); // unsigned
-    QHash<QString, int> const& getKnownAliasesX11SymVK(); // <.., unsigned>
-    QHash<int, QString> const& getKnownAliasesVKStrings(); // <unsigned, ..>
+    QString getDisplayString(int virtualkey);
+    int getVirtualKey(QString codestring);
+    QHash<QString, int> const& getKnownAliasesX11SymVK();
+    QHash<int, QString> const& getKnownAliasesVKStrings();
 
 protected:
     explicit UInputHelper(QObject *parent = nullptr);
@@ -42,8 +42,8 @@ protected:
     void populateKnownAliases();
 
     static UInputHelper *_instance;
-    QHash<QString, int> knownAliasesX11SymVK; // <.., unsigned>
-    QHash<int, QString> knownAliasesVKStrings; // <unsigned, ..>
+    QHash<QString, int> knownAliasesX11SymVK;
+    QHash<int, QString> knownAliasesVKStrings;
 
 private:
     void populateXVkStrings(QHash<int, QString>& knownAliasesVKStrings);

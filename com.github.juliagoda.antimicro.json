@@ -12,7 +12,6 @@
         "--share=network",
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.kde.StatusNotifierWatcher",
-        "--filesystem=home:rw",
         "--socket=system-bus"
     ],
     "modules": [

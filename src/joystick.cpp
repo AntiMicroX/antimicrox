@@ -34,7 +34,6 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     m_joyhandle = joyhandle;
-
     joystickID = SDL_JoystickInstanceID(joyhandle);
 
     for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
@@ -43,6 +42,20 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
         getJoystick_sets().insert(i, setstick);
         enableSetConnections(setstick);
     }
+}
+
+// upcasting
+InputDevice* Joystick::getInputDevice()
+{
+    InputDevice* inputDev = (Joystick *) this;
+    return inputDev;
+}
+
+QString Joystick::getXmlName()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return GlobalVariables::Joystick::xmlName;
 }
 
 QString Joystick::getName()
@@ -79,13 +92,6 @@ QString Joystick::getGUIDString()
 
     // Not available on SDL 1.2. Return empty string in that case.
     return temp;
-}
-
-QString Joystick::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::Joystick::xmlName;
 }
 
 void Joystick::closeSDLDevice()

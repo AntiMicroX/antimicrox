@@ -38,7 +38,7 @@ public:
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed) override;
     virtual void sendMouseEvent(int xDis, int yDis) override;
     virtual void sendMouseSpringEvent(int xDis, int yDis,
-                                      int width, int height) override; // .., unsigned, unsigned, unsigned, unsigned
+                                      int width, int height) override;
     virtual void sendTextEntryEvent(QString maintext) override;
 
     virtual QString getName() override;

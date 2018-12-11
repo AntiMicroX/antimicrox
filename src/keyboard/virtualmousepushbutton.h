@@ -30,7 +30,7 @@ class VirtualMousePushButton : public QPushButton
 public:
     explicit VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode, QWidget *parent = nullptr);
 
-    int getMouseCode() const; // unsigned
+    int getMouseCode() const;
     JoyButtonSlot::JoySlotInputAction getMouseMode() const;
 
 signals:
@@ -40,7 +40,7 @@ private slots:
     void createTempSlot();
 
 private:
-    int code; // unsigned
+    int code;
     JoyButtonSlot::JoySlotInputAction mode;
 };
 

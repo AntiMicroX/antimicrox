@@ -31,7 +31,7 @@ class QtWinKeyMapper : public QtKeyMapperBase
 public:
     explicit QtWinKeyMapper(QObject *parent = nullptr);
 
-    virtual int returnQtKey(int key, int scancode=0) override; // unsigned (unsigned, unsigned)
+    virtual int returnQtKey(int key, int scancode=0) override;
 
 protected:
     void populateMappingHashes() override;

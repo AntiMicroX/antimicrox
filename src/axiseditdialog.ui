@@ -494,7 +494,7 @@ interpret an axis hold or release.</string>
       <string>Mouse Settings</string>
      </property>
      <property name="icon">
-      <iconset theme="edit-select">
+      <iconset theme="edit_select">
        <normaloff/>
       </iconset>
      </property>

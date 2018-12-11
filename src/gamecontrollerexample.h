@@ -35,7 +35,7 @@ public:
         Button, AxisX, AxisY,
     };
 
-    static const int MAXBUTTONINDEX = 20; // unsigned
+    static const int MAXBUTTONINDEX = 20;
 
 protected:
     virtual void paintEvent(QPaintEvent *event);

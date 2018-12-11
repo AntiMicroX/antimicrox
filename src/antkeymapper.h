@@ -45,9 +45,9 @@ public:
     static AntKeyMapper* getInstance(QString handler = "");
     void deleteInstance();
 
-    int returnVirtualKey(int qkey); // unsigned, unsigned
-    int returnQtKey(int key, int scancode=0); // unsigned, unsigned, unsigned
-    bool isModifierKey(int qkey); // .., unsigned
+    int returnVirtualKey(int qkey);
+    int returnQtKey(int key, int scancode=0);
+    bool isModifierKey(int qkey);
     QtKeyMapperBase* getNativeKeyMapper() const;
     QtKeyMapperBase* getKeyMapper() const;
     bool hasNativeKeyMapper();

@@ -773,7 +773,7 @@ functionality to an analog stick.</string>
           <string>Mouse Settings</string>
          </property>
          <property name="icon">
-          <iconset theme="edit-select">
+          <iconset theme="edit_select">
            <normaloff>.</normaloff>.</iconset>
          </property>
         </widget>
