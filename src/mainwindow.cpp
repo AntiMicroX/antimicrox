@@ -221,8 +221,8 @@ MainWindow::~MainWindow()
 
     if (trayIconMenu != nullptr) trayIconMenu->clear();
 
-    //installEventFilter(trayIconMenu);
-    //installEventFilter(trayIcon);
+    installEventFilter(trayIconMenu);
+    installEventFilter(trayIcon);
 
     if (trayIconMenu != nullptr) delete trayIconMenu;
     if (trayIcon != nullptr) delete trayIcon;
@@ -2058,11 +2058,11 @@ QMap<int, QList<QAction*> > const& MainWindow::getProfileActions() {
     return profileActions;
 }
 
-/*bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::Hide && (obj != nullptr)) {
         obj->deleteLater();
     }
 
     return false;
-}*/
+}
