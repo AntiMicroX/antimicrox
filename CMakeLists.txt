@@ -40,8 +40,11 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
-include(GNUInstallDirs)
-include(ECMInstallIcons)
+
+if (NOT WIN32)
+    include(GNUInstallDirs)
+    include(ECMInstallIcons)
+endif(NOT WIN32)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
