@@ -41,9 +41,9 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
+include(GNUInstallDirs)
 
 if (UNIX)
-    include(GNUInstallDirs)
     include(ECMInstallIcons)
 endif(UNIX)
 
