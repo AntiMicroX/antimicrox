@@ -101,8 +101,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     #if defined(USE_SDL_2) && defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    this->appWatcher = new AutoProfileWatcher(settings, this);
-    checkAutoProfileWatcherTimer();
+        this->appWatcher = new AutoProfileWatcher(settings, this);
+        checkAutoProfileWatcherTimer();
     }
     else
     {
@@ -110,6 +110,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         qDebug() << "appWatcher instance set to null pointer";
     }
     #endif
+
 #elif defined(Q_OS_WIN)
     this->appWatcher = new AutoProfileWatcher(settings, this);
     checkAutoProfileWatcherTimer();
@@ -217,6 +218,14 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 MainWindow::~MainWindow()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    if (trayIconMenu != nullptr) trayIconMenu->clear();
+
+    //installEventFilter(trayIconMenu);
+    //installEventFilter(trayIcon);
+
+    if (trayIconMenu != nullptr) delete trayIconMenu;
+    if (trayIcon != nullptr) delete trayIcon;
 
     delete ui;
 }
@@ -426,6 +435,7 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
     QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
+
     while (iterTemp.hasNext())
     {
         iterTemp.next();
@@ -511,6 +521,7 @@ void MainWindow::populateTrayIcon()
     connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
 
     restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
+    qDebug() << " Application theme has icon named view_fullscreen: " << QIcon::hasThemeIcon("view_fullscreen");
     restoreAction->setIcon(QIcon::fromTheme("view_fullscreen"));
     connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
 
@@ -536,7 +547,9 @@ void MainWindow::populateTrayIcon()
             InputDevice *current = iter.value();
 
             QString joytabName = current->getSDLName();
-            joytabName.append(" ").append(trUtf8("(%1)").arg(current->getName()));
+            joytabName.append(" ")
+                    .append(trUtf8("(%1)")
+                    .arg(current->getName()));
             QMenu *joysticksubMenu = nullptr;
 
             if (!useSingleList)
@@ -545,15 +558,18 @@ void MainWindow::populateTrayIcon()
             }
 
             JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+
             if (widget != nullptr)
             {
                 QHash<int, QString> *configs = widget->recentConfigs();
                 QHashIterator<int, QString> configIter(*configs);
                 QList<QAction*> tempProfileList;
+
                 while (configIter.hasNext())
                 {
                     configIter.next();
                     QAction *newaction = nullptr;
+
                     if (joysticksubMenu != nullptr)
                     {
                         newaction = new QAction(configIter.value(), joysticksubMenu);
@@ -2041,3 +2057,12 @@ QMap<int, QList<QAction*> > const& MainWindow::getProfileActions() {
 
     return profileActions;
 }
+
+/*bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::Hide && (obj != nullptr)) {
+        obj->deleteLater();
+    }
+
+    return false;
+}*/

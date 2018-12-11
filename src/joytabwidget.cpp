@@ -116,6 +116,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     loadButton->setObjectName(QString::fromUtf8("loadButton"));
     loadButton->setToolTip(trUtf8("Load configuration file."));
     loadButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    qDebug() << " Application theme has icon named document_open: " << QIcon::hasThemeIcon("document_open");
     loadButton->setIcon(QIcon::fromTheme("document_open"));
     configHorizontalLayout->addWidget(loadButton);
 

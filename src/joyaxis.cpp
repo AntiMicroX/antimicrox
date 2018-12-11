@@ -46,6 +46,7 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet,
     axis_max_cal = -1;
     axis_min_cal = -1;
     axis_center_cal = -1;
+    currentRawValue = 0;
     m_originset = originset;
     m_parentSet = parentSet;
     naxisbutton = new JoyAxisButton(this, 0, originset, parentSet, this);

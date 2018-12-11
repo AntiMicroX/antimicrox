@@ -85,10 +85,10 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     setAttribute(Qt::WA_DeleteOnClose);
 
     ui->profileOpenDirPushButton->setIcon(QIcon::fromTheme("document_open_folder",
-                                                           QIcon(":/icons/icons/16x16/actions/16-document_open_folder.png")));
+                                                           QIcon(":/icons/icons/16x16/actions/16-actions-document_open_folder.png")));
 
     ui->logFilePushButton->setIcon(QIcon::fromTheme("document_open_folder",
-                            QIcon(":/icons/icons/16x16/actions/16-document_open_folder.png")));
+                            QIcon(":/icons/icons/16x16/actions/16-actions-document_open_folder.png")));
     
     this->settings = settings;
     this->allDefaultProfile = nullptr;

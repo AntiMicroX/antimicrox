@@ -42,7 +42,6 @@ endif(UNIX AND NOT APPLE)
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
 include(ECMInstallIcons)
-include(ECMAddAppIcon)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
@@ -666,6 +665,8 @@ if(UNIX)
     ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
     ecm_install_icons(ICONS src/icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
     ecm_install_icons(ICONS src/icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicro.png DESTINATION share/icons)
+
+    install(FILES src/images/profile.jpg src/images/antimicro.png src/images/antimicro_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicro/images")
 
     install(FILES src/icons/index.theme DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicro/icons/hicolor")
     install(FILES other/com.github.juliagoda.antimicro.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")

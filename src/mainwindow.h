@@ -73,6 +73,8 @@ protected:
     virtual void changeEvent(QEvent *event);
     virtual void closeEvent(QCloseEvent *event);
 
+    //bool eventFilter(QObject *obj, QEvent *event) override;
+
     void retranslateUi();
     void loadConfigFile(QString fileLocation, int joystickIndex=0); // MainConfiguration class
     void loadConfigFile(QString fileLocation, QString controllerID); // MainConfiguration class

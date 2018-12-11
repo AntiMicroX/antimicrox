@@ -1,6 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>icons/index.theme</file>
+        <file>images/profile.jpg</file>
+        <file>images/antimicro.png</file>
+        <file>images/antimicro_trayicon.png</file>
+        <file>images/axis.png</file>
+        <file>images/button.png</file>
+        <file>images/controllermap.png</file>
         <file>icons/icons/16x16/actions/16-actions-application_exit.png</file>
         <file>icons/icons/16x16/actions/16-actions-archive_insert.png</file>
         <file>icons/icons/16x16/actions/16-actions-dialog_cancel.png</file>
