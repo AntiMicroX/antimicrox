@@ -92,13 +92,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
         qDebug() << "themePath: " << themesPaths.at(i);
     }
 
-    QStringList fallbacksPaths = QIcon::fallbackSearchPaths();
-
-    for (int i = 0; i < fallbacksPaths.count(); i++)
-    {
-        qDebug() << "fallbackPath: " << fallbacksPaths.at(i);
-    }
-
     configBox->setObjectName(QString::fromUtf8("configBox"));
     configBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     configHorizontalLayout->addWidget(configBox);
