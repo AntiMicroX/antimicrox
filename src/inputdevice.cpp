@@ -1282,7 +1282,7 @@ void InputDevice::setDeviceKeyPressTime(int newPressTime)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     keyPressTime = newPressTime;
-    //emit propertyUpdated();
+    emit propertyUpdated();
 }
 
 int InputDevice::getDeviceKeyPressTime()
@@ -1420,7 +1420,7 @@ void InputDevice::setProfileName(QString value)
         }
 
         profileName = value;
-        //emit propertyUpdated();
+        emit propertyUpdated();
         emit profileNameEdited(value);
     }
 }
