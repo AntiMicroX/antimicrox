@@ -36,9 +36,10 @@ matrix:
     - { os: linux, env: QT=52 PPA=beineri/opt-qt521-trusty }
     - { os: linux, env: QT=53 PPA=beineri/opt-qt532-trusty }
     - { os: linux, env: QT=54 PPA=beineri/opt-qt542-trusty }
+    - { os: linux, env: QT=55 PPA=beineri/opt-qt551-trusty }
     - { os: linux, env: QT=56 PPA=beineri/opt-qt562-trusty }
     - { os: linux, env: QT=56 PPA=beineri/opt-qt563-trusty }
-    - { os: linux, env: QT=58 PPA=beineri/opt-qt58-trusty  }
+    - { os: linux, env: QT=57 PPA=beineri/opt-qt571-trusty  }
     
 addons:
   apt:
