@@ -4827,7 +4827,7 @@ void JoyButton::setMinAccelThreshold(double value)
     if ((value >= 1.0) && (value <= 100.0) && (value <= maxMouseDistanceAccelThreshold))
     {
         minMouseDistanceAccelThreshold = value;
-        //emit propertyUpdated();
+        emit propertyUpdated();
     }
 }
 

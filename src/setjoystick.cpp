@@ -1100,13 +1100,13 @@ void SetJoystick::setName(QString name)
     if (name.length() <= GlobalVariables::SetJoystick::MAXNAMELENGTH)
     {
         m_name = name;
-        emit propertyUpdated();
+        //emit propertyUpdated();
     }
     else
     {      
         name.truncate(GlobalVariables::SetJoystick::MAXNAMELENGTH - 3); // Truncate name to 27 characters. Add ellipsis at the end.
         m_name = QString(name).append("...");
-        emit propertyUpdated();
+        //emit propertyUpdated();
     }
 }
 

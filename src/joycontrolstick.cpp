@@ -2487,7 +2487,7 @@ void JoyControlStick::setStickName(QString tempName)
     {
         stickName = tempName;
         emit stickNameChanged();
-       // emit propertyUpdated();
+        emit propertyUpdated();
     }
 }
 
