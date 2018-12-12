@@ -663,7 +663,6 @@ if(UNIX)
     ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicro/icons)
     ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicro/icons)
 
-
     ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-com.github.juliagoda.antimicro.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-com.github.juliagoda.antimicro.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicro.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
