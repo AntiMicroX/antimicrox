@@ -30,7 +30,7 @@ env:
     - QT=510 PPA=beineri/opt-qt-5.10.1-trusty
     
 matrix:
-  include:
+  exclude:
     - { os: linux, env: QT=5  PPA=ubuntu-sdk-team/ppa      }
     - { os: linux, env: QT=51 PPA=beineri/opt-qt511-trusty }
     - { os: linux, env: QT=52 PPA=beineri/opt-qt521-trusty }
@@ -64,10 +64,10 @@ addons:
     
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo add-apt-repository -y ppa:$PPA;
+      sudo add-apt-repository -y ppa:${PPA};
       sudo apt-get update;
-      sudo apt-get install --yes qt$QTtools build-essential;
-      sudo ln -s /opt/qt$QT/lib/* /usr/lib/x86_64-linux-gnu/;
+      sudo apt-get install --yes qt${QT}tools build-essential;
+      sudo ln -s /opt/qt${QT}/lib/* /usr/lib/x86_64-linux-gnu/;
       git clone git://anongit.kde.org/extra-cmake-modules;
       cd extra-cmake-modules;
       mkdir extra-cmake-modules-build;
@@ -79,4 +79,4 @@ before_install:
       cd ..;
     fi;
       
-script: cmake .. -DCMAKE_PREFIX_PATH="/opt/qt$QT/" && make
+script: cmake .. -DCMAKE_PREFIX_PATH="/opt/qt${QT}/" && make
