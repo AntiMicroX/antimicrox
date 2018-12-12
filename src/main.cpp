@@ -305,7 +305,7 @@ int main(int argc, char *argv[])
         }
 
         mainWindow.removeJoyTabs();
-        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker, &InputDaemon::quit);
+        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
         QTimer::singleShot(50, &antimicro, &QApplication::quit);
 
         int result = antimicro.exec();
