@@ -86,6 +86,10 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 {
     ui->setupUi(this);
 
+    setWindowIcon(QIcon::fromTheme(QString::fromUtf8("antimicro"), QIcon(":/images/antimicro.png")));
+    (QIcon::fromTheme(QString::fromUtf8("application_exit"),
+                                              QIcon(":/icons/icons/16x16/actions/16-actions-application_exit.png")));
+
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     ui->stackedWidget->setCurrentIndex(0);
 
