@@ -623,7 +623,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 
     mouseSettingsPushButton = new QPushButton(trUtf8("Mouse Settings"), this);
     mouseSettingsPushButton->setIcon(QIcon::fromTheme(QString::fromUtf8("edit_select"),
-                                                      QIcon(":/icons/icons/16x16/actions/16-actions-edit_select.png")));
+                                                      QIcon(":/icons/hicolor/16x16/actions/edit_select.png")));
 
     tempVBoxLayout->addWidget(mouseSettingsPushButton);
 

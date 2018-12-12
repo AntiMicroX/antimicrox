@@ -6,6 +6,7 @@
 4. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
     b. [Building Under Windows](#building-under-windows)  
+    c. [Building with Flatpak](#building-with-flatpak)  
 5. [Testing Under Linux](#testing-under-linux)  
 6. [Support](#support)  
 7. [Bugs](#bugs)  
@@ -180,7 +181,7 @@ when bundling the Window version for other users.
 * Run "Build All" to have the application and required DLLs installed
 into the final location that will be ready for distribution.
 
-#### 64-bit Build
+##### 64-bit Build
 
 * Some additional steps are required in order to compile a 64-bit version of
 antimicro. The first step is to download a packaged version of Qt, MSYS shell environment,
@@ -208,7 +209,7 @@ and have it point to the 64 bit compiled version Qt. Also, make sure to add
 building the program and copy the proper Qt and SDL DLLs if you perform an
 **install_dlls**.
 
-#### Building The Windows Installer Package (MSI)
+##### Building The Windows Installer Package (MSI)
 
 *These instructions have been tested with WiX 3.8*
 
@@ -237,6 +238,82 @@ Notes about the WXS file and the building process:
 * All of these warnings have been made silent through the use of command-line switches.
 
 * Built MSI package will be placed in /windows .
+
+
+### Building with Flatpak
+
+#### Additional Dependencies
+
+* flatpak 
+* flatbak-builder
+
+
+#### Compilation & Installation
+
+This tutorial is about installing antimicro with flatpak locally. As first you need a com.github.juliagoda.antimicro.json file, that is placed in main folder. You can for example copy and paste content to local file. Link to raw content of json file is [here](https://raw.githubusercontent.com/juliagoda/antimicro/master/com.github.juliagoda.antimicro.json).
+
+
+1. Download and install Flatpak repo:
+
+`flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
+
+2. Add a runtime with Qt and all KDE Frameworks 5
+
+`flatpak install flathub org.kde.Platform//5.11 org.kde.Sdk//5.11`
+
+3. Create new directories for building and creating repo
+
+```
+mkdir build-dir
+mkdir repo
+```
+
+4. Build antimicro
+
+`flatpak-builder build-dir com.github.juliagoda.antimicro.json`
+
+5. Test the build of application
+
+`flatpak-builder --run build-dir com.github.juliagoda.antimicro.json antimicro`
+
+6. Create repository for application
+
+`flatpak-builder --repo=repo --force-clean build-dir com.github.juliagoda.antimicro.json`
+
+7. Add the repository to flatpak locally
+
+`flatpak --user remote-add --no-gpg-verify antimicro repo`
+
+8. Install application
+
+`flatpak --user install antimicro com.github.juliagoda.antimicro`
+
+
+#### Run antimicro
+
+If you have installed antimicro locally with success, you can run application:
+
+`flatpak run com.github.juliagoda.antimicro`
+
+
+#### Updating
+
+To update all your installed applications and runtimes to the latest version, execute:
+
+`flatpak update`
+
+
+#### Uninstall antimicro
+
+1. Delete a remote repository
+
+`flatpak --user remote-delete antimicro`
+
+2. Delete application
+
+`flatpak uninstall com.github.juliagoda.antimicro`
+
+
 
 ## Testing Under Linux
 

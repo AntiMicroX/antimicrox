@@ -33,14 +33,19 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
 
     sumX = 0;
     sumY = 0;
-    center_calibrated_x = -1;
-    center_calibrated_y = -1;
-    max_axis_val_x = -1;
-    min_axis_val_x = -1;
-    max_axis_val_y = -1;
-    min_axis_val_y = -1;
-    deadzone_calibrated_x = -1;
-    deadzone_calibrated_y = -1;
+
+    center_calibrated_x = 0;
+    center_calibrated_y = 0;
+
+    deadzone_calibrated_x = 0;
+    deadzone_calibrated_y = 0;
+
+    max_axis_val_x = 0;
+    min_axis_val_x = 0;
+
+    max_axis_val_y = 0;
+    min_axis_val_y = 0;
+
     calibrated = false;
 
     this->joysticks = joysticks;
@@ -84,7 +89,8 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
     connect(ui->controllersBox, &QComboBox::currentTextChanged, this, &Calibration::setController);
     connect(ui->axesBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &Calibration::createAxesConnection);
     connect(ui->startButton, &QPushButton::clicked, this, &Calibration::startCalibration);
-    connect(ui->resetBtn, &QPushButton::clicked, [this](bool clicked){
+    connect(ui->resetBtn, &QPushButton::clicked, [this](bool clicked)
+    {
        resetSettings(false, clicked);
     });
 
@@ -115,7 +121,7 @@ void Calibration::resetSettings(bool silentReset, bool)
         {
             case QMessageBox::Yes:
                 restoreCalValues();
-
+                ui->steps->clear();
             break;
 
             case QMessageBox::No:
@@ -123,12 +129,12 @@ void Calibration::resetSettings(bool silentReset, bool)
 
             default:
             break;
-
         }
     }
     else
     {
         restoreCalValues();
+        ui->steps->clear();
     }
 }
 
@@ -136,39 +142,48 @@ void Calibration::restoreCalValues()
 {
     sumX = 0;
     sumY = 0;
-    center_calibrated_x = -1;
-    center_calibrated_y = -1;
-    max_axis_val_x = -1;
-    min_axis_val_x = -1;
-    max_axis_val_y = -1;
-    min_axis_val_y = -1;
-    deadzone_calibrated_x = -1;
-    deadzone_calibrated_y = -1;
-    calibrated = false;
+
+    center_calibrated_x = 0;
+    center_calibrated_y = 0;
+    deadzone_calibrated_x = 0;
+    deadzone_calibrated_y = 0;
+
+    max_axis_val_x = 0;
+    min_axis_val_x = 0;
+    max_axis_val_y = 0;
+    min_axis_val_y = 0;
+
     x_es_val.clear();
     y_es_val.clear();
 
     joyAxisX->setAxisCenterCal(center_calibrated_x);
     joyAxisY->setAxisCenterCal(center_calibrated_y);
-    joyAxisX->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
-    joyAxisY->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
+
     joyAxisX->setAxisMinCal(min_axis_val_x);
     joyAxisY->setAxisMinCal(min_axis_val_y);
     joyAxisX->setAxisMaxCal(max_axis_val_x);
     joyAxisY->setAxisMaxCal(max_axis_val_y);
+
+    joyAxisX->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
+    joyAxisY->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
+
     joyAxisX->setMaxZoneValue(GlobalVariables::JoyAxis::AXISMAXZONE);
     joyAxisY->setMaxZoneValue(GlobalVariables::JoyAxis::AXISMAXZONE);
+
     stick->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
     stick->setMaxZone(GlobalVariables::JoyAxis::AXISMAXZONE);
-    calibrated = false;
+
     stick->setCalibrationFlag(false);
     stick->setCalibrationSummary(QString());
-    ui->Informations->setText(QString());
+    ui->Informations->clear();
+
+    calibrated = false;
 
     ui->saveBtn->setEnabled(false);
     ui->resetBtn->setEnabled(false);
-    update();
     ui->stickStatusBoxWidget->update();
+
+    update();
 }
 
 /**
@@ -229,9 +244,37 @@ void Calibration::startCalibration()
             break;
         }
     }
+    else
+    {
+        center_calibrated_x = 0;
+        center_calibrated_y = 0;
+        deadzone_calibrated_x = 0;
+        deadzone_calibrated_y = 0;
+
+        min_axis_val_x = 0;
+        min_axis_val_y = 0;
+        max_axis_val_x = 0;
+        max_axis_val_y = 0;
+
+        x_es_val.clear();
+        y_es_val.clear();
+    }
 
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr) && confirmed) {
+
+        center_calibrated_x = 0;
+        center_calibrated_y = 0;
+        deadzone_calibrated_x = 0;
+        deadzone_calibrated_y = 0;
+
+        min_axis_val_x = 0;
+        min_axis_val_y = 0;
+        max_axis_val_x = 0;
+        max_axis_val_y = 0;
+
+        x_es_val.clear();
+        y_es_val.clear();
 
         stick->setCalibrationFlag(false);
         calibrated = false;
@@ -438,17 +481,24 @@ void Calibration::saveSettings()
 
       joyAxisX->setAxisCenterCal(center_calibrated_x);
       joyAxisY->setAxisCenterCal(center_calibrated_y);
+
       joyAxisX->setDeadZone(deadzone_calibrated_x);
       joyAxisY->setDeadZone(deadzone_calibrated_y);
+
       stick->setDeadZone(deadzone_calibrated_x);
+
       joyAxisX->setAxisMinCal(min_axis_val_x);
       joyAxisY->setAxisMinCal(min_axis_val_y);
+
       joyAxisX->setAxisMaxCal(max_axis_val_x);
       joyAxisY->setAxisMaxCal(max_axis_val_y);
+
       joyAxisX->setMaxZoneValue(max_axis_val_x);
       joyAxisY->setMaxZoneValue(max_axis_val_y);
+
       stick->setMaxZone(max_axis_val_x);
       calibrated = true;
+
       stick->setCalibrationFlag(true);
       stick->setCalibrationSummary(this->text);
 
@@ -652,12 +702,16 @@ void Calibration::createAxesConnection()
 
     center_calibrated_x = controlstick->getAxisX()->getAxisCenterCal();
     center_calibrated_y = controlstick->getAxisY()->getAxisCenterCal();
+
     deadzone_calibrated_x = controlstick->getAxisX()->getDeadZone();
     deadzone_calibrated_y = controlstick->getAxisY()->getDeadZone();
+
     min_axis_val_x = controlstick->getAxisX()->getAxisMinCal();
     min_axis_val_y = controlstick->getAxisY()->getAxisMinCal();
+
     max_axis_val_x = controlstick->getAxisX()->getAxisMaxCal();
     max_axis_val_y = controlstick->getAxisY()->getAxisMaxCal();
+
     calibrated = controlstick->wasCalibrated();
     text = controlstick->getCalibrationSummary();
 
@@ -703,10 +757,13 @@ void Calibration::setProgressBars(JoyControlStick* controlstick)
 
             axisBarX = new QProgressBar();
             axisBarY = new QProgressBar();
+
             axisBarX->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
             axisBarX->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
+
             axisBarX->setFormat("%v");
             axisBarX->setValue(joyAxisX->getCurrentRawValue());
+
             axisBarY->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
             axisBarY->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
             axisBarY->setFormat("%v");
@@ -757,15 +814,19 @@ void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
 
             QLabel *axisLabel = new QLabel();
             QLabel *axisLabel2 = new QLabel();
+
             axisLabel->setText(trUtf8("Axis %1").arg(joyAxisX->getRealJoyIndex()));
             axisLabel2->setText(trUtf8("Axis %1").arg(joyAxisY->getRealJoyIndex()));
 
             axisBarX = new QProgressBar();
             axisBarY = new QProgressBar();
+
             axisBarX->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
             axisBarX->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
+
             axisBarX->setFormat("%v");
             axisBarX->setValue(joyAxisX->getCurrentRawValue());
+
             axisBarY->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
             axisBarY->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
             axisBarY->setFormat("%v");

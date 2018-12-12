@@ -15,6 +15,32 @@ env:
    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
    #   via the "travis encrypt" command using the project repo's public key
    - secure: "Hz0hyZv6IxfQGvv+E82BoP4vpRm5iq74bg4I0HLvXRnJjnZxsd3aD2iS+bYYgWD/clGVYttaW8hQoDCe36Pz/QgKDwmJLKcdoWryPpNhaPb1cQhf54vaF6yG1/QsPZMZxvtAvDKGgSHm5fbfi9gU5QXRgV3y1zc8i6g2GyadCfLPAka29gwTB6T0Vg13mjVbSqgYTOwreM+u7thEjzo67jgv7AGjTFMxqrqu33zqa3YDnr31SNnve9BFNTfg3jgQKZ7FyX2gpqSHzrXcFDXQbe6zwNYYDi9ilR7a0RkmqrASMI6ekohMxxP/BJVV68OMDiMjupm48Lk8nNmZ2UeOThdM/C1EpN7NrGEhMtBVloyDnFpDEXJyyY7Fni5dxgNLgH0Q+ojOsKh6nhJkpOwIIw5N99VDa4WXZXEGLHpkJeRc6ADhX0EW07lLLLftkT90jaqt2IKxfvkpPU/HU5UxDjQdZZOX+RYNEIrSe0XIpvkMWPsh16rX/wV/mcgks9BGszRCkLcPSJoVrsbtaVJBbohsbSZS1l1HNcG+CYX12iV+vLmGQ//44Rmcn99yFu46altnWlIG2Mcs3EU1589zodIjWLkLhT3au6ucsqLqsp2hwqiG1dQkkKcoYsx+obgV1mrbcjspJOgKJGJOMAyQwIdPo0V6wrKg74JvJILZlyI="
+  matrix:
+    - QT=5  PPA=ubuntu-sdk-team/ppa
+    - QT=51 PPA=beineri/opt-qt511-trusty
+    - QT=52 PPA=beineri/opt-qt521-trusty
+    - QT=53 PPA=beineri/opt-qt532-trusty
+    - QT=54 PPA=beineri/opt-qt542-trusty
+    - QT=55 PPA=beineri/opt-qt551-trusty
+    - QT=56 PPA=beineri/opt-qt562-trusty
+    - QT=56 PPA=beineri/opt-qt563-trusty
+    - QT=57 PPA=beineri/opt-qt571-trusty
+    - QT=58 PPA=beineri/opt-qt58-trusty
+    - QT=59 PPA=beineri/opt-qt591-trusty
+    - QT=510 PPA=beineri/opt-qt-5.10.1-trusty
+    
+matrix:
+  exclude:
+    - { os: linux, env: QT=5  PPA=ubuntu-sdk-team/ppa      }
+    - { os: linux, env: QT=51 PPA=beineri/opt-qt511-trusty }
+    - { os: linux, env: QT=52 PPA=beineri/opt-qt521-trusty }
+    - { os: linux, env: QT=53 PPA=beineri/opt-qt532-trusty }
+    - { os: linux, env: QT=54 PPA=beineri/opt-qt542-trusty }
+    - { os: linux, env: QT=55 PPA=beineri/opt-qt551-trusty }
+    - { os: linux, env: QT=56 PPA=beineri/opt-qt562-trusty }
+    - { os: linux, env: QT=56 PPA=beineri/opt-qt563-trusty }
+    - { os: linux, env: QT=57 PPA=beineri/opt-qt571-trusty  }
+    
 addons:
   apt:
     update: true
@@ -39,10 +65,10 @@ addons:
     
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty;
+      sudo add-apt-repository -y ppa:${PPA};
       sudo apt-get update;
-      sudo apt-get install --yes qt510tools build-essential;
-      sudo ln -s /opt/qt510/lib/* /usr/lib/x86_64-linux-gnu/;
+      sudo apt-get install --yes qt${QT}tools build-essential;
+      sudo ln -s /opt/qt${QT}/lib/* /usr/lib/x86_64-linux-gnu/;
       git clone git://anongit.kde.org/extra-cmake-modules;
       cd extra-cmake-modules;
       mkdir extra-cmake-modules-build;
@@ -54,4 +80,4 @@ before_install:
       cd ..;
     fi;
       
-script: cmake .. -DCMAKE_PREFIX_PATH="/opt/qt510/" && make
+script: cmake .. -DCMAKE_PREFIX_PATH="/opt/qt${QT}/" && make

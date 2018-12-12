@@ -23,7 +23,7 @@
    <string>antimicro</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="com.github.juliagoda.antimicro.png"/>
+   <iconset theme="com.github.juliagoda.antimicro"/>
   </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
