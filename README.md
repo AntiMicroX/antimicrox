@@ -273,6 +273,20 @@ Notes about the WXS file and the building process :
 
 * built MSI package will be placed in /windows
 
+## Building under macOS
+
+* Install Qt 5 and SDL2 using [Homebrew](https://brew.sh): `brew install qt sdl2`
+
+* Create a build directory and invoke CMake: 
+
+```bash
+cd antimicro
+mkdir build && cd build
+CMAKE_PREFIX_PATH=/usr/local/Cellar/qt/YOUR_QT_VERSION cmake .. -DWITH_XTEST=OFF -DWITH_X11=OFF -DWITH_COCOA=ON
+make
+```
+   
+
 ## Testing under Linux
 
 If you are having problems with antimicro detecting a controller or
