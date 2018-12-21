@@ -88,7 +88,7 @@ void CocoaEventHandler::sendMouseEvent(int xDis, int yDis)
             NULL,
             kCGEventMouseMoved,
             CGPointMake(mouseLoc.x, height - mouseLoc.y),
-            0);
+            kCGMouseButtonLeft);
     CGEventSetType(move, kCGEventMouseMoved);
     CGEventSetIntegerValueField(move, kCGMouseEventDeltaX, xDis);
     CGEventSetIntegerValueField(move, kCGMouseEventDeltaY, yDis);
