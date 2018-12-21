@@ -219,7 +219,6 @@ void MainWindow::alterConfigFromSettings()
     if (cmdutility->shouldListControllers())
     {
         graphical = false;
-        this->graphical = graphical;
     }
     else if (cmdutility->hasProfile())
     {
@@ -305,7 +304,6 @@ void MainWindow::controllerMapOpening()
     if (cmdutility->shouldMapController())
     {
         graphical = false;
-        this->graphical = graphical;
 
         QList<ControllerOptionsInfo> *tempList = cmdutility->getControllerOptionsList();
         ControllerOptionsInfo temp = tempList->at(0);
