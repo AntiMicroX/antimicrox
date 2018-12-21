@@ -22,7 +22,7 @@
 
 #ifdef Q_OS_WIN
 #include "winextras.h"
-#else
+#elif defined(WITH_X11)
 #include "x11extras.h"
 #endif
 
