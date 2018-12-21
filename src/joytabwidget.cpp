@@ -511,7 +511,7 @@ void JoyTabWidget::openConfigFileDialog()
                 configBox->removeItem(numberRecentProfiles);
             }
 
-            configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+            configBox->insertItem(1, PadderCommon::getProfileName(fileinfo), fileinfo.absoluteFilePath());
             configBox->setCurrentIndex(1);
             saveDeviceSettings();
             emit joystickConfigChanged(joystick->getJoyNumber());
@@ -658,7 +658,7 @@ void JoyTabWidget::saveConfigFile()
                 }
 
                 joystick->revertProfileEdited();
-                QString tempProfileName = fileinfo.baseName();
+                QString tempProfileName = PadderCommon::getProfileName(fileinfo);
                 if (!joystick->getProfileName().isEmpty())
                 {
                     oldProfileName = joystick->getProfileName();
@@ -843,7 +843,7 @@ void JoyTabWidget::saveAsConfig()
                 }
 
                 joystick->revertProfileEdited();
-                QString tempProfileName = fileinfo.baseName();
+                QString tempProfileName = PadderCommon::getProfileName(fileinfo);
                 if (!joystick->getProfileName().isEmpty())
                 {
                     oldProfileName = joystick->getProfileName();
@@ -910,10 +910,9 @@ void JoyTabWidget::changeJoyConfig(int index)
             else
             {
                 QFileInfo profile(filename);
-                oldProfileName = profile.baseName();
+                oldProfileName = PadderCommon::getProfileName(profile);
                 profileName = oldProfileName;
             }
-
             configBox->setItemText(index, profileName);
         }
         else if (reader->hasError() && this->window()->isEnabled())
@@ -1004,7 +1003,7 @@ void JoyTabWidget::saveSettings()
 
             settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
 
-            if (profileBaseFile.baseName() != profileText)
+            if (PadderCommon::getProfileName(profileBaseFile) != profileText)
             {
                 settings->setValue(controlEntryProfileName.arg(currentjoy), profileText);
             }
@@ -1044,7 +1043,7 @@ void JoyTabWidget::saveSettings()
 #endif
                settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
 
-               if (profileBaseFile.baseName() != profileText)
+               if (PadderCommon::getProfileName(profileBaseFile) != profileText)
                {
                    settings->setValue(controlEntryProfileName.arg(currentjoy), profileText);
                }
@@ -1128,7 +1127,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
             if (fileInfo.exists() && configBox->findData(fileInfo.absoluteFilePath()) == -1)
             {
                 QString profileName = settings->value(controlEntryProfileName.arg(i), "").toString();
-                profileName = !profileName.isEmpty() ? profileName : fileInfo.baseName();
+                profileName = !profileName.isEmpty() ? profileName : PadderCommon::getProfileName(fileInfo);
                 configBox->addItem(profileName, fileInfo.absoluteFilePath());
             }
         }
@@ -1338,7 +1337,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
                     configBox->removeItem(numberRecentProfiles-1);
                     //configBox->removeItem(5);
                 }
-                configBox->insertItem(1, fileinfo.baseName(), fileinfo.absoluteFilePath());
+                configBox->insertItem(1, PadderCommon::getProfileName(fileinfo), fileinfo.absoluteFilePath());
 
                 reconnectCheckUnsavedEvent();
                 reconnectMainComboBoxEvents();
@@ -2320,7 +2319,7 @@ void JoyTabWidget::editCurrentProfileItemText(QString text)
         else if (currentIndex > 0)
         {
             QFileInfo profileName(configBox->itemData(currentIndex).toString());
-            configBox->setItemText(currentIndex, profileName.baseName());
+            configBox->setItemText(currentIndex, PadderCommon::getProfileName(profileName));
         }
     }
 }

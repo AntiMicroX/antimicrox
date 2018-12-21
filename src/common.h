@@ -28,6 +28,7 @@
 #include <QMutex>
 #include <QReadWriteLock>
 #include <QThread>
+#include <QCoreApplication>
 
 #include "config.h"
 #include "antimicrosettings.h"
@@ -46,8 +47,8 @@ static QString findWinSystemConfigPath()
 
 static QString findWinLocalConfigPath()
 {
-    QString temp = QDir::currentPath();
-    return temp;
+  QString temp = QCoreApplication::applicationDirPath();
+  return temp;
 }
 
 static QString findWinDefaultConfigPath()
@@ -88,26 +89,29 @@ static QString findWinConfigPath(QString configFileName)
 
 namespace PadderCommon
 {
+  inline QString configPath() {
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-    const QString configPath = findWinLocalConfigPath();
+    return findWinLocalConfigPath();
 #elif defined(Q_OS_WIN)
-    const QString configPath = findWinSystemConfigPath();
+    return findWinSystemConfigPath();
 #else
-    const QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
-                QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
-                QDir::homePath() + "/.config/antimicro";
-
+    return  (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
+      QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
+      QDir::homePath() + "/.config/antimicro";
 #endif
+  }
 
-    const QString configFileName = "antimicro_settings.ini";
+  const QString configFileName = "antimicro_settings.ini";
+  inline QString configFilePath() {
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-    const QString configFilePath = QString(configPath).append("/").append(configFileName);
+    return QString(configPath()).append("/").append(configFileName);
 #elif defined(Q_OS_WIN)
-    const QString configFilePath = QString(configPath).append("/").append(configFileName);
+    return QString(configPath()).append("/").append(configFileName);
 #else
-    const QString configFilePath = QString(configPath).append("/").append(configFileName);
+    return QString(configPath()).append("/").append(configFileName);
 #endif
-
+  }
+  
     const int LATESTCONFIGFILEVERSION = 19;
     // Specify the last known profile version that requires a migration
     // to be performed in order to be compatible with the latest version.
@@ -116,10 +120,10 @@ namespace PadderCommon
     const QString githubProjectPage = "https://github.com/AntiMicro/antimicro";
     const QString wikiPage = QString("%1/wiki").arg(githubProjectPage);
 
-    extern QString mouseDeviceName;
-    extern QString keyboardDeviceName;
-    extern QString springMouseDeviceName;
-
+    const QString mouseDeviceName("antimicro Mouse Emulation");
+    const QString keyboardDeviceName("antimicro Keyboard Emulation");
+    const QString springMouseDeviceName("antimicro Abs Mouse Emulation");
+    
     const int ANTIMICRO_MAJOR_VERSION = PROJECT_MAJOR_VERSION;
     const int ANTIMICRO_MINOR_VERSION = PROJECT_MINOR_VERSION;
     const int ANTIMICRO_PATCH_VERSION = PROJECT_PATCH_VERSION;
@@ -145,6 +149,15 @@ namespace PadderCommon
                             QString language);
     void lockInputDevices();
     void unlockInputDevices();
+
+    /*!
+     * \brief Returns the "human-readable" name of the given profile.
+     */
+    inline QString getProfileName(QFileInfo& profile) {
+      QString retVal = profile.completeBaseName();
+
+      return retVal;
+    }
 }
 
 Q_DECLARE_METATYPE(QThread*)

@@ -77,7 +77,7 @@ Development of this program is not as high of a priority for me anymore. This is
         <translation type="unfinished">Copyright: 2013 - 2016 {2013 ?} {2016?}</translation>
     </message>
     <message>
-        <source>Copyright: 2013 - 2015</source>
+        <source>Copyright: 2013 - 2016</source>
         <translation type="vanished">Copyright: 2013 - 2016</translation>
     </message>
     <message>
@@ -827,17 +827,17 @@ al posto di qualsiasi altro profilo predefinito.</translation>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1307"/>
         <source>One Way</source>
-        <translation>A una direzione</translation>
+        <translation>a una direzione</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1310"/>
         <source>Two Way</source>
-        <translation>A due direzioni</translation>
+        <translation>a due direzioni</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1313"/>
         <source>While Held</source>
-        <translation>Finché premuto</translation>
+        <translation>finché premuto</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1425"/>

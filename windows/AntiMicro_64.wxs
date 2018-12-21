@@ -46,6 +46,9 @@
                     <Component Id="SDL2.DLL" Guid="89898F34-8345-414E-9210-85B53FD34D53">
                         <File Source="..\antimicro\SDL2.dll" />
                     </Component>
+                    <Component Id="README_SDL.TXT" Guid="*">
+                        <File Source="..\antimicro\README-SDL.txt" />
+                    </Component>
                     <Component Id="README.MD" Guid="72F83989-7487-44C9-B5CD-AC37898274D7">
                         <File Source="..\antimicro\README.md" />
                     </Component>

@@ -93,8 +93,8 @@ Once the Steam controller is finally released to the public, the need for this p
 Овај се програм, највероватније, неће даље развијати, када се званично појави програм Стим-контролер. Управо заснован на идеји самог контролера, Стим-контролер ће имати толико предности у односу на друге програме који обезбеђују симулацију тастатуре и миша.</translation>
     </message>
     <message>
-        <source>Copyright: 2013 - 2015</source>
-        <translation type="vanished">Ауторска права: 2013 - 2015.</translation>
+        <source>Copyright: 2013 - 2016</source>
+        <translation type="vanished">Ауторска права: 2013 - 2016.</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="121"/>

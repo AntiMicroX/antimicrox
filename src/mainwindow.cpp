@@ -218,7 +218,8 @@ void MainWindow::alterConfigFromSettings()
 {
     if (cmdutility->shouldListControllers())
     {
-        this->graphical = graphical = false;
+        graphical = false;
+        this->graphical = graphical;
     }
     else if (cmdutility->hasProfile())
     {
@@ -303,7 +304,8 @@ void MainWindow::controllerMapOpening()
 {
     if (cmdutility->shouldMapController())
     {
-        this->graphical = graphical = false;
+        graphical = false;
+        this->graphical = graphical;
 
         QList<ControllerOptionsInfo> *tempList = cmdutility->getControllerOptionsList();
         ControllerOptionsInfo temp = tempList->at(0);
@@ -1575,6 +1577,13 @@ void MainWindow::addJoyTab(InputDevice *device)
 
 void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
+  if( info != NULL ) {
+    Logger::LogDebug(QObject::tr("Auto-switching to profile \"%1\".").
+		     arg(info->getProfileLocation()));
+  } else {
+    Logger::LogError(QObject::tr("Auto-switching to NULL profile!"));    
+  }
+  
 #if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
     #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     if (QApplication::platformName() == QStringLiteral("xcb"))

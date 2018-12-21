@@ -99,6 +99,7 @@ protected slots:
     void changeKeyRepeatWidgetsStatus(bool enabled);
     void checkSmoothingWidgetStatus(bool enabled);
     void resetMouseAcceleration();
+    void selectLogFile();
 };
 
 #endif // MAINSETTINGSDIALOG_H

@@ -32,7 +32,7 @@ endif(WIN32)
 
 # The version number.
 set(ANTIMICRO_MAJOR_VERSION 2)
-set(ANTIMICRO_MINOR_VERSION 21)
+set(ANTIMICRO_MINOR_VERSION 23)
 set(ANTIMICRO_PATCH_VERSION 0)
 
 option(USE_SDL_2 "Use SDL 2 libraries rather than SDL 1." ON)
@@ -646,29 +646,33 @@ elseif (WIN32)
             endif(PKG_CONFIG_FOUND)
         endif(MSYS OR MINGW)
 
-        if (NOT SDL2_LIBRARY AND EXISTS "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/")
+        if (NOT SDL2_LIBRARY)
             # Perform extra voodoo to get proper library paths and include
             # proper headers.
-            unset(SDL2_LIBRARY)
+	    file(GLOB SDL2_BASE_DIR "${PROJECT_SOURCE_DIR}/SDL2-*.*.*/")
 
-            if(TARGET_ARCH STREQUAL "x86_64")
-                set(SDL2_LIBRARY_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/lib")
-                set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/include")
-                set(SDL2_DLL_LOCATION_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin")
+	    if (SDL2_BASE_DIR)
+                unset(SDL2_LIBRARY)
 
-                find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                list(APPEND LIBS ${SDL2_LIBRARY})
-                include_directories(${SDL2_INCLUDE_DIR})
-            else()
-                set(SDL2_LIBRARY_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/lib")
-                set(SDL2_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/include")
-                set(SDL2_DLL_LOCATION_DIR "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin")
+                if(TARGET_ARCH STREQUAL "x86_64")
+                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/lib")
+                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/include")
+                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin")
 
-                find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
-                list(APPEND LIBS ${SDL2_LIBRARY})
-                include_directories(${SDL2_INCLUDE_DIR})
-            endif(TARGET_ARCH STREQUAL "x86_64")
-        endif(NOT SDL2_LIBRARY AND EXISTS "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/")
+                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
+                    list(APPEND LIBS ${SDL2_LIBRARY})
+                    include_directories(${SDL2_INCLUDE_DIR})
+                else()
+                    set(SDL2_LIBRARY_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/lib")
+                    set(SDL2_INCLUDE_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/include")
+                    set(SDL2_DLL_LOCATION_DIR "${SDL2_BASE_DIR}/i686-w64-mingw32/bin")
+
+                    find_library(SDL2_LIBRARY SDL2 ${SDL2_LIBRARY_DIR})
+                    list(APPEND LIBS ${SDL2_LIBRARY})
+                    include_directories(${SDL2_INCLUDE_DIR})
+                endif(TARGET_ARCH STREQUAL "x86_64")
+	    endif(SDL2_BASE_DIR)  
+        endif(NOT SDL2_LIBRARY)
 
         add_definitions(-DUNICODE -D_UNICODE)
     endif(USE_SDL_2)
@@ -787,12 +791,12 @@ if(WIN32)
     #if(TARGET_ARCH STREQUAL "x86_64")
     #    # Copy SDL2.dll to find installation directory.
     #    add_custom_target(copy_sdl_dll
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
     #    )
     #else()
     #    # Copy SDL2.dll to find installation directory.
     #    add_custom_target(copy_sdl_dll
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
     #    )
     #endif(TARGET_ARCH STREQUAL "x86_64")
 
@@ -805,30 +809,51 @@ if(WIN32)
     # This list will only be used for Release builds.
     get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
     string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
-    set(EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/libwinpthread-1.dll"
+    set(EXTRA_QT_DLL_FILES
         "${QTCORE_DLL_LOCATION}/Qt5Core.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Gui.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
         "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
-        "${QTCORE_DLL_LOCATION}/libstdc++-6.dll"
     )
 
+    find_library(EXTRA_DLLS_PTHREAD NAMES "libwinpthread-1.dll" )
+    find_library(EXTRA_DLLS_LIBCPP NAMES "libstdc++-6.dll" )
+
+    # Don't think find_library will handle versioned DLLS, so we'll try each one until we find something
+    foreach( ICU_VER 51 52 53 54 55 56 57 58 59 )
+      find_library(ICU_DT_DLL NAMES "icudt${ICU_VER}.dll")
+      find_library(ICU_IN_DLL NAMES "icuin${ICU_VER}.dll")
+      find_library(ICU_UC_DLL NAMES "icuuc${ICU_VER}.dll")
+    endforeach( ICU_VER )
+
+    list(APPEND EXTRA_DLL_FILES
+      ${EXTRA_QT_DLL_FILES}
+      ${EXTRA_DLLS_PTHREAD}
+      ${EXTRA_DLLS_LIBCPP}
+      ${ICU_DT_DLL}
+      ${ICU_IN_DLL}
+      ${ICU_UC_DLL}
+      )
+     
     # Copy relevant DLL files depending on the chosen architecture.
     if(TARGET_ARCH STREQUAL "x86_64")
-        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt54.dll"
-            "${QTCORE_DLL_LOCATION}/icuin54.dll"
-            "${QTCORE_DLL_LOCATION}/icuuc54.dll"
-            "${QTCORE_DLL_LOCATION}/libgcc_s_seh-1.dll"
-            "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/x86_64-w64-mingw32/bin/SDL2.dll"
+      find_library( GCC_DLL "libgcc_s_seh-1.dll" )
+      
+      list(APPEND EXTRA_DLL_FILES
+        ${GCC_DLL}
+        "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin/SDL2.dll"
         )
     else()
-        list(APPEND EXTRA_DLL_FILES "${QTCORE_DLL_LOCATION}/icudt54.dll"
-            "${QTCORE_DLL_LOCATION}/icuin54.dll"
-            "${QTCORE_DLL_LOCATION}/icuuc54.dll"
-            "${QTCORE_DLL_LOCATION}/libgcc_s_dw2-1.dll"
-            "${PROJECT_SOURCE_DIR}/SDL2-2.0.4/i686-w64-mingw32/bin/SDL2.dll"
+      find_library( GCC_DLL "libgcc_s_dw2-1.dll" )
+      
+      list(APPEND EXTRA_DLL_FILES
+	${GCC_DLL}
+        "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll"
         )
     endif(TARGET_ARCH STREQUAL "x86_64")
+    
+    # Not a DLL file, but needs to travel with SDL2.DLL
+    list(APPEND EXTRA_DLL_FILES "${SDL2_BASE_DIR}/README-SDL.txt")
 
     # Target to copy Qt DLL files.
     add_custom_target(install_extra_dlls)
@@ -860,11 +885,12 @@ if(WIN32)
     )
 
     # Copy bundled Qt translation files.
-    file(GLOB QT_TRANSLATION_FILES "${CMAKE_PREFIX_PATH}/translations/qt_[^help]*.qm")
+    SET(QT_TRANSLATION_PATH "${QTCORE_DLL_LOCATION}/../translations/" )
+    file(GLOB QT_TRANSLATION_FILES "${QT_TRANSLATION_PATH}qt_[^help]*.qm")
     add_custom_target(copy_qt_translations)
     foreach(CURRENT_QM_FILE ${QT_TRANSLATION_FILES})
         set(CURRENT_QM_FILENAME "")
-        string(REPLACE "${CMAKE_PREFIX_PATH}/translations/" "" CURRENT_QM_FILENAME ${CURRENT_QM_FILE})
+        string(REPLACE ${QT_TRANSLATION_PATH} "" CURRENT_QM_FILENAME ${CURRENT_QM_FILE})
         add_custom_command(TARGET copy_qt_translations PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy "${CURRENT_QM_FILE}"
             "${CMAKE_INSTALL_PREFIX}/share/qt/translations/${CURRENT_QM_FILENAME}"

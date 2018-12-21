@@ -201,19 +201,10 @@ int SDLEventReader::CheckForEvents()
     {
         case -1:
         {
+	  Logger::LogError(QString("SDL Error: %1").
+			   arg(QString(SDL_GetError())),
+			   true, true);
             result = 0;
-            exit = true;
-            break;
-        }
-        case 1:
-        {
-            /*Logger::LogInfo(
-                        QString("Gamepad Poll %1").arg(
-                            QTime::currentTime().toString("hh:mm:ss.zzz")),
-                        true, true);
-            */
-
-            result = 1;
             exit = true;
             break;
         }
@@ -225,6 +216,18 @@ int SDLEventReader::CheckForEvents()
             }
             //exit = true;
             //SDL_Delay(10);
+            break;
+        }
+        default:
+        {
+            /*Logger::LogInfo(
+                        QString("Gamepad Poll %1").arg(
+                            QTime::currentTime().toString("hh:mm:ss.zzz")),
+                        true, true);
+            */
+
+            result = 1;
+            exit = true;
             break;
         }
     }

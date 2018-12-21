@@ -159,7 +159,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <item>
      <widget class="QPushButton" name="uacPushButton">
       <property name="text">
-       <string>If events are not seen by a game, please click here to run this application as the Adminstrator.</string>
+       <string>If events are not seen by a game, please click here to run this application as Administrator.</string>
       </property>
       <property name="autoDefault">
        <bool>false</bool>

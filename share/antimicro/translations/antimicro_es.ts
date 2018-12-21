@@ -93,8 +93,8 @@ Desde entonces, he tratado de averiguar lo que los otros programas hacen la dere
 Una vez que el control de Steam finalmente se lanzó al público, la necesidad de este programa no podría existir más. Sólo se basa en el concepto del controlador solamete, el controlador de Steam tendría tantas ventajas sobre el uso de un programa como este para proporcionar la emulación KB + M.</translation>
     </message>
     <message>
-        <source>Copyright: 2013 - 2015</source>
-        <translation type="vanished">Copyright: 2013 - 2015</translation>
+        <source>Copyright: 2013 - 2016</source>
+        <translation type="vanished">Copyright: 2013 - 2016</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="121"/>

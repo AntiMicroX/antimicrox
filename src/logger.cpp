@@ -75,6 +75,7 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream,
 Logger::~Logger()
 {
     closeLogger();
+    closeErrorLogger();
 }
 
 /**
@@ -186,7 +187,14 @@ void Logger::closeLogger(bool closeStream)
             }
         }
     }
+}
 
+/**
+ * @brief Flushes output stream and closes stream if requested.
+ * @param Whether to close the current stream. Defaults to true.
+ */
+void Logger::closeErrorLogger(bool closeStream)
+{
     if (errorStream)
     {
         errorStream->flush();
@@ -355,3 +363,29 @@ void Logger::startPendingTimer()
         instance->pendingTimer.start();
     }
 }
+
+void Logger::setCurrentLogFile(QString filename) {
+  Q_ASSERT(instance != 0);
+  
+  if( instance->outputFile.isOpen() ) {
+    instance->closeLogger(true);
+  }
+  instance->outputFile.setFileName( filename );
+  instance->outputFile.open( QIODevice::WriteOnly | QIODevice::Append );
+  instance->outFileStream.setDevice( &instance->outputFile );
+  instance->setCurrentStream( &instance->outFileStream );
+  instance->LogInfo(QObject::tr("Logging started"), true, true);
+}
+
+void Logger::setCurrentErrorLogFile(QString filename) {
+  Q_ASSERT(instance != 0);
+
+  if( instance->errorFile.isOpen() ) {
+    instance->closeErrorLogger(true);
+  }
+  instance->errorFile.setFileName( filename );
+  instance->errorFile.open( QIODevice::WriteOnly | QIODevice::Append );
+  instance->outErrorFileStream.setDevice( &instance->errorFile );
+  instance->setCurrentErrorStream( &instance->outErrorFileStream );
+}
+

@@ -283,10 +283,19 @@ void QtX11KeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[AntKey_Alt_R] = XK_Alt_R;
         qtKeyToVirtualKey[AntKey_KP_Multiply] = XK_KP_Multiply;
 
+	// Map 0 to 9
         for (int i=0; i <= (XK_KP_9 - XK_KP_0); i++)
         {
             qtKeyToVirtualKey[AntKey_KP_0 + i] = XK_KP_0 + i;
         }
+
+	// Map lower-case latin characters to their capital equivalents
+	for( int i=0; i <= (XK_odiaeresis - XK_agrave); i++) {
+	  qtKeyToVirtualKey[ Qt::Key_Agrave + i ] = XK_agrave + i;
+	}
+	for( int i=0; i <= (XK_thorn - XK_oslash); i++) {
+	  qtKeyToVirtualKey[ Qt::Key_Ooblique + i ] = XK_oslash + i;
+	}
 
         QHashIterator<unsigned int, unsigned int> iter(qtKeyToVirtualKey);
         while (iter.hasNext())
