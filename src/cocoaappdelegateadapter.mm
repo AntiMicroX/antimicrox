@@ -22,15 +22,15 @@
 
 CocoaAppDelegateAdapter::CocoaAppDelegateAdapter(QObject *parent) : QObject(parent)
 {
+    delegate = [[CocoaAppDelegate alloc] init];
 }
 
 CocoaAppDelegateAdapter::~CocoaAppDelegateAdapter()
 {
 }
 
-void CocoaAppDelegateAdapter::registerNewDelegate()
+void CocoaAppDelegateAdapter::registerDelegate()
 {
-    CocoaAppDelegate *delegate = [[CocoaAppDelegate alloc] init];
-    [[NSApplication sharedApplication] setDelegate:delegate];
+    [[NSApplication sharedApplication] setDelegate:(id) delegate];
     NSLog(@"Registered AppDelegate!");
 }

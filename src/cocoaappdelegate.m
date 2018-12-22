@@ -37,6 +37,8 @@
     NSActivityOptions options = NSActivityUserInitiatedAllowingIdleSystemSleep;
     id <NSObject> activity = [[NSProcessInfo processInfo] beginActivityWithOptions:options reason:@"Disabled AppNap"];
     [self setActivityToken:activity];
+    [[self activityToken] retain];
+    NSLog(@"Disabled AppNap");
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)notification
@@ -47,7 +49,11 @@
 - (void)applicationWillTerminate:(NSNotification*)notification
 {
     [[NSProcessInfo processInfo] endActivity:[self activityToken]];
-    [self setActivityToken:nil];
+    if ([self activityToken] != nil) {
+        [[self activityToken] release];
+        [self setActivityToken:nil];
+    }
+    NSLog(@"Terminating application!");
 }
 
 @end

@@ -18,7 +18,7 @@
 #ifndef COCOAAPPDELEGATEINTERFACE_H
 #define COCOAAPPDELEGATEINTERFACE_H
 
-#include <QObject>
+#import <QObject.h>
 
 class CocoaAppDelegateAdapter : public QObject
 {
@@ -27,7 +27,9 @@ public:
     explicit CocoaAppDelegateAdapter(QObject *parent = 0);
     virtual ~CocoaAppDelegateAdapter();
     
-    void registerNewDelegate();
+    void registerDelegate();
+private:
+    void *delegate;
 };
 
 #endif // COCOAAPPDELEGATEINTERFACE_H

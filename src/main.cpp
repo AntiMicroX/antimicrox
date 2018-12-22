@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
 
 #ifdef WITH_COCOA
     CocoaAppDelegateAdapter cocoaAdapter;
-    cocoaAdapter.registerNewDelegate();
+    cocoaAdapter.registerDelegate();
 #endif
 
     QDir configDir(PadderCommon::configPath());
