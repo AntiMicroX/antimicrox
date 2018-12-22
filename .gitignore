@@ -1,6 +1,7 @@
 *.o
 .*.swp
 .directory
+.vscode
 *.qm
 *.diff
 *.mo
