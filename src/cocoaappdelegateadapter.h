@@ -18,7 +18,7 @@
 #ifndef COCOAAPPDELEGATEINTERFACE_H
 #define COCOAAPPDELEGATEINTERFACE_H
 
-#import <QObject.h>
+#import <QObject>
 
 class CocoaAppDelegateAdapter : public QObject
 {
