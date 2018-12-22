@@ -48,6 +48,7 @@
 #ifdef WITH_COCOA
 #include <QStyle>
 #include <QStyleFactory>
+#include "cocoaappdelegateadapter.h"
 #endif
 
 #include "inputdevice.h"
@@ -201,6 +202,11 @@ int main(int argc, char *argv[])
     // config directory. This is to ensure that all relative paths resolve
     // correctly when loading on startup.
     QDir::setCurrent( PadderCommon::configPath() );
+#endif
+
+#ifdef WITH_COCOA
+    CocoaAppDelegateAdapter cocoaAdapter;
+    cocoaAdapter.registerNewDelegate();
 #endif
 
     QDir configDir(PadderCommon::configPath());

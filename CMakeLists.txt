@@ -383,6 +383,8 @@ if(UNIX)
         LIST(APPEND antimicro_SOURCES src/qtcocoakeymapper.cpp
              src/cocoahelper.cpp
              src/eventhandlers/cocoaeventhandler.mm
+             src/cocoaappdelegateadapter.mm
+             src/cocoaappdelegate.m
              src/capturedwindowinfodialog.cpp
         )
         LIST(APPEND antimicro_HEADERS src/qtcocoakeymapper.h
