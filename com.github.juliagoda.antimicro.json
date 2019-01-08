@@ -12,6 +12,7 @@
         "--share=network",
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.kde.StatusNotifierWatcher",
+        "--comment= I placed system-bus because using --log-system-bus didn't show anything to me. Maybe it will show something to someone else",
         "--socket=system-bus"
     ],
     "modules": [
@@ -29,7 +30,8 @@
             "sources": [
             {
                 "type": "git",
-                "url": "https://github.com/juliagoda/antimicro.git"
+                "url": "https://github.com/juliagoda/antimicro.git",
+                "commit": "a2be2119abb763afc9a513e97b628eba45a55390"
             }]
         }
     ]
