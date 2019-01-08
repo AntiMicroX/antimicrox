@@ -224,6 +224,7 @@ set(antimicro_SOURCES
     src/antkeymapper.cpp
     src/inputdevice.cpp
     src/xml/inputdevicexml.cpp
+    src/xml/joybuttonslotxml.cpp
     src/mainsettingsdialog.cpp
     src/gamecontroller/gamecontrollertriggerbutton.cpp
     src/setnamesdialog.cpp
@@ -327,6 +328,7 @@ set(antimicro_HEADERS
     src/antkeymapper.h
     src/inputdevice.h
     src/xml/inputdevicexml.h
+    src/xml/joybuttonslotxml.h
     src/mainsettingsdialog.h
     src/gamecontroller/gamecontrollertriggerbutton.h
     src/setnamesdialog.h

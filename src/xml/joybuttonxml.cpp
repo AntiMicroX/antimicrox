@@ -1,4 +1,5 @@
 #include "joybuttonxml.h"
+#include "joybuttonslotxml.h"
 #include "joybutton.h"
 
 #include "messagehandler.h"
@@ -89,7 +90,8 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
             if ((xml->name() == "slot") && xml->isStartElement())
             {
                 JoyButtonSlot *buttonslot = new JoyButtonSlot(m_joyButton);
-                buttonslot->readConfig(xml);
+                JoyButtonSlotXml* joyButtonSlotXml = new JoyButtonSlotXml(buttonslot, this);
+                joyButtonSlotXml->readConfig(xml);
 
                 if (buttonslot->isValidSlot())
                 {
@@ -490,7 +492,8 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
             while (iter.hasNext())
             {
                 JoyButtonSlot *buttonslot = iter.next();
-                buttonslot->writeConfig(xml);
+                JoyButtonSlotXml* joyButtonSlotXml = new JoyButtonSlotXml(buttonslot, this);
+                joyButtonSlotXml->writeConfig(xml);
             }
 
             xml->writeEndElement();
