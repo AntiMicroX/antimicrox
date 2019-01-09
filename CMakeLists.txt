@@ -404,6 +404,7 @@ if(USE_SDL_2)
          src/gamecontrollerexample.cpp
          src/gamecontroller/xml/gamecontrollerxml.cpp
          src/gamecontroller/xml/gamecontrollertriggerxml.cpp
+         src/gamecontroller/xml/gamecontrollerdpadxml.cpp
     )
     LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
@@ -413,6 +414,7 @@ if(USE_SDL_2)
         src/gamecontrollerexample.h
         src/gamecontroller/xml/gamecontrollerxml.h
         src/gamecontroller/xml/gamecontrollertriggerxml.h
+        src/gamecontroller/xml/gamecontrollerdpadxml.h
     )
 endif(USE_SDL_2)
 
