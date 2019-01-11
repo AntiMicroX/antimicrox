@@ -1,10 +1,10 @@
 #include "joydpadxml.h"
 #include "joydpad.h"
+#include "vdpad.h"
+#include "xml/joybuttonxml.h"
 
 #include "globalvariables.h"
 #include "messagehandler.h"
-#include "inputdevice.h"
-#include "xml/joybuttonxml.h"
 
 #include <QDebug>
 #include <QPointer>
@@ -13,14 +13,16 @@
 #include <QXmlStreamWriter>
 
 
-
-JoyDPadXml::JoyDPadXml(JoyDPad* joydpad, QObject *parent) : QObject(parent)
+template <class T>
+JoyDPadXml<T>::JoyDPadXml(T* joydpad, QObject *parent)
 {
     m_joydpad = joydpad;
 }
 
 
-void JoyDPadXml::readConfig(QXmlStreamReader *xml)
+
+template <class T>
+void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -40,7 +42,8 @@ void JoyDPadXml::readConfig(QXmlStreamReader *xml)
     }
 }
 
-void JoyDPadXml::writeConfig(QXmlStreamWriter *xml)
+template <class T>
+void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -78,7 +81,8 @@ void JoyDPadXml::writeConfig(QXmlStreamWriter *xml)
     }
 }
 
-bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
+template <class T>
+bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -128,3 +132,6 @@ bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
 
     return found;
 }
+
+template class JoyDPadXml<JoyDPad>;
+template class JoyDPadXml<VDPad>;

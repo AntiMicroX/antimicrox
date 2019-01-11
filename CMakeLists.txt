@@ -225,6 +225,7 @@ set(antimicro_SOURCES
     src/inputdevice.cpp
     src/xml/inputdevicexml.cpp
     src/xml/joybuttonslotxml.cpp
+    src/xml/setjoystickxml.cpp
     src/mainsettingsdialog.cpp
     src/gamecontroller/gamecontrollertriggerbutton.cpp
     src/setnamesdialog.cpp
@@ -329,6 +330,7 @@ set(antimicro_HEADERS
     src/inputdevice.h
     src/xml/inputdevicexml.h
     src/xml/joybuttonslotxml.h
+    src/xml/setjoystickxml.h
     src/mainsettingsdialog.h
     src/gamecontroller/gamecontrollertriggerbutton.h
     src/setnamesdialog.h
@@ -405,6 +407,7 @@ if(USE_SDL_2)
          src/gamecontroller/xml/gamecontrollerxml.cpp
          src/gamecontroller/xml/gamecontrollertriggerxml.cpp
          src/gamecontroller/xml/gamecontrollerdpadxml.cpp
+         src/gamecontroller/xml/gamecontrollersetxml.cpp
     )
     LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
@@ -415,6 +418,7 @@ if(USE_SDL_2)
         src/gamecontroller/xml/gamecontrollerxml.h
         src/gamecontroller/xml/gamecontrollertriggerxml.h
         src/gamecontroller/xml/gamecontrollerdpadxml.h
+        src/gamecontroller/xml/gamecontrollersetxml.h
     )
 endif(USE_SDL_2)
 

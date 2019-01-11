@@ -3,15 +3,15 @@
 
 #include <QObject>
 
-class JoyDPad;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
-class JoyDPadXml : public QObject
+template<class T>
+class JoyDPadXml
 {
-    Q_OBJECT
+
 public:
-    explicit JoyDPadXml(JoyDPad* joydpad, QObject *parent = nullptr);
+    JoyDPadXml(T* joydpad, QObject *parent = nullptr);
 
     void readConfig(QXmlStreamReader *xml); // JoyDPadXml class
     void writeConfig(QXmlStreamWriter *xml); // JoyDPadXml class
@@ -20,7 +20,9 @@ public:
 
 private:
 
-    JoyDPad* m_joydpad;
+    T* m_joydpad;
 };
+
+//#include "joydpadxml.cpp"
 
 #endif // JOYDPADXML_H
