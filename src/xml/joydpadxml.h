@@ -7,7 +7,7 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 
 template<class T>
-class JoyDPadXml
+class JoyDPadXml : public QObject
 {
 
 public:

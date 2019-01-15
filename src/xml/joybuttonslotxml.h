@@ -10,6 +10,7 @@ class QXmlStreamWriter;
 
 class JoyButtonSlotXml : public JoyButtonSlot
 {
+    Q_OBJECT
 
 public:
      JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent = nullptr);

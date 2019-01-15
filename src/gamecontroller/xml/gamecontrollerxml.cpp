@@ -1,6 +1,7 @@
 #include "gamecontrollerxml.h"
 
 #include "gamecontroller/gamecontroller.h"
+#include "gamecontrollersetxml.h"
 
 #include "globalvariables.h"
 #include "common.h"
@@ -59,7 +60,8 @@ void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
                         if ((index >= 0) && (index < m_gameController->getJoystick_sets().size()))
                         {
                             GameControllerSet *currentSet = qobject_cast<GameControllerSet*>(m_gameController->getJoystick_sets().value(index)); // static_cast
-                            currentSet->readJoystickConfig(xml, buttons, axes, hatButtons);
+                            GameControllerSetXml *gameContrSet = new GameControllerSetXml(currentSet);
+                            gameContrSet->readJoystickConfig(xml, buttons, axes, hatButtons);
                         }
                     }
                     else
@@ -305,7 +307,8 @@ void GameControllerXml::readConfig(QXmlStreamReader *xml)
 
                         if ((index >= 0) && (index < m_gameController->getJoystick_sets().size()))
                         {
-                            m_gameController->getJoystick_sets().value(index)->readConfig(xml);
+                            SetJoystickXml *setJoystickXml = new SetJoystickXml(m_gameController->getJoystick_sets().value(index));
+                            setJoystickXml->readConfig(xml);
                         }
                     }
                     else
@@ -431,7 +434,8 @@ void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
 
     for (int i = 0; i < m_gameController->getJoystick_sets().size(); i++)
     {
-        m_gameController->getJoystick_sets().value(i)->writeConfig(xml);
+        SetJoystickXml *setJoystickXml = new SetJoystickXml(m_gameController->getJoystick_sets().value(i));
+        setJoystickXml->writeConfig(xml);
     }
 
     xml->writeEndElement();

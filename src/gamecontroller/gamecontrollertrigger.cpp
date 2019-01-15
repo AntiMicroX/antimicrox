@@ -15,19 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <QDebug>
-
 #include "gamecontrollertrigger.h"
 
 #include "globalvariables.h"
 #include "messagehandler.h"
 #include "gamecontrollertriggerbutton.h"
-#include "xml/joyaxisxml.h"
 
 #include <SDL2/SDL_gamecontroller.h>
 
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 #include <QDebug>
 
 

@@ -1,6 +1,7 @@
 #include "gamecontrollersetxml.h"
 #include "gamecontroller/gamecontrollerset.h"
 #include "gamecontroller/gamecontrollerdpad.h"
+#include "gamecontrollerdpadxml.h"
 #include "joycontrolstick.h"
 #include "xml/joydpadxml.h"
 #include "xml/joyaxisxml.h"
@@ -193,10 +194,8 @@ void GameControllerSetXml::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameCon
 
     if (found)
     {
-        if (dpadXml != nullptr) delete dpadXml;
-
         dpad = m_gameContrSet->getVDPad(0);
-        dpadXml = new JoyDPadXml(dpad);
+        dpadXml = new JoyDPadXml<VDPad>(dpad);
     }
 
     if ((dpad != nullptr) && !vdpadExists)
@@ -223,10 +222,8 @@ void GameControllerSetXml::getElemFromXml(QString elemName, QXmlStreamReader *xm
     }
     else if (elemName == "dpad") {
         GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(m_gameContrSet->getVDPad(index-1));
-        QPointer<JoyDPadXml> dpadXml = new JoyDPadXml(vdpad);
-        readConf(dpadXml.data(), xml);
-
-        if (!dpadXml.isNull()) delete dpadXml;
+        GameControllerDPadXml* gameContrDPadXml = new GameControllerDPadXml(vdpad);
+        readConf(gameContrDPadXml, xml);
     }
     else if (elemName == "trigger")
     {

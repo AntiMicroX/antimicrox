@@ -11,6 +11,7 @@ class AntiMicroSettings;
 class InputDeviceXml : public QObject
 {
     Q_OBJECT
+
 public:
     explicit InputDeviceXml(InputDevice *inputDevice, QObject *parent = nullptr);
     InputDeviceXml(int deviceIndex, AntiMicroSettings *setting, QObject *parent = nullptr);

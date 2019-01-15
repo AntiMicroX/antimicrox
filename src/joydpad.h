@@ -26,8 +26,6 @@
 #include <QString>
 #include <QTimer>
 
-class QXmlStreamReader;
-class QXmlStreamWriter;
 
 class JoyDPad : public QObject
 {

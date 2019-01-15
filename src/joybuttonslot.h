@@ -24,6 +24,7 @@
 #include <QMetaType>
 #include <QVariant>
 
+
 class JoyButtonSlot : public QObject
 {
     Q_OBJECT

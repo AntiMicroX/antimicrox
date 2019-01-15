@@ -27,8 +27,6 @@
 
 #include <cmath>
 
-#include <QXmlStreamReader>
-#include <QXmlStreamWriter>
 #include <QtGlobal>
 #include <QDebug>
 
