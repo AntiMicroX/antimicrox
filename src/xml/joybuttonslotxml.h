@@ -3,12 +3,12 @@
 
 #include <QObject>
 
-#include "joybuttonslot.h"
-
 class QXmlStreamReader;
 class QXmlStreamWriter;
+class JoyButtonSlot;
 
-class JoyButtonSlotXml : public JoyButtonSlot
+
+class JoyButtonSlotXml : public QObject
 {
     Q_OBJECT
 

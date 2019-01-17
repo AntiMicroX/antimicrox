@@ -201,7 +201,15 @@ void GameControllerSetXml::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameCon
     if ((dpad != nullptr) && !vdpadExists)
     {
         dpadExists = true;
-        dpadXml->readConfig(xml);
+
+        if (dpadXml != nullptr)
+        {
+            dpadXml->readConfig(xml);
+        }
+        else
+        {
+            xml->skipCurrentElement();
+        }
     }
     else
     {
@@ -223,7 +231,15 @@ void GameControllerSetXml::getElemFromXml(QString elemName, QXmlStreamReader *xm
     else if (elemName == "dpad") {
         GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(m_gameContrSet->getVDPad(index-1));
         GameControllerDPadXml* gameContrDPadXml = new GameControllerDPadXml(vdpad);
-        readConf(gameContrDPadXml, xml);
+
+        if (gameContrDPadXml != nullptr)
+        {
+            gameContrDPadXml->readConfig(xml);
+        }
+        else
+        {
+            xml->skipCurrentElement();
+        }
     }
     else if (elemName == "trigger")
     {

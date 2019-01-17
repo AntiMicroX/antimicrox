@@ -1,4 +1,3 @@
-#include "joydpadxml.h"
 #include "joydpad.h"
 #include "vdpad.h"
 #include "xml/joybuttonxml.h"
@@ -12,13 +11,15 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
+template class JoyDPadXml<VDPad>;
+template class JoyDPadXml<JoyDPad>;
+
 
 template <class T>
-JoyDPadXml<T>::JoyDPadXml(T* joydpad, QObject *parent)
+JoyDPadXml<T>::JoyDPadXml(T* joydpad, QObject *parent) : QObject(parent)
 {
     m_joydpad = joydpad;
 }
-
 
 
 template <class T>
@@ -51,6 +52,7 @@ void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
     {
         xml->writeStartElement(m_joydpad->getXmlName());
         xml->writeAttribute("index", QString::number(m_joydpad->getRealJoyNumber()));
+
         if (m_joydpad->getJoyMode() == JoyDPad::EightWayMode)
         {
             xml->writeTextElement("mode", "eight-way");
@@ -93,12 +95,11 @@ bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
         found = true;
         int index_local = xml->attributes().value("index").toString().toInt();
         JoyDPadButton* button = m_joydpad->getJoyButton(index_local);
+
         if (button != nullptr)
         {
-            QPointer<JoyButtonXml> joyBtnXml = new JoyButtonXml(button);
+            JoyButtonXml* joyBtnXml = new JoyButtonXml(button);
             joyBtnXml->readConfig(xml);
-
-            if (!joyBtnXml.isNull()) delete joyBtnXml;
         }
         else
         {
@@ -109,6 +110,7 @@ bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
     {
         found = true;
         QString temptext = xml->readElementText();
+
         if (temptext == "eight-way")
         {
             m_joydpad->setJoyMode(JoyDPad::EightWayMode);
@@ -133,5 +135,5 @@ bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
     return found;
 }
 
-template class JoyDPadXml<JoyDPad>;
-template class JoyDPadXml<VDPad>;
+//template class JoyDPadXml<JoyDPad>;
+//template class JoyDPadXml<VDPad>;

@@ -86,7 +86,7 @@ endif(WITH_TESTS)
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
-    option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
+    option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." OFF)
     option(APPDATA "Build project with AppData file support." ON)
 endif(UNIX)
 
@@ -174,7 +174,7 @@ set(antimicro_SOURCES
     src/xml/joyaxisxml.cpp
     src/joyaxiswidget.cpp
     src/joydpad.cpp
-    src/xml/joydpadxml.cpp
+    #src/xml/joydpadxml.cpp
     src/joybuttontypes/joydpadbutton.cpp
     src/axiseditdialog.cpp
     src/xmlconfigreader.cpp

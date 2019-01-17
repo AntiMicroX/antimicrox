@@ -1,4 +1,5 @@
 #include "joybuttonslotxml.h"
+#include "joybuttonslot.h"
 #include "messagehandler.h"
 #include "antkeymapper.h"
 #include "globalvariables.h"
@@ -6,11 +7,10 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QFileInfo>
-
 #include <QDebug>
 
 
-JoyButtonSlotXml::JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent) : m_joyBtnSlot(joyBtnSlot)
+JoyButtonSlotXml::JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent) : QObject(parent), m_joyBtnSlot(joyBtnSlot)
 {
 
 }
@@ -36,7 +36,7 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
                 bool ok = false;
                 int tempchoice = temptext.toInt(&ok, 0);
 
-                if (ok) this->setSlotCode(tempchoice);
+                if (ok) m_joyBtnSlot->setSlotCode(tempchoice);
             }
             else if ((xml->name() == "profile") && xml->isStartElement())
             {
@@ -64,63 +64,63 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 
                 if (temptext == "keyboard")
                 {
-                    this->setSlotMode(JoyKeyboard);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyKeyboard);
                 }
                 else if (temptext == "mousebutton")
                 {
-                    this->setSlotMode(JoyMouseButton);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyMouseButton);
                 }
                 else if (temptext == "mousemovement")
                 {
-                    this->setSlotMode(JoyMouseMovement);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyMouseMovement);
                 }
                 else if (temptext == "pause")
                 {
-                    this->setSlotMode(JoyPause);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyPause);
                 }
                 else if (temptext == "hold")
                 {
-                    this->setSlotMode(JoyHold);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyHold);
                 }
                 else if (temptext == "cycle")
                 {
-                    this->setSlotMode(JoyCycle);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyCycle);
                 }
                 else if (temptext == "distance")
                 {
-                    this->setSlotMode(JoyDistance);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyDistance);
                 }
                 else if (temptext == "release")
                 {
-                    this->setSlotMode(JoyRelease);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyRelease);
                 }
                 else if (temptext == "mousespeedmod")
                 {
-                    this->setSlotMode(JoyMouseSpeedMod);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyMouseSpeedMod);
                 }
                 else if (temptext == "keypress")
                 {
-                    this->setSlotMode(JoyKeyPress);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyKeyPress);
                 }
                 else if (temptext == "delay")
                 {
-                    this->setSlotMode(JoyDelay);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyDelay);
                 }
                 else if (temptext == "loadprofile")
                 {
-                    this->setSlotMode(JoyLoadProfile);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyLoadProfile);
                 }
                 else if (temptext == "setchange")
                 {
-                    this->setSlotMode(JoySetChange);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoySetChange);
                 }
                 else if (temptext == "textentry")
                 {
-                    this->setSlotMode(JoyTextEntry);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyTextEntry);
                 }
                 else if (temptext == "execute")
                 {
-                    this->setSlotMode(JoyExecute);
+                    m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyExecute);
                 }
             }
             else
@@ -131,55 +131,55 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
             xml->readNextStartElement();
         }
 
-        if (this->getSlotMode() == JoyButtonSlot::JoyKeyboard)
+        if (m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
         {
-            int virtualkey = AntKeyMapper::getInstance()->returnVirtualKey(this->getSlotCode());
-            int tempkey = this->getSlotCode();
+            int virtualkey = AntKeyMapper::getInstance()->returnVirtualKey(m_joyBtnSlot->getSlotCode());
+            int tempkey = m_joyBtnSlot->getSlotCode();
 
             if (virtualkey)
             {
                 // Mapping found a valid native keysym.
-                this->setSlotCode(virtualkey, tempkey);
+                m_joyBtnSlot->setSlotCode(virtualkey, tempkey);
             }
-            else if (this->getSlotCode() > QtKeyMapperBase::nativeKeyPrefix)
+            else if (m_joyBtnSlot->getSlotCode() > QtKeyMapperBase::nativeKeyPrefix)
             {
                 // Value is in the native key range. Remove prefix and use
                 // new value as a native keysym.
-                int temp = this->getSlotCode() - QtKeyMapperBase::nativeKeyPrefix;
-                this->setSlotCode(temp);
+                int temp = m_joyBtnSlot->getSlotCode() - QtKeyMapperBase::nativeKeyPrefix;
+                m_joyBtnSlot->setSlotCode(temp);
             }
         }
-        else if ((this->getSlotMode() == JoyButtonSlot::JoyLoadProfile) && !profile.isEmpty())
+        else if ((m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyLoadProfile) && !profile.isEmpty())
         {
             QFileInfo profileInfo(profile);
 
             if (!profileInfo.exists() || !((profileInfo.suffix() == "amgp") || (profileInfo.suffix() == "xml")))
             {
-                this->setTextData("");
+                m_joyBtnSlot->setTextData("");
             }
             else
             {
-                this->setTextData(profile);
+                m_joyBtnSlot->setTextData(profile);
             }
         }
-        else if (this->getSlotMode() == JoySetChange && !(this->getSlotCode() >= 0) && !(this->getSlotCode() < GlobalVariables::InputDevice::NUMBER_JOYSETS))
+        else if (m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoySetChange && !(m_joyBtnSlot->getSlotCode() >= 0) && !(m_joyBtnSlot->getSlotCode() < GlobalVariables::InputDevice::NUMBER_JOYSETS))
         {
-            this->setSlotCode(-1);
+            m_joyBtnSlot->setSlotCode(-1);
         }
-        else if ((this->getSlotMode() == JoyTextEntry) && !tempStringData.isEmpty())
+        else if ((m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyTextEntry) && !tempStringData.isEmpty())
         {
-            this->setTextData(tempStringData);
+            m_joyBtnSlot->setTextData(tempStringData);
         }
-        else if ((this->getSlotMode() == JoyExecute) && !tempStringData.isEmpty())
+        else if ((m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyExecute) && !tempStringData.isEmpty())
         {
             QFileInfo tempFile(tempStringData);
 
             if (tempFile.exists() && tempFile.isExecutable())
             {
-                this->setTextData(tempStringData);
+                m_joyBtnSlot->setTextData(tempStringData);
 
                 if (!extraStringData.isEmpty())
-                    this->setExtraData(QVariant(extraStringData));
+                    m_joyBtnSlot->setExtraData(QVariant(extraStringData));
             }
         }
     }
@@ -189,12 +189,12 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    xml->writeStartElement(getXmlName());
+    xml->writeStartElement(m_joyBtnSlot->getXmlName());
 
-    if (m_joyBtnSlot->getSlotMode() == JoyKeyboard)
+    if (m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
     {
         int basekey = AntKeyMapper::getInstance()->returnQtKey(m_joyBtnSlot->getSlotCode());
-        int qtkey = this->getSlotCodeAlias();
+        int qtkey = m_joyBtnSlot->getSlotCodeAlias();
 
         if ((qtkey > 0) || (basekey > 0))
         {
@@ -221,15 +221,15 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("code", QString("0x%1").arg(tempkey, 0, 16));
         }
     }
-    else if ((m_joyBtnSlot->getSlotMode() == JoyLoadProfile) && !m_joyBtnSlot->getTextData().isEmpty())
+    else if ((m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyLoadProfile) && !m_joyBtnSlot->getTextData().isEmpty())
     {
         xml->writeTextElement("profile", m_joyBtnSlot->getTextData());
     }
-    else if ((m_joyBtnSlot->getSlotMode() == JoyTextEntry) && !m_joyBtnSlot->getTextData().isEmpty())
+    else if ((m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyTextEntry) && !m_joyBtnSlot->getTextData().isEmpty())
     {
         xml->writeTextElement("text", m_joyBtnSlot->getTextData());
     }
-    else if ((m_joyBtnSlot->getSlotMode() == JoyExecute) && !m_joyBtnSlot->getTextData().isEmpty())
+    else if ((m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyExecute) && !m_joyBtnSlot->getTextData().isEmpty())
     {
         xml->writeTextElement("path", m_joyBtnSlot->getTextData());
 
@@ -247,63 +247,63 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
 
     switch(m_joyBtnSlot->getSlotMode())
     {
-        case JoyKeyboard:
+        case JoyButtonSlot::JoyKeyboard:
             xml->writeCharacters("keyboard");
             break;
 
-        case JoyMouseButton:
+        case JoyButtonSlot::JoyMouseButton:
             xml->writeCharacters("mousebutton");
             break;
 
-        case JoyMouseMovement:
+        case JoyButtonSlot::JoyMouseMovement:
             xml->writeCharacters("mousemovement");
             break;
 
-        case JoyPause:
+        case JoyButtonSlot::JoyPause:
             xml->writeCharacters("pause");
             break;
 
-        case JoyHold:
+        case JoyButtonSlot::JoyHold:
             xml->writeCharacters("hold");
             break;
 
-        case JoyCycle:
+        case JoyButtonSlot::JoyCycle:
             xml->writeCharacters("cycle");
             break;
 
-        case JoyDistance:
+        case JoyButtonSlot::JoyDistance:
             xml->writeCharacters("distance");
             break;
 
-        case JoyRelease:
+        case JoyButtonSlot::JoyRelease:
             xml->writeCharacters("release");
             break;
 
-        case JoyMouseSpeedMod:
+        case JoyButtonSlot::JoyMouseSpeedMod:
             xml->writeCharacters("mousespeedmod");
             break;
 
-        case JoyKeyPress:
+        case JoyButtonSlot::JoyKeyPress:
             xml->writeCharacters("keypress");
             break;
 
-        case JoyDelay:
+        case JoyButtonSlot::JoyDelay:
             xml->writeCharacters("delay");
             break;
 
-        case JoyLoadProfile:
+        case JoyButtonSlot::JoyLoadProfile:
             xml->writeCharacters("loadprofile");
             break;
 
-        case JoySetChange:
+        case JoyButtonSlot::JoySetChange:
             xml->writeCharacters("setchange");
             break;
 
-        case JoyTextEntry:
+        case JoyButtonSlot::JoyTextEntry:
             xml->writeCharacters("textentry");
             break;
 
-        case JoyExecute:
+        case JoyButtonSlot::JoyExecute:
             xml->writeCharacters("execute");
             break;
     }

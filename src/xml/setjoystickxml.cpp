@@ -58,9 +58,9 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyDPad *dpad = m_setJoystick->getJoyDPad(index - 1);
-                JoyDPadXml<JoyDPad>* joydpadXml = new JoyDPadXml<JoyDPad>(dpad,this);
+                JoyDPadXml<JoyDPad>* joydpadXml = new JoyDPadXml<JoyDPad>(dpad);
 
-                if (dpad != nullptr && joydpadXml != nullptr) joydpadXml->readConfig(xml);
+                if (dpad != nullptr) joydpadXml->readConfig(xml);
                 else xml->skipCurrentElement();
             }
             else if ((xml->name() == "stick") && xml->isStartElement())
@@ -84,9 +84,9 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 VDPad *vdpad = m_setJoystick->getVDPad(index - 1);
-                JoyDPadXml<VDPad>* joydpadXml = new JoyDPadXml<VDPad>(vdpad, this);
+                JoyDPadXml<VDPad>* joydpadXml = new JoyDPadXml<VDPad>(vdpad);
 
-                if (joydpadXml != nullptr) joydpadXml->readConfig(xml);
+                if (vdpad != nullptr) joydpadXml->readConfig(xml);
                 else xml->skipCurrentElement();
             }
             else if ((xml->name() == "name") && xml->isStartElement())
@@ -127,8 +127,8 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         {
             VDPad *vdpad = m_setJoystick->getVDPad(i);
 
-            JoyDPadXml<VDPad>* joydpadXml = new JoyDPadXml<VDPad>(vdpad,this);
-            if (joydpadXml != nullptr) joydpadXml->writeConfig(xml);
+            JoyDPadXml<VDPad>* joydpadXml = new JoyDPadXml<VDPad>(vdpad);
+            if (vdpad != nullptr) joydpadXml->writeConfig(xml);
         }
 
         for (int i = 0; i < m_setJoystick->getNumberAxes(); i++)
@@ -145,7 +145,7 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         for (int i = 0; i < m_setJoystick->getNumberHats(); i++)
         {
             JoyDPad *dpad = m_setJoystick->getJoyDPad(i);
-            JoyDPadXml<JoyDPad>* joydpadXml = new JoyDPadXml<JoyDPad>(dpad,this);
+            JoyDPadXml<JoyDPad>* joydpadXml = new JoyDPadXml<JoyDPad>(dpad);
             joydpadXml->writeConfig(xml);
         }
 

@@ -15,7 +15,6 @@ public:
 
     void readConfig(QXmlStreamReader *xml); // JoyDPadXml class
     void writeConfig(QXmlStreamWriter *xml); // JoyDPadXml class
-
     bool readMainConfig(QXmlStreamReader *xml);
 
 private:
@@ -23,6 +22,6 @@ private:
     T* m_joydpad;
 };
 
-//#include "joydpadxml.cpp"
+#include "joydpadxml.cpp"
 
 #endif // JOYDPADXML_H
