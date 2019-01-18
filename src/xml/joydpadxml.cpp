@@ -1,8 +1,13 @@
-#include "joydpad.h"
-#include "vdpad.h"
-#include "xml/joybuttonxml.h"
 
 #include "globalvariables.h"
+
+#include "xml/joybuttonxml.h"
+#include "joydpad.h"
+#include "vdpad.h"
+#include "gamecontroller/gamecontrollerdpad.h"
+
+
+
 #include "messagehandler.h"
 
 #include <QDebug>
@@ -11,8 +16,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-template class JoyDPadXml<VDPad>;
-template class JoyDPadXml<JoyDPad>;
+
 
 
 template <class T>
@@ -135,5 +139,6 @@ bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
     return found;
 }
 
-//template class JoyDPadXml<JoyDPad>;
-//template class JoyDPadXml<VDPad>;
+template class JoyDPadXml<JoyDPad>;
+template class JoyDPadXml<VDPad>;
+//template class JoyDPadXml<GameControllerDPad>;

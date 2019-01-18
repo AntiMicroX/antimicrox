@@ -40,6 +40,8 @@
 
 class VDPad;
 class SetJoystick;
+class QXmlStreamReader;
+class QXmlStreamWriter;
 class QThread;
 
 class JoyButton : public QObject

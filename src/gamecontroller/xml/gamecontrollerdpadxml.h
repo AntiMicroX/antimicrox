@@ -20,8 +20,7 @@ public:
     void readJoystickConfig(QXmlStreamReader *xml);
 
 private:
-    GameControllerDPad* m_gameContrDpad;
-    JoyDPadXml<VDPad>* dpadXml;
+    JoyDPadXml<GameControllerDPad>* dpadXml;
 };
 
 #endif // GAMECONTROLLERDPADXML_H

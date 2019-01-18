@@ -80,7 +80,7 @@ private:
 
     bool cleanupUinputEvHand();
     void testAndAppend(bool tested, QList<unsigned int>& tempList, unsigned int key);
-    void initDevice(int device, QString name, bool& result);
+    void initDevice(int& device, QString name, bool& result);
 
 };
 

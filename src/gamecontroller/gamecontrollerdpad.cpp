@@ -21,6 +21,7 @@
 #include "messagehandler.h"
 #include "setjoystick.h"
 #include "joybutton.h"
+#include "xml/joydpadxml.h"
 
 #include <QDebug>
 
@@ -30,13 +31,6 @@ GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButto
     VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-}
-
-
-VDPad* GameControllerDPad::getDPad()
-{
-    VDPad* vdpad = (GameControllerDPad*) this;
-    return vdpad;
 }
 
 

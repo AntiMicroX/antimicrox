@@ -2,14 +2,14 @@
 #define GAMECONTROLLERTRIGGERXML_H
 
 #include "xml/joyaxisxml.h"
-#include "gamecontroller/gamecontrollertrigger.h"
 
 #include <QObject>
+
+class GameControllerTrigger;
 
 
 class GameControllerTriggerXml : public JoyAxisXml
 {
-    Q_OBJECT
 
     public:
         GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, QObject *parent = 0);

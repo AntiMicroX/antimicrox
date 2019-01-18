@@ -1,13 +1,10 @@
 #ifndef GAMECONTROLLERXML_H
 #define GAMECONTROLLERXML_H
 
-#include "xml/inputdevicexml.h"
-
-
-#include "gamecontroller/gamecontroller.h"
-#include <SDL2/SDL_gamecontroller.h>
 
 #include <QObject>
+#include "gamecontroller/gamecontroller.h"
+#include <SDL2/SDL_gamecontroller.h>
 
 class SetJoystick;
 class QXmlStreamReader;

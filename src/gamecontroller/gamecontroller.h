@@ -18,13 +18,14 @@
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
-
-#include <inputdevice.h>
-
 #include <SDL2/SDL_gamecontroller.h>
+#include <inputdevice.h>
+#include <xml/inputdevicexml.h>
 
+
+class QXmlStreamReader;
+class QXmlStreamWriter;
 class AntiMicroSettings;
-
 
 // holds information about gamecontrollers
 

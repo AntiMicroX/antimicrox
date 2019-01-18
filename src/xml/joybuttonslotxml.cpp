@@ -185,6 +185,7 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
     }
 }
 
+
 void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

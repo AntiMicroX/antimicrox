@@ -1,5 +1,4 @@
 #include "inputdevicexml.h"
-#include "setjoystickxml.h"
 #include "inputdevice.h"
 #include "vdpad.h"
 #include "joycontrolstick.h"
@@ -49,11 +48,7 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
                         index = index - 1;
 
                         if ((index >= 0) && (index < m_inputDevice->getJoystick_sets().size()))
-                        {
-                            SetJoystickXml* jostickXml = new SetJoystickXml(m_inputDevice->getJoystick_sets().value(index));
-                            jostickXml->readConfig(xml);
-                        }
-
+                            m_inputDevice->getJoystick_sets().value(index)->readConfig(xml);
                     }
                     else
                     {
@@ -625,10 +620,7 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
     xml->writeStartElement("sets");
 
     for (int i = 0; i < m_inputDevice->getJoystick_sets().size(); i++)
-    {
-        SetJoystickXml* joystickXml = new SetJoystickXml(m_inputDevice->getJoystick_sets().value(i));
-        joystickXml->writeConfig(xml);
-    }
+        m_inputDevice->getJoystick_sets().value(i)->writeConfig(xml);
 
     xml->writeEndElement();
     xml->writeEndElement();

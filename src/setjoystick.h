@@ -19,6 +19,7 @@
 #define SETJOYSTICK_H
 
 #include "joyaxis.h"
+#include "xml/setjoystickxml.h"
 
 #include <QObject>
 #include <QHash>
@@ -31,7 +32,7 @@ class JoyDPad;
 class JoyControlStick;
 class VDPad;
 
-class SetJoystick : public QObject
+class SetJoystick : public SetJoystickXml
 {
     Q_OBJECT
 
@@ -82,9 +83,7 @@ public:
     QList<JoyButton*> const& getLastClickedButtons() const;
     void removeAllBtnFromQueue();
     int getCountBtnInList(QString partialName);
-
     bool isSetEmpty();
-
 
 protected:
 

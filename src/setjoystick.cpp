@@ -32,7 +32,7 @@
 
 
 SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
-    QObject(parent)
+    SetJoystickXml(this, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -43,7 +43,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, QObject *parent) :
 }
 
 SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent) :
-    QObject(parent)
+    SetJoystickXml(this, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -386,7 +386,6 @@ void SetJoystick::release()
         button->eventReset();
     }
 }
-
 
 bool SetJoystick::isSetEmpty()
 {

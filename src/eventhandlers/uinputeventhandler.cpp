@@ -119,7 +119,7 @@ bool UInputEventHandler::init()
 }
 
 
-void UInputEventHandler::initDevice(int device, QString name, bool& result)
+void UInputEventHandler::initDevice(int& device, QString name, bool& result)
 {
     device = openUInputHandle();
 

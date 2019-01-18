@@ -20,10 +20,13 @@
 
 #include <QObject>
 
+#include "xml/joydpadxml.h"
 #include "vdpad.h"
 
+class QXmlStreamReader;
 class JoyButton;
 class SetJoystick;
+class DPad;
 
 // holds information about gamecontroller dpad
 
@@ -37,8 +40,6 @@ public:
 
     virtual QString getName(bool forceFullFormat, bool displayName);
     virtual QString getXmlName(); // GameControllerDPadXml class
-
-    VDPad* getDPad();
 };
 
 #endif // GAMECONTROLLERDPAD_H

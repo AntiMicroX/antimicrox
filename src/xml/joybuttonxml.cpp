@@ -90,8 +90,8 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
             if ((xml->name() == "slot") && xml->isStartElement())
             {
                 JoyButtonSlot *buttonslot = new JoyButtonSlot(m_joyButton);
-                JoyButtonSlotXml* joyButtonSlotXml = new JoyButtonSlotXml(buttonslot);
-                joyButtonSlotXml->readConfig(xml);
+                JoyButtonSlotXml* buttonSlotXml = new JoyButtonSlotXml(buttonslot);
+                buttonSlotXml->readConfig(xml);
 
                 if (buttonslot->isValidSlot())
                 {
@@ -492,8 +492,8 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
             while (iter.hasNext())
             {
                 JoyButtonSlot *buttonslot = iter.next();
-                JoyButtonSlotXml* joyButtonSlotXml = new JoyButtonSlotXml(buttonslot);
-                joyButtonSlotXml->writeConfig(xml);
+                JoyButtonSlotXml* buttonslotxml = new JoyButtonSlotXml(buttonslot);
+                buttonslotxml->writeConfig(xml);
             }
 
             xml->writeEndElement();

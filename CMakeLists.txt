@@ -86,7 +86,7 @@ endif(WITH_TESTS)
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
-    option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." OFF)
+    option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
     option(APPDATA "Build project with AppData file support." ON)
 endif(UNIX)
 
@@ -184,9 +184,11 @@ set(antimicro_SOURCES
     src/advancebuttondialog.cpp
     src/simplekeygrabberbutton.cpp
     src/joybuttonslot.cpp
+    src/xml/joybuttonslotxml.cpp
     src/joybuttontypes/joyaxisbutton.cpp
     src/aboutdialog.cpp
     src/setjoystick.cpp
+    src/xml/setjoystickxml.cpp
     src/sdleventreader.cpp
     src/setaxisthrottledialog.cpp
     src/keyboard/virtualkeypushbutton.cpp
@@ -224,8 +226,6 @@ set(antimicro_SOURCES
     src/antkeymapper.cpp
     src/inputdevice.cpp
     src/xml/inputdevicexml.cpp
-    src/xml/joybuttonslotxml.cpp
-    src/xml/setjoystickxml.cpp
     src/mainsettingsdialog.cpp
     src/gamecontroller/gamecontrollertriggerbutton.cpp
     src/setnamesdialog.cpp
@@ -289,9 +289,11 @@ set(antimicro_HEADERS
     src/advancebuttondialog.h
     src/simplekeygrabberbutton.h
     src/joybuttonslot.h
+    src/xml/joybuttonslotxml.h
     src/joybuttontypes/joyaxisbutton.h
     src/aboutdialog.h
     src/setjoystick.h
+    src/xml/setjoystickxml.h
     src/sdleventreader.h
     src/setaxisthrottledialog.h
     src/keyboard/virtualkeypushbutton.h
@@ -329,8 +331,6 @@ set(antimicro_HEADERS
     src/antkeymapper.h
     src/inputdevice.h
     src/xml/inputdevicexml.h
-    src/xml/joybuttonslotxml.h
-    src/xml/setjoystickxml.h
     src/mainsettingsdialog.h
     src/gamecontroller/gamecontrollertriggerbutton.h
     src/setnamesdialog.h
@@ -407,7 +407,6 @@ if(USE_SDL_2)
          src/gamecontroller/xml/gamecontrollerxml.cpp
          src/gamecontroller/xml/gamecontrollertriggerxml.cpp
          src/gamecontroller/xml/gamecontrollerdpadxml.cpp
-         src/gamecontroller/xml/gamecontrollersetxml.cpp
     )
     LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
@@ -418,7 +417,6 @@ if(USE_SDL_2)
         src/gamecontroller/xml/gamecontrollerxml.h
         src/gamecontroller/xml/gamecontrollertriggerxml.h
         src/gamecontroller/xml/gamecontrollerdpadxml.h
-        src/gamecontroller/xml/gamecontrollersetxml.h
     )
 endif(USE_SDL_2)
 

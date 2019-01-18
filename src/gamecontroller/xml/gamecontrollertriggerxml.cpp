@@ -1,4 +1,5 @@
 #include "gamecontrollertriggerxml.h"
+#include "gamecontroller/gamecontrollertrigger.h"
 #include "gamecontroller/gamecontrollertriggerbutton.h"
 #include "xml/joyaxisxml.h"
 #include "xml/joybuttonxml.h"

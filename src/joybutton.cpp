@@ -32,6 +32,8 @@
 #include <QDebug>
 #include <QThread>
 #include <QStringList>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 #include <QSharedPointer>
 
 const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;
@@ -464,8 +466,7 @@ void JoyButton::turboEvent()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (!isKeyPressed) changeTurboParams(!isKeyPressed, isButtonPressed);
-    else changeTurboParams(isKeyPressed, isButtonPressed);
+    changeTurboParams(isKeyPressed, isButtonPressed);
 }
 
 void JoyButton::changeTurboParams(bool _isKeyPressed, bool isButtonPressed)
@@ -488,7 +489,7 @@ void JoyButton::changeTurboParams(bool _isKeyPressed, bool isButtonPressed)
 
     if (!_isKeyPressed) createDeskEvent();
     else releaseDeskEvent();
-    isKeyPressed = true;
+    isKeyPressed = !_isKeyPressed;
 
     if (turboTimer.isActive())
     {

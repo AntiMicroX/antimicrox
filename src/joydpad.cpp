@@ -25,7 +25,6 @@
 #include <QHashIterator>
 
 
-
 JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent) :
     QObject(parent)
 {

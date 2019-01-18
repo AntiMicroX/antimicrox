@@ -24,6 +24,8 @@
 #include <QMetaType>
 #include <QVariant>
 
+class QXmlStreamReader;
+class QXmlStreamWriter;
 
 class JoyButtonSlot : public QObject
 {

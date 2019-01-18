@@ -9,8 +9,7 @@
 
 GameControllerDPadXml::GameControllerDPadXml(GameControllerDPad* gameContrDpad, QObject* parent) : JoyDPadXml<VDPad>(gameContrDpad, parent)
 {
-    m_gameContrDpad = gameContrDpad;
-    dpadXml = new JoyDPadXml<VDPad>(m_gameContrDpad->getDPad(), this);
+    dpadXml = new JoyDPadXml<GameControllerDPad>(gameContrDpad, this);
 }
 
 void GameControllerDPadXml::readJoystickConfig(QXmlStreamReader *xml)
