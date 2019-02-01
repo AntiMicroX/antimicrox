@@ -134,13 +134,14 @@ void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameContro
     }
 
     VDPad *dpad = nullptr;
+    JoyDPadXml<VDPad>* dpadXml = nullptr;
 
     if (found)
     {
         if (dpadXml != nullptr) delete dpadXml;
 
         dpad = getVDPad(0);
-        dpadXml = new JoyDPadXml(dpad);
+        dpadXml = new JoyDPadXml<VDPad>(dpad);
     }
 
     if ((dpad != nullptr) && !vdpadExists)
@@ -302,10 +303,10 @@ void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
     }
     else if (elemName == "dpad") {
         GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(getVDPad(index-1));
-        QPointer<JoyDPadXml> dpadXml = new JoyDPadXml(vdpad);
-        readConf(dpadXml.data(), xml);
+        JoyDPadXml<GameControllerDPad>* dpadXml = new JoyDPadXml<GameControllerDPad>(vdpad);
+        readConf(dpadXml, xml);
 
-        if (!dpadXml.isNull()) delete dpadXml;
+       // if (!dpadXml.isNull()) delete dpadXml;
     }
     else if (elemName == "trigger")
     {

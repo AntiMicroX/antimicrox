@@ -1,10 +1,14 @@
-#include "joydpadxml.h"
-#include "joydpad.h"
 
 #include "globalvariables.h"
-#include "messagehandler.h"
-#include "inputdevice.h"
+
 #include "xml/joybuttonxml.h"
+#include "joydpad.h"
+#include "vdpad.h"
+#include "gamecontroller/gamecontrollerdpad.h"
+
+
+
+#include "messagehandler.h"
 
 #include <QDebug>
 #include <QPointer>
@@ -14,13 +18,16 @@
 
 
 
-JoyDPadXml::JoyDPadXml(JoyDPad* joydpad, QObject *parent) : QObject(parent)
+
+template <class T>
+JoyDPadXml<T>::JoyDPadXml(T* joydpad, QObject *parent) : QObject(parent)
 {
     m_joydpad = joydpad;
 }
 
 
-void JoyDPadXml::readConfig(QXmlStreamReader *xml)
+template <class T>
+void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -40,7 +47,8 @@ void JoyDPadXml::readConfig(QXmlStreamReader *xml)
     }
 }
 
-void JoyDPadXml::writeConfig(QXmlStreamWriter *xml)
+template <class T>
+void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -48,6 +56,7 @@ void JoyDPadXml::writeConfig(QXmlStreamWriter *xml)
     {
         xml->writeStartElement(m_joydpad->getXmlName());
         xml->writeAttribute("index", QString::number(m_joydpad->getRealJoyNumber()));
+
         if (m_joydpad->getJoyMode() == JoyDPad::EightWayMode)
         {
             xml->writeTextElement("mode", "eight-way");
@@ -78,7 +87,8 @@ void JoyDPadXml::writeConfig(QXmlStreamWriter *xml)
     }
 }
 
-bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
+template <class T>
+bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -89,12 +99,11 @@ bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
         found = true;
         int index_local = xml->attributes().value("index").toString().toInt();
         JoyDPadButton* button = m_joydpad->getJoyButton(index_local);
+
         if (button != nullptr)
         {
-            QPointer<JoyButtonXml> joyBtnXml = new JoyButtonXml(button);
+            JoyButtonXml* joyBtnXml = new JoyButtonXml(button);
             joyBtnXml->readConfig(xml);
-
-            if (!joyBtnXml.isNull()) delete joyBtnXml;
         }
         else
         {
@@ -105,6 +114,7 @@ bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
     {
         found = true;
         QString temptext = xml->readElementText();
+
         if (temptext == "eight-way")
         {
             m_joydpad->setJoyMode(JoyDPad::EightWayMode);
@@ -128,3 +138,7 @@ bool JoyDPadXml::readMainConfig(QXmlStreamReader *xml)
 
     return found;
 }
+
+template class JoyDPadXml<JoyDPad>;
+template class JoyDPadXml<VDPad>;
+//template class JoyDPadXml<GameControllerDPad>;

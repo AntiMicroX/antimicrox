@@ -19,6 +19,7 @@
 #define SETJOYSTICK_H
 
 #include "joyaxis.h"
+#include "xml/setjoystickxml.h"
 
 #include <QObject>
 #include <QHash>
@@ -30,13 +31,8 @@ class JoyButton;
 class JoyDPad;
 class JoyControlStick;
 class VDPad;
-class QXmlStreamReader;
-class QXmlStreamWriter;
-class JoyDPadXml;
-class JoyAxisXml;
-class JoyButtonXml;
 
-class SetJoystick : public QObject
+class SetJoystick : public SetJoystickXml
 {
     Q_OBJECT
 
@@ -87,12 +83,10 @@ public:
     QList<JoyButton*> const& getLastClickedButtons() const;
     void removeAllBtnFromQueue();
     int getCountBtnInList(QString partialName);
-
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
+    bool isSetEmpty();
 
 protected:
-    bool isSetEmpty();
+
     void deleteButtons(); // SetButton class
     void deleteAxes(); // SetAxis class
     void deleteHats(); // SetHat class
@@ -184,10 +178,6 @@ private:
     int m_index;
     InputDevice *m_device;
     QString m_name;
-
-    JoyDPadXml* joydpadXml;
-    JoyAxisXml* joyAxisXml;
-    JoyButtonXml* joyButtonXml;
 };
 
 Q_DECLARE_METATYPE(SetJoystick*)

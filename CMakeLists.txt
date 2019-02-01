@@ -174,7 +174,7 @@ set(antimicro_SOURCES
     src/xml/joyaxisxml.cpp
     src/joyaxiswidget.cpp
     src/joydpad.cpp
-    src/xml/joydpadxml.cpp
+    #src/xml/joydpadxml.cpp
     src/joybuttontypes/joydpadbutton.cpp
     src/axiseditdialog.cpp
     src/xmlconfigreader.cpp
@@ -184,9 +184,11 @@ set(antimicro_SOURCES
     src/advancebuttondialog.cpp
     src/simplekeygrabberbutton.cpp
     src/joybuttonslot.cpp
+    src/xml/joybuttonslotxml.cpp
     src/joybuttontypes/joyaxisbutton.cpp
     src/aboutdialog.cpp
     src/setjoystick.cpp
+    src/xml/setjoystickxml.cpp
     src/sdleventreader.cpp
     src/setaxisthrottledialog.cpp
     src/keyboard/virtualkeypushbutton.cpp
@@ -287,9 +289,11 @@ set(antimicro_HEADERS
     src/advancebuttondialog.h
     src/simplekeygrabberbutton.h
     src/joybuttonslot.h
+    src/xml/joybuttonslotxml.h
     src/joybuttontypes/joyaxisbutton.h
     src/aboutdialog.h
     src/setjoystick.h
+    src/xml/setjoystickxml.h
     src/sdleventreader.h
     src/setaxisthrottledialog.h
     src/keyboard/virtualkeypushbutton.h
@@ -402,6 +406,7 @@ if(USE_SDL_2)
          src/gamecontrollerexample.cpp
          src/gamecontroller/xml/gamecontrollerxml.cpp
          src/gamecontroller/xml/gamecontrollertriggerxml.cpp
+         src/gamecontroller/xml/gamecontrollerdpadxml.cpp
     )
     LIST(APPEND antimicro_HEADERS src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
@@ -411,6 +416,7 @@ if(USE_SDL_2)
         src/gamecontrollerexample.h
         src/gamecontroller/xml/gamecontrollerxml.h
         src/gamecontroller/xml/gamecontrollertriggerxml.h
+        src/gamecontroller/xml/gamecontrollerdpadxml.h
     )
 endif(USE_SDL_2)
 

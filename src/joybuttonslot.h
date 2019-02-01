@@ -77,9 +77,6 @@ public:
     QVariant getExtraData();
 
     bool isValidSlot();
-
-    virtual void readConfig(QXmlStreamReader *xml);
-    virtual void writeConfig(QXmlStreamWriter *xml);
     
 private:
     int deviceCode;
