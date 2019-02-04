@@ -38,7 +38,7 @@ protected:
 
 
 private:
-    static int atrapeMapFunc(const int &x);
+    static int fakeMapFunc(const int &x);
     static void summarizeValues(int &numbFromList, const int &mappednumb);
     static void getMinVal(int &numbFromList, const int &mappednumb);
     static void getMaxVal(int &numbFromList, const int &mappednumb);

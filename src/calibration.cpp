@@ -219,7 +219,7 @@ int Calibration::calibratedDeadZone(int center, int deadzone)
 }
 
 
-int Calibration::atrapeMapFunc(const int &x)
+int Calibration::fakeMapFunc(const int &x)
 {
     return x;
 }
@@ -315,11 +315,11 @@ void Calibration::startCalibration()
         update();
 
         QList<int> xValues = x_es_val.values();
-        QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::atrapeMapFunc, &Calibration::summarizeValues);
+        QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::summarizeValues);
         sumX = resX.result();
 
         QList<int> yValues = x_es_val.values();
-        QFuture<int> resY = QtConcurrent::mappedReduced(xValues, &Calibration::atrapeMapFunc, &Calibration::summarizeValues);
+        QFuture<int> resY = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::summarizeValues);
         sumY = resY.result();
 
 
@@ -375,11 +375,11 @@ void Calibration::startSecondStep()
                 int min_y = 0;
 
                 QList<int> xValues = x_es_val.values(QString("-"));
-                QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::atrapeMapFunc, &Calibration::getMinVal);
+                QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::getMinVal);
                 min_x = resX.result();
 
                 QList<int> yValues = y_es_val.values(QString("-"));
-                QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::atrapeMapFunc, &Calibration::getMinVal);
+                QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::getMinVal);
                 min_y = resX.result();
 
                 min_axis_val_x = min_x;
@@ -425,11 +425,11 @@ void Calibration::startLastStep()
                 int max_y = 0;
 
                 QList<int> xValues = x_es_val.values(QString("+"));
-                QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::atrapeMapFunc, &Calibration::getMaxVal);
+                QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::getMaxVal);
                 max_x = resX.result();
 
                 QList<int> yValues = y_es_val.values(QString("+"));
-                QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::atrapeMapFunc, &Calibration::getMaxVal);
+                QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::getMaxVal);
                 max_y = resX.result();
 
                 max_axis_val_x = max_x;
