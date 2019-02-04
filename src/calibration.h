@@ -38,6 +38,11 @@ protected:
 
 
 private:
+    static int atrapeMapFunc(const int &x);
+    static void summarizeValues(int &numbFromList, const int &mappednumb);
+    static void getMinVal(int &numbFromList, const int &mappednumb);
+    static void getMaxVal(int &numbFromList, const int &mappednumb);
+
     Ui::Calibration *ui;
     QMap<SDL_JoystickID, InputDevice*>* joysticks;
     JoyControlStick *stick;

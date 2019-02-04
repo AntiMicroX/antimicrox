@@ -516,6 +516,7 @@ if (UNIX)
         find_package(Qt5Gui REQUIRED)
         find_package(Qt5Network REQUIRED)
         find_package(Qt5LinguistTools REQUIRED)
+        find_package(Qt5Concurrent REQUIRED)
 
         QT5_WRAP_CPP(antimicro_HEADERS_MOC ${antimicro_HEADERS})
         QT5_WRAP_UI(antimicro_FORMS_HEADERS ${antimicro_FORMS})
@@ -532,6 +533,7 @@ elseif(WIN32)
     find_package(Qt5Gui REQUIRED)
     find_package(Qt5Network REQUIRED)
     find_package(Qt5LinguistTools REQUIRED)
+    find_package(Qt5Concurrent REQUIRED)
 
     QT5_WRAP_CPP(antimicro_HEADERS_MOC ${antimicro_HEADERS})
     QT5_WRAP_UI(antimicro_FORMS_HEADERS ${antimicro_FORMS})
@@ -597,10 +599,10 @@ endif(UNIX)
                 ${antimicro_RESOURCES_RCC}
             )
 
-            target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network ${SDL2_LIBRARIES} ${LIBS})
+            target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL2_LIBRARIES} ${LIBS})
 
             add_executable(antimicro ${antimicro_MAIN})
-            target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network)
+            target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
 
     elseif(WIN32)
 
@@ -615,7 +617,7 @@ endif(UNIX)
 
         # The WIN32 is required to specify a GUI application.
         add_executable(antimicro ${antimicro_MAIN})
-        target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network ${LIBS})
+        target_link_libraries (antimicro antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${LIBS})
     endif(UNIX)
 
     target_compile_definitions(antimicro PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development

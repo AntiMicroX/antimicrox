@@ -57,6 +57,7 @@ public:
     QHash<int, JoyDPad*> const& getHats() const;
     QHash<int, JoyControlStick*> const& getSticks() const;
     QHash<int, VDPad*> const& getVdpads() const;
+    QHash<int, JoyAxis*>* getAxes();
 
     int getIndex() const;
     int getRealIndex() const;
@@ -93,7 +94,7 @@ protected:
     void deleteSticks(); // SetStick class
     void deleteVDpads(); // SetVDPad class
 
-    QHash<int, JoyAxis*>* getAxes();
+
 
     void enableButtonConnections(JoyButton *button); // SetButton class
     void enableAxisConnections(JoyAxis *axis); // SetAxis class

@@ -275,6 +275,7 @@ void AdvanceButtonDialog::updateSlotsScrollArea(int value)
     }
 
     // Go through all grabber buttons in list and possibly resize widgets.
+
     for (int i = 0; i < ui->slotListWidget->count(); i++)
     {
         QListWidgetItem *item = ui->slotListWidget->item(i);

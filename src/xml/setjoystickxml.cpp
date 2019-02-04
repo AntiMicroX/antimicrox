@@ -15,6 +15,8 @@
 
 #include "messagehandler.h"
 
+#include <QtConcurrent/QtConcurrent>
+#include <QFuture>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QDebug>
@@ -117,45 +119,66 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         if (!m_setJoystick->getName().isEmpty())
             xml->writeTextElement("name", m_setJoystick->getName());
 
-        for (int i = 0; i < m_setJoystick->getNumberSticks(); i++)
+        QList<JoyControlStick*> sticksList = m_setJoystick->getSticks().values();
+        QListIterator<JoyControlStick*> i(sticksList);
+        while (i.hasNext())
+            i.next()->writeConfig(xml);
+
+//        std::function<void(JoyControlStick*)> writeConfSticks = [xml](JoyControlStick* stick)
+//        {
+//            Q_ASSERT(xml != nullptr);
+//            Q_ASSERT(stick != nullptr);
+//            stick->writeConfig(xml);
+//        };
+
+//        QtConcurrent::map(sticksList, writeConfSticks);
+
+//        for (int i = 0; i < m_setJoystick->getNumberSticks(); i++)
+//        {
+//            JoyControlStick *stick = m_setJoystick->getJoyStick(i);
+//            stick->writeConfig(xml);
+//        }
+
+        QList<VDPad*> vdpadsList = m_setJoystick->getVdpads().values();
+        QListIterator<VDPad*> vdpad(vdpadsList);
+        while (vdpad.hasNext())
         {
-            JoyControlStick *stick = m_setJoystick->getJoyStick(i);
-            stick->writeConfig(xml);
+            JoyDPadXml<VDPad>* joydpadXml = new JoyDPadXml<VDPad>(vdpad.next());
+            joydpadXml->writeConfig(xml);
         }
 
-        for (int i = 0; i < m_setJoystick->getNumberVDPads(); i++)
+
+        QList<JoyAxis*> axesList = m_setJoystick->getAxes()->values();
+        QListIterator<JoyAxis*> axis(axesList);
+        while (axis.hasNext())
         {
-            VDPad *vdpad = m_setJoystick->getVDPad(i);
+            JoyAxis* axisCur = axis.next();
+            JoyAxisXml* joyAxisXml = new JoyAxisXml(axisCur);
 
-            JoyDPadXml<VDPad>* joydpadXml = new JoyDPadXml<VDPad>(vdpad);
-            if (vdpad != nullptr) joydpadXml->writeConfig(xml);
-        }
-
-        for (int i = 0; i < m_setJoystick->getNumberAxes(); i++)
-        {
-            JoyAxis *axis = m_setJoystick->getJoyAxis(i);
-            joyAxisXml = new JoyAxisXml(axis);
-
-            if (!axis->isPartControlStick() && axis->hasControlOfButtons())
+            if (!axisCur->isPartControlStick() && axisCur->hasControlOfButtons())
             {
                 joyAxisXml->writeConfig(xml);
             }
         }
 
-        for (int i = 0; i < m_setJoystick->getNumberHats(); i++)
+
+        QList<JoyDPad*> dpadsList = m_setJoystick->getHats().values();
+        QListIterator<JoyDPad*> dpad(dpadsList);
+        while (dpad.hasNext())
         {
-            JoyDPad *dpad = m_setJoystick->getJoyDPad(i);
-            JoyDPadXml<JoyDPad>* joydpadXml = new JoyDPadXml<JoyDPad>(dpad);
+            JoyDPadXml<JoyDPad>* joydpadXml = new JoyDPadXml<JoyDPad>(dpad.next());
             joydpadXml->writeConfig(xml);
         }
 
-        for (int i = 0 ; i < m_setJoystick->getNumberButtons(); i++)
-        {
-            JoyButton *button = m_setJoystick->getJoyButton(i);
 
-            if ((button != nullptr) && !button->isPartVDPad())
+        QList<JoyButton*> buttonsList = m_setJoystick->getButtons().values();
+        QListIterator<JoyButton*> button(buttonsList);
+        while (button.hasNext())
+        {
+            JoyButton* buttonCurr = button.next();
+            if ((buttonCurr != nullptr) && !buttonCurr->isPartVDPad())
             {
-                joyButtonXml = new JoyButtonXml(button);
+                JoyButtonXml* joyButtonXml = new JoyButtonXml(buttonCurr);
                 joyButtonXml->writeConfig(xml);
             }
         }
