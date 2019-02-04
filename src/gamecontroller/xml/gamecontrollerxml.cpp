@@ -429,10 +429,12 @@ void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeStartElement("sets");
 
-    for (int i = 0; i < m_gameController->getJoystick_sets().size(); i++)
-    {
-        m_gameController->getJoystick_sets().value(i)->writeConfig(xml);
+    QHashIterator<int, SetJoystick*> currHash(m_gameController->getJoystick_sets());
+    while (currHash.hasNext()) {
+        currHash.next();
+        currHash.value()->writeConfig(xml);
     }
+
 
     xml->writeEndElement();
 
@@ -441,15 +443,16 @@ void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
 
 void GameControllerXml::writeXmlForButtons(SetJoystick *tempSet, QXmlStreamWriter *xml)
 {
-    for (int i = 0; i < m_gameController->getNumberButtons(); i++)
-    {
-        JoyButton *button = tempSet->getJoyButton(i);
+    QHashIterator<int, JoyButton*> currBtn(tempSet->getButtons());
 
-        if ((button != nullptr) && !button->getButtonName().isEmpty())
+    while (currBtn.hasNext()) {
+        currBtn.next();
+
+        if ((currBtn.value() != nullptr) && !currBtn.value()->getButtonName().isEmpty())
         {
             xml->writeStartElement("buttonname");
-            xml->writeAttribute("index", QString::number(button->getRealJoyNumber()));
-            xml->writeCharacters(button->getButtonName());
+            xml->writeAttribute("index", QString::number(currBtn.value()->getRealJoyNumber()));
+            xml->writeCharacters(currBtn.value()->getButtonName());
             xml->writeEndElement();
         }
     }
@@ -458,22 +461,23 @@ void GameControllerXml::writeXmlForButtons(SetJoystick *tempSet, QXmlStreamWrite
 
 void GameControllerXml::writeXmlForAxes(SetJoystick *tempSet, QXmlStreamWriter *xml)
 {
-    for (int i = 0; i < m_gameController->getNumberAxes(); i++)
-    {
-        JoyAxis *axis = tempSet->getJoyAxis(i);
+    QHashIterator<int, JoyAxis*> currAxis(*tempSet->getAxes());
 
-        if (axis != nullptr)
+    while (currAxis.hasNext()) {
+        currAxis.next();
+
+        if (currAxis.value() != nullptr)
         {
-            if (!axis->getAxisName().isEmpty())
+            if (!currAxis.value()->getAxisName().isEmpty())
             {
                 xml->writeStartElement("axisname");
-                xml->writeAttribute("index", QString::number(axis->getRealJoyIndex()));
-                xml->writeCharacters(axis->getAxisName());
+                xml->writeAttribute("index", QString::number(currAxis.value()->getRealJoyIndex()));
+                xml->writeCharacters(currAxis.value()->getAxisName());
                 xml->writeEndElement();
             }
 
-            writeXmlAxBtn(axis, axis->getNAxisButton(), xml);
-            writeXmlAxBtn(axis, axis->getPAxisButton(), xml);
+            writeXmlAxBtn(currAxis.value(), currAxis.value()->getNAxisButton(), xml);
+            writeXmlAxBtn(currAxis.value(), currAxis.value()->getPAxisButton(), xml);
 
         }
     }
@@ -495,21 +499,22 @@ void GameControllerXml::writeXmlAxBtn(JoyAxis *axis, JoyAxisButton *axisbutton, 
 
 void GameControllerXml::writeXmlForSticks(SetJoystick *tempSet, QXmlStreamWriter *xml)
 {
-    for (int i = 0; i < m_gameController->getNumberSticks(); i++)
-    {
-        JoyControlStick *stick = tempSet->getJoyStick(i);
+    QHashIterator<int, JoyControlStick*> currStick(tempSet->getSticks());
 
-        if (stick != nullptr)
+    while (currStick.hasNext()) {
+        currStick.next();
+
+        if (currStick.value() != nullptr)
         {
-            if (!stick->getStickName().isEmpty())
+            if (!currStick.value()->getStickName().isEmpty())
             {
                 xml->writeStartElement("controlstickname");
-                xml->writeAttribute("index", QString::number(stick->getRealJoyIndex()));
-                xml->writeCharacters(stick->getStickName());
+                xml->writeAttribute("index", QString::number(currStick.value()->getRealJoyIndex()));
+                xml->writeCharacters(currStick.value()->getStickName());
                 xml->writeEndElement();
             }
 
-            QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *buttons = stick->getButtons();
+            QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *buttons = currStick.value()->getButtons();
             QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*buttons);
 
             while (iter.hasNext())
@@ -519,7 +524,7 @@ void GameControllerXml::writeXmlForSticks(SetJoystick *tempSet, QXmlStreamWriter
                 if ((button != nullptr) && !button->getButtonName().isEmpty())
                 {
                     xml->writeStartElement("controlstickbuttonname");
-                    xml->writeAttribute("index", QString::number(stick->getRealJoyIndex()));
+                    xml->writeAttribute("index", QString::number(currStick.value()->getRealJoyIndex()));
                     xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
                     xml->writeCharacters(button->getButtonName());
                     xml->writeEndElement();
@@ -532,38 +537,39 @@ void GameControllerXml::writeXmlForSticks(SetJoystick *tempSet, QXmlStreamWriter
 
 void GameControllerXml::writeXmlForVDpad(QXmlStreamWriter *xml)
 {
-    for (int i = 0; i < m_gameController->getNumberVDPads(); i++)
+    QHashIterator<int, VDPad*> currVDPad(m_gameController->getActiveSetJoystick()->getVdpads());
+
+    while (currVDPad.hasNext()) {
+        currVDPad.next();
+
+        if (currVDPad.value() != nullptr)
         {
-            VDPad *vdpad = m_gameController->getActiveSetJoystick()->getVDPad(i);
-
-            if (vdpad != nullptr)
+            if (!currVDPad.value()->getDpadName().isEmpty())
             {
-                if (!vdpad->getDpadName().isEmpty())
+                xml->writeStartElement("dpadname");
+                xml->writeAttribute("index", QString::number(currVDPad.value()->getRealJoyNumber()));
+                xml->writeCharacters(currVDPad.value()->getDpadName());
+                xml->writeEndElement();
+            }
+
+            QHash<int, JoyDPadButton*> *temp = currVDPad.value()->getButtons();
+            QHashIterator<int, JoyDPadButton*> iter(*temp);
+
+            while (iter.hasNext())
+            {
+                JoyDPadButton *button = iter.next().value();
+
+                if ((button != nullptr) && !button->getButtonName().isEmpty())
                 {
-                    xml->writeStartElement("dpadname");
-                    xml->writeAttribute("index", QString::number(vdpad->getRealJoyNumber()));
-                    xml->writeCharacters(vdpad->getDpadName());
+                    xml->writeStartElement("dpadbutton");
+                    xml->writeAttribute("index", QString::number(currVDPad.value()->getRealJoyNumber()));
+                    xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
+                    xml->writeCharacters(button->getButtonName());
                     xml->writeEndElement();
-                }
-
-                QHash<int, JoyDPadButton*> *temp = vdpad->getButtons();
-                QHashIterator<int, JoyDPadButton*> iter(*temp);
-
-                while (iter.hasNext())
-                {
-                    JoyDPadButton *button = iter.next().value();
-
-                    if ((button != nullptr) && !button->getButtonName().isEmpty())
-                    {
-                        xml->writeStartElement("dpadbutton");
-                        xml->writeAttribute("index", QString::number(vdpad->getRealJoyNumber()));
-                        xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
-                        xml->writeCharacters(button->getButtonName());
-                        xml->writeEndElement();
-                    }
                 }
             }
         }
+    }
 }
 
 void GameControllerXml::readXmlNamesShort(QString name, QXmlStreamReader *xml)
@@ -686,4 +692,3 @@ inline void GameControllerXml::assignVariablesShort(QXmlStreamReader *xml, int& 
     temp = xml->readElementText();
     index = index - 1;
 }
-

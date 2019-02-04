@@ -348,6 +348,7 @@ void GameControllerSet::refreshAxes()
 
     deleteAxes();
 
+
     for (int i = 0; i < getInputDevice()->getNumberRawAxes(); i++)
     {
         if ((i == static_cast<int>(SDL_CONTROLLER_AXIS_TRIGGERLEFT)) ||
