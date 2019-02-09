@@ -7,6 +7,7 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class InputDevice;
 class AntiMicroSettings;
+class SetJoystick;
 
 class InputDeviceXml : public QObject
 {
@@ -21,6 +22,8 @@ public slots:
     virtual void writeConfig(QXmlStreamWriter *xml); // InputDeviceXml class
 
 private:
+
+    static void removeVDPads(SetJoystick* setJoy);
 
     InputDevice* m_inputDevice;
 

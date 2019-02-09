@@ -319,7 +319,7 @@ void Calibration::startCalibration()
         sumX = resX.result();
 
         QList<int> yValues = x_es_val.values();
-        QFuture<int> resY = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::summarizeValues);
+        QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::summarizeValues);
         sumY = resY.result();
 
 

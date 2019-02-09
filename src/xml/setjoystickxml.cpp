@@ -119,25 +119,12 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         if (!m_setJoystick->getName().isEmpty())
             xml->writeTextElement("name", m_setJoystick->getName());
 
+
         QList<JoyControlStick*> sticksList = m_setJoystick->getSticks().values();
         QListIterator<JoyControlStick*> i(sticksList);
         while (i.hasNext())
             i.next()->writeConfig(xml);
 
-//        std::function<void(JoyControlStick*)> writeConfSticks = [xml](JoyControlStick* stick)
-//        {
-//            Q_ASSERT(xml != nullptr);
-//            Q_ASSERT(stick != nullptr);
-//            stick->writeConfig(xml);
-//        };
-
-//        QtConcurrent::map(sticksList, writeConfSticks);
-
-//        for (int i = 0; i < m_setJoystick->getNumberSticks(); i++)
-//        {
-//            JoyControlStick *stick = m_setJoystick->getJoyStick(i);
-//            stick->writeConfig(xml);
-//        }
 
         QList<VDPad*> vdpadsList = m_setJoystick->getVdpads().values();
         QListIterator<VDPad*> vdpad(vdpadsList);
