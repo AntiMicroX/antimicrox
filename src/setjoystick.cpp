@@ -108,7 +108,7 @@ void SetJoystick::refreshButtons()
 
     deleteButtons();
 
-    for (int i=0; i < m_device->getNumberRawButtons(); i++)
+    for (int i = 0; i < m_device->getNumberRawButtons(); i++)
     {
         JoyButton *button = new JoyButton (i, m_index, this, this);
         m_buttons.insert(i, button);
