@@ -685,7 +685,7 @@ void JoyAxis::removeControlStick(bool performRelease)
             m_stick->releaseButtonEvents();
 
         m_stick = nullptr;
-        emit propertyUpdated();
+        //emit propertyUpdated();
     }
 }
 
