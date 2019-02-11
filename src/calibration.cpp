@@ -10,6 +10,8 @@
 
 #include <SDL2/SDL_joystick.h>
 
+#include <QtConcurrent>
+#include <QFuture>
 #include <QTabWidget>
 #include <QProgressBar>
 #include <QMessageBox>
@@ -79,9 +81,13 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
         ui->controllersBox->addItem(joytabName);
     }
 
-    for (int i = 0; i < joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getNumberSticks(); i++)
+    int currContrBoxIndex = ui->controllersBox->currentIndex();
+    QList<JoyControlStick*> sticksList = joysticks->value(currContrBoxIndex)->getSetJoystick(currContrBoxIndex)->getSticks().values();
+
+    QListIterator<JoyControlStick*> currStick(sticksList);
+    while (currStick.hasNext())
     {
-       ui->axesBox->addItem(joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getJoyStick(i)->getPartialName());
+        ui->axesBox->addItem(currStick.next()->getPartialName());
     }
 
     connect(ui->saveBtn, &QPushButton::clicked, this, &Calibration::saveSettings);
@@ -159,10 +165,10 @@ void Calibration::restoreCalValues()
     joyAxisX->setAxisCenterCal(center_calibrated_x);
     joyAxisY->setAxisCenterCal(center_calibrated_y);
 
-    joyAxisX->setAxisMinCal(min_axis_val_x);
-    joyAxisY->setAxisMinCal(min_axis_val_y);
-    joyAxisX->setAxisMaxCal(max_axis_val_x);
-    joyAxisY->setAxisMaxCal(max_axis_val_y);
+    joyAxisX->setAxisMinCal(GlobalVariables::JoyAxis::AXISMIN);
+    joyAxisY->setAxisMinCal(GlobalVariables::JoyAxis::AXISMIN);
+    joyAxisX->setAxisMaxCal(GlobalVariables::JoyAxis::AXISMAX);
+    joyAxisY->setAxisMaxCal(GlobalVariables::JoyAxis::AXISMAX);
 
     joyAxisX->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
     joyAxisY->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
@@ -210,6 +216,30 @@ void Calibration::setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_
 int Calibration::calibratedDeadZone(int center, int deadzone)
 {
     return (center + deadzone);
+}
+
+
+int Calibration::fakeMapFunc(const int &x)
+{
+    return x;
+}
+
+
+void Calibration::summarizeValues(int &numbFromList, const int &mappednumb)
+{
+    numbFromList += mappednumb;
+}
+
+
+void Calibration::getMinVal(int &numbFromList, const int &mappednumb)
+{
+    if (numbFromList > mappednumb) numbFromList = mappednumb;
+}
+
+
+void Calibration::getMaxVal(int &numbFromList, const int &mappednumb)
+{
+    if (numbFromList < mappednumb) numbFromList = mappednumb;
 }
 
 /**
@@ -284,11 +314,13 @@ void Calibration::startCalibration()
         ui->startButton->setText(trUtf8("Start second step"));
         update();
 
-        for (int i = 0; i < x_es_val.count(); i++)
-            sumX += x_es_val.values().at(i);
+        QList<int> xValues = x_es_val.values();
+        QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::summarizeValues);
+        sumX = resX.result();
 
-        for (int i = 0; i < y_es_val.count(); i++)
-            sumY += y_es_val.values().at(i);
+        QList<int> yValues = x_es_val.values();
+        QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::summarizeValues);
+        sumY = resY.result();
 
 
         if ((sumX != 0) && (sumY != 0)) {
@@ -342,25 +374,13 @@ void Calibration::startSecondStep()
                 int min_x = 0;
                 int min_y = 0;
 
-                for (int i = 0; i < x_es_val.count(QString("-")); i++) {
-                    if (i > 0) {
-                        if (x_es_val.values(QString("-")).at(i) < x_es_val.values(QString("-")).at(i-1))  {
-                            min_x = x_es_val.values(QString("-")).at(i);
-                        }
-                    } else {
-                        min_x = x_es_val.values(QString("-")).at(i);
-                    }
-                }
+                QList<int> xValues = x_es_val.values(QString("-"));
+                QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::getMinVal);
+                min_x = resX.result();
 
-                for (int i = 0; i < y_es_val.count(QString("-")); i++) {
-                    if (i > 0) {
-                        if (y_es_val.values(QString("-")).at(i) < y_es_val.values(QString("-")).at(i-1))  {
-                            min_y = y_es_val.values(QString("-")).at(i);
-                        }
-                    } else {
-                        min_y = y_es_val.values(QString("-")).at(i);
-                    }
-                }
+                QList<int> yValues = y_es_val.values(QString("-"));
+                QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::getMinVal);
+                min_y = resX.result();
 
                 min_axis_val_x = min_x;
                 min_axis_val_y = min_y;
@@ -404,25 +424,13 @@ void Calibration::startLastStep()
                 int max_x = 0;
                 int max_y = 0;
 
-                for (int i = 0; i < x_es_val.count(QString("+")); i++) {
-                        if (i > 0) {
-                            if (x_es_val.values(QString("+")).at(i) > x_es_val.values(QString("+")).at(i-1))  {
-                                max_x = x_es_val.values(QString("+")).at(i);
-                            }
-                        } else {
-                            max_x = x_es_val.values(QString("+")).at(i);
-                        }
-                }
+                QList<int> xValues = x_es_val.values(QString("+"));
+                QFuture<int> resX = QtConcurrent::mappedReduced(xValues, &Calibration::fakeMapFunc, &Calibration::getMaxVal);
+                max_x = resX.result();
 
-                for (int i = 0; i < y_es_val.count(QString("+")); i++) {
-                    if (i > 0) {
-                        if (y_es_val.values(QString("+")).at(i) > y_es_val.values(QString("+")).at(i-1))  {
-                            max_y = y_es_val.values(QString("+")).at(i);
-                        }
-                    } else {
-                        max_y = y_es_val.values(QString("+")).at(i);
-                    }
-                }
+                QList<int> yValues = y_es_val.values(QString("+"));
+                QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::getMaxVal);
+                max_y = resX.result();
 
                 max_axis_val_x = max_x;
                 max_axis_val_y = max_y;
@@ -551,12 +559,14 @@ int Calibration::chooseMinMax(QString min_max_sign, QList<int> ax_values)
 
     int min_max = 0;
 
-    foreach(int val, ax_values) {
-
-        if (min_max_sign == QString("+")) {
+    foreach(int val, ax_values)
+    {
+        if (min_max_sign == QString("+"))
+        {
             if (min_max < val) min_max = val;
-
-        } else {
+        }
+        else
+        {
             if (min_max > val) min_max = val;
         }
     }
@@ -644,10 +654,13 @@ void Calibration::updateAxesBox()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->axesBox->clear();
+    int currContrBoxIndex = ui->controllersBox->currentIndex();
+    QList<JoyControlStick*> sticksList = joysticks->value(currContrBoxIndex)->getSetJoystick(currContrBoxIndex)->getSticks().values();
+    QListIterator<JoyControlStick*> currStick(sticksList);
 
-    for (int i = 0; i < joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getNumberSticks(); i++)
+    while (currStick.hasNext())
     {
-       ui->axesBox->addItem(joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getJoyStick(i)->getPartialName());
+        ui->axesBox->addItem(currStick.next()->getPartialName());
     }
 
     update();
@@ -799,7 +812,7 @@ void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
         JoyControlStick* controlstick = joysticks->value(inputDevNr)->getSetJoystick(setJoyNr)->getJoyStick(stickNr);
-        helper.moveToThread(controlstick->thread());
+        //helper.moveToThread(controlstick->thread());
 
         joyAxisX = controlstick->getAxisX();
         joyAxisY = controlstick->getAxisY();

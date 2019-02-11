@@ -113,9 +113,11 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
 
 void QuickSetDialog::connectSticksForDialog(SetJoystick* currentset)
 {
-    for (int i = 0; i < currentset->getNumberSticks(); i++)
+    QListIterator<JoyControlStick*> sticksList = currentset->getSticks().values();
+
+    while (sticksList.hasNext())
     {
-        JoyControlStick *stick = currentset->getJoyStick(i);
+        JoyControlStick *stick = sticksList.next();
         QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
         QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stickButtons);
 
@@ -151,9 +153,11 @@ void QuickSetDialog::connectSticksForDialog(SetJoystick* currentset)
 
 void QuickSetDialog::connectAxesForDialog(SetJoystick* currentset)
 {
-    for (int i = 0; i < currentset->getNumberAxes(); i++)
+    QListIterator<JoyAxis*> axesList = currentset->getAxes()->values();
+
+    while (axesList.hasNext())
     {
-        JoyAxis *axis = currentset->getJoyAxis(i);
+        JoyAxis *axis = axesList.next();
 
         if (!axis->isPartControlStick() && axis->hasControlOfButtons())
         {
@@ -180,9 +184,11 @@ void QuickSetDialog::connectAxesForDialog(SetJoystick* currentset)
 
 void QuickSetDialog::connectDpadForDialog(SetJoystick* currentset)
 {
-    for (int i = 0; i < currentset->getNumberHats(); i++)
+    QListIterator<JoyDPad*> dpadsList = currentset->getHats().values();
+
+    while (dpadsList.hasNext())
     {
-        JoyDPad *dpad = currentset->getJoyDPad(i);
+        JoyDPad *dpad = dpadsList.next();
         QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
         QHashIterator<int, JoyDPadButton*> iter(*dpadbuttons);
 
@@ -218,9 +224,11 @@ void QuickSetDialog::connectDpadForDialog(SetJoystick* currentset)
 
 void QuickSetDialog::connectVDpadForDialog(SetJoystick* currentset)
 {
-    for (int i = 0; i < currentset->getNumberVDPads(); i++)
+    QListIterator<VDPad*> vdpadsList = currentset->getVdpads().values();
+
+    while(vdpadsList.hasNext())
     {
-        VDPad *dpad = currentset->getVDPad(i);
+        VDPad *dpad = vdpadsList.next();
 
         if (dpad != nullptr)
         {
@@ -260,9 +268,11 @@ void QuickSetDialog::connectVDpadForDialog(SetJoystick* currentset)
 
 void QuickSetDialog::connectBtnForDialog(SetJoystick* currentset)
 {
-    for (int i = 0; i < currentset->getNumberButtons(); i++)
+    QListIterator<JoyButton*> btnsList = currentset->getButtons().values();
+
+    while (btnsList.hasNext())
     {
-        JoyButton *button = currentset->getJoyButton(i);
+        JoyButton *button = btnsList.next();
 
         if ((button != nullptr) && !button->isPartVDPad())
         {
@@ -398,9 +408,11 @@ void QuickSetDialog::restoreJoystickState()
 
 void QuickSetDialog::restoreSticksStates(SetJoystick *currentset)
 {
-    for (int i = 0; i < currentset->getNumberSticks(); i++)
+    QListIterator<JoyControlStick*> sticksList = currentset->getSticks().values();
+
+    while (sticksList.hasNext())
     {
-        JoyControlStick *stick = currentset->getJoyStick(i);
+        JoyControlStick *stick = sticksList.next();
         QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
         QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stickButtons);
 
@@ -419,9 +431,11 @@ void QuickSetDialog::restoreSticksStates(SetJoystick *currentset)
 
 void QuickSetDialog::restoreAxesStates(SetJoystick *currentset)
 {
-    for (int i = 0; i < currentset->getNumberAxes(); i++)
+    QListIterator<JoyAxis*> axesList = currentset->getAxes()->values();
+
+    while (axesList.hasNext())
     {
-        JoyAxis *axis = currentset->getJoyAxis(i);
+        JoyAxis *axis = axesList.next();
 
         if (!axis->isPartControlStick() && axis->hasControlOfButtons())
         {
@@ -444,9 +458,11 @@ void QuickSetDialog::restoreAxesStates(SetJoystick *currentset)
 
 void QuickSetDialog::restoreHatsStates(SetJoystick *currentset)
 {
-    for (int i = 0; i < currentset->getNumberHats(); i++)
+    QListIterator<JoyDPad*> hatsList = currentset->getHats().values();
+
+    while (hatsList.hasNext())
     {
-        JoyDPad *dpad = currentset->getJoyDPad(i);
+        JoyDPad *dpad = hatsList.next();
         QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
         QHashIterator<int, JoyDPadButton*> iter(*dpadbuttons);
 
@@ -465,9 +481,11 @@ void QuickSetDialog::restoreHatsStates(SetJoystick *currentset)
 
 void QuickSetDialog::restoreVDPadsStates(SetJoystick *currentset)
 {
-    for (int i = 0; i < currentset->getNumberVDPads(); i++)
+    QListIterator<VDPad*> vdpadsList = currentset->getVdpads().values();
+
+    while (vdpadsList.hasNext())
     {
-        VDPad *dpad = currentset->getVDPad(i);
+        VDPad *dpad = vdpadsList.next();
 
         if (dpad != nullptr)
         {
@@ -490,9 +508,11 @@ void QuickSetDialog::restoreVDPadsStates(SetJoystick *currentset)
 
 void QuickSetDialog::restoreButtonsStates(SetJoystick *currentset)
 {
-    for (int i = 0; i < currentset->getNumberButtons(); i++)
+    QListIterator<JoyButton*> btnsList = currentset->getButtons().values();
+
+    while (btnsList.hasNext())
     {
-        JoyButton *button = currentset->getJoyButton(i);
+        JoyButton *button = btnsList.next();
 
         if ((button != nullptr) && !button->isPartVDPad())
         {

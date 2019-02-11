@@ -21,7 +21,6 @@ public slots:
     virtual void writeConfig(QXmlStreamWriter *xml); // InputDeviceXml class
 
 private:
-
     InputDevice* m_inputDevice;
 
 };

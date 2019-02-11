@@ -152,8 +152,8 @@ void InputDaemon::refreshJoysticks()
 
         if (joystick != nullptr)
         {
+            m_joysticks->remove(iter.key());
             delete joystick;
-            joystick = nullptr;
         }
     }
 

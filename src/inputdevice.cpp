@@ -69,8 +69,8 @@ InputDevice::~InputDevice()
 
         if (setjoystick != nullptr)
         {
+            getJoystick_sets().remove(iter.key());
             delete setjoystick;
-            setjoystick = nullptr;
         }
     }
 
