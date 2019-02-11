@@ -508,9 +508,11 @@ void QuickSetDialog::restoreVDPadsStates(SetJoystick *currentset)
 
 void QuickSetDialog::restoreButtonsStates(SetJoystick *currentset)
 {
-    for (int i = 0; i < currentset->getNumberButtons(); i++)
+    QListIterator<JoyButton*> btnsList = currentset->getButtons().values();
+
+    while (btnsList.hasNext())
     {
-        JoyButton *button = currentset->getJoyButton(i);
+        JoyButton *button = btnsList.next();
 
         if ((button != nullptr) && !button->isPartVDPad())
         {
