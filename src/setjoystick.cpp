@@ -123,7 +123,7 @@ void SetJoystick::refreshAxes()
     deleteAxes();
 
     InputDevice *device = getInputDevice();
-    for (int i=0; i < device->getNumberRawAxes(); i++)
+    for (int i = 0; i < device->getNumberRawAxes(); i++)
     {
         JoyAxis *axis = new JoyAxis(i, m_index, this, this);
         axes.insert(i, axis);
@@ -144,7 +144,7 @@ void SetJoystick::refreshHats()
 
     deleteHats();
 
-    for (int i=0; i < m_device->getNumberRawHats(); i++)
+    for (int i = 0; i < m_device->getNumberRawHats(); i++)
     {
         JoyDPad *dpad = new JoyDPad(i, m_index, this, this);
         hats.insert(i, dpad);
@@ -185,8 +185,8 @@ void SetJoystick::deleteAxes()
 
         if (axis != nullptr)
         {
+            axes.remove(iter.key());
             delete axis;
-            axis = nullptr;
         }
     }
 
@@ -235,7 +235,6 @@ void SetJoystick::deleteVDpads()
 
 void SetJoystick::deleteHats()
 {
-
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHashIterator<int, JoyDPad*> iter(getHats());
@@ -246,8 +245,8 @@ void SetJoystick::deleteHats()
 
         if (dpad != nullptr)
         {
+            hats.remove(iter.key());
             delete dpad;
-            dpad = nullptr;
         }
     }
 
