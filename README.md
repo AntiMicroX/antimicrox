@@ -1,6 +1,5 @@
 # antimicro 2.24.1
 
-## PROJECT IS SUSPENDED UNTIL FURTHER NOTICE
 
 1. [Description](#description)  
 2. [License](#license)  
