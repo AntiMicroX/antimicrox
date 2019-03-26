@@ -797,11 +797,8 @@ int main(int argc, char *argv[])
     AppLaunchHelper mainAppHelper(settings, mainWindow->getGraphicalStatus());
 
     QObject::connect(mainWindow, &MainWindow::joystickRefreshRequested, joypad_worker.data(), &InputDaemon::refresh);
-    QObject::connect(joypad_worker.data(), SIGNAL(joystickRefreshed(InputDevice*)),
-                     mainWindow, SLOT(fillButtons(InputDevice*)));
-    QObject::connect(joypad_worker.data(),
-                     SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
-                     mainWindow, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
+    QObject::connect(joypad_worker.data(), &InputDaemon::joystickRefreshed, mainWindow, &MainWindow::fillButtonsID);
+    QObject::connect(joypad_worker.data(), &InputDaemon::joysticksRefreshed, mainWindow, &MainWindow::fillButtonsMap);
 
     QObject::connect(&antimicro, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
     QObject::connect(&antimicro, &QApplication::aboutToQuit, mainWindow, &MainWindow::saveAppConfig);

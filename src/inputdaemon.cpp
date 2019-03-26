@@ -209,7 +209,7 @@ void InputDaemon::refreshJoysticks()
                     }
                 }
                 else
-                {  
+                {
                     SDL_GameControllerClose(controller); // Make sure to decrement reference count
                 }
             }
@@ -322,6 +322,7 @@ void InputDaemon::refresh()
     QTimer::singleShot(100, eventWorker, SLOT(performWork()));
 
     stopped = false;
+
 }
 
 void InputDaemon::refreshJoystick(InputDevice *joystick)

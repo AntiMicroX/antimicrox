@@ -93,8 +93,8 @@ public slots:
     void fillButtons();
     void makeJoystickTabs();
     void alterConfigFromSettings(); // MainConfiguration class
-    void fillButtons(InputDevice *joystick);
-    void fillButtons(QMap<SDL_JoystickID, InputDevice*> *joysticks);
+    void fillButtonsID(InputDevice *joystick);
+    void fillButtonsMap(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void startJoystickRefresh();
     void hideWindow();
     void saveAppConfig(); // MainConfiguration class

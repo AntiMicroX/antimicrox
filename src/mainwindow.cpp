@@ -378,7 +378,7 @@ void MainWindow::fillButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    fillButtons(m_joysticks);
+    fillButtonsMap(m_joysticks);
 }
 
 void MainWindow::makeJoystickTabs()
@@ -421,7 +421,7 @@ void MainWindow::makeJoystickTabs()
     }
 }
 
-void MainWindow::fillButtons(InputDevice *joystick)
+void MainWindow::fillButtonsID(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -430,7 +430,7 @@ void MainWindow::fillButtons(InputDevice *joystick)
     tabwidget->refreshButtons();
 }
 
-void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
+void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -484,7 +484,6 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 
     if (showTrayIcon)
     {
-        trayIcon->hide();
         populateTrayIcon();
         trayIcon->show();
     }
@@ -1673,9 +1672,7 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     if (showTrayIcon)
     {
         connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
-        trayIcon->hide();
         populateTrayIcon();
-        trayIcon->show();
     }
 }
 
@@ -1716,12 +1713,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
         }
     }
 
-    if (showTrayIcon)
-    {
-        trayIcon->hide();
-        populateTrayIcon();
-        trayIcon->show();
-    }
+    if (showTrayIcon) populateTrayIcon();
 
     if (ui->tabWidget->count() == 0)
     {
@@ -1761,9 +1753,7 @@ void MainWindow::addJoyTab(InputDevice *device)
     if (showTrayIcon)
     {
         connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
-        trayIcon->hide();
         populateTrayIcon();
-        trayIcon->show();
     }
 
     ui->stackedWidget->setCurrentIndex(1);
