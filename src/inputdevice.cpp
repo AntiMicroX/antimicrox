@@ -1764,12 +1764,38 @@ bool InputDevice::isRelevantGUID(QString tempGUID)
     return result;
 }
 
+
 QString InputDevice::getRawGUIDString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return getGUIDString();
 }
+
+
+QString InputDevice::getRawVendorString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getVendorString();
+}
+
+
+QString InputDevice::getRawProductIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getProductIDString();
+}
+
+
+QString InputDevice::getRawUniqueIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getUniqueIDString();
+}
+
 
 void InputDevice::haltServices()
 {

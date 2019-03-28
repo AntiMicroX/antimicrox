@@ -1789,9 +1789,11 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 QList<AutoProfileInfo*> *customs = appWatcher->getCustomDefaults();
                 bool found = false;
                 QListIterator<AutoProfileInfo*> iter(*customs);
+
                 while (iter.hasNext())
                 {
                     AutoProfileInfo *tempinfo = iter.next();
+
                     if (tempinfo->getGUID() == widget->getJoystick()->getGUIDString() &&
                         info->isCurrentDefault())
                     {

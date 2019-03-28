@@ -93,6 +93,30 @@ QString GameController::getGUIDString()
 }
 
 
+QString GameController::getVendorString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getRawVendorString();
+}
+
+
+QString GameController::getProductIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getRawProductIDString();
+}
+
+
+QString GameController::getUniqueIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getRawUniqueIDString();
+}
+
+
 QString GameController::getRawGUIDString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -113,6 +137,50 @@ QString GameController::getRawGUIDString()
     }
 
     return temp;
+}
+
+
+QString GameController::getRawVendorString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QString temp = QString();
+
+    if (controller != nullptr)
+    {
+            Uint16 tempVendor = SDL_GameControllerGetVendor(controller);
+            char buffer [50];
+            sprintf (buffer, "%u", tempVendor);
+
+            temp = QString(buffer);
+    }
+
+    return temp;
+}
+
+
+QString GameController::getRawProductIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QString temp = QString();
+
+    if (controller != nullptr)
+    {
+            Uint16 tempProduct = SDL_GameControllerGetProduct(controller);
+            char buffer [50];
+            sprintf (buffer, "%u", tempProduct);
+
+            temp = QString(buffer);
+    }
+
+    return temp;
+}
+
+
+QString GameController::getRawUniqueIDString()
+{
+    return (getRawGUIDString() + getRawVendorString() + getRawProductIDString());
 }
 
 

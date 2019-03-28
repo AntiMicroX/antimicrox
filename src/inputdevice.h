@@ -62,7 +62,13 @@ public:
 
     // GUID only available on SDL 2.
     virtual QString getGUIDString() = 0;
+    virtual QString getUniqueIDString() = 0;
+    virtual QString getVendorString() = 0;
+    virtual QString getProductIDString() = 0;
     virtual QString getRawGUIDString();
+    virtual QString getRawVendorString();
+    virtual QString getRawProductIDString();
+    virtual QString getRawUniqueIDString();
 
     virtual QString getStringIdentifier();
     virtual void closeSDLDevice() = 0;
