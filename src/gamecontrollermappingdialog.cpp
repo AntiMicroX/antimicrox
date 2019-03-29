@@ -345,8 +345,10 @@ void GameControllerMappingDialog::saveChanges()
     QString mappingString = generateSDLMappingString();
 
     settings->getLock()->lock();
-    settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
-    settings->setValue(QString("Mappings/%1%2").arg(device->getGUIDString()).arg("Disable"), "0");
+//    settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
+//    settings->setValue(QString("Mappings/%1%2").arg(device->getGUIDString()).arg("Disable"), "0");
+    settings->setValue(QString("Mappings/").append(device->getUniqueIDString()), mappingString);
+    settings->setValue(QString("Mappings/%1%2").arg(device->getUniqueIDString()).arg("Disable"), "0");
     settings->sync();
 
     bool displayMapping = settings->runtimeValue("DisplaySDLMapping", false).toBool();
@@ -506,8 +508,10 @@ void GameControllerMappingDialog::removeControllerMapping()
     settings->getLock()->lock();
 
     settings->beginGroup("Mappings");
-    settings->remove(device->getGUIDString());
-    settings->remove(QString("%1Disable").arg(device->getGUIDString()));
+    //settings->remove(device->getGUIDString());
+    settings->remove(device->getUniqueIDString());
+    //settings->remove(QString("%1Disable").arg(device->getGUIDString()));
+    settings->remove(QString("%1Disable").arg(device->getUniqueIDString()));
     settings->endGroup();
     settings->sync();
 
@@ -561,7 +565,8 @@ QString GameControllerMappingDialog::generateSDLMappingString()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QStringList templist = QStringList();
-    templist.append(device->getGUIDString());
+    //templist.append(device->getGUIDString());
+    templist.append(device->getUniqueIDString());
     templist.append(device->getSDLName());
     templist.append(QString("platform:").append(device->getSDLPlatform()));
 

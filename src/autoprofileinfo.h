@@ -28,15 +28,18 @@ class AutoProfileInfo : public QObject
     Q_OBJECT
 
 public:
-    explicit AutoProfileInfo(QString guid, QString profileLocation,
+    explicit AutoProfileInfo(QString uniqueID, QString profileLocation,
                              bool active, bool partialTitle, QObject *parent = nullptr);
-    explicit AutoProfileInfo(QString guid, QString profileLocation,
+    explicit AutoProfileInfo(QString uniqueID, QString profileLocation,
                              QString exe, bool active, bool partialTitle, QObject *parent = nullptr);
     explicit AutoProfileInfo(QObject *parent=0);
     ~AutoProfileInfo();
 
     void setGUID(QString guid);
     QString getGUID() const;
+
+    void setUniqueID(QString guid);
+    QString getUniqueID() const;
 
     void setProfileLocation(QString profileLocation);
     QString getProfileLocation() const;
@@ -64,6 +67,7 @@ public:
 
 private:
     QString guid;
+    QString uniqueID;
     QString profileLocation;
     QString exe;
     QString deviceName;

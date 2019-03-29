@@ -1322,10 +1322,11 @@ QString InputDevice::getStringIdentifier()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString identifier = QString();
-    QString tempGUID = getGUIDString();
+    //QString tempGUID = getGUIDString();
+    QString tempUniqueID = getUniqueIDString();
     QString tempName = getSDLName();
 
-    if (!tempGUID.isEmpty()) identifier = tempGUID;
+    if (!tempUniqueID.isEmpty()) identifier = tempUniqueID;
     else if (!tempName.isEmpty()) identifier = tempName;
 
     return identifier;
@@ -1536,8 +1537,11 @@ bool InputDevice::isKnownController()
     {
         m_settings->beginGroup("Mappings");
 
-        if (m_settings->contains(getGUIDString())) result = true;
-        else if (m_settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled"))) result = true;
+//        if (m_settings->contains(getGUIDString())) result = true;
+//        else if (m_settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled"))) result = true;
+
+        if (m_settings->contains(getUniqueIDString())) result = true;
+        else if (m_settings->contains(QString("%1%2").arg(getUniqueIDString()).arg("Disabled"))) result = true;
 
         m_settings->endGroup();
     }
@@ -1736,13 +1740,24 @@ bool InputDevice::elementsHaveNames()
  * @param GUID string
  * @return if GUID is considered empty.
  */
-bool InputDevice::isEmptyGUID(QString tempGUID)
+//bool InputDevice::isEmptyGUID(QString tempGUID)
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    bool result = false;
+
+//    if (tempGUID.contains(GlobalVariables::InputDevice::emptyGUID)) result = true;
+
+//    return result;
+//}
+
+bool InputDevice::isEmptyUniqueID(QString tempUniqueID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
 
-    if (tempGUID.contains(GlobalVariables::InputDevice::emptyGUID)) result = true;
+    if (tempUniqueID.contains(GlobalVariables::InputDevice::emptyUniqueID)) result = true;
 
     return result;
 }
@@ -1753,13 +1768,25 @@ bool InputDevice::isEmptyGUID(QString tempGUID)
  * @param GUID string
  * @return if GUID is considered a match.
  */
-bool InputDevice::isRelevantGUID(QString tempGUID)
+//bool InputDevice::isRelevantGUID(QString tempGUID)
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    bool result = false;
+
+//    if (tempGUID == getGUIDString()) result = true;
+
+//    return result;
+//}
+
+
+bool InputDevice::isRelevantUniqueID(QString tempUniqueID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
 
-    if (tempGUID == getGUIDString()) result = true;
+    if (tempUniqueID == getUniqueIDString()) result = true;
 
     return result;
 }

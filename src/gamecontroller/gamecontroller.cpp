@@ -393,11 +393,19 @@ bool GameController::isGameController()
  * @param GUID string
  * @return if GUID is considered a match.
  */
-bool GameController::isRelevantGUID(QString tempGUID)
+//bool GameController::isRelevantGUID(QString tempGUID)
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    return InputDevice::isRelevantGUID(tempGUID);
+//}
+
+
+bool GameController::isRelevantUniqueID(QString tempUniqueID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return InputDevice::isRelevantGUID(tempGUID);
+    return InputDevice::isRelevantUniqueID(tempUniqueID);
 }
 
 

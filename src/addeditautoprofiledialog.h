@@ -38,12 +38,13 @@ class AddEditAutoProfileDialog : public QDialog
 
 public:
     explicit AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings, QList<InputDevice*> *devices,
-                                      QList<QString> &reservedGUIDS,
+                                      QList<QString> &reservedUniques,
                                       bool edit=false, QWidget *parent = nullptr);
     ~AddEditAutoProfileDialog();
 
     AutoProfileInfo* getAutoProfile() const;
-    QString getOriginalGUID() const;
+    //QString getOriginalGUID() const;
+    QString getOriginalUniqueID() const;
     QString getOriginalExe() const;
     QString getOriginalWindowClass() const;
     QString getOriginalWindowName() const;
@@ -52,7 +53,8 @@ public:
     AntiMicroSettings *getSettings() const;
     bool getEditForm() const;
     bool getDefaultInfo() const;
-    QList<QString> const& getReservedGUIDs();
+    // QList<QString> const& getReservedGUIDs();
+    QList<QString> const& getReservedUniques();
 
 
 protected:
@@ -65,7 +67,8 @@ private slots:
     void openProfileBrowseDialog();
     void openApplicationBrowseDialog();
     void saveAutoProfileInformation();
-    void checkForReservedGUIDs(int index);
+    //void checkForReservedGUIDs(int index);
+    void checkForReservedUniques(int index);
     void checkForDefaultStatus();
     void windowPropAssignment(CapturedWindowInfoDialog *dialog);
 
@@ -87,8 +90,10 @@ private:
     AntiMicroSettings *settings;
     bool editForm;
     bool defaultInfo;
-    QList<QString> reservedGUIDs;
-    QString originalGUID;
+    //QList<QString> reservedGUIDs;
+    QList<QString> reservedUniques;
+    //QString originalGUID;
+    QString originalUniqueID;
     QString originalExe;
     QString originalWindowClass;
     QString originalWindowName;

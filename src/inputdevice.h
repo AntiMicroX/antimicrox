@@ -123,8 +123,10 @@ public:
     void activatePossibleVDPadEvents(); // InputDeviceVDPad class
     void activatePossibleButtonEvents(); // InputDeviceButton class
 
-    bool isEmptyGUID(QString tempGUID);
-    bool isRelevantGUID(QString tempGUID);
+    //bool isEmptyGUID(QString tempGUID);
+    bool isEmptyUniqueID(QString tempUniqueID);
+    //bool isRelevantGUID(QString tempGUID);
+    bool isRelevantUniqueID(QString tempUniqueID);
 
     void setRawAxisDeadZone(int deadZone); // InputDeviceAxis class
     int getRawAxisDeadZone(); // InputDeviceAxis class

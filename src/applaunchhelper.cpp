@@ -128,7 +128,8 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
         InputDevice *tempdevice = iter.next().value();
         outstream << QObject::trUtf8("Joystick %1:").arg(indexNumber) << endl;
         outstream << "  " << QObject::trUtf8("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
-        outstream << "  " << QObject::trUtf8("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
+        //outstream << "  " << QObject::trUtf8("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
+        outstream << "  " << QObject::trUtf8("UniqueID:            %1").arg(tempdevice->getUniqueIDString()) << endl;
         outstream << "  " << QObject::trUtf8("Name:            %1").arg(tempdevice->getSDLName()) << endl;
         QString gameControllerStatus = tempdevice->isGameController() ?
                                        QObject::trUtf8("Yes") : QObject::trUtf8("No");

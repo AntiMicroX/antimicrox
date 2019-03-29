@@ -23,13 +23,14 @@
 #include <QDebug>
 
 
-AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
+AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation,
                                  QString exe, bool active, bool partialTitle, QObject *parent) :
     QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    setGUID(guid);
+    //setGUID(guid);
+    setUniqueID(uniqueID);
     setProfileLocation(profileLocation);
     setExe(exe);
     setActive(active);
@@ -37,13 +38,14 @@ AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
     setPartialState(partialTitle);
 }
 
-AutoProfileInfo::AutoProfileInfo(QString guid, QString profileLocation,
+AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation,
                                  bool active, bool partialTitle, QObject *parent) :
     QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    setGUID(guid);
+    //setGUID(guid);
+    setUniqueID(uniqueID);
     setProfileLocation(profileLocation);
     setActive(active);
     setDefaultState(false);
@@ -65,19 +67,36 @@ AutoProfileInfo::~AutoProfileInfo()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
-void AutoProfileInfo::setGUID(QString guid)
+//void AutoProfileInfo::setGUID(QString guid)
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    this->guid = guid;
+//}
+
+//QString AutoProfileInfo::getGUID() const
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    return guid;
+//}
+
+
+void AutoProfileInfo::setUniqueID(QString uniqueID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    this->guid = guid;
+    this->uniqueID = uniqueID;
 }
 
-QString AutoProfileInfo::getGUID() const
+
+QString AutoProfileInfo::getUniqueID() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return guid;
+    return uniqueID;
 }
+
 
 void AutoProfileInfo::setProfileLocation(QString profileLocation)
 {

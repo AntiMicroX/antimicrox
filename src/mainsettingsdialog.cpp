@@ -935,7 +935,7 @@ void MainSettingsDialog::populateAutoProfiles()
 
     bool defaultActive = allActive == "1" ? true : false;
     bool partialTitleBool = partialTitle == "1" ? true : false;
-    allDefaultProfile = new AutoProfileInfo("all", allProfile, defaultActive, partialTitleBool, this);
+    allDefaultProfile = new AutoProfileInfo("all", "all", allProfile, defaultActive, partialTitleBool, this);
     allDefaultProfile->setDefaultState(true);
 
     QStringListIterator iter(registeredGUIDs);

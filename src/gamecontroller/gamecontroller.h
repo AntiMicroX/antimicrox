@@ -64,7 +64,8 @@ public:
     SDL_GameControllerButtonBind getBindForAxis(int index);
     SDL_GameControllerButtonBind getBindForButton(int index);
 
-    bool isRelevantGUID(QString tempGUID);
+    //bool isRelevantGUID(QString tempGUID);
+    bool isRelevantUniqueID(QString tempUniqueID);
     void rawButtonEvent(int index, bool pressed);
     void rawAxisEvent(int index, int value);
     void rawDPadEvent(int index, int value);
