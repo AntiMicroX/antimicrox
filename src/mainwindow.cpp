@@ -348,8 +348,6 @@ void MainWindow::controllerMapOpening()
         }
         else if (temp.hasControllerID())
         {
-
-
             QString joypadGUID = m_cmdutility->getControllerID();
 
             #ifndef QT_DEBUG_NO_OUTPUT
@@ -1778,9 +1776,11 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+
         if (widget != nullptr)
         {
-            if (info->getGUID() == "all")
+            //if (info->getGUID() == "all")
+            if (info->getUniqueID() == "all")
             {
                 // If the all option for a Default profile was found,
                 // first check for controller specific associations. If one exists,
@@ -1794,7 +1794,8 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 {
                     AutoProfileInfo *tempinfo = iter.next();
 
-                    if (tempinfo->getGUID() == widget->getJoystick()->getGUIDString() &&
+//                    if (tempinfo->getGUID() == widget->getJoystick()->getGUIDString() &&
+                     if (tempinfo->getUniqueID() == widget->getJoystick()->getUniqueIDString() &&
                         info->isCurrentDefault())
                     {
                         found = true;
@@ -1810,8 +1811,12 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 // controller.
                 if (!found)
                 {
-                    QString tempguid = widget->getJoystick()->getGUIDString();
-                    if (appWatcher->isGUIDLocked(tempguid))
+//                    QString tempguid = widget->getJoystick()->getGUIDString();
+//                    if (appWatcher->isGUIDLocked(tempguid))
+
+                    QString tempguid = widget->getJoystick()->getUniqueIDString();
+
+                    if (appWatcher->isUniqueIDLocked(tempguid))
                     {
                         found = true;
                         qDebug() << "GUID is locked in appWatcher. Found = true.";
@@ -1834,9 +1839,12 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                     }
                 }
             }
-            else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
+            // else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
+            else if (info->getUniqueID() == widget->getJoystick()->getStringIdentifier())
             {
-                qDebug() << "GUID of AutoProfileInfo: " << info->getGUID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+                // qDebug() << "GUID of AutoProfileInfo: " << info->getGUID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+                qDebug() << "GUID of AutoProfileInfo: " << info->getUniqueID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+
                 if (info->getProfileLocation().isEmpty())
                 {
                     qDebug() << "profile location of AutoProfileInfo is empty. Set first config";
@@ -1865,17 +1873,17 @@ void MainWindow::checkAutoProfileWatcherTimer()
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
-    QString autoProfileActive = m_settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
-    if (autoProfileActive == "1")
-    {
-        appWatcher->startTimer();
-        qDebug() << "Started timer for appWatcher";
-    }
-    else
-    {
-        appWatcher->stopTimer();
-        qDebug() << "Stopped timer for appWatcher";
-    }
+        QString autoProfileActive = m_settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
+        if (autoProfileActive == "1")
+        {
+            appWatcher->startTimer();
+            qDebug() << "Started timer for appWatcher";
+        }
+        else
+        {
+            appWatcher->stopTimer();
+            qDebug() << "Stopped timer for appWatcher";
+        }
     #if defined(Q_OS_UNIX)
     }
     #endif
@@ -1950,6 +1958,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
         {
             deviceIter.next();
             InputDevice *tempDevice = deviceIter.value();
+
             if (tempDevice && (GUID == tempDevice->getStringIdentifier()))
             {
                 device = tempDevice;
@@ -1960,7 +1969,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
         if (device != nullptr)
         {
             #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "InputDevice was not a null pointer in selectControllerJoyTab of GUID";
+                qDebug() << "InputDevice was not a null pointer in selectControllerJoyTab of GUID";
             #endif
 
             ui->tabWidget->setCurrentIndex(device->getJoyNumber());
@@ -1968,7 +1977,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
         else
         {
             #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "InputDevice was a NULL POINTER in selectControllerJoyTab of GUID";
+                qDebug() << "InputDevice was a NULL POINTER in selectControllerJoyTab of GUID";
             #endif
         }
     }

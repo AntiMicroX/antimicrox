@@ -35,8 +35,8 @@ public:
     explicit AutoProfileInfo(QObject *parent=0);
     ~AutoProfileInfo();
 
-    void setGUID(QString guid);
-    QString getGUID() const;
+   // void setGUID(QString guid);
+   // QString getGUID() const;
 
     void setUniqueID(QString guid);
     QString getUniqueID() const;
