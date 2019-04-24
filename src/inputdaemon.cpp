@@ -219,11 +219,7 @@ void InputDaemon::refreshJoysticks()
                             productID = QString(buffer);
                     }
 
-                    if (m_settings->contains(QString("%1Disable").arg(guidText)))
-                    {
-                        m_settings->setValue(QString("%1Disable").arg(guidText + vendor + productID), m_settings->value(QString("%1Disable").arg(guidText)));
-                        m_settings->remove(QString("%1Disable").arg(guidText));
-                    }
+                    convertMappingsToUnique(m_settings, guidText, guidText + vendor + productID);
 
                     bool disableGameController = m_settings->value(QString("%1Disable").arg(guidText + vendor + productID), false).toBool();
 
@@ -616,11 +612,7 @@ void InputDaemon::addInputDevice(int index)
                     productID = QString(buffer);
             }
 
-            if (m_settings->contains(QString("%1Disable").arg(guidText)))
-            {
-                m_settings->setValue(QString("%1Disable").arg(guidText + vendor + productID), m_settings->value(QString("%1Disable").arg(guidText)));
-                m_settings->remove(QString("%1Disable").arg(guidText));
-            }
+            convertMappingsToUnique(m_settings, guidText, guidText + vendor + productID);
 
             bool disableGameController = m_settings->value(QString("%1Disable").arg(guidText + vendor + productID), false).toBool();
 
@@ -1277,6 +1269,28 @@ void InputDaemon::updatePollResetRate(int tempPollRate)
                      GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
 
     if (wasActive) pollResetTimer.start();
+}
+
+void InputDaemon::convertMappingsToUnique(QSettings* sett, QString guidString, QString uniqueIdString)
+{
+    if (sett->contains(QString("%1Disable").arg(guidString)))
+    {
+        sett->setValue(QString("%1Disable").arg(uniqueIdString), sett->value(QString("%1Disable").arg(guidString)));
+        sett->remove(QString("%1Disable").arg(guidString));
+    }
+
+    if (sett->contains(guidString))
+    {
+        QStringList gg = sett->value(guidString).toString().split(",");
+        qDebug() << "Convert guidString to uniqueString 1): " << gg << endl;
+        gg.removeFirst();
+        qDebug() << "Convert guidString to uniqueString 2): " << gg << endl;
+        gg.prepend(uniqueIdString);
+        qDebug() << "Convert guidString to uniqueString 3): " << gg << endl;
+        qDebug() << "Joined uniqueMapping: " << gg.join(",") << endl;
+        sett->setValue(uniqueIdString, gg.join(","));
+        sett->remove(guidString);
+    }
 }
 
 QHash<SDL_JoystickID, Joystick*>& InputDaemon::getTrackjoysticksLocal() {

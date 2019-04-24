@@ -432,6 +432,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
         }
         else
         {
+            // TU!
             QString mappingString = settings->value(tempkey, QString()).toString();
             if (!mappingString.isEmpty())
             {
@@ -527,7 +528,7 @@ void MainSettingsDialog::insertMappingRow()
 
     item = new QTableWidgetItem();
     item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-;
+
     ui->controllerMappingsTableWidget->setItem(insertRowIndex, 1, item);
 
     item = new QTableWidgetItem();
