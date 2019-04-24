@@ -1543,6 +1543,7 @@ bool InputDevice::isKnownController()
 
         convertToUniqueMappSett(m_settings, getGUIDString(), getUniqueIDString());
         convertToUniqueMappSett(m_settings, (QString("%1%2").arg(getGUIDString()).arg("Disabled")), (QString("%1%2").arg(getUniqueIDString()).arg("Disabled")));
+
         if (m_settings->contains(getUniqueIDString())) result = true;
         else if (m_settings->contains(QString("%1%2").arg(getUniqueIDString()).arg("Disabled"))) result = true;
 
@@ -1874,21 +1875,20 @@ void InputDevice::convertToUniqueMappSett(QSettings* sett, QString gUIDmappGroup
 {
     if (sett->contains(gUIDmappGroupSett))
     {
-        if (sett->contains(getGUIDString()) && (sett->value(getGUIDString()).toString().split(",").first() == getGUIDString()))
+        if (sett->contains(gUIDmappGroupSett) && (sett->value(gUIDmappGroupSett).toString().split(",").first() == getGUIDString()))
         {
-            QStringList gg = sett->value(getGUIDString()).toString().split(",");
+            QStringList gg = sett->value(gUIDmappGroupSett).toString().split(",");
             gg.removeFirst();
-            gg.prepend(getUniqueIDString());
+            gg.prepend(uniqueIDGroupSett);
             sett->setValue(uniqueIDGroupSett, sett->value(gg.join(",")));
+            sett->remove(gUIDmappGroupSett);
         }
         else
         {
             sett->setValue(uniqueIDGroupSett, sett->value(gUIDmappGroupSett));
+            sett->remove(gUIDmappGroupSett);
         }
-
-        sett->remove(gUIDmappGroupSett);
     }
-
 }
 
 QHash<int, SetJoystick*>& InputDevice::getJoystick_sets() {

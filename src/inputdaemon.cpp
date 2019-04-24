@@ -219,6 +219,11 @@ void InputDaemon::refreshJoysticks()
                             productID = QString(buffer);
                     }
 
+                    if (m_settings->contains(QString("%1Disable").arg(guidText)))
+                    {
+                        m_settings->setValue(QString("%1Disable").arg(guidText + vendor + productID), m_settings->value(QString("%1Disable").arg(guidText)));
+                        m_settings->remove(QString("%1Disable").arg(guidText));
+                    }
 
                     bool disableGameController = m_settings->value(QString("%1Disable").arg(guidText + vendor + productID), false).toBool();
 

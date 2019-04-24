@@ -1166,18 +1166,21 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
                 item->setToolTip(info->getProfileLocation());
                 ui->autoProfileTableWidget->setItem(i, 2, item);
 
+                // nie są wstawiane wartości jeśli !deviceName.isEmpty(), więc jest inne niż all i jeśli jest default
                 item = new QTableWidgetItem(info->getWindowClass());
                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);
                 item->setData(Qt::UserRole, info->getWindowClass());
                 item->setToolTip(info->getWindowClass());
                 ui->autoProfileTableWidget->setItem(i, 3, item);
 
+                // nie są wstawiane wartości jeśli !deviceName.isEmpty(), więc jest inne niż all i jeśli jest default
                 item = new QTableWidgetItem(info->getWindowName());
                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);
                 item->setData(Qt::UserRole, info->getWindowName());
                 item->setToolTip(info->getWindowName());
                 ui->autoProfileTableWidget->setItem(i, 4, item);
 
+                // nie są wstawiane wartości jeśli !deviceName.isEmpty(), więc jest inne niż all i jeśli jest default
                 QFileInfo exeInfo(info->getExe());
                 item = new QTableWidgetItem(exeInfo.fileName());
                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);

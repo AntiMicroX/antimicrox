@@ -487,6 +487,7 @@ void AutoProfileWatcher::syncProfileAssignment()
 //            }
 //        }
 
+        // need to change when it's needed to add windowClass, title and partial name
         if (!uniqueID.isEmpty() && !profile.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
