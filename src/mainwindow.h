@@ -82,6 +82,7 @@ protected:
     void unloadCurrentConfig(QString controllerID); // MainConfiguration class
     void changeStartSetNumber(int startSetNumber, QString controllerID); // MainConfiguration class
     void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // MainConfiguration class
+    void convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID);
 
 signals:
     void joystickRefreshRequested();

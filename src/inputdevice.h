@@ -31,7 +31,7 @@ class AntiMicroSettings;
 class SetJoystick;
 class QXmlStreamReader;
 class QXmlStreamWriter;
-
+class QSettings;
 
 class InputDevice : public QObject
 {
@@ -122,6 +122,7 @@ public:
     void activatePossibleDPadEvents(); // InputDeviceHat class
     void activatePossibleVDPadEvents(); // InputDeviceVDPad class
     void activatePossibleButtonEvents(); // InputDeviceButton class
+    void convertToUniqueMappSett(QSettings* sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett);
 
     //bool isEmptyGUID(QString tempGUID);
     bool isEmptyUniqueID(QString tempUniqueID);

@@ -109,6 +109,7 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
     while (iter.hasNext())
     {
         InputDevice *joystick = iter.next().value();
+
         if (joystick != nullptr)
         {
             delete joystick;
@@ -118,6 +119,7 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 
     joysticks->clear();
 }
+
 
 int main(int argc, char *argv[])
 {

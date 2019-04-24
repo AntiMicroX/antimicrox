@@ -71,6 +71,7 @@
 #include <QMessageBox>
 #include <QLibraryInfo>
 #include <QFileInfo>
+#include <QRegularExpression>
 
 #ifdef Q_OS_WIN
     #include <QSysInfo>
@@ -461,9 +462,11 @@ void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->refreshButtons();
+
         connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, [this, tabwidget](bool displayNames) {
             propogateNameDisplayStatus(tabwidget, displayNames);
         });
+
         connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
 
         if (showTrayIcon)
@@ -546,12 +549,11 @@ void MainWindow::populateTrayIcon()
     {
         QMapIterator<SDL_JoystickID, InputDevice*> iter(*m_joysticks);
         bool useSingleList = m_settings->value("TrayProfileList", false).toBool();
-        if (!useSingleList && (joystickCount == 1))
-        {
-            useSingleList = true;
-        }
+
+        if (!useSingleList && (joystickCount == 1)) useSingleList = true;
 
         int i = 0;
+
         while (iter.hasNext())
         {
             iter.next();
@@ -563,10 +565,8 @@ void MainWindow::populateTrayIcon()
                     .arg(current->getName()));
             QMenu *joysticksubMenu = nullptr;
 
-            if (!useSingleList)
-            {
-                joysticksubMenu = trayIconMenu->addMenu(joytabName);
-            }
+            if (!useSingleList) joysticksubMenu = trayIconMenu->addMenu(joytabName);
+
 
             JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
 
@@ -594,10 +594,10 @@ void MainWindow::populateTrayIcon()
                     newaction->setChecked(false);
 
                     QString identifier = current->getStringIdentifier();
+                    widget->convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1LastSelected").arg(current->getGUIDString()), QString("Controller%1LastSelected").arg(current->getUniqueIDString()));
                     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
 
                     QFileInfo fileInfo(m_settings->value(controlEntryLastSelected).toString());
-
 
                     if ((configIter.value() == fileInfo.baseName()) || (configIter.value() == widget->getCurrentConfigName()))
                     {
@@ -627,6 +627,7 @@ void MainWindow::populateTrayIcon()
                 configs = nullptr;
 
                 QAction *newaction = nullptr;
+
                 if (joysticksubMenu != nullptr)
                 {
                     newaction = new QAction(trUtf8("Open File"), joysticksubMenu);
@@ -1666,7 +1667,9 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, [this, tabwidget](bool displayNames) {
         propogateNameDisplayStatus(tabwidget, displayNames);
     });
+
     connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
+
     if (showTrayIcon)
     {
         connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
@@ -2078,6 +2081,7 @@ QMap<int, QList<QAction*> > const& MainWindow::getProfileActions() {
     return profileActions;
 }
 
+
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::Hide && (obj != nullptr)) {
@@ -2085,4 +2089,36 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     }
 
     return false;
+}
+
+
+void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID)
+{
+        int exec = QMessageBox::information(this, trUtf8("Reading old profile"), trUtf8("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicro since version 2.24.2"), QMessageBox::Yes, QMessageBox::No);
+
+        switch (exec)
+        {
+            case QMessageBox::Yes:
+
+                QFile data(m_settings->value(controlEntryLastSelectedGUID).toString());
+                data.open(QIODevice::Text | QIODevice::ReadOnly);
+                QString dataText = data.readAll();
+
+                QRegularExpression re(currentDevice->getGUIDString());
+                QString replacementText(currentDevice->getUniqueIDString());
+
+                dataText.replace(re, replacementText);
+
+                QFile newData(m_settings->value(controlEntryLastSelectedGUID).toString());
+
+                if (newData.open(QFile::WriteOnly | QFile::Truncate))
+                {
+                    QTextStream out(&newData);
+                    out << dataText;
+                }
+
+                newData.close();
+
+            break;
+        }
 }

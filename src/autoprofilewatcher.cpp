@@ -508,12 +508,18 @@ void AutoProfileWatcher::syncProfileAssignment()
         exe = settings->value(QString("AutoProfile%1Exe").arg(i), "").toString();
         exe = QDir::toNativeSeparators(exe);
         //guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
-        uniqueID = settings->value(QString("AutoProfile%UniqueID").arg(i), "").toString();
+
+        convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i), QString("AutoProfile%1UniqueID").arg(i));
+
+        uniqueID = settings->value(QString("AutoProfile%1UniqueID").arg(i), "").toString();
         profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();
         windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
         QString partialTitle = settings->value(QString("AutoProfile%1PartialTitle").arg(i), 0).toString();
         bool partialTitleBool = partialTitle == "1" ? true : false;
+
+
+
 
 #ifdef Q_OS_UNIX
         windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
@@ -613,6 +619,8 @@ void AutoProfileWatcher::syncProfileAssignment()
     settings->endGroup();
     settings->getLock()->unlock();
 }
+
+
 
 void AutoProfileWatcher::clearProfileAssignments()
 {
@@ -771,4 +779,14 @@ QHash<QString, AutoProfileInfo*> const& AutoProfileWatcher::getDefaultProfileAss
 QSet<QString>& AutoProfileWatcher::getUniqeIDSetLocal() {
 
     return uniqueIDSet;
+}
+
+
+void AutoProfileWatcher::convToUniqueIDAutoProfGroupSett(QSettings* sett, QString guidAutoProfSett, QString uniqueAutoProfSett)
+{
+    if (sett->contains(guidAutoProfSett))
+    {
+        sett->setValue(uniqueAutoProfSett, sett->value(guidAutoProfSett));
+        sett->remove(guidAutoProfSett);
+    }
 }

@@ -997,6 +997,11 @@ void JoyTabWidget::saveSettings()
 
     QString identifier = m_joystick->getStringIdentifier();
 
+//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1").arg(m_joystick->getGUIDString()), QString("Controller%1").arg(m_joystick->getUniqueIDString()));
+//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1ConfigFile%2").arg(m_joystick->getGUIDString()), QString("Controller%1ConfigFile%2").arg(m_joystick->getUniqueIDString()));
+//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1LastSelected").arg(m_joystick->getGUIDString()), QString("Controller%1LastSelected").arg(m_joystick->getUniqueIDString()));
+//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1ProfileName%2").arg(m_joystick->getGUIDString()), QString("Controller%1ProfileName%2").arg(m_joystick->getUniqueIDString()));
+
     QString controlEntryPrefix = QString("Controller%1").arg(identifier);
     QString controlEntryString = QString("Controller%1ConfigFile%2").arg(identifier);
     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
@@ -1005,6 +1010,7 @@ void JoyTabWidget::saveSettings()
     // Remove current settings for a controller
     QStringList tempkeys = m_settings->allKeys();
     QStringListIterator iter(tempkeys);
+
     while (iter.hasNext())
     {
         QString tempstring = iter.next();
@@ -1146,9 +1152,12 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
     m_settings->beginGroup("Controllers");
 
+    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1LastSelected").arg(m_joystick->getGUIDString()), QString("Controller%1LastSelected").arg(m_joystick->getUniqueIDString()));
+
     QString controlEntryString = QString("Controller%1ConfigFile%2").arg(m_joystick->getStringIdentifier());
     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(m_joystick->getStringIdentifier());
     QString controlEntryProfileName = QString("Controller%1ProfileName%2").arg(m_joystick->getStringIdentifier());
+
 
     bool finished = false;
     for (int i=1; !finished; i++)
@@ -1157,6 +1166,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
         if (!m_joystick->getStringIdentifier().isEmpty())
         {
+            convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1ConfigFile%2").arg(m_joystick->getGUIDString()).arg(i), QString("Controller%1ConfigFile%2").arg(m_joystick->getUniqueIDString()).arg(i));
             tempfilepath = m_settings->value(controlEntryString.arg(i), "").toString();
         }
 
@@ -1166,6 +1176,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
 
             if (fileInfo.exists() && (configBox->findData(fileInfo.absoluteFilePath()) == -1))
             {
+                convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1ProfileName%2").arg(m_joystick->getGUIDString()).arg(i), QString("Controller%1ProfileName%2").arg(m_joystick->getUniqueIDString()).arg(i));
                 QString profileName = m_settings->value(controlEntryProfileName.arg(i), "").toString();
                 profileName = !profileName.isEmpty() ? profileName : PadderCommon::getProfileName(fileInfo);
                 configBox->addItem(profileName, fileInfo.absoluteFilePath());
@@ -1518,10 +1529,9 @@ void JoyTabWidget::saveDeviceSettings(bool sync)
 
     m_settings->getLock()->lock();
     m_settings->endGroup();
-    if (sync)
-    {
-        m_settings->sync();
-    }
+
+    if (sync) m_settings->sync();
+
     m_settings->getLock()->unlock();
 }
 
@@ -2634,3 +2644,11 @@ void JoyTabWidget::changeEvent(QEvent *event)
     QWidget::changeEvent(event);
 }
 
+void JoyTabWidget::convToUniqueIDControllerGroupSett(QSettings* sett, QString guidControllerSett, QString uniqueControllerSett)
+{
+    if (sett->contains(guidControllerSett))
+    {
+        sett->setValue(uniqueControllerSett, sett->value(guidControllerSett));
+        sett->remove(guidControllerSett);
+    }
+}

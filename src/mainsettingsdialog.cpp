@@ -931,6 +931,15 @@ void MainSettingsDialog::populateAutoProfiles()
     //QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
     QStringList registeredGUIDs = settings->value("Uniques", QStringList()).toStringList();
 
+//    void MainSettingsDialog::convToUniqueIDAutoprofileGroupSett(QSettings* sett, QString guidControllerSett, QString uniqueControllerSett)
+//    {
+//        if (sett->contains(guidControllerSett))
+//        {
+//            sett->setValue(uniqueControllerSett, sett->value(guidControllerSett));
+//            sett->remove(guidControllerSett);
+//        }
+//    }
+
     settings->endGroup();
 
     QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
@@ -986,7 +995,9 @@ void MainSettingsDialog::populateAutoProfiles()
 #endif
 
         //QString guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
-        QString guid = settings->value(QString("AutoProfile%UniqueID").arg(i), "").toString();
+        convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i), QString("AutoProfile%1UniqueID").arg(i));
+
+        QString guid = settings->value(QString("AutoProfile%1UniqueID").arg(i), "").toString();
         QString profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
         QString active = settings->value(QString("AutoProfile%1Active").arg(i), 0).toString();
         QString partialTitle = settings->value(QString("AutoProfile%1PartialTitle").arg(i), 0).toString();
@@ -1331,7 +1342,9 @@ void MainSettingsDialog::saveAutoProfileSettings()
         }
 
         // settings->setValue(QString("AutoProfile%1GUID").arg(i), info->getGUID());
-        settings->setValue(QString("AutoProfile%UniqueID").arg(i), info->getUniqueID());
+        convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i), QString("AutoProfile%1UniqueID").arg(i));
+
+        settings->setValue(QString("AutoProfile%1UniqueID").arg(i), info->getUniqueID());
         settings->setValue(QString("AutoProfile%1Profile").arg(i), info->getProfileLocation());
         settings->setValue(QString("AutoProfile%1Active").arg(i), defaultActive);
         settings->setValue(QString("AutoProfile%1PartialTitle").arg(i), partialTitle);
@@ -1549,11 +1562,11 @@ void MainSettingsDialog::openAddAutoProfileDialog()
     QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
     AutoProfileInfo *info = new AutoProfileInfo(this);
     AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
-    connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this]{
-        addNewAutoProfile();
-    });
+   // connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this]{
+   //     addNewAutoProfile();
+   // });
 
-    //connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
+    connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
     connect(dialog, &AddEditAutoProfileDialog::rejected, info, &AutoProfileInfo::deleteLater);
     dialog->show();
 }
@@ -2270,4 +2283,14 @@ void MainSettingsDialog::resetAdvancedSett()
 {
     ui->logFilePathEdit->setText("");
     ui->logLevelComboBox->setCurrentIndex(0);
+}
+
+
+void MainSettingsDialog::convToUniqueIDAutoProfGroupSett(QSettings* sett, QString guidAutoProfSett, QString uniqueAutoProfSett)
+{
+    if (sett->contains(guidAutoProfSett))
+    {
+        sett->setValue(uniqueAutoProfSett, sett->value(guidAutoProfSett));
+        sett->remove(guidAutoProfSett);
+    }
 }

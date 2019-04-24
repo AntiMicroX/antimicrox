@@ -1322,11 +1322,12 @@ QString InputDevice::getStringIdentifier()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString identifier = QString();
-    //QString tempGUID = getGUIDString();
+   // QString tempGUID = getGUIDString();
     QString tempUniqueID = getUniqueIDString();
     QString tempName = getSDLName();
 
     if (!tempUniqueID.isEmpty()) identifier = tempUniqueID;
+   // else if (!tempGUID.isEmpty()) identifier = tempGUID;
     else if (!tempName.isEmpty()) identifier = tempName;
 
     return identifier;
@@ -1540,6 +1541,8 @@ bool InputDevice::isKnownController()
 //        if (m_settings->contains(getGUIDString())) result = true;
 //        else if (m_settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled"))) result = true;
 
+        convertToUniqueMappSett(m_settings, getGUIDString(), getUniqueIDString());
+        convertToUniqueMappSett(m_settings, (QString("%1%2").arg(getGUIDString()).arg("Disabled")), (QString("%1%2").arg(getUniqueIDString()).arg("Disabled")));
         if (m_settings->contains(getUniqueIDString())) result = true;
         else if (m_settings->contains(QString("%1%2").arg(getUniqueIDString()).arg("Disabled"))) result = true;
 
@@ -1865,6 +1868,27 @@ void InputDevice::rawAxisEvent(int index, int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit rawAxisMoved(index, value);
+}
+
+void InputDevice::convertToUniqueMappSett(QSettings* sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett)
+{
+    if (sett->contains(gUIDmappGroupSett))
+    {
+        if (sett->contains(getGUIDString()) && (sett->value(getGUIDString()).toString().split(",").first() == getGUIDString()))
+        {
+            QStringList gg = sett->value(getGUIDString()).toString().split(",");
+            gg.removeFirst();
+            gg.prepend(getUniqueIDString());
+            sett->setValue(uniqueIDGroupSett, sett->value(gg.join(",")));
+        }
+        else
+        {
+            sett->setValue(uniqueIDGroupSett, sett->value(gUIDmappGroupSett));
+        }
+
+        sett->remove(gUIDmappGroupSett);
+    }
+
 }
 
 QHash<int, SetJoystick*>& InputDevice::getJoystick_sets() {

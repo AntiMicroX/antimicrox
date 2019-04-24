@@ -41,6 +41,7 @@ class AxisEditDialog;
 class QAction;
 class QMenu;
 class QStackedWidget;
+class QSettings;
 
 class JoyTabWidget : public QWidget
 {
@@ -55,6 +56,7 @@ public:
     void unloadConfig(); // JoyTabSettings class
     void checkHideEmptyOption();
     void refreshHelperThread();
+    void convToUniqueIDControllerGroupSett(QSettings* sett, QString guidControllerSett, QString uniqueControllerSett);
 
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();

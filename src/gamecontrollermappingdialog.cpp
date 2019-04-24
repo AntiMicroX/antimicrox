@@ -347,6 +347,7 @@ void GameControllerMappingDialog::saveChanges()
     settings->getLock()->lock();
 //    settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
 //    settings->setValue(QString("Mappings/%1%2").arg(device->getGUIDString()).arg("Disable"), "0");
+
     settings->setValue(QString("Mappings/").append(device->getUniqueIDString()), mappingString);
     settings->setValue(QString("Mappings/%1%2").arg(device->getUniqueIDString()).arg("Disable"), "0");
     settings->sync();

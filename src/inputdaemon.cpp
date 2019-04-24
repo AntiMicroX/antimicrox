@@ -611,6 +611,12 @@ void InputDaemon::addInputDevice(int index)
                     productID = QString(buffer);
             }
 
+            if (m_settings->contains(QString("%1Disable").arg(guidText)))
+            {
+                m_settings->setValue(QString("%1Disable").arg(guidText + vendor + productID), m_settings->value(QString("%1Disable").arg(guidText)));
+                m_settings->remove(QString("%1Disable").arg(guidText));
+            }
+
             bool disableGameController = m_settings->value(QString("%1Disable").arg(guidText + vendor + productID), false).toBool();
 
             if (SDL_IsGameController(index) && !disableGameController)

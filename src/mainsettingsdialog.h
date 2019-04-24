@@ -67,6 +67,7 @@ protected:
     void changePresetLanguage(); // MainSettingsLang class
     void fillSpringScreenPresets(); // MainSettingsMouse class
     void refreshExtraMouseInfo(); // MainSettingsMouse class
+    void convToUniqueIDAutoProfGroupSett(QSettings* sett, QString guidAutoProfSett, QString uniqueAutoProfSett);
 
 signals:
     void changeLanguage(QString language); // MainSettingsLang class

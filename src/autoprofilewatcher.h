@@ -26,6 +26,7 @@
 
 class AntiMicroSettings;
 class AutoProfileInfo;
+class QSettings;
 
 class AutoProfileWatcher : public QObject
 {
@@ -54,6 +55,7 @@ public:
 protected:
     QString findAppLocation();
     void clearProfileAssignments();
+    void convToUniqueIDAutoProfGroupSett(QSettings* sett, QString guidAutoProfSett, QString uniqueAutoProfSett);
 
 signals:
     void foundApplicableProfile(AutoProfileInfo *info);
