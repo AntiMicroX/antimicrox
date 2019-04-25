@@ -21,6 +21,9 @@
 #include "messagehandler.h"
 #include "antimicrosettings.h"
 
+#include <SDL2/SDL_version.h>
+#include <SDL2/SDL_gamecontroller.h>
+
 #include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>

@@ -31,7 +31,9 @@
   #include "eventhandlerfactory.h"
   #include "winextras.h"
 #elif defined(Q_OS_UNIX)
+#ifdef WITH_X11
   #include "x11extras.h"
+#endif
 #endif
 
 #include <QTableWidgetItem>

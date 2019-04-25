@@ -76,8 +76,6 @@
 
 
 
-
-
 #ifndef Q_OS_WIN
 static void termSignalTermHandler(int signal)
 {

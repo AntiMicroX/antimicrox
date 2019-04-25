@@ -486,6 +486,7 @@ void AddEditAutoProfileDialog::windowPropAssignment(CapturedWindowInfoDialog *di
     disconnect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
     disconnect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
 
+    #ifdef WITH_X11
     if (dialog->useFullWindowPath() && dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowPath)
     {
        ui->applicationLineEdit->setText(dialog->getWindowPath());
@@ -496,26 +497,37 @@ void AddEditAutoProfileDialog::windowPropAssignment(CapturedWindowInfoDialog *di
     }
     else
     {
+#endif
         ui->applicationLineEdit->clear();
+#ifdef WITH_X11
     }
+#endif
 
+    #ifdef WITH_X11
     if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowClass)
     {
         ui->winClassLineEdit->setText(dialog->getWindowClass());
     }
     else
     {
+    #endif
         ui->winClassLineEdit->clear();
+#ifdef WITH_X11
     }
+#endif
 
+    #ifdef WITH_X11
     if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowName)
     {
         ui->winNameLineEdit->setText(dialog->getWindowName());
     }
     else
     {
+    #endif
         ui->winNameLineEdit->clear();
+#ifdef WITH_X11
     }
+#endif
 
     checkForDefaultStatus();
 

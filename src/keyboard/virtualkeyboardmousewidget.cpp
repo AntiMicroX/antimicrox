@@ -30,8 +30,10 @@
 #include "buttoneditdialog.h"
 
 #ifdef Q_OS_UNIX
+#ifdef WITH_X11
 #include "x11extras.h"
 #include <X11/Xlib.h>
+#endif
 #elif defined(Q_OS_WIN)
 #include "winextras.h"
 #include <windows.h>
@@ -126,13 +128,15 @@ bool VirtualKeyboardMouseWidget::is_numlock_activated()
     return status == 1;
 #endif
 
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
     Display *dpy = XOpenDisplay(X11Extras::getInstance()->getEnvVariable("DISPLAY"));
     XKeyboardState x;
     XGetKeyboardControl(dpy, &x);
     XCloseDisplay(dpy);
     return x.led_mask & 2;
 #endif
+
+    return false;
 }
 
 bool VirtualKeyboardMouseWidget::isLaptop()

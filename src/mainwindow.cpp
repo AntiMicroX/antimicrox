@@ -20,10 +20,11 @@
 
 #include "messagehandler.h"
 #include "inputdevice.h"
+#include "autoprofileinfo.h"
 #include "aboutdialog.h"
 #include "commandlineutility.h"
 #include "antimicrosettings.h"
-#include "autoprofilewatcher.h"
+//#include "autoprofilewatcher.h"
 #include "joystick.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
@@ -43,6 +44,7 @@
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
     #include "autoprofileinfo.h"
+    #include "autoprofilewatcher.h"
 #endif
 
 #ifdef Q_OS_WIN
@@ -697,7 +699,9 @@ void MainWindow::quitProgram()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool discard = true;
+#ifdef WITH_X11
     AutoProfileWatcher::getAutoProfileWatcherInstance()->disconnectWindowTimer();
+#endif
 
     for (int i = 0; (i < ui->tabWidget->count()) && discard; i++)
     {
@@ -1766,7 +1770,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
   if( info != nullptr ) {
     Logger::LogDebug(QObject::trUtf8("Auto-switching to profile \"%1\".").
-		     arg(info->getProfileLocation()));
+                     arg(info->getProfileLocation()));
   } else {
     Logger::LogError(QObject::trUtf8("Auto-switching to nullptr profile!"));
   }
