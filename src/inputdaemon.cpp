@@ -337,7 +337,8 @@ void InputDaemon::refresh()
 
     QEventLoop q;
     connect(eventWorker, &SDLEventReader::sdlStarted, &q, &QEventLoop::quit);
-    QMetaObject::invokeMethod(eventWorker, "refresh", Qt::BlockingQueuedConnection);
+    QTimer::singleShot(0, eventWorker, SLOT(refresh()));
+    //QMetaObject::invokeMethod(eventWorker, "refresh", Qt::BlockingQueuedConnection);
 
     if (eventWorker->isSDLOpen()) q.exec();
 
@@ -849,6 +850,8 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
             }
             case SDL_JOYDEVICEREMOVED:
             case SDL_JOYDEVICEADDED:
+            case SDL_CONTROLLERDEVICEADDED:
+            case SDL_CONTROLLERDEVICEREMOVED:
             {
                 sdlEventQueue->append(event);
                 break;
@@ -987,6 +990,8 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                             }
                             case SDL_JOYDEVICEREMOVED:
                             case SDL_JOYDEVICEADDED:
+                            case SDL_CONTROLLERDEVICEREMOVED:
+                            case SDL_CONTROLLERDEVICEADDED:
                             {
                                 tempQueue.enqueue(event);
                                 break;
@@ -1163,6 +1168,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             }
 
             case SDL_JOYDEVICEREMOVED:
+            case SDL_CONTROLLERDEVICEREMOVED:
             {
                 InputDevice *device = m_joysticks->value(event.jdevice.which);
 
@@ -1179,6 +1185,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             }
 
             case SDL_JOYDEVICEADDED:
+            case SDL_CONTROLLERDEVICEADDED:
             {
                 addInputDevice(event.jdevice.which);
                 break;

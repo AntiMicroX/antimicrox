@@ -66,7 +66,6 @@
 #include <QPointer>
 #include <QHashIterator>
 #include <QMapIterator>
-#include <QLocalSocket>
 #include <QTextStream>
 #include <QDesktopServices>
 #include <QUrl>
@@ -104,6 +103,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
     ui->actionStick_Pad_Assign->setVisible(false);
 
+    // TROP - błąd wywołuje się przy autoprofile
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -547,10 +547,14 @@ void MainWindow::populateTrayIcon()
 
     int joystickCount = m_joysticks->size();
 
+    qDebug() << "joystickCount: " << joystickCount << endl;
+
     if (joystickCount > 0)
     {
         QMapIterator<SDL_JoystickID, InputDevice*> iter(*m_joysticks);
         bool useSingleList = m_settings->value("TrayProfileList", false).toBool();
+
+        qDebug() << "TrayProfileList: " << useSingleList << endl;
 
         if (!useSingleList && (joystickCount == 1)) useSingleList = true;
 
@@ -565,6 +569,8 @@ void MainWindow::populateTrayIcon()
             joytabName.append(" ")
                     .append(trUtf8("(%1)")
                     .arg(current->getName()));
+
+            qDebug() << "joytabName" << i << ": " << joytabName << endl;
             QMenu *joysticksubMenu = nullptr;
 
             if (!useSingleList) joysticksubMenu = trayIconMenu->addMenu(joytabName);
@@ -596,17 +602,32 @@ void MainWindow::populateTrayIcon()
                     newaction->setChecked(false);
 
                     QString identifier = current->getStringIdentifier();
+                    qDebug() << "current identifier: " << current->getStringIdentifier() << endl;
                     widget->convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1LastSelected").arg(current->getGUIDString()), QString("Controller%1LastSelected").arg(current->getUniqueIDString()));
                     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
 
-                    QFileInfo fileInfo(m_settings->value(controlEntryLastSelected).toString());
+                    qDebug() << "controlEntryLastSelected: " << controlEntryLastSelected << endl;
+
+                    QString contrFile = m_settings->value(controlEntryLastSelected).toString();
+
+                    QFileInfo fileInfo(contrFile);
+
+                    qDebug() << "controlEntryLastSelected in config file: " << contrFile << endl;
+
+                    qDebug() << "fileInfo.exists(): " << fileInfo.exists() << endl;
+                    qDebug() << "fileInfo.size(): " << fileInfo.size() << endl;
+                    qDebug() << "fileInfo.permissions(): " << fileInfo.permissions() << endl;
+
 
                     if ((configIter.value() == fileInfo.baseName()) || (configIter.value() == widget->getCurrentConfigName()))
                     {
+                        qDebug() << "fileInfo.baseName(): " << fileInfo.baseName() << endl;
+                        qDebug() << "widget->getCurrentConfigName(): " << widget->getCurrentConfigName() << endl;
                         newaction->setChecked(true);
                     }
 
                     QHash<QString, QVariant> tempmap;
+                    qDebug() << "insert " << QString::number(i) << ": " << configIter.key() << endl;
                     tempmap.insert(QString::number(i), QVariant (configIter.key()));
                     QVariant tempvar (tempmap);
                     newaction->setData(tempvar);
@@ -617,10 +638,12 @@ void MainWindow::populateTrayIcon()
 
                     if (useSingleList)
                     {
+                        qDebug() << "useSingleList" << endl;
                         tempProfileList.append(newaction);
                     }
                     else
                     {
+                        qDebug() << "doesn't useSingleList" << endl;
                         joysticksubMenu->addAction(newaction);
                     }
                 }
@@ -632,10 +655,12 @@ void MainWindow::populateTrayIcon()
 
                 if (joysticksubMenu != nullptr)
                 {
+                    qDebug() << "joysticksubmenu exists" << endl;
                     newaction = new QAction(trUtf8("Open File"), joysticksubMenu);
                 }
                 else
                 {
+                    qDebug() << "created action open file for tray" << endl;
                     newaction = new QAction(trUtf8("Open File"), trayIconMenu);
                 }
 
@@ -646,6 +671,7 @@ void MainWindow::populateTrayIcon()
 
                 if (useSingleList)
                 {
+                    qDebug() << "usesinglelist" << endl;
                     QAction *titleAction = new QAction(joytabName, trayIconMenu);
                     titleAction->setCheckable(false);
 
@@ -658,6 +684,7 @@ void MainWindow::populateTrayIcon()
                     trayIconMenu->addAction(newaction);
 
                     profileActions.insert(i, tempProfileList);
+                    qDebug() << "inserted profile action " << i << ": " << tempProfileList << endl;
 
                     if (iter.hasNext())
                     {
@@ -692,6 +719,8 @@ void MainWindow::populateTrayIcon()
     QIcon icon = QIcon::fromTheme("antimicro", QIcon(":/images/antimicro_trayicon.png"));
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
+
+    qDebug() << "end of MainWindow::populateTrayIcon function" << endl;
 }
 
 void MainWindow::quitProgram()

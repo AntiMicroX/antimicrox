@@ -92,10 +92,12 @@ void AutoProfileWatcher::stopTimer()
     checkWindowTimer.stop();
 }
 
+// TROP
 void AutoProfileWatcher::runAppCheck()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    // TROP
     #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << qApp->applicationFilePath();
     #endif
@@ -111,6 +113,7 @@ void AutoProfileWatcher::runAppCheck()
     if (!getAppProfileAssignments().isEmpty())
     {
         appLocation = findAppLocation();
+        qDebug() << "appLocation is " << appLocation << endl;
     }
 #else
     // In Windows, get program location no matter what.
@@ -124,6 +127,7 @@ void AutoProfileWatcher::runAppCheck()
     // More portable check for whether antimicro is the current application
     // with focus.
     QWidget *focusedWidget = qApp->activeWindow();
+    if (focusedWidget != nullptr) qDebug() << "get active window of app" << endl;
     QString nowWindow = QString();
     QString nowWindowClass = QString();
     QString nowWindowName = QString();
@@ -133,21 +137,23 @@ void AutoProfileWatcher::runAppCheck()
 #elif defined(Q_OS_UNIX)
 
     long currentWindow = X11Extras::getInstance()->getWindowInFocus();
+    qDebug() << "getWindowInFocus: " << currentWindow << endl;
 
     if (currentWindow > 0)
     {
         long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
+        qDebug() << "findParentClient: " << tempWindow << endl;
 
         if (tempWindow > 0) currentWindow = tempWindow;
 
         nowWindow = QString::number(currentWindow);
-        nowWindowClass = X11Extras::getInstance()->getWindowClass(static_cast<Window>(currentWindow));
-        nowWindowName = X11Extras::getInstance()->getWindowTitle(static_cast<Window>(currentWindow));
+        qDebug() << "number of window now: " << nowWindow << endl;
 
-        #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << nowWindowClass;
-            qDebug() << nowWindowName;
-        #endif
+        nowWindowClass = X11Extras::getInstance()->getWindowClass(static_cast<Window>(currentWindow));
+        qDebug() << "class of window now: " << nowWindowClass << endl;
+
+        nowWindowName = X11Extras::getInstance()->getWindowTitle(static_cast<Window>(currentWindow));
+        qDebug() << "title of window now: " << nowWindowName << endl;
     }
 #endif
 
@@ -156,6 +162,8 @@ void AutoProfileWatcher::runAppCheck()
     qDebug() << "WINDOW IN FOCUS: " << nowWindow;
 
     bool checkForTitleChange = getWindowNameProfileAssignments().size() > 0;
+
+    qDebug() << "window profile assignments size: " << getWindowNameProfileAssignments().size() << endl;
 
     qDebug() << "checkForTitleChange: " << checkForTitleChange;
 

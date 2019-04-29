@@ -925,8 +925,9 @@ void JoyTabWidget::changeJoyConfig(int index)
         removeCurrentButtons();
         emit forceTabUnflash(this);
 
-        QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
-                                  Q_ARG(QString, filename));
+        tabHelper.readConfigFile(filename);
+      //  QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
+      //                            Q_ARG(QString, filename));
 
         fillButtons();
         refreshSetButtons();
@@ -1539,9 +1540,9 @@ void JoyTabWidget::loadDeviceSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    //settings.beginGroup("Controllers");
+    //m_settings->beginGroup("Controllers");
     loadSettings();
-    //settings.endGroup();
+    //m_settings->endGroup();
 }
 
 bool JoyTabWidget::isDisplayingNames()

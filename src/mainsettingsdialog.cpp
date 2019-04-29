@@ -434,7 +434,6 @@ void MainSettingsDialog::fillControllerMappingsTable()
         }
         else
         {
-            // TU!
             QString mappingString = settings->value(tempkey, QString()).toString();
             if (!mappingString.isEmpty())
             {

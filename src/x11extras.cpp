@@ -235,14 +235,75 @@ Window X11Extras::findParentClient(Window window)
 
     Window parent = 0;
     Window root = 0;
-    Window *children = nullptr;
+    Window *children = 0;
     unsigned int num_children = 0;
     Window finalwindow = 0;
     Display *display = this->display();
 
-    checkPropertyOnWin(windowIsViewable(display, window) && isWindowRelevant(display, window), window, parent, finalwindow, root, children, display, num_children);
+    if (windowIsViewable(display, window) &&
+        isWindowRelevant(display, window))
+    {
+        finalwindow = window;
+    }
+    else
+    {
+        bool quitTraversal = false;
+
+        while (!quitTraversal)
+        {
+            children = 0;
+
+            if (XQueryTree(display, window, &root, &parent, &children, &num_children))
+            {
+                if (children)
+                {
+                    // must test for NULL
+                    XFree(children);
+                }
+
+                if (parent)
+                {
+                    if (windowIsViewable(display, parent) &&
+                        isWindowRelevant(display, parent))
+                    {
+                        quitTraversal = true;
+                        finalwindow = parent;
+                    }
+                    else if (parent == 0)
+                    {
+                        quitTraversal = true;
+                    }
+                    else if (parent == root)
+                    {
+                        quitTraversal = true;
+                    }
+                    else
+                    {
+                        window = parent;
+                    }
+                }
+                else
+                {
+                    quitTraversal = true;
+                }
+            }
+            else
+            {
+                quitTraversal = true;
+            }
+        }
+    }
+
+    if (display != nullptr) qDebug() << "display in X11Extras::findParentClient(Window window) exists" << endl;
+    else qDebug() << "display in X11Extras::findParentClient(Window window) doesn't exist" << endl;
+
+    qDebug() << "parent: " << parent << endl;
+    qDebug() << "root: " << root << endl;
+    qDebug() << "num_children: " << num_children << endl;
+    qDebug() << "finalwindow: " << finalwindow << endl;
 
     return finalwindow;
+
 }
 
 /**
@@ -622,10 +683,18 @@ unsigned long X11Extras::getWindowInFocus()
     int focusState = 0;
     Display *display = this->display();
 
+    if (display != nullptr) qDebug() << "display in X11Extras::getWindowInFocus() exists" << endl;
+    else qDebug() << "display in X11Extras::getWindowInFocus() doesn't exist" << endl;
+
     XGetInputFocus(display, &currentWindow, &focusState);
 
     if (currentWindow > 0)
-         result = static_cast<unsigned long>(currentWindow);
+    {
+        result = static_cast<unsigned long>(currentWindow);
+    }
+
+    qDebug() << "focusState of currentWindow: " << focusState << endl;
+    qDebug() << "result of currentWindow: " << result << endl;
 
     return result;
 }
