@@ -40,7 +40,9 @@ void LocalAntiMicroServer::startLocalServer()
 
     if (localServer != nullptr)
     {
-        if (!localServer->hasPendingConnections()) QLocalServer::removeServer(PadderCommon::localSocketKey);
+        bool removedServer = QLocalServer::removeServer(PadderCommon::localSocketKey);
+
+        if (!removedServer) qDebug() << "Couldn't remove local server named " << PadderCommon::localSocketKey << endl;
 
         if (localServer->maxPendingConnections() != 1) localServer->setMaxPendingConnections(1);
 

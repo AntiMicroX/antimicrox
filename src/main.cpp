@@ -268,9 +268,7 @@ int main(int argc, char *argv[])
     // messages to the QLocalServer.
     QLocalSocket socket;
 
-
-    if ((socket.state() == QLocalSocket::ConnectedState) && !socket.serverName().isEmpty()) socket.abort();
-    else
+    if ((socket.serverName() == QString()))
     {
         socket.connectToServer(PadderCommon::localSocketKey);
 
@@ -281,6 +279,14 @@ int main(int argc, char *argv[])
             qDebug() << "Socket descriptor: " << socket.socketDescriptor() << endl;
             qDebug() <<  "The connection hasn't been established: \nerror text -> " << socket.error() << "\nerror text 2 ->" << socket.errorString() << endl;
         }
+        else
+        {
+            qDebug() << "Socket connected" << endl;
+        }
+    }
+    else
+    {
+        socket.abort();
     }
 
     if (!socket.isValid())
