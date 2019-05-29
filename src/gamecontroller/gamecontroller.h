@@ -42,7 +42,13 @@ public:
 
     // GUID available on SDL 2.
     virtual QString getGUIDString() override;
+    virtual QString getVendorString() override;
+    virtual QString getProductIDString() override;
+    virtual QString getUniqueIDString() override;
     virtual QString getRawGUIDString() override;
+    virtual QString getRawUniqueIDString() override;
+    virtual QString getRawVendorString() override;
+    virtual QString getRawProductIDString() override;
 
     virtual bool isGameController() override;
     virtual void closeSDLDevice() override;
@@ -58,7 +64,8 @@ public:
     SDL_GameControllerButtonBind getBindForAxis(int index);
     SDL_GameControllerButtonBind getBindForButton(int index);
 
-    bool isRelevantGUID(QString tempGUID);
+    //bool isRelevantGUID(QString tempGUID);
+    bool isRelevantUniqueID(QString tempUniqueID);
     void rawButtonEvent(int index, bool pressed);
     void rawAxisEvent(int index, int value);
     void rawDPadEvent(int index, int value);

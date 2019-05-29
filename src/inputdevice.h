@@ -31,7 +31,7 @@ class AntiMicroSettings;
 class SetJoystick;
 class QXmlStreamReader;
 class QXmlStreamWriter;
-
+class QSettings;
 
 class InputDevice : public QObject
 {
@@ -62,7 +62,13 @@ public:
 
     // GUID only available on SDL 2.
     virtual QString getGUIDString() = 0;
+    virtual QString getUniqueIDString() = 0;
+    virtual QString getVendorString() = 0;
+    virtual QString getProductIDString() = 0;
     virtual QString getRawGUIDString();
+    virtual QString getRawVendorString();
+    virtual QString getRawProductIDString();
+    virtual QString getRawUniqueIDString();
 
     virtual QString getStringIdentifier();
     virtual void closeSDLDevice() = 0;
@@ -116,9 +122,12 @@ public:
     void activatePossibleDPadEvents(); // InputDeviceHat class
     void activatePossibleVDPadEvents(); // InputDeviceVDPad class
     void activatePossibleButtonEvents(); // InputDeviceButton class
+    void convertToUniqueMappSett(QSettings* sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett);
 
-    bool isEmptyGUID(QString tempGUID);
-    bool isRelevantGUID(QString tempGUID);
+    //bool isEmptyGUID(QString tempGUID);
+    bool isEmptyUniqueID(QString tempUniqueID);
+    //bool isRelevantGUID(QString tempGUID);
+    bool isRelevantUniqueID(QString tempUniqueID);
 
     void setRawAxisDeadZone(int deadZone); // InputDeviceAxis class
     int getRawAxisDeadZone(); // InputDeviceAxis class

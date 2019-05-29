@@ -56,6 +56,7 @@ protected:
     Joystick* openJoystickDevice(int index);
 
     void clearBitArrayStatusInstances();
+    void convertMappingsToUnique(QSettings* sett, QString guidString, QString uniqueIdString);
 
 signals:
     void joystickRefreshed (InputDevice *joystick);

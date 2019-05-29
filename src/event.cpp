@@ -153,9 +153,9 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
                      PadderCommon::springModeInfo *relativeSpring,
                      int* const mousePosX, int* const mousePosY)
 {
-    Q_UNUSED(relativeSpring);
-    Q_UNUSED(mousePosX);
-    Q_UNUSED(mousePosY);
+    Q_UNUSED(relativeSpring)
+    Q_UNUSED(mousePosX)
+    Q_UNUSED(mousePosY)
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -301,6 +301,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             currentPoint = QCursor::pos();
         }
 #elif defined(Q_OS_WIN)
+        QPoint currentPoint = QCursor::pos();
+#else
         QPoint currentPoint = QCursor::pos();
 #endif
 
@@ -661,7 +663,7 @@ QString keycodeToKeyString(int keycode, int alias)
     QString newkey = QString();
 
 #if defined (Q_OS_UNIX)
-    Q_UNUSED(alias);
+    Q_UNUSED(alias)
 
     if (keycode <= 0)
     {
@@ -772,7 +774,7 @@ int X11KeyCodeToX11KeySym(int keycode)
 
     #else
 
-    Q_UNUSED(keycode);
+    Q_UNUSED(keycode)
     return 0;
 
     #endif
@@ -786,7 +788,8 @@ QString keysymToKeyString(int keysym, int alias)
     QString newkey = QString();
 
 #if defined (Q_OS_UNIX)
-    Q_UNUSED(alias);
+    #ifdef WITH_X11
+    Q_UNUSED(alias)
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
@@ -804,7 +807,9 @@ QString keysymToKeyString(int keysym, int alias)
     {
         newkey = keycodeToKeyString(keysym);
     }
-
+    #else
+        newkey = keycodeToKeyString(keysym, alias);
+    #endif
 #elif defined(Q_OS_WIN)
     newkey = keycodeToKeyString(keysym, alias);
 #endif

@@ -21,6 +21,9 @@
 #include "messagehandler.h"
 #include "antimicrosettings.h"
 
+#include <SDL2/SDL_version.h>
+#include <SDL2/SDL_gamecontroller.h>
+
 #include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -34,6 +37,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     m_joyhandle = joyhandle;
+    controller = SDL_GameControllerOpen(deviceIndex);
     joystickID = SDL_JoystickInstanceID(joyhandle);
 
     for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
@@ -79,6 +83,7 @@ QString Joystick::getSDLName()
     return temp;
 }
 
+
 QString Joystick::getGUIDString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -93,6 +98,53 @@ QString Joystick::getGUIDString()
     // Not available on SDL 1.2. Return empty string in that case.
     return temp;
 }
+
+
+QString Joystick::getVendorString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QString temp = QString();
+
+    if (controller != nullptr)
+    {
+            Uint16 tempVendor = SDL_GameControllerGetVendor(controller);
+            char buffer [50];
+            sprintf (buffer, "%u", tempVendor);
+
+            temp = QString(buffer);
+    }
+
+    return temp;
+}
+
+
+QString Joystick::getProductIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QString temp = QString();
+
+    if (controller != nullptr)
+    {
+            Uint16 tempProduct = SDL_GameControllerGetProduct(controller);
+            char buffer [50];
+            sprintf (buffer, "%u", tempProduct);
+
+            temp = QString(buffer);
+    }
+
+    return temp;
+}
+
+
+QString Joystick::getUniqueIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return (getGUIDString() + getVendorString() + getProductIDString());
+}
+
 
 void Joystick::closeSDLDevice()
 {

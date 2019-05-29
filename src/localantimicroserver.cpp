@@ -25,6 +25,7 @@
 #include <QLocalServer>
 #include <QDebug>
 
+
 LocalAntiMicroServer::LocalAntiMicroServer(QObject *parent) :
     QObject(parent)
 {
@@ -37,18 +38,33 @@ void LocalAntiMicroServer::startLocalServer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QLocalServer::removeServer(PadderCommon::localSocketKey);
-    localServer->setMaxPendingConnections(1);
-    if (!localServer->listen(PadderCommon::localSocketKey))
+    if (localServer != nullptr)
     {
-        QTextStream errorstream(stderr);
-        QString message("Could not start signal server. Profiles cannot be reloaded\n");
-        message.append("from command-line");
-        errorstream << trUtf8(message.toStdString().c_str()) << endl;
+        bool removedServer = QLocalServer::removeServer(PadderCommon::localSocketKey);
+
+        if (!removedServer) qDebug() << "Couldn't remove local server named " << PadderCommon::localSocketKey << endl;
+
+        if (localServer->maxPendingConnections() != 1) localServer->setMaxPendingConnections(1);
+
+        if (!localServer->isListening())
+        {
+            if (!localServer->listen(PadderCommon::localSocketKey))
+            {
+                QTextStream errorstream(stderr);
+                QString message("Could not start signal server. Profiles cannot be reloaded\n");
+                message.append("from command-line");
+                errorstream << trUtf8(message.toStdString().c_str()) << endl;
+                qDebug() << "Could not start signal server. Profiles cannot be reloaded\n" << " \nfrom command-line\n " << trUtf8(message.toStdString().c_str()) << endl;
+            }
+            else
+            {
+                connect(localServer, &QLocalServer::newConnection, this, &LocalAntiMicroServer::handleOutsideConnection);
+            }
+        }
     }
     else
     {
-        connect(localServer, &QLocalServer::newConnection, this, &LocalAntiMicroServer::handleOutsideConnection);
+        qDebug() << "LocalAntiMicroServer::startLocalServer(): localServer is nullptr" << endl;
     }
 }
 
@@ -56,11 +72,24 @@ void LocalAntiMicroServer::handleOutsideConnection()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QLocalSocket *socket = localServer->nextPendingConnection();
-    if (socket != nullptr)
+    if (localServer != nullptr)
     {
-        connect(socket, &QLocalSocket::disconnected, this, &LocalAntiMicroServer::handleSocketDisconnect);
-        connect(socket, &QLocalSocket::disconnected, socket, &QLocalSocket::deleteLater);
+        QLocalSocket *socket = localServer->nextPendingConnection();
+
+        if (socket != nullptr)
+        {
+            qDebug() << "There is next pending connection: " << socket->socketDescriptor() << endl;
+            connect(socket, &QLocalSocket::disconnected, this, &LocalAntiMicroServer::handleSocketDisconnect);
+            connect(socket, &QLocalSocket::disconnected, socket, &QLocalSocket::deleteLater);
+        }
+        else
+        {
+            qDebug() << "There isn't next pending connection: " << endl;
+        }
+    }
+    else
+    {
+        qDebug() << "LocalAntiMicroServer::handleOutsideConnection(): localServer is nullptr" << endl;
     }
 }
 
@@ -78,7 +107,7 @@ void LocalAntiMicroServer::close()
     localServer->close();
 }
 
-QLocalServer* LocalAntiMicroServer::getLocalServer() const {
-
+QLocalServer* LocalAntiMicroServer::getLocalServer() const
+{
     return localServer;
 }

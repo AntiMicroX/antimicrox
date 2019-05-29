@@ -514,6 +514,18 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            <attribute name="horizontalHeaderCascadingSectionResizes">
             <bool>false</bool>
            </attribute>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>200</number>
+           </attribute>
+           <attribute name="horizontalHeaderMinimumSectionSize">
+            <number>70</number>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
+            <number>50</number>
+           </attribute>
+           <attribute name="verticalHeaderMinimumSectionSize">
+            <number>50</number>
+           </attribute>
            <column>
             <property name="text">
              <string>GUID</string>

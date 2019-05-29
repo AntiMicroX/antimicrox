@@ -20,10 +20,11 @@
 
 #include "messagehandler.h"
 #include "inputdevice.h"
+#include "autoprofileinfo.h"
 #include "aboutdialog.h"
 #include "commandlineutility.h"
 #include "antimicrosettings.h"
-#include "autoprofilewatcher.h"
+//#include "autoprofilewatcher.h"
 #include "joystick.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
@@ -43,6 +44,7 @@
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
     #include "autoprofileinfo.h"
+    #include "autoprofilewatcher.h"
 #endif
 
 #ifdef Q_OS_WIN
@@ -64,13 +66,13 @@
 #include <QPointer>
 #include <QHashIterator>
 #include <QMapIterator>
-#include <QLocalSocket>
 #include <QTextStream>
 #include <QDesktopServices>
 #include <QUrl>
 #include <QMessageBox>
 #include <QLibraryInfo>
 #include <QFileInfo>
+#include <QRegularExpression>
 
 #ifdef Q_OS_WIN
     #include <QSysInfo>
@@ -101,6 +103,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
     ui->actionStick_Pad_Assign->setVisible(false);
 
+    // TROP - błąd wywołuje się przy autoprofile
 #ifdef Q_OS_UNIX
     #if defined(USE_SDL_2) && defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -348,8 +351,6 @@ void MainWindow::controllerMapOpening()
         }
         else if (temp.hasControllerID())
         {
-
-
             QString joypadGUID = m_cmdutility->getControllerID();
 
             #ifndef QT_DEBUG_NO_OUTPUT
@@ -378,7 +379,7 @@ void MainWindow::fillButtons()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    fillButtons(m_joysticks);
+    fillButtonsMap(m_joysticks);
 }
 
 void MainWindow::makeJoystickTabs()
@@ -421,7 +422,7 @@ void MainWindow::makeJoystickTabs()
     }
 }
 
-void MainWindow::fillButtons(InputDevice *joystick)
+void MainWindow::fillButtonsID(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -430,7 +431,7 @@ void MainWindow::fillButtons(InputDevice *joystick)
     tabwidget->refreshButtons();
 }
 
-void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
+void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -463,9 +464,11 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->refreshButtons();
+
         connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, [this, tabwidget](bool displayNames) {
             propogateNameDisplayStatus(tabwidget, displayNames);
         });
+
         connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
 
         if (showTrayIcon)
@@ -484,7 +487,6 @@ void MainWindow::fillButtons(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 
     if (showTrayIcon)
     {
-        trayIcon->hide();
         populateTrayIcon();
         trayIcon->show();
     }
@@ -545,16 +547,19 @@ void MainWindow::populateTrayIcon()
 
     int joystickCount = m_joysticks->size();
 
+    qDebug() << "joystickCount: " << joystickCount << endl;
+
     if (joystickCount > 0)
     {
         QMapIterator<SDL_JoystickID, InputDevice*> iter(*m_joysticks);
         bool useSingleList = m_settings->value("TrayProfileList", false).toBool();
-        if (!useSingleList && (joystickCount == 1))
-        {
-            useSingleList = true;
-        }
+
+        qDebug() << "TrayProfileList: " << useSingleList << endl;
+
+        if (!useSingleList && (joystickCount == 1)) useSingleList = true;
 
         int i = 0;
+
         while (iter.hasNext())
         {
             iter.next();
@@ -564,12 +569,12 @@ void MainWindow::populateTrayIcon()
             joytabName.append(" ")
                     .append(trUtf8("(%1)")
                     .arg(current->getName()));
+
+            qDebug() << "joytabName" << i << ": " << joytabName << endl;
             QMenu *joysticksubMenu = nullptr;
 
-            if (!useSingleList)
-            {
-                joysticksubMenu = trayIconMenu->addMenu(joytabName);
-            }
+            if (!useSingleList) joysticksubMenu = trayIconMenu->addMenu(joytabName);
+
 
             JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
 
@@ -597,17 +602,32 @@ void MainWindow::populateTrayIcon()
                     newaction->setChecked(false);
 
                     QString identifier = current->getStringIdentifier();
+                    qDebug() << "current identifier: " << current->getStringIdentifier() << endl;
+                    widget->convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1LastSelected").arg(current->getGUIDString()), QString("Controller%1LastSelected").arg(current->getUniqueIDString()));
                     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
 
-                    QFileInfo fileInfo(m_settings->value(controlEntryLastSelected).toString());
+                    qDebug() << "controlEntryLastSelected: " << controlEntryLastSelected << endl;
+
+                    QString contrFile = m_settings->value(controlEntryLastSelected).toString();
+
+                    QFileInfo fileInfo(contrFile);
+
+                    qDebug() << "controlEntryLastSelected in config file: " << contrFile << endl;
+
+                    qDebug() << "fileInfo.exists(): " << fileInfo.exists() << endl;
+                    qDebug() << "fileInfo.size(): " << fileInfo.size() << endl;
+                    qDebug() << "fileInfo.permissions(): " << fileInfo.permissions() << endl;
 
 
                     if ((configIter.value() == fileInfo.baseName()) || (configIter.value() == widget->getCurrentConfigName()))
                     {
+                        qDebug() << "fileInfo.baseName(): " << fileInfo.baseName() << endl;
+                        qDebug() << "widget->getCurrentConfigName(): " << widget->getCurrentConfigName() << endl;
                         newaction->setChecked(true);
                     }
 
                     QHash<QString, QVariant> tempmap;
+                    qDebug() << "insert " << QString::number(i) << ": " << configIter.key() << endl;
                     tempmap.insert(QString::number(i), QVariant (configIter.key()));
                     QVariant tempvar (tempmap);
                     newaction->setData(tempvar);
@@ -618,10 +638,12 @@ void MainWindow::populateTrayIcon()
 
                     if (useSingleList)
                     {
+                        qDebug() << "useSingleList" << endl;
                         tempProfileList.append(newaction);
                     }
                     else
                     {
+                        qDebug() << "doesn't useSingleList" << endl;
                         joysticksubMenu->addAction(newaction);
                     }
                 }
@@ -630,12 +652,15 @@ void MainWindow::populateTrayIcon()
                 configs = nullptr;
 
                 QAction *newaction = nullptr;
+
                 if (joysticksubMenu != nullptr)
                 {
+                    qDebug() << "joysticksubmenu exists" << endl;
                     newaction = new QAction(trUtf8("Open File"), joysticksubMenu);
                 }
                 else
                 {
+                    qDebug() << "created action open file for tray" << endl;
                     newaction = new QAction(trUtf8("Open File"), trayIconMenu);
                 }
 
@@ -646,6 +671,7 @@ void MainWindow::populateTrayIcon()
 
                 if (useSingleList)
                 {
+                    qDebug() << "usesinglelist" << endl;
                     QAction *titleAction = new QAction(joytabName, trayIconMenu);
                     titleAction->setCheckable(false);
 
@@ -658,6 +684,7 @@ void MainWindow::populateTrayIcon()
                     trayIconMenu->addAction(newaction);
 
                     profileActions.insert(i, tempProfileList);
+                    qDebug() << "inserted profile action " << i << ": " << tempProfileList << endl;
 
                     if (iter.hasNext())
                     {
@@ -692,6 +719,8 @@ void MainWindow::populateTrayIcon()
     QIcon icon = QIcon::fromTheme("antimicro", QIcon(":/images/antimicro_trayicon.png"));
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
+
+    qDebug() << "end of MainWindow::populateTrayIcon function" << endl;
 }
 
 void MainWindow::quitProgram()
@@ -699,7 +728,9 @@ void MainWindow::quitProgram()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool discard = true;
+#ifdef WITH_X11
     AutoProfileWatcher::getAutoProfileWatcherInstance()->disconnectWindowTimer();
+#endif
 
     for (int i = 0; (i < ui->tabWidget->count()) && discard; i++)
     {
@@ -1669,13 +1700,13 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
     connect(tabwidget, &JoyTabWidget::namesDisplayChanged, this, [this, tabwidget](bool displayNames) {
         propogateNameDisplayStatus(tabwidget, displayNames);
     });
+
     connect(tabwidget, &JoyTabWidget::mappingUpdated, this, &MainWindow::propogateMappingUpdate);
+
     if (showTrayIcon)
     {
         connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
-        trayIcon->hide();
         populateTrayIcon();
-        trayIcon->show();
     }
 }
 
@@ -1716,12 +1747,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
         }
     }
 
-    if (showTrayIcon)
-    {
-        trayIcon->hide();
-        populateTrayIcon();
-        trayIcon->show();
-    }
+    if (showTrayIcon) populateTrayIcon();
 
     if (ui->tabWidget->count() == 0)
     {
@@ -1761,9 +1787,7 @@ void MainWindow::addJoyTab(InputDevice *device)
     if (showTrayIcon)
     {
         connect(tabwidget, &JoyTabWidget::joystickConfigChanged, this, &MainWindow::populateTrayIcon);
-        trayIcon->hide();
         populateTrayIcon();
-        trayIcon->show();
     }
 
     ui->stackedWidget->setCurrentIndex(1);
@@ -1775,7 +1799,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
   if( info != nullptr ) {
     Logger::LogDebug(QObject::trUtf8("Auto-switching to profile \"%1\".").
-		     arg(info->getProfileLocation()));
+                     arg(info->getProfileLocation()));
   } else {
     Logger::LogError(QObject::trUtf8("Auto-switching to nullptr profile!"));
   }
@@ -1788,9 +1812,11 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
+
         if (widget != nullptr)
         {
-            if (info->getGUID() == "all")
+            //if (info->getGUID() == "all")
+            if (info->getUniqueID() == "all")
             {
                 // If the all option for a Default profile was found,
                 // first check for controller specific associations. If one exists,
@@ -1799,10 +1825,13 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 QList<AutoProfileInfo*> *customs = appWatcher->getCustomDefaults();
                 bool found = false;
                 QListIterator<AutoProfileInfo*> iter(*customs);
+
                 while (iter.hasNext())
                 {
                     AutoProfileInfo *tempinfo = iter.next();
-                    if (tempinfo->getGUID() == widget->getJoystick()->getGUIDString() &&
+
+//                    if (tempinfo->getGUID() == widget->getJoystick()->getGUIDString() &&
+                     if (tempinfo->getUniqueID() == widget->getJoystick()->getUniqueIDString() &&
                         info->isCurrentDefault())
                     {
                         found = true;
@@ -1818,8 +1847,12 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 // controller.
                 if (!found)
                 {
-                    QString tempguid = widget->getJoystick()->getGUIDString();
-                    if (appWatcher->isGUIDLocked(tempguid))
+//                    QString tempguid = widget->getJoystick()->getGUIDString();
+//                    if (appWatcher->isGUIDLocked(tempguid))
+
+                    QString tempguid = widget->getJoystick()->getUniqueIDString();
+
+                    if (appWatcher->isUniqueIDLocked(tempguid))
                     {
                         found = true;
                         qDebug() << "GUID is locked in appWatcher. Found = true.";
@@ -1842,9 +1875,12 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                     }
                 }
             }
-            else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
+            // else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
+            else if (info->getUniqueID() == widget->getJoystick()->getStringIdentifier())
             {
-                qDebug() << "GUID of AutoProfileInfo: " << info->getGUID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+                // qDebug() << "GUID of AutoProfileInfo: " << info->getGUID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+                qDebug() << "GUID of AutoProfileInfo: " << info->getUniqueID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+
                 if (info->getProfileLocation().isEmpty())
                 {
                     qDebug() << "profile location of AutoProfileInfo is empty. Set first config";
@@ -1873,17 +1909,17 @@ void MainWindow::checkAutoProfileWatcherTimer()
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     #endif
-    QString autoProfileActive = m_settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
-    if (autoProfileActive == "1")
-    {
-        appWatcher->startTimer();
-        qDebug() << "Started timer for appWatcher";
-    }
-    else
-    {
-        appWatcher->stopTimer();
-        qDebug() << "Stopped timer for appWatcher";
-    }
+        QString autoProfileActive = m_settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
+        if (autoProfileActive == "1")
+        {
+            appWatcher->startTimer();
+            qDebug() << "Started timer for appWatcher";
+        }
+        else
+        {
+            appWatcher->stopTimer();
+            qDebug() << "Stopped timer for appWatcher";
+        }
     #if defined(Q_OS_UNIX)
     }
     #endif
@@ -1958,6 +1994,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
         {
             deviceIter.next();
             InputDevice *tempDevice = deviceIter.value();
+
             if (tempDevice && (GUID == tempDevice->getStringIdentifier()))
             {
                 device = tempDevice;
@@ -1968,7 +2005,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
         if (device != nullptr)
         {
             #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "InputDevice was not a null pointer in selectControllerJoyTab of GUID";
+                qDebug() << "InputDevice was not a null pointer in selectControllerJoyTab of GUID";
             #endif
 
             ui->tabWidget->setCurrentIndex(device->getJoyNumber());
@@ -1976,7 +2013,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
         else
         {
             #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "InputDevice was a NULL POINTER in selectControllerJoyTab of GUID";
+                qDebug() << "InputDevice was a NULL POINTER in selectControllerJoyTab of GUID";
             #endif
         }
     }
@@ -2077,6 +2114,7 @@ QMap<int, QList<QAction*> > const& MainWindow::getProfileActions() {
     return profileActions;
 }
 
+
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::Hide && (obj != nullptr)) {
@@ -2084,4 +2122,36 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     }
 
     return false;
+}
+
+
+void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID)
+{
+        int exec = QMessageBox::information(this, trUtf8("Reading old profile"), trUtf8("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicro since version 2.24.2"), QMessageBox::Yes, QMessageBox::No);
+
+        switch (exec)
+        {
+            case QMessageBox::Yes:
+
+                QFile data(m_settings->value(controlEntryLastSelectedGUID).toString());
+                data.open(QIODevice::Text | QIODevice::ReadOnly);
+                QString dataText = data.readAll();
+
+                QRegularExpression re(currentDevice->getGUIDString());
+                QString replacementText(currentDevice->getUniqueIDString());
+
+                dataText.replace(re, replacementText);
+
+                QFile newData(m_settings->value(controlEntryLastSelectedGUID).toString());
+
+                if (newData.open(QFile::WriteOnly | QFile::Truncate))
+                {
+                    QTextStream out(&newData);
+                    out << dataText;
+                }
+
+                newData.close();
+
+            break;
+        }
 }

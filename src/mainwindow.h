@@ -82,6 +82,7 @@ protected:
     void unloadCurrentConfig(QString controllerID); // MainConfiguration class
     void changeStartSetNumber(int startSetNumber, QString controllerID); // MainConfiguration class
     void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // MainConfiguration class
+    void convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID);
 
 signals:
     void joystickRefreshRequested();
@@ -93,8 +94,8 @@ public slots:
     void fillButtons();
     void makeJoystickTabs();
     void alterConfigFromSettings(); // MainConfiguration class
-    void fillButtons(InputDevice *joystick);
-    void fillButtons(QMap<SDL_JoystickID, InputDevice*> *joysticks);
+    void fillButtonsID(InputDevice *joystick);
+    void fillButtonsMap(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void startJoystickRefresh();
     void hideWindow();
     void saveAppConfig(); // MainConfiguration class

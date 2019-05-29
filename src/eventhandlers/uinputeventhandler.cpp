@@ -553,12 +553,14 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
     if ((mapper != nullptr) && mapper->getKeyMapper())
     {
         QtUInputKeyMapper *keymapper = qobject_cast<QtUInputKeyMapper*>(mapper->getKeyMapper());
+        #ifdef WITH_X11
         QtX11KeyMapper *nativeWinKeyMapper = nullptr;
 
         if (mapper->getNativeKeyMapper())
         {
             nativeWinKeyMapper = qobject_cast<QtX11KeyMapper*>(mapper->getNativeKeyMapper());
         }
+        #endif
 
         QList<unsigned int> tempList;
 
@@ -570,6 +572,7 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
             temp.virtualkey = 0;
             temp.modifiers = Qt::NoModifier;
 
+            #ifdef WITH_X11
             if (nativeWinKeyMapper != nullptr)
             {
                 QtX11KeyMapper::charKeyInformation tempX11 = nativeWinKeyMapper->getCharKeyInformation(maintext.at(i));
@@ -588,8 +591,11 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
             }
             else
             {
+        #endif
                 temp = keymapper->getCharKeyInformation(maintext.at(i));
+        #ifdef WITH_X11
             }
+        #endif
 
             if (temp.virtualkey > KEY_RESERVED)
             {

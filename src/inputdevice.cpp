@@ -1322,10 +1322,12 @@ QString InputDevice::getStringIdentifier()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString identifier = QString();
-    QString tempGUID = getGUIDString();
+   // QString tempGUID = getGUIDString();
+    QString tempUniqueID = getUniqueIDString();
     QString tempName = getSDLName();
 
-    if (!tempGUID.isEmpty()) identifier = tempGUID;
+    if (!tempUniqueID.isEmpty()) identifier = tempUniqueID;
+   // else if (!tempGUID.isEmpty()) identifier = tempGUID;
     else if (!tempName.isEmpty()) identifier = tempName;
 
     return identifier;
@@ -1536,8 +1538,14 @@ bool InputDevice::isKnownController()
     {
         m_settings->beginGroup("Mappings");
 
-        if (m_settings->contains(getGUIDString())) result = true;
-        else if (m_settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled"))) result = true;
+//        if (m_settings->contains(getGUIDString())) result = true;
+//        else if (m_settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled"))) result = true;
+
+        convertToUniqueMappSett(m_settings, getGUIDString(), getUniqueIDString());
+        convertToUniqueMappSett(m_settings, (QString("%1%2").arg(getGUIDString()).arg("Disabled")), (QString("%1%2").arg(getUniqueIDString()).arg("Disabled")));
+
+        if (m_settings->contains(getUniqueIDString())) result = true;
+        else if (m_settings->contains(QString("%1%2").arg(getUniqueIDString()).arg("Disabled"))) result = true;
 
         m_settings->endGroup();
     }
@@ -1736,13 +1744,24 @@ bool InputDevice::elementsHaveNames()
  * @param GUID string
  * @return if GUID is considered empty.
  */
-bool InputDevice::isEmptyGUID(QString tempGUID)
+//bool InputDevice::isEmptyGUID(QString tempGUID)
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    bool result = false;
+
+//    if (tempGUID.contains(GlobalVariables::InputDevice::emptyGUID)) result = true;
+
+//    return result;
+//}
+
+bool InputDevice::isEmptyUniqueID(QString tempUniqueID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
 
-    if (tempGUID.contains(GlobalVariables::InputDevice::emptyGUID)) result = true;
+    if (tempUniqueID.contains(GlobalVariables::InputDevice::emptyUniqueID)) result = true;
 
     return result;
 }
@@ -1753,16 +1772,29 @@ bool InputDevice::isEmptyGUID(QString tempGUID)
  * @param GUID string
  * @return if GUID is considered a match.
  */
-bool InputDevice::isRelevantGUID(QString tempGUID)
+//bool InputDevice::isRelevantGUID(QString tempGUID)
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    bool result = false;
+
+//    if (tempGUID == getGUIDString()) result = true;
+
+//    return result;
+//}
+
+
+bool InputDevice::isRelevantUniqueID(QString tempUniqueID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool result = false;
 
-    if (tempGUID == getGUIDString()) result = true;
+    if (tempUniqueID == getUniqueIDString()) result = true;
 
     return result;
 }
+
 
 QString InputDevice::getRawGUIDString()
 {
@@ -1770,6 +1802,31 @@ QString InputDevice::getRawGUIDString()
 
     return getGUIDString();
 }
+
+
+QString InputDevice::getRawVendorString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getVendorString();
+}
+
+
+QString InputDevice::getRawProductIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getProductIDString();
+}
+
+
+QString InputDevice::getRawUniqueIDString()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return getUniqueIDString();
+}
+
 
 void InputDevice::haltServices()
 {
@@ -1812,6 +1869,26 @@ void InputDevice::rawAxisEvent(int index, int value)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     emit rawAxisMoved(index, value);
+}
+
+void InputDevice::convertToUniqueMappSett(QSettings* sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett)
+{
+    if (sett->contains(gUIDmappGroupSett))
+    {
+        if (sett->contains(gUIDmappGroupSett) && (sett->value(gUIDmappGroupSett).toString().split(",").first() == getGUIDString()))
+        {
+            QStringList gg = sett->value(gUIDmappGroupSett).toString().split(",");
+            gg.removeFirst();
+            gg.prepend(uniqueIDGroupSett);
+            sett->setValue(uniqueIDGroupSett, sett->value(gg.join(",")));
+            sett->remove(gUIDmappGroupSett);
+        }
+        else
+        {
+            sett->setValue(uniqueIDGroupSett, sett->value(gUIDmappGroupSett));
+            sett->remove(gUIDmappGroupSett);
+        }
+    }
 }
 
 QHash<int, SetJoystick*>& InputDevice::getJoystick_sets() {

@@ -50,6 +50,7 @@
 #include <QCommandLineParser>
 #include <QStandardPaths>
 
+
 #ifdef Q_OS_UNIX
     #include <signal.h>
     #include <unistd.h>
@@ -57,9 +58,9 @@
     #include <sys/types.h>
     #include <sys/stat.h>
 
-      #ifdef WITH_X11
-        #include "x11extras.h"
-      #endif
+    #ifdef WITH_X11
+      #include "x11extras.h"
+    #endif
 
 #endif
 
@@ -76,14 +77,12 @@
 
 
 
-
-
 #ifndef Q_OS_WIN
 static void termSignalTermHandler(int signal)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    Q_UNUSED(signal);
+    Q_UNUSED(signal)
 
     qApp->exit(0);
 }
@@ -92,7 +91,7 @@ static void termSignalIntHandler(int signal)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    Q_UNUSED(signal);
+    Q_UNUSED(signal)
 
     qApp->exit(0);
 }
@@ -109,6 +108,7 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
     while (iter.hasNext())
     {
         InputDevice *joystick = iter.next().value();
+
         if (joystick != nullptr)
         {
             delete joystick;
@@ -118,6 +118,7 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 
     joysticks->clear();
 }
+
 
 int main(int argc, char *argv[])
 {
@@ -233,11 +234,10 @@ int main(int argc, char *argv[])
         appLogger.setLogLevel(cmdutility.getCurrentLogLevel());
     }
 
-    if( !cmdutility.getCurrentLogFile().isEmpty() ) {
-
+    if( !cmdutility.getCurrentLogFile().isEmpty() )
+    {
           appLogger.setCurrentLogFile( cmdutility.getCurrentLogFile() );
           appLogger.setCurrentErrorStream(nullptr);
-
     }
 
     Q_INIT_RESOURCE(resources);
@@ -253,6 +253,7 @@ int main(int argc, char *argv[])
 #endif
 
     QDir configDir(PadderCommon::configPath());
+
     if (!configDir.exists())
     {
         configDir.mkpath(PadderCommon::configPath());
@@ -266,8 +267,35 @@ int main(int argc, char *argv[])
     // In the future, there might be a reason to actually send
     // messages to the QLocalServer.
     QLocalSocket socket;
-    socket.connectToServer(PadderCommon::localSocketKey);
-    socket.waitForConnected(1000);
+
+    if ((socket.serverName() == QString()))
+    {
+        socket.connectToServer(PadderCommon::localSocketKey);
+
+        if (!socket.waitForConnected(3000))
+        {
+            qDebug() << "Socket's state: " << socket.state() << endl;
+            qDebug() << "Server name: " << socket.serverName() << endl;
+            qDebug() << "Socket descriptor: " << socket.socketDescriptor() << endl;
+            qDebug() <<  "The connection hasn't been established: \nerror text -> " << socket.error() << "\nerror text 2 ->" << socket.errorString() << endl;
+        }
+        else
+        {
+            qDebug() << "Socket connected" << endl;
+        }
+    }
+    else
+    {
+        socket.abort();
+    }
+
+    if (!socket.isValid())
+    {
+        qDebug() << "Socket is not valid" << endl;
+        qDebug() << "Socket's state: " << socket.state() << endl;
+        qDebug() << "Server name: " << socket.serverName() << endl;
+        qDebug() << "Socket descriptor: " << socket.socketDescriptor() << endl;
+    }
 
     if (socket.state() == QLocalSocket::ConnectedState)
     {
@@ -277,14 +305,14 @@ int main(int argc, char *argv[])
 	
         // Update log info based on config values
         if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
-            settings.contains("LogLevel")) {
-
+            settings.contains("LogLevel"))
+        {
             appLogger.setLogLevel( static_cast<Logger::LogLevel>(settings.value("LogLevel").toInt()) );
         }
 
         if( cmdutility.getCurrentLogFile().isEmpty() &&
-            settings.contains("LogFile")) {
-
+            settings.contains("LogFile"))
+        {
             appLogger.setCurrentLogFile( settings.value("LogFile").toString() );
             appLogger.setCurrentErrorStream(nullptr);
         }
@@ -312,6 +340,7 @@ int main(int argc, char *argv[])
 
         settings.sync();
         socket.disconnectFromServer();
+        if (socket.waitForDisconnected(2000)) qDebug() << "Socket " << socket.socketDescriptor() << " disconnected!" << endl;
         deleteInputDevices(joysticks);
 
         delete joysticks;
@@ -454,6 +483,7 @@ int main(int argc, char *argv[])
         localServer = new LocalAntiMicroServer();
         localServer->startLocalServer();
 
+
     #ifdef WITH_X11
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -461,6 +491,7 @@ int main(int argc, char *argv[])
             if (!cmdutility.getDisplayString().isEmpty())
             {
                 X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
+
                 if (X11Extras::getInstance()->display() == nullptr)
                 {
                     appLogger.LogError(QObject::trUtf8("Display string \"%1\" is not valid.")
@@ -506,6 +537,7 @@ int main(int argc, char *argv[])
     QStringList themePathsTries = QStringList();
 
     QList<QString>::const_iterator i;
+
     for (i = appDirsLocations.constBegin(); i != appDirsLocations.constEnd(); ++i) {
         themePathsTries.append(QString("%1%2").arg(*i).arg("/icons"));
         qDebug() << QString("%1%2").arg(*i).arg("/icons");
@@ -528,19 +560,20 @@ int main(int argc, char *argv[])
 
     // Update log info based on config values
     if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
-        settings->contains("LogLevel")) {
-
+        settings->contains("LogLevel"))
+    {
         appLogger.setLogLevel( static_cast<Logger::LogLevel>(settings->value("LogLevel").toInt()) );
     }
 
     if( cmdutility.getCurrentLogFile().isEmpty() &&
-        settings->contains("LogFile")) {
-
+        settings->contains("LogFile"))
+    {
         appLogger.setCurrentLogFile( settings->value("LogFile").toString() );
         appLogger.setCurrentErrorStream(nullptr);
     }
 
     QString targetLang = QLocale::system().name();
+
     if (settings->contains("Language"))
     {
         targetLang = settings->value("Language").toString();
@@ -659,9 +692,7 @@ int main(int argc, char *argv[])
         inputEventThread->start(QThread::HighPriority);
 
 
-
         int app_result = antimicro.exec();
-
 
         appLogger.Log(); // Log any remaining messages if they exist.
 
@@ -797,11 +828,8 @@ int main(int argc, char *argv[])
     AppLaunchHelper mainAppHelper(settings, mainWindow->getGraphicalStatus());
 
     QObject::connect(mainWindow, &MainWindow::joystickRefreshRequested, joypad_worker.data(), &InputDaemon::refresh);
-    QObject::connect(joypad_worker.data(), SIGNAL(joystickRefreshed(InputDevice*)),
-                     mainWindow, SLOT(fillButtons(InputDevice*)));
-    QObject::connect(joypad_worker.data(),
-                     SIGNAL(joysticksRefreshed(QMap<SDL_JoystickID, InputDevice*>*)),
-                     mainWindow, SLOT(fillButtons(QMap<SDL_JoystickID, InputDevice*>*)));
+    QObject::connect(joypad_worker.data(), &InputDaemon::joystickRefreshed, mainWindow, &MainWindow::fillButtonsID);
+    QObject::connect(joypad_worker.data(), &InputDaemon::joysticksRefreshed, mainWindow, &MainWindow::fillButtonsMap);
 
     QObject::connect(&antimicro, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
     QObject::connect(&antimicro, &QApplication::aboutToQuit, mainWindow, &MainWindow::saveAppConfig);
