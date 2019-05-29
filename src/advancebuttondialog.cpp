@@ -47,6 +47,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     helper(button)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentWidget(ui->page);
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
