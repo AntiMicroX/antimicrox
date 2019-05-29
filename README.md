@@ -1,6 +1,3 @@
-# a break due to illness and weakness
-
-
 # antimicro 2.24.1
 
 
