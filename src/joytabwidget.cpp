@@ -925,9 +925,8 @@ void JoyTabWidget::changeJoyConfig(int index)
         removeCurrentButtons();
         emit forceTabUnflash(this);
 
-        tabHelper.readConfigFile(filename);
-      //  QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
-      //                            Q_ARG(QString, filename));
+        QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
+                                  Q_ARG(QString, filename));
 
         fillButtons();
         refreshSetButtons();
