@@ -65,8 +65,8 @@ addons:
     
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
-      cd SDL2-2.0.10
+      travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.8.tar.gz | tar xz
+      cd SDL2-2.0.8
       ./configure
       make
       sudo make install
