@@ -1,5 +1,3 @@
-## The program as of today has been abandoned
-
 # antimicro 2.24.1
 
 
