@@ -67,7 +67,8 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       sudo add-apt-repository -y ppa:${PPA};
       sudo apt-get update;
-      sudo apt-get install --yes qt${QT}tools build-essential;
+      - if [[ "$TRAVIS_OS_NAME" != linux || "$PPA" != */opt-* ]]; then sudo apt-get -qy install qt${QT}base;
+      - if [[ "$TRAVIS_OS_NAME" != linux || "$PPA" == */opt-* ]]; then sudo apt-get -qy install qtbase5-dev;
       sudo ln -s /opt/qt${QT}/lib/* /usr/lib/x86_64-linux-gnu/;
       git clone git://anongit.kde.org/extra-cmake-modules;
       cd extra-cmake-modules;
