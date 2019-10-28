@@ -65,6 +65,11 @@ addons:
     
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
+      cd SDL2-2.0.10
+      ./configure
+      make
+      sudo make install
       sudo add-apt-repository -y ppa:${PPA};
       sudo apt-get update;
       sudo apt-get -qy install qttools5-dev-tools qttools5-dev;
