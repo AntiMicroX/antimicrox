@@ -42,7 +42,7 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_ShowWithoutActivating);
 
-    setWindowTitle(trUtf8("Spring Mode Preview"));
+    setWindowTitle(tr("Spring Mode Preview"));
 
     if ((tempwidth >= 2) && (tempheight >= 2))
     {

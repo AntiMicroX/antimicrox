@@ -59,7 +59,7 @@ QString GameController::getName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return QString(trUtf8("Game Controller")).append(" ").append(QString::number(getRealJoyNumber()));
+    return QString(tr("Game Controller")).append(" ").append(QString::number(getRealJoyNumber()));
 }
 
 

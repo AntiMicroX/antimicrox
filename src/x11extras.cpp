@@ -218,14 +218,14 @@ void X11Extras::populateKnownAliases()
     // return empty space characters from XLookupString
     if (knownAliases.isEmpty())
     {
-        knownAliases.insert("Escape", trUtf8("ESC"));
-        knownAliases.insert("Tab", trUtf8("Tab"));
-        knownAliases.insert("space", trUtf8("Space"));
-        knownAliases.insert("Delete", trUtf8("DEL"));
-        knownAliases.insert("Return", trUtf8("Return"));
-        knownAliases.insert("KP_Enter", trUtf8("KP_Enter"));
-        knownAliases.insert("BackSpace", trUtf8("Backspace"));
-        knownAliases.insert("ISO_Level3_Shift", trUtf8("Alt Gr"));
+        knownAliases.insert("Escape", tr("ESC"));
+        knownAliases.insert("Tab", tr("Tab"));
+        knownAliases.insert("space", tr("Space"));
+        knownAliases.insert("Delete", tr("DEL"));
+        knownAliases.insert("Return", tr("Return"));
+        knownAliases.insert("KP_Enter", tr("KP_Enter"));
+        knownAliases.insert("BackSpace", tr("Backspace"));
+        knownAliases.insert("ISO_Level3_Shift", tr("Alt Gr"));
     }
 }
 
@@ -731,7 +731,7 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
     if (!result)
     {
-        Logger::LogInfo(trUtf8("xinput extension was not found. No mouse acceleration changes will occur."));
+        Logger::LogInfo(tr("xinput extension was not found. No mouse acceleration changes will occur."));
     }
     else
     {
@@ -739,7 +739,7 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
-            Logger::LogInfo(trUtf8("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            Logger::LogInfo(tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
             result = false;
         }
     }
@@ -771,14 +771,14 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
             if (feedback_id <= -1)
             {
-                Logger::LogInfo(trUtf8("PtrFeedbackClass was not found for virtual pointer."
+                Logger::LogInfo(tr("PtrFeedbackClass was not found for virtual pointer."
                                    "No change to mouse acceleration will occur for device with id=%1").arg(device->device_id));
 
                 result = false;
             }
             else
             {
-                Logger::LogInfo(trUtf8("Changing mouse acceleration for device with id=%1").arg(device->device_id));
+                Logger::LogInfo(tr("Changing mouse acceleration for device with id=%1").arg(device->device_id));
 
                 XPtrFeedbackControl	feedback;
                 feedback.c_class = PtrFeedbackClass;
@@ -826,7 +826,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
 
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
-            Logger::LogInfo(QObject::trUtf8("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            Logger::LogInfo(QObject::tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
             result = false;
         }
     }

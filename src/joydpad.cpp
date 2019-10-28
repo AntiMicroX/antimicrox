@@ -111,7 +111,7 @@ QString JoyDPad::getName(bool fullForceFormat, bool displayNames)
     {
         if (fullForceFormat)
         {
-            label.append(trUtf8("DPad")).append(" ");
+            label.append(tr("DPad")).append(" ");
         }
 
         label.append(dpadName);
@@ -120,13 +120,13 @@ QString JoyDPad::getName(bool fullForceFormat, bool displayNames)
     {
         if (fullForceFormat)
         {
-            label.append(trUtf8("DPad")).append(" ");
+            label.append(tr("DPad")).append(" ");
         }
         label.append(defaultDPadName);
     }
     else
     {
-        label.append(trUtf8("DPad")).append(" ");
+        label.append(tr("DPad")).append(" ");
         label.append(QString::number(getRealJoyNumber()));
     }
 
@@ -989,6 +989,9 @@ void JoyDPad::createDeskEvent(bool ignoresets)
 
                         break;
                     }
+                    default:
+
+                       break;
 
                 }
 
@@ -1055,6 +1058,8 @@ void JoyDPad::createDeskEvent(bool ignoresets)
 
                         break;
                     }
+                    default:
+                        break;
                 }
 
                 break;

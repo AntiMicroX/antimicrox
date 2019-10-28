@@ -422,7 +422,7 @@ void DPadEditDialog::updateWindowTitleDPadName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString(trUtf8("Set")).append(" ");
+    QString temp = QString(tr("Set")).append(" ");
 
     if (!dpad->getDpadName().isEmpty()) temp.append(dpad->getName(false, true));
     else temp.append(dpad->getName());
@@ -430,7 +430,7 @@ void DPadEditDialog::updateWindowTitleDPadName()
     if (dpad->getParentSet()->getIndex() != 0)
     {
         int setIndex = dpad->getParentSet()->getRealIndex();
-        temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
         QString setName = dpad->getParentSet()->getName();
 
         if (!setName.isEmpty())

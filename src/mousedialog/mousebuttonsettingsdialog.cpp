@@ -261,13 +261,13 @@ void MouseButtonSettingsDialog::updateWindowTitleButtonName()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-    temp.append(trUtf8("Mouse Settings - ")).append(button->getPartialName(false, true));
+    temp.append(tr("Mouse Settings - ")).append(button->getPartialName(false, true));
 
 
     if (button->getParentSet()->getIndex() != 0)
     {
         int setIndex = button->getParentSet()->getRealIndex();
-        temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
 
         QString setName = button->getParentSet()->getName();
         if (!setName.isEmpty())

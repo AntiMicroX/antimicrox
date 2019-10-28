@@ -142,7 +142,7 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device,
         ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
     }
 
-    QString tempWindowTitle = QString(trUtf8("Game Controller Mapping (%1) (#%2)")).arg(device->getSDLName())
+    QString tempWindowTitle = QString(tr("Game Controller Mapping (%1) (#%2)")).arg(device->getSDLName())
                                      .arg(device->getRealJoyNumber());
     setWindowTitle(tempWindowTitle);
 
@@ -444,6 +444,10 @@ QString GameControllerMappingDialog::bindingString(SDL_GameControllerButtonBind 
                     .arg(bind.value.hat.hat_mask));
             break;
 
+            default:
+
+            break;
+
         }
 
     return temp;
@@ -471,6 +475,8 @@ QList<QVariant> GameControllerMappingDialog::bindingValues(SDL_GameControllerBut
                     temp.append(QVariant(-bind.value.hat.hat-1));
                     temp.append(QVariant(bind.value.hat.hat_mask));
                 break;
+            default:
+                break;
         }
 
 
@@ -487,8 +493,8 @@ void GameControllerMappingDialog::discardMapping(QAbstractButton *button)
     if (currentRole == QDialogButtonBox::DestructiveRole)
     {
         QMessageBox msgBox;
-        msgBox.setWindowTitle(trUtf8("Discard Controller Mapping?"));
-        msgBox.setText(trUtf8("Discard mapping for this controller?\n\nIf discarded, the controller will be reverted to a joystick once you refresh all joysticks."));
+        msgBox.setWindowTitle(tr("Discard Controller Mapping?"));
+        msgBox.setText(tr("Discard mapping for this controller?\n\nIf discarded, the controller will be reverted to a joystick once you refresh all joysticks."));
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
 
         int status = msgBox.exec();

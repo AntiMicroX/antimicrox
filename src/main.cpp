@@ -365,14 +365,14 @@ int main(int argc, char *argv[])
 
         if (pid == 0)
         {
-            appLogger.LogInfo(QObject::trUtf8("Daemon launched"), true, true);
+            appLogger.LogInfo(QObject::tr("Daemon launched"), true, true);
 
             localServer = new LocalAntiMicroServer();
             localServer->startLocalServer();
         }
         else if (pid < 0)
         {
-            appLogger.LogError(QObject::trUtf8("Failed to launch daemon"), true, true);
+            appLogger.LogError(QObject::tr("Failed to launch daemon"), true, true);
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -382,7 +382,7 @@ int main(int argc, char *argv[])
         }
         else if (pid > 0) // We got a good pid, Close the Parent Process
         {
-            appLogger.LogInfo(QObject::trUtf8("Launching daemon"), true, true);
+            appLogger.LogInfo(QObject::tr("Launching daemon"), true, true);
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -408,7 +408,7 @@ int main(int argc, char *argv[])
 
                 if (X11Extras::getInstance()->display() == nullptr)
                 {
-                    appLogger.LogError(QObject::trUtf8("Display string \"%1\" is not valid.")
+                    appLogger.LogError(QObject::tr("Display string \"%1\" is not valid.")
                                        .arg(cmdutility.getDisplayString()), true, true);
 
                     deleteInputDevices(joysticks);
@@ -432,7 +432,7 @@ int main(int argc, char *argv[])
 
         if (sid < 0)
         {
-            appLogger.LogError(QObject::trUtf8("Failed to set a signature id for the daemon"), true, true);
+            appLogger.LogError(QObject::tr("Failed to set a signature id for the daemon"), true, true);
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -453,7 +453,7 @@ int main(int argc, char *argv[])
 
         if ((chdir("/")) < 0)
         {
-            appLogger.LogError(QObject::trUtf8("Failed to change working directory to /"), true, true);
+            appLogger.LogError(QObject::tr("Failed to change working directory to /"), true, true);
 
             deleteInputDevices(joysticks);
             delete joysticks;
@@ -494,7 +494,7 @@ int main(int argc, char *argv[])
 
                 if (X11Extras::getInstance()->display() == nullptr)
                 {
-                    appLogger.LogError(QObject::trUtf8("Display string \"%1\" is not valid.")
+                    appLogger.LogError(QObject::tr("Display string \"%1\" is not valid.")
                                        .arg(cmdutility.getDisplayString()), true, true);
 
                     deleteInputDevices(joysticks);
@@ -754,7 +754,7 @@ int main(int argc, char *argv[])
     {
         QString eventDisplayName = EventHandlerFactory::handlerDisplayName(
                     EventHandlerFactory::fallBackIdentifier());
-        appLogger.LogInfo(QObject::trUtf8("Attempting to use fallback option %1 for event generation.")
+        appLogger.LogInfo(QObject::tr("Attempting to use fallback option %1 for event generation.")
                                      .arg(eventDisplayName));
 
         if (keyMapper != nullptr)
@@ -782,7 +782,7 @@ int main(int argc, char *argv[])
 
     if (!status)
     {
-        appLogger.LogError(QObject::trUtf8("Failed to open event generator. Exiting."));
+        appLogger.LogError(QObject::tr("Failed to open event generator. Exiting."));
         appLogger.Log();
 
         deleteInputDevices(joysticks);
@@ -811,7 +811,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        appLogger.LogInfo(QObject::trUtf8("Using %1 as the event generator.")
+        appLogger.LogInfo(QObject::tr("Using %1 as the event generator.")
                           .arg(factory->handler()->getName()));
     }
 
@@ -863,7 +863,7 @@ int main(int argc, char *argv[])
     bool raisedPriority = WinExtras::raiseProcessPriority();
     if (!raisedPriority)
     {
-        appLogger.LogInfo(QObject::trUtf8("Could not raise process priority."));
+        appLogger.LogInfo(QObject::tr("Could not raise process priority."));
     }
 #endif
 
@@ -886,7 +886,7 @@ int main(int argc, char *argv[])
 
 
     appLogger.Log(); // Log any remaining messages if they exist.
-    appLogger.LogInfo(QObject::trUtf8("Quitting Program"), true, true);
+    appLogger.LogInfo(QObject::tr("Quitting Program"), true, true);
 
     delete localServer;
     localServer = nullptr;

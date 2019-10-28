@@ -237,7 +237,7 @@ void JoyControlStickStatusBox::drawEightWayBox()
     // Draw primary pixmap
     painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
     painter.setPen(Qt::NoPen);
-    painter.fillRect(0, 0, side, side, palette().background().color());
+    painter.fillRect(0, 0, side, side, palette().window().color());
     paint.drawPixmap(pix.rect(), pix);
 
     paint.save();
@@ -376,7 +376,7 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
     // Draw primary pixmap
     painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
     painter.setPen(Qt::NoPen);
-    painter.fillRect(0, 0, side, side, palette().background().color());
+    painter.fillRect(0, 0, side, side, palette().window().color());
     paint.drawPixmap(pix.rect(), pix);
 
     paint.save();
@@ -515,7 +515,7 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
     // Draw primary pixmap
     painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
     painter.setPen(Qt::NoPen);
-    painter.fillRect(0, 0, side, side, palette().background().color());
+    painter.fillRect(0, 0, side, side, palette().window().color());
     paint.drawPixmap(pix.rect(), pix);
 
     paint.save();

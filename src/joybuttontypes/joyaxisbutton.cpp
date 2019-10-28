@@ -50,7 +50,7 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
     {
         if (forceFullFormat)
         {
-            temp.append(trUtf8("Button")).append(" ");
+            temp.append(tr("Button")).append(" ");
         }
 
         temp.append(buttonName);
@@ -59,7 +59,7 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
     {
         if (forceFullFormat)
         {
-            temp.append(trUtf8("Button")).append(" ");
+            temp.append(tr("Button")).append(" ");
         }
 
         temp.append(defaultButtonName);
@@ -72,20 +72,20 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
         {
 
             case 0:
-            buttontype = trUtf8("Negative");
+            buttontype = tr("Negative");
             break;
 
             case 1:
-            buttontype = trUtf8("Positive");
+            buttontype = tr("Positive");
             break;
 
             default:
-            buttontype = trUtf8("Unknown");
+            buttontype = tr("Unknown");
             break;
 
         }
 
-        temp.append(trUtf8("Button")).append(" ").append(buttontype);
+        temp.append(tr("Button")).append(" ").append(buttontype);
     }
 
     return temp;

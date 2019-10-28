@@ -116,28 +116,28 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
 
     QTextStream outstream(stdout);
 
-    outstream << QObject::trUtf8("# of joysticks found: %1").arg(joysticks->size()) << endl;
+    outstream << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << endl;
     outstream << endl;
-    outstream << QObject::trUtf8("List Joysticks:") << endl;
-    outstream << QObject::trUtf8("---------------") << endl;
+    outstream << QObject::tr("List Joysticks:") << endl;
+    outstream << QObject::tr("---------------") << endl;
     QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
     int indexNumber = 1;
 
     while (iter.hasNext())
     {
         InputDevice *tempdevice = iter.next().value();
-        outstream << QObject::trUtf8("Joystick %1:").arg(indexNumber) << endl;
-        outstream << "  " << QObject::trUtf8("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
-        //outstream << "  " << QObject::trUtf8("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
-        outstream << "  " << QObject::trUtf8("UniqueID:            %1").arg(tempdevice->getUniqueIDString()) << endl;
-        outstream << "  " << QObject::trUtf8("Name:            %1").arg(tempdevice->getSDLName()) << endl;
+        outstream << QObject::tr("Joystick %1:").arg(indexNumber) << endl;
+        outstream << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
+        //outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
+        outstream << "  " << QObject::tr("UniqueID:            %1").arg(tempdevice->getUniqueIDString()) << endl;
+        outstream << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << endl;
         QString gameControllerStatus = tempdevice->isGameController() ?
-                                       QObject::trUtf8("Yes") : QObject::trUtf8("No");
-        outstream << "  " << QObject::trUtf8("Game Controller: %1").arg(gameControllerStatus) << endl;
+                                       QObject::tr("Yes") : QObject::tr("No");
+        outstream << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << endl;
 
-        outstream << "  " << QObject::trUtf8("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
-        outstream << "  " << QObject::trUtf8("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << endl;
-        outstream << "  " << QObject::trUtf8("# of Hats:       %1").arg(tempdevice->getNumberHats()) << endl;
+        outstream << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
+        outstream << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << endl;
+        outstream << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << endl;
 
         if (iter.hasNext())
         {

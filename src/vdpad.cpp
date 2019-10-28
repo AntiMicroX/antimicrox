@@ -102,20 +102,20 @@ QString VDPad::getName(bool forceFullFormat, bool displayName)
     if (!getDpadName().isEmpty() && displayName)
     {
         if (forceFullFormat)
-            label.append(trUtf8("VDPad")).append(" ");
+            label.append(tr("VDPad")).append(" ");
 
         label.append(getDpadName());
     }
     else if (!getDefaultDpadName().isEmpty())
     {
         if (forceFullFormat)
-            label.append(trUtf8("VDPad")).append(" ");
+            label.append(tr("VDPad")).append(" ");
 
         label.append(getDefaultDpadName());
     }
     else
     {
-        label.append(trUtf8("VDPad")).append(" ");
+        label.append(tr("VDPad")).append(" ");
         label.append(QString::number(getRealJoyNumber()));
     }
 
@@ -126,7 +126,7 @@ void VDPad::joyEvent(bool pressed, bool ignoresets)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    Q_UNUSED(pressed);
+    Q_UNUSED(pressed)
 
     int tempDirection = static_cast<int>(JoyDPadButton::DpadCentered);
 
@@ -195,6 +195,8 @@ void VDPad::addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *bu
 
             break;
         }
+        default:
+            break;
     }
 }
 
@@ -292,6 +294,8 @@ JoyButton* VDPad::getVButton(JoyDPadButton::JoyDPadDirections direction)
             button = rightButton;
             break;
         }
+        default:
+            break;
     }
 
     return button;
@@ -308,7 +312,7 @@ void VDPad::queueJoyEvent(bool ignoresets)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    Q_UNUSED(ignoresets);
+    Q_UNUSED(ignoresets)
 
     pendingVDPadEvent = true;
 }

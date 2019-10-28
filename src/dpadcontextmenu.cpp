@@ -53,27 +53,27 @@ void DPadContextMenu::buildMenu()
     int presetMode = 0;
     int currentPreset = getPresetIndex();
 
-    generateActionPreset(action, trUtf8("Mouse (Normal)"), currentPreset, presetMode, presetGroup);
-    generateActionPreset(action, trUtf8("Mouse (Inverted Horizontal)"), currentPreset, presetMode, presetGroup);
-    generateActionPreset(action, trUtf8("Mouse (Inverted Vertical)"), currentPreset, presetMode, presetGroup);
-    generateActionPreset(action, trUtf8("Mouse (Inverted Horizontal + Vertical)"), currentPreset, presetMode, presetGroup);
-    generateActionPreset(action, trUtf8("Arrows"), currentPreset, presetMode, presetGroup);
-    generateActionPreset(action, trUtf8("Keys: W | A | S | D"), currentPreset, presetMode, presetGroup);
-    generateActionPreset(action, trUtf8("NumPad"), currentPreset, presetMode, presetGroup);
-    generateActionPreset(action, trUtf8("None"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("Mouse (Normal)"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("Mouse (Inverted Horizontal)"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("Mouse (Inverted Vertical)"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("Mouse (Inverted Horizontal + Vertical)"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("Arrows"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("Keys: W | A | S | D"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("NumPad"), currentPreset, presetMode, presetGroup);
+    generateActionPreset(action, tr("None"), currentPreset, presetMode, presetGroup);
 
     this->addSeparator();
 
     QActionGroup *modesGroup = new QActionGroup(this);
 
-    generateActionMode(modesGroup, action, trUtf8("Standard"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::StandardMode));
-    generateActionMode(modesGroup, action, trUtf8("Eight Way"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::EightWayMode));
-    generateActionMode(modesGroup, action, trUtf8("4 Way Cardinal"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::FourWayCardinal));
-    generateActionMode(modesGroup, action, trUtf8("4 Way Diagonal"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::FourWayDiagonal));
+    generateActionMode(modesGroup, action, tr("Standard"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::StandardMode));
+    generateActionMode(modesGroup, action, tr("Eight Way"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::EightWayMode));
+    generateActionMode(modesGroup, action, tr("4 Way Cardinal"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::FourWayCardinal));
+    generateActionMode(modesGroup, action, tr("4 Way Diagonal"), static_cast<int>(dpad->getJoyMode()), static_cast<int>(JoyDPad::FourWayDiagonal));
 
     this->addSeparator();
 
-    action = this->addAction(trUtf8("Mouse Settings"));
+    action = this->addAction(tr("Mouse Settings"));
     action->setCheckable(false);
 
     connect(action, &QAction::triggered, this, &DPadContextMenu::openMouseSettingsDialog);

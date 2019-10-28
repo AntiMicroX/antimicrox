@@ -252,8 +252,8 @@ void AdvanceButtonDialog::changeTurboText(int value)
     {
         double delay = value / 100.0;
         double clicks = 100.0 / value;
-        QString delaytext = QString::number(delay, 'g', 3).append(" ").append(trUtf8("sec."));
-        QString labeltext = QString::number(clicks, 'g', 2).append(" ").append(trUtf8("/sec."));
+        QString delaytext = QString::number(delay, 'g', 3).append(" ").append(tr("sec."));
+        QString labeltext = QString::number(clicks, 'g', 2).append(" ").append(tr("/sec."));
 
         ui->delayValueLabel->setText(delaytext);
         ui->rateValueLabel->setText(labeltext);
@@ -1105,12 +1105,12 @@ void AdvanceButtonDialog::updateWindowTitleButtonName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString windTitleBtnName = QString().append(trUtf8("Advanced").append(": ")).append(m_button->getPartialName(false, true));
+    QString windTitleBtnName = QString().append(tr("Advanced").append(": ")).append(m_button->getPartialName(false, true));
 
     if (m_button->getParentSet()->getIndex() != 0)
     {
         int setIndex = m_button->getParentSet()->getRealIndex();
-        windTitleBtnName.append(" [").append(trUtf8("Set %1").arg(setIndex));
+        windTitleBtnName.append(" [").append(tr("Set %1").arg(setIndex));
         QString setName = m_button->getParentSet()->getName();
 
         if (!setName.isEmpty())
@@ -1240,7 +1240,7 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->setSelectionComboBox->clear();
-    ui->setSelectionComboBox->insertItem(0, trUtf8("Disabled"));
+    ui->setSelectionComboBox->insertItem(0, tr("Disabled"));
     int currentIndex = 1;
 
     QHash<int, SetJoystick*>::iterator set;
@@ -1250,7 +1250,7 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     {
         if (m_button->getOriginSet() != originset)
         {
-            QString selectedSetText = QString(trUtf8("Select Set %1").arg(originset+1));
+            QString selectedSetText = QString(tr("Select Set %1").arg(originset+1));
             QString setName = set.value()->getName();
 
             if (!setName.isEmpty())
@@ -1259,9 +1259,9 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
                 selectedSetText.append(setName).append("]").append(" ");
             }
 
-            QString oneWayText = QString(selectedSetText).append(" ").append(trUtf8("One Way"));
-            QString twoWayText = QString(selectedSetText).append(" ").append(trUtf8("Two Way"));
-            QString whileHeldText = QString(selectedSetText).append(" ").append(trUtf8("While Held"));
+            QString oneWayText = QString(selectedSetText).append(" ").append(tr("One Way"));
+            QString twoWayText = QString(selectedSetText).append(" ").append(tr("Two Way"));
+            QString whileHeldText = QString(selectedSetText).append(" ").append(tr("While Held"));
 
             QStringList setChoices = QStringList();
             setChoices.append(oneWayText);
@@ -1291,7 +1291,7 @@ void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
     {
         if (m_button->getOriginSet() != originset)
         {
-            QString selectedSetSlotText = QString(trUtf8("Select Set %1").arg(originset+1));
+            QString selectedSetSlotText = QString(tr("Select Set %1").arg(originset+1));
             QString setName = set.value()->getName();
 
             if (!setName.isEmpty())
@@ -1359,8 +1359,8 @@ void AdvanceButtonDialog::showSelectProfileWindow()
 
     AntiMicroSettings *settings = m_button->getParentSet()->getInputDevice()->getSettings();
     QString preferredDir = PadderCommon::preferredProfileDir(settings);
-    QString profileName = QFileDialog::getOpenFileName(this, trUtf8("Choose Profile"),
-                                                    preferredDir, trUtf8("Config Files (*.amgp *.xml)"));
+    QString profileName = QFileDialog::getOpenFileName(this, tr("Choose Profile"),
+                                                    preferredDir, tr("Config Files (*.amgp *.xml)"));
     if (!profileName.isEmpty())
     {
         int index = ui->slotListWidget->currentRow();
@@ -1393,7 +1393,7 @@ void AdvanceButtonDialog::showFindExecutableWindow(bool)
             preferredPath = execWindFileInfo.absoluteDir().absolutePath();
     }
 
-    QString execWindFilepath = QFileDialog::getOpenFileName(this, trUtf8("Choose Executable"), preferredPath);
+    QString execWindFilepath = QFileDialog::getOpenFileName(this, tr("Choose Executable"), preferredPath);
 
     if (!execWindFilepath.isEmpty())
     {
@@ -1458,69 +1458,69 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
     switch(index)
     {
         case 0:
-            ui->slotTypeHelpLabel->setText(trUtf8("Insert a new blank slot."));
+            ui->slotTypeHelpLabel->setText(tr("Insert a new blank slot."));
         break;
 
         case 1:
-            ui->slotTypeHelpLabel->setText(trUtf8("Slots past a Cycle action will be executed "
+            ui->slotTypeHelpLabel->setText(tr("Slots past a Cycle action will be executed "
                                           "on the next button press. Multiple cycles can be added "
                                           "in order to create partitions in a sequence."));
         break;
 
         case 2:
-            ui->slotTypeHelpLabel->setText(trUtf8("Delays the time that the next slot is activated "
+            ui->slotTypeHelpLabel->setText(tr("Delays the time that the next slot is activated "
                                           "by the time specified. Slots activated before the "
                                           "delay will remain active after the delay time "
                                           "has passed."));
         break;
 
         case 3:
-            ui->slotTypeHelpLabel->setText(trUtf8("Distance action specifies that the slots afterwards "
+            ui->slotTypeHelpLabel->setText(tr("Distance action specifies that the slots afterwards "
                                           "will only be executed when an axis is moved "
                                           "a certain range past the designated dead zone."));
         break;
 
         case 4:
-            ui->slotTypeHelpLabel->setText(trUtf8("Execute program when slot is activated."));
+            ui->slotTypeHelpLabel->setText(tr("Execute program when slot is activated."));
         break;
 
         case 5:
-            ui->slotTypeHelpLabel->setText(trUtf8("Insert a hold action. Slots after the action will only be "
+            ui->slotTypeHelpLabel->setText(tr("Insert a hold action. Slots after the action will only be "
                                           "executed if the button is held past the interval specified."));
         break;
 
         case 6:
-            ui->slotTypeHelpLabel->setText(trUtf8("Chose a profile to load when this slot is activated."));
+            ui->slotTypeHelpLabel->setText(tr("Chose a profile to load when this slot is activated."));
         break;
 
         case 7:
-            ui->slotTypeHelpLabel->setText(trUtf8("Mouse mod action will modify all mouse speed settings "
+            ui->slotTypeHelpLabel->setText(tr("Mouse mod action will modify all mouse speed settings "
                                           "by a specified percentage while the action is being processed. "
                                           "This can be useful for slowing down the mouse while "
                                           "sniping."));
         break;
 
         case 8:
-            ui->slotTypeHelpLabel->setText(trUtf8("Insert a pause that occurs in between key presses."));
+            ui->slotTypeHelpLabel->setText(tr("Insert a pause that occurs in between key presses."));
         break;
 
         case 9:
-            ui->slotTypeHelpLabel->setText(trUtf8("Specify the time that keys past this slot should be "
+            ui->slotTypeHelpLabel->setText(tr("Specify the time that keys past this slot should be "
                                           "held down."));
         break;
 
         case 10:
-            ui->slotTypeHelpLabel->setText(trUtf8("Insert a release action. Slots after the action will only be "
+            ui->slotTypeHelpLabel->setText(tr("Insert a release action. Slots after the action will only be "
                                           "executed after a button release if the button was held "
                                           "past the interval specified."));
         break;
 
         case 11:
-            ui->slotTypeHelpLabel->setText(trUtf8("Change to selected set once slot is activated."));
+            ui->slotTypeHelpLabel->setText(tr("Change to selected set once slot is activated."));
         break;
 
         case 12:
-            ui->slotTypeHelpLabel->setText(trUtf8("Full string will be typed when a "
+            ui->slotTypeHelpLabel->setText(tr("Full string will be typed when a "
                                           "slot is activated."));
         break;
 

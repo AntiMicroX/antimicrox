@@ -553,7 +553,7 @@ void JoyControlStickEditDialog::updateWindowTitleStickName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString(trUtf8("Set")).append(" ");
+    QString temp = QString(tr("Set")).append(" ");
 
     if (!stick->getStickName().isEmpty())
     {
@@ -567,7 +567,7 @@ void JoyControlStickEditDialog::updateWindowTitleStickName()
     if (stick->getParentSet()->getIndex() != 0)
     {
         int setIndex = stick->getParentSet()->getRealIndex();
-        temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
 
         QString setName = stick->getParentSet()->getName();
         if (!setName.isEmpty())

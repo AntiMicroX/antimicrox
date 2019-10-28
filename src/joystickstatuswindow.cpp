@@ -49,7 +49,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     PadderCommon::inputDaemonMutex.lock();
 
-    setWindowTitle(trUtf8("%1 (#%2) Properties").arg(joystick->getSDLName())
+    setWindowTitle(tr("%1 (#%2) Properties").arg(joystick->getSDLName())
                    .arg(joystick->getRealJoyNumber()));
 
     ui->joystickNameLabel->setText(joystick->getSDLName());
@@ -73,7 +73,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
             QHBoxLayout *hbox = new QHBoxLayout();
 
             QLabel *axisLabel = new QLabel();
-            axisLabel->setText(trUtf8("Axis %1").arg(axis->getRealJoyIndex()));
+            axisLabel->setText(tr("Axis %1").arg(axis->getRealJoyIndex()));
             QProgressBar *axisBar = new QProgressBar();
             axisBar->setMinimum(GlobalVariables::JoyAxis::AXISMIN);
             axisBar->setMaximum(GlobalVariables::JoyAxis::AXISMAX);
@@ -127,7 +127,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
             QHBoxLayout *hbox = new QHBoxLayout();
 
             QLabel *dpadLabel = new QLabel();
-            dpadLabel->setText(trUtf8("Hat %1").arg(dpad->getRealJoyNumber()));
+            dpadLabel->setText(tr("Hat %1").arg(dpad->getRealJoyNumber()));
             QProgressBar *dpadBar = new QProgressBar();
             dpadBar->setMinimum(JoyDPadButton::DpadCentered);
             dpadBar->setMaximum(JoyDPadButton::DpadLeftDown);
@@ -179,10 +179,10 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
         ui->guidLabel->hide();
     }
 
-    QString usingGameController = trUtf8("No");
+    QString usingGameController = tr("No");
     if (joystick->isGameController())
     {
-        usingGameController = trUtf8("Yes");
+        usingGameController = tr("Yes");
     }
 
     ui->sdlGameControllerLabel->setText(usingGameController);

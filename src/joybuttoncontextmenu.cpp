@@ -44,26 +44,26 @@ void JoyButtonContextMenu::buildMenu()
 
     PadderCommon::inputDaemonMutex.lock();
 
-    QAction *action = this->addAction(trUtf8("Toggle"));
+    QAction *action = this->addAction(tr("Toggle"));
     action->setCheckable(true);
     action->setChecked(button->getToggleState());
     connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);
 
-    action = this->addAction(trUtf8("Turbo"));
+    action = this->addAction(tr("Turbo"));
     action->setCheckable(true);
     action->setChecked(button->isUsingTurbo());
     connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);
 
     this->addSeparator();
 
-    action = this->addAction(trUtf8("Clear"));
+    action = this->addAction(tr("Clear"));
     action->setCheckable(false);
     connect(action, &QAction::triggered, this, &JoyButtonContextMenu::clearButton);
 
     this->addSeparator();
 
-    QMenu *setSectionMenu = this->addMenu(trUtf8("Set Select"));
-    action = setSectionMenu->addAction(trUtf8("Disabled"));
+    QMenu *setSectionMenu = this->addMenu(tr("Set Select"));
+    action = setSectionMenu->addAction(tr("Disabled"));
 
     if (button->getChangeSetCondition() == JoyButton::SetChangeDisabled)
     {
@@ -76,7 +76,7 @@ void JoyButtonContextMenu::buildMenu()
 
     for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
-        QMenu *tempSetMenu = setSectionMenu->addMenu(trUtf8("Set %1").arg(i+1));
+        QMenu *tempSetMenu = setSectionMenu->addMenu(tr("Set %1").arg(i+1));
         int setSelection = i * 3;
 
         if (i == button->getSetSelection())
@@ -87,9 +87,9 @@ void JoyButtonContextMenu::buildMenu()
         }
 
         QActionGroup *tempGroup = new QActionGroup(tempSetMenu);
-        createActionForGroup(tempGroup, trUtf8("Set %1 1W"), action, tempSetMenu, setSelection, i, 0, 1);
-        createActionForGroup(tempGroup, trUtf8("Set %1 2W"), action, tempSetMenu, setSelection, i, 1, 2);
-        createActionForGroup(tempGroup, trUtf8("Set %1 WH"), action, tempSetMenu, setSelection, i, 2, 3);
+        createActionForGroup(tempGroup, tr("Set %1 1W"), action, tempSetMenu, setSelection, i, 0, 1);
+        createActionForGroup(tempGroup, tr("Set %1 2W"), action, tempSetMenu, setSelection, i, 1, 2);
+        createActionForGroup(tempGroup, tr("Set %1 WH"), action, tempSetMenu, setSelection, i, 2, 3);
 
         if (i == button->getParentSet()->getIndex())
             tempSetMenu->setEnabled(false);

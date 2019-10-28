@@ -67,7 +67,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     int presetMode = 0;
     int currentPreset = getPresetIndex();
 
-    QAction *action = this->addAction(trUtf8("Mouse (Horizontal)"));
+    QAction *action = this->addAction(tr("Mouse (Horizontal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -79,7 +79,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Mouse (Inverted Horizontal)"));
+    action = this->addAction(tr("Mouse (Inverted Horizontal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -91,7 +91,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Mouse (Vertical)"));
+    action = this->addAction(tr("Mouse (Vertical)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -103,7 +103,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Mouse (Inverted Vertical)"));
+    action = this->addAction(tr("Mouse (Inverted Vertical)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -115,7 +115,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Arrows: Up | Down"));
+    action = this->addAction(tr("Arrows: Up | Down"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -127,7 +127,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Arrows: Left | Right"));
+    action = this->addAction(tr("Arrows: Left | Right"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -139,7 +139,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Keys: W | S"));
+    action = this->addAction(tr("Keys: W | S"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -151,7 +151,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Keys: A | D"));
+    action = this->addAction(tr("Keys: A | D"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -163,7 +163,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("NumPad: KP_8 | KP_2"));
+    action = this->addAction(tr("NumPad: KP_8 | KP_2"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -175,7 +175,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("NumPad: KP_4 | KP_6"));
+    action = this->addAction(tr("NumPad: KP_4 | KP_6"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -186,7 +186,7 @@ void JoyAxisContextMenu::buildAxisMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("None"));
+    action = this->addAction(tr("None"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -199,7 +199,7 @@ void JoyAxisContextMenu::buildAxisMenu()
 
     this->addSeparator();
 
-    action = this->addAction(trUtf8("Mouse Settings"));
+    action = this->addAction(tr("Mouse Settings"));
     action->setCheckable(false);
 
     connect(action, &QAction::triggered, this, &JoyAxisContextMenu::openMouseSettingsDialog);
@@ -384,7 +384,7 @@ void JoyAxisContextMenu::buildTriggerMenu()
     int presetMode = 0;
     int currentPreset = getTriggerPresetIndex();
 
-    QAction *action = this->addAction(trUtf8("Left Mouse Button"));
+    QAction *action = this->addAction(tr("Left Mouse Button"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -396,7 +396,7 @@ void JoyAxisContextMenu::buildTriggerMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("Right Mouse Button"));
+    action = this->addAction(tr("Right Mouse Button"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -408,7 +408,7 @@ void JoyAxisContextMenu::buildTriggerMenu()
     presetGroup->addAction(action);
     presetMode++;
 
-    action = this->addAction(trUtf8("None"));
+    action = this->addAction(tr("None"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -421,7 +421,7 @@ void JoyAxisContextMenu::buildTriggerMenu()
 
     this->addSeparator();
 
-    action = this->addAction(trUtf8("Mouse Settings"));
+    action = this->addAction(tr("Mouse Settings"));
     action->setCheckable(false);
     connect(action, &QAction::triggered, this, &JoyAxisContextMenu::openMouseSettingsDialog);
 }

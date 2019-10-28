@@ -50,7 +50,7 @@ void JoyControlStickContextMenu::buildMenu()
     int presetMode = 0;
     int currentPreset = getPresetIndex();
 
-    QAction *action = this->addAction(trUtf8("Mouse (Normal)"));
+    QAction *action = this->addAction(tr("Mouse (Normal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -61,7 +61,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("Mouse (Inverted Horizontal)"));
+    action = this->addAction(tr("Mouse (Inverted Horizontal)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -72,7 +72,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("Mouse (Inverted Vertical)"));
+    action = this->addAction(tr("Mouse (Inverted Vertical)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -83,7 +83,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("Mouse (Inverted Horizontal + Vertical)"));
+    action = this->addAction(tr("Mouse (Inverted Horizontal + Vertical)"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -94,7 +94,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("Arrows"));
+    action = this->addAction(tr("Arrows"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -105,7 +105,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("Keys: W | A | S | D"));
+    action = this->addAction(tr("Keys: W | A | S | D"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -116,7 +116,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("NumPad"));
+    action = this->addAction(tr("NumPad"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -127,7 +127,7 @@ void JoyControlStickContextMenu::buildMenu()
     presetGroup->addAction(action);
 
     presetMode++;
-    action = this->addAction(trUtf8("None"));
+    action = this->addAction(tr("None"));
     action->setCheckable(true);
     action->setChecked(currentPreset == presetMode+1);
     action->setData(QVariant(presetMode));
@@ -142,7 +142,7 @@ void JoyControlStickContextMenu::buildMenu()
     QActionGroup *modesGroup = new QActionGroup(this);
     int mode = static_cast<int>(JoyControlStick::StandardMode);
 
-    action = this->addAction(trUtf8("Standard"));
+    action = this->addAction(tr("Standard"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::StandardMode);
     action->setData(QVariant(mode));
@@ -152,7 +152,7 @@ void JoyControlStickContextMenu::buildMenu()
 
     modesGroup->addAction(action);
 
-    action = this->addAction(trUtf8("Eight Way"));
+    action = this->addAction(tr("Eight Way"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::EightWayMode);
     mode = static_cast<int>(JoyControlStick::EightWayMode);
@@ -163,7 +163,7 @@ void JoyControlStickContextMenu::buildMenu()
 
     modesGroup->addAction(action);
 
-    action = this->addAction(trUtf8("4 Way Cardinal"));
+    action = this->addAction(tr("4 Way Cardinal"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayCardinal);
     mode = static_cast<int>(JoyControlStick::FourWayCardinal);
@@ -174,7 +174,7 @@ void JoyControlStickContextMenu::buildMenu()
 
     modesGroup->addAction(action);
 
-    action = this->addAction(trUtf8("4 Way Diagonal"));
+    action = this->addAction(tr("4 Way Diagonal"));
     action->setCheckable(true);
     action->setChecked(stick->getJoyMode() == JoyControlStick::FourWayDiagonal);
     mode = static_cast<int>(JoyControlStick::FourWayDiagonal);
@@ -187,7 +187,7 @@ void JoyControlStickContextMenu::buildMenu()
 
     this->addSeparator();
 
-    action = this->addAction(trUtf8("Mouse Settings"));
+    action = this->addAction(tr("Mouse Settings"));
     action->setCheckable(false);
     connect(action, &QAction::triggered, this, &JoyControlStickContextMenu::openMouseSettingsDialog);
 }

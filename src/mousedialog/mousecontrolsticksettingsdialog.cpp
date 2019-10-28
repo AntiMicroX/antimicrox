@@ -314,7 +314,7 @@ void MouseControlStickSettingsDialog::updateWindowTitleStickName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString(trUtf8("Mouse Settings")).append(" - ");
+    QString temp = QString(tr("Mouse Settings")).append(" - ");
 
     if (!stick->getStickName().isEmpty())
     {
@@ -328,7 +328,7 @@ void MouseControlStickSettingsDialog::updateWindowTitleStickName()
     if (stick->getParentSet()->getIndex() != 0)
     {
         int setIndex = stick->getParentSet()->getRealIndex();
-        temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
 
         QString setName = stick->getParentSet()->getName();
         if (!setName.isEmpty())

@@ -57,8 +57,8 @@ void AboutDialog::fillInfoTextBrowser()
 
     QStringList finalInfoText = QStringList();
 
-    finalInfoText.append(trUtf8("Program Version %1").arg(PadderCommon::programVersion));
-    finalInfoText.append(trUtf8("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
+    finalInfoText.append(tr("Program Version %1").arg(PadderCommon::programVersion));
+    finalInfoText.append(tr("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
 
     QString sdlCompiledVersionNumber("%1.%2.%3");
     QString sdlLinkedVersionNumber("%1.%2.%3");
@@ -69,12 +69,12 @@ void AboutDialog::fillInfoTextBrowser()
     SDL_GetVersion(&linkedver);
 
     sdlCompiledVersionNumber = sdlCompiledVersionNumber.arg(compiledver.major).arg(compiledver.minor).arg(compiledver.patch);
-    finalInfoText.append(trUtf8("Built Against SDL %1").arg(sdlCompiledVersionNumber));
+    finalInfoText.append(tr("Built Against SDL %1").arg(sdlCompiledVersionNumber));
 
     sdlLinkedVersionNumber = sdlLinkedVersionNumber.arg(linkedver.major).arg(linkedver.minor).arg(linkedver.patch);
-    finalInfoText.append(trUtf8("Running With SDL %1").arg(sdlLinkedVersionNumber));
+    finalInfoText.append(tr("Running With SDL %1").arg(sdlLinkedVersionNumber));
 
-    finalInfoText.append(trUtf8("Using Qt %1").arg(qVersion()));
+    finalInfoText.append(tr("Using Qt %1").arg(qVersion()));
 
     BaseEventHandler *handler = nullptr;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance();
@@ -86,7 +86,7 @@ void AboutDialog::fillInfoTextBrowser()
 
     if (handler != nullptr)
     {
-        finalInfoText.append(trUtf8("Using Event Handler: %1").arg(handler->getName()));
+        finalInfoText.append(tr("Using Event Handler: %1").arg(handler->getName()));
     }
 
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));

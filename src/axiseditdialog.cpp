@@ -605,7 +605,7 @@ void AxisEditDialog::updateWindowTitleAxisName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString temp = QString(trUtf8("Set")).append(" ");
+    QString temp = QString(tr("Set")).append(" ");
 
     if (!m_axis->getAxisName().isEmpty())
     {
@@ -619,7 +619,7 @@ void AxisEditDialog::updateWindowTitleAxisName()
     if (m_axis->getParentSet()->getIndex() != 0)
     {
         int setIndex = m_axis->getParentSet()->getRealIndex();
-        temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
 
         QString setName = m_axis->getParentSet()->getName();
         if (!setName.isEmpty()) temp.append(": ").append(setName);
@@ -635,18 +635,18 @@ void AxisEditDialog::buildAxisPresetsMenu()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->presetsComboBox->clear();
-    ui->presetsComboBox->addItem(trUtf8(""));
-    ui->presetsComboBox->addItem(trUtf8("Mouse (Horizontal)"));
-    ui->presetsComboBox->addItem(trUtf8("Mouse (Inverted Horizontal)"));
-    ui->presetsComboBox->addItem(trUtf8("Mouse (Vertical)"));
-    ui->presetsComboBox->addItem(trUtf8("Mouse (Inverted Vertical)"));
-    ui->presetsComboBox->addItem(trUtf8("Arrows: Up | Down"));
-    ui->presetsComboBox->addItem(trUtf8("Arrows: Left | Right"));
-    ui->presetsComboBox->addItem(trUtf8("Keys: W | S"));
-    ui->presetsComboBox->addItem(trUtf8("Keys: A | D"));
-    ui->presetsComboBox->addItem(trUtf8("NumPad: KP_8 | KP_2"));
-    ui->presetsComboBox->addItem(trUtf8("NumPad: KP_4 | KP_6"));
-    ui->presetsComboBox->addItem(trUtf8("None"));
+    ui->presetsComboBox->addItem(tr(""));
+    ui->presetsComboBox->addItem(tr("Mouse (Horizontal)"));
+    ui->presetsComboBox->addItem(tr("Mouse (Inverted Horizontal)"));
+    ui->presetsComboBox->addItem(tr("Mouse (Vertical)"));
+    ui->presetsComboBox->addItem(tr("Mouse (Inverted Vertical)"));
+    ui->presetsComboBox->addItem(tr("Arrows: Up | Down"));
+    ui->presetsComboBox->addItem(tr("Arrows: Left | Right"));
+    ui->presetsComboBox->addItem(tr("Keys: W | S"));
+    ui->presetsComboBox->addItem(tr("Keys: A | D"));
+    ui->presetsComboBox->addItem(tr("NumPad: KP_8 | KP_2"));
+    ui->presetsComboBox->addItem(tr("NumPad: KP_4 | KP_6"));
+    ui->presetsComboBox->addItem(tr("None"));
 }
 
 void AxisEditDialog::buildTriggerPresetsMenu()
@@ -654,10 +654,10 @@ void AxisEditDialog::buildTriggerPresetsMenu()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->presetsComboBox->clear();
-    ui->presetsComboBox->addItem(trUtf8(""));
-    ui->presetsComboBox->addItem(trUtf8("Left Mouse Button"));
-    ui->presetsComboBox->addItem(trUtf8("Right Mouse Button"));
-    ui->presetsComboBox->addItem(trUtf8("None"));
+    ui->presetsComboBox->addItem(tr(""));
+    ui->presetsComboBox->addItem(tr("Left Mouse Button"));
+    ui->presetsComboBox->addItem(tr("Right Mouse Button"));
+    ui->presetsComboBox->addItem(tr("None"));
 }
 
 void AxisEditDialog::presetForThrottleChange(int index)

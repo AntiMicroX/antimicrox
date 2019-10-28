@@ -1036,8 +1036,8 @@ QString SetJoystick::getSetLabel()
 
     QString temp = QString();
 
-    if (!m_name.isEmpty()) temp = trUtf8("Set %1: %2").arg(m_index+1).arg(m_name);
-    else temp = trUtf8("Set %1").arg(m_index+1);
+    if (!m_name.isEmpty()) temp = tr("Set %1: %2").arg(m_index+1).arg(m_name);
+    else temp = tr("Set %1").arg(m_index+1);
 
     return temp;
 }

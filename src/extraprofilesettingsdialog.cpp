@@ -34,13 +34,13 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
-    ui->pressValueLabel->setText(QString::number(0.10, 'g', 3).append("").append(trUtf8("s")));
+    ui->pressValueLabel->setText(QString::number(0.10, 'g', 3).append("").append(tr("s")));
 
     if (device->getDeviceKeyPressTime() > 0)
     {
         int temppress = device->getDeviceKeyPressTime();
         ui->keyPressHorizontalSlider->setValue(device->getDeviceKeyPressTime() / 10);
-        ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(trUtf8("s")));
+        ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));
     }
 
     if (!device->getProfileName().isEmpty())
@@ -63,7 +63,7 @@ void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
 
     int temppress = value * 10;
     device->setDeviceKeyPressTime(temppress);
-    ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(trUtf8("s")));
+    ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));
 }
 
 InputDevice* ExtraProfileSettingsDialog::getDevice() const  {

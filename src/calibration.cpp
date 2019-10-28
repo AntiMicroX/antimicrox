@@ -31,7 +31,7 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(trUtf8("Calibration"));
+    setWindowTitle(tr("Calibration"));
 
     sumX = 0;
     sumY = 0;
@@ -120,7 +120,7 @@ void Calibration::resetSettings(bool silentReset, bool)
     if (!silentReset) {
 
         QMessageBox msgBox;
-        msgBox.setText(trUtf8("Do you really want to reset settings of current axis?"));
+        msgBox.setText(tr("Do you really want to reset settings of current axis?"));
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
 
         switch(msgBox.exec())
@@ -255,7 +255,7 @@ void Calibration::startCalibration()
     if (stick->wasCalibrated()) {
 
         QMessageBox msgBox;
-        msgBox.setText(trUtf8("Calibration was saved for the preset. Do you really want to reset settings?"));
+        msgBox.setText(tr("Calibration was saved for the preset. Do you really want to reset settings?"));
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
         switch(msgBox.exec())
@@ -309,9 +309,9 @@ void Calibration::startCalibration()
         stick->setCalibrationFlag(false);
         calibrated = false;
 
-        ui->steps->setText(trUtf8("Place the joystick in the center position.\n\nIt's the part, where often you don't have to move. Just skip it in such situation."));
-        this->setWindowTitle(trUtf8("Calibrating center"));
-        ui->startButton->setText(trUtf8("Start second step"));
+        ui->steps->setText(tr("Place the joystick in the center position.\n\nIt's the part, where often you don't have to move. Just skip it in such situation."));
+        this->setWindowTitle(tr("Calibrating center"));
+        ui->startButton->setText(tr("Start second step"));
         update();
 
         QList<int> xValues = x_es_val.values();
@@ -335,8 +335,8 @@ void Calibration::startCalibration()
         }
 
         QString text = QString();
-        text.append(trUtf8("\n\nCenter X: %1").arg(center_calibrated_x));
-        text.append(trUtf8("\nCenter Y: %1").arg(center_calibrated_y));
+        text.append(tr("\n\nCenter X: %1").arg(center_calibrated_x));
+        text.append(tr("\nCenter Y: %1").arg(center_calibrated_y));
         ui->Informations->setText(text);
         this->text = text;
 
@@ -361,8 +361,8 @@ void Calibration::startSecondStep()
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr)) {
 
-            ui->steps->setText(trUtf8("\nPlace the joystick in the top-left corner many times"));
-            this->setWindowTitle(trUtf8("Calibrating position"));
+            ui->steps->setText(tr("\nPlace the joystick in the top-left corner many times"));
+            this->setWindowTitle(tr("Calibrating position"));
             update();
 
             qDebug() << "X_ES_VAL: " << x_es_val.count(QString("-"));
@@ -386,8 +386,8 @@ void Calibration::startSecondStep()
                 min_axis_val_y = min_y;
 
                 QString text = ui->Informations->text();
-                text.append(trUtf8("\n\nX: %1").arg(min_axis_val_x));
-                text.append(trUtf8("\nY: %1").arg(min_axis_val_y));
+                text.append(tr("\n\nX: %1").arg(min_axis_val_x));
+                text.append(tr("\nY: %1").arg(min_axis_val_y));
                 ui->Informations->setText(text);
                 this->text = text;
 
@@ -414,9 +414,9 @@ void Calibration::startLastStep()
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr)) {
 
-            ui->steps->setText(trUtf8("\nPlace the joystick in the bottom-right corner"));
-            this->setWindowTitle(trUtf8("Calibrating position"));
-            ui->startButton->setText(trUtf8("Start final step"));
+            ui->steps->setText(tr("\nPlace the joystick in the bottom-right corner"));
+            this->setWindowTitle(tr("Calibrating position"));
+            ui->startButton->setText(tr("Start final step"));
             update();
 
             if (enoughProb(x_es_val.count(QString("+")), y_es_val.count(QString("+")), QString("+"))) {
@@ -436,8 +436,8 @@ void Calibration::startLastStep()
                 max_axis_val_y = max_y;
 
                 QString text2 = ui->Informations->text();
-                text2.append(trUtf8("\n\nX: %1").arg(max_axis_val_x));
-                text2.append(trUtf8("\nY: %1").arg(max_axis_val_y));
+                text2.append(tr("\n\nX: %1").arg(max_axis_val_x));
+                text2.append(tr("\nY: %1").arg(max_axis_val_y));
                 ui->Informations->setText(text2);
                 this->text = text2;
                 update();
@@ -448,10 +448,10 @@ void Calibration::startLastStep()
                 deadzone_calibrated_y = (max_axis_val_y + max_axis_val_x)/4;
 
                 QString text3 = ui->Informations->text();
-                text3.append(trUtf8("\n\nrange X: %1 - %2").arg(min_axis_val_x).arg(max_axis_val_x));
-                text3.append(trUtf8("\nrange Y: %1 - %2").arg(min_axis_val_y).arg(max_axis_val_y));
-                text3.append(trUtf8("\n\ndeadzone X: %1").arg(deadzone_calibrated_x));
-                text3.append(trUtf8("\ndeadzone Y: %1").arg(deadzone_calibrated_y));
+                text3.append(tr("\n\nrange X: %1 - %2").arg(min_axis_val_x).arg(max_axis_val_x));
+                text3.append(tr("\nrange Y: %1 - %2").arg(min_axis_val_y).arg(max_axis_val_y));
+                text3.append(tr("\n\ndeadzone X: %1").arg(deadzone_calibrated_x));
+                text3.append(tr("\ndeadzone Y: %1").arg(deadzone_calibrated_y));
                 ui->Informations->setText(text3);
                 this->text = text3;
 
@@ -460,9 +460,9 @@ void Calibration::startLastStep()
                     ui->saveBtn->setEnabled(true);
                 }
 
-                ui->steps->setText(trUtf8("\n---Calibration done!---\n"));
-                ui->startButton->setText(trUtf8("Start calibration"));
-                this->setWindowTitle(trUtf8("Calibration"));
+                ui->steps->setText(tr("\n---Calibration done!---\n"));
+                ui->startButton->setText(tr("Start calibration"));
+                this->setWindowTitle(tr("Calibration"));
                 update();
 
                 x_es_val.clear();
@@ -515,7 +515,7 @@ void Calibration::saveSettings()
 
       ui->stickStatusBoxWidget->update();
       update();
-      QMessageBox::information(this, trUtf8("Save"), trUtf8("Calibration values have been saved"));
+      QMessageBox::information(this, tr("Save"), tr("Calibration values have been saved"));
    }
 }
 
@@ -535,12 +535,12 @@ bool Calibration::enoughProb(int x_count, int y_count, QString character)
         if (character == QString("-"))
         {
             enough = false;
-            QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You have to move axes to the top-left corner at least five times."));
+            QMessageBox::information(this, tr("Dead zone calibration"), tr("You have to move axes to the top-left corner at least five times."));
         }
         else if (character == QString("+"))
         {
             enough = false;
-            QMessageBox::information(this, trUtf8("Dead zone calibration"), trUtf8("You have to move axes to the bottom-right corner at least five times."));
+            QMessageBox::information(this, tr("Dead zone calibration"), tr("You have to move axes to the bottom-right corner at least five times."));
         }
     }
 
@@ -677,7 +677,7 @@ void Calibration::createAxesConnection()
     if (ui->saveBtn->isEnabled()) {
 
         QMessageBox msgBox;
-        msgBox.setText(trUtf8("Do you want to save calibration of current axis?"));
+        msgBox.setText(tr("Do you want to save calibration of current axis?"));
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
 
         switch(msgBox.exec())
@@ -765,8 +765,8 @@ void Calibration::setProgressBars(JoyControlStick* controlstick)
             QLabel *axisLabel = new QLabel();
             QLabel *axisLabel2 = new QLabel();
 
-            axisLabel->setText(trUtf8("Axis %1").arg(joyAxisX->getRealJoyIndex()));
-            axisLabel2->setText(trUtf8("Axis %1").arg(joyAxisY->getRealJoyIndex()));
+            axisLabel->setText(tr("Axis %1").arg(joyAxisX->getRealJoyIndex()));
+            axisLabel2->setText(tr("Axis %1").arg(joyAxisY->getRealJoyIndex()));
 
             axisBarX = new QProgressBar();
             axisBarY = new QProgressBar();
@@ -828,8 +828,8 @@ void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
             QLabel *axisLabel = new QLabel();
             QLabel *axisLabel2 = new QLabel();
 
-            axisLabel->setText(trUtf8("Axis %1").arg(joyAxisX->getRealJoyIndex()));
-            axisLabel2->setText(trUtf8("Axis %1").arg(joyAxisY->getRealJoyIndex()));
+            axisLabel->setText(tr("Axis %1").arg(joyAxisX->getRealJoyIndex()));
+            axisLabel2->setText(tr("Axis %1").arg(joyAxisY->getRealJoyIndex()));
 
             axisBarX = new QProgressBar();
             axisBarY = new QProgressBar();
