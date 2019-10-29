@@ -84,50 +84,58 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             hideTrayIcon = true;
             launchInTray = false;
         }
-        else if (parser->isSet("profile"))
+
+        if (parser->isSet("profile"))
         {
             parseArgsProfile(parser);
         }
-        else if (parser->isSet("profile-controller"))
+
+        if (parser->isSet("profile-controller"))
         {
             parseArgsPrControle(parser);
         }
-        else if (parser->isSet("hidden"))
+
+        if (parser->isSet("hidden"))
         {
             hiddenRequest = true;
         }
-        else if (parser->isSet("unload"))
+
+        if (parser->isSet("unload"))
         {
             parseArgsUnload(parser);
         }
-        else if (parser->isSet("startSet"))
+
+        if (parser->isSet("startSet"))
         {
             parseArgsStartSet(parser);
         }
-        else if (parser->isSet("next"))
+
+        if (parser->isSet("next"))
         {
             currentListsIndex++;
             ControllerOptionsInfo tempInfo;
             controllerOptionsList.append(tempInfo);
         }
         #ifdef USE_SDL_2
-        else if (parser->isSet("list"))
+
+        if (parser->isSet("list"))
         {
             listControllers = true;
         }
-        else if (parser->isSet("map"))
+
+        if (parser->isSet("map"))
         {
             parseArgsMap(parser);
         }
         #endif
 
      #ifdef Q_OS_UNIX
-        else if (parser->isSet("daemon"))
+        if (parser->isSet("daemon"))
         {
             daemonMode = true;
         }
         #ifdef WITH_X11
-        else if (parser->isSet("display"))
+        if (parser->isSet("display"))
         {
             if (!parser->value("display").isEmpty())
             {
@@ -144,7 +152,7 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
     #if (defined (Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) \
      || (defined(Q_OS_WIN) && defined(WITH_VMULTI))
 
-        else if (parser->isSet("eventgen"))
+        if (parser->isSet("eventgen"))
         {
            QString eventGenText = parser->value("eventgen");
 
@@ -163,7 +171,8 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             }
         }
     #endif
-        else if (parser->isSet("log-level"))
+
+        if (parser->isSet("log-level"))
         {
             QString logLevelText = parser->value("log-level");
 
@@ -172,7 +181,8 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             else if (logLevelText == "warn") currentLogLevel = Logger::LOG_WARNING;
             else if (logLevelText == "error") currentLogLevel = Logger::LOG_ERROR;
         }
-        else if (parser->isSet("log-file"))
+
+        if (parser->isSet("log-file"))
         {
             if (!parser->value("log-file").isEmpty())
             {
