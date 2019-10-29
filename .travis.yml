@@ -1,3 +1,5 @@
+# compilation doesn't work because of https://bugreports.qt.io/browse/QTBUG-55726
+
 language: cpp
 sudo: required
 compiler:
@@ -86,4 +88,4 @@ before_install:
       cd ..;
     fi;
       
-script: cmake .. -DCMAKE_PREFIX_PATH="/opt/qt${QT}/" && make
+script: cmake .. -D MESA_EGL_NO_X11_HEADERS -DCMAKE_PREFIX_PATH="/opt/qt${QT}/" && make
