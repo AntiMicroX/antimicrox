@@ -88,4 +88,4 @@ before_install:
       cd ..;
     fi;
       
-script: cmake .. -D MESA_EGL_NO_X11_HEADERS -DCMAKE_PREFIX_PATH="/opt/qt${QT}/" && make
+script: cmake .. -DCMAKE_CXX_FLAGS:="-DMESA_EGL_NO_X11_HEADERS=0" -DCMAKE_PREFIX_PATH="/opt/qt${QT}/" && make
