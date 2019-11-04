@@ -916,6 +916,7 @@ void VirtualKeyboardMouseWidget::establishVirtualMouseSignalConnections()
         disconnect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, nullptr, nullptr);
         connect(mousebutton, &VirtualMousePushButton::mouseSlotCreated, this, &VirtualKeyboardMouseWidget::processSingleMouseSelection);
     }
+
 }
 
 void VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections()
@@ -939,10 +940,13 @@ void VirtualKeyboardMouseWidget::clearButtonSlots()
 
     if (ButtonEditDialog::getInstance() != nullptr)
     {
+
         if (ButtonEditDialog::getInstance()->getLastJoyButton() != nullptr)
             QMetaObject::invokeMethod(ButtonEditDialog::getInstance()->getLastJoyButton(), "clearSlotsEventReset", Qt::BlockingQueuedConnection);
 
         emit selectionCleared();
+
+        lastPressedBtn->buildActiveZoneSummaryString();
 
     }
     else
@@ -961,6 +965,9 @@ void VirtualKeyboardMouseWidget::clearButtonSlotsFinish()
             QMetaObject::invokeMethod(ButtonEditDialog::getInstance()->getLastJoyButton(), "clearSlotsEventReset", Qt::BlockingQueuedConnection);
 
         emit selectionFinished();
+
+        lastPressedBtn->buildActiveZoneSummaryString();
+
     }
     else
     {
