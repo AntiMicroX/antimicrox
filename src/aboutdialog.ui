@@ -117,7 +117,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -398,7 +398,7 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
    <item>
     <widget class="QLabel" name="copyrightLabel">
      <property name="text">
-      <string>Copyright: 2013 - 2018</string>
+      <string>Copyright: 2013 - 2019</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
