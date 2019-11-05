@@ -165,6 +165,15 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
     refreshForLastBtn();
 }
 
+// for tests
+ButtonEditDialog::ButtonEditDialog(QWidget *parent) :
+    QDialog(parent, Qt::Window),
+    helper(),
+    ui(new Ui::ButtonEditDialog)
+{
+
+}
+
 
 ButtonEditDialog* ButtonEditDialog::getInstance()
 {

@@ -206,6 +206,15 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
 }
 
 
+// created for tests
+AddEditAutoProfileDialog::AddEditAutoProfileDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AddEditAutoProfileDialog)
+{
+
+}
+
+
 AddEditAutoProfileDialog::~AddEditAutoProfileDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

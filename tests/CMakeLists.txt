@@ -10,7 +10,13 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5Test REQUIRED)
 
-add_executable(aboutdialogClass testaboutdialog.cpp)
-target_link_libraries(aboutdialogClass antilib Qt5::Test)
-
-add_test (NAME testAboutDialog COMMAND aboutdialogClass)
+set( GUIS_SRCS testaboutdialog.cpp
+    testaddeditautoprofiledialog.cpp
+    testadvancebuttondialog.cpp
+    testadvancestickassignmentdialog.cpp
+    testaxiseditdialog.cpp
+    testbuttoneditdialog.cpp
+    )
+add_executable( GuiTests ${GUIS_SRCS} )
+target_link_libraries( GuiTests antilib Qt5::Test )
+ADD_TEST( NAME GuiTests COMMAND GuiTests )

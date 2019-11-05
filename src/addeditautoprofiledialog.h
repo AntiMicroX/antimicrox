@@ -40,6 +40,9 @@ public:
     explicit AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings, QList<InputDevice*> *devices,
                                       QList<QString> &reservedUniques,
                                       bool edit=false, QWidget *parent = nullptr);
+
+    AddEditAutoProfileDialog(QWidget *parent = nullptr);
+
     ~AddEditAutoProfileDialog();
 
     AutoProfileInfo* getAutoProfile() const;

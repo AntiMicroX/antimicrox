@@ -154,6 +154,14 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, QWidget *parent) :
     connect(this, &AxisEditDialog::finished, this, &AxisEditDialog::checkFinalSettings);
 }
 
+// for tests
+AxisEditDialog::AxisEditDialog(QWidget *parent) :
+    QDialog(parent, Qt::Window),
+    ui(new Ui::AxisEditDialog)
+{
+
+}
+
 AxisEditDialog::~AxisEditDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

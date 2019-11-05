@@ -119,6 +119,14 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     connect(this, &AdvanceStickAssignmentDialog::finished, this, &AdvanceStickAssignmentDialog::reenableButtonEvents);
 }
 
+// for tests
+AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(QWidget *parent) :
+    QDialog(parent, Qt::Window),
+    ui(new Ui::AdvanceStickAssignmentDialog)
+{
+
+}
+
 
 AdvanceStickAssignmentDialog::~AdvanceStickAssignmentDialog()
 {

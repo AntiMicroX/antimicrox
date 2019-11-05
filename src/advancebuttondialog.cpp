@@ -236,6 +236,16 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 }
 
 
+// for tests
+AdvanceButtonDialog::AdvanceButtonDialog(QWidget *parent) :
+    QDialog(parent, Qt::Window),
+    ui(new Ui::AdvanceButtonDialog),
+    helper(nullptr)
+{
+
+}
+
+
 AdvanceButtonDialog::~AdvanceButtonDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
