@@ -34,7 +34,7 @@
 #include <QDebug>
 
 
-InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent) :
+InputDevice::InputDevice(SDL_Joystick* joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent) :
     QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -44,6 +44,7 @@ InputDevice::InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *
     active_set = 0;
     joystickID = 0;
     keyPressTime = 0;
+    m_joyhandle = joystick;
     deviceEdited = false;
 #ifdef Q_OS_WIN
     keyRepeatEnabled = true;

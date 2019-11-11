@@ -925,8 +925,17 @@ void JoyTabWidget::changeJoyConfig(int index)
         removeCurrentButtons();
         emit forceTabUnflash(this);
 
-        QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection,
-                                  Q_ARG(QString, filename));
+        qDebug() << "SDL Current Powerl Level: " << SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) << "\n";
+
+        if (SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) == SDL_JOYSTICK_POWER_WIRED ||
+            SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) == SDL_JOYSTICK_POWER_UNKNOWN)
+        {
+            QMetaObject::invokeMethod(&tabHelper, "readConfigFile", Qt::BlockingQueuedConnection, Q_ARG(QString, filename));
+        }
+        else
+        {
+            tabHelper.readConfigFile(filename);
+        }
 
         fillButtons();
         refreshSetButtons();
