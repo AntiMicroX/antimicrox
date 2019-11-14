@@ -52,6 +52,38 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     setWindowTitle(tr("%1 (#%2) Properties").arg(joystick->getSDLName())
                    .arg(joystick->getRealJoyNumber()));
 
+    SDL_JoystickPowerLevel powerLevel = SDL_JoystickCurrentPowerLevel(joystick->getJoyHandle());
+
+
+    switch(powerLevel)
+    {
+     case SDL_JOYSTICK_POWER_EMPTY:
+
+            ui->batteryValueLabel->setText("Empty");
+            break;
+
+     case SDL_JOYSTICK_POWER_LOW:
+
+            ui->batteryValueLabel->setText("Low");
+            break;
+
+     case SDL_JOYSTICK_POWER_MEDIUM:
+
+            ui->batteryValueLabel->setText("Medium");
+            break;
+
+     case SDL_JOYSTICK_POWER_FULL:
+
+            ui->batteryValueLabel->setText("Full");
+            break;
+
+     default:
+
+            ui->batteryLabel->hide();
+            ui->batteryValueLabel->hide();
+            break;
+     }
+
     ui->joystickNameLabel->setText(joystick->getSDLName());
     ui->joystickNumberLabel->setText(QString::number(joystick->getRealJoyNumber()));
     ui->joystickAxesLabel->setText(QString::number(joystick->getNumberRawAxes()));

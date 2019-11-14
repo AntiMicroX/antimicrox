@@ -84,6 +84,8 @@ protected:
     void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // MainConfiguration class
     void convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID);
 
+
+
 signals:
     void joystickRefreshRequested();
     void readConfig(int index); // MainConfiguration class
@@ -91,6 +93,7 @@ signals:
 
 
 public slots:
+    void checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice*> *joysticks);
     void fillButtons();
     void makeJoystickTabs();
     void alterConfigFromSettings(); // MainConfiguration class
@@ -150,6 +153,8 @@ private slots:
     void updateMenuOptions();
 
 private:
+    void showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString batteryLev, QString percent, InputDevice* device);
+
     Ui::MainWindow *ui;
 
     QMap<SDL_JoystickID, InputDevice*> *m_joysticks;

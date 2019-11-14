@@ -64,6 +64,7 @@
 #include <QDebug>
 #include <QHash>
 #include <QPointer>
+#include <QResource>
 #include <QHashIterator>
 #include <QMapIterator>
 #include <QTextStream>
@@ -74,10 +75,13 @@
 #include <QFileInfo>
 #include <QRegularExpression>
 
+#include <SDL2/SDL_joystick.h>
+
 #ifdef Q_OS_WIN
     #include <QSysInfo>
 #endif
 
+#define CHECK_BATTERIES_MSEC 600000
 
 
 MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
@@ -219,6 +223,15 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 #elif defined(Q_OS_UNIX)
     ui->uacPushButton->setVisible(false);
 #endif
+
+
+    QTimer *timer = new QTimer(this);
+
+    connect(timer, &QTimer::timeout, [this]() {
+        this->checkEachTenMinutesBattery(m_joysticks);
+    });
+
+    timer->start(CHECK_BATTERIES_MSEC);
 
 }
 
@@ -1950,6 +1963,25 @@ void MainWindow::updateMenuOptions()
     }
 }
 
+void MainWindow::showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString batteryLev, QString percent, InputDevice* device)
+{
+    if (SDL_JoystickCurrentPowerLevel(device->getJoyHandle()) == powerLevSDL)
+      {
+        QResource batteryFile(":/images/battery-low-level.png");
+        QPixmap pm(30,30);
+        pm.load(batteryFile.absoluteFilePath());
+
+        QMessageBox msgBox;
+        msgBox.setWindowTitle(tr("%1 battery").arg(batteryLev));
+        msgBox.setIconPixmap(pm);
+        msgBox.setText(tr("Battery level is less than %1").arg(percent));
+        msgBox.setInformativeText(tr("Device number: %1\nDevice name: %2").arg(device->getRealJoyNumber()).arg(device->getSDLName()));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
+    }
+}
+
 /**
  * @brief Select appropriate tab with the specified index.
  * @param Index of appropriate tab.
@@ -2154,4 +2186,18 @@ void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString contr
 
             break;
         }
+}
+
+void MainWindow::checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice *> *joysticks)
+{
+    QMapIterator<SDL_JoystickID, InputDevice*> deviceIter(*joysticks);
+
+    while (deviceIter.hasNext())
+    {
+        deviceIter.next();
+        InputDevice *tempDevice = deviceIter.value();
+
+        showBatteryLevel(SDL_JOYSTICK_POWER_LOW, "Low", "20%", tempDevice);
+        showBatteryLevel(SDL_JOYSTICK_POWER_EMPTY, "Empty", "5%", tempDevice);
+    }
 }

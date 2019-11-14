@@ -38,7 +38,7 @@ class InputDevice : public QObject
     Q_OBJECT
 
 public:
-    explicit InputDevice(int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
+    explicit InputDevice(SDL_Joystick* joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
     virtual ~InputDevice();
 
     virtual int getNumberButtons();
@@ -135,12 +135,10 @@ public:
     bool elementsHaveNames();
 
     QHash<int, SetJoystick*>& getJoystick_sets();
+    SDL_Joystick* getJoyHandle() const;
 
 protected:
     void enableSetConnections(SetJoystick *setstick);
-
-    SDL_Joystick* getJoyHandle() const;
-
 
     QHash<int, JoyAxis::ThrottleTypes>& getCali();
     SDL_JoystickID* getJoystickID();

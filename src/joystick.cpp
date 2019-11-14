@@ -32,7 +32,7 @@
 
 Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
                    AntiMicroSettings *settings, QObject *parent) :
-    InputDevice(deviceIndex, settings, parent)
+    InputDevice(joyhandle, deviceIndex, settings, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
