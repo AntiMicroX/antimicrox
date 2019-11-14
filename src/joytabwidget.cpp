@@ -926,7 +926,6 @@ void JoyTabWidget::changeJoyConfig(int index)
         emit forceTabUnflash(this);
 
         qDebug() << "SDL Current Powerl Level: " << SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) << "\n";
-        qDebug() << "Joystick name: " << SDL_JoystickName(m_joystick->getJoyHandle()) << "\n";
 
         if (SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) == SDL_JOYSTICK_POWER_WIRED ||
             SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) == SDL_JOYSTICK_POWER_UNKNOWN)
