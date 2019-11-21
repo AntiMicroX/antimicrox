@@ -2,9 +2,7 @@
 #define SCRIPTS_H
 
 #include <QDialog>
-#include <QHash>
 
-#include <SDL2/SDL_joystick.h>
 
 class InputDevice;
 
@@ -17,14 +15,18 @@ class Scripts : public QDialog
     Q_OBJECT
 
 public:
-    explicit Scripts(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget *parent = nullptr);
+    explicit Scripts(InputDevice* joystick, QWidget *parent = nullptr);
     ~Scripts();
+
+protected:
+
+
 
 private:
 
     Ui::Scripts *ui;
 
-    QMap<SDL_JoystickID, InputDevice*>* m_joysticks;
+    InputDevice* m_joystick;
 };
 
 #endif // SCRIPTS_H

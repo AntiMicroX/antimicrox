@@ -1,15 +1,20 @@
 #include "scripts.h"
 #include "ui_scripts.h"
 
+#include "inputdevice.h"
 
-Scripts::Scripts(QMap<SDL_JoystickID, InputDevice *> *joysticks, QWidget *parent) :
+
+Scripts::Scripts(InputDevice *joystick, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Scripts),
-    m_joysticks(joysticks)
+    m_joystick(joystick)
 {
+
     ui->setupUi(this);
 
+    ui->tabWidget->setTabText(0, m_joystick->getSDLName());
 }
+
 
 Scripts::~Scripts()
 {

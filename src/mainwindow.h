@@ -114,6 +114,7 @@ public slots:
     void selectControllerJoyTab(QString GUID);
     void selectControllerJoyTab(int index);
     void handleInstanceDisconnect();
+    void updateCurrentDev(int tabIndex);
 
 
 private slots:
@@ -160,6 +161,8 @@ private:
 
     QMap<SDL_JoystickID, InputDevice*> *m_joysticks;
     QMap<int, QList<QAction*> > profileActions;
+
+    InputDevice* currentDevice;
 
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;

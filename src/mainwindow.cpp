@@ -193,6 +193,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionWiki, &QAction::triggered, this, &MainWindow::openWikiPage);
     connect(ui->actionCalibration, &QAction::triggered, this, &MainWindow::openCalibration);
     connect(ui->actionScripts, &QAction::triggered, this, &MainWindow::openScripts);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::updateCurrentDev);
     connect(ui->actionGameController_Mapping, &QAction::triggered, this, &MainWindow::openGameControllerMappingWindow);
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
@@ -417,7 +418,7 @@ void MainWindow::makeJoystickTabs()
         temp.insert(joystick->getJoyNumber(), joystick);
     }
 
-    QMapIterator<SDL_JoystickID, InputDevice*> iter(temp);
+    QMapIterator<int, InputDevice*> iter(temp);
 
     while (iter.hasNext())
     {
@@ -453,8 +454,6 @@ void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
-    // Make temporary QMap with devices inserted using the device index as the
-    // key rather than joystick ID.
     QMap<SDL_JoystickID, InputDevice*> temp;
     QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
 
@@ -466,7 +465,7 @@ void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
         temp.insert(joystick->getJoyNumber(), joystick);
     }
 
-    QMapIterator<SDL_JoystickID, InputDevice*> iter(temp);
+    QMapIterator<int, InputDevice*> iter(temp);
 
     while (iter.hasNext())
     {
@@ -1197,6 +1196,13 @@ void MainWindow::handleInstanceDisconnect()
 }
 
 
+void MainWindow::updateCurrentDev(int tabIndex)
+{
+   JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(tabIndex)); // static_cast
+   if (tabwidget != nullptr) currentDevice = tabwidget->getJoystick();
+}
+
+
 void MainWindow::openJoystickStatusWindow()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1278,7 +1284,7 @@ void MainWindow::openScripts()
 
     } else {
 
-        QPointer<Scripts> scriptsWindow = new Scripts(m_joysticks, this);
+        QPointer<Scripts> scriptsWindow = new Scripts(currentDevice, this);
         scriptsWindow.data()->show();
 
         if (scriptsWindow.isNull())
