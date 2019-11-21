@@ -23,7 +23,8 @@
    <string>antimicro</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="com.github.juliagoda.antimicro"/>
+   <iconset theme="com.github.juliagoda.antimicro">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
@@ -191,7 +192,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <x>0</x>
      <y>0</y>
      <width>650</width>
-     <height>30</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQuit">
@@ -212,6 +213,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <addaction name="actionStick_Pad_Assign"/>
     <addaction name="actionOptions"/>
     <addaction name="actionUpdate_Joysticks"/>
+    <addaction name="actionScripts"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -332,6 +334,11 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionCalibration">
    <property name="text">
     <string>&amp;Calibration</string>
+   </property>
+  </action>
+  <action name="actionScripts">
+   <property name="text">
+    <string>Scripts</string>
    </property>
   </action>
  </widget>

@@ -41,6 +41,7 @@
 #include "gamecontrollermappingdialog.h"
 #include "calibration.h"
 #include "xml/inputdevicexml.h"
+#include "scripts.h"
 
 #if defined(WITH_X11) || defined(Q_OS_WIN)
     #include "autoprofileinfo.h"
@@ -191,6 +192,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionOptions, &QAction::triggered, this, &MainWindow::openMainSettingsDialog);
     connect(ui->actionWiki, &QAction::triggered, this, &MainWindow::openWikiPage);
     connect(ui->actionCalibration, &QAction::triggered, this, &MainWindow::openCalibration);
+    connect(ui->actionScripts, &QAction::triggered, this, &MainWindow::openScripts);
     connect(ui->actionGameController_Mapping, &QAction::triggered, this, &MainWindow::openGameControllerMappingWindow);
 
     #if defined(Q_OS_UNIX) && defined(WITH_X11)
@@ -1261,6 +1263,26 @@ void MainWindow::openCalibration()
 
         if (calibration.isNull())
             calibration.clear();
+
+    }
+}
+
+
+void MainWindow::openScripts()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    if (m_joysticks->isEmpty()) {
+
+        QMessageBox::information(this, tr("Calibration couldn't be opened"), tr("You must connect at least one controller to open the window"));
+
+    } else {
+
+        QPointer<Scripts> scriptsWindow = new Scripts(m_joysticks, this);
+        scriptsWindow.data()->show();
+
+        if (scriptsWindow.isNull())
+            scriptsWindow.clear();
 
     }
 }

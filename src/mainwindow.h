@@ -135,6 +135,7 @@ private slots:
     void openIssuesPage();
     void openWikiPage();
     void openCalibration();
+    void openScripts();
     void propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames);
     void changeLanguage(QString language); // MainConfiguration class
     void openMainSettingsDialog();
