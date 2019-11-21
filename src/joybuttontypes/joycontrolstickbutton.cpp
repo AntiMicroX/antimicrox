@@ -57,35 +57,35 @@ QString JoyControlStickButton::getDirectionName() const
     switch(m_index)
     {
     case 1:
-        label.append(trUtf8("Up"));
+        label.append(tr("Up"));
         break;
 
     case 2:
-        label.append(trUtf8("Up")).append("+").append(trUtf8("Right"));
+        label.append(tr("Up")).append("+").append(tr("Right"));
         break;
 
     case 3:
-        label.append(trUtf8("Right"));
+        label.append(tr("Right"));
         break;
 
     case 4:
-        label.append(trUtf8("Down")).append("+").append(trUtf8("Right"));
+        label.append(tr("Down")).append("+").append(tr("Right"));
         break;
 
     case 5:
-        label.append(trUtf8("Down"));
+        label.append(tr("Down"));
         break;
 
     case 6:
-        label.append(trUtf8("Down")).append("+").append(trUtf8("Left"));
+        label.append(tr("Down")).append("+").append(tr("Left"));
         break;
 
     case 7:
-        label.append(trUtf8("Left"));
+        label.append(tr("Left"));
         break;
 
     case 8:
-        label.append(trUtf8("Up")).append("+").append(trUtf8("Left"));
+        label.append(tr("Up")).append("+").append(tr("Left"));
         break;
 
     }
@@ -106,7 +106,7 @@ QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool display
     {
         if (forceFullFormat)
         {
-            temp.append(trUtf8("Button")).append(" ");
+            temp.append(tr("Button")).append(" ");
         }
 
         temp.append(buttonName);
@@ -115,14 +115,14 @@ QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool display
     {
         if (forceFullFormat)
         {
-            temp.append(trUtf8("Button")).append(" ");
+            temp.append(tr("Button")).append(" ");
         }
 
         temp.append(defaultButtonName);
     }
     else
     {
-        temp.append(trUtf8("Button")).append(" ");
+        temp.append(tr("Button")).append(" ");
         temp.append(getDirectionName());
     }
 

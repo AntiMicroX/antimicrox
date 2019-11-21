@@ -84,50 +84,58 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             hideTrayIcon = true;
             launchInTray = false;
         }
-        else if (parser->isSet("profile"))
+
+        if (parser->isSet("profile"))
         {
             parseArgsProfile(parser);
         }
-        else if (parser->isSet("profile-controller"))
+
+        if (parser->isSet("profile-controller"))
         {
             parseArgsPrControle(parser);
         }
-        else if (parser->isSet("hidden"))
+
+        if (parser->isSet("hidden"))
         {
             hiddenRequest = true;
         }
-        else if (parser->isSet("unload"))
+
+        if (parser->isSet("unload"))
         {
             parseArgsUnload(parser);
         }
-        else if (parser->isSet("startSet"))
+
+        if (parser->isSet("startSet"))
         {
             parseArgsStartSet(parser);
         }
-        else if (parser->isSet("next"))
+
+        if (parser->isSet("next"))
         {
             currentListsIndex++;
             ControllerOptionsInfo tempInfo;
             controllerOptionsList.append(tempInfo);
         }
         #ifdef USE_SDL_2
-        else if (parser->isSet("list"))
+
+        if (parser->isSet("list"))
         {
             listControllers = true;
         }
-        else if (parser->isSet("map"))
+
+        if (parser->isSet("map"))
         {
             parseArgsMap(parser);
         }
         #endif
 
      #ifdef Q_OS_UNIX
-        else if (parser->isSet("daemon"))
+        if (parser->isSet("daemon"))
         {
             daemonMode = true;
         }
         #ifdef WITH_X11
-        else if (parser->isSet("display"))
+        if (parser->isSet("display"))
         {
             if (!parser->value("display").isEmpty())
             {
@@ -135,7 +143,7 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             }
             else
             {
-                setErrorMessage(QObject::trUtf8("No display string was specified."));
+                setErrorMessage(QObject::tr("No display string was specified."));
             }
         }
         #endif
@@ -144,14 +152,14 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
     #if (defined (Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) \
      || (defined(Q_OS_WIN) && defined(WITH_VMULTI))
 
-        else if (parser->isSet("eventgen"))
+        if (parser->isSet("eventgen"))
         {
            QString eventGenText = parser->value("eventgen");
 
            if (!eventGenText.isEmpty() && !eventGeneratorsList.contains(eventGenText))
            {
                eventGenerator = "";
-               setErrorMessage(QObject::trUtf8("An invalid event generator was specified."));
+               setErrorMessage(QObject::tr("An invalid event generator was specified."));
             }
             else if (!eventGenText.isEmpty() && eventGeneratorsList.contains(eventGenText))
             {
@@ -159,11 +167,12 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             }
             else
             {
-                setErrorMessage(QObject::trUtf8("No event generator string was specified."));
+                setErrorMessage(QObject::tr("No event generator string was specified."));
             }
         }
     #endif
-        else if (parser->isSet("log-level"))
+
+        if (parser->isSet("log-level"))
         {
             QString logLevelText = parser->value("log-level");
 
@@ -172,7 +181,8 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             else if (logLevelText == "warn") currentLogLevel = Logger::LOG_WARNING;
             else if (logLevelText == "error") currentLogLevel = Logger::LOG_ERROR;
         }
-        else if (parser->isSet("log-file"))
+
+        if (parser->isSet("log-file"))
         {
             if (!parser->value("log-file").isEmpty())
             {
@@ -180,7 +190,7 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             }
             else
             {
-                setErrorMessage(QObject::trUtf8("No log file specified."));
+                setErrorMessage(QObject::tr("No log file specified."));
             }
         }
 
@@ -194,7 +204,7 @@ void CommandLineUtility::parseArgsProfile(QCommandLineParser* parser)
 
     if (profileFileInfo.exists() && (profileFileInfo.suffix() != "amgp") && (profileFileInfo.suffix() != "xml"))
     {
-        setErrorMessage(QObject::trUtf8("Profile location %1 is not an XML file.").arg(parser->value("profile")));
+        setErrorMessage(QObject::tr("Profile location %1 is not an XML file.").arg(parser->value("profile")));
     }
     else if (profileFileInfo.exists() && ((profileFileInfo.suffix() == "amgp") || (profileFileInfo.suffix() == "xml")))
     {
@@ -205,7 +215,7 @@ void CommandLineUtility::parseArgsProfile(QCommandLineParser* parser)
     }
     else
     {
-        setErrorMessage(QObject::trUtf8("Profile location %1 does not exist.").arg(parser->value("profile")));
+        setErrorMessage(QObject::tr("Profile location %1 does not exist.").arg(parser->value("profile")));
     }
 }
 
@@ -232,7 +242,7 @@ void CommandLineUtility::parseArgsPrControle(QCommandLineParser* parser)
     }
     else
     {
-        setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
+        setErrorMessage(QObject::tr("Controller identifier is not a valid value."));
     }
 }
 
@@ -273,7 +283,7 @@ void CommandLineUtility::parseArgsUnload(QCommandLineParser* parser)
         }
         else
         {
-            setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
+            setErrorMessage(QObject::tr("Controller identifier is not a valid value."));
         }
     }
     else
@@ -305,7 +315,7 @@ void CommandLineUtility::parseArgsStartSet(QCommandLineParser* parser)
         }
         else if (validNumber)
         {
-            setErrorMessage(QObject::trUtf8("An invalid set number '%1' was specified.").arg(tempNumber));
+            setErrorMessage(QObject::tr("An invalid set number '%1' was specified.").arg(tempNumber));
         }
 
         if (profileForStartset.hasNext())
@@ -328,13 +338,13 @@ void CommandLineUtility::parseArgsStartSet(QCommandLineParser* parser)
             }
             else
             {
-                setErrorMessage(QObject::trUtf8("Controller identifier '%s'' is not a valid value.").arg(startSetText));
+                setErrorMessage(QObject::tr("Controller identifier '%s'' is not a valid value.").arg(startSetText));
             }
         }
     }
     else
     {
-        setErrorMessage(QObject::trUtf8("No set number was specified."));
+        setErrorMessage(QObject::tr("No set number was specified."));
     }
 }
 
@@ -359,12 +369,12 @@ void CommandLineUtility::parseArgsMap(QCommandLineParser* parser)
         }
         else
         {
-            setErrorMessage(QObject::trUtf8("Controller identifier is not a valid value."));
+            setErrorMessage(QObject::tr("Controller identifier is not a valid value."));
         }
     }
     else
     {
-        setErrorMessage(QObject::trUtf8("No controller was specified."));
+        setErrorMessage(QObject::tr("No controller was specified."));
     }
 }
 

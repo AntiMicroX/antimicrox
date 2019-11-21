@@ -991,7 +991,7 @@ QString JoyAxis::getPartialName(bool forceFullFormat, bool displayNames)
     {
         if (forceFullFormat)
         {
-            label.append(trUtf8("Axis")).append(" ");
+            label.append(tr("Axis")).append(" ");
         }
 
         label.append(axisName);
@@ -1000,14 +1000,14 @@ QString JoyAxis::getPartialName(bool forceFullFormat, bool displayNames)
     {
         if (forceFullFormat)
         {
-            label.append(trUtf8("Axis")).append(" ");
+            label.append(tr("Axis")).append(" ");
         }
 
         label.append(defaultAxisName);
     }
     else
     {
-        label.append(trUtf8("Axis")).append(" ");
+        label.append(tr("Axis")).append(" ");
         label.append(QString::number(getRealJoyIndex()));
     }
 

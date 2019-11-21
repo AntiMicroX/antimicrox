@@ -63,7 +63,7 @@ void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString preferredProfileDir = PadderCommon::preferredProfileDir(settings);
-    QString profileFilename = QFileDialog::getOpenFileName(this, trUtf8("Open Config"), preferredProfileDir, QString("Config Files (*.amgp *.xml)"));
+    QString profileFilename = QFileDialog::getOpenFileName(this, tr("Open Config"), preferredProfileDir, QString("Config Files (*.amgp *.xml)"));
 
     if (!profileFilename.isNull() && !profileFilename.isEmpty()) ui->profileLineEdit->setText(profileFilename);
 }
@@ -99,7 +99,7 @@ void EditAllDefaultAutoProfileDialog::accept()
         if (!profileInfo.exists())
         {
             validForm = false;
-            errorString = trUtf8("Profile file path is invalid.");
+            errorString = tr("Profile file path is invalid.");
         }
     }
 

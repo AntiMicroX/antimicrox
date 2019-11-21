@@ -86,17 +86,17 @@ void GameControllerSet::populateSticksDPad()
     getJoyButton(SDL_CONTROLLER_BUTTON_B)->setDefaultButtonName("B");
     getJoyButton(SDL_CONTROLLER_BUTTON_X)->setDefaultButtonName("X");
     getJoyButton(SDL_CONTROLLER_BUTTON_Y)->setDefaultButtonName("Y");
-    getJoyButton(SDL_CONTROLLER_BUTTON_BACK)->setDefaultButtonName(trUtf8("Back"));
-    getJoyButton(SDL_CONTROLLER_BUTTON_GUIDE)->setDefaultButtonName(trUtf8("Guide"));
-    getJoyButton(SDL_CONTROLLER_BUTTON_START)->setDefaultButtonName(trUtf8("Start"));
-    getJoyButton(SDL_CONTROLLER_BUTTON_LEFTSTICK)->setDefaultButtonName(trUtf8("LS Click"));
-    getJoyButton(SDL_CONTROLLER_BUTTON_RIGHTSTICK)->setDefaultButtonName(trUtf8("RS Click"));
-    getJoyButton(SDL_CONTROLLER_BUTTON_LEFTSHOULDER)->setDefaultButtonName(trUtf8("L Shoulder"));
-    getJoyButton(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)->setDefaultButtonName(trUtf8("R Shoulder"));
+    getJoyButton(SDL_CONTROLLER_BUTTON_BACK)->setDefaultButtonName(tr("Back"));
+    getJoyButton(SDL_CONTROLLER_BUTTON_GUIDE)->setDefaultButtonName(tr("Guide"));
+    getJoyButton(SDL_CONTROLLER_BUTTON_START)->setDefaultButtonName(tr("Start"));
+    getJoyButton(SDL_CONTROLLER_BUTTON_LEFTSTICK)->setDefaultButtonName(tr("LS Click"));
+    getJoyButton(SDL_CONTROLLER_BUTTON_RIGHTSTICK)->setDefaultButtonName(tr("RS Click"));
+    getJoyButton(SDL_CONTROLLER_BUTTON_LEFTSHOULDER)->setDefaultButtonName(tr("L Shoulder"));
+    getJoyButton(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)->setDefaultButtonName(tr("R Shoulder"));
 
     // Give default names to triggers
-    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT)->setDefaultAxisName(trUtf8("L Trigger"));
-    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)->setDefaultAxisName(trUtf8("R Trigger"));
+    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT)->setDefaultAxisName(tr("L Trigger"));
+    getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)->setDefaultAxisName(tr("R Trigger"));
 }
 
 

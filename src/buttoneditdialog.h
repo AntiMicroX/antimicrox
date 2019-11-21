@@ -40,6 +40,7 @@ class ButtonEditDialog : public QDialog
 public:
     explicit ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWidget *parent = nullptr); // called for chosen button
     explicit ButtonEditDialog(InputDevice* joystick, QWidget *parent = nullptr); // Accessed by pressing the "Quick Set" button
+    ButtonEditDialog(QWidget *parent = 0);
     ~ButtonEditDialog();
 
     static ButtonEditDialog* getInstance();

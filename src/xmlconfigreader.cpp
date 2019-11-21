@@ -146,7 +146,7 @@ bool XMLConfigReader::read()
                     }
                     else
                     {
-                        xml->raiseError(trUtf8("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
+                        xml->raiseError(tr("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
                     }
                 }
             }

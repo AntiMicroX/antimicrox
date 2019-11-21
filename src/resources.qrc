@@ -36,5 +36,6 @@
         <file>icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicro.png</file>
         <file>icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicro.png</file>
         <file>icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicro.png</file>
+        <file>images/battery-low-level.png</file>
     </qresource>
 </RCC>

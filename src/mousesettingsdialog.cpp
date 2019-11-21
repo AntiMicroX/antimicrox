@@ -203,7 +203,7 @@ void MouseSettingsDialog::updateWheelVerticalSpeedLabel(int value)
 
     QString label = QString(QString::number(value));
     label.append(" = ");
-    label.append(trUtf8("%n notch(es)/s", "", value));
+    label.append(tr("%n notch(es)/s", "", value));
     ui->wheelVertSpeedUnitsLabel->setText(label);
 }
 
@@ -213,7 +213,7 @@ void MouseSettingsDialog::updateWheelHorizontalSpeedLabel(int value)
 
     QString label = QString(QString::number(value));
     label.append(" = ");
-    label.append(trUtf8("%n notch(es)/s", "", value));
+    label.append(tr("%n notch(es)/s", "", value));
     ui->wheelHoriSpeedUnitsLabel->setText(label);
 }
 

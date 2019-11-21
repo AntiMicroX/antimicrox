@@ -35,6 +35,7 @@ class AxisEditDialog : public QDialog
     
 public:
     explicit AxisEditDialog(JoyAxis *axis, QWidget *parent=0);
+    AxisEditDialog(QWidget *parent=0);
     ~AxisEditDialog();
 
 protected:

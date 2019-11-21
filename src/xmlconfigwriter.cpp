@@ -75,7 +75,7 @@ void XMLConfigWriter::write(InputDeviceXml *joystickXml)
     else
     {
         writerError = true;
-        writerErrorString = trUtf8("Could not write to profile at %1.").arg(configFile->fileName());
+        writerErrorString = tr("Could not write to profile at %1.").arg(configFile->fileName());
     }
 
     if (!writerError)

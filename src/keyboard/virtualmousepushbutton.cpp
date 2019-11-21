@@ -57,7 +57,7 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
     }
     else
     {
-        this->setText(trUtf8("INVALID"));
+        this->setText(tr("INVALID"));
         this->code = 0;
         this->mode = JoyButtonSlot::JoyMouseButton;
     }

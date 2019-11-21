@@ -37,6 +37,7 @@ class AdvanceStickAssignmentDialog : public QDialog
     
 public:
     explicit AdvanceStickAssignmentDialog(Joystick *joystick, QWidget *parent = nullptr);
+    AdvanceStickAssignmentDialog(QWidget *parent = nullptr);
     ~AdvanceStickAssignmentDialog();
 
     Joystick *getJoystick() const;

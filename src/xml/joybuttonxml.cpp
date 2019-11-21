@@ -414,6 +414,9 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
                     case JoyButton::SetChangeWhileHeld:
                         temptext = "while-held";
                         break;
+
+                    default:
+                        break;
                 }
 
                 xml->writeTextElement("setselectcondition", temptext);

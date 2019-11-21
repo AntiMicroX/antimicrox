@@ -414,7 +414,7 @@ void Logger::setCurrentLogFile(QString filename) {
   instance->outputFile.open( QIODevice::WriteOnly | QIODevice::Append );
   instance->outFileStream.setDevice( &instance->outputFile );
   instance->setCurrentStream( &instance->outFileStream );
-  instance->LogInfo(QObject::trUtf8("Logging started"), true, true);
+  instance->LogInfo(QObject::tr("Logging started"), true, true);
 }
 
 void Logger::setCurrentErrorLogFile(QString filename) {

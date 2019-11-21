@@ -64,7 +64,7 @@ void TestAboutDialog::creditsInfoEmpty()
 void TestAboutDialog::testVersion()
 {
     QLabel* versionLabel = aboutDialog.findChild<QLabel*>("versionLabel");
-    QCOMPARE(versionLabel->text(), QString("2.24.0"));
+    QCOMPARE(versionLabel->text(), QString("2.24.2"));
 }
 
 QTEST_MAIN(TestAboutDialog)

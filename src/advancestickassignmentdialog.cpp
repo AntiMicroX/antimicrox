@@ -65,11 +65,11 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
     {
-        ui->xAxisOneComboBox->addItem(trUtf8("Axis %1").arg(i+1), QVariant(i));
-        ui->yAxisOneComboBox->addItem(trUtf8("Axis %1").arg(i+1), QVariant(i));
+        ui->xAxisOneComboBox->addItem(tr("Axis %1").arg(i+1), QVariant(i));
+        ui->yAxisOneComboBox->addItem(tr("Axis %1").arg(i+1), QVariant(i));
 
-        ui->xAxisTwoComboBox->addItem(trUtf8("Axis %1").arg(i+1), QVariant(i));
-        ui->yAxisTwoComboBox->addItem(trUtf8("Axis %1").arg(i+1), QVariant(i));
+        ui->xAxisTwoComboBox->addItem(tr("Axis %1").arg(i+1), QVariant(i));
+        ui->yAxisTwoComboBox->addItem(tr("Axis %1").arg(i+1), QVariant(i));
     }
 
     JoyControlStick *stick1 = joystick->getActiveSetJoystick()->getJoyStick(0);
@@ -84,15 +84,23 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     connect(ui->enableTwoCheckBox, &QCheckBox::clicked, this, &AdvanceStickAssignmentDialog::changeStateStickTwoWidgets);
     connect(ui->vdpadEnableCheckBox, &QCheckBox::clicked, this, &AdvanceStickAssignmentDialog::changeStateVDPadWidgets);
 
-    QSignalMapper *signalMapper = new QSignalMapper(this);
-    connect(signalMapper, static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped), this, &AdvanceStickAssignmentDialog::checkForAxisAssignmentStickOne);
-    connect(signalMapper, static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped), this, &AdvanceStickAssignmentDialog::checkForAxisAssignmentStickTwo);
+    connect(ui->xAxisOneComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [this](){
+        this->checkForAxisAssignmentStickOne(ui->xAxisOneComboBox);
+    });
 
-    signalMapper->setMapping(ui->xAxisOneComboBox, ui->xAxisOneComboBox);
-    signalMapper->setMapping(ui->yAxisOneComboBox, ui->yAxisOneComboBox);
+    connect(ui->yAxisOneComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [this](){
+        this->checkForAxisAssignmentStickOne(ui->yAxisOneComboBox);
+    });
 
-    connect(ui->xAxisOneComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [signalMapper]() { signalMapper->map(); });
-    connect(ui->yAxisOneComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [signalMapper]() { signalMapper->map(); });
+    connect(ui->xAxisTwoComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [this](){
+        this->checkForAxisAssignmentStickTwo(ui->xAxisTwoComboBox);
+    });
+
+    connect(ui->yAxisTwoComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), [this](){
+        this->checkForAxisAssignmentStickTwo(ui->yAxisTwoComboBox);
+    });
+
+
     connect(ui->quickAssignStick1PushButton, &QPushButton::clicked, this, &AdvanceStickAssignmentDialog::openQuickAssignDialogStick1);
     connect(ui->quickAssignStick2PushButton, &QPushButton::clicked, this, &AdvanceStickAssignmentDialog::openQuickAssignDialogStick2);
 
@@ -109,6 +117,14 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     connect(ui->vdpadRightPushButton, &QPushButton::clicked, this, &AdvanceStickAssignmentDialog::openAssignVDPadRight);
 
     connect(this, &AdvanceStickAssignmentDialog::finished, this, &AdvanceStickAssignmentDialog::reenableButtonEvents);
+}
+
+// for tests
+AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(QWidget *parent) :
+    QDialog(parent, Qt::Window),
+    ui(new Ui::AdvanceStickAssignmentDialog)
+{
+
 }
 
 
@@ -428,19 +444,19 @@ void AdvanceStickAssignmentDialog::populateDPadComboBoxes()
             templist.append(QVariant(i+1));
             templist.append(QVariant(0));
 
-            ui->vdpadUpComboBox->addItem(trUtf8("Axis %1 -").arg(QString::number(i+1)), templist);
-            ui->vdpadDownComboBox->addItem(trUtf8("Axis %1 -").arg(QString::number(i+1)), templist);
-            ui->vdpadLeftComboBox->addItem(trUtf8("Axis %1 -").arg(QString::number(i+1)), templist);
-            ui->vdpadRightComboBox->addItem(trUtf8("Axis %1 -").arg(QString::number(i+1)), templist);
+            ui->vdpadUpComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
+            ui->vdpadDownComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
+            ui->vdpadLeftComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
+            ui->vdpadRightComboBox->addItem(tr("Axis %1 -").arg(QString::number(i+1)), templist);
 
             templist.clear();
             templist.append(QVariant(i+1));
             templist.append(QVariant(1));
 
-            ui->vdpadUpComboBox->addItem(trUtf8("Axis %1 +").arg(QString::number(i+1)), templist);
-            ui->vdpadDownComboBox->addItem(trUtf8("Axis %1 +").arg(QString::number(i+1)), templist);
-            ui->vdpadLeftComboBox->addItem(trUtf8("Axis %1 +").arg(QString::number(i+1)), templist);
-            ui->vdpadRightComboBox->addItem(trUtf8("Axis %1 +").arg(QString::number(i+1)), templist);
+            ui->vdpadUpComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
+            ui->vdpadDownComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
+            ui->vdpadLeftComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
+            ui->vdpadRightComboBox->addItem(tr("Axis %1 +").arg(QString::number(i+1)), templist);
         }
     }
 
@@ -450,10 +466,10 @@ void AdvanceStickAssignmentDialog::populateDPadComboBoxes()
         templist.append(QVariant(0));
         templist.append(QVariant(i+1));
 
-        ui->vdpadUpComboBox->addItem(trUtf8("Button %1").arg(QString::number(i+1)), templist);
-        ui->vdpadDownComboBox->addItem(trUtf8("Button %1").arg(QString::number(i+1)), templist);
-        ui->vdpadLeftComboBox->addItem(trUtf8("Button %1").arg(QString::number(i+1)), templist);
-        ui->vdpadRightComboBox->addItem(trUtf8("Button %1").arg(QString::number(i+1)), templist);
+        ui->vdpadUpComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
+        ui->vdpadDownComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
+        ui->vdpadLeftComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
+        ui->vdpadRightComboBox->addItem(tr("Button %1").arg(QString::number(i+1)), templist);
     }
 }
 
@@ -823,7 +839,7 @@ void AdvanceStickAssignmentDialog::openQuickAssignDialogStick1()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Move stick 1 along the X axis"));
+    msgBox.setText(tr("Move stick 1 along the X axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
@@ -840,7 +856,7 @@ void AdvanceStickAssignmentDialog::openQuickAssignDialogStick1()
     }
 
     msgBox.exec();
-    msgBox.setText(trUtf8("Move stick 1 along the Y axis"));
+    msgBox.setText(tr("Move stick 1 along the Y axis"));
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
     {
@@ -877,7 +893,7 @@ void AdvanceStickAssignmentDialog::openQuickAssignDialogStick2()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Move stick 2 along the X axis"));
+    msgBox.setText(tr("Move stick 2 along the X axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
@@ -894,7 +910,7 @@ void AdvanceStickAssignmentDialog::openQuickAssignDialogStick2()
     }
 
     msgBox.exec();
-    msgBox.setText(trUtf8("Move stick 2 along the Y axis"));
+    msgBox.setText(tr("Move stick 2 along the Y axis"));
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
     {
@@ -938,7 +954,7 @@ void AdvanceStickAssignmentDialog::openAssignVDPadUp()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Press a button or move an axis"));
+    msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
@@ -1007,7 +1023,7 @@ void AdvanceStickAssignmentDialog::openAssignVDPadDown()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Press a button or move an axis"));
+    msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
@@ -1076,7 +1092,7 @@ void AdvanceStickAssignmentDialog::openAssignVDPadLeft()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Press a button or move an axis"));
+    msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)
@@ -1146,7 +1162,7 @@ void AdvanceStickAssignmentDialog::openAssignVDPadRight()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Press a button or move an axis"));
+    msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
 
     for (int i = 0; i < joystick->getNumberAxes(); i++)

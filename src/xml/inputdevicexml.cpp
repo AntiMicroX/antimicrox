@@ -13,15 +13,9 @@
 #include <QDebug>
 
 
-InputDeviceXml::InputDeviceXml(InputDevice *inputDevice, QObject *parent) : m_inputDevice(inputDevice), QObject(parent)
+InputDeviceXml::InputDeviceXml(InputDevice *inputDevice, QObject *parent) : QObject(parent), m_inputDevice(inputDevice)
 {
 
-}
-
-
-InputDeviceXml::InputDeviceXml(int deviceIndex, AntiMicroSettings *setting, QObject *parent) : QObject(parent)
-{
-    m_inputDevice = nullptr;
 }
 
 

@@ -53,8 +53,8 @@ void LocalAntiMicroServer::startLocalServer()
                 QTextStream errorstream(stderr);
                 QString message("Could not start signal server. Profiles cannot be reloaded\n");
                 message.append("from command-line");
-                errorstream << trUtf8(message.toStdString().c_str()) << endl;
-                qDebug() << "Could not start signal server. Profiles cannot be reloaded\n" << " \nfrom command-line\n " << trUtf8(message.toStdString().c_str()) << endl;
+                errorstream << tr(message.toStdString().c_str()) << endl;
+                qDebug() << "Could not start signal server. Profiles cannot be reloaded\n" << " \nfrom command-line\n " << tr(message.toStdString().c_str()) << endl;
             }
             else
             {

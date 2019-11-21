@@ -31,7 +31,7 @@
             {
                 "type": "git",
                 "url": "https://github.com/juliagoda/antimicro.git",
-                "commit": "a2be2119abb763afc9a513e97b628eba45a55390"
+                "tag": "2.24.2"
             }]
         }
     ]

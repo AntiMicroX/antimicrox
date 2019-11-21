@@ -49,7 +49,7 @@ QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool
     {
         if (forceFullFormat)
         {
-            temp.append(trUtf8("Modifier")).append(" ");
+            temp.append(tr("Modifier")).append(" ");
         }
 
         temp.append(buttonName);
@@ -58,14 +58,14 @@ QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool
     {
         if (forceFullFormat)
         {
-            temp.append(trUtf8("Modifier")).append(" ");
+            temp.append(tr("Modifier")).append(" ");
         }
 
         temp.append(defaultButtonName);
     }
     else
     {
-        temp.append(trUtf8("Modifier"));
+        temp.append(tr("Modifier"));
     }
 
     return temp;

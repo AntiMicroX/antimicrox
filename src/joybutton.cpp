@@ -261,13 +261,13 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             {
                 if (isButtonPressed && activePress && !turboTimer.isActive())
                 {
-                    startSequenceOfPressActive(true, trUtf8("Processing turbo for #%1 - %2"));
+                    startSequenceOfPressActive(true, tr("Processing turbo for #%1 - %2"));
                     turboEvent();
                 }
                 else if (!isButtonPressed && !activePress && turboTimer.isActive())
                 {
                     turboTimer.stop();
-                    Logger::LogDebug(trUtf8("Finishing turbo for button #%1 - %2")
+                    Logger::LogDebug(tr("Finishing turbo for button #%1 - %2")
                                     .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
                                     .arg(getPartialName()));
 
@@ -285,7 +285,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else if (isButtonPressed && activePress)
             {
-                startSequenceOfPressActive(false, trUtf8("Processing press for button #%1 - %2"));
+                startSequenceOfPressActive(false, tr("Processing press for button #%1 - %2"));
 
                 if (!keyPressTimer.isActive())
                 {
@@ -296,7 +296,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
             }
             else if (!isButtonPressed && !activePress)
             {
-                Logger::LogDebug(trUtf8("Processing release for button #%1 - %2")
+                Logger::LogDebug(tr("Processing release for button #%1 - %2")
                                 .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
                                 .arg(getPartialName()));
 
@@ -323,7 +323,7 @@ void JoyButton::updateParamsAfterDistEvent()
 {
     if (distanceEvent())
     {
-        Logger::LogDebug(trUtf8("Distance change for button #%1 - %2")
+        Logger::LogDebug(tr("Distance change for button #%1 - %2")
                         .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
                         .arg(getPartialName()));
 
@@ -1363,6 +1363,10 @@ void JoyButton::mouseEvent()
 
                                 break;
                             }
+                            default:
+                            {
+                                break;
+                            }
                         }
 
                         double tempAccel = currentAccelMultiTemp;
@@ -1701,20 +1705,20 @@ QString JoyButton::getPartialName(bool forceFullFormat, bool displayNames) const
     if (!buttonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
-            temp.append(trUtf8("Button")).append(" ");
+            temp.append(tr("Button")).append(" ");
 
         temp.append(buttonName);
     }
     else if (!defaultButtonName.isEmpty())
     {
         if (forceFullFormat)
-            temp.append(trUtf8("Button")).append(" ");
+            temp.append(tr("Button")).append(" ");
 
         temp.append(defaultButtonName);
     }
     else
     {
-        temp.append(trUtf8("Button")).append(" ").append(QString::number(getRealJoyNumber()));
+        temp.append(tr("Button")).append(" ").append(QString::number(getRealJoyNumber()));
     }
 
     return temp;
@@ -1755,7 +1759,7 @@ QString JoyButton::getSlotsSummary()
     }
     else
     {
-        newlabel = newlabel.append(trUtf8("[NO KEY]"));
+        newlabel = newlabel.append(tr("[NO KEY]"));
     }
 
     return newlabel;
@@ -1816,18 +1820,18 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 
     if (setSelectionCondition == SetChangeOneWay)
     {
-        newlabel.append(trUtf8("[Set %1 1W]").arg(setSelection+1));
+        newlabel.append(tr("[Set %1 1W]").arg(setSelection+1));
         if (iter.hasNext()) newlabel.append(" ");
     }
     else if (setSelectionCondition == SetChangeTwoWay)
     {
-        newlabel = newlabel.append(trUtf8("[Set %1 2W]").arg(setSelection+1));
+        newlabel = newlabel.append(tr("[Set %1 2W]").arg(setSelection+1));
         if (iter.hasNext()) newlabel.append(" ");
     }
 
     if (setSelectionCondition == SetChangeWhileHeld)
     {
-        newlabel.append(trUtf8("[Set %1 WH]").arg(setSelection+1));
+        newlabel.append(tr("[Set %1 WH]").arg(setSelection+1));
     }
     else if (iter.hasNext())
     {
@@ -1932,7 +1936,7 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
     }
     else if (setSelectionCondition == SetChangeDisabled)
     {
-        newlabel.append(trUtf8("[NO KEY]"));
+        newlabel.append(tr("[NO KEY]"));
     }
 
     return newlabel;
@@ -2059,7 +2063,7 @@ QString JoyButton::getSlotsString()
         qDebug() << "There is no assignments for button in getSlotsString()";
         #endif
 
-        label = label.append(trUtf8("[NO KEY]"));
+        label = label.append(tr("[NO KEY]"));
     }
 
     return label;
@@ -3536,6 +3540,9 @@ void JoyButton::findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter)
 
                     found = true;
                     break;
+
+                default:
+                    break;
             }
         }
 
@@ -4695,7 +4702,7 @@ void JoyButton::resetAllProperties()
     springDeadCircleMultiplier = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
 
     updatePendingParams(false, false, false);
-    lockForWritedString(activeZoneString, trUtf8("[NO KEY]"));
+    lockForWritedString(activeZoneString, tr("[NO KEY]"));
 }
 
 bool JoyButton::isModifierButton()

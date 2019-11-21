@@ -902,20 +902,20 @@ QString JoyControlStick::getPartialName(bool forceFullFormat, bool displayNames)
     if (!stickName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
-            label.append(trUtf8("Stick")).append(" ");
+            label.append(tr("Stick")).append(" ");
 
         label.append(stickName);
     }
     else if (!defaultStickName.isEmpty())
     {
         if (forceFullFormat)
-            label.append(trUtf8("Stick")).append(" ");
+            label.append(tr("Stick")).append(" ");
 
         label.append(defaultStickName);
     }
     else
     {
-        label.append(trUtf8("Stick")).append(" ");
+        label.append(tr("Stick")).append(" ");
         label.append(QString::number(getRealJoyIndex()));        
     }
 
@@ -1232,6 +1232,10 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
             case FourWayDiagonal:
                 xml->writeTextElement("mode", "diagonal");
             break;
+
+            default:
+
+            break;
         }
 
         if (circle > GlobalVariables::JoyControlStick::DEFAULTCIRCLE)
@@ -1401,6 +1405,8 @@ double JoyControlStick::calculateMouseDirectionalDistance(JoyControlStickButton 
 
             break;
         }
+        default:
+            break;
     }
 
     return finalDistance;
@@ -1727,6 +1733,8 @@ double JoyControlStick::calculateLastDirectionalDistance()
 
             break;
         }
+        default:
+            break;
     }
 
     return finalDistance;
@@ -1796,6 +1804,8 @@ double JoyControlStick::calculateLastAccelerationDirectionalDistance()
 
             break;
         }
+        default:
+            break;
 
     }
 
@@ -1856,6 +1866,8 @@ double JoyControlStick::calculateDirectionalDistance()
             finalDistance = getDistanceFromDeadZone();
             break;
         }
+        default:
+            break;
     }
 
     return finalDistance;
@@ -3260,7 +3272,7 @@ void JoyControlStick::queueJoyEvent(bool ignoresets)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    Q_UNUSED(ignoresets);
+    Q_UNUSED(ignoresets)
 
     pendingStickEvent = true;
 }
@@ -3895,6 +3907,9 @@ double JoyControlStick::calculateAccelerationDistance(JoyControlStickButton *but
 
             break;
         }
+
+        default:
+            break;
     }
 
 
@@ -4157,6 +4172,9 @@ double JoyControlStick::calculateLastAccelerationButtonDistance(JoyControlStickB
 
             break;
         }
+
+        default:
+            break;
     }
 
     return finalDistance;

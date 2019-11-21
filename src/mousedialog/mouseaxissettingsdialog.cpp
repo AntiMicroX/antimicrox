@@ -292,7 +292,7 @@ void MouseAxisSettingsDialog::updateWindowTitleAxisName()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-    temp.append(trUtf8("Mouse Settings - "));
+    temp.append(tr("Mouse Settings - "));
 
     if (!axis->getAxisName().isEmpty())
     {
@@ -306,7 +306,7 @@ void MouseAxisSettingsDialog::updateWindowTitleAxisName()
     if (axis->getParentSet()->getIndex() != 0)
     {
         int setIndex = axis->getParentSet()->getRealIndex();
-        temp.append(" [").append(trUtf8("Set %1").arg(setIndex));
+        temp.append(" [").append(tr("Set %1").arg(setIndex));
 
         QString setName = axis->getParentSet()->getName();
         if (!setName.isEmpty())

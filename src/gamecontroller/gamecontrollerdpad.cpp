@@ -44,7 +44,7 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
     {
         if (forceFullFormat)
         {
-            label.append(trUtf8("DPad")).append(" ");
+            label.append(tr("DPad")).append(" ");
         }
 
         label.append(getDpadName());
@@ -53,14 +53,14 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
     {
         if (forceFullFormat)
         {
-            label.append(trUtf8("DPad")).append(" ");
+            label.append(tr("DPad")).append(" ");
         }
 
         label.append(getDefaultDpadName());
     }
     else
     {
-        label.append(trUtf8("DPad")).append(" ");
+        label.append(tr("DPad")).append(" ");
         label.append(QString::number(getRealJoyNumber()));
     }
 

@@ -64,6 +64,7 @@
 #include <QDebug>
 #include <QHash>
 #include <QPointer>
+#include <QResource>
 #include <QHashIterator>
 #include <QMapIterator>
 #include <QTextStream>
@@ -74,10 +75,13 @@
 #include <QFileInfo>
 #include <QRegularExpression>
 
+#include <SDL2/SDL_joystick.h>
+
 #ifdef Q_OS_WIN
     #include <QSysInfo>
 #endif
 
+#define CHECK_BATTERIES_MSEC 600000
 
 
 MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
@@ -219,6 +223,15 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 #elif defined(Q_OS_UNIX)
     ui->uacPushButton->setVisible(false);
 #endif
+
+
+    QTimer *timer = new QTimer(this);
+
+    connect(timer, &QTimer::timeout, [this]() {
+        this->checkEachTenMinutesBattery(m_joysticks);
+    });
+
+    timer->start(CHECK_BATTERIES_MSEC);
 
 }
 
@@ -367,7 +380,7 @@ void MainWindow::controllerMapOpening()
             qDebug() << "Could not find a proper controller identifier. Exiting";
             #endif
 
-            Logger::LogInfo(trUtf8("Could not find a proper controller identifier. "
+            Logger::LogInfo(tr("Could not find a proper controller identifier. "
                                "Exiting."));
             qApp->quit();
         }
@@ -411,7 +424,7 @@ void MainWindow::makeJoystickTabs()
         InputDevice *joystick = iter.value();
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, m_settings, this);
         QString joytabName = joystick->getSDLName();
-        joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
+        joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
     }
 
@@ -461,7 +474,7 @@ void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 
         JoyTabWidget *tabwidget = new JoyTabWidget(joystick, m_settings, this);
         QString joytabName = joystick->getSDLName();
-        joytabName.append(" ").append(trUtf8("(%1)").arg(joystick->getName()));
+        joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
         ui->tabWidget->addTab(tabwidget, joytabName);
         tabwidget->refreshButtons();
 
@@ -520,26 +533,26 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->clear();
     profileActions.clear();
 
-    closeAction = new QAction(trUtf8("&Quit"), trayIconMenu);
+    closeAction = new QAction(tr("&Quit"), trayIconMenu);
     closeAction->setIcon(QIcon::fromTheme(QString::fromUtf8("application_exit"),
                                           QIcon(":/icons/hicolor/16x16/actions/application_exit.png")));
 
     connect(closeAction, &QAction::triggered, this, &MainWindow::quitProgram, Qt::DirectConnection);
 
-    hideAction = new QAction(trUtf8("&Hide"), trayIconMenu);
+    hideAction = new QAction(tr("&Hide"), trayIconMenu);
     hideAction->setIcon(QIcon::fromTheme(QString::fromUtf8("view_restore"),
                                          QIcon(":/icons/hicolor/16x16/actions/view_restore.png")));
 
     connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
 
-    restoreAction = new QAction(trUtf8("&Restore"), trayIconMenu);
+    restoreAction = new QAction(tr("&Restore"), trayIconMenu);
     qDebug() << " Application theme has icon named view_fullscreen: " << QIcon::hasThemeIcon("view_fullscreen");
     restoreAction->setIcon(QIcon::fromTheme(QString::fromUtf8("view_fullscreen"),
                                             QIcon(":/icons/hicolor/16x16/actions/view_fullscreen.png")));
 
     connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
 
-    updateJoy = new QAction(trUtf8("&Update Joysticks"), trayIconMenu);
+    updateJoy = new QAction(tr("&Update Joysticks"), trayIconMenu);
     updateJoy->setIcon(QIcon::fromTheme(QString::fromUtf8("view_refresh"),
                                         QIcon(":/icons/hicolor/16x16/actions/view_refresh.png")));
 
@@ -567,7 +580,7 @@ void MainWindow::populateTrayIcon()
 
             QString joytabName = current->getSDLName();
             joytabName.append(" ")
-                    .append(trUtf8("(%1)")
+                    .append(tr("(%1)")
                     .arg(current->getName()));
 
             qDebug() << "joytabName" << i << ": " << joytabName << endl;
@@ -656,12 +669,12 @@ void MainWindow::populateTrayIcon()
                 if (joysticksubMenu != nullptr)
                 {
                     qDebug() << "joysticksubmenu exists" << endl;
-                    newaction = new QAction(trUtf8("Open File"), joysticksubMenu);
+                    newaction = new QAction(tr("Open File"), joysticksubMenu);
                 }
                 else
                 {
                     qDebug() << "created action open file for tray" << endl;
-                    newaction = new QAction(trUtf8("Open File"), trayIconMenu);
+                    newaction = new QAction(tr("Open File"), trayIconMenu);
                 }
 
                 newaction->setIcon(QIcon::fromTheme(QString::fromUtf8("document_open"),
@@ -1239,7 +1252,7 @@ void MainWindow::openCalibration()
 
     if (m_joysticks->isEmpty()) {
 
-        QMessageBox::information(this, trUtf8("Calibration couldn't be opened"), trUtf8("You must connect at least one controller to open the window"));
+        QMessageBox::information(this, tr("Calibration couldn't be opened"), tr("You must connect at least one controller to open the window"));
 
     } else {
 
@@ -1602,8 +1615,8 @@ void MainWindow::restartAsElevated()
 
     QMessageBox msg;
     msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msg.setWindowTitle(trUtf8("Run as Administrator?"));
-    msg.setText(trUtf8("Are you sure that you want to run this program as Adminstrator?"
+    msg.setWindowTitle(tr("Run as Administrator?"));
+    msg.setText(tr("Are you sure that you want to run this program as Adminstrator?"
                    "\n\n"
                    "Some games run as Administrator which will cause events generated by antimicro "
                    "to not be used by those games unless antimicro is also run "
@@ -1628,8 +1641,8 @@ void MainWindow::restartAsElevated()
         else
         {
             msg.setStandardButtons(QMessageBox::Close);
-            msg.setWindowTitle(trUtf8("Failed to elevate program"));
-            msg.setText(trUtf8("Failed to restart this program as the Administrator"));
+            msg.setWindowTitle(tr("Failed to elevate program"));
+            msg.setText(tr("Failed to restart this program as the Administrator"));
             msg.exec();
         }
     }
@@ -1666,7 +1679,7 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
     }
     else if (openAsMain)
     {
-        Logger::LogInfo(trUtf8("Could not find controller. Exiting."));
+        Logger::LogInfo(tr("Could not find controller. Exiting."));
         qApp->quit();
     }
 }
@@ -1692,7 +1705,7 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
 
     JoyTabWidget *tabwidget = new JoyTabWidget(device, m_settings, this);
     QString joytabName = device->getSDLName();
-    joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
+    joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
     ui->tabWidget->insertTab(index, tabwidget, joytabName);
     tabwidget->refreshButtons();
     ui->tabWidget->setCurrentIndex(index);
@@ -1742,7 +1755,7 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
         {
             InputDevice *device = tab->getJoystick();
             QString joytabName = device->getSDLName();
-            joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
+            joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
             ui->tabWidget->setTabText(i, joytabName);
         }
     }
@@ -1761,7 +1774,7 @@ void MainWindow::addJoyTab(InputDevice *device)
 
     JoyTabWidget *tabwidget = new JoyTabWidget(device, m_settings, this);
     QString joytabName = device->getSDLName();
-    joytabName.append(" ").append(trUtf8("(%1)").arg(device->getName()));
+    joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
     ui->tabWidget->addTab(tabwidget, joytabName);
     tabwidget->loadDeviceSettings();
     tabwidget->refreshButtons();
@@ -1774,7 +1787,7 @@ void MainWindow::addJoyTab(InputDevice *device)
         {
             InputDevice *device_in_loop = tab->getJoystick();
             QString joytabName_in_loop = device_in_loop->getSDLName();
-            joytabName_in_loop.append(" ").append(trUtf8("(%1)").arg(device_in_loop->getName()));
+            joytabName_in_loop.append(" ").append(tr("(%1)").arg(device_in_loop->getName()));
             ui->tabWidget->setTabText(i, joytabName_in_loop);
         }
     }
@@ -1798,10 +1811,10 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
   if( info != nullptr ) {
-    Logger::LogDebug(QObject::trUtf8("Auto-switching to profile \"%1\".").
+    Logger::LogDebug(QObject::tr("Auto-switching to profile \"%1\".").
                      arg(info->getProfileLocation()));
   } else {
-    Logger::LogError(QObject::trUtf8("Auto-switching to nullptr profile!"));
+    Logger::LogError(QObject::tr("Auto-switching to nullptr profile!"));
   }
   
 #if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
@@ -1947,6 +1960,25 @@ void MainWindow::updateMenuOptions()
         {
             ui->actionStick_Pad_Assign->setEnabled(true);
         }
+    }
+}
+
+void MainWindow::showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString batteryLev, QString percent, InputDevice* device)
+{
+    if (SDL_JoystickCurrentPowerLevel(device->getJoyHandle()) == powerLevSDL)
+      {
+        QResource batteryFile(":/images/battery-low-level.png");
+        QPixmap pm(30,30);
+        pm.load(batteryFile.absoluteFilePath());
+
+        QMessageBox msgBox;
+        msgBox.setWindowTitle(tr("%1 battery").arg(batteryLev));
+        msgBox.setIconPixmap(pm);
+        msgBox.setText(tr("Battery level is less than %1").arg(percent));
+        msgBox.setInformativeText(tr("Device number: %1\nDevice name: %2").arg(device->getRealJoyNumber()).arg(device->getSDLName()));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
     }
 }
 
@@ -2127,7 +2159,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID)
 {
-        int exec = QMessageBox::information(this, trUtf8("Reading old profile"), trUtf8("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicro since version 2.24.2"), QMessageBox::Yes, QMessageBox::No);
+        int exec = QMessageBox::information(this, tr("Reading old profile"), tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicro since version 2.24.2"), QMessageBox::Yes, QMessageBox::No);
 
         switch (exec)
         {
@@ -2154,4 +2186,18 @@ void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString contr
 
             break;
         }
+}
+
+void MainWindow::checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice *> *joysticks)
+{
+    QMapIterator<SDL_JoystickID, InputDevice*> deviceIter(*joysticks);
+
+    while (deviceIter.hasNext())
+    {
+        deviceIter.next();
+        InputDevice *tempDevice = deviceIter.value();
+
+        showBatteryLevel(SDL_JOYSTICK_POWER_LOW, "Low", "20%", tempDevice);
+        showBatteryLevel(SDL_JOYSTICK_POWER_EMPTY, "Empty", "5%", tempDevice);
+    }
 }

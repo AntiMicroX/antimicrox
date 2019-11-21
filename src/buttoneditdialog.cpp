@@ -60,7 +60,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
     withoutQuickSetDialog = false;
 
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(trUtf8("Choose your keyboard key"));
+    setWindowTitle(tr("Choose your keyboard key"));
     update();
 
     instance = this;
@@ -120,7 +120,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
     withoutQuickSetDialog = true;
 
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(trUtf8("Choose your keyboard key"));
+    setWindowTitle(tr("Choose your keyboard key"));
     update();
 
     instance = this;
@@ -163,6 +163,15 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
     connect(this, &ButtonEditDialog::advancedDialogOpened, ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections);
 
     refreshForLastBtn();
+}
+
+// for tests
+ButtonEditDialog::ButtonEditDialog(QWidget *parent) :
+    QDialog(parent, Qt::Window),
+    helper(),
+    ui(new Ui::ButtonEditDialog)
+{
+
 }
 
 
@@ -383,7 +392,7 @@ void ButtonEditDialog::refreshSlotSummaryLabel()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (lastJoyButton != nullptr) ui->slotSummaryLabel->setText(lastJoyButton->getSlotsString().replace("&", "&&"));
-    else ui->slotSummaryLabel->setText(trUtf8("No button"));
+    else ui->slotSummaryLabel->setText(tr("No button"));
 }
 
 void ButtonEditDialog::changeToggleSetting()
@@ -391,7 +400,7 @@ void ButtonEditDialog::changeToggleSetting()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (lastJoyButton != nullptr) lastJoyButton->setToggle(ui->toggleCheckBox->isChecked());
-    else QMessageBox::information(this, trUtf8("Last button"), trUtf8("To change settings for last button, it must be at least one assignment from keyboard to gamepad"));
+    else QMessageBox::information(this, tr("Last button"), tr("To change settings for last button, it must be at least one assignment from keyboard to gamepad"));
 }
 
 void ButtonEditDialog::changeTurboSetting()
@@ -399,7 +408,7 @@ void ButtonEditDialog::changeTurboSetting()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (lastJoyButton != nullptr) lastJoyButton->setUseTurbo(ui->turboCheckBox->isChecked());
-    else QMessageBox::information(this, trUtf8("Last button"), trUtf8("To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad"));
+    else QMessageBox::information(this, tr("Last button"), tr("To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad"));
 }
 
 void ButtonEditDialog::openAdvancedDialog()
@@ -435,7 +444,7 @@ void ButtonEditDialog::openAdvancedDialog()
 
     } else {
 
-        QMessageBox::information(this, trUtf8("Last button"), trUtf8("To open advanced dialog, it's needed to map at least one button from keyboard to gamepad"));
+        QMessageBox::information(this, tr("Last button"), tr("To open advanced dialog, it's needed to map at least one button from keyboard to gamepad"));
     }
 }
 
@@ -525,7 +534,7 @@ void ButtonEditDialog::clearButtonSlots()
     if (lastJoyButton != nullptr)
         QMetaObject::invokeMethod(lastJoyButton, "clearSlotsEventReset", Q_ARG(bool, false));
     else
-        QMessageBox::information(this, trUtf8("Last button"), trUtf8("Slots for button couldn't be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad"));
+        QMessageBox::information(this, tr("Last button"), tr("Slots for button couldn't be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad"));
 
 }
 
@@ -542,12 +551,12 @@ void ButtonEditDialog::updateWindowTitleButtonName()
 
     if (lastJoyButton != nullptr) {
 
-        QString temp = QString(trUtf8("As last gamepad button has been set")).append(" \"").append(lastJoyButton->getPartialName(false, true)).append("\" ");
+        QString temp = QString(tr("As last gamepad button has been set")).append(" \"").append(lastJoyButton->getPartialName(false, true)).append("\" ");
 
         if (lastJoyButton->getParentSet()->getIndex() != 0)
         {
             int setIndex = lastJoyButton->getParentSet()->getRealIndex();
-            temp.append(" [").append(trUtf8("Index %1").arg(setIndex));
+            temp.append(" [").append(tr("Index %1").arg(setIndex));
             QString setName = lastJoyButton->getParentSet()->getName();
 
             if (!setName.isEmpty()) temp.append(": ").append(setName);
@@ -559,7 +568,7 @@ void ButtonEditDialog::updateWindowTitleButtonName()
 
     } else {
 
-        setWindowTitle(trUtf8("Choose your keyboard key"));
+        setWindowTitle(tr("Choose your keyboard key"));
     }
 }
 
@@ -596,7 +605,7 @@ void ButtonEditDialog::refreshForLastBtn() {
         if (!lastJoyButton->getButtonName().isEmpty())
             ui->buttonNameLineEdit->setText(lastJoyButton->getButtonName());
 
-        if ((lastJoyButton->getAssignedSlots()->count() > 0) || (ui->slotSummaryLabel->text() != trUtf8("[NO KEY]")))
+        if ((lastJoyButton->getAssignedSlots()->count() > 0) || (ui->slotSummaryLabel->text() != tr("[NO KEY]")))
         {
             ui->advancedPushButton->setEnabled(true);
             ui->advancedPushButton->setEnabled(true);
@@ -622,7 +631,11 @@ void ButtonEditDialog::refreshForLastBtn() {
                     case JoyButtonSlot::JoyMouseButton:
                         ui->virtualKeyMouseTabWidget->enableMouseSettingButton();
                     break;
+
+                    default:
+                    break;
                 }
+
             }
         }
 

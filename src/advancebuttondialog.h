@@ -37,6 +37,7 @@ class AdvanceButtonDialog : public QDialog
     
 public:
     explicit AdvanceButtonDialog(JoyButton *button, QWidget *parent=0);
+    AdvanceButtonDialog(QWidget *parent=0);
     ~AdvanceButtonDialog();
 
     int getOldRow() const;

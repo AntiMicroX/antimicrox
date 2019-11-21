@@ -32,7 +32,7 @@
 
 Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
                    AntiMicroSettings *settings, QObject *parent) :
-    InputDevice(deviceIndex, settings, parent)
+    InputDevice(joyhandle, deviceIndex, settings, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -51,7 +51,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
 // upcasting
 InputDevice* Joystick::getInputDevice()
 {
-    InputDevice* inputDev = (Joystick *) this;
+    InputDevice* inputDev = static_cast<Joystick*>(this);
     return inputDev;
 }
 
@@ -66,7 +66,7 @@ QString Joystick::getName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    return QString(trUtf8("Joystick")).append(" ").append(QString::number(getRealJoyNumber()));
+    return QString(tr("Joystick")).append(" ").append(QString::number(getRealJoyNumber()));
 }
 
 QString Joystick::getSDLName()

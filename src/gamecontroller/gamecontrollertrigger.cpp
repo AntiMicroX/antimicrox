@@ -64,7 +64,7 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
 
         if (forceFullFormat)
         {
-            label.append(" ").append(trUtf8("Trigger"));
+            label.append(" ").append(tr("Trigger"));
         }
     }
     else if (!defaultAxisName.isEmpty())
@@ -73,12 +73,12 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
 
         if (forceFullFormat)
         {
-            label.append(" ").append(trUtf8("Trigger"));
+            label.append(" ").append(tr("Trigger"));
         }
     }
     else
     {
-        label.append(trUtf8("Trigger")).append(" ");
+        label.append(tr("Trigger")).append(" ");
         label.append(QString::number(getRealJoyIndex() - SDL_CONTROLLER_AXIS_TRIGGERLEFT));
     }
 

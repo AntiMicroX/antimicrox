@@ -119,7 +119,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     }
     else
     {
-        ui->asDefaultCheckBox->setToolTip(trUtf8("A different profile is already selected as the default for this device."));
+        ui->asDefaultCheckBox->setToolTip(tr("A different profile is already selected as the default for this device."));
     }
 
         ui->devicesComboBox->addItem("all");
@@ -145,7 +145,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
 //            }
 //            else
 //            {
-//                ui->devicesComboBox->addItem(trUtf8("Current (%1)").arg(info->getDeviceName()));
+//                ui->devicesComboBox->addItem(tr("Current (%1)").arg(info->getDeviceName()));
 //                ui->devicesComboBox->setCurrentIndex(ui->devicesComboBox->count()-1);
 //            }
 //        }
@@ -168,7 +168,7 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
             }
             else
             {
-                ui->devicesComboBox->addItem(trUtf8("Current (%1)").arg(info->getDeviceName()));
+                ui->devicesComboBox->addItem(tr("Current (%1)").arg(info->getDeviceName()));
                 ui->devicesComboBox->setCurrentIndex(ui->devicesComboBox->count()-1);
             }
         }
@@ -206,6 +206,15 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
 }
 
 
+// created for tests
+AddEditAutoProfileDialog::AddEditAutoProfileDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AddEditAutoProfileDialog)
+{
+
+}
+
+
 AddEditAutoProfileDialog::~AddEditAutoProfileDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -219,7 +228,7 @@ void AddEditAutoProfileDialog::openProfileBrowseDialog()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
-    QString filename = QFileDialog::getOpenFileName(this, trUtf8("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
 
     if (!filename.isNull() && !filename.isEmpty()) ui->profileLineEdit->setText(QDir::toNativeSeparators(filename));
 }
@@ -230,9 +239,9 @@ void AddEditAutoProfileDialog::openApplicationBrowseDialog()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
 #ifdef Q_OS_WIN
-    QString filename = QFileDialog::getOpenFileName(this, trUtf8("Select Program"), QDir::homePath(), trUtf8("Programs (*.exe)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Select Program"), QDir::homePath(), tr("Programs (*.exe)"));
 #elif defined(Q_OS_LINUX)
-    QString filename = QFileDialog::getOpenFileName(this, trUtf8("Select Program"), QDir::homePath(), QString());
+    QString filename = QFileDialog::getOpenFileName(this, tr("Select Program"), QDir::homePath(), QString());
 #endif
 
     if (!filename.isNull() && !filename.isEmpty())
@@ -295,18 +304,18 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
 //    {
 //        ui->asDefaultCheckBox->setChecked(false);
 //        ui->asDefaultCheckBox->setEnabled(false);
-//        ui->asDefaultCheckBox->setToolTip(trUtf8("Please use the main default profile selection."));
+//        ui->asDefaultCheckBox->setToolTip(tr("Please use the main default profile selection."));
 //    }
 //    else if (!data.isNull() && getReservedUniques().contains(data.value<InputDevice*>()->getGUIDString()))
 //    {
 //        ui->asDefaultCheckBox->setChecked(false);
 //        ui->asDefaultCheckBox->setEnabled(false);
-//        ui->asDefaultCheckBox->setToolTip(trUtf8("A different profile is already selected as the default for this device."));
+//        ui->asDefaultCheckBox->setToolTip(tr("A different profile is already selected as the default for this device."));
 //    }
 //    else
 //    {
 //        ui->asDefaultCheckBox->setEnabled(true);
-//        ui->asDefaultCheckBox->setToolTip(trUtf8("Select this profile to be the default loaded for\nthe specified device. The selection will be used instead\nof the all default profile option."));
+//        ui->asDefaultCheckBox->setToolTip(tr("Select this profile to be the default loaded for\nthe specified device. The selection will be used instead\nof the all default profile option."));
 //    }
 //}
 
@@ -321,18 +330,18 @@ void AddEditAutoProfileDialog::checkForReservedUniques(int index)
     {
         ui->asDefaultCheckBox->setChecked(false);
         ui->asDefaultCheckBox->setEnabled(false);
-        ui->asDefaultCheckBox->setToolTip(trUtf8("Please use the main default profile selection."));
+        ui->asDefaultCheckBox->setToolTip(tr("Please use the main default profile selection."));
     }
     else if (!data.isNull() && getReservedUniques().contains(data.value<InputDevice*>()->getUniqueIDString()))
     {
         ui->asDefaultCheckBox->setChecked(false);
         ui->asDefaultCheckBox->setEnabled(false);
-        ui->asDefaultCheckBox->setToolTip(trUtf8("A different profile is already selected as the default for this device."));
+        ui->asDefaultCheckBox->setToolTip(tr("A different profile is already selected as the default for this device."));
     }
     else
     {
         ui->asDefaultCheckBox->setEnabled(true);
-        ui->asDefaultCheckBox->setToolTip(trUtf8("Select this profile to be the default loaded for\nthe specified device. The selection will be used instead\nof the all default profile option."));
+        ui->asDefaultCheckBox->setToolTip(tr("Select this profile to be the default loaded for\nthe specified device. The selection will be used instead\nof the all default profile option."));
     }
 }
 
@@ -385,8 +394,8 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         QMessageBox *box = new QMessageBox(this);
-        box->setText(trUtf8("Please select a window by using the mouse. Press Escape if you want to cancel."));
-        box->setWindowTitle(trUtf8("Capture Application Window"));
+        box->setText(tr("Please select a window by using the mouse. Press Escape if you want to cancel."));
+        box->setWindowTitle(tr("Capture Application Window"));
         box->setStandardButtons(QMessageBox::NoButton);
         box->setModal(true);
         box->show();
@@ -463,8 +472,8 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility* u
         if (failed)
         {
             QMessageBox box;
-            box.setText(trUtf8("Could not obtain information for the selected window."));
-            box.setWindowTitle(trUtf8("Application Capture Failed"));
+            box.setText(tr("Could not obtain information for the selected window."));
+            box.setWindowTitle(tr("Application Capture Failed"));
             box.setStandardButtons(QMessageBox::Close);
             box.raise();
             box.exec();
@@ -574,7 +583,7 @@ void AddEditAutoProfileDialog::accept()
         if (!profileFileName.exists())
         {
             validForm = false;
-            errorString = trUtf8("Profile file path is invalid.");
+            errorString = tr("Profile file path is invalid.");
         }
     }
 
@@ -584,7 +593,7 @@ void AddEditAutoProfileDialog::accept()
          ui->winNameLineEdit->text().isEmpty()))
     {
         validForm = false;
-        errorString = trUtf8("No window matching property was specified.");
+        errorString = tr("No window matching property was specified.");
     }
     else
     {
@@ -599,7 +608,7 @@ void AddEditAutoProfileDialog::accept()
         if (info.isAbsolute() && (!info.exists() || !info.isExecutable()))
         {
             validForm = false;
-            errorString = trUtf8("Program path is invalid or not executable.");
+            errorString = tr("Program path is invalid or not executable.");
         }
 #ifdef Q_OS_WIN
         else if (!info.isAbsolute() &&
@@ -607,7 +616,7 @@ void AddEditAutoProfileDialog::accept()
                   (info.suffix() != "exe")))
         {
             validForm = false;
-            errorString = trUtf8("File is not an .exe file.");
+            errorString = tr("File is not an .exe file.");
         }
 #endif
     }
@@ -615,7 +624,7 @@ void AddEditAutoProfileDialog::accept()
     if (validForm && !propertyFound && !ui->asDefaultCheckBox->isChecked())
     {
         validForm = false;
-        errorString = trUtf8("No window matching property was selected.");
+        errorString = tr("No window matching property was selected.");
     }
 
     if (validForm)

@@ -313,7 +313,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 #ifdef Q_OS_WIN
     QString tempTooltip = ui->mouseRefreshRateComboBox->toolTip();
     tempTooltip.append("\n\n");
-    tempTooltip.append(trUtf8("Also, Windows users who want to use a low value should also check the\n"
+    tempTooltip.append(tr("Also, Windows users who want to use a low value should also check the\n"
                           "\"Disable Enhance Pointer Precision\" checkbox if you haven't disabled\n"
                           "the option in Windows."));
     ui->mouseRefreshRateComboBox->setToolTip(tempTooltip);
@@ -822,7 +822,7 @@ void MainSettingsDialog::selectDefaultProfileDir()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
-    QString directory = QFileDialog::getExistingDirectory(this, trUtf8("Select Default Profile Directory"), lookupDir);
+    QString directory = QFileDialog::getExistingDirectory(this, tr("Select Default Profile Directory"), lookupDir);
     if (!directory.isEmpty() && QFileInfo(directory).exists())
     {
         ui->profileDefaultDirLineEdit->setText(directory);
@@ -1210,7 +1210,7 @@ void MainSettingsDialog::fillGUIDComboBox()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->devicesComboBox->clear();
-    ui->devicesComboBox->addItem(trUtf8("All"), QVariant("all"));
+    ui->devicesComboBox->addItem(tr("All"), QVariant("all"));
     QList<QString> guids = deviceAutoProfiles.keys();
     QListIterator<QString> iter(guids);
     while (iter.hasNext())
@@ -1625,7 +1625,7 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Are you sure you want to delete the profile?"));
+    msgBox.setText(tr("Are you sure you want to delete the profile?"));
     msgBox.setStandardButtons(QMessageBox::Discard | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
     int ret = msgBox.exec();
@@ -2021,7 +2021,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->springScreenComboBox->clear();
-    ui->springScreenComboBox->addItem(trUtf8("Default"),
+    ui->springScreenComboBox->addItem(tr("Default"),
                                       QVariant(GlobalVariables::AntimicroSettings::defaultSpringScreen));
 
     QDesktopWidget deskWid;
@@ -2087,7 +2087,7 @@ void MainSettingsDialog::selectLogFile() {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString oldLogFile = settings->value("LogFile", "").toString();
-    QString newLogFile = QFileDialog::getSaveFileName(this, trUtf8("Save Log File As"), oldLogFile, trUtf8("Log Files (*.log)"));
+    QString newLogFile = QFileDialog::getSaveFileName(this, tr("Save Log File As"), oldLogFile, tr("Log Files (*.log)"));
 
     if (!newLogFile.isEmpty()) ui->logFilePathEdit->setText(newLogFile);
 
@@ -2136,7 +2136,7 @@ QList<InputDevice*>* MainSettingsDialog::getConnectedDevices() const {
 void MainSettingsDialog::on_resetBtn_clicked()
 {
     QMessageBox msgBox;
-    msgBox.setText(trUtf8("Do you really want to reset setting?"));
+    msgBox.setText(tr("Do you really want to reset setting?"));
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
     switch(msgBox.exec())
@@ -2160,7 +2160,7 @@ void MainSettingsDialog::on_resetBtn_clicked()
     }
 
     QMessageBox msgBox2;
-    msgBox2.setText(trUtf8("Would you like to reset mappings too?"));
+    msgBox2.setText(tr("Would you like to reset mappings too?"));
     msgBox2.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
     switch(msgBox2.exec())
