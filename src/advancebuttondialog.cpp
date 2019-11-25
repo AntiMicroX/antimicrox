@@ -864,25 +864,8 @@ void AdvanceButtonDialog::insertExecuteSlot()
 
     if (execSlotName.isEmpty()) QMessageBox::warning(this, tr("Empty execution path"), tr("Line for execution file path is empty. Fill the first line before you are going to add a slot."));
     else if (!execSlotNameInfo.exists()) QMessageBox::warning(this, tr("File doesn't exist"), tr("There is no such file locally, that could be executed. Check the file on your system"));
-    //else if (!execSlotNameInfo.isExecutable()) QMessageBox::warning(this, tr("File cannot be executed"), tr("Your file is not possible to be executed. Check permissions and type of the file."));
     else
     {
-
-        /*if (execFile.permissions() != QFileDevice::ExeOwner &&
-            execFile.permissions() != QFileDevice::ExeUser &&
-            execFile.permissions() != QFileDevice::ExeOther)
-            {
-                QMessageBox box;
-                box.warning(this, tr("Bad permissions"), tr("The file doesn't have permissions to be executed. Should it be changed?"));
-                box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-                bool result = true;
-
-                if (box.exec() == QMessageBox::Yes) result = QFile::setPermissions(execSlotName, QFileDevice::ExeOwner | QFileDevice::ExeUser);
-
-                QMessageBox::warning(this, tr("Operation not permitted"), tr("Permissions change couldn't be started."));
-            }*/
-
-
         execbutton->setValue(execSlotName, JoyButtonSlot::JoyExecute);
 
         if (!argsExecSlot.isEmpty())
