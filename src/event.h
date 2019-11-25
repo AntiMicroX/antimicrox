@@ -41,6 +41,7 @@ void fakeAbsMouseCoordinates(double springX, double springY,
                              int width, int height,
                              int &finalx, int &finaly, int screen=-1);
 
+QString detectedScriptExt(QString file);
 int X11KeySymToKeycode(QString key);
 QString keycodeToKeyString(int keycode, int alias=0);
 int X11KeyCodeToX11KeySym(int keycode);

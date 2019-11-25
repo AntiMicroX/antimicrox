@@ -33,6 +33,7 @@
 #include <QFileInfo>
 #include <QPushButton>
 #include <QToolButton>
+#include <QMessageBox>
 #include <QHBoxLayout>
 #include <QDoubleSpinBox>
 #include <QLineEdit>
@@ -855,24 +856,44 @@ void AdvanceButtonDialog::insertExecuteSlot()
 
     QString execSlotName = ui->execLineEdit->text();
     QString argsExecSlot = ui->execArgumentsLineEdit->text();
+    QFile execFile(execSlotName);
     QFileInfo execSlotNameInfo(execSlotName);
     int index = ui->slotListWidget->currentRow();
     SimpleKeyGrabberButton *execbutton = ui->slotListWidget->currentItem()
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
-    if (!execSlotName.isEmpty() && execSlotNameInfo.exists() && execSlotNameInfo.isExecutable())
+    if (execSlotName.isEmpty()) QMessageBox::warning(this, tr("Empty execution path"), tr("Line for execution file path is empty. Fill the first line before you are going to add a slot."));
+    else if (!execSlotNameInfo.exists()) QMessageBox::warning(this, tr("File doesn't exist"), tr("There is no such file locally, that could be executed. Check the file on your system"));
+    //else if (!execSlotNameInfo.isExecutable()) QMessageBox::warning(this, tr("File cannot be executed"), tr("Your file is not possible to be executed. Check permissions and type of the file."));
+    else
     {
-       execbutton->setValue(execSlotName, JoyButtonSlot::JoyExecute);
 
-       if (!argsExecSlot.isEmpty())
-          execbutton->getValue()->setExtraData(QVariant(argsExecSlot));
+        /*if (execFile.permissions() != QFileDevice::ExeOwner &&
+            execFile.permissions() != QFileDevice::ExeUser &&
+            execFile.permissions() != QFileDevice::ExeOther)
+            {
+                QMessageBox box;
+                box.warning(this, tr("Bad permissions"), tr("The file doesn't have permissions to be executed. Should it be changed?"));
+                box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+                bool result = true;
 
-       QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                      Q_ARG(JoyButtonSlot*, execbutton->getValue()),
-                                      Q_ARG(int, index));
+                if (box.exec() == QMessageBox::Yes) result = QFile::setPermissions(execSlotName, QFileDevice::ExeOwner | QFileDevice::ExeUser);
 
-       execbutton->setToolTip(execSlotName);
-       updateSlotsScrollArea(0);
+                QMessageBox::warning(this, tr("Operation not permitted"), tr("Permissions change couldn't be started."));
+            }*/
+
+
+        execbutton->setValue(execSlotName, JoyButtonSlot::JoyExecute);
+
+        if (!argsExecSlot.isEmpty())
+           execbutton->getValue()->setExtraData(QVariant(argsExecSlot));
+
+        QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                       Q_ARG(JoyButtonSlot*, execbutton->getValue()),
+                                       Q_ARG(int, index));
+
+        execbutton->setToolTip(execSlotName);
+        updateSlotsScrollArea(0);
     }
 }
 
@@ -1392,26 +1413,11 @@ void AdvanceButtonDialog::showFindExecutableWindow(bool)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString execWindText = ui->execLineEdit->text();
     QString preferredPath = QDir::homePath();
 
-    if (!execWindText.isEmpty())
-    {
-        QFileInfo execWindFileInfo(execWindText);
-
-        if (execWindFileInfo.absoluteDir().exists())
-            preferredPath = execWindFileInfo.absoluteDir().absolutePath();
-    }
-
     QString execWindFilepath = QFileDialog::getOpenFileName(this, tr("Choose Executable"), preferredPath);
+    ui->execLineEdit->setText(execWindFilepath);
 
-    if (!execWindFilepath.isEmpty())
-    {
-        QFileInfo execWindFileInfo(execWindFilepath);
-
-        if (execWindFileInfo.exists() && execWindFileInfo.isExecutable())
-            ui->execLineEdit->setText(execWindFilepath);
-    }
 }
 
 
