@@ -174,7 +174,7 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
         {
             QFileInfo tempFile(tempStringData);
 
-            if (tempFile.exists() && tempFile.isExecutable())
+            if (tempFile.exists())
             {
                 m_joyBtnSlot->setTextData(tempStringData);
 

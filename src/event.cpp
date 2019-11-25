@@ -26,6 +26,7 @@
 #include <QDesktopWidget>
 #include <QProcess>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "event.h"
 #include "globalvariables.h"
@@ -128,14 +129,50 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
         if (slot->getExtraData().canConvert<QString>())
         {
             QString argumentsString = slot->getExtraData().toString();
-            QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
-            QProcess::startDetached(slot->getTextData(), argumentsTempList);
+            //QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
+            bool success = QProcess::startDetached(QString("%1 %2 %3").arg(detectedScriptExt(slot->getTextData())).arg(slot->getTextData()).arg(argumentsString));
+            if (!success) qDebug() << "Script cannot be executed";
         }
         else
         {
-            QProcess::startDetached(slot->getTextData());
+            bool success = QProcess::startDetached(QString("%1 %2").arg(detectedScriptExt(slot->getTextData())).arg(slot->getTextData()));
+            if (!success) qDebug() << "Script cannot be executed";
+
         }
     }
+}
+
+
+QString detectedScriptExt(QString file)
+{
+    QFileInfo fileinfo(file);
+    QFile inputFile(file);
+
+    QString firstLine = QString();
+
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       firstLine = in.readLine();
+       inputFile.close();
+    }
+
+    /*
+     * shell scripts work, but I am not sure about other extensions
+     * neither start method form QProcess nor QProcess::startDetached
+     * don't work as expected
+     * need to find another way
+     */
+
+    if (fileinfo.completeSuffix() == "sh" || firstLine.contains("bin/bash")) return "/bin/sh";
+    else if (fileinfo.completeSuffix() == "py" && firstLine.contains("python3")) return "python3";
+    else if (fileinfo.completeSuffix() == "py" && firstLine.contains("python")) return "python";
+    else if (fileinfo.completeSuffix() == "pl" || firstLine.contains("usr/bin/perl")) return "perl";
+    else if (fileinfo.completeSuffix() == "php" || firstLine.contains("/php")) return "php";
+    else if (fileinfo.completeSuffix() == "rb" || firstLine.contains("ruby")) return "ruby";
+
+    // when run "chmod +x file_name"
+    return "";
 }
 
 // Create the relative mouse event used by the operating system.
