@@ -1323,12 +1323,10 @@ QString InputDevice::getStringIdentifier()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString identifier = QString();
-   // QString tempGUID = getGUIDString();
     QString tempUniqueID = getUniqueIDString();
     QString tempName = getSDLName();
 
     if (!tempUniqueID.isEmpty()) identifier = tempUniqueID;
-   // else if (!tempGUID.isEmpty()) identifier = tempGUID;
     else if (!tempName.isEmpty()) identifier = tempName;
 
     return identifier;
@@ -1539,9 +1537,6 @@ bool InputDevice::isKnownController()
     {
         m_settings->beginGroup("Mappings");
 
-//        if (m_settings->contains(getGUIDString())) result = true;
-//        else if (m_settings->contains(QString("%1%2").arg(getGUIDString()).arg("Disabled"))) result = true;
-
         convertToUniqueMappSett(m_settings, getGUIDString(), getUniqueIDString());
         convertToUniqueMappSett(m_settings, (QString("%1%2").arg(getGUIDString()).arg("Disabled")), (QString("%1%2").arg(getUniqueIDString()).arg("Disabled")));
 
@@ -1741,20 +1736,10 @@ bool InputDevice::elementsHaveNames()
 }
 
 /**
- * @brief Check if the GUID passed is considered empty.
- * @param GUID string
- * @return if GUID is considered empty.
+ * @brief Check if the UniqueID passed is considered empty.
+ * @param UniqueID string
+ * @return if UniqueID is considered empty.
  */
-//bool InputDevice::isEmptyGUID(QString tempGUID)
-//{
-//    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-//    bool result = false;
-
-//    if (tempGUID.contains(GlobalVariables::InputDevice::emptyGUID)) result = true;
-
-//    return result;
-//}
 
 bool InputDevice::isEmptyUniqueID(QString tempUniqueID)
 {
@@ -1768,22 +1753,11 @@ bool InputDevice::isEmptyUniqueID(QString tempUniqueID)
 }
 
 /**
- * @brief Check if GUID passed matches the expected GUID for a device.
- *     Needed for xinput GUID abstraction.
- * @param GUID string
- * @return if GUID is considered a match.
+ * @brief Check if UniqueID passed matches the expected GUID for a device.
+ *     Needed for xinput UniqueID abstraction.
+ * @param UniqueID string
+ * @return if UniqueID is considered a match.
  */
-//bool InputDevice::isRelevantGUID(QString tempGUID)
-//{
-//    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-//    bool result = false;
-
-//    if (tempGUID == getGUIDString()) result = true;
-
-//    return result;
-//}
-
 
 bool InputDevice::isRelevantUniqueID(QString tempUniqueID)
 {

@@ -182,14 +182,6 @@ void InputDaemon::refreshJoysticks()
                 // Check if device has already been grabbed.
                 if (!m_joysticks->contains(tempJoystickID))
                 {
-//                    QString guidText = QString();
-//                    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(sdlStick);
-//                    char guidString[65] = {'0'};
-//                    SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
-//                    guidText = QString(guidString);
-
-//                    bool disableGameController = m_settings->value(QString("%1Disable").arg(guidText), false).toBool();
-
                     QString guidText = QString();
 
                     SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(sdlStick);
@@ -575,14 +567,6 @@ void InputDaemon::addInputDevice(int index)
         {
             m_settings->getLock()->lock();
             m_settings->beginGroup("Mappings");
-
-//            QString temp = QString();
-//            SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joystick);
-//            char guidString[65] = {'0'};
-//            SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
-//            temp = QString(guidString);
-
-//            bool disableGameController = m_settings->value(QString("%1Disable").arg(temp), false).toBool();
 
             QString guidText = QString();
 

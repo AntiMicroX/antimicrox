@@ -92,19 +92,17 @@ void AutoProfileWatcher::stopTimer()
     checkWindowTimer.stop();
 }
 
-// TROP
+
 void AutoProfileWatcher::runAppCheck()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    // TROP
     #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << qApp->applicationFilePath();
     #endif
 
     QString appLocation = QString();
     QString baseAppFileName = QString();
-    //getGuidSetLocal().clear();
     getUniqeIDSetLocal().clear();
 
     // Check whether program path needs to be parsed. Removes processing time
@@ -271,87 +269,6 @@ void AutoProfileWatcher::runAppCheck()
             }
         }
 
-
-//        QHash<QString, int> highestMatchCount;
-//        QHash<QString, AutoProfileInfo*> highestMatches;
-
-//        QSetIterator<AutoProfileInfo*> fullSetIter(fullSet);
-//        while (fullSetIter.hasNext())
-//        {
-//            AutoProfileInfo *info = fullSetIter.next();
-//            if (info->isActive())
-//            {
-//                int numProps = 0;
-//                numProps += !info->getExe().isEmpty() ? 1 : 0;
-//                numProps += !info->getWindowClass().isEmpty() ? 1 : 0;
-//                numProps += !info->getWindowName().isEmpty() ? 1 : 0;
-
-//                int numMatched = 0;
-//                numMatched += (!info->getExe().isEmpty() &&
-//                               (info->getExe() == appLocation ||
-//                                info->getExe() == baseAppFileName)) ? 1 : 0;
-//                numMatched += (!info->getWindowClass().isEmpty() &&
-//                               info->getWindowClass() == nowWindowClass) ? 1 : 0;
-
-
-//                if (info->isPartialState()) {
-
-//                    numMatched += (!info->getWindowName().isEmpty() &&
-//                                   nowWindowName.contains(info->getWindowName())) ? 1 : 0;
-//                } else {
-
-//                    numMatched += (!info->getWindowName().isEmpty() &&
-//                                   info->getWindowName() == nowWindowName) ? 1 : 0;
-//                }
-
-
-//                if (numProps == numMatched && highestMatchCount.contains(info->getGUID()))
-//                {
-//                    int currentHigh = highestMatchCount.value(info->getGUID());
-//                    if (numMatched > currentHigh)
-//                    {
-//                        highestMatchCount.insert(info->getGUID(), numMatched);
-//                        highestMatches.insert(info->getGUID(), info);
-//                    }
-//                }
-//                else if (numProps == numMatched && !highestMatchCount.contains(info->getGUID()))
-//                {
-//                    highestMatchCount.insert(info->getGUID(), numMatched);
-//                    highestMatches.insert(info->getGUID(), info);
-//                }
-//            }
-//        }
-
-//        QHashIterator<QString, AutoProfileInfo*> highIter(highestMatches);
-
-//        while (highIter.hasNext())
-//        {
-//            AutoProfileInfo *info = highIter.next().value();
-//            getGuidSetLocal().insert(info->getGUID());
-//            emit foundApplicableProfile(info);
-//        }
-
-//        if ((!getDefaultProfileAssignments().isEmpty() || allDefaultInfo) && !focusedWidget)
-//        {
-//            if (allDefaultInfo != nullptr && allDefaultInfo->isActive() && !getGuidSetLocal().contains("all"))
-//            {
-//               emit foundApplicableProfile(allDefaultInfo);
-//            }
-
-//            QHashIterator<QString, AutoProfileInfo*> iter(getDefaultProfileAssignments());
-
-//            while (iter.hasNext())
-//            {
-//                iter.next();
-//                AutoProfileInfo *info = iter.value();
-
-//                if (info->isActive() && !getGuidSetLocal().contains(info->getGUID()))
-//                {
-//                    emit foundApplicableProfile(info);
-//                }
-//            }
-//        }
-
         QHash<QString, int> highestMatchCount;
         QHash<QString, AutoProfileInfo*> highestMatches;
 
@@ -445,14 +362,12 @@ void AutoProfileWatcher::syncProfileAssignment()
     settings->getLock()->lock();
     settings->beginGroup("DefaultAutoProfiles");
     QString exe = QString();
-    //QString guid = QString();
     QString uniqueID = QString();
     QString profile = QString();
     QString active = QString();
     QString windowClass = QString();
     QString windowName = QString();
 
-    //QStringList registeredGUIDs = settings->value("GUIDs", QStringList()).toStringList();
     QStringList registeredUniques = settings->value("Uniques", QStringList()).toStringList();
 
     settings->endGroup();
@@ -476,24 +391,9 @@ void AutoProfileWatcher::syncProfileAssignment()
     while (iter.hasNext())
     {
         QString tempkey = iter.next();
-        //QString guid = QString(tempkey).replace("GUID", "");
         QString uniqueID = QString(tempkey).replace("UniqueID", "");
-       // QString profile = settings->value(QString("DefaultAutoProfile-%1/Profile").arg(guid), "").toString();
-       // QString active = settings->value(QString("DefaultAutoProfile-%1/Active").arg(guid), "").toString();
         QString profile = settings->value(QString("DefaultAutoProfile-%1/Profile").arg(uniqueID), "").toString();
         QString active = settings->value(QString("DefaultAutoProfile-%1/Active").arg(uniqueID), "").toString();
-
-//        if (!guid.isEmpty() && !profile.isEmpty())
-//        {
-//            bool profileActive = active == "1" ? true : false;
-
-//            if (profileActive && guid != "all") //&& uniqueID != "all")
-//            {
-//                AutoProfileInfo *info = new AutoProfileInfo(guid, uniqueID, profile, profileActive, 0, this);
-//                info->setDefaultState(true);
-//                defaultProfileAssignments.insert(guid, info);
-//            }
-//        }
 
         // need to change when it's needed to add windowClass, title and partial name
         if (!uniqueID.isEmpty() && !profile.isEmpty())
@@ -516,7 +416,6 @@ void AutoProfileWatcher::syncProfileAssignment()
     {
         exe = settings->value(QString("AutoProfile%1Exe").arg(i), "").toString();
         exe = QDir::toNativeSeparators(exe);
-        //guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
 
         convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i), QString("AutoProfile%1UniqueID").arg(i));
 
@@ -526,8 +425,6 @@ void AutoProfileWatcher::syncProfileAssignment()
         windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
         QString partialTitle = settings->value(QString("AutoProfile%1PartialTitle").arg(i), 0).toString();
         bool partialTitleBool = partialTitle == "1" ? true : false;
-
-
 
 
 #ifdef Q_OS_UNIX
@@ -540,7 +437,6 @@ void AutoProfileWatcher::syncProfileAssignment()
         // list has been reached.
         if ((!exe.isEmpty() || !windowClass.isEmpty() || !windowName.isEmpty()) &&
            !uniqueID.isEmpty())
-           // !guid.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
 
@@ -692,7 +588,6 @@ void AutoProfileWatcher::clearProfileAssignments()
 
     defaultProfileAssignments.clear();
     allDefaultInfo = nullptr;
-    //getGuidSetLocal().clear();
     getUniqeIDSetLocal().clear();
 }
 
@@ -745,13 +640,6 @@ AutoProfileInfo* AutoProfileWatcher::getDefaultAllProfile()
     return allDefaultInfo;
 }
 
-//bool AutoProfileWatcher::isGUIDLocked(QString guid)
-//{
-//    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-//    return getGuidSetLocal().contains(guid);
-//}
-
 
 bool AutoProfileWatcher::isUniqueIDLocked(QString uniqueID)
 {
@@ -780,10 +668,6 @@ QHash<QString, AutoProfileInfo*> const& AutoProfileWatcher::getDefaultProfileAss
     return defaultProfileAssignments;
 }
 
-//QSet<QString>& AutoProfileWatcher::getGuidSetLocal() {
-
-//    return guidSet;
-//}
 
 QSet<QString>& AutoProfileWatcher::getUniqeIDSetLocal() {
 

@@ -17,6 +17,7 @@
 #include <QXmlStreamWriter>
 #include <QDebug>
 
+
 GameControllerXml::GameControllerXml(GameController* gameController, QObject *parent) : InputDeviceXml(gameController, parent)
 {
     m_gameController = gameController;
@@ -405,8 +406,6 @@ void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
     xml->writeTextElement("sdlname", m_gameController->getSDLName());
     xml->writeComment("The Unique ID for a joystick is included for informational purposes only.");
     xml->writeTextElement("uniqueID", m_gameController->getUniqueIDString());
-//    xml->writeComment("The GUID for a joystick is included for informational purposes only.");
-//    xml->writeTextElement("guid", m_gameController->getGUIDString());
 
     if (!m_gameController->getProfileName().isEmpty())
     {

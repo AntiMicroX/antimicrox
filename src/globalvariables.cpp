@@ -87,7 +87,6 @@ const int GlobalVariables::InputDevice::RAISEDDEADZONE = 20000;
 const int GlobalVariables::InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
 const int GlobalVariables::InputDevice::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
 
-//QRegExp GlobalVariables::InputDevice::emptyGUID("^[0]+$");
 QRegExp GlobalVariables::InputDevice::emptyUniqueID("^[0]+$");
 
 // ---- JOYAXIS ---- //

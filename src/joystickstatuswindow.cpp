@@ -184,19 +184,6 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     ui->hatsGroupBox->setLayout(hatsBox);
 
-//    QString guidString = joystick->getGUIDString();
-//    if (!guidString.isEmpty())
-//    {
-//        ui->guidHeaderLabel->show();
-//        ui->guidLabel->setText(guidString);
-//        ui->guidLabel->show();
-//    }
-//    else
-//    {
-//        ui->guidHeaderLabel->hide();
-//        ui->guidLabel->hide();
-//    }
-
     QString uniqueString = joystick->getUniqueIDString();
 
     if (!uniqueString.isEmpty())

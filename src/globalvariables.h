@@ -92,7 +92,6 @@ namespace GlobalVariables
       static const int DEFAULTKEYREPEATDELAY;
       static const int DEFAULTKEYREPEATRATE;
 
-      //static QRegExp emptyGUID;
       static QRegExp emptyUniqueID;
   };
 

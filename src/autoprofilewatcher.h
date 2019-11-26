@@ -42,7 +42,6 @@ public:
     static AutoProfileWatcher* getAutoProfileWatcherInstance();
     QList<AutoProfileInfo*>* getCustomDefaults();
     AutoProfileInfo* getDefaultAllProfile();
-    //bool isGUIDLocked(QString guid);
     bool isUniqueIDLocked(QString uniqueID);
     QHash<QString, QList<AutoProfileInfo*> > const& getAppProfileAssignments();
     QHash<QString, QList<AutoProfileInfo*> > const& getWindowClassProfileAssignments();
@@ -67,7 +66,7 @@ private slots:
     void runAppCheck();
 
 private:
-    //QSet<QString>& getGuidSetLocal();
+
     QSet<QString>& getUniqeIDSetLocal();
 
     static AutoProfileWatcher* _instance;
@@ -80,7 +79,6 @@ private:
     AutoProfileInfo *allDefaultInfo;
     QString currentApplication;
     QString currentAppWindowTitle;
-    //QSet<QString> guidSet;
     QSet<QString> uniqueIDSet;
 };
 
