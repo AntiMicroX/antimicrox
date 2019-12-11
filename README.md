@@ -92,6 +92,7 @@ installed on your system in order to build this program:
 
 * g++
 * cmake
+* extra-cmake-modules
 * qttools5-dev and qttools5-dev-tools (qt5-tools on distros based on Arch Linux) (Qt5 support)
 * libsdl2-dev (sdl2 on distros based on Arch Linux) (SDL2)
 * libxi-dev (libxi on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
