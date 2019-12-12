@@ -247,7 +247,7 @@ Notes about the WXS file and the building process:
 #### Additional Dependencies
 
 * flatpak 
-* flatbak-builder
+* flatpak-builder
 
 
 #### Compilation & Installation
