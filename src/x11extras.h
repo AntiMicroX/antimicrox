@@ -19,13 +19,11 @@
 #define X11EXTRAS_H
 
 #include <QObject>
-#include <QString>
-#include <QHash>
 #include <QPoint>
+#include <QHash>
 
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
-#include <X11/Xlib.h>
 
 
 

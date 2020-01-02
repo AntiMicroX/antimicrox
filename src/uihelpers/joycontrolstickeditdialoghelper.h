@@ -20,9 +20,6 @@
 
 #include "joycontrolstick.h"
 
-#include <QObject>
-#include <QHash>
-
 class JoyButtonSlot;
 
 class JoyControlStickEditDialogHelper : public QObject

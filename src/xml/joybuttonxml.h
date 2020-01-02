@@ -2,6 +2,7 @@
 #define JOYBUTTONXML_H
 
 #include <QObject>
+
 class JoyButton;
 class QXmlStreamReader;
 class QXmlStreamWriter;

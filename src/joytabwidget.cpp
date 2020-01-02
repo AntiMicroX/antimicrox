@@ -62,7 +62,8 @@
 #include <QSpacerItem>
 #include <QStackedWidget>
 #include <QLabel>
-
+#include <QFileDialog>
+#include <QScrollArea>
 
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent) :
     QWidget(parent),

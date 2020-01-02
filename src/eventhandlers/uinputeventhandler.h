@@ -19,10 +19,6 @@
 #define UINPUTEVENTHANDLER_H
 
 #include "baseeventhandler.h"
-//#include "../qtx11keymapper.h"
-
-#include <springmousemoveinfo.h>
-#include <joybuttonslot.h>
 
 class UInputEventHandler : public BaseEventHandler
 {

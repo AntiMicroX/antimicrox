@@ -22,9 +22,7 @@
 
 #include <QMainWindow>
 #include <QMap>
-#include <QIcon>
 #include <QSystemTrayIcon>
-#include <QFileDialog>
 
 class InputDevice;
 class CommandLineUtility;

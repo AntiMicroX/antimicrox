@@ -18,11 +18,8 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include <QString>
-
 
 #include "joybuttonslot.h"
-//#include "mousehelper.h"
 #include "springmousemoveinfo.h"
 #include "common.h"
 

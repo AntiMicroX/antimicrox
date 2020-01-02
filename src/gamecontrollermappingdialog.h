@@ -23,9 +23,6 @@
 #include "gamecontroller/gamecontroller.h"
 
 #include <QDialog>
-#include <QHash>
-#include <QList>
-#include <QString>
 
 
 class InputDevice;

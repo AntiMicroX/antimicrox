@@ -18,10 +18,11 @@
 #ifndef MOUSESETTINGSDIALOG_H
 #define MOUSESETTINGSDIALOG_H
 
-#include <QDialog>
-#include <QTime>
-
 #include "joybutton.h"
+
+#include <QDialog>
+
+
 
 namespace Ui {
 class MouseSettingsDialog;

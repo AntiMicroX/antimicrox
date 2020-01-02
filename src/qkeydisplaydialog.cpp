@@ -26,7 +26,6 @@
 #include <QKeySequence>
 #include <QKeyEvent>
 #include <QWidget>
-#include <QUrl>
 
 #ifdef Q_OS_WIN
   #include "winextras.h"

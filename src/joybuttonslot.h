@@ -21,7 +21,6 @@
 #include <QObject>
 #include <QElapsedTimer>
 #include <QTime>
-#include <QMetaType>
 #include <QVariant>
 
 class QXmlStreamReader;

@@ -18,19 +18,15 @@
 #ifndef VIRTUALKEYBOARDMOUSEWIDGET_H
 #define VIRTUALKEYBOARDMOUSEWIDGET_H
 
-#include <QObject>
 #include <QTabWidget>
-#include <QHash>
+#include <QMenu>
 
 class JoyButton;
 class JoyButtonSlot;
 class VirtualKeyPushButton;
-
 class QVBoxLayout;
 class QPushButton;
-class QResizeEvent;
 class QWidget;
-class QMenu;
 class InputDevice;
 class QuickSetDialog;
 class ButtonEditDialogHelper;

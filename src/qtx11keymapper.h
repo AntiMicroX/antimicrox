@@ -20,8 +20,6 @@
 
 #include "qtkeymapperbase.h"
 
-#include <QObject>
-
 
 class QtX11KeyMapper : public QtKeyMapperBase
 {

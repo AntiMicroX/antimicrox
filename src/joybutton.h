@@ -28,13 +28,7 @@
   #include "joykeyrepeathelper.h"
 #endif
 
-#include <QObject>
 #include <QTimer>
-#include <QElapsedTimer>
-#include <QTime>
-#include <QList>
-#include <QListIterator>
-#include <QHash>
 #include <QQueue>
 #include <QReadWriteLock>
 
@@ -279,9 +273,9 @@ protected:
     QTimer mouseWheelVerticalEventTimer;
     QTimer mouseWheelHorizontalEventTimer;
 
-    QTime wheelVerticalTime;
-    QTime wheelHorizontalTime;
-    QTime turboHold;
+    QElapsedTimer wheelVerticalTime;
+    QElapsedTimer wheelHorizontalTime;
+    QElapsedTimer turboHold;
 
     SetJoystick *m_parentSet; // Pointer to set that button is assigned to.
     SetChangeCondition setSelectionCondition;
@@ -487,7 +481,7 @@ private:
     void resetAllProperties();
     void resetPrivVars();
     void restartAllForSetChange();
-    void startTimerOverrun(int slotCode, QTime* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
+    void startTimerOverrun(int slotCode, QElapsedTimer* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
     void findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter);
     void changeStatesQueue(bool currentReleased);
     void countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash, bool& changeRepeatState, bool activeSlotHashWindows = false); // JoyButtonSlots class
@@ -579,14 +573,14 @@ private:
     JoyButtonSlot *currentDelay;
     JoyButtonSlot *currentSetChangeSlot;
 
-    QTime buttonHold;
-    QTime pauseHold;
-    QTime inpauseHold;
-    QTime buttonHeldRelease;
-    QTime keyPressHold;
-    QTime buttonDelay;
+    QElapsedTimer buttonHold;
+    QElapsedTimer pauseHold;
+    QElapsedTimer inpauseHold;
+    QElapsedTimer buttonHeldRelease;
+    QElapsedTimer keyPressHold;
+    QElapsedTimer buttonDelay;
     QTime accelExtraDurationTime;
-    QTime cycleResetHold;
+    QElapsedTimer cycleResetHold;
     static QTime testOldMouseTime;
 
     VDPad *m_vdpad;

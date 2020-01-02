@@ -19,7 +19,6 @@
 #define BASEEVENTHANDLER_H
 
 #include <QObject>
-#include <QString>
 
 class JoyButtonSlot;
 

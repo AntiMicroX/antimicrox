@@ -20,11 +20,10 @@
 
 #include "joybuttontypes/joyaxisbutton.h"
 
-#include <QObject>
-
 class QXmlStreamReader;
 class SetJoystick;
 class JoyAxis;
+
 
 class GameControllerTriggerButton : public JoyAxisButton
 {

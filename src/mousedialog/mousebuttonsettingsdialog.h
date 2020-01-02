@@ -24,8 +24,6 @@
 #include "uihelpers/mousebuttonsettingsdialoghelper.h"
 
 
-#include <QWidget>
-
 class JoyButton;
 class SpringModeRegionPreview;
 

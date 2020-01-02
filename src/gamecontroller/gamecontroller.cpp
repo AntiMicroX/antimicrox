@@ -388,11 +388,18 @@ bool GameController::isGameController()
 
 
 /**
- * @brief Check if UniqueID passed matches the expected UniqueID for a device.
- *     Needed for xinput UniqueID abstraction.
- * @param UniqueID string
- * @return if UniqueID is considered a match.
+ * @brief Check if GUID passed matches the expected GUID for a device.
+ *     Needed for xinput GUID abstraction.
+ * @param GUID string
+ * @return if GUID is considered a match.
  */
+//bool GameController::isRelevantGUID(QString tempGUID)
+//{
+//    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+//    return InputDevice::isRelevantGUID(tempGUID);
+//}
+
 
 bool GameController::isRelevantUniqueID(QString tempUniqueID)
 {

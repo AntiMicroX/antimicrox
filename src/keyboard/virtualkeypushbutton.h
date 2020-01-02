@@ -19,9 +19,6 @@
 #define VIRTUALKEYPUSHBUTTON_H
 
 #include <QPushButton>
-#include <QString>
-#include <QHash>
-
 
 class VirtualKeyPushButton : public QPushButton
 {

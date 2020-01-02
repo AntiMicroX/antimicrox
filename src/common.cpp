@@ -20,6 +20,7 @@
 #include "messagehandler.h"
 
 #include <QDebug>
+#include <QReadWriteLock>
 #include <QApplication>
 #include <QLibraryInfo>
 #ifdef Q_OS_WIN

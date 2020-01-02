@@ -22,9 +22,6 @@
 
 #include <SDL2/SDL_gamecontroller.h>
 
-#include <QObject>
-#include <QHash>
-
 class QXmlStreamReader;
 class InputDevice;
 

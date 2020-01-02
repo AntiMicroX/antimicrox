@@ -20,8 +20,6 @@
 
 #include <SDL2/SDL_gamecontroller.h>
 #include <inputdevice.h>
-#include <xml/inputdevicexml.h>
-
 
 class QXmlStreamReader;
 class QXmlStreamWriter;
@@ -64,6 +62,7 @@ public:
     SDL_GameControllerButtonBind getBindForAxis(int index);
     SDL_GameControllerButtonBind getBindForButton(int index);
 
+    //bool isRelevantGUID(QString tempGUID);
     bool isRelevantUniqueID(QString tempUniqueID);
     void rawButtonEvent(int index, bool pressed);
     void rawAxisEvent(int index, int value);

@@ -18,9 +18,7 @@
 #ifndef ADDEDITAUTOPROFILEDIALOG_H
 #define ADDEDITAUTOPROFILEDIALOG_H
 
-#include <QDialog>
-
-#include <QtGlobal>
+#include <QFileDialog>
 
 class AutoProfileInfo;
 class AntiMicroSettings;

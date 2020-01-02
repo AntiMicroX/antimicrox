@@ -21,7 +21,6 @@
 
 #include "flashbuttonwidget.h"
 
-#include <QPoint>
 
 class JoyControlStick;
 class QWidget;

@@ -19,7 +19,6 @@
 #define VDPAD_H
 
 #include "joydpad.h"
-#include "joybutton.h"
 
 class VDPad : public JoyDPad
 {

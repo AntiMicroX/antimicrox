@@ -18,7 +18,6 @@
 #include "virtualkeypushbutton.h"
 
 #include "messagehandler.h"
-#include "joybutton.h"
 #include "event.h"
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"

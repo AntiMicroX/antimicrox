@@ -19,7 +19,6 @@
 #define VIRTUALMOUSEPUSHBUTTON_H
 
 #include <QPushButton>
-#include <QString>
 
 #include <joybuttonslot.h>
 

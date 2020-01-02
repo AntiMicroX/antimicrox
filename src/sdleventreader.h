@@ -18,13 +18,7 @@
 #ifndef SDLEVENTREADER_H
 #define SDLEVENTREADER_H
 
-#include <SDL2/SDL.h>
 #include "joystick.h"
-
-#include <QObject>
-#include <QMap>
-#include <QTimer>
-
 
 class InputDevice;
 class AntiMicroSettings;

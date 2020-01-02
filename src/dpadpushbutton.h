@@ -18,7 +18,6 @@
 #ifndef DPADPUSHBUTTON_H
 #define DPADPUSHBUTTON_H
 
-#include <QPoint>
 
 #include "flashbuttonwidget.h"
 

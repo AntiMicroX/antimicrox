@@ -18,7 +18,6 @@
 
 #include <QVariant>
 #include <QApplication>
-#include <QTime>
 #include <cmath>
 #include <QFileInfo>
 #include <QStringList>

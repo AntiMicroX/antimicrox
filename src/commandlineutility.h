@@ -20,11 +20,8 @@
 
 class QCommandLineParser;
 
-#include <QObject>
-#include <QStringList>
-#include <QList>
-
 #include "logger.h"
+
 
 class ControllerOptionsInfo {
 

@@ -19,7 +19,6 @@
 #define APPLAUNCHHELPER_H
 
 #include <QObject>
-#include <QMap>
 
 #include <SDL2/SDL_joystick.h>
 

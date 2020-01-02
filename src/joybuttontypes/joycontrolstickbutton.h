@@ -21,10 +21,9 @@
 #include "joybuttontypes/joygradientbutton.h"
 #include "joycontrolstickdirectionstype.h"
 
-#include <QString>
-
 class JoyControlStick;
 class SetJoystick;
+
 
 class JoyControlStickButton : public JoyGradientButton
 {

@@ -21,11 +21,6 @@
 #include "joyaxis.h"
 #include "xml/setjoystickxml.h"
 
-#include <QObject>
-#include <QHash>
-#include <QList>
-#include <QTimer>
-
 class InputDevice;
 class JoyButton;
 class JoyDPad;

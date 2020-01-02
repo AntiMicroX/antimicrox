@@ -1828,13 +1828,13 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
         if (widget != nullptr)
         {
+            //if (info->getGUID() == "all")
             if (info->getUniqueID() == "all")
             {
                 // If the all option for a Default profile was found,
                 // first check for controller specific associations. If one exists,
                 // skip changing the profile on the controller. A later call will
                 // be used to switch the profile for that controller.
-
                 QList<AutoProfileInfo*> *customs = appWatcher->getCustomDefaults();
                 bool found = false;
                 QListIterator<AutoProfileInfo*> iter(*customs);
@@ -1843,6 +1843,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 {
                     AutoProfileInfo *tempinfo = iter.next();
 
+//                    if (tempinfo->getGUID() == widget->getJoystick()->getGUIDString() &&
                      if (tempinfo->getUniqueID() == widget->getJoystick()->getUniqueIDString() &&
                         info->isCurrentDefault())
                     {
@@ -1859,6 +1860,9 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                 // controller.
                 if (!found)
                 {
+//                    QString tempguid = widget->getJoystick()->getGUIDString();
+//                    if (appWatcher->isGUIDLocked(tempguid))
+
                     QString tempguid = widget->getJoystick()->getUniqueIDString();
 
                     if (appWatcher->isUniqueIDLocked(tempguid))
@@ -1884,9 +1888,11 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
                     }
                 }
             }
+            // else if (info->getGUID() == widget->getJoystick()->getStringIdentifier())
             else if (info->getUniqueID() == widget->getJoystick()->getStringIdentifier())
             {
-                qDebug() << "UniqueID of AutoProfileInfo: " << info->getUniqueID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+                // qDebug() << "GUID of AutoProfileInfo: " << info->getGUID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
+                qDebug() << "GUID of AutoProfileInfo: " << info->getUniqueID() << " == string identifier of AutoProfileInfo: " << widget->getJoystick()->getStringIdentifier();
 
                 if (info->getProfileLocation().isEmpty())
                 {

@@ -20,15 +20,12 @@
 
 #include "joydpad.h"
 
-#include <QObject>
-#include <QHash>
-
-
 class JoyButtonSlot;
 
 class DPadEditDialogHelper : public QObject
 {
     Q_OBJECT
+
 public:
     explicit DPadEditDialogHelper(JoyDPad *dpad, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> *tempSlots);

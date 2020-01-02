@@ -18,10 +18,8 @@
 #ifndef QTUINPUTKEYMAPPER_H
 #define QTUINPUTKEYMAPPER_H
 
-#include <QObject>
-#include <QHash>
-
 #include "qtkeymapperbase.h"
+
 
 class QtUInputKeyMapper : public QtKeyMapperBase
 {

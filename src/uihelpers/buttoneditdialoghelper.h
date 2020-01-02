@@ -20,11 +20,8 @@
 
 #include "joybuttonslot.h"
 
-#include <QObject>
-
-
-
 class JoyButton;
+
 
 class ButtonEditDialogHelper : public QObject
 {

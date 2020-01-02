@@ -2823,7 +2823,7 @@ void JoyButton::holdEvent()
     }
 }
 
-void JoyButton::startTimerOverrun(int slotCode, QTime* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer)
+void JoyButton::startTimerOverrun(int slotCode, QElapsedTimer* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer)
 {
     int proposedInterval = slotCode - currSlotTime->elapsed();
     proposedInterval = (proposedInterval > 0) ? proposedInterval : 0;

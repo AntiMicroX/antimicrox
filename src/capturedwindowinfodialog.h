@@ -19,7 +19,6 @@
 #define UNIXWINDOWINFODIALOG_H
 
 #include <QDialog>
-#include <QString>
 
 class QWidget;
 

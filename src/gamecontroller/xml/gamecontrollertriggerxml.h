@@ -3,8 +3,6 @@
 
 #include "xml/joyaxisxml.h"
 
-#include <QObject>
-
 class GameControllerTrigger;
 
 

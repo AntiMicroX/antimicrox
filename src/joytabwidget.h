@@ -18,13 +18,9 @@
 #ifndef JOYTABWIDGET_H
 #define JOYTABWIDGET_H
 
+#include <QWidget>
 
 #include "uihelpers/joytabwidgethelper.h"
-
-#include <QFileDialog>
-#include <QHash>
-#include <QScrollArea>
-#include <QIcon>
 
 
 class InputDevice;

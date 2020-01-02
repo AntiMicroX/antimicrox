@@ -72,6 +72,7 @@ void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    //info->setGUID("all");
     info->setUniqueID("all");
     info->setProfileLocation(ui->profileLineEdit->text());
     info->setActive(true);

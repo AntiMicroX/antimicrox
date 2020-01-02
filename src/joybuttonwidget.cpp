@@ -22,6 +22,7 @@
 #include "joybutton.h"
 
 #include <QMenu>
+#include <QPoint>
 #include <QDebug>
 
 JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :

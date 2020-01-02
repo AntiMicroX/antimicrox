@@ -20,11 +20,6 @@
 
 #include "joydpad.h"
 
-#include <QObject>
-#include <QHash>
-
-
-
 class JoyButtonSlot;
 
 class DPadContextMenuHelper : public QObject

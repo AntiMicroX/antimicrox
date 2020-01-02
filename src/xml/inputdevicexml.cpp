@@ -344,6 +344,7 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
     xml->writeTextElement("sdlname", m_inputDevice->getSDLName());
     xml->writeComment("The Unique ID for a joystick is included for informational purposes only.");
     xml->writeTextElement("uniqueID", m_inputDevice->getUniqueIDString());
+    //xml->writeTextElement("guid", m_inputDevice->getGUIDString());
 
     if (!m_inputDevice->getProfileName().isEmpty())
         xml->writeTextElement("profilename", m_inputDevice->getProfileName());

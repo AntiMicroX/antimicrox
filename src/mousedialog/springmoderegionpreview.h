@@ -22,6 +22,7 @@
 
 class QPaintEvent;
 
+
 class SpringModeRegionPreview : public QWidget
 {
     Q_OBJECT

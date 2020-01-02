@@ -17,12 +17,15 @@
 
 #include "sdleventreader.h"
 
+
 #include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "common.h"
 //#include "logger.h"
+
+#include <SDL2/SDL.h>
 
 #include <QDebug>
 #include <QStringListIterator>

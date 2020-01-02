@@ -5,10 +5,8 @@
 
 #include <SDL2/SDL_joystick.h>
 
-#include <QWidget>
 #include <QProgressBar>
-#include <QList>
-#include <QHash>
+
 
 class JoyControlStick;
 class InputDevice;

@@ -21,11 +21,6 @@
 
 #include "joybuttontypes/joydpadbutton.h"
 
-#include <QObject>
-#include <QHash>
-#include <QString>
-#include <QTimer>
-
 
 class JoyDPad : public QObject
 {

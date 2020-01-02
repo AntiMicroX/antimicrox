@@ -19,12 +19,8 @@
 #define INPUTDAEMONTHREAD_H
 
 #include "gamecontroller/gamecontroller.h"
-#include <SDL2/SDL_joystick.h>
 #include <SDL2/SDL_events.h>
 
-#include <QHash>
-#include <QMap>
-#include <QQueue>
 
 class InputDevice;
 class AntiMicroSettings;

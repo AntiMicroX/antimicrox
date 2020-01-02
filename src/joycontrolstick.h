@@ -21,12 +21,6 @@
 #include "joybutton.h"
 #include "joycontrolstickdirectionstype.h"
 
-#include <QObject>
-#include <QHash>
-#include <QList>
-#include <QTimer>
-
-
 class JoyAxis;
 class JoyControlStickButton;
 class JoyControlStickModifierButton;

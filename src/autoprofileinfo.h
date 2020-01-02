@@ -19,8 +19,6 @@
 #define AUTOPROFILEINFO_H
 
 #include <QObject>
-#include <QMetaType>
-#include <QString>
 
 class AutoProfileInfo : public QObject
 {
@@ -34,6 +32,9 @@ public:
                              QString exe, bool active, bool partialTitle, QObject *parent = nullptr);
     explicit AutoProfileInfo(QObject *parent=0);
     ~AutoProfileInfo();
+
+   // void setGUID(QString guid);
+   // QString getGUID() const;
 
     void setUniqueID(QString guid);
     QString getUniqueID() const;

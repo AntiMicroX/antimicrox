@@ -21,11 +21,7 @@
 #include "setjoystick.h"
 
 #include <SDL2/SDL_joystick.h>
-#include <SDL2/SDL_platform.h>
 
-#include <QObject>
-#include <QList>
-#include <QRegExp>
 
 class AntiMicroSettings;
 class SetJoystick;
@@ -124,7 +120,9 @@ public:
     void activatePossibleButtonEvents(); // InputDeviceButton class
     void convertToUniqueMappSett(QSettings* sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett);
 
+    //bool isEmptyGUID(QString tempGUID);
     bool isEmptyUniqueID(QString tempUniqueID);
+    //bool isRelevantGUID(QString tempGUID);
     bool isRelevantUniqueID(QString tempUniqueID);
 
     void setRawAxisDeadZone(int deadZone); // InputDeviceAxis class

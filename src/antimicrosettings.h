@@ -22,7 +22,6 @@
 #include "commandlineutility.h"
 
 #include <QSettings>
-#include <QMutex>
 
 
 class AntiMicroSettings : public QSettings

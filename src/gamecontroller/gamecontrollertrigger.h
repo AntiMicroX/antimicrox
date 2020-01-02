@@ -20,10 +20,6 @@
 
 #include "joyaxis.h"
 
-#include <QObject>
-#include <QString>
-
-
 class QXmlStreamReader;
 class QXmlStreamWriter;
 class SetJoystick;

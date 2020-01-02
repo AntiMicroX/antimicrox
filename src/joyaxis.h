@@ -19,8 +19,6 @@
 #define JOYAXIS_H
 
 #include <QObject>
-#include <QTimer>
-#include <QTime>
 #include <QList>
 
 #include "joybuttontypes/joyaxisbutton.h"

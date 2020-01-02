@@ -22,17 +22,10 @@
 #include "antimicrosettings.h"
 #include "mousehelper.h"
 
-#include <QtGlobal>
-#include <QString>
 #include <QDir>
-#include <QStringList>
-#include <QFileInfo>
+#include <QThread>
 #include <QTranslator>
 #include <QWaitCondition>
-#include <QMutex>
-#include <QReadWriteLock>
-#include <QThread>
-#include <QCoreApplication>
 
 
 

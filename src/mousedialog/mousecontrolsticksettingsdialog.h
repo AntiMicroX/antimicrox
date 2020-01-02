@@ -23,7 +23,7 @@
 #include "mousesettingsdialog.h"
 #include "uihelpers/mousecontrolsticksettingsdialoghelper.h"
 
-#include <QWidget>
+
 
 class JoyControlStick;
 class SpringModeRegionPreview;

@@ -18,8 +18,6 @@
 #ifndef QUICKSETDIALOG_H
 #define QUICKSETDIALOG_H
 
-#include "joybuttonslot.h"
-
 #include "uihelpers/buttoneditdialoghelper.h"
 #include <QDialog>
 

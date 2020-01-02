@@ -78,7 +78,7 @@ void JoyGradientButton::turboEvent()
             }
         }
 
-        else if (turboHold.isNull() || (lastDistance == 0.0) || (turboHold.elapsed() > tempTurboInterval))
+        else if (lastDistance == 0.0 || (turboHold.elapsed() > tempTurboInterval))
         {
             changeState = true;
         }

@@ -20,10 +20,6 @@
 
 #include "joybuttonslot.h"
 
-#include <QObject>
-
-
-
 class JoyAxis;
 
 class JoyAxisContextMenuHelper : public QObject

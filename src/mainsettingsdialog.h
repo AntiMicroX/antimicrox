@@ -18,11 +18,10 @@
 #ifndef MAINSETTINGSDIALOG_H
 #define MAINSETTINGSDIALOG_H
 
+#include "ui_mainsettingsdialog.h"
+
 #include <QDialog>
-#include <QHash>
-#include <QList>
 #include <QSettings>
-#include <QMap>
 
 class AntiMicroSettings;
 class InputDevice;

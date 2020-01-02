@@ -18,11 +18,8 @@
 #ifndef QTWINKEYMAPPER_H
 #define QTWINKEYMAPPER_H
 
-#include <QObject>
-#include <QHash>
-#include <QChar>
-
 #include "qtkeymapperbase.h"
+
 
 class QtWinKeyMapper : public QtKeyMapperBase
 {

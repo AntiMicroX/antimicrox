@@ -19,12 +19,11 @@
 #define LOGGER_H
 
 #include <QObject>
-#include <QString>
 #include <QMutex>
-#include <QMutexLocker>
 #include <QTextStream>
-#include <QTimer>
 #include <QFile>
+#include <QTimer>
+
 
 class Logger : public QObject
 {

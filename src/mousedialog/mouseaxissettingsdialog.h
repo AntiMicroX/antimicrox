@@ -23,8 +23,6 @@
 #include "mousesettingsdialog.h"
 #include "uihelpers/mouseaxissettingsdialoghelper.h"
 
-#include <QWidget>
-
 
 class JoyAxis;
 class SpringModeRegionPreview;

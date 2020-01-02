@@ -28,6 +28,7 @@
 #include <QTimer>
 
 #include <antkeymapper.h>
+#include <joybuttonslot.h>
 #include <logger.h>
 #include <common.h>
 
