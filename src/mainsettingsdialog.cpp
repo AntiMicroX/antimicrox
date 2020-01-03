@@ -128,7 +128,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     ui->autoProfileTableWidget->hideColumn(7);
 
 #ifdef Q_OS_UNIX
-    #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     populateAutoProfiles();
@@ -140,14 +140,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         delete ui->categoriesListWidget->item(2);
         ui->stackedWidget->removeWidget(ui->page_2);
     }
-    #elif defined(USE_SDL_2) && !defined(WITH_X11)
+    #elif !defined(WITH_X11)
     delete ui->categoriesListWidget->item(2);
-    ui->stackedWidget->removeWidget(ui->page_2);
-
-    #elif !defined(USE_SDL_2)
-    delete ui->categoriesListWidget->item(2);
-    delete ui->categoriesListWidget->item(1);
-    ui->stackedWidget->removeWidget(ui->controllerMappingsPage);
     ui->stackedWidget->removeWidget(ui->page_2);
     #endif
 #elif defined(Q_OS_WIN)
@@ -583,9 +577,7 @@ void MainSettingsDialog::saveNewSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#if defined(USE_SDL_2)
     syncMappingSettings();
-#endif
 
     settings->getLock()->lock();
     QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
@@ -619,7 +611,7 @@ void MainSettingsDialog::saveNewSettings()
 
     checkLocaleChange();
 #ifdef Q_OS_UNIX
-    #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if defined(WITH_X11)
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {

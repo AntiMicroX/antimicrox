@@ -116,7 +116,6 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             ControllerOptionsInfo tempInfo;
             controllerOptionsList.append(tempInfo);
         }
-        #ifdef USE_SDL_2
 
         if (parser->isSet("list"))
         {
@@ -127,7 +126,6 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
         {
             parseArgsMap(parser);
         }
-        #endif
 
      #ifdef Q_OS_UNIX
         if (parser->isSet("daemon"))

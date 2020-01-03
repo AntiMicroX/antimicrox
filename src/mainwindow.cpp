@@ -109,7 +109,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
     // TROP - błąd wywołuje się przy autoprofile
 #ifdef Q_OS_UNIX
-    #if defined(USE_SDL_2) && defined(WITH_X11)
+    #if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         this->appWatcher = new AutoProfileWatcher(settings, this);
@@ -1397,7 +1397,7 @@ void MainWindow::openMainSettingsDialog()
 
     if (appWatcher != nullptr)
     {
-#if defined(USE_SDL_2) && defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     connect(dialog, &MainSettingsDialog::accepted, appWatcher, &AutoProfileWatcher::syncProfileAssignment);
@@ -1407,7 +1407,7 @@ void MainWindow::openMainSettingsDialog()
     qDebug() << "Stopping appWatcher in openMainSettingsDialog";
     }
 
-#elif defined(USE_SDL_2) && defined(Q_OS_WIN)
+#elif defined(Q_OS_WIN)
     connect(dialog, &MainSettingsDialog::accepted, appWatcher, &AutoProfileWatcher::syncProfileAssignment);
     connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkAutoProfileWatcherTimer);
     connect(dialog, &MainSettingsDialog::rejected, this, &MainWindow::checkAutoProfileWatcherTimer);
@@ -1817,7 +1817,7 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
     Logger::LogError(QObject::tr("Auto-switching to nullptr profile!"));
   }
   
-#if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
+#if (defined(WITH_X11) || defined(Q_OS_WIN))
     #if defined(Q_OS_UNIX)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -1917,7 +1917,7 @@ void MainWindow::checkAutoProfileWatcherTimer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#if defined(USE_SDL_2) && (defined(WITH_X11) || defined(Q_OS_WIN))
+#if (defined(WITH_X11) || defined(Q_OS_WIN))
     #if defined(Q_OS_UNIX)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
