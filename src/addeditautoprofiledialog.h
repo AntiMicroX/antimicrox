@@ -72,15 +72,8 @@ private slots:
     void checkForReservedUniques(int index);
     void checkForDefaultStatus();
     void windowPropAssignment(CapturedWindowInfoDialog *dialog);
-
-#ifdef Q_OS_WIN
-    void openWinAppProfileDialog();
-    void captureWindowsApplicationPath();
-#elif defined(Q_OS_UNIX)
     void showCaptureHelpWindow();
     void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
-#endif
-
     void on_setPartialCheckBox_stateChanged(int arg1);
 
 private:

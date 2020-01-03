@@ -24,10 +24,6 @@
 #include "springmousemoveinfo.h"
 #include "joybuttonmousehelper.h"
 
-#ifdef Q_OS_WIN
-  #include "joykeyrepeathelper.h"
-#endif
-
 #include <QTimer>
 #include <QQueue>
 #include <QReadWriteLock>
@@ -246,11 +242,6 @@ protected:
     static QList<PadderCommon::springModeInfo> springXSpeeds;
     static QList<PadderCommon::springModeInfo> springYSpeeds;
     static QList<JoyButton*> pendingMouseButtons;
-
-#ifdef Q_OS_WIN
-    static JoyKeyRepeatHelper repeatHelper;
-#endif
-
     static JoyButtonSlot *lastActiveKey; // JoyButtonSlots class
     static JoyButtonMouseHelper mouseHelper;
 
@@ -421,11 +412,8 @@ private:
         setChangeTimer.stop();
         keyPressTimer.stop();
         delayTimer.stop();
-        if (stoppedActiveZoneTimer) activeZoneTimer.stop();
 
-        #ifdef Q_OS_WIN
-            repeatHelper.getRepeatTimer()->stop();
-        #endif
+        if (stoppedActiveZoneTimer) activeZoneTimer.stop();
 
         if (stoppedSlotSetTimer) slotSetChangeTimer.stop();
 

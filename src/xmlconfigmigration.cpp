@@ -21,10 +21,7 @@
 #include "event.h"
 #include "antkeymapper.h"
 #include "common.h"
-
-#ifdef Q_OS_UNIX
 #include "eventhandlerfactory.h"
-#endif
 
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -151,9 +148,7 @@ QString XMLConfigMigration::version0006Migration()
                 if (slotmode == "keyboard")
                 {
                     int tempcode = slotcode;
-#ifdef Q_OS_WIN
-                    slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
-#elif defined(Q_OS_UNIX)
+
                     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
                     if (handler->getIdentifier() == "xtest")
@@ -166,7 +161,6 @@ QString XMLConfigMigration::version0006Migration()
                         tempcode = 0;
                     }
 
-#endif
                     if (slotcode > 0)
                     {
                         writer.writeTextElement("code", QString("0x%1").arg(slotcode, 0, 16));

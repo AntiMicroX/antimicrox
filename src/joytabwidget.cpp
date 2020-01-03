@@ -483,11 +483,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     gameControllerMappingPushButton->setEnabled(true);
     gameControllerMappingPushButton->setVisible(true);
 
-
-#ifdef Q_OS_WIN
-    deviceKeyRepeatSettings();
-#endif
-
     checkHideEmptyOption();
 
     connect(loadButton, &QPushButton::clicked, this, &JoyTabWidget::openConfigFileDialog);
@@ -559,18 +554,6 @@ void JoyTabWidget::openConfigFileDialog()
         }
 
         QString outputFilename = fileinfo.absoluteDir().absolutePath();
-
-#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-        if (fileinfo.absoluteDir().isAbsolute())
-        {
-            QDir tempDir = fileinfo.dir();
-            tempDir.cdUp();
-            if (tempDir.path() == qApp->applicationDirPath())
-            {
-                outputFilename = QString("%1/").arg(fileinfo.dir().dirName());
-            }
-        }
-#endif
 
         m_settings->getLock()->lock();
 
@@ -1040,20 +1023,6 @@ void JoyTabWidget::saveSettings()
             QFileInfo profileBaseFile(filename);
             QString outputFilename = filename;
 
-#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-            if (profileBaseFile.isAbsolute())
-            {
-                QDir tempDir = profileBaseFile.dir();
-                tempDir.cdUp();
-                if (tempDir.path() == qApp->applicationDirPath())
-                {
-                    outputFilename = QString("%1/%2")
-                            .arg(profileBaseFile.dir().dirName())
-                            .arg(profileBaseFile.fileName());
-                }
-            }
-#endif
-
             m_settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
 
             if (PadderCommon::getProfileName(profileBaseFile) != profileText)
@@ -1081,19 +1050,6 @@ void JoyTabWidget::saveSettings()
                QFileInfo profileBaseFile(filename);
                QString outputFilename = filename;
 
-#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-               if (profileBaseFile.isAbsolute())
-               {
-                   QDir tempDir = profileBaseFile.dir();
-                   tempDir.cdUp();
-                   if (tempDir.path() == qApp->applicationDirPath())
-                   {
-                       outputFilename = QString("%1/%2")
-                               .arg(profileBaseFile.dir().dirName())
-                               .arg(profileBaseFile.fileName());
-                   }
-               }
-#endif
                m_settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
 
                if (PadderCommon::getProfileName(profileBaseFile) != profileText)
@@ -1110,20 +1066,6 @@ void JoyTabWidget::saveSettings()
     {
         QFileInfo profileBaseFile(lastfile);
         QString outputFilename = lastfile;
-
-#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-       if (profileBaseFile.isAbsolute())
-       {
-           QDir tempDir = profileBaseFile.dir();
-           tempDir.cdUp();
-           if (tempDir.path() == qApp->applicationDirPath())
-           {
-               outputFilename = QString("%1/%2")
-                       .arg(profileBaseFile.dir().dirName())
-                       .arg(profileBaseFile.fileName());
-           }
-       }
-#endif
 
         m_settings->setValue(controlEntryLastSelected, outputFilename);
     }
@@ -1219,11 +1161,6 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     if (!lastfile.isEmpty())
     {
         QString lastFileAbsolute = lastfile;
-
-#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-        QFileInfo lastFileInfo(lastfile);
-        lastFileAbsolute = lastFileInfo.absoluteFilePath();
-#endif
 
         int lastindex = configBox->findData(lastFileAbsolute);
         if (lastindex > 0)
@@ -2506,21 +2443,6 @@ void JoyTabWidget::editCurrentProfileItemText(QString text)
         }
     }
 }
-
-#ifdef Q_OS_WIN
-void JoyTabWidget::deviceKeyRepeatSettings()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    bool keyRepeatActive = m_settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
-    int keyRepeatDelay = m_settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
-    int keyRepeatRate = m_settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
-
-    m_joystick->setKeyRepeatStatus(keyRepeatActive);
-    m_joystick->setKeyRepeatDelay(keyRepeatDelay);
-    m_joystick->setKeyRepeatRate(keyRepeatRate);
-}
-#endif
 
 void JoyTabWidget::refreshCopySetActions()
 {

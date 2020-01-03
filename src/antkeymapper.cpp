@@ -33,13 +33,6 @@ static QStringList buildEventGeneratorList()
 
     QStringList temp = QStringList();
 
-#ifdef Q_OS_WIN
-    temp.append("sendinput");
-  #ifdef WITH_VMULTI
-    temp.append("vmulti");
-  #endif
-
-#elif defined(Q_OS_UNIX)
   #ifdef WITH_XTEST
     temp.append("xtest");
   #endif
@@ -47,7 +40,6 @@ static QStringList buildEventGeneratorList()
     temp.append("uinput");
   #endif
 
-#endif
     return temp;
 }
 
@@ -58,22 +50,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
 
     internalMapper = nullptr;
 
-#ifdef Q_OS_WIN
-  #ifdef WITH_VMULTI
-    if (handler == "vmulti")
-    {
-        internalMapper = &vmultiMapper;
-        nativeKeyMapper = &winMapper;
-    }
-  #endif
-
-    BACKEND_ELSE_IF (handler == "sendinput")
-    {
-        internalMapper = &winMapper;
-        nativeKeyMapper = nullptr;
-    }
-
-#elif defined(Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
     #ifdef WITH_XTEST
     if (handler == "xtest")
     {

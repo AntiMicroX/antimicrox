@@ -21,7 +21,7 @@
 #include <QObject>
 #include <QStringList>
 
-#ifdef Q_OS_UNIX
+
   #ifdef WITH_UINPUT
     #include "eventhandlers/uinputeventhandler.h"
   #endif
@@ -29,25 +29,8 @@
   #ifdef WITH_XTEST
     #include "eventhandlers/xtesteventhandler.h"
   #endif
-#elif defined(Q_OS_WIN)
-  #include "eventhandlers/winsendinputeventhandler.h"
 
-  #ifdef WITH_VMULTI
-    #include "eventhandlers/winvmultieventhandler.h"
-  #endif
-#endif
 
-#ifdef Q_OS_WIN
-  #define ADD_SENDINPUT 1
-  #ifdef WITH_VMULTI
-    #define ADD_VMULTI 1
-  #else
-    #define ADD_VMULTI 0
-  #endif
-
-  #define NUM_BACKENDS (ADD_SENDINPUT + ADD_VMULTI)
-
-#elif defined(Q_OS_UNIX)
   #ifdef WITH_XTEST
     #define ADD_XTEST 1
   #else
@@ -61,7 +44,7 @@
   #endif
 
   #define NUM_BACKENDS (ADD_XTEST + ADD_UINPUT)
-#endif
+
 
 #if (NUM_BACKENDS > 1)
   #define BACKEND_ELSE_IF else if

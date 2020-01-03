@@ -67,10 +67,6 @@ public:
     InputDevice *getJoystick();
 
 
-#ifdef Q_OS_WIN
-    void deviceKeyRepeatSettings();
-#endif
-
 protected:
     virtual void changeEvent(QEvent *event);
     void removeCurrentButtons();

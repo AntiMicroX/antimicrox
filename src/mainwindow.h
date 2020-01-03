@@ -139,11 +139,6 @@ private slots:
     void showStickAssignmentDialog();
     void checkHideEmptyOption();
 
-#ifdef Q_OS_WIN
-    void checkKeyRepeatOptions();
-    void restartAsElevated();
-#endif
-
     void openGameControllerMappingWindow(bool openAsMain=false);
     void propogateMappingUpdate(QString mapping, InputDevice *device);
     void autoprofileLoad(AutoProfileInfo *info); // MainConfiguration class

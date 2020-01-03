@@ -23,11 +23,8 @@
 #include "vdpad.h"
 #include "event.h"
 #include "logger.h"
-#include "SDL2/SDL_events.h"
 
-#ifdef Q_OS_WIN
-  #include "eventhandlerfactory.h"
-#endif
+#include "SDL2/SDL_events.h"
 
 #include <QDebug>
 #include <QThread>
@@ -64,10 +61,6 @@ JoyButtonMouseHelper JoyButton::mouseHelper;
 
 QTimer JoyButton::staticMouseEventTimer;
 QList<JoyButton*> JoyButton::pendingMouseButtons;
-
-#ifdef Q_OS_WIN
-JoyKeyRepeatHelper JoyButton::repeatHelper;
-#endif
 
 
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
@@ -654,11 +647,8 @@ void JoyButton::activateSlots()
         bool exit = false;
         bool delaySequence = false;
 
-        #ifdef Q_OS_WIN
-            bool changeRepeatState = false;
-        #endif
-
         int i = 0;
+
         while (slotiter->hasNext() && !exit)
         {
             JoyButtonSlot *slot = slotiter->next();
@@ -687,9 +677,6 @@ void JoyButton::activateSlots()
                         #endif
 
                         lastActiveKey = slot;
-                        #ifdef Q_OS_WIN
-                            changeRepeatState = true;
-                        #endif
                     }
                     else
                     {
@@ -699,9 +686,6 @@ void JoyButton::activateSlots()
 
                         lastActiveKey = nullptr;
 
-                        #ifdef Q_OS_WIN
-                            changeRepeatState = true;
-                         #endif
                     }
 
                     break;
@@ -1006,37 +990,11 @@ void JoyButton::activateSlots()
             }
         }
 
-#ifdef Q_OS_WIN
-        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-#endif
-
         if (delaySequence && !getActiveSlots().isEmpty())
         {
             keyPressHold.restart();
             keyPressEvent();
         }
-
-#ifdef Q_OS_WIN
-        else if (handler && (handler->getIdentifier() == "sendinput") &&
-                 changeRepeatState && !m_useTurbo)
-        {
-            InputDevice *device = getParentSet()->getInputDevice();
-            if (device->isKeyRepeatEnabled())
-            {
-                if (lastActiveKey && activeSlots.contains(lastActiveKey))
-                {
-                    repeatHelper.setLastActiveKey(lastActiveKey);
-                    repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
-                    repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
-                }
-                else if (repeatHelper.getRepeatTimer()->isActive())
-                {
-                    repeatHelper.setLastActiveKey(0);
-                    repeatHelper.getRepeatTimer()->stop();
-                }
-            }
-        }
-#endif
 
         activeZoneTimer.start();
     }
@@ -2889,9 +2847,6 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     createDeskTimer.stop();
     keyPressTimer.stop();
     delayTimer.stop();
-#ifdef Q_OS_WIN
-    repeatHelper.getRepeatTimer()->stop();
-#endif
     setChangeTimer.stop();
     releaseActiveSlots();
 
@@ -3346,30 +3301,6 @@ void JoyButton::releaseActiveSlots()
 
         activeZoneTimer.start();
 
-#ifdef Q_OS_WIN
-        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-
-        if (handler && (handler->getIdentifier() == "sendinput") &&
-            changeRepeatState && lastActiveKey && !m_useTurbo)
-        {
-            InputDevice *device = getParentSet()->getInputDevice();
-            if (device->isKeyRepeatEnabled())
-            {
-                if (lastActiveKey)
-                {
-                    repeatHelper.setLastActiveKey(lastActiveKey);
-                    repeatHelper.setKeyRepeatRate(device->getKeyRepeatRate());
-                    repeatHelper.getRepeatTimer()->start(device->getKeyRepeatDelay());
-                }
-                 else if (repeatHelper.getRepeatTimer()->isActive())
-                 {
-                     repeatHelper.setLastActiveKey(0);
-                     repeatHelper.getRepeatTimer()->stop();
-                 }
-            }
-        }
-
-#endif
     }
 }
 
@@ -3382,11 +3313,6 @@ void JoyButton::countActiveSlots(int tempcode, int& references, JoyButtonSlot* s
     {
         sendevent(slot, false);
         activeSlotsHash.remove(tempcode);
-
-        // only if activeKeys
-        #ifdef Q_OS_WIN
-            if (activeSlotHashWindows) changeRepeatState = true;
-        #endif
     }
     else
     {
@@ -4969,19 +4895,12 @@ void JoyButton::setStaticMouseThread(QThread *thread, QTimer* staticMouseEventTi
 
     testOldMouseTime->start();
 
-#ifdef Q_OS_WIN
-    repeatHelper.moveToThread(thread);
-#endif
-
 }
 
 
 void JoyButton::indirectStaticMouseThread(QThread *thread, QTimer* staticMouseEventTimer, JoyButtonMouseHelper* mouseHelper)
 {
     QMetaObject::invokeMethod(staticMouseEventTimer, "stop");
-#ifdef Q_OS_WIN
-    QMetaObject::invokeMethod(repeatHelper.getRepeatTimer(), "stop");
-#endif
     QMetaObject::invokeMethod(mouseHelper, "changeThread",
                               Q_ARG(QThread*, thread));
 }

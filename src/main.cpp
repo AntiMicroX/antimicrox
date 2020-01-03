@@ -64,20 +64,8 @@
 
 #endif
 
-#ifdef Q_OS_WIN
-  #include <SDL2/SDL.h>
-  #undef main
-#endif
-
-#ifdef Q_OS_WIN
-    #include "winextras.h"
-    #include <QStyle>
-    #include <QStyleFactory>
-#endif
 
 
-
-#ifndef Q_OS_WIN
 static void termSignalTermHandler(int signal)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -96,7 +84,6 @@ static void termSignalIntHandler(int signal)
     qApp->exit(0);
 }
 
-#endif
 
 // was non static
 static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
@@ -136,7 +123,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<SDL_JoystickID>("SDL_JoystickID");
     qRegisterMetaType<JoyButtonSlot::JoySlotInputAction>("JoyButtonSlot::JoySlotInputAction");
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -149,23 +136,6 @@ int main(int argc, char *argv[])
     QTextStream logFileStream;
     QTextStream outstream(stdout);
     QTextStream errorstream(stderr);
-
-    // If running Win version, check if an explicit style
-    // was defined on the command-line. If so, make a note
-    // of it.
-#ifdef Q_OS_WIN
-    bool styleChangeFound = false;
-    for (int i=0; (i < argc) && !styleChangeFound; i++)
-    {
-        char *tempchrstr = argv[i];
-        QString temp = QString::fromUtf8(tempchrstr);
-
-        if (temp == "-style")
-        {
-            styleChangeFound = true;
-        }
-    }
-#endif
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QCoreApplication::translate("antimicro", "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."));
@@ -242,16 +212,6 @@ int main(int argc, char *argv[])
 
     Q_INIT_RESOURCE(resources);
 
-
-#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-
-    // If in portable mode, make sure the current directory is the same as the
-    // config directory. This is to ensure that all relative paths resolve
-    // correctly when loading on startup.
-
-    QDir::setCurrent( PadderCommon::configPath() );
-#endif
-
     QDir configDir(PadderCommon::configPath());
 
     if (!configDir.exists())
@@ -302,7 +262,7 @@ int main(int argc, char *argv[])
         // An instance of this program is already running.
         // Save app config and exit.
         AntiMicroSettings settings(PadderCommon::configFilePath(), QSettings::IniFormat);
-	
+
         // Update log info based on config values
         if( cmdutility.getCurrentLogLevel() == Logger::LOG_NONE &&
             settings.contains("LogLevel"))
@@ -513,25 +473,9 @@ int main(int argc, char *argv[])
 
     #endif
     }
-
-#elif defined(Q_OS_WIN)
-    localServer = new LocalAntiMicroServer();
-    localServer->startLocalServer();
 #endif
 
     antimicro.setQuitOnLastWindowClosed(false);
-
-    // If running Win version and no explicit style was
-    // defined, use the style Fusion by default. I find the
-    // windowsvista style a tad ugly
-#ifdef Q_OS_WIN
-    if (!styleChangeFound)
-    {
-        qApp->setStyle(QStyleFactory::create("Fusion"));
-    }
-
-    QIcon::setThemeName("/");
-#elif defined(Q_OS_LINUX)
 
     QStringList appDirsLocations = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
     QStringList themePathsTries = QStringList();
@@ -551,8 +495,6 @@ int main(int argc, char *argv[])
     qDebug() << "has icon theme named games_config_custom: " << tr;
     qDebug() << "if icon theme always returns true: " << tr2;
 
-
-#endif
 
     AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath(),
                                                         QSettings::IniFormat);
@@ -583,44 +525,34 @@ int main(int argc, char *argv[])
 
 #if defined(Q_OS_UNIX)
     QString transPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    
-    if(QDir(transPath).entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() == 0) 
+
+    if(QDir(transPath).entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() == 0)
     {
         qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicro/translations");
     }
     else
     {
-       qtTranslator.load(QString("qt_").append(targetLang), transPath); 
+       qtTranslator.load(QString("qt_").append(targetLang), transPath);
     }
-    
-#elif defined(Q_OS_WIN)
-  #ifdef QT_DEBUG
-    qtTranslator.load(QString("qt_").append(targetLang), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-  #else
-    qtTranslator.load(QString("qt_").append(targetLang),
-                      QApplication::applicationDirPath().append("\\share\\qt\\translations"));
-  #endif
+
 #endif
     antimicro.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
 
-#if defined(Q_OS_UNIX)
-    if(QDir("/app/share/antimicro").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0) 
+
+    if(QDir("/app/share/antimicro").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0)
     {
-        myappTranslator.load(QString("antimicro_").append(targetLang), "app/share/antimicro/translations"); 
+        myappTranslator.load(QString("antimicro_").append(targetLang), "app/share/antimicro/translations");
     }
     else
     {
-       myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicro/translations")); 
+       myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
     }
-    
-#elif defined(Q_OS_WIN)
-    myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("\\share\\antimicro\\translations"));
-#endif
+
     antimicro.installTranslator(&myappTranslator);
 
-#ifndef Q_OS_WIN
+
     // Have program handle SIGTERM
     struct sigaction termaction;
     termaction.sa_handler = &termSignalTermHandler;
@@ -637,7 +569,6 @@ int main(int argc, char *argv[])
 
     sigaction(SIGINT, &termint, nullptr);
 
-#endif
 
     if (cmdutility.shouldListControllers())
     {
@@ -746,8 +677,7 @@ int main(int argc, char *argv[])
         factory->handler()->printPostMessages();
     }
 
-#if (defined(Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) || \
-     defined(Q_OS_WIN)
+#if defined(WITH_UINPUT) && defined(WITH_XTEST)
 
     // Use fallback event handler.
     if (!status && cmdutility.getEventGenerator() != EventHandlerFactory::fallBackIdentifier())
@@ -798,7 +728,7 @@ int main(int argc, char *argv[])
             keyMapper = nullptr;
         }
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
@@ -841,9 +771,6 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicro, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
-#ifdef Q_OS_WIN
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::appQuitPointerPrecision);
-#endif
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow, &MainWindow::handleInstanceDisconnect);
     QObject::connect(mainWindow, &MainWindow::mappingUpdated,
                      joypad_worker.data(), &InputDaemon::refreshMapping);
@@ -854,18 +781,6 @@ int main(int argc, char *argv[])
                      mainWindow, &MainWindow::removeJoyTab);
     QObject::connect(joypad_worker.data(), &InputDaemon::deviceAdded,
                      mainWindow, &MainWindow::addJoyTab);
-
-#ifdef Q_OS_WIN
-
-    // Raise process priority. Helps reduce timer delays caused by
-    // the running of other processes.
-
-    bool raisedPriority = WinExtras::raiseProcessPriority();
-    if (!raisedPriority)
-    {
-        appLogger.LogInfo(QObject::tr("Could not raise process priority."));
-    }
-#endif
 
     mainAppHelper.initRunMethods();
     QTimer::singleShot(0, mainWindow, SLOT(fillButtons()));
@@ -902,7 +817,7 @@ int main(int argc, char *argv[])
 
     AntKeyMapper::getInstance()->deleteInstance();
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {

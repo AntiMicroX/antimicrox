@@ -46,12 +46,7 @@ InputDevice::InputDevice(SDL_Joystick* joystick, int deviceIndex, AntiMicroSetti
     keyPressTime = 0;
     m_joyhandle = joystick;
     deviceEdited = false;
-#ifdef Q_OS_WIN
-    keyRepeatEnabled = true;
-#elif defined(Q_OS_UNIX)
     keyRepeatEnabled = false;
-#endif
-
     keyRepeatDelay = 0;
     keyRepeatRate = 0;
     rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;

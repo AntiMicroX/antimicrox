@@ -24,10 +24,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QCommandLineParser>
-
-#ifdef Q_OS_UNIX
 #include <QApplication>
-#endif
 
 QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
 
@@ -127,7 +124,6 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             parseArgsMap(parser);
         }
 
-     #ifdef Q_OS_UNIX
         if (parser->isSet("daemon"))
         {
             daemonMode = true;
@@ -145,10 +141,8 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
             }
         }
         #endif
-    #endif
 
-    #if (defined (Q_OS_UNIX) && defined(WITH_UINPUT) && defined(WITH_XTEST)) \
-     || (defined(Q_OS_WIN) && defined(WITH_VMULTI))
+    #if (defined(WITH_UINPUT) && defined(WITH_XTEST))
 
         if (parser->isSet("eventgen"))
         {
@@ -488,7 +482,7 @@ QString CommandLineUtility::getEventGenerator()
     return eventGenerator;
 }
 
-#ifdef Q_OS_UNIX
+
 bool CommandLineUtility::launchAsDaemon()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -503,7 +497,6 @@ QString CommandLineUtility::getDisplayString()
     return displayString;
 }
 
-#endif
 
 Logger::LogLevel CommandLineUtility::getCurrentLogLevel()
 {

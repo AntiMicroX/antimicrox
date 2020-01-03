@@ -32,12 +32,7 @@ class CapturedWindowInfoDialog : public QDialog
 
 public:
 
-#ifdef Q_OS_WIN
-    explicit CapturedWindowInfoDialog(QWidget *parent = nullptr);
-#elif defined(Q_OS_UNIX)
     explicit CapturedWindowInfoDialog(long window, QWidget *parent = nullptr);
-#endif
-
     ~CapturedWindowInfoDialog();
 
     enum {

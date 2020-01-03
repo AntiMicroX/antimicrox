@@ -149,10 +149,8 @@ public:
     QList<int>* getJoyStartSetNumberList();
     QList<ControllerOptionsInfo> const& getControllerOptionsList();
 
-#ifdef Q_OS_UNIX
     bool launchAsDaemon();
     QString getDisplayString();
-#endif
 
     Logger::LogLevel getCurrentLogLevel();
 

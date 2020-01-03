@@ -73,9 +73,7 @@ public:
 
     static void setCustomDisplay(QString displayString);
 
-    #ifdef Q_OS_UNIX
     const char* getEnvVariable(const char* var) const;
-    #endif
 
     static X11Extras* getInstance();
     static void deleteInstance();

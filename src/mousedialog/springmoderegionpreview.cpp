@@ -27,11 +27,9 @@
 
 
 SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent) :
-    #if defined(Q_OS_WIN)
-        QWidget(parent, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
-    #elif defined(Q_OS_UNIX)
+
         QWidget(parent, Qt::FramelessWindowHint)
-    #endif
+
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -118,9 +116,7 @@ void SpringModeRegionPreview::setSpringWidth(int width)
 
     int height = size().height();
 
-#ifdef Q_OS_UNIX
     hide();
-#endif
 
     if ((tempwidth >= 2) && (height >= 2))
     {
@@ -135,9 +131,7 @@ void SpringModeRegionPreview::setSpringWidth(int width)
     }
     else
     {
-#ifndef Q_OS_UNIX
-        hide();
-#endif
+
         resize(tempwidth, height);
         move(0, 0);
     }
@@ -151,9 +145,7 @@ void SpringModeRegionPreview::setSpringHeight(int height)
 
     int width = size().width();
 
-#ifdef Q_OS_UNIX
     hide();
-#endif
 
     if ((width >= 2) && (tempheight >= 2))
     {
@@ -168,9 +160,7 @@ void SpringModeRegionPreview::setSpringHeight(int height)
     }
     else
     {
-#ifndef Q_OS_UNIX
-        hide();
-#endif
+
         resize(width, tempheight);
         move(0, 0);
     }

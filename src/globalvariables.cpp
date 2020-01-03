@@ -104,7 +104,6 @@ const float GlobalVariables::JoyAxis::JOYSPEED = 20.0;
 const QString GlobalVariables::JoyAxis::xmlName = "axis";
 
 
-#if defined(Q_OS_UNIX)
     #ifdef WITH_X11
 
 // ---- X11EXTRAS ---- //
@@ -116,7 +115,6 @@ const QString GlobalVariables::X11Extras::xtestMouseDeviceName = QString("Virtua
 QString GlobalVariables::X11Extras::_customDisplayString = QString("");
 
     #endif
-#endif
 
 
 // ---- GameController ---- //

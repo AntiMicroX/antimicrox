@@ -46,15 +46,7 @@ protected:
     void changeSpringModeScreen();
     void changeGamepadPollRate();
 
-#ifdef Q_OS_WIN
-    void checkPointerPrecision();
-#endif
-
 public slots:
-#ifdef Q_OS_WIN
-    void appQuitPointerPrecision();
-#endif
-
     void initRunMethods();
     void revertMouseThread();
     void changeMouseThread(QThread *thread);

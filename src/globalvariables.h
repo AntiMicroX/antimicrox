@@ -110,7 +110,7 @@ namespace GlobalVariables
       static const QString xmlName;
   };
 
-#if defined(Q_OS_UNIX)
+
     #ifdef WITH_X11
 
   class X11Extras
@@ -125,7 +125,7 @@ namespace GlobalVariables
   };
 
     #endif
-#endif
+
 
   class GameController
   {

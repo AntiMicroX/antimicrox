@@ -42,19 +42,12 @@
 #include "calibration.h"
 #include "xml/inputdevicexml.h"
 
-#if defined(WITH_X11) || defined(Q_OS_WIN)
+#if defined(WITH_X11)
     #include "autoprofileinfo.h"
     #include "autoprofilewatcher.h"
 #endif
 
-#ifdef Q_OS_WIN
-    #include "winextras.h"
-#endif
-
-#ifdef Q_OS_UNIX
-    #include <QApplication>
-#endif
-
+#include <QApplication>
 #include <QHideEvent>
 #include <QShowEvent>
 #include <QCloseEvent>
@@ -77,9 +70,6 @@
 
 #include <SDL2/SDL_joystick.h>
 
-#ifdef Q_OS_WIN
-    #include <QSysInfo>
-#endif
 
 #define CHECK_BATTERIES_MSEC 600000
 
@@ -107,8 +97,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 
     ui->actionStick_Pad_Assign->setVisible(false);
 
-    // TROP - błąd wywołuje się przy autoprofile
-#ifdef Q_OS_UNIX
+
+
     #if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -121,13 +111,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
         qDebug() << "appWatcher instance set to null pointer";
     }
     #endif
-
-#elif defined(Q_OS_WIN)
-    this->appWatcher = new AutoProfileWatcher(settings, this);
-    checkAutoProfileWatcherTimer();
-#else
-    this->appWatcher = nullptr;
-#endif
 
     signalDisconnect = false;
     showTrayIcon = !cmdutility->isTrayHidden() && graphical &&
@@ -193,36 +176,14 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     connect(ui->actionCalibration, &QAction::triggered, this, &MainWindow::openCalibration);
     connect(ui->actionGameController_Mapping, &QAction::triggered, this, &MainWindow::openGameControllerMappingWindow);
 
-    #if defined(Q_OS_UNIX) && defined(WITH_X11)
+    #if defined(WITH_X11)
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
             connect(appWatcher, &AutoProfileWatcher::foundApplicableProfile, this, &MainWindow::autoprofileLoad);
         }
-    #elif defined(Q_OS_WIN)
-        connect(appWatcher, &AutoProfileWatcher::foundApplicableProfile, this, &MainWindow::autoprofileLoad);
     #endif
 
-#ifdef Q_OS_WIN
-    if (graphical)
-    {
-        if (!WinExtras::IsRunningAsAdmin())
-        {
-            if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-            {
-                QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
-                ui->uacPushButton->setIcon(uacIcon);
-            }
-            connect(ui->uacPushButton, &QPushButton::clicked, this, &MainWindow::restartAsElevated);
-        }
-        else
-        {
-            ui->uacPushButton->setVisible(false);
-        }
-    }
-
-#elif defined(Q_OS_UNIX)
     ui->uacPushButton->setVisible(false);
-#endif
 
 
     QTimer *timer = new QTimer(this);
@@ -1397,7 +1358,7 @@ void MainWindow::openMainSettingsDialog()
 
     if (appWatcher != nullptr)
     {
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     connect(dialog, &MainSettingsDialog::accepted, appWatcher, &AutoProfileWatcher::syncProfileAssignment);
@@ -1406,22 +1367,11 @@ void MainWindow::openMainSettingsDialog()
     appWatcher->stopTimer();
     qDebug() << "Stopping appWatcher in openMainSettingsDialog";
     }
-
-#elif defined(Q_OS_WIN)
-    connect(dialog, &MainSettingsDialog::accepted, appWatcher, &AutoProfileWatcher::syncProfileAssignment);
-    connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkAutoProfileWatcherTimer);
-    connect(dialog, &MainSettingsDialog::rejected, this, &MainWindow::checkAutoProfileWatcherTimer);
-    appWatcher->stopTimer();
 #endif
     }
 
     connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::populateTrayIcon);
     connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkHideEmptyOption);
-
-#ifdef Q_OS_WIN
-    connect(dialog, &MainSettingsDialog::accepted, this, &MainWindow::checkKeyRepeatOptions);
-
-#endif
 
     dialog->show();
 }
@@ -1593,63 +1543,6 @@ void MainWindow::checkHideEmptyOption()
 }
 
 
-#ifdef Q_OS_WIN
-void MainWindow::checkKeyRepeatOptions()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    for (int i=0; i < ui->tabWidget->count(); i++)
-    {
-        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i)); // static_cast
-        tab->deviceKeyRepeatSettings();
-    }
-}
-
-/**
- * @brief Check if user really wants to restart the program with elevated
- *     privileges. If yes, attempt to restart the program.
- */
-void MainWindow::restartAsElevated()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    QMessageBox msg;
-    msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msg.setWindowTitle(tr("Run as Administrator?"));
-    msg.setText(tr("Are you sure that you want to run this program as Adminstrator?"
-                   "\n\n"
-                   "Some games run as Administrator which will cause events generated by antimicro "
-                   "to not be used by those games unless antimicro is also run "
-                   "as the Adminstrator. "
-                   "This is due to permission problems caused by User Account "
-                   "Control (UAC) options in Windows Vista and later."));
-
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-    {
-        QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
-        msg.button(QMessageBox::Yes)->setIcon(uacIcon);
-    }
-
-    int result = msg.exec();
-    if (result == QMessageBox::Yes)
-    {
-        bool result = WinExtras::elevateAntiMicro();
-        if (result)
-        {
-            qApp->quit();
-        }
-        else
-        {
-            msg.setStandardButtons(QMessageBox::Close);
-            msg.setWindowTitle(tr("Failed to elevate program"));
-            msg.setText(tr("Failed to restart this program as the Administrator"));
-            msg.exec();
-        }
-    }
-}
-
-#endif
-
 void MainWindow::openGameControllerMappingWindow(bool openAsMain)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1817,11 +1710,11 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
     Logger::LogError(QObject::tr("Auto-switching to nullptr profile!"));
   }
   
-#if (defined(WITH_X11) || defined(Q_OS_WIN))
-    #if defined(Q_OS_UNIX)
+#if defined(WITH_X11)
+
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
+
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(i));  // static_cast
@@ -1907,9 +1800,9 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
             }
         }
     }
-    #if defined(Q_OS_UNIX)
+
     }
-    #endif
+
 #endif
 }
 
@@ -1917,11 +1810,10 @@ void MainWindow::checkAutoProfileWatcherTimer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#if (defined(WITH_X11) || defined(Q_OS_WIN))
-    #if defined(Q_OS_UNIX)
+#if defined(WITH_X11)
+
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    #endif
         QString autoProfileActive = m_settings->value("AutoProfiles/AutoProfilesActive", "0").toString();
         if (autoProfileActive == "1")
         {
@@ -1933,9 +1825,7 @@ void MainWindow::checkAutoProfileWatcherTimer()
             appWatcher->stopTimer();
             qDebug() << "Stopped timer for appWatcher";
         }
-    #if defined(Q_OS_UNIX)
     }
-    #endif
 #endif
 }
 
