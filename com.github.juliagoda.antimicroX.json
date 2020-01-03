@@ -1,9 +1,9 @@
 {
-    "app-id": "com.github.juliagoda.antimicro",
+    "app-id": "com.github.juliagoda.antimicroX",
     "runtime": "org.kde.Platform",
     "runtime-version": "5.11",
     "sdk": "org.kde.Sdk",
-    "command": "antimicro",
+    "command": "antimicroX",
     "finish-args": [
         "--device=all",
         "--socket=x11",
@@ -17,7 +17,7 @@
     ],
     "modules": [
         {
-            "name": "antimicro",
+            "name": "antimicroX",
             "buildsystem": "cmake",
             "builddir": true,
             "config-opts": [
@@ -30,7 +30,7 @@
             "sources": [
             {
                 "type": "git",
-                "url": "https://github.com/juliagoda/antimicro.git",
+                "url": "https://github.com/juliagoda/antimicroX.git",
                 "tag": "2.24.2"
             }]
         }

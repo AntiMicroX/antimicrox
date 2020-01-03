@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -57,7 +57,7 @@
 static const QString RUNATSTARTUPREGKEY(
         "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
 static const QString RUNATSTARTUPLOCATION(
-        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicro.lnk")
+        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicroX.lnk")
         .arg(QString::fromUtf8(qgetenv("AppData"))));
 
 MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,

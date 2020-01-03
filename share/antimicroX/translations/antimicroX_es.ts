@@ -1,22 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="uk_UA" sourcelanguage="en_US">
+<TS version="2.1" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation>Про програму</translation>
+        <translation>sobre</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="104"/>
         <source>Version</source>
-        <translation>Версія</translation>
+        <translation>versión</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="121"/>
-        <source>Credits</source>
-        <translation>Розробники</translation>
+        <location filename="../../../src/aboutdialog.ui" line="369"/>
+        <source>&quot;juliagoda&quot; (since March, 2018) Wanting only to play my favourite old games that din&apos;t support gamepads, I found this project (which map keyboard keys and mouse buttons to connected gamepads on Linux) as most proper and recent. But because of poor choices of such application on the internet and since it didn&apos;t compile properly, I decided to rescue the project. However, once I finished my work (enough to enjoy playing games) I thought about sharing this code with others. Of course all informations about past programmers will be held.
+
+&quot;Ryochan7&quot; (since December 30, 2012 until 2017), I have been working on AntiMicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
+
+The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
+
+Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
+
+Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.
+
+---
+
+As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. As next, project has been continued since 2018 by juliagoda on antimicroX project. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="395"/>
+        <source>Copyright: 2013 - 2018</source>
+        <translation type="unfinished">Copyright: 2013 - 2016 {2013 ?} {2013 ?} {2018?}</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="186"/>
+        <source>Info</source>
+        <translation>info</translation>
+    </message>
+    <message>
+        <location filename="../../../src/aboutdialog.ui" line="136"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Originally developed by Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;, next maintained by the AntiMicroX group at https://github.com/AntiMicroX, and now by juliagoda at https://github.com/juliagoda&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Old Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Zerro Alvein&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;aybe&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;7185&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;DarkStarSword&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;est31&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;ProfessorKaos64&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;qwerty12&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA0&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Brazilian Portuguese&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx - Chinese&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - French&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - German&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;phob - German&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;tou omiya - Japanese&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - Russian&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;burunduk - Ukrainian&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - Spanish&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - Polish&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="211"/>
@@ -137,126 +204,130 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="369"/>
-        <source>&quot;juliagoda&quot; (since March, 2018) Wanting only to play my favourite old games that din&apos;t support gamepads, I found this project (which map keyboard keys and mouse buttons to connected gamepads on Linux) as most proper and recent. But because of poor choices of such application on the internet and since it didn&apos;t compile properly, I decided to rescue the project. However, once I finished my work (enough to enjoy playing games) I thought about sharing this code with others. Of course all informations about past programmers will be held.
-
-&quot;Ryochan7&quot; (since December 30, 2012 until 2017), I have been working on antimicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
+        <location filename="../../../src/aboutdialog.ui" line="341"/>
+        <source>Changelog</source>
+        <translation>Changelog</translation>
+    </message>
+    <message>
+        <source>Copyright: 2013 - 2016</source>
+        <translation type="obsolete">Copyright: 2013 - 2016 {2013 ?}</translation>
+    </message>
+    <message>
+        <source>Since December 30, 2012, I have been working on AntiMicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
 
 The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
 
 Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
 
-Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.
+Once the Steam controller is finally released to the public, the need for this program might not exist anymore. Just based on the concept of the controller alone, the Steam controller would have so many advantages over using a program like this to provide KB+M emulation.</source>
+        <translation type="vanished">Desde el 30 de diciembre de 2012, he estado trabajando en AntimicroX en mi tiempo libre. Lo que originalmente comenzó como un fork de QJoyPad y una manera de aprender programación orientada a eventos adecuado se ha convertido en algo mucho más grande de lo que originalmente pretendía. Aunque he pasado mucho tiempo aprendiendo nuevas técnicas, saber más sobre el dominio de la emulación KB + M, y pasar las noches de viernes golpeando la cabeza contra mi teclado, ha sido una experiencia divertida y enriquecedora en general.
 
----
+La necesidad de este programa vino de mí usando programas similares en Windows para jugar varios juegos que no proporcionan soporte para el controlador nativo. Aunque existían algunas alternativas en Linux, no había realmente nada de lo que me pareció que era lo suficientemente bueno en términos de funcionalidad o controles en el juego con el fin de disfrutar realmente de juegos que quería jugar con el uso de la emulación KB + M. QJoyPad fue el programa principal que había utilizado en el pasado a pesar de que había envejecido mucho y no proporcionar alguna funcionalidad básica que yo pensaba que era esencial. El proyecto estaba muerto, ya que no había sido actualizado en varios años, así que decidí hacer mi propia.
 
-As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
-</source>
-        <translation type="unfinished"></translation>
+Desde entonces, he tratado de averiguar lo que los otros programas hacen la derecha y luego mejorarlo. También he descubierto algunos truquitos en el camino y he aprendido más acerca de cómo los controles del gamepad nativas se implementan en algunos juegos de lo que nunca realmente quería saber. Aunque sin duda hay áreas en las que este programa podría mejorar, me parece que este programa ofrece la mejor experiencia de control en el juego para jugar más, y algunos nuevos, juegos que no proporcionan soporte para el controlador nativo.
+
+Una vez que el control de Steam finalmente se lanzó al público, la necesidad de este programa no podría existir más. Sólo se basa en el concepto del controlador solamete, el controlador de Steam tendría tantas ventajas sobre el uso de un programa como este para proporcionar la emulación KB + M.</translation>
     </message>
     <message>
-        <location filename="../../../src/aboutdialog.ui" line="395"/>
-        <source>Copyright: 2013 - 2018</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="341"/>
-        <source>Changelog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="136"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Originally developed by Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;, next maintained by the AntiMicro group at https://github.com/AntiMicro, and now by juliagoda at https://github.com/juliagoda&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Old Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Zerro Alvein&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;aybe&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;7185&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;DarkStarSword&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;est31&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;ProfessorKaos64&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;qwerty12&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA0&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Brazilian Portuguese&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx - Chinese&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - French&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - German&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;phob - German&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;tou omiya - Japanese&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - Russian&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;burunduk - Ukrainian&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - Spanish&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - Polish&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/aboutdialog.ui" line="186"/>
-        <source>Info</source>
-        <translation>Інформація</translation>
+        <location filename="../../../src/aboutdialog.ui" line="121"/>
+        <source>Credits</source>
+        <translation>Créditos</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="75"/>
-        <source>antimicro</source>
-        <translation type="unfinished"></translation>
+        <source>antimicroX</source>
+        <translation>antimicroX</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;Zerro Alvein&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;aybe&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Brazilian Portuguese&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zzpxyx - Chinese&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - French&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - German&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;phob - German&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;tou omiya - Japanese&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - Russian&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - Ukrainian&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;Zerro Alvein&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;aybe&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Brazilian Portuguese&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zzpxyx - Chinese&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - Español&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - French&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - German&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;phob - German&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;tou omiya - Japanese&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - Russian&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Serbian&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;burunduk - Ukrainian&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="355"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre el desenvolvimiento</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="196"/>
         <source>License</source>
-        <translation>Ліцензія</translation>
+        <translation>Licencia</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="59"/>
         <source>Program Version %1</source>
-        <translation>Версія програми %1</translation>
+        <translation>Versión del programa %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="60"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation>Програму скомпільовано %1 о %2</translation>
+        <translation>Programa compilado en %1 a %2</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="71"/>
         <source>Built Against SDL %1</source>
-        <translation>Зібрано на SDL %1</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="74"/>
         <source>Running With SDL %1</source>
-        <translation>Запущено з SDL %1</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="76"/>
         <source>Using Qt %1</source>
-        <translation>Використано Qt %1</translation>
+        <translation>Usando Qt %1</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.cpp" line="88"/>
         <source>Using Event Handler: %1</source>
-        <translation>Обробник подій: %1</translation>
+        <translation>Usando Gestor de Eventos: %1</translation>
     </message>
 </context>
 <context>
@@ -264,23 +335,23 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="14"/>
         <source>Auto Profile Dialog</source>
-        <translation>Вікно автоматичного профілю</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="25"/>
         <source>Profile:</source>
-        <translation>Профіль:</translation>
+        <translation>Perfil:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="40"/>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="137"/>
         <source>Browse</source>
-        <translation>Оглянути</translation>
+        <translation type="unfinished">Navegar</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="51"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>ventana:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="69"/>
@@ -288,9 +359,7 @@ p, li { white-space: pre-wrap; }
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation>Оберіть вікно. Натисніть на вікно необхідного додатку,
-і шлях до нього автоматично заповниться
-в поле вводу.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="74"/>
@@ -300,12 +369,12 @@ in the form.</source>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="83"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Clase:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="100"/>
         <source>Title:  </source>
-        <translation type="unfinished"></translation>
+        <translation>Título:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="113"/>
@@ -315,12 +384,12 @@ in the form.</source>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="124"/>
         <source>Application:    </source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicación:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="149"/>
         <source>Select</source>
-        <translation>Обрати</translation>
+        <translation>seleccione</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="163"/>
@@ -329,7 +398,7 @@ in the form.</source>
     </message>
     <message>
         <source>Devices:</source>
-        <translation type="vanished">Пристрої:</translation>
+        <translation type="vanished">Dispositivos:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="179"/>
@@ -337,71 +406,69 @@ in the form.</source>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation>Оберіть цей профіль як типовий для вказаного
-пристрою. Обраний профіль перекриватиме загальні
-налаштування типового профілю.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="184"/>
         <source>Set as Default for Controller</source>
-        <translation>Встановити типовим для контролера</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="105"/>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="262"/>
         <source>A different profile is already selected as the default for this device.</source>
-        <translation>Інший профіль вже встановлено типовим для вказаного пристрою.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="131"/>
         <source>Current (%1)</source>
-        <translation>Поточний (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="181"/>
         <source>Open Config</source>
-        <translation>Відкрити конфігурацію</translation>
+        <translation>Abrir Config</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="192"/>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="194"/>
         <source>Select Program</source>
-        <translation>Обрати програму</translation>
+        <translation>Seleccionar Programa</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="192"/>
         <source>Programs (*.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>Programas (*.exe)</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="256"/>
         <source>Please use the main default profile selection.</source>
-        <translation>Використовуйте основний типовий профіль.</translation>
+        <translation>Por favor, utilice la selección principal perfil predeterminado.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="311"/>
         <source>Please select a window by using the mouse. Press Escape if you want to cancel.</source>
-        <translation>Оберіть мишкою вікно. Аби скасувати вибір натисніть Escape.</translation>
+        <translation>Por favor, seleccione una ventana utilizando el ratón. Presione Escape si desea cancelar.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="312"/>
         <source>Capture Application Window</source>
-        <translation>Захоплення вікна програми</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="389"/>
         <source>Could not obtain information for the selected window.</source>
-        <translation>Не отримано інформації для обраного вікна.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="390"/>
         <source>Application Capture Failed</source>
-        <translation>Захоплення програми зазнало невдачі</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="488"/>
         <source>Profile file path is invalid.</source>
-        <translation>Шлях до профілю хибний.</translation>
+        <translation>La ruta de archivo de perfil es invalido.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="498"/>
@@ -411,12 +478,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="513"/>
         <source>Program path is invalid or not executable.</source>
-        <translation>Шлях до програми хибний, або вона не має прав на виконання.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="521"/>
         <source>File is not an .exe file.</source>
-        <translation type="unfinished"></translation>
+        <translation>El Archivo no es un .exe.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="529"/>
@@ -430,168 +497,118 @@ of the all default profile option.</source>
         <location filename="../../../src/advancebuttondialog.ui" line="29"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="1106"/>
         <source>Advanced</source>
-        <translation>Розширені параметри</translation>
+        <translation>Avanzado</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="71"/>
         <source>Assignments</source>
-        <translation>Призначення</translation>
+        <translation>Asignamientos</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="76"/>
         <source>Toggle</source>
-        <translation>Перемикач</translation>
+        <translation>Alternar</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation>Турбо</translation>
+        <translation>Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="86"/>
         <source>Set Selector</source>
-        <translation>Встановити селектор</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="239"/>
-        <source>Press Time</source>
-        <translation>Час натиску</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.cpp" line="1504"/>
-        <source>Insert a pause that occurs in between key presses.</source>
-        <translation>Вставте паузу між натисканнями клавіш.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="234"/>
-        <source>Pause</source>
-        <translation>Пауза</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="219"/>
-        <source>Hold</source>
-        <translation>Утримання</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="229"/>
-        <source>Mouse Mod</source>
-        <translation>Мод. мишки</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="199"/>
-        <source>Cycle</source>
-        <translation>Цикл</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="209"/>
-        <source>Distance</source>
-        <translation>Дистанція</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="244"/>
-        <source>Release</source>
-        <translation>Віджати</translation>
+        <translation>Selector de Set</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="194"/>
         <source>Blank or KB/M</source>
-        <translation type="unfinished"></translation>
+        <translation>Vacio o KB/M</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="204"/>
-        <source>Delay</source>
-        <translation>Затримка</translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="219"/>
+        <source>Hold</source>
+        <translation>Mantener</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="214"/>
-        <source>Execute</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="234"/>
+        <source>Pause</source>
+        <translation>Pausa</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="224"/>
-        <source>Load</source>
-        <translation type="unfinished">Завантажити</translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="199"/>
+        <source>Cycle</source>
+        <translation>Ciclo</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="249"/>
-        <source>Set Change</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="209"/>
+        <source>Distance</source>
+        <translation>Distancia</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="254"/>
-        <source>Text Entry</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="283"/>
+        <source>Insert</source>
+        <translation>Inserir</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="297"/>
+        <source>Delete</source>
+        <translation>Borrar</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="311"/>
+        <source>Clear All</source>
+        <translation>Limpiar todo</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="397"/>
+        <source>Time:</source>
+        <translation>Tiempo:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="410"/>
+        <source>0.01s</source>
+        <translation>0.01s</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="482"/>
+        <source>0s</source>
+        <translation>0s</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.cpp" line="1504"/>
+        <source>Insert a pause that occurs in between key presses.</source>
+        <translation>Insertar una pausa que se produce en la introducción de la tecla.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="244"/>
+        <source>Release</source>
+        <translation>Soltar</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="280"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="1461"/>
         <source>Insert a new blank slot.</source>
-        <translation>Вставити новий пустий слот.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="283"/>
-        <source>Insert</source>
-        <translation>Вставити</translation>
+        <translation>Inserte una nueva ranura en blanco.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="294"/>
         <source>Delete a slot.</source>
-        <translation>Вилучити слот.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="297"/>
-        <source>Delete</source>
-        <translation>Вилучити</translation>
+        <translation>Borrar ranura.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="308"/>
         <source>Clear all currently assigned slots.</source>
-        <translation>Очистити всі поточні слоти.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="311"/>
-        <source>Clear All</source>
-        <translation>Очистити все</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="342"/>
-        <source>Placeholder</source>
-        <translation type="unfinished">Заповнювач</translation>
+        <translation>Limpiar todos los slots asignados actualmente.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="394"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation>Встановити тривалість слотів Пауза чи Утримання.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="397"/>
-        <source>Time:</source>
-        <translation>Час:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="410"/>
-        <source>0.01s</source>
-        <translation>0.01с</translation>
+        <translation>Especificar la duración de una ranura de pausa o de retención insertado.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="425"/>
         <source>0m</source>
-        <translation>0хв</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="449"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="473"/>
-        <source>0</source>
-        <translation>0</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="482"/>
-        <source>0s</source>
-        <translation>0с</translation>
-    </message>
-    <message>
-        <source>Mouse Speed Mod:</source>
-        <translation type="vanished">Зміна швидкості мишки:</translation>
+        <translation>0m</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="509"/>
@@ -599,9 +616,15 @@ of the all default profile option.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="525"/>
-        <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation>Встановіть зміну швидкості миші у відсотковому співвідношенні.</translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="564"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="583"/>
+        <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
+        <translation>Especificar el rango más allá de una zona muerta eje en el que una secuencia de acciones se ejecutará.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="567"/>
+        <source>Distance: </source>
+        <translation>Distancia: </translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="528"/>
@@ -610,25 +633,69 @@ of the all default profile option.</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="564"/>
-        <location filename="../../../src/advancebuttondialog.ui" line="583"/>
-        <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="229"/>
+        <source>Mouse Mod</source>
+        <translation>Raton Mod</translation>
     </message>
     <message>
-        <location filename="../../../src/advancebuttondialog.ui" line="567"/>
-        <source>Distance: </source>
-        <translation>Дистанція: </translation>
+        <location filename="../../../src/advancebuttondialog.ui" line="239"/>
+        <source>Press Time</source>
+        <translation>Tiempo de presionado</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="204"/>
+        <source>Delay</source>
+        <translation>Retraso</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="214"/>
+        <source>Execute</source>
+        <translation>Ejecutar</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="224"/>
+        <source>Load</source>
+        <translation>Cargar</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="249"/>
+        <source>Set Change</source>
+        <translation>Definir Cambio</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="254"/>
+        <source>Text Entry</source>
+        <translation>Entrada de texto</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="342"/>
+        <source>Placeholder</source>
+        <translation>marcador de posición</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="449"/>
+        <location filename="../../../src/advancebuttondialog.ui" line="473"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <source>Mouse Speed Mod:</source>
+        <translation type="vanished">Velovidad de Ratón Mod:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancebuttondialog.ui" line="525"/>
+        <source>Set the percentage that mouse speeds will be modified by.</source>
+        <translation>Establecer el porcentaje que las velocidades de ratón serán modificadas por.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="622"/>
         <source>Auto Reset Cycle After</source>
-        <translation>Автоматично скидати цикл опісля</translation>
+        <translation>Auto Resetear Ciclos Después</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="654"/>
         <source>seconds</source>
-        <translation>секунд</translation>
+        <translation>segundos</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="696"/>
@@ -638,7 +705,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="706"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="717"/>
@@ -650,285 +717,286 @@ of the all default profile option.</source>
         <location filename="../../../src/advancebuttondialog.ui" line="803"/>
         <location filename="../../../src/advancebuttondialog.ui" line="1025"/>
         <source>Enabled</source>
-        <translation>Включити</translation>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="827"/>
         <source>Mode:</source>
-        <translation>Режим:</translation>
+        <translation>Modo:</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="837"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal:. Pulse y suelte repetidamente un botón por la tasa elegido &lt;/p&gt;&lt;p&gt; Gradiente: Modificar el retraso y liberación de un botón de acuerdo con la distancia de un eje se ha movido. La tasa seguirá siendo el mismo &lt;/p&gt;&lt;p&gt;Pulso:. Modifica como muchas veces un botón es presionado y liberado por segundo. El retraso botón seguirá siendo el mismo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="841"/>
         <source>Normal</source>
-        <translation>Звичайний</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="846"/>
         <source>Gradient</source>
-        <translation>Наростаючий</translation>
+        <translation>Gradiente</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="851"/>
         <source>Pulse</source>
-        <translation>Пульсуючий</translation>
+        <translation>Pulso</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="905"/>
         <source>Delay:</source>
-        <translation>Затримка:</translation>
+        <translation>Retraso:</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="930"/>
         <source>0.10s</source>
-        <translation>0.10с</translation>
+        <translation>0.10s</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1000"/>
         <source>Rate:</source>
-        <translation>Частота:</translation>
+        <translation>Taza:</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1007"/>
         <source>10.0/s</source>
-        <translation>10.0/с</translation>
+        <translation>10.0/s</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1039"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="1241"/>
         <source>Disabled</source>
-        <translation>Вимкнено</translation>
+        <translation>Inhabilitado</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1044"/>
         <source>Select Set 1 One Way</source>
-        <translation>Встановити набір 1 одностороннім</translation>
+        <translation>Seleccione Set 1 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1049"/>
         <source>Select Set 1 Two Way</source>
-        <translation>Встановити набір 1 двостороннім</translation>
+        <translation>Seleccione Set 1 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1054"/>
         <source>Select Set 1 While Held</source>
-        <translation>Встановити набір 1 доки натиснуто</translation>
+        <translation>Seleccione Set 1 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1059"/>
         <source>Select Set 2 One Way</source>
-        <translation>Встановити набір 2 одностороннім</translation>
+        <translation>Seleccionar Set 2 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1064"/>
         <source>Select Set 2 Two Way</source>
-        <translation>Встановити набір 2 двостороннім</translation>
+        <translation>Seleccionar Set 2 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1069"/>
         <source>Select Set 2 While Held</source>
-        <translation>Встановити набір 2 доки натиснуто</translation>
+        <translation>Seleccionar Set 2 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1074"/>
         <source>Select Set 3 One Way</source>
-        <translation>Встановити набір 3 одностороннім</translation>
+        <translation>Seleccionar Set 3 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1079"/>
         <source>Select Set 3 Two Way</source>
-        <translation>Встановити набір 3 двостороннім</translation>
+        <translation>Seleccionar Set 3 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1084"/>
         <source>Select Set 3 While Held</source>
-        <translation>Встановити набір 3 доки натиснуто</translation>
+        <translation>Seleccionar Set 3 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1089"/>
         <source>Select Set 4 One Way</source>
-        <translation>Встановити набір 4 одностороннім</translation>
+        <translation>Seleccionar Set 4 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1094"/>
         <source>Select Set 4 Two Way</source>
-        <translation>Встановити набір 4 двостороннім</translation>
+        <translation>Seleccionar Set 4 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1099"/>
         <source>Select Set 4 While Held</source>
-        <translation>Встановити набір 4 доки натиснуто</translation>
+        <translation>Seleccionar Set 4 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1104"/>
         <source>Select Set 5 One Way</source>
-        <translation>Встановити набір 5 одностороннім</translation>
+        <translation>Seleccionar Set 5 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1109"/>
         <source>Select Set 5 Two Way</source>
-        <translation>Встановити набір 5 двостороннім</translation>
+        <translation>Seleccionar Set 5 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1114"/>
         <source>Select Set 5 While Held</source>
-        <translation>Встановити набір 5 доки натиснуто</translation>
+        <translation>Seleccionar Set 5 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1119"/>
         <source>Select Set 6 One Way</source>
-        <translation>Встановити набір 6 одностороннім</translation>
+        <translation>Seleccionar Set 6 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1124"/>
         <source>Select Set 6 Two Way</source>
-        <translation>Встановити набір 6 двостороннім</translation>
+        <translation>Seleccionar Set 6 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1129"/>
         <source>Select Set 6 While Held</source>
-        <translation>Встановити набір 6 доки натиснуто</translation>
+        <translation>Seleccionar Set 6 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1134"/>
         <source>Select Set 7 One Way</source>
-        <translation>Встановити набір 7 одностороннім</translation>
+        <translation>Seleccionar Set 7 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1139"/>
         <source>Select Set 7 Two Way</source>
-        <translation>Встановити набір 7 двостороннім</translation>
+        <translation>Seleccionar Set 7 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1144"/>
         <source>Select Set 7 While Held</source>
-        <translation>Встановити набір 7 доки натиснуто</translation>
+        <translation>Seleccionar Set 7 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1149"/>
         <source>Select Set 8 One Way</source>
-        <translation>Встановити набір 8 одностороннім</translation>
+        <translation>Seleccionar Set 8 Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1154"/>
         <source>Select Set 8 Two Way</source>
-        <translation>Встановити набір 8 двостороннім</translation>
+        <translation>Seleccionar Set 8 Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1159"/>
         <source>Select Set 8 While Held</source>
-        <translation>Встановити набір 8 доки натиснуто</translation>
+        <translation>Seleccionar Set 8 Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="254"/>
         <source>sec.</source>
-        <translation>сек.</translation>
+        <translation>Seg.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="255"/>
         <source>/sec.</source>
-        <translation>/сек.</translation>
+        <translation>/seg.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1111"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1248"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="1290"/>
         <source>Select Set %1</source>
-        <translation>Обрати набір %1</translation>
+        <translation>Seleccionar Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1263"/>
         <source>One Way</source>
-        <translation>Односторонній</translation>
+        <translation>Unidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1264"/>
         <source>Two Way</source>
-        <translation>Двосторонній</translation>
+        <translation>Bidireccional</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1265"/>
         <source>While Held</source>
-        <translation>Доки натиснуто</translation>
+        <translation>Mientras se Mantiene</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1396"/>
         <source>Choose Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Escojer Ejecutable</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1465"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>Las ranuras mas allá de un Ciclo de acción podrán ser ejecutados en la proxima vez que se presione el botón. ciclos múltiples se pueden agregar con el fin de crear particiones en una secuencia.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1471"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Retrasa el momento en que la siguiente ranura es activado por el tiempo especificado. Las ranuras activadas antes de que el retraso se mantendrá activa una vez transcurrido el tiempo de retardo.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1478"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Distancia acción especifica que las ranuras después sólo se ejecutan cuando un eje se mueve de un cierto rango más allá de la zona muerta designada.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1488"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserte una acción de retención. Las ranuras después de la acción sólo se ejecutarán si el botón se mantiene más allá del intervalo especificado.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1493"/>
         <source>Chose a profile to load when this slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Elija un perfil para cargar cuando se activa esta ranura.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1497"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>El Mod de acción del ratón va a modificar todos los ajustes de velocidad del ratón en un porcentaje especificado, mientras que la acción se está procesando. Esto puede ser útil para ralentizar el ratón para francotiradores.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1508"/>
         <source>Specify the time that keys past this slot should be held down.</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar el tiempo que las teclas pasan en esta ranura deben mantenerse presionadas.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1513"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Insertar una acción de liberación. Las ranuras después de la acción sólo se ejecutarán después de la liberación del botón si este fue presionado más allá del intervalo especificado.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1519"/>
         <source>Change to selected set once slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar al set seleccionado una vez que se activa la ranura.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1523"/>
         <source>Full string will be typed when a slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>La cadena completa se tecleará cuando se activa una ranura.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1484"/>
         <source>Execute program when slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutar el programa cuando se activa la ranura.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="667"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="1362"/>
         <source>Choose Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Elegir Perfil</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1363"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos de Config (*.amgp *.xml)</translation>
     </message>
 </context>
 <context>
@@ -936,40 +1004,35 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation>Призначення стіків/хрестовин</translation>
+        <translation>Asignamiento de Palanca/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="41"/>
         <source>Sticks</source>
-        <translation>Стіки</translation>
+        <translation>Palancas</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation>DPad&apos;и</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
-        <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>DPads</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="101"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="358"/>
         <source>%1 (Joystick %2)</source>
-        <translation>%1 (джойстик %2)</translation>
+        <translation>%1 (Mando %2)</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="124"/>
         <source>Stick 1</source>
-        <translation>Стік 1</translation>
+        <translation>Palanca 1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="134"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="256"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="425"/>
         <source>Enabled</source>
-        <translation>Активний</translation>
+        <translation>Habilitar</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="175"/>
@@ -979,54 +1042,59 @@ of the all default profile option.</source>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="535"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="545"/>
         <source>Assign</source>
-        <translation>Призначити</translation>
+        <translation>Asignar</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="186"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="308"/>
         <source>X Axis:</source>
-        <translation>Вісь X:</translation>
+        <translation>Eje X:</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="204"/>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="326"/>
         <source>Y Axis:</source>
-        <translation>Вісь Y:</translation>
+        <translation>Eje Y:</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="246"/>
         <source>Stick 2</source>
-        <translation>Стік 2</translation>
+        <translation>Palanca 2</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="371"/>
         <source>Number of Physical DPads: %1</source>
-        <translation>Кількість фізичних DPad&apos;ів: %1</translation>
+        <translation>Numero de DPads físicos: %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="402"/>
         <source>Virtual DPad 1</source>
-        <translation>Віртуальний DPad 1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="463"/>
-        <source>Down:</source>
-        <translation>Вниз:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="477"/>
-        <source>Left:</source>
-        <translation>Вліво:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/advancestickassignmentdialog.ui" line="491"/>
-        <source>Right:</source>
-        <translation>Вправо:</translation>
+        <translation>DPad 1 Virtual</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="498"/>
         <source>Up:</source>
-        <translation>Вверх:</translation>
+        <translation>Arriba:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="463"/>
+        <source>Down:</source>
+        <translation>Abajo:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
+        <source>Note: This window is meant for backwards compatibility with profiles made before antimicroX 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
+        <translation>Nota: Esta ventana es para la retrocompatibilidad con los perfiles realizados antes AntimicroX 2.0. Desde la versión 2.0, se prefiere el uso de la ventana de juego Mapeo controlador.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="477"/>
+        <source>Left:</source>
+        <translation>Izquierda:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/advancestickassignmentdialog.ui" line="491"/>
+        <source>Right:</source>
+        <translation>Derecha:</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="68"/>
@@ -1034,7 +1102,7 @@ of the all default profile option.</source>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="71"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="72"/>
         <source>Axis %1</source>
-        <translation>Вісь %1</translation>
+        <translation>Ejes %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="419"/>
@@ -1042,7 +1110,7 @@ of the all default profile option.</source>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="421"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="422"/>
         <source>Axis %1 -</source>
-        <translation>Вісь %1 -</translation>
+        <translation>Ejes %1 -</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="428"/>
@@ -1050,7 +1118,7 @@ of the all default profile option.</source>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="430"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="431"/>
         <source>Axis %1 +</source>
-        <translation>Вісь %1 +</translation>
+        <translation>Ejes %1 +</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="441"/>
@@ -1058,27 +1126,27 @@ of the all default profile option.</source>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="443"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="444"/>
         <source>Button %1</source>
-        <translation>Кнопка %1</translation>
+        <translation>Botón %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="790"/>
         <source>Move stick 1 along the X axis</source>
-        <translation>Рухайте стік 1 по вісі X</translation>
+        <translation>Mueva la palanca 1 a lo largo del eje X</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="807"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation>Рухайте стік 1 по вісі Y</translation>
+        <translation>Mueva la palanca 1 a lo largo del eje Y</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="844"/>
         <source>Move stick 2 along the X axis</source>
-        <translation>Рухайте стік 2 по вісі X</translation>
+        <translation>Mueva la palanca 2 a lo largo del eje X</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="861"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation>Рухайте стік 2 по вісі Y</translation>
+        <translation>Mueva la palanca 2 a lo largo del eje Y</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="905"/>
@@ -1086,7 +1154,7 @@ of the all default profile option.</source>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="1043"/>
         <location filename="../../../src/advancestickassignmentdialog.cpp" line="1113"/>
         <source>Press a button or move an axis</source>
-        <translation>Натисніть кнопки чи змістіть вісь</translation>
+        <translation>Presione un botón o mueva un eje</translation>
     </message>
 </context>
 <context>
@@ -1094,180 +1162,181 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation>Вісь</translation>
-    </message>
-    <message>
-        <location filename="../../../src/axiseditdialog.ui" line="52"/>
-        <source>Presets:</source>
-        <translation>Типовий набір:</translation>
+        <translation>Ejes</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/axiseditdialog.cpp" line="639"/>
         <source>Mouse (Horizontal)</source>
-        <translation>Мишка (Горизонтально)</translation>
+        <translation>Ratón (Horizontal)</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="82"/>
         <location filename="../../../src/axiseditdialog.cpp" line="640"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Мишка (Горизонтально інвертовано)</translation>
+        <translation>Ratón (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="87"/>
         <location filename="../../../src/axiseditdialog.cpp" line="641"/>
         <source>Mouse (Vertical)</source>
-        <translation>Мишка (Вертикально)</translation>
+        <translation>Ratón (Vertical)</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="92"/>
         <location filename="../../../src/axiseditdialog.cpp" line="642"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Мишка (Вертикально інвертовано)</translation>
+        <translation>Ratón (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="97"/>
         <location filename="../../../src/axiseditdialog.cpp" line="643"/>
         <source>Arrows: Up | Down</source>
-        <translation>Стрілки: Вверх | Вниз</translation>
+        <translation>Direccionales: Arriba | Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="102"/>
         <location filename="../../../src/axiseditdialog.cpp" line="644"/>
         <source>Arrows: Left | Right</source>
-        <translation>Стрілки: Вліво | Вправо</translation>
+        <translation>Direccionales: Izquierda | Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="107"/>
         <location filename="../../../src/axiseditdialog.cpp" line="645"/>
         <source>Keys: W | S</source>
-        <translation>Клавіші: W | S</translation>
+        <translation>Teclas: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="112"/>
         <location filename="../../../src/axiseditdialog.cpp" line="646"/>
         <source>Keys: A | D</source>
-        <translation>Клавіші: A | D</translation>
+        <translation>Teclas: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="117"/>
         <location filename="../../../src/axiseditdialog.cpp" line="647"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation>NumPad: KP_8 | KP_2</translation>
+        <translation>Teclado Num: 8 | 2</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="122"/>
         <location filename="../../../src/axiseditdialog.cpp" line="648"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation>NumPad: KP_4 | KP_6</translation>
+        <translation>Teclado Num: 4 | 6</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="127"/>
         <location filename="../../../src/axiseditdialog.cpp" line="649"/>
         <location filename="../../../src/axiseditdialog.cpp" line="660"/>
         <source>None</source>
-        <translation>Відсутній</translation>
+        <translation>Nada</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="182"/>
         <location filename="../../../src/axiseditdialog.ui" line="295"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer el valor a utilizar como límite para un eje. Útil para una
+palancas analógicas desgastadas.</translation>
     </message>
     <message>
-        <location filename="../../../src/axiseditdialog.ui" line="202"/>
-        <source>Dead Zone:</source>
-        <translation>Сліпа зона:</translation>
+        <location filename="../../../src/axiseditdialog.ui" line="359"/>
+        <source>Negative Half Throttle</source>
+        <translation>Mitad de Acelerador Negativo</translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="379"/>
+        <source>Positive Half Throttle</source>
+        <translation>Mitad de Acelerador Positivo</translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="475"/>
+        <source>Name:</source>
+        <translation>Nombre:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="485"/>
+        <source>Specify the name of an axis.</source>
+        <translation>Especificar un nombre para un eje.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="494"/>
+        <source>Mouse Settings</source>
+        <translation>Configuraciones de Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="209"/>
         <location filename="../../../src/axiseditdialog.ui" line="273"/>
         <source>Set the value of the dead zone for an axis.</source>
-        <translation>Встановіть значення сліпої зони для вісі.</translation>
+        <translation>Establecer el valor de la zona muerta para un eje.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="52"/>
+        <source>Presets:</source>
+        <translation>Presets:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/axiseditdialog.ui" line="202"/>
+        <source>Dead Zone:</source>
+        <translation>Zona Muerta:</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="327"/>
         <source>Max Zone:</source>
-        <translation>Максимальна зона:</translation>
+        <translation>Zona Maxima:</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="338"/>
         <location filename="../../../src/axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
-        <translation>[НЕМАЄ КНОПКИ]</translation>
+        <translation>[SIN TECLA]</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="345"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation>Параметри тяги визначають, як програма має реагувати 
-на утримання та натискання вісі.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/axiseditdialog.ui" line="359"/>
-        <source>Negative Half Throttle</source>
-        <translation>Зворотня напівтяга</translation>
+        <translation>Ajuste del acelerador la que determina el comportamiento de la forma de
+interpretar un eje de retención o liberación.</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="364"/>
         <source>Negative Throttle</source>
-        <translation>Зворотня тяга</translation>
+        <translation>Acelerador Negativo</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="369"/>
         <source>Normal</source>
-        <translation>Звичайний</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="374"/>
         <source>Positive Throttle</source>
-        <translation>Пряма тяга</translation>
-    </message>
-    <message>
-        <location filename="../../../src/axiseditdialog.ui" line="379"/>
-        <source>Positive Half Throttle</source>
-        <translation>Пряма напівтяга</translation>
+        <translation>Acelerador Positivo</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.ui" line="429"/>
         <source>Current Value:</source>
-        <translation>Поточне значення:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/axiseditdialog.ui" line="475"/>
-        <source>Name:</source>
-        <translation>Ім&apos;я:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/axiseditdialog.ui" line="485"/>
-        <source>Specify the name of an axis.</source>
-        <translation>Назначте ім&apos;я для вісі.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/axiseditdialog.ui" line="494"/>
-        <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Valor Actual:</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="608"/>
         <source>Set</source>
-        <translation>Набір</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="622"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="658"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Botón Izquierdo del Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/axiseditdialog.cpp" line="659"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Botón Derecho del Ratón</translation>
     </message>
 </context>
 <context>
@@ -1275,37 +1344,41 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation>Dialogo</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="44"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation>Аби зробити нове призначення, натисніть клавішу на клавіатурі, чи клацніть по кнопці розташованій на вкладках «Клавіатура» чи «Мишка»</translation>
+        <translation>Para realizar una nueva asignación, pulse cualquier tecla del teclado o haga clic en un botón en el teclado o en la pestaña ratón</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="70"/>
         <source>Placeholder</source>
-        <translation>Заповнювач</translation>
-    </message>
-    <message>
-        <location filename="../../../src/buttoneditdialog.ui" line="96"/>
-        <source>Enables a key press or release to only occur when a controller button is pressed.</source>
-        <translation>Дозволяє виконувати дію тільки при натисканні чи відпусканні клавіші.</translation>
+        <translation>marcador de posición</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="99"/>
         <source>Toggle</source>
-        <translation>Перемикач</translation>
+        <translation>Alternar</translation>
+    </message>
+    <message>
+        <location filename="../../../src/buttoneditdialog.ui" line="96"/>
+        <source>Enables a key press or release to only occur when a controller button is pressed.</source>
+        <translation>Habilita la pulsación de una tecla o la liberación que sólo ocurren cuando se pulsa un botón del mando.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="124"/>
         <source>Enables rapid key presses and releases. Turbo controller.</source>
-        <translation>Дозволити прискорене натискання клавіш. Турбо контролер.</translation>
+        <translation>Permite a las pulsaciones de teclas rápidas y liberaciones. Controlador Turbo.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation>Турбо</translation>
+        <translation>Turbo</translation>
+    </message>
+    <message>
+        <source>Current:</source>
+        <translation type="vanished">Presente:</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="160"/>
@@ -1313,47 +1386,44 @@ interpret an axis hold or release.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Current:</source>
-        <translation type="vanished">Поточний:</translation>
-    </message>
-    <message>
         <location filename="../../../src/buttoneditdialog.ui" line="167"/>
         <source>Slots</source>
-        <translation>Слоти</translation>
+        <translation>Ranuras</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="197"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished">Ім&apos;я:</translation>
+        <translation>No&amp;mbre:</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="207"/>
         <source>Specify the name of a button.</source>
-        <translation>Назначте ім&apos;я для кнопки.</translation>
+        <translation>Especifique el nombre de un botón.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="224"/>
         <source>Action:</source>
-        <translation>Дія:</translation>
+        <translation>Acción:</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="234"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar la acción que se llevará a cabo en juego, mientras
+se está utilizando este botón.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.ui" line="261"/>
         <source>Advanced</source>
-        <translation>Розширені параметри</translation>
+        <translation>Avanzado</translation>
     </message>
     <message>
         <source>Set</source>
-        <translation type="vanished">Набір</translation>
+        <translation type="vanished">Set</translation>
     </message>
     <message>
         <source>Set %1</source>
-        <translation type="vanished">Набір %1</translation>
+        <translation type="vanished">Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="62"/>
@@ -1437,13 +1507,13 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/calibration.ui" line="206"/>
         <source>Cancel</source>
-        <translation type="unfinished">Скасувати</translation>
+        <translation type="unfinished">Cancelar</translation>
     </message>
     <message>
         <location filename="../../../src/calibration.ui" line="213"/>
         <location filename="../../../src/calibration.cpp" line="460"/>
         <source>Save</source>
-        <translation type="unfinished">Зберегти</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/calibration.cpp" line="32"/>
@@ -1594,7 +1664,7 @@ deadzone Y: %1</source>
         <location filename="../../../src/calibration.cpp" line="760"/>
         <location filename="../../../src/calibration.cpp" line="761"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Вісь %1</translation>
+        <translation type="unfinished">Ejes %1</translation>
     </message>
 </context>
 <context>
@@ -1612,7 +1682,7 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Clase:</translation>
     </message>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="55"/>
@@ -1624,12 +1694,12 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titulo:</translation>
     </message>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Camino:</translation>
     </message>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="105"/>
@@ -1639,17 +1709,17 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="120"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Clase</translation>
     </message>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="127"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titulo</translation>
     </message>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="136"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Camino</translation>
     </message>
     <message>
         <location filename="../../../src/capturedwindowinfodialog.ui" line="147"/>
@@ -1666,57 +1736,23 @@ deadzone Y: %1</source>
     <name>CommandLineUtility</name>
     <message>
         <source>Profile location %1 is not an XML file.</source>
-        <translation type="vanished">Профіль %1 не є XML файлом.</translation>
+        <translation type="vanished">Localización de Perfil %1 no es un archivo XML válido.</translation>
     </message>
     <message>
         <source>Profile location %1 does not exist.</source>
-        <translation type="vanished">Профіль %1 не існує.</translation>
+        <translation type="vanished">Localización de Perfil %1 No existe.</translation>
     </message>
     <message>
-        <source>Controller identifier is not a valid value.</source>
-        <translation type="vanished">Контролер має хибне значення ідентифікатора.</translation>
+        <source>An invalid set number &apos;%1&apos; was specified.</source>
+        <translation type="vanished">Un numero de Set inválido &apos;%1&apos; fué especificado.</translation>
     </message>
     <message>
-        <source>No set number was specified.</source>
-        <translation type="vanished">Не вказаний набір значень.</translation>
-    </message>
-    <message>
-        <source>No controller was specified.</source>
-        <translation type="vanished">Жодного контролеру не було вказано.</translation>
+        <source>Controller identifier &apos;%s&apos;&apos; is not a valid value.</source>
+        <translation type="vanished">Controlador idendificado &apos;%s&apos;&apos; no es un valor válido (valga la redundancia).</translation>
     </message>
     <message>
         <source>No display string was specified.</source>
-        <translation type="vanished">Жодного рядка для показу не було вказано.</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="vanished">Параметри</translation>
-    </message>
-    <message>
-        <source>Print help text.</source>
-        <translation type="vanished">Вивести довідку.</translation>
-    </message>
-    <message>
-        <source>Print version information.</source>
-        <translation type="vanished">Вивести версію програми.</translation>
-    </message>
-    <message>
-        <source>Launch program in system tray only.</source>
-        <translation type="vanished">Запустити програму згорнутою у системний лоток.</translation>
-    </message>
-    <message>
-        <source>Launch program with the tray menu disabled.</source>
-        <translation type="vanished">Запустити програму із заблокованим меню в лотку.</translation>
-    </message>
-    <message>
-        <source>Launch program without the main window
-                               displayed.</source>
-        <translation type="vanished">Запустити програму без показу
-             головного вікна.</translation>
-    </message>
-    <message>
-        <source>Launch program as a daemon.</source>
-        <translation type="vanished">Запустити програму в режимі демона.</translation>
+        <translation type="vanished">Ninguna cadena de exibición fué especificado.</translation>
     </message>
 </context>
 <context>
@@ -1724,67 +1760,67 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="56"/>
         <source>Mouse (Normal)</source>
-        <translation>Мишка (стандарт)</translation>
+        <translation>Ratón (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="57"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Мишка (Горизонтально інвертовано)</translation>
+        <translation>Ratón (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Мишка (Вертикально інвертовано)</translation>
+        <translation>Ratón (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="59"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation>Мишка (Інвертовано гор.+верт.)</translation>
+        <translation>Ratón (Horizontal+Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="60"/>
         <source>Arrows</source>
-        <translation>Стрілки</translation>
+        <translation>Direccionales</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="61"/>
         <source>Keys: W | A | S | D</source>
-        <translation>Клавіші: W | A | S | D</translation>
+        <translation>Teclas: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="62"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation>Teclado Num</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="63"/>
         <source>None</source>
-        <translation>Відсутній</translation>
+        <translation>Nada</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="69"/>
         <source>Standard</source>
-        <translation>Стандарт</translation>
+        <translation>Estándar</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="70"/>
         <source>Eight Way</source>
-        <translation>Вісім сторін</translation>
+        <translation>Ocho Vías</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="71"/>
         <source>4 Way Cardinal</source>
-        <translation>4 основні сторони</translation>
+        <translation>4 Vias Cardinal</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="72"/>
         <source>4 Way Diagonal</source>
-        <translation>4 діагональні сторони</translation>
+        <translation>4 Vias Diagonal</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="76"/>
         <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Configuracion de Ratón</translation>
     </message>
 </context>
 <context>
@@ -1792,57 +1828,103 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation>Dialogo</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="27"/>
         <source>Presets:</source>
-        <translation>Типовий набір:</translation>
+        <translation>Presets:</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="46"/>
         <source>Mouse (Normal)</source>
-        <translation>Мишка (стандарт)</translation>
+        <translation>Ratón (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="51"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Мишка (Горизонтально інвертовано)</translation>
+        <translation>Ratón (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="56"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Мишка (Вертикально інвертовано)</translation>
+        <translation>Ratón (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="61"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation>Мишка (Інвертовано гор.+верт.)</translation>
+        <translation>Ratón (Horizontal+Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="66"/>
         <source>Arrows</source>
-        <translation>Стрілки</translation>
+        <translation>Direccionales</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="71"/>
         <source>Keys: W | A | S | D</source>
-        <translation>Клавіші: W | A | S | D</translation>
+        <translation>Teclas: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation>Teclado Num</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="81"/>
         <source>None</source>
-        <translation>Відсутній</translation>
+        <translation>Nada</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation>Режим DPad:</translation>
+        <translation>Modo Dpad:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="255"/>
+        <source>&amp;Name:</source>
+        <translation>&amp;Nombre:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="131"/>
+        <source>4 Way Cardinal</source>
+        <translation>4 Vias Cardinal</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="136"/>
+        <source>4 Way Diagonal</source>
+        <translation>4 Vias Diagonal</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="166"/>
+        <source>DPad Delay:</source>
+        <translation>Retraso de Dpad:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="173"/>
+        <location filename="../../../src/dpadeditdialog.ui" line="207"/>
+        <source>Time lapsed before a direction change is taken into effect.</source>
+        <translation>Tiempo transcurrido antes de un cambio de dirección se tenga en efecto.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="213"/>
+        <source> s</source>
+        <translation>s</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="265"/>
+        <source>Specify the name of a dpad.</source>
+        <translation>Especificar un nombre para Dpad.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="274"/>
+        <source>Mouse Settings</source>
+        <translation>Configuracion de Ratón</translation>
+    </message>
+    <message>
+        <location filename="../../../src/dpadeditdialog.ui" line="121"/>
+        <source>Standard</source>
+        <translation>Estándar</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="106"/>
@@ -1858,68 +1940,33 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="255"/>
-        <source>&amp;Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="121"/>
-        <source>Standard</source>
-        <translation>Стандарт</translation>
+        <translation>Estándar: Dpad de 8 regiones con dos botones de dirección activa
+cuando el dpad está en una región diagonal.
+
+Ocho manera: Dpad de 8 regiones con cada dirección que tiene su
+botón dedicado propio. Sólo un botón está siempre activo en
+en el momento. Útil para los juegos rougelike.
+
+4 Way cardenal: Dpad de 4 regiones con las regiones correspondientes a
+los puntos cardinales de la DPAD. Útil para los menús.
+
+4 Way Diagonal: Dpad de 4 regiones con cada región que corresponde
+a una zona de diagonal.</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.ui" line="126"/>
         <source>Eight Way</source>
-        <translation>Вісім сторін</translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="131"/>
-        <source>4 Way Cardinal</source>
-        <translation>4 основні сторони</translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="136"/>
-        <source>4 Way Diagonal</source>
-        <translation>4 діагональні сторони</translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="166"/>
-        <source>DPad Delay:</source>
-        <translation>Затримка DPad&apos;а:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="173"/>
-        <location filename="../../../src/dpadeditdialog.ui" line="207"/>
-        <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation>Час затримки, через який зміна напрямку набуде чинності.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="213"/>
-        <source> s</source>
-        <translation> с</translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="265"/>
-        <source>Specify the name of a dpad.</source>
-        <translation>Назначте ім&apos;я для DPad.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/dpadeditdialog.ui" line="274"/>
-        <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Ocho Vías</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.cpp" line="425"/>
         <source>Set</source>
-        <translation>Набір</translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="../../../src/dpadeditdialog.cpp" line="433"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -1927,27 +1974,27 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.ui" line="14"/>
         <source>Default Profile</source>
-        <translation>Типовий профіль</translation>
+        <translation>Perfil por Defecto</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.ui" line="23"/>
         <source>Profile:</source>
-        <translation>Профіль:</translation>
+        <translation>Perfil:</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.ui" line="38"/>
         <source>Browse</source>
-        <translation>Оглянути</translation>
+        <translation>Navegar</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.cpp" line="66"/>
         <source>Open Config</source>
-        <translation>Відкрити конфігурацію</translation>
+        <translation>Abrir Config</translation>
     </message>
     <message>
         <location filename="../../../src/editalldefaultautoprofiledialog.cpp" line="101"/>
         <source>Profile file path is invalid.</source>
-        <translation>Шлях до профілю некоректний.</translation>
+        <translation>La ruta de archivo de perfil es invalido.</translation>
     </message>
 </context>
 <context>
@@ -1955,29 +2002,29 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="20"/>
         <source>Extra Profile Settings</source>
-        <translation>Розширені параметри профілю</translation>
+        <translation>Configuraciones Extra de Perfil</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="45"/>
         <source>Key Press Time:</source>
-        <translation>Час натиску клавіші:</translation>
+        <translation>Tiempo de presionado de Tecla:</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="70"/>
         <source>0.00 ms</source>
-        <translation>0.00 мс</translation>
+        <translation>0.00 ms</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.ui" line="84"/>
         <source>Profile Name:</source>
-        <translation>Ім&apos;я профілю:</translation>
+        <translation>Nombre del Perfil:</translation>
     </message>
     <message>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="37"/>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="43"/>
         <location filename="../../../src/extraprofilesettingsdialog.cpp" line="66"/>
         <source>s</source>
-        <translation>с</translation>
+        <translation>s</translation>
     </message>
 </context>
 <context>
@@ -1985,7 +2032,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="62"/>
         <source>Game Controller</source>
-        <translation>Ігровий контролер</translation>
+        <translation>Controlador de juego</translation>
     </message>
 </context>
 <context>
@@ -2003,127 +2050,127 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation>Відображення ігрового контролеру</translation>
+        <translation type="unfinished">Mapeo de Controles de Juego</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="36"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicro will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicroX makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicroX will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation>A</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation>B</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation>X</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation>Y</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation>Назад</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation>Guide</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation>Ліве плече</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation>Праве плече</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation>Клік лівого стіку</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation>Клік правого стіку</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation>Лівий стік X</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation>Лівий стік Y</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="202"/>
         <source>Right Stick X</source>
-        <translation>Правий стік X</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="207"/>
         <source>Right Stick Y</source>
-        <translation>Правий стік Y</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation>Лівий триґер</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation>Правий триґер</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation>DPad Верх</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation>DPad Ліво</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation>DPad Низ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation>DPad Право</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="242"/>
         <source>Mapping</source>
-        <translation>Відображення</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="256"/>
         <source>SDL 2 Game Controller Mapping String</source>
-        <translation>Рядок відображення контролеру від SDL 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="307"/>
@@ -2173,19 +2220,21 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.cpp" line="145"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation>Відображення ігрового контролеру (%1) (#%2)</translation>
+        <translation>Mapeo de Controles de Juego (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.cpp" line="484"/>
         <source>Discard Controller Mapping?</source>
-        <translation>Скинути відображення контролеру?</translation>
+        <translation>¿Descartar Mapeo de Controlador?</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.cpp" line="485"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Descartar Mapeo para este controlador?
+
+Si lo descarta, el controlador podrá revertirse a un mando una vez que se actualicen todos los mandos.</translation>
     </message>
 </context>
 <context>
@@ -2193,47 +2242,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="85"/>
         <source>Back</source>
-        <translation>Назад</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="86"/>
         <source>Guide</source>
-        <translation>Guide</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="87"/>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="88"/>
         <source>LS Click</source>
-        <translation>Клік ЛС</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="89"/>
         <source>RS Click</source>
-        <translation>Клік ПС</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="90"/>
         <source>L Shoulder</source>
-        <translation>Л плече</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="91"/>
         <source>R Shoulder</source>
-        <translation>П плече</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="94"/>
         <source>L Trigger</source>
-        <translation>Л триґер</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="95"/>
         <source>R Trigger</source>
-        <translation>П триґер</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2243,7 +2292,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="75"/>
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="80"/>
         <source>Trigger</source>
-        <translation>Триґер</translation>
+        <translation>Gatillo</translation>
     </message>
 </context>
 <context>
@@ -2253,32 +2302,32 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joyaxis.cpp" line="1214"/>
         <location filename="../../../src/joyaxis.cpp" line="1221"/>
         <source>Axis</source>
-        <translation>Вісь</translation>
+        <translation>Ejes</translation>
     </message>
 </context>
 <context>
     <name>JoyAxisButton</name>
     <message>
-        <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="53"/>
-        <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="62"/>
-        <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="88"/>
-        <source>Button</source>
-        <translation>Кнопка</translation>
-    </message>
-    <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="75"/>
         <source>Negative</source>
-        <translation>Зворотній</translation>
+        <translation>Negativo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="79"/>
         <source>Positive</source>
-        <translation>Прямий</translation>
+        <translation>Positivo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="83"/>
         <source>Unknown</source>
-        <translation>Невідомо</translation>
+        <translation>Desconocido</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="53"/>
+        <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="62"/>
+        <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="88"/>
+        <source>Button</source>
+        <translation>Botón</translation>
     </message>
 </context>
 <context>
@@ -2286,74 +2335,74 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="70"/>
         <source>Mouse (Horizontal)</source>
-        <translation>Мишка (Горизонтально)</translation>
+        <translation>Ratón (Horizontal)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="82"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Мишка (Горизонтально інвертовано)</translation>
+        <translation>Ratón (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="94"/>
         <source>Mouse (Vertical)</source>
-        <translation>Мишка (Вертикально)</translation>
+        <translation>Ratón (Vertical)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="106"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Мишка (Вертикально інвертовано)</translation>
+        <translation>Ratón (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="118"/>
         <source>Arrows: Up | Down</source>
-        <translation>Стрілки: Вверх | Вниз</translation>
+        <translation>Direccionales: Arriba | Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="130"/>
         <source>Arrows: Left | Right</source>
-        <translation>Стрілки: Вліво | Вправо</translation>
+        <translation>Direccionales: Izquierda | Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="142"/>
         <source>Keys: W | S</source>
-        <translation>Клавіші: W | S</translation>
+        <translation>Teclas: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="154"/>
         <source>Keys: A | D</source>
-        <translation>Клавіші: A | D</translation>
+        <translation>Teclas: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="166"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation>NumPad: KP_8 | KP_2</translation>
+        <translation>Teclado Num: 8 | 2</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="178"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation>NumPad: KP_4 | KP_6</translation>
+        <translation>Teclado Num: 4 | 6</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="189"/>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="411"/>
         <source>None</source>
-        <translation>Відсутній</translation>
+        <translation>Nada</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="202"/>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="424"/>
         <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Configuracion de Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="387"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Botón Izquierdo del Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="399"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Botón Derecho del Ratón</translation>
     </message>
 </context>
 <context>
@@ -2361,34 +2410,34 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybutton.cpp" line="264"/>
         <source>Processing turbo for #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesando turbo para #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="270"/>
         <source>Finishing turbo for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Finalizando turbo para botón #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="288"/>
         <source>Processing press for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesando de presionado para botón #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="299"/>
         <source>Processing release for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesando de liberacion de botón #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="326"/>
         <source>Distance change for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Distancia de cambio para botón #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="2192"/>
         <location filename="../../../src/joybutton.cpp" line="2199"/>
         <location filename="../../../src/joybutton.cpp" line="2205"/>
         <source>Button</source>
-        <translation>Кнопка</translation>
+        <translation>Botón</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="2246"/>
@@ -2396,22 +2445,22 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybutton.cpp" line="2550"/>
         <location filename="../../../src/joybutton.cpp" line="5180"/>
         <source>[NO KEY]</source>
-        <translation>[НЕМАЄ КНОПКИ]</translation>
+        <translation>[SIN TECLA]</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="2307"/>
         <source>[Set %1 1W]</source>
-        <translation>[Набір %1 1W]</translation>
+        <translation>[Set %1 1W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="2312"/>
         <source>[Set %1 2W]</source>
-        <translation>[Набір %1 2W]</translation>
+        <translation>[Set %1 2W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="2318"/>
         <source>[Set %1 WH]</source>
-        <translation>[Набір %1 WH]</translation>
+        <translation>[Set %1 WH]</translation>
     </message>
 </context>
 <context>
@@ -2419,47 +2468,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="47"/>
         <source>Toggle</source>
-        <translation>Перемкнути</translation>
+        <translation>Alternar</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="52"/>
         <source>Turbo</source>
-        <translation>Турбо</translation>
+        <translation>Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="59"/>
         <source>Clear</source>
-        <translation>Очистити</translation>
+        <translation>Limpiar</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="65"/>
         <source>Set Select</source>
-        <translation>Встановити вибір</translation>
+        <translation>Seleccionar Set</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="66"/>
         <source>Disabled</source>
-        <translation>Вимкнено</translation>
+        <translation>Inhabilitado</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="79"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="90"/>
         <source>Set %1 1W</source>
-        <translation>Набір %1 1W</translation>
+        <translation>Set %1 1W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="91"/>
         <source>Set %1 2W</source>
-        <translation>Набір %1 2W</translation>
+        <translation>Set %1 2W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="92"/>
         <source>Set %1 WH</source>
-        <translation>Набір %1 WH</translation>
+        <translation>Set %1 WH</translation>
     </message>
 </context>
 <context>
@@ -2468,117 +2517,117 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttonslot.cpp" line="178"/>
         <location filename="../../../src/joybuttonslot.cpp" line="558"/>
         <source>Mouse</source>
-        <translation>Мишка</translation>
+        <translation>Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="183"/>
         <source>Up</source>
-        <translation>Вверх</translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="187"/>
         <source>Down</source>
-        <translation>Вниз</translation>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="191"/>
         <source>Left</source>
-        <translation>Вліво</translation>
+        <translation>Izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="195"/>
         <source>Right</source>
-        <translation>Вправо</translation>
+        <translation>Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="563"/>
         <source>LB</source>
-        <translation>ЛК</translation>
+        <translation>BI</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="566"/>
         <source>MB</source>
-        <translation>СК</translation>
+        <translation>BM</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="569"/>
         <source>RB</source>
-        <translation>ПК</translation>
+        <translation>BD</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="573"/>
         <source>B4</source>
-        <translation>К4</translation>
+        <translation>B4</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="576"/>
         <source>B5</source>
-        <translation>К5</translation>
+        <translation>B5</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="597"/>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation>Pausa</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="614"/>
         <source>Hold</source>
-        <translation>Утримання</translation>
+        <translation>Mantener</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="627"/>
         <source>Cycle</source>
-        <translation>Цикл</translation>
+        <translation>Ciclo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="632"/>
         <source>Distance</source>
-        <translation>Дистанція</translation>
+        <translation>Distancia</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="644"/>
         <source>Release</source>
-        <translation>Віджати</translation>
+        <translation>Soltar</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="658"/>
         <source>Mouse Mod</source>
-        <translation>Мод. мишки</translation>
+        <translation>Raton Mod</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="669"/>
         <source>Press Time</source>
-        <translation>Час натиску</translation>
+        <translation>Tiempo de presionado</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="687"/>
         <source>Delay</source>
-        <translation>Затримка</translation>
+        <translation>Retraso</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="705"/>
         <source>Load %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="713"/>
         <source>Set Change %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="727"/>
         <source>[Text] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[Texto] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="741"/>
         <source>[Exec] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[Ejec] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="749"/>
         <source>[NO KEY]</source>
-        <translation>[НЕМАЄ КНОПКИ]</translation>
+        <translation>[SIN TECLA]</translation>
     </message>
 </context>
 <context>
@@ -2588,7 +2637,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joycontrolstick.cpp" line="910"/>
         <location filename="../../../src/joycontrolstick.cpp" line="916"/>
         <source>Stick</source>
-        <translation>Стік</translation>
+        <translation>Palanca</translation>
     </message>
 </context>
 <context>
@@ -2598,35 +2647,35 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="64"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="88"/>
         <source>Up</source>
-        <translation>Верх</translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="72"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="76"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="80"/>
         <source>Down</source>
-        <translation>Низ</translation>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="80"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="84"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="88"/>
         <source>Left</source>
-        <translation>Ліво</translation>
+        <translation>Izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="64"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="68"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="72"/>
         <source>Right</source>
-        <translation>Право</translation>
+        <translation>Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="109"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="118"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="125"/>
         <source>Button</source>
-        <translation>Кнопка</translation>
+        <translation>Botón</translation>
     </message>
 </context>
 <context>
@@ -2634,67 +2683,67 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="53"/>
         <source>Mouse (Normal)</source>
-        <translation>Мишка (Стандарт)</translation>
+        <translation>Ratón (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="64"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Мишка (Горизонтально інвертовано)</translation>
+        <translation>Ratón (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="75"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Мишка (Вертикально інвертовано)</translation>
+        <translation>Ratón (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="86"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation>Мишка (Інвертовано гор.+верт.)</translation>
+        <translation>Ratón (Horizontal+Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="97"/>
         <source>Arrows</source>
-        <translation>Стрілки</translation>
+        <translation>Direccionales</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="108"/>
         <source>Keys: W | A | S | D</source>
-        <translation>Клавіші: W | A | S | D</translation>
+        <translation>Teclas: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="119"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation>Teclado Num</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="130"/>
         <source>None</source>
-        <translation>Відсутній</translation>
+        <translation>Nada</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="145"/>
         <source>Standard</source>
-        <translation>Стандарт</translation>
+        <translation>Estándar</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="155"/>
         <source>Eight Way</source>
-        <translation>Вісім сторін</translation>
+        <translation>Ocho Vías</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="166"/>
         <source>4 Way Cardinal</source>
-        <translation>4 основні сторони</translation>
+        <translation>4 Vias Cardinal</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="177"/>
         <source>4 Way Diagonal</source>
-        <translation>4 діагональні сторони</translation>
+        <translation>4 Vias Diagonal</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="190"/>
         <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Configuracion de Ratón</translation>
     </message>
 </context>
 <context>
@@ -2702,12 +2751,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation>Діалог</translation>
+        <translation>Dialogo</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="112"/>
         <source>X:</source>
-        <translation>X:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="125"/>
@@ -2716,77 +2765,67 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="215"/>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="245"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="142"/>
         <source>Y:</source>
-        <translation>Y:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="172"/>
         <source>Distance:</source>
-        <translation>Дистанція:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="202"/>
-        <source>Bearing:</source>
-        <translation>Напрям:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="232"/>
-        <source>% Safe Zone:</source>
-        <translation>% Безпечна зона:</translation>
+        <translation>Distancia:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="283"/>
         <source>Presets:</source>
-        <translation>Типовий набір:</translation>
+        <translation>Presets:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="302"/>
         <source>Mouse (Normal)</source>
-        <translation>Мишка (стандарт)</translation>
+        <translation>Ratón (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="307"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Мишка (Горизонтально інвертовано)</translation>
+        <translation>Ratón (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="312"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Мишка (Вертикально інвертовано)</translation>
+        <translation>Ratón (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="317"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation>Мишка (Інвертовано гор.+верт.)</translation>
+        <translation>Ratón (Horizontal+Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="322"/>
         <source>Arrows</source>
-        <translation>Стрілки</translation>
+        <translation>Direccionales</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="327"/>
         <source>Keys: W | A | S | D</source>
-        <translation>Клавіші: W | A | S | D</translation>
+        <translation>Teclas: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="332"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation>Teclado Num</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="337"/>
         <source>None</source>
-        <translation>Відсутній</translation>
+        <translation>Nada</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="349"/>
         <source>Stick Mode:</source>
-        <translation>Режим стіка:</translation>
+        <translation>Modo Palanca:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="362"/>
@@ -2802,71 +2841,57 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="377"/>
-        <source>Standard</source>
-        <translation>Стандарт</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="382"/>
-        <source>Eight Way</source>
-        <translation>Вісім сторін</translation>
+        <translation>Estándar: Dpad de 8 regiones con dos botones de dirección activa
+cuando el dpad está en una región diagonal.
+
+Ocho manera: Dpad de 8 regiones con cada dirección que tiene su
+botón dedicado propio. Sólo un botón está siempre activo en
+en el momento. Útil para los juegos rougelike.
+
+4 Way cardenal: Dpad de 4 regiones con las regiones correspondientes a
+los puntos cardinales de la DPAD. Útil para los menús.
+
+4 Way Diagonal: Dpad de 4 regiones con cada región que corresponde
+a una zona de diagonal.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="387"/>
         <source>4 Way Cardinal</source>
-        <translation>4 основні сторони</translation>
+        <translation>4 Vias Cardinal</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="392"/>
         <source>4 Way Diagonal</source>
-        <translation>4 діагональні сторони</translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="427"/>
-        <source>Dead Zone:</source>
-        <translation>Сліпа зона:</translation>
+        <translation>4 Vias Diagonal</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="434"/>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="459"/>
         <source>Dead zone value to use for an analog stick.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="479"/>
-        <source>Max Zone:</source>
-        <translation>Максимальна зона:</translation>
+        <translation>Valores de Zona Muerta usadas para una palanca analogica.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="486"/>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="511"/>
         <source>Value when an analog stick is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/joycontrolstickeditdialog.ui" line="531"/>
-        <source>Diagonal Range:</source>
-        <translation>Діагональний діапазон:</translation>
+        <translation>Valor cuando una palanca analogica se considera que se movió al 100%.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="538"/>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="554"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished"></translation>
+        <translation>El área (en grados) que cada región ocupa.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="574"/>
         <source>Square Stick:</source>
-        <translation>Квадратність стіку:</translation>
+        <translation>Palanca cuadrada:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="581"/>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="609"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished"></translation>
+        <translation>Porcentaje para modificar las coordenadas de la palanca cuadrada para confinar valores para el ciclo</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="612"/>
@@ -2876,23 +2901,23 @@ to a diagonal zone of the stick.</source>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="635"/>
         <source>Stick Delay:</source>
-        <translation>Затримка стіка:</translation>
+        <translation>Retraso de Palanca:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="642"/>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="676"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation>Час затримки, через який зміна напрямку набуде чинності.</translation>
+        <translation>Tiempo transcurrido antes de un cambio de dirección tomado en efecto.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="682"/>
         <source> s</source>
-        <translation> с</translation>
+        <translation>s</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="705"/>
         <source>Modifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificador:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="712"/>
@@ -2906,33 +2931,68 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="719"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>Presione un Botón</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="754"/>
         <source>Na&amp;me:</source>
         <oldsource>Name:</oldsource>
-        <translation type="unfinished">Ім&apos;я:</translation>
+        <translation type="unfinished">Nombre:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="764"/>
         <source>Specify the name of an analog stick.</source>
-        <translation>Назначте ім&apos;я для аналогового стіка.</translation>
+        <translation>Especificar un nombre para una palanca analogica.</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="773"/>
         <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Configuraciones de Ratón</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="377"/>
+        <source>Standard</source>
+        <translation>Estándar</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="202"/>
+        <source>Bearing:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="232"/>
+        <source>% Safe Zone:</source>
+        <translation>% Zona Segura:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="382"/>
+        <source>Eight Way</source>
+        <translation>Ocho Vías</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="427"/>
+        <source>Dead Zone:</source>
+        <translation>Zona Muerta:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="479"/>
+        <source>Max Zone:</source>
+        <translation>Zona Maxima:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joycontrolstickeditdialog.ui" line="531"/>
+        <source>Diagonal Range:</source>
+        <translation>Rango Diagonal:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="556"/>
         <source>Set</source>
-        <translation>Набір</translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="570"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -2942,7 +3002,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="68"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificador</translation>
     </message>
 </context>
 <context>
@@ -2962,35 +3022,35 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="73"/>
         <source>Up</source>
-        <translation>Верх</translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="65"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="77"/>
         <source>Down</source>
-        <translation>Низ</translation>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="69"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="73"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="77"/>
         <source>Left</source>
-        <translation>Ліво</translation>
+        <translation>Izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="53"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="65"/>
         <source>Right</source>
-        <translation>Право</translation>
+        <translation>Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="111"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="120"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="127"/>
         <source>Button</source>
-        <translation>Кнопка</translation>
+        <translation>Botón</translation>
     </message>
 </context>
 <context>
@@ -3003,191 +3063,184 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joytabwidget.cpp" line="1107"/>
         <location filename="../../../src/joytabwidget.cpp" line="2461"/>
         <source>&lt;New&gt;</source>
-        <translation>&lt;Новий&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="94"/>
         <location filename="../../../src/joytabwidget.cpp" line="1626"/>
         <source>Remove</source>
-        <translation>Вилучити</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="96"/>
         <location filename="../../../src/joytabwidget.cpp" line="1627"/>
         <source>Remove configuration from recent list.</source>
-        <translation>Вилучити конфігурацію з переліку частого користування.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="101"/>
         <location filename="../../../src/joytabwidget.cpp" line="1629"/>
         <source>Load</source>
-        <translation>Завантажити</translation>
+        <translation type="unfinished">Cargar</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="103"/>
         <location filename="../../../src/joytabwidget.cpp" line="1630"/>
         <source>Load configuration file.</source>
-        <translation>Завантажити файл конфігурації.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="108"/>
         <location filename="../../../src/joytabwidget.cpp" line="1632"/>
         <source>Save</source>
-        <translation>Зберегти</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="110"/>
         <location filename="../../../src/joytabwidget.cpp" line="1633"/>
         <source>Save changes to configuration file.</source>
-        <translation>Зберегти зміни до файлу конфігурації.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="115"/>
         <location filename="../../../src/joytabwidget.cpp" line="1635"/>
         <source>Save As</source>
-        <translation>Зберегти як</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="117"/>
         <location filename="../../../src/joytabwidget.cpp" line="1636"/>
         <source>Save changes to a new configuration file.</source>
-        <translation>Зберегти зміни в новий файл конфігурації.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="307"/>
         <location filename="../../../src/joytabwidget.cpp" line="1638"/>
         <source>Sets</source>
-        <translation>Набори</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="309"/>
         <source>Copy from Set</source>
-        <translation>Копіювати з набору</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="310"/>
         <source>Settings</source>
-        <translation>Параметри</translation>
+        <translation type="unfinished">Configuraciones</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="318"/>
         <location filename="../../../src/joytabwidget.cpp" line="1639"/>
         <source>Set 1</source>
-        <translation>Набір 1</translation>
+        <translation type="unfinished">Set 1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="322"/>
         <location filename="../../../src/joytabwidget.cpp" line="1640"/>
         <source>Set 2</source>
-        <translation>Набір 2</translation>
+        <translation type="unfinished">Set 2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="326"/>
         <location filename="../../../src/joytabwidget.cpp" line="1641"/>
         <source>Set 3</source>
-        <translation>Набір 3</translation>
+        <translation type="unfinished">Set 3</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="330"/>
         <location filename="../../../src/joytabwidget.cpp" line="1642"/>
         <source>Set 4</source>
-        <translation>Набір 4</translation>
+        <translation type="unfinished">Set 4</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="334"/>
         <location filename="../../../src/joytabwidget.cpp" line="1643"/>
         <source>Set 5</source>
-        <translation>Набір 5</translation>
+        <translation type="unfinished">Set 5</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="338"/>
         <location filename="../../../src/joytabwidget.cpp" line="1644"/>
         <source>Set 6</source>
-        <translation>Набір 6</translation>
+        <translation type="unfinished">Set 6</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="342"/>
         <location filename="../../../src/joytabwidget.cpp" line="1645"/>
         <source>Set 7</source>
-        <translation>Набір 7</translation>
+        <translation type="unfinished">Set 7</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="346"/>
         <location filename="../../../src/joytabwidget.cpp" line="1646"/>
         <source>Set 8</source>
-        <translation>Набір 8</translation>
+        <translation type="unfinished">Set 8</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="412"/>
         <location filename="../../../src/joytabwidget.cpp" line="1652"/>
         <source>Stick/Pad Assign</source>
-        <translation>Призначення стіків/DPad</translation>
+        <translation type="unfinished">Asignación de Palanca/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="418"/>
         <location filename="../../../src/joytabwidget.cpp" line="1651"/>
         <source>Controller Mapping</source>
-        <translation>Відображення контролеру</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="425"/>
         <location filename="../../../src/joytabwidget.cpp" line="1653"/>
         <source>Quick Set</source>
-        <translation>Швидкий набір</translation>
+        <translation type="unfinished">Configuración rápida</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="433"/>
         <location filename="../../../src/joytabwidget.cpp" line="1656"/>
         <source>Names</source>
-        <translation>Імена</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="435"/>
         <location filename="../../../src/joytabwidget.cpp" line="1657"/>
         <source>Toggle button name displaying.</source>
-        <translation>Перемкнути показ команд на кнопках.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="440"/>
         <location filename="../../../src/joytabwidget.cpp" line="1659"/>
         <source>Pref</source>
-        <translation>Параметри</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="442"/>
         <location filename="../../../src/joytabwidget.cpp" line="1660"/>
         <source>Change global profile settings.</source>
-        <translation>Змінити глобальні параметри профілю.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="446"/>
         <location filename="../../../src/joytabwidget.cpp" line="1654"/>
         <location filename="../../../src/joytabwidget.cpp" line="1662"/>
         <source>Reset</source>
-        <translation>Скинути</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="448"/>
         <location filename="../../../src/joytabwidget.cpp" line="1663"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation>Відновити зміни. Перезавантажити файл конфігурації.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="511"/>
         <source>Open Config</source>
-        <translation>Відкрити конфігурацію</translation>
+        <translation type="unfinished">Abrir Config</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="511"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/joytabwidget.cpp" line="617"/>
-        <location filename="../../../src/joytabwidget.cpp" line="796"/>
-        <location filename="../../../src/joytabwidget.cpp" line="808"/>
-        <source>Save Config</source>
-        <translation>Зберегти конфігурацію</translation>
+        <translation type="unfinished">Archivos de Config (*.amgp *.xml)</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="617"/>
@@ -3202,68 +3255,74 @@ functionality to an analog stick.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/joytabwidget.cpp" line="1588"/>
-        <location filename="../../../src/joytabwidget.cpp" line="1595"/>
-        <source>Set</source>
-        <translation>Набір</translation>
-    </message>
-    <message>
         <location filename="../../../src/joytabwidget.cpp" line="1683"/>
         <location filename="../../../src/joytabwidget.cpp" line="1752"/>
         <source>Save Profile Changes?</source>
-        <translation>Зберегти зміни профілю?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="1686"/>
         <location filename="../../../src/joytabwidget.cpp" line="1756"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
-        <translation>Зміни до нового профілю не збережені. Зберегти їх до поточного профілю?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="1690"/>
         <location filename="../../../src/joytabwidget.cpp" line="1760"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
-        <translation>Зміни до профілю &quot;%1&quot; не збережені. Зберегти їх до поточного профілю?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2040"/>
         <source>Sticks</source>
-        <translation>Стіки</translation>
+        <translation type="unfinished">Palancas</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2108"/>
         <location filename="../../../src/joytabwidget.cpp" line="2159"/>
         <source>DPads</source>
-        <translation>DPad&apos;и</translation>
+        <translation type="unfinished">DPads</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2299"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
-        <translation>Жодної кнопки не назначено. Використовуйте «Швидкий набір» для
-призначення клавіш, або ж вимкніть приховування пустих кнопок.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2501"/>
         <location filename="../../../src/joytabwidget.cpp" line="2528"/>
         <source>Set %1: %2</source>
-        <translation>Набір %1: %2</translation>
+        <translation type="unfinished">Set %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2505"/>
         <location filename="../../../src/joytabwidget.cpp" line="2532"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2540"/>
         <source>Copy Set Assignments</source>
-        <translation>Скопіювати набір значень</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2541"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
-        <translation>Дійсно бажаєте скопіювати значення і властивості пристрою з %1?</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joytabwidget.cpp" line="617"/>
+        <location filename="../../../src/joytabwidget.cpp" line="796"/>
+        <location filename="../../../src/joytabwidget.cpp" line="808"/>
+        <source>Save Config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joytabwidget.cpp" line="1588"/>
+        <location filename="../../../src/joytabwidget.cpp" line="1595"/>
+        <source>Set</source>
+        <translation type="unfinished">Set</translation>
     </message>
 </context>
 <context>
@@ -3271,7 +3330,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystick.cpp" line="52"/>
         <source>Joystick</source>
-        <translation>Джойстик</translation>
+        <translation>Mando</translation>
     </message>
 </context>
 <context>
@@ -3279,17 +3338,17 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="23"/>
         <source>Properties</source>
-        <translation>Властивості</translation>
+        <translation>Propiedades</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="50"/>
         <source>Details</source>
-        <translation>Деталі</translation>
+        <translation>Detalles</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="64"/>
         <source>Name:</source>
-        <translation>Ім&apos;я:</translation>
+        <translation>Nombre:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="71"/>
@@ -3305,22 +3364,22 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="91"/>
         <source>Number:</source>
-        <translation>Кількість:</translation>
+        <translation>Numero:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="118"/>
         <source>Axes:</source>
-        <translation>Вісь:</translation>
+        <translation>Ejes:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="145"/>
         <source>Buttons:</source>
-        <translation>Кнопок:</translation>
+        <translation>Botones:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="172"/>
         <source>Hats:</source>
-        <translation>Міні джойстиків:</translation>
+        <translation>Hats:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="202"/>
@@ -3330,47 +3389,47 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="238"/>
         <source>Game Controller:</source>
-        <translation>Ігровий контролер:</translation>
+        <translation>Controlador de Juego:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="268"/>
         <source>Axes</source>
-        <translation>Вісь</translation>
+        <translation>Ejes</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="331"/>
         <source>Buttons</source>
-        <translation>Кнопки</translation>
+        <translation>Botones</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="394"/>
         <source>Hats</source>
-        <translation>Міні джойстики</translation>
+        <translation>Hats</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="52"/>
         <source>%1 (#%2) Properties</source>
-        <translation>Властивості %1 (#%2)</translation>
+        <translation>%1 (#%2) Propiedades</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="76"/>
         <source>Axis %1</source>
-        <translation>Вісь %1</translation>
+        <translation>Ejes %1</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="130"/>
         <source>Hat %1</source>
-        <translation>Міні джойстик %1</translation>
+        <translation>Hat %1</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="168"/>
         <source>No</source>
-        <translation>Ні</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.cpp" line="171"/>
         <source>Yes</source>
-        <translation>Так</translation>
+        <translation>Si</translation>
     </message>
 </context>
 <context>
@@ -3378,37 +3437,37 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="23"/>
         <source>Edit Settings</source>
-        <translation>Змінити параметри</translation>
+        <translation>Editar Configuraciones</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="62"/>
         <source>General</source>
-        <translation>Основні</translation>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="67"/>
         <source>Controller Mappings</source>
-        <translation>Відображення контролеру</translation>
+        <translation>Mapeo de controles</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="72"/>
         <source>Language</source>
-        <translation>Мова</translation>
+        <translation>Lenguaje</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="77"/>
         <source>Auto Profile</source>
-        <translation>Авто-профіль</translation>
+        <translation>Auto Perfil</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="82"/>
         <source>Mouse</source>
-        <translation type="unfinished">Мишка</translation>
+        <translation>Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="87"/>
         <source>Advanced</source>
-        <translation type="unfinished">Розширені параметри</translation>
+        <translation type="unfinished">Avanzado</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="113"/>
@@ -3418,22 +3477,22 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the default directory that the program should use in file dialogs when loading a profile or saving a new profile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Вкажіть типову теку, яку програма використовуватиме для збереження профілів.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Especificar el directorio por defecto que el programa debe utilizar en los diálogos de archivo cuando se carga un perfil o guardar un nuevo perfil.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="150"/>
         <source>Recent Profile Count:</source>
-        <translation>Кількість швидких профілів:</translation>
+        <translation>Contaje de Perfiles Recientes:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="157"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of profiles that can be placed in recent profile list. 0 will result in the program not enforcing a limit on the number of profiles displayed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Кількість профілів, які будуть показані в переліку часто уживаних. Значення 0 трактується програмою, як необмежена кількість профілів для показу.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Número de perfiles que se puede colocar en la lista de perfil reciente. 0 dará lugar a que el programa no cumplir un límite en el número de perfiles que se muestran.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="193"/>
         <source>Gamepad Poll Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taza de Sondeo de Mando:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="200"/>
@@ -3442,58 +3501,63 @@ events from gamepads. Defaults to 10 ms.
 
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
-before using antimicro unattended.</source>
-        <translation type="unfinished"></translation>
+before using antimicroX unattended.</source>
+        <translation>Cambiar la velocidad de sondeo que el programa utiliza para descubrir nuevos
+eventos de mandos. El valor predeterminado es de 10 ms.
+
+La reducción del valor de velocidad de sondeo podría causar que la aplicación
+usar más energía de la CPU así que por favor probar la configuración que utilice
+antes de usar AntimicroX desatendida.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="214"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
-        <translation>Приховувати головне вікно кнопкою закриття
-замість виходу з програми.</translation>
+        <translation>Ocultar ventana principal cuando el botón de la ventana principal es estrecha
+se hace clic en lugar de salir del programa.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="218"/>
         <source>Close To Tray</source>
-        <translation>Закривати до лотку</translation>
+        <translation>Cerrar para la bandeja del sistema</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="225"/>
-        <source>Have Windows start antimicro at system startup.</source>
-        <translation type="unfinished"></translation>
+        <source>Have Windows start antimicroX at system startup.</source>
+        <translation>Hacer que Windows inicie AntimicroX junto con el sistema.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="228"/>
         <source>Launch At Windows Startup</source>
-        <translation>Запускати разом із Windows</translation>
+        <translation>Iniciar junto con Windows</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="235"/>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
-        <translation>Виводить часто уживані профілі до всіх контролерів
-єдиним переліком в меню лотку.
-Типово використовується підменю.</translation>
+        <translation>Mostrar perfiles más recientes de todos los mandos
+como una única lista en el menú de la bandeja. predeterminados
+a la utilización de los submenús.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="240"/>
         <source>Single Profile List in Tray</source>
-        <translation>Один перелік профілів в лотку</translation>
+        <translation>Lista única de perfiles en la bandeja de sistema</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="247"/>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
-        <translation>Вказує програмі згортатись до панелі завдань.
-Зазвичай, програма згортається до системного
-лотку, якщо є можливість.</translation>
+        <translation>Hacer que el programa minimize la barra de tareas.
+Por defecto, el programa se minimiza en el sistema
+la bandeja si está disponible.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="252"/>
         <source>Minimize to Taskbar</source>
-        <translation>Згортати до панелі завдань</translation>
+        <translation>Minimizar para la barra de tareas</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="259"/>
@@ -3501,87 +3565,87 @@ tray if available.</source>
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
 to bring up the edit dialog for gamepad buttons.</source>
-        <translation>Параметр вказує програмі приховувати всі
-кнопки, якім не назначено жодного слоту.
-Використовуйте діалог «Швидкий набір» аби
-повернути діалог редагування кнопок
-ігрового контролера.</translation>
+        <translation>Esta opción hará que el programa para ocultar todos los
+botones que no tienen ranuras asignadas.
+La ventana de diálogo de configuración rápida tendrá que ser utilizado
+para que aparezca el diálogo de edición para los botones del mando.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="265"/>
         <source>Hide Empty Buttons</source>
-        <translation>Приховати пусті кнопки</translation>
+        <translation>Ocultar Botones Vacíos</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="272"/>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
-        <translation>Під час запуску програми, відкривається
-останній відомий профіль, який був відкритий
-у попередній сесії.</translation>
+        <translation>Cuando el programa esté en marcha, abrir el último
+perfil conocido que se abrió durante la
+sesión anterior.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="277"/>
         <source>Auto Load Last Opened Profile</source>
-        <translation>Автоматично завантажувати останній відкритий профіль</translation>
+        <translation>Auto Cargar el ultimo perfil abierto</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="287"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
-        <translation>Показувати лише піктограму в системному лотку
-під час першого запуску.</translation>
+        <translation>Solamente mostrar el icono en la bandeja de sistema cuando el programa inicie por primera vez.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="291"/>
         <source>Launch in Tray</source>
-        <translation>Запускати в лотку</translation>
+        <translation>Lanzar en la bandeja del sistema</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="298"/>
-        <source>Associate .amgp files with antimicro in Windows Explorer.</source>
-        <translation type="unfinished"></translation>
+        <source>Associate .amgp files with antimicroX in Windows Explorer.</source>
+        <translation>Asociar archivos .amgp con antimicroX en Windows Explorer.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="301"/>
         <source>Associate Profiles</source>
-        <translation>Прив&apos;язати профілі</translation>
+        <translation>Asociar Perfiles</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="327"/>
         <source>Key Repeat</source>
-        <translation>Повтор клавіш</translation>
+        <translation>Repetición de Tecla</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="333"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
-        <translation>Активні клавіші повторно натискатимуться
-коли цей параметр активний.</translation>
+        <translation>Las teclas activadas serán presionadas repetidamente
+cuando esta opción esté activada.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="337"/>
         <location filename="../../../src/mainsettingsdialog.ui" line="912"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="356"/>
         <source>Specifies how much time should elapse before key repeating
 begins.</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifica cuánto tiempo debe transcurrir antes de repetión de tecla
+comienza.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="421"/>
         <source>Specifies how many times key presses will be performed
 per seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifica cuántas veces se llevarán a cabo las pulsaciones de teclas
+por segundo.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="570"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicro has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicro load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntimicroX ha sido traducido a muchos idiomas diferentes por los contribuyentes. Por defecto, el programa elegirá una traducción apropiada basada en la configuración regional de su sistema. Sin embargo, puede hacer que la carga AntimicroX una traducción diferente en función del idioma que elija en la lista siguiente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="605"/>
@@ -3656,7 +3720,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1251"/>
         <source>None</source>
-        <translation type="unfinished">Відсутній</translation>
+        <translation type="unfinished">Nada</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1256"/>
@@ -3671,7 +3735,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1266"/>
         <source>Info</source>
-        <translation type="unfinished">Інформація</translation>
+        <translation type="unfinished">info</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1271"/>
@@ -3681,50 +3745,81 @@ per seconds.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1313"/>
         <source>Reset</source>
-        <translation type="unfinished">Скинути</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French</source>
+        <translation type="vanished">Francés</translation>
+    </message>
+    <message>
+        <source>Japanese</source>
+        <translation type="vanished">Japonés</translation>
+    </message>
+    <message>
+        <source>Russian</source>
+        <translation type="vanished">Ruso</translation>
+    </message>
+    <message>
+        <source>Serbian</source>
+        <translation type="vanished">Serbio</translation>
+    </message>
+    <message>
+        <source>Simplified Chinese</source>
+        <translation type="vanished">Chino Simplificado</translation>
+    </message>
+    <message>
+        <source>Ukrainian</source>
+        <translation type="vanished">Ucraniano</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="784"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Clase</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="789"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titulo</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="794"/>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Programa</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="884"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
-while antimicro is running. Disabling &quot;Enhanced Pointer Precision&quot;
-will allow mouse movement within antimicro to be more
+while antimicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
+will allow mouse movement within antimicroX to be more
 precise.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deshabilitar la configuración de Windows &quot;mejorada precisión del puntero&quot;
+mientras AntimicroX se está ejecutando. La desactivación &quot;mejorada precisión del puntero&quot;
+permitirá el movimiento del ratón dentro de AntimicroX a ser más
+preciso.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="890"/>
         <source>Disable Enhance Pointer Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar la precisión del puntero mejorado</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="900"/>
         <source>Smoothing</source>
-        <translation type="unfinished"></translation>
+        <translation>suavizado</translation>
+    </message>
+    <message>
+        <source>Histor&amp;y Size:</source>
+        <translation type="vanished">Tamaño del &amp;Historial:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="947"/>
         <source>Weight &amp;Modifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modificador de peso:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="980"/>
         <source>Refresh Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taza de Actualizacion:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="987"/>
@@ -3734,46 +3829,53 @@ editing this setting as it will cause the program to use
 more CPU power. Setting this value too low can cause
 system instability. Please test the setting before using
 it unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>La frecuencia de actualización es la cantidad de tiempo que transcurrirá
+entre los eventos del ratón. Por favor tenga cuidado cuando
+la edición de este ajuste ya que esto haría que el programa utilice
+más potencia de CPU. Un valor demasiado bajo puede causar
+inestabilidad del sistema. Por favor, probar la configuración antes de usar
+sin vigilancia.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1001"/>
         <source>Spring</source>
-        <translation type="unfinished">Пружинний</translation>
+        <translation>Spring</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1015"/>
         <source>Screen:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pantalla:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1025"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizar la pantalla especificada para el modo spring. En Linux, el
+por defecto es el uso de la pantalla principal. En Windows, el valor por defecto
+es utilizar todas las pantallas disponibles.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1059"/>
         <source>Accel Numerator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numerador de Aceleración:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1072"/>
         <location filename="../../../src/mainsettingsdialog.ui" line="1103"/>
         <location filename="../../../src/mainsettingsdialog.ui" line="1134"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1096"/>
         <source>Accel Denominator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Denominador de Aceleración:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1127"/>
         <source>Accel Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Límite de Aceleración:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1171"/>
@@ -3781,39 +3883,48 @@ is to use all available screens.</source>
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
 values used by the virtual mouse.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si los valores de aceleración para el ratón virtual han sido
+cambiados por un proceso diferente, particularmente cuando se cierra
+un juego antiguo, entonces es posible que desee restablecer la aceleración
+Los valores utilizados por el ratón virtual.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1177"/>
         <source>Reset Acceleration</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetear Aceleración</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="346"/>
         <source>Delay:</source>
-        <translation>Затримка:</translation>
+        <translation>Retraso:</translation>
+    </message>
+    <message>
+        <source>Profi&amp;le Directory:</source>
+        <translation type="vanished">Directorio de Perfi&amp;l:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="388"/>
         <source> ms</source>
-        <translation> мс</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="411"/>
         <source>Rate:</source>
-        <translation>Частота:</translation>
+        <translation>Taza:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="447"/>
         <source> times/s</source>
-        <translation> разів/с</translation>
+        <translation> tiempo/s</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="494"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
-        <translation type="unfinished"></translation>
+        <translation>A continuación se muestra una lista de las asignaciones personalizados que se han guardado. Puede usar la siguiente tabla para eliminar las asignaciones o tienen asignaciones temporalmente deshabilitados. También puede desactivar las asignaciones que se incluyen con SDL; sólo tiene que insertar una nueva fila con el GUID de la palanca de mando correspondiente y vaya desactivar.
+
+Los ajustes no tendrán efecto hasta que actualizar todos los mandos o desenchufar el mando en particular.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="519"/>
@@ -3823,101 +3934,103 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="524"/>
         <source>Mapping String</source>
-        <translation>Рядок відображення</translation>
+        <translation>Cadena de Mapeo</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="529"/>
         <source>Disable?</source>
-        <translation>Вимкнути?</translation>
+        <translation>Inhabilitar?</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="539"/>
         <location filename="../../../src/mainsettingsdialog.ui" line="861"/>
         <source>Delete</source>
-        <translation>Вилучити</translation>
+        <translation>Borrar</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="550"/>
         <source>Insert</source>
-        <translation>Вставити</translation>
+        <translation>Insertar</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="600"/>
         <location filename="../../../src/mainsettingsdialog.cpp" line="1921"/>
         <source>Default</source>
-        <translation>Типова</translation>
+        <translation>Por Defecto</translation>
     </message>
     <message>
         <source>Brazilian Portuguese</source>
-        <translation type="vanished">Brazilian Portuguese</translation>
+        <translation type="vanished">Portugués de Brasil</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="610"/>
         <source>English</source>
-        <translation>English</translation>
+        <translation>Inglés</translation>
     </message>
     <message>
         <source>German</source>
-        <translation type="vanished">German</translation>
+        <translation type="vanished">Alemán</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="677"/>
         <location filename="../../../src/mainsettingsdialog.ui" line="769"/>
         <source>Active</source>
-        <translation>Активний</translation>
+        <translation>Activo</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="702"/>
         <source>Devices:</source>
-        <translation>Пристрої:</translation>
+        <translation>Dispositivos:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="710"/>
         <location filename="../../../src/mainsettingsdialog.cpp" line="1183"/>
         <source>All</source>
-        <translation>Всі</translation>
+        <translation>Todo</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="774"/>
         <source>Device</source>
-        <translation>Пристрій</translation>
+        <translation>Dispositivo</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="779"/>
         <source>Profile</source>
-        <translation>Профіль</translation>
+        <translation>Perfil</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="799"/>
         <source>Default?</source>
-        <translation>Типовий?</translation>
+        <translation>Por Defecto?</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="833"/>
         <source>Add</source>
-        <translation>Додати</translation>
+        <translation>Agregar</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="847"/>
         <source>Edit</source>
-        <translation>Змінити</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.cpp" line="314"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>Además, los usuarios de Windows que deseen utilizar un valor bajo,pueden tambien marcarl
+&quot;Desactivar el puntero de precisión&quot; en caso de que no haya desactivado
+la opción en Windows.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.cpp" line="820"/>
         <source>Select Default Profile Directory</source>
-        <translation>Обрати типову теку профілю</translation>
+        <translation>Seleccionar el Directorio de Perfil por defecto</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.cpp" line="1569"/>
         <source>Are you sure you want to delete the profile?</source>
-        <translation>Дійсно вилучити профіль?</translation>
+        <translation>Está seguro que quiere borrar el perfil?</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.cpp" line="1985"/>
@@ -3944,19 +4057,19 @@ the option in Windows.</source>
     <name>MainWindow</name>
     <message>
         <location filename="../../../src/mainwindow.ui" line="23"/>
-        <source>antimicro</source>
-        <translation type="unfinished"></translation>
+        <source>antimicroX</source>
+        <translation>antimicroX</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="94"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
-        <translation>Не знайдено жодного джойстика.
-Будь ласка, під&apos;єднайте джойстик, і натисніть пункт «Оновити джойстики» в головному меню</translation>
+        <translation>Ningún Mando fue encontrado
+Por favor conecte un Mando y elija la opción &quot;Actualizar Mandos&quot; en el menu principal</translation>
     </message>
     <message>
         <source>If events are not seen by a game, please click here to run this application as the Adminstrator.</source>
-        <translation type="vanished">Якщо події в грі не спостерігаються, натисніть тут, аби запустити програму з правами Адміністратора.</translation>
+        <translation type="vanished">Si los eventos no son vistos por un juego, por favor haga clic aquí para ejecutar esta aplicación como administrador.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="174"/>
@@ -3966,23 +4079,23 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="200"/>
         <source>&amp;App</source>
-        <translation>Прогр&amp;ама</translation>
+        <translation>&amp;App</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="207"/>
         <source>&amp;Options</source>
-        <translation>&amp;Параметри</translation>
+        <translation>&amp;Opciones</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="219"/>
         <source>&amp;Help</source>
-        <translation>&amp;Допомога</translation>
+        <translation>A&amp;yuda</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="238"/>
         <location filename="../../../src/mainwindow.cpp" line="503"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Вихід</translation>
+        <translation>S&amp;alir</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="241"/>
@@ -3993,7 +4106,7 @@ the option in Windows.</source>
         <location filename="../../../src/mainwindow.ui" line="253"/>
         <location filename="../../../src/mainwindow.cpp" line="515"/>
         <source>&amp;Update Joysticks</source>
-        <translation>&amp;Оновити джойстики</translation>
+        <translation>Act&amp;ualizar Mandos</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="256"/>
@@ -4004,7 +4117,7 @@ the option in Windows.</source>
         <location filename="../../../src/mainwindow.ui" line="265"/>
         <location filename="../../../src/mainwindow.cpp" line="507"/>
         <source>&amp;Hide</source>
-        <translation>&amp;Згорнути</translation>
+        <translation>O&amp;cultar</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="268"/>
@@ -4014,7 +4127,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/mainwindow.ui" line="277"/>
         <source>&amp;About</source>
-        <translation>Пр&amp;о програму</translation>
+        <translation>So&amp;bre</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="280"/>
@@ -4073,36 +4186,36 @@ the option in Windows.</source>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="vanished">Про Qt</translation>
+        <translation type="vanished">Sobre Qt</translation>
     </message>
     <message>
         <source>Properties</source>
-        <translation type="vanished">Властивості</translation>
+        <translation type="vanished">Propiedades</translation>
     </message>
     <message>
         <source>Key Checker</source>
-        <translation type="vanished">Перевірка клавіш</translation>
+        <translation type="vanished">Verificador de Teclas</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="300"/>
         <source>Home Page</source>
-        <translation>Домашня сторінка</translation>
+        <translation>Home Page</translation>
     </message>
     <message>
         <source>GitHub Page</source>
-        <translation type="vanished">Сторінка на GitHub</translation>
+        <translation type="vanished">Página GitHub</translation>
     </message>
     <message>
         <source>Game Controller Mapping</source>
-        <translation type="vanished">Відображення ігрового контролеру</translation>
+        <translation type="vanished">Mapeo de Controles de Juego</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="vanished">Параметри</translation>
+        <translation type="vanished">Configuraciones</translation>
     </message>
     <message>
         <source>Stick/Pad Assign</source>
-        <translation type="vanished">Призначення стіків/DPad</translation>
+        <translation type="vanished">Asignación de Palanca/Pad</translation>
     </message>
     <message>
         <source>Wiki</source>
@@ -4111,7 +4224,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="353"/>
         <source>Could not find a proper controller identifier. Exiting.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo encontrar un identificador de controlador apropiado.Saliendo.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="397"/>
@@ -4128,12 +4241,12 @@ the option in Windows.</source>
         <location filename="../../../src/mainwindow.cpp" line="603"/>
         <location filename="../../../src/mainwindow.cpp" line="607"/>
         <source>Open File</source>
-        <translation>Відкрити файл</translation>
+        <translation>Abrir Archivo</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="511"/>
         <source>&amp;Restore</source>
-        <translation>&amp;Відновити</translation>
+        <translation>&amp;Restaurar</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1177"/>
@@ -4148,29 +4261,31 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1539"/>
         <source>Run as Administrator?</source>
-        <translation>Запустити із правами Адміністратора?</translation>
+        <translation>¿Ejecutar como Administrador?</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1540"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
-Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+Some games run as Administrator which will cause events generated by antimicroX to not be used by those games unless antimicroX is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
+        <translation>¿Estás seguro de que desea ejecutar este programa como Adminstrator?
+
+Algunos juegos se ejecutan como administrador lo que hará que los eventos generados por AntimicroX para no ser utilizado por aquellos juegos a menos AntimicroX también se ejecuta como el Adminstrator. Esto se debe a problemas de permisos causadas por las opciones de Control de cuentas de usuario (UAC) en Windows Vista y versiones posteriores.</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1565"/>
         <source>Failed to elevate program</source>
-        <translation>Не вдалося підняти права програмі</translation>
+        <translation>Fallo al elevar el programa</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1566"/>
         <source>Failed to restart this program as the Administrator</source>
-        <translation>Не вдалось перезапустити програму із правами Адміністратора</translation>
+        <translation>Fallo al reiniciar este programa como administrador</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1603"/>
         <source>Could not find controller. Exiting.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo encontrar un controlador. Saliendo.</translation>
     </message>
 </context>
 <context>
@@ -4178,12 +4293,12 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="295"/>
         <source>Mouse Settings - </source>
-        <translation>Параметри мишки - </translation>
+        <translation>Configuraciones de Ratón - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="309"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4191,12 +4306,12 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="264"/>
         <source>Mouse Settings - </source>
-        <translation>Параметри мишки - </translation>
+        <translation>Configuraciones de Ratón - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="270"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4204,12 +4319,12 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="317"/>
         <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Configuraciones de Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="331"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4217,12 +4332,12 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="309"/>
         <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Configuraciones de Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="323"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4230,12 +4345,12 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="17"/>
         <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translation>Configuracion de Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="27"/>
         <source>Mouse Mode:</source>
-        <translation>Режим мишки:</translation>
+        <translation>Modo Ratón:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="34"/>
@@ -4254,75 +4369,74 @@ axis is moved back to the dead zone.</source>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="52"/>
         <source>Cursor</source>
-        <translation>Курсор</translation>
+        <translation>Cursor</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="57"/>
         <source>Spring</source>
-        <translation>Пружинний</translation>
+        <translation type="unfinished">Spring</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="75"/>
         <source>Acceleration:</source>
-        <translation>Прискорення:</translation>
+        <translation>Aceleración:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="108"/>
         <source>Enhanced Precision</source>
-        <translation>Покращена точність</translation>
+        <translation>Puntero Mejorado</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="113"/>
         <location filename="../../../src/mousesettingsdialog.ui" line="732"/>
         <source>Linear</source>
-        <translation>Лінійне</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="118"/>
         <source>Quadratic</source>
-        <translation>Квадратичне</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="123"/>
         <source>Cubic</source>
-        <translation>Кубічне</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="128"/>
         <source>Quadratic Extreme</source>
-        <translation>Екстремально квадратичне</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="133"/>
         <source>Power Function</source>
-        <translation>По степеневій функції</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="138"/>
         <source>Easing Quadratic</source>
-        <translation>Просте квадратичне</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="143"/>
         <source>Easing Cubic</source>
-        <translation>Просте кубічне</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="175"/>
         <source>Mouse Speed Settings</source>
-        <translation>Параметри швидкості мишки</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="190"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
-        <translation>Змінювати значення гоизонтальної
-та вертикальної швидкості разом.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="194"/>
         <source>Change Together</source>
-        <translation>Змінювати разом</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="520"/>
@@ -4351,65 +4465,45 @@ Threshold:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="684"/>
-        <source>E&amp;xtra Duration:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Horizontal
 Speed:</source>
-        <translation type="vanished">Горизонтальна
-швидкість:</translation>
+        <translation type="vanished">Velocidad
+Horizontal:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="248"/>
         <location filename="../../../src/mousesettingsdialog.ui" line="296"/>
         <source>1 = 20 pps</source>
-        <translation>1 = 20 pps</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Vertical
 Speed:</source>
-        <translation type="vanished">Вертикальна
-швидкість:</translation>
+        <translation type="vanished">Velocidad
+Vertical:</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="322"/>
         <source>Wheel Hori.
 Speed:</source>
-        <translation>Коліщатко
-горизонт.:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="333"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation>Встановіть швидкість для горизонтальної прокрутки коліщатка
-миші відносно від числа симуляції кроків за секунду.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="358"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="401"/>
-        <source>1 = 1 notch(es)/s</source>
-        <translation>1 = 1 крок(ів)/с</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="374"/>
-        <source>Wheel Vert.
-Speed:</source>
-        <translation>Коліщатко
-вертикаль.:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="385"/>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation>Встановіть швидкість для вертикальної прокрутки коліщатка
-миші відносно від числа симуляції кроків за секунду.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sensitivity:</source>
-        <translation type="vanished">Чутливість:</translation>
+        <location filename="../../../src/mousesettingsdialog.ui" line="414"/>
+        <source>Sensitivit&amp;y:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="427"/>
@@ -4425,12 +4519,130 @@ faster at the low end of an axis.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="593"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="634"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="665"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="851"/>
-        <source>%</source>
-        <translation type="unfinished">%</translation>
+        <location filename="../../../src/mousesettingsdialog.ui" line="474"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="699"/>
+        <source> s</source>
+        <translation>s</translation>
+    </message>
+    <message>
+        <source>Extra Acceleration</source>
+        <translation type="vanished">Aceleración Extra</translation>
+    </message>
+    <message>
+        <source>Multiplier:</source>
+        <translation type="vanished">Multiplicador:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="557"/>
+        <source>Highest value to accelerate mouse movement by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="560"/>
+        <source>x</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="580"/>
+        <source>Start %:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="590"/>
+        <source>Acceleration begins at this percentage of the base multiplier</source>
+        <translation>La aceleración comienza en este porcentaje de la base de multiplicador</translation>
+    </message>
+    <message>
+        <source>Min
+Threshold:</source>
+        <translation type="vanished">Límite
+Mínimo:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="631"/>
+        <source>Minimum amount of axis travel required for acceleration to begin</source>
+        <translation>cantidad mínima de recorrido del eje requerido para la aceleración a comenzar</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="651"/>
+        <source>Max
+Threshold:</source>
+        <translation>Límite
+Máximo:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="662"/>
+        <source>Maximum axis travel before acceleration has reached the multiplier value</source>
+        <translation>
+El recorrido máximo del eje antes de la aceleración ha alcanzado el valor del multiplicador</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="684"/>
+        <source>E&amp;xtra Duration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="719"/>
+        <source>Curve:</source>
+        <translation>Curva:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="737"/>
+        <source>Ease Out Sine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="742"/>
+        <source>Ease Out Quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="747"/>
+        <source>Ease Out Cubic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="835"/>
+        <source>Release Radius:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="868"/>
+        <source>Specifies that the spring area will be relative to the
+mouse position set by a non-relative spring.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="872"/>
+        <source>Relative</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="895"/>
+        <source>Mouse Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="903"/>
+        <source>X:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="910"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="928"/>
+        <source>0 (0 pps)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="921"/>
+        <source>Y:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousesettingsdialog.ui" line="358"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="401"/>
+        <source>1 = 1 notch(es)/s</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="82"/>
@@ -4467,8 +4679,9 @@ Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="414"/>
-        <source>Sensitivit&amp;y:</source>
+        <location filename="../../../src/mousesettingsdialog.ui" line="374"/>
+        <source>Wheel Vert.
+Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4479,46 +4692,12 @@ after reaching the high end of an axis.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="474"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="699"/>
-        <source> s</source>
-        <translation type="unfinished"> с</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="557"/>
-        <source>Highest value to accelerate mouse movement by</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="560"/>
-        <source>x</source>
-        <translation type="unfinished">x</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="580"/>
-        <source>Start %:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="590"/>
-        <source>Acceleration begins at this percentage of the base multiplier</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="631"/>
-        <source>Minimum amount of axis travel required for acceleration to begin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="651"/>
-        <source>Max
-Threshold:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="662"/>
-        <source>Maximum axis travel before acceleration has reached the multiplier value</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../../src/mousesettingsdialog.ui" line="593"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="634"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="665"/>
+        <location filename="../../../src/mousesettingsdialog.ui" line="851"/>
+        <source>%</source>
+        <translation type="unfinished">%</translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="694"/>
@@ -4528,34 +4707,14 @@ actual time that extra acceleration will be applied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="719"/>
-        <source>Curve:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="737"/>
-        <source>Ease Out Sine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="742"/>
-        <source>Ease Out Quad</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="747"/>
-        <source>Ease Out Cubic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="767"/>
         <source>Spring Settings</source>
-        <translation>Параметри пружини</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="777"/>
         <source>Spring Width:</source>
-        <translation>Ширина пружини:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="790"/>
@@ -4567,7 +4726,7 @@ of your screen.</source>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="806"/>
         <source>Spring Height:</source>
-        <translation>Висота пружини:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/mousesettingsdialog.ui" line="819"/>
@@ -4576,51 +4735,13 @@ can move in spring mode. 0 will use the entire height
 of your screen.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="835"/>
-        <source>Release Radius:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="868"/>
-        <source>Specifies that the spring area will be relative to the
-mouse position set by a non-relative spring.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="872"/>
-        <source>Relative</source>
-        <translation>Відносний</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="895"/>
-        <source>Mouse Status</source>
-        <translation>Стан мишки</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="903"/>
-        <source>X:</source>
-        <translation>X:</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="910"/>
-        <location filename="../../../src/mousesettingsdialog.ui" line="928"/>
-        <source>0 (0 pps)</source>
-        <translation>0 (0 pps)</translation>
-    </message>
-    <message>
-        <location filename="../../../src/mousesettingsdialog.ui" line="921"/>
-        <source>Y:</source>
-        <translation>Y:</translation>
-    </message>
     <message numerus="yes">
         <location filename="../../../src/mousesettingsdialog.cpp" line="206"/>
         <location filename="../../../src/mousesettingsdialog.cpp" line="216"/>
         <source>%n notch(es)/s</source>
         <translation>
-            <numerusform>%n крок/с</numerusform>
-            <numerusform>%n кроки/с</numerusform>
-            <numerusform>%n кроків/с</numerusform>
+            <numerusform>%n notch/s</numerusform>
+            <numerusform>%n notches/s</numerusform>
         </translation>
     </message>
 </context>
@@ -4629,22 +4750,26 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="26"/>
         <source>Key Checker</source>
-        <translation>Перевірка клавіш</translation>
+        <translation>Verificador de Teclas</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicroX.&lt;/p&gt;&lt;p&gt;The antimicroX key value and the Qt key value will usually be the same. antimicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicroX&apos;s &lt;a href=&quot;https://github.com/antimicroX/antimicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Presione una tecla del teclado para ver cómo se detecta la tecla por esta aplicación. La ventana mostrará el valor de la tecla del sistema nativo, el valor original dada por Qt (si es el caso), y el valor personalizado utilizado por AntimicroX. &lt;/p&gt;&lt;p&gt; El valor de la tecla AntimicroX y el valor de tecla Qt generalmente es la misma . antimicroX intenta utilizar los valores de las claves definidas en Qt cuando sea posible. Vea la página &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; para una lista de valores definidos por Qt. Si descubre que la tecla no es compatible de forma nativa por este programa, por favor informa del problema al estilo de antimicroX &lt;a href=&quot;https://github.com/antimicroX/antimicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; para que el programa pueda editarlo para soportarlo directamente. Tal como es, se añade un prefijo personalizado para valores desconocidos por lo que todavía se pueden utilizar; el principal problema es que el perfil ya no será portátil.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="41"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicro.&lt;/p&gt;&lt;p&gt;The antimicro key value and the Qt key value will usually be the same. antimicro tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicro&apos;s &lt;a href=&quot;https://github.com/juliagoda/antimicro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicroX.&lt;/p&gt;&lt;p&gt;The antimicroX key value and the Qt key value will usually be the same. antimicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicroX&apos;s &lt;a href=&quot;https://github.com/juliagoda/antimicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="99"/>
         <source>Event Handler:</source>
-        <translation>Обробник подій:</translation>
+        <translation>Controlador de eventos:</translation>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="112"/>
         <source>Native Key Value:</source>
-        <translation>Нативне значення клавіші:</translation>
+        <translation>Valor de tecla nativo:</translation>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="119"/>
@@ -4656,36 +4781,106 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="135"/>
         <source>Qt Key Value:</source>
-        <translation>Значення клавіші Qt:</translation>
+        <translation>Valor QT de Tecla:</translation>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="158"/>
-        <source>antimicro Key Value:</source>
-        <translation type="unfinished"></translation>
+        <source>antimicroX Key Value:</source>
+        <translation>Valor AntimicroX de Tecla:</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
+        <location filename="../../../src/winextras.cpp" line="149"/>
+        <source>Super</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="150"/>
+        <source>Menu</source>
+        <translation type="unfinished">Menu</translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="151"/>
+        <source>Mute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="152"/>
+        <source>Vol+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="153"/>
+        <source>Vol-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="154"/>
+        <source>Play/Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="155"/>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="156"/>
+        <source>Pause</source>
+        <translation type="unfinished">Pausa</translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="157"/>
+        <source>Prev</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="158"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="159"/>
+        <source>Mail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="160"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="161"/>
+        <source>Media</source>
+        <translation type="unfinished">Media</translation>
+    </message>
+    <message>
+        <location filename="../../../src/winextras.cpp" line="162"/>
+        <source>Search</source>
+        <translation type="unfinished">Buscar</translation>
+    </message>
+    <message>
         <location filename="../../../src/main.cpp" line="332"/>
         <source>Daemon launched</source>
-        <translation>Демон завантажений</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="339"/>
         <source>Failed to launch daemon</source>
-        <translation>Помилка під час завантаження демону</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="349"/>
         <source>Launching daemon</source>
-        <translation>Запуск демона</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="375"/>
         <location filename="../../../src/main.cpp" line="459"/>
         <source>Display string &quot;%1&quot; is not valid.</source>
-        <translation>Виведений рядок «%1» не є вірним.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="399"/>
@@ -4695,77 +4890,77 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/main.cpp" line="420"/>
         <source>Failed to change working directory to /</source>
-        <translation>Не вдалось змінити робочу теку на /</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="820"/>
         <source>Quitting Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Saliendo del Programa</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="119"/>
         <source># of joysticks found: %1</source>
-        <translation># джойстиків знайдено: %1</translation>
+        <translation># de mandos econtrados: %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="121"/>
         <source>List Joysticks:</source>
-        <translation>Перелік джойстиків:</translation>
+        <translation>Lista de Mandos:</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="122"/>
         <source>---------------</source>
-        <translation>---------------</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="129"/>
         <source>Joystick %1:</source>
-        <translation>Джойстик %1:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="130"/>
         <source>Index:           %1</source>
-        <translation>Індекс:            %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="131"/>
         <source>GUID:            %1</source>
-        <translation>GUID:              %1</translation>
+        <translation>GUID:            %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="132"/>
         <source>Name:            %1</source>
-        <translation>Ім&apos;я:              %1</translation>
+        <translation>Nombre:            %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="134"/>
         <source>Yes</source>
-        <translation>Так</translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="134"/>
         <source>No</source>
-        <translation>Ні</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="135"/>
         <source>Game Controller: %1</source>
-        <translation>Ігровий контролер: %1</translation>
+        <translation>Controlador de Juego: %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="137"/>
         <source># of Axes:       %1</source>
-        <translation># Вісі:            %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="138"/>
         <source># of Buttons:    %1</source>
-        <translation># Кнопок:          %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="139"/>
         <source># of Hats:       %1</source>
-        <translation># Міні-падів:      %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="682"/>
@@ -4788,76 +4983,6 @@ mouse position set by a non-relative spring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="149"/>
-        <source>Super</source>
-        <translation>Super</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="150"/>
-        <source>Menu</source>
-        <translation>Меню</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="151"/>
-        <source>Mute</source>
-        <translation>Mute</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="152"/>
-        <source>Vol+</source>
-        <translation>Vol+</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="153"/>
-        <source>Vol-</source>
-        <translation>Vol-</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="154"/>
-        <source>Play/Pause</source>
-        <translation>Play/Pause</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="155"/>
-        <source>Play</source>
-        <translation>Play</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="156"/>
-        <source>Pause</source>
-        <translation>Pause</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="157"/>
-        <source>Prev</source>
-        <translation>Prev</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="158"/>
-        <source>Next</source>
-        <translation>Next</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="159"/>
-        <source>Mail</source>
-        <translation>Пошта</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="160"/>
-        <source>Home</source>
-        <translation>Home</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="161"/>
-        <source>Media</source>
-        <translation>Media</translation>
-    </message>
-    <message>
-        <location filename="../../../src/winextras.cpp" line="162"/>
-        <source>Search</source>
-        <translation>Пошук</translation>
-    </message>
-    <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="943"/>
         <source>Last button</source>
         <translation type="unfinished"></translation>
@@ -4875,44 +5000,44 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="197"/>
         <source>Profile location %1 is not an XML file.</source>
-        <translation type="unfinished">Профіль %1 не є XML файлом.</translation>
+        <translation type="unfinished">Localización de Perfil %1 no es un archivo XML válido.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="208"/>
         <source>Profile location %1 does not exist.</source>
-        <translation type="unfinished">Профіль %1 не існує.</translation>
+        <translation type="unfinished">Localización de Perfil %1 No existe.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="235"/>
         <location filename="../../../src/commandlineutility.cpp" line="276"/>
         <location filename="../../../src/commandlineutility.cpp" line="362"/>
         <source>Controller identifier is not a valid value.</source>
-        <translation type="unfinished">Контролер має хибне значення ідентифікатора.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="308"/>
         <source>An invalid set number &apos;%1&apos; was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Un numero de Set inválido &apos;%1&apos; fué especificado.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="331"/>
         <source>Controller identifier &apos;%s&apos;&apos; is not a valid value.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Controlador idendificado &apos;%s&apos;&apos; no es un valor válido (valga la redundancia).</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="337"/>
         <source>No set number was specified.</source>
-        <translation type="unfinished">Не вказаний набір значень.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="367"/>
         <source>No controller was specified.</source>
-        <translation type="unfinished">Жодного контролеру не було вказано.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="138"/>
         <source>No display string was specified.</source>
-        <translation type="unfinished">Жодного рядка для показу не було вказано.</translation>
+        <translation type="unfinished">Ninguna cadena de exibición fué especificado.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="154"/>
@@ -4928,36 +5053,6 @@ mouse position set by a non-relative spring.</source>
         <location filename="../../../src/commandlineutility.cpp" line="183"/>
         <source>No log file specified.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">Параметри</translation>
-    </message>
-    <message>
-        <source>Print help text.</source>
-        <translation type="obsolete">Вивести довідку.</translation>
-    </message>
-    <message>
-        <source>Print version information.</source>
-        <translation type="obsolete">Вивести версію програми.</translation>
-    </message>
-    <message>
-        <source>Launch program in system tray only.</source>
-        <translation type="obsolete">Запустити програму згорнутою у системний лоток.</translation>
-    </message>
-    <message>
-        <source>Launch program with the tray menu disabled.</source>
-        <translation type="obsolete">Запустити програму із заблокованим меню в лотку.</translation>
-    </message>
-    <message>
-        <source>Launch program without the main window
-                               displayed.</source>
-        <translation type="obsolete">Запустити програму без показу
-             головного вікна.</translation>
-    </message>
-    <message>
-        <source>Launch program as a daemon.</source>
-        <translation type="obsolete">Запустити програму в режимі демона.</translation>
     </message>
     <message>
         <location filename="../../../src/logger.cpp" line="417"/>
@@ -4977,7 +5072,7 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/x11extras.cpp" line="747"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished">Версія xinput має бути вище 2.0. Зміна швидкості миші не використовується.</translation>
+        <translation type="unfinished"> La versión xinput debe ser al menos 2,0. no se producirán cambios en la aceleración del ratón.</translation>
     </message>
 </context>
 <context>
@@ -4985,18 +5080,18 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/quicksetdialog.ui" line="14"/>
         <source>Quick Set</source>
-        <translation>Швидкий набір</translation>
+        <translation>Configuración rápida</translation>
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.ui" line="23"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Натисніть кнопку, чи змістіть вісь по %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;).&lt;br/&gt;З&apos;явиться діалогове вікно&lt;br/&gt;в якому зможете зробити переназначення.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Por favor, pulse un botón o mueva un eje en %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;).&lt;br/&gt;una ventana de diálogo aparecerá entonces&lt;br/&gt;permitirá crear una asignación.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/quicksetdialog.cpp" line="52"/>
         <location filename="../../../src/quicksetdialog.cpp" line="94"/>
         <source>Quick Set %1</source>
-        <translation>Швидкий набір %1</translation>
+        <translation>Configuración rápida %1</translation>
     </message>
 </context>
 <context>
@@ -5004,16 +5099,16 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/setaxisthrottledialog.ui" line="14"/>
         <source>Throttle Change</source>
-        <translation>Зміна тяги</translation>
+        <translation>Cambio del acelerador</translation>
     </message>
     <message>
         <location filename="../../../src/setaxisthrottledialog.ui" line="20"/>
         <source>The throttle setting for Axis %1 has been changed.
 
 Would you like to distribute this throttle change to all sets?</source>
-        <translation>Параметри тяги були змінені для вісі %1.
+        <translation>La posición del acelerador para el Eje %1 ha sido cambiado
 
-Застосувати ці зміни до всіх наборів?</translation>
+¿Le gustaría distribuir este cambio acelerador para todos los sets?</translation>
     </message>
 </context>
 <context>
@@ -5021,12 +5116,12 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1192"/>
         <source>Set %1: %2</source>
-        <translation>Набір %1: %2</translation>
+        <translation>Set %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1193"/>
         <source>Set %1</source>
-        <translation>Набір %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -5034,52 +5129,52 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="14"/>
         <source>Set Name Settings</source>
-        <translation>Параметри наборів</translation>
+        <translation>Config Nombre de Set</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="60"/>
         <source>Set 1</source>
-        <translation>Набір 1</translation>
+        <translation>Set 1</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="65"/>
         <source>Set 2</source>
-        <translation>Набір 2</translation>
+        <translation>Set 2</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="70"/>
         <source>Set 3</source>
-        <translation>Набір 3</translation>
+        <translation>Set 3</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="75"/>
         <source>Set 4</source>
-        <translation>Набір 4</translation>
+        <translation>Set 4</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="80"/>
         <source>Set 5</source>
-        <translation>Набір 5</translation>
+        <translation>Set 5</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="85"/>
         <source>Set 6</source>
-        <translation>Набір 6</translation>
+        <translation>Set 6</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="90"/>
         <source>Set 7</source>
-        <translation>Набір 7</translation>
+        <translation>Set 7</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="95"/>
         <source>Set 8</source>
-        <translation>Набір 8</translation>
+        <translation>Set 8</translation>
     </message>
     <message>
         <location filename="../../../src/setnamesdialog.ui" line="100"/>
         <source>Name</source>
-        <translation>Ім&apos;я</translation>
+        <translation>Nombre</translation>
     </message>
 </context>
 <context>
@@ -5087,7 +5182,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/simplekeygrabberbutton.cpp" line="231"/>
         <source>Mouse</source>
-        <translation>Мишка</translation>
+        <translation>Ratón</translation>
     </message>
 </context>
 <context>
@@ -5095,7 +5190,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/mousedialog/springmoderegionpreview.cpp" line="45"/>
         <source>Spring Mode Preview</source>
-        <translation>Перегляд пружинного режиму</translation>
+        <translation>Vista previa de modo Spring</translation>
     </message>
 </context>
 <context>
@@ -5105,21 +5200,21 @@ Would you like to distribute this throttle change to all sets?</source>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
-        <translation>Не можливо знайти прийнятний файл пристрою uinput.
-Перевірте, чи завантажений модуль uinput.
+        <translation>No se pudo encontrar un archivo de dispositivo uinput válida.
+Por favor, compruebe que tiene el módulo uinput cargado.
 lsmod | grep uinput</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="357"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
-        <translation>Неможливо відкрити uinput файл пристрою
-Перевірте, чи маєте ви права на запис до пристрою</translation>
+        <translation>No se pudo abrir archivo de dispositivo uinput
+Por favor, compruebe que tiene permiso para escribir en el dispositivo</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="544"/>
         <source>Using uinput device file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>El uso de archivos del dispositivo uinput %1</translation>
     </message>
 </context>
 <context>
@@ -5127,551 +5222,551 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="166"/>
         <source>a</source>
-        <translation>a</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="167"/>
         <source>b</source>
-        <translation>b</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="168"/>
         <source>c</source>
-        <translation>c</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="169"/>
         <source>d</source>
-        <translation>d</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="170"/>
         <source>e</source>
-        <translation>e</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="171"/>
         <source>f</source>
-        <translation>f</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="172"/>
         <source>g</source>
-        <translation>g</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="173"/>
         <source>h</source>
-        <translation>h</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="174"/>
         <source>i</source>
-        <translation>i</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="175"/>
         <source>j</source>
-        <translation>j</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="176"/>
         <source>k</source>
-        <translation>k</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="177"/>
         <source>l</source>
-        <translation>l</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="178"/>
         <source>m</source>
-        <translation>m</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="179"/>
         <source>n</source>
-        <translation>n</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="180"/>
         <source>o</source>
-        <translation>o</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="181"/>
         <source>p</source>
-        <translation>p</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="182"/>
         <source>q</source>
-        <translation>q</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="183"/>
         <source>r</source>
-        <translation>r</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="184"/>
         <source>s</source>
-        <translation>s</translation>
+        <translation type="unfinished">s</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="185"/>
         <source>t</source>
-        <translation>t</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="186"/>
         <source>u</source>
-        <translation>u</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="187"/>
         <source>v</source>
-        <translation>v</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="188"/>
         <source>w</source>
-        <translation>w</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="189"/>
         <source>x</source>
-        <translation>x</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="190"/>
         <source>y</source>
-        <translation>y</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="191"/>
         <source>z</source>
-        <translation>z</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="193"/>
         <source>Esc</source>
-        <translation>Esc</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="194"/>
         <source>F1</source>
-        <translation>F1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="195"/>
         <source>F2</source>
-        <translation>F2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="196"/>
         <source>F3</source>
-        <translation>F3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="197"/>
         <source>F4</source>
-        <translation>F4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="198"/>
         <source>F5</source>
-        <translation>F5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="199"/>
         <source>F6</source>
-        <translation>F6</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="200"/>
         <source>F7</source>
-        <translation>F7</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="201"/>
         <source>F8</source>
-        <translation>F8</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="202"/>
         <source>F9</source>
-        <translation>F9</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="203"/>
         <source>F10</source>
-        <translation>F10</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="204"/>
         <source>F11</source>
-        <translation>F11</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="205"/>
         <source>F12</source>
-        <translation>F12</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="207"/>
         <source>`</source>
-        <translation>`</translation>
+        <translation type="unfinished">`</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="208"/>
         <source>1</source>
-        <translation>1</translation>
+        <translation type="unfinished">1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="209"/>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="unfinished">2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="210"/>
         <source>3</source>
-        <translation>3</translation>
+        <translation type="unfinished">3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="211"/>
         <source>4</source>
-        <translation>4</translation>
+        <translation type="unfinished">4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="212"/>
         <source>5</source>
-        <translation>5</translation>
+        <translation type="unfinished">5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="213"/>
         <source>6</source>
-        <translation>6</translation>
+        <translation type="unfinished">6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="214"/>
         <source>7</source>
-        <translation>7</translation>
+        <translation type="unfinished">7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="215"/>
         <source>8</source>
-        <translation>8</translation>
+        <translation type="unfinished">8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="216"/>
         <source>9</source>
-        <translation>9</translation>
+        <translation type="unfinished">9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="217"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="218"/>
         <location filename="../../../src/uinputhelper.cpp" line="257"/>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="unfinished">-</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="219"/>
         <source>=</source>
-        <translation>=</translation>
+        <translation type="unfinished">=</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="220"/>
         <source>BackSpace</source>
-        <translation>BackSpace</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="221"/>
         <source>Tab</source>
-        <translation>Tab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="222"/>
         <source>[</source>
-        <translation>[</translation>
+        <translation type="unfinished">[</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="223"/>
         <source>]</source>
-        <translation>]</translation>
+        <translation type="unfinished">]</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="224"/>
         <source>\</source>
-        <translation>\</translation>
+        <translation type="unfinished">\</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="225"/>
         <source>CapsLock</source>
-        <translation>CapsLock</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="226"/>
         <source>;</source>
-        <translation>;</translation>
+        <translation type="unfinished">;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="227"/>
         <source>&apos;</source>
-        <translation>&apos;</translation>
+        <translation type="unfinished">&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="228"/>
         <source>Enter</source>
-        <translation>Enter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="229"/>
         <source>Shift_L</source>
-        <translation>Shift_Л</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="230"/>
         <source>,</source>
-        <translation>,</translation>
+        <translation type="unfinished">,</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="231"/>
         <location filename="../../../src/uinputhelper.cpp" line="274"/>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="unfinished">.</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="232"/>
         <location filename="../../../src/uinputhelper.cpp" line="255"/>
         <source>/</source>
-        <translation>/</translation>
+        <translation type="unfinished">/</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="233"/>
         <source>Ctrl_L</source>
-        <translation>Ctrl_Л</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="234"/>
         <location filename="../../../src/uinputhelper.cpp" line="275"/>
         <source>Super_L</source>
-        <translation>Super_Л</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="235"/>
         <source>Alt_L</source>
-        <translation>Alt_Л</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="236"/>
         <source>Space</source>
-        <translation>Пробіл</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="237"/>
         <source>Alt_R</source>
-        <translation>Alt_П</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="238"/>
         <source>Menu</source>
-        <translation>Меню</translation>
+        <translation type="unfinished">Menu</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="239"/>
         <source>Ctrl_R</source>
-        <translation>Ctrl_П</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="240"/>
         <source>Shift_R</source>
-        <translation>Shift_П</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="242"/>
         <source>Up</source>
-        <translation>Вверх</translation>
+        <translation type="unfinished">Arriba</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="243"/>
         <source>Left</source>
-        <translation>Вліво</translation>
+        <translation type="unfinished">Izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="244"/>
         <source>Down</source>
-        <translation>Вниз</translation>
+        <translation type="unfinished">Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="245"/>
         <source>Right</source>
-        <translation>Вправо</translation>
+        <translation type="unfinished">Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="246"/>
         <source>PrtSc</source>
-        <translation>PrtSc</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="247"/>
         <source>Ins</source>
-        <translation>Ins</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="248"/>
         <source>Del</source>
-        <translation>Del</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="249"/>
         <source>Home</source>
-        <translation>Home</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="250"/>
         <source>End</source>
-        <translation>End</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="251"/>
         <source>PgUp</source>
-        <translation>PgUp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="252"/>
         <source>PgDn</source>
-        <translation>PgDn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="254"/>
         <source>NumLock</source>
-        <translation>NumLock</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="256"/>
         <source>*</source>
-        <translation>*</translation>
+        <translation type="unfinished">*</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="258"/>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="259"/>
         <source>KP_Enter</source>
-        <translation>KP_Enter</translation>
+        <translation type="unfinished">Enter_Num</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
         <source>KP_1</source>
-        <translation>KP_1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="262"/>
         <source>KP_2</source>
-        <translation>KP_2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="263"/>
         <source>KP_3</source>
-        <translation>KP_3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="264"/>
         <source>KP_4</source>
-        <translation>KP_4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="265"/>
         <source>KP_5</source>
-        <translation>KP_5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="266"/>
         <source>KP_6</source>
-        <translation>KP_6</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="267"/>
         <source>KP_7</source>
-        <translation>KP_7</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="268"/>
         <source>KP_8</source>
-        <translation>KP_8</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="269"/>
         <source>KP_9</source>
-        <translation>KP_9</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="270"/>
         <source>KP_0</source>
-        <translation>KP_0</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="272"/>
         <source>SCLK</source>
-        <translation>SCLK</translation>
+        <translation type="unfinished">SCLK</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="273"/>
         <source>Pause</source>
-        <translation>Pause</translation>
+        <translation type="unfinished">Pausa</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="276"/>
         <source>Super_R</source>
-        <translation>Super_П</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="277"/>
         <source>Mute</source>
-        <translation>Mute</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="278"/>
         <source>VolDn</source>
-        <translation>VolDn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="279"/>
         <source>VolUp</source>
-        <translation>VolUp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="280"/>
         <source>Play</source>
-        <translation>Play</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="281"/>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="282"/>
         <source>Prev</source>
-        <translation>Prev</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="283"/>
         <source>Next</source>
-        <translation>Next</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="307"/>
         <source>[NO KEY]</source>
-        <translation>[НЕМАЄ КНОПКИ]</translation>
+        <translation>[SIN TECLA]</translation>
     </message>
 </context>
 <context>
@@ -5689,7 +5784,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>Clase:</translation>
     </message>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="55"/>
@@ -5701,12 +5796,12 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titulo:</translation>
     </message>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Camino:</translation>
     </message>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="106"/>
@@ -5716,17 +5811,17 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="121"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Clase</translation>
     </message>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="128"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titulo</translation>
     </message>
     <message>
         <location filename="../../../src/unixwindowinfodialog.ui" line="135"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Camino</translation>
     </message>
 </context>
 <context>
@@ -5744,43 +5839,43 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="149"/>
         <source>Space</source>
-        <translation>Пробіл</translation>
+        <translation>Espaciador</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="150"/>
         <source>Tab</source>
-        <translation>Tab</translation>
+        <translation>Tabulador</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="151"/>
         <source>Shift (L)</source>
-        <translation>Shift (Л)</translation>
+        <translation>Mayus (Izq)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="152"/>
         <source>Shift (R)</source>
-        <translation>Shift (П)</translation>
+        <translation>Mayus (Der)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="153"/>
         <source>Ctrl (L)</source>
-        <translation>Ctrl (Л)</translation>
+        <translation>Ctrl (Izq)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="154"/>
         <source>Ctrl (R)</source>
-        <translation>Ctrl (П)</translation>
+        <translation>Ctrl (Der)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
         <source>Alt (L)</source>
-        <translation>Alt (Л)</translation>
+        <translation>Alt (Izq)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="156"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
         <source>Alt (R)</source>
-        <translation>Alt (П)</translation>
+        <translation>Alt (Der)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="157"/>
@@ -5878,17 +5973,17 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>
         <source>PGUP</source>
-        <translation>PGUP</translation>
+        <translation>RePag</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="177"/>
         <source>DEL</source>
-        <translation>DEL</translation>
+        <translation>SUPR</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="178"/>
         <source>PGDN</source>
-        <translation>PGDN</translation>
+        <translation>AvPag</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="179"/>
@@ -5944,8 +6039,8 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="189"/>
         <source>NUM
 LK</source>
-        <translation>NUM
-LK</translation>
+        <translation>BLOCK
+NUM</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="191"/>
@@ -5961,7 +6056,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="194"/>
         <source>Enter</source>
-        <translation type="unfinished">Enter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>E
@@ -5988,32 +6083,32 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="199"/>
         <source>Super (L)</source>
-        <translation>Super (Л)</translation>
+        <translation>Super (Izq)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="200"/>
         <source>Menu</source>
-        <translation>Меню</translation>
+        <translation>Menu</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="201"/>
         <source>Up</source>
-        <translation>Вверх</translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="202"/>
         <source>Down</source>
-        <translation>Вниз</translation>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="203"/>
         <source>Left</source>
-        <translation>Вліво</translation>
+        <translation>Izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="204"/>
         <source>Right</source>
-        <translation>Вправо</translation>
+        <translation>Derecha</translation>
     </message>
 </context>
 <context>
@@ -6022,113 +6117,128 @@ R</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="78"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="105"/>
         <source>Keyboard</source>
-        <translation>Клавіатура</translation>
+        <translation>Teclado</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="79"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="106"/>
         <source>Mouse</source>
-        <translation>Мишка</translation>
+        <translation>Ratón</translation>
+    </message>
+    <message>
+        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="595"/>
+        <source>Mouse Settings</source>
+        <translation>Configuraciones de Ratón</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="491"/>
         <source>Left</source>
         <comment>Mouse</comment>
-        <translation>Вліво</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="502"/>
         <source>Up</source>
         <comment>Mouse</comment>
-        <translation>Вверх</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="510"/>
         <source>Left Button</source>
         <comment>Mouse</comment>
-        <translation>Ліва кнопка</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Boton Izquierdo</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="513"/>
         <source>Middle Button</source>
         <comment>Mouse</comment>
-        <translation>Середня кнопка</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Boton del Medio</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="516"/>
         <source>Right Button</source>
         <comment>Mouse</comment>
-        <translation>Права кнопка</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Botón Derecho</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="523"/>
         <source>Wheel Up</source>
         <comment>Mouse</comment>
-        <translation>Коліщатко вверх</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Rueda Arriba</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="527"/>
         <source>Wheel Left</source>
         <comment>Mouse</comment>
-        <translation>Коліщатко вліво</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Rueda Izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="531"/>
         <source>Wheel Right</source>
         <comment>Mouse</comment>
-        <translation>Коліщатко вправо</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Rueda Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="535"/>
         <source>Wheel Down</source>
         <comment>Mouse</comment>
-        <translation>Коліщатко вниз</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Rueda Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="543"/>
         <source>Down</source>
         <comment>Mouse</comment>
-        <translation>Вниз</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="559"/>
         <source>Right</source>
         <comment>Mouse</comment>
-        <translation>Вправо</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Derecha</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="571"/>
         <source>Button 4</source>
         <comment>Mouse</comment>
-        <translation>Кнопка 4</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Botón 4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="573"/>
         <source>Mouse 8</source>
         <comment>Mouse</comment>
-        <translation>Мишка 8</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Ratón 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="579"/>
         <source>Button 5</source>
         <comment>Mouse</comment>
-        <translation>Кнопка 5</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Botón 5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="581"/>
         <source>Mouse 9</source>
         <comment>Mouse</comment>
-        <translation>Мишка 9</translation>
-    </message>
-    <message>
-        <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="595"/>
-        <source>Mouse Settings</source>
-        <translation>Параметри мишки</translation>
+        <translatorcomment>Ratón</translatorcomment>
+        <translation>Ratón 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="726"/>
         <source>NONE</source>
-        <translation>Відсутній</translation>
+        <translation>NADA</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="898"/>
@@ -6150,97 +6260,97 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="999"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicaciones</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1005"/>
         <source>Browser Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador Atrás</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1010"/>
         <source>Browser Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador Favoritos</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1015"/>
         <source>Browser Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador Adelante</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1020"/>
         <source>Browser Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador Inicio</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1025"/>
         <source>Browser Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador Actualizar</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1030"/>
         <source>Browser Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador Busca</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1035"/>
         <source>Browser Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador Parar</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1040"/>
         <source>Calc</source>
-        <translation type="unfinished"></translation>
+        <translation>Calc</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1045"/>
         <source>Email</source>
-        <translation type="unfinished"></translation>
+        <translation>Email</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1050"/>
         <source>Media</source>
-        <translation type="unfinished">Media</translation>
+        <translation>Media</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1055"/>
         <source>Media Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Media Próximo</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1060"/>
         <source>Media Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Media Reproduzir</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1065"/>
         <source>Media Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Media Anterior</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1070"/>
         <source>Media Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Media Parar</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1075"/>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation>Buscar</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1080"/>
         <source>Volume Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume Bajar</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1085"/>
         <source>Volume Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume Mudo</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1090"/>
         <source>Volume Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume Subir</translation>
     </message>
 </context>
 <context>
@@ -6248,7 +6358,7 @@ R</translation>
     <message>
         <location filename="../../../src/keyboard/virtualmousepushbutton.cpp" line="60"/>
         <source>INVALID</source>
-        <translation>ХИБНИЙ</translation>
+        <translation>INVALIDO</translation>
     </message>
 </context>
 <context>
@@ -6257,27 +6367,27 @@ R</translation>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="14"/>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="79"/>
         <source>Capture Application</source>
-        <translation>Захопити програму</translation>
+        <translation>Solicitación de Captura</translation>
     </message>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="23"/>
         <source>After pressing the &quot;Capture Application&quot; button, please select the application window that you want to have a profile associated with. The active application will be captured after the selected number of seconds.</source>
-        <translation>Після натискання «Захопити програму», зробіть активним вікно програм, яку ви хочете прив&apos;язати до поточного профілю. Активне вікно буде захоплено через вказаний проміжок часу.</translation>
+        <translation>Después de pulsar el botón &quot;Solicitud de captura&quot;, por favor, seleccione la ventana de la aplicación que desea tener un perfil asociado. La aplicación activa será capturado después del número de segundos seleccionado.</translation>
     </message>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="38"/>
         <source>Timer:</source>
-        <translation>Таймер:</translation>
+        <translation>Temporizador:</translation>
     </message>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="55"/>
         <source>Seconds</source>
-        <translation>Секунд</translation>
+        <translation>Segundos</translation>
     </message>
     <message>
         <location filename="../../../src/winappprofiletimerdialog.ui" line="86"/>
         <source>Cancel</source>
-        <translation>Скасувати</translation>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -6285,12 +6395,12 @@ R</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="50"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[НЕМАЄ КНОПКИ]</translation>
+        <translation>[SIN TECLA]</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="313"/>
-        <source>AntiMicro Profile</source>
-        <translation type="unfinished">AntiMicro профіль</translation>
+        <source>AntiMicroX Profile</source>
+        <translation>Perfil AntiMicroX</translation>
     </message>
 </context>
 <context>
@@ -6298,37 +6408,37 @@ R</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="208"/>
         <source>ESC</source>
-        <translation type="unfinished">ESC</translation>
+        <translation>ESC</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="209"/>
         <source>Tab</source>
-        <translation type="unfinished">Tab</translation>
+        <translation>Tab</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="210"/>
         <source>Space</source>
-        <translation type="unfinished">Пробіл</translation>
+        <translation>espaciador</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="211"/>
         <source>DEL</source>
-        <translation type="unfinished">DEL</translation>
+        <translation>SUPR</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="212"/>
         <source>Return</source>
-        <translation type="unfinished">Return</translation>
+        <translation>ENTER</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="213"/>
         <source>KP_Enter</source>
-        <translation type="unfinished">KP_Enter</translation>
+        <translation>Enter_Num</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="214"/>
         <source>Backspace</source>
-        <translation type="unfinished">Backspace</translation>
+        <translation>Backspace</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="215"/>
@@ -6338,26 +6448,26 @@ R</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="652"/>
         <source>xinput extension was not found. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished">Розширення xinput не знайдено. Зміна швидкості миші не використовується.</translation>
+        <translation>No se ha encontrado la extensión xinput. no se producirán cambios en la aceleración del ratón.</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="660"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished">Версія xinput має бути вище 2.0. Зміна швидкості миші не використовується.</translation>
+        <translation> La versión xinput debe ser al menos 2,0. no se producirán cambios en la aceleración del ratón.</translation>
     </message>
     <message>
         <source>Virtual pointer found with id=%1.</source>
-        <translation type="obsolete">Віртуальний вказівник знайдено із id=%1.</translation>
+        <translation type="vanished">Puntero virtual encontrado con el id=%1.</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="692"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
-        <translation type="unfinished">Не знайдено PtrFeedbackClass для віртуального вказівника. Зміна швидкості миші не використовується для пристрою із id=%1</translation>
+        <translation>PeerFeedback clase no se encontró para el puntero virtual. Ningún cambio en la aceleración del ratón se producirá para el dispositivo con el id=%1</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="699"/>
         <source>Changing mouse acceleration for device with id=%1</source>
-        <translation type="unfinished">Зміна прискорення мишки для пристрою із id=%1</translation>
+        <translation>Cambiando la aceleración del ratón para el dispositivo con id=%1</translation>
     </message>
 </context>
 <context>
@@ -6365,7 +6475,7 @@ R</translation>
     <message>
         <location filename="../../../src/xmlconfigreader.cpp" line="146"/>
         <source>Could not write updated profile XML to file %1.</source>
-        <translation>Неможливо записати оновлений профіль до файлу %1.</translation>
+        <translation>No se puede escribir XML del perfil actualizado en el archivo %1.</translation>
     </message>
 </context>
 <context>
@@ -6373,11 +6483,11 @@ R</translation>
     <message>
         <location filename="../../../src/xmlconfigwriter.cpp" line="76"/>
         <source>Could not write to profile at %1.</source>
-        <translation>Неможливо записати профіль як %1.</translation>
+        <translation>No se pudo escribir al perfil en %1.</translation>
     </message>
 </context>
 <context>
-    <name>antimicro</name>
+    <name>antimicroX</name>
     <message>
         <location filename="../../../src/main.cpp" line="166"/>
         <source>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</source>
@@ -6389,7 +6499,7 @@ R</translation>
     <message>
         <location filename="../../../src/main.cpp" line="172"/>
         <source>Launch program in system tray only.</source>
-        <translation type="unfinished">Запустити програму згорнутою у системний лоток.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="175"/>

@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>icons/index.theme</file>
-        <file>images/antimicro.png</file>
-        <file>images/antimicro_trayicon.png</file>
+        <file>images/antimicroX.png</file>
+        <file>images/antimicroX_trayicon.png</file>
         <file>images/axis.png</file>
         <file>images/button.png</file>
         <file>images/controllermap.png</file>
@@ -31,11 +31,11 @@
         <file>icons/icons/16x16/actions/16-actions-view_fullscreen.png</file>
         <file>icons/icons/16x16/actions/16-actions-view_refresh.png</file>
         <file>icons/icons/16x16/actions/16-actions-view_restore.png</file>
-        <file>icons/application/16x16/apps/16-apps-com.github.juliagoda.antimicro.png</file>
-        <file>icons/application/24x24/apps/24-apps-com.github.juliagoda.antimicro.png</file>
-        <file>icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicro.png</file>
-        <file>icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicro.png</file>
-        <file>icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicro.png</file>
+        <file>icons/application/16x16/apps/16-apps-com.github.juliagoda.antimicroX.png</file>
+        <file>icons/application/24x24/apps/24-apps-com.github.juliagoda.antimicroX.png</file>
+        <file>icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicroX.png</file>
+        <file>icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicroX.png</file>
+        <file>icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicroX.png</file>
         <file>images/battery-low-level.png</file>
     </qresource>
 </RCC>

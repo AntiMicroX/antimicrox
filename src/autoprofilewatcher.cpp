@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -112,7 +112,7 @@ void AutoProfileWatcher::runAppCheck()
         qDebug() << "appLocation is " << appLocation << endl;
     }
 
-    // More portable check for whether antimicro is the current application
+    // More portable check for whether antimicroX is the current application
     // with focus.
     QWidget *focusedWidget = qApp->activeWindow();
     if (focusedWidget != nullptr) qDebug() << "get active window of app" << endl;

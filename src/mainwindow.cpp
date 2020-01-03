@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 {
     ui->setupUi(this);
 
-    setWindowIcon(QIcon::fromTheme(QString::fromUtf8("antimicro"), QIcon(":/images/antimicro.png")));
+    setWindowIcon(QIcon::fromTheme(QString::fromUtf8("antimicroX"), QIcon(":/images/antimicroX.png")));
     (QIcon::fromTheme(QString::fromUtf8("application_exit"),
                                               QIcon(":/icons/hicolor/16x16/actions/application_exit.png")));
 
@@ -316,7 +316,7 @@ void MainWindow::controllerMapOpening()
             int joypadIndex = m_cmdutility->getControllerNumber();
 
             #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "It was antimicro --map controllerNumber";
+            qDebug() << "It was antimicroX --map controllerNumber";
             qDebug() << "controllerNumber: " << joypadIndex;
             #endif
 
@@ -328,7 +328,7 @@ void MainWindow::controllerMapOpening()
             QString joypadGUID = m_cmdutility->getControllerID();
 
             #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "It was antimicro --map controllerID";
+            qDebug() << "It was antimicroX --map controllerID";
             qDebug() << "controllerID: " << joypadGUID;
             #endif
 
@@ -690,7 +690,7 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->addAction(updateJoy);
     trayIconMenu->addAction(closeAction);
 
-    QIcon icon = QIcon::fromTheme("antimicro", QIcon(":/images/antimicro_trayicon.png"));
+    QIcon icon = QIcon::fromTheme("antimicroX", QIcon(":/images/antimicroX_trayicon.png"));
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 
@@ -2049,7 +2049,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID)
 {
-        int exec = QMessageBox::information(this, tr("Reading old profile"), tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicro since version 2.24.2"), QMessageBox::Yes, QMessageBox::No);
+        int exec = QMessageBox::information(this, tr("Reading old profile"), tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicroX since version 2.24.2"), QMessageBox::Yes, QMessageBox::No);
 
         switch (exec)
         {

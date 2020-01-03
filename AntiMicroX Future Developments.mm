@@ -1,6 +1,6 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1526063409822" TEXT="Antimicro Future Developments">
+<node CREATED="1379712845116" ID="ID_571348173" MODIFIED="1526063409822" TEXT="AntimicroX Future Developments">
 <font BOLD="true" NAME="Arial Black" SIZE="18"/>
 <node CREATED="1526058011028" ID="ID_121032400" MODIFIED="1530549062564" POSITION="right" TEXT="Add controller calibration">
 <font BOLD="true" NAME="Verdana" SIZE="14"/>

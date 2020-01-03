@@ -1,15 +1,15 @@
 [Desktop Entry]
-Name=antimicro
+Name=antimicroX
 Comment=Use a gamepad to control a variety of programs
 Name[sr]=Анти-микро
 Comment[sr]=Користите џојстик или играћу тастатуру за управљање различитим програмима
-Name[fr]=AntiMicro
+Name[fr]=antimicroX
 Comment[fr]=Utilisez une manette de jeu pour commander un logiciel
-Name[de]=AntiMicro
+Name[de]=antimicroX
 Comment[de]=Nutze das Gamepad um Programme/Spiele zu steuern
 Comment[uk]=Використовуйте ігровий маніпулятор для керування програмами
-Exec=antimicro
-Icon=com.github.juliagoda.antimicro
+Exec=antimicroX
+Icon=com.github.juliagoda.antimicroX
 StartupNotify=true
 Terminal=false
 Type=Application

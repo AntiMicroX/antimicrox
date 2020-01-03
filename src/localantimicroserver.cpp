@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ void LocalAntiMicroServer::startLocalServer()
     }
     else
     {
-        qDebug() << "LocalAntiMicroServer::startLocalServer(): localServer is nullptr" << endl;
+        qDebug() << "LocalAntiMicroXServer::startLocalServer(): localServer is nullptr" << endl;
     }
 }
 
@@ -89,7 +89,7 @@ void LocalAntiMicroServer::handleOutsideConnection()
     }
     else
     {
-        qDebug() << "LocalAntiMicroServer::handleOutsideConnection(): localServer is nullptr" << endl;
+        qDebug() << "LocalAntiMicroXServer::handleOutsideConnection(): localServer is nullptr" << endl;
     }
 }
 

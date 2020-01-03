@@ -1,7 +1,7 @@
 # Build Options for CMake
 
 There are a few application specific options that can be used when running
-cmake to build antimicro. The following file will attempt to list some of those
+cmake to build antimicroX. The following file will attempt to list some of those
 options and describe their use in the project.
 
 

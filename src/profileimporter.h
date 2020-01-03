@@ -17,7 +17,7 @@ namespace Ui
 namespace Converters
 {
 
-    const QHash<QString, int> joyToKeyForAntimicro {
+    const QHash<QString, int> joyToKeyForAntimicroX {
         { "Axis1n", 11 }, // left (left-stick)
         { "Axis1p", 11 }, // right (left-stick)
         { "Axis2n", 12 }, // up (left-stick)
@@ -109,13 +109,13 @@ namespace Converters
     };
 
     // temporarily blocked until it will appear an occasion for making tests
-  /*  const QHash<QString, QString> xPadderForAntimicro {
+  /*  const QHash<QString, QString> xPadderForAntimicroX {
         { , },
         { , },
         { , }
     };
 
-    const QHash<QString, QString> pinnacleForAntimicro {
+    const QHash<QString, QString> pinnacleForAntimicroX {
         { , },
         { , },
         { , }

@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,11 +34,11 @@ namespace PadderCommon
   inline QString configPath() {
 
     return  (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
-      QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro" :
-      QDir::homePath() + "/.config/antimicro";
+      QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicroX" :
+      QDir::homePath() + "/.config/antimicroX";
   }
 
-  const QString configFileName = "antimicro_settings.ini";
+  const QString configFileName = "antimicroX_settings.ini";
   inline QString configFilePath() {
 
   return QString(configPath()).append("/").append(configFileName);
@@ -49,24 +49,24 @@ namespace PadderCommon
     // Specify the last known profile version that requires a migration
     // to be performed in order to be compatible with the latest version.
     const int LATESTCONFIGMIGRATIONVERSION = 5;
-    const QString localSocketKey = "antimicroSignalListener";
-    const QString githubProjectPage = "https://github.com/juliagoda/antimicro";
-    const QString githubIssuesPage = "https://github.com/juliagoda/antimicro/issues";
+    const QString localSocketKey = "antimicroXSignalListener";
+    const QString githubProjectPage = "https://github.com/juliagoda/antimicroX";
+    const QString githubIssuesPage = "https://github.com/juliagoda/antimicroX/issues";
     const QString wikiPage = QString("%1/wiki").arg(githubProjectPage);
 
-    const QString mouseDeviceName("antimicro Mouse Emulation");
-    const QString keyboardDeviceName("antimicro Keyboard Emulation");
-    const QString springMouseDeviceName("antimicro Abs Mouse Emulation");
+    const QString mouseDeviceName("antimicroX Mouse Emulation");
+    const QString keyboardDeviceName("antimicroX Keyboard Emulation");
+    const QString springMouseDeviceName("antimicroX Abs Mouse Emulation");
     
-    const int ANTIMICRO_MAJOR_VERSION = PROJECT_MAJOR_VERSION;
-    const int ANTIMICRO_MINOR_VERSION = PROJECT_MINOR_VERSION;
-    const int ANTIMICRO_PATCH_VERSION = PROJECT_PATCH_VERSION;
+    const int ANTIMICROX_MAJOR_VERSION = PROJECT_MAJOR_VERSION;
+    const int ANTIMICROX_MINOR_VERSION = PROJECT_MINOR_VERSION;
+    const int ANTIMICROX_PATCH_VERSION = PROJECT_PATCH_VERSION;
 
-    const QString programVersion = (ANTIMICRO_PATCH_VERSION > 0) ?
-        QString("%1.%2.%3").arg(ANTIMICRO_MAJOR_VERSION)
-            .arg(ANTIMICRO_MINOR_VERSION).arg(ANTIMICRO_PATCH_VERSION) :
-        QString("%1.%2").arg(ANTIMICRO_MAJOR_VERSION)
-            .arg(ANTIMICRO_MINOR_VERSION);
+    const QString programVersion = (ANTIMICROX_PATCH_VERSION > 0) ?
+        QString("%1.%2.%3").arg(ANTIMICROX_MAJOR_VERSION)
+            .arg(ANTIMICROX_MINOR_VERSION).arg(ANTIMICROX_PATCH_VERSION) :
+        QString("%1.%2").arg(ANTIMICROX_MAJOR_VERSION)
+            .arg(ANTIMICROX_MINOR_VERSION);
 
     extern QWaitCondition waitThisOut;
     extern QMutex sdlWaitMutex;

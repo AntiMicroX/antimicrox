@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -115,7 +115,7 @@ namespace PadderCommon
         qApp->installTranslator(appTranslator);
 
         // Load application specific translation strings
-        translator->load("antimicro_" + language, QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+        translator->load("antimicroX_" + language, QApplication::applicationDirPath().append("/../share/antimicroX/translations"));
 
         qApp->installTranslator(translator);
     }

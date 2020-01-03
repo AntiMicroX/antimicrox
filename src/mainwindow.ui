@@ -20,10 +20,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>antimicro</string>
+   <string>antimicroX</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="com.github.juliagoda.antimicro"/>
+   <iconset theme="com.github.juliagoda.antimicroX">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
@@ -191,7 +192,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <x>0</x>
      <y>0</y>
      <width>650</width>
-     <height>30</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQuit">

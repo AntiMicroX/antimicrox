@@ -1,4 +1,4 @@
-# antimicro 2.24.2
+# antimicroX 2.24.2
 
 
 1. [Description](#description)  
@@ -18,7 +18,7 @@
 
 ## Description
 
-antimicro is a graphical program used to map keyboard keys and mouse controls
+antimicroX is a graphical program used to map keyboard keys and mouse controls
 to a gamepad. This program is useful for playing PC games using a gamepad that
 do not have any form of built-in gamepad support. However, you can use this 
 program to control any desktop application with a gamepad; on Linux, this
@@ -47,7 +47,7 @@ http://www.gnu.org/licenses/gpl.txt
 
 ## Command Line
 
-    Usage: antimicro [options] [profile]
+    Usage: antimicroX [options] [profile]
 
     Options:
     -h, --help                     Print help text.
@@ -81,7 +81,7 @@ http://www.gnu.org/licenses/gpl.txt
 
 ## Wiki
 
-[Look here](https://github.com/juliagoda/antimicro/wiki)  
+[Look here](https://github.com/juliagoda/antimicroX/wiki)
 
 
 ## Build Dependencies
@@ -106,10 +106,10 @@ installed on your system in order to build this program:
 
 ### Building Under Linux
 
-In order to build this program, open a terminal and cd into the antimicro
+In order to build this program, open a terminal and cd into the antimicroX
 directory. Enter the following commands in order to build the program:
 
-    cd antimicro
+    cd antimicroX
     mkdir build && cd build
     cmake ..
     make
@@ -119,7 +119,7 @@ If you're an Arch Linux or Arch Linux based distribution user:
 
 ```
 git clone https://github.com/archlinux-lucjan/archlinux-packages.git
-cd antimicro-git
+cd antimicroX-git
 makepkg -sric
 ```
 
@@ -134,7 +134,7 @@ makepkg -sric
 
 #### Compilation & Installation
 
-This tutorial is about installing antimicro with flatpak locally. As first you need a com.github.juliagoda.antimicro.json file, that is placed in main folder. You can for example copy and paste content to local file. Link to raw content of json file is [here](https://raw.githubusercontent.com/juliagoda/antimicro/master/com.github.juliagoda.antimicro.json).
+This tutorial is about installing antimicroX with flatpak locally. As first you need a com.github.juliagoda.antimicroX.json file, that is placed in main folder. You can for example copy and paste content to local file. Link to raw content of json file is [here](https://raw.githubusercontent.com/juliagoda/antimicroX/master/com.github.juliagoda.antimicroX.json).
 
 
 1. Download and install Flatpak repo:
@@ -152,32 +152,32 @@ mkdir build-dir
 mkdir repo
 ```
 
-4. Build antimicro
+4. Build antimicroX
 
-`flatpak-builder build-dir com.github.juliagoda.antimicro.json`
+`flatpak-builder build-dir com.github.juliagoda.antimicroX.json`
 
 5. Test the build of application
 
-`flatpak-builder --run build-dir com.github.juliagoda.antimicro.json antimicro`
+`flatpak-builder --run build-dir com.github.juliagoda.antimicroX.json antimicroX`
 
 6. Create repository for application
 
-`flatpak-builder --repo=repo --force-clean build-dir com.github.juliagoda.antimicro.json`
+`flatpak-builder --repo=repo --force-clean build-dir com.github.juliagoda.antimicroX.json`
 
 7. Add the repository to flatpak locally
 
-`flatpak --user remote-add --no-gpg-verify antimicro repo`
+`flatpak --user remote-add --no-gpg-verify antimicroX repo`
 
 8. Install application
 
-`flatpak --user install antimicro com.github.juliagoda.antimicro`
+`flatpak --user install antimicroX com.github.juliagoda.antimicroX`
 
 
-#### Run antimicro
+#### Run antimicroX
 
-If you have installed antimicro locally with success, you can run application:
+If you have installed antimicroX locally with success, you can run application:
 
-`flatpak run com.github.juliagoda.antimicro`
+`flatpak run com.github.juliagoda.antimicroX`
 
 
 #### Updating
@@ -187,24 +187,24 @@ To update all your installed applications and runtimes to the latest version, ex
 `flatpak update`
 
 
-#### Uninstall antimicro
+#### Uninstall antimicroX
 
 1. Delete a remote repository
 
-`flatpak --user remote-delete antimicro`
+`flatpak --user remote-delete antimicroX`
 
 2. Delete application
 
-`flatpak uninstall com.github.juliagoda.antimicro`
+`flatpak uninstall com.github.juliagoda.antimicroX`
 
 
 
 ## Testing Under Linux
 
-If you are having problems with antimicro detecting a controller or
+If you are having problems with antimicroX detecting a controller or
 detecting all axes and buttons, you should test the controller outside of
-antimicro to check if the problem is with antimicro or not. The two endorsed
-programs for testing gamepads outside of antimicro are **sdl-jstest**
+antimicroX to check if the problem is with antimicroX or not. The two endorsed
+programs for testing gamepads outside of antimicroX are **sdl-jstest**
 (**sdl2-jstest**) and **evtest**. SDL2 utilizes evdev on Linux so performing
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. Another method also exist, 
@@ -212,7 +212,7 @@ which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
 ## Support
 
-In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicro/issues) .
+In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicroX/issues) .
 
 ## Bugs
 

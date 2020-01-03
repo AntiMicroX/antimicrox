@@ -1,4 +1,4 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -111,8 +111,8 @@ int main(int argc, char *argv[])
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QApplication antimicro(argc, argv);
-    QCoreApplication::setApplicationName("antimicro");
+    QApplication antimicroX(argc, argv);
+    QCoreApplication::setApplicationName("antimicroX");
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
     qRegisterMetaType<JoyButtonSlot*>();
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
     QTextStream errorstream(stderr);
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(QCoreApplication::translate("antimicro", "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."));
+    parser.setApplicationDescription(QCoreApplication::translate("antimicroX", "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOptions({
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
         });
 
 
-    parser.process(antimicro);
+    parser.process(antimicroX);
 
     CommandLineUtility cmdutility;
     cmdutility.parseArguments(&parser);
@@ -293,10 +293,10 @@ int main(int argc, char *argv[])
         }
 
         mainWindow.removeJoyTabs();
-        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-        QTimer::singleShot(50, &antimicro, &QApplication::quit);
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
+        QTimer::singleShot(50, &antimicroX, &QApplication::quit);
 
-        int result = antimicro.exec();
+        int result = antimicroX.exec();
 
         settings.sync();
         socket.disconnectFromServer();
@@ -475,7 +475,7 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    antimicro.setQuitOnLastWindowClosed(false);
+    antimicroX.setQuitOnLastWindowClosed(false);
 
     QStringList appDirsLocations = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
     QStringList themePathsTries = QStringList();
@@ -528,7 +528,7 @@ int main(int argc, char *argv[])
 
     if(QDir(transPath).entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() == 0)
     {
-        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicro/translations");
+        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicroX/translations");
     }
     else
     {
@@ -536,21 +536,21 @@ int main(int argc, char *argv[])
     }
 
 #endif
-    antimicro.installTranslator(&qtTranslator);
+    antimicroX.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
 
 
-    if(QDir("/app/share/antimicro").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0)
+    if(QDir("/app/share/antimicroX").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0)
     {
-        myappTranslator.load(QString("antimicro_").append(targetLang), "app/share/antimicro/translations");
+        myappTranslator.load(QString("antimicroX_").append(targetLang), "app/share/antimicroX/translations");
     }
     else
     {
-       myappTranslator.load(QString("antimicro_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicro/translations"));
+       myappTranslator.load(QString("antimicroX_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicroX/translations"));
     }
 
-    antimicro.installTranslator(&myappTranslator);
+    antimicroX.installTranslator(&myappTranslator);
 
 
     // Have program handle SIGTERM
@@ -604,13 +604,13 @@ int main(int argc, char *argv[])
 
         MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, settings);
 
-        QObject::connect(&antimicro, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
-        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(),
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(),
                          &InputDaemon::deleteJoysticks, Qt::BlockingQueuedConnection);
-        QObject::connect(&antimicro, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj,
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj,
                          &MouseHelper::deleteDeskWid, Qt::DirectConnection);
-        QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater,
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater,
                          Qt::BlockingQueuedConnection);
 
         mainWindow->makeJoystickTabs();
@@ -623,7 +623,7 @@ int main(int argc, char *argv[])
         inputEventThread->start(QThread::HighPriority);
 
 
-        int app_result = antimicro.exec();
+        int app_result = antimicroX.exec();
 
         appLogger.Log(); // Log any remaining messages if they exist.
 
@@ -761,14 +761,14 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker.data(), &InputDaemon::joystickRefreshed, mainWindow, &MainWindow::fillButtonsID);
     QObject::connect(joypad_worker.data(), &InputDaemon::joysticksRefreshed, mainWindow, &MainWindow::fillButtonsMap);
 
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, mainWindow, &MainWindow::saveAppConfig);
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::revertMouseThread);
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteJoysticks);
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater);
-    QObject::connect(&antimicro, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, mainWindow, &MainWindow::saveAppConfig);
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::revertMouseThread);
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteJoysticks);
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater);
+    QObject::connect(&antimicroX, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow, &MainWindow::handleInstanceDisconnect);
@@ -797,7 +797,7 @@ int main(int argc, char *argv[])
     inputEventThread->start(QThread::HighPriority);
 
 
-    int app_result = antimicro.exec();
+    int app_result = antimicroX.exec();
 
 
     appLogger.Log(); // Log any remaining messages if they exist.
