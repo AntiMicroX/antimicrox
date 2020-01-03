@@ -3,16 +3,17 @@
 
 1. [Description](#description)  
 2. [License](#license)  
-3. [Command Line](#command-line)  
-4. [Build Dependencies](#build-dependencies)  
+3. [Command Line](#command-line) 
+4. [Wiki](#wiki)
+5. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
     b. [Building Under Windows](#building-under-windows)  
     c. [Building with Flatpak](#building-with-flatpak)  
-5. [Testing Under Linux](#testing-under-linux)  
-6. [Support](#support)  
-7. [Bugs](#bugs)  
-8. [Shoutout](#shoutout)  
-9. [Credits](#credits)  
+6. [Testing Under Linux](#testing-under-linux)  
+7. [Support](#support)  
+8. [Bugs](#bugs)  
+9. [Shoutout](#shoutout)  
+10. [Credits](#credits)  
 
 
 
@@ -76,8 +77,12 @@ http://www.gnu.org/licenses/gpl.txt
     -l, --list                     Print information about joysticks detected by
                                    SDL. Use only if you have sdl library. You can 
                                    check your controller index, name or 
-                                   even GUID.
+                                   even GUID.  
 
+
+## Wiki
+
+[Look here](https://github.com/juliagoda/antimicro/wiki)  
 
 
 ## Build Dependencies
@@ -92,6 +97,7 @@ installed on your system in order to build this program:
 
 * g++
 * cmake
+* extra-cmake-modules
 * qttools5-dev and qttools5-dev-tools (qt5-tools on distros based on Arch Linux) (Qt5 support)
 * libsdl2-dev (sdl2 on distros based on Arch Linux) (SDL2)
 * libxi-dev (libxi on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
@@ -246,7 +252,7 @@ Notes about the WXS file and the building process:
 #### Additional Dependencies
 
 * flatpak 
-* flatbak-builder
+* flatpak-builder
 
 
 #### Compilation & Installation
