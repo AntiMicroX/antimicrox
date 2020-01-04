@@ -2049,7 +2049,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID)
 {
-        int exec = QMessageBox::information(this, tr("Reading old profile"), tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicroX since version 2.24.2"), QMessageBox::Yes, QMessageBox::No);
+        int exec = QMessageBox::information(this, tr("Reading old profile"), tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicroX since version 2.25"), QMessageBox::Yes, QMessageBox::No);
 
         switch (exec)
         {
