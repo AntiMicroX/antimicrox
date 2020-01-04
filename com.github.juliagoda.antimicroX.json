@@ -22,7 +22,6 @@
             "builddir": true,
             "config-opts": [
                 "-DAPPDATA=ON",
-                "-DUSE_SDL_2=ON",
                 "-DWITH_UINPUT=ON",
                 "-DWITH_XTEST=ON",
                 "-DCMAKE_BUILD_TYPE=Release"

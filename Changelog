@@ -1,5 +1,70 @@
 2018-16-06 Jagoda Gorska <juliagoda.pl@protonmail.com>
 
+
+Version 2.24.2
+
+* Fixed bug with too many "emit propertyUpdated()"
+
+* Splitted JoyButtonSlot class into JoyButtonSlotXml and the original
+
+* Created template class for JoyDPad and VDPad xml
+
+* Splitted GameControllerDPad class into GameControllerDPadXml and the original
+
+* Replaced for loops with iterators and functional mappers
+
+* Replaced for loops with hashiterators
+
+* Added functions about vendor and product informations
+
+* Changed guid to uniqueID
+
+
+
+Version 2.24.1
+
+* Changed images and screenshots
+
+* Updated Documents (README, *.txt files, *.md, *.mm files)
+
+* Updated resources
+
+* Created index.theme
+
+* Changed destination directories for icons, images, index.theme and other resources
+
+* Translated new text entries
+
+* Added detection of window partial title
+
+* Added reset settings option
+
+* Created smaller functions in part of classes
+
+* Splitted part of classes into new xml classes
+
+* Added com.github.juliagoda.antimicro.json for Flatpak (building and installation on Linux)
+
+* Cppcheck Analysis - fixed part of warnings
+
+* Added Comparing to nullptr instead of NULL and smart pointers
+
+* Changed if else to switch statements for int data types
+
+* First preparation for unit tests (app splitted into library (antilib) and executable (antimicro))
+
+* Updated calibration - reset old values during calibration startup 
+
+* Fixed part of memory leaks with Memcheck (application exit) 
+
+* Fixed bug in gamecontrollermappingdialog class 
+
+* Fixed segmentation fault for activating Turbo option 
+
+* Unblocked delay sliders
+
+
+
 Version 2.24
 
 * Added calibration
@@ -7,6 +72,7 @@ Version 2.24
 * Ported Qt4 to Qt5
 
 * Removed Qt4 support
+
 
 
 2016-11-05 Jeff Backus <jeff@jsbackus.com>

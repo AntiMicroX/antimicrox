@@ -398,7 +398,7 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
    <item>
     <widget class="QLabel" name="copyrightLabel">
      <property name="text">
-      <string>Copyright: 2013 - 2019</string>
+      <string>Copyright: 2013 - 2020</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
