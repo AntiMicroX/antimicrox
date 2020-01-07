@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,25 +19,17 @@
 
 #include "virtualkeyboardmousewidget.h"
 
+
 #include "messagehandler.h"
 #include "virtualkeypushbutton.h"
 #include "virtualmousepushbutton.h"
 #include "mousedialog/mousebuttonsettingsdialog.h"
-#include "joybutton.h"
-#include "joybuttonslot.h"
-#include "event.h"
 #include "antkeymapper.h"
 #include "quicksetdialog.h"
 #include "buttoneditdialog.h"
 
-#ifdef Q_OS_UNIX
 #ifdef WITH_X11
-#include "x11extras.h"
-#include <X11/Xlib.h>
-#endif
-#elif defined(Q_OS_WIN)
-#include "winextras.h"
-#include <windows.h>
+   #include "x11extras.h"
 #endif
 
 #include <SDL2/SDL_power.h>
@@ -49,16 +42,13 @@
 #include <QList>
 #include <QListIterator>
 #include <QPushButton>
-#include <QResizeEvent>
 #include <QWidget>
-#include <QMenu>
-#include <QAction>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QTimer>
 #include <QMessageBox>
-#include <QDebug>
+//#include <QDebug>
 
 QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, QString> ();
 
@@ -123,12 +113,8 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
 
 bool VirtualKeyboardMouseWidget::is_numlock_activated()
 {
-#ifdef Q_OS_WIN
-    short status = GetKeyState(VK_NUMLOCK);
-    return status == 1;
-#endif
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
     Display *dpy = XOpenDisplay(X11Extras::getInstance()->getEnvVariable("DISPLAY"));
     XKeyboardState x;
     XGetKeyboardControl(dpy, &x);
@@ -600,19 +586,13 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
 
     tempVBoxLayout = new QVBoxLayout();
     tempVBoxLayout->setSpacing(20);
-#ifdef Q_OS_WIN
-    pushButton = new VirtualMousePushButton(tr("Button 4", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
-#elif defined(Q_OS_UNIX)
+
     pushButton = new VirtualMousePushButton(tr("Mouse 8", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
-#endif
 
     pushButton->setMinimumHeight(40);
     tempVBoxLayout->addWidget(pushButton);
-#ifdef Q_OS_WIN
-    pushButton = new VirtualMousePushButton(tr("Button 5", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
-#elif defined(Q_OS_UNIX)
+
     pushButton = new VirtualMousePushButton(tr("Mouse 9", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
-#endif
 
     pushButton->setMinimumHeight(40);
     tempVBoxLayout->addWidget(pushButton);
@@ -642,7 +622,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << "parameter 1: " << xcodestring;
+    //qDebug() << "parameter 1: " << xcodestring;
     #endif
 
     int width = 32;
@@ -869,7 +849,7 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
     connect(noneButton, &QPushButton::clicked, this, &VirtualKeyboardMouseWidget::clearButtonSlotsFinish);
 
     #ifndef QT_DEBUG_NO_OUTPUT
-        qDebug() << "COUNT: " << newlist.count();
+      //  qDebug() << "COUNT: " << newlist.count();
     #endif
 }
 
@@ -1062,13 +1042,6 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
 
     QAction *tempAction = nullptr;
     int temp = 0;
-
-#ifdef Q_OS_WIN
-    tempAction = new QAction(tr("Applications"), otherKeysMenu);
-    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Menu);
-    tempAction->setData(temp);
-    otherKeysMenu->addAction(tempAction);
-#endif
 
     tempAction = new QAction(tr("Browser Back"), otherKeysMenu);
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Back);

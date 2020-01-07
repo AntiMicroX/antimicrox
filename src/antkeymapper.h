@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef ANTKEYMAPPER_H
 #define ANTKEYMAPPER_H
 
 #include <QObject>
-
-#ifdef Q_OS_WIN
-  #include "qtwinkeymapper.h"
-
-  #ifdef WITH_VMULTI
-    #include "qtvmultikeymapper.h"
-  #endif
-#elif defined(Q_OS_UNIX)
 
   #if defined(WITH_XTEST)
     #include "qtx11keymapper.h"
@@ -35,7 +29,7 @@
   #if defined(WITH_UINPUT)
     #include "qtuinputkeymapper.h"
   #endif
-#endif
+
 
 class AntKeyMapper : public QObject
 {
@@ -61,14 +55,6 @@ private:
     QtKeyMapperBase *internalMapper;
     QtKeyMapperBase *nativeKeyMapper;
 
-#ifdef Q_OS_WIN
-    QtWinKeyMapper winMapper;
-
-  #ifdef WITH_VMULTI
-    QtVMultiKeyMapper vmultiMapper;
-  #endif
-
-#elif defined(Q_OS_UNIX)
   #if defined(WITH_XTEST)
     QtX11KeyMapper x11Mapper;
   #endif
@@ -76,8 +62,6 @@ private:
   #if defined(WITH_UINPUT)
     QtUInputKeyMapper uinputMapper;
   #endif
-
-#endif
 
 };
 

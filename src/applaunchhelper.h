@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef APPLAUNCHHELPER_H
 #define APPLAUNCHHELPER_H
 
 #include <QObject>
-#include <QMap>
 
 #include <SDL2/SDL_joystick.h>
 
@@ -47,15 +48,7 @@ protected:
     void changeSpringModeScreen();
     void changeGamepadPollRate();
 
-#ifdef Q_OS_WIN
-    void checkPointerPrecision();
-#endif
-
 public slots:
-#ifdef Q_OS_WIN
-    void appQuitPointerPrecision();
-#endif
-
     void initRunMethods();
     void revertMouseThread();
     void changeMouseThread(QThread *thread);

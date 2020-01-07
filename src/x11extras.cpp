@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -109,7 +110,6 @@ void X11Extras::deleteInstance()
     }
 }
 
-#ifdef Q_OS_UNIX
 const char* X11Extras::getEnvVariable( const char* var ) const
 {
      const char * val = ::getenv( var );
@@ -120,7 +120,6 @@ const char* X11Extras::getEnvVariable( const char* var ) const
          return val;
      }
 }
-#endif
 
 /**
  * @brief Get display instance

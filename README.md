@@ -1,4 +1,4 @@
-# antimicro 2.24.2
+# antimicroX 2.24.2
 
 
 1. [Description](#description)  
@@ -7,8 +7,7 @@
 4. [Wiki](#wiki)
 5. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
-    b. [Building Under Windows](#building-under-windows)  
-    c. [Building with Flatpak](#building-with-flatpak)  
+    b. [Building with Flatpak](#building-with-flatpak)  
 6. [Testing Under Linux](#testing-under-linux)  
 7. [Support](#support)  
 8. [Bugs](#bugs)  
@@ -19,7 +18,7 @@
 
 ## Description
 
-antimicro is a graphical program used to map keyboard keys and mouse controls
+antimicroX is a graphical program used to map keyboard keys and mouse controls
 to a gamepad. This program is useful for playing PC games using a gamepad that
 do not have any form of built-in gamepad support. However, you can use this 
 program to control any desktop application with a gamepad; on Linux, this
@@ -48,7 +47,7 @@ http://www.gnu.org/licenses/gpl.txt
 
 ## Command Line
 
-    Usage: antimicro [options] [profile]
+    Usage: antimicroX [options] [profile]
 
     Options:
     -h, --help                     Print help text.
@@ -82,7 +81,7 @@ http://www.gnu.org/licenses/gpl.txt
 
 ## Wiki
 
-[Look here](https://github.com/juliagoda/antimicro/wiki)  
+[Look here](https://github.com/juliagoda/antimicroX/wiki)
 
 
 ## Build Dependencies
@@ -108,10 +107,10 @@ installed on your system in order to build this program:
 
 ### Building Under Linux
 
-In order to build this program, open a terminal and cd into the antimicro
+In order to build this program, open a terminal and cd into the antimicroX
 directory. Enter the following commands in order to build the program:
 
-    cd antimicro
+    cd antimicroX
     mkdir build && cd build
     cmake ..
     make
@@ -121,131 +120,9 @@ If you're an Arch Linux or Arch Linux based distribution user:
 
 ```
 git clone https://github.com/archlinux-lucjan/archlinux-packages.git
-cd antimicro-git
+cd antimicroX-git
 makepkg -sric
 ```
-
-The cmake step will use pkg-config to attempt to find SDL
-libraries that you have installed. The project is set up to
-look for a copy of SDL2. This behavior should work
-fine for most people. You can override this behavior by using the -DUSE_SDL_2
-option when you run cmake. Using -DUSE_SDL_2=ON when you run cmake will mean
-that you want antimicro compiled with SDL2 support. However you don't have to do that,
-because the option is set as default in CMakeLists.txt.
-
-
-### Building Under Windows
-
-*Instructions provided by aybe @ https://github.com/aybe
-and modified by Travis Nickles.*
-
-* Download and install CMake: http://www.cmake.org/cmake/resources/software.html .
-
-* You will need Qt with MinGW support: https://www.qt.io/download-open-source/ . The
-current stable version of Qt that is being used to create builds is 5.10.0 .
-
-* Download SDL development package : https://www.libsdl.org/release/SDL2-devel-2.0.8-mingw.tar.gz .
-
-* Open the archive and drop the 'SDL2-2.0.8' folder in the 'antimicro' folder.
-
-* Open the project (CMakeLists.txt) in Qt Creator. The CMake Wizard will appear
-the first time you open the project in Qt Creator.
-
-* Choose a Build Location. The recommendation is to create a "build" folder
-under the root antimicro folder and choose that for the build location.
-
-* In the Run CMake section, in the Arguments field, please input
-```-DCMAKE_PREFIX_PATH=<Path to MinGW Qt install>```
-```-DCMAKE_BUILD_TYPE=Release```. Replace "```<Path to MinGW Qt install>```"
-with the actual path to your Qt installation. The default path for version
-Qt 5.10.0 is C:\Qt\Qt5.10.0\mingw53_32 .
-
-* Choose "MinGW Generator" for the Generator option in the Run CMake section.
-
-* Click the Run CMake button and then click Finish.
-
-* In the main IDE window, open the Build menu and select "Build All" (Ctrl+Shift+B).
-
-* The application will need SDL2.DLL. A build step has been added to
-CMakeLists.txt in order to automate the process. Click the "Projects" icon
-in the sidebar to bring up the "Build Settings" section. Within
-"Build Steps", click the "Details" button on the Make entry. In the expanded
-menu, uncheck the "all" checkbox and then check the "copy_sdl_dll" checkbox
-and run "Build All".
-
-* At this point, antimicro has been built for Windows and is runnable
-from Qt Creator. A couple more steps are required in order to make a
-distributable package.
-
-* Under "Build Settings", expand the Make menu and check the "install" and
-"install_dlls" checkboxes.
-
-* Under the "Build" menu in the main window, select "Run CMake" and
-add ```-DCMAKE_INSTALL_PREFIX=<DIR>``` option and replace ```<DIR>``` with the directory
-that you want to install the application. The default for me is
-C:\Program Files (x86)\AntiMicro\ although I use a different directory
-when bundling the Window version for other users.
-
-* Run "Build All" to have the application and required DLLs installed
-into the final location that will be ready for distribution.
-
-##### 64-bit Build
-
-* Some additional steps are required in order to compile a 64-bit version of
-antimicro. The first step is to download a packaged version of Qt, MSYS shell environment,
-the MinGW 64 C++ compiler, and a series of libraries @
-https://github.com/iat-cener/tonatiuh/wiki/Installing-MinGW-For-Windows64 .
-
-* You will have to manually create a new Kit in Qt Creator. In the main Qt
-Creator window, click the "Projects" button in the sidebar to bring up the
-"Build Settings" page for the project. Click on the "Manage Kits" button
-near the top of the page. Manually add the 64-bit compiled Qt version under
-"Qt Versions", add the 64-bit MinGW under "Compilers", and add the 64 bit
-gdb.exe under "Debuggers".
-
-* After creating a new kit in Qt Creator, bring up the "Build Settings" page
-for the project. Hover over the currently selected kit name and click the
-arrow that appears, hover over "Change Kit" and select the proper 64-bit kit
-that you created earlier.
-
-* Perform a clean on the project or delete the build directory that CMake is
-using. After that, choose the "Run CMake" option under the "Build" menu entry.
-The arguments that you pass to CMake will have to be changed. You will have
-to edit ```-DCMAKE_PREFIX_PATH=<Path to 64 bit MinGW Qt install>``` variable
-and have it point to the 64 bit compiled version Qt. Also, make sure to add
-```-DTARGET_ARCH=x86_64``` so that CMake will use the proper SDL libraries while
-building the program and copy the proper Qt and SDL DLLs if you perform an
-**install_dlls**.
-
-##### Building The Windows Installer Package (MSI)
-
-*These instructions have been tested with WiX 3.8*
-
-* You need to have WiX installed, grab it at http://wixtoolset.org/ .
-
-* The building process relies on the WIX environment, it is recommended that you download the installer instead of the binaries as it it will set it up for you.
-
-* If Qt Creator is running while you install or upgrade to a newer version then make sure to restart it as it will either not find that environment variable or fetch the old (incorrect) value from the previous version.
-
-* To build the MSI package, click on the "Projects" icon in the sidebar,
-click the "Details" button on the make entry, uncheck all other options
-and check the "buildmsi" box.
-
-* Currently it relies on INSTALL to copy files at the location they are harvested, this might change in the future.
-
-Notes about the WXS file and the building process:
-
-* The WXS file has been generated with WixEdit and manually modified to contain relative paths, it will only work from the 'windows' sub-folder (or any other).
-
-* WixCop can be run against the WXS file and it should not point out any errors as the WXS has been corrected previously with the -F switch.
-
-* CNDL1113 warning : shortucts are advertised, left as-is as a nice feature about them is that if the program gets corrupted it will be repaired by Windows Installer, by design the shortcuts will not point to antimicro.exe as a regular LNK file.
-
-* LGHT1073 warning : SDL2.DLL does not specify its language in the language column, not a big deal; it could be recompiled but it's pretty much a time waste as it would only prevent this warning.
-
-* All of these warnings have been made silent through the use of command-line switches.
-
-* Built MSI package will be placed in /windows .
 
 
 ### Building with Flatpak
@@ -258,7 +135,7 @@ Notes about the WXS file and the building process:
 
 #### Compilation & Installation
 
-This tutorial is about installing antimicro with flatpak locally. As first you need a com.github.juliagoda.antimicro.json file, that is placed in main folder. You can for example copy and paste content to local file. Link to raw content of json file is [here](https://raw.githubusercontent.com/juliagoda/antimicro/master/com.github.juliagoda.antimicro.json).
+This tutorial is about installing antimicroX with flatpak locally. As first you need a com.github.juliagoda.antimicroX.json file, that is placed in main folder. You can for example copy and paste content to local file. Link to raw content of json file is [here](https://raw.githubusercontent.com/juliagoda/antimicroX/master/com.github.juliagoda.antimicroX.json).
 
 
 1. Download and install Flatpak repo:
@@ -276,32 +153,32 @@ mkdir build-dir
 mkdir repo
 ```
 
-4. Build antimicro
+4. Build antimicroX
 
-`flatpak-builder build-dir com.github.juliagoda.antimicro.json`
+`flatpak-builder build-dir com.github.juliagoda.antimicroX.json`
 
 5. Test the build of application
 
-`flatpak-builder --run build-dir com.github.juliagoda.antimicro.json antimicro`
+`flatpak-builder --run build-dir com.github.juliagoda.antimicroX.json antimicroX`
 
 6. Create repository for application
 
-`flatpak-builder --repo=repo --force-clean build-dir com.github.juliagoda.antimicro.json`
+`flatpak-builder --repo=repo --force-clean build-dir com.github.juliagoda.antimicroX.json`
 
 7. Add the repository to flatpak locally
 
-`flatpak --user remote-add --no-gpg-verify antimicro repo`
+`flatpak --user remote-add --no-gpg-verify antimicroX repo`
 
 8. Install application
 
-`flatpak --user install antimicro com.github.juliagoda.antimicro`
+`flatpak --user install antimicroX com.github.juliagoda.antimicroX`
 
 
-#### Run antimicro
+#### Run antimicroX
 
-If you have installed antimicro locally with success, you can run application:
+If you have installed antimicroX locally with success, you can run application:
 
-`flatpak run com.github.juliagoda.antimicro`
+`flatpak run com.github.juliagoda.antimicroX`
 
 
 #### Updating
@@ -311,24 +188,24 @@ To update all your installed applications and runtimes to the latest version, ex
 `flatpak update`
 
 
-#### Uninstall antimicro
+#### Uninstall antimicroX
 
 1. Delete a remote repository
 
-`flatpak --user remote-delete antimicro`
+`flatpak --user remote-delete antimicroX`
 
 2. Delete application
 
-`flatpak uninstall com.github.juliagoda.antimicro`
+`flatpak uninstall com.github.juliagoda.antimicroX`
 
 
 
 ## Testing Under Linux
 
-If you are having problems with antimicro detecting a controller or
+If you are having problems with antimicroX detecting a controller or
 detecting all axes and buttons, you should test the controller outside of
-antimicro to check if the problem is with antimicro or not. The two endorsed
-programs for testing gamepads outside of antimicro are **sdl-jstest**
+antimicroX to check if the problem is with antimicroX or not. The two endorsed
+programs for testing gamepads outside of antimicroX are **sdl-jstest**
 (**sdl2-jstest**) and **evtest**. SDL2 utilizes evdev on Linux so performing
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. Another method also exist, 
@@ -336,7 +213,7 @@ which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
 ## Support
 
-In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicro/issues) .
+In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicroX/issues) .
 
 ## Bugs
 

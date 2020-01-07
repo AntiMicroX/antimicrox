@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,16 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef JOYCONTROLSTICKBUTTON_H
 #define JOYCONTROLSTICKBUTTON_H
 
 #include "joybuttontypes/joygradientbutton.h"
 #include "joycontrolstickdirectionstype.h"
 
-#include <QString>
-
 class JoyControlStick;
 class SetJoystick;
+
 
 class JoyControlStickButton : public JoyGradientButton
 {

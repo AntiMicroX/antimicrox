@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef SPRINGMOUSEMOVEINFO_H
 #define SPRINGMOUSEMOVEINFO_H
 
@@ -22,20 +24,20 @@ namespace PadderCommon {
 
     typedef struct _springModeInfo
     {
-        // Displacement of the X axis
-        double displacementX;
-        // Displacement of the Y axis
-        double displacementY;
+    // Displacement of the X axis
+    double displacementX;
+    // Displacement of the Y axis
+    double displacementY;
 
-        // Width and height of the spring mode box
-        int width; // unsigned
-        int height; // unsigned
-        // Should the cursor not move around the center
-        // of the screen.
-        bool relative;
-        int screen;
-        double springDeadX;
-        double springDeadY;
+    // Width and height of the spring mode box
+    int width; // unsigned
+    int height; // unsigned
+    // Should the cursor not move around the center
+    // of the screen.
+    bool relative;
+    int screen;
+    double springDeadX;
+    double springDeadY;
 
     } springModeInfo;
 }

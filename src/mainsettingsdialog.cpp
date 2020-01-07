@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +17,6 @@
  */
 
 #include "mainsettingsdialog.h"
-#include "ui_mainsettingsdialog.h"
 
 #include "globalvariables.h"
 #include "messagehandler.h"
@@ -26,14 +26,10 @@
 #include "autoprofileinfo.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
+#include "eventhandlerfactory.h"
 
-#ifdef Q_OS_WIN
-  #include "eventhandlerfactory.h"
-  #include "winextras.h"
-#elif defined(Q_OS_UNIX)
 #ifdef WITH_X11
   #include "x11extras.h"
-#endif
 #endif
 
 #include <QTableWidgetItem>
@@ -55,24 +51,14 @@
 #include <QList>
 #include <QListWidget>
 #include <QWidget>
-
-#ifdef Q_OS_WIN
-  #include <QSysInfo>
-#endif
-
-#ifdef Q_OS_UNIX
-
-  #include <QApplication>
-  #include "eventhandlerfactory.h"
-
-#endif
+#include <QApplication>
 
 
 
 static const QString RUNATSTARTUPREGKEY(
         "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
 static const QString RUNATSTARTUPLOCATION(
-        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicro.lnk")
+        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicroX.lnk")
         .arg(QString::fromUtf8(qgetenv("AppData"))));
 
 MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
@@ -122,14 +108,11 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     changePresetLanguage();
 
-#ifdef Q_OS_WIN
-    ui->autoProfileTableWidget->hideColumn(3);
-#endif
 
     ui->autoProfileTableWidget->hideColumn(7);
 
-#ifdef Q_OS_UNIX
-    #if defined(USE_SDL_2) && defined(WITH_X11)
+
+    #if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
     populateAutoProfiles();
@@ -141,21 +124,10 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         delete ui->categoriesListWidget->item(2);
         ui->stackedWidget->removeWidget(ui->page_2);
     }
-    #elif defined(USE_SDL_2) && !defined(WITH_X11)
+    #elif !defined(WITH_X11)
     delete ui->categoriesListWidget->item(2);
-    ui->stackedWidget->removeWidget(ui->page_2);
-
-    #elif !defined(USE_SDL_2)
-    delete ui->categoriesListWidget->item(2);
-    delete ui->categoriesListWidget->item(1);
-    ui->stackedWidget->removeWidget(ui->controllerMappingsPage);
     ui->stackedWidget->removeWidget(ui->page_2);
     #endif
-#elif defined(Q_OS_WIN)
-    populateAutoProfiles();
-    fillAllAutoProfilesTable();
-    fillGUIDComboBox();
-#endif
 
 
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
@@ -166,60 +138,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->autoProfileAddPushButton->setEnabled(true);
     }
 
-#ifdef Q_OS_WIN
-    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-    {
-        // Handle Windows Vista and later
-        QFile tempFile(RUNATSTARTUPLOCATION);
-        if (tempFile.exists())
-        {
-            ui->launchAtWinStartupCheckBox->setChecked(true);
-        }
-    }
-    else
-    {
-        // Handle Windows XP
-        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
-        QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
-        if (!autoRunEntry.isEmpty())
-        {
-            ui->launchAtWinStartupCheckBox->setChecked(true);
-        }
-    }
-
-    if ((handler != nullptr) && (handler->getIdentifier() == "sendinput"))
-    {
-        bool keyRepeatEnabled = settings->value("KeyRepeat/KeyRepeatEnabled", true).toBool();
-        if (keyRepeatEnabled)
-        {
-            ui->keyRepeatEnableCheckBox->setChecked(true);
-            ui->keyDelayHorizontalSlider->setEnabled(true);
-            ui->keyDelaySpinBox->setEnabled(true);
-            ui->keyRateHorizontalSlider->setEnabled(true);
-            ui->keyRateSpinBox->setEnabled(true);
-        }
-
-        int keyRepeatDelay = settings->value("KeyRepeat/KeyRepeatDelay", InputDevice::DEFAULTKEYREPEATDELAY).toInt();
-        int keyRepeatRate = settings->value("KeyRepeat/KeyRepeatRate", InputDevice::DEFAULTKEYREPEATRATE).toInt();
-
-        ui->keyDelayHorizontalSlider->setValue(keyRepeatDelay);
-        ui->keyDelaySpinBox->setValue(keyRepeatDelay);
-
-        ui->keyRateHorizontalSlider->setValue(1000/keyRepeatRate);
-        ui->keyRateSpinBox->setValue(1000/keyRepeatRate);
-    }
-    else
-    {
-        ui->keyRepeatGroupBox->setVisible(false);
-    }
-
-#elif defined(Q_OS_UNIX)
     ui->launchAtWinStartupCheckBox->setVisible(false);
     ui->keyRepeatGroupBox->setVisible(false);
-
-#endif
 
     bool useSingleProfileList = settings->value("TrayProfileList", false).toBool();
     if (useSingleProfileList)
@@ -255,29 +176,10 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->launchInTrayCheckBox->setChecked(true);
     }
 
-#ifdef Q_OS_WIN
-    bool associateProfiles = settings->value("AssociateProfiles", true).toBool();
-    if (associateProfiles)
-    {
-        ui->associateProfilesCheckBox->setChecked(true);
-    }
-    else
-    {
-        ui->associateProfilesCheckBox->setChecked(false);
-    }
-#elif defined(Q_OS_UNIX)
     ui->associateProfilesCheckBox->setVisible(false);
-#endif
 
-#ifdef Q_OS_WIN
-    bool disableEnhancedMouse = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
-    if (disableEnhancedMouse)
-    {
-        ui->disableWindowsEnhancedPointCheckBox->setChecked(true);
-    }
-#elif defined(Q_OS_UNIX)
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
-#endif
+
 
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
     if (smoothingEnabled)
@@ -310,15 +212,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->mouseRefreshRateComboBox->setCurrentIndex(refreshIndex);
     }
 
-#ifdef Q_OS_WIN
-    QString tempTooltip = ui->mouseRefreshRateComboBox->toolTip();
-    tempTooltip.append("\n\n");
-    tempTooltip.append(tr("Also, Windows users who want to use a low value should also check the\n"
-                          "\"Disable Enhance Pointer Precision\" checkbox if you haven't disabled\n"
-                          "the option in Windows."));
-    ui->mouseRefreshRateComboBox->setToolTip(tempTooltip);
-#endif
-
     fillSpringScreenPresets();
 
     for (int i=1; i <= 16; i++)
@@ -332,7 +225,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->gamepadPollRateComboBox->setCurrentIndex(gamepadPollIndex);
     }
 
-#ifdef Q_OS_UNIX
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         refreshExtraMouseInfo();
@@ -341,9 +233,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     {
         ui->extraInfoFrame->hide();
     }
-#else
-    ui->extraInfoFrame->hide();
-#endif
 
     // Begin Advanced Tab
     QString curLogFile = settings->value("LogFile", "").toString();
@@ -584,9 +473,7 @@ void MainSettingsDialog::saveNewSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#if defined(USE_SDL_2)
     syncMappingSettings();
-#endif
 
     settings->getLock()->lock();
     QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
@@ -619,8 +506,8 @@ void MainSettingsDialog::saveNewSettings()
     settings->getLock()->unlock();
 
     checkLocaleChange();
-#ifdef Q_OS_UNIX
-    #if defined(USE_SDL_2) && defined(WITH_X11)
+
+    #if defined(WITH_X11)
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -630,57 +517,9 @@ void MainSettingsDialog::saveNewSettings()
     }
 
     #endif
-#elif defined(Q_OS_WIN)
-    saveAutoProfileSettings();
-#endif
+
 
     settings->getLock()->lock();
-#ifdef Q_OS_WIN
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-    {
-        // Handle Windows Vista and later
-        QFile tempFile(RUNATSTARTUPLOCATION);
-
-        if (ui->launchAtWinStartupCheckBox->isChecked() && !tempFile.exists())
-        {
-            if (tempFile.open(QFile::WriteOnly))
-            {
-                QFile currentAppLocation(qApp->applicationFilePath());
-                currentAppLocation.link(QFileInfo(tempFile).absoluteFilePath());
-            }
-        }
-        else if (tempFile.exists() && QFileInfo(tempFile).isWritable())
-        {
-            tempFile.remove();
-        }
-    }
-    else
-    {
-        // Handle Windows XP
-        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
-        QString autoRunEntry = autoRunReg.value("antimicro", "").toString();
-
-        if (ui->launchAtWinStartupCheckBox->isChecked())
-        {
-            QString nativeFilePath = QDir::toNativeSeparators(qApp->applicationFilePath());
-            autoRunReg.setValue("antimicro", nativeFilePath);
-        }
-        else if (!autoRunEntry.isEmpty())
-        {
-            autoRunReg.remove("antimicro");
-        }
-    }
-
-    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-
-    if ((handler != nullptr) && (handler->getIdentifier() == "sendinput"))
-    {
-        settings->setValue("KeyRepeat/KeyRepeatEnabled", ui->keyRepeatEnableCheckBox->isChecked() ? "1" : "0");
-        settings->setValue("KeyRepeat/KeyRepeatDelay", ui->keyDelaySpinBox->value());
-        settings->setValue("KeyRepeat/KeyRepeatRate", 1000/ui->keyRateSpinBox->value());
-    }
-
-#endif
 
     if (ui->traySingleProfileListCheckBox->isChecked())
     {
@@ -702,39 +541,6 @@ void MainSettingsDialog::saveNewSettings()
 
     bool launchInTray = ui->launchInTrayCheckBox->isChecked();
     settings->setValue("LaunchInTray", launchInTray ? "1" : "0");
-
-#ifdef Q_OS_WIN
-    bool associateProfiles = ui->associateProfilesCheckBox->isChecked();
-    settings->setValue("AssociateProfiles", associateProfiles ? "1" : "0");
-
-    bool associationExists = WinExtras::containsFileAssociationinRegistry();
-    if (associateProfiles && !associationExists)
-    {
-        WinExtras::writeFileAssocationToRegistry();
-    }
-    else if (!associateProfiles && associationExists)
-    {
-        WinExtras::removeFileAssociationFromRegistry();
-    }
-
-    bool disableEnhancePoint = ui->disableWindowsEnhancedPointCheckBox->isChecked();
-    bool oldEnhancedValue = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
-    bool usingEnhancedPointer = WinExtras::isUsingEnhancedPointerPrecision();
-    settings->setValue("Mouse/DisableWinEnhancedPointer", disableEnhancePoint ? "1" : "0");
-
-    if (disableEnhancePoint != oldEnhancedValue)
-    {
-        if (usingEnhancedPointer && disableEnhancePoint)
-        {
-            WinExtras::disablePointerPrecision();
-        }
-        else if (!usingEnhancedPointer && !disableEnhancePoint)
-        {
-            WinExtras::enablePointerPrecision();
-        }
-    }
-
-#endif
 
     PadderCommon::lockInputDevices();
 
@@ -990,11 +796,8 @@ void MainSettingsDialog::populateAutoProfiles()
     {
         QString exe = settings->value(QString("AutoProfile%1Exe").arg(i), "").toString();
         QString windowName = settings->value(QString("AutoProfile%1WindowName").arg(i), "").toString();
-#ifdef Q_OS_UNIX
+
         QString windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
-#else
-        QString windowClass = QString();
-#endif
 
         //QString guid = settings->value(QString("AutoProfile%1GUID").arg(i), "").toString();
         convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i), QString("AutoProfile%1UniqueID").arg(i));
@@ -1020,9 +823,8 @@ void MainSettingsDialog::populateAutoProfiles()
 
             info->setWindowName(windowName);
 
-#ifdef Q_OS_UNIX
             info->setWindowClass(windowClass);
-#endif
+
 
             profileList.append(info);
             QList<AutoProfileInfo*> templist;
@@ -2043,7 +1845,7 @@ void MainSettingsDialog::refreshExtraMouseInfo()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
     QString handler = EventHandlerFactory::getInstance()->handler()->getIdentifier();
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -2073,7 +1875,7 @@ void MainSettingsDialog::resetMouseAcceleration()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         X11Extras::getInstance()->x11ResetMouseAccelerationChange();

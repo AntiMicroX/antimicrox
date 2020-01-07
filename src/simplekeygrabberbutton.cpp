@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,14 +28,7 @@
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
 
-#ifdef Q_OS_WIN
-  #include "winextras.h"
-#endif
-
-#ifdef Q_OS_UNIX
 #include <QApplication>
-#endif
-
 #include <QMetaType>
 #include <QWidget>
 #include <QDebug>
@@ -98,40 +92,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         int finalvirtual = 0;
         int checkalias = 0;
 
-#ifdef Q_OS_WIN
-  #ifdef WITH_VMULTI
-        if (handler->getIdentifier() == "vmulti")
-        {
-            finalvirtual = WinExtras::correctVirtualKey(tempcode, virtualactual);
-            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
-            QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
-            int tempQtKey = 0;
-
-            if (nativeWinKeyMapper)
-                tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
-
-            if (tempQtKey > 0)
-            {
-                finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
-                checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
-            }
-            else
-            {
-                finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(keyEve->key());
-            }
-        }
-
-  #endif
-
-        BACKEND_ELSE_IF (handler->getIdentifier() == "sendinput")
-        {
-            // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
-            // by checking for extended bit in scan code.
-            finalvirtual = WinExtras::correctVirtualKey(tempcode, virtualactual);
-            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, tempcode);
-        }
-
-#elif defined(Q_OS_UNIX)
 
     #if defined(WITH_X11)
 
@@ -178,7 +138,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
 
     #endif
-#endif
+
 
         controlcode = tempcode;
         bool valueUpdated = false;

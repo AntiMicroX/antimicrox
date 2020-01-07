@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -246,11 +247,7 @@ QString JoyButtonSlot::getSlotString()
             case JoyButtonSlot::JoyKeyboard:
             {
                 int tempDeviceCode = deviceCode;
-    #ifdef Q_OS_WIN
-                QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
-                if (nativeWinKeyMapper)
-                    tempDeviceCode = nativeWinKeyMapper->returnVirtualKey(qkeyaliasCode);
-    #endif
+
                 newlabel = newlabel.append(keysymToKeyString(tempDeviceCode, qkeyaliasCode).toUpper());
             break;
 
@@ -270,14 +267,6 @@ QString JoyButtonSlot::getSlotString()
                     case 3:
                         newlabel.append(tr("RB"));
                         break;
-    #ifdef Q_OS_WIN
-                    case 8:
-                        newlabel.append(tr("B4"));
-                        break;
-                    case 9:
-                        newlabel.append(tr("B5"));
-                        break;
-    #endif
                     default:
                         newlabel.append(QString::number(deviceCode));
                         break;

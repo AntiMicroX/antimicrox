@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,16 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef JOYTABWIDGET_H
 #define JOYTABWIDGET_H
 
+#include <QWidget>
 
 #include "uihelpers/joytabwidgethelper.h"
-
-#include <QFileDialog>
-#include <QHash>
-#include <QScrollArea>
-#include <QIcon>
 
 
 class InputDevice;
@@ -70,10 +68,6 @@ public:
 
     InputDevice *getJoystick();
 
-
-#ifdef Q_OS_WIN
-    void deviceKeyRepeatSettings();
-#endif
 
 protected:
     virtual void changeEvent(QEvent *event);

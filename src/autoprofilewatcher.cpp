@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,10 +31,8 @@
 #include <QDir>
 #include <QApplication>
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
     #include "x11extras.h"
-#elif defined(Q_OS_WIN)
-    #include "winextras.h"
 #endif
 
 
@@ -92,12 +91,11 @@ void AutoProfileWatcher::stopTimer()
     checkWindowTimer.stop();
 }
 
-// TROP
+
 void AutoProfileWatcher::runAppCheck()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    // TROP
     #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << qApp->applicationFilePath();
     #endif
@@ -109,32 +107,19 @@ void AutoProfileWatcher::runAppCheck()
 
     // Check whether program path needs to be parsed. Removes processing time
     // and need to run Linux specific code searching /proc.
-#ifdef Q_OS_LINUX
     if (!getAppProfileAssignments().isEmpty())
     {
         appLocation = findAppLocation();
         qDebug() << "appLocation is " << appLocation << endl;
     }
-#else
-    // In Windows, get program location no matter what.
-    appLocation = findAppLocation();
-    if (!appLocation.isEmpty())
-    {
-        baseAppFileName = QFileInfo(appLocation).fileName();
-    }
-#endif
 
-    // More portable check for whether antimicro is the current application
+    // More portable check for whether antimicroX is the current application
     // with focus.
     QWidget *focusedWidget = qApp->activeWindow();
     if (focusedWidget != nullptr) qDebug() << "get active window of app" << endl;
     QString nowWindow = QString();
     QString nowWindowClass = QString();
     QString nowWindowName = QString();
-
-#ifdef Q_OS_WIN
-    nowWindowName = WinExtras::getCurrentWindowText();
-#elif defined(Q_OS_UNIX)
 
     long currentWindow = X11Extras::getInstance()->getWindowInFocus();
     qDebug() << "getWindowInFocus: " << currentWindow << endl;
@@ -155,7 +140,6 @@ void AutoProfileWatcher::runAppCheck()
         nowWindowName = X11Extras::getInstance()->getWindowTitle(static_cast<Window>(currentWindow));
         qDebug() << "title of window now: " << nowWindowName << endl;
     }
-#endif
 
     qDebug() << "WINDOW CLASS: " << nowWindowClass;
     qDebug() << "WINDOW NAME: " << nowWindowName;
@@ -167,23 +151,11 @@ void AutoProfileWatcher::runAppCheck()
 
     qDebug() << "checkForTitleChange: " << checkForTitleChange;
 
-#ifdef Q_OS_WIN
-    if (!focusedWidget && ((!appLocation.isEmpty() && (appLocation != currentApplication)) ||
-        (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
-
-#elif defined(Q_OS_UNIX)
     if (!focusedWidget && ((!nowWindow.isEmpty() && (nowWindow != currentApplication)) ||
         (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
-
-#endif
     {
 
-#ifdef Q_OS_WIN
-        currentApplication = appLocation;
-#elif defined(Q_OS_UNIX)
         currentApplication = nowWindow;
-#endif
-
         currentAppWindowTitle = nowWindowName;
 
         Logger::LogDebug(QObject::tr("Active window changed to: Title = \"%1\", "
@@ -702,7 +674,6 @@ QString AutoProfileWatcher::findAppLocation()
 
     QString exepath = QString();
 
-#if defined(Q_OS_UNIX)
     #ifdef WITH_X11
     Window currentWindow = 0;
     int pid = 0;
@@ -711,13 +682,6 @@ QString AutoProfileWatcher::findAppLocation()
     if (currentWindow) pid = X11Extras::getInstance()->getApplicationPid(currentWindow);
     if (pid > 0) exepath = X11Extras::getInstance()->getApplicationLocation(pid);
     #endif
-
-#elif defined(Q_OS_WIN)
-    exepath = WinExtras::getForegroundWindowExePath();
-    #ifndef QT_DEBUG_NO_OUTPUT
-    qDebug() << exepath;
-    #endif
-#endif
 
     return exepath;
 }

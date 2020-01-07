@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,13 +33,7 @@
 #include "inputdevice.h"
 #include "common.h"
 
-#ifdef Q_OS_WIN
-    #include <qt_windows.h>
-    #include "winextras.h"
-#elif defined(Q_OS_UNIX)
-    #include <QApplication>
-#endif
-
+#include <QApplication>
 #include <QDebug>
 #include <QPointer>
 #include <QtGlobal>
@@ -254,46 +249,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-#ifdef Q_OS_WIN
-        int finalvirtual = 0;
-        int checkalias = 0;
-
-  #ifdef WITH_VMULTI
-      if (handler->getIdentifier() == "vmulti")
-      {
-          finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
-          checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
-
-          QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
-          int tempQtKey = 0;
-          if (nativeWinKeyMapper != nullptr)
-          {
-              tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
-          }
-
-          if (tempQtKey > 0)
-          {
-              finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
-              checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
-          }
-          else
-          {
-              finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
-          }
-      }
-
-  #endif
-
-      BACKEND_ELSE_IF (handler->getIdentifier() == "sendinput")
-      {
-          // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
-          // by checking for extended bit in scan code.
-          finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
-          checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
-      }
-
-#elif defined(Q_OS_UNIX)
-
     #if defined(WITH_X11)
         int finalvirtual = 0;
         int checkalias = 0;
@@ -347,7 +302,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
     #endif
 
-#endif
 
         if (!ignoreRelease && (event->modifiers() & Qt::ControlModifier) && (event->key() == Qt::Key_X))
         {
@@ -508,14 +462,14 @@ void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
     }
     else
     {
-        if ((currentQuickDialog == nullptr) && (buttonEventInterval.isNull() || (buttonEventInterval.elapsed() > 1000)))
+        if ((currentQuickDialog == nullptr) && (!buttonEventInterval.isValid() || (buttonEventInterval.elapsed() > 1000)))
         {
             // for better security, force pausing for 1 sec between key presses,
             // because mapped joystick buttons and axes become keys too
             // it's good for oversensitive buttons and axes, which can
             // create QuickSetDialog windows many times for one key
 
-            if (buttonEventInterval.isNull()) buttonEventInterval.start();
+            if (!buttonEventInterval.isValid()) buttonEventInterval.start();
             else buttonEventInterval.restart();
 
             currentQuickDialog = new QuickSetDialog(joystick, &helper, "setAssignedSlot", tempslot->getSlotCode(), tempslot->getSlotCodeAlias(), -1, tempslot->getSlotMode(), false, false, this);

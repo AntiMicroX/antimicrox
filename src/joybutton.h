@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef JOYBUTTON_H
 #define JOYBUTTON_H
 
@@ -24,17 +26,7 @@
 #include "springmousemoveinfo.h"
 #include "joybuttonmousehelper.h"
 
-#ifdef Q_OS_WIN
-  #include "joykeyrepeathelper.h"
-#endif
-
-#include <QObject>
 #include <QTimer>
-#include <QElapsedTimer>
-#include <QTime>
-#include <QList>
-#include <QListIterator>
-#include <QHash>
 #include <QQueue>
 #include <QReadWriteLock>
 
@@ -252,11 +244,6 @@ protected:
     static QList<PadderCommon::springModeInfo> springXSpeeds;
     static QList<PadderCommon::springModeInfo> springYSpeeds;
     static QList<JoyButton*> pendingMouseButtons;
-
-#ifdef Q_OS_WIN
-    static JoyKeyRepeatHelper repeatHelper;
-#endif
-
     static JoyButtonSlot *lastActiveKey; // JoyButtonSlots class
     static JoyButtonMouseHelper mouseHelper;
 
@@ -279,9 +266,9 @@ protected:
     QTimer mouseWheelVerticalEventTimer;
     QTimer mouseWheelHorizontalEventTimer;
 
-    QTime wheelVerticalTime;
-    QTime wheelHorizontalTime;
-    QTime turboHold;
+    QElapsedTimer wheelVerticalTime;
+    QElapsedTimer wheelHorizontalTime;
+    QElapsedTimer turboHold;
 
     SetJoystick *m_parentSet; // Pointer to set that button is assigned to.
     SetChangeCondition setSelectionCondition;
@@ -427,11 +414,8 @@ private:
         setChangeTimer.stop();
         keyPressTimer.stop();
         delayTimer.stop();
-        if (stoppedActiveZoneTimer) activeZoneTimer.stop();
 
-        #ifdef Q_OS_WIN
-            repeatHelper.getRepeatTimer()->stop();
-        #endif
+        if (stoppedActiveZoneTimer) activeZoneTimer.stop();
 
         if (stoppedSlotSetTimer) slotSetChangeTimer.stop();
 
@@ -487,7 +471,7 @@ private:
     void resetAllProperties();
     void resetPrivVars();
     void restartAllForSetChange();
-    void startTimerOverrun(int slotCode, QTime* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
+    void startTimerOverrun(int slotCode, QElapsedTimer* currSlotTime, QTimer* currSlotTimer, bool releasedDeskTimer = false);
     void findJoySlotsEnd(QListIterator<JoyButtonSlot*> *slotiter);
     void changeStatesQueue(bool currentReleased);
     void countActiveSlots(int tempcode, int& references, JoyButtonSlot* slot, QHash<int, int>& activeSlotsHash, bool& changeRepeatState, bool activeSlotHashWindows = false); // JoyButtonSlots class
@@ -579,14 +563,14 @@ private:
     JoyButtonSlot *currentDelay;
     JoyButtonSlot *currentSetChangeSlot;
 
-    QTime buttonHold;
-    QTime pauseHold;
-    QTime inpauseHold;
-    QTime buttonHeldRelease;
-    QTime keyPressHold;
-    QTime buttonDelay;
+    QElapsedTimer buttonHold;
+    QElapsedTimer pauseHold;
+    QElapsedTimer inpauseHold;
+    QElapsedTimer buttonHeldRelease;
+    QElapsedTimer keyPressHold;
+    QElapsedTimer buttonDelay;
     QTime accelExtraDurationTime;
-    QTime cycleResetHold;
+    QElapsedTimer cycleResetHold;
     static QTime testOldMouseTime;
 
     VDPad *m_vdpad;

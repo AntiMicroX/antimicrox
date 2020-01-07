@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +18,15 @@
 
 #include "sdleventreader.h"
 
+
 #include "globalvariables.h"
 #include "messagehandler.h"
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "common.h"
 //#include "logger.h"
+
+#include <SDL2/SDL.h>
 
 #include <QDebug>
 #include <QStringListIterator>

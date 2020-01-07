@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,12 +47,7 @@ InputDevice::InputDevice(SDL_Joystick* joystick, int deviceIndex, AntiMicroSetti
     keyPressTime = 0;
     m_joyhandle = joystick;
     deviceEdited = false;
-#ifdef Q_OS_WIN
-    keyRepeatEnabled = true;
-#elif defined(Q_OS_UNIX)
     keyRepeatEnabled = false;
-#endif
-
     keyRepeatDelay = 0;
     keyRepeatRate = 0;
     rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;

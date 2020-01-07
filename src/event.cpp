@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 
 #include <QVariant>
 #include <QApplication>
-#include <QTime>
 #include <cmath>
 #include <QFileInfo>
 #include <QStringList>
@@ -34,29 +34,23 @@
 #include "eventhandlerfactory.h"
 #include "joybutton.h"
 
-#if defined(Q_OS_UNIX)
 
-    #if defined(WITH_X11)
+#if defined(WITH_X11)
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
 #include "x11extras.h"
 
-        #ifdef WITH_XTEST
-#include <X11/extensions/XTest.h>
-        #endif
-    #endif
-
-    #if defined(WITH_UINPUT)
-#include "uinputhelper.h"
-    #endif
-
-#elif defined (Q_OS_WIN)
-#include <qt_windows.h>
-#include "winextras.h"
-
+  #ifdef WITH_XTEST
+   #include <X11/extensions/XTest.h>
+  #endif
 #endif
+
+#if defined(WITH_UINPUT)
+#include "uinputhelper.h"
+#endif
+
 
 
 // TODO: Implement function for determining final mouse pointer position
@@ -327,7 +321,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
         width = deskRect.width();
         height = deskRect.height();
 
-#if defined(Q_OS_UNIX) && defined(WITH_X11)
+#if defined(WITH_X11)
         QPoint currentPoint;
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
@@ -337,10 +331,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
         {
             currentPoint = QCursor::pos();
         }
-#elif defined(Q_OS_WIN)
-        QPoint currentPoint = QCursor::pos();
-#else
-        QPoint currentPoint = QCursor::pos();
 #endif
 
         currentMouseX = currentPoint.x();
@@ -429,7 +419,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
             // If either position is set to center, force update.
             if ((xmovecoor == (deskRect.x() + midwidth)) || (ymovecoor == (deskRect.y() + midheight)))
             {
-#if defined(Q_OS_UNIX)
 
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
                 if (fullSpring->screen <= -1)
@@ -452,28 +441,14 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                     EventHandlerFactory::getInstance()->handler()->sendMouseEvent(xmovecoor - currentMouseX,
                                                                                   ymovecoor - currentMouseY);
                 }
-
-#elif defined(Q_OS_WIN)
-                if (fullSpring->screen <= -1)
-                {
-                    EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
-                                                   width + deskRect.x(), height + deskRect.y());
-                }
-                else
-                {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
-                }
-#endif
-
             }
             else if (!PadderCommon::mouseHelperObj.springMouseMoving && relativeSpring &&
                 ((relativeSpring->displacementX >= -1.0) || (relativeSpring->displacementY >= -1.0)) &&
                 ((diffx >= (destRelativeWidth * .013)) || (diffy >= (destRelativeHeight * .013))))
             {
                 PadderCommon::mouseHelperObj.springMouseMoving = true;
-#if defined(Q_OS_UNIX)
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
                 if (fullSpring->screen <= -1)
                 {
                     if (handler->getIdentifier() == "xtest")
@@ -495,18 +470,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                             ->sendMouseEvent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
                 }
 
-#elif defined(Q_OS_WIN)
-                if (fullSpring->screen <= -1)
-                {
-                    EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
-                                                   width + deskRect.x(), height + deskRect.y());
-                }
-                else
-                {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
-                }
-#endif
                 PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(GlobalVariables::JoyButton::mouseRefreshRate,
                                  GlobalVariables::JoyButton::gamepadRefreshRate) + 1);
@@ -515,9 +478,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                      ((diffx >= (destSpringWidth * .013)) || (diffy >= (destSpringHeight * .013))))
             {
                 PadderCommon::mouseHelperObj.springMouseMoving = true;
-#if defined(Q_OS_UNIX)
-
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
                 if (fullSpring->screen <= -1)
                 {
                     if (handler->getIdentifier() == "xtest")
@@ -540,19 +502,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                                              ymovecoor - currentMouseY);
                 }
 
-
-#elif defined(Q_OS_WIN)
-                if (fullSpring->screen <= -1)
-                {
-                    EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
-                                                   width + deskRect.x(), height + deskRect.y());
-                }
-                else
-                {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
-                }
-#endif
 
                 PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(GlobalVariables::JoyButton::mouseRefreshRate,
@@ -566,8 +515,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
 
             else if (PadderCommon::mouseHelperObj.springMouseMoving)
             {
-#if defined(Q_OS_UNIX)
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
                 if (fullSpring->screen <= -1)
                 {
                     if (handler->getIdentifier() == "xtest")
@@ -589,19 +538,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
                             ->sendMouseEvent(xmovecoor - currentMouseX,
                                              ymovecoor - currentMouseY);
                 }
-
-#elif defined(Q_OS_WIN)
-                if (fullSpring->screen <= -1)
-                {
-                    EventHandlerFactory::getInstance()->handler()
-                            ->sendMouseSpringEvent(xmovecoor, ymovecoor,
-                                                   width + deskRect.x(), height + deskRect.y());
-                }
-                else
-                {
-                    sendevent(xmovecoor - currentMouseX, ymovecoor - currentMouseY);
-                }
-#endif
 
                 PadderCommon::mouseHelperObj.mouseTimer.start(
                             qMax(GlobalVariables::JoyButton::mouseRefreshRate,
@@ -644,7 +580,6 @@ int X11KeySymToKeycode(QString key)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int tempcode = 0;
-#if defined(Q_OS_UNIX)
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
@@ -666,29 +601,6 @@ int X11KeySymToKeycode(QString key)
 #endif
     }
 
-#elif defined(Q_OS_WIN)
-    if (key.length() > 0)
-    {
-        tempcode = WinExtras::getVirtualKey(key);
-        if ((tempcode <= 0) && (key.length() == 1))
-        {
-            #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "KEY: " << key;
-            #endif
-
-            int ordinal = QVariant(key.toUtf8().constData()[0]).toInt();
-            tempcode = VkKeyScan(ordinal);
-            int modifiers = tempcode >> 8;
-            tempcode = tempcode & 0xff;
-
-            if ((modifiers & 1) != 0) tempcode |= VK_SHIFT;
-            if ((modifiers & 2) != 0) tempcode |= VK_CONTROL;
-            if ((modifiers & 4) != 0) tempcode |= VK_MENU;
-        }
-    }
-
-#endif
-
     return tempcode;
 }
 
@@ -699,7 +611,6 @@ QString keycodeToKeyString(int keycode, int alias)
 
     QString newkey = QString();
 
-#if defined (Q_OS_UNIX)
     Q_UNUSED(alias)
 
     if (keycode <= 0)
@@ -764,33 +675,6 @@ QString keycodeToKeyString(int keycode, int alias)
 #endif
     }
 
-#elif defined (Q_OS_WIN)
-
-    QString tempalias = WinExtras::getDisplayString(keycode);
-    if (!tempalias.isEmpty())
-    {
-        newkey = tempalias;
-    }
-    else
-    {
-        int scancode = WinExtras::scancodeFromVirtualKey(keycode, alias);
-
-        if ((keycode >= VK_BROWSER_BACK) && (keycode <= VK_LAUNCH_APP2))
-        {
-            newkey.append(QString("0x%1").arg(keycode, 0, 16));
-        }
-        else
-        {
-            wchar_t buffer[50] = {0};
-            int length = GetKeyNameTextW(scancode << 16, buffer, sizeof(buffer));
-
-            if (length > 0) newkey = QString::fromWCharArray(buffer);
-            else newkey.append(QString("0x%1").arg(keycode, 0, 16));
-        }
-    }
-
-#endif
-
     return newkey;
 }
 
@@ -798,12 +682,6 @@ int X11KeyCodeToX11KeySym(int keycode)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#ifdef Q_OS_WIN
-
-    Q_UNUSED(keycode);
-    return 0;
-
-#elif defined(Q_OS_UNIX)
     #ifdef WITH_X11
 
     Display* display = X11Extras::getInstance()->display();
@@ -815,7 +693,6 @@ int X11KeyCodeToX11KeySym(int keycode)
     return 0;
 
     #endif
-#endif
 }
 
 QString keysymToKeyString(int keysym, int alias)
@@ -824,7 +701,6 @@ QString keysymToKeyString(int keysym, int alias)
 
     QString newkey = QString();
 
-#if defined (Q_OS_UNIX)
     #ifdef WITH_X11
     Q_UNUSED(alias)
 
@@ -847,9 +723,6 @@ QString keysymToKeyString(int keysym, int alias)
     #else
         newkey = keycodeToKeyString(keysym, alias);
     #endif
-#elif defined(Q_OS_WIN)
-    newkey = keycodeToKeyString(keysym, alias);
-#endif
 
     return newkey;
 }

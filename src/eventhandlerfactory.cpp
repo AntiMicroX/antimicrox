@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,15 +30,10 @@ static QHash<QString, QString> buildDisplayNames()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<QString, QString> temp;
-#ifdef Q_OS_WIN
-    temp.insert("sendinput", "SendInput");
-  #ifdef WITH_VMULTI
-    temp.insert("vmulti", "Vmulti");
-  #endif
-#elif defined(Q_OS_UNIX)
+
     temp.insert("xtest", "Xtest");
     temp.insert("uinput", "uinput");
-#endif
+
     return temp;
 }
 
@@ -52,13 +48,12 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-#ifdef Q_OS_UNIX
     #ifdef WITH_UINPUT
 
     if (handler == "uinput")
         eventHandler = new UInputEventHandler(this);
 
-#endif
+    #endif
 
     #ifdef WITH_XTEST
 
@@ -66,18 +61,7 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
         eventHandler = new XTestEventHandler(this);
 
     #endif
-#elif defined(Q_OS_WIN)
-    if (handler == "sendinput")
-    {
-        eventHandler = new WinSendInputEventHandler(this);
-    }
-  #ifdef WITH_VMULTI
-    else if (handler == "vmulti")
-    {
-        eventHandler = new WinVMultiEventHandler(this);
-    }
-  #endif
-#endif
+
 }
 
 EventHandlerFactory::~EventHandlerFactory()
@@ -129,7 +113,7 @@ QString EventHandlerFactory::fallBackIdentifier()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-#ifdef Q_OS_UNIX
+
   #if defined(WITH_XTEST)
     temp = "xtest";
   #elif defined(WITH_UINPUT)
@@ -137,9 +121,6 @@ QString EventHandlerFactory::fallBackIdentifier()
   #else
     temp = "xtest";
   #endif
-#elif defined(Q_OS_WIN)
-    temp = "sendinput";
-#endif
 
     return temp;
 }
@@ -150,15 +131,9 @@ QStringList EventHandlerFactory::buildEventGeneratorList()
 
     QStringList temp = QStringList();
 
-#ifdef Q_OS_WIN
-    temp.append("sendinput");
-  #ifdef WITH_VMULTI
-    temp.append("vmulti");
-  #endif
-#elif defined(Q_OS_UNIX)
     temp.append("xtest");
     temp.append("uinput");
-#endif
+
     return temp;
 }
 

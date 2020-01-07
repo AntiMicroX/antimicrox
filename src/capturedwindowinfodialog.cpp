@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,19 +25,11 @@
 #include <QWidget>
 #include <QDebug>
 
-#ifdef Q_OS_WIN
-#include "winextras.h"
-#elif defined(Q_OS_UNIX)
 #include "x11extras.h"
-#endif
 
 
 
-#ifdef Q_OS_WIN
-CapturedWindowInfoDialog::CapturedWindowInfoDialog(QWidget *parent) :
-#elif defined(Q_OS_UNIX)
 CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent) :
-#endif
     QDialog(parent),
     ui(new Ui::CapturedWindowInfoDialog)
 {
@@ -47,19 +40,11 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 
     selectedMatch = WindowNone;
 
-#ifdef Q_OS_UNIX
     X11Extras *info = X11Extras::getInstance();
     ui->winPathChoiceComboBox->setVisible(false);
-#endif
 
     bool setRadioDefault = false;
     fullWinPath = false;
-
-#ifdef Q_OS_WIN
-    ui->winClassCheckBox->setVisible(false);
-    ui->winClassLabel->setVisible(false);
-    ui->winClassHeadLabel->setVisible(false);
-#elif defined(Q_OS_UNIX)
 
     winClass = info->getWindowClass(static_cast<Window>(window));
     ui->winClassLabel->setText(winClass);
@@ -77,13 +62,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
 
     ui->winPathChoiceComboBox->setVisible(false);
 
-#endif
-
-#ifdef Q_OS_WIN
-    winName = WinExtras::getCurrentWindowText();
-#elif defined(Q_OS_UNIX)
     winName = info->getWindowTitle(static_cast<Window>(window));
-#endif
 
     ui->winTitleLabel->setText(winName);
 
@@ -99,23 +78,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     }
 
     ui->winPathLabel->clear();
-#ifdef Q_OS_WIN
-    winPath = WinExtras::getForegroundWindowExePath();
-    ui->winPathLabel->setText(winPath);
 
-    if (winPath.isEmpty())
-    {
-        ui->winPathCheckBox->setEnabled(false);
-        ui->winPathCheckBox->setChecked(false);
-    }
-    else
-    {
-        ui->winPathCheckBox->setChecked(true);
-        ui->winTitleCheckBox->setChecked(false);
-        setRadioDefault = true;
-    }
-
-#elif defined(Q_OS_UNIX)
     int pid = info->getApplicationPid(static_cast<Window>(window));
 
     if (pid > 0)
@@ -144,7 +107,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
         ui->winPathCheckBox->setEnabled(false);
         ui->winPathCheckBox->setChecked(false);
     }
-#endif
+
 
     if (winClass.isEmpty() && winName.isEmpty() &&
         winPath.isEmpty())

@@ -20,10 +20,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>antimicro</string>
+   <string>antimicroX</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="com.github.juliagoda.antimicro"/>
+   <iconset theme="com.github.juliagoda.antimicroX">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">JoyButtonWidget[isflashing=&quot;true&quot;],
@@ -191,7 +192,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      <x>0</x>
      <y>0</y>
      <width>650</width>
-     <height>30</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQuit">
@@ -230,8 +231,8 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </widget>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="application_exit">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="application_exit" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-application_exit.png</normaloff>:/icons/icons/16x16/actions/16-actions-application_exit.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -245,8 +246,8 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="view_refresh">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="view_refresh" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-view_refresh.png</normaloff>:/icons/icons/16x16/actions/16-actions-view_refresh.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Update Joysticks</string>
@@ -257,8 +258,8 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionHide">
    <property name="icon">
-    <iconset theme="view_restore">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="view_restore" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-view_restore.png</normaloff>:/icons/icons/16x16/actions/16-actions-view_restore.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Hide</string>
@@ -269,8 +270,8 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help_about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="about_antimicrox" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-about_antimicrox.png</normaloff>:/icons/icons/16x16/actions/16-actions-about_antimicrox.png</iconset>
    </property>
    <property name="text">
     <string>&amp;About</string>
@@ -280,58 +281,131 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
    </property>
   </action>
   <action name="actionAbout_Qt">
+   <property name="icon">
+    <iconset theme="about_qt" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-about_qt.png</normaloff>:/icons/icons/16x16/actions/16-actions-about_qt.png</iconset>
+   </property>
    <property name="text">
     <string>About &amp;Qt</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
   </action>
   <action name="actionProperties">
+   <property name="icon">
+    <iconset theme="sliders" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-sliders.png</normaloff>:/icons/icons/16x16/actions/16-actions-sliders.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Properties</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionKeyValue">
+   <property name="icon">
+    <iconset theme="key_checker" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-key_checker.png</normaloff>:/icons/icons/16x16/actions/16-actions-key_checker.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Key Checker</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
    </property>
   </action>
   <action name="actionHomePage">
    <property name="text">
     <string>Home Page</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
   </action>
   <action name="actionGitHubPage">
+   <property name="icon">
+    <iconset theme="github_page" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-github_page.png</normaloff>:/icons/icons/16x16/actions/16-actions-github_page.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;GitHub Page</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
   </action>
   <action name="actionGameController_Mapping">
+   <property name="icon">
+    <iconset theme="map_controller" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-map_controller.png</normaloff>:/icons/icons/16x16/actions/16-actions-map_controller.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Game Controller Mapping</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
   </action>
   <action name="actionOptions">
+   <property name="icon">
+    <iconset theme="settings" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-settings.png</normaloff>:/icons/icons/16x16/actions/16-actions-settings.png</iconset>
+   </property>
    <property name="text">
     <string>S&amp;ettings</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionStick_Pad_Assign">
+   <property name="icon">
+    <iconset theme="stick_pad_assign" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-stick_pad_assign.png</normaloff>:/icons/icons/16x16/actions/16-actions-stick_pad_assign.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Stick/Pad Assign</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
   </action>
   <action name="actionWiki">
+   <property name="icon">
+    <iconset theme="wiki" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-wiki.png</normaloff>:/icons/icons/16x16/actions/16-actions-wiki.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Wiki</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
   </action>
   <action name="actionIssues">
+   <property name="icon">
+    <iconset theme="issues" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-issues.png</normaloff>:/icons/icons/16x16/actions/16-actions-issues.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Issues</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
   </action>
   <action name="actionCalibration">
+   <property name="icon">
+    <iconset theme="calibration" resource="resources.qrc">
+     <normaloff>:/icons/icons/16x16/actions/16-actions-calibration.png</normaloff>:/icons/icons/16x16/actions/16-actions-calibration.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Calibration</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
  </widget>
@@ -344,7 +418,9 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionQuit</sender>

@@ -15,7 +15,7 @@ using namespace std;
 
 
 
-ProfileImporter::ProfileImporter(AntiMicroSettings* settings, QWidget *parent) :
+ProfileImporter::ProfileImporter(AntiMicroXSettings* settings, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ProfileImporter)
 {

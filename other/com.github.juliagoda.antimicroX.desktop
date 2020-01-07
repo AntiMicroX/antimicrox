@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=antimicroX
+Comment=Use a gamepad to control a variety of programs
+Name[sr]=Анти-микро
+Comment[sr]=Користите џојстик или играћу тастатуру за управљање различитим програмима
+Name[fr]=antimicroX
+Comment[fr]=Utilisez une manette de jeu pour commander un logiciel
+Name[de]=antimicroX
+Comment[de]=Nutze das Gamepad um Programme/Spiele zu steuern
+Comment[uk]=Використовуйте ігровий маніпулятор для керування програмами
+Exec=antimicroX
+Icon=com.github.juliagoda.antimicroX
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Qt;Utility;
+MimeType=application/x-amgp;
+Keywords=game;controller;keyboard;joystick;mouse;

@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,12 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef ADDEDITAUTOPROFILEDIALOG_H
 #define ADDEDITAUTOPROFILEDIALOG_H
 
-#include <QDialog>
-
-#include <QtGlobal>
+#include <QFileDialog>
 
 class AutoProfileInfo;
 class AntiMicroSettings;
@@ -74,15 +74,8 @@ private slots:
     void checkForReservedUniques(int index);
     void checkForDefaultStatus();
     void windowPropAssignment(CapturedWindowInfoDialog *dialog);
-
-#ifdef Q_OS_WIN
-    void openWinAppProfileDialog();
-    void captureWindowsApplicationPath();
-#elif defined(Q_OS_UNIX)
     void showCaptureHelpWindow();
     void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
-#endif
-
     void on_setPartialCheckBox_stateChanged(int arg1);
 
 private:

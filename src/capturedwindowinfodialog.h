@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef UNIXWINDOWINFODIALOG_H
 #define UNIXWINDOWINFODIALOG_H
 
 #include <QDialog>
-#include <QString>
 
 class QWidget;
 
@@ -33,12 +34,7 @@ class CapturedWindowInfoDialog : public QDialog
 
 public:
 
-#ifdef Q_OS_WIN
-    explicit CapturedWindowInfoDialog(QWidget *parent = nullptr);
-#elif defined(Q_OS_UNIX)
     explicit CapturedWindowInfoDialog(long window, QWidget *parent = nullptr);
-#endif
-
     ~CapturedWindowInfoDialog();
 
     enum {

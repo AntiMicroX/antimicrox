@@ -1,5 +1,6 @@
-/* antimicro Gamepad to KB+M event mapper
+/* antimicroX Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 #include "virtualkeypushbutton.h"
 
 #include "messagehandler.h"
-#include "joybutton.h"
 #include "event.h"
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
@@ -51,47 +51,22 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
     if (!xcodestring.isEmpty())
     {
         temp = X11KeySymToKeycode(xcodestring);
-#ifdef Q_OS_UNIX
+
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
         if (handler->getIdentifier() == "xtest")
         {
             temp = X11KeyCodeToX11KeySym(temp);
         }
-#endif
     }
 
     if (temp > 0)
     {
-#ifdef Q_OS_WIN
-        //static QtWinKeyMapper nativeWinKeyMapper;
-        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-
-  #ifdef WITH_VMULTI
-        if (handler->getIdentifier() == "vmulti")
-        {
-            QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
-            this->qkeyalias = nativeWinKeyMapper->returnQtKey(temp);
-            this->keycode = AntKeyMapper::getInstance()->returnVirtualKey(qkeyalias);
-        }
-  #endif
-        BACKEND_ELSE_IF (handler->getIdentifier() == "sendinput")
-        {
-            this->keycode = temp;
-            this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
-        }
-
-        // Special exception for Numpad Enter on Windows.
-        if (xcodestring == "KP_Enter")
-        {
-            this->qkeyalias = Qt::Key_Enter;
-        }
-#elif defined(Q_OS_UNIX)
         this->keycode = temp;
         //this->keycode = X11KeyCodeToX11KeySym(temp);
         this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
 
         //this->keycode = temp;
-#endif
         this->xcodestring = xcodestring;
         this->displayString = setDisplayString(xcodestring);
 
