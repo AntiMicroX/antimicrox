@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef JOYCONTROLSTICKMODIFIERBUTTON_H
 #define JOYCONTROLSTICKMODIFIERBUTTON_H
 

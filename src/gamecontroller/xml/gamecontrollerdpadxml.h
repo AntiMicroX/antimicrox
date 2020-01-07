@@ -1,3 +1,4 @@
+#pragma once
 #ifndef GAMECONTROLLERDPADXML_H
 #define GAMECONTROLLERDPADXML_H
 

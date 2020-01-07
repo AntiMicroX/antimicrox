@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SETJOYSTICKXML_H
 #define SETJOYSTICKXML_H
 

@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef DPADPUSHBUTTONGROUP_H
 #define DPADPUSHBUTTONGROUP_H
 

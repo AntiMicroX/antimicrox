@@ -1,3 +1,4 @@
+#pragma once
 #ifndef JOYBUTTONSLOTXML_H
 #define JOYBUTTONSLOTXML_H
 

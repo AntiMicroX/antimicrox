@@ -1,3 +1,4 @@
+#pragma once
 #ifndef JOYAXISXML_H
 #define JOYAXISXML_H
 

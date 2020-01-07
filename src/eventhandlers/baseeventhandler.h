@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef BASEEVENTHANDLER_H
 #define BASEEVENTHANDLER_H
 

@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef JOYBUTTONSTATUSBOX_H
 #define JOYBUTTONSTATUSBOX_H
 

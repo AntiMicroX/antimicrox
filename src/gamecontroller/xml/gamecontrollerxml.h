@@ -1,3 +1,4 @@
+#pragma once
 #ifndef GAMECONTROLLERXML_H
 #define GAMECONTROLLERXML_H
 

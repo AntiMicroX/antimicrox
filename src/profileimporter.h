@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PROFILEIMPORTER_H
 #define PROFILEIMPORTER_H
 

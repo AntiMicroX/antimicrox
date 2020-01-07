@@ -1,3 +1,4 @@
+#pragma once
 #ifndef JOYDPADXML_H
 #define JOYDPADXML_H
 

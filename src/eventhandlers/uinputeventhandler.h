@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef UINPUTEVENTHANDLER_H
 #define UINPUTEVENTHANDLER_H
 

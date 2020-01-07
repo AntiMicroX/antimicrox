@@ -1,3 +1,4 @@
+#pragma once
 #ifndef INPUTDEVICEXML_H
 #define INPUTDEVICEXML_H
 

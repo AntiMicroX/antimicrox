@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
 #ifndef QTX11KEYMAPPER_H
 #define QTX11KEYMAPPER_H
 
