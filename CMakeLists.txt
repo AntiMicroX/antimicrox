@@ -63,6 +63,7 @@ endif()
 # The version number.
 set(ANTIMICROX_MAJOR_VERSION 2)
 set(ANTIMICROX_MINOR_VERSION 25)
+set(ANTIMICROX_PATCH_VERSION 0)
 
 option(WITH_TESTS "Allow tests for classes" OFF)
 

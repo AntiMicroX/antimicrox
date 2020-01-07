@@ -26,6 +26,10 @@ namespace PadderCommon {
         double displacementX;
         // Displacement of the Y axis
         double displacementY;
+        double springDeadX;
+        double springDeadY;
+
+        int screen;
 
         // Width and height of the spring mode box
         int width; // unsigned
@@ -33,9 +37,6 @@ namespace PadderCommon {
         // Should the cursor not move around the center
         // of the screen.
         bool relative;
-        int screen;
-        double springDeadX;
-        double springDeadY;
 
     } springModeInfo;
 }

@@ -37,8 +37,8 @@ public:
     };
 
     typedef struct {
-        LogLevel level;
         QString message;
+        LogLevel level;
         bool newline;
     } LogMessage;
 
