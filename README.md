@@ -130,6 +130,8 @@ or
 trizen -S antimicrox-git
 ```
 
+from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
+
 
 ### Building with Flatpak
 
