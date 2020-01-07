@@ -30,7 +30,7 @@ distributions, Windows (Vista and later), and FreeBSD. However functionality of 
 has been tested only on Linux (Arch Linux and Ubuntu). More systems will be tested in the future.
 
 Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
-application. Their versions are here:
+application. Their old versions are here:
 
 https://github.com/AntiMicro/antimicro  
 https://github.com/Ryochan7/antimicro  
