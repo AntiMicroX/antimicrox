@@ -1,4 +1,4 @@
-# antimicroX 2.24.2
+# antimicroX 2.25
 
 
 1. [Description](#description)  
