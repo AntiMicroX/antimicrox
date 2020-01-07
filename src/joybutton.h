@@ -55,8 +55,8 @@ public:
 
     typedef struct _mouseCursorInfo
     {
-        double code;
         JoyButtonSlot *slot;
+        double code;
     } mouseCursorInfo;
 
     void joyEvent(bool pressed, bool ignoresets=false); // JoyButtonEvents class

@@ -22,21 +22,20 @@ namespace PadderCommon {
 
     typedef struct _springModeInfo
     {
-        // Displacement of the X axis
-        double displacementX;
-        // Displacement of the Y axis
-        double displacementY;
-        double springDeadX;
-        double springDeadY;
+    // Displacement of the X axis
+    double displacementX;
+    // Displacement of the Y axis
+    double displacementY;
 
-        int screen;
-
-        // Width and height of the spring mode box
-        int width; // unsigned
-        int height; // unsigned
-        // Should the cursor not move around the center
-        // of the screen.
-        bool relative;
+    // Width and height of the spring mode box
+    int width; // unsigned
+    int height; // unsigned
+    // Should the cursor not move around the center
+    // of the screen.
+    bool relative;
+    int screen;
+    double springDeadX;
+    double springDeadY;
 
     } springModeInfo;
 }
