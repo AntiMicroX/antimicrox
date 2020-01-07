@@ -124,6 +124,12 @@ cd antimicroX-git
 makepkg -sric
 ```
 
+or
+
+```
+trizen -S antimicrox-git
+```
+
 
 ### Building with Flatpak
 
