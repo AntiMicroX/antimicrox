@@ -488,6 +488,24 @@ if(UNIX)
 endif(UNIX)
 
 if(UNIX)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-settings.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-stick_pad_assign.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-wiki.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-about_qt.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-about_antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-github_page.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-issues.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-calibration.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-map_controller.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-sliders.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-key_checker.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+
     ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-application_exit.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
     ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-archive_insert.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
     ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_cancel.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
