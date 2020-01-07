@@ -124,7 +124,7 @@ If you're an Arch Linux or Arch Linux based distribution user:
 
 ```
 git clone https://github.com/archlinux-lucjan/archlinux-packages.git
-cd antimicroX-git
+cd antimicrox-git
 makepkg -sric
 ```
 
