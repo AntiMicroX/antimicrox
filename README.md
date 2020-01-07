@@ -107,6 +107,7 @@ installed on your system in order to build this program:
 * libx11-dev (libx11 on distros based on Arch Linux) (Needed to compile with Qt5 support)
 * itstool (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 
+<br/>
 
 ### Building Under Linux
 
@@ -224,29 +225,40 @@ devices behave a bit differently between the two systems. Another method also ex
 which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
 <br/>
+
 ## Support
 
 In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicroX/issues) .
+
+<br/>
 
 ## Bugs
 
 Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or questions from users. 
 
+<br/>
 
 ## Shoutout
 
 A big, original inspiration for this program was the program QJoyPad.
 
+<br/>
 
 ## Credits
+
+<br/>
 
 ### Contributors
 
 juliagoda
 
+<br/>
+
 ### Original Developer
 
 Travis Nickles <nickles.travis@gmail.com>
+
+<br/>
 
 ### Old Contributors
 
@@ -256,6 +268,8 @@ Jeff Backus <jeff@jsbackus.com>
 Arthur Moore  
 Anton Tornqvist <antont@inbox.lv>
 mtdeguzis
+
+<br/>
 
 ### Translators
 
