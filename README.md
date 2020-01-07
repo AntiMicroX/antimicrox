@@ -14,7 +14,7 @@
 9. [Shoutout](#shoutout)  
 10. [Credits](#credits)  
 
-
+<br/>
 
 ## Description
 
@@ -35,6 +35,7 @@ application. Their versions are here:
 https://github.com/AntiMicro/antimicro  
 https://github.com/Ryochan7/antimicro  
 
+<br/>
 
 ## License
 
@@ -43,7 +44,7 @@ included with the source code if you would like to read the terms of the license
 The license can also be found online at
 http://www.gnu.org/licenses/gpl.txt
 
-
+<br/>
 
 ## Command Line
 
@@ -78,11 +79,13 @@ http://www.gnu.org/licenses/gpl.txt
                                    check your controller index, name or 
                                    even GUID.  
 
+<br/>
 
 ## Wiki
 
 [Look here](https://github.com/juliagoda/antimicroX/wiki)
 
+<br/>
 
 ## Build Dependencies
 
@@ -132,6 +135,7 @@ trizen -S antimicrox-git
 
 from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
 
+<br/>
 
 ### Building with Flatpak
 
@@ -206,7 +210,7 @@ To update all your installed applications and runtimes to the latest version, ex
 
 `flatpak uninstall com.github.juliagoda.antimicroX`
 
-
+<br/>
 
 ## Testing Under Linux
 
@@ -219,6 +223,7 @@ testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. Another method also exist, 
 which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
+<br/>
 ## Support
 
 In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicroX/issues) .
