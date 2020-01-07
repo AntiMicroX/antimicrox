@@ -16,26 +16,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "mousedpadsettingsdialoghelper.h"
+#pragma once
+#ifndef QKEYDISPLAYDIALOG_H
+#define QKEYDISPLAYDIALOG_H
 
-#include "messagehandler.h"
-#include "joydpad.h"
-#include "joydpadbuttonwidget.h"
+#include <QDialog>
 
-#include <QDebug>
 
-MouseDpadSettingsDialogHelper::MouseDpadSettingsDialogHelper(JoyDPad *dpad, QObject *parent) :
-    QObject(parent)
+class QKeyEvent;
+class QWidget;
+
+namespace Ui {
+class QKeyDisplayDialog;
+}
+
+class QKeyDisplayDialog : public QDialog
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+    Q_OBJECT
 
-    Q_ASSERT(dpad);
+public:
+    explicit QKeyDisplayDialog(QWidget *parent = nullptr);
+    ~QKeyDisplayDialog();
 
-    this->dpad = dpad;
-}
+protected:
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
 
-JoyDPad* MouseDpadSettingsDialogHelper::getDPad() const {
+private:
+    Ui::QKeyDisplayDialog *ui;
+};
 
-    return dpad;
-}
-
+#endif // QKEYDISPLAYDIALOG_H
