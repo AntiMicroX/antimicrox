@@ -25,3 +25,4 @@ doc/
 compile/
 src/Changelog
 SDL2_*
+*.kate-swp
