@@ -136,6 +136,10 @@ trizen -S antimicrox-git
 
 from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
 
+ **Distro** | **Maintainer** | **Package**  |
+| :--------- | :------------- | :----------- |
+| Arch Linux | Piotr Górski   | [antimicrox-git](https://aur.archlinux.org/packages/antmicrox-git) <sup>AUR</sup> |
+
 <br/>
 
 ### Building with Flatpak
