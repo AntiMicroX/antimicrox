@@ -21,6 +21,7 @@
 
 #include <QObject>
 #include <QPointer>
+#include <QStringList>
 
 class InputDevice;
 class QXmlStreamReader;
