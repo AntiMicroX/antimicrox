@@ -2,12 +2,10 @@ FROM ubuntu:bionic
 ARG USER=docker
 ARG UID=1000
 ARG GID=1000
-ARG PW=docker
 
 MAINTAINER Jagoda Górska <juliagoda.pl@protonmail.com>
 
 
-# Dependencies of the Qt offline installer
 RUN apt-get -y update && apt-get install -y \
     g++ \
     make \
@@ -40,19 +38,29 @@ RUN apt-get -y update && apt-get install -y \
 
 RUN git clone https://github.com/juliagoda/antimicroX.git && cd antimicroX
 
+RUN addgroup --gid ${GID} ${USER} && \
+    adduser --disabled-password --gecos '' --uid ${UID} --gid ${GID} ${USER} && \
+    usermod -a -G input ${USER} && \
+    usermod -a -G uucp ${USER} && \
+    usermod -a -G tty ${USER} && \
+    usermod -a -G games ${USER} 
+  
+
+      
 COPY . /opt
 
 WORKDIR /opt
 
-RUN cmake -DCMAKE_INSTALL_PREFIX=/usr . && make && make install
+# finally build project from github
+RUN cmake -DCMAKE_INSTALL_PREFIX=/usr . && \ 
+    make && \ 
+    make install
+    
 
-ENV PATH /usr/bin:$PATH
-
-RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | \
-      chpasswd
-      
 USER ${UID}:${GID}
 
 WORKDIR /home/${USER}
 
-ENTRYPOINT ["./unix_x11_antimicrox", "latest-ubuntu18.04"]
+RUN mkdir -p /home/${USER}/.config/antimicroX
+
+CMD /usr/bin/antimicroX
