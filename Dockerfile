@@ -3,6 +3,7 @@ ARG USER=docker
 ARG UID=1000
 ARG GID=1000
 
+LABEL "antimicroX from last commit of master branch on Github. See https://github.com/juliagoda/antimicroX" 
 MAINTAINER Jagoda Górska <juliagoda.pl@protonmail.com>
 
 
@@ -47,20 +48,19 @@ RUN addgroup --gid ${GID} ${USER} && \
   
 
       
-COPY . /opt
+COPY . /opt/antimicroX
 
-WORKDIR /opt
+WORKDIR /opt/antimicroX
 
 # finally build project from github
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr . && \ 
     make && \ 
-    make install
+    make install && \
+    rm -rf opt/antimicroX
     
 
 USER ${UID}:${GID}
 
 WORKDIR /home/${USER}
-
-RUN mkdir -p /home/${USER}/.config/antimicroX
 
 CMD /usr/bin/antimicroX
