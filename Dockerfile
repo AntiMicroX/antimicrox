@@ -55,4 +55,4 @@ USER ${UID}:${GID}
 
 WORKDIR /home/${USER}
 
-ENTRYPOINT["./unix_x11_antimicrox", "latest-ubuntu18.04"]
+ENTRYPOINT ["./unix_x11_antimicrox", "latest-ubuntu18.04"]
