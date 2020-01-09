@@ -64,7 +64,8 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
     currentQuickDialog = quickSetDialog;
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
-    isLaptopDevice = isLaptop();
+    //isLaptopDevice = isLaptop();
+    isLaptopDevice = true;
     noneButton = createNoneKey();
 
     populateTopRowKeys();
@@ -91,7 +92,8 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
 
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
-    isLaptopDevice = isLaptop();
+    isLaptopDevice = true;
+    //isLaptopDevice = isLaptop();
     noneButton = createNoneKey();
     withoutQuickSetDialog = false;
     lastPressedBtn = nullptr;
@@ -111,7 +113,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
 }
 
 
-bool VirtualKeyboardMouseWidget::is_numlock_activated()
+/*bool VirtualKeyboardMouseWidget::is_numlock_activated()
 {
 
 #if defined(WITH_X11)
@@ -131,7 +133,7 @@ bool VirtualKeyboardMouseWidget::isLaptop()
 
     if (SDL_GetPowerInfo(&secs, &pct) == SDL_POWERSTATE_UNKNOWN) return false;
     else return true;
-}
+}*/
 
 
 void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
@@ -143,18 +145,18 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
     QVBoxLayout *tempAuxKeyLayout = new QVBoxLayout();
     QVBoxLayout *tempNumKeyPadLayout = new QVBoxLayout();
 
-    if (is_numlock_activated())
-    {
-        tempNumKeyPadLayout = setupKeyboardNumPadLayout();
-    }
-    else
-    {
+   // if (is_numlock_activated())
+  //  {
+  //      tempNumKeyPadLayout = setupKeyboardNumPadLayout();
+  //  }
+  //  else
+  //  {
         QPushButton *othersKeysButton = createOtherKeysMenu();
 
         tempNumKeyPadLayout->addWidget(noneButton);
         tempNumKeyPadLayout->addWidget(othersKeysButton);
         tempNumKeyPadLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding));
-    }
+   // }
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->addLayout(tempMainKeyLayout);
