@@ -9,7 +9,8 @@
 4. [Wiki](#wiki)
 5. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
-    b. [Building with Flatpak](#building-with-flatpak)  
+    b. [Running With Docker](#running-with-docker)
+    c. [Building with Flatpak](#building-with-flatpak)  
 6. [Testing Under Linux](#testing-under-linux)  
 7. [Support](#support)  
 8. [Bugs](#bugs)  
@@ -141,6 +142,12 @@ from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
  **Distro** | **Maintainer** | **Package**  |
 | :--------- | :------------- | :----------- |
 | Arch Linux | Piotr Górski   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
+
+<br/>
+
+### Running with Docker
+
+If you want to run application without building process and choose between various distributions, then [look here](https://hub.docker.com/r/juliagoda/antimicrox)
 
 <br/>
 
