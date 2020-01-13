@@ -9,7 +9,7 @@
 4. [Wiki](#wiki)
 5. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
-    b. [Running With Docker](#running-with-docker)
+    b. [Running With Docker](#running-with-docker)  
     c. [Building with Flatpak](#building-with-flatpak)  
 6. [Testing Under Linux](#testing-under-linux)  
 7. [Support](#support)  
