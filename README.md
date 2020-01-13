@@ -1,5 +1,7 @@
 # antimicroX 2.25
 
+## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
+
 
 1. [Description](#description)  
 2. [License](#license)  
@@ -30,7 +32,7 @@ distributions, Windows (Vista and later), and FreeBSD. However functionality of 
 has been tested only on Linux (Arch Linux and Ubuntu). More systems will be tested in the future.
 
 Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
-application. Their old versions are here:
+application. Their **old versions** are here:
 
 https://github.com/AntiMicro/antimicro  
 https://github.com/Ryochan7/antimicro  
