@@ -1,6 +1,6 @@
 # antimicroX 2.25
 
-## his program is not part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
+## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
 
 
 1. [Description](#description)  
