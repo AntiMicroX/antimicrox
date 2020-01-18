@@ -109,6 +109,7 @@ installed on your system in order to build this program:
 * libxtst-dev (libxtst on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
 * libx11-dev (libx11 on distros based on Arch Linux) (Needed to compile with Qt5 support)
 * itstool (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
+* gettext
 
 <br/>
 
