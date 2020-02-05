@@ -65,7 +65,46 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - Polish&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Noto Sans&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Stworzony przez Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;, następnie kontynuowany przez grupę AntiMicro na stronie https://github.com/AntiMicro, a teraz w formie forku przez juliagoda na stronie https://github.com/juliagoda&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;Aktualni programiści:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Poprzedni programiści:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Zerro Alvein&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;aybe&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jeff Backus &amp;lt;jeff.backus@gmail.com&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Arthur Moore&lt;br /&gt;Anton Tornqvist &amp;lt;antont@inbox.lv&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;7185&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;DarkStarSword&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;est31&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;ProfessorKaos64&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;qwerty12&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA0&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Tłumaczenia:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - brazylijski portugalski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx - chiński&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - francuski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - niemiecki&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;phob - niemiecki&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;tou omiya - japoński&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - rosyjski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - serbski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;burunduk - ukraiński&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - hiszpański&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - włoski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - polski&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="217"/>
@@ -183,7 +222,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="375"/>
@@ -206,7 +245,7 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
     <message>
         <location filename="../../../src/aboutdialog.ui" line="401"/>
         <source>Copyright: 2013 - 2020</source>
-        <translation type="unfinished">Prawa autorskie: 2013 - 2020 {2013 ?}</translation>
+        <translation>Prawa autorskie: 2013 - 2020</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -659,7 +698,7 @@ Z dniem 24 maja, 2016, projekt został przeniesiony na stronę https://github.co
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="25"/>
         <source>Pro&amp;file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro&amp;fil:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="40"/>
@@ -690,12 +729,12 @@ rubryki.</translation>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Klasa:</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.ui" line="100"/>
         <source>T&amp;itle:  </source>
-        <translation type="unfinished"></translation>
+        <translation>T&amp;ytuł:  </translation>
     </message>
     <message>
         <source>Class:</source>
@@ -1228,22 +1267,22 @@ zamiast domyślnej opcji.</translation>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="873"/>
         <source>Empty execution path</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusta ścieżka wykonania</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="873"/>
         <source>Line for execution file path is empty. Fill the first line before you are going to add a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Linia odpowiadająca za scieżkę do pliku wykonywalnego jest pusta. Uzupełnij rubrykę zanim dodasz slot.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="874"/>
         <source>File doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik nie istnieje</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="874"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation type="unfinished"></translation>
+        <translation>Takiego pliku nie odnaleziono w podanej ścieżce. Sprawdź, czy pod tą ścieżką znajduje się taki plik</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1135"/>
@@ -1366,7 +1405,7 @@ zamiast domyślnej opcji.</translation>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uwaga: To okno jest przeznaczone do kompatybilności wstecznej z profilami przed Antimicro 2.0. Od wersji 2.0 preferowane jest korzystanie z okna mapowania kontrolera gry.</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="101"/>
@@ -1813,7 +1852,7 @@ gdy przycisk jest wciśnięty.</translation>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="562"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[BRAK]</translation>
+        <translation>[BRAK]</translation>
     </message>
 </context>
 <context>
@@ -3744,12 +3783,12 @@ do przycisków lub zablokuj ukrywanie pustych przycisków.</translation>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="217"/>
         <source>Battery:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bateria:</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="230"/>
         <source>Unknown</source>
-        <translation type="unfinished">Nieznany</translation>
+        <translation>Nieznany</translation>
     </message>
     <message>
         <location filename="../../../src/joystickstatuswindow.ui" line="250"/>
@@ -3850,7 +3889,7 @@ do przycisków lub zablokuj ukrywanie pustych przycisków.</translation>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="113"/>
         <source>Pro&amp;file Directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kat&amp;alog profilu:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="123"/>
@@ -4235,7 +4274,7 @@ ruch myszki wewnątrz antimicroX.</translation>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="959"/>
         <source>Weight Modi&amp;fier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mody&amp;fikator wagowy:</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1325"/>
@@ -4437,7 +4476,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="219"/>
         <source>He&amp;lp</source>
-        <translation type="unfinished"></translation>
+        <translation>Po&amp;moc</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="238"/>
@@ -4491,7 +4530,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="292"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="301"/>
@@ -4501,7 +4540,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="304"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="313"/>
@@ -4511,7 +4550,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="316"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="321"/>
@@ -4526,7 +4565,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="336"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="345"/>
@@ -4536,7 +4575,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="348"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="357"/>
@@ -4546,7 +4585,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="360"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="369"/>
@@ -4556,7 +4595,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="372"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="381"/>
@@ -4566,7 +4605,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="384"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="393"/>
@@ -4576,7 +4615,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="396"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="405"/>
@@ -4586,7 +4625,7 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.ui" line="408"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <source>Issues</source>
@@ -4617,28 +4656,29 @@ Podłącz joystick a następnie wybierz opcję &quot;Zaktualizuj joysticki&quot;
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1866"/>
         <source>%1 battery</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 bateria</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1868"/>
         <source>Battery level is less than %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Poziom baterii jest niższy niż %1</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="1869"/>
         <source>Device number: %1
 Device name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Numer urządzenia: %1
+Nazwa urządzenia: %2</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="2053"/>
         <source>Reading old profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Odczyt starego profilu</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="2053"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicroX since version 2.25</source>
-        <translation type="unfinished"></translation>
+        <translation>Ten profil wykorzystuje numery GUID kontrolerów. Czy chciałbyś zmienić numery GUID na UniqueID w tym pliku do użytku w identycznych urządzeniach? Taki stary plik nie może być załadowany w AntimicroX od wersji 2.25 wzwyż</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="510"/>
@@ -5356,7 +5396,7 @@ pozycji kursora myszki, ustawionej przez niezależny tekst.</translation>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="158"/>
         <source>antimicro Key Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wartość klawisza antimicroX:</translation>
     </message>
     <message>
         <source>antimicroX Key Value:</source>
@@ -5407,7 +5447,7 @@ pozycji kursora myszki, ustawionej przez niezależny tekst.</translation>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="125"/>
         <source>UniqueID:            %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UniqueID:            %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="126"/>
@@ -5543,92 +5583,92 @@ pozycji kursora myszki, ustawionej przez niezależny tekst.</translation>
     <message>
         <location filename="../../../src/main.cpp" line="194"/>
         <source>Launch program with the tray menu disabled</source>
-        <translation type="unfinished">Uruchom program bez udziału tacki systemowej</translation>
+        <translation>Uruchom program bez udziału tacki systemowej</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="195"/>
         <source>Launch program without the main window displayed</source>
-        <translation type="unfinished">Uruchom program pomijając wyświetlenie głównego okna</translation>
+        <translation>Uruchom program pomijając wyświetlenie głównego okna</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="197"/>
         <source>Launch program with the configuration file selected as the default for selected controllers. Defaults to all controllers</source>
-        <translation type="unfinished">Uruchom program ze wskazanym plikiem konfiguracyjnym jako domyślnym dla wskazanych kontrolerów</translation>
+        <translation>Uruchom program ze wskazanym plikiem konfiguracyjnym jako domyślnym dla wskazanych kontrolerów</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="197"/>
         <source>location</source>
-        <translation type="unfinished">lokalizacja</translation>
+        <translation>lokalizacja</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="200"/>
         <source>Apply configuration file to a specific controller. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished">Wybierz plik konfiguracyjny dla wskazanego kontrolera. Wartością może być indeks kontrolera, nazwa lub GUID</translation>
+        <translation>Wybierz plik konfiguracyjny dla wskazanego kontrolera. Wartością może być indeks kontrolera, nazwa lub GUID</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="200"/>
         <source>value</source>
-        <translation type="unfinished">wartość</translation>
+        <translation>wartość</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="203"/>
         <source>Unload currently enabled profile(s)</source>
-        <translation type="unfinished">Odłącz aktualnie odblokowany profil(e)</translation>
+        <translation>Odłącz aktualnie odblokowany profil(e)</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="203"/>
         <source>value(s)</source>
-        <translation type="unfinished">wartość(i)</translation>
+        <translation>wartość(i)</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="206"/>
         <source>Start joysticks on a specific set. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished">Uruchom joystick(i) z numerem ustawienia. Wartością może być indeks kontrolera, nazwa lub GUID</translation>
+        <translation>Uruchom joystick(i) z numerem ustawienia. Wartością może być indeks kontrolera, nazwa lub GUID</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="206"/>
         <source>number value</source>
-        <translation type="unfinished">numer wartość</translation>
+        <translation>numer wartość</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="209"/>
         <source>Launch program as a daemon. Use only on Linux.</source>
-        <translation type="unfinished">Uruchom program jako usługę w tle. Wyłącznie pod Linux.</translation>
+        <translation>Uruchom program jako usługę w tle. Wyłącznie pod Linux.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="211"/>
         <source>Enable logging</source>
-        <translation type="unfinished">Odblokuj generowanie logów</translation>
+        <translation>Odblokuj generowanie logów</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="211"/>
         <source>log-type</source>
-        <translation type="unfinished">typ-logów</translation>
+        <translation>typ-logów</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="214"/>
         <source>Choose a file for logs writing</source>
-        <translation type="unfinished">Wybierz plik dla zapisywania logów</translation>
+        <translation>Wybierz plik dla zapisywania logów</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="214"/>
         <source>filename</source>
-        <translation type="unfinished">nazwaPliku</translation>
+        <translation>nazwaPliku</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="218"/>
         <source>Choose between using XTest support and uinput support for event generation. Use only if you have enabled xtest and uinput options on Linux or vmulti on Windows. Default: xtest.</source>
-        <translation type="unfinished">Wybierz między wsparciem xtest a wsparciem uinput dla generatora zdarzeń. Do zastosowania wyłącznie w przypadku wykrywania przez program xtest oraz uinput pod Linux oraz w przypadku wykrywania opcji vmulti pod Windows. Domyślnie: xtest.</translation>
+        <translation>Wybierz między wsparciem xtest a wsparciem uinput dla generatora zdarzeń. Do zastosowania wyłącznie w przypadku wykrywania przez program xtest oraz uinput pod Linux oraz w przypadku wykrywania opcji vmulti pod Windows. Domyślnie: xtest.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="219"/>
         <source>event-generation-type</source>
-        <translation type="unfinished">typ-generatora-zdarzeń</translation>
+        <translation>typ-generatora-zdarzeń</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="223"/>
         <source>Print information about joysticks detected by SDL. Use only if you have sdl library. You can check your controller index, name or even GUID.</source>
-        <translation type="unfinished">Wyświetl informacje o wykrytych joystick&apos;ach przez bibliotekę SDL. Zastosowanie wyłącznie z dostępną i odblokowaną biblioteką sdl. Wyświetlane informacje dotyczą indeksu kontrolerów, nazw i GUID.</translation>
+        <translation>Wyświetl informacje o wykrytych joystick&apos;ach przez bibliotekę SDL. Zastosowanie wyłącznie z dostępną i odblokowaną biblioteką sdl. Wyświetlane informacje dotyczą indeksu kontrolerów, nazw i GUID.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="372"/>
