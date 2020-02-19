@@ -14,7 +14,7 @@ set( GUIS_SRCS testaboutdialog.cpp
     testaddeditautoprofiledialog.cpp
     testadvancebuttondialog.cpp
     testadvancestickassignmentdialog.cpp
-    testaxiseditdialog.cpp
+    testjoycontrolstickeditdialog.cpp
     testbuttoneditdialog.cpp
     )
 add_executable( GuiTests ${GUIS_SRCS} )
