@@ -19,7 +19,8 @@
 
 #include "virtualkeyboardmousewidget.h"
 
-
+#include <QtDebug>
+#include "event.h"
 #include "messagehandler.h"
 #include "virtualkeypushbutton.h"
 #include "virtualmousepushbutton.h"
@@ -27,12 +28,14 @@
 #include "antkeymapper.h"
 #include "quicksetdialog.h"
 #include "buttoneditdialog.h"
+#include "qtkeymapperbase.h"
 
 #ifdef WITH_X11
    #include "x11extras.h"
 #endif
 
 #include <SDL2/SDL_power.h>
+
 
 #include <QFont>
 #include <QSizePolicy>
@@ -88,7 +91,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
     QTabWidget(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput); 
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
@@ -821,6 +824,16 @@ void VirtualKeyboardMouseWidget::populateTopRowKeys()
     }
 }
 
+void VirtualKeyboardMouseWidget::addFButtonToOthers(int qt_keycode, QString keycode_text)
+{
+    if (keysymToKeyString(AntKeyMapper::getInstance()->returnVirtualKey(qt_keycode)) != tr("[NO KEY]"))
+    {
+        QAction* tempAction = new QAction(keycode_text, otherKeysMenu);
+        tempAction->setData(AntKeyMapper::getInstance()->returnVirtualKey(qt_keycode));
+        otherKeysMenu->addAction(tempAction);
+    }
+}
+
 void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1089,6 +1102,19 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_LaunchMail);
     tempAction->setData(temp);
     otherKeysMenu->addAction(tempAction);
+
+    addFButtonToOthers(Qt::Key_F13, tr("F13"));
+    addFButtonToOthers(Qt::Key_F14, tr("F14"));
+    addFButtonToOthers(Qt::Key_F15, tr("F15"));
+    addFButtonToOthers(Qt::Key_F16, tr("F16"));
+    addFButtonToOthers(Qt::Key_F17, tr("F17"));
+    addFButtonToOthers(Qt::Key_F18, tr("F18"));
+    addFButtonToOthers(Qt::Key_F19, tr("F19"));
+    addFButtonToOthers(Qt::Key_F20, tr("F20"));
+    addFButtonToOthers(Qt::Key_F21, tr("F21"));
+    addFButtonToOthers(Qt::Key_F22, tr("F22"));
+    addFButtonToOthers(Qt::Key_F23, tr("F23"));
+    addFButtonToOthers(Qt::Key_F24, tr("F24"));
 
     tempAction = new QAction(tr("Media"), otherKeysMenu);
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_LaunchMedia);

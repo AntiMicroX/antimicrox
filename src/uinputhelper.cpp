@@ -90,6 +90,18 @@ void UInputHelper::populateX11SymVk(QHash<QString, int>& knownAliasesX11SymVK)
     knownAliasesX11SymVK.insert("F10", KEY_F10);
     knownAliasesX11SymVK.insert("F11", KEY_F11);
     knownAliasesX11SymVK.insert("F12", KEY_F12);
+    knownAliasesX11SymVK.insert("F13", KEY_F13);
+    knownAliasesX11SymVK.insert("F14", KEY_F14);
+    knownAliasesX11SymVK.insert("F15", KEY_F15);
+    knownAliasesX11SymVK.insert("F16", KEY_F16);
+    knownAliasesX11SymVK.insert("F17", KEY_F17);
+    knownAliasesX11SymVK.insert("F18", KEY_F18);
+    knownAliasesX11SymVK.insert("F19", KEY_F19);
+    knownAliasesX11SymVK.insert("F20", KEY_F20);
+    knownAliasesX11SymVK.insert("F21", KEY_F21);
+    knownAliasesX11SymVK.insert("F22", KEY_F22);
+    knownAliasesX11SymVK.insert("F23", KEY_F23);
+    knownAliasesX11SymVK.insert("F24", KEY_F24);
 
     knownAliasesX11SymVK.insert("grave", KEY_GRAVE);
     knownAliasesX11SymVK.insert("1", KEY_1);
@@ -204,6 +216,18 @@ void UInputHelper::populateXVkStrings(QHash<int, QString>& knownAliasesVKStrings
     knownAliasesVKStrings.insert(KEY_F10, tr("F10"));
     knownAliasesVKStrings.insert(KEY_F11, tr("F11"));
     knownAliasesVKStrings.insert(KEY_F12, tr("F12"));
+    knownAliasesVKStrings.insert(KEY_F13, tr("F13"));
+    knownAliasesVKStrings.insert(KEY_F14, tr("F14"));
+    knownAliasesVKStrings.insert(KEY_F15, tr("F15"));
+    knownAliasesVKStrings.insert(KEY_F16, tr("F16"));
+    knownAliasesVKStrings.insert(KEY_F17, tr("F17"));
+    knownAliasesVKStrings.insert(KEY_F18, tr("F18"));
+    knownAliasesVKStrings.insert(KEY_F19, tr("F19"));
+    knownAliasesVKStrings.insert(KEY_F20, tr("F20"));
+    knownAliasesVKStrings.insert(KEY_F21, tr("F21"));
+    knownAliasesVKStrings.insert(KEY_F22, tr("F22"));
+    knownAliasesVKStrings.insert(KEY_F23, tr("F23"));
+    knownAliasesVKStrings.insert(KEY_F24, tr("F24"));
 
     knownAliasesVKStrings.insert(KEY_GRAVE, tr("`"));
     knownAliasesVKStrings.insert(KEY_1, tr("1"));
