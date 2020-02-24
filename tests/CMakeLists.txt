@@ -13,9 +13,11 @@ find_package(Qt5Test REQUIRED)
 set( GUIS_SRCS testaboutdialog.cpp
     testaddeditautoprofiledialog.cpp
     testadvancebuttondialog.cpp
-    testadvancestickassignmentdialog.cpp
+    testcalibration.cpp
     testjoycontrolstickeditdialog.cpp
     testbuttoneditdialog.cpp
+    testquicksetdialog.cpp
+    testqkeydisplaydialog.cpp
     )
 add_executable( GuiTests ${GUIS_SRCS} )
 target_link_libraries( GuiTests antilib Qt5::Test )

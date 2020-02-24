@@ -26,6 +26,15 @@ int getKeycode() const; != 0
 int getQkeyalias() const; != 0
 only if it's not a none button and otherKeysPushbutton
 
+QList<VirtualMousePushButton*> newlist = mouseTab->findChildren<VirtualMousePushButton*>();
+QListIterator<VirtualMousePushButton*> iter(newlist);
+
+while (iter.hasNext())
+{
+   VirtualMousePushButton *mousebutton = iter.next();
+   // test if getMouseCode() is not null or less
+}
+
 getOtherKeysMenu()-actions()
 if AntKeyMapper::getInstance()->returnQtKey(oneFromListAction) != 0
 */
