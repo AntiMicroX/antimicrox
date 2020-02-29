@@ -477,7 +477,7 @@ endif(UNIX)
             target_link_libraries (antimicroX antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
     endif(UNIX)
 
-   # target_compile_definitions(antimicroX PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
+    target_compile_definitions(antimicroX PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
 
 
 # Specify out directory for final executable.
