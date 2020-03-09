@@ -9,9 +9,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>627</height>
+    <width>721</width>
+    <height>682</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
@@ -91,8 +97,14 @@
      </item>
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -514,16 +526,16 @@ Settings will not take affect until you either refresh all joysticks or unplug t
            <attribute name="horizontalHeaderCascadingSectionResizes">
             <bool>false</bool>
            </attribute>
-           <attribute name="horizontalHeaderDefaultSectionSize">
-            <number>200</number>
-           </attribute>
            <attribute name="horizontalHeaderMinimumSectionSize">
             <number>70</number>
            </attribute>
-           <attribute name="verticalHeaderDefaultSectionSize">
-            <number>50</number>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>200</number>
            </attribute>
            <attribute name="verticalHeaderMinimumSectionSize">
+            <number>50</number>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
             <number>50</number>
            </attribute>
            <column>
@@ -1211,95 +1223,193 @@ values used by the virtual mouse.</string>
         </layout>
        </widget>
        <widget class="QWidget" name="Advanced">
-        <widget class="QWidget" name="horizontalLayoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>9</y>
-           <width>481</width>
-           <height>36</height>
-          </rect>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_17">
-          <item>
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Log File:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="logFilePathEdit"/>
-          </item>
-          <item>
-           <widget class="QPushButton" name="logFilePushButton"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="horizontalLayoutWidget_2">
-         <property name="geometry">
-          <rect>
-           <x>9</x>
-           <y>69</y>
-           <width>481</width>
-           <height>34</height>
-          </rect>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_18">
-          <item>
-           <widget class="QLabel" name="label_10">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="text">
-             <string>Log Level:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="logLevelComboBox">
-            <item>
+        <layout class="QVBoxLayout" name="verticalLayout_12">
+         <item>
+          <spacer name="verticalSpacer_11">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_17">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetMinimumSize</enum>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_9">
              <property name="text">
-              <string>None</string>
+              <string>Log File:</string>
              </property>
-            </item>
-            <item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="logFilePathEdit"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="logFilePushButton"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_18">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetMinimumSize</enum>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_10">
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
              <property name="text">
-              <string>Error</string>
+              <string>Log Level:</string>
              </property>
-            </item>
-            <item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="logLevelComboBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Error</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Warning</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Info</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Debug</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetMinimumSize</enum>
+           </property>
+           <item>
+            <widget class="QLabel" name="logLevelNoteLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <italic>true</italic>
+               <bold>false</bold>
+              </font>
+             </property>
              <property name="text">
-              <string>Warning</string>
+              <string>Note: To see the change of log level in console output (not in log file), application restart is required</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Info</string>
+             <property name="scaledContents">
+              <bool>true</bool>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Debug</string>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
              </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="indent">
+              <number>-1</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </widget>
       </widget>
      </item>

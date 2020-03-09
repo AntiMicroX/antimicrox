@@ -16,6 +16,7 @@
  */
 
 #include "messagehandler.h"
+#include "logger.h"
 
 #include <QtGlobal>
 #include <stdio.h>
@@ -26,26 +27,31 @@ namespace MessageHandler
    void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
    {
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+ #ifndef QT_DEBUG_NO_OUTPUT
 
        QByteArray localMsg = msg.toLocal8Bit();
        switch (type) {
        case QtDebugMsg:
-           fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+           if (Logger::instance->getCurrentLogLevel() == Logger::LOG_DEBUG || Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+             fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
            break;
 #if QT_VERSION > QT_VERSION_CHECK(5, 5, 0)
        case QtInfoMsg:
-           fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+           if (Logger::instance->getCurrentLogLevel() == Logger::LOG_INFO || Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+            fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
            break;
 #endif
        case QtWarningMsg:
-           fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+           if (Logger::instance->getCurrentLogLevel() == Logger::LOG_WARNING || Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+             fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
            break;
        case QtCriticalMsg:
-           fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+           if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR || Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+             fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
            break;
        case QtFatalMsg:
-           fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+           if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR || Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+             fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
            abort();
        default:
            break;
