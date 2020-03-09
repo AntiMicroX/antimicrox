@@ -48,9 +48,7 @@ void JoyGradientButton::turboEvent()
     {
         double diff = fabs(getMouseDistanceFromDeadZone() - lastDistance);
 
-        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "DIFF: " << QString::number(diff);
-        #endif
 
         bool changeState = false;
 
@@ -135,18 +133,14 @@ void JoyGradientButton::turboEvent()
                 changeState = false;
                 lastDistance = getMouseDistanceFromDeadZone();
 
-                #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "diff tmpTurbo press: " << QString::number(tempTurboInterval);
                 qDebug() << "diff timer press: " << QString::number(timerInterval);
-                #endif
             }
             else
             {
                 changeState = true;
 
-                #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "YOU GOT CHANGE";
-                #endif
             }
         }
 
@@ -179,10 +173,8 @@ void JoyGradientButton::turboEvent()
 
                     int timerInterval = qMin(tempTurboInterval, 5);
 
-                    #ifndef QT_DEBUG_NO_OUTPUT
                     qDebug() << "tmpTurbo press: " << QString::number(tempTurboInterval);
                     qDebug() << "timer press: " << QString::number(timerInterval);
-                    #endif
 
                     if (turboTimer.interval() != timerInterval)
                     {
@@ -226,10 +218,8 @@ void JoyGradientButton::turboEvent()
 
                     int timerInterval = qMin(tempTurboInterval, 5);
 
-                    #ifndef QT_DEBUG_NO_OUTPUT
                     qDebug() << "tmpTurbo release: " << QString::number(tempTurboInterval);
                     qDebug() << "timer release: " << QString::number(timerInterval);
-                    #endif
 
                     if (turboTimer.interval() != timerInterval)
                     {

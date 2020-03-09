@@ -52,9 +52,7 @@ QString JoyDPadButtonWidget::generateLabel()
     }
     temp.replace("&", "&&");
 
-    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Name of joy dpad button is: " << temp;
-    #endif
 
     return temp;
 }

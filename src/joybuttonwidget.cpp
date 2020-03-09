@@ -76,9 +76,7 @@ QString JoyButtonWidget::generateLabel()
 
     QString temp = m_button->getName(false, ifDisplayNames()).replace("&", "&&");
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Name of joy button is: " << temp;
-    #endif
 
     return temp;
 }

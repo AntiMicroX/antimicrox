@@ -26,9 +26,6 @@ namespace MessageHandler
 {
    void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
    {
-
- #ifndef QT_DEBUG_NO_OUTPUT
-
        QByteArray localMsg = msg.toLocal8Bit();
        switch (type) {
        case QtDebugMsg:
@@ -56,7 +53,5 @@ namespace MessageHandler
        default:
            break;
        }
-
-    #endif
    }
 }

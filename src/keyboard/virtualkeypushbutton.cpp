@@ -72,12 +72,10 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
 
     }
 
-    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "qkeyalias after returnQtKey: " << this->qkeyalias;
     qDebug() << "keycode: " << this->keycode;
     qDebug() << "xcodestring: " << this->xcodestring;
     qDebug() << "displayString: " << this->displayString;
-    #endif
 
     this->setText(this->displayString.replace("&", "&&"));
 

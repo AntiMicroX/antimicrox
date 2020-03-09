@@ -209,9 +209,9 @@ int GameController::getNumberRawAxes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
     qDebug() << "Controller has " << SDL_CONTROLLER_AXIS_MAX << " raw axes";
-    #endif
+
 
     return SDL_CONTROLLER_AXIS_MAX;
 }
@@ -233,9 +233,9 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
         SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
         SDL_GameControllerButtonBind bound = SDL_GameControllerGetBindForButton(this->controller, currentButton);
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "Hat " << (i + 1);
-        #endif
+
 
         if (bound.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
         {
@@ -245,9 +245,9 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
 
     for (int i = 0; i < SDL_JoystickNumButtons(getJoyHandle()); i++)
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "Button " << (i + 1);
-        #endif
+
 
         SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
         SDL_GameControllerButtonBind bound = SDL_GameControllerGetBindForButton(this->controller, currentButton);
@@ -260,9 +260,9 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
 
     for (int i = 0; i < SDL_JoystickNumAxes(getJoyHandle()); i++)
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "Axis " << (i + 1);
-        #endif
+
 
         SDL_GameControllerAxis currentAxis = static_cast<SDL_GameControllerAxis>(i);
         SDL_GameControllerButtonBind bound = SDL_GameControllerGetBindForAxis(this->controller, currentAxis);

@@ -54,9 +54,7 @@ void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
                 int index = xml->attributes().value("index").toString().toInt();
                 GameControllerTriggerButton *triggerButton = nullptr;
 
-                #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "Index for axis in readJoystickConfig is: " << index;
-                #endif
 
                 switch (index) {
 

@@ -316,10 +316,8 @@ void MainWindow::controllerMapOpening()
 
             int joypadIndex = m_cmdutility->getControllerNumber();
 
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It was antimicroX --map controllerNumber";
             qDebug() << "controllerNumber: " << joypadIndex;
-            #endif
 
             selectControllerJoyTab(joypadIndex);
             openGameControllerMappingWindow(true);
@@ -328,19 +326,15 @@ void MainWindow::controllerMapOpening()
         {
             QString joypadGUID = m_cmdutility->getControllerID();
 
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It was antimicroX --map controllerID";
             qDebug() << "controllerID: " << joypadGUID;
-            #endif
 
             selectControllerJoyTab(joypadGUID);
             openGameControllerMappingWindow(true);
         }
         else
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Could not find a proper controller identifier. Exiting";
-            #endif
 
             Logger::LogInfo(tr("Could not find a proper controller identifier. "
                                "Exiting."));
@@ -1886,16 +1880,12 @@ void MainWindow::selectControllerJoyTab(int index)
         JoyTabWidget *widget = qobject_cast<JoyTabWidget*> (ui->tabWidget->widget(index - 1));  // static_cast
         if (widget != nullptr)
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "JoyTabWidget was not a null pointer in selectControllerJoyTab of index";
-            #endif
             ui->tabWidget->setCurrentIndex(index - 1);
         }
         else
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "JoyTabWidget was a NULL POINTER in selectControllerJoyTab of index";
-            #endif
         }
     }
 }
@@ -1927,17 +1917,13 @@ void MainWindow::selectControllerJoyTab(QString GUID)
 
         if (device != nullptr)
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "InputDevice was not a null pointer in selectControllerJoyTab of GUID";
-            #endif
 
             ui->tabWidget->setCurrentIndex(device->getJoyNumber());
         }
         else
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "InputDevice was a NULL POINTER in selectControllerJoyTab of GUID";
-            #endif
         }
     }
 }

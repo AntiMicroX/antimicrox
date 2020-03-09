@@ -111,26 +111,20 @@ QString JoyControlStickButtonPushButton::generateLabel()
     {
         if (!button->getActionName().isEmpty() && ifDisplayNames())
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Action name was not empty";
-            #endif
 
             temp = button->getActionName().replace("&", "&&");
 
         }
         else
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Action name was empty";
-            #endif
 
             temp = button->getCalculatedActiveZoneSummary().replace("&", "&&");
         }
     }
 
-    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Here is name of action for pushed stick button: " << temp;
-    #endif
 
     return temp;
 }

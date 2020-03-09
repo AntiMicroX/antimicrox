@@ -212,17 +212,13 @@ bool JoyAxis::inDeadZone(int value)
 
     if (abs(temp) <= deadZone)
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Value of throttle is in (less than) dead zone: " << abs(temp) << " <= " << deadZone;
-        #endif
 
         result = true;
 
     } else {
 
-        #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Value of throttle is not in (greater than) dead zone: " << abs(temp) << " > " << deadZone;
-        #endif
     }
 
     return result;
@@ -312,9 +308,7 @@ int JoyAxis::calculateThrottledValue(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Throtted value at start of function is: " << value;
-    #endif
 
     int temp = value;
 
@@ -322,34 +316,26 @@ int JoyAxis::calculateThrottledValue(int value)
     {
 
         case -2:
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It's a negative half throttle";
-            #endif
 
             value = (value <= 0) ? value : -value;
             temp = value;
         break;
 
         case -1:
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It's a negative throttle";
-            #endif
 
             temp = (value + getAxisMinCal()) / 2;
         break;
 
         case 1:
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It's a positive throttle";
-            #endif
 
             temp = (value + getAxisMaxCal()) / 2;
         break;
 
         case 2:
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "It's a positive half throttle";
-            #endif
 
             value = (value >= 0) ? value : -value;
             temp = value;
@@ -358,9 +344,7 @@ int JoyAxis::calculateThrottledValue(int value)
     }
 
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Calculated value of throttle is: " << temp;
-    #endif
 
     return temp;
 }
@@ -466,17 +450,13 @@ void JoyAxis::setThrottle(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Value of throttle for axis in setThrottle is: " << value;
-    #endif
 
     if ((value >= static_cast<int>(JoyAxis::NegativeHalfThrottle)) && (value <= static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {
         if (value != throttle)
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
                 qDebug() << "Throttle value for variable \"throttle\" has been set: " << value;
-            #endif
 
             throttle = value;
             adjustRange();
@@ -746,32 +726,24 @@ void JoyAxis::setCurrentRawValue(int value)
 
     if ((value >= getAxisMinCal()) && (value <= getAxisMaxCal()))
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Raw value is less than " << getAxisMaxCal() << " and greather than " << getAxisMinCal();
-        #endif
 
         currentRawValue = value;
     }
     else if (value > getAxisMaxCal())
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Raw value is greather than " << getAxisMaxCal();
-        #endif
 
         currentRawValue = getAxisMaxCal();
     }
     else if (value < getAxisMinCal())
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Raw value is less than " << getAxisMinCal();
-        #endif
 
         currentRawValue = getAxisMinCal();
     }
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Raw value for axis is: " << currentRawValue;
-    #endif
 }
 
 void JoyAxis::setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode)
@@ -909,23 +881,17 @@ JoyAxisButton* JoyAxis::getAxisButtonByValue(int value)
     JoyAxisButton *eventbutton = nullptr;
     int throttledValue = calculateThrottledValue(value);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "throttledValue in getAxisButtonByValue is: " << throttledValue;
-    #endif
 
     if (throttledValue > deadZone)
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "throtted value is positive";
-        #endif
 
         eventbutton = paxisbutton;
     }
     else if (throttledValue < (-deadZone))
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "throtted value is negative";
-        #endif
 
         eventbutton = naxisbutton;
     }

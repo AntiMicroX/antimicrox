@@ -4190,9 +4190,7 @@ double JoyControlStick::calculateXAxisDistance(int axisXValue)
     if (distance < -1.0) distance = -1.0;
     else if (distance > 1.0) distance = 1.0;
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "DISTANCE: " << distance;
-    #endif
 
     return distance;
 }

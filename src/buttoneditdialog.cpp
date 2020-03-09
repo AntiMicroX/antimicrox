@@ -75,9 +75,9 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
 
     ignoreRelease = false;
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
     qDebug() << "Thread in ButtonEditDialog";
-    #endif
+
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -617,9 +617,9 @@ void ButtonEditDialog::invokeMethodLastBtn(JoyButton* lastJoyBtn, ButtonEditDial
         helper->setThisButton(lastJoyBtn);
         helper->moveToThread(lastJoyBtn->thread());
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
             qDebug() << "Thread in QuickSetDialog";
-        #endif
+
 
         if (withClear) QMetaObject::invokeMethod(lastJoyBtn, "clearSlotsEventReset", Q_ARG(bool, withTrue));
 

@@ -221,9 +221,7 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
             if ((qtkey == 0) && (basekey > 0)) qtkey = basekey;
 
             // Found a valid abstract keysym.
-            #ifndef QT_DEBUG_NO_OUTPUT
-                qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
-            #endif
+            qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
 
             xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
         }
@@ -232,9 +230,7 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
             // No abstraction provided for key. Add prefix to native keysym.
             int tempkey = m_joyBtnSlot->getSlotCode() | QtKeyMapperBase::nativeKeyPrefix;
 
-            #ifndef QT_DEBUG_NO_OUTPUT
-                qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
-            #endif
+            qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
 
             xml->writeTextElement("code", QString("0x%1").arg(tempkey, 0, 16));
         }

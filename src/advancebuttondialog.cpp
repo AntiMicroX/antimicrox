@@ -738,9 +738,9 @@ void AdvanceButtonDialog::updateSetSelection()
             chosen_set = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
         }
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
-        #endif
+
 
         switch(condition_choice)
         {
@@ -757,9 +757,9 @@ void AdvanceButtonDialog::updateSetSelection()
                 break;
         }
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "CHOSEN SET: " << chosen_set << endl;
-        #endif
+
     }
     else
     {

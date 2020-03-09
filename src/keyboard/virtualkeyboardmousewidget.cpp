@@ -626,10 +626,6 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
-    //qDebug() << "parameter 1: " << xcodestring;
-    #endif
-
     int width = 32;
     int height = 32;
     QFont font1;
@@ -862,10 +858,6 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
 
     disconnect(noneButton, &QPushButton::clicked, nullptr, nullptr);
     connect(noneButton, &QPushButton::clicked, this, &VirtualKeyboardMouseWidget::clearButtonSlotsFinish);
-
-    #ifndef QT_DEBUG_NO_OUTPUT
-      //  qDebug() << "COUNT: " << newlist.count();
-    #endif
 }
 
 void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnections()

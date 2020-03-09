@@ -884,15 +884,14 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
         InputDeviceBitArrayStatus *generatedTemp = genIter.value();
         QBitArray tempBitArray = generatedTemp->generateFinalBitArray();
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
             qDebug() << "ARRAY: " << tempBitArray;
-        #endif
+
 
         int bitArraySize = tempBitArray.size();
 
-        #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "ARRAY SIZE: " << bitArraySize;
-        #endif
+
 
         if ((bitArraySize > 0) && (tempBitArray.count(true) == device->getNumberAxes()))
         {

@@ -54,15 +54,15 @@ void AxisValueBox::setThrottle(int throttle)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
     qDebug() << "throttle value at start of function setThrottle: " << throttle;
-    #endif
+
 
     if ((throttle <= static_cast<int>(JoyAxis::PositiveHalfThrottle)) && (throttle >= static_cast<int>(JoyAxis::NegativeHalfThrottle)))
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "throttle variable has been set in setThrottle with: " << throttle;
-        #endif
+
         m_throttle = throttle;
         setValue(joyValue);
     }
@@ -74,16 +74,16 @@ void AxisValueBox::setValue(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
     qDebug() << "Value for axis from value box at start is: " << value;
     qDebug() << "throttle variable has value: " << m_throttle;
-    #endif
+
 
     if ((value >= GlobalVariables::JoyAxis::AXISMIN) && (value <= GlobalVariables::JoyAxis::AXISMAX))
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "Value for axis from value box is between : " << GlobalVariables::JoyAxis::AXISMIN << " and " << GlobalVariables::JoyAxis::AXISMAX;
-        #endif
+
 
         switch(m_throttle)
         {
@@ -118,16 +118,16 @@ void AxisValueBox::setValue(JoyAxis* axis, int value)
 
     m_axis = axis;
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
     qDebug() << "Value for axis from value box at start is: " << value;
     qDebug() << "throttle variable has value: " << m_throttle;
-    #endif
+
 
     if ((value >= axis->getAxisMinCal()) && (value <= axis->getAxisMaxCal()))
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "Value for axis from value box is between : " << axis->getAxisMinCal() << " and " << axis->getAxisMaxCal();
-        #endif
+
 
         switch(m_throttle)
         {

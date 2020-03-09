@@ -88,9 +88,7 @@ QString JoyAxisWidget::generateLabel()
 
     QString temp = m_axis->getName(false, ifDisplayNames()).replace("&", "&&");
 
-    #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Name of joy axis is: " << temp;
-    #endif
 
     return temp;
 }

@@ -96,9 +96,9 @@ void AutoProfileWatcher::runAppCheck()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << qApp->applicationFilePath();
-    #endif
+
 
     QString appLocation = QString();
     QString baseAppFileName = QString();

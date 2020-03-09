@@ -66,18 +66,18 @@ void CommandLineUtility::parseArguments(QCommandLineParser* parser) {
     {
         if (parser->isSet("tray"))
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
+
             qDebug() << "tray is set";
-            #endif
+
 
             launchInTray = true;
             hideTrayIcon = false;
         }
         else if (parser->isSet("no-tray"))
         {
-            #ifndef QT_DEBUG_NO_OUTPUT
+
             qDebug() << "no-tray is set";
-            #endif
+
 
             hideTrayIcon = true;
             launchInTray = false;

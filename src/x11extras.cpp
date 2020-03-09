@@ -583,9 +583,7 @@ QString X11Extras::getWindowTitle(Window window)
     unsigned char *prop = nullptr;
     int status = 0;
 
-#ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "WIN: 0x" << QString::number(window, 16);
-#endif
 
     Display *display = this->display();
     Atom wm_name = XInternAtom(display, "WM_NAME", True);
@@ -617,9 +615,8 @@ QString X11Extras::getWindowTitle(Window window)
         char *tempprop = reinterpret_cast<char*>(prop);
         temp.append(QString::fromUtf8(tempprop));
 
-        #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << temp;
-        #endif
+        qDebug() << temp;
+
     }
 
     freeWindow(prop);
@@ -648,9 +645,7 @@ QString X11Extras::getWindowClass(Window window)
 
     if ((status == Success) && (prop != nullptr))
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << nitems;
-        #endif
+        qDebug() << nitems;
 
         char *null_char = strchr(reinterpret_cast<char*>(prop), '\0');
         if (((reinterpret_cast<char*>(prop)) + nitems - 1) > null_char)
@@ -661,10 +656,8 @@ QString X11Extras::getWindowClass(Window window)
         char *tempprop = reinterpret_cast<char*>(prop);
         temp.append(QString::fromUtf8(tempprop));
 
-        #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << temp;
-            qDebug() << reinterpret_cast<char*>(prop);
-        #endif
+        qDebug() << temp;
+        qDebug() << reinterpret_cast<char*>(prop);
     }
 
     freeWindow(prop);
