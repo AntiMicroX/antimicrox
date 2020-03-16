@@ -80,6 +80,7 @@ private slots:
     void updateSlotsScrollArea(int value); // AdvanceBtnDlgAssign class
     void deleteSlot();  // AdvanceBtnDlgAssign class
     void insertSlot(); // AdvanceBtnDlgAssign class
+    void joinSlot(); // AdvanceBtnDlgAssign class
 
     void insertCycleSlot(); // AdvanceBtnDlgAssign class
     void insertTextEntrySlot(); // AdvanceBtnDlgAssign class

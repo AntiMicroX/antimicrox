@@ -200,6 +200,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
     connect(ui->turboSlider, &QSlider::valueChanged, this, &AdvanceButtonDialog::checkTurboIntervalValue);
 
     connect(ui->insertSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::insertSlot);
+    connect(ui->joinSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::joinSlot);
     connect(ui->deleteSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::deleteSlot);
     connect(ui->clearAllPushButton, &QPushButton::clicked, this, &AdvanceButtonDialog::clearAllSlots);
 
@@ -488,6 +489,34 @@ void AdvanceButtonDialog::insertSlot()
         break;
 
     }
+}
+
+
+void AdvanceButtonDialog::joinSlot()
+{
+    int index = ui->slotListWidget->currentRow();
+ //   SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+ //           ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+ //   JoyButtonSlot *buttonslot = tempbutton->getValue();
+
+    if (index < 0)
+    {
+        QMessageBox::warning(this, tr("Unknown current slot"), tr("Click on chosen slots before joining them"));
+    }
+    else if (ui->slotListWidget->count() < 3)
+    {
+        QMessageBox::warning(this, tr("Not enough slots"), tr("It's impossible to join slots. Add at least one other slot."));
+    }
+    else if (ui->slotListWidget->selectedItems().count() < 2)
+    {
+        QMessageBox::warning(this, tr("Not selected slots"), tr("It's impossible to join slots. Select at least two slots before joining them"));
+    }
+    else
+    {
+        qDebug() << "Chosen " << ui->slotListWidget->selectedItems().count() << " slots" << endl;
+    }
+
+
 }
 
 

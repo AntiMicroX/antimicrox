@@ -97,7 +97,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -138,6 +138,9 @@
            </property>
            <property name="verticalScrollBarPolicy">
             <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::ExtendedSelection</enum>
            </property>
            <property name="flow">
             <enum>QListView::LeftToRight</enum>
@@ -274,6 +277,9 @@
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="spacing">
+              <number>2</number>
+             </property>
              <item>
               <widget class="QPushButton" name="insertSlotButton">
                <property name="toolTip">
@@ -285,6 +291,13 @@
                <property name="icon">
                 <iconset theme="archive_insert">
                  <normaloff>.</normaloff>.</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="joinSlotButton">
+               <property name="text">
+                <string>Join</string>
                </property>
               </widget>
              </item>
@@ -331,7 +344,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>20</height>
+             <height>2</height>
             </size>
            </property>
           </spacer>
