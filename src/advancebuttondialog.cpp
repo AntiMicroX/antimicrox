@@ -350,37 +350,37 @@ void AdvanceButtonDialog::deleteSlot()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (ui->slotListWidget->selectedItems().count() != 1)
+    if (ui->slotListWidget->selectedItems().count() == 0)
     {
-        QMessageBox::warning(this, tr("Not checked one slot"), tr("To delete a slot, you need to select only one slot"));
+        QMessageBox::warning(this, tr("Not checked slots"), tr("To delete slots, you need to select at least one"));
     }
     else
     {
-        int index = ui->slotListWidget->currentRow();
-        int itemcount = ui->slotListWidget->count();
-        QListWidgetItem *item = ui->slotListWidget->takeItem(index);
+        for(auto item : ui->slotListWidget->selectedItems())
+        {
+            int index = ui->slotListWidget->row(item);
+            int itemcount = ui->slotListWidget->count();
+            delete ui->slotListWidget->takeItem(index);
 
-        delete item;
-        item = nullptr;
+            // Deleted last button. Replace with new blank button
+            if (index == (itemcount - 1)) appendBlankKeyGrabber();
 
-        // Deleted last button. Replace with new blank button
-        if (index == (itemcount - 1)) appendBlankKeyGrabber();
+            changeTurboForSequences();
 
-        changeTurboForSequences();
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+            QTimer::singleShot(0, &helper, [this, index]() {
+                (&helper)->removeAssignedSlot(index);
+            });
+        #else
+            QMetaObject::invokeMethod(&helper, "removeAssignedSlot", Qt::BlockingQueuedConnection,
+                                      Q_ARG(int, index));
+        #endif
 
-    #if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
-        QTimer::singleShot(0, &helper, [this, index]() {
-            (&helper)->removeAssignedSlot(index);
-        });
-    #else
-        QMetaObject::invokeMethod(&helper, "removeAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(int, index));
-    #endif
+            index = qMax(0, index-1);
+            performStatsWidgetRefresh(ui->slotListWidget->item(index));
 
-        index = qMax(0, index-1);
-        performStatsWidgetRefresh(ui->slotListWidget->item(index));
-
-        emit slotsChanged();
+            emit slotsChanged();
+        }
     }
 }
 
@@ -513,7 +513,7 @@ void AdvanceButtonDialog::joinSlot()
  //           ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
  //   JoyButtonSlot *buttonslot = tempbutton->getValue();
 
-    if (index < 0)
+    if (index == -1)
     {
         QMessageBox::warning(this, tr("Unknown current slot"), tr("Click on chosen slots before joining them"));
     }
@@ -531,24 +531,21 @@ void AdvanceButtonDialog::joinSlot()
 
 
         QListWidgetItem* firstSelected = ui->slotListWidget->selectedItems().at(0);
-        SimpleKeyGrabberButton* firstGrabBtn = firstSelected->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-
-        QString text = firstGrabBtn->getValue()->getSlotString();
+        QString text = "";
         int index = ui->slotListWidget->row(firstSelected);
-
-        QListWidgetItem *item = ui->slotListWidget->takeItem(index);
-        delete item;
+        bool firstTime = true;
 
 
         for(auto item : ui->slotListWidget->selectedItems())
         {
-            int indexNext = ui->slotListWidget->row(item);
-            text += "+";
+            if (!firstTime) text += "+";
+            firstTime = false;
             SimpleKeyGrabberButton* firstGrabBtn = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
             text += firstGrabBtn->getValue()->getSlotString();
-            delete ui->slotListWidget->takeItem(indexNext);
         }
+
+        deleteSlot();
 
         SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
         QListWidgetItem *joinedItem = new QListWidgetItem();
