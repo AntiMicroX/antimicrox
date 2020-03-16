@@ -98,9 +98,9 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
                 if (target_window == None)
                     target_window = event.xbutton.window;
 
-                #ifndef QT_DEBUG_NO_OUTPUT
-                    qDebug() << QString::number(target_window, 16);
-                #endif
+
+                qDebug() << QString::number(target_window, 16);
+
 
                 break;
 

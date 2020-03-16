@@ -125,6 +125,8 @@ public:
         return instance;
     }
 
+    static Logger *instance;
+
 protected:
     void closeLogger(bool closeStream=true);
     void closeErrorLogger(bool closeStream=true);
@@ -146,7 +148,7 @@ protected:
 
     QList<LogMessage> pendingMessages;
 
-    static Logger *instance;
+
 
 signals:
     void stringWritten(QString text);

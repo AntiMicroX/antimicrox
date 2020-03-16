@@ -651,10 +651,10 @@ QString keycodeToKeyString(int keycode, int alias)
                     tempstring[numchars] = '\0';
                     newkey = QString::fromUtf8(tempstring);
 
-                    #ifndef QT_DEBUG_NO_OUTPUT
+
                         qDebug() << "NEWKEY:" << newkey << endl;
                         qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
-                    #endif
+
                 }
                 else
                 {

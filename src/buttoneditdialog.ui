@@ -297,8 +297,8 @@ this button is being used.</string>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>366</x>
+     <y>422</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -313,8 +313,8 @@ this button is being used.</string>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>434</x>
+     <y>422</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

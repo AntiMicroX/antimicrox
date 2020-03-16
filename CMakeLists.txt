@@ -471,13 +471,11 @@ endif(UNIX)
                 ${antimicroX_RESOURCES_RCC}
             )
 
-            target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL2_LIBRARIES} ${LIBS})
+            target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
 
             add_executable(antimicroX ${antimicroX_MAIN})
             target_link_libraries (antimicroX antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
     endif(UNIX)
-
-   # target_compile_definitions(antimicroX PUBLIC QT_DEBUG_NO_OUTPUT) # should be commented during development
 
 
 # Specify out directory for final executable.

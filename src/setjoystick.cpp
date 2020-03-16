@@ -549,10 +549,9 @@ void SetJoystick::propogateSetButtonClick(int button)
         emit setButtonClick(m_index, button);
         lastClickedButtons.append(jButton);
 
-        #ifndef QT_DEBUG_NO_OUTPUT
-            qDebug() << "Added button " << jButton->getPartialName(false,true) << " to list";
-            qDebug() << "List has " << getLastClickedButtons().count() << " buttons";
-        #endif
+        qDebug() << "Added button " << jButton->getPartialName(false,true) << " to list";
+        qDebug() << "List has " << getLastClickedButtons().count() << " buttons";
+
     }
 }
 

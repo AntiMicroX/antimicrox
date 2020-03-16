@@ -291,9 +291,7 @@ QString JoyControlStickButton::getCalculatedActiveZoneSummary()
     if ((tempButton != nullptr) && tempButton->getButtonState() &&
         tempButton->hasActiveSlots() && getButtonState())
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Calculated Active Zone Summary: " << tempButton->getCalculatedActiveZoneSummary();
-        #endif
 
         stringlist.append(tempButton->getCalculatedActiveZoneSummary());
     }
@@ -301,9 +299,7 @@ QString JoyControlStickButton::getCalculatedActiveZoneSummary()
     stringlist.append(JoyButton::getCalculatedActiveZoneSummary());
     temp = stringlist.join(", ");
 
-    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Returned joined zone: " << temp;
-    #endif
 
     return temp;
 }

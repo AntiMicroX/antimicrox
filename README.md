@@ -1,4 +1,6 @@
-# antimicroX 2.24.2
+# antimicroX 2.25
+
+## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
 
 
 1. [Description](#description)  
@@ -7,14 +9,15 @@
 4. [Wiki](#wiki)
 5. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
-    b. [Building with Flatpak](#building-with-flatpak)  
+    b. [Running With Docker](#running-with-docker)  
+    c. [Building with Flatpak](#building-with-flatpak)  
 6. [Testing Under Linux](#testing-under-linux)  
 7. [Support](#support)  
 8. [Bugs](#bugs)  
 9. [Shoutout](#shoutout)  
 10. [Credits](#credits)  
 
-
+<br/>
 
 ## Description
 
@@ -30,11 +33,12 @@ distributions, Windows (Vista and later), and FreeBSD. However functionality of 
 has been tested only on Linux (Arch Linux and Ubuntu). More systems will be tested in the future.
 
 Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
-application. Their versions are here:
+application. Their **old versions** are here:
 
 https://github.com/AntiMicro/antimicro  
 https://github.com/Ryochan7/antimicro  
 
+<br/>
 
 ## License
 
@@ -43,7 +47,7 @@ included with the source code if you would like to read the terms of the license
 The license can also be found online at
 http://www.gnu.org/licenses/gpl.txt
 
-
+<br/>
 
 ## Command Line
 
@@ -78,11 +82,13 @@ http://www.gnu.org/licenses/gpl.txt
                                    check your controller index, name or 
                                    even GUID.  
 
+<br/>
 
 ## Wiki
 
 [Look here](https://github.com/juliagoda/antimicroX/wiki)
 
+<br/>
 
 ## Build Dependencies
 
@@ -103,7 +109,9 @@ installed on your system in order to build this program:
 * libxtst-dev (libxtst on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
 * libx11-dev (libx11 on distros based on Arch Linux) (Needed to compile with Qt5 support)
 * itstool (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
+* gettext
 
+<br/>
 
 ### Building Under Linux
 
@@ -120,10 +128,29 @@ If you're an Arch Linux or Arch Linux based distribution user:
 
 ```
 git clone https://github.com/archlinux-lucjan/archlinux-packages.git
-cd antimicroX-git
+cd antimicrox-git
 makepkg -sric
 ```
 
+or
+
+```
+trizen -S antimicrox-git
+```
+
+from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
+
+ **Distro** | **Maintainer** | **Package**  |
+| :--------- | :------------- | :----------- |
+| Arch Linux | Piotr Górski   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
+
+<br/>
+
+### Running with Docker
+
+If you want to run application without building process and choose between various distributions, then [look here](https://hub.docker.com/r/juliagoda/antimicrox)
+
+<br/>
 
 ### Building with Flatpak
 
@@ -198,7 +225,7 @@ To update all your installed applications and runtimes to the latest version, ex
 
 `flatpak uninstall com.github.juliagoda.antimicroX`
 
-
+<br/>
 
 ## Testing Under Linux
 
@@ -211,29 +238,41 @@ testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. Another method also exist, 
 which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
+<br/>
+
 ## Support
 
 In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicroX/issues) .
+
+<br/>
 
 ## Bugs
 
 Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or questions from users. 
 
+<br/>
 
 ## Shoutout
 
 A big, original inspiration for this program was the program QJoyPad.
 
+<br/>
 
 ## Credits
+
+<br/>
 
 ### Contributors
 
 juliagoda
 
+<br/>
+
 ### Original Developer
 
 Travis Nickles <nickles.travis@gmail.com>
+
+<br/>
 
 ### Old Contributors
 
@@ -243,6 +282,8 @@ Jeff Backus <jeff@jsbackus.com>
 Arthur Moore  
 Anton Tornqvist <antont@inbox.lv>
 mtdeguzis
+
+<br/>
 
 ### Translators
 

@@ -29,6 +29,8 @@
 
 #include <cmath>
 
+#include <QtGlobal>
+#include <QTimer>
 #include <QDebug>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -358,10 +360,15 @@ void AdvanceButtonDialog::deleteSlot()
     if (index == (itemcount - 1)) appendBlankKeyGrabber();
 
     changeTurboForSequences();
-
+    
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
     QTimer::singleShot(0, &helper, [this, index]() {
         (&helper)->removeAssignedSlot(index);
     });
+#else
+    QMetaObject::invokeMethod(&helper, "removeAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(int, index));
+#endif
 
     index = qMax(0, index-1);
     performStatsWidgetRefresh(ui->slotListWidget->item(index));
@@ -731,9 +738,9 @@ void AdvanceButtonDialog::updateSetSelection()
             chosen_set = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
         }
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
-        #endif
+
 
         switch(condition_choice)
         {
@@ -750,9 +757,9 @@ void AdvanceButtonDialog::updateSetSelection()
                 break;
         }
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "CHOSEN SET: " << chosen_set << endl;
-        #endif
+
     }
     else
     {

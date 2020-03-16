@@ -37,6 +37,7 @@ class JoyControlStickEditDialog : public QDialog
     
 public:
     explicit JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent = nullptr);
+   // JoyControlStickEditDialog(QWidget *parent = nullptr);
     ~JoyControlStickEditDialog();
     
 protected:

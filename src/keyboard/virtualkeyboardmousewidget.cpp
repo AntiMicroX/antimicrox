@@ -19,7 +19,8 @@
 
 #include "virtualkeyboardmousewidget.h"
 
-
+#include <QtDebug>
+#include "event.h"
 #include "messagehandler.h"
 #include "virtualkeypushbutton.h"
 #include "virtualmousepushbutton.h"
@@ -27,12 +28,14 @@
 #include "antkeymapper.h"
 #include "quicksetdialog.h"
 #include "buttoneditdialog.h"
+#include "qtkeymapperbase.h"
 
 #ifdef WITH_X11
    #include "x11extras.h"
 #endif
 
 #include <SDL2/SDL_power.h>
+
 
 #include <QFont>
 #include <QSizePolicy>
@@ -64,7 +67,8 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
     currentQuickDialog = quickSetDialog;
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
-    isLaptopDevice = isLaptop();
+    //isLaptopDevice = isLaptop();
+    isLaptopDevice = true;
     noneButton = createNoneKey();
 
     populateTopRowKeys();
@@ -87,11 +91,12 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
 VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
     QTabWidget(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput); 
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
-    isLaptopDevice = isLaptop();
+    isLaptopDevice = true;
+    //isLaptopDevice = isLaptop();
     noneButton = createNoneKey();
     withoutQuickSetDialog = false;
     lastPressedBtn = nullptr;
@@ -111,7 +116,7 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
 }
 
 
-bool VirtualKeyboardMouseWidget::is_numlock_activated()
+/*bool VirtualKeyboardMouseWidget::is_numlock_activated()
 {
 
 #if defined(WITH_X11)
@@ -131,7 +136,7 @@ bool VirtualKeyboardMouseWidget::isLaptop()
 
     if (SDL_GetPowerInfo(&secs, &pct) == SDL_POWERSTATE_UNKNOWN) return false;
     else return true;
-}
+}*/
 
 
 void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
@@ -143,18 +148,18 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
     QVBoxLayout *tempAuxKeyLayout = new QVBoxLayout();
     QVBoxLayout *tempNumKeyPadLayout = new QVBoxLayout();
 
-    if (is_numlock_activated())
-    {
-        tempNumKeyPadLayout = setupKeyboardNumPadLayout();
-    }
-    else
-    {
+   // if (is_numlock_activated())
+  //  {
+  //      tempNumKeyPadLayout = setupKeyboardNumPadLayout();
+  //  }
+  //  else
+  //  {
         QPushButton *othersKeysButton = createOtherKeysMenu();
 
         tempNumKeyPadLayout->addWidget(noneButton);
         tempNumKeyPadLayout->addWidget(othersKeysButton);
         tempNumKeyPadLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding));
-    }
+   // }
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->addLayout(tempMainKeyLayout);
@@ -621,10 +626,6 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
-    //qDebug() << "parameter 1: " << xcodestring;
-    #endif
-
     int width = 32;
     int height = 32;
     QFont font1;
@@ -819,6 +820,16 @@ void VirtualKeyboardMouseWidget::populateTopRowKeys()
     }
 }
 
+void VirtualKeyboardMouseWidget::addFButtonToOthers(int qt_keycode, QString keycode_text)
+{
+    if (keysymToKeyString(AntKeyMapper::getInstance()->returnVirtualKey(qt_keycode)) != tr("[NO KEY]"))
+    {
+        QAction* tempAction = new QAction(keycode_text, otherKeysMenu);
+        tempAction->setData(AntKeyMapper::getInstance()->returnVirtualKey(qt_keycode));
+        otherKeysMenu->addAction(tempAction);
+    }
+}
+
 void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -847,10 +858,6 @@ void VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections
 
     disconnect(noneButton, &QPushButton::clicked, nullptr, nullptr);
     connect(noneButton, &QPushButton::clicked, this, &VirtualKeyboardMouseWidget::clearButtonSlotsFinish);
-
-    #ifndef QT_DEBUG_NO_OUTPUT
-      //  qDebug() << "COUNT: " << newlist.count();
-    #endif
 }
 
 void VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnections()
@@ -1087,6 +1094,19 @@ QPushButton* VirtualKeyboardMouseWidget::createOtherKeysMenu()
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_LaunchMail);
     tempAction->setData(temp);
     otherKeysMenu->addAction(tempAction);
+
+    addFButtonToOthers(Qt::Key_F13, tr("F13"));
+    addFButtonToOthers(Qt::Key_F14, tr("F14"));
+    addFButtonToOthers(Qt::Key_F15, tr("F15"));
+    addFButtonToOthers(Qt::Key_F16, tr("F16"));
+    addFButtonToOthers(Qt::Key_F17, tr("F17"));
+    addFButtonToOthers(Qt::Key_F18, tr("F18"));
+    addFButtonToOthers(Qt::Key_F19, tr("F19"));
+    addFButtonToOthers(Qt::Key_F20, tr("F20"));
+    addFButtonToOthers(Qt::Key_F21, tr("F21"));
+    addFButtonToOthers(Qt::Key_F22, tr("F22"));
+    addFButtonToOthers(Qt::Key_F23, tr("F23"));
+    addFButtonToOthers(Qt::Key_F24, tr("F24"));
 
     tempAction = new QAction(tr("Media"), otherKeysMenu);
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_LaunchMedia);

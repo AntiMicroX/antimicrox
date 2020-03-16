@@ -1,6 +1,30 @@
 2018-16-06 Jagoda Gorska <juliagoda.pl@protonmail.com>
 
 
+Version 2.25
+
+* renamed AntiMicro into antimicroX
+
+* added detection of scripts - fixed unfinished JoyExecute slot
+
+* added menu icons and shortcuts
+
+* removed unused files and directives
+
+* removed majority of deprecated code
+
+* updated information about application
+
+* sorted and cleaned headers in header files
+
+* unlocked multiple parameters for command line
+
+* added notifications about battery level
+
+* added guard conditions
+
+
+
 Version 2.24.2
 
 * Fixed bug with too many "emit propertyUpdated()"

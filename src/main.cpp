@@ -141,6 +141,9 @@ int main(int argc, char *argv[])
     parser.setApplicationDescription(QCoreApplication::translate("antimicroX", "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."));
     parser.addHelpOption();
     parser.addVersionOption();
+    
+    
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
     parser.addOptions({
             // A boolean option with a single name (-p)
             {"tray",
@@ -185,6 +188,42 @@ int main(int argc, char *argv[])
           //      QCoreApplication::translate("main", "Open game controller mapping window of selected controller. Value can be a controller index or GUID."),
           //      QCoreApplication::translate("main", "value")},
         });
+
+#else
+    parser.addOption(QCommandLineOption("tray", QObject::trUtf8("Launch program in system tray only.")));
+    parser.addOption(QCommandLineOption("no-tray", QObject::trUtf8("Launch program with the tray menu disabled")));
+    parser.addOption(QCommandLineOption("hidden", QObject::trUtf8("Launch program without the main window displayed")));
+    
+    parser.addOption(QCommandLineOption("profile", QObject::trUtf8("Launch program with the configuration file selected as the default for selected controllers. Defaults to all controllers"), QObject::trUtf8("location")
+    ));
+    
+    parser.addOption(QCommandLineOption("profile-controller", QObject::trUtf8("Apply configuration file to a specific controller. Value can be a controller index, name, or GUID"), QObject::trUtf8("value")
+    ));
+    
+    parser.addOption(QCommandLineOption("unload", QObject::trUtf8("Unload currently enabled profile(s)"), QObject::trUtf8("value(s)")
+    ));
+    
+    parser.addOption(QCommandLineOption("startSet", QObject::trUtf8("Start joysticks on a specific set. Value can be a controller index, name, or GUID"), QObject::trUtf8("number value")
+    ));
+    
+    parser.addOption(QCommandLineOption(QStringList() << "daemon" << "d", QObject::trUtf8("Launch program as a daemon. Use only on Linux.")));
+    
+    parser.addOption(QCommandLineOption("log-level", QObject::trUtf8("Enable logging"), QObject::trUtf8("log-type")
+    ));
+    
+    parser.addOption(QCommandLineOption("log-file", QObject::trUtf8("Choose a file for logs writing"), QObject::trUtf8("filename")
+    ));
+    
+    parser.addOption(QCommandLineOption("eventgen", 
+        QObject::trUtf8("Choose between using XTest support and uinput support for event generation. Use only if you have enabled xtest and uinput options on Linux or vmulti on Windows. Default: xtest."),
+        QObject::trUtf8("event-generation-type"),
+        "xtest"
+    ));
+    
+    parser.addOption(QCommandLineOption(QStringList() << "list" << "l", QObject::trUtf8("Print information about joysticks detected by SDL. Use only if you have sdl library. You can check your controller index, name or even GUID.")));
+    
+    
+#endif
 
 
     parser.process(antimicroX);
@@ -294,8 +333,13 @@ int main(int argc, char *argv[])
 
         mainWindow.removeJoyTabs();
         QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
+        
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)       
         QTimer::singleShot(50, &antimicroX, &QApplication::quit);
-
+#else
+        QTimer::singleShot(50, &antimicroX, SLOT(quit()));
+#endif
+    
         int result = antimicroX.exec();
 
         settings.sync();
@@ -614,7 +658,11 @@ int main(int argc, char *argv[])
                          Qt::BlockingQueuedConnection);
 
         mainWindow->makeJoystickTabs();
+    #if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0) 
         QTimer::singleShot(0, mainWindow, &MainWindow::controllerMapOpening);
+    #else
+        QTimer::singleShot(0, mainWindow, SLOT(controllerMapOpening()));
+    #endif
 
         joypad_worker->startWorker();
 
@@ -783,10 +831,10 @@ int main(int argc, char *argv[])
                      mainWindow, &MainWindow::addJoyTab);
 
     mainAppHelper.initRunMethods();
+    
     QTimer::singleShot(0, mainWindow, SLOT(fillButtons()));
     QTimer::singleShot(0, mainWindow, SLOT(alterConfigFromSettings()));
     QTimer::singleShot(0, mainWindow, SLOT(changeWindowStatus()));
-
 
     mainAppHelper.changeMouseThread(inputEventThread);
 

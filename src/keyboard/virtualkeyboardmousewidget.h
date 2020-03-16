@@ -65,6 +65,7 @@ protected:
     VirtualKeyPushButton* createNewKey(QString xcodestring);
     QPushButton* createNoneKey();
     void populateTopRowKeys();
+    void addFButtonToOthers(int qt_keycode, QString keycode_text);
     QPushButton* createOtherKeysMenu();
 
     virtual void resizeEvent(QResizeEvent *event);

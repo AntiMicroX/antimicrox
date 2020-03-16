@@ -1,3 +1,10 @@
+.git
+.gitignore
+node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+.vscode
 *.o
 .*.swp
 .directory
@@ -24,5 +31,5 @@ other/license-template.txt
 doc/
 compile/
 src/Changelog
-SDL2_*
+SDL2_* 
 *.kate-swp

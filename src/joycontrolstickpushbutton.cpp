@@ -68,9 +68,7 @@ QString JoyControlStickPushButton::generateLabel()
         temp.append(stick->getPartialName(false));
     }
 
-    #ifndef QT_DEBUG_NO_OUTPUT
     qDebug() << "Name of joy control stick push button: " << temp;
-    #endif
 
     return temp;
 }

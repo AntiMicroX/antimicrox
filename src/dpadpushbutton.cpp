@@ -58,9 +58,9 @@ QString DPadPushButton::generateLabel()
     if (!dpad->getDpadName().isEmpty()) temp.append(dpad->getName(false, ifDisplayNames()));
     else temp.append(dpad->getName());
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
     qDebug() << "Dpad button name is: " << temp;
-    #endif
+
 
     return temp;
 }

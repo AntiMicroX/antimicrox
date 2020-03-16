@@ -165,6 +165,14 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWi
     connect(stick->getModifierButton(), &JoyControlStickModifierButton::slotsChanged, this, &JoyControlStickEditDialog::changeModifierSummary);
 }
 
+// for tests
+/*JoyControlStickEditDialog::JoyControlStickEditDialog(QWidget *parent) :
+    QDialog(parent, Qt::Window),
+    ui(new Ui::JoyControlStickEditDialog)
+{
+    helper = new JoyControlStick();
+}*/
+
 JoyControlStickEditDialog::~JoyControlStickEditDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

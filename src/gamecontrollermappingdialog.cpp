@@ -374,9 +374,7 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
 
     if (controller != nullptr)
     {
-        #ifndef QT_DEBUG_NO_OUTPUT
         qDebug() << "Controller has " << controller->getNumberButtons() << " buttons";
-        #endif
 
         for (int i = 0; i < controller->getNumberButtons(); i++)
         {
@@ -384,9 +382,7 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
             SDL_GameControllerButtonBind bind = controller->getBindForButton(i);
             QString temptext = bindingString(bind);
 
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Button " << (i + 1) << ": " << temptext;
-            #endif
 
             if (!temptext.isEmpty())
             {
@@ -398,9 +394,9 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
             }
         }
 
-        #ifndef QT_DEBUG_NO_OUTPUT
+
         qDebug() << "Controller has " << controller->getNumberAxes() << " axes";
-        #endif
+
 
         for (int i = 0; i < controller->getNumberAxes(); i++)
         {
@@ -408,9 +404,7 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
             SDL_GameControllerButtonBind bind = controller->getBindForAxis(i);
             QString temptext = bindingString(bind);
 
-            #ifndef QT_DEBUG_NO_OUTPUT
             qDebug() << "Ax " << (i + 1) << ": " << temptext;
-            #endif
 
             if (!temptext.isEmpty())
             {
@@ -561,13 +555,13 @@ void GameControllerMappingDialog::enableButtonEvents(int code)
 
     Q_UNUSED(code);
 
-    #ifndef QT_DEBUG_NO_OUTPUT
+
         bool invoked = QMetaObject::invokeMethod(&helper, "restoreDeviceDeadZones", Qt::BlockingQueuedConnection);
         if (invoked) qDebug() << "the member restoreDeviceDeadZones could be invoked";
         else qDebug() << "the member restoreDeviceDeadZones could not be invoked";
-    #else
-        QMetaObject::invokeMethod(&helper, "restoreDeviceDeadZones", Qt::BlockingQueuedConnection);
-    #endif
+
+      //  QMetaObject::invokeMethod(&helper, "restoreDeviceDeadZones", Qt::BlockingQueuedConnection);
+
 
 }
 
