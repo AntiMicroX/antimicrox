@@ -412,95 +412,98 @@ void AdvanceButtonDialog::insertSlot()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (ui->slotListWidget->selectedItems().count() != 1)
+    if (ui->slotListWidget->selectedItems().count() == 0)
     {
-        QMessageBox::warning(this, tr("Not checked one slot"), tr("To insert a slot, you need to select only one slot"));
+        QMessageBox::warning(this, tr("Not checked slots"), tr("To insert slots, you need to select at least one"));
     }
     else
     {
-        int current = ui->slotListWidget->currentRow();
-        int count = ui->slotListWidget->count();
-        int slotTypeIndex = ui->slotTypeComboBox->currentIndex();
-
-        switch(slotTypeIndex)
+        for(auto item : ui->slotListWidget->selectedItems())
         {
-            case 0:
+            int current = ui->slotListWidget->row(item);
+            int count = ui->slotListWidget->count();
+            int slotTypeIndex = ui->slotTypeComboBox->currentIndex();
 
-                if (current != (count - 1))
-                {
-                    SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
-                    QListWidgetItem *item = new QListWidgetItem();
-                    ui->slotListWidget->insertItem(current, item);
-                    item->setData(Qt::UserRole,
-                                  QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
+            switch(slotTypeIndex)
+            {
+                case 0:
 
-                    QHBoxLayout *layout= new QHBoxLayout();
-                    layout->addWidget(blankButton);
-                    QWidget *widget = new QWidget();
-                    widget->setLayout(layout);
-                    item->setSizeHint(widget->sizeHint());
-                    ui->slotListWidget->setItemWidget(item, widget);
-                    ui->slotListWidget->setCurrentItem(item);
-                    connectButtonEvents(blankButton);
-                    blankButton->refreshButtonLabel();
+                    if (current != (count - 1))
+                    {
+                        SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
+                        QListWidgetItem *item = new QListWidgetItem();
+                        ui->slotListWidget->insertItem(current, item);
+                        item->setData(Qt::UserRole,
+                                      QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
 
-                    QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection,
-                                              Q_ARG(int, 0), Q_ARG(uint, 0),
-                                              Q_ARG(int, current));
+                        QHBoxLayout *layout= new QHBoxLayout();
+                        layout->addWidget(blankButton);
+                        QWidget *widget = new QWidget();
+                        widget->setLayout(layout);
+                        item->setSizeHint(widget->sizeHint());
+                        ui->slotListWidget->setItemWidget(item, widget);
+                        ui->slotListWidget->setCurrentItem(item);
+                        connectButtonEvents(blankButton);
+                        blankButton->refreshButtonLabel();
 
-                    updateSlotsScrollArea(0);
-                }
+                        QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection,
+                                                  Q_ARG(int, 0), Q_ARG(uint, 0),
+                                                  Q_ARG(int, current));
 
-            break;
+                        updateSlotsScrollArea(0);
+                    }
 
-        case 1:
-            insertCycleSlot();
-            break;
+                break;
 
-        case 2:
-            insertKindOfSlot(actionTimeConvert(), JoyButtonSlot::JoyDelay);
-            break;
+            case 1:
+                insertCycleSlot(item);
+                break;
 
-        case 3:
-            insertKindOfSlot(ui->distanceSpinBox->value(), JoyButtonSlot::JoyDistance);
-            break;
+            case 2:
+                insertKindOfSlot(item, actionTimeConvert(), JoyButtonSlot::JoyDelay);
+                break;
 
-        case 4:
-            insertExecuteSlot();
-            break;
+            case 3:
+                insertKindOfSlot(item, ui->distanceSpinBox->value(), JoyButtonSlot::JoyDistance);
+                break;
 
-        case 5:
-            insertKindOfSlot(actionTimeConvert(), JoyButtonSlot::JoyHold);
-            break;
+            case 4:
+                insertExecuteSlot(item);
+                break;
 
-        case 6:
-            showSelectProfileWindow();
-            break;
+            case 5:
+                insertKindOfSlot(item, actionTimeConvert(), JoyButtonSlot::JoyHold);
+                break;
 
-        case 7:
-            insertKindOfSlot(ui->mouseSpeedModSpinBox->value(), JoyButtonSlot::JoyMouseSpeedMod);
-            break;
+            case 6:
+                showSelectProfileWind(item);
+                break;
 
-        case 8:
-           insertKindOfSlot(actionTimeConvert(), JoyButtonSlot::JoyPause);
-            break;
+            case 7:
+                insertKindOfSlot(item, ui->mouseSpeedModSpinBox->value(), JoyButtonSlot::JoyMouseSpeedMod);
+                break;
 
-        case 9:
-            insertKindOfSlot(actionTimeConvert(), JoyButtonSlot::JoyKeyPress);
-            break;
+            case 8:
+               insertKindOfSlot(item, actionTimeConvert(), JoyButtonSlot::JoyPause);
+                break;
 
-        case 10:
-            insertKindOfSlot(actionTimeConvert(), JoyButtonSlot::JoyRelease);
-            break;
+            case 9:
+                insertKindOfSlot(item, actionTimeConvert(), JoyButtonSlot::JoyKeyPress);
+                break;
 
-        case 11:
-            insertKindOfSlot(ui->slotSetChangeComboBox->itemData(ui->slotSetChangeComboBox->currentIndex()).toInt(), JoyButtonSlot::JoySetChange);
-            break;
+            case 10:
+                insertKindOfSlot(item, actionTimeConvert(), JoyButtonSlot::JoyRelease);
+                break;
 
-        case 12:
-            insertTextEntrySlot();
-            break;
+            case 11:
+                insertKindOfSlot(item, ui->slotSetChangeComboBox->itemData(ui->slotSetChangeComboBox->currentIndex()).toInt(), JoyButtonSlot::JoySetChange);
+                break;
 
+            case 12:
+                insertTextEntrySlot(item);
+                break;
+
+            }
         }
     }
 }
@@ -578,11 +581,11 @@ void AdvanceButtonDialog::joinSlot()
 }
 
 
-void AdvanceButtonDialog::insertKindOfSlot(int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction)
+void AdvanceButtonDialog::insertKindOfSlot(QListWidgetItem* item, int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction)
 {
+    int index = ui->slotListWidget->row(item);
     int actionTime = slotProperty;
-    int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+    SimpleKeyGrabberButton *tempbutton = item
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
     int tempDistance = 0;
@@ -731,12 +734,12 @@ void AdvanceButtonDialog::changeTurboForSequences()
     }
 }
 
-void AdvanceButtonDialog::insertCycleSlot()
+void AdvanceButtonDialog::insertCycleSlot(QListWidgetItem* item)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *tempbutton = ui->slotListWidget->currentItem()
+    int index = ui->slotListWidget->row(item);
+    SimpleKeyGrabberButton *tempbutton = item
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
     tempbutton->setValue(1, JoyButtonSlot::JoyCycle);
 
@@ -922,13 +925,13 @@ void AdvanceButtonDialog::fillTimeComboBoxes()
 }
 
 
-void AdvanceButtonDialog::insertTextEntrySlot()
+void AdvanceButtonDialog::insertTextEntrySlot(QListWidgetItem* item)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    int index = ui->slotListWidget->row(item);
     QString entryText = ui->textEntryLineEdit->text();
-    int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *textEntryButton = ui->slotListWidget->currentItem()
+    SimpleKeyGrabberButton *textEntryButton = item
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
     if (!entryText.isEmpty())
@@ -945,16 +948,16 @@ void AdvanceButtonDialog::insertTextEntrySlot()
 }
 
 
-void AdvanceButtonDialog::insertExecuteSlot()
+void AdvanceButtonDialog::insertExecuteSlot(QListWidgetItem* item)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    int index = ui->slotListWidget->row(item);
     QString execSlotName = ui->execLineEdit->text();
     QString argsExecSlot = ui->execArgumentsLineEdit->text();
     QFile execFile(execSlotName);
     QFileInfo execSlotNameInfo(execSlotName);
-    int index = ui->slotListWidget->currentRow();
-    SimpleKeyGrabberButton *execbutton = ui->slotListWidget->currentItem()
+    SimpleKeyGrabberButton *execbutton = item
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
     if (execSlotName.isEmpty()) QMessageBox::warning(this, tr("Empty execution path"), tr("Line for execution file path is empty. Fill the first line before you are going to add a slot."));
@@ -1466,14 +1469,39 @@ void AdvanceButtonDialog::showSelectProfileWindow()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    int index = ui->slotListWidget->currentRow();
     AntiMicroSettings *settings = m_button->getParentSet()->getInputDevice()->getSettings();
     QString preferredDir = PadderCommon::preferredProfileDir(settings);
     QString profileName = QFileDialog::getOpenFileName(this, tr("Choose Profile"),
                                                     preferredDir, tr("Config Files (*.amgp *.xml)"));
     if (!profileName.isEmpty())
     {
-        int index = ui->slotListWidget->currentRow();
         SimpleKeyGrabberButton *button = ui->slotListWidget->currentItem()
+                ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        button->setValue(profileName, JoyButtonSlot::JoyLoadProfile);
+
+        QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                                  Q_ARG(JoyButtonSlot*, button->getValue()),
+                                  Q_ARG(int, index));
+
+        button->setToolTip(profileName);
+        updateSlotsScrollArea(0);
+    }
+}
+
+
+void AdvanceButtonDialog::showSelectProfileWind(QListWidgetItem* item)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    int index = ui->slotListWidget->row(item);
+    AntiMicroSettings *settings = m_button->getParentSet()->getInputDevice()->getSettings();
+    QString preferredDir = PadderCommon::preferredProfileDir(settings);
+    QString profileName = QFileDialog::getOpenFileName(this, tr("Choose Profile"),
+                                                    preferredDir, tr("Config Files (*.amgp *.xml)"));
+    if (!profileName.isEmpty())
+    {
+        SimpleKeyGrabberButton *button = item
                 ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         button->setValue(profileName, JoyButtonSlot::JoyLoadProfile);
 

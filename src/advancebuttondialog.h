@@ -61,6 +61,7 @@ protected:
     void populateSetSelectionComboBox();
     void populateSlotSetSelectionComboBox();
     void findTurboModeComboIndex();
+    void showSelectProfileWind(QListWidgetItem* item);
 
 signals:
     void toggleChanged(bool state);
@@ -82,9 +83,9 @@ private slots:
     void insertSlot(); // AdvanceBtnDlgAssign class
     void joinSlot(); // AdvanceBtnDlgAssign class
 
-    void insertCycleSlot(); // AdvanceBtnDlgAssign class
-    void insertTextEntrySlot(); // AdvanceBtnDlgAssign class
-    void insertExecuteSlot(); // AdvanceBtnDlgAssign class
+    void insertCycleSlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
+    void insertTextEntrySlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
+    void insertExecuteSlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
 
     void updateActionTimeLabel();
     void updateSetSelection();
@@ -122,7 +123,7 @@ private:
     JoyButton *m_button;
     AdvanceButtonDialogHelper helper;
 
-    void insertKindOfSlot(int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction); // AdvanceBtnDlgAssign class
+    void insertKindOfSlot(QListWidgetItem* item, int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction); // AdvanceBtnDlgAssign class
 
 };
 
