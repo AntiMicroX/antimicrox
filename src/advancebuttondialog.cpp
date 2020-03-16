@@ -528,6 +528,53 @@ void AdvanceButtonDialog::joinSlot()
     else
     {
         qDebug() << "Chosen " << ui->slotListWidget->selectedItems().count() << " slots" << endl;
+
+
+        QListWidgetItem* firstSelected = ui->slotListWidget->selectedItems().at(0);
+        SimpleKeyGrabberButton* firstGrabBtn = firstSelected->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+
+        QString text = firstGrabBtn->getValue()->getSlotString();
+        int index = ui->slotListWidget->row(firstSelected);
+
+        QListWidgetItem *item = ui->slotListWidget->takeItem(index);
+        delete item;
+
+
+        for(auto item : ui->slotListWidget->selectedItems())
+        {
+            int indexNext = ui->slotListWidget->row(item);
+            text += "+";
+            SimpleKeyGrabberButton* firstGrabBtn = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+
+            text += firstGrabBtn->getValue()->getSlotString();
+            delete ui->slotListWidget->takeItem(indexNext);
+        }
+
+        SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
+        QListWidgetItem *joinedItem = new QListWidgetItem();
+
+        ui->slotListWidget->insertItem(index, joinedItem);
+        joinedItem->setData(Qt::UserRole,
+                      QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
+
+        QHBoxLayout *layout= new QHBoxLayout();
+        layout->addWidget(blankButton);
+        QWidget *widget = new QWidget();
+        widget->setLayout(layout);
+        joinedItem->setSizeHint(widget->sizeHint());
+        ui->slotListWidget->setItemWidget(joinedItem, widget);
+        ui->slotListWidget->setCurrentItem(joinedItem);
+        blankButton->setText(text); // temporarily
+        //connectButtonEvents(blankButton);
+        //blankButton->refreshButtonLabel(); // instead of blankButton->setText(text);
+
+        //QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection,
+        //                          Q_ARG(int, 0), Q_ARG(uint, 0),
+        //                          Q_ARG(int, current));
+
+        updateSlotsScrollArea(0);
+
+        //
     }
 
 
