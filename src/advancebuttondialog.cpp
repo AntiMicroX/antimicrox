@@ -310,8 +310,8 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(button, &SimpleKeyGrabberButton::clicked, [this, button]() {
-
+    connect(button, &SimpleKeyGrabberButton::clicked, [this, button]()
+    {
         bool leave = false;
 
         for (int i = 0; (i < ui->slotListWidget->count()) && !leave; i++)
@@ -418,6 +418,8 @@ void AdvanceButtonDialog::insertSlot()
     }
     else
     {
+        QStringList firstChoiceExec = QStringList();
+
         for(auto item : ui->slotListWidget->selectedItems())
         {
             int current = ui->slotListWidget->row(item);
@@ -468,7 +470,7 @@ void AdvanceButtonDialog::insertSlot()
                 break;
 
             case 4:
-                insertExecuteSlot(item);
+                insertExecuteSlot(item, firstChoiceExec);
                 break;
 
             case 5:
@@ -565,7 +567,7 @@ void AdvanceButtonDialog::joinSlot()
         ui->slotListWidget->setItemWidget(joinedItem, widget);
         ui->slotListWidget->setCurrentItem(joinedItem);
         blankButton->setText(text); // temporarily
-        //connectButtonEvents(blankButton);
+        connectButtonEvents(blankButton);
         //blankButton->refreshButtonLabel(); // instead of blankButton->setText(text);
 
         //QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection,
@@ -948,15 +950,31 @@ void AdvanceButtonDialog::insertTextEntrySlot(QListWidgetItem* item)
 }
 
 
-void AdvanceButtonDialog::insertExecuteSlot(QListWidgetItem* item)
+void AdvanceButtonDialog::insertExecuteSlot(QListWidgetItem* item, QStringList& prevExecAndArgs)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->row(item);
-    QString execSlotName = ui->execLineEdit->text();
-    QString argsExecSlot = ui->execArgumentsLineEdit->text();
-    QFile execFile(execSlotName);
-    QFileInfo execSlotNameInfo(execSlotName);
+    QString execSlotName, argsExecSlot;
+    QFile execFile;
+    QFileInfo execSlotNameInfo;
+
+    if (prevExecAndArgs.empty()) // the first time when we choose script
+    {
+        execSlotName = ui->execLineEdit->text();
+        argsExecSlot = ui->execArgumentsLineEdit->text();
+    }
+    else // when we want to apply changes to many slots at once
+    {
+        execSlotName = prevExecAndArgs.first();
+
+        if (prevExecAndArgs.length() == 2)
+            argsExecSlot = prevExecAndArgs.last();
+    }
+
+    execFile.setFileName(execSlotName);
+    execSlotNameInfo.setFile(execSlotName);
+
     SimpleKeyGrabberButton *execbutton = item
             ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
@@ -964,10 +982,15 @@ void AdvanceButtonDialog::insertExecuteSlot(QListWidgetItem* item)
     else if (!execSlotNameInfo.exists()) QMessageBox::warning(this, tr("File doesn't exist"), tr("There is no such file locally, that could be executed. Check the file on your system"));
     else
     {
+        prevExecAndArgs.clear();
         execbutton->setValue(execSlotName, JoyButtonSlot::JoyExecute);
+        prevExecAndArgs << execSlotName;
 
         if (!argsExecSlot.isEmpty())
+        {
            execbutton->getValue()->setExtraData(QVariant(argsExecSlot));
+           prevExecAndArgs << argsExecSlot;
+        }
 
         QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
                                        Q_ARG(JoyButtonSlot*, execbutton->getValue()),

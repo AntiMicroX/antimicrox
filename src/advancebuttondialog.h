@@ -85,7 +85,7 @@ private slots:
 
     void insertCycleSlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
     void insertTextEntrySlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
-    void insertExecuteSlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
+    void insertExecuteSlot(QListWidgetItem* item, QStringList& prevExecAndArgs); // AdvanceBtnDlgAssign class
 
     void updateActionTimeLabel();
     void updateSetSelection();
