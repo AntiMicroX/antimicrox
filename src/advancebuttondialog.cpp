@@ -419,6 +419,7 @@ void AdvanceButtonDialog::insertSlot()
     else
     {
         QStringList firstChoiceExec = QStringList();
+        QString firstChoiceProfile = QString();
 
         for(auto item : ui->slotListWidget->selectedItems())
         {
@@ -478,7 +479,7 @@ void AdvanceButtonDialog::insertSlot()
                 break;
 
             case 6:
-                showSelectProfileWind(item);
+                showSelectProfileWind(item, firstChoiceProfile);
                 break;
 
             case 7:
@@ -550,6 +551,7 @@ void AdvanceButtonDialog::joinSlot()
             text += firstGrabBtn->getValue()->getSlotString();
         }
 
+        // it can be used as reusable code
         deleteSlot();
 
         SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
@@ -1492,38 +1494,33 @@ void AdvanceButtonDialog::showSelectProfileWindow()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int index = ui->slotListWidget->currentRow();
-    AntiMicroSettings *settings = m_button->getParentSet()->getInputDevice()->getSettings();
-    QString preferredDir = PadderCommon::preferredProfileDir(settings);
-    QString profileName = QFileDialog::getOpenFileName(this, tr("Choose Profile"),
-                                                    preferredDir, tr("Config Files (*.amgp *.xml)"));
-    if (!profileName.isEmpty())
-    {
-        SimpleKeyGrabberButton *button = ui->slotListWidget->currentItem()
-                ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-        button->setValue(profileName, JoyButtonSlot::JoyLoadProfile);
-
-        QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(JoyButtonSlot*, button->getValue()),
-                                  Q_ARG(int, index));
-
-        button->setToolTip(profileName);
-        updateSlotsScrollArea(0);
-    }
+    // It can be used as reusable code
+    insertSlot();
 }
 
 
-void AdvanceButtonDialog::showSelectProfileWind(QListWidgetItem* item)
+void AdvanceButtonDialog::showSelectProfileWind(QListWidgetItem* item, QString& firstChoiceProfile)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int index = ui->slotListWidget->row(item);
     AntiMicroSettings *settings = m_button->getParentSet()->getInputDevice()->getSettings();
-    QString preferredDir = PadderCommon::preferredProfileDir(settings);
-    QString profileName = QFileDialog::getOpenFileName(this, tr("Choose Profile"),
+    QString preferredDir, profileName;
+
+    if (firstChoiceProfile.size() <= 0)
+    {
+        preferredDir = PadderCommon::preferredProfileDir(settings);
+        profileName = QFileDialog::getOpenFileName(this, tr("Choose Profile"),
                                                     preferredDir, tr("Config Files (*.amgp *.xml)"));
+    }
+    else
+    {
+        profileName = firstChoiceProfile;
+    }
+
     if (!profileName.isEmpty())
     {
+        firstChoiceProfile = profileName;
         SimpleKeyGrabberButton *button = item
                 ->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
         button->setValue(profileName, JoyButtonSlot::JoyLoadProfile);
