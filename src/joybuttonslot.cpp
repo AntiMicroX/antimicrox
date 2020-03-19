@@ -40,6 +40,7 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     previousDistance = 0.0;
     qkeyaliasCode = 0;
     easingActive = false;
+    mix_slots = new QList<JoyButtonSlot*>();
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent) :
@@ -56,6 +57,7 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
     m_mode = mode;
     m_distance = 0.0;
     easingActive = false;
+    mix_slots = new QList<JoyButtonSlot*>();
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent) :
@@ -74,6 +76,7 @@ JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObje
     m_mode = mode;
     m_distance = 0.0;
     easingActive = false;
+    mix_slots = new QList<JoyButtonSlot*>();
 }
 
 JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
@@ -89,6 +92,7 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     easingActive = false;
     m_textData = slot->getTextData();
     extraData = slot->getExtraData();
+    mix_slots = slot->getMixSlots();
 }
 
 JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent) :
@@ -102,6 +106,7 @@ JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *par
     m_mode = mode;
     m_distance = 0.0;
     easingActive = false;
+    mix_slots = new QList<JoyButtonSlot*>();
 
     if ((mode == JoyLoadProfile) ||
         (mode == JoyTextEntry) ||
@@ -433,6 +438,19 @@ QString JoyButtonSlot::getSlotString()
 
                 break;
             }
+            case JoyMix:
+            {
+                if (!m_textData.isEmpty())
+                {
+                    newlabel.append(tr("Mix %1").arg(m_textData));
+                }
+                else
+                {
+                    qDebug() << "text data of JoyMix slot is empty!";
+                }
+
+                break;
+            }
         }
     }
     else
@@ -520,6 +538,19 @@ QVariant JoyButtonSlot::getExtraData()
     return extraData;
 }
 
+
+QList<JoyButtonSlot*> *JoyButtonSlot::getMixSlots()
+{
+    return mix_slots;
+}
+
+
+void JoyButtonSlot::setMixSlots(QList<JoyButtonSlot*> *mixSlots)
+{
+    mix_slots = mixSlots;
+}
+
+
 bool JoyButtonSlot::isValidSlot()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -539,6 +570,12 @@ bool JoyButtonSlot::isValidSlot()
         case JoySetChange:
         {
             if (deviceCode < 0) result = false;
+
+            break;
+        }
+        case JoyMix:
+        {
+            if (mix_slots->count() == 0) return false;
 
             break;
         }

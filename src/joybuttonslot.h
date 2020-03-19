@@ -36,7 +36,7 @@ public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement,
                              JoyPause, JoyHold, JoyCycle, JoyDistance,
                              JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay,
-                             JoyLoadProfile, JoySetChange, JoyTextEntry, JoyExecute};
+                             JoyLoadProfile, JoySetChange, JoyTextEntry, JoyExecute, JoyMix};
 
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
     enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
@@ -77,12 +77,16 @@ public:
     void setExtraData(QVariant data);
     QVariant getExtraData();
 
+    void setMixSlots(QList<JoyButtonSlot*>* slots);
+    QList<JoyButtonSlot*>* getMixSlots();
+
     bool isValidSlot();
     
 private:
     int deviceCode;
     int qkeyaliasCode;
     JoySlotInputAction m_mode;
+    QList<JoyButtonSlot*>* mix_slots;
     double m_distance;
     double previousDistance;
     QElapsedTimer mouseInterval;
