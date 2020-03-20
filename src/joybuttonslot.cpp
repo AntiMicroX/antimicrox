@@ -251,7 +251,9 @@ QString JoyButtonSlot::getSlotString()
 
     QString newlabel = QString();
 
-    if (deviceCode >= 0)
+    qDebug() << "deviceCode in getSlotString() is: " << deviceCode << " for mode: " << m_mode;
+
+    if (deviceCode >= 0 || m_mode == JoyButtonSlot::JoyMix)
     {
         switch(m_mode)
         {
@@ -448,6 +450,7 @@ QString JoyButtonSlot::getSlotString()
             {
                 if (!m_textData.isEmpty())
                 {
+                    qDebug() << "append label for Joy mix: " << m_textData;
                     newlabel.append(tr("%1").arg(m_textData));
                 }
                 else

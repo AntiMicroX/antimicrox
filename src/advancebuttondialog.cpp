@@ -82,7 +82,9 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     while (iter.hasNext())
     {
+
         JoyButtonSlot *buttonslot = iter.next();
+        qDebug() << "slot string for grab btn is: " << buttonslot->getSlotString();
         SimpleKeyGrabberButton *existingCode = new SimpleKeyGrabberButton(this);
         existingCode->setText(buttonslot->getSlotString());
 
@@ -120,6 +122,27 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
                 }
 
             break;
+
+           // JoyMix
+           case 15:
+
+            qDebug() << "text data for joy mix is: " << buttonslot->getTextData();
+            qDebug() << "slot string for joy mix is: " << buttonslot->getSlotString();
+            qDebug() << "amount of mini slots: " << buttonslot->getMixSlots()->count();
+
+            if (!buttonslot->getTextData().isEmpty())
+            {
+                existingCode->setValues(buttonslot->getTextData(), buttonslot->getMixSlots(), JoyButtonSlot::JoySlotInputAction::JoyMix);
+                existingCode->setToolTip(buttonslot->getTextData());
+
+                // try again
+                if (existingCode->text() == tr("[NO KEY]"))
+                    existingCode->setText(buttonslot->getSlotString());
+
+                qDebug() << "Existing code for Joy Mix: " << existingCode->text();
+            }
+
+          break;
 
             default:
 
@@ -556,7 +579,16 @@ void AdvanceButtonDialog::joinSlot()
 
             QListWidgetItem* it = new QListWidgetItem(*item);
             SimpleKeyGrabberButton* firstGrabBtn = it->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
-            joinedBtnSlots->append(firstGrabBtn->getValue());
+
+            if (firstGrabBtn->getValue()->getMixSlots()->count() > 0)
+            {
+                joinedBtnSlots->append(*firstGrabBtn->getValue()->getMixSlots());
+            }
+            else
+            {
+                joinedBtnSlots->append(firstGrabBtn->getValue());
+            }
+
             text += firstGrabBtn->getValue()->getSlotString();
         }
 

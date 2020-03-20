@@ -1589,11 +1589,14 @@ QString JoyButton::getName(bool forceFullFormat, bool displayNames)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString newlabel = getPartialName(forceFullFormat, displayNames);
+    qDebug() << "partial name is: " << newlabel;
     newlabel.append(": ");
 
+    qDebug() << "actionName is " << actionName;
     if (!actionName.isEmpty() && displayNames) newlabel.append(actionName);
     else newlabel.append(getCalculatedActiveZoneSummary());
 
+    qDebug() << "name in getName(bool forceFullFormat, bool displayNames) is now: " << newlabel;
     return newlabel;
 }
 
@@ -1696,6 +1699,7 @@ void JoyButton::buildActiveZoneSummaryString()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     lockForWritedString(activeZoneString, getActiveZoneSummary());
+    qDebug() << "activeZoneString after getActiveZoneSummary() is: " << activeZoneString;
     emit activeZoneChanged();
 }
 

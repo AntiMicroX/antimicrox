@@ -143,6 +143,8 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         controlcode = tempcode;
         bool valueUpdated = false;
 
+        qDebug() << "slot string for simple key grab button is: " << buttonslot.getSlotString();
+
         if ((keyEve->modifiers() & Qt::ControlModifier) && (keyEve->key() == Qt::Key_X))
         {
             controlcode = 0;
