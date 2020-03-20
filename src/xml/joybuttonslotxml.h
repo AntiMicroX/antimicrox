@@ -20,6 +20,7 @@
 #define JOYBUTTONSLOTXML_H
 
 #include <QObject>
+#include <QReadWriteLock>
 
 class QXmlStreamReader;
 class QXmlStreamWriter;
@@ -37,8 +38,12 @@ public:
      virtual void writeConfig(QXmlStreamWriter *xml);
 
 private:
-     JoyButtonSlot* m_joyBtnSlot;
      void writeEachSlot(QXmlStreamWriter *xml, JoyButtonSlot *joyBtnSlot);
+     void readEachSlot(QXmlStreamReader *xml,  JoyButtonSlot* joyBtnSlot, QString &profile, QString &tempStringData, QString &extraStringData);
+     void setSlotData(JoyButtonSlot *joyBtnSlot, QString profile, QString tempStringData, QString extraStringData);
+
+     JoyButtonSlot* m_joyBtnSlot;
+     QReadWriteLock activeZoneLock;
 };
 
 #endif // JOYBUTTONSLOTXML_H
