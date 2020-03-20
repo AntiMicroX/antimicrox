@@ -43,6 +43,14 @@ void AdvanceButtonDialogHelper::insertAssignedSlot(int code, int alias, int inde
     button->insertAssignedSlot(code, alias, index, mode);
 }
 
+void AdvanceButtonDialogHelper::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    button->eventReset();
+    button->insertAssignedSlot(newSlot, index, updateActiveString);
+}
+
 void AdvanceButtonDialogHelper::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

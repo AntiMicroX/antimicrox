@@ -213,8 +213,7 @@ public:
     static const JoyExtraAccelerationCurve DEFAULTEXTRAACCELCURVE;
 
     bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true); // JoyButtonSlots class
-
-
+    bool insertAssignedSlot(JoyButtonSlot *slot, int index, bool updateActiveString=true);
 
 protected:
     int getPreferredKeyPressTime(); // unsigned
@@ -468,6 +467,7 @@ private:
         activeZoneStringLock.unlock();
     }
 
+    void releaseEachSlot(bool &changeRepeatState, int &references, int tempcode, JoyButtonSlot::JoySlotInputAction mode, JoyButtonSlot *slot);
     void resetAllProperties();
     void resetPrivVars();
     void restartAllForSetChange();
@@ -487,6 +487,8 @@ private:
     QList<JoyButtonSlot*>& getAssignmentsLocal();
     QList<JoyButtonSlot*>& getActiveSlotsLocal(); // JoyButtonSlots class
     void updateMouseProperties(double newAxisValue, double newSpringDead, int newSpringWidth, int newSpringHeight, bool relatived, int modeScreen, QList<PadderCommon::springModeInfo>& springSpeeds, QChar axis, double newAxisValueY = 0,  double newSpringDeadY = 0);
+    //void getActiveZoneWithAppend(JoyButtonSlot::JoySlotInputAction mode, QList<JoyButtonSlot *>& tempSlotList, QListIterator<JoyButtonSlot *> *iter, JoyButtonSlot *slot);
+    void buildActiveZoneSummarySwitchSlots(JoyButtonSlot::JoySlotInputAction mode, JoyButtonSlot *slot, bool& behindHold, QStringList* stringlist, int& i, QListIterator<JoyButtonSlot*>* iter, bool slotsActive);
 
     bool m_toggle;
     bool quitEvent; // JoyButtonEvents class
@@ -581,6 +583,7 @@ private:
     QReadWriteLock activeZoneLock;
     QReadWriteLock assignmentsLock;
     QReadWriteLock activeZoneStringLock;
+
 
 };
 

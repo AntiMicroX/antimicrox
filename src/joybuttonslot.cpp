@@ -116,6 +116,12 @@ JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *par
     }
 }
 
+
+JoyButtonSlot::~JoyButtonSlot()
+{
+
+}
+
 void JoyButtonSlot::setSlotCode(int code)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -442,7 +448,7 @@ QString JoyButtonSlot::getSlotString()
             {
                 if (!m_textData.isEmpty())
                 {
-                    newlabel.append(tr("Mix %1").arg(m_textData));
+                    newlabel.append(tr("%1").arg(m_textData));
                 }
                 else
                 {
