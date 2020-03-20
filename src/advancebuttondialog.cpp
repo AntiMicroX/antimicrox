@@ -339,12 +339,6 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
             QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
                                           Q_ARG(JoyButtonSlot*, tempbuttonslot),
                                           Q_ARG(int, index));
-
-            //QMetaObject::invokeMethod(&helper, "setAssignedSlots", Qt::BlockingQueuedConnection,
-            //                              Q_ARG(QList<JoyButtonSlot*>*, tempbuttonslot->getMixSlots()),
-            //                              Q_ARG(int, index),
-            //                              Q_ARG(JoyButtonSlot::JoySlotInputAction, JoyButtonSlot::JoySlotInputAction::JoyMix));
-
         }
         else
         {
