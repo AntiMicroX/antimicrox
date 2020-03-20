@@ -54,6 +54,9 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
         {
             qDebug() << "Detected mix slots";
 
+            QString slotMixString = QString();
+            bool firstTimePlus = true;
+
             xml->readNextStartElement();
 
             int i = 0;
@@ -85,6 +88,14 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 
                 i++;
                 m_joyBtnSlot->getMixSlots()->append(minislot);
+
+                if (!firstTimePlus) slotMixString.append('+');
+                firstTimePlus = false;
+
+                slotMixString.append(minislot->getSlotString());
+
+
+                qDebug() << "Slot mix string now is named: " << slotMixString;
                 qDebug() << "Added " << i << " minislots to current slot from xml file";
                 qDebug() << "Added mini slot string and mode and code: " << minislot->getSlotString() << " and " << minislot->getSlotMode() << " and " << minislot->getSlotCode();
 
@@ -94,10 +105,12 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 
             i = 0;
 
-            if (xml->name() == "mode")
+            if (xml->name() == "mode" && xml->readElementText() == "mix")
             {
-                qDebug() << "Read JoyMix mode from xml file: " << xml->readElementText();
-                if (xml->readElementText() == "mix") m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyMix);
+                qDebug() << "slot text data for joy mix is: " << slotMixString;
+                m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyMix);
+                m_joyBtnSlot->setTextData(slotMixString);
+                m_joyBtnSlot->setSlotCode(-1);
                 xml->readNextStartElement();
             }
         }
