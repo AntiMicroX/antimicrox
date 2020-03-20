@@ -209,7 +209,33 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeStartElement(m_joyBtnSlot->getXmlName());
 
-    if (m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
+    if (m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyMix)
+    {
+        xml->writeStartElement("slots");
+
+        QListIterator<JoyButtonSlot*> iterMini(*m_joyBtnSlot->getMixSlots());
+
+        while (iterMini.hasNext())
+        {
+            JoyButtonSlot *minislot = iterMini.next();
+
+            xml->writeStartElement(m_joyBtnSlot->getXmlName());
+            writeEachSlot(xml, minislot);
+            xml->writeEndElement();
+        }
+
+        xml->writeEndElement();
+
+        xml->writeStartElement("mode");
+        xml->writeCharacters("mix");
+        xml->writeEndElement();
+    }
+    else
+    {
+        writeEachSlot(xml, m_joyBtnSlot);
+    }
+
+   /* if (m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
     {
         int basekey = AntKeyMapper::getInstance()->returnQtKey(m_joyBtnSlot->getSlotCode());
         int qtkey = m_joyBtnSlot->getSlotCodeAlias();
@@ -322,8 +348,130 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
             break;
     }
 
-    xml->writeEndElement();
+    xml->writeEndElement();*/
     xml->writeEndElement();
 }
 
+
+void JoyButtonSlotXml::writeEachSlot(QXmlStreamWriter *xml, JoyButtonSlot *joyBtnSlot)
+{
+    if (joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyKeyboard)
+    {
+        int basekey = AntKeyMapper::getInstance()->returnQtKey(joyBtnSlot->getSlotCode());
+        int qtkey = joyBtnSlot->getSlotCodeAlias();
+
+        if ((qtkey > 0) || (basekey > 0))
+        {
+            // Did not add an alias to slot. If a possible Qt key value
+            // was found, use it.
+            if ((qtkey == 0) && (basekey > 0)) qtkey = basekey;
+
+            // Found a valid abstract keysym.
+            qDebug() << "ANT KEY: " << QString::number(qtkey, 16);
+
+            xml->writeTextElement("code", QString("0x%1").arg(qtkey, 0, 16));
+        }
+        else if (joyBtnSlot->getSlotCode() > 0)
+        {
+            // No abstraction provided for key. Add prefix to native keysym.
+            int tempkey = joyBtnSlot->getSlotCode() | QtKeyMapperBase::nativeKeyPrefix;
+
+            qDebug() << "ANT KEY: " << QString::number(tempkey, 16);
+
+            xml->writeTextElement("code", QString("0x%1").arg(tempkey, 0, 16));
+        }
+    }
+    else if ((joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyLoadProfile) && !joyBtnSlot->getTextData().isEmpty())
+    {
+        xml->writeTextElement("profile", joyBtnSlot->getTextData());
+    }
+    else if ((joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyTextEntry) && !joyBtnSlot->getTextData().isEmpty())
+    {
+        xml->writeTextElement("text", joyBtnSlot->getTextData());
+    }
+    else if ((joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyExecute) && !joyBtnSlot->getTextData().isEmpty())
+    {
+        xml->writeTextElement("path", joyBtnSlot->getTextData());
+
+        if (!joyBtnSlot->getExtraData().isNull() && joyBtnSlot->getExtraData().canConvert<QString>())
+        {
+            xml->writeTextElement("arguments", joyBtnSlot->getExtraData().toString());
+        }
+    }
+    else
+    {
+        xml->writeTextElement("code", QString::number(joyBtnSlot->getSlotCode()));
+    }
+
+    xml->writeStartElement("mode");
+
+    switch(joyBtnSlot->getSlotMode())
+    {
+        case JoyButtonSlot::JoyKeyboard:
+            xml->writeCharacters("keyboard");
+            break;
+
+        case JoyButtonSlot::JoyMouseButton:
+            xml->writeCharacters("mousebutton");
+            break;
+
+        case JoyButtonSlot::JoyMouseMovement:
+            xml->writeCharacters("mousemovement");
+            break;
+
+        case JoyButtonSlot::JoyPause:
+            xml->writeCharacters("pause");
+            break;
+
+        case JoyButtonSlot::JoyHold:
+            xml->writeCharacters("hold");
+            break;
+
+        case JoyButtonSlot::JoyCycle:
+            xml->writeCharacters("cycle");
+            break;
+
+        case JoyButtonSlot::JoyDistance:
+            xml->writeCharacters("distance");
+            break;
+
+        case JoyButtonSlot::JoyRelease:
+            xml->writeCharacters("release");
+            break;
+
+        case JoyButtonSlot::JoyMouseSpeedMod:
+            xml->writeCharacters("mousespeedmod");
+            break;
+
+        case JoyButtonSlot::JoyKeyPress:
+            xml->writeCharacters("keypress");
+            break;
+
+        case JoyButtonSlot::JoyDelay:
+            xml->writeCharacters("delay");
+            break;
+
+        case JoyButtonSlot::JoyLoadProfile:
+            xml->writeCharacters("loadprofile");
+            break;
+
+        case JoyButtonSlot::JoySetChange:
+            xml->writeCharacters("setchange");
+            break;
+
+        case JoyButtonSlot::JoyTextEntry:
+            xml->writeCharacters("textentry");
+            break;
+
+        case JoyButtonSlot::JoyExecute:
+            xml->writeCharacters("execute");
+            break;
+
+        case JoyButtonSlot::JoyMix:
+            xml->writeCharacters("mix");
+            break;
+    }
+
+    xml->writeEndElement();
+}
 

@@ -38,6 +38,7 @@ public:
 
 private:
      JoyButtonSlot* m_joyBtnSlot;
+     void writeEachSlot(QXmlStreamWriter *xml, JoyButtonSlot *joyBtnSlot);
 };
 
 #endif // JOYBUTTONSLOTXML_H
