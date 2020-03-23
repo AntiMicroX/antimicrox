@@ -24,6 +24,7 @@
 #include "antkeymapper.h"
 #include "event.h"
 
+
 #include <QDebug>
 #include <QFileInfo>
 
@@ -40,7 +41,7 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent) :
     previousDistance = 0.0;
     qkeyaliasCode = 0;
     easingActive = false;
-    mix_slots = new QList<JoyButtonSlot*>();
+    mix_slots = nullptr;
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent) :
@@ -57,7 +58,7 @@ JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
     m_mode = mode;
     m_distance = 0.0;
     easingActive = false;
-    mix_slots = new QList<JoyButtonSlot*>();
+    mix_slots = nullptr;
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent) :
@@ -76,7 +77,7 @@ JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObje
     m_mode = mode;
     m_distance = 0.0;
     easingActive = false;
-    mix_slots = new QList<JoyButtonSlot*>();
+    mix_slots = nullptr;
 }
 
 JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
@@ -92,7 +93,7 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     easingActive = false;
     m_textData = slot->getTextData();
     extraData = slot->getExtraData();
-    mix_slots = slot->getMixSlots();
+    setMixSlots(slot->getMixSlots());
 }
 
 JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent) :
@@ -106,7 +107,7 @@ JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *par
     m_mode = mode;
     m_distance = 0.0;
     easingActive = false;
-    mix_slots = new QList<JoyButtonSlot*>();
+    mix_slots = nullptr;
 
     if ((mode == JoyLoadProfile) ||
         (mode == JoyTextEntry) ||
@@ -548,15 +549,54 @@ QVariant JoyButtonSlot::getExtraData()
 }
 
 
+void JoyButtonSlot::secureMixSlotsInit()
+{
+    if (mix_slots == nullptr)
+    {
+        mix_slots = new QList<JoyButtonSlot*>();
+        connect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
+    }
+}
+
+
 QList<JoyButtonSlot*> *JoyButtonSlot::getMixSlots()
 {
+    secureMixSlotsInit();
     return mix_slots;
+}
+
+
+void JoyButtonSlot::assignMixSlotsToNull()
+{
+    mix_slots = nullptr;
+}
+
+
+void JoyButtonSlot::cleanMixSlots()
+{
+    if (mix_slots != nullptr)
+    {
+        disconnect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
+
+        if (!mix_slots->isEmpty())
+        {
+            qDeleteAll(*mix_slots);
+            mix_slots->clear();
+        }
+
+        delete mix_slots;
+        mix_slots = nullptr;
+    }
 }
 
 
 void JoyButtonSlot::setMixSlots(QList<JoyButtonSlot*> *mixSlots)
 {
+    cleanMixSlots();
     mix_slots = mixSlots;
+
+    if (mix_slots != nullptr)
+        connect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
 }
 
 

@@ -24,6 +24,8 @@
 #include <QElapsedTimer>
 #include <QTime>
 #include <QVariant>
+#include <QPointer>
+#include <QtWidgets/QApplication>
 
 class QXmlStreamReader;
 class QXmlStreamWriter;
@@ -81,9 +83,24 @@ public:
     void setMixSlots(QList<JoyButtonSlot*>* slots);
     QList<JoyButtonSlot*>* getMixSlots();
 
+    template <typename T> void appendMiniSlot(T minislot)
+    {
+        secureMixSlotsInit();
+        mix_slots->append(minislot);
+    }
+
+    void assignMixSlotsToNull();
+
     bool isValidSlot();
+
+
+private slots:
+    void cleanMixSlots();
+
     
 private:
+    void secureMixSlotsInit();
+
     int deviceCode;
     int qkeyaliasCode;
     JoySlotInputAction m_mode;

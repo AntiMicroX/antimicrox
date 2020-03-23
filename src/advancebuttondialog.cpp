@@ -569,35 +569,32 @@ void AdvanceButtonDialog::joinSlot()
         int index = ui->slotListWidget->row(firstSelected);
         bool firstTime = true;
 
-        QList<JoyButtonSlot*>* joinedBtnSlots = new QList<JoyButtonSlot*>();
 
+        SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
 
         for(auto item : ui->slotListWidget->selectedItems())
         {
             if (!firstTime) text += "+";
             firstTime = false;
 
-            QListWidgetItem* it = new QListWidgetItem(*item);
-            SimpleKeyGrabberButton* firstGrabBtn = it->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+            SimpleKeyGrabberButton* firstGrabBtn = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
 
             if (firstGrabBtn->getValue()->getMixSlots()->count() > 0)
             {
-                joinedBtnSlots->append(*firstGrabBtn->getValue()->getMixSlots());
+                blankButton->getValue()->appendMiniSlot<QList<JoyButtonSlot*>>(*firstGrabBtn->getValue()->getMixSlots());
             }
             else
             {
-                joinedBtnSlots->append(firstGrabBtn->getValue());
+                blankButton->getValue()->appendMiniSlot<JoyButtonSlot*>(firstGrabBtn->getValue());
             }
 
             text += firstGrabBtn->getValue()->getSlotString();
         }
 
-        qDebug() << "Joined slot has " << joinedBtnSlots->count() << " slots in";
-
         // it can be used as reusable code
         deleteSlot();
 
-        SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
+
         QListWidgetItem *joinedItem = new QListWidgetItem();
         ui->slotListWidget->insertItem(index, joinedItem);
 
@@ -611,7 +608,9 @@ void AdvanceButtonDialog::joinSlot()
         joinedItem->setSizeHint(widget->sizeHint());
         ui->slotListWidget->setItemWidget(joinedItem, widget);
         ui->slotListWidget->setCurrentItem(joinedItem);
-        blankButton->setValues(text, joinedBtnSlots, JoyButtonSlot::JoyMix);
+
+
+        blankButton->setValues(text, JoyButtonSlot::JoyMix);
 
         connectButtonEvents(blankButton);
         blankButton->refreshButtonLabel(); // instead of blankButton->setText(text);
@@ -620,13 +619,6 @@ void AdvanceButtonDialog::joinSlot()
         Q_ARG(JoyButtonSlot*, blankButton->getValue()),
         Q_ARG(int, index),
         Q_ARG(bool, false));
-
-        // add "move" functionality to move slots
-
-        // track for multiple keys in one slot:
-
-        // generally to know where to put changes find places of JoySlotInputAction::JoyCycle for example
-        // and add adequate changes next to other input actions
     }
 }
 

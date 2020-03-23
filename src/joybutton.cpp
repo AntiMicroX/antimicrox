@@ -2411,6 +2411,9 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
                     delete minislot;
                     minislot = nullptr;
                 }
+
+                delete temp->getMixSlots();
+                temp->assignMixSlotsToNull();
             }
 
             if (temp != nullptr)
@@ -3149,12 +3152,49 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
 
     QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
 
+    while(iter.hasNext())
+    {
+        auto el = iter.next();
+        qDebug() << "AssignedSLot mode: " << el->getSlotMode();
+
+        if (el->getSlotMode() == JoyButtonSlot::JoySlotInputAction::JoyMix)
+        {
+            for (auto j : *el->getMixSlots())
+            {
+                qDebug() << "Minislot: " << j->getSlotString();
+            }
+        }
+    }
+
     while (iter.hasNext())
     {
         JoyButtonSlot *slot = iter.next();
 
+        qDebug() << "cleared assigned slot's mode: " << slot->getSlotMode();
+        qDebug() << "list of mix slots is a null pointer? " << ((slot->getMixSlots() == nullptr) ? "yes" : "no");
+
         if (slot != nullptr)
         {
+            if (slot->getMixSlots() != nullptr && slot->getMixSlots() != NULL)
+            {
+                if (!slot->getMixSlots()->isEmpty())
+                {
+                    QListIterator<JoyButtonSlot*> i(*slot->getMixSlots());
+                    while (i.hasNext())
+                    {
+                        auto el = i.next();
+                        delete el;
+                    }
+
+                    slot->getMixSlots()->clear();
+                }
+
+                delete slot->getMixSlots();
+                slot->assignMixSlotsToNull();
+                qDebug() << "list of mix slots is a null pointer? " << ((slot->getMixSlots() == nullptr) ? "yes" : "no");
+            }
+
+
             delete slot;
             slot = nullptr;
         }
@@ -3254,7 +3294,12 @@ void JoyButton::releaseActiveSlots()
                 }
 
                 if (!slot->getMixSlots()->isEmpty())
+                {
+                    qDeleteAll(*slot->getMixSlots());
                     slot->getMixSlots()->clear();
+                    delete slot->getMixSlots();
+                    slot->assignMixSlotsToNull();
+                }
             }
             else
             {

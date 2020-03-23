@@ -292,6 +292,29 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
     setText(buttonslot.getSlotString());
 }
 
+void SimpleKeyGrabberButton::setValues(QString value, JoyButtonSlot::JoySlotInputAction mode)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    switch (mode)
+    {
+        case JoyButtonSlot::JoyMix:
+        {
+            buttonslot.setSlotCode(-1);
+            buttonslot.setTextData(value);
+            buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
+            edited = true;
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+
+    setText(buttonslot.getSlotString());
+}
+
 void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jbtn, JoyButtonSlot::JoySlotInputAction mode)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

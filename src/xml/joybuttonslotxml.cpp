@@ -87,7 +87,7 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
                 readEachSlot(xml, minislot, profile, tempStringData, extraStringData);
 
                 i++;
-                m_joyBtnSlot->getMixSlots()->append(minislot);
+                m_joyBtnSlot->appendMiniSlot<JoyButtonSlot*>(minislot);
 
                 if (!firstTimePlus) slotMixString.append('+');
                 firstTimePlus = false;
