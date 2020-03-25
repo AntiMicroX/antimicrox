@@ -1765,11 +1765,11 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 
                     qDebug() << "Create summary for JoyMix. Progress: " << stringListMix;
 
-                    if ((j > 2) && iterM->hasNext())
-                    {
-                        stringListMix.append("...");
-                        iterM->toBack();
-                    }
+               //     if ((j > 2) && iterM->hasNext())
+               //     {
+               //         stringListMix.append("...");
+               //         iterM->toBack();
+               //     }
                 }
 
                 j = 0;
@@ -1784,7 +1784,9 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     res += strListEl;
                 }
 
+
                 stringlist.append(res);
+                stringListMix.clear();
 
                 behindHold = false;
 
@@ -2028,7 +2030,7 @@ QString JoyButton::getSlotsString()
         while (iter.hasNext())
         {
             JoyButtonSlot *slot = iter.next();
-            stringlist.append(slot->getSlotString());
+            stringlist.append(slot->getSlotString()); // tu
         }
 
         label = stringlist.join(", ");
