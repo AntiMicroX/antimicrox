@@ -212,8 +212,8 @@ public:
     static const TurboMode DEFAULTTURBOMODE;
     static const JoyExtraAccelerationCurve DEFAULTEXTRAACCELCURVE;
 
-    bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true); // JoyButtonSlots class
-    bool insertAssignedSlot(JoyButtonSlot *slot, int index, bool updateActiveString=true);
+    bool insertAssignedSlot(JoyButtonSlot *slot, bool updateActiveString=true); // JoyButtonSlots class
+    bool insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString=true);
 
 protected:
     int getPreferredKeyPressTime(); // unsigned

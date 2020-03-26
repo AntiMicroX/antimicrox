@@ -116,12 +116,28 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
 
                     if (!inserted)
                     {
+                        if (buttonslot->getSlotMode() == JoyButtonSlot::JoyMix && buttonslot->getMixSlots() != nullptr)
+                        {
+                            qDeleteAll(*buttonslot->getMixSlots());
+                            buttonslot->getMixSlots()->clear();
+                            delete buttonslot->getMixSlots();
+                            buttonslot->assignMixSlotsToNull();
+                        }
+
                         delete buttonslot;
                         buttonslot = nullptr;
                     }
                 }
                 else
                 {
+                    if (buttonslot->getSlotMode() == JoyButtonSlot::JoyMix && buttonslot->getMixSlots() != nullptr)
+                    {
+                        qDeleteAll(*buttonslot->getMixSlots());
+                        buttonslot->getMixSlots()->clear();
+                        delete buttonslot->getMixSlots();
+                        buttonslot->assignMixSlotsToNull();
+                    }
+
                     delete buttonslot;
                     buttonslot = nullptr;
                 }

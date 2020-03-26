@@ -63,7 +63,8 @@ JoyButtonMouseHelper JoyButton::mouseHelper;
 QTimer JoyButton::staticMouseEventTimer;
 QList<JoyButton*> JoyButton::pendingMouseButtons;
 
-
+// IT CAN BE HERE
+// LOOK FOR JoyCycle and put JoyMix next to the slots types
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
                      QObject *parent) :
     QObject(parent)
@@ -2024,13 +2025,23 @@ QString JoyButton::getSlotsString()
     {
         qDebug() << "There is more assignments than 0 in getSlotsString(): " << getAssignedSlots()->count();
 
+
         QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
         QStringList stringlist = QStringList();
 
         while (iter.hasNext())
         {
             JoyButtonSlot *slot = iter.next();
-            stringlist.append(slot->getSlotString()); // tu
+            qDebug() << "deviceCode = " << slot->getSlotCode();
+            qDebug() << "slotMode = " << slot->getSlotMode();
+            QString slotString = slot->getSlotString();
+
+            if (slotString == tr("[NO KEY]"))
+            {
+                qDebug() << "EMPTY ASSIGNED SLOT";
+            }
+
+            stringlist.append(slotString); // tu
         }
 
         label = stringlist.join(", ");
@@ -2312,11 +2323,12 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveStri
 }
 
 
-bool JoyButton::insertAssignedSlot(JoyButtonSlot *slot, int index, bool updateActiveString)
+bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool permitSlot = true;
+    JoyButtonSlot *slot = new JoyButtonSlot(newSlot, this);
 
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance && (slot->getSlotCode() >= 1) && (slot->getSlotCode() <= 100))
     {

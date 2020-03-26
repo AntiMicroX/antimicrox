@@ -89,6 +89,7 @@ void VirtualKeyPushButton::processSingleSelection()
     emit keycodeObtained(keycode, qkeyalias);
 }
 
+// IT CAN BE HERE
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

@@ -91,9 +91,9 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     m_mode = slot->m_mode;
     m_distance = slot->m_distance;
     easingActive = false;
-    m_textData = slot->getTextData();
-    extraData = slot->getExtraData();
-    setMixSlots(slot->getMixSlots());
+    m_textData = slot->m_textData;
+    extraData = slot->extraData;
+    setMixSlots(slot->mix_slots);
 }
 
 JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent) :
@@ -117,11 +117,6 @@ JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *par
     }
 }
 
-
-JoyButtonSlot::~JoyButtonSlot()
-{
-
-}
 
 void JoyButtonSlot::setSlotCode(int code)
 {
@@ -253,6 +248,7 @@ QString JoyButtonSlot::getSlotString()
     QString newlabel = QString();
 
     qDebug() << "deviceCode in getSlotString() is: " << deviceCode << " for mode: " << m_mode;
+
 
     if (deviceCode >= 0 || m_mode == JoyButtonSlot::JoyMix)
     {
@@ -447,7 +443,7 @@ QString JoyButtonSlot::getSlotString()
 
                 break;
             }
-            case JoyMix:
+            case JoyButtonSlot::JoyMix:
             {
                 if (!m_textData.isEmpty())
                 {
@@ -466,6 +462,11 @@ QString JoyButtonSlot::getSlotString()
     else
     {
         newlabel = newlabel.append(tr("[NO KEY]"));
+    }
+
+    if (newlabel == tr("[NO KEY]"))
+    {
+        qDebug() << "EMPTY JOYBUTTONSLOT";
     }
 
     return newlabel;
@@ -578,7 +579,7 @@ void JoyButtonSlot::cleanMixSlots()
     {
         disconnect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
 
-        if (!mix_slots->isEmpty())
+        if (mix_slots->size() != 0)
         {
             qDeleteAll(*mix_slots);
             mix_slots->clear();
@@ -592,11 +593,14 @@ void JoyButtonSlot::cleanMixSlots()
 
 void JoyButtonSlot::setMixSlots(QList<JoyButtonSlot*> *mixSlots)
 {
-    cleanMixSlots();
+   // cleanMixSlots();
     mix_slots = mixSlots;
 
     if (mix_slots != nullptr)
+    {
+        disconnect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
         connect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
+    }
 }
 
 
