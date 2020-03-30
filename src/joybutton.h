@@ -585,6 +585,7 @@ private:
     QReadWriteLock activeZoneStringLock;
 
 
+    void addEachSlotToActives(JoyButtonSlot *slot, bool isJoyMix, int &i, bool &delaySequence, bool &exit, QListIterator<JoyButtonSlot *> *slotiter);
 };
 
 
