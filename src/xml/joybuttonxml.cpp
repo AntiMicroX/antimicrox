@@ -109,6 +109,8 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
                 JoyButtonSlot *buttonslot = new JoyButtonSlot(m_joyButton);
                 JoyButtonSlotXml* buttonSlotXml = new JoyButtonSlotXml(buttonslot);
                 buttonSlotXml->readConfig(xml);
+                delete buttonSlotXml;
+                buttonSlotXml = nullptr;
 
                 if (buttonslot->isValidSlot())
                 {

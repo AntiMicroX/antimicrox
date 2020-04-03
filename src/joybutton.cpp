@@ -26,6 +26,7 @@
 #include "logger.h"
 
 #include "SDL2/SDL_events.h"
+#include "eventhandlerfactory.h"
 
 #include <QDebug>
 #include <QThread>
@@ -33,6 +34,8 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QSharedPointer>
+#include <QtConcurrent>
+#include <chrono>
 
 const JoyButton::JoyMouseCurve JoyButton::DEFAULTMOUSECURVE = JoyButton::EnhancedPrecisionCurve;
 const JoyButton::SetChangeCondition JoyButton::DEFAULTSETCONDITION = JoyButton::SetChangeDisabled;
@@ -76,6 +79,8 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
     m_vdpad = nullptr;
     slotiter = nullptr;
 
+    threadPool = QThreadPool::globalInstance();
+
     turboTimer.setParent(this);
     pauseTimer.setParent(this);
     holdTimer.setParent(this);
@@ -118,11 +123,15 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet,
     m_index = index;
     m_originset = originset;
     quitEvent = true;
+
 }
 
 JoyButton::~JoyButton()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    threadPool->clear();
+
 
     resetPrivVars();
 }
@@ -642,7 +651,6 @@ void JoyButton::activateSlots()
         bool delaySequence = false;
 
         int i = 0;
-        int j = 0;
 
         while (slotiter->hasNext() && !exit)
         {
@@ -656,20 +664,32 @@ void JoyButton::activateSlots()
                 {
                     QListIterator<JoyButtonSlot*> mini_it(*slot->getMixSlots());
                     QListIterator<JoyButtonSlot*>* it(&mini_it);
-                    bool exitMini = false;
-                    bool delaySequenceMini = false;
 
-                    while(it->hasNext() && !exit)
+                    int countMinis = slot->getMixSlots()->count();
+                    int timeX = countMinis;
+
+                    while(it->hasNext())
                     {
                         JoyButtonSlot *slotmini = it->next();
-                        addEachSlotToActives(slotmini, true, j, delaySequenceMini, exitMini, it);
+
+                        MiniSlotRun* minijob = new MiniSlotRun(slot, slotmini, this, 60 * timeX);
+
+                        minijob->setAutoDelete(true);
+
+                        threadPool->start(minijob);
+
+                        timeX--;
                     }
 
+                    threadPool->waitForDone();
+
                     i++;
+                    if (!slotiter->hasNext()) break;
                 }
             }
             else
             {
+                qDebug() << "Check now simple slots";
                 addEachSlotToActives(slot, false, i, delaySequence, exit, slotiter);
             }
         }
@@ -681,6 +701,32 @@ void JoyButton::activateSlots()
         }
 
         activeZoneTimer.start();
+
+    }
+}
+
+
+void JoyButton::activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix)
+{
+    int tempcode = slot->getSlotCode();
+    JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
+
+    switch(mode)
+    {
+        case JoyButtonSlot::JoyKeyboard:
+        {
+            sendevent(slot, true);
+
+            getActiveSlotsLocal().append(slot);
+            int oldvalue = GlobalVariables::JoyButton::JoyButton::activeKeys.value(tempcode, 0) + 1;
+            GlobalVariables::JoyButton::JoyButton::activeKeys.insert(tempcode, oldvalue);
+
+            qDebug() << "There has been assigned a lastActiveKey: " << mix->getSlotString();
+
+            lastActiveKey = mix;
+
+            break;
+        }
     }
 }
 
@@ -689,8 +735,6 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
 {
         int tempcode = slot->getSlotCode();
         JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
-        QThread* inputEventThread = nullptr;
-        if (isJoyMix) inputEventThread = new QThread;
 
         switch(mode)
         {
@@ -700,12 +744,6 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
 
                 qDebug() << i << ": It's a JoyKeyboard with code: " << tempcode << " and name: " << slot->getSlotString();
 
-                if (isJoyMix)
-                {
-                    slot->moveToThread(inputEventThread);
-                    inputEventThread->start();
-                }
-
                 sendevent(slot, true);
 
                 getActiveSlotsLocal().append(slot);
@@ -714,7 +752,7 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
 
                    if (!slot->isModifierKey())
                    {
-                       qDebug() << "There has been assigned a lastActiveKey";
+                       qDebug() << "There has been assigned a lastActiveKey " << slot->getSlotString();
 
                        lastActiveKey = slot;
                    }
@@ -725,6 +763,7 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
                        lastActiveKey = nullptr;
                    }
 
+
                 break;
             }
             case JoyButtonSlot::JoyMouseButton:
@@ -732,13 +771,6 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
                 i++;
 
                 qDebug() << i << ": It's a JoyMouseButton with code: " << tempcode << " and name: " << slot->getSlotString();
-
-                if (isJoyMix)
-                {
-                    slot->moveToThread(inputEventThread);
-                    inputEventThread->start();
-                }
-
 
                 if ((tempcode == static_cast<int>(JoyButtonSlot::MouseWheelUp)) ||
                     (tempcode == static_cast<int>(JoyButtonSlot::MouseWheelDown)))
@@ -775,12 +807,6 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
                i++;
 
                 qDebug() << i << ": It's a JoyMouseMovement with code: " << tempcode << " and name: " << slot->getSlotString();
-
-                if (isJoyMix)
-                {
-                    slot->moveToThread(inputEventThread);
-                    inputEventThread->start();
-                }
 
                 slot->getMouseInterval()->restart();
 
@@ -925,12 +951,6 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
 
                 qDebug() << i << ": It's a JoyMouseSpeedMod with code: " << tempcode << " and name: " << slot->getSlotString();
 
-                if (isJoyMix)
-                {
-                    slot->moveToThread(inputEventThread);
-                    inputEventThread->start();
-                }
-
                 GlobalVariables::JoyButton::mouseSpeedModifier = tempcode * 0.01;
                 mouseSpeedModList.append(slot);
                 getActiveSlotsLocal().append(slot);
@@ -993,12 +1013,6 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
 
                 getActiveSlotsLocal().append(slot);
 
-                if (isJoyMix)
-                {
-                    slot->moveToThread(inputEventThread);
-                    inputEventThread->start();
-                }
-
                 break;
             }
             case JoyButtonSlot::JoyTextEntry:
@@ -1008,20 +1022,11 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i,
 
                 qDebug() << i << ": It's a JoyExecute or JoyTextEntry with code: " << tempcode << " and name: " << slot->getSlotString();
 
-                if (isJoyMix)
-                {
-                    slot->moveToThread(inputEventThread);
-                    inputEventThread->start();
-                }
-
                 sendevent(slot, true);
-
 
                 break;
             }
         }
-
-
 }
 
 

@@ -29,12 +29,18 @@
 #include <QTimer>
 #include <QQueue>
 #include <QReadWriteLock>
+#include <QRunnable>
+#include <QDeadlineTimer>
+
 
 class VDPad;
 class SetJoystick;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 class QThread;
+class QThreadPool;
+
+
 
 class JoyButton : public QObject
 {
@@ -87,6 +93,7 @@ public:
     void setStartAccelMultiplier(double value);
     void setMaxAccelThreshold(double value);
     void setChangeSetSelection(int index, bool updateActiveString=true);
+    void activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix);
 
     bool hasPendingEvent(); // JoyButtonEvents class
     bool getToggleState();
@@ -583,9 +590,47 @@ private:
     QReadWriteLock activeZoneLock;
     QReadWriteLock assignmentsLock;
     QReadWriteLock activeZoneStringLock;
+    QThreadPool *threadPool;
 
 
     void addEachSlotToActives(JoyButtonSlot *slot, bool isJoyMix, int &i, bool &delaySequence, bool &exit, QListIterator<JoyButtonSlot *> *slotiter);
+};
+
+
+class MiniSlotRun : public QRunnable, public QObject
+{
+
+public:
+    MiniSlotRun(JoyButtonSlot* slot, JoyButtonSlot* slotmini, JoyButton* btn, int milisec) :
+        m_slot(slot), m_slotmini(slotmini), m_btn(btn), m_miliseconds(milisec), QObject(slot)
+    {
+
+    }
+
+    ~MiniSlotRun()
+    {
+        m_slot = nullptr;
+        m_slotmini = nullptr;
+        m_btn = nullptr;
+    }
+
+    void run()
+    {
+        QDeadlineTimer deadline(m_miliseconds);
+
+        while(!deadline.hasExpired())
+        {
+            // wait
+        }
+
+         m_btn->activateMiniSlots(m_slotmini,m_slot);
+    }
+
+private:
+    JoyButtonSlot* m_slot;
+    JoyButtonSlot* m_slotmini;
+    JoyButton* m_btn;
+    int m_miliseconds;
 };
 
 
