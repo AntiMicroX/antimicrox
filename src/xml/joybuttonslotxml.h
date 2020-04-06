@@ -44,6 +44,8 @@ private:
 
      JoyButtonSlot* m_joyBtnSlot;
      QReadWriteLock xmlLock;
+     static int timeoutWrite;
+     static int timeoutRead;
 };
 
 #endif // JOYBUTTONSLOTXML_H

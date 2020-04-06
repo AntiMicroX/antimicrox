@@ -27,6 +27,10 @@
 #include <QDebug>
 
 
+int JoyButtonSlotXml::timeoutWrite = 0;
+int JoyButtonSlotXml::timeoutRead = 0;
+
+
 JoyButtonSlotXml::JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent) : QObject(parent), m_joyBtnSlot(joyBtnSlot)
 {
 
@@ -38,7 +42,12 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     //QWriteLocker tempLocker(&xmlLock);
-   // xmlLock.lockForWrite();
+    std::chrono::time_point<std::chrono::high_resolution_clock> t1, t2;
+    t1 = std::chrono::high_resolution_clock::now();
+
+    bool result = xmlLock.tryLockForWrite();
+
+    if (!result && timeoutWrite > 0) xmlLock.tryLockForWrite(timeoutWrite);
 
     qDebug() << "START OF READ CONFIG NAME: " << xml->name();
 
@@ -134,7 +143,12 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
         }
     }
 
-  //  xmlLock.unlock();
+    xmlLock.unlock();
+
+    t2 = std::chrono::high_resolution_clock::now();
+
+    if (timeoutRead == 0)
+       timeoutRead = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 }
 
 
@@ -312,7 +326,13 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     //QReadLocker tempLocker(&xmlLock);
-   // xmlLock.lockForRead();
+    std::chrono::time_point<std::chrono::high_resolution_clock> t1, t2;
+    t1 = std::chrono::high_resolution_clock::now();
+
+    bool result = xmlLock.tryLockForRead();
+
+    if (!result && timeoutRead > 0) xmlLock.tryLockForRead(timeoutRead);
+
 
     xml->writeStartElement(m_joyBtnSlot->getXmlName());
 
@@ -346,7 +366,12 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
     }
 
     xml->writeEndElement();
-    //xmlLock.unlock();
+    xmlLock.unlock();
+
+    t2 = std::chrono::high_resolution_clock::now();
+
+    if (timeoutWrite == 0)
+       timeoutWrite = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 }
 
 
