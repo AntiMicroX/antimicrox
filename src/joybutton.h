@@ -26,6 +26,7 @@
 #include "springmousemoveinfo.h"
 #include "joybuttonmousehelper.h"
 
+#include <QThread>
 #include <QTimer>
 #include <QQueue>
 #include <QReadWriteLock>
@@ -37,7 +38,7 @@ class VDPad;
 class SetJoystick;
 class QXmlStreamReader;
 class QXmlStreamWriter;
-class QThread;
+//class QThread;
 class QThreadPool;
 
 
@@ -581,6 +582,7 @@ private:
     QTime accelExtraDurationTime;
     QElapsedTimer cycleResetHold;
     static QTime testOldMouseTime;
+    static int timeBetweenMiniSlots;
 
     VDPad *m_vdpad;
     JoyMouseMovementMode mouseMode;
@@ -616,14 +618,15 @@ public:
 
     void run()
     {
-        QDeadlineTimer deadline(m_miliseconds);
+
+        this->thread()->wait(m_miliseconds);
+       /* QDeadlineTimer deadline(m_miliseconds);
 
         while(!deadline.hasExpired())
         {
             // wait
-        }
-
-         m_btn->activateMiniSlots(m_slotmini,m_slot);
+        }*/
+        m_btn->activateMiniSlots(m_slotmini, m_slot);
     }
 
 private:

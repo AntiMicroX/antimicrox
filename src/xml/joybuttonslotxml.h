@@ -43,7 +43,7 @@ private:
      void setSlotData(JoyButtonSlot *joyBtnSlot, QString profile, QString tempStringData, QString extraStringData);
 
      JoyButtonSlot* m_joyBtnSlot;
-     QReadWriteLock activeZoneLock;
+     QReadWriteLock xmlLock;
 };
 
 #endif // JOYBUTTONSLOTXML_H

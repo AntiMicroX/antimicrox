@@ -119,7 +119,7 @@ JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *par
 
 JoyButtonSlot::~JoyButtonSlot()
 {
-    cleanMixSlots();
+    //cleanMixSlots();
 }
 
 

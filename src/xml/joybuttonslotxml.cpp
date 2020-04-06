@@ -37,6 +37,9 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    //QWriteLocker tempLocker(&xmlLock);
+   // xmlLock.lockForWrite();
+
     qDebug() << "START OF READ CONFIG NAME: " << xml->name();
 
     if (xml->isStartElement() && (xml->name() == "slot"))
@@ -130,6 +133,8 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
                 qDebug() << "Detected simple slot: " << m_joyBtnSlot->getSlotString();
         }
     }
+
+  //  xmlLock.unlock();
 }
 
 
@@ -306,12 +311,13 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    //QReadLocker tempLocker(&xmlLock);
+   // xmlLock.lockForRead();
+
     xml->writeStartElement(m_joyBtnSlot->getXmlName());
 
     if (m_joyBtnSlot->getSlotMode() == JoyButtonSlot::JoyMix)
     {
-        activeZoneLock.lockForRead();
-
         qDebug() << "write JoyMix slot in xml file";
 
         xml->writeStartElement("slots");
@@ -333,8 +339,6 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
         xml->writeStartElement("mode");
         xml->writeCharacters("mix");
         xml->writeEndElement();
-
-        activeZoneLock.unlock();
     }
     else
     {
@@ -342,6 +346,7 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
     }
 
     xml->writeEndElement();
+    //xmlLock.unlock();
 }
 
 

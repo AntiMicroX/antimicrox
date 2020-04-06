@@ -29,7 +29,7 @@
 #include "eventhandlerfactory.h"
 
 #include <QDebug>
-#include <QThread>
+//#include <QThread>
 #include <QStringList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -58,6 +58,10 @@ QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 // Temporary test object to test old mouse time behavior.
 QTime JoyButton::testOldMouseTime;
+
+// time when minislots next to each other in thread pool are waiting to execute function
+// at the same time
+int JoyButton::timeBetweenMiniSlots = 55;
 
 // Helper object to have a single mouse event for all JoyButton
 // instances.
@@ -668,20 +672,30 @@ void JoyButton::activateSlots()
                     int countMinis = slot->getMixSlots()->count();
                     int timeX = countMinis;
 
+                    std::chrono::time_point<std::chrono::high_resolution_clock> t1, t2;
+                    t1 = std::chrono::high_resolution_clock::now();
+
                     while(it->hasNext())
                     {
                         JoyButtonSlot *slotmini = it->next();
 
-                        MiniSlotRun* minijob = new MiniSlotRun(slot, slotmini, this, 60 * timeX);
+                        MiniSlotRun* minijob = new MiniSlotRun(slot, slotmini, this, timeBetweenMiniSlots * timeX);
 
-                        minijob->setAutoDelete(true);
+                        minijob->setAutoDelete(false);
 
                         threadPool->start(minijob);
 
                         timeX--;
+
+                        if (timeBetweenMiniSlots == 55)
+                        {
+                            t2 = std::chrono::high_resolution_clock::now();
+                            timeBetweenMiniSlots = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+                        }
                     }
 
                     threadPool->waitForDone();
+
 
                     i++;
                     if (!slotiter->hasNext()) break;
