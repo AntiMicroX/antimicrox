@@ -559,6 +559,10 @@ void AdvanceButtonDialog::joinSlot()
     {
         QMessageBox::warning(this, tr("Not selected slots"), tr("It's impossible to join slots. Select at least two slots before joining them"));
     }
+    else if (anySelectedNotKeybSlot())
+    {
+        QMessageBox::warning(this, tr("Only keyboard slots"), tr("It's only possible to join simple keyboard slots"));
+    }
     else
     {
         qDebug() << "Chosen " << ui->slotListWidget->selectedItems().count() << " slots" << endl;
@@ -1570,6 +1574,19 @@ void AdvanceButtonDialog::showSelectProfileWind(QListWidgetItem* item, QString& 
         button->setToolTip(profileName);
         updateSlotsScrollArea(0);
     }
+}
+
+bool AdvanceButtonDialog::anySelectedNotKeybSlot()
+{
+    for(auto item : ui->slotListWidget->selectedItems())
+    {
+        if (item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>()->getValue()->getSlotMode() != JoyButtonSlot::JoySlotInputAction::JoyKeyboard)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 

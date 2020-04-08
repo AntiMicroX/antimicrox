@@ -62,6 +62,7 @@ protected:
     void populateSlotSetSelectionComboBox();
     void findTurboModeComboIndex();
     void showSelectProfileWind(QListWidgetItem* item, QString& firstChoiceProfile);
+    bool anySelectedNotKeybSlot();
 
 signals:
     void toggleChanged(bool state);
