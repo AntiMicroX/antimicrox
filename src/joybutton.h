@@ -222,6 +222,7 @@ public:
 
     bool insertAssignedSlot(JoyButtonSlot *slot, bool updateActiveString=true); // JoyButtonSlots class
     bool insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString=true);
+    bool containsJoyMixSlot();
 
 protected:
     int getPreferredKeyPressTime(); // unsigned
@@ -238,6 +239,8 @@ protected:
     void localBuildActiveZoneSummaryString();
 
     static bool hasFutureSpringEvents(QList<JoyButton*>* pendingMouseButtons);
+    static int timeBetweenMiniSlots;
+    static int allSlotTimeBetweenSlots;
 
     virtual double getCurrentSpringDeadCircle();
 
@@ -582,7 +585,7 @@ private:
     QTime accelExtraDurationTime;
     QElapsedTimer cycleResetHold;
     static QTime testOldMouseTime;
-    static int timeBetweenMiniSlots;
+
 
     VDPad *m_vdpad;
     JoyMouseMovementMode mouseMode;

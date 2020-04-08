@@ -63,6 +63,8 @@ QTime JoyButton::testOldMouseTime;
 // at the same time
 int JoyButton::timeBetweenMiniSlots = 55;
 
+int JoyButton::allSlotTimeBetweenSlots = 0;
+
 // Helper object to have a single mouse event for all JoyButton
 // instances.
 JoyButtonMouseHelper JoyButton::mouseHelper;
@@ -647,6 +649,10 @@ void JoyButton::activateSlots()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    bool countForAllTime = false;
+
+    if (allSlotTimeBetweenSlots == 0) countForAllTime = true;
+
      if (slotiter != nullptr)
      {
         QWriteLocker tempLocker(&activeZoneLock);
@@ -692,6 +698,11 @@ void JoyButton::activateSlots()
                             t2 = std::chrono::high_resolution_clock::now();
                             timeBetweenMiniSlots = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
                         }
+                    }
+
+                    if (countForAllTime)
+                    {
+                        allSlotTimeBetweenSlots += countMinis * timeBetweenMiniSlots;
                     }
 
                     threadPool->waitForDone();
@@ -3638,6 +3649,25 @@ bool JoyButton::containsReleaseSlots()
     while (iter.hasNext())
     {
         if (iter.next()->getSlotMode() == JoyButtonSlot::JoyRelease)
+        {
+            result = true;
+            iter.toBack();
+        }
+    }
+
+    return result;
+}
+
+bool JoyButton::containsJoyMixSlot()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    bool result = false;
+    QListIterator<JoyButtonSlot*> iter(*getAssignedSlots());
+
+    while (iter.hasNext())
+    {
+        if (iter.next()->getSlotMode() == JoyButtonSlot::JoyMix)
         {
             result = true;
             iter.toBack();
