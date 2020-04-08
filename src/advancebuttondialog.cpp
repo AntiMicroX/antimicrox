@@ -561,7 +561,7 @@ void AdvanceButtonDialog::joinSlot()
     }
     else if (anySelectedNotKeybSlot())
     {
-        QMessageBox::warning(this, tr("Only keyboard slots"), tr("It's only possible to join simple keyboard slots"));
+        QMessageBox::warning(this, tr("Only keyboard slots"), tr("It's only possible to join simple and mix keyboard slots"));
     }
     else
     {
@@ -1580,7 +1580,9 @@ bool AdvanceButtonDialog::anySelectedNotKeybSlot()
 {
     for(auto item : ui->slotListWidget->selectedItems())
     {
-        if (item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>()->getValue()->getSlotMode() != JoyButtonSlot::JoySlotInputAction::JoyKeyboard)
+        auto slotMode = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>()->getValue()->getSlotMode();
+
+        if ((slotMode != JoyButtonSlot::JoySlotInputAction::JoyMix) && (slotMode != JoyButtonSlot::JoySlotInputAction::JoyKeyboard))
         {
             return true;
         }
