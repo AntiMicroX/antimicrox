@@ -224,6 +224,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     connect(ui->insertSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::insertSlot);
     connect(ui->joinSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::joinSlot);
+    connect(ui->splitSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::splitSlot);
     connect(ui->deleteSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::deleteSlot);
     connect(ui->clearAllPushButton, &QPushButton::clicked, this, &AdvanceButtonDialog::clearAllSlots);
 
@@ -623,6 +624,37 @@ void AdvanceButtonDialog::joinSlot()
         Q_ARG(JoyButtonSlot*, blankButton->getValue()),
         Q_ARG(int, index),
         Q_ARG(bool, false));
+    }
+}
+
+
+void AdvanceButtonDialog::splitSlot()
+{
+    int index = ui->slotListWidget->currentRow();
+
+    if (index == -1)
+    {
+        QMessageBox::warning(this, tr("Unknown current slot"), tr("Click on chosen slots before joining them"));
+    }
+    else if (ui->slotListWidget->count() < 2)
+    {
+        QMessageBox::warning(this, tr("Not enough slots"), tr("It's impossible to split slots. Add at least one other slot."));
+    }
+    else if (ui->slotListWidget->selectedItems().count() < 1)
+    {
+        QMessageBox::warning(this, tr("Not selected slot"), tr("Select your slot before splitting."));
+    }
+    else if (ui->slotListWidget->selectedItems().count() > 1)
+    {
+        QMessageBox::warning(this, tr("Too many mix slots"), tr("Select one mix slot."));
+    }
+    else if (selectedNotMixSlot())
+    {
+        QMessageBox::warning(this, tr("Only mix slots"), tr("It's only possible to split mix slot."));
+    }
+    else
+    {
+
     }
 }
 
@@ -1583,6 +1615,22 @@ bool AdvanceButtonDialog::anySelectedNotKeybSlot()
         auto slotMode = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>()->getValue()->getSlotMode();
 
         if ((slotMode != JoyButtonSlot::JoySlotInputAction::JoyMix) && (slotMode != JoyButtonSlot::JoySlotInputAction::JoyKeyboard))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+bool AdvanceButtonDialog::selectedNotMixSlot()
+{
+    for(auto item : ui->slotListWidget->selectedItems())
+    {
+        auto slotMode = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>()->getValue()->getSlotMode();
+
+        if (slotMode != JoyButtonSlot::JoySlotInputAction::JoyMix)
         {
             return true;
         }
