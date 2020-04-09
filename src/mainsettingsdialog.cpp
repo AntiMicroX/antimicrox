@@ -750,13 +750,13 @@ void MainSettingsDialog::populateAutoProfiles()
 
     settings->endGroup();
 
-    QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
+    QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "all").toString();
     QString allActive = settings->value(QString("DefaultAutoProfileAll/Active"), "0").toString();
     QString partialTitle = settings->value(QString("DefaultAutoProfileAll/PartialTitle"), "").toString();
 
     bool defaultActive = allActive == "1" ? true : false;
     bool partialTitleBool = partialTitle == "1" ? true : false;
-    allDefaultProfile = new AutoProfileInfo("all", "all", allProfile, defaultActive, partialTitleBool, this);
+    allDefaultProfile = new AutoProfileInfo("all", allProfile, defaultActive, partialTitleBool, this);
     allDefaultProfile->setDefaultState(true);
 
     QStringListIterator iter(registeredGUIDs);
