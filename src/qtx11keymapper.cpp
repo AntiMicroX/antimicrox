@@ -261,7 +261,7 @@ void QtX11KeyMapper::mapKeypadKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash)
 {
     //qtKeyToVirtKeyHash[Qt::Key_Space] = XK_KP_Space;
     //qtKeyToX11KeySym[Qt::Key_Tab] = XK_KP_Tab;
-    qtKeyToVirtKeyHash[Qt::Key_Enter] = XK_KP_Enter;
+    qtKeyToVirtKeyHash[AntKey_KP_Enter] = XK_KP_Enter;
     qtKeyToVirtKeyHash[AntKey_KP_Home] = XK_KP_Home;
     //qtKeyToX11KeySym[Qt::Key_Home] = XK_KP_Home;
     qtKeyToVirtKeyHash[AntKey_KP_Left] = XK_KP_Left;
@@ -280,6 +280,16 @@ void QtX11KeyMapper::mapKeypadKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash)
     qtKeyToVirtKeyHash[AntKey_KP_Subtract] = XK_KP_Subtract;
     qtKeyToVirtKeyHash[AntKey_KP_Decimal] = XK_KP_Decimal;
     qtKeyToVirtKeyHash[AntKey_KP_Divide] = XK_KP_Divide;
+    qtKeyToVirtKeyHash[AntKey_KP_1] = XK_KP_1;
+    qtKeyToVirtKeyHash[AntKey_KP_2] = XK_KP_2;
+    qtKeyToVirtKeyHash[AntKey_KP_3] = XK_KP_3;
+    qtKeyToVirtKeyHash[AntKey_KP_4] = XK_KP_4;
+    qtKeyToVirtKeyHash[AntKey_KP_5] = XK_KP_5;
+    qtKeyToVirtKeyHash[AntKey_KP_6] = XK_KP_6;
+    qtKeyToVirtKeyHash[AntKey_KP_7] = XK_KP_7;
+    qtKeyToVirtKeyHash[AntKey_KP_8] = XK_KP_8;
+    qtKeyToVirtKeyHash[AntKey_KP_9] = XK_KP_9;
+    qtKeyToVirtKeyHash[AntKey_KP_0] = XK_KP_0;
 }
 
 void QtX11KeyMapper::mapInternationKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash)

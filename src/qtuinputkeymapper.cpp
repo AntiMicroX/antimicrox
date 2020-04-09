@@ -381,21 +381,32 @@ void QtUInputKeyMapper::mapModifiersKeysQtUinput(QHash<int, int>& qtKeyToVirtKey
 
 void QtUInputKeyMapper::mapKeypadKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
 {
-    qtKeyToVirtKeyHash[Qt::Key_Enter] = KEY_KPENTER;
-    qtKeyToVirtKeyHash[AntKey_KP_Home] = KEY_KP7;
-    qtKeyToVirtKeyHash[AntKey_KP_Left] = KEY_KP4;
-    qtKeyToVirtKeyHash[AntKey_KP_Up] = KEY_KP8;
-    qtKeyToVirtKeyHash[AntKey_KP_Right] = KEY_KP6;
-    qtKeyToVirtKeyHash[AntKey_KP_Down] = KEY_KP2;
-    qtKeyToVirtKeyHash[AntKey_KP_Prior] = KEY_KP9;
-    qtKeyToVirtKeyHash[AntKey_KP_Next] = KEY_KP3;
-    qtKeyToVirtKeyHash[AntKey_KP_End] = KEY_KP1;
-    qtKeyToVirtKeyHash[AntKey_KP_Begin] = KEY_KP5;
-    qtKeyToVirtKeyHash[AntKey_KP_Insert] = KEY_KP0;
+    qtKeyToVirtKeyHash[AntKey_KP_Enter] = KEY_KPENTER;
+    qtKeyToVirtKeyHash[AntKey_KP_Home] = KEY_HOME;
+    qtKeyToVirtKeyHash[AntKey_KP_Left] = KEY_LEFT;
+    qtKeyToVirtKeyHash[AntKey_KP_Up] = KEY_UP;
+    qtKeyToVirtKeyHash[AntKey_KP_Right] = KEY_RIGHT;
+    qtKeyToVirtKeyHash[AntKey_KP_Down] = KEY_DOWN;
+    qtKeyToVirtKeyHash[AntKey_KP_Prior] = KEY_PAGEUP;
+    qtKeyToVirtKeyHash[AntKey_KP_Next] = KEY_PAGEDOWN;
+    qtKeyToVirtKeyHash[AntKey_KP_End] = KEY_END;
+    qtKeyToVirtKeyHash[AntKey_KP_Begin] = KEY_LEFTMETA;
+    qtKeyToVirtKeyHash[AntKey_KP_Insert] = KEY_INSERT;
     qtKeyToVirtKeyHash[AntKey_KP_Add] = KEY_KPPLUS;
     qtKeyToVirtKeyHash[AntKey_KP_Subtract] = KEY_KPMINUS;
+    qtKeyToVirtKeyHash[AntKey_KP_Delete] = KEY_KPDOT;
     qtKeyToVirtKeyHash[AntKey_KP_Decimal] = KEY_KPDOT;
     qtKeyToVirtKeyHash[AntKey_KP_Divide] = KEY_KPSLASH;
+    qtKeyToVirtKeyHash[AntKey_KP_1] = KEY_KP1;
+    qtKeyToVirtKeyHash[AntKey_KP_2] = KEY_KP2;
+    qtKeyToVirtKeyHash[AntKey_KP_3] = KEY_KP3;
+    qtKeyToVirtKeyHash[AntKey_KP_4] = KEY_KP4;
+    qtKeyToVirtKeyHash[AntKey_KP_5] = KEY_KP5;
+    qtKeyToVirtKeyHash[AntKey_KP_6] = KEY_KP6;
+    qtKeyToVirtKeyHash[AntKey_KP_7] = KEY_KP7;
+    qtKeyToVirtKeyHash[AntKey_KP_8] = KEY_KP8;
+    qtKeyToVirtKeyHash[AntKey_KP_9] = KEY_KP9;
+    qtKeyToVirtKeyHash[AntKey_KP_0] = KEY_KP0;
 }
 
 void QtUInputKeyMapper::mapJapanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)

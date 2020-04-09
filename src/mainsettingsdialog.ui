@@ -104,7 +104,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -314,6 +314,19 @@ first launches.</string>
            </property>
            <property name="checked">
             <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="attachNumKeypadCheckbox">
+           <property name="toolTip">
+            <string>Remember, it won't work if you don't have such keypad connected to computer or if it's not embedded like in desktop PCs</string>
+           </property>
+           <property name="toolTipDuration">
+            <number>-1</number>
+           </property>
+           <property name="text">
+            <string>Attach the numeric keypad</string>
            </property>
           </widget>
          </item>

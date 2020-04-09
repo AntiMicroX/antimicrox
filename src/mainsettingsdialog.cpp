@@ -86,6 +86,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     settings->getLock()->lock();
 
+    bool attachedNumKeypad = settings->value("AttachNumKeypad", false).toBool();
     QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
     int numberRecentProfiles = settings->value("NumberRecentProfiles", 5).toInt();
     bool closeToTray = settings->value("CloseToTray", false).toBool();
@@ -179,6 +180,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     ui->associateProfilesCheckBox->setVisible(false);
 
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
+
+    if (attachedNumKeypad)
+        ui->attachNumKeypadCheckbox->setChecked(true);
 
 
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
@@ -479,6 +483,13 @@ void MainSettingsDialog::saveNewSettings()
     QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString possibleProfileDir = ui->profileDefaultDirLineEdit->text();
     bool closeToTray = ui->closeToTrayCheckBox->isChecked();
+
+    bool attachNumKeypad = ui->attachNumKeypadCheckbox->isChecked();
+
+    settings->setValue("AttachNumKeypad", attachNumKeypad ? "1" : "0");
+
+   //if (attachNumKeypad) refreshButtons();
+
 
     if (oldProfileDir != possibleProfileDir)
     {
@@ -1996,6 +2007,7 @@ void MainSettingsDialog::resetGeneralSett()
     }
 
     ui->closeToTrayCheckBox->setChecked(false);
+    ui->attachNumKeypadCheckbox->setChecked(false);
     ui->launchAtWinStartupCheckBox->setChecked(false);
     ui->traySingleProfileListCheckBox->setChecked(false);
     ui->minimizeTaskbarCheckBox->setChecked(false);
