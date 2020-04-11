@@ -16,10 +16,14 @@ class QGlobalShortcut : public QObject {
     //Q_PROPERTY(bool enabled READ isEnabled WRITE setEnabled)
 private:
 
+#ifdef Q_OS_UNIX
+#ifdef WITH_X11
     class QGlobalShortcutEventFilter : public QAbstractNativeEventFilter {
     public:
         bool nativeEventFilter(const QByteArray& eventType, void* message, long* result);
     };
+#endif
+#endif
 
 public:
     explicit QGlobalShortcut(QObject* parent = nullptr);
@@ -46,11 +50,16 @@ private:
     static QMultiHash<quint32, QGlobalShortcut*> shortcuts_;
     static bool activate(quint32 id);
     static inline quint32 calcId(const QKeySequence& keyseq);
-    static inline quint32 calcId(quint32 k, quint32 m);
     static inline Qt::Key getKey(const QKeySequence& keyseq);
     static inline Qt::KeyboardModifiers getMods(const QKeySequence& keyseq);
+
+#ifdef Q_OS_UNIX
+#ifdef WITH_X11
+    static inline quint32 calcId(quint32 k, quint32 m);
     static quint32 toNativeKeycode(Qt::Key k);
     static quint32 toNativeModifiers(Qt::KeyboardModifiers m);
     static void registerKey(quint32 k, quint32 m, quint32 id);
     static void unregisterKey(quint32 k, quint32 m, quint32 id);
+#endif
+#endif
 };

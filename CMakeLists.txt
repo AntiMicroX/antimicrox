@@ -377,7 +377,6 @@ if(UNIX)
              src/autoprofilewatcher.cpp
              src/capturedwindowinfodialog.cpp
              src/qglobalshortcut/qglobalshortcut.cc
-             src/qglobalshortcut/qglobalshortcut_x11.cc
         )
         LIST(APPEND antimicroX_HEADERS src/x11extras.h
              src/qtx11keymapper.h
