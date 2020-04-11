@@ -86,6 +86,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->quitComboLabel->hide();
         ui->keysComboBox->hide();
         ui->keysLabel->hide();
+        ui->warningComb->hide();
     #endif
 
     ui->profileOpenDirPushButton->setIcon(QIcon::fromTheme("document_open_folder",

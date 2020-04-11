@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>555</width>
-    <height>794</height>
+    <height>818</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -331,6 +331,22 @@ first launches.</string>
           </widget>
          </item>
          <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <layout class="QVBoxLayout" name="verticalLayout_13">
            <property name="leftMargin">
             <number>2</number>
@@ -436,6 +452,20 @@ first launches.</string>
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="warningComb">
+             <property name="font">
+              <font>
+               <weight>50</weight>
+               <italic>true</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>! restart is needed after choice of combination</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
