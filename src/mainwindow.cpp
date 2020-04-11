@@ -214,6 +214,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
 void MainWindow::alterConfigFromSettings()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

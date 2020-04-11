@@ -376,12 +376,15 @@ if(UNIX)
              src/unixcapturewindowutility.cpp
              src/autoprofilewatcher.cpp
              src/capturedwindowinfodialog.cpp
+             src/qglobalshortcut/qglobalshortcut.cc
+             src/qglobalshortcut/qglobalshortcut_x11.cc
         )
         LIST(APPEND antimicroX_HEADERS src/x11extras.h
              src/qtx11keymapper.h
              src/unixcapturewindowutility.h
              src/autoprofilewatcher.h
              src/capturedwindowinfodialog.h
+             src/qglobalshortcut/qglobalshortcut.h
         )
 
         if(WITH_XTEST)
@@ -424,6 +427,10 @@ if (UNIX)
         find_package(Qt5Network REQUIRED)
         find_package(Qt5LinguistTools REQUIRED)
         find_package(Qt5Concurrent REQUIRED)
+
+        if (WITH_X11)
+            find_package(Qt5X11Extras REQUIRED)
+        endif()
 
         QT5_WRAP_CPP(antimicroX_HEADERS_MOC ${antimicroX_HEADERS})
         QT5_WRAP_UI(antimicroX_FORMS_HEADERS ${antimicroX_FORMS})
@@ -472,6 +479,10 @@ endif(UNIX)
             )
 
             target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
+
+            if (WITH_X11)
+                target_link_libraries(antilib Qt5::X11Extras)
+            endif()
 
             add_executable(antimicroX ${antimicroX_MAIN})
             target_link_libraries (antimicroX antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)

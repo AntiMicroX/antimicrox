@@ -87,7 +87,6 @@ protected:
     void convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID);
 
 
-
 signals:
     void joystickRefreshRequested();
     void readConfig(int index); // MainConfiguration class
