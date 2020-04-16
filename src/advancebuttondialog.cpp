@@ -58,6 +58,8 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     PadderCommon::inputDaemonMutex.lock();
 
+    ui->splitSlotButton->hide();
+
     m_button = button;
     oldRow = 0;
     int interval = m_button->getTurboInterval() / 10;
@@ -228,7 +230,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     connect(ui->insertSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::insertSlot);
     connect(ui->joinSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::joinSlot);
-    connect(ui->splitSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::splitSlot);
+  //  connect(ui->splitSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::splitSlot);
     connect(ui->deleteSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::deleteSlot);
     connect(ui->clearAllPushButton, &QPushButton::clicked, this, &AdvanceButtonDialog::clearAllSlots);
 
@@ -604,7 +606,6 @@ void AdvanceButtonDialog::joinSlot()
         deleteSlot();
 
         blankButton->setValues(text, blankButton->getValue()->getMixSlots(), JoyButtonSlot::JoyMix);
-        blankButton->getValue()->setMixSlots(blankButton->getValue()->getMixSlots());
 
         QListWidgetItem *joinedItem = new QListWidgetItem();
         ui->slotListWidget->insertItem(index, joinedItem);
@@ -632,7 +633,7 @@ void AdvanceButtonDialog::joinSlot()
 }
 
 
-void AdvanceButtonDialog::splitSlot()
+/*void AdvanceButtonDialog::splitSlot()
 {
     int index = ui->slotListWidget->currentRow();
 
@@ -703,7 +704,7 @@ void AdvanceButtonDialog::splitSlot()
             index++;
         }
     }
-}
+}*/
 
 
 void AdvanceButtonDialog::insertKindOfSlot(QListWidgetItem* item, int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction)

@@ -84,7 +84,7 @@ private slots:
     void deleteSlot();  // AdvanceBtnDlgAssign class
     void insertSlot(); // AdvanceBtnDlgAssign class
     void joinSlot(); // AdvanceBtnDlgAssign class
-    void splitSlot(); // AdvanceBtnDlgAssign class
+   // void splitSlot(); // AdvanceBtnDlgAssign class
 
     void insertCycleSlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
     void insertTextEntrySlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
