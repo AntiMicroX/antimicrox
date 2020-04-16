@@ -27,8 +27,8 @@
 #include <QDebug>
 
 
-int JoyButtonSlotXml::timeoutWrite = 0;
-int JoyButtonSlotXml::timeoutRead = 0;
+int JoyButtonSlotXml::timeoutWrite = 3000;
+int JoyButtonSlotXml::timeoutRead = 3000;
 
 
 JoyButtonSlotXml::JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent) : QObject(parent), m_joyBtnSlot(joyBtnSlot)
@@ -147,7 +147,7 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 
     t2 = std::chrono::high_resolution_clock::now();
 
-    if (timeoutRead == 0)
+    if (timeoutRead == 3000)
        timeoutRead = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 }
 
@@ -370,7 +370,7 @@ void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
 
     t2 = std::chrono::high_resolution_clock::now();
 
-    if (timeoutWrite == 0)
+    if (timeoutWrite == 3000)
        timeoutWrite = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 }
 

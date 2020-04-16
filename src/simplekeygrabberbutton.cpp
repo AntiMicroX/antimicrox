@@ -351,6 +351,7 @@ void SimpleKeyGrabberButton::refreshButtonLabel()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setText(buttonslot.getSlotString());
+    updateGeometry();
 }
 
 bool SimpleKeyGrabberButton::isEdited()

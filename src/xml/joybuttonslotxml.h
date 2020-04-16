@@ -36,6 +36,8 @@ public:
 
      virtual void readConfig(QXmlStreamReader *xml);
      virtual void writeConfig(QXmlStreamWriter *xml);
+     static int timeoutWrite;
+     static int timeoutRead;
 
 private:
      void writeEachSlot(QXmlStreamWriter *xml, JoyButtonSlot *joyBtnSlot);
@@ -44,8 +46,7 @@ private:
 
      JoyButtonSlot* m_joyBtnSlot;
      QReadWriteLock xmlLock;
-     static int timeoutWrite;
-     static int timeoutRead;
+
 };
 
 #endif // JOYBUTTONSLOTXML_H
