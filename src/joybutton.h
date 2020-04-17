@@ -598,7 +598,7 @@ private:
     QThreadPool *threadPool;
 
 
-    void addEachSlotToActives(JoyButtonSlot *slot, bool isJoyMix, int &i, bool &delaySequence, bool &exit, QListIterator<JoyButtonSlot *> *slotiter);
+    void addEachSlotToActives(JoyButtonSlot *slot, bool firstTime, int &i, bool &delaySequence, bool &exit, QListIterator<JoyButtonSlot *> *slotiter);
 };
 
 

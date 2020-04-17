@@ -323,7 +323,7 @@ void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jb
     {
         case JoyButtonSlot::JoyMix:
         {
-            //buttonslot.setSlotCode(-1);
+            buttonslot.setSlotCode(0);
             buttonslot.setTextData(value);
             buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
             buttonslot.setMixSlots(jbtn);

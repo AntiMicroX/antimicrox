@@ -81,7 +81,7 @@ private slots:
     void checkTurboSetting(bool state);
 
     void updateSlotsScrollArea(int value); // AdvanceBtnDlgAssign class
-    void deleteSlot();  // AdvanceBtnDlgAssign class
+    void deleteSlot(bool showWarning = true);  // AdvanceBtnDlgAssign class
     void insertSlot(); // AdvanceBtnDlgAssign class
     void joinSlot(); // AdvanceBtnDlgAssign class
    // void splitSlot(); // AdvanceBtnDlgAssign class

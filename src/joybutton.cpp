@@ -650,6 +650,7 @@ void JoyButton::activateSlots()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool countForAllTime = false;
+    bool firstTime = true;
 
     if (allSlotTimeBetweenSlots == 0) countForAllTime = true;
 
@@ -684,6 +685,7 @@ void JoyButton::activateSlots()
                     while(it->hasNext())
                     {
                         JoyButtonSlot *slotmini = it->next();
+                        qDebug() << "Run activated mini slot - name - deviceCode - mode: " << slotmini->getSlotString() << " - " << slotmini->getSlotCode() << " - " << slotmini->getSlotMode();
 
                         MiniSlotRun* minijob = new MiniSlotRun(slot, slotmini, this, timeBetweenMiniSlots * timeX);
 
@@ -715,7 +717,8 @@ void JoyButton::activateSlots()
             else
             {
                 qDebug() << "Check now simple slots";
-                addEachSlotToActives(slot, false, i, delaySequence, exit, slotiter);
+                addEachSlotToActives(slot, firstTime, i, delaySequence, exit, slotiter);
+                firstTime = false;
             }
         }
 
@@ -756,8 +759,14 @@ void JoyButton::activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix)
 }
 
 
-void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool isJoyMix, int& i, bool& delaySequence, bool& exit, QListIterator<JoyButtonSlot*>* slotiter)
+void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool firstTime, int& i, bool& delaySequence, bool& exit, QListIterator<JoyButtonSlot*>* slotiter)
 {
+   /* if (firstTime)
+    {
+        getActiveSlotsLocal().clear();
+        GlobalVariables::JoyButton::JoyButton::activeKeys.clear();
+    }*/
+
         int tempcode = slot->getSlotCode();
         JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
@@ -1865,48 +1874,53 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                 QListIterator<JoyButtonSlot*> iterMini(*slot->getMixSlots());
                 QListIterator<JoyButtonSlot*>* iterM(&iterMini);
 
-                while(iterM->hasNext())
-                {
-                    JoyButtonSlot *slotMini = iterM->next();
-                    JoyButtonSlot::JoySlotInputAction modeMini = slotMini->getSlotMode();
-                    buildActiveZoneSummarySwitchSlots(modeMini, slotMini, behindHold, &stringListMix, j, iterM, slotsActive);
-
-                    stringListMix.append("+");
-
-                    qDebug() << "Create summary for JoyMix. Progress: " << stringListMix;
-
-               //     if ((j > 2) && iterM->hasNext())
-               //     {
-               //         stringListMix.append("...");
-               //         iterM->toBack();
-               //     }
-                }
-
-                j = 0;
-                i++;
-
-                if (!stringListMix.isEmpty())
-                {
-                    if (stringListMix.last() == '+')
-                        stringListMix.removeLast();
-
-                    QString res = "";
-
-                    for(const QString& strListEl : stringListMix)
-                    {
-                        res += strListEl;
-                    }
-
-
-                    stringlist.append(res);
-                    stringListMix.clear();
-                }
-                else
+                if (!slot->getTextData().isEmpty())
                 {
                     stringlist.append(slot->getTextData());
                 }
+                else
+                {
+                    while(iterM->hasNext())
+                    {
+                        JoyButtonSlot *slotMini = iterM->next();
+                        JoyButtonSlot::JoySlotInputAction modeMini = slotMini->getSlotMode();
+                        qDebug() << "modeMini is " << modeMini;
+                        qDebug() << "slotsActive are empty? " << slotsActive;
+                        buildActiveZoneSummarySwitchSlots(modeMini, slotMini, behindHold, &stringListMix, j, iterM, slotsActive);
+
+                        stringListMix.append("+");
+
+                        qDebug() << "Create summary for JoyMix. Progress: " << stringListMix;
+
+                   //     if ((j > 2) && iterM->hasNext())
+                   //     {
+                   //         stringListMix.append("...");
+                   //         iterM->toBack();
+                   //     }
+                    }
+
+                    j = 0;
+                    i++;
+
+                    if (!stringListMix.isEmpty() && !stringListMix.contains("++")&& !stringListMix.contains(tr("[NO KEY]")))
+                    {
+                        if (stringListMix.last() == '+')
+                            stringListMix.removeLast();
+
+                        qDebug() << "Create summary for JoyMix. Progress: " << stringListMix;
+
+                        QString res = "";
+
+                        for(const QString& strListEl : stringListMix)
+                        {
+                            res += strListEl;
+                        }
 
 
+                        stringlist.append(res);
+                        stringListMix.clear();
+                    }
+                }
 
                 behindHold = false;
 
@@ -2020,6 +2034,21 @@ void JoyButton::buildActiveZoneSummarySwitchSlots(JoyButtonSlot::JoySlotInputAct
         }
 
         default:
+
+            if (mode > 15 || mode < 0)
+            {
+                QString temp = slot->getSlotString();
+
+                if (behindHold)
+                {
+                    temp.prepend("[H] ");
+                    behindHold = false;
+                }
+
+                stringlist->append(temp);
+                i++;
+                break;
+            }
 
         break;
     }
@@ -3424,11 +3453,11 @@ void JoyButton::releaseActiveSlots()
                     JoyButtonSlot::JoySlotInputAction mode = slotMini->getSlotMode();
 
                     releaseEachSlot(changeRepeatState, referencesMini, tempcodeMini, mode, slotMini);
-                    QThread* thread = slotMini->thread();
-                    thread->quit();
-                    thread->wait();
-                    delete thread;
-                    thread = nullptr;
+                   // QThread* thread = slotMini->thread();
+                   // thread->quit();
+                   // thread->wait();
+                   // delete thread;
+                   // thread = nullptr;
                 }
 
                 if (!slot->getMixSlots()->isEmpty())

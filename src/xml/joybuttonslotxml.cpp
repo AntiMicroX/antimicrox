@@ -27,8 +27,8 @@
 #include <QDebug>
 
 
-int JoyButtonSlotXml::timeoutWrite = 3000;
-int JoyButtonSlotXml::timeoutRead = 3000;
+int JoyButtonSlotXml::timeoutWrite = 5000;
+int JoyButtonSlotXml::timeoutRead = 5000;
 
 
 JoyButtonSlotXml::JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent) : QObject(parent), m_joyBtnSlot(joyBtnSlot)

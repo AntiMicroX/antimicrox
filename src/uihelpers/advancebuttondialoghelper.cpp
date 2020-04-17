@@ -75,3 +75,10 @@ void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
     button->eventReset();
     button->removeAssignedSlot(index);
 }
+
+void AdvanceButtonDialogHelper::onlyRemoveAssignedSlot(int index)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    button->removeAssignedSlot(index);
+}

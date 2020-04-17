@@ -384,13 +384,13 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
 }
 
 
-void AdvanceButtonDialog::deleteSlot()
+void AdvanceButtonDialog::deleteSlot(bool showWarning)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     if (ui->slotListWidget->selectedItems().count() == 0)
     {
-        QMessageBox::warning(this, tr("Not checked slots"), tr("To delete slots, you need to select at least one"));
+        if (showWarning) QMessageBox::warning(this, tr("Not checked slots"), tr("To delete slots, you need to select at least one"));
     }
     else
     {
@@ -582,8 +582,10 @@ void AdvanceButtonDialog::joinSlot()
 
 
         SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
+        QList<QListWidgetItem*> listItems = ui->slotListWidget->selectedItems();
 
-        for(auto item : ui->slotListWidget->selectedItems())
+
+        for(auto item : listItems)
         {
             if (!firstTime) text += "+";
             firstTime = false;
@@ -602,13 +604,13 @@ void AdvanceButtonDialog::joinSlot()
             text += firstGrabBtn->getValue()->getSlotString();
         }
 
-        // it can be used as reusable code
-        deleteSlot();
-
-        blankButton->setValues(text, blankButton->getValue()->getMixSlots(), JoyButtonSlot::JoyMix);
+        for(auto x : *blankButton->getValue()->getMixSlots())
+        {
+            qDebug() << "JOINED MINI: " << x->getSlotCode() << " - " << x->getSlotMode() << " - " << x->getSlotString();
+        }
 
         QListWidgetItem *joinedItem = new QListWidgetItem();
-        ui->slotListWidget->insertItem(index, joinedItem);
+        ui->slotListWidget->insertItem(qMax(0,index-1), joinedItem);
 
         joinedItem->setData(Qt::UserRole,
                       QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
@@ -619,7 +621,8 @@ void AdvanceButtonDialog::joinSlot()
         widget->setLayout(layout);
         joinedItem->setSizeHint(widget->sizeHint());
         ui->slotListWidget->setItemWidget(joinedItem, widget);
-        ui->slotListWidget->setCurrentItem(joinedItem);
+
+        blankButton->setValues(text, blankButton->getValue()->getMixSlots(), JoyButtonSlot::JoyMix);
 
         connectButtonEvents(blankButton);
         blankButton->refreshButtonLabel(); // instead of blankButton->setText(text);
@@ -629,6 +632,8 @@ void AdvanceButtonDialog::joinSlot()
         Q_ARG(int, index),
         Q_ARG(bool, false));
 
+        // it can be used as reusable code
+        deleteSlot(false);
     }
 }
 
