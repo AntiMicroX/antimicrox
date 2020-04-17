@@ -39,12 +39,9 @@ public:
     void setValue(int value, int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
     void setValue(int value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void setValue(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyLoadProfile);
-    void setValues(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyMix);
-    void setValues(QString value, QList<JoyButtonSlot *> *jbtn, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyMix);
     JoyButtonSlot* getValue();
     bool isEdited();
     bool isGrabbing();
-
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);

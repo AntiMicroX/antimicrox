@@ -40,8 +40,6 @@ void JoyGradientButton::turboEvent()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int m_turboInterval = containsJoyMixSlot() && allSlotTimeBetweenSlots > 0 ? allSlotTimeBetweenSlots : turboInterval;
-
     if (getTurboMode() == NormalTurbo)
     {
         JoyButton::turboEvent();
@@ -91,18 +89,18 @@ void JoyGradientButton::turboEvent()
             {
                 if (getTurboMode() == GradientTurbo)
                 {
-                    tempInterval2 = floor((getMouseDistanceFromDeadZone() * m_turboInterval) + 0.5);
+                    tempInterval2 = floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
                 }
                 else
                 {
-                    tempInterval2 = floor((m_turboInterval * 0.5) + 0.5);
+                    tempInterval2 = floor((turboInterval * 0.5) + 0.5);
                 }
             }
             else
             {
                 if (getTurboMode() == GradientTurbo)
                 {
-                    tempInterval2 = floor(((1 - getMouseDistanceFromDeadZone()) * m_turboInterval) + 0.5);
+                    tempInterval2 = floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
                 }
                 else
                 {
@@ -110,7 +108,7 @@ void JoyGradientButton::turboEvent()
 
                     if (distance > 0.0)
                     {
-                        tempInterval2 = floor(((m_turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
+                        tempInterval2 = floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
                     }
                     else
                     {
@@ -166,11 +164,11 @@ void JoyGradientButton::turboEvent()
                 {
                     if (getTurboMode() == GradientTurbo)
                     {
-                        tempTurboInterval = floor((getMouseDistanceFromDeadZone() * m_turboInterval) + 0.5);
+                        tempTurboInterval = floor((getMouseDistanceFromDeadZone() * turboInterval) + 0.5);
                     }
                     else
                     {
-                        tempTurboInterval = floor((m_turboInterval * 0.5) + 0.5);
+                        tempTurboInterval = floor((turboInterval * 0.5) + 0.5);
                     }
 
                     int timerInterval = qMin(tempTurboInterval, 5);
@@ -202,7 +200,7 @@ void JoyGradientButton::turboEvent()
                 {
                     if (getTurboMode() == GradientTurbo)
                     {
-                        tempTurboInterval = floor(((1 - getMouseDistanceFromDeadZone()) * m_turboInterval) + 0.5);
+                        tempTurboInterval = floor(((1 - getMouseDistanceFromDeadZone()) * turboInterval) + 0.5);
                     }
                     else
                     {
@@ -210,7 +208,7 @@ void JoyGradientButton::turboEvent()
 
                         if (distance > 0.0)
                         {
-                            tempTurboInterval = floor(((m_turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
+                            tempTurboInterval = floor(((turboInterval / getMouseDistanceFromDeadZone()) * 0.5) + 0.5);
                         }
                         else
                         {
