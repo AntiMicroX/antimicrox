@@ -45,8 +45,6 @@ X11Extras::X11Extras(QObject *parent) :
 
     _display = XOpenDisplay(nullptr);
     populateKnownAliases();
-    _instance = this;
-
 }
 
 /**
@@ -57,7 +55,6 @@ X11Extras::~X11Extras()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     freeDisplay();
-    _instance = nullptr;
 }
 
 
@@ -90,13 +87,11 @@ X11Extras *X11Extras::getInstance()
 
     if (!displays.hasLocalData())
     {
-        qDebug() << "Displays don't have local data: create new instance of X11Extras";
         temp = new X11Extras();
         displays.setLocalData(temp);
     }
     else
     {
-        qDebug() << "Display have local data";
         temp = displays.localData();
     }
 
