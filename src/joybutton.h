@@ -26,15 +26,22 @@
 #include "springmousemoveinfo.h"
 #include "joybuttonmousehelper.h"
 
+#include <QThread>
 #include <QTimer>
 #include <QQueue>
 #include <QReadWriteLock>
+#include <QRunnable>
+#include <QDeadlineTimer>
+
 
 class VDPad;
 class SetJoystick;
 class QXmlStreamReader;
 class QXmlStreamWriter;
-class QThread;
+//class QThread;
+class QThreadPool;
+
+
 
 class JoyButton : public QObject
 {
@@ -87,6 +94,7 @@ public:
     void setStartAccelMultiplier(double value);
     void setMaxAccelThreshold(double value);
     void setChangeSetSelection(int index, bool updateActiveString=true);
+    void activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix);
 
     bool hasPendingEvent(); // JoyButtonEvents class
     bool getToggleState();
@@ -212,9 +220,9 @@ public:
     static const TurboMode DEFAULTTURBOMODE;
     static const JoyExtraAccelerationCurve DEFAULTEXTRAACCELCURVE;
 
-    bool insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveString=true); // JoyButtonSlots class
-
-
+    bool insertAssignedSlot(JoyButtonSlot *slot, bool updateActiveString=true); // JoyButtonSlots class
+    bool insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString=true);
+    bool containsJoyMixSlot();
 
 protected:
     int getPreferredKeyPressTime(); // unsigned
@@ -231,6 +239,8 @@ protected:
     void localBuildActiveZoneSummaryString();
 
     static bool hasFutureSpringEvents(QList<JoyButton*>* pendingMouseButtons);
+    static int timeBetweenMiniSlots;
+    static int allSlotTimeBetweenSlots;
 
     virtual double getCurrentSpringDeadCircle();
 
@@ -468,6 +478,7 @@ private:
         activeZoneStringLock.unlock();
     }
 
+    void releaseEachSlot(bool &changeRepeatState, int &references, int tempcode, JoyButtonSlot::JoySlotInputAction mode, JoyButtonSlot *slot);
     void resetAllProperties();
     void resetPrivVars();
     void restartAllForSetChange();
@@ -487,6 +498,8 @@ private:
     QList<JoyButtonSlot*>& getAssignmentsLocal();
     QList<JoyButtonSlot*>& getActiveSlotsLocal(); // JoyButtonSlots class
     void updateMouseProperties(double newAxisValue, double newSpringDead, int newSpringWidth, int newSpringHeight, bool relatived, int modeScreen, QList<PadderCommon::springModeInfo>& springSpeeds, QChar axis, double newAxisValueY = 0,  double newSpringDeadY = 0);
+    //void getActiveZoneWithAppend(JoyButtonSlot::JoySlotInputAction mode, QList<JoyButtonSlot *>& tempSlotList, QListIterator<JoyButtonSlot *> *iter, JoyButtonSlot *slot);
+    void buildActiveZoneSummarySwitchSlots(JoyButtonSlot::JoySlotInputAction mode, JoyButtonSlot *slot, bool& behindHold, QStringList* stringlist, int& i, QListIterator<JoyButtonSlot*>* iter, bool slotsActive);
 
     bool m_toggle;
     bool quitEvent; // JoyButtonEvents class
@@ -573,6 +586,7 @@ private:
     QElapsedTimer cycleResetHold;
     static QTime testOldMouseTime;
 
+
     VDPad *m_vdpad;
     JoyMouseMovementMode mouseMode;
     JoyMouseCurve mouseCurve;
@@ -581,7 +595,48 @@ private:
     QReadWriteLock activeZoneLock;
     QReadWriteLock assignmentsLock;
     QReadWriteLock activeZoneStringLock;
+    QThreadPool *threadPool;
 
+
+    void addEachSlotToActives(JoyButtonSlot *slot, bool firstTime, int &i, bool &delaySequence, bool &exit, QListIterator<JoyButtonSlot *> *slotiter);
+};
+
+
+class MiniSlotRun : public QRunnable, public QObject
+{
+
+public:
+    MiniSlotRun(JoyButtonSlot* slot, JoyButtonSlot* slotmini, JoyButton* btn, int milisec) :
+        m_slot(slot), m_slotmini(slotmini), m_btn(btn), m_miliseconds(milisec), QObject(slot)
+    {
+
+    }
+
+    ~MiniSlotRun()
+    {
+        m_slot = nullptr;
+        m_slotmini = nullptr;
+        m_btn = nullptr;
+    }
+
+    void run()
+    {
+
+        this->thread()->wait(m_miliseconds);
+       /* QDeadlineTimer deadline(m_miliseconds);
+
+        while(!deadline.hasExpired())
+        {
+            // wait
+        }*/
+        m_btn->activateMiniSlots(m_slotmini, m_slot);
+    }
+
+private:
+    JoyButtonSlot* m_slot;
+    JoyButtonSlot* m_slotmini;
+    JoyButton* m_btn;
+    int m_miliseconds;
 };
 
 

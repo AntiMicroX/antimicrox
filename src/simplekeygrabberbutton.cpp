@@ -143,6 +143,8 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         controlcode = tempcode;
         bool valueUpdated = false;
 
+        qDebug() << "slot string for simple key grab button is: " << buttonslot.getSlotString();
+
         if ((keyEve->modifiers() & Qt::ControlModifier) && (keyEve->key() == Qt::Key_X))
         {
             controlcode = 0;
@@ -277,6 +279,57 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
             edited = true;
             break;
         }
+        case JoyButtonSlot::JoyMix:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+
+    setText(buttonslot.getSlotString());
+}
+
+void SimpleKeyGrabberButton::setValues(QString value, JoyButtonSlot::JoySlotInputAction mode)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    switch (mode)
+    {
+        case JoyButtonSlot::JoyMix:
+        {
+           // buttonslot.setSlotCode(-1);
+            buttonslot.setTextData(value);
+            buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
+            edited = true;
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+
+    setText(buttonslot.getSlotString());
+}
+
+void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jbtn, JoyButtonSlot::JoySlotInputAction mode)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    switch (mode)
+    {
+        case JoyButtonSlot::JoyMix:
+        {
+            buttonslot.setSlotCode(0);
+            buttonslot.setTextData(value);
+            buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
+            buttonslot.setMixSlots(jbtn);
+            edited = true;
+            break;
+        }
         default:
         {
             break;
@@ -298,6 +351,7 @@ void SimpleKeyGrabberButton::refreshButtonLabel()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     setText(buttonslot.getSlotString());
+    updateGeometry();
 }
 
 bool SimpleKeyGrabberButton::isEdited()

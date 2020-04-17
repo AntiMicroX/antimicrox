@@ -24,6 +24,8 @@
 #include <QElapsedTimer>
 #include <QTime>
 #include <QVariant>
+#include <QPointer>
+#include <QtWidgets/QApplication>
 
 class QXmlStreamReader;
 class QXmlStreamWriter;
@@ -36,7 +38,7 @@ public:
     enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement,
                              JoyPause, JoyHold, JoyCycle, JoyDistance,
                              JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay,
-                             JoyLoadProfile, JoySetChange, JoyTextEntry, JoyExecute};
+                             JoyLoadProfile, JoySetChange, JoyTextEntry, JoyExecute, JoyMix};
 
     enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
     enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
@@ -48,6 +50,7 @@ public:
     explicit JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent=nullptr);
     explicit JoyButtonSlot(JoyButtonSlot *slot, QObject *parent=nullptr);
     explicit JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent=nullptr);
+    ~JoyButtonSlot();
 
     void setSlotCode(int code);
     int getSlotCode();
@@ -77,12 +80,31 @@ public:
     void setExtraData(QVariant data);
     QVariant getExtraData();
 
+    void setMixSlots(QList<JoyButtonSlot*>* slots);
+    QList<JoyButtonSlot*>* getMixSlots();
+
+    template <typename T> void appendMiniSlot(T minislot)
+    {
+        secureMixSlotsInit();
+        mix_slots->append(minislot);
+    }
+
+    void assignMixSlotsToNull();
+
     bool isValidSlot();
+
+
+private slots:
+    void cleanMixSlots();
+
     
 private:
+    void secureMixSlotsInit();
+
     int deviceCode;
     int qkeyaliasCode;
     JoySlotInputAction m_mode;
+    QList<JoyButtonSlot*>* mix_slots;
     double m_distance;
     double previousDistance;
     QElapsedTimer mouseInterval;

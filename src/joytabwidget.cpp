@@ -601,6 +601,7 @@ void JoyTabWidget::showButtonDialog()
     JoyButton *button = buttonWidget->getJoyButton();
 
     ButtonEditDialog *dialog = new ButtonEditDialog(button, m_joystick, isKeypadUnlocked(), this);
+
     dialog->show();
 }
 
@@ -1866,6 +1867,7 @@ void JoyTabWidget::checkAxisButtonDisplay()
     }
 }
 
+// IT CAN BE HERE
 void JoyTabWidget::checkButtonDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -2250,6 +2252,19 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
             if (!hideEmptyButtons || (button->getAssignedSlots()->count() > 0))
             {
+                qDebug() << "Button in joytabwidget " << button->getName() << " has " << button->getAssignedSlots()->count() << " assignments";
+                for(auto it : *button->getAssignedSlots())
+                {
+                    qDebug() << "slotMode: " << it->getSlotMode();
+
+                    if (it->getSlotMode() == 15)
+                    {
+                        for (auto it2 : *it->getMixSlots())
+                        {
+                            qDebug() << "mixslot: " << it2->getSlotString();
+                        }
+                    }
+                }
                 JoyButtonWidget *buttonWidget = new JoyButtonWidget (button, displayingNames, this);
                 buttonWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
                 buttonWidget->setText(buttonWidget->text());
@@ -2257,6 +2272,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
                 connect(buttonWidget, &JoyButtonWidget::clicked, this, &JoyTabWidget::showButtonDialog);
                 connect(namesPushButton, &QPushButton::clicked, buttonWidget, &JoyButtonWidget::toggleNameDisplay);
+
                 if (hideEmptyButtons)
                 {
                     connect(button, &JoyButton::slotsChanged, this, &JoyTabWidget::checkButtonEmptyDisplay);
