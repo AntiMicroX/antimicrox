@@ -28,6 +28,7 @@
 #include "antimicrosettings.h"
 #include "applaunchhelper.h"
 #include "antkeymapper.h"
+#include "qglobalshortcut/qglobalshortcut.h"
 
 #include "eventhandlerfactory.h"
 #include "messagehandler.h"
@@ -46,6 +47,7 @@
 #include <QLocalSocket>
 #include <QSettings>
 #include <QThread>
+#include <QSocketNotifier>
 #include <QPointer>
 #include <QCommandLineParser>
 #include <QStandardPaths>
@@ -109,7 +111,7 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
 
 int main(int argc, char *argv[])
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+   // qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QApplication antimicroX(argc, argv);
     QCoreApplication::setApplicationName("antimicroX");
@@ -224,7 +226,6 @@ int main(int argc, char *argv[])
     
     
 #endif
-
 
     parser.process(antimicroX);
 
@@ -819,6 +820,20 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicroX, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
+#if defined(WITH_X11)
+    QString quitComboKeys = settings->value("QuitComboKeys", "").toString();
+
+    if (quitComboKeys != "")
+    {
+        qDebug() << "Loaded quit combo keys: " << quitComboKeys;
+        QGlobalShortcut* gs = new QGlobalShortcut;
+        gs->setKey(QKeySequence(quitComboKeys));
+        QObject::connect(gs, &QGlobalShortcut::activated, &antimicroX, &QApplication::quit);
+
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, gs, &QGlobalShortcut::deleteLater);
+    }
+#endif
+
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow, &MainWindow::handleInstanceDisconnect);
     QObject::connect(mainWindow, &MainWindow::mappingUpdated,
                      joypad_worker.data(), &InputDaemon::refreshMapping);
@@ -829,6 +844,8 @@ int main(int argc, char *argv[])
                      mainWindow, &MainWindow::removeJoyTab);
     QObject::connect(joypad_worker.data(), &InputDaemon::deviceAdded,
                      mainWindow, &MainWindow::addJoyTab);
+
+
 
     mainAppHelper.initRunMethods();
     

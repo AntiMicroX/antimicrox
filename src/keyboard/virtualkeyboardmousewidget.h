@@ -38,8 +38,8 @@ class VirtualKeyboardMouseWidget : public QTabWidget
     Q_OBJECT
 
 public:
-    explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog = nullptr, JoyButton* button = nullptr, QWidget *parent = nullptr);
-    explicit VirtualKeyboardMouseWidget(QWidget *parent = nullptr);
+    explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, bool isNumKeypad, QuickSetDialog* quickSetDialog = nullptr, JoyButton* button = nullptr, QWidget *parent = nullptr);
+    explicit VirtualKeyboardMouseWidget(bool isNumKeypad, QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
     bool is_numlock_activated(); // RealSystemInfo class
     bool isLaptop(); // RealSystemInfo class
@@ -100,8 +100,8 @@ private slots:
     void nullifyDialogPointer();
 
 private:
-    bool isLaptopDevice;
     bool withoutQuickSetDialog;
+    bool m_isNumKeypad;
     InputDevice *joystick;
     JoyButton* lastPressedBtn;
     ButtonEditDialogHelper* helper;
