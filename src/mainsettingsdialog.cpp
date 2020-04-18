@@ -27,18 +27,9 @@
 #include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "eventhandlerfactory.h"
-#include "event.h"
-#include "antkeymapper.h"
 
 #ifdef WITH_X11
   #include "x11extras.h"
-  #include <X11/keysymdef.h>
-  #include <X11/XF86keysym.h>
-  #include <X11/XKBlib.h>
-  #include <X11/Xutil.h>
-#elif WITH_UINPUT
-  #include <linux/input.h>
-  #include <linux/uinput.h>
 #endif
 
 #include <QTableWidgetItem>
@@ -81,14 +72,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    #ifndef WITH_X11
-        ui->quitCombLineEdit->hide();
-        ui->quitComboLabel->hide();
-        ui->keysComboBox->hide();
-        ui->keysLabel->hide();
-        ui->warningComb->hide();
-    #endif
-
     ui->profileOpenDirPushButton->setIcon(QIcon::fromTheme("document_open_folder",
                                                            QIcon(":/icons/hicolor/16x16/actions/document_open_folder.png")));
 
@@ -103,8 +86,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     settings->getLock()->lock();
 
-    bool attachedNumKeypad = settings->value("AttachNumKeypad", false).toBool();
-    QString quitComboKeys = settings->value("QuitComboKeys", "").toString();
     QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
     int numberRecentProfiles = settings->value("NumberRecentProfiles", 5).toInt();
     bool closeToTray = settings->value("CloseToTray", false).toBool();
@@ -199,13 +180,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
 
-    if (attachedNumKeypad)
-        ui->attachNumKeypadCheckbox->setChecked(true);
-
-    initializeKeysList();
-
-    ui->quitCombLineEdit->setText(quitComboKeys);
-
 
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
     if (smoothingEnabled)
@@ -282,7 +256,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     connect(ui->activeCheckBox, &QCheckBox::toggled, ui->autoProfileTableWidget, &QTableWidget::setEnabled);
     connect(ui->activeCheckBox, &QCheckBox::toggled, this, &MainSettingsDialog::autoProfileButtonsActiveState);
     connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &MainSettingsDialog::changeDeviceForProfileTable);
-    connect(ui->keysComboBox, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentTextChanged), this, &MainSettingsDialog::addKeyToQuitCombination);
     connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
     connect(ui->autoProfileAddPushButton, &QPushButton::clicked, this, &MainSettingsDialog::openAddAutoProfileDialog);
     connect(ui->autoProfileDeletePushButton, &QPushButton::clicked, this, &MainSettingsDialog::openDeleteAutoProfileConfirmDialog);
@@ -506,14 +479,6 @@ void MainSettingsDialog::saveNewSettings()
     QString oldProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString possibleProfileDir = ui->profileDefaultDirLineEdit->text();
     bool closeToTray = ui->closeToTrayCheckBox->isChecked();
-
-    bool attachNumKeypad = ui->attachNumKeypadCheckbox->isChecked();
-
-    settings->setValue("AttachNumKeypad", attachNumKeypad ? "1" : "0");
-
-#if defined(WITH_X11)
-    settings->setValue("QuitComboKeys", !ui->quitCombLineEdit->text().isEmpty() ? ui->quitCombLineEdit->text() : "");
-#endif
 
     if (oldProfileDir != possibleProfileDir)
     {
@@ -785,13 +750,13 @@ void MainSettingsDialog::populateAutoProfiles()
 
     settings->endGroup();
 
-    QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "all").toString();
+    QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
     QString allActive = settings->value(QString("DefaultAutoProfileAll/Active"), "0").toString();
     QString partialTitle = settings->value(QString("DefaultAutoProfileAll/PartialTitle"), "").toString();
 
     bool defaultActive = allActive == "1" ? true : false;
     bool partialTitleBool = partialTitle == "1" ? true : false;
-    allDefaultProfile = new AutoProfileInfo("all", allProfile, defaultActive, partialTitleBool, this);
+    allDefaultProfile = new AutoProfileInfo("all", "all", allProfile, defaultActive, partialTitleBool, this);
     allDefaultProfile->setDefaultState(true);
 
     QStringListIterator iter(registeredGUIDs);
@@ -1090,13 +1055,6 @@ void MainSettingsDialog::changeDeviceForProfileTable(int index)
     }
 
     connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
-}
-
-void MainSettingsDialog::addKeyToQuitCombination(QString key)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    ui->quitCombLineEdit->setText(key);
 }
 
 void MainSettingsDialog::saveAutoProfileSettings()
@@ -2038,7 +1996,6 @@ void MainSettingsDialog::resetGeneralSett()
     }
 
     ui->closeToTrayCheckBox->setChecked(false);
-    ui->attachNumKeypadCheckbox->setChecked(false);
     ui->launchAtWinStartupCheckBox->setChecked(false);
     ui->traySingleProfileListCheckBox->setChecked(false);
     ui->minimizeTaskbarCheckBox->setChecked(false);
@@ -2113,10 +2070,6 @@ void MainSettingsDialog::resetMouseSett()
     ui->weightModifierDoubleSpinBox->setValue(0.20);
     ui->weightModifierDoubleSpinBox->setEnabled(false);
 
-#if defined(WITH_X11)
-    ui->quitCombLineEdit->clear();
-#endif
-
     int refreshIndex = ui->mouseRefreshRateComboBox->findData(GlobalVariables::JoyButton::mouseRefreshRate);
 
     if (refreshIndex >= 0)
@@ -2137,102 +2090,6 @@ void MainSettingsDialog::resetAdvancedSett()
 {
     ui->logFilePathEdit->setText("");
     ui->logLevelComboBox->setCurrentIndex(0);
-}
-
-void MainSettingsDialog::initializeKeysList()
-{
-
-    QStringList keySysNames = QStringList();
-
-    // standard shortcuts for Linux
-    keySysNames.append("F1");
-    keySysNames.append("Shift+F1");
-    keySysNames.append("Ctrl+O");
-    keySysNames.append("Ctrl+W");
-    keySysNames.append("Ctrl+S");
-    keySysNames.append("Ctrl+Q");
-    keySysNames.append("Ctrl+N");
-    keySysNames.append("Del");
-    keySysNames.append("Ctrl+D");
-    keySysNames.append("Ctrl+X");
-    keySysNames.append("Shift+Del");
-    keySysNames.append("Ctrl+C");
-    keySysNames.append("Ctrl+Ins");
-    keySysNames.append("Ctrl+V");
-    keySysNames.append("Shift+Ins");
-    keySysNames.append("Ctrl+Z");
-    keySysNames.append("Ctrl+Shift+Z");
-    keySysNames.append("Alt+Left");
-    keySysNames.append("Alt+Right");
-    keySysNames.append("F5");
-    keySysNames.append("Ctrl+Plus");
-    keySysNames.append("Ctrl+Minus");
-    keySysNames.append("Ctrl+Shift+F");
-    keySysNames.append("Ctrl+P");
-    keySysNames.append("Ctrl+T");
-    keySysNames.append("Ctrl+Tab");
-    keySysNames.append("Forward");
-    keySysNames.append("Ctrl+Shift+Tab");
-    keySysNames.append("Back");
-    keySysNames.append("Ctrl+F");
-    keySysNames.append("F3");
-    keySysNames.append("Shift+F3");
-    keySysNames.append("Ctrl+A");
-    keySysNames.append("Ctrl+Shift+A");
-    keySysNames.append("Ctrl+B");
-    keySysNames.append("Ctrl+I");
-    keySysNames.append("Ctrl+U");
-    keySysNames.append("Right");
-    keySysNames.append("Left");
-    keySysNames.append("Ctrl+Right");
-    keySysNames.append("Ctrl+Left");
-    keySysNames.append("Down");
-    keySysNames.append("Up");
-    keySysNames.append("PgDown");
-    keySysNames.append("PgUp");
-    keySysNames.append("Home");
-    keySysNames.append("End");
-    keySysNames.append("Ctrl+E");
-    keySysNames.append("Ctrl+Home");
-    keySysNames.append("Ctrl+End");
-    keySysNames.append("Shift+Right");
-    keySysNames.append("Shift+Left");
-    keySysNames.append("Ctrl+Shift+Right");
-    keySysNames.append("Ctrl+Shift+Left");
-    keySysNames.append("Shift+Down");
-    keySysNames.append("Shift+Up");
-    keySysNames.append("Shift+PgDown");
-    keySysNames.append("Shift+PgUp");
-    keySysNames.append("Shift+Home");
-    keySysNames.append("Shift+End");
-    keySysNames.append("Ctrl+Shift+Home");
-    keySysNames.append("Ctrl+Shift+End");
-    keySysNames.append("Ctrl+Backspace");
-    keySysNames.append("Ctrl+Del");
-    keySysNames.append("Ctrl+K");
-    keySysNames.append("Ctrl+U");
-    keySysNames.append("Enter");
-    keySysNames.append("Shift+Enter");
-    keySysNames.append("Escape");
-
-    if (keysymToKeyString(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_F20)) != tr("[NO KEY]"))
-        keySysNames.append("F20");
-
-    if (keysymToKeyString(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_F16)) != tr("[NO KEY]"))
-        keySysNames.append("F16");
-
-    if (keysymToKeyString(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_F18)) != tr("[NO KEY]"))
-        keySysNames.append("F18");
-
-    if (keysymToKeyString(AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_F18)) != tr("[NO KEY]"))
-        keySysNames.append("F14");
-
-    if (ui->keysComboBox->count() > 0)
-        ui->keysComboBox->clear();
-
-    ui->keysComboBox->addItems(keySysNames);
-
-    update();
 }
 
 

@@ -518,14 +518,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
 }
 
-
-bool JoyTabWidget::isKeypadUnlocked()
-{
-    if (m_settings == nullptr) return false;
-
-    return m_settings->value("AttachNumKeypad", false).toBool();
-}
-
 void JoyTabWidget::openConfigFileDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -600,8 +592,17 @@ void JoyTabWidget::showButtonDialog()
     JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(button, m_joystick, isKeypadUnlocked(), this);
+    for (auto eachAssigned : *button->getAssignedSlots())
+    {
+        qDebug() << "eachAssigned slot mode: " << eachAssigned->getSlotMode();
 
+        if (eachAssigned->getSlotMode() == 15)
+        {
+            qDebug() << "text data is: " << eachAssigned->getTextData();
+        }
+    }
+
+    ButtonEditDialog *dialog = new ButtonEditDialog(button, m_joystick, this);
     dialog->show();
 }
 
@@ -1399,7 +1400,7 @@ void JoyTabWidget::showQuickSetDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(m_joystick, isKeypadUnlocked(), this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(m_joystick, this);
     connect(dialog, &ButtonEditDialog::finished, this, &JoyTabWidget::refreshButtons);
     dialog->show();
 }

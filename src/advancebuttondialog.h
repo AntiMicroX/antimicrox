@@ -24,6 +24,7 @@
 #include "uihelpers/advancebuttondialoghelper.h"
 
 #include <QDialog>
+#include <QReadWriteLock>
 
 class JoyButton;
 class SimpleKeyGrabberButton;
@@ -84,7 +85,7 @@ private slots:
     void deleteSlot(bool showWarning = true);  // AdvanceBtnDlgAssign class
     void insertSlot(); // AdvanceBtnDlgAssign class
     void joinSlot(); // AdvanceBtnDlgAssign class
-   // void splitSlot(); // AdvanceBtnDlgAssign class
+    void splitSlot(); // AdvanceBtnDlgAssign class
 
     void insertCycleSlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
     void insertTextEntrySlot(QListWidgetItem* item); // AdvanceBtnDlgAssign class
@@ -125,6 +126,7 @@ private:
     int oldRow;
     JoyButton *m_button;
     AdvanceButtonDialogHelper helper;
+    QReadWriteLock joinLock;
 
     void insertKindOfSlot(QListWidgetItem* item, int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction); // AdvanceBtnDlgAssign class
 

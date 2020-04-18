@@ -607,16 +607,20 @@ class MiniSlotRun : public QRunnable, public QObject
 
 public:
     MiniSlotRun(JoyButtonSlot* slot, JoyButtonSlot* slotmini, JoyButton* btn, int milisec) :
-        m_slot(slot), m_slotmini(slotmini), m_btn(btn), m_miliseconds(milisec), QObject(slot)
+        m_slot(slot),
+        m_slotmini(slotmini),
+        m_btn(btn),
+        m_miliseconds(milisec),
+        QObject(btn)
     {
 
     }
 
     ~MiniSlotRun()
     {
-        m_slot = nullptr;
-        m_slotmini = nullptr;
-        m_btn = nullptr;
+      //  m_slot = nullptr;
+      //  m_slotmini = nullptr;
+      //  m_btn = nullptr;
     }
 
     void run()

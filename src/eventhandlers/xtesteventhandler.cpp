@@ -72,10 +72,6 @@ void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 
     Display* display = X11Extras::getInstance()->display();
 
-    if (display == nullptr) X11Extras::getInstance()->syncDisplay();
-
-    display = X11Extras::getInstance()->display();
-
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
     int code = slot->getSlotCode();

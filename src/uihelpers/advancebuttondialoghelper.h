@@ -44,6 +44,7 @@ public slots:
                             JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString);
     void removeAssignedSlot(int index);
+    void onlyReset();
     void onlyRemoveAssignedSlot(int index);
 };
 

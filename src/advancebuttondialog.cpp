@@ -58,7 +58,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     PadderCommon::inputDaemonMutex.lock();
 
-    ui->splitSlotButton->hide();
+   //ui->splitSlotButton->hide();
 
     m_button = button;
     oldRow = 0;
@@ -230,7 +230,7 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
 
     connect(ui->insertSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::insertSlot);
     connect(ui->joinSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::joinSlot);
-  //  connect(ui->splitSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::splitSlot);
+    connect(ui->splitSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::splitSlot);
     connect(ui->deleteSlotButton, &QPushButton::clicked, this, &AdvanceButtonDialog::deleteSlot);
     connect(ui->clearAllPushButton, &QPushButton::clicked, this, &AdvanceButtonDialog::clearAllSlots);
 
@@ -552,6 +552,9 @@ void AdvanceButtonDialog::insertSlot()
 
 void AdvanceButtonDialog::joinSlot()
 {
+    QReadLocker tempAssignLocker(&joinLock);
+    joinLock.lockForRead();
+
     int index = ui->slotListWidget->currentRow();
 
     if (index == -1)
@@ -574,34 +577,41 @@ void AdvanceButtonDialog::joinSlot()
     {
         qDebug() << "Chosen " << ui->slotListWidget->selectedItems().count() << " slots" << endl;
 
-
         QListWidgetItem* firstSelected = ui->slotListWidget->selectedItems().at(0);
         QString text = "";
         int index = ui->slotListWidget->row(firstSelected);
         bool firstTime = true;
 
-
         SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
         QList<QListWidgetItem*> listItems = ui->slotListWidget->selectedItems();
-
+        QList<JoyButtonSlot*> els;
 
         for(auto item : listItems)
         {
             if (!firstTime) text += "+";
             firstTime = false;
 
-            SimpleKeyGrabberButton* firstGrabBtn = item->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+            int indexInner = ui->slotListWidget->row(item);
+            auto currItem = ui->slotListWidget->takeItem(indexInner);
+
+            SimpleKeyGrabberButton* firstGrabBtn = currItem->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+
+            JoyButtonSlot* slotmini = new JoyButtonSlot(firstGrabBtn->getValue()->getSlotCode(), firstGrabBtn->getValue()->getSlotCodeAlias(), firstGrabBtn->getValue()->getSlotMode());
 
             if (firstGrabBtn->getValue()->getMixSlots()->count() > 0)
             {
+               // els.append()
                 blankButton->getValue()->appendMiniSlot<QList<JoyButtonSlot*>>(*firstGrabBtn->getValue()->getMixSlots());
             }
             else
             {
-                blankButton->getValue()->appendMiniSlot<JoyButtonSlot*>(firstGrabBtn->getValue());
+                blankButton->getValue()->appendMiniSlot<JoyButtonSlot*>(slotmini);
             }
 
             text += firstGrabBtn->getValue()->getSlotString();
+
+            (&helper)->removeAssignedSlot(indexInner);
+            delete currItem;
         }
 
         for(auto x : *blankButton->getValue()->getMixSlots())
@@ -609,8 +619,9 @@ void AdvanceButtonDialog::joinSlot()
             qDebug() << "JOINED MINI: " << x->getSlotCode() << " - " << x->getSlotMode() << " - " << x->getSlotString();
         }
 
+
         QListWidgetItem *joinedItem = new QListWidgetItem();
-        ui->slotListWidget->insertItem(qMax(0,index-1), joinedItem);
+        ui->slotListWidget->insertItem(qMax(0,index), joinedItem);
 
         joinedItem->setData(Qt::UserRole,
                       QVariant::fromValue<SimpleKeyGrabberButton*>(blankButton));
@@ -621,24 +632,29 @@ void AdvanceButtonDialog::joinSlot()
         widget->setLayout(layout);
         joinedItem->setSizeHint(widget->sizeHint());
         ui->slotListWidget->setItemWidget(joinedItem, widget);
+        ui->slotListWidget->setCurrentItem(joinedItem);
 
         blankButton->setValues(text, blankButton->getValue()->getMixSlots(), JoyButtonSlot::JoyMix);
 
         connectButtonEvents(blankButton);
         blankButton->refreshButtonLabel(); // instead of blankButton->setText(text);
 
+        // it can be used as reusable code
+
+       // emit slotsChanged();
+
+
         QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection,
         Q_ARG(JoyButtonSlot*, blankButton->getValue()),
         Q_ARG(int, index),
         Q_ARG(bool, false));
-
-        // it can be used as reusable code
-        deleteSlot(false);
     }
+
+    joinLock.unlock();
 }
 
 
-/*void AdvanceButtonDialog::splitSlot()
+void AdvanceButtonDialog::splitSlot()
 {
     int index = ui->slotListWidget->currentRow();
 
@@ -668,10 +684,8 @@ void AdvanceButtonDialog::joinSlot()
         int index = ui->slotListWidget->row(mixSlot);
         QList<JoyButtonSlot*> minislots = *mixSlot->data(Qt::UserRole).value<SimpleKeyGrabberButton*>()->getValue()->getMixSlots();
 
-
         // it can be used as reusable code
-        deleteSlot();
-
+        //deleteSlot();
 
         for(auto minislot : minislots)
         {
@@ -708,8 +722,11 @@ void AdvanceButtonDialog::joinSlot()
 
             index++;
         }
+
+        // it can be used as reusable code
+        deleteSlot(false);
     }
-}*/
+}
 
 
 void AdvanceButtonDialog::insertKindOfSlot(QListWidgetItem* item, int slotProperty, JoyButtonSlot::JoySlotInputAction inputAction)

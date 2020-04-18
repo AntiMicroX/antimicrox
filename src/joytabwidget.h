@@ -79,7 +79,6 @@ protected:
     void reconnectCheckUnsavedEvent();
     void fillSetButtons(SetJoystick *set); // JoyTabWidgetSets class
     void removeSetButtons(SetJoystick *set); // JoyTabWidgetSets class
-    bool isKeypadUnlocked();
 
     static const int DEFAULTNUMBERPROFILES = 5;
 

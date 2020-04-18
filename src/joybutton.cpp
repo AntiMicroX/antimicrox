@@ -136,9 +136,9 @@ JoyButton::~JoyButton()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    threadPool->clear();
+   // threadPool->clear();
 
-
+    //reset();
     resetPrivVars();
 }
 
@@ -745,13 +745,24 @@ void JoyButton::activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix)
         {
             sendevent(slot, true);
 
-            getActiveSlotsLocal().append(slot);
+           getActiveSlotsLocal().append(slot);
             int oldvalue = GlobalVariables::JoyButton::JoyButton::activeKeys.value(tempcode, 0) + 1;
             GlobalVariables::JoyButton::JoyButton::activeKeys.insert(tempcode, oldvalue);
 
-            qDebug() << "There has been assigned a lastActiveKey: " << mix->getSlotString();
+            //qDebug() << "There has been assigned a lastActiveKey: " << mix->getSlotString();
 
-            lastActiveKey = mix;
+            if (!slot->isModifierKey())
+            {
+                qDebug() << "There has been assigned a lastActiveKey " << slot->getSlotString();
+
+                lastActiveKey = slot;
+            }
+            else
+            {
+                qDebug() << "It's not modifier key. lastActiveKey is null pointer";
+
+                lastActiveKey = nullptr;
+            }
 
             break;
         }
@@ -1874,12 +1885,6 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                 QListIterator<JoyButtonSlot*> iterMini(*slot->getMixSlots());
                 QListIterator<JoyButtonSlot*>* iterM(&iterMini);
 
-                if (!slot->getTextData().isEmpty())
-                {
-                    stringlist.append(slot->getTextData());
-                }
-                else
-                {
                     while(iterM->hasNext())
                     {
                         JoyButtonSlot *slotMini = iterM->next();
@@ -1902,7 +1907,7 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                     j = 0;
                     i++;
 
-                    if (!stringListMix.isEmpty() && !stringListMix.contains("++")&& !stringListMix.contains(tr("[NO KEY]")))
+                    if (!stringListMix.isEmpty())
                     {
                         if (stringListMix.last() == '+')
                             stringListMix.removeLast();
@@ -1916,11 +1921,14 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                             res += strListEl;
                         }
 
-
                         stringlist.append(res);
                         stringListMix.clear();
                     }
-                }
+                    else
+                    {
+                        stringlist.append(slot->getTextData());
+                        stringListMix.clear();
+                    }
 
                 behindHold = false;
 
@@ -2471,16 +2479,20 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveStri
 }
 
 
-bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString)
+bool JoyButton::insertAssignedSlot(JoyButtonSlot *slot, int index, bool updateActiveString)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool permitSlot = true;
-    JoyButtonSlot *slot = new JoyButtonSlot(newSlot, this);
+    //JoyButtonSlot *slot = new JoyButtonSlot(newSlot, this);
 
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance && (slot->getSlotCode() >= 1) && (slot->getSlotCode() <= 100))
     {
         if (getTotalSlotDistance(slot) > 1.0) permitSlot = false;
+    }
+    else if (slot->getSlotMode() == JoyButtonSlot::JoyMix && slot->getMixSlots()->count() == 0)
+    {
+        permitSlot = false;
     }
     else if (slot->getSlotCode() < 0)
     {
@@ -2517,11 +2529,11 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updat
 
         emit slotsChanged();
     }
-    else if (slot != nullptr)
+  /*  else if (slot != nullptr)
     {
         delete slot;
         slot = nullptr;
-    }
+    }*/
 
     return permitSlot;
 }
