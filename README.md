@@ -144,6 +144,17 @@ from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
 | :--------- | :------------- | :----------- |
 | Arch Linux | Piotr Górski   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
 
+
+#### Building deb package
+
+```
+    cd antimicroX
+    mkdir build && cd build
+    cmake ..
+    cpack
+```
+
+
 <br/>
 
 ### Running with Docker
@@ -206,6 +217,7 @@ mkdir repo
 If you have installed antimicroX locally with success, you can run application:
 
 `flatpak run com.github.juliagoda.antimicroX`
+
 
 
 #### Updating
