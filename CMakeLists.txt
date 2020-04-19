@@ -601,3 +601,29 @@ if(WITH_TESTS)
     enable_testing ()
     add_subdirectory (tests)
 endif(WITH_TESTS)
+
+
+#building package using CPack
+include(InstallRequiredSystemLibraries)
+
+
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Program used to map keyboard keys and mouse controls to a gamepad.")
+set(CPACK_PACKAGE_VENDOR "juliagoda")
+set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+
+set(CPACK_PACKAGE_VERSION_MAJOR "${ANTIMICROX_MAJOR_VERSION}")
+set(CPACK_PACKAGE_VERSION_MINOR "${ANTIMICROX_MINOR_VERSION}")
+set(CPACK_PACKAGE_VERSION_PATCH "${ANTIMICROX_PATCH_VERSION}")
+
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
+
+if(UNIX) #building .deb package
+  set(CPACK_GENERATOR "DEB")
+  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "juliagoda")
+  set(CPACK_STRIP_FILES "bin/MyExecutable")
+  set(CPACK_SOURCE_STRIP_FILES "")
+endif()
+
+set(CPACK_PACKAGE_EXECUTABLES "AntiMicroX")
+include(CPack)
