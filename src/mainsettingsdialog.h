@@ -92,7 +92,7 @@ protected slots:
     void changeAutoProfileButtonsState(); // MainSettingsProfile class
     void transferEditsToCurrentTableRow(AddEditAutoProfileDialog *dialog); // MainSettingsProfile class
     void transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog* dialog); // MainSettingsProfile class
-    void addNewAutoProfile(); // MainSettingsProfile class
+    void addNewAutoProfile(AddEditAutoProfileDialog *dialog); // MainSettingsProfile class
     void autoProfileButtonsActiveState(bool enabled); // MainSettingsProfile class
     void changeKeyRepeatWidgetsStatus(bool enabled); // MainSettingsProfile class
     void checkSmoothingWidgetStatus(bool enabled); // MainSettingsMouse class

@@ -806,6 +806,9 @@ void MainSettingsDialog::populateAutoProfiles()
         QString partialTitle = settings->value(QString("DefaultAutoProfile-%1/PartialTitle").arg(guid), "0").toString();
         bool partialTitleBool = partialTitle == "1" ? true : false;
         QString deviceName = settings->value(QString("DefaultAutoProfile-%1/DeviceName").arg(guid), "").toString();
+        QString windowClass = settings->value(QString("DefaultAutoProfile-%1/WindowClass").arg(guid), "").toString();
+        QString windowName = settings->value(QString("DefaultAutoProfile-%1/WindowName").arg(guid), "").toString();
+        QString exe = settings->value(QString("DefaultAutoProfile-%1/Exe").arg(guid), "").toString();
 
         if (!guid.isEmpty() && !profile.isEmpty() && !deviceName.isEmpty())
         {
@@ -815,6 +818,9 @@ void MainSettingsDialog::populateAutoProfiles()
                 AutoProfileInfo *info = new AutoProfileInfo(guid, profile, profileActive, partialTitleBool, this);
                 info->setDefaultState(true);
                 info->setDeviceName(deviceName);
+                info->setExe(exe);
+                info->setWindowName(windowName);
+                info->setWindowClass(windowClass);
                 defaultAutoProfiles.insert(guid, info);
                 defaultList.append(info);
                 QList<AutoProfileInfo*> templist;
@@ -1054,9 +1060,11 @@ void MainSettingsDialog::fillGUIDComboBox()
     {
         QString guid = iter.next();
         QList<AutoProfileInfo*> temp = deviceAutoProfiles.value(guid);
+
         if (temp.count() > 0)
         {
             QString deviceName = temp.first()->getDeviceName();
+
             if (!deviceName.isEmpty())
             {
                 ui->devicesComboBox->addItem(deviceName, QVariant(guid));
@@ -1156,6 +1164,10 @@ void MainSettingsDialog::saveAutoProfileSettings()
         settings->setValue(QString("DefaultAutoProfile-%1/Profile").arg(guid), info->getProfileLocation());
         settings->setValue(QString("DefaultAutoProfile-%1/Active").arg(guid), profileActive);
         settings->setValue(QString("DefaultAutoProfile-%1/DeviceName").arg(guid), deviceName);
+        settings->setValue(QString("DefaultAutoProfile-%1/WindowName").arg(guid), info->getWindowName());
+        settings->setValue(QString("DefaultAutoProfile-%1/WindowClass").arg(guid), info->getWindowClass());
+        settings->setValue(QString("DefaultAutoProfile-%1/Exe").arg(guid), info->getExe());
+        settings->setValue(QString("DefaultAutoProfile-%1/PartialTitle").arg(guid), 0);
     }
 
     if (!registeredGUIDs.isEmpty())
@@ -1306,6 +1318,25 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
         item->setToolTip(info->getProfileLocation());
         ui->autoProfileTableWidget->setItem(i, 2, item);
 
+        item = new QTableWidgetItem(info->getWindowClass());
+        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        item->setData(Qt::UserRole, info->getWindowClass());
+        item->setToolTip(info->getWindowClass());
+        ui->autoProfileTableWidget->setItem(i, 3, item);
+
+        item = new QTableWidgetItem(info->getWindowName());
+        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        item->setData(Qt::UserRole, info->getWindowName());
+        item->setToolTip(info->getWindowName());
+        ui->autoProfileTableWidget->setItem(i, 4, item);
+
+        QFileInfo exeInfo(info->getExe());
+        item = new QTableWidgetItem(exeInfo.fileName());
+        item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        item->setData(Qt::UserRole, info->getExe());
+        item->setToolTip(info->getExe());
+        ui->autoProfileTableWidget->setItem(i, 5, item);
+
         item = new QTableWidgetItem("Default");
         item->setData(Qt::UserRole, "default");
         ui->autoProfileTableWidget->setItem(i, 6, item);
@@ -1415,7 +1446,12 @@ void MainSettingsDialog::openAddAutoProfileDialog()
    //     addNewAutoProfile();
    // });
 
-    connect(dialog, SIGNAL(accepted()), this, SLOT(addNewAutoProfile()));
+    connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog]
+    {
+        addNewAutoProfile(dialog);
+        //&MainSettingsDialog::addNewAutoProfile
+    });
+
     connect(dialog, &AddEditAutoProfileDialog::rejected, info, &AutoProfileInfo::deleteLater);
     dialog->show();
 }
@@ -1446,6 +1482,10 @@ void MainSettingsDialog::openEditAutoProfileDialog()
                     reservedGUIDs.removeAll(info->getUniqueID());
                 }
             }
+
+            QTableWidgetItem *itemDefault = ui->autoProfileTableWidget->item(selectedRow, 6);
+            if (itemDefault->data(Qt::UserRole) == "default" || itemDefault->text() == "Default") info->setDefaultState(true);
+
             AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, true, this);
             connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] {
                 transferEditsToCurrentTableRow(dialog);
@@ -1455,6 +1495,7 @@ void MainSettingsDialog::openEditAutoProfileDialog()
         }
         else
         {
+            info->setDefaultState(true);
             EditAllDefaultAutoProfileDialog *dialog = new EditAllDefaultAutoProfileDialog(info, settings, this);
             dialog->show();
             connect(dialog, &EditAllDefaultAutoProfileDialog::accepted, this, [this, dialog] {
@@ -1687,11 +1728,11 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
     changeDeviceForProfileTable(currentIndex);
 }
 
-void MainSettingsDialog::addNewAutoProfile()
+void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
+   // AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
     AutoProfileInfo *info = dialog->getAutoProfile();
     bool found = false;
 
