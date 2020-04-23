@@ -66,6 +66,8 @@
 #include <QFileDialog>
 #include <QScrollArea>
 
+bool JoyTabWidget::changedNotSaved = false;
+
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent) :
     QWidget(parent),
     tabHelper(joystick)
@@ -1591,6 +1593,8 @@ void JoyTabWidget::displayProfileEditNotification()
     int currentIndex = configBox->currentIndex();
     configBox->setItemIcon(currentIndex, QIcon::fromTheme("document_save_as",
                                          QIcon(":/icons/hicolor/16x16/actions/document_save_as.png")));
+
+    changedNotSaved = true;
 }
 
 void JoyTabWidget::removeProfileEditNotification()
@@ -1604,6 +1608,8 @@ void JoyTabWidget::removeProfileEditNotification()
             configBox->setItemIcon(i, QIcon());
         }
     }
+
+    changedNotSaved = false;
 }
 
 void JoyTabWidget::retranslateUi()
@@ -1785,6 +1791,11 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
     }
 
     return discarded;
+}
+
+bool JoyTabWidget::changesNotSaved()
+{
+    return changedNotSaved;
 }
 
 void JoyTabWidget::disconnectMainComboBoxEvents()

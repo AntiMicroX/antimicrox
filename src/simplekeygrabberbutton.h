@@ -42,6 +42,8 @@ public:
     void setValues(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyMix);
     void setValues(QString value, QList<JoyButtonSlot *> *jbtn, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyMix);
     JoyButtonSlot* getValue();
+    JoyButtonSlot& getValueNonPointer();
+    void setValue(JoyButtonSlot* jbS);
     bool isEdited();
     bool isGrabbing();
 

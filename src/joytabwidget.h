@@ -58,6 +58,7 @@ public:
 
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();
+    bool static changesNotSaved();
 
     int getCurrentConfigIndex(); // JoyTabSettings class
 
@@ -207,6 +208,7 @@ private:
 
     InputDevice *m_joystick;
     bool displayingNames;
+    static bool changedNotSaved;
     AntiMicroSettings *m_settings;
     int comboBoxIndex;
     bool hideEmptyButtons;

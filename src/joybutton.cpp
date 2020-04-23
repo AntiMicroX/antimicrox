@@ -3384,15 +3384,46 @@ void JoyButton::removeAssignedSlot(int index)
 
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
+    int j = 0;
+    qDebug() << "Assigned list slots after joining";
+    for(auto el : *getAssignedSlots())
+    {
+        qDebug() << j << ")";
+        qDebug() << "code: " << el->getSlotCode();
+        qDebug() << "mode: " << el->getSlotMode();
+        qDebug() << "string: " << el->getSlotString();
+        j++;
+    }
+
     if ((index >= 0) && (index < getAssignedSlots()->size()))
     {
         JoyButtonSlot *slot = getAssignedSlots()->takeAt(index);
 
-        if (slot != nullptr)
+        if (slot->getSlotMode() == JoyButtonSlot::JoyMix)
         {
+            for(auto minislot : *slot->getMixSlots())
+            {
+                delete minislot;
+                minislot = nullptr;
+            }
+
+            slot->getMixSlots()->clear();
+            delete slot->getMixSlots();
+            slot->assignMixSlotsToNull();
+        }
+
+
+        // there is such problem:
+        // splitting after joining without saving joining action
+        // bases on data on SimpleKeyGrabberButton which has JoyButtonSlot not dynamically allocated
+        // so when we do "delete slot" here, exception will occur because JoyButtonSlot is automatically
+        // deleted as a class member that has QObject as an ancestor
+        // but when we try to split after start of the application
+        // there is no problem to do "delete slot"
+
             delete slot;
             slot = nullptr;
-        }
+
 
         tempAssignLocker.unlock();
         buildActiveZoneSummaryString();

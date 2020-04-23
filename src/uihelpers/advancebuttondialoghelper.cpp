@@ -72,7 +72,28 @@ void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    int j = 0;
+    qDebug() << "Assigned list slots after joining";
+    for(auto el : *button->getAssignedSlots())
+    {
+        qDebug() << j << ")";
+        qDebug() << "code: " << el->getSlotCode();
+        qDebug() << "mode: " << el->getSlotMode();
+        qDebug() << "string: " << el->getSlotString();
+        j++;
+    }
     button->eventReset();
+
+    j = 0;
+    qDebug() << "Assigned list slots after joining";
+    for(auto el : *button->getAssignedSlots())
+    {
+        qDebug() << j << ")";
+        qDebug() << "code: " << el->getSlotCode();
+        qDebug() << "mode: " << el->getSlotMode();
+        qDebug() << "string: " << el->getSlotString();
+        j++;
+    }
     button->removeAssignedSlot(index);
 }
 

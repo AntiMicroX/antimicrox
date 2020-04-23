@@ -346,6 +346,19 @@ JoyButtonSlot* SimpleKeyGrabberButton::getValue()
     return &buttonslot;
 }
 
+
+JoyButtonSlot& SimpleKeyGrabberButton::getValueNonPointer()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    return buttonslot;
+}
+
+void SimpleKeyGrabberButton::setValue(JoyButtonSlot *jbS)
+{
+    buttonslot = jbS;
+}
+
 void SimpleKeyGrabberButton::refreshButtonLabel()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

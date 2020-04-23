@@ -68,6 +68,7 @@ public:
     int getSlotCodeAlias();
     void setPreviousDistance(double distance);
     double getPreviousDistance();
+    double getDistance() const;
     bool isModifierKey();
 
     bool isEasingActive();
@@ -93,9 +94,11 @@ public:
 
     bool isValidSlot();
 
+    JoyButtonSlot& operator=(JoyButtonSlot* slot);
 
-private slots:
-    void cleanMixSlots();
+
+//private slots:
+   // void cleanMixSlots();
 
     
 private:
