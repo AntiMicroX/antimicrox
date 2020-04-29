@@ -68,8 +68,6 @@ public:
 
     QMap<int, QList<QAction*> > const& getProfileActions();
 
-    bool isKeypadUnlocked();
-
 protected:
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
@@ -85,6 +83,7 @@ protected:
     void changeStartSetNumber(int startSetNumber, QString controllerID); // MainConfiguration class
     void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // MainConfiguration class
     void convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID);
+
 
 
 signals:

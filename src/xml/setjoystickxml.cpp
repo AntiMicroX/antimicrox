@@ -149,6 +149,8 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         {
             JoyDPadXml<VDPad>* joydpadXml = new JoyDPadXml<VDPad>(vdpad.next());
             joydpadXml->writeConfig(xml);
+            delete joydpadXml;
+            joydpadXml = nullptr;
         }
 
 
@@ -163,6 +165,9 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
             {
                 joyAxisXml->writeConfig(xml);
             }
+
+            delete joyAxisXml;
+            joyAxisXml = nullptr;
         }
 
 
@@ -172,6 +177,8 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         {
             JoyDPadXml<JoyDPad>* joydpadXml = new JoyDPadXml<JoyDPad>(dpad.next());
             joydpadXml->writeConfig(xml);
+            delete joydpadXml;
+            joydpadXml = nullptr;
         }
 
 
@@ -184,6 +191,8 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
             {
                 JoyButtonXml* joyButtonXml = new JoyButtonXml(buttonCurr);
                 joyButtonXml->writeConfig(xml);
+                delete joyButtonXml;
+                joyButtonXml = nullptr;
             }
         }
 

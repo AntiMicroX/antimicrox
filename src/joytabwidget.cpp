@@ -66,6 +66,8 @@
 #include <QFileDialog>
 #include <QScrollArea>
 
+bool JoyTabWidget::changedNotSaved = false;
+
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent) :
     QWidget(parent),
     tabHelper(joystick)
@@ -518,14 +520,6 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
 
 }
 
-
-bool JoyTabWidget::isKeypadUnlocked()
-{
-    if (m_settings == nullptr) return false;
-
-    return m_settings->value("AttachNumKeypad", false).toBool();
-}
-
 void JoyTabWidget::openConfigFileDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -600,7 +594,17 @@ void JoyTabWidget::showButtonDialog()
     JoyButtonWidget *buttonWidget = qobject_cast<JoyButtonWidget*>(sender()); // static_cast
     JoyButton *button = buttonWidget->getJoyButton();
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(button, m_joystick, isKeypadUnlocked(), this);
+    for (auto eachAssigned : *button->getAssignedSlots())
+    {
+        qDebug() << "eachAssigned slot mode: " << eachAssigned->getSlotMode();
+
+        if (eachAssigned->getSlotMode() == 15)
+        {
+            qDebug() << "text data is: " << eachAssigned->getTextData();
+        }
+    }
+
+    ButtonEditDialog *dialog = new ButtonEditDialog(button, m_joystick, this);
     dialog->show();
 }
 
@@ -1398,7 +1402,7 @@ void JoyTabWidget::showQuickSetDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(m_joystick, isKeypadUnlocked(), this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(m_joystick, this);
     connect(dialog, &ButtonEditDialog::finished, this, &JoyTabWidget::refreshButtons);
     dialog->show();
 }
@@ -1589,6 +1593,8 @@ void JoyTabWidget::displayProfileEditNotification()
     int currentIndex = configBox->currentIndex();
     configBox->setItemIcon(currentIndex, QIcon::fromTheme("document_save_as",
                                          QIcon(":/icons/hicolor/16x16/actions/document_save_as.png")));
+
+    changedNotSaved = true;
 }
 
 void JoyTabWidget::removeProfileEditNotification()
@@ -1602,6 +1608,8 @@ void JoyTabWidget::removeProfileEditNotification()
             configBox->setItemIcon(i, QIcon());
         }
     }
+
+    changedNotSaved = false;
 }
 
 void JoyTabWidget::retranslateUi()
@@ -1785,6 +1793,11 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
     return discarded;
 }
 
+bool JoyTabWidget::changesNotSaved()
+{
+    return changedNotSaved;
+}
+
 void JoyTabWidget::disconnectMainComboBoxEvents()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -1866,6 +1879,7 @@ void JoyTabWidget::checkAxisButtonDisplay()
     }
 }
 
+// IT CAN BE HERE
 void JoyTabWidget::checkButtonDisplay()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -2250,6 +2264,19 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
             if (!hideEmptyButtons || (button->getAssignedSlots()->count() > 0))
             {
+                qDebug() << "Button in joytabwidget " << button->getName() << " has " << button->getAssignedSlots()->count() << " assignments";
+                for(auto it : *button->getAssignedSlots())
+                {
+                    qDebug() << "slotMode: " << it->getSlotMode();
+
+                    if (it->getSlotMode() == 15)
+                    {
+                        for (auto it2 : *it->getMixSlots())
+                        {
+                            qDebug() << "mixslot: " << it2->getSlotString();
+                        }
+                    }
+                }
                 JoyButtonWidget *buttonWidget = new JoyButtonWidget (button, displayingNames, this);
                 buttonWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
                 buttonWidget->setText(buttonWidget->text());
@@ -2257,6 +2284,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
 
                 connect(buttonWidget, &JoyButtonWidget::clicked, this, &JoyTabWidget::showButtonDialog);
                 connect(namesPushButton, &QPushButton::clicked, buttonWidget, &JoyButtonWidget::toggleNameDisplay);
+
                 if (hideEmptyButtons)
                 {
                     connect(button, &JoyButton::slotsChanged, this, &JoyTabWidget::checkButtonEmptyDisplay);

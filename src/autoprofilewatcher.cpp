@@ -429,7 +429,7 @@ void AutoProfileWatcher::syncProfileAssignment()
 
     settings->endGroup();
 
-    QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "all").toString();
+    QString allProfile = settings->value(QString("DefaultAutoProfileAll/Profile"), "").toString();
     QString allActive = settings->value(QString("DefaultAutoProfileAll/Active"), "0").toString();
 
     // Handle overall Default profile assignment
@@ -437,7 +437,7 @@ void AutoProfileWatcher::syncProfileAssignment()
 
     if (defaultActive)
     {
-        allDefaultInfo = new AutoProfileInfo("all", allProfile, defaultActive, 0, this);
+        allDefaultInfo = new AutoProfileInfo("all", "all", allProfile, defaultActive, 0, this);
         allDefaultInfo->setDefaultState(true);
     }
 

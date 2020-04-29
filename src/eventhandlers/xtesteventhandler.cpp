@@ -71,6 +71,7 @@ void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     Display* display = X11Extras::getInstance()->display();
+
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
     int code = slot->getSlotCode();

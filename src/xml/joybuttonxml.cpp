@@ -514,6 +514,8 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
                 JoyButtonSlot *buttonslot = iter.next();
                 JoyButtonSlotXml* buttonslotxml = new JoyButtonSlotXml(buttonslot);
                 buttonslotxml->writeConfig(xml);
+                delete buttonslotxml;
+                buttonslotxml = nullptr;
             }
 
             xml->writeEndElement();

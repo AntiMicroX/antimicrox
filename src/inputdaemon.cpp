@@ -307,6 +307,11 @@ void InputDaemon::deleteJoysticks()
     {
         InputDevice *joystick = iter.next().value();
 
+        for (auto el : joystick->getJoystick_sets().values())
+        {
+
+        }
+
         if (joystick != nullptr)
         {
             delete joystick;

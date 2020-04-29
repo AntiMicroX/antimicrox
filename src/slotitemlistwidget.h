@@ -32,6 +32,7 @@ class SlotItemListWidget : public QListWidget
 
 public:
     explicit SlotItemListWidget(QWidget *parent = nullptr);
+    void insertItems(int row, QList<QListWidgetItem*> items);
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);

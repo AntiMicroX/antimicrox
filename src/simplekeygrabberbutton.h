@@ -40,6 +40,8 @@ public:
     void setValue(int value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void setValue(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyLoadProfile);
     JoyButtonSlot* getValue();
+    JoyButtonSlot& getValueNonPointer();
+    void setValue(JoyButtonSlot* jbS);
     bool isEdited();
     bool isGrabbing();
 

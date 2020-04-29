@@ -1251,6 +1251,8 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
             JoyControlStickButton *button = iter.next().value();
             JoyButtonXml* joyButtonXml = new JoyButtonXml(button);
             joyButtonXml->writeConfig(xml);
+            delete joyButtonXml;
+            joyButtonXml = nullptr;
         }
 
         if (!modifierButton->isDefault())
