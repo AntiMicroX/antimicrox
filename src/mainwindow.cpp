@@ -2025,6 +2025,14 @@ QMap<int, QList<QAction*> > const& MainWindow::getProfileActions() {
 }
 
 
+bool MainWindow::isKeypadUnlocked()
+{
+    if (m_settings == nullptr) return false;
+
+    return m_settings->value("AttachNumKeypad", false).toBool();
+}
+
+
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::Hide && (obj != nullptr)) {

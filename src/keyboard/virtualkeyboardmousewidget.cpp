@@ -55,11 +55,12 @@
 
 QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, QString> ();
 
-VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, QuickSetDialog* quickSetDialog, JoyButton* button, QWidget *parent) :
+VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, bool isNumKeypad, QuickSetDialog* quickSetDialog, JoyButton* button, QWidget *parent) :
     QTabWidget(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    m_isNumKeypad = isNumKeypad;
     this->joystick = joystick;
     this->helper = helper;
     this->withoutQuickSetDialog = (button != nullptr);
@@ -67,8 +68,6 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
     currentQuickDialog = quickSetDialog;
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
-    //isLaptopDevice = isLaptop();
-    isLaptopDevice = true;
     noneButton = createNoneKey();
 
     populateTopRowKeys();
@@ -88,15 +87,14 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(InputDevice *joystick, Bu
 }
 
 
-VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(QWidget *parent) :
+VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(bool isNumKeypad, QWidget *parent) :
     QTabWidget(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    m_isNumKeypad = isNumKeypad;
     keyboardTab = new QWidget(this);
     mouseTab = new QWidget(this);
-    isLaptopDevice = true;
-    //isLaptopDevice = isLaptop();
     noneButton = createNoneKey();
     withoutQuickSetDialog = false;
     lastPressedBtn = nullptr;
@@ -148,23 +146,23 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
     QVBoxLayout *tempAuxKeyLayout = new QVBoxLayout();
     QVBoxLayout *tempNumKeyPadLayout = new QVBoxLayout();
 
-   // if (is_numlock_activated())
-  //  {
-  //      tempNumKeyPadLayout = setupKeyboardNumPadLayout();
-  //  }
-  //  else
-  //  {
+    if (m_isNumKeypad)
+    {
+        tempNumKeyPadLayout = setupKeyboardNumPadLayout();
+    }
+    else
+    {
         QPushButton *othersKeysButton = createOtherKeysMenu();
 
         tempNumKeyPadLayout->addWidget(noneButton);
         tempNumKeyPadLayout->addWidget(othersKeysButton);
         tempNumKeyPadLayout->addSpacerItem(new QSpacerItem(0, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding));
-   // }
+    }
 
     QHBoxLayout *tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->addLayout(tempMainKeyLayout);
 
-    if (!isLaptopDevice)
+    if (m_isNumKeypad)
     {
         tempAuxKeyLayout = setupAuxKeyboardLayout();
         tempHBoxLayout->addLayout(tempAuxKeyLayout);
@@ -176,6 +174,8 @@ void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
 
     tempHBoxLayout->addLayout(tempNumKeyPadLayout);
     finalVBoxLayout->addLayout(tempHBoxLayout);
+
+
 }
 
 QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
@@ -189,26 +189,32 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempVBoxLayout->setSpacing(0);
 
     QVBoxLayout *finalVBoxLayout = new QVBoxLayout();
-    if (isLaptopDevice) finalVBoxLayout->setSpacing(0);
+    if (!m_isNumKeypad) finalVBoxLayout->setSpacing(0);
 
     tempHBoxLayout->addWidget(createNewKey("Escape"));
-    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
+
+    if (m_isNumKeypad) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
+
     tempHBoxLayout->addWidget(createNewKey("F1"));
     tempHBoxLayout->addWidget(createNewKey("F2"));
     tempHBoxLayout->addWidget(createNewKey("F3"));
     tempHBoxLayout->addWidget(createNewKey("F4"));
-    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
+
+    if (m_isNumKeypad) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
+
     tempHBoxLayout->addWidget(createNewKey("F5"));
     tempHBoxLayout->addWidget(createNewKey("F6"));
     tempHBoxLayout->addWidget(createNewKey("F7"));
     tempHBoxLayout->addWidget(createNewKey("F8"));
-    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
+
+    if (m_isNumKeypad) tempHBoxLayout->addSpacerItem(new QSpacerItem(70, 10, QSizePolicy::Expanding));
+
     tempHBoxLayout->addWidget(createNewKey("F9"));
     tempHBoxLayout->addWidget(createNewKey("F10"));
     tempHBoxLayout->addWidget(createNewKey("F11"));
     tempHBoxLayout->addWidget(createNewKey("F12"));
 
-    if (isLaptopDevice)
+    if (!m_isNumKeypad)
     {
         tempHBoxLayout->addWidget(createNewKey("Print"));
         tempHBoxLayout->addWidget(createNewKey("Pause"));
@@ -217,7 +223,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
 
     finalVBoxLayout->addLayout(tempHBoxLayout);
 
-    if (!isLaptopDevice) finalVBoxLayout->addSpacerItem(new QSpacerItem(20, 35, QSizePolicy::Minimum, QSizePolicy::Fixed));
+    if (m_isNumKeypad) finalVBoxLayout->addSpacerItem(new QSpacerItem(20, 35, QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     tempHBoxLayout = new QHBoxLayout();
     tempHBoxLayout->setSpacing(0);
@@ -233,7 +239,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("equal"));
     tempHBoxLayout->addWidget(createNewKey("BackSpace"));
 
-    if (isLaptopDevice) {
+    if (!m_isNumKeypad) {
         tempHBoxLayout->addWidget(createNewKey("Home"));
     }
 
@@ -246,7 +252,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout = new QHBoxLayout();
 
     tempHBoxLayout->addWidget(createNewKey("Tab"));
-    if (!isLaptopDevice) tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 30, QSizePolicy::Fixed));
+    if (m_isNumKeypad) tempHBoxLayout->addSpacerItem(new QSpacerItem(10, 30, QSizePolicy::Fixed));
     tempHBoxLayout->addWidget(createNewKey("q"));
     tempHBoxLayout->addWidget(createNewKey("w"));
     tempHBoxLayout->addWidget(createNewKey("e"));
@@ -266,7 +272,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
         tempHBoxLayout->addWidget(createNewKey("backslash"));
     }
 
-    if (isLaptopDevice)
+    if (!m_isNumKeypad)
     {
         tempHBoxLayout->addWidget(createNewKey("Prior"));
         tempVBoxLayout->addLayout(tempHBoxLayout);
@@ -297,7 +303,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
         tempHBoxLayout->addWidget(createNewKey("asterisk"));
     }
 
-    if (!isLaptopDevice)
+    if (m_isNumKeypad)
     {
         tempMiddleVLayout->addLayout(tempHBoxLayout);
         tempMiddleHLayout->addLayout(tempMiddleVLayout);
@@ -338,7 +344,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("slash"));
     tempHBoxLayout->addWidget(createNewKey("Shift_R"));
 
-    if (isLaptopDevice)
+    if (!m_isNumKeypad)
     {
         tempHBoxLayout->addWidget(createNewKey("Up"));
         tempHBoxLayout->addWidget(createNewKey("End"));
@@ -368,7 +374,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
     tempHBoxLayout->addWidget(createNewKey("Menu"));
     tempHBoxLayout->addWidget(createNewKey("Control_R"));
 
-    if (isLaptopDevice)
+    if (!m_isNumKeypad)
     {
         tempHBoxLayout->addWidget(createNewKey("Left"));
         tempHBoxLayout->addWidget(createNewKey("Down"));
@@ -377,7 +383,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
 
     tempVBoxLayout->addLayout(tempHBoxLayout);
 
-    if (!isLaptopDevice)
+    if (m_isNumKeypad)
     {
         tempVBoxLayout->setStretch(0, 1);
         tempVBoxLayout->setStretch(1, 2);
@@ -387,7 +393,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupMainKeyboardLayout()
 
     finalVBoxLayout->addLayout(tempVBoxLayout);
 
-    if (!isLaptopDevice)
+    if (m_isNumKeypad)
     {
         finalVBoxLayout->setStretch(0, 1);
         finalVBoxLayout->setStretch(1, 0);
@@ -490,7 +496,7 @@ QVBoxLayout* VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
     tempGridLayout->addWidget(createNewKey("KP_2"), 1, 2, 1, 1);
     tempGridLayout->addWidget(createNewKey("KP_3"), 1, 3, 1, 1);
     tempGridLayout->addWidget(createNewKey("KP_0"), 2, 1, 1, 2);
-    tempGridLayout->addWidget(createNewKey("KP_Decimal"), 2, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_Delete"), 2, 3, 1, 1);
 
     tempHBoxLayout->addLayout(tempGridLayout);
     tempHBoxLayout->addWidget(createNewKey("KP_Enter"));
@@ -651,7 +657,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     }
     else if (xcodestring == "Shift_R")
     {
-        if (isLaptopDevice) width = 59;
+        if (!m_isNumKeypad) width = 59;
         else width = 95;
     }
     else if (xcodestring == "Caps_Lock")
@@ -661,7 +667,7 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     else if (xcodestring == "Return")
     {
         width = 64;
-        if (!isLaptopDevice) height = 64;
+        if (m_isNumKeypad) height = 64;
         pushButton->setMaximumWidth(100);
     }
     else if (xcodestring == "BackSpace")
@@ -699,12 +705,12 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     }
     else if (xcodestring == "backslash") {
 
-        if (!isLaptopDevice) width = 32;
+        if (m_isNumKeypad) width = 32;
         else width = 43;
     }
     else if ((xcodestring == "Down") || (xcodestring == "Left") || (xcodestring == "Right"))
     {
-        if (isLaptopDevice) {
+        if (!m_isNumKeypad) {
             QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Preferred);
             pushButton->setSizePolicy(sizePolicy2);
             pushButton->setFixedWidth(58);
@@ -712,12 +718,12 @@ VirtualKeyPushButton* VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
     }
     else if ((xcodestring == "Control_L") || (xcodestring == "Super_L") || (xcodestring == "Alt_L") || (xcodestring == "Alt_R")|| (xcodestring == "ISO_Level3_Shift")|| (xcodestring == "Menu")|| (xcodestring == "Control_R"))
     {
-        if (isLaptopDevice) width = 32;
+        if (!m_isNumKeypad) width = 32;
         else width = 41;
     }
     else if ((xcodestring.startsWith("F") && (xcodestring.count() > 1)) || (xcodestring == "Print") || (xcodestring == "Escape") || (xcodestring == "Pause") || (xcodestring == "Delete"))
     {
-        if (isLaptopDevice)
+        if (!m_isNumKeypad)
         {
             QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
             pushButton->setSizePolicy(sizePolicy2);

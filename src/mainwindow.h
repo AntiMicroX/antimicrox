@@ -67,6 +67,8 @@ public:
     QTranslator* getAppTranslator() const;
 
     QMap<int, QList<QAction*> > const& getProfileActions();
+    
+    bool isKeypadUnlocked();
 
 protected:
     virtual void showEvent(QShowEvent *event);

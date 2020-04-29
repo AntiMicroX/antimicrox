@@ -45,7 +45,7 @@
 ButtonEditDialog* ButtonEditDialog::instance = nullptr;
 
 
-ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
+ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, bool isNumKeypad, QWidget *parent) :
     QDialog(parent, Qt::Window),
     helper(),
     ui(new Ui::ButtonEditDialog)
@@ -53,6 +53,12 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
     ui->setupUi(this);
 
     withoutQuickSetDialog = false;
+    m_isNumKeypad = isNumKeypad;
+
+    if (m_isNumKeypad)
+    {
+        setMinimumSize(844, 480);
+    }
 
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Choose your keyboard key"));
@@ -83,7 +89,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
 
     ui->virtualKeyMouseTabWidget->hide();
     ui->virtualKeyMouseTabWidget->deleteLater();
-    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick , &helper, currentQuickDialog, nullptr, this);
+    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick , &helper, m_isNumKeypad, currentQuickDialog, nullptr, this);
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
 
     PadderCommon::inputDaemonMutex.unlock();
@@ -105,7 +111,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice* joystick, QWidget *parent) :
 }
 
 
-ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWidget *parent) :
+ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, bool isNumKeypad, QWidget *parent) :
     QDialog(parent, Qt::Window),
     helper(),
     ui(new Ui::ButtonEditDialog)
@@ -113,6 +119,12 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
     ui->setupUi(this);
 
     withoutQuickSetDialog = true;
+    m_isNumKeypad = isNumKeypad;
+
+    if (m_isNumKeypad)
+    {
+        setMinimumSize(844, 480);
+    }
 
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Choose your keyboard key"));
@@ -139,7 +151,7 @@ ButtonEditDialog::ButtonEditDialog(JoyButton* button, InputDevice* joystick, QWi
 
     ui->virtualKeyMouseTabWidget->hide();
     ui->virtualKeyMouseTabWidget->deleteLater();
-    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick, &helper, currentQuickDialog, button, this);
+    ui->virtualKeyMouseTabWidget = new VirtualKeyboardMouseWidget(joystick, &helper, m_isNumKeypad, currentQuickDialog, button, this);
     ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
 
     PadderCommon::inputDaemonMutex.unlock();

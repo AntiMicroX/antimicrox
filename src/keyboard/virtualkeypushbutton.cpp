@@ -89,13 +89,11 @@ void VirtualKeyPushButton::processSingleSelection()
     emit keycodeObtained(keycode, qkeyalias);
 }
 
-// IT CAN BE HERE
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString temp = QString();
-
     if (knownAliases.contains(xcodestring))
     {
         temp = knownAliases.value(xcodestring);
@@ -168,6 +166,7 @@ void VirtualKeyPushButton::populateKnownAliases()
         knownAliases.insert("KP_Add", tr("+"));
         knownAliases.insert("KP_Enter", tr("Enter"));
         knownAliases.insert("KP_Decimal", tr("."));
+        knownAliases.insert("KP_Delete", tr("Del"));
         knownAliases.insert("asterisk", tr("*"));
         knownAliases.insert("less", tr("<"));
         knownAliases.insert("colon", tr(":"));
