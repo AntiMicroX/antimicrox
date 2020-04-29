@@ -216,8 +216,7 @@ QString AutoProfileInfo::getDeviceName() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (deviceName.isNull()) return "";
-    else return deviceName;
+    return deviceName;
 }
 
 void AutoProfileInfo::setPartialState(bool value)

@@ -454,10 +454,6 @@ void AutoProfileWatcher::syncProfileAssignment()
        // QString active = settings->value(QString("DefaultAutoProfile-%1/Active").arg(guid), "").toString();
         QString profile = settings->value(QString("DefaultAutoProfile-%1/Profile").arg(uniqueID), "").toString();
         QString active = settings->value(QString("DefaultAutoProfile-%1/Active").arg(uniqueID), "").toString();
-        QString exe = settings->value(QString("DefaultAutoProfile-%1/Exe").arg(uniqueID), "").toString();
-        QString partialTitle = settings->value(QString("DefaultAutoProfile-%1/PartialTitle").arg(uniqueID), "").toString();
-        QString windowClass = settings->value(QString("DefaultAutoProfile-%1/WindowClass").arg(uniqueID), "").toString();
-        QString windowName = settings->value(QString("DefaultAutoProfile-%1/WindowName").arg(uniqueID), "").toString();
 
 //        if (!guid.isEmpty() && !profile.isEmpty())
 //        {
@@ -479,10 +475,6 @@ void AutoProfileWatcher::syncProfileAssignment()
             if (profileActive && uniqueID != "all")
             {
                 AutoProfileInfo *info = new AutoProfileInfo(uniqueID, profile, profileActive, 0, this);
-                info->setExe(exe);
-                info->setWindowName(windowName);
-                info->setWindowClass(windowClass);
-                info->setPartialState(partialTitle == "1" ? true : false);
                 info->setDefaultState(true);
                 defaultProfileAssignments.insert(uniqueID, info);
             }

@@ -77,7 +77,6 @@ private slots:
     void showCaptureHelpWindow();
     void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
     void on_setPartialCheckBox_stateChanged(int arg1);
-    void checkDefaultCheckbox(const QString& text);
 
 private:
     Ui::AddEditAutoProfileDialog *ui;
