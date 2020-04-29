@@ -687,7 +687,7 @@ void JoyButton::activateSlots()
                         JoyButtonSlot *slotmini = it->next();
                         qDebug() << "Run activated mini slot - name - deviceCode - mode: " << slotmini->getSlotString() << " - " << slotmini->getSlotCode() << " - " << slotmini->getSlotMode();
 
-                        MiniSlotRun* minijob = new MiniSlotRun(slotmini, this, timeBetweenMiniSlots * timeX);
+                        MiniSlotRun* minijob = new MiniSlotRun(slot, slotmini, this, timeBetweenMiniSlots * timeX);
 
                         minijob->setAutoDelete(false);
 
@@ -735,7 +735,7 @@ void JoyButton::activateSlots()
 }
 
 
-void JoyButton::activateMiniSlots(JoyButtonSlot* slot)
+void JoyButton::activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix)
 {
     int tempcode = slot->getSlotCode();
     JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
@@ -744,11 +744,24 @@ void JoyButton::activateMiniSlots(JoyButtonSlot* slot)
     {
         case JoyButtonSlot::JoyKeyboard:
         {
-            sendevent(slot, true);
+            sendKeybEvent(slot, true);
 
             getActiveSlotsLocal().append(slot);
             int oldvalue = GlobalVariables::JoyButton::JoyButton::activeKeys.value(tempcode, 0) + 1;
             GlobalVariables::JoyButton::JoyButton::activeKeys.insert(tempcode, oldvalue);
+
+            if (!slot->isModifierKey())
+            {
+                qDebug() << "There has been assigned a lastActiveKey " << slot->getSlotString();
+
+                lastActiveKey = mix;
+            }
+            else
+            {
+                qDebug() << "It's not modifier key. lastActiveKey is null pointer";
+
+                lastActiveKey = nullptr;
+            }
 
            break;
         }

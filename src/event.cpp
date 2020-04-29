@@ -726,3 +726,8 @@ QString keysymToKeyString(int keysym, int alias)
 
     return newkey;
 }
+
+void sendKeybEvent(JoyButtonSlot *slot, bool pressed)
+{
+    EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
+}

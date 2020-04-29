@@ -94,7 +94,7 @@ public:
     void setStartAccelMultiplier(double value);
     void setMaxAccelThreshold(double value);
     void setChangeSetSelection(int index, bool updateActiveString=true);
-    void activateMiniSlots(JoyButtonSlot* slot);
+    void activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix);
 
     bool hasPendingEvent(); // JoyButtonEvents class
     bool getToggleState();
@@ -606,7 +606,8 @@ class MiniSlotRun : public QRunnable, public QObject
 {
 
 public:
-    MiniSlotRun(JoyButtonSlot* slotmini, JoyButton* btn, int milisec) :
+    MiniSlotRun(JoyButtonSlot *slot, JoyButtonSlot* slotmini, JoyButton* btn, int milisec) :
+        m_slot(slot),
         m_slotmini(slotmini),
         m_btn(btn),
         m_miliseconds(milisec),
@@ -623,10 +624,11 @@ public:
     {
         this->thread()->wait(m_miliseconds);
 
-        m_btn->activateMiniSlots(m_slotmini);
+        m_btn->activateMiniSlots(m_slotmini, m_slot);
     }
 
 private:
+    JoyButtonSlot* m_slot;
     JoyButtonSlot* m_slotmini;
     JoyButton* m_btn;
     int m_miliseconds;
