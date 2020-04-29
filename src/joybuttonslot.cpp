@@ -93,7 +93,7 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
     easingActive = false;
     m_textData = slot->m_textData;
     extraData = slot->extraData;
-    //setMixSlots(slot->mix_slots);
+   // setMixSlots(slot->mix_slots);
 
 
 }
@@ -563,13 +563,12 @@ QVariant JoyButtonSlot::getExtraData()
     return extraData;
 }
 
-
 void JoyButtonSlot::secureMixSlotsInit()
 {
     if (mix_slots == nullptr)
     {
         mix_slots = new QList<JoyButtonSlot*>();
-     //   connect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
+       // connect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
     }
 }
 
@@ -587,9 +586,9 @@ void JoyButtonSlot::assignMixSlotsToNull()
 }
 
 
-//void JoyButtonSlot::cleanMixSlots()
-//{
-    /*if (mix_slots != nullptr)
+void JoyButtonSlot::cleanMixSlots()
+{
+    if (mix_slots != nullptr)
     {
        // disconnect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
 
@@ -601,27 +600,13 @@ void JoyButtonSlot::assignMixSlotsToNull()
 
         delete mix_slots;
         mix_slots = nullptr;
-    }*/
-//}
+    }
+}
 
 
 void JoyButtonSlot::setMixSlots(QList<JoyButtonSlot*> *mixSlots)
 {
-    //cleanMixSlots();
-
-   /* for(auto el : *mixSlots)
-    {
-        JoyButtonSlot* slot = new JoyButtonSlot(el->getSlotCode(), el->getSlotCodeAlias(), el->getSlotMode(), this);
-        mix_slots->append(slot);
-    }*/
-
     mix_slots = mixSlots;
-
-    if (mix_slots != nullptr)
-    {
-      //  disconnect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
-      //  connect(qApp, &QApplication::aboutToQuit, this, &JoyButtonSlot::cleanMixSlots);
-    }
 }
 
 

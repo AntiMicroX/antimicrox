@@ -94,11 +94,11 @@ public:
 
     bool isValidSlot();
 
+    void cleanMixSlots();
+
     JoyButtonSlot& operator=(JoyButtonSlot* slot);
 
 
-//private slots:
-   // void cleanMixSlots();
 
     
 private:

@@ -687,9 +687,10 @@ void JoyButton::activateSlots()
                         JoyButtonSlot *slotmini = it->next();
                         qDebug() << "Run activated mini slot - name - deviceCode - mode: " << slotmini->getSlotString() << " - " << slotmini->getSlotCode() << " - " << slotmini->getSlotMode();
 
-                        MiniSlotRun* minijob = new MiniSlotRun(slot, slotmini, this, timeBetweenMiniSlots * timeX);
+                        MiniSlotRun* minijob = new MiniSlotRun(slotmini, this, timeBetweenMiniSlots * timeX);
 
                         minijob->setAutoDelete(false);
+
 
                         threadPool->start(minijob);
 
@@ -717,7 +718,7 @@ void JoyButton::activateSlots()
             else
             {
                 qDebug() << "Check now simple slots";
-                addEachSlotToActives(slot, firstTime, i, delaySequence, exit, slotiter);
+                addEachSlotToActives(slot, i, delaySequence, exit, slotiter);
                 firstTime = false;
             }
         }
@@ -734,7 +735,7 @@ void JoyButton::activateSlots()
 }
 
 
-void JoyButton::activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix)
+void JoyButton::activateMiniSlots(JoyButtonSlot* slot)
 {
     int tempcode = slot->getSlotCode();
     JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
@@ -745,39 +746,18 @@ void JoyButton::activateMiniSlots(JoyButtonSlot* slot, JoyButtonSlot* mix)
         {
             sendevent(slot, true);
 
-           getActiveSlotsLocal().append(slot);
+            getActiveSlotsLocal().append(slot);
             int oldvalue = GlobalVariables::JoyButton::JoyButton::activeKeys.value(tempcode, 0) + 1;
             GlobalVariables::JoyButton::JoyButton::activeKeys.insert(tempcode, oldvalue);
 
-            //qDebug() << "There has been assigned a lastActiveKey: " << mix->getSlotString();
-
-            if (!slot->isModifierKey())
-            {
-                qDebug() << "There has been assigned a lastActiveKey " << slot->getSlotString();
-
-                lastActiveKey = slot;
-            }
-            else
-            {
-                qDebug() << "It's not modifier key. lastActiveKey is null pointer";
-
-                lastActiveKey = nullptr;
-            }
-
-            break;
+           break;
         }
     }
 }
 
 
-void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, bool firstTime, int& i, bool& delaySequence, bool& exit, QListIterator<JoyButtonSlot*>* slotiter)
+void JoyButton::addEachSlotToActives(JoyButtonSlot* slot, int& i, bool& delaySequence, bool& exit, QListIterator<JoyButtonSlot*>* slotiter)
 {
-   /* if (firstTime)
-    {
-        getActiveSlotsLocal().clear();
-        GlobalVariables::JoyButton::JoyButton::activeKeys.clear();
-    }*/
-
         int tempcode = slot->getSlotCode();
         JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
@@ -3351,21 +3331,7 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
         {
             if (slot->getMixSlots() != nullptr && slot->getMixSlots() != NULL)
             {
-                if (!slot->getMixSlots()->isEmpty())
-                {
-                    QListIterator<JoyButtonSlot*> i(*slot->getMixSlots());
-                    while (i.hasNext())
-                    {
-                        auto el = i.next();
-                        delete el;
-                    }
-
-                    slot->getMixSlots()->clear();
-                }
-
-                delete slot->getMixSlots();
-                slot->assignMixSlotsToNull();
-                qDebug() << "list of mix slots is a null pointer? " << ((slot->getMixSlots() == nullptr) ? "yes" : "no");
+                slot->cleanMixSlots();
             }
 
 
@@ -3410,20 +3376,14 @@ void JoyButton::removeAssignedSlot(int index)
             slot->getMixSlots()->clear();
             delete slot->getMixSlots();
             slot->assignMixSlotsToNull();
+
+            getAssignedSlots()->removeAt(index);
         }
-
-
-        // there is such problem:
-        // splitting after joining without saving joining action
-        // bases on data on SimpleKeyGrabberButton which has JoyButtonSlot not dynamically allocated
-        // so when we do "delete slot" here, exception will occur because JoyButtonSlot is automatically
-        // deleted as a class member that has QObject as an ancestor
-        // but when we try to split after start of the application
-        // there is no problem to do "delete slot"
-
+        else
+        {
             delete slot;
             slot = nullptr;
-
+        }
 
         tempAssignLocker.unlock();
         buildActiveZoneSummaryString();
