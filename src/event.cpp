@@ -613,8 +613,6 @@ QString keycodeToKeyString(int keycode, int alias)
 
     Q_UNUSED(alias)
 
-    qDebug() << "keycode is: " << keycode;
-
     if (keycode <= 0)
     {
         newkey = "[NO KEY]";
@@ -653,8 +651,10 @@ QString keycodeToKeyString(int keycode, int alias)
                     tempstring[numchars] = '\0';
                     newkey = QString::fromUtf8(tempstring);
 
-                    qDebug() << "NEWKEY:" << newkey << endl;
-                    qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
+
+                        qDebug() << "NEWKEY:" << newkey << endl;
+                        qDebug() << "NEWKEY LEGNTH:" << numchars << endl;
+
                 }
                 else
                 {
