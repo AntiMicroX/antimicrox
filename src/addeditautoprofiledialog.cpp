@@ -56,32 +56,13 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     this->settings = settings;
     this->editForm = edit;
     this->devices = devices;
-   // this->originalGUID = info->getGUID();
     this->originalUniqueID = info->getUniqueID();
     this->originalExe = info->getExe();
     this->originalWindowClass = info->getWindowClass();
     this->originalWindowName = info->getWindowName();
 
-    bool allowDefault = false;
-
     if (info->isPartialState()) ui->setPartialCheckBox->setChecked(true);
     else ui->setPartialCheckBox->setChecked(false);
-
-//    QListIterator<QString> iterGUIDs(reservedGUIDS);
-
-//    while (iterGUIDs.hasNext())
-//    {
-//        QString guid = iterGUIDs.next();
-
-//        if (!getReservedGUIDs().contains(guid)) this->reservedGUIDs.append(guid);
-//    }
-
-//    if ((info->getGUID() != "all") &&
-//        (info->getGUID() != "") &&
-//        !getReservedGUIDs().contains(info->getGUID()))
-//    {
-//        allowDefault = true;
-//    }
 
     QListIterator<QString> iterUniques(reservedUniques);
 
@@ -92,51 +73,10 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
         if (!getReservedUniques().contains(uniqueID)) this->reservedUniques.append(uniqueID);
     }
 
-    if ((info->getUniqueID() != "all") &&
-        (info->getUniqueID() != "") &&
-        !getReservedUniques().contains(info->getUniqueID()))
-    {
-        allowDefault = true;
-    }
-
-    if (allowDefault && info->getExe().isEmpty())
-    {
-        ui->asDefaultCheckBox->setEnabled(true);
-
-        if (info->isCurrentDefault()) ui->asDefaultCheckBox->setChecked(true);
-    }
-    else
-    {
-        ui->asDefaultCheckBox->setToolTip(tr("A different profile is already selected as the default for this device."));
-    }
-
         ui->devicesComboBox->addItem("all");
         QListIterator<InputDevice*> iter(*devices);
         int found = -1;
         int numItems = 1;
-
-//        while (iter.hasNext())
-//        {
-//            InputDevice *device = iter.next();
-//            ui->devicesComboBox->addItem(device->getSDLName(), QVariant::fromValue<InputDevice*>(device));
-
-//            if (device->getGUIDString() == info->getGUID()) found = numItems;
-
-//            numItems++;
-//        }
-
-//        if (!info->getGUID().isEmpty() && (info->getGUID() != "all"))
-//        {
-//            if (found >= 0)
-//            {
-//                ui->devicesComboBox->setCurrentIndex(found);
-//            }
-//            else
-//            {
-//                ui->devicesComboBox->addItem(tr("Current (%1)").arg(info->getDeviceName()));
-//                ui->devicesComboBox->setCurrentIndex(ui->devicesComboBox->count()-1);
-//            }
-//        }
 
         while (iter.hasNext())
         {
@@ -166,11 +106,12 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     ui->winClassLineEdit->setText(info->getWindowClass());
     ui->winNameLineEdit->setText(info->getWindowName());
     ui->selectWindowPushButton->setVisible(false);
+    ui->asDefaultCheckBox->setEnabled(info->isCurrentDefault());
 
     connect(ui->profileBrowsePushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::openProfileBrowseDialog);
     connect(ui->applicationPushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::openApplicationBrowseDialog);
-    //connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AddEditAutoProfileDialog::checkForReservedGUIDs);
     connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &AddEditAutoProfileDialog::checkForReservedUniques);
+    connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentTextChanged), this, &AddEditAutoProfileDialog::checkDefaultCheckbox);
     connect(ui->applicationLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
     connect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
     connect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
@@ -178,6 +119,8 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     connect(ui->detectWinPropsSelectWindowPushButton, &QPushButton::clicked, this, &AddEditAutoProfileDialog::showCaptureHelpWindow);
 
     connect(this, &AddEditAutoProfileDialog::accepted, this, &AddEditAutoProfileDialog::saveAutoProfileInformation);
+
+    ui->asDefaultCheckBox->setChecked(info->isCurrentDefault());
 }
 
 
@@ -239,14 +182,15 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
     info->setProfileLocation(ui->profileLineEdit->text());
     int deviceIndex = ui->devicesComboBox->currentIndex();
 
+
     if (deviceIndex > 0)
     {
+
         // Assume that if the following is not true, the GUID should
         // not be changed.
         if (!ui->devicesComboBox->itemData(deviceIndex, Qt::UserRole).isNull())
         {
             InputDevice *device = ui->devicesComboBox->itemData(deviceIndex, Qt::UserRole).value<InputDevice*>();
-            //info->setGUID(device->getGUIDString());
             info->setUniqueID(device->getUniqueIDString());
             info->setDeviceName(device->getSDLName());
         }
@@ -265,32 +209,6 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
 }
 
 
-//void AddEditAutoProfileDialog::checkForReservedGUIDs(int index)
-//{
-//    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-//    QVariant data = ui->devicesComboBox->itemData(index);
-
-//    if (index == 0)
-//    {
-//        ui->asDefaultCheckBox->setChecked(false);
-//        ui->asDefaultCheckBox->setEnabled(false);
-//        ui->asDefaultCheckBox->setToolTip(tr("Please use the main default profile selection."));
-//    }
-//    else if (!data.isNull() && getReservedUniques().contains(data.value<InputDevice*>()->getGUIDString()))
-//    {
-//        ui->asDefaultCheckBox->setChecked(false);
-//        ui->asDefaultCheckBox->setEnabled(false);
-//        ui->asDefaultCheckBox->setToolTip(tr("A different profile is already selected as the default for this device."));
-//    }
-//    else
-//    {
-//        ui->asDefaultCheckBox->setEnabled(true);
-//        ui->asDefaultCheckBox->setToolTip(tr("Select this profile to be the default loaded for\nthe specified device. The selection will be used instead\nof the all default profile option."));
-//    }
-//}
-
-
 void AddEditAutoProfileDialog::checkForReservedUniques(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -301,27 +219,20 @@ void AddEditAutoProfileDialog::checkForReservedUniques(int index)
     {
         ui->asDefaultCheckBox->setChecked(false);
         ui->asDefaultCheckBox->setEnabled(false);
-        ui->asDefaultCheckBox->setToolTip(tr("Please use the main default profile selection."));
+        QMessageBox::warning(this, tr("Main Profile"), tr("Please use the main default profile selection."));
     }
     else if (!data.isNull() && getReservedUniques().contains(data.value<InputDevice*>()->getUniqueIDString()))
     {
         ui->asDefaultCheckBox->setChecked(false);
         ui->asDefaultCheckBox->setEnabled(false);
-        ui->asDefaultCheckBox->setToolTip(tr("A different profile is already selected as the default for this device."));
+        QMessageBox::warning(this, tr("Already selected"), tr("A different profile is already selected as the default for this device."));
     }
     else
     {
         ui->asDefaultCheckBox->setEnabled(true);
-        ui->asDefaultCheckBox->setToolTip(tr("Select this profile to be the default loaded for\nthe specified device. The selection will be used instead\nof the all default profile option."));
+        QMessageBox::information(this, tr("Chosen Profile"), tr("The selection will be used instead\nof the all default profile option."));
     }
 }
-
-//QString AddEditAutoProfileDialog::getOriginalGUID() const
-//{
-//    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-//    return originalGUID;
-//}
 
 
 QString AddEditAutoProfileDialog::getOriginalUniqueID() const
@@ -621,11 +532,6 @@ bool AddEditAutoProfileDialog::getDefaultInfo() const {
     return defaultInfo;
 }
 
-//QList<QString> const& AddEditAutoProfileDialog::getReservedGUIDs() {
-
-//    return reservedGUIDs;
-//}
-
 QList<QString> const& AddEditAutoProfileDialog::getReservedUniques() {
 
     return reservedUniques;
@@ -635,4 +541,17 @@ void AddEditAutoProfileDialog::on_setPartialCheckBox_stateChanged(int arg1)
 {
     if (arg1 == 0) ui->winNameLineEdit->setEnabled(false);
     else ui->winNameLineEdit->setEnabled(true);
+}
+
+void AddEditAutoProfileDialog::checkDefaultCheckbox(const QString& text)
+{
+    if (text == "all")
+    {
+        ui->asDefaultCheckBox->setChecked(false);
+        ui->asDefaultCheckBox->setDisabled(true);
+    }
+    else
+    {
+        ui->asDefaultCheckBox->setDisabled(false);
+    }
 }

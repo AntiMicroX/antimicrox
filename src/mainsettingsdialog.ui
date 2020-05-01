@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>555</width>
-    <height>818</height>
+    <height>844</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -104,7 +104,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">

@@ -42,6 +42,7 @@
 #include "gamecontrollermappingdialog.h"
 #include "calibration.h"
 #include "xml/inputdevicexml.h"
+#include "xml/joybuttonslotxml.h"
 
 #if defined(WITH_X11)
     #include "autoprofileinfo.h"
@@ -213,7 +214,6 @@ MainWindow::~MainWindow()
 
     delete ui;
 }
-
 
 void MainWindow::alterConfigFromSettings()
 {

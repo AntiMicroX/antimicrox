@@ -42,7 +42,10 @@ public slots:
                          JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
     void insertAssignedSlot(int code, int alias, int index,
                             JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+    void insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString);
     void removeAssignedSlot(int index);
+    void onlyReset();
+    void onlyRemoveAssignedSlot(int index);
 };
 
 #endif // ADVANCEBUTTONDIALOGHELPER_H

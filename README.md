@@ -110,6 +110,7 @@ installed on your system in order to build this program:
 * libx11-dev (libx11 on distros based on Arch Linux) (Needed to compile with Qt5 support)
 * itstool (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 * gettext
+* libqt5x11extras5-dev
 
 <br/>
 
@@ -143,6 +144,17 @@ from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
  **Distro** | **Maintainer** | **Package**  |
 | :--------- | :------------- | :----------- |
 | Arch Linux | Piotr Górski   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
+
+
+#### Building deb package
+
+```
+    cd antimicroX
+    mkdir build && cd build
+    cmake ..
+    cpack
+```
+
 
 <br/>
 
@@ -206,6 +218,7 @@ mkdir repo
 If you have installed antimicroX locally with success, you can run application:
 
 `flatpak run com.github.juliagoda.antimicroX`
+
 
 
 #### Updating

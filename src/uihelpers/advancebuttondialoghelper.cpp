@@ -43,6 +43,14 @@ void AdvanceButtonDialogHelper::insertAssignedSlot(int code, int alias, int inde
     button->insertAssignedSlot(code, alias, index, mode);
 }
 
+void AdvanceButtonDialogHelper::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    button->eventReset();
+    button->insertAssignedSlot(newSlot, index, updateActiveString);
+}
+
 void AdvanceButtonDialogHelper::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -64,6 +72,41 @@ void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    int j = 0;
+    qDebug() << "Assigned list slots after joining";
+    for(auto el : *button->getAssignedSlots())
+    {
+        qDebug() << j << ")";
+        qDebug() << "code: " << el->getSlotCode();
+        qDebug() << "mode: " << el->getSlotMode();
+        qDebug() << "string: " << el->getSlotString();
+        j++;
+    }
     button->eventReset();
+
+    j = 0;
+    qDebug() << "Assigned list slots after joining";
+    for(auto el : *button->getAssignedSlots())
+    {
+        qDebug() << j << ")";
+        qDebug() << "code: " << el->getSlotCode();
+        qDebug() << "mode: " << el->getSlotMode();
+        qDebug() << "string: " << el->getSlotString();
+        j++;
+    }
+    button->removeAssignedSlot(index);
+}
+
+void AdvanceButtonDialogHelper::onlyReset()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    button->eventReset();
+}
+
+void AdvanceButtonDialogHelper::onlyRemoveAssignedSlot(int index)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
     button->removeAssignedSlot(index);
 }

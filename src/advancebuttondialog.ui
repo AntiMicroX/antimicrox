@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>439</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,7 +22,7 @@
   <property name="minimumSize">
    <size>
     <width>750</width>
-    <height>430</height>
+    <height>480</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -97,7 +97,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -139,6 +139,9 @@
            <property name="verticalScrollBarPolicy">
             <enum>Qt::ScrollBarAlwaysOff</enum>
            </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::ExtendedSelection</enum>
+           </property>
            <property name="flow">
             <enum>QListView::LeftToRight</enum>
            </property>
@@ -170,7 +173,10 @@
           </spacer>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,0,0">
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
@@ -274,8 +280,17 @@
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="spacing">
+              <number>4</number>
+             </property>
              <item>
               <widget class="QPushButton" name="insertSlotButton">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
                <property name="toolTip">
                 <string>Insert a new blank slot.</string>
                </property>
@@ -289,7 +304,47 @@
               </widget>
              </item>
              <item>
+              <widget class="QPushButton" name="joinSlotButton">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Join</string>
+               </property>
+               <property name="icon">
+                <iconset theme="join_slots" resource="resources.qrc">
+                 <normaloff>:/icons/icons/16x16/actions/16-actions-join_slots.png</normaloff>:/icons/icons/16x16/actions/16-actions-join_slots.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="splitSlotButton">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Split</string>
+               </property>
+               <property name="icon">
+                <iconset theme="split_slot" resource="resources.qrc">
+                 <normaloff>:/icons/icons/16x16/actions/16-actions-split_slot.png</normaloff>:/icons/icons/16x16/actions/16-actions-split_slot.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="deleteSlotButton">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
                <property name="toolTip">
                 <string>Delete a slot.</string>
                </property>
@@ -304,6 +359,12 @@
              </item>
              <item>
               <widget class="QPushButton" name="clearAllPushButton">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
                <property name="toolTip">
                 <string>Clear all currently assigned slots.</string>
                </property>
@@ -331,7 +392,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>20</height>
+             <height>2</height>
             </size>
            </property>
           </spacer>
@@ -1208,7 +1269,9 @@
    <header>slotitemlistwidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

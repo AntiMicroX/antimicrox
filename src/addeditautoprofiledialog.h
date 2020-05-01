@@ -46,7 +46,6 @@ public:
     ~AddEditAutoProfileDialog();
 
     AutoProfileInfo* getAutoProfile() const;
-    //QString getOriginalGUID() const;
     QString getOriginalUniqueID() const;
     QString getOriginalExe() const;
     QString getOriginalWindowClass() const;
@@ -56,7 +55,6 @@ public:
     AntiMicroSettings *getSettings() const;
     bool getEditForm() const;
     bool getDefaultInfo() const;
-    // QList<QString> const& getReservedGUIDs();
     QList<QString> const& getReservedUniques();
 
 
@@ -70,13 +68,13 @@ private slots:
     void openProfileBrowseDialog();
     void openApplicationBrowseDialog();
     void saveAutoProfileInformation();
-    //void checkForReservedGUIDs(int index);
     void checkForReservedUniques(int index);
     void checkForDefaultStatus();
     void windowPropAssignment(CapturedWindowInfoDialog *dialog);
     void showCaptureHelpWindow();
     void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
     void on_setPartialCheckBox_stateChanged(int arg1);
+    void checkDefaultCheckbox(const QString& text);
 
 private:
     Ui::AddEditAutoProfileDialog *ui;
@@ -86,9 +84,7 @@ private:
     AntiMicroSettings *settings;
     bool editForm;
     bool defaultInfo;
-    //QList<QString> reservedGUIDs;
     QList<QString> reservedUniques;
-    //QString originalGUID;
     QString originalUniqueID;
     QString originalExe;
     QString originalWindowClass;
