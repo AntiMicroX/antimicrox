@@ -1,0 +1,31 @@
+name: Build
+
+on: [ push, pull_request]
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Install Dependencies
+      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev
+    
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Runs a set of commands using the runners shell
+    - name: Build
+      run: |
+        ls
+        pwd
+        mkdir build && cd ./build
+        cmake ..
+        make
+
+
+
+
+
