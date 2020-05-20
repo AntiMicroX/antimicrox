@@ -55,6 +55,7 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
 
+
 private:
     ButtonEditDialogHelper helper;
     Ui::ButtonEditDialog *ui;

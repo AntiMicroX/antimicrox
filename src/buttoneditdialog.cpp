@@ -361,6 +361,7 @@ void ButtonEditDialog::refreshSlotSummaryLabel()
     else ui->slotSummaryLabel->setText(tr("No button"));
 }
 
+
 void ButtonEditDialog::changeToggleSetting()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -381,32 +382,39 @@ void ButtonEditDialog::openAdvancedDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ui->advancedPushButton->setEnabled(false);
+    if (lastJoyButton != nullptr)
+    {
+        if (lastJoyButton->getAssignedSlots()->count() > 0)
+        {
 
-    if (lastJoyButton != nullptr) {
+            AdvanceButtonDialog *dialog = new AdvanceButtonDialog(lastJoyButton, this);
+            dialog->show();
 
-        AdvanceButtonDialog *dialog = new AdvanceButtonDialog(lastJoyButton, this);
-        dialog->show();
+            // Disconnect event to allow for placing slot to AdvanceButtonDialog
+            disconnect(this, &ButtonEditDialog::keyGrabbed, nullptr, nullptr);
+            disconnect(this, &ButtonEditDialog::selectionCleared, nullptr, nullptr);
+            disconnect(this, &ButtonEditDialog::selectionFinished, nullptr, nullptr);
 
-        // Disconnect event to allow for placing slot to AdvanceButtonDialog
-        disconnect(this, &ButtonEditDialog::keyGrabbed, nullptr, nullptr);
-        disconnect(this, &ButtonEditDialog::selectionCleared, nullptr, nullptr);
-        disconnect(this, &ButtonEditDialog::selectionFinished, nullptr, nullptr);
+            connect(dialog, &AdvanceButtonDialog::finished, ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections);
+            connect(dialog, &AdvanceButtonDialog::finished, ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::establishVirtualMouseSignalConnections);
+            connect(dialog, &AdvanceButtonDialog::finished, this, &ButtonEditDialog::closedAdvancedDialog);
+            connect(dialog, &AdvanceButtonDialog::turboButtonEnabledChange, this, &ButtonEditDialog::setTurboButtonEnabled);
 
-        connect(dialog, &AdvanceButtonDialog::finished, ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::establishVirtualKeyboardSingleSignalConnections);
-        connect(dialog, &AdvanceButtonDialog::finished, ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::establishVirtualMouseSignalConnections);
-        connect(dialog, &AdvanceButtonDialog::finished, this, &ButtonEditDialog::closedAdvancedDialog);
-        connect(dialog, &AdvanceButtonDialog::turboButtonEnabledChange, this, &ButtonEditDialog::setTurboButtonEnabled);
+            connect(this, &ButtonEditDialog::sendTempSlotToAdvanced, dialog, &AdvanceButtonDialog::placeNewSlot);
+            connect(this, &ButtonEditDialog::keyGrabbed, dialog, &AdvanceButtonDialog::placeNewSlot);
+            connect(this, &ButtonEditDialog::selectionCleared, dialog, &AdvanceButtonDialog::clearAllSlots);
+            connect(ui->virtualKeyMouseTabWidget, static_cast<void (VirtualKeyboardMouseWidget::*)(JoyButtonSlot*)>(&VirtualKeyboardMouseWidget::selectionMade), dialog, &AdvanceButtonDialog::placeNewSlot);
+            connect(ui->virtualKeyMouseTabWidget, static_cast<void (VirtualKeyboardMouseWidget::*)(int,int)>(&VirtualKeyboardMouseWidget::selectionMade), this, &ButtonEditDialog::createTempSlot);
+            connect(ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::selectionCleared, dialog, &AdvanceButtonDialog::clearAllSlots);
 
-        connect(this, &ButtonEditDialog::sendTempSlotToAdvanced, dialog, &AdvanceButtonDialog::placeNewSlot);
-        connect(this, &ButtonEditDialog::keyGrabbed, dialog, &AdvanceButtonDialog::placeNewSlot);
-        connect(this, &ButtonEditDialog::selectionCleared, dialog, &AdvanceButtonDialog::clearAllSlots);
-        connect(ui->virtualKeyMouseTabWidget, static_cast<void (VirtualKeyboardMouseWidget::*)(JoyButtonSlot*)>(&VirtualKeyboardMouseWidget::selectionMade), dialog, &AdvanceButtonDialog::placeNewSlot);
-        connect(ui->virtualKeyMouseTabWidget, static_cast<void (VirtualKeyboardMouseWidget::*)(int,int)>(&VirtualKeyboardMouseWidget::selectionMade), this, &ButtonEditDialog::createTempSlot);
-        connect(ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::selectionCleared, dialog, &AdvanceButtonDialog::clearAllSlots);
+            connect(this, &ButtonEditDialog::finished, dialog, &AdvanceButtonDialog::close);
+            emit advancedDialogOpened();
 
-        connect(this, &ButtonEditDialog::finished, dialog, &AdvanceButtonDialog::close);
-        emit advancedDialogOpened();
+        }
+        else
+        {
+            QMessageBox::information(this, tr("No choice"), tr("Before you open window with advanced settins, you have to choice a key"));
+        }
 
     } else {
 
@@ -571,16 +579,6 @@ void ButtonEditDialog::refreshForLastBtn() {
         if (!lastJoyButton->getButtonName().isEmpty())
             ui->buttonNameLineEdit->setText(lastJoyButton->getButtonName());
 
-        if ((lastJoyButton->getAssignedSlots()->count() > 0) || (ui->slotSummaryLabel->text() != tr("[NO KEY]")))
-        {
-            ui->advancedPushButton->setEnabled(true);
-            ui->advancedPushButton->setEnabled(true);
-        }
-        else
-        {
-            ui->advancedPushButton->setEnabled(false);
-        }
-
         if (lastJoyButton != nullptr) {
 
             QListIterator<JoyButtonSlot*> iter(*(lastJoyButton->getAssignedSlots()));
@@ -615,6 +613,7 @@ void ButtonEditDialog::refreshForLastBtn() {
     }
 
     update();
+
 }
 
 void ButtonEditDialog::invokeMethodLastBtn(JoyButton* lastJoyBtn, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll)
