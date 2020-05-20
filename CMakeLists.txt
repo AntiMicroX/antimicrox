@@ -426,6 +426,7 @@ if (UNIX)
         find_package(Qt5Network REQUIRED)
         find_package(Qt5LinguistTools REQUIRED)
         find_package(Qt5Concurrent REQUIRED)
+        #find_package(Qt5Test REQUIRED)
 
         if (WITH_X11)
             find_package(Qt5X11Extras REQUIRED)
@@ -477,6 +478,7 @@ endif(UNIX)
                 ${antimicroX_RESOURCES_RCC}
             )
 
+            #target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Test Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
             target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
 
             if (WITH_X11)

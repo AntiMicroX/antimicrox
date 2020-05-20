@@ -32,6 +32,7 @@
 #include <QXmlStreamWriter>
 #include <QLabel>
 #include <QPointer>
+//#include <QtTest/QTest>
 
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
 
@@ -4508,7 +4509,13 @@ JoyControlStick::setDirButtonsUpdateInitAccel(JoyControlStick::JoyStickDirection
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QHash<JoyStickDirections, JoyControlStickButton*> apphash = getButtonsForDirection(direction);
+
+   // QVERIFY(apphash.isEmpty() == false);
+
     QHashIterator<JoyStickDirections, JoyControlStickButton*> iter(apphash);
+
+   // QVERIFY(iter.hasNext() == true);
+
     while (iter.hasNext())
     {
         JoyControlStickButton *button = iter.next().value();
@@ -4556,7 +4563,18 @@ JoyControlStick::getButtonsForDirection(JoyControlStick::JoyStickDirections dire
         }
         case EightWayMode:
         {
-            temphash.insert(direction, buttons.value(direction));
+            if ((direction == JoyControlStick::StickUp) ||
+                (direction == JoyControlStick::StickDown) ||
+                (direction == JoyControlStick::StickLeft) ||
+                (direction == JoyControlStick::StickRight) ||
+                (direction == JoyControlStick::StickRightUp) ||
+                (direction == JoyControlStick::StickRightDown) ||
+                (direction == JoyControlStick::StickLeftDown) ||
+                (direction == JoyControlStick::StickLeftUp))
+            {
+                temphash.insert(direction, buttons.value(direction));
+            }
+
             break;
         }
         case FourWayCardinal:
