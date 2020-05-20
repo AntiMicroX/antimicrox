@@ -250,6 +250,7 @@ void AxisEditDialog::implementAxisPresets(int index)
             pbuttonslot = new JoyButtonSlot(AntKeyMapper::getInstance()->returnVirtualKey(QtKeyMapperBase::AntKey_KP_6), QtKeyMapperBase::AntKey_KP_6, JoyButtonSlot::JoyKeyboard, this);
         break;
 
+        case 0:
         case 11:
             JoyAxisButton *nbutton = m_axis->getNAxisButton();
             JoyAxisButton *pbutton = m_axis->getPAxisButton();
@@ -259,6 +260,9 @@ void AxisEditDialog::implementAxisPresets(int index)
 
             refreshNButtonLabel();
             refreshPButtonLabel();
+
+            nbutton->buildActiveZoneSummaryString();
+            pbutton->buildActiveZoneSummaryString();
         break;
 
     }
