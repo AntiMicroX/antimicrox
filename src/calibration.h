@@ -38,14 +38,14 @@ class Calibration : public QWidget
     Q_OBJECT
 
 public:
-    explicit Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget *parent = 0);
+    explicit Calibration(InputDevice* joystick, QWidget *parent = 0);
     ~Calibration();
 
     int chooseMinMax(QString min_max_sign, QList<int> ax_values);
     void setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y);
 
 protected:
-    void setProgressBars(int inputDevNr, int setJoyNr, int stickNr);
+    void setProgressBars(int setJoyNr, int stickNr);
     void setProgressBars(JoyControlStick* controlstick);
     void updateAxesBox();
     void restoreCalValues();
@@ -60,8 +60,8 @@ private:
     static void getMaxVal(int &numbFromList, const int &mappednumb);
 
     Ui::Calibration *ui;
-    QMap<SDL_JoystickID, InputDevice*>* joysticks;
     JoyControlStick *stick;
+    InputDevice* currentJoystick;
     JoyControlStickEditDialogHelper helper;
     JoyAxis* joyAxisX;
     JoyAxis* joyAxisY;
@@ -87,7 +87,6 @@ public slots:
     void checkX(int value);
     void checkY(int value);
     void createAxesConnection();
-    void setController(QString controllerName);
     void startCalibration();
     void startSecondStep();
     void startLastStep();

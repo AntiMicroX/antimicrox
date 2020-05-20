@@ -1213,12 +1213,21 @@ void MainWindow::openCalibration()
 
     } else {
 
-        QPointer<Calibration> calibration = new Calibration(m_joysticks);
-        calibration.data()->show();
+        int index = ui->tabWidget->currentIndex();
+        if (index >= 0)
+        {
+            JoyTabWidget *joyTab = qobject_cast<JoyTabWidget*>(ui->tabWidget->widget(index)); // static_cast
+            InputDevice *joystick = joyTab->getJoystick();
 
-        if (calibration.isNull())
-            calibration.clear();
+            if (joystick != nullptr)
+            {
+                QPointer<Calibration> calibration = new Calibration(joystick);
+                calibration.data()->show();
 
+                if (calibration.isNull())
+                    calibration.clear();
+            }
+        }
     }
 }
 

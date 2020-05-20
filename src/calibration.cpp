@@ -38,16 +38,17 @@
 
 
 
-Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget *parent) :
+Calibration::Calibration(InputDevice* joystick, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Calibration),
-    helper(joysticks->value(0)->getSetJoystick(0)->getJoyStick(0))
+    currentJoystick(joystick),
+    helper(currentJoystick->getActiveSetJoystick()->getJoyStick(0))
 {
     ui->setupUi(this);
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute( Qt::WA_DeleteOnClose, true );
     setWindowTitle(tr("Calibration"));
 
     sumX = 0;
@@ -67,8 +68,7 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
 
     calibrated = false;
 
-    this->joysticks = joysticks;
-    QPointer<JoyControlStick> controlstick = joysticks->value(0)->getSetJoystick(0)->getJoyStick(0);
+    QPointer<JoyControlStick> controlstick = currentJoystick->getActiveSetJoystick()->getJoyStick(0);
     this->stick = controlstick.data();
     calibrated = this->stick->wasCalibrated();
     ui->Informations->setText(stick->getCalibrationSummary());
@@ -79,7 +79,7 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
     controlstick.data()->getModifierButton()->establishPropertyUpdatedConnections();
     helper.moveToThread(controlstick.data()->thread());
 
-    setProgressBars(0, 0, 0);
+    setProgressBars(0, 0);
     ui->stickStatusBoxWidget->setFocus();
     ui->stickStatusBoxWidget->setStick(controlstick.data());
     ui->stickStatusBoxWidget->update();
@@ -87,29 +87,17 @@ Calibration::Calibration(QMap<SDL_JoystickID, InputDevice*>* joysticks, QWidget 
     if (controlstick.isNull())
         controlstick.clear();
 
-    QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
-
-    while (iterTemp.hasNext())
-    {
-        iterTemp.next();
-
-        InputDevice *joystick = iterTemp.value();
-        QString joytabName = joystick->getSDLName();
-        ui->controllersBox->addItem(joytabName);
-    }
-
-    int currContrBoxIndex = ui->controllersBox->currentIndex();
-    QList<JoyControlStick*> sticksList = joysticks->value(currContrBoxIndex)->getSetJoystick(currContrBoxIndex)->getSticks().values();
-
+    QList<JoyControlStick*> sticksList = currentJoystick->getActiveSetJoystick()->getSticks().values();
     QListIterator<JoyControlStick*> currStick(sticksList);
+
     while (currStick.hasNext())
     {
         ui->axesBox->addItem(currStick.next()->getPartialName());
     }
 
+    connect(currentJoystick, &InputDevice::destroyed, this, &Calibration::close);
     connect(ui->saveBtn, &QPushButton::clicked, this, &Calibration::saveSettings);
     connect(ui->cancelBtn, &QPushButton::clicked, this, &Calibration::close);
-    connect(ui->controllersBox, &QComboBox::currentTextChanged, this, &Calibration::setController);
     connect(ui->axesBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &Calibration::createAxesConnection);
     connect(ui->startButton, &QPushButton::clicked, this, &Calibration::startCalibration);
     connect(ui->resetBtn, &QPushButton::clicked, [this](bool clicked)
@@ -635,34 +623,6 @@ void Calibration::checkY(int value)
 }
 
 /**
- * @brief for chosen controller, sticks list and animation widgets are refreshed
- * @param detected name of controller
- * @return nothing
- */
-void Calibration::setController(QString controllerName)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    QMapIterator<SDL_JoystickID, InputDevice*> iterTemp(*joysticks);
-
-    while (iterTemp.hasNext())
-    {
-        iterTemp.next();
-
-        QPointer<InputDevice> joystick = iterTemp.value();
-
-        if (controllerName == joystick.data()->getSDLName())
-        {
-            updateAxesBox();
-            createAxesConnection();
-            break;
-        }
-
-        if (joystick.isNull()) joystick.clear();
-    }
-}
-
-/**
  * @brief Refreshes list of sticks, which is below input devices list
  * @return nothing
  */
@@ -671,8 +631,7 @@ void Calibration::updateAxesBox()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->axesBox->clear();
-    int currContrBoxIndex = ui->controllersBox->currentIndex();
-    QList<JoyControlStick*> sticksList = joysticks->value(currContrBoxIndex)->getSetJoystick(currContrBoxIndex)->getSticks().values();
+    QList<JoyControlStick*> sticksList = currentJoystick->getActiveSetJoystick()->getSticks().values();
     QListIterator<JoyControlStick*> currStick(sticksList);
 
     while (currStick.hasNext())
@@ -727,7 +686,7 @@ void Calibration::createAxesConnection()
 
     update();
 
-    QPointer<JoyControlStick> controlstick = joysticks->value(ui->controllersBox->currentIndex())->getSetJoystick(0)->getJoyStick(ui->axesBox->currentIndex());
+    QPointer<JoyControlStick> controlstick = currentJoystick->getActiveSetJoystick()->getJoyStick(ui->axesBox->currentIndex());
     this->stick = controlstick.data();
 
     center_calibrated_x = controlstick->getAxisX()->getAxisCenterCal();
@@ -824,11 +783,11 @@ void Calibration::setProgressBars(JoyControlStick* controlstick)
  * @param stick number
  * @return nothing
  */
-void Calibration::setProgressBars(int inputDevNr, int setJoyNr, int stickNr)
+void Calibration::setProgressBars(int setJoyNr, int stickNr)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-        JoyControlStick* controlstick = joysticks->value(inputDevNr)->getSetJoystick(setJoyNr)->getJoyStick(stickNr);
+        JoyControlStick* controlstick = currentJoystick->getActiveSetJoystick()->getJoyStick(stickNr);
         //helper.moveToThread(controlstick->thread());
 
         joyAxisX = controlstick->getAxisX();

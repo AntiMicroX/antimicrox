@@ -131,16 +131,6 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Controller:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="controllersBox"/>
-         </item>
-         <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
             <string>Sticks:</string>
