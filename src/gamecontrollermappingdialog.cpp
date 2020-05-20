@@ -622,6 +622,7 @@ void GameControllerMappingDialog::obliterate()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    disconnect(this, &GameControllerMappingDialog::finished, this, &GameControllerMappingDialog::enableButtonEvents);
     this->done(QDialogButtonBox::DestructiveRole);
 }
 
