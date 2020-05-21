@@ -28,6 +28,7 @@
 #include "antimicrosettings.h"
 #include "applaunchhelper.h"
 #include "antkeymapper.h"
+#include "qglobalshortcut/qglobalshortcut.h"
 
 #include "eventhandlerfactory.h"
 #include "messagehandler.h"
@@ -818,6 +819,20 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater);
     QObject::connect(&antimicroX, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
+
+#if defined(WITH_X11)
+    QString quitComboKeys = settings->value("QuitComboKeys", "").toString();
+
+    if (quitComboKeys != "")
+    {
+        qDebug() << "Loaded quit combo keys: " << quitComboKeys;
+        QGlobalShortcut* gs = new QGlobalShortcut;
+        gs->setKey(QKeySequence(quitComboKeys));
+        QObject::connect(gs, &QGlobalShortcut::activated, &antimicroX, &QApplication::quit);
+
+        QObject::connect(&antimicroX, &QApplication::aboutToQuit, gs, &QGlobalShortcut::deleteLater);
+    }
+#endif
 
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow, &MainWindow::handleInstanceDisconnect);
     QObject::connect(mainWindow, &MainWindow::mappingUpdated,
