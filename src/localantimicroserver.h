@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+
 #ifndef LOCALANTIMICROSERVER_H
 #define LOCALANTIMICROSERVER_H
 

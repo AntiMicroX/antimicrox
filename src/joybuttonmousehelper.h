@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+
 #ifndef JOYBUTTONMOUSEHELPER_H
 #define JOYBUTTONMOUSEHELPER_H
 

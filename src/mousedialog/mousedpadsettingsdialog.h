@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+
 #ifndef MOUSEDPADSETTINGSDIALOG_H
 #define MOUSEDPADSETTINGSDIALOG_H
 

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+
 #ifndef GAMECONTROLLERTRIGGERXML_H
 #define GAMECONTROLLERTRIGGERXML_H
 

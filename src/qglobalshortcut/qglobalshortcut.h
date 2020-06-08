@@ -3,7 +3,7 @@
   author: mitei
 */
 
-#pragma once
+
 
 #include <QObject>
 #include <QMultiHash>

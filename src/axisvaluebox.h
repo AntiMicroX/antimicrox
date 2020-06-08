@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+
 #ifndef AXISVALUEBOX_H
 #define AXISVALUEBOX_H
 

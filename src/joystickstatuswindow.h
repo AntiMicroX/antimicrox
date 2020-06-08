@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+
 #ifndef JOYSTICKSTATUSWINDOW_H
 #define JOYSTICKSTATUSWINDOW_H
 

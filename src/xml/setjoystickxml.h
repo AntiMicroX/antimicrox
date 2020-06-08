@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+
 #ifndef SETJOYSTICKXML_H
 #define SETJOYSTICKXML_H
 
