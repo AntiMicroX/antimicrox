@@ -36,13 +36,14 @@
 
 
 GameController::GameController(SDL_GameController *controller, int deviceIndex,
-                               AntiMicroSettings *settings, QObject *parent) :
+                               AntiMicroSettings *settings, int counterUniques, QObject *parent) :
     InputDevice(SDL_GameControllerGetJoystick(controller), deviceIndex, settings, parent)
 {
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->controller = controller;
+    this->counterUniques = counterUniques;
 
     SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
     joystickID = SDL_JoystickInstanceID(joyhandle);
@@ -117,6 +118,11 @@ QString GameController::getUniqueIDString()
     return getRawUniqueIDString();
 }
 
+QString GameController::getProductVersion()
+{
+    return getRawProductVersion();
+}
+
 
 QString GameController::getRawGUIDString()
 {
@@ -168,9 +174,27 @@ QString GameController::getRawProductIDString()
 
     if (controller != nullptr)
     {
-            Uint16 tempProduct = SDL_GameControllerGetProduct(controller);
+            Uint16 tempProduct = SDL_GameControllerGetProduct(controller) + counterUniques;
             char buffer [50];
             sprintf (buffer, "%u", tempProduct);
+
+            temp = QString(buffer);
+    }
+
+    return temp;
+}
+
+QString GameController::getRawProductVersion()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QString temp = QString();
+
+    if (controller != nullptr)
+    {
+            Uint16 tempProductVersion = SDL_GameControllerGetProductVersion(controller);
+            char buffer [50];
+            sprintf (buffer, "%u", tempProductVersion);
 
             temp = QString(buffer);
     }
@@ -222,6 +246,11 @@ int GameController::getNumberRawHats()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return 0;
+}
+
+void GameController::setCounterUniques(int counter)
+{
+    counterUniques = counter;
 }
 
 

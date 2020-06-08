@@ -519,6 +519,11 @@ void MainWindow::populateTrayIcon()
 
     qDebug() << "joystickCount: " << joystickCount << endl;
 
+    QMap<QString,int> uniques = QMap<QString,int>();
+    int counterUniques = 1;
+    bool duplicatedGamepad = false;
+
+
     if (joystickCount > 0)
     {
         QMapIterator<SDL_JoystickID, InputDevice*> iter(*m_joysticks);
@@ -571,12 +576,29 @@ void MainWindow::populateTrayIcon()
                     newaction->setCheckable(true);
                     newaction->setChecked(false);
 
+                    if (uniques.contains(current->getGUIDString()) &&
+                            joystickCount < uniques[current->getGUIDString()])
+                    {
+                        ++uniques[current->getGUIDString()];
+                        duplicatedGamepad = true;
+                    }
+                    else if (joystickCount < uniques[current->getGUIDString()])
+                    {
+                        uniques.insert(current->getGUIDString(), counterUniques);
+                    }
+
+                    int resultDuplicated = 0;
+                    if (duplicatedGamepad) resultDuplicated = uniques[current->getGUIDString()];
+
+                    current->setCounterUniques(resultDuplicated);
                     QString identifier = current->getStringIdentifier();
                     qDebug() << "current identifier: " << current->getStringIdentifier() << endl;
                     widget->convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1LastSelected").arg(current->getGUIDString()), QString("Controller%1LastSelected").arg(current->getUniqueIDString()));
                     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
 
                     qDebug() << "controlEntryLastSelected: " << controlEntryLastSelected << endl;
+
+                    duplicatedGamepad = false;
 
                     QString contrFile = m_settings->value(controlEntryLastSelected).toString();
 

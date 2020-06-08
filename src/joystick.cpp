@@ -131,6 +131,24 @@ QString Joystick::getProductIDString()
     return temp;
 }
 
+QString Joystick::getProductVersion()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QString temp = QString();
+
+    if (controller != nullptr)
+    {
+            Uint16 tempProductVersion = SDL_GameControllerGetProductVersion(controller);
+            char buffer [50];
+            sprintf (buffer, "%u", tempProductVersion);
+
+            temp = QString(buffer);
+    }
+
+    return temp;
+}
+
 
 QString Joystick::getUniqueIDString()
 {
@@ -172,6 +190,11 @@ int Joystick::getNumberRawHats()
 
     int numhats = SDL_JoystickNumHats(m_joyhandle);
     return numhats;
+}
+
+void Joystick::setCounterUniques(int counter)
+{
+    counterUniques = counter;
 }
 
 SDL_JoystickID Joystick::getSDLJoystickID()

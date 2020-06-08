@@ -82,7 +82,7 @@ public slots:
     void startWorker();
     void refreshMapping(QString mapping, InputDevice *device);
     void removeDevice(InputDevice *device);
-    void addInputDevice(int index);
+    void addInputDevice(int index, QMap<QString,int>& uniques, int &counterUniques, bool &duplicatedGamepad);
     void refreshIndexes();
 
 private slots:

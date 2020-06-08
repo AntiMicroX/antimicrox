@@ -1439,6 +1439,7 @@ void MainSettingsDialog::openEditAutoProfileDialog()
             QTableWidgetItem *itemDefault = ui->autoProfileTableWidget->item(selectedRow, 6);
             if (itemDefault->data(Qt::UserRole) == "default" || itemDefault->text() == "Default") info->setDefaultState(true);
 
+
             AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, true, this);
             connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] {
                 transferEditsToCurrentTableRow(dialog);

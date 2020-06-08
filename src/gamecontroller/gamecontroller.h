@@ -34,7 +34,7 @@ class GameController : public InputDevice
     Q_OBJECT
 
 public:
-    explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
+    explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, int counterUniques, QObject *parent = nullptr);
 
     virtual QString getName() override;
     virtual QString getSDLName() override;
@@ -45,10 +45,12 @@ public:
     virtual QString getVendorString() override;
     virtual QString getProductIDString() override;
     virtual QString getUniqueIDString() override;
+    virtual QString getProductVersion() override;
     virtual QString getRawGUIDString() override;
     virtual QString getRawUniqueIDString() override;
     virtual QString getRawVendorString() override;
     virtual QString getRawProductIDString() override;
+    virtual QString getRawProductVersion() override;
 
     virtual bool isGameController() override;
     virtual void closeSDLDevice() override;
@@ -57,6 +59,7 @@ public:
     virtual int getNumberRawButtons() override;
     virtual int getNumberRawAxes() override;
     virtual int getNumberRawHats() override;
+    void setCounterUniques(int counter) override;
 
     QString getBindStringForAxis(int index, bool trueIndex=true);
     QString getBindStringForButton(int index, bool trueIndex=true);
@@ -87,6 +90,7 @@ private:
     QHash<int, bool> rawbuttons;
     QHash<int, int> axisvalues;
     QHash<int, int> dpadvalues;
+    int counterUniques;
 
     SDL_JoystickID joystickID;
     SDL_GameController *controller;

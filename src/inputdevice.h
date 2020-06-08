@@ -63,10 +63,13 @@ public:
     virtual QString getUniqueIDString() = 0;
     virtual QString getVendorString() = 0;
     virtual QString getProductIDString() = 0;
+    virtual QString getProductVersion() = 0;
     virtual QString getRawGUIDString();
     virtual QString getRawVendorString();
     virtual QString getRawProductIDString();
+    virtual QString getRawProductVersion();
     virtual QString getRawUniqueIDString();
+    virtual void setCounterUniques(int counter) = 0;
 
     virtual QString getStringIdentifier();
     virtual void closeSDLDevice() = 0;

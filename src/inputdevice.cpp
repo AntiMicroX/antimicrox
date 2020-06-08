@@ -1816,6 +1816,11 @@ QString InputDevice::getRawProductIDString()
     return getProductIDString();
 }
 
+QString InputDevice::getRawProductVersion()
+{
+    return getProductVersion();
+}
+
 
 QString InputDevice::getRawUniqueIDString()
 {
