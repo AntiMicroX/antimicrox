@@ -83,6 +83,7 @@ endif(UNIX)
 
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 option(TRANS_KEEP_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
+option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
 
 
 # Use pkg-config to find SDL library.
@@ -344,6 +345,16 @@ set(antimicroX_HEADERS
     src/xmlconfigreader.h
     src/xmlconfigwriter.h
 )
+
+if(ATTACH_FAKE_CLASSES)
+    LIST(APPEND antimicroX_SOURCES
+        src/fakeclasses/xbox360wireless.cpp
+    )
+
+    LIST(APPEND antimicroX_HEADERS
+        src/fakeclasses/xbox360wireless.h
+        )
+endif(ATTACH_FAKE_CLASSES)
 
 set(antimicroX_FORMS
     src/aboutdialog.ui

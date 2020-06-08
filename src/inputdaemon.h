@@ -21,6 +21,7 @@
 #define INPUTDAEMONTHREAD_H
 
 #include "gamecontroller/gamecontroller.h"
+//#include "fakeclasses/xbox360wireless.h"
 #include <SDL2/SDL_events.h>
 
 
@@ -108,6 +109,7 @@ private:
     QThread *sdlWorkerThread;
     AntiMicroSettings *m_settings;
     QTimer pollResetTimer;
+    //SDL_Joystick* xbox360;
 };
 
 #endif // INPUTDAEMONTHREAD_H

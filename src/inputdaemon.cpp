@@ -28,6 +28,7 @@
 #include "antimicrosettings.h"
 #include "inputdevicebitarraystatus.h"
 
+
 #include <QDebug>
 #include <QTime>
 #include <QTimer>
@@ -46,6 +47,8 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice*> *joysticks,
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     m_joysticks = joysticks;
+    //Xbox360Wireless* xbox360class = new Xbox360Wireless();
+    //xbox360 = xbox360class->getResult();
     this->stopped = false;
     m_graphical = graphical;
     m_settings = settings;
@@ -396,8 +399,10 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
     bool found = false;
 
     for (int i = 0; (i < SDL_NumJoysticks()) && !found; i++)
+   // for (int i = 0; (i < 1) && !found; i++)
     {
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
+       // SDL_Joystick *joystick = xbox360;
         SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
 
         if (device->getSDLJoystickID() == joystickID)
@@ -464,8 +469,10 @@ void InputDaemon::refreshIndexes()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     for (int i = 0; i < SDL_NumJoysticks(); i++)
+    //for (int i = 0; i < 1; i++)
     {
         SDL_Joystick *joystick = SDL_JoystickOpen(i);
+       // SDL_Joystick *joystick = xbox360;
         SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
         SDL_JoystickClose(joystick); // Make sure to decrement reference count
         InputDevice *tempdevice = m_joysticks->value(joystickID);
@@ -559,6 +566,9 @@ void InputDaemon::addInputDevice(int index)
 #else
     SDL_GameController *controller = SDL_GameControllerOpen(index);
     SDL_Joystick *joystick = SDL_JoystickOpen(index);
+
+   // SDL_Joystick *joystick = xbox360;
+   // SDL_GameController *controller = SDL_GameControllerFromInstanceID(xbox360->instance_id);
 
     if (joystick != nullptr)
     {
@@ -667,6 +677,7 @@ Joystick *InputDaemon::openJoystickDevice(int index)
 
     // Check if joystick is considered connected.
     SDL_Joystick *joystick = SDL_JoystickOpen(index);
+   // SDL_Joystick* joystick = xbox360;
     Joystick *curJoystick = nullptr;
 
     if (joystick != nullptr)
