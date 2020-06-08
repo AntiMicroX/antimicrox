@@ -141,6 +141,24 @@ void InputDaemon::run ()
     PadderCommon::inputDaemonMutex.unlock();
 }
 
+QString InputDaemon::getJoyInfo(SDL_JoystickGUID sdlvalue)
+{
+    char buffer[65] = {'0'};
+
+    SDL_JoystickGetGUIDString(sdlvalue, buffer, sizeof(buffer));
+
+    return QString(buffer);
+}
+
+QString InputDaemon::getJoyInfo(Uint16 sdlvalue)
+{
+    char buffer[50] = {'0'};
+
+    sprintf (buffer, "%u", sdlvalue);
+
+    return QString(buffer);
+}
+
 void InputDaemon::refreshJoysticks()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -183,42 +201,11 @@ void InputDaemon::refreshJoysticks()
                 // Check if device has already been grabbed.
                 if (!m_joysticks->contains(tempJoystickID))
                 {
-//                    QString guidText = QString();
-//                    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(sdlStick);
-//                    char guidString[65] = {'0'};
-//                    SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
-//                    guidText = QString(guidString);
+                    QString guidText = getJoyInfo(SDL_JoystickGetGUID(sdlStick));
 
-//                    bool disableGameController = m_settings->value(QString("%1Disable").arg(guidText), false).toBool();
+                    QString vendor = getJoyInfo(SDL_GameControllerGetVendor(controller));
 
-                    QString guidText = QString();
-
-                    SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(sdlStick);
-                    char guidString[65] = {'0'};
-                    SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
-                    guidText = QString(guidString);
-
-                    QString vendor = QString();
-
-                    if (controller != nullptr)
-                    {
-                            Uint16 tempVendor = SDL_GameControllerGetVendor(controller);
-                            char buffer [50];
-                            sprintf (buffer, "%u", tempVendor);
-
-                            vendor = QString(buffer);
-                    }
-
-                    QString productID = QString();
-
-                    if (controller != nullptr)
-                    {
-                            Uint16 tempProduct = SDL_GameControllerGetProduct(controller);
-                            char buffer [50];
-                            sprintf (buffer, "%u", tempProduct);
-
-                            productID = QString(buffer);
-                    }
+                    QString productID = getJoyInfo(SDL_GameControllerGetProduct(controller));
 
                     convertMappingsToUnique(m_settings, guidText, guidText + vendor + productID);
 

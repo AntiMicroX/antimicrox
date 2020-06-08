@@ -29,7 +29,7 @@ class JoyDPadXml : public QObject
 {
 
 public:
-    JoyDPadXml(T* joydpad, QObject *parent = nullptr);
+    explicit JoyDPadXml(T* joydpad, QObject *parent = nullptr);
 
     void readConfig(QXmlStreamReader *xml); // JoyDPadXml class
     void writeConfig(QXmlStreamWriter *xml); // JoyDPadXml class

@@ -574,7 +574,7 @@ bool JoyButton::distanceEvent()
                 }
             }
             // An applicable distance slot was found
-            else if (previousDistanceSlot)
+            else
             {
                 if (m_currentDistance != previousDistanceSlot)
                 {
@@ -650,7 +650,6 @@ void JoyButton::activateSlots()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool countForAllTime = false;
-    bool firstTime = true;
 
     if (allSlotTimeBetweenSlots == 0) countForAllTime = true;
 
@@ -719,7 +718,6 @@ void JoyButton::activateSlots()
             {
                 qDebug() << "Check now simple slots";
                 addEachSlotToActives(slot, i, delaySequence, exit, slotiter);
-                firstTime = false;
             }
         }
 
@@ -1889,12 +1887,6 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
                         stringListMix.append("+");
 
                         qDebug() << "Create summary for JoyMix. Progress: " << stringListMix;
-
-                   //     if ((j > 2) && iterM->hasNext())
-                   //     {
-                   //         stringListMix.append("...");
-                   //         iterM->toBack();
-                   //     }
                     }
 
                     j = 0;
@@ -1909,10 +1901,8 @@ QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 
                         QString res = "";
 
-                        for(const QString& strListEl : stringListMix)
-                        {
-                            res += strListEl;
-                        }
+                        for(const QString& strListEl : stringListMix) res += strListEl;
+
 
                         stringlist.append(res);
                         stringListMix.clear();
@@ -2834,7 +2824,7 @@ void JoyButton::checkForSetChange()
             else if ((setSelectionCondition == SetChangeWhileHeld) && (setSelection > -1))
             {
                 if (tempFinalState) whileHeldStatus = true;
-                else if (!tempFinalState) whileHeldStatus = false;
+                else whileHeldStatus = false;
 
                 restartAllForSetChange();
             }
@@ -3095,7 +3085,7 @@ void JoyButton::releaseDeskEvent(bool skipsetchange)
     releaseActiveSlots();
 
     if (!isButtonPressedQueue.isEmpty() && (currentRelease == nullptr)) releaseSlotEvent();
-    else if (currentRelease != nullptr) currentRelease = nullptr;
+    else currentRelease = nullptr;
 
     if (!skipsetchange && (setSelectionCondition != SetChangeDisabled) &&
         !isButtonPressedQueue.isEmpty() && (currentRelease == nullptr))
@@ -3469,20 +3459,10 @@ void JoyButton::releaseActiveSlots()
                     JoyButtonSlot::JoySlotInputAction mode = slotMini->getSlotMode();
 
                     releaseEachSlot(changeRepeatState, referencesMini, tempcodeMini, mode, slotMini);
-                   // QThread* thread = slotMini->thread();
-                   // thread->quit();
-                   // thread->wait();
-                   // delete thread;
-                   // thread = nullptr;
                 }
 
                 if (!slot->getMixSlots()->isEmpty())
                 {
-                   // QThread* thread = slot->thread();
-                   // thread->quit();
-                   // thread->wait();
-                   // delete thread;
-                   // thread = nullptr;
                     qDeleteAll(*slot->getMixSlots());
                     slot->getMixSlots()->clear();
                     delete slot->getMixSlots();
@@ -3777,8 +3757,7 @@ void JoyButton::releaseSlotEvent()
             // during a release event is stopped.
             holdTimer.stop();
 
-            if (currentHold != nullptr)
-                currentHold = nullptr;
+            currentHold = nullptr;
         }
     }
 }

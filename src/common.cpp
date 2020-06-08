@@ -58,7 +58,7 @@ namespace PadderCommon
         return lookupDir;
     }
 
-    QStringList arguments(int &argc, char **argv)
+    QStringList arguments(const int &argc, char **argv)
     {
         qInstallMessageHandler(MessageHandler::myMessageOutput);
 

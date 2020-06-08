@@ -42,10 +42,14 @@ public:
                           QObject *parent=0);
     ~InputDaemon();
 
+
 protected:
     InputDeviceBitArrayStatus* createOrGrabBitStatusEntry(
             QHash<InputDevice*, InputDeviceBitArrayStatus*> *statusHash,
             InputDevice *device, bool readCurrent=true);
+
+    QString getJoyInfo(SDL_JoystickGUID sdlvalue);
+    QString getJoyInfo(Uint16 sdlvalue);
 
     void firstInputPass(QQueue<SDL_Event> *sdlEventQueue);
     void secondInputPass(QQueue<SDL_Event> *sdlEventQueue);

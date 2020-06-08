@@ -743,10 +743,9 @@ void JoyTabWidget::resetJoystick()
     if (result == QMessageBox::Yes) {
 
         int currentIndex = configBox->currentIndex();
+
         if (currentIndex != 0)
         {
-            QString filename = configBox->itemData(currentIndex).toString();
-
             removeCurrentButtons();
 
             QMetaObject::invokeMethod(&tabHelper, "reInitDevice", Qt::BlockingQueuedConnection);
@@ -756,6 +755,7 @@ void JoyTabWidget::resetJoystick()
             refreshCopySetActions();
 
             XMLConfigReader *reader = tabHelper.getReader();
+
             if (!reader->hasError())
             {
                 configBox->setItemIcon(currentIndex, QIcon());
@@ -1010,12 +1010,6 @@ void JoyTabWidget::saveSettings()
     int currentjoy = 1;
 
     QString identifier = m_joystick->getStringIdentifier();
-
-//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1").arg(m_joystick->getGUIDString()), QString("Controller%1").arg(m_joystick->getUniqueIDString()));
-//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1ConfigFile%2").arg(m_joystick->getGUIDString()), QString("Controller%1ConfigFile%2").arg(m_joystick->getUniqueIDString()));
-//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1LastSelected").arg(m_joystick->getGUIDString()), QString("Controller%1LastSelected").arg(m_joystick->getUniqueIDString()));
-//    convToUniqueIDControllerGroupSett(m_settings, QString("Controller%1ProfileName%2").arg(m_joystick->getGUIDString()), QString("Controller%1ProfileName%2").arg(m_joystick->getUniqueIDString()));
-
     QString controlEntryPrefix = QString("Controller%1").arg(identifier);
     QString controlEntryString = QString("Controller%1ConfigFile%2").arg(identifier);
     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);

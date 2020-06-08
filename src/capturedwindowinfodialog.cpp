@@ -90,11 +90,8 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
             ui->winPathLabel->setText(exepath);
             winPath = exepath;
 
-            if (!setRadioDefault)
-            {
-                ui->winTitleCheckBox->setChecked(true);
-                setRadioDefault = true;
-            }
+            if (!setRadioDefault) ui->winTitleCheckBox->setChecked(true);
+
         }
         else
         {

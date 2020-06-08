@@ -385,7 +385,7 @@ void Calibration::startSecondStep()
 
                 QList<int> yValues = y_es_val.values(QString("-"));
                 QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::getMinVal);
-                min_y = resX.result();
+                min_y = resY.result();
 
                 min_axis_val_x = min_x;
                 min_axis_val_y = min_y;
@@ -435,7 +435,7 @@ void Calibration::startLastStep()
 
                 QList<int> yValues = y_es_val.values(QString("+"));
                 QFuture<int> resY = QtConcurrent::mappedReduced(yValues, &Calibration::fakeMapFunc, &Calibration::getMaxVal);
-                max_y = resX.result();
+                max_y = resY.result();
 
                 max_axis_val_x = max_x;
                 max_axis_val_y = max_y;

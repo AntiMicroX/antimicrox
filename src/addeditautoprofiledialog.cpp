@@ -315,7 +315,6 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility* u
         long targetWindow = util->getTargetWindow();
         bool escaped = !util->hasFailed();
         bool failed = false;
-        QString path = QString();
 
         if (targetWindow != None)
         {

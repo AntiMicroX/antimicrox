@@ -286,10 +286,6 @@ void GameControllerMappingDialog::axisAssign(int axis, int value)
 
                 ui->mappingStringPlainTextEdit->document()->setPlainText(generateSDLMappingString());
         }
-        else
-        {
-            skip = true;
-        }
     }
 }
 

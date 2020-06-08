@@ -210,8 +210,7 @@ ButtonEditDialog::~ButtonEditDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (instance != nullptr)
-        instance = nullptr;
+    instance = nullptr;
 
     delete ui;
 }

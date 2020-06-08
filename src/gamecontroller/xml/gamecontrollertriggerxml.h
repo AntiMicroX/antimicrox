@@ -28,7 +28,7 @@ class GameControllerTriggerXml : public JoyAxisXml
 {
 
     public:
-        GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, QObject *parent = 0);
+        explicit GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, QObject *parent = 0);
 
         void readJoystickConfig(QXmlStreamReader *xml);
         virtual void writeConfig(QXmlStreamWriter *xml);

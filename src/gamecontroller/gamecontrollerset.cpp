@@ -121,13 +121,10 @@ void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameContro
     index = index - 1;
     bool found = false;
     QListIterator<SDL_GameControllerButtonBind> iter(hatButtons);
-    SDL_GameControllerButtonBind current;
 
     while (iter.hasNext())
     {
-        current = iter.next();
-
-        if (current.value.hat.hat == index)
+        if (iter.next().value.hat.hat == index)
         {
             found = true;
             iter.toBack();
@@ -139,15 +136,12 @@ void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameContro
 
     if (found)
     {
-        if (dpadXml != nullptr) delete dpadXml;
-
         dpad = getVDPad(0);
         dpadXml = new JoyDPadXml<VDPad>(dpad);
     }
 
     if ((dpad != nullptr) && !vdpadExists)
     {
-        dpadExists = true;
         dpadXml->readConfig(xml);
     }
     else

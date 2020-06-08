@@ -53,14 +53,10 @@ public:
     SDL_Joystick* getJoyhandle() const;
     virtual QString getXmlName() override;
 
-    InputDevice* getInputDevice();
-
 private:
     SDL_Joystick *m_joyhandle;
     SDL_GameController *controller;
     SDL_JoystickID joystickID;
-    InputDevice* m_inputDevice;
-
 };
 
 Q_DECLARE_METATYPE(Joystick*)

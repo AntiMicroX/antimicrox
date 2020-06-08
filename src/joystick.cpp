@@ -49,13 +49,6 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
     }
 }
 
-// upcasting
-InputDevice* Joystick::getInputDevice()
-{
-    InputDevice* inputDev = static_cast<Joystick*>(this);
-    return inputDev;
-}
-
 QString Joystick::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);

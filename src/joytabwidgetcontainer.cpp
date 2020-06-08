@@ -60,9 +60,11 @@ void JoyTabWidgetContainer::flash(InputDevice* joystick)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool found = false;
+
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+
         if ((tab != nullptr) && (tab->getJoystick() == joystick))
         {
             tabBar()->setTabTextColor(i, Qt::red);

@@ -32,7 +32,7 @@ class JoyButtonSlotXml : public QObject
     Q_OBJECT
 
 public:
-     JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent = nullptr);
+     explicit JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent = nullptr);
 
      virtual void readConfig(QXmlStreamReader *xml);
      virtual void writeConfig(QXmlStreamWriter *xml);

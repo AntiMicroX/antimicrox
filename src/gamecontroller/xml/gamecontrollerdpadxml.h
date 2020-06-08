@@ -30,7 +30,7 @@ class GameControllerDPadXml : public JoyDPadXml<VDPad>
     Q_OBJECT
 
 public:
-    GameControllerDPadXml(GameControllerDPad* gameContrDpad, QObject* parent = nullptr);
+    explicit GameControllerDPadXml(GameControllerDPad* gameContrDpad, QObject* parent = nullptr);
 
     void readJoystickConfig(QXmlStreamReader *xml);
 
