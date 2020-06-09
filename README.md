@@ -125,6 +125,15 @@ directory. Enter the following commands in order to build the program:
     make
     sudo make install
     
+or
+
+```
+    cd antimicrox
+    cmake --build build
+    cmake --install build
+```
+
+
 If you're an Arch Linux or Arch Linux based distribution user:
 
 ```
