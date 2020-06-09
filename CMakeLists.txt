@@ -572,9 +572,12 @@ if(UNIX)
     install(FILES src/images/antimicroX.png src/images/antimicroX_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/images")
 
     install(FILES src/icons/index.theme DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons/hicolor")
-    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX")
+    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/antimicroX")
     install(FILES other/com.github.juliagoda.antimicroX.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
     install(FILES other/com.github.juliagoda.antimicroX.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
+
+    # Copy current Changelog file to location that the resource file expects.
+    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX")
 endif(UNIX)
 
 # Add man page for *nix platforms.
@@ -609,9 +612,6 @@ configure_file(
     "${PROJECT_SOURCE_DIR}/src/config.h.in"
     "${PROJECT_BINARY_DIR}/config.h"
 )
-
-# Copy current Changelog file to location that the resource file expects.
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
 
 if(WITH_TESTS)
