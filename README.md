@@ -156,6 +156,7 @@ from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
 
 
 #### Building deb package
+Already built .deb files are available on [Release Page](https://github.com/juliagoda/antimicroX/releases)
 
 ```
     cd antimicroX
