@@ -240,9 +240,15 @@ void DPadEditDialog::implementPresets(int index)
 
         break;
 
+        case 0:
         case 8:
 
                 QMetaObject::invokeMethod(&helper, "clearButtonsSlotsEventReset", Qt::BlockingQueuedConnection);
+
+                dpad->getJoyButton(JoyDPadButton::DpadUp)->buildActiveZoneSummaryString();
+                dpad->getJoyButton(JoyDPadButton::DpadDown)->buildActiveZoneSummaryString();
+                dpad->getJoyButton(JoyDPadButton::DpadLeft)->buildActiveZoneSummaryString();
+                dpad->getJoyButton(JoyDPadButton::DpadRight)->buildActiveZoneSummaryString();
 
         break;
     }
