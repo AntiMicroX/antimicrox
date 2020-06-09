@@ -255,7 +255,7 @@ Development of this program is not as high of a priority for me anymore. This is
 
 As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. As next, project has been continued since 2018 by juliagoda on antimicroX project. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="401"/>
@@ -426,23 +426,24 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="222"/>
         <source>Main Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauptprofil</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="228"/>
         <source>Already selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Bereits ausgewählt</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="233"/>
         <source>Chosen Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewähltes Profil</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="233"/>
         <source>The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Auswahl wird statt der Option 
+des Standardprofiles verwendet.</translation>
     </message>
     <message>
         <location filename="../../../src/addeditautoprofiledialog.cpp" line="279"/>
@@ -591,12 +592,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="315"/>
         <source>Join</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinde</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="332"/>
         <source>Split</source>
-        <translation type="unfinished"></translation>
+        <translation>Teile</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="349"/>
@@ -668,7 +669,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="255"/>
         <source>Set Change</source>
-        <translation>Wähle Änderung</translation>
+        <translation>Gruppewahl</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="260"/>
@@ -781,127 +782,127 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1105"/>
         <source>Select Set 1 One Way</source>
-        <translation>Wähle Set 1: einseitig</translation>
+        <translation>Wähle Gruppe 1: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1110"/>
         <source>Select Set 1 Two Way</source>
-        <translation>Wähle Set 1: wechselseitig</translation>
+        <translation>Wähle Gruppe 1: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1115"/>
         <source>Select Set 1 While Held</source>
-        <translation>Wähle Set 1: festgehalten</translation>
+        <translation>Wähle Gruppe 1: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1120"/>
         <source>Select Set 2 One Way</source>
-        <translation>Wähle Set 2: einseitig</translation>
+        <translation>Wähle Gruppe 2: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1125"/>
         <source>Select Set 2 Two Way</source>
-        <translation>Wähle Set 2: wechselseitig</translation>
+        <translation>Wähle Gruppe 2: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1130"/>
         <source>Select Set 2 While Held</source>
-        <translation>Wähle Set 2: festgehalten</translation>
+        <translation>Wähle Gruppe 2: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1135"/>
         <source>Select Set 3 One Way</source>
-        <translation>Wähle Set 3: einseitig</translation>
+        <translation>Wähle Gruppe 3: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1140"/>
         <source>Select Set 3 Two Way</source>
-        <translation>Wähle Set 3: wechselseitig</translation>
+        <translation>Wähle Gruppe 3: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1145"/>
         <source>Select Set 3 While Held</source>
-        <translation>Wähle Set 3: festgehalten</translation>
+        <translation>Wähle Gruppe 3: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1150"/>
         <source>Select Set 4 One Way</source>
-        <translation>Wähle Set 4: einseitig</translation>
+        <translation>Wähle Gruppe 4: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1155"/>
         <source>Select Set 4 Two Way</source>
-        <translation>Wähle Set 4: wechselseitig</translation>
+        <translation>Wähle Gruppe 4: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1160"/>
         <source>Select Set 4 While Held</source>
-        <translation>Wähle Set 4: festgehalten</translation>
+        <translation>Wähle Gruppe 4: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1165"/>
         <source>Select Set 5 One Way</source>
-        <translation>Wähle Set 5: einseitig</translation>
+        <translation>Wähle Gruppe 5: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1170"/>
         <source>Select Set 5 Two Way</source>
-        <translation>Wähle Set 5: wechselseitig</translation>
+        <translation>Wähle Gruppe 5: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1175"/>
         <source>Select Set 5 While Held</source>
-        <translation>Wähle Set 5: festgehalten</translation>
+        <translation>Wähle Gruppe 5: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1180"/>
         <source>Select Set 6 One Way</source>
-        <translation>Wähle Set 6: einseitig</translation>
+        <translation>Wähle Gruppe 6: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1185"/>
         <source>Select Set 6 Two Way</source>
-        <translation>Wähle Set 6: wechselseitig</translation>
+        <translation>Wähle Gruppe 6: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1190"/>
         <source>Select Set 6 While Held</source>
-        <translation>Wähle Set 6: festgehalten</translation>
+        <translation>Wähle Gruppe 6: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1195"/>
         <source>Select Set 7 One Way</source>
-        <translation>Wähle Set 7: einseitig</translation>
+        <translation>Wähle Gruppe 7: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1200"/>
         <source>Select Set 7 Two Way</source>
-        <translation>Wähle Set 7: wechselseitig</translation>
+        <translation>Wähle Gruppe 7: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1205"/>
         <source>Select Set 7 While Held</source>
-        <translation>Wähle Set 7: festgehalten</translation>
+        <translation>Wähle Gruppe 7: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1210"/>
         <source>Select Set 8 One Way</source>
-        <translation>Wähle Set 8: einseitig</translation>
+        <translation>Wähle Gruppe 8: einseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1215"/>
         <source>Select Set 8 Two Way</source>
-        <translation>Wähle Set 8: wechselseitig</translation>
+        <translation>Wähle Gruppe 8: wechselseitig</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.ui" line="1220"/>
         <source>Select Set 8 While Held</source>
-        <translation>Wähle Set 8: festgehalten</translation>
+        <translation>Wähle Gruppe 8: festgehalten</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="142"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[KEINE TASTE]</translation>
+        <translation>[KEINE TASTE]</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="301"/>
@@ -917,95 +918,95 @@ of the all default profile option.</source>
         <location filename="../../../src/advancebuttondialog.cpp" line="394"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="456"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht überprüfte Slots</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="394"/>
         <source>To delete slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>Um Slots zu löschen, musst du mindestens einen Slot auswählen</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="456"/>
         <source>To insert slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>Um Slots einzufügen, musst du mindestens einen Slot auswählen</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="561"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="660"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannter aktueller Slot</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="561"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="660"/>
         <source>Click on chosen slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicke auf die ausgewählten Slots, bevor du die schließst an</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="565"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="664"/>
         <source>Not enough slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht genügend Slots</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="565"/>
         <source>It&apos;s impossible to join slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist unmöglich, um Slots zu verbinden. Füge mindestens einen weiteren Slot hinzu.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="569"/>
         <source>Not selected slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht ausgewählte Slots</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="569"/>
         <source>It&apos;s impossible to join slots. Select at least two slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist unmöglich, um Slots zu verbinden. Wähle mindestens zwei Slots bevor aus</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="573"/>
         <source>Only keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur Tastatur-Slots</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="573"/>
         <source>It&apos;s only possible to join simple and mix keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist nur möglich, einfache und gemischte Tastatur-Slots zu verbinden</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="664"/>
         <source>It&apos;s impossible to split slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist unmöglich, um Slots zu teilen. Füge mindestens einen weiteren Slot hinzu.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="668"/>
         <source>Not selected slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht ausgewählte Slots</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="668"/>
         <source>Select your slot before splitting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle deinen Slot bevor aus.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="672"/>
         <source>Too many mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu viele Mix-Slots</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="672"/>
         <source>Select one mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle einen Mix-slot aus.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="676"/>
         <source>Only mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur Mix-Slots</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="676"/>
         <source>It&apos;s only possible to split mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist nur möglich, den Mix-Slot zu teilen.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1134"/>
@@ -1030,13 +1031,13 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1401"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation>Gruppe %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1541"/>
         <location filename="../../../src/advancebuttondialog.cpp" line="1582"/>
         <source>Select Set %1</source>
-        <translation>Wähle Set %1</translation>
+        <translation>Wähle Gruppe %1</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1550"/>
@@ -1101,7 +1102,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1843"/>
         <source>Change to selected set once slot is activated.</source>
-        <translation>Wechsle zu ausgewähltem Set wenn Slot aktiviert ist.</translation>
+        <translation>Wechsle zu ausgewählter Gruppe wenn Slot aktiviert ist.</translation>
     </message>
     <message>
         <location filename="../../../src/advancebuttondialog.cpp" line="1847"/>
@@ -1145,7 +1146,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinweis: Dieses Fenster dient der Rückwärtskompatibilität mit Profilen, die vor Antimicro 2.0 hergestellt wurden. Seit Version 2.0 wird die Verwendung des Game Controller Mapping-Fensters bevorzugt.</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="101"/>
@@ -1587,12 +1588,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="415"/>
         <source>No choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Wahl</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="415"/>
         <source>Before you open window with advanced settins, you have to choice a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevor du ein Fenster mit den erweiterten Einstellungen öffnest, musst du einen Schlüssel wählen</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="420"/>
@@ -2888,17 +2889,17 @@ Joysticks aktualisiert werden.</translation>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="421"/>
         <source>Set Change %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppewahl %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="435"/>
         <source>[Text] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[Text] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="449"/>
         <source>[Exec] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[Exec] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="472"/>
@@ -3238,7 +3239,7 @@ mit Modifikationstasten, die verwendet werden können,
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="202"/>
         <source>Bearing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearing:</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.ui" line="232"/>
@@ -3268,12 +3269,12 @@ mit Modifikationstasten, die verwendet werden können,
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="572"/>
         <source>Set</source>
-        <translation>Set</translation>
+        <translation>Gruppe</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickeditdialog.cpp" line="586"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation>Gruppe %1</translation>
     </message>
 </context>
 <context>
@@ -3398,12 +3399,12 @@ mit Modifikationstasten, die verwendet werden können,
         <location filename="../../../src/joytabwidget.cpp" line="325"/>
         <location filename="../../../src/joytabwidget.cpp" line="1636"/>
         <source>Sets</source>
-        <translation>Sets</translation>
+        <translation>Gruppen</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="327"/>
         <source>Copy from Set</source>
-        <translation>Kopie aus Set</translation>
+        <translation>Kopie aus Gruppe</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="328"/>
@@ -3414,49 +3415,49 @@ mit Modifikationstasten, die verwendet werden können,
         <location filename="../../../src/joytabwidget.cpp" line="336"/>
         <location filename="../../../src/joytabwidget.cpp" line="1637"/>
         <source>Set 1</source>
-        <translation>Set 1</translation>
+        <translation>Gruppe 1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="340"/>
         <location filename="../../../src/joytabwidget.cpp" line="1638"/>
         <source>Set 2</source>
-        <translation>Set 2</translation>
+        <translation>Gruppe 2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="344"/>
         <location filename="../../../src/joytabwidget.cpp" line="1639"/>
         <source>Set 3</source>
-        <translation>Set 3</translation>
+        <translation>Gruppe 3</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="348"/>
         <location filename="../../../src/joytabwidget.cpp" line="1640"/>
         <source>Set 4</source>
-        <translation>Set 4</translation>
+        <translation>Gruppe 4</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="352"/>
         <location filename="../../../src/joytabwidget.cpp" line="1641"/>
         <source>Set 5</source>
-        <translation>Set 5</translation>
+        <translation>Gruppe 5</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="356"/>
         <location filename="../../../src/joytabwidget.cpp" line="1642"/>
         <source>Set 6</source>
-        <translation>Set 6</translation>
+        <translation>Gruppe 6</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="360"/>
         <location filename="../../../src/joytabwidget.cpp" line="1643"/>
         <source>Set 7</source>
-        <translation>Set 7</translation>
+        <translation>Gruppe 7</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="364"/>
         <location filename="../../../src/joytabwidget.cpp" line="1644"/>
         <source>Set 8</source>
-        <translation>Set 8</translation>
+        <translation>Gruppe 8</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="430"/>
@@ -3575,18 +3576,18 @@ oder deaktivieren Sie das Ausblenden leerer Tasten.</translation>
         <location filename="../../../src/joytabwidget.cpp" line="2504"/>
         <location filename="../../../src/joytabwidget.cpp" line="2531"/>
         <source>Set %1: %2</source>
-        <translation>Set %1: %2</translation>
+        <translation>Gruppe %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2508"/>
         <location filename="../../../src/joytabwidget.cpp" line="2535"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation>Gruppe %1</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2543"/>
         <source>Copy Set Assignments</source>
-        <translation>Kopiere Set-Zuweisungen</translation>
+        <translation>Kopiere Gruppe-Zuweisungen</translation>
     </message>
     <message>
         <location filename="../../../src/joytabwidget.cpp" line="2544"/>
@@ -3604,7 +3605,7 @@ oder deaktivieren Sie das Ausblenden leerer Tasten.</translation>
         <location filename="../../../src/joytabwidget.cpp" line="1582"/>
         <location filename="../../../src/joytabwidget.cpp" line="1589"/>
         <source>Set</source>
-        <translation>Set</translation>
+        <translation>Gruppe</translation>
     </message>
 </context>
 <context>
@@ -3896,27 +3897,27 @@ wenn das Programm zum ersten Mal startet.</translation>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="323"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished"></translation>
+        <translation>Denke daran, dass es nicht funktioniert, wenn du diese Tastatur nicht an den Computer angeschlossen hast oder wenn die nicht wie bei Desktop-PCs eingebaut ist</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="329"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>Anschluss einer numerischen Tastatur</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="392"/>
         <source>Combination of keys for quitting app</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastenkombination zum Beenden der App</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="437"/>
         <source>Choose keys combination</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle Tastenkombination</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="466"/>
         <source>! restart is needed after choice of combination</source>
-        <translation type="unfinished"></translation>
+        <translation>! ein Neustart ist nach der Wahl der Kombination erforderlich</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="491"/>
@@ -4058,7 +4059,7 @@ durchgeführt werden.</translation>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1517"/>
         <source>Note: To see the change of log level in console output (not in log file), application restart is required</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinweis: Um die Änderung des Log-Levels in der Konsolenausgabe (nicht in der Log-Datei) zu sehen, ist ein Neustart der Anwendung erforderlich</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1571"/>
@@ -4361,7 +4362,7 @@ aktivieren, wenn die Option nicht in Windows deaktiviert ist.</translation>
         <location filename="../../../src/mainsettingsdialog.cpp" line="2174"/>
         <location filename="../../../src/mainsettingsdialog.cpp" line="2177"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[KEINE TASTE]</translation>
+        <translation>[KEINE TASTE]</translation>
     </message>
 </context>
 <context>
@@ -5575,22 +5576,22 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="126"/>
         <source>GUID:            %1</source>
-        <translation type="unfinished"></translation>
+        <translation>GUID:            %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="127"/>
         <source>VendorID:            %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VendorID:            %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="128"/>
         <source>ProductID:            %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ProductID:            %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="129"/>
         <source>Product Version:            %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Produktversion:            %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="130"/>
@@ -5681,7 +5682,7 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="311"/>
         <source>An invalid set number &apos;%1&apos; was specified.</source>
-        <translation>Es wurde eine ungültige Setnummer &apos;%1&apos; angegeben.</translation>
+        <translation>Es wurde eine ungültige Gruppenummer &apos;%1&apos; angegeben.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="334"/>
@@ -5691,7 +5692,7 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="340"/>
         <source>No set number was specified.</source>
-        <translation>Kein Set gewählt.</translation>
+        <translation>Keine Gruppe gewählt.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="370"/>
@@ -6186,62 +6187,62 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben auf dieses Gerät zu schrei
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="219"/>
         <source>F13</source>
-        <translation type="unfinished"></translation>
+        <translation>F13</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="220"/>
         <source>F14</source>
-        <translation type="unfinished"></translation>
+        <translation>F14</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="221"/>
         <source>F15</source>
-        <translation type="unfinished"></translation>
+        <translation>F15</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="222"/>
         <source>F16</source>
-        <translation type="unfinished"></translation>
+        <translation>F16</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="223"/>
         <source>F17</source>
-        <translation type="unfinished"></translation>
+        <translation>F17</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="224"/>
         <source>F18</source>
-        <translation type="unfinished"></translation>
+        <translation>F18</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="225"/>
         <source>F19</source>
-        <translation type="unfinished"></translation>
+        <translation>F19</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="226"/>
         <source>F20</source>
-        <translation type="unfinished"></translation>
+        <translation>F20</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="227"/>
         <source>F21</source>
-        <translation type="unfinished"></translation>
+        <translation>F21</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="228"/>
         <source>F22</source>
-        <translation type="unfinished"></translation>
+        <translation>F22</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="229"/>
         <source>F23</source>
-        <translation type="unfinished"></translation>
+        <translation>F23</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="230"/>
         <source>F24</source>
-        <translation type="unfinished"></translation>
+        <translation>F24</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="232"/>
@@ -6890,7 +6891,7 @@ LOCK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="169"/>
         <source>Del</source>
-        <translation type="unfinished">Entf</translation>
+        <translation>Entf</translation>
     </message>
     <message>
         <source>E
@@ -7062,7 +7063,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="831"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[KEINE TASTE]</translation>
+        <translation>[KEINE TASTE]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="947"/>
@@ -7129,62 +7130,62 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1104"/>
         <source>F13</source>
-        <translation type="unfinished"></translation>
+        <translation>F13</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1105"/>
         <source>F14</source>
-        <translation type="unfinished"></translation>
+        <translation>F14</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1106"/>
         <source>F15</source>
-        <translation type="unfinished"></translation>
+        <translation>F15</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1107"/>
         <source>F16</source>
-        <translation type="unfinished"></translation>
+        <translation>F16</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1108"/>
         <source>F17</source>
-        <translation type="unfinished"></translation>
+        <translation>F17</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1109"/>
         <source>F18</source>
-        <translation type="unfinished"></translation>
+        <translation>F18</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1110"/>
         <source>F19</source>
-        <translation type="unfinished"></translation>
+        <translation>F19</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1111"/>
         <source>F20</source>
-        <translation type="unfinished"></translation>
+        <translation>F20</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1112"/>
         <source>F21</source>
-        <translation type="unfinished"></translation>
+        <translation>F21</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1113"/>
         <source>F22</source>
-        <translation type="unfinished"></translation>
+        <translation>F22</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1114"/>
         <source>F23</source>
-        <translation type="unfinished"></translation>
+        <translation>F23</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1115"/>
         <source>F24</source>
-        <translation type="unfinished"></translation>
+        <translation>F24</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1117"/>
