@@ -329,11 +329,17 @@ void JoyControlStickEditDialog::implementPresets(int index)
 
             break;
         }
+        case 0:
         case 8:
         {
             QMetaObject::invokeMethod(&helper, "clearButtonsSlotsEventReset", Qt::BlockingQueuedConnection);
 
             ui->diagonalRangeSlider->setValue(45);
+
+            stick->getDirectionButton(JoyControlStick::StickUp)->buildActiveZoneSummaryString();
+            stick->getDirectionButton(JoyControlStick::StickDown)->buildActiveZoneSummaryString();
+            stick->getDirectionButton(JoyControlStick::StickLeft)->buildActiveZoneSummaryString();
+            stick->getDirectionButton(JoyControlStick::StickRight)->buildActiveZoneSummaryString();
 
             break;
         }
