@@ -740,7 +740,8 @@ void JoyTabWidget::resetJoystick()
     msg.setText(tr("Do you really want to reset buttons settings for joystick?"));
     int result = msg.exec();
 
-    if (result == QMessageBox::Yes) {
+    if (result == QMessageBox::Yes)
+    {
 
         int currentIndex = configBox->currentIndex();
 
@@ -788,6 +789,8 @@ void JoyTabWidget::resetJoystick()
                 QTextStream error(stderr);
                 error << reader->getErrorString() << endl;
             }
+
+            displayProfileEditNotification();
         }
         else
         {
