@@ -613,6 +613,7 @@ configure_file(
     "${PROJECT_BINARY_DIR}/config.h"
 )
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
 if(WITH_TESTS)
     enable_testing ()
