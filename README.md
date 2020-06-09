@@ -128,9 +128,9 @@ directory. Enter the following commands in order to build the program:
 or
 
 ```
-    cd antimicrox
-    cmake --build build
-    cmake --install build
+cd antimicrox
+cmake --build build
+cmake --install build
 ```
 
 
