@@ -36,7 +36,7 @@ class JoyControlStickEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent = nullptr);
+    explicit JoyControlStickEditDialog(JoyControlStick *stick, bool keypadUnlocked, QWidget *parent = nullptr);
    // JoyControlStickEditDialog(QWidget *parent = nullptr);
     ~JoyControlStickEditDialog();
     
@@ -45,6 +45,7 @@ protected:
 
 private:
     Ui::JoyControlStickEditDialog *ui;
+    bool keypadUnlocked;
     JoyControlStickEditDialogHelper& getHelperLocal();
 
     JoyControlStick *stick;

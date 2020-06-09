@@ -36,7 +36,7 @@ class AxisEditDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit AxisEditDialog(JoyAxis *axis, QWidget *parent=0);
+    explicit AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *parent=0);
     AxisEditDialog(QWidget *parent=0);
     ~AxisEditDialog();
 
@@ -51,6 +51,7 @@ private:
     Ui::AxisEditDialog *ui;
 
     JoyAxis *m_axis;
+    bool keypadUnlocked;
     SetAxisThrottleDialog *setAxisThrottleConfirm;
     int initialThrottleState;
 

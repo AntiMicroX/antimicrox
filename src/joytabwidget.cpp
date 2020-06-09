@@ -623,7 +623,7 @@ void JoyTabWidget::showAxisDialog()
     JoyAxisWidget *axisWidget = qobject_cast<JoyAxisWidget*>(sender()); // static_cast
     JoyAxis *axis = axisWidget->getAxis();
 
-    axisDialog = new AxisEditDialog (axis, this);
+    axisDialog = new AxisEditDialog (axis, isKeypadUnlocked(), this);
     axisDialog->show();
 }
 
@@ -2049,7 +2049,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             }
 
             QWidget *groupContainer = new QWidget(stickGroup);
-            StickPushButtonGroup *stickButtonGroup = new StickPushButtonGroup(stick, displayingNames, groupContainer);
+            StickPushButtonGroup *stickButtonGroup = new StickPushButtonGroup(stick, isKeypadUnlocked(), displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
                 connect(stickButtonGroup, &StickPushButtonGroup::buttonSlotChanged, this, &JoyTabWidget::checkStickEmptyDisplay);
@@ -2117,7 +2117,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             }
 
             QWidget *groupContainer = new QWidget(hatGroup);
-            DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(dpad, displayingNames, groupContainer);
+            DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(dpad, isKeypadUnlocked(), displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
                 connect(dpadButtonGroup, &DPadPushButtonGroup::buttonSlotChanged, this, &JoyTabWidget::checkDPadButtonEmptyDisplay);
@@ -2168,7 +2168,7 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
             }
 
             QWidget *groupContainer = new QWidget(hatGroup);
-            DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(vdpad, displayingNames, groupContainer);
+            DPadPushButtonGroup *dpadButtonGroup = new DPadPushButtonGroup(vdpad, isKeypadUnlocked(), displayingNames, groupContainer);
             if (hideEmptyButtons)
             {
                 connect(dpadButtonGroup, &DPadPushButtonGroup::buttonSlotChanged, this, &JoyTabWidget::checkDPadButtonEmptyDisplay);

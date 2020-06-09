@@ -33,11 +33,12 @@
 
 
 
-StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool displayNames, QWidget *parent) :
+StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool keypadUnlocked, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
+    this->keypadUnlocked = keypadUnlocked;
     this->stick = stick;
     this->displayNames = displayNames;
 
@@ -144,7 +145,7 @@ void StickPushButtonGroup::openStickButtonDialog(JoyControlStickButtonPushButton
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), stick->getParentSet()->getInputDevice(), parentWidget());
+    ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), stick->getParentSet()->getInputDevice(), keypadUnlocked, parentWidget());
     dialog->show();
 }
 
@@ -152,7 +153,7 @@ void StickPushButtonGroup::showStickDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog(stick, parentWidget());
+    JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog(stick, keypadUnlocked, parentWidget());
     dialog->show();
 }
 

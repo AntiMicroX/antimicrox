@@ -35,7 +35,7 @@ class StickPushButtonGroup : public QGridLayout
     Q_OBJECT
 
 public:
-    explicit StickPushButtonGroup(JoyControlStick *stick, bool displayNames = false, QWidget *parent = nullptr);
+    explicit StickPushButtonGroup(JoyControlStick *stick, bool keypadUnlocked, bool displayNames = false, QWidget *parent = nullptr);
     JoyControlStick *getStick() const;
 
     bool ifDisplayNames() const;
@@ -70,6 +70,7 @@ private slots:
 private:
     JoyControlStick *stick;
     bool displayNames;
+    bool keypadUnlocked;
 
     JoyControlStickButtonPushButton *upButton;
     JoyControlStickButtonPushButton *downButton;

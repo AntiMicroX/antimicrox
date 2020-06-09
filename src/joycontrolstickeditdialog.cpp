@@ -38,12 +38,13 @@
 #include <QWidget>
 
 
-JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, QWidget *parent) :
+JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, bool keypadUnlocked, QWidget *parent) :
     QDialog(parent, Qt::Window),
     ui(new Ui::JoyControlStickEditDialog),
     helper(stick)
 {
     ui->setupUi(this);
+    this->keypadUnlocked = keypadUnlocked;
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -635,7 +636,7 @@ void JoyControlStickEditDialog::openModifierEditDialog()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(stick->getModifierButton(), stick->getParentSet()->getInputDevice(), this);
+    ButtonEditDialog *dialog = new ButtonEditDialog(stick->getModifierButton(), stick->getParentSet()->getInputDevice(), keypadUnlocked, this);
     dialog->show();
 }
 

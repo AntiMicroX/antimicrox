@@ -30,13 +30,14 @@
 #include <QWidget>
 #include <QDebug>
 
-DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool displayNames, QWidget *parent) :
+DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool keypadUnlocked, bool displayNames, QWidget *parent) :
     QGridLayout(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->dpad = dpad;
     this->displayNames = displayNames;
+    this->keypadUnlocked = keypadUnlocked;
 
     generateButtons();
     changeButtonLayout();
@@ -141,7 +142,7 @@ void DPadPushButtonGroup::openDPadButtonDialog(JoyButtonWidget* buttonWidget)
 
     JoyButton *button = buttonWidget->getJoyButton();
 
-    ButtonEditDialog *dialog = new ButtonEditDialog(button, dpad->getParentSet()->getInputDevice(), parentWidget());
+    ButtonEditDialog *dialog = new ButtonEditDialog(button, dpad->getParentSet()->getInputDevice(), keypadUnlocked, parentWidget());
     dialog->show();
 }
 
