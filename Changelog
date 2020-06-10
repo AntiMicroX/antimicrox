@@ -1,6 +1,83 @@
 2018-16-06 Jagoda Gorska <juliagoda.pl@protonmail.com>
 
 
+Version 3.0
+
+* Added qt directives for compatibility with older versions of qt5
+
+* Arch Linux packages of application of frealgagu and sir_lucjan
+
+  Link1: https://aur.archlinux.org/packages/antimicrox/
+
+  Link2: https://aur.archlinux.org/packages/antimicrox-git/
+
+* Deb package of Paweł "pktiuk" Kotiuk
+
+  Link1: https://github.com/pktiuk
+
+  Link2: https://github.com/juliagoda/antimicroX/pull/120
+
+  Link3: https://github.com/juliagoda/antimicroX/pull/103
+
+* Rpm package of Gergely "gombosg" Gombos meanwhile
+
+  Link1: https://github.com/gombosg
+
+  Link2: https://github.com/juliagoda/antimicroX/issues/118
+
+* Created and added dockerfiles to containers - look README
+
+  Link1: https://hub.docker.com/r/juliagoda/antimicrox
+
+* Changed icon for antimicroX
+
+* Added F13-F24 buttons to "Others" only if they are detected on keyboard
+
+* Added more adjusted debug/info/warning outputs to log settings
+
+* Added new functionality - joining and splitting slots
+
+* Added new functionality - deletion of more slots at once
+
+* Added new functionality - insertion of more slots at once
+
+* Added new functionality - One choice of execution paths and its arguments for multiple slots
+
+* Added new functionality - One choice of profile for multiple slots
+
+* Added new functionality - attaching numeric keypad keys thanks to option in settings
+
+* Added new functionality - global shortcuts for quitting application from settings
+
+* Added support for the same model of gamepads
+
+* Updated german, english and polish translation files
+
+# Fixed issue #92
+
+* Fixed issue #97
+
+* Fixed issue #90
+
+* Fixed issue #98
+
+* Fixed issue #101
+
+* Fixed issue #107
+
+* Fixed issue #108
+
+* Fixed issue #109
+
+* Fixed issue #113
+
+* Fixed issue #112
+
+* Fixed issue #114
+
+* Fixed iisue #116
+
+
 Version 2.25
 
 * renamed AntiMicro into antimicroX
