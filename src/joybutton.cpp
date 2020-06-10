@@ -2462,26 +2462,18 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveStri
 }
 
 
-bool JoyButton::insertAssignedSlot(JoyButtonSlot *slot, int index, bool updateActiveString)
+bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     bool permitSlot = true;
-    //JoyButtonSlot *slot = new JoyButtonSlot(newSlot, this);
+    JoyButtonSlot *slot = new JoyButtonSlot(newSlot, this);
 
     if (slot->getSlotMode() == JoyButtonSlot::JoyDistance && (slot->getSlotCode() >= 1) && (slot->getSlotCode() <= 100))
     {
         if (getTotalSlotDistance(slot) > 1.0) permitSlot = false;
     }
-    else if (slot->getSlotMode() == JoyButtonSlot::JoyMix && slot->getMixSlots()->count() == 0)
-    {
-        permitSlot = false;
-    }
     else if (slot->getSlotCode() < 0)
-    {
-        permitSlot = false;
-    }
-    else if (slot->getSlotMode() == JoyButtonSlot::JoyMix && slot->getMixSlots()->count() < 2)
     {
         permitSlot = false;
     }
@@ -2506,17 +2498,18 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *slot, int index, bool updateAc
         checkTurboCondition(slot);
         assignmentsLock.unlock();
         buildActiveZoneSummaryString();
-
-        if (updateActiveString)
-            buildActiveZoneSummaryString();
-
         emit slotsChanged();
     }
-  /*  else if (slot != nullptr)
+    else if (slot != nullptr)
     {
+        /*if (slot->getSlotMode() == 15)
+        {
+            qDeleteAll(*slot->getMixSlots());
+        }*/
+
         delete slot;
         slot = nullptr;
-    }*/
+    }
 
     return permitSlot;
 }
@@ -3313,14 +3306,6 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
     {
         auto el = iter.next();
         qDebug() << "AssignedSLot mode: " << el->getSlotMode();
-
-        if (el->getSlotMode() == JoyButtonSlot::JoySlotInputAction::JoyMix)
-        {
-            for (auto j : *el->getMixSlots())
-            {
-                qDebug() << "Minislot: " << j->getSlotString();
-            }
-        }
     }
 
     while (iter.hasNext())

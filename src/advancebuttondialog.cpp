@@ -44,6 +44,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QListWidgetItem>
+//#include <QTest>
 
 
 AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent) :
@@ -599,26 +600,35 @@ void AdvanceButtonDialog::joinSlot()
                 for(auto mini : *firstGrabBtn->getValue()->getMixSlots())
                     slotsList.append(new JoyButtonSlot(mini->getSlotCode(), mini->getSlotCodeAlias(), mini->getSlotMode()));
 
+               // Q_ASSERT(blankButton->getValue() != nullptr);
                 blankButton->getValue()->appendMiniSlot<QList<JoyButtonSlot*>>(slotsList);
             }
             else
             {
                 JoyButtonSlot* slotmini = new JoyButtonSlot(firstGrabBtn->getValue()->getSlotCode(), firstGrabBtn->getValue()->getSlotCodeAlias(), firstGrabBtn->getValue()->getSlotMode());
 
+               // Q_ASSERT(blankButton->getValue() != nullptr);
                 blankButton->getValue()->appendMiniSlot<JoyButtonSlot*>(slotmini);
             }
 
             text += firstGrabBtn->getValue()->getSlotString();
-
-
         }
+
+        blankButton->getValue()->setTextData(text);
+        blankButton->getValue()->setSlotMode(JoyButtonSlot::JoyMix);
+        blankButton->getValue()->setSlotCode(-1);
 
         deleteSlot(false);
 
-      /*  for(auto x : *blankButton->getValue()->getMixSlots())
+       // Q_ASSERT(blankButton->getValue()->getMixSlots() != nullptr);
+       // Q_ASSERT(blankButton->getValue()->getMixSlots()->count() > 0);
+
+        for(auto x : *blankButton->getValue()->getMixSlots())
         {
+         //   Q_ASSERT(x->getSlotMode() == 0);
+         //   Q_ASSERT(!x->getSlotString().isEmpty());
             qDebug() << "JOINED MINI: " << x->getSlotCode() << " - " << x->getSlotMode() << " - " << x->getSlotString();
-        }*/
+        }
 
 
         QListWidgetItem *joinedItem = new QListWidgetItem();
@@ -635,7 +645,7 @@ void AdvanceButtonDialog::joinSlot()
         ui->slotListWidget->setItemWidget(joinedItem, widget);
         ui->slotListWidget->setCurrentItem(joinedItem);
 
-        blankButton->setValues(text, blankButton->getValue()->getMixSlots(), JoyButtonSlot::JoyMix);
+       // blankButton->setValues(text, blankButton->getValue()->getMixSlots(), JoyButtonSlot::JoyMix);
 
         connectButtonEvents(blankButton);
         blankButton->refreshButtonLabel(); // instead of blankButton->setText(text);
@@ -645,7 +655,6 @@ void AdvanceButtonDialog::joinSlot()
         Q_ARG(int, index),
         Q_ARG(bool, false));
     }
-
 
     joinLock.unlock();
 }

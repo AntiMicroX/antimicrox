@@ -99,8 +99,6 @@ public:
     JoyButtonSlot& operator=(JoyButtonSlot* slot);
 
 
-
-    
 private:
     void secureMixSlotsInit();
 

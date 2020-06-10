@@ -86,16 +86,31 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent) :
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    deviceCode = slot->deviceCode;
-    qkeyaliasCode = slot->qkeyaliasCode;
-    m_mode = slot->m_mode;
-    m_distance = slot->m_distance;
-    easingActive = false;
-    m_textData = slot->m_textData;
-    extraData = slot->extraData;
-   // setMixSlots(slot->mix_slots);
+    this->deviceCode = slot->getSlotCode();
+    this->m_mode = slot->getSlotMode();
+    this->qkeyaliasCode = slot->getSlotCodeAlias();
+    this->m_distance = slot->getDistance();
+    this->previousDistance = slot->getPreviousDistance();
+    this->easingActive = slot->isEasingActive();
+    this->easingTime.fromString(slot->getEasingTime()->toString());
+    this->extraData = slot->getExtraData();
 
+    /*
+     * if (slot->getMixSlots() != nullptr)
+    {
+        secureMixSlotsInit();
 
+        for(auto minislot : *slot->getMixSlots())
+        {
+            this->mix_slots->append(new JoyButtonSlot(minislot->getSlotCode(), minislot->getSlotCodeAlias(), minislot->getSlotMode()));
+        }
+    }*/
+
+    if (slot->getMixSlots() != nullptr)
+        this->mix_slots = slot->getMixSlots();
+
+    if (!slot->getTextData().isNull() ^ (slot->getTextData() != ""))
+        this->m_textData = slot->getTextData();
 }
 
 JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent) :
