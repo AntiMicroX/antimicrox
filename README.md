@@ -129,8 +129,9 @@ or
 
 ```
 cd antimicrox
-cmake --build build
-cmake --install build
+mkdir build && cd build
+cmake --build .
+sudo cmake --install .
 ```
 
 
