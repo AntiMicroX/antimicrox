@@ -9,8 +9,9 @@
 4. [Wiki](#wiki)
 5. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
-    b. [Running With Docker](#running-with-docker)  
-    c. [Building with Flatpak](#building-with-flatpak)  
+    b. [Building deb package](#building-deb-package)  
+    c. [Running With Docker](#running-with-docker)  
+    d. [Building with Flatpak](#building-with-flatpak)  
 6. [Testing Under Linux](#testing-under-linux)  
 7. [Support](#support)  
 8. [Bugs](#bugs)  
@@ -155,8 +156,9 @@ from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
 | :--------- | :------------- | :----------- |
 | Arch Linux | Piotr Górski   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
 
+<br/>
 
-#### Building deb package
+### Building deb package
 Already built .deb files are available on [Release Page](https://github.com/juliagoda/antimicroX/releases)
 
 ```
