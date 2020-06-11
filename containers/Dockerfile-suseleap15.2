@@ -3,7 +3,7 @@ ARG USER=docker
 ARG UID=1000
 ARG GID=1000
 
-LABEL description="antimicroX from last commit of master branch on Github. See https://github.com/juliagoda/antimicroX" 
+LABEL description="antimicroX version 3.0 on Github. See https://github.com/juliagoda/antimicroX" 
 MAINTAINER Jagoda Górska <juliagoda.pl@protonmail.com>
 
 
@@ -22,6 +22,7 @@ RUN zypper refresh && zypper --non-interactive update && zypper --non-interactiv
     extra-cmake-modules \
     libqt5-qttools-devel \
     libqt5-qtbase-devel \
+    libqt5-qtx11extras-devel \
     libX11-devel \
     libXtst-devel \
     libXi-devel \
@@ -35,17 +36,24 @@ RUN zypper refresh && zypper --non-interactive update && zypper --non-interactiv
 
     
     
-RUN git -c http.sslVerify=false clone https://github.com/juliagoda/antimicroX.git && cd antimicroX
+RUN git -c http.sslVerify=false clone --depth 1 https://github.com/juliagoda/antimicroX.git --branch 3.0 --single-branch 
 
-COPY . /opt/antimicroX
+WORKDIR antimicroX
 
-WORKDIR /opt/antimicroX
+RUN mkdir -p build
+
+WORKDIR build
+
 
 # finally build project from github
-RUN cmake -DCMAKE_INSTALL_PREFIX=/usr . && \ 
+RUN cmake -DCMAKE_INSTALL_PREFIX=/usr .. && \ 
     make && \ 
-    make install && \
-    rm -rf opt/antimicroX
+    make install 
+    
+    
+WORKDIR ..
+
+RUN rm -rf build
   
   
 RUN groupadd --gid ${GID} ${USER} && \
