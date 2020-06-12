@@ -189,6 +189,24 @@ All full tags variations:
 
 <br/>
 
+Because the docker likes to replace the README on the docker hub website with this one. I need to add informations about how to run image:  
+
+You should as first:
+
+`git pull juliagoda/antimicrox:3.0-ubuntu-bionic`
+
+where "3.0-ubuntu-bionic" is a tag and can be replaced by other chosen tag. Next we have to create group docker and add user to it. [Look here](https://docs.docker.com/engine/install/linux-postinstall/). To run GUI docker apps:
+
+`xhost +local:docker`
+
+To finally run image:
+
+`docker run -it -e DISPLAY=unix$DISPLAY --mount type=bind,source=/dev/input,target=/dev/input --device /dev/input --mount type=bind,source=/home/$USER,target=/home/$USER --net=host -e HOME=$HOME --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --device /dev/dri:/dev/dri --workdir=$HOME antimicrox:3.0-ubuntu-bionic`
+
+This allows the use your files from your home directory and the use of your connected devices without other workarounds
+
+<br/>
+
 ### Building with Flatpak
 
 #### Additional Dependencies
