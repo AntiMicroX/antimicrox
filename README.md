@@ -173,7 +173,19 @@ Already built .deb files are available on [Release Page](https://github.com/juli
 
 ### Running with Docker
 
-If you want to run application without building process and choose between various distributions, then [look here](https://hub.docker.com/r/juliagoda/antimicrox)
+If you want to run application without building process and choose between various distributions, then [look here](https://hub.docker.com/r/juliagoda/antimicrox)  
+
+<br/>
+
+All full tags variations:
+
+- juliagoda/antimicrox:latest
+
+- juliagoda/antimicrox:3.0-ubuntu-bionic
+
+- juliagoda/antimicrox:3.0-fedora-latest
+
+- juliagoda/antimicrox:3.0-suseleap15.2
 
 <br/>
 
