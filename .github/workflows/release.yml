@@ -1,7 +1,9 @@
 
 name: Release_actions
-on: release
-
+on:
+  release:
+    types: [published]
+    
 jobs:
   # This workflow contains a single job called "build"
   build:
