@@ -83,6 +83,7 @@ if(UNIX)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
     option(APPDATA "Build project with AppData file support." ON)
+    option(ANTILIB_PATH "Set your own path for antilib" OFF)
 endif(UNIX)
 
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
@@ -488,6 +489,19 @@ if(UNIX)
 endif(UNIX)
 
     if(UNIX)
+
+        if(ANTILIB_PATH)
+            ADD_DEFINITIONS(-DANTILIB_PATH="${ANTILIB_PATH}")
+
+            # Generally package manager takes care of this while installing the new library, but not always
+            # especially with cmake
+            ADD_DEFINITIONS(-DLD_LIBRARY_PATH="${ANTILIB_PATH}:${LD_LIBRARY_PATH}")
+
+            # those instructions have to be before add_executable() or add_library() is called, otherwise it has no effect
+            set(CMAKE_INSTALL_RPATH "${ANTILIB_PATH}")
+            set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+        endif()
+
             add_library( antilib
                 SHARED
                 ${antimicroX_HEADERS_MOC}
@@ -499,23 +513,32 @@ endif(UNIX)
             set_target_properties(antilib PROPERTIES
                 SOVERSION ${ANTILIB_VERSION}
             )
-
+            
+            
             #target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Test Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
             target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
 
             if (WITH_X11)
                 target_link_libraries(antilib Qt5::X11Extras)
             endif()
-
+            
+            
             add_executable(antimicroX ${antimicroX_MAIN})
             target_link_libraries (antimicroX antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
+
     endif(UNIX)
 
 
 # Specify out directory for final executable.
 if(UNIX)
         install(TARGETS antimicroX RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-        install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+
+        if(ANTILIB_PATH)
+            install(TARGETS antilib DESTINATION "${ANTILIB_PATH}")
+        else()
+            install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+        endif()
+
         install(FILES ${antimicroX_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicroX")
 endif(UNIX)
 
