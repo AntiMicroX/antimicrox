@@ -68,6 +68,10 @@ set(ANTIMICROX_MAJOR_VERSION 3)
 set(ANTIMICROX_MINOR_VERSION 0)
 set(ANTIMICROX_PATCH_VERSION 0)
 
+# antilib soname version
+set(ANTILIB_MAJOR_VERSION 1)
+set(ANTILIB_VERSION "${ANTILIB_MAJOR_VERSION}")
+
 option(WITH_TESTS "Allow tests for classes" OFF)
 
 if(WITH_TESTS)
@@ -490,6 +494,10 @@ endif(UNIX)
                 ${antimicroX_SOURCES}
                 ${antimicroX_FORMS_HEADERS}
                 ${antimicroX_RESOURCES_RCC}
+            )
+
+            set_target_properties(antilib PROPERTIES
+                SOVERSION ${ANTILIB_VERSION}
             )
 
             #target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Test Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
