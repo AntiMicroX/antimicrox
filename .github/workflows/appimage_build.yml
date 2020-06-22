@@ -16,18 +16,18 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a set of commands using the runners shell
+    # Runs a set of commands using the runners shell (installing antimicroX is required for appimage creator)
     - name: Install
       run: |
         mkdir build && cd ./build
         cmake ..
         cpack
         ls
-        sudo dpkg -i `ls -1 | grep .deb`
+        sudo dpkg -i `ls -1 | grep .deb` 
 
         
 
-    - name: prepare to appimage file
+    - name: Prepare files to create apppimage
       run: |
         cd build
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
@@ -46,7 +46,7 @@ jobs:
         ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
         ./appimagetool-x86_64.AppImage AppDir/ --no-appstream
 
-    #upload generated files to release
+    #Upload generated files to release
     - name: Upload binaries to release
       uses: AButler/upload-release-assets@v2.0
       with:
