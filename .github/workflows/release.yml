@@ -36,7 +36,8 @@ jobs:
   build-appimage:
     # Version of ubuntu building this appimage, it shouldn't be the latest verion of ubuntu to avoid breaking compatibility with older systems
     runs-on: ubuntu-18.04
-
+    needs: build
+    
     steps:
     - name: Install Dependencies
       run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev qt5-default libsdl2-2.0-0 libqt5x11extras5
