@@ -30,8 +30,7 @@ means that your system has to be running an X environment in order to run
 this program.
 
 This program is currently supported under various Linux
-distributions, Windows (Vista and later), and FreeBSD. However functionality of application
-has been tested only on Linux (Arch Linux and Ubuntu). More systems will be tested in the future.
+distributions.
 
 Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
 application. Their **old versions** are here:
@@ -76,8 +75,7 @@ http://www.gnu.org/licenses/gpl.txt
     --log-file <filename>          Choose a file for writing logs
     --eventgen (xtest|uinput)      Choose between using XTest support and uinput
                                    support for event generation. Use only if you have
-                                   enabled xtest and uinput options on Linux or vmulti
-                                   on Windows. Default: xtest.
+                                   enabled xtest and uinput options on Linux. Default: xtest.
     -l, --list                     Print information about joysticks detected by
                                    SDL. Use only if you have sdl library. You can 
                                    check your controller index, name or 
