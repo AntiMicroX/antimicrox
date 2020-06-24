@@ -6,7 +6,7 @@ on:
     
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build_deb:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -36,7 +36,7 @@ jobs:
   build-appimage:
     # Version of ubuntu building this appimage, it shouldn't be the latest verion of ubuntu to avoid breaking compatibility with older systems
     runs-on: ubuntu-18.04
-    needs: build
+    needs: build_deb
     
     steps:
     - name: Install Dependencies
