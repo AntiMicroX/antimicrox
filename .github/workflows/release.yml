@@ -5,12 +5,11 @@ on:
     types: [published]
     
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+#Build .deb files for debian-based systems.
+  build_deb:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Install Dependencies
       run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev
@@ -18,7 +17,6 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a set of commands using the runners shell
     - name: Build deb file
       id: create_deb
       run: |
@@ -31,4 +29,52 @@ jobs:
       uses: AButler/upload-release-assets@v2.0
       with:
         files: ./build/*.deb
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        
+  #Build universal and portable AppImage package.
+  build-appimage:
+    # Version of ubuntu building this appimage, it shouldn't be the latest verion of ubuntu to avoid breaking compatibility with older systems
+    runs-on: ubuntu-18.04
+    needs: build_deb
+    
+    steps:
+    - name: Install Dependencies
+      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev qt5-default libsdl2-2.0-0 libqt5x11extras5 zsync
+    
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Installing antimicroX is required for appimage creator
+    - name: Install antimicroX
+      run: |
+        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicroX-3.0.0-Linux.deb"
+        sudo dpkg -i `ls -1 | grep .deb` 
+
+        
+    - name: Prepare files to create apppimage
+      run: |
+        mkdir build && cd ./build
+        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+        chmod +x linuxdeploy-x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
+        chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+        cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+        make
+        make install DESTDIR=AppDir
+
+#UPDATE_INFORMATION describes where information about updates can be found
+    - name: Create AppImage file
+      run: |
+        cd build
+        export UPDATE_INFORMATION="zsync|https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicroX-x86_64.AppImage.zsync"
+        ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
+        ./appimagetool-x86_64.AppImage AppDir/ --no-appstream -u "$UPDATE_INFORMATION"
+
+    #Upload generated files to release
+    - name: Upload binaries to release
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: ./build/antimicroX*.AppImage;./build/antimicroX*.zsync
         repo-token: ${{ secrets.GITHUB_TOKEN }}

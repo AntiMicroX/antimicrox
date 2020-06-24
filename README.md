@@ -12,6 +12,7 @@
     b. [Building deb package](#building-deb-package)  
     c. [Running With Docker](#running-with-docker)  
     d. [Building with Flatpak](#building-with-flatpak)  
+    e. [Building AppImage](#building-appimage)  
 6. [Testing Under Linux](#testing-under-linux)  
 7. [Support](#support)  
 8. [Bugs](#bugs)  
@@ -252,6 +253,33 @@ mkdir repo
 8. Install application
 
 `flatpak --user install antimicroX com.github.juliagoda.antimicroX`
+
+
+### Building AppImage
+Create build directory
+```bash
+mkdir build && cd ./build
+```
+Download tools used for creating appimages (and make them executable)
+```bash  
+wget https://github.com/linuxdeploy/linuxdeploy/releases/downloacontinuous/linuxdeploy-x86_64.AppImage
+wget https://github.com/AppImage/AppImageKit/releases/downloacontinuous/appimagetool-x86_64.AppImage
+wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releasedownload/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+chmod +x linuxdeploy-x86_64.AppImage
+chmod +x appimagetool-x86_64.AppImage
+chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+```
+Build antimicroX and install it in AppDir directory
+```bash
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+make
+make install DESTDIR=AppDir
+```
+Create AppImage file
+```bash
+./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
+./appimagetool-x86_64.AppImage AppDir/ --no-appstream
+```
 
 
 #### Run antimicroX
