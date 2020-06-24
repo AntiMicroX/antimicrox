@@ -40,7 +40,7 @@ jobs:
     
     steps:
     - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev qt5-default libsdl2-2.0-0 libqt5x11extras5
+      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev qt5-default libsdl2-2.0-0 libqt5x11extras5 zsync
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -72,8 +72,9 @@ jobs:
     - name: Create appimage file
       run: |
         cd build
-        ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
-        ./appimagetool-x86_64.AppImage AppDir/ --no-appstream
+        export UPDATE_INFORMATION="zsync|https://github.com/pktiuk/antimicroX/releases/download/AppimageTest/antimicroX-x86_64.zsync"
+        ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt -u "zsync|https://github.com/pktiuk/antimicroX/releases/download/AppimageTest/antimicroX-x86_64.zsync"
+        ./appimagetool-x86_64.AppImage AppDir/ --no-appstream -u "$UPDATE_INFORMATION"
 
     #Upload generated files to release
     - name: Upload binaries to release
