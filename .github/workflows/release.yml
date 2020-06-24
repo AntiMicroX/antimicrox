@@ -72,7 +72,7 @@ jobs:
     - name: Create appimage file
       run: |
         cd build
-        export UPDATE_INFORMATION="zsync|https://github.com/pktiuk/antimicroX/releases/download/AppimageTest/antimicroX-x86_64.zsync"
+        export UPDATE_INFORMATION="zsync|https://github.com/pktiuk/antimicroX/releases/download/AppimageTest/antimicroX-x86_64.AppImage.zsync"
         ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt -u "zsync|https://github.com/pktiuk/antimicroX/releases/download/AppimageTest/antimicroX-x86_64.zsync"
         ./appimagetool-x86_64.AppImage AppDir/ --no-appstream -u "$UPDATE_INFORMATION"
 
@@ -80,5 +80,5 @@ jobs:
     - name: Upload binaries to release
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: ./build/antimicroX*.AppImage
+        files: ./build/antimicroX*.AppImage;./build/antimicroX*.zsync
         repo-token: ${{ secrets.GITHUB_TOKEN }}
