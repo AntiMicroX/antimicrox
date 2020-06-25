@@ -11,8 +11,7 @@
     a. [Building Under Linux](#building-under-linux)  
     b. [Building deb package](#building-deb-package)  
     c. [Running With Docker](#running-with-docker)  
-    d. [Building with Flatpak](#building-with-flatpak)  
-    e. [Building AppImage](#building-appimage)  
+    d. [Building AppImage](#building-appimage)  
 6. [Testing Under Linux](#testing-under-linux)  
 7. [Support](#support)  
 8. [Bugs](#bugs)  
@@ -206,60 +205,17 @@ This allows the use your files from your home directory and the use of your conn
 
 <br/>
 
-### Building with Flatpak
-
-#### Additional Dependencies
-
-* flatpak 
-* flatpak-builder
-
-
-#### Compilation & Installation
-
-This tutorial is about installing antimicroX with flatpak locally. As first you need a com.github.juliagoda.antimicroX.json file, that is placed in main folder. You can for example copy and paste content to local file. Link to raw content of json file is [here](https://raw.githubusercontent.com/juliagoda/antimicroX/master/com.github.juliagoda.antimicroX.json).
-
-
-1. Download and install Flatpak repo:
-
-`flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
-
-2. Add a runtime with Qt and all KDE Frameworks 5
-
-`flatpak install flathub org.kde.Platform//5.11 org.kde.Sdk//5.11`
-
-3. Create new directories for building and creating repo
-
-```
-mkdir build-dir
-mkdir repo
-```
-
-4. Build antimicroX
-
-`flatpak-builder build-dir com.github.juliagoda.antimicroX.json`
-
-5. Test the build of application
-
-`flatpak-builder --run build-dir com.github.juliagoda.antimicroX.json antimicroX`
-
-6. Create repository for application
-
-`flatpak-builder --repo=repo --force-clean build-dir com.github.juliagoda.antimicroX.json`
-
-7. Add the repository to flatpak locally
-
-`flatpak --user remote-add --no-gpg-verify antimicroX repo`
-
-8. Install application
-
-`flatpak --user install antimicroX com.github.juliagoda.antimicroX`
-
-
 ### Building AppImage
+
+<br/>
+
 Create build directory
 ```bash
 mkdir build && cd ./build
 ```
+
+<br/>
+
 Download tools used for creating appimages (and make them executable)
 ```bash  
 wget https://github.com/linuxdeploy/linuxdeploy/releases/downloacontinuous/linuxdeploy-x86_64.AppImage
@@ -269,44 +225,23 @@ chmod +x linuxdeploy-x86_64.AppImage
 chmod +x appimagetool-x86_64.AppImage
 chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
 ```
+
+<br/>
+
 Build antimicroX and install it in AppDir directory
 ```bash
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 make
 make install DESTDIR=AppDir
 ```
+
+<br/>
+
 Create AppImage file
 ```bash
 ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
 ./appimagetool-x86_64.AppImage AppDir/ --no-appstream
 ```
-
-
-#### Run antimicroX
-
-If you have installed antimicroX locally with success, you can run application:
-
-`flatpak run com.github.juliagoda.antimicroX`
-
-
-
-#### Updating
-
-To update all your installed applications and runtimes to the latest version, execute:
-
-`flatpak update`
-
-
-#### Uninstall antimicroX
-
-1. Delete a remote repository
-
-`flatpak --user remote-delete antimicroX`
-
-2. Delete application
-
-`flatpak uninstall com.github.juliagoda.antimicroX`
-
 <br/>
 
 ## Testing Under Linux
