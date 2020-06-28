@@ -599,6 +599,7 @@ if(UNIX)
     ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/scalable/apps/sc-apps-com.github.juliagoda.antimicroX.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
 
     install(FILES src/images/antimicroX.png src/images/antimicroX_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/images")
 
