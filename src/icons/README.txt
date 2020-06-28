@@ -13,3 +13,5 @@ theme can be downloaded from
 http://download.kde.org/stable/4.10.2/src/oxygen-icons-4.10.2.tar.xz.
 Additionally, you can got the Oxygen theme website located at
 http://www.oxygen-icons.org/.
+
+Main icon of application is made by Freepik from www.flaticon.com.
