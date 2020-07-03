@@ -1,4 +1,4 @@
-# antimicroX 3.0
+# <img src="./src/images/antimicroX.png" alt="Icon" width="60"/> AntiMicroX 3.0 
 
 ## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
 
@@ -38,7 +38,24 @@ application. Their **old versions** are here:
 https://github.com/AntiMicro/antimicro  
 https://github.com/Ryochan7/antimicro  
 
+**Screenshots:**
+<table border="0px" >
+<tr><td>
+
+<img src="./other/appdata/screenshots/controller_main_window_dark_theme_1.png" alt="Main Window" />
+  </td><td>
+    <img src="./other/appdata/screenshots/controller_mapping_dark_theme.png" alt="Mapping" />
+  </td></tr>
+
+  <tr><td>
+    <img src="./other/appdata/screenshots/controller_callibration_dark_theme.png" alt="Calibration" />
+
+  </td><td>
+    <img src="./other/appdata/screenshots/controller_configure_dark_theme.png" alt="Configuration" />
+  </td></tr>
+</table>
 <br/>
+
 
 ## License
 
