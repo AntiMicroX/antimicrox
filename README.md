@@ -339,7 +339,7 @@ juliagoda <juliagoda.pl@protonmail.com> - Polish
 
 ## Participation in the translation of AntiMicroX
 
-If you want to participate in the translation of the program, but your language is not yet on the supported list. Please contact us.
+If you want to participate in the translation of the program, but your language is not yet on the support list. Please contact us.
 
 However, if your language is already supported in the program, you must have the Qt Linguist program installed, which is usually included in the qt5-tools package, to conveniently translate the application. However, before you do that, make sure that you don't already have this program installed. All you have to do is open it, and then use it to open a file with the ts extension.
 
