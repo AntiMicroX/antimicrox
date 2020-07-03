@@ -17,6 +17,7 @@
 8. [Bugs](#bugs)  
 9. [Shoutout](#shoutout)  
 10. [Credits](#credits)  
+11. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
 
 <br/>
 
@@ -333,3 +334,14 @@ burunduk - Ukrainian
 Flavio HR <flavio.hrx@gmail.com> - Spanish  
 WAZAAAAA - <wazaaaaa00@gmail.com> - Italian  
 juliagoda <juliagoda.pl@protonmail.com> - Polish
+
+<br/>
+
+## Participation in the translation of AntiMicroX
+
+If you want to participate in the translation of the program, but your language is not yet on the supported list. Please contact us.
+
+However, if your language is already supported in the program, you must have the Qt Linguist program installed, which is usually included in the qt5-tools package, to conveniently translate the application. However, before you do that, make sure that you don't already have this program installed. All you have to do is open it, and then use it to open a file with the ts extension.
+
+
+
