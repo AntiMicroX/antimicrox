@@ -37,12 +37,18 @@
      <item>
       <widget class="QLabel" name="label_5">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="minimumSize">
+        <size>
+         <width>64</width>
+         <height>64</height>
+        </size>
+       </property>
+       <property name="maximumSize">
         <size>
          <width>64</width>
          <height>64</height>
