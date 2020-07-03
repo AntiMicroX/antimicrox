@@ -3,19 +3,20 @@
 ## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
 
 
-1. [Description](#description)   
-2. [Command Line](#command-line) 
-3. [Wiki](#wiki)
-4. [Build Dependencies](#build-dependencies)  
+1. [Description](#description)  
+2. [License](#license)  
+3. [Command Line](#command-line) 
+4. [Wiki](#wiki)
+5. [Build Dependencies](#build-dependencies)  
     a. [Building Under Linux](#building-under-linux)  
     b. [Building deb package](#building-deb-package)  
     c. [Running With Docker](#running-with-docker)  
     d. [Building AppImage](#building-appimage)  
-5. [Testing Under Linux](#testing-under-linux)  
-6. [Support](#support)  
-7. [Bugs](#bugs)  
-8. [Shoutout](#shoutout)  
-9. [Credits](#credits)  
+6. [Testing Under Linux](#testing-under-linux)  
+7. [Support](#support)  
+8. [Bugs](#bugs)  
+9. [Shoutout](#shoutout)  
+10. [Credits](#credits)  
 
 <br/>
 
@@ -53,6 +54,16 @@ https://github.com/Ryochan7/antimicro
     <img src="./other/appdata/screenshots/controller_configure_dark_theme.png" alt="Configuration" />
   </td></tr>
 </table>
+<br/>
+
+
+## License
+
+This program is licensed under the GPL v.3. Please read the gpl.txt text document
+included with the source code if you would like to read the terms of the license.
+The license can also be found online at
+http://www.gnu.org/licenses/gpl.txt
+
 <br/>
 
 ## Command Line
