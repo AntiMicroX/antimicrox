@@ -38,6 +38,22 @@ application. Their **old versions** are here:
 https://github.com/AntiMicro/antimicro  
 https://github.com/Ryochan7/antimicro  
 
+**Screenshots:**
+<table border="0px" >
+<tr><td>
+
+<img src="./other/appdata/screenshots/controller_main_window_dark_theme_1.png" alt="Main Window" />
+  </td><td>
+    <img src="./other/appdata/screenshots/controller_mapping_dark_theme.png" alt="Mapping" />
+  </td></tr>
+
+  <tr><td>
+    <img src="./other/appdata/screenshots/controller_callibration_dark_theme.png" alt="Calibration" />
+
+  </td><td>
+    <img src="./other/appdata/screenshots/controller_configure_dark_theme.png" alt="Configuration" />
+  </td></tr>
+</table>
 <br/>
 
 
