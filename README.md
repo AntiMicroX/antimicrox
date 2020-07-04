@@ -343,5 +343,5 @@ If you want to participate in the translation of the program, but your language 
 
 However, if your language is already supported in the program, you must have the Qt Linguist program installed, which is usually included in the qt5-tools package, to conveniently translate the application. However, before you do that, make sure that you don't already have this program installed. All you have to do is open it, and then use it to open a file with the ts extension.
 
-
+If a red exclamation mark appears in the translation field, it means that your translation does not end with the same sign as the original content. Try to place commas or dots in appropriate places and often save your progress.
 
