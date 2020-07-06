@@ -166,11 +166,12 @@ or
 trizen -S antimicrox-git
 ```
 
-from [AUR](https://aur.archlinux.org/packages/antimicrox-git/)
+### Distribution packages
 
  **Distro** | **Maintainer** | **Package**  |
 | :--------- | :------------- | :----------- |
 | Arch Linux | Piotr Górski   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
+| Fedora Linux | [Gergely Gombos](https://github.com/gombosg) | antimicroX |
 
 <br/>
 
