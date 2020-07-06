@@ -150,9 +150,9 @@ mkdir build && cd build
 cmake --build .
 sudo cmake --install .
 ```
+<br/>
 
-
-If you're an Arch Linux or Arch Linux based distribution user:
+### Arch Linux or Arch Linux based distributions:
 
 ```
 git clone https://github.com/archlinux-lucjan/archlinux-packages.git
@@ -165,6 +165,16 @@ or
 ```
 trizen -S antimicrox-git
 ```
+
+<br/>
+
+### Fedora
+
+```
+dnf install antimicroX
+```
+
+<br/>
 
 ### Distribution packages
 
