@@ -13,11 +13,12 @@
     c. [Running With Docker](#running-with-docker)  
     d. [Building AppImage](#building-appimage)  
 6. [Testing Under Linux](#testing-under-linux)  
-7. [Support](#support)  
-8. [Bugs](#bugs)  
-9. [Shoutout](#shoutout)  
-10. [Credits](#credits)  
-11. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+7. [AntiMicroX Profiles](#antimicrox-profiles)
+8. [Support](#support)  
+9. [Bugs](#bugs)  
+10. [Shoutout](#shoutout)  
+11. [Credits](#credits)  
+12. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
 
 <br/>
 
@@ -283,6 +284,15 @@ programs for testing gamepads outside of antimicroX are **sdl-jstest**
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. Another method also exist, 
 which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
+
+<br/>
+
+## AntiMicroX Profiles
+
+If you would like to send the profile you are using for your application or find something 
+for yourself, [here](https://github.com/juliagoda/antimicroX-profiles) is the forked repository. If you want to report a bug, ask 
+a question or share a suggestion, you can do that on the antimicroX page or on the
+[antimicroX-profiles](https://github.com/juliagoda/antimicroX-profiles) page.
 
 <br/>
 
