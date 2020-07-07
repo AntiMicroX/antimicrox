@@ -1,5 +1,7 @@
 # <img src="./src/images/antimicroX.png" alt="Icon" width="60"/> AntiMicroX 3.0 
 
+## Needed to take a break for a month - Issues and pull requests are still welcome
+
 ## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
 
 
