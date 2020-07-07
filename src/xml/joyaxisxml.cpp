@@ -136,7 +136,9 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
 
-        qDebug() << "From xml config dead zone is: " << tempchoice;
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "From xml config dead zone is: " << tempchoice;
+        #endif
 
         m_joyAxis->setDeadZone(tempchoice);
     }
@@ -146,7 +148,9 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
 
-        qDebug() << "From xml config max zone is: " << tempchoice;
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "From xml config max zone is: " << tempchoice;
+        #endif
 
         m_joyAxis->setMaxZoneValue(tempchoice);
     }
@@ -156,7 +160,9 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
 
-        qDebug() << "From xml config center value is: " << tempchoice;
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "From xml config center value is: " << tempchoice;
+        #endif
 
         m_joyAxis->setAxisCenterCal(tempchoice);
     }
@@ -166,7 +172,9 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
 
-        qDebug() << "From xml config min value is: " << tempchoice;
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "From xml config min value is: " << tempchoice;
+        #endif
 
         m_joyAxis->setAxisMinCal(tempchoice);
     }
@@ -177,7 +185,9 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
 
-        qDebug() << "From xml config max value is: " << tempchoice;
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "From xml config max value is: " << tempchoice;
+        #endif
 
         m_joyAxis->setAxisMaxCal(tempchoice);
     }
@@ -186,7 +196,9 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         found = true;
         QString temptext = xml->readElementText();
 
-        qDebug() << "From xml config throttle name is: " << temptext;
+        #ifndef QT_DEBUG_NO_OUTPUT
+            qDebug() << "From xml config throttle name is: " << temptext;
+        #endif
 
         if (temptext == "negativehalf")
         {

@@ -308,13 +308,28 @@ void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
         GameControllerTrigger *axis = nullptr;
         GameControllerTriggerXml* triggerAxisXml = nullptr;
 
-        switch(index-1)
+        switch(index - 1)
         {
+            // for older profiles
+            case 0:
+                axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+                triggerAxisXml = new GameControllerTriggerXml(axis, this);
+                readConf(triggerAxisXml, xml);
+            break;
+
+            // for older profiles
+            case 1:
+                axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
+                triggerAxisXml = new GameControllerTriggerXml(axis, this);
+                readConf(triggerAxisXml, xml);
+            break;
+
             case 4:
                 axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
                 triggerAxisXml = new GameControllerTriggerXml(axis, this);
                 readConf(triggerAxisXml, xml);
             break;
+
             case 5:
                 axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
                 triggerAxisXml = new GameControllerTriggerXml(axis, this);

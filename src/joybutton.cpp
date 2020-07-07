@@ -138,8 +138,8 @@ JoyButton::~JoyButton()
 
    // threadPool->clear();
 
-    //reset();
-    resetPrivVars();
+    reset();
+    //resetPrivVars();
 }
 
 void JoyButton::queuePendingEvent(bool pressed, bool ignoresets)
@@ -4887,30 +4887,33 @@ void JoyButton::resetAllProperties()
 {
     resetSlotsProp(true);
 
-    m_toggle = false;
-    turboInterval = 0;
+    actionName.clear();
+    m_toggle = GlobalVariables::JoyButton::DEFAULTTOGGLE;
+    turboInterval = GlobalVariables::JoyButton::DEFAULTTURBOINTERVAL;
+    currentTurboMode = NormalTurbo;
+    m_useTurbo = GlobalVariables::JoyButton::DEFAULTUSETURBO;
     isDown = false;
     toggleActiveState = false;
     m_useTurbo = false;
-    mouseSpeedX = 50;
-    mouseSpeedY = 50;
-    wheelSpeedX = 20;
-    wheelSpeedY = 20;
-    mouseMode = MouseCursor;
+    mouseSpeedX = GlobalVariables::JoyButton::DEFAULTMOUSESPEEDX;
+    mouseSpeedY = GlobalVariables::JoyButton::DEFAULTMOUSESPEEDY;
+    wheelSpeedX = GlobalVariables::JoyButton::DEFAULTWHEELX;
+    wheelSpeedY = GlobalVariables::JoyButton::DEFAULTWHEELY;
+    mouseMode = DEFAULTMOUSEMODE;
     mouseCurve = DEFAULTMOUSECURVE;
-    springWidth = 0;
-    springHeight = 0;
-    sensitivity = 1.0;
-    setSelection = -1;
-    setSelectionCondition = SetChangeDisabled;
+    springWidth = GlobalVariables::JoyButton::DEFAULTSPRINGWIDTH;
+    springHeight = GlobalVariables::JoyButton::DEFAULTSPRINGHEIGHT;
+    sensitivity = GlobalVariables::JoyButton::DEFAULTSENSITIVITY;
+    setSelection = GlobalVariables::JoyButton::DEFAULTSETSELECTION;
+    setSelectionCondition = DEFAULTSETCONDITION;
     m_ignoresets = false;
     ignoreEvents = false;
     whileHeldStatus = false;
     buttonName.clear();
     actionName.clear();
-    cycleResetActive = false;
-    cycleResetInterval = 0;
-    relativeSpring = false;
+    cycleResetActive = GlobalVariables::JoyButton::DEFAULTCYCLERESETACTIVE;
+    cycleResetInterval = GlobalVariables::JoyButton::DEFAULTCYCLERESET;
+    relativeSpring = GlobalVariables::JoyButton::DEFAULTRELATIVESPRING;
     lastDistance = 0.0;
     lastMouseDistance = 0.0;
     currentMouseDistance = 0.0;

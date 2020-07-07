@@ -177,6 +177,16 @@ protected:
     int axis_center_cal;
     int axis_min_cal;
     int axis_max_cal;
+    int lastKnownThottledValue;
+    int lastKnownRawValue;
+    int pendingValue;
+
+    bool isActive;
+    bool pendingEvent;
+    bool pendingIgnoreSets;
+    bool eventActive;
+
+    JoyAxisButton *activeButton;
 
     // TODO: CHECK IF PROPERTY IS NEEDED.
     //bool pendingUpdateLastValues;
@@ -205,21 +215,13 @@ public slots:
     void disconnectPropertyUpdatedConnection();
 
 private:
-    bool isActive;
-    bool eventActive;
 
-    JoyAxisButton *activeButton;
     int m_originset;
 
     JoyControlStick *m_stick;
 
     SetJoystick *m_parentSet;
-    int lastKnownThottledValue;
-    int lastKnownRawValue;
 
-    int pendingValue;
-    bool pendingEvent;
-    bool pendingIgnoreSets;
 
     void resetPrivateVars();
 };

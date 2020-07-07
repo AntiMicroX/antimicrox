@@ -42,6 +42,10 @@ public:
 
     static const ThrottleTypes DEFAULTTHROTTLE;
 
+public slots:
+    virtual void reset();
+    virtual void reset(int index);
+
 protected:
     void correctJoystickThrottle();
 

@@ -191,7 +191,7 @@ const double GlobalVariables::JoyControlStick::PI = acos(-1.0);
 // Set default values used for stick properties.
 const int GlobalVariables::JoyControlStick::DEFAULTDEADZONE = 8000;
 const int GlobalVariables::JoyControlStick::DEFAULTMAXZONE = GlobalVariables::GameControllerTrigger::AXISMAXZONE;
-const int GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE = 90;
+const int GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE = 45;
 const double GlobalVariables::JoyControlStick::DEFAULTCIRCLE = 0.0;
 const int GlobalVariables::JoyControlStick::DEFAULTSTICKDELAY = 0;
 

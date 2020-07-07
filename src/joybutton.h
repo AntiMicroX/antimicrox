@@ -467,7 +467,7 @@ private:
             maxMouseDistanceAccelThreshold = GlobalVariables::JoyButton::DEFAULTMAXACCELTHRESHOLD;
             startAccelMultiplier = GlobalVariables::JoyButton::DEFAULTSTARTACCELMULTIPLIER;
             accelDuration = GlobalVariables::JoyButton::DEFAULTACCELEASINGDURATION;
-            extraAccelCurve = LinearAccelCurve;
+            extraAccelCurve = DEFAULTEXTRAACCELCURVE;
         }
     }
 

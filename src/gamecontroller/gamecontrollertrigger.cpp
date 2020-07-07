@@ -45,6 +45,43 @@ GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoysti
 }
 
 
+void GameControllerTrigger::reset(int index)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    reset();
+    m_index = index;
+}
+
+
+void GameControllerTrigger::reset()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    deadZone = GlobalVariables::GameControllerTrigger::AXISDEADZONE;
+    isActive = false;
+
+    eventActive = false;
+    maxZoneValue = GlobalVariables::GameControllerTrigger::AXISMAXZONE;
+    throttle = this->DEFAULTTHROTTLE;
+
+    paxisbutton->reset();
+    naxisbutton->reset();
+    activeButton = nullptr;
+    lastKnownThottledValue = 0;
+    lastKnownRawValue = 0;
+
+    adjustRange();
+    setCurrentRawValue(currentThrottledDeadValue);
+    currentThrottledValue = calculateThrottledValue(currentRawValue);
+    axisName.clear();
+
+    pendingEvent = false;
+    pendingValue = currentRawValue;
+    pendingIgnoreSets = false;
+}
+
+
 QString GameControllerTrigger::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
