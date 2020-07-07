@@ -666,9 +666,8 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
 
     QHash<int, SetJoystick*>::const_iterator i = m_inputDevice->getJoystick_sets().constBegin();
 
-    while (i != m_inputDevice->getJoystick_sets().constEnd()) {
-        qDebug() << i.key() << Qt::endl;
-
+    while (i != m_inputDevice->getJoystick_sets().constEnd()) 
+    {
         if (!i.value()->isSetEmpty())
             i.value()->writeConfig(xml);
         else
