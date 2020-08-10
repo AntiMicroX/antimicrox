@@ -191,8 +191,8 @@ Already built .deb files are available on [Release Page](https://github.com/Anti
 ```
     cd antimicroX
     mkdir build && cd build
-    cmake ..
-    cpack
+    cmake .. -DCPACK_GENERATOR="DEB" ..
+    cmake --build . --target package
 ```
 
 
