@@ -691,6 +691,11 @@ if(CPACK_GENERATOR STREQUAL "DEB")
   add_custom_command(TARGET package_docummentation PRE_BUILD
   COMMAND gzip -c -9 -n "${PROJECT_SOURCE_DIR}/Changelog" > "changelog.Debian.gz" VERBATIM)
   install(FILES "${CMAKE_CURRENT_BINARY_DIR}/changelog.Debian.gz" DESTINATION "share/doc/antimicroX/")
+
+  #Strip binaries from unnecessary notes, comments, etc
+  add_custom_command(TARGET antimicroX POST_BUILD
+  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicroX" VERBATIM)
+  
 endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicroX" "antimicroX")
