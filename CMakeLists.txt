@@ -696,6 +696,9 @@ if(CPACK_GENERATOR STREQUAL "DEB")
   add_custom_command(TARGET antimicroX POST_BUILD
   COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicroX" VERBATIM)
   
+  add_custom_command(TARGET antimicroX POST_BUILD
+  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/libantilib.so.1" VERBATIM)
+  
 endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicroX" "antimicroX")
