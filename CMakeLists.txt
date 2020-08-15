@@ -672,7 +672,6 @@ set(CPACK_PACKAGE_VERSION_PATCH "${ANTIMICROX_PATCH_VERSION}")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
 if(UNIX) #building .deb package
-  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "juliagoda")
   set(CPACK_STRIP_FILES "")
   set(CPACK_SOURCE_STRIP_FILES "")
   set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
@@ -680,6 +679,8 @@ if(UNIX) #building .deb package
 
 
 if(CPACK_GENERATOR STREQUAL "DEB")
+  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "juliagoda")
+  
   message("Preparing documentation for DEB package")
   add_custom_target(package_docummentation ALL)
 
