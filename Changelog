@@ -1,6 +1,15 @@
 2018-16-06 Jagoda Gorska <juliagoda.pl@protonmail.com>
 
 
+Version 3.0.1
+
+* Works with old antimicro profiles
+
+* Added small changes (in instructions, comments, etc.)
+
+* Added running in tray from right button
+
+
 Version 3.0
 
 * Added qt directives for compatibility with older versions of qt5

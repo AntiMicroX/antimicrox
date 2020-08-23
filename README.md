@@ -1,4 +1,4 @@
-# <img src="./src/images/antimicroX.png" alt="Icon" width="60"/> AntiMicroX 3.0 
+# <img src="./src/images/antimicroX.png" alt="Icon" width="60"/> AntiMicroX 3.0.1 
 
 ## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
 
