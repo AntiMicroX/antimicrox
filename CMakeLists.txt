@@ -658,6 +658,9 @@ include(InstallRequiredSystemLibraries)
 
 
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Program used to map keyboard keys and mouse controls to a gamepad.")
+set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntimicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. However, you can use this program to control any desktop application with a gamepad.
+
+It is a new fork of discontinued AntiMicro.")
 
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 
@@ -672,7 +675,7 @@ if(UNIX) #building .deb package
   set(CPACK_DEBIAN_PACKAGE_MAINTAINER "juliagoda")
   set(CPACK_STRIP_FILES "")
   set(CPACK_SOURCE_STRIP_FILES "")
-  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qt5-default, libsdl2-2.0-0, libqt5x11extras5")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
   endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicroX" "antimicroX")
