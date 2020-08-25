@@ -1,7 +1,5 @@
 # <img src="./src/images/antimicroX.png" alt="Icon" width="60"/> AntiMicroX 3.0.1 
 
-# The program is abandoned today. More and more responsibilities and opportunities are coming and I don't have time to run this program as much as I should. If you want to develop this program, don't forget to keep the previous developers in the files as it is.
-
 ## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
 
 
