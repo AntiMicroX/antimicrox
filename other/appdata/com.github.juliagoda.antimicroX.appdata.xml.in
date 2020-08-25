@@ -15,7 +15,7 @@
      antimicroX was inspired by QJoyPad but has additional features.
    </p>
  </description>
-  <url type="homepage">https://github.com/juliagoda/antimicroX</url>
+  <url type="homepage">https://github.com/AntiMicroX/antimicroX/</url>
   <launchable type="desktop-id">com.github.juliagoda.antimicroX.desktop</launchable>
   <releases>
     <release version="3.0.1" date="2020-08-23"/>
@@ -60,7 +60,7 @@
    <caption>Controller Mapping Dialog (Dark Theme)</caption>
   </screenshot>
  </screenshots>
- <url type="homepage">https://github.com/juliagoda/antimicroX</url>
+ <url type="homepage">https://github.com/AntiMicroX/antimicroX/</url>
  <updatecontact>juliagoda.pl_AT_protonmail.com</updatecontact>
  <keywords>
    <keyword>game</keyword>

@@ -187,7 +187,7 @@ dnf install antimicroX
 <br/>
 
 ### Building deb package
-Already built .deb files are available on [Release Page](https://github.com/juliagoda/antimicroX/releases)
+Already built .deb files are available on [Release Page](https://github.com/AntiMicroX/antimicroX//releases)
 
 ```
     cd antimicroX
@@ -292,13 +292,13 @@ which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 If you would like to send the profile you are using for your application or find something 
 for yourself, [here](https://github.com/juliagoda/antimicroX-profiles) is the forked repository. If you want to report a bug, ask 
 a question or share a suggestion, you can do that on the antimicroX page or on the
-[antimicroX-profiles](https://github.com/juliagoda/antimicroX-profiles) page.
+[antimicroX-profiles](https://github.com/AntiMicroX/antimicroX/-profiles) page.
 
 <br/>
 
 ## Support
 
-In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicroX/issues) .
+In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicroX//issues) .
 
 <br/>
 
