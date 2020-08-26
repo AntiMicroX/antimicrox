@@ -30,7 +30,6 @@
   <provides>
     <binary>antimicroX</binary>
   </provides>
-   <updatecontact>juliagoda.pl_AT_protonmail.com</updatecontact>
  <kudos>
    <kudo>ModernToolkit</kudo>
  </kudos>
@@ -61,7 +60,6 @@
   </screenshot>
  </screenshots>
  <url type="homepage">https://github.com/AntiMicroX/antimicroX/</url>
- <updatecontact>juliagoda.pl_AT_protonmail.com</updatecontact>
  <keywords>
    <keyword>game</keyword>
    <keyword>controller</keyword>
