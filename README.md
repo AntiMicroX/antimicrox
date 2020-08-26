@@ -32,11 +32,12 @@ this program.
 This program is currently supported under various Linux
 distributions.
 
-Information about all developers from AntiMicro team and main creator (Ryochan7) are included in 
-application. Their **old versions** are here:
+This application is continuation of project called `AntiMicro`, which was later abandoned and revived by juliagoda.
 
-https://github.com/AntiMicro/antimicro  
-https://github.com/Ryochan7/antimicro  
+Legacy repositories:
+- First AntiMicroX repository: https://github.com/juliagoda/antimicroX
+- Second, maintained by organization: https://github.com/AntiMicro/antimicro
+- First, original AntiMicro repository: https://github.com/Ryochan7/antimicro
 
 **Screenshots:**
 <table border="0px" >
