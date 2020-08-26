@@ -319,24 +319,13 @@ A big, original inspiration for this program was the program QJoyPad.
 
 ### Contributors
 
-juliagoda
+Full list is available [here](https://github.com/AntiMicroX/antimicroX/graphs/contributors)
 
 <br/>
 
 ### Original Developer
 
 Travis Nickles <nickles.travis@gmail.com>
-
-<br/>
-
-### Old Contributors
-
-Zerro Alvein  
-aybe  
-Jeff Backus <jeff@jsbackus.com>  
-Arthur Moore  
-Anton Tornqvist <antont@inbox.lv>
-mtdeguzis
 
 <br/>
 
