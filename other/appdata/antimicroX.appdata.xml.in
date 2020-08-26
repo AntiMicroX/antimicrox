@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="desktop">
-  <id>com.github.juliagoda.antimicroX.desktop</id>
+  <id>antimicroX.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>antimicroX</name>
@@ -16,7 +16,7 @@
    </p>
  </description>
   <url type="homepage">https://github.com/AntiMicroX/antimicroX/</url>
-  <launchable type="desktop-id">com.github.juliagoda.antimicroX.desktop</launchable>
+  <launchable type="desktop-id">antimicroX.desktop</launchable>
   <releases>
     <release version="3.0.1" date="2020-08-23"/>
     <release version="3.0" date="2020-06-11"/>

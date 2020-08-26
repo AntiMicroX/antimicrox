@@ -595,19 +595,19 @@ if(UNIX)
     ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
     ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
 
-    ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
-    ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
-    ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
-    ecm_install_icons(ICONS src/icons/application/48x48/apps/48-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
-    ecm_install_icons(ICONS src/icons/application/64x64/apps/64-apps-com.github.juliagoda.antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
-    ecm_install_icons(ICONS src/icons/application/scalable/apps/sc-apps-com.github.juliagoda.antimicroX.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/48x48/apps/48-apps-antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/64x64/apps/64-apps-antimicroX.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/scalable/apps/sc-apps-antimicroX.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
 
     install(FILES src/images/antimicroX.png src/images/antimicroX_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/images")
 
     install(FILES src/icons/index.theme DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons/hicolor")
     install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/antimicroX")
-    install(FILES other/com.github.juliagoda.antimicroX.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
-    install(FILES other/com.github.juliagoda.antimicroX.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
+    install(FILES other/antimicroX.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
+    install(FILES other/antimicroX.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
 
     # Copy current Changelog file to location that the resource file expects.
     install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX")
