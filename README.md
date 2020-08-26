@@ -32,7 +32,7 @@ this program.
 This program is currently supported under various Linux
 distributions.
 
-Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
+Information about all developers from AntiMicro team and main creator (Ryochan7) are included in 
 application. Their **old versions** are here:
 
 https://github.com/AntiMicro/antimicro  
