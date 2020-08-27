@@ -41,7 +41,7 @@ msgstr ""
 
 #. (itstool) path: screenshot/image
 #: antimicroX.appdata.xml.in:19
-msgid "https://raw.githubusercontent.com/juliagoda/antimicroX/master/other/appdata/screenshots/controller_main_window_light_theme.png"
+msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_main_window_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
@@ -51,7 +51,7 @@ msgstr ""
 
 #. (itstool) path: screenshot/image
 #: antimicroX.appdata.xml.in:23
-msgid "https://raw.githubusercontent.com/juliagoda/antimicroX/master/other/appdata/screenshots/controller_configure_light_theme.png"
+msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_configure_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
@@ -61,7 +61,7 @@ msgstr ""
 
 #. (itstool) path: screenshot/image
 #: antimicroX.appdata.xml.in:27
-msgid "https://raw.githubusercontent.com/juliagoda/antimicroX/master/other/appdata/screenshots/controller_mapping_light_theme.png"
+msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_mapping_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
@@ -71,7 +71,7 @@ msgstr ""
 
 #. (itstool) path: component/url
 #: antimicroX.appdata.xml.in:31
-msgid "https://github.com/juliagoda/antimicroX"
+msgid "https://github.com/AntiMicroX/antimicroX/"
 msgstr ""
 
 #. (itstool) path: component/updatecontact

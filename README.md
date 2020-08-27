@@ -1,7 +1,5 @@
 # <img src="./src/images/antimicroX.png" alt="Icon" width="60"/> AntiMicroX 3.0.1 
 
-## this program is not a part of the official AntiMicro, just like I never was. I cannot help with problems with version 2.23 and below
-
 
 1. [Description](#description)  
 2. [License](#license)  
@@ -34,11 +32,12 @@ this program.
 This program is currently supported under various Linux
 distributions.
 
-Informations about all developers from AntiMicro team and main creator (Ryochan7) are included in 
-application. Their **old versions** are here:
+This application is continuation of project called `AntiMicro`, which was later abandoned and revived by juliagoda.
 
-https://github.com/AntiMicro/antimicro  
-https://github.com/Ryochan7/antimicro  
+Legacy repositories:
+- First AntiMicroX repository: https://github.com/juliagoda/antimicroX
+- Second, maintained by organization: https://github.com/AntiMicro/antimicro
+- First, original AntiMicro repository: https://github.com/Ryochan7/antimicro
 
 **Screenshots:**
 <table border="0px" >
@@ -187,7 +186,7 @@ dnf install antimicroX
 <br/>
 
 ### Building deb package
-Already built .deb files are available on [Release Page](https://github.com/juliagoda/antimicroX/releases)
+Already built .deb files are available on [Release Page](https://github.com/AntiMicroX/antimicroX/releases)
 
 ```
     cd antimicroX
@@ -292,13 +291,13 @@ which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 If you would like to send the profile you are using for your application or find something 
 for yourself, [here](https://github.com/juliagoda/antimicroX-profiles) is the forked repository. If you want to report a bug, ask 
 a question or share a suggestion, you can do that on the antimicroX page or on the
-[antimicroX-profiles](https://github.com/juliagoda/antimicroX-profiles) page.
+[antimicroX-profiles](https://github.com/AntiMicroX/antimicroX/-profiles) page.
 
 <br/>
 
 ## Support
 
-In order to obtain support, you can post an issue [here](https://github.com/juliagoda/antimicroX/issues) .
+In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicroX/issues).
 
 <br/>
 
@@ -320,24 +319,13 @@ A big, original inspiration for this program was the program QJoyPad.
 
 ### Contributors
 
-juliagoda
+Full list is available [here](https://github.com/AntiMicroX/antimicroX/graphs/contributors)
 
 <br/>
 
 ### Original Developer
 
 Travis Nickles <nickles.travis@gmail.com>
-
-<br/>
-
-### Old Contributors
-
-Zerro Alvein  
-aybe  
-Jeff Backus <jeff@jsbackus.com>  
-Arthur Moore  
-Anton Tornqvist <antont@inbox.lv>
-mtdeguzis
 
 <br/>
 
@@ -365,4 +353,3 @@ If you want to participate in the translation of the program, but your language 
 However, if your language is already supported in the program, you must have the Qt Linguist program installed, which is usually included in the qt5-tools package, to conveniently translate the application. However, before you do that, make sure that you don't already have this program installed. All you have to do is open it, and then use it to open a file with the ts extension.
 
 If a red exclamation mark appears in the translation field, it means that your translation does not end with the same sign as the original content. Try to place commas or dots in appropriate places and often save your progress.
-

@@ -11,7 +11,7 @@ qtKeyTitleLabel->text() == tr("Qt Key Value:")
 antiTitleLabel->text() == tr("antimicroX Key Value:")
 label->text() is all visible
 label->text() contains <a href="http://doc.qt.io/qt-5/qt.html#Key-enum">
-label->text() contains <a href="https://github.com/juliagoda/antimicroX">
+label->text() contains <a href="https://github.com/AntiMicroX/antimicroX/">
 nativeKeyLabel->text() at the start is 0x00000000 or empty
 qtKeyLabel->text() at the start is 0x00000000 or empty
 antimicroKeyLabel->text() at the start is 0x00000000 or empty
