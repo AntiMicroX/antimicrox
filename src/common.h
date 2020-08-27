@@ -53,7 +53,7 @@ namespace PadderCommon
     const int LATESTCONFIGMIGRATIONVERSION = 5;
     const QString localSocketKey = "antimicroXSignalListener";
     const QString githubProjectPage = "https://github.com/AntiMicroX/antimicroX/";
-    const QString githubIssuesPage = "https://github.com/AntiMicroX/antimicroX//issues";
+    const QString githubIssuesPage = "https://github.com/AntiMicroX/antimicroX/issues";
     const QString wikiPage = QString("%1/wiki").arg(githubProjectPage);
 
     const QString mouseDeviceName("antimicroX Mouse Emulation");
