@@ -8,9 +8,9 @@ if(APPDATA)
         # Add an entry per language
         COMMAND msgfmt "${PROJECT_SOURCE_DIR}/other/appdata/PO_files/en.po" -o "${CMAKE_CURRENT_BINARY_DIR}/PO_files/en.mo"
 
-        COMMAND itstool -i "${PROJECT_SOURCE_DIR}/other/appdata/appdata.its" -j "${PROJECT_SOURCE_DIR}/other/appdata/com.github.juliagoda.antimicroX.appdata.xml.in" -o "com.github.juliagoda.antimicroX.appdata.xml" "${CMAKE_CURRENT_BINARY_DIR}/PO_files/*.mo"
+        COMMAND itstool -i "${PROJECT_SOURCE_DIR}/other/appdata/appdata.its" -j "${PROJECT_SOURCE_DIR}/other/appdata/com.github.antimicrox.antimicrox.appdata.xml.in" -o "com.github.antimicrox.antimicrox.appdata.xml" "${CMAKE_CURRENT_BINARY_DIR}/PO_files/*.mo"
     )
 
     # Only install an appdata file if the user requested to have one built.
-    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/com.github.juliagoda.antimicroX.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/com.github.antimicrox.antimicrox.appdata.xml" DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo")
 endif(APPDATA)
