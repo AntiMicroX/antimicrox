@@ -682,7 +682,7 @@ if(UNIX) #building .deb package
 
 
 if(CPACK_GENERATOR STREQUAL "DEB")
-  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "juliagoda")
+  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
   
   message("Preparing documentation for DEB package")
   add_custom_target(package_docummentation ALL)
