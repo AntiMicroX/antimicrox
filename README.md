@@ -297,7 +297,7 @@ a question or share a suggestion, you can do that on the antimicroX page or on t
 
 ## Support
 
-In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicroX//issues) .
+In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicroX/issues).
 
 <br/>
 
