@@ -23,7 +23,7 @@
    <string>antimicroX</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="antimicroX">
+   <iconset theme="com.github.juliagoda.antimicroX">
     <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="styleSheet">
