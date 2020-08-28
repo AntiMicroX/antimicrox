@@ -659,9 +659,7 @@ include(InstallRequiredSystemLibraries)
 
 
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Program used to map keyboard keys and mouse controls to a gamepad.")
-set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntimicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. However, you can use this program to control any desktop application with a gamepad.
 
-It is a new fork of discontinued AntiMicro.")
 
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 
@@ -674,15 +672,18 @@ set(CPACK_PACKAGE_FILE_NAME "antimicroX-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX
 
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
-if(UNIX) #building .deb package
+if(UNIX)
   set(CPACK_STRIP_FILES "")
   set(CPACK_SOURCE_STRIP_FILES "")
-  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
   endif()
 
-
+# Building .deb package
 if(CPACK_GENERATOR STREQUAL "DEB")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
   set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
+  set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntimicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. However, you can use this program to control any desktop application with a gamepad.
+
+It is a new fork of discontinued AntiMicro.")
   
   message("Preparing documentation for DEB package")
   add_custom_target(package_docummentation ALL)
