@@ -653,6 +653,18 @@ if(WITH_TESTS)
     add_subdirectory (tests)
 endif(WITH_TESTS)
 
+# Write copyright file
+file(WRITE "${CMAKE_BINARY_DIR}/copyright"
+     "Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+     Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
+     Copyright (C) 2020 Paweł Kotiuk <kotiuk@zohomail.eu>")
+install(FILES "${CMAKE_BINARY_DIR}/copyright"
+        DESTINATION "share/doc/${CPACK_DEBIAN_PACKAGE_NAME}/"
+        PERMISSIONS
+        OWNER_WRITE OWNER_READ
+        GROUP_READ
+        WORLD_READ)
+
 
 #building package using CPack
 include(InstallRequiredSystemLibraries)
