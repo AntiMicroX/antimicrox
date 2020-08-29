@@ -281,9 +281,9 @@ which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 ## AntiMicroX Profiles
 
 If you would like to send the profile you are using for your application or find something 
-for yourself, [here](https://github.com/juliagoda/antimicroX-profiles) is the forked repository. If you want to report a bug, ask 
+for yourself, [here](https://github.com/AntiMicroX/antimicroX-profiles) is the forked repository. If you want to report a bug, ask 
 a question or share a suggestion, you can do that on the antimicroX page or on the
-[antimicroX-profiles](https://github.com/AntiMicroX/antimicroX/-profiles) page.
+[antimicroX-profiles](https://github.com/AntiMicroX/antimicroX-profiles) page.
 
 <br/>
 
