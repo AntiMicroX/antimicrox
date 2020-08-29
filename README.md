@@ -155,15 +155,7 @@ sudo cmake --install .
 ### Arch Linux or Arch Linux based distributions:
 
 ```
-git clone https://github.com/archlinux-lucjan/archlinux-packages.git
-cd antimicrox-git
-makepkg -sric
-```
-
-or
-
-```
-trizen -S antimicrox-git
+trizen -S antimicrox
 ```
 
 <br/>
