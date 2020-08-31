@@ -653,15 +653,25 @@ if(WITH_TESTS)
     add_subdirectory (tests)
 endif(WITH_TESTS)
 
+# Write copyright file
+file(WRITE "${CMAKE_BINARY_DIR}/copyright"
+     "Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
+     Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
+     Copyright (C) 2020 Paweł Kotiuk <kotiuk@zohomail.eu>")
+install(FILES "${CMAKE_BINARY_DIR}/copyright"
+        DESTINATION "share/doc/${CPACK_DEBIAN_PACKAGE_NAME}/"
+        PERMISSIONS
+        OWNER_WRITE OWNER_READ
+        GROUP_READ
+        WORLD_READ)
+
 
 #building package using CPack
 include(InstallRequiredSystemLibraries)
 
 
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Program used to map keyboard keys and mouse controls to a gamepad.")
-set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntimicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. However, you can use this program to control any desktop application with a gamepad.
 
-It is a new fork of discontinued AntiMicro.")
 
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 
@@ -669,15 +679,40 @@ set(CPACK_PACKAGE_VERSION_MAJOR "${ANTIMICROX_MAJOR_VERSION}")
 set(CPACK_PACKAGE_VERSION_MINOR "${ANTIMICROX_MINOR_VERSION}")
 set(CPACK_PACKAGE_VERSION_PATCH "${ANTIMICROX_PATCH_VERSION}")
 
+set(TARGET_ARCHITECTURE_NAME "amd64") #variable used just for naming purposes
+set(CPACK_PACKAGE_FILE_NAME "antimicroX-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX_MINOR_VERSION}.${ANTIMICROX_PATCH_VERSION}-${TARGET_ARCHITECTURE_NAME}")
+
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
-if(UNIX) #building .deb package
-  set(CPACK_GENERATOR "DEB")
-  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "juliagoda")
+if(UNIX)
   set(CPACK_STRIP_FILES "")
   set(CPACK_SOURCE_STRIP_FILES "")
-  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
   endif()
+
+# Building .deb package
+if(CPACK_GENERATOR STREQUAL "DEB")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
+  set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
+  set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntimicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. However, you can use this program to control any desktop application with a gamepad.
+
+It is a new fork of discontinued AntiMicro.")
+  
+  message("Preparing documentation for DEB package")
+  add_custom_target(package_docummentation ALL)
+
+  #Compress changelog and save it as share/doc/xournalpp/changelog.Debian.gz
+  add_custom_command(TARGET package_docummentation PRE_BUILD
+  COMMAND gzip -c -9 -n "${PROJECT_SOURCE_DIR}/Changelog" > "changelog.Debian.gz" VERBATIM)
+  install(FILES "${CMAKE_CURRENT_BINARY_DIR}/changelog.Debian.gz" DESTINATION "share/doc/antimicroX/")
+
+  #Strip binaries from unnecessary notes, comments, etc
+  add_custom_command(TARGET antimicroX POST_BUILD
+  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicroX" VERBATIM)
+  
+  add_custom_command(TARGET antimicroX POST_BUILD
+  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/libantilib.so.1" VERBATIM)
+  
+endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicroX" "antimicroX")
 include(CPack)

@@ -180,11 +180,11 @@ dnf install antimicroX
 ### Building deb package
 Already built .deb files are available on [Release Page](https://github.com/AntiMicroX/antimicroX/releases)
 
-```
+```bash
     cd antimicroX
     mkdir build && cd build
-    cmake ..
-    cpack
+    cmake .. -DCPACK_GENERATOR="DEB"
+    cmake --build . --target package
 ```
 
 

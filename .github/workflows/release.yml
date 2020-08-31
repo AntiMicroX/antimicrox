@@ -21,8 +21,8 @@ jobs:
       id: create_deb
       run: |
         mkdir build && cd ./build
-        cmake ..
-        cpack
+        cmake .. -DCPACK_GENERATOR="DEB" ..
+        cmake --build . --target package
 
     #upload generated files to release
     - name: Upload binaries to release
@@ -47,7 +47,11 @@ jobs:
     # Installing antimicroX is required for appimage creator
     - name: Install antimicroX
       run: |
-        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicroX-3.0.0-Linux.deb"
+        VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
+        MAJOR=`echo $VERSION | cut -d " " -f 1`
+        MINOR=`echo $VERSION | cut -d " " -f 2`
+        PATCH=`echo $VERSION | cut -d " " -f 3`
+        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicroX-$MAJOR.$MINOR.$PATCH-amd64.deb"
         sudo dpkg -i `ls -1 | grep .deb` 
 
         
