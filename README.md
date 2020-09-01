@@ -110,6 +110,30 @@ dnf install antimicroX
 ```
 trizen -S antimicrox-git
 ```
+**or**<br/>
+
+pre-built version can de downloaded from unofficial repository called [chaotic-aur](https://lonewolf.pedrohlc.com/chaotic-aur/).
+<br/>Append (one of listed mirrors) to `/etc/pacman.conf`:
+```bash
+# Brazil
+Server = http://lonewolf-builder.duckdns.org/$repo/$arch
+# Germany
+Server = http://chaotic.bangl.de/$repo/$arch
+# USA (Cloudflare cached)
+Server = https://repo.kitsuna.net/$arch
+# Netherlands
+Server = https://chaotic.tn.dedyn.io/$arch
+```
+To check signature, add keys:
+```bash
+sudo pacman-key --keyserver hkp://keyserver.ubuntu.com -r 3056513887B78AEB 8A9E14A07010F7E3
+sudo pacman-key --lsign-key 3056513887B78AEB
+sudo pacman-key --lsign-key 8A9E14A07010F7E3
+```
+Install package
+```bash
+pacman -S antimicrox
+```
 
 ### Debian/Ubuntu-based distributions:
 Download from the [release site](https://github.com/AntiMicroX/antimicroX/releases) and install `.deb` package.
