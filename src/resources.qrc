@@ -42,12 +42,12 @@
         <file>icons/icons/16x16/actions/16-actions-view_fullscreen.png</file>
         <file>icons/icons/16x16/actions/16-actions-view_refresh.png</file>
         <file>icons/icons/16x16/actions/16-actions-view_restore.png</file>
-        <file>icons/application/16x16/apps/16-apps-com.github.antimicrox.antimicrox.png</file>
-        <file>icons/application/24x24/apps/24-apps-com.github.antimicrox.antimicrox.png</file>
-        <file>icons/application/32x32/apps/32-apps-com.github.antimicrox.antimicrox.png</file>
-        <file>icons/application/48x48/apps/48-apps-com.github.antimicrox.antimicrox.png</file>
-        <file>icons/application/64x64/apps/64-apps-com.github.antimicrox.antimicrox.png</file>
-        <file>icons/application/scalable/apps/sc-apps-com.github.antimicrox.antimicrox.svg</file>
+        <file>icons/application/16x16/apps/16-apps-io.github.antimicrox.antimicrox.png</file>
+        <file>icons/application/24x24/apps/24-apps-io.github.antimicrox.antimicrox.png</file>
+        <file>icons/application/32x32/apps/32-apps-io.github.antimicrox.antimicrox.png</file>
+        <file>icons/application/48x48/apps/48-apps-io.github.antimicrox.antimicrox.png</file>
+        <file>icons/application/64x64/apps/64-apps-io.github.antimicrox.antimicrox.png</file>
+        <file>icons/application/scalable/apps/sc-apps-io.github.antimicrox.antimicrox.svg</file>
         <file>images/battery-low-level.png</file>
         <file>icons/icons/16x16/actions/16-actions-join_slots.png</file>
         <file>icons/icons/16x16/actions/16-actions-split_slot.png</file>
