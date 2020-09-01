@@ -176,9 +176,12 @@ Full list is available [here](https://github.com/AntiMicroX/antimicroX/graphs/co
 
 <br/>
 
-### Original Developer
+### Package Maintainers
 
-Travis Nickles <nickles.travis@gmail.com>
+ **Distro** | **Maintainer** | **Package**  |
+| :--------- | :------------- | :----------- |
+| Arch Linux | FabioLolix   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
+| Fedora Linux | [Gergely Gombos](https://github.com/gombosg) | antimicroX |
 
 <br/>
 
