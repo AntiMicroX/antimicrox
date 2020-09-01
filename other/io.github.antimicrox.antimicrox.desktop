@@ -20,4 +20,4 @@ Actions=run-in-tray;
 
 [Desktop Action run-in-tray]
 Name=Open in system tray only
-Exec=antimicroX --tray
+Exec=antimicrox --tray
