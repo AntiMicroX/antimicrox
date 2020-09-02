@@ -190,6 +190,15 @@ Already built .deb files are available on [Release Page](https://github.com/Anti
 
 <br/>
 
+### Building Flatpak
+
+The command builds the package into the `build` folder and installs the resulting flatpak. Flathub submission is in progress.
+
+```bash
+flatpak install flathub org.kde.Platform//5.11 org.kde.Sdk//5.11
+flatpak-builder --user --install build/ other/io.github.antimicrox.antimicrox.yml --force-clean
+```
+
 ### Running with Docker
 
 If you want to run application without building process and choose between various distributions, then [look here](https://hub.docker.com/r/juliagoda/antimicrox)  

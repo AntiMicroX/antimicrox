@@ -13,11 +13,16 @@ finish-args:
   # Gamepads
   - --device=all
 
+
 modules:
   - name: antimicrox
     buildsystem: cmake
+    post-install:
+      - gtk-update-icon-cache --force --ignore-theme-index "${FLATPAK_DEST}/share/antimicroX/icons/hicolor"
     sources:
       - type: git
         url: https://github.com/AntiMicroX/antimicroX.git
-        # TODO fix this, add tag + commit
+        # TODO fix this at release, add tag + commit
         branch: flatpak
+        # tag: 3.0.2
+        # commit: xxxxx
