@@ -116,7 +116,7 @@ namespace PadderCommon
         qApp->installTranslator(appTranslator);
 
         // Load application specific translation strings
-        translator->load("antimicroX_" + language, QApplication::applicationDirPath().append("/../share/antimicroX/translations"));
+        translator->load("antimicrox_" + language, QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
 
         qApp->installTranslator(translator);
     }

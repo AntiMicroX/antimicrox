@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QApplication antimicroX(argc, argv);
-    QCoreApplication::setApplicationName("antimicroX");
+    QCoreApplication::setApplicationName("antimicrox");
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
     qRegisterMetaType<JoyButtonSlot*>();
@@ -573,7 +573,7 @@ int main(int argc, char *argv[])
 
     if(QDir(transPath).entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() == 0)
     {
-        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicroX/translations");
+        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicrox/translations");
     }
     else
     {
@@ -586,13 +586,13 @@ int main(int argc, char *argv[])
     QTranslator myappTranslator;
 
 
-    if(QDir("/app/share/antimicroX").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0)
+    if(QDir("/app/share/antimicrox").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0)
     {
-        myappTranslator.load(QString("antimicroX_").append(targetLang), "app/share/antimicroX/translations");
+        myappTranslator.load(QString("antimicrox_").append(targetLang), "app/share/antimicrox/translations");
     }
     else
     {
-       myappTranslator.load(QString("antimicroX_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicroX/translations"));
+       myappTranslator.load(QString("antimicrox_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
     }
 
     antimicroX.installTranslator(&myappTranslator);

@@ -67,7 +67,7 @@
 static const QString RUNATSTARTUPREGKEY(
         "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
 static const QString RUNATSTARTUPLOCATION(
-        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicroX.lnk")
+        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicrox.lnk")
         .arg(QString::fromUtf8(qgetenv("AppData"))));
 
 MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,

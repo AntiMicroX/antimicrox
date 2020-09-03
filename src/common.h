@@ -36,11 +36,11 @@ namespace PadderCommon
   inline QString configPath() {
 
     return  (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
-      QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicroX" :
-      QDir::homePath() + "/.config/antimicroX";
+      QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicrox" :
+      QDir::homePath() + "/.config/antimicrox";
   }
 
-  const QString configFileName = "antimicroX_settings.ini";
+  const QString configFileName = "antimicrox_settings.ini";
   inline QString configFilePath() {
 
   return QString(configPath()).append("/").append(configFileName);
