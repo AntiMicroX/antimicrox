@@ -166,3 +166,12 @@ To finally run image:
 This allows the use your files from your home directory and the use of your connected devices without other workarounds
 
 <br/>
+
+### Building Flatpak
+
+The command builds the package into the `build` folder and installs the resulting flatpak. Flathub submission is in progress.
+
+```bash
+flatpak install flathub org.kde.Platform//5.11 org.kde.Sdk//5.11
+flatpak-builder --user --install build/ other/io.github.antimicrox.antimicrox.yml --force-clean
+```

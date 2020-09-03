@@ -1,0 +1,28 @@
+app-id: io.github.antimicrox.antimicrox
+runtime: org.kde.Platform
+runtime-version: '5.11'
+sdk: org.kde.Sdk
+command: antimicroX
+finish-args:
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  - --device=dri
+  # Gamepads
+  - --device=all
+
+
+modules:
+  - name: antimicrox
+    buildsystem: cmake
+    post-install:
+      - gtk-update-icon-cache --force --ignore-theme-index "${FLATPAK_DEST}/share/antimicroX/icons/hicolor"
+    sources:
+      - type: git
+        url: https://github.com/AntiMicroX/antimicroX.git
+        # TODO fix this at release, add tag + commit
+        branch: flatpak
+        # tag: 3.0.2
+        # commit: xxxxx
