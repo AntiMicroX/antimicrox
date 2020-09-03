@@ -2,7 +2,7 @@ app-id: io.github.antimicrox.antimicrox
 runtime: org.kde.Platform
 runtime-version: '5.11'
 sdk: org.kde.Sdk
-command: antimicroX
+command: antimicrox
 finish-args:
   # X11 + XShm access
   - --share=ipc
@@ -18,7 +18,7 @@ modules:
   - name: antimicrox
     buildsystem: cmake
     post-install:
-      - gtk-update-icon-cache --force --ignore-theme-index "${FLATPAK_DEST}/share/antimicroX/icons/hicolor"
+      - gtk-update-icon-cache --force --ignore-theme-index "${FLATPAK_DEST}/share/antimicrox/icons/hicolor"
     sources:
       - type: git
         url: https://github.com/AntiMicroX/antimicroX.git
