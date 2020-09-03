@@ -51,7 +51,7 @@ jobs:
         MAJOR=`echo $VERSION | cut -d " " -f 1`
         MINOR=`echo $VERSION | cut -d " " -f 2`
         PATCH=`echo $VERSION | cut -d " " -f 3`
-        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicroX-$MAJOR.$MINOR.$PATCH-amd64.deb"
+        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-$MAJOR.$MINOR.$PATCH-amd64.deb"
         sudo dpkg -i `ls -1 | grep .deb` 
 
         
@@ -72,7 +72,7 @@ jobs:
     - name: Create AppImage file
       run: |
         cd build
-        export UPDATE_INFORMATION="zsync|https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicroX-x86_64.AppImage.zsync"
+        export UPDATE_INFORMATION="zsync|https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-x86_64.AppImage.zsync"
         ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
         ./appimagetool-x86_64.AppImage AppDir/ -u "$UPDATE_INFORMATION"
 
@@ -80,5 +80,5 @@ jobs:
     - name: Upload binaries to release
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: ./build/antimicroX*.AppImage;./build/antimicroX*.zsync
+        files: ./build/antimicrox*.AppImage;./build/antimicrox*.zsync
         repo-token: ${{ secrets.GITHUB_TOKEN }}
