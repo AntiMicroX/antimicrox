@@ -50,6 +50,7 @@
 #include <QPointer>
 #include <QCommandLineParser>
 #include <QStandardPaths>
+#include <QException>
 
 
 #ifdef Q_OS_UNIX
@@ -107,6 +108,30 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
     joysticks->clear();
 }
 
+/**
+ * @brief Function used for copying settings used by previous revisions of antimicrox to provide backward compatibility
+ * TODO remove it later
+ */
+void importLegacySettingsIfExist()
+{
+    qDebug() << "Importing settings";
+    QFileInfo current(PadderCommon::configFilePath());
+    QFileInfo legacy(PadderCommon::configLegacyFilePath());
+    if(legacy.exists() && legacy.isFile())
+    {
+        qDebug() << "Legacy settings found";
+        if(!current.exists())
+        {
+            if(QFile::copy(PadderCommon::configLegacyFilePath(),PadderCommon::configFilePath()))
+            {
+                qDebug() << "Legacy antimicroX settings copied";
+            }else
+            {
+                qDebug() << "Problem with importing antimicroX settings from: "<<PadderCommon::configLegacyFilePath()<<" to: "<<PadderCommon::configFilePath();
+            }
+        }
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -540,6 +565,7 @@ int main(int argc, char *argv[])
     qDebug() << "has icon theme named games_config_custom: " << tr;
     qDebug() << "if icon theme always returns true: " << tr2;
 
+    importLegacySettingsIfExist();
 
     AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath(),
                                                         QSettings::IniFormat);

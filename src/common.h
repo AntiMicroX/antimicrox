@@ -46,6 +46,14 @@ namespace PadderCommon
   return QString(configPath()).append("/").append(configFileName);
 
   }
+
+  inline QString configLegacyFilePath() {
+    QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ?
+      QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicroX" :
+      QDir::homePath() + "/.config/antimicroX";
+
+    return QString(configPath).append("/").append("antimicroX_settings.ini");
+  }
   
     const int LATESTCONFIGFILEVERSION = 19;
     // Specify the last known profile version that requires a migration
