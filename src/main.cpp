@@ -51,6 +51,7 @@
 #include <QCommandLineParser>
 #include <QStandardPaths>
 #include <QException>
+#include <QMessageBox>
 
 
 #ifdef Q_OS_UNIX
@@ -129,6 +130,9 @@ void importLegacySettingsIfExist()
             else
             {
                 qDebug() << "Problem with importing antimicroX settings from: "<<PadderCommon::configLegacyFilePath()<<" to: "<<PadderCommon::configFilePath();
+                QMessageBox msgBox;
+                msgBox.setText("Some problem with settings migration occurred.\nOriginal configs are stored in ~/.config/antimicroX, but their new location is ~/.config/antimicrox\nYou can do it manually by renaming old directory and renaming file antimicroX_settings.ini to antimicrox_settings.ini");
+                msgBox.exec();
             }
         }
     }
