@@ -125,7 +125,8 @@ void importLegacySettingsIfExist()
             if(QFile::copy(PadderCommon::configLegacyFilePath(),PadderCommon::configFilePath()))
             {
                 qDebug() << "Legacy antimicroX settings copied";
-            }else
+            }
+            else
             {
                 qDebug() << "Problem with importing antimicroX settings from: "<<PadderCommon::configLegacyFilePath()<<" to: "<<PadderCommon::configFilePath();
             }
