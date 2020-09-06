@@ -126,6 +126,9 @@ void importLegacySettingsIfExist()
             if(QFile::copy(PadderCommon::configLegacyFilePath(),PadderCommon::configFilePath()))
             {
                 qDebug() << "Legacy antimicroX settings copied";
+                QMessageBox msgBox;
+                msgBox.setText("Your original settings (previously stored in ~/.config/antimicroX) have been copied to ~/.config/antimicrox to ensure consistent naming across entire project, if you want you can delete original directory or leave it as it is");
+                msgBox.exec();
             }
             else
             {
