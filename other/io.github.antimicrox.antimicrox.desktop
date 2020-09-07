@@ -8,7 +8,7 @@ Comment[fr]=Utilisez une manette de jeu pour commander un logiciel
 Name[de]=antimicroX
 Comment[de]=Nutze das Gamepad um Programme/Spiele zu steuern
 Comment[uk]=Використовуйте ігровий маніпулятор для керування програмами
-Exec=antimicroX
+Exec=antimicrox
 Icon=io.github.antimicrox.antimicrox
 StartupNotify=true
 Terminal=false
@@ -20,4 +20,4 @@ Actions=run-in-tray;
 
 [Desktop Action run-in-tray]
 Name=Open in system tray only
-Exec=antimicroX --tray
+Exec=antimicrox --tray

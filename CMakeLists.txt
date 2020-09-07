@@ -18,7 +18,7 @@
 
 
 cmake_minimum_required(VERSION 3.6)
-project(antimicroX)
+project(antimicrox)
 
 if(POLICY CMP0071)
   cmake_policy(SET CMP0071 NEW)
@@ -456,7 +456,7 @@ if (UNIX)
         QT5_WRAP_UI(antimicroX_FORMS_HEADERS ${antimicroX_FORMS})
         QT5_ADD_RESOURCES(antimicroX_RESOURCES_RCC ${antimicroX_RESOURCES})
 
-        add_subdirectory("share/antimicroX/translations")
+        add_subdirectory("share/antimicrox/translations")
 
         set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif(UNIX)
@@ -524,15 +524,15 @@ endif(UNIX)
             endif()
             
             
-            add_executable(antimicroX ${antimicroX_MAIN})
-            target_link_libraries (antimicroX antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
+            add_executable(antimicrox ${antimicroX_MAIN})
+            target_link_libraries (antimicrox antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
 
     endif(UNIX)
 
 
 # Specify out directory for final executable.
 if(UNIX)
-        install(TARGETS antimicroX RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
+        install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
         if(ANTILIB_PATH)
             install(TARGETS antilib DESTINATION "${ANTILIB_PATH}")
@@ -540,60 +540,60 @@ if(UNIX)
             install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
         endif()
 
-        install(FILES ${antimicroX_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicroX")
+        install(FILES ${antimicroX_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
 endif(UNIX)
 
 if(UNIX)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-settings.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-stick_pad_assign.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-settings.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-stick_pad_assign.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-wiki.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-about_qt.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-about_antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-wiki.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-about_qt.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-about_antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-github_page.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-issues.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-calibration.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-github_page.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-issues.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-calibration.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-map_controller.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-sliders.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-key_checker.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-map_controller.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-sliders.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-key_checker.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-application_exit.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-archive_insert.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_cancel.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-application_exit.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-archive_insert.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_cancel.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_close.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_ok.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_close.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_close.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-dialog_ok.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_close.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_open.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_open_folder.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_revert.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_open.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_open_folder.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_revert.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_revert_small.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_save.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_save_as.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_revert_small.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_save.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-document_save_as.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_clear.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_clear_list.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_delete.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_clear.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_clear_list.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_delete.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_select.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_table_delete_row.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_table_insert_row_below.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_select.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_table_delete_row.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-edit_table_insert_row_below.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-games_config_custom.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-games_config_options.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-help_about.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-games_config_custom.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-games_config_options.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-help_about.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-text_field.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_fullscreen.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
-    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-text_field.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_fullscreen.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_refresh.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
+    ecm_install_icons(ICONS src/icons/icons/16x16/actions/16-actions-view_restore.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons)
 
     ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
@@ -602,15 +602,15 @@ if(UNIX)
     ecm_install_icons(ICONS src/icons/application/64x64/apps/64-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/scalable/apps/sc-apps-io.github.antimicrox.antimicrox.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
 
-    install(FILES src/images/antimicroX.png src/images/antimicroX_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/images")
+    install(FILES src/images/antimicrox.png src/images/antimicrox_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/images")
 
-    install(FILES src/icons/index.theme DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX/icons/hicolor")
-    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/antimicroX")
+    install(FILES src/icons/index.theme DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons/hicolor")
+    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/antimicrox")
     install(FILES other/io.github.antimicrox.antimicrox.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
     install(FILES other/io.github.antimicrox.antimicrox.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
 
     # Copy current Changelog file to location that the resource file expects.
-    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicroX")
+    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox")
 endif(UNIX)
 
 # Add man page for *nix platforms.
@@ -680,7 +680,7 @@ set(CPACK_PACKAGE_VERSION_MINOR "${ANTIMICROX_MINOR_VERSION}")
 set(CPACK_PACKAGE_VERSION_PATCH "${ANTIMICROX_PATCH_VERSION}")
 
 set(TARGET_ARCHITECTURE_NAME "amd64") #variable used just for naming purposes
-set(CPACK_PACKAGE_FILE_NAME "antimicroX-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX_MINOR_VERSION}.${ANTIMICROX_PATCH_VERSION}-${TARGET_ARCHITECTURE_NAME}")
+set(CPACK_PACKAGE_FILE_NAME "antimicrox-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX_MINOR_VERSION}.${ANTIMICROX_PATCH_VERSION}-${TARGET_ARCHITECTURE_NAME}")
 
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
@@ -703,16 +703,16 @@ It is a new fork of discontinued AntiMicro.")
   #Compress changelog and save it as share/doc/xournalpp/changelog.Debian.gz
   add_custom_command(TARGET package_docummentation PRE_BUILD
   COMMAND gzip -c -9 -n "${PROJECT_SOURCE_DIR}/Changelog" > "changelog.Debian.gz" VERBATIM)
-  install(FILES "${CMAKE_CURRENT_BINARY_DIR}/changelog.Debian.gz" DESTINATION "share/doc/antimicroX/")
+  install(FILES "${CMAKE_CURRENT_BINARY_DIR}/changelog.Debian.gz" DESTINATION "share/doc/antimicrox/")
 
   #Strip binaries from unnecessary notes, comments, etc
-  add_custom_command(TARGET antimicroX POST_BUILD
-  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicroX" VERBATIM)
+  add_custom_command(TARGET antimicrox POST_BUILD
+  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
   
-  add_custom_command(TARGET antimicroX POST_BUILD
+  add_custom_command(TARGET antimicrox POST_BUILD
   COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/libantilib.so.1" VERBATIM)
   
 endif()
 
-set(CPACK_PACKAGE_EXECUTABLES "antimicroX" "antimicroX")
+set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
 include(CPack)

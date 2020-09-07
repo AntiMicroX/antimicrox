@@ -84,7 +84,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
 {
     ui->setupUi(this);
 
-    setWindowIcon(QIcon::fromTheme(QString::fromUtf8("antimicroX"), QIcon(":/images/antimicroX.png")));
+    setWindowIcon(QIcon::fromTheme(QString::fromUtf8("antimicrox"), QIcon(":/images/antimicrox.png")));
     (QIcon::fromTheme(QString::fromUtf8("application_exit"),
                                               QIcon(":/icons/hicolor/16x16/actions/application_exit.png")));
 
@@ -708,7 +708,7 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->addAction(updateJoy);
     trayIconMenu->addAction(closeAction);
 
-    QIcon icon = QIcon::fromTheme("antimicroX", QIcon(":/images/antimicroX_trayicon.png"));
+    QIcon icon = QIcon::fromTheme("antimicrox", QIcon(":/images/antimicrox_trayicon.png"));
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 

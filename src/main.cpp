@@ -50,6 +50,8 @@
 #include <QPointer>
 #include <QCommandLineParser>
 #include <QStandardPaths>
+#include <QException>
+#include <QMessageBox>
 
 
 #ifdef Q_OS_UNIX
@@ -107,13 +109,44 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice*> *joysticks)
     joysticks->clear();
 }
 
+/**
+ * @brief Function used for copying settings used by previous revisions of antimicrox to provide backward compatibility
+ * TODO remove it later
+ */
+void importLegacySettingsIfExist()
+{
+    qDebug() << "Importing settings";
+    QFileInfo current(PadderCommon::configFilePath());
+    QFileInfo legacy(PadderCommon::configLegacyFilePath());
+    if(legacy.exists() && legacy.isFile())
+    {
+        qDebug() << "Legacy settings found";
+        if(!current.exists())
+        {
+            if(QFile::copy(PadderCommon::configLegacyFilePath(),PadderCommon::configFilePath()))
+            {
+                qDebug() << "Legacy antimicroX settings copied";
+                QMessageBox msgBox;
+                msgBox.setText("Your original settings (previously stored in ~/.config/antimicroX) have been copied to ~/.config/antimicrox to ensure consistent naming across entire project, if you want you can delete original directory or leave it as it is");
+                msgBox.exec();
+            }
+            else
+            {
+                qDebug() << "Problem with importing antimicroX settings from: "<<PadderCommon::configLegacyFilePath()<<" to: "<<PadderCommon::configFilePath();
+                QMessageBox msgBox;
+                msgBox.setText("Some problem with settings migration occurred.\nOriginal configs are stored in ~/.config/antimicroX, but their new location is ~/.config/antimicrox\nYou can do it manually by renaming old directory and renaming file antimicroX_settings.ini to antimicrox_settings.ini");
+                msgBox.exec();
+            }
+        }
+    }
+}
 
 int main(int argc, char *argv[])
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QApplication antimicroX(argc, argv);
-    QCoreApplication::setApplicationName("antimicroX");
+    QCoreApplication::setApplicationName("antimicrox");
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
     qRegisterMetaType<JoyButtonSlot*>();
@@ -540,6 +573,7 @@ int main(int argc, char *argv[])
     qDebug() << "has icon theme named games_config_custom: " << tr;
     qDebug() << "if icon theme always returns true: " << tr2;
 
+    importLegacySettingsIfExist();
 
     AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath(),
                                                         QSettings::IniFormat);
@@ -573,7 +607,7 @@ int main(int argc, char *argv[])
 
     if(QDir(transPath).entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() == 0)
     {
-        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicroX/translations");
+        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicrox/translations");
     }
     else
     {
@@ -586,13 +620,13 @@ int main(int argc, char *argv[])
     QTranslator myappTranslator;
 
 
-    if(QDir("/app/share/antimicroX").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0)
+    if(QDir("/app/share/antimicrox").entryInfoList(QDir::NoDotAndDotDot|QDir::AllEntries).count() > 0)
     {
-        myappTranslator.load(QString("antimicroX_").append(targetLang), "app/share/antimicroX/translations");
+        myappTranslator.load(QString("antimicrox_").append(targetLang), "app/share/antimicrox/translations");
     }
     else
     {
-       myappTranslator.load(QString("antimicroX_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicroX/translations"));
+       myappTranslator.load(QString("antimicrox_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
     }
 
     antimicroX.installTranslator(&myappTranslator);

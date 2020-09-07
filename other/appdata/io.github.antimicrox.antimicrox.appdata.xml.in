@@ -28,7 +28,7 @@
     <release version="2.20" date="2015-10-10"/>
   </releases>
   <provides>
-    <binary>antimicroX</binary>
+    <binary>antimicrox</binary>
   </provides>
  <kudos>
    <kudo>ModernToolkit</kudo>

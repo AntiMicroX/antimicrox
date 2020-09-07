@@ -10,12 +10,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. (itstool) path: component/id
-#: antimicroX.appdata.xml.in:4
-msgid "antimicroX.desktop"
+#: antimicrox.appdata.xml.in:4
+msgid "antimicrox.desktop"
 msgstr ""
 
 #. (itstool) path: component/metadata_license
-#: antimicroX.appdata.xml.in:5
+#: antimicrox.appdata.xml.in:5
 msgid "MIT"
 msgstr ""
 
@@ -25,57 +25,57 @@ msgid "GPL-3.0+"
 msgstr ""
 
 #. (itstool) path: component/name
-#: antimicroX.appdata.xml.in:7
-msgid "antimicroX"
+#: antimicrox.appdata.xml.in:7
+msgid "antimicrox"
 msgstr ""
 
 #. (itstool) path: component/summary
-#: antimicroX.appdata.xml.in:8
+#: antimicrox.appdata.xml.in:8
 msgid "Graphical program used to map keyboard buttons and mouse controls to a gamepad"
 msgstr ""
 
 #. (itstool) path: description/p
-#: antimicroX.appdata.xml.in:10
+#: antimicrox.appdata.xml.in:10
 msgid "antimicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. antimicroX was inspired by QJoyPad but has additional features."
 msgstr ""
 
 #. (itstool) path: screenshot/image
-#: antimicroX.appdata.xml.in:19
+#: antimicrox.appdata.xml.in:19
 msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_main_window_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
-#: antimicroX.appdata.xml.in:20
+#: antimicrox.appdata.xml.in:20
 msgid "Profile Configuration Dialog"
 msgstr ""
 
 #. (itstool) path: screenshot/image
-#: antimicroX.appdata.xml.in:23
+#: antimicrox.appdata.xml.in:23
 msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_configure_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
-#: antimicroX.appdata.xml.in:24
+#: antimicrox.appdata.xml.in:24
 msgid "Analog Stick Configuration Dialog"
 msgstr ""
 
 #. (itstool) path: screenshot/image
-#: antimicroX.appdata.xml.in:27
+#: antimicrox.appdata.xml.in:27
 msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_mapping_light_theme.png"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
-#: antimicroX.appdata.xml.in:28
+#: antimicrox.appdata.xml.in:28
 msgid "Controller Mapping Dialog"
 msgstr ""
 
 #. (itstool) path: component/url
-#: antimicroX.appdata.xml.in:31
+#: antimicrox.appdata.xml.in:31
 msgid "https://github.com/AntiMicroX/antimicroX/"
 msgstr ""
 
 #. (itstool) path: component/updatecontact
-#: antimicroX.appdata.xml.in:32
+#: antimicrox.appdata.xml.in:32
 msgid "juliagoda.pl_AT_protonmail.com"
 msgstr ""
 
