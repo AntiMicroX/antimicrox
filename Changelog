@@ -9,7 +9,7 @@ Version 3.1.0
 
 * Multiple improvements of packaging for Debian/Ubuntu
 
-* Ensure consistent naming across different packages types
+* Ensure consistent naming across entire project
 
 * Rename used directories and files from antimicroX to antimicrox
 
