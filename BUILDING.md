@@ -21,10 +21,10 @@ installed on your system in order to build this program:
 
 ### Building Under Linux
 
-In order to build this program, open a terminal and cd into the antimicroX
+In order to build this program, open a terminal and cd into the antimicrox
 directory. Enter the following commands in order to build the program:
 
-    cd antimicroX
+    cd antimicrox
     mkdir build && cd build
     cmake ..
     make
@@ -42,7 +42,7 @@ sudo cmake --install .
 #### Build Options for CMake
 
 There are a few application specific options that can be used when running
-cmake to build antimicroX. The following file will attempt to list some of those
+cmake to build antimicrox. The following file will attempt to list some of those
 options and describe their use in the project.
 
 
@@ -86,10 +86,10 @@ Default: ON. Compile the program with XTest support.
 
 #### Building deb package
 
-Already built .deb files are available on [Release Page](https://github.com/AntiMicroX/antimicroX/releases)
+Already built .deb files are available on [Release Page](https://github.com/AntiMicroX/antimicrox/releases)
 
 ```bash
-    cd antimicroX
+    cd antimicrox
     mkdir build && cd build
     cmake .. -DCPACK_GENERATOR="DEB"
     cmake --build . --target package
@@ -119,7 +119,7 @@ chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
 
 <br/>
 
-Build antimicroX and install it in AppDir directory
+Build antimicrox and install it in AppDir directory
 ```bash
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 make

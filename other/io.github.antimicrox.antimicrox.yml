@@ -21,7 +21,7 @@ modules:
       - gtk-update-icon-cache --force --ignore-theme-index "${FLATPAK_DEST}/share/antimicrox/icons/hicolor"
     sources:
       - type: git
-        url: https://github.com/AntiMicroX/antimicroX.git
+        url: https://github.com/AntiMicroX/antimicrox.git
         # TODO fix this at release, add tag + commit
         branch: flatpak
         # tag: 3.0.2

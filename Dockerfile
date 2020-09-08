@@ -3,7 +3,7 @@ ARG USER=docker
 ARG UID=1000
 ARG GID=1000
 
-LABEL description="antimicroX from latest commit on Github. See https://github.com/juliagoda/antimicroX" 
+LABEL description="antimicrox from latest commit on Github. See https://github.com/juliagoda/antimicrox" 
 MAINTAINER Jagoda Górska <juliagoda.pl@protonmail.com>
 
 
@@ -38,7 +38,7 @@ RUN apt-get -y update && apt-get install -y \
 
 
 
-RUN git clone https://github.com/juliagoda/antimicroX.git
+RUN git clone https://github.com/juliagoda/antimicrox.git
 
 RUN addgroup --gid ${GID} ${USER} && \
     adduser --disabled-password --gecos '' --uid ${UID} --gid ${GID} ${USER} && \
@@ -49,7 +49,7 @@ RUN addgroup --gid ${GID} ${USER} && \
   
 
       
-WORKDIR antimicroX
+WORKDIR antimicrox
 
 RUN mkdir -p build
 
@@ -71,4 +71,4 @@ USER ${UID}:${GID}
 
 WORKDIR /home/${USER}
 
-CMD /usr/bin/antimicroX
+CMD /usr/bin/antimicrox

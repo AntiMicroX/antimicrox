@@ -8,10 +8,10 @@ label->text() cannot be empty
 buttonBox->Close cannot be disabled
 nativeTitleLabel->text() == tr("Native Key Value:")
 qtKeyTitleLabel->text() == tr("Qt Key Value:")
-antiTitleLabel->text() == tr("antimicroX Key Value:")
+antiTitleLabel->text() == tr("AntiMicroX Key Value:")
 label->text() is all visible
 label->text() contains <a href="http://doc.qt.io/qt-5/qt.html#Key-enum">
-label->text() contains <a href="https://github.com/AntiMicroX/antimicroX/">
+label->text() contains <a href="https://github.com/AntiMicroX/antimicrox/">
 nativeKeyLabel->text() at the start is 0x00000000 or empty
 qtKeyLabel->text() at the start is 0x00000000 or empty
 antimicroKeyLabel->text() at the start is 0x00000000 or empty

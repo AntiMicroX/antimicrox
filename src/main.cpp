@@ -1,4 +1,4 @@
-/* antimicroX Gamepad to KB+M event mapper
+/* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QApplication antimicroX(argc, argv);
+    QApplication antimicrox(argc, argv);
     QCoreApplication::setApplicationName("antimicrox");
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
     QTextStream errorstream(stderr);
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(QCoreApplication::translate("antimicroX", "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."));
+    parser.setApplicationDescription(QCoreApplication::translate("antimicrox", "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."));
     parser.addHelpOption();
     parser.addVersionOption();
     
@@ -260,7 +260,7 @@ int main(int argc, char *argv[])
 #endif
 
 
-    parser.process(antimicroX);
+    parser.process(antimicrox);
 
     CommandLineUtility cmdutility;
     cmdutility.parseArguments(&parser);
@@ -366,15 +366,15 @@ int main(int argc, char *argv[])
         }
 
         mainWindow.removeJoyTabs();
-        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
+        QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
         
 #if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)       
-        QTimer::singleShot(50, &antimicroX, &QApplication::quit);
+        QTimer::singleShot(50, &antimicrox, &QApplication::quit);
 #else
-        QTimer::singleShot(50, &antimicroX, SLOT(quit()));
+        QTimer::singleShot(50, &antimicrox, SLOT(quit()));
 #endif
     
-        int result = antimicroX.exec();
+        int result = antimicrox.exec();
 
         settings.sync();
         socket.disconnectFromServer();
@@ -553,7 +553,7 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    antimicroX.setQuitOnLastWindowClosed(false);
+    antimicrox.setQuitOnLastWindowClosed(false);
 
     QStringList appDirsLocations = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
     QStringList themePathsTries = QStringList();
@@ -615,7 +615,7 @@ int main(int argc, char *argv[])
     }
 
 #endif
-    antimicroX.installTranslator(&qtTranslator);
+    antimicrox.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
 
@@ -629,7 +629,7 @@ int main(int argc, char *argv[])
        myappTranslator.load(QString("antimicrox_").append(targetLang), QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
     }
 
-    antimicroX.installTranslator(&myappTranslator);
+    antimicrox.installTranslator(&myappTranslator);
 
 
     // Have program handle SIGTERM
@@ -683,13 +683,13 @@ int main(int argc, char *argv[])
 
         MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, settings);
 
-        QObject::connect(&antimicroX, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
-        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(),
+        QObject::connect(&antimicrox, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
+        QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
+        QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(),
                          &InputDaemon::deleteJoysticks, Qt::BlockingQueuedConnection);
-        QObject::connect(&antimicroX, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj,
+        QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj,
                          &MouseHelper::deleteDeskWid, Qt::DirectConnection);
-        QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater,
+        QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater,
                          Qt::BlockingQueuedConnection);
 
         mainWindow->makeJoystickTabs();
@@ -706,7 +706,7 @@ int main(int argc, char *argv[])
         inputEventThread->start(QThread::HighPriority);
 
 
-        int app_result = antimicroX.exec();
+        int app_result = antimicrox.exec();
 
         appLogger.Log(); // Log any remaining messages if they exist.
 
@@ -844,14 +844,14 @@ int main(int argc, char *argv[])
     QObject::connect(joypad_worker.data(), &InputDaemon::joystickRefreshed, mainWindow, &MainWindow::fillButtonsID);
     QObject::connect(joypad_worker.data(), &InputDaemon::joysticksRefreshed, mainWindow, &MainWindow::fillButtonsMap);
 
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, mainWindow, &MainWindow::saveAppConfig);
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::revertMouseThread);
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteJoysticks);
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater);
-    QObject::connect(&antimicroX, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, mainWindow, &MainWindow::saveAppConfig);
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::revertMouseThread);
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteJoysticks);
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater);
+    QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
 #if defined(WITH_X11)
@@ -862,9 +862,9 @@ int main(int argc, char *argv[])
         qDebug() << "Loaded quit combo keys: " << quitComboKeys;
         QGlobalShortcut* gs = new QGlobalShortcut;
         gs->setKey(QKeySequence(quitComboKeys));
-        QObject::connect(gs, &QGlobalShortcut::activated, &antimicroX, &QApplication::quit);
+        QObject::connect(gs, &QGlobalShortcut::activated, &antimicrox, &QApplication::quit);
 
-        QObject::connect(&antimicroX, &QApplication::aboutToQuit, gs, &QGlobalShortcut::deleteLater);
+        QObject::connect(&antimicrox, &QApplication::aboutToQuit, gs, &QGlobalShortcut::deleteLater);
     }
 #endif
 
@@ -894,7 +894,7 @@ int main(int argc, char *argv[])
     inputEventThread->start(QThread::HighPriority);
 
 
-    int app_result = antimicroX.exec();
+    int app_result = antimicrox.exec();
 
 
     appLogger.Log(); // Log any remaining messages if they exist.

@@ -44,8 +44,8 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Installing antimicroX is required for appimage creator
-    - name: Install antimicroX
+    # Installing antimicrox is required for appimage creator
+    - name: Install antimicrox
       run: |
         VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
         MAJOR=`echo $VERSION | cut -d " " -f 1`
