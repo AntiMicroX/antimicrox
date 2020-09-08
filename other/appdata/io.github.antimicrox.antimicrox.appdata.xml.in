@@ -3,19 +3,19 @@
   <id>io.github.antimicrox.antimicrox</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>antimicroX</name>
+  <name>antimicrox</name>
   <summary>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</summary>
    <description>
    <p>
-     antimicroX is a graphical program used to map keyboard keys and mouse
+     antimicrox is a graphical program used to map keyboard keys and mouse
      controls to a gamepad. This program is useful for playing PC games using a
      gamepad that do not have any form of built-in gamepad support. 
    </p>
    <p>
-     antimicroX was inspired by QJoyPad but has additional features.
+     antimicrox was inspired by QJoyPad but has additional features.
    </p>
  </description>
-  <url type="homepage">https://github.com/AntiMicroX/antimicroX/</url>
+  <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
   <launchable type="desktop-id">.desktop</launchable>
   <releases>
     <release version="3.0.1" date="2020-08-23"/>
@@ -35,31 +35,31 @@
  </kudos>
   <screenshots>
   <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/application_trayicon.png</image>
+   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/application_trayicon.png</image>
    <caption>Application Tray Icon</caption>
   </screenshot>
   <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_callibration_dark_theme.png</image>
+   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_callibration_dark_theme.png</image>
    <caption>Controller Calibration (Dark Theme)</caption>
   </screenshot>
   <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_main_window_dark_theme_1.png</image>
+   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_main_window_dark_theme_1.png</image>
    <caption>Profile Configuration Dialog 1 (Dark Theme)</caption>
   </screenshot>
   <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_main_window_dark_theme_2.png</image>
+   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_main_window_dark_theme_2.png</image>
    <caption>Profile Configuration Dialog 2 (Dark Theme)</caption>
   </screenshot>
   <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_configure_dark_theme.png</image>
+   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_configure_dark_theme.png</image>
    <caption>Analog Sticks Configuration Dialog (Dark Theme)</caption>
   </screenshot>
   <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_mapping_dark_theme.png</image>
+   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_mapping_dark_theme.png</image>
    <caption>Controller Mapping Dialog (Dark Theme)</caption>
   </screenshot>
  </screenshots>
- <url type="homepage">https://github.com/AntiMicroX/antimicroX/</url>
+ <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
  <keywords>
    <keyword>game</keyword>
    <keyword>controller</keyword>

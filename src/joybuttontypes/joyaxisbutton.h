@@ -1,4 +1,4 @@
-﻿/* antimicroX Gamepad to KB+M event mapper
+﻿/* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *

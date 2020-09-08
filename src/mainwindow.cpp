@@ -1,4 +1,4 @@
-/* antimicroX Gamepad to KB+M event mapper
+/* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
  *
@@ -317,7 +317,7 @@ void MainWindow::controllerMapOpening()
 
             int joypadIndex = m_cmdutility->getControllerNumber();
 
-            qDebug() << "It was antimicroX --map controllerNumber";
+            qDebug() << "It was antimicrox --map controllerNumber";
             qDebug() << "controllerNumber: " << joypadIndex;
 
             selectControllerJoyTab(joypadIndex);
@@ -327,7 +327,7 @@ void MainWindow::controllerMapOpening()
         {
             QString joypadGUID = m_cmdutility->getControllerID();
 
-            qDebug() << "It was antimicroX --map controllerID";
+            qDebug() << "It was antimicrox --map controllerID";
             qDebug() << "controllerID: " << joypadGUID;
 
             selectControllerJoyTab(joypadGUID);
@@ -2076,7 +2076,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID)
 {
-        int exec = QMessageBox::information(this, tr("Reading old profile"), tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicroX since version 2.25"), QMessageBox::Yes, QMessageBox::No);
+        int exec = QMessageBox::information(this, tr("Reading old profile"), tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25"), QMessageBox::Yes, QMessageBox::No);
 
         switch (exec)
         {

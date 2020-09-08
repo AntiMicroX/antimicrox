@@ -3,7 +3,7 @@ ARG USER=docker
 ARG UID=1000
 ARG GID=1000
 
-LABEL description="antimicroX version 3.0 on Github. See https://github.com/juliagoda/antimicroX" 
+LABEL description="antimicrox version 3.0 on Github. See https://github.com/juliagoda/antimicroX" 
 MAINTAINER Jagoda Górska <juliagoda.pl@protonmail.com>
 
 
@@ -55,7 +55,7 @@ RUN groupadd --gid ${GID} ${USER} && \
     usermod -a -G games ${USER} 
 
 
-WORKDIR antimicroX
+WORKDIR antimicrox
 
 RUN mkdir -p build
 
@@ -75,4 +75,4 @@ USER ${UID}:${GID}
 
 WORKDIR /home/${USER}
 
-CMD /usr/bin/antimicroX
+CMD /usr/bin/antimicrox
