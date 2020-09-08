@@ -1,4 +1,4 @@
-## antimicroX Gamepad to KB+M event mapper
+## antimicrox Gamepad to KB+M event mapper
 ## Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
 ## Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
 ## Copyright (C) 2020 Paweł Kotiuk <kotiuk@zohomail.eu>
@@ -120,11 +120,11 @@ if(UNIX)
     endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
 endif(UNIX)
 
-set(antimicroX_MAIN
+set(antimicrox_MAIN
     src/main.cpp
     )
 
-set(antimicroX_SOURCES
+set(antimicrox_SOURCES
     src/aboutdialog.cpp
     src/addeditautoprofiledialog.cpp
     src/advancebuttondialog.cpp
@@ -239,7 +239,7 @@ set(antimicroX_SOURCES
     src/xmlconfigwriter.cpp
 )
 
-set(antimicroX_HEADERS
+set(antimicrox_HEADERS
     src/aboutdialog.h
     src/addeditautoprofiledialog.h
     src/advancebuttondialog.h
@@ -353,16 +353,16 @@ set(antimicroX_HEADERS
 )
 
 if(ATTACH_FAKE_CLASSES)
-    LIST(APPEND antimicroX_SOURCES
+    LIST(APPEND antimicrox_SOURCES
         src/fakeclasses/xbox360wireless.cpp
     )
 
-    LIST(APPEND antimicroX_HEADERS
+    LIST(APPEND antimicrox_HEADERS
         src/fakeclasses/xbox360wireless.h
         )
 endif(ATTACH_FAKE_CLASSES)
 
-set(antimicroX_FORMS
+set(antimicrox_FORMS
     src/aboutdialog.ui
     src/addeditautoprofiledialog.ui
     src/advancebuttondialog.ui
@@ -386,19 +386,19 @@ set(antimicroX_FORMS
     src/setnamesdialog.ui
 )
 
-set(antimicroX_RESOURCES src/resources.qrc)
+set(antimicrox_RESOURCES src/resources.qrc)
 
 # Platform dependent files.
 if(UNIX)
     if(WITH_X11)
-        LIST(APPEND antimicroX_SOURCES src/x11extras.cpp
+        LIST(APPEND antimicrox_SOURCES src/x11extras.cpp
              src/qtx11keymapper.cpp
              src/unixcapturewindowutility.cpp
              src/autoprofilewatcher.cpp
              src/capturedwindowinfodialog.cpp
              src/qglobalshortcut/qglobalshortcut.cc
         )
-        LIST(APPEND antimicroX_HEADERS src/x11extras.h
+        LIST(APPEND antimicrox_HEADERS src/x11extras.h
              src/qtx11keymapper.h
              src/unixcapturewindowutility.h
              src/autoprofilewatcher.h
@@ -407,17 +407,17 @@ if(UNIX)
         )
 
         if(WITH_XTEST)
-            LIST(APPEND antimicroX_SOURCES src/eventhandlers/xtesteventhandler.cpp)
-            LIST(APPEND antimicroX_HEADERS src/eventhandlers/xtesteventhandler.h)
+            LIST(APPEND antimicrox_SOURCES src/eventhandlers/xtesteventhandler.cpp)
+            LIST(APPEND antimicrox_HEADERS src/eventhandlers/xtesteventhandler.h)
         endif(WITH_XTEST)
     endif(WITH_X11)
 
     if(WITH_UINPUT)
-        LIST(APPEND antimicroX_SOURCES src/qtuinputkeymapper.cpp
+        LIST(APPEND antimicrox_SOURCES src/qtuinputkeymapper.cpp
              src/uinputhelper.cpp
              src/eventhandlers/uinputeventhandler.cpp
         )
-        LIST(APPEND antimicroX_HEADERS src/qtuinputkeymapper.h
+        LIST(APPEND antimicrox_HEADERS src/qtuinputkeymapper.h
              src/uinputhelper.h
              src/eventhandlers/uinputeventhandler.h
         )
@@ -452,9 +452,9 @@ if (UNIX)
             find_package(Qt5X11Extras REQUIRED)
         endif()
 
-        QT5_WRAP_CPP(antimicroX_HEADERS_MOC ${antimicroX_HEADERS})
-        QT5_WRAP_UI(antimicroX_FORMS_HEADERS ${antimicroX_FORMS})
-        QT5_ADD_RESOURCES(antimicroX_RESOURCES_RCC ${antimicroX_RESOURCES})
+        QT5_WRAP_CPP(antimicrox_HEADERS_MOC ${antimicrox_HEADERS})
+        QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+        QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
 
         add_subdirectory("share/antimicrox/translations")
 
@@ -505,10 +505,10 @@ endif(UNIX)
 
             add_library( antilib
                 SHARED
-                ${antimicroX_HEADERS_MOC}
-                ${antimicroX_SOURCES}
-                ${antimicroX_FORMS_HEADERS}
-                ${antimicroX_RESOURCES_RCC}
+                ${antimicrox_HEADERS_MOC}
+                ${antimicrox_SOURCES}
+                ${antimicrox_FORMS_HEADERS}
+                ${antimicrox_RESOURCES_RCC}
             )
 
             set_target_properties(antilib PROPERTIES
@@ -524,7 +524,7 @@ endif(UNIX)
             endif()
             
             
-            add_executable(antimicrox ${antimicroX_MAIN})
+            add_executable(antimicrox ${antimicrox_MAIN})
             target_link_libraries (antimicrox antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
 
     endif(UNIX)
@@ -540,7 +540,7 @@ if(UNIX)
             install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
         endif()
 
-        install(FILES ${antimicroX_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
+        install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
 endif(UNIX)
 
 if(UNIX)

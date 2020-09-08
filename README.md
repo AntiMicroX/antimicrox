@@ -18,7 +18,7 @@
 
 ## Description
 
-antimicroX is a graphical program used to map keyboard keys and mouse controls
+antimicrox is a graphical program used to map keyboard keys and mouse controls
 to a gamepad. This program is useful for playing PC games using a gamepad that
 do not have any form of built-in gamepad support. However, you can use this 
 program to control any desktop application with a gamepad; on Linux, this
@@ -65,7 +65,7 @@ http://www.gnu.org/licenses/gpl.txt
 
 ## Command Line
 
-    Usage: antimicroX [options] [profile]
+    Usage: antimicrox [options] [profile]
 
     Options:
     -h, --help                     Print help text.
@@ -102,7 +102,7 @@ http://www.gnu.org/licenses/gpl.txt
 
 ### Fedora
 ```
-dnf install antimicroX
+dnf install antimicrox
 ```
 
 ### Arch Linux or Arch Linux based distributions:
@@ -136,10 +136,10 @@ pacman -S antimicrox
 ```
 
 ### Debian/Ubuntu-based distributions:
-Download from the [release site](https://github.com/AntiMicroX/antimicroX/releases) and install `.deb` package.
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
 
 ### AppImage
-Download from the [release site](https://github.com/AntiMicroX/antimicroX/releases).
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
 <br/>It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
 
 ### Running using Docker
@@ -159,10 +159,10 @@ List of required dependencies and build instructions can be found [here](./BUILD
 
 ## Testing Under Linux
 
-If you are having problems with antimicroX detecting a controller or
+If you are having problems with antimicrox detecting a controller or
 detecting all axes and buttons, you should test the controller outside of
-antimicroX to check if the problem is with antimicroX or not. The two endorsed
-programs for testing gamepads outside of antimicroX are **sdl-jstest**
+antimicrox to check if the problem is with antimicrox or not. The two endorsed
+programs for testing gamepads outside of antimicrox are **sdl-jstest**
 (**sdl2-jstest**) and **evtest**. SDL2 utilizes evdev on Linux so performing
 testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. Another method also exist, 
@@ -173,15 +173,15 @@ which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 ## AntiMicroX Profiles
 
 If you would like to send the profile you are using for your application or find something 
-for yourself, [here](https://github.com/AntiMicroX/antimicroX-profiles) is the forked repository. If you want to report a bug, ask 
-a question or share a suggestion, you can do that on the antimicroX page or on the
-[antimicroX-profiles](https://github.com/AntiMicroX/antimicroX-profiles) page.
+for yourself, [here](https://github.com/AntiMicroX/antimicrox-profiles) is the forked repository. If you want to report a bug, ask 
+a question or share a suggestion, you can do that on the antimicrox page or on the
+[antimicrox-profiles](https://github.com/AntiMicroX/antimicrox-profiles) page.
 
 <br/>
 
 ## Support
 
-In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicroX/issues).
+In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicrox/issues).
 
 <br/>
 
@@ -203,7 +203,7 @@ A big, original inspiration for this program was the program QJoyPad.
 
 ### Contributors
 
-Full list is available [here](https://github.com/AntiMicroX/antimicroX/graphs/contributors)
+Full list is available [here](https://github.com/AntiMicroX/antimicrox/graphs/contributors)
 
 <br/>
 

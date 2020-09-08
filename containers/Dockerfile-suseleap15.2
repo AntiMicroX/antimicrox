@@ -3,7 +3,7 @@ ARG USER=docker
 ARG UID=1000
 ARG GID=1000
 
-LABEL description="antimicroX version 3.0 on Github. See https://github.com/juliagoda/antimicroX" 
+LABEL description="antimicrox version 3.0 on Github. See https://github.com/juliagoda/antimicroX" 
 MAINTAINER Jagoda Górska <juliagoda.pl@protonmail.com>
 
 
@@ -38,7 +38,7 @@ RUN zypper refresh && zypper --non-interactive update && zypper --non-interactiv
     
 RUN git -c http.sslVerify=false clone --depth 1 https://github.com/juliagoda/antimicroX.git --branch 3.0 --single-branch 
 
-WORKDIR antimicroX
+WORKDIR antimicrox
 
 RUN mkdir -p build
 
@@ -68,4 +68,4 @@ USER ${UID}:${GID}
 
 WORKDIR /home/${USER}
 
-CMD /usr/bin/antimicroX
+CMD /usr/bin/antimicrox

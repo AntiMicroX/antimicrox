@@ -1,4 +1,4 @@
-/* antimicroX Gamepad to KB+M event mapper
+/* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
  *
  * This program is free software: you can redistribute it and/or modify

@@ -6,10 +6,10 @@
 *.mo
 .flatpak-builder
 Makefile
-antimicroX
-!share/antimicroX
-antimicroX.pro.user
-antimicroX.pro.user.*
+antimicrox
+!share/antimicrox
+antimicrox.pro.user
+antimicrox.pro.user.*
 moc_*
 qrc_resources.cpp
 ui_*.h
@@ -19,7 +19,7 @@ build/
 build-dir/
 Build/
 CMakeLists.txt.user*
-other/antimicroX.1.gz
+other/antimicrox.1.gz
 other/license-template.txt
 doc/
 compile/

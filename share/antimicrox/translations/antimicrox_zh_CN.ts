@@ -10,8 +10,8 @@
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="81"/>
-        <source>antimicroX</source>
-        <translation>antimicroX</translation>
+        <source>AntiMicroX</source>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="110"/>
@@ -230,17 +230,17 @@ Development of this program is not as high of a priority for me anymore. This is
 
 As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. As next, project has been continued since 2018 by juliagoda on antimicroX project. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 </source>
-        <translation type="vanished">自2012年12月30日以来，我利用业余时间编写 antimicroX。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
+        <translation type="vanished">自2012年12月30日以来，我利用业余时间编写 AntiMicroX。这个项目本来是 QJoyPad 的派生，用来学习事件驱动编程，没想到规模变得如此之大。尽管我花了很多时间去学习新的技巧、探索键鼠模拟的领域、每周五晚上用头撞键盘，我仍然觉得这是一段有趣并且充实的经历。
 
 对这个程序的需求来源于我想在 Windows 上使用类似的程序玩一些原生不支持手柄的游戏。虽然 Linux 上有其它替代品，但是我并没有找到在功能上或者游戏内控制足够好，以至于我可以使用键鼠模拟来享受游戏的工具。QJoyPad 是我过去主要使用的工具，尽管它非常古老而且不提供一些我认为非常关键的功能。那个项目已经停止开发很多年，所以我决定编写一个我自己的工具。
 
-从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 antimicroX 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
+从那时起，我不断寻找其它程序的长处，然后在它们的基础上继续开发。在此期间，我还发现了一些不错的小技巧，并且学到了很多关于游戏如何实现原生支持手柄的知识。这些知识远远广于我之前想学的范围。尽管 AntiMicroX 还有很多可以改进的地方，我还是认为它提供了最好的游戏内控制体验，不管是针对老一些还是新一些的原生不支持手柄的游戏。
 
 开发这个程序对我来说已经不像以往那样高优先级了。这主要是因为相比较 Xbox 360 手柄来说，Steam 手柄可以很好地进行 PC 游戏。然而，这个程序似乎仍然有理由再存在一段时间。
 
 ---
 
-截止至2016年5月24日，这个项目已经被移动到了 https://github.com/AntiMicroX/antimicroX。此外，由于 Travis 希望将更多精力放到其它兴趣和事务上，项目管理已经从 Travis (Ryochan7) 移交到了 AntiMicroX 项目组。</translation>
+截止至2016年5月24日，这个项目已经被移动到了 https://github.com/AntiMicroX/AntiMicroX。此外，由于 Travis 希望将更多精力放到其它兴趣和事务上，项目管理已经从 Travis (Ryochan7) 移交到了 AntiMicroX 项目组。</translation>
     </message>
     <message>
         <source>Copyright: 2013 - 2016</source>
@@ -1501,8 +1501,8 @@ of the all default profile option.</source>
         <translation>下：</translation>
     </message>
     <message>
-        <source>Note: This window is meant for backwards compatibility with profiles made before antimicroX 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="vanished">注意：这个窗口是为了兼容 antimicroX 2.0 版之前创建的配置文件。自 antimicroX 2.0 起，推荐使用游戏控制器映射窗口。</translation>
+        <source>Note: This window is meant for backwards compatibility with profiles made before AntiMicroX 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
+        <translation type="vanished">注意：这个窗口是为了兼容 AntiMicroX 2.0 版之前创建的配置文件。自 AntiMicroX 2.0 起，推荐使用游戏控制器映射窗口。</translation>
     </message>
     <message>
         <location filename="../../../src/advancestickassignmentdialog.ui" line="477"/>
@@ -2205,12 +2205,12 @@ deadzone Y: %1</source>
         <translation type="vanished">未指定日志文件。</translation>
     </message>
     <message>
-        <source>antimicroX version</source>
-        <translation type="vanished">antimicroX 版本</translation>
+        <source>AntiMicroX version</source>
+        <translation type="vanished">AntiMicroX 版本</translation>
     </message>
     <message>
-        <source>Usage: antimicroX [options...] [profile]</source>
-        <translation type="vanished">用法：antimicroX [选项] [配置文件]</translation>
+        <source>Usage: AntiMicroX [options...] [profile]</source>
+        <translation type="vanished">用法：AntiMicroX [选项] [配置文件]</translation>
     </message>
     <message>
         <source>Options</source>
@@ -2589,8 +2589,8 @@ to a diagonal zone.</source>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="36"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicroX makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicroX will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicroX 使用 SDL 2 的&lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;游戏控制器应用程序接口&lt;/span&gt;&lt;/a&gt;把各式各样的手柄进行抽象，使它们适用于统一的标准。若要进行按钮分配，请选择下面相应的按钮映射单元格。之后您可以按一个按钮或者移动手柄上的一个轴，映射单元格将更新以匹配这个物理按键或轴。&lt;/p&gt;&lt;p&gt;antimicroX 将把您指定的映射保存为一个字符串，而这个字符串将被加载到 SDL 中。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;AntiMicroX will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX 使用 SDL 2 的&lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;游戏控制器应用程序接口&lt;/span&gt;&lt;/a&gt;把各式各样的手柄进行抽象，使它们适用于统一的标准。若要进行按钮分配，请选择下面相应的按钮映射单元格。之后您可以按一个按钮或者移动手柄上的一个轴，映射单元格将更新以匹配这个物理按键或轴。&lt;/p&gt;&lt;p&gt;AntiMicroX 将把您指定的映射保存为一个字符串，而这个字符串将被加载到 SDL 中。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="137"/>
@@ -4034,7 +4034,7 @@ events from gamepads. Defaults to 10 ms.
 
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
-before using antimicroX unattended.</source>
+before using AntiMicroX unattended.</source>
         <translation>改变轮询速率来发现新的手柄事件。默认10毫秒。
 降低轮询速率可能会导致本程序使用更多的处理器资源。请在以无人值守方式使用前测试此选项。</translation>
     </message>
@@ -4292,11 +4292,11 @@ option is enabled.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1044"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
-while antimicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
-will allow mouse movement within antimicroX to be more
+while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
+will allow mouse movement within AntiMicroX to be more
 precise.</source>
-        <translation>在 antimicroX 运行时禁用 Windows 的“提高指针精确度”选项。
-禁用“提高指针精确度”可使鼠标在开启 antimicroX 的情况下更精准地移动。</translation>
+        <translation>在 AntiMicroX 运行时禁用 Windows 的“提高指针精确度”选项。
+禁用“提高指针精确度”可使鼠标在开启 AntiMicroX 的情况下更精准地移动。</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1050"/>
@@ -4372,13 +4372,13 @@ values used by the virtual mouse.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="237"/>
-        <source>Have Windows start antimicroX at system startup.</source>
+        <source>Have Windows start AntiMicroX at system startup.</source>
         <translation>在 Windows 启动时运行本程序。</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="310"/>
-        <source>Associate .amgp files with antimicroX in Windows Explorer.</source>
-        <translation>在 Windows 资源管理器中将 .amgp 文件关联到 antimicroX。</translation>
+        <source>Associate .amgp files with AntiMicroX in Windows Explorer.</source>
+        <translation>在 Windows 资源管理器中将 .amgp 文件关联到 AntiMicroX。</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="520"/>
@@ -4444,8 +4444,8 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="730"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicroX 已被贡献者翻译为多种语言。默认情况下，本程序将根据您系统的区域设置选择相应的语言。然而，您也可以让 antimicroX 加载以下列表中的任意语言。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX 已被贡献者翻译为多种语言。默认情况下，本程序将根据您系统的区域设置选择相应的语言。然而，您也可以让 AntiMicroX 加载以下列表中的任意语言。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="760"/>
@@ -4581,8 +4581,8 @@ the option in Windows.</source>
     <name>MainWindow</name>
     <message>
         <location filename="../../../src/mainwindow.ui" line="23"/>
-        <source>antimicroX</source>
-        <translation>antimicroX</translation>
+        <source>AntiMicroX</source>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="94"/>
@@ -4841,7 +4841,7 @@ Device name: %2</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="2079"/>
-        <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicroX since version 2.25</source>
+        <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in AntiMicroX since version 2.25</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4866,9 +4866,9 @@ Device name: %2</source>
     <message>
         <source>Are you sure that you want to run this program as Adminstrator?
 
-Some games run as Administrator which will cause events generated by antimicroX to not be used by those games unless antimicroX is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
+Some games run as Administrator which will cause events generated by AntiMicroX to not be used by those games unless AntiMicroX is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
         <translation type="vanished">您确定要使用管理员权限运行本程序吗？
-有些以管理员权限运行的游戏无法识别 antimicroX 生成的事件，除非 antimicroX 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制 (UAC) 导致的权限问题。</translation>
+有些以管理员权限运行的游戏无法识别 AntiMicroX 生成的事件，除非 AntiMicroX 也使用管理员权限运行。这是由于 Windows Vista 及以后系统中用户帐户控制 (UAC) 导致的权限问题。</translation>
     </message>
     <message>
         <source>Failed to elevate program</source>
@@ -5485,12 +5485,12 @@ of your screen.</source>
         <translation>按键检查器</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicroX.&lt;/p&gt;&lt;p&gt;The antimicroX key value and the Qt key value will usually be the same. antimicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicroX&apos;s &lt;a href=&quot;https://github.com/antimicroX/antimicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按下您键盘上的一个键来观察本程序如何检测按键。本窗口将显示系统原生键值、Qt 原始键值（如果可用）和 antimicroX 使用的自定义键值。&lt;/p&gt;&lt;p&gt;antimicroX 键值和 Qt 键值通常是一样的。如果可能，antimicroX 将优先使用 Qt 中已定义的键值。如果想了解 Qt 中已定义的键值列表，请查看页面 &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt;。如果您发现某个键没有被本程序原生支持，请将问题报告至 antimicroX 的 &lt;a href=&quot;https://github.com/antimicroX/antimicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub 页面&lt;/span&gt;&lt;/a&gt;，以便我们修改程序后直接支持这个键。如您所见，未知的键值将被附加一个自定义前缀。这样一来，它们就能被使用了，不过最大的问题是含有这个键的配置文件将无法在其它地方使用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/AntiMicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按下您键盘上的一个键来观察本程序如何检测按键。本窗口将显示系统原生键值、Qt 原始键值（如果可用）和 AntiMicroX 使用的自定义键值。&lt;/p&gt;&lt;p&gt;AntiMicroX 键值和 Qt 键值通常是一样的。如果可能，AntiMicroX 将优先使用 Qt 中已定义的键值。如果想了解 Qt 中已定义的键值列表，请查看页面 &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt;。如果您发现某个键没有被本程序原生支持，请将问题报告至 AntiMicroX 的 &lt;a href=&quot;https://github.com/AntiMicroX/AntiMicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub 页面&lt;/span&gt;&lt;/a&gt;，以便我们修改程序后直接支持这个键。如您所见，未知的键值将被附加一个自定义前缀。这样一来，它们就能被使用了，不过最大的问题是含有这个键的配置文件将无法在其它地方使用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="41"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicroX.&lt;/p&gt;&lt;p&gt;The antimicroX key value and the Qt key value will usually be the same. antimicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/antimicroX/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/AntiMicroX/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5521,8 +5521,8 @@ of your screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>antimicroX Key Value:</source>
-        <translation type="vanished">antimicroX 自定义键值：</translation>
+        <source>AntiMicroX Key Value:</source>
+        <translation type="vanished">AntiMicroX 自定义键值：</translation>
     </message>
 </context>
 <context>
@@ -5909,12 +5909,12 @@ of your screen.</source>
         <translation type="unfinished">未指定日志文件。</translation>
     </message>
     <message>
-        <source>antimicroX version</source>
-        <translation type="obsolete">antimicroX 版本</translation>
+        <source>AntiMicroX version</source>
+        <translation type="obsolete">AntiMicroX 版本</translation>
     </message>
     <message>
-        <source>Usage: antimicroX [options...] [profile]</source>
-        <translation type="obsolete">用法：antimicroX [选项] [配置文件]</translation>
+        <source>Usage: AntiMicroX [options...] [profile]</source>
+        <translation type="obsolete">用法：AntiMicroX [选项] [配置文件]</translation>
     </message>
     <message>
         <source>Options</source>
@@ -7436,7 +7436,7 @@ R</translation>
     </message>
     <message>
         <source>AntiMicroX Profile</source>
-        <translation type="vanished">antimicroX 配置文件</translation>
+        <translation type="vanished">AntiMicroX 配置文件</translation>
     </message>
 </context>
 <context>
@@ -7523,7 +7523,7 @@ R</translation>
     </message>
 </context>
 <context>
-    <name>antimicroX</name>
+    <name>AntiMicroX</name>
     <message>
         <location filename="../../../src/main.cpp" line="142"/>
         <source>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</source>

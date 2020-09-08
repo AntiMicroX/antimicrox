@@ -1,11 +1,11 @@
 [Desktop Entry]
-Name=antimicroX
+Name=AntiMicroX
 Comment=Use a gamepad to control a variety of programs
 Name[sr]=Анти-микро
 Comment[sr]=Користите џојстик или играћу тастатуру за управљање различитим програмима
-Name[fr]=antimicroX
+Name[fr]=AntiMicroX
 Comment[fr]=Utilisez une manette de jeu pour commander un logiciel
-Name[de]=antimicroX
+Name[de]=AntiMicroX
 Comment[de]=Nutze das Gamepad um Programme/Spiele zu steuern
 Comment[uk]=Використовуйте ігровий маніпулятор для керування програмами
 Exec=antimicrox
