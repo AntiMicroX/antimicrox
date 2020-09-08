@@ -189,7 +189,7 @@ Development of this program is not as high of a priority for me anymore. This is
 
 ---
 
-As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. As next, project has been continued since 2018 by juliagoda on antimicrox project. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
+As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. As next, project has been continued since 2018 by juliagoda on antimicroX project. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -239,8 +239,8 @@ Una vez que el control de Steam finalmente se lanzó al público, la necesidad d
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="81"/>
-        <source>antimicrox</source>
-        <translation>antimicrox</translation>
+        <source>AntiMicroX</source>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1248,7 +1248,7 @@ Distancia acción especifica que las ranuras después sólo se ejecutan cuando u
         <translation>Abajo:</translation>
     </message>
     <message>
-        <source>Note: This window is meant for backwards compatibility with profiles made before antimicrox 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
+        <source>Note: This window is meant for backwards compatibility with profiles made before AntiMicroX 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
         <translation type="vanished">Nota: Esta ventana es para la retrocompatibilidad con los perfiles realizados antes AntimicroX 2.0. Desde la versión 2.0, se prefiere el uso de la ventana de juego Mapeo controlador.</translation>
     </message>
     <message>
@@ -2228,7 +2228,7 @@ a una zona de diagonal.</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="36"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;AntiMicroX will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3674,7 +3674,7 @@ events from gamepads. Defaults to 10 ms.
 
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
-before using antimicrox unattended.</source>
+before using AntiMicroX unattended.</source>
         <translation>Cambiar la velocidad de sondeo que el programa utiliza para descubrir nuevos
 eventos de mandos. El valor predeterminado es de 10 ms.
 
@@ -3696,7 +3696,7 @@ se hace clic en lugar de salir del programa.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="237"/>
-        <source>Have Windows start antimicrox at system startup.</source>
+        <source>Have Windows start AntiMicroX at system startup.</source>
         <translation>Hacer que Windows inicie AntimicroX junto con el sistema.</translation>
     </message>
     <message>
@@ -3775,8 +3775,8 @@ first launches.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="310"/>
-        <source>Associate .amgp files with antimicrox in Windows Explorer.</source>
-        <translation>Asociar archivos .amgp con antimicrox en Windows Explorer.</translation>
+        <source>Associate .amgp files with AntiMicroX in Windows Explorer.</source>
+        <translation>Asociar archivos .amgp con AntiMicroX en Windows Explorer.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="313"/>
@@ -3842,7 +3842,7 @@ por segundo.</translation>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="730"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicrox load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntimicroX ha sido traducido a muchos idiomas diferentes por los contribuyentes. Por defecto, el programa elegirá una traducción apropiada basada en la configuración regional de su sistema. Sin embargo, puede hacer que la carga AntimicroX una traducción diferente en función del idioma que elija en la lista siguiente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -3997,8 +3997,8 @@ por segundo.</translation>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1044"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
-while antimicrox is running. Disabling &quot;Enhanced Pointer Precision&quot;
-will allow mouse movement within antimicrox to be more
+while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
+will allow mouse movement within AntiMicroX to be more
 precise.</source>
         <translation>Deshabilitar la configuración de Windows &quot;mejorada precisión del puntero&quot;
 mientras AntimicroX se está ejecutando. La desactivación &quot;mejorada precisión del puntero&quot;
@@ -4271,8 +4271,8 @@ la opción en Windows.</translation>
     <name>MainWindow</name>
     <message>
         <location filename="../../../src/mainwindow.ui" line="23"/>
-        <source>antimicrox</source>
-        <translation>antimicrox</translation>
+        <source>AntiMicroX</source>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/mainwindow.ui" line="94"/>
@@ -4535,7 +4535,7 @@ Device name: %2</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="2079"/>
-        <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
+        <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in AntiMicroX since version 2.25</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4560,7 +4560,7 @@ Device name: %2</source>
     <message>
         <source>Are you sure that you want to run this program as Adminstrator?
 
-Some games run as Administrator which will cause events generated by antimicrox to not be used by those games unless antimicrox is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
+Some games run as Administrator which will cause events generated by AntiMicroX to not be used by those games unless AntiMicroX is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
         <translation type="vanished">¿Estás seguro de que desea ejecutar este programa como Adminstrator?
 
 Algunos juegos se ejecutan como administrador lo que hará que los eventos generados por AntimicroX para no ser utilizado por aquellos juegos a menos AntimicroX también se ejecuta como el Adminstrator. Esto se debe a problemas de permisos causadas por las opciones de Control de cuentas de usuario (UAC) en Windows Vista y versiones posteriores.</translation>
@@ -5197,12 +5197,12 @@ of your screen.</source>
         <translation>Verificador de Teclas</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicrox.&lt;/p&gt;&lt;p&gt;The antimicrox key value and the Qt key value will usually be the same. antimicrox tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicrox&apos;s &lt;a href=&quot;https://github.com/antimicrox/antimicrox&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Presione una tecla del teclado para ver cómo se detecta la tecla por esta aplicación. La ventana mostrará el valor de la tecla del sistema nativo, el valor original dada por Qt (si es el caso), y el valor personalizado utilizado por AntimicroX. &lt;/p&gt;&lt;p&gt; El valor de la tecla AntimicroX y el valor de tecla Qt generalmente es la misma . antimicrox intenta utilizar los valores de las claves definidas en Qt cuando sea posible. Vea la página &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; para una lista de valores definidos por Qt. Si descubre que la tecla no es compatible de forma nativa por este programa, por favor informa del problema al estilo de antimicrox &lt;a href=&quot;https://github.com/antimicrox/antimicrox&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; para que el programa pueda editarlo para soportarlo directamente. Tal como es, se añade un prefijo personalizado para valores desconocidos por lo que todavía se pueden utilizar; el principal problema es que el perfil ya no será portátil.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/AntiMicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Presione una tecla del teclado para ver cómo se detecta la tecla por esta aplicación. La ventana mostrará el valor de la tecla del sistema nativo, el valor original dada por Qt (si es el caso), y el valor personalizado utilizado por AntimicroX. &lt;/p&gt;&lt;p&gt; El valor de la tecla AntimicroX y el valor de tecla Qt generalmente es la misma . AntiMicroX intenta utilizar los valores de las claves definidas en Qt cuando sea posible. Vea la página &lt;a href=&quot;https://doc.qt.io/qt-4.8/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;https://doc.qt.io/qt-4.8/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; para una lista de valores definidos por Qt. Si descubre que la tecla no es compatible de forma nativa por este programa, por favor informa del problema al estilo de AntiMicroX &lt;a href=&quot;https://github.com/AntiMicroX/AntiMicroX&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; para que el programa pueda editarlo para soportarlo directamente. Tal como es, se añade un prefijo personalizado para valores desconocidos por lo que todavía se pueden utilizar; el principal problema es que el perfil ya no será portátil.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="41"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicrox.&lt;/p&gt;&lt;p&gt;The antimicrox key value and the Qt key value will usually be the same. antimicrox tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicrox&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/AntiMicroX/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5233,7 +5233,7 @@ of your screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>antimicrox Key Value:</source>
+        <source>AntiMicroX Key Value:</source>
         <translation type="vanished">Valor AntimicroX de Tecla:</translation>
     </message>
 </context>
@@ -7108,7 +7108,7 @@ R</translation>
     </message>
 </context>
 <context>
-    <name>antimicrox</name>
+    <name>AntiMicroX</name>
     <message>
         <location filename="../../../src/main.cpp" line="142"/>
         <source>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</source>

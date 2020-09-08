@@ -30,7 +30,7 @@
     </message>
     <message>
         <location filename="../../../src/aboutdialog.ui" line="81"/>
-        <source>antimicrox</source>
+        <source>AntiMicroX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -214,7 +214,7 @@ Development of this program is not as high of a priority for me anymore. This is
 
 ---
 
-As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. As next, project has been continued since 2018 by juliagoda on antimicrox project. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
+As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. As next, project has been continued since 2018 by juliagoda on antimicroX project. Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2067,7 +2067,7 @@ to a diagonal zone.</source>
     </message>
     <message>
         <location filename="../../../src/gamecontrollermappingdialog.ui" line="36"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;AntiMicroX will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3498,7 +3498,7 @@ events from gamepads. Defaults to 10 ms.
 
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
-before using antimicrox unattended.</source>
+before using AntiMicroX unattended.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3514,7 +3514,7 @@ clicked instead of quitting the program.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="237"/>
-        <source>Have Windows start antimicrox at system startup.</source>
+        <source>Have Windows start AntiMicroX at system startup.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3584,7 +3584,7 @@ first launches.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="310"/>
-        <source>Associate .amgp files with antimicrox in Windows Explorer.</source>
+        <source>Associate .amgp files with AntiMicroX in Windows Explorer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3648,7 +3648,7 @@ per seconds.</source>
     </message>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="730"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make antimicrox load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3779,8 +3779,8 @@ per seconds.</source>
     <message>
         <location filename="../../../src/mainsettingsdialog.ui" line="1044"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
-while antimicrox is running. Disabling &quot;Enhanced Pointer Precision&quot;
-will allow mouse movement within antimicrox to be more
+while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
+will allow mouse movement within AntiMicroX to be more
 precise.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4015,7 +4015,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     <name>MainWindow</name>
     <message>
         <location filename="../../../src/mainwindow.ui" line="23"/>
-        <source>antimicrox</source>
+        <source>AntiMicroX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4238,7 +4238,7 @@ Device name: %2</source>
     </message>
     <message>
         <location filename="../../../src/mainwindow.cpp" line="2079"/>
-        <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
+        <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in AntiMicroX since version 2.25</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4853,7 +4853,7 @@ of your screen.</source>
     </message>
     <message>
         <location filename="../../../src/qkeydisplaydialog.ui" line="41"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by antimicrox.&lt;/p&gt;&lt;p&gt;The antimicrox key value and the Qt key value will usually be the same. antimicrox tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to antimicrox&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/AntiMicroX/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6656,7 +6656,7 @@ LK</source>
     </message>
 </context>
 <context>
-    <name>antimicrox</name>
+    <name>AntiMicroX</name>
     <message>
         <location filename="../../../src/main.cpp" line="142"/>
         <source>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</source>

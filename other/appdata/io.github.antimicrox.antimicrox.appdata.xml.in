@@ -3,16 +3,16 @@
   <id>io.github.antimicrox.antimicrox</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>antimicrox</name>
+  <name>AntiMicroX</name>
   <summary>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</summary>
    <description>
    <p>
-     antimicrox is a graphical program used to map keyboard keys and mouse
+     AntiMicroX is a graphical program used to map keyboard keys and mouse
      controls to a gamepad. This program is useful for playing PC games using a
      gamepad that do not have any form of built-in gamepad support. 
    </p>
    <p>
-     antimicrox was inspired by QJoyPad but has additional features.
+     AntiMicroX was inspired by QJoyPad but has additional features.
    </p>
  </description>
   <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>

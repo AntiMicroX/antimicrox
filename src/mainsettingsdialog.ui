@@ -214,7 +214,7 @@ events from gamepads. Defaults to 10 ms.
 
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
-before using antimicrox unattended.</string>
+before using AntiMicroX unattended.</string>
              </property>
             </widget>
            </item>
@@ -234,7 +234,7 @@ clicked instead of quitting the program.</string>
          <item>
           <widget class="QCheckBox" name="launchAtWinStartupCheckBox">
            <property name="toolTip">
-            <string>Have Windows start antimicrox at system startup.</string>
+            <string>Have Windows start AntiMicroX at system startup.</string>
            </property>
            <property name="text">
             <string>Launch At Windows Startup</string>
@@ -307,7 +307,7 @@ first launches.</string>
          <item>
           <widget class="QCheckBox" name="associateProfilesCheckBox">
            <property name="toolTip">
-            <string>Associate .amgp files with antimicrox in Windows Explorer.</string>
+            <string>Associate .amgp files with AntiMicroX in Windows Explorer.</string>
            </property>
            <property name="text">
             <string>Associate Profiles</string>
@@ -727,7 +727,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <item>
           <widget class="QLabel" name="label_8">
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system's locale setting. However, you can make antimicrox load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system's locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -1042,8 +1042,8 @@ Settings will not take affect until you either refresh all joysticks or unplug t
           <widget class="QCheckBox" name="disableWindowsEnhancedPointCheckBox">
            <property name="toolTip">
             <string>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
-while antimicrox is running. Disabling &quot;Enhanced Pointer Precision&quot;
-will allow mouse movement within antimicrox to be more
+while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
+will allow mouse movement within AntiMicroX to be more
 precise.</string>
            </property>
            <property name="text">
