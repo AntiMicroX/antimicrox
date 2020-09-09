@@ -1,4 +1,4 @@
-# <img src="./src/images/antimicrox.png" alt="Icon" width="60"/> AntiMicroX 3.0.1 
+# <img src="./src/images/antimicrox.png" alt="Icon" width="60"/> AntiMicroX 3.1.0 
 
 
 1. [Description](#description)  

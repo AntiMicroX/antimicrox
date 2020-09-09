@@ -1,3 +1,21 @@
+2020-09-09 Paweł Kotiuk <kotiuk@zohomail.eu>
+
+
+Version 3.1.0
+
+* Updated documentation connected with migration to new repository
+
+* Add instruction and config for building Flatpak packages - Gergely "gombosg" Gombos
+
+* Multiple improvements of packaging for Debian/Ubuntu
+
+* Ensure consistent naming across entire project
+
+* Rename used directories and files from antimicroX to antimicrox
+
+* First official AppImage release
+
+
 2018-16-06 Jagoda Gorska <juliagoda.pl@protonmail.com>
 
 

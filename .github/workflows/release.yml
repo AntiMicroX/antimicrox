@@ -80,5 +80,5 @@ jobs:
     - name: Upload binaries to release
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: ./build/antimicrox*.AppImage;./build/antimicrox*.zsync
+        files: ./build/AntiMicroX*.AppImage;./build/AntiMicroX*.zsync
         repo-token: ${{ secrets.GITHUB_TOKEN }}

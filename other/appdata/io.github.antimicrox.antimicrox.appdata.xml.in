@@ -18,6 +18,7 @@
   <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
   <launchable type="desktop-id">.desktop</launchable>
   <releases>
+    <release version="3.1.0" date="2020-09-09"/>
     <release version="3.0.1" date="2020-08-23"/>
     <release version="3.0" date="2020-06-11"/>
     <release version="2.25" date="2020-01-07"/>
