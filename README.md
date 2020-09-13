@@ -18,12 +18,13 @@
 
 ## Description
 
-antimicrox is a graphical program used to map keyboard keys and mouse controls
-to a gamepad. This program is useful for playing PC games using a gamepad that
-do not have any form of built-in gamepad support. However, you can use this 
-program to control any desktop application with a gamepad; on Linux, this
-means that your system has to be running an X environment in order to run
-this program.
+antimicrox is a graphical program used to map keyboard keys and mouse controls to a gamepad. You can use this program to control any desktop application with a gamepad; on Linux, this means that your system has to be running an X environment in order to run this program.
+
+It allows mapping of gamepads/joystick buttons to:
+- keyboard buttons
+- mouse buttons and moves
+- scripts and executables
+- macros consisting of elements mentioned above
 
 This program is currently supported under various Linux
 distributions.
@@ -36,6 +37,7 @@ Legacy repositories:
 - First, original AntiMicro repository: https://github.com/Ryochan7/antimicro
 
 **Screenshots:**
+Disclaimer: Theme may depend on your system configuration.
 <table border="0px" >
 <tr><td>
 
@@ -211,6 +213,7 @@ Full list is available [here](https://github.com/AntiMicroX/antimicrox/graphs/co
 
  **Distro** | **Maintainer** | **Package**  |
 | :--------- | :------------- | :----------- |
+| Arch Linux | frealgagu   | [antimicrox](https://aur.archlinux.org/packages/antimicrox/) <sup>AUR</sup> |
 | Arch Linux | FabioLolix   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
 | Fedora Linux | [Gergely Gombos](https://github.com/gombosg) | antimicroX |
 
