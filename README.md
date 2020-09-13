@@ -110,7 +110,7 @@ dnf install antimicrox
 ### Arch Linux or Arch Linux based distributions:
 
 ```
-trizen -S antimicrox-git
+trizen -S antimicrox
 ```
 **or**<br/>
 
