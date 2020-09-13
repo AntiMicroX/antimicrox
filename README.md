@@ -36,7 +36,7 @@ Legacy repositories:
 - Second, maintained by organization: https://github.com/AntiMicro/antimicro
 - First, original AntiMicro repository: https://github.com/Ryochan7/antimicro
 
-**Screenshots:**
+**Screenshots:**  
 Disclaimer: Theme may depend on your system configuration.
 <table border="0px" >
 <tr><td>
