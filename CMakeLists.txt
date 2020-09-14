@@ -600,6 +600,7 @@ if(UNIX)
     ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/48x48/apps/48-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/64x64/apps/64-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS src/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/scalable/apps/sc-apps-io.github.antimicrox.antimicrox.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
 
     install(FILES src/images/antimicrox.png src/images/antimicrox_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/images")

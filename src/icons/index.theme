@@ -32,6 +32,11 @@ Size=64
 Context=Applications
 Type=Fixed
 
+[128x128/apps]
+Size=64
+Context=Applications
+Type=Fixed
+
 [scalable/apps]
 Type=Scalable
 MinSize=1
