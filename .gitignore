@@ -26,3 +26,6 @@ compile/
 src/Changelog
 SDL2_*
 *.kate-swp
+repo/
+.flatpak-builder/
+.vscode/
