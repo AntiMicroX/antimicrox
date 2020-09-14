@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-12-06 21:37-0500\n"
+"POT-Creation-Date: 2020-09-14 23:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,73 +9,77 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. (itstool) path: component/id
-#: antimicrox.appdata.xml.in:4
-msgid "antimicrox.desktop"
-msgstr ""
-
-#. (itstool) path: component/metadata_license
-#: antimicrox.appdata.xml.in:5
-msgid "MIT"
-msgstr ""
-
-#. (itstool) path: component/project_license
-#: antimicro.appdataX.xml.in:6
-msgid "GPL-3.0+"
-msgstr ""
-
-#. (itstool) path: component/name
-#: antimicrox.appdata.xml.in:7
-msgid "antimicrox"
-msgstr ""
-
 #. (itstool) path: component/summary
-#: antimicrox.appdata.xml.in:8
-msgid "Graphical program used to map keyboard buttons and mouse controls to a gamepad"
+#: io.github.antimicrox.antimicrox.appdata.xml.in:7
+msgid "Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support."
 msgstr ""
 
 #. (itstool) path: description/p
-#: antimicrox.appdata.xml.in:10
-msgid "antimicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support. antimicroX was inspired by QJoyPad but has additional features."
+#: io.github.antimicrox.antimicrox.appdata.xml.in:9
+msgid "AntiMicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support."
 msgstr ""
 
-#. (itstool) path: screenshot/image
-#: antimicrox.appdata.xml.in:19
-msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_main_window_light_theme.png"
-msgstr ""
-
-#. (itstool) path: screenshot/caption
-#: antimicrox.appdata.xml.in:20
-msgid "Profile Configuration Dialog"
-msgstr ""
-
-#. (itstool) path: screenshot/image
-#: antimicrox.appdata.xml.in:23
-msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_configure_light_theme.png"
+#. (itstool) path: description/p
+#: io.github.antimicrox.antimicrox.appdata.xml.in:14
+msgid "AntiMicroX was inspired by QJoyPad but has additional features."
 msgstr ""
 
 #. (itstool) path: screenshot/caption
-#: antimicrox.appdata.xml.in:24
-msgid "Analog Stick Configuration Dialog"
-msgstr ""
-
-#. (itstool) path: screenshot/image
-#: antimicrox.appdata.xml.in:27
-msgid "https://raw.githubusercontent.com/AntiMicroX/antimicroX/master/other/appdata/screenshots/controller_mapping_light_theme.png"
+#: io.github.antimicrox.antimicrox.appdata.xml.in:38
+msgid "Main Window (Light Theme)"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
-#: antimicrox.appdata.xml.in:28
-msgid "Controller Mapping Dialog"
+#: io.github.antimicrox.antimicrox.appdata.xml.in:42
+msgid "Main Window (Dark Theme)"
 msgstr ""
 
-#. (itstool) path: component/url
-#: antimicrox.appdata.xml.in:31
-msgid "https://github.com/AntiMicroX/antimicroX/"
+#. (itstool) path: screenshot/caption
+#: io.github.antimicrox.antimicrox.appdata.xml.in:46
+msgid "Controller Calibration (Dark Theme)"
 msgstr ""
 
-#. (itstool) path: component/updatecontact
-#: antimicrox.appdata.xml.in:32
-msgid "juliagoda.pl_AT_protonmail.com"
+#. (itstool) path: screenshot/caption
+#: io.github.antimicrox.antimicrox.appdata.xml.in:50
+msgid "Controller Mapping (Dark Theme)"
 msgstr ""
 
+#. (itstool) path: screenshot/caption
+#: io.github.antimicrox.antimicrox.appdata.xml.in:54
+msgid "Advanced Settings (Dark Theme)"
+msgstr ""
+
+#. (itstool) path: screenshot/caption
+#: io.github.antimicrox.antimicrox.appdata.xml.in:58
+msgid "About Window (Dark Theme)"
+msgstr ""
+
+#. (itstool) path: keywords/keyword
+#: io.github.antimicrox.antimicrox.appdata.xml.in:63
+msgid "game"
+msgstr ""
+
+#. (itstool) path: keywords/keyword
+#: io.github.antimicrox.antimicrox.appdata.xml.in:64
+msgid "controller"
+msgstr ""
+
+#. (itstool) path: keywords/keyword
+#: io.github.antimicrox.antimicrox.appdata.xml.in:65
+msgid "joystick"
+msgstr ""
+
+#. (itstool) path: keywords/keyword
+#: io.github.antimicrox.antimicrox.appdata.xml.in:66
+msgid "keyboard"
+msgstr ""
+
+#. (itstool) path: keywords/keyword
+#: io.github.antimicrox.antimicrox.appdata.xml.in:67
+msgid "mouse"
+msgstr ""
+
+#. (itstool) path: categories/category
+#: io.github.antimicrox.antimicrox.appdata.xml.in:70
+msgid "Utility"
+msgstr ""
