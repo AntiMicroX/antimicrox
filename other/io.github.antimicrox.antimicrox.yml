@@ -7,8 +7,6 @@ finish-args:
   # X11 + XShm access
   - --share=ipc
   - --socket=x11
-  # Wayland access
-  - --socket=wayland
   - --device=dri
   # Gamepads
   - --device=all
@@ -22,7 +20,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/AntiMicroX/antimicrox.git
-        # TODO fix this at release, add tag + commit
-        branch: flatpak
-        # tag: 3.0.2
-        # commit: xxxxx
+        tag: 3.1
+        commit: 58cbb66bb4e079ca3e08de991ebed6a51d755426

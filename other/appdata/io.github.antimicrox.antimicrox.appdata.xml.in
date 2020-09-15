@@ -5,69 +5,72 @@
   <project_license>GPL-3.0+</project_license>
   <name>AntiMicroX</name>
   <summary>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</summary>
-   <description>
-   <p>
+  <description>
+    <p>
      AntiMicroX is a graphical program used to map keyboard keys and mouse
      controls to a gamepad. This program is useful for playing PC games using a
      gamepad that do not have any form of built-in gamepad support. 
-   </p>
-   <p>
+    </p>
+    <p>
      AntiMicroX was inspired by QJoyPad but has additional features.
-   </p>
- </description>
+    </p>
+  </description>
   <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
-  <launchable type="desktop-id">.desktop</launchable>
+  <launchable type="desktop-id">io.github.antimicrox.antimicrox.desktop</launchable>
   <releases>
-    <release version="3.1.0" date="2020-09-09"/>
-    <release version="3.0.1" date="2020-08-23"/>
-    <release version="3.0" date="2020-06-11"/>
-    <release version="2.25" date="2020-01-07"/>
-    <release version="2.24" date="2018-06-16"/>
-​    <release version="2.23" date="2016-11-06"/>
-    <release version="2.22" date="2016-07-30"/>
-    <release version="2.21" date="2016-01-10"/>
-    <release version="2.20" date="2015-10-10"/>
+    <release version="3.1.0" date="2020-09-09" />
+    <release version="3.0.1" date="2020-08-23" />
+    <release version="3.0" date="2020-06-11" />
+    <release version="2.25" date="2020-01-07" />
+    <release version="2.24" date="2018-06-16" />
+    <release version="2.23" date="2016-11-06" />
+    <release version="2.22" date="2016-07-30" />
+    <release version="2.21" date="2016-01-10" />
+    <release version="2.20" date="2015-10-10" />
   </releases>
   <provides>
     <binary>antimicrox</binary>
   </provides>
- <kudos>
-   <kudo>ModernToolkit</kudo>
- </kudos>
   <screenshots>
-  <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/application_trayicon.png</image>
-   <caption>Application Tray Icon</caption>
-  </screenshot>
-  <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_callibration_dark_theme.png</image>
-   <caption>Controller Calibration (Dark Theme)</caption>
-  </screenshot>
-  <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_main_window_dark_theme_1.png</image>
-   <caption>Profile Configuration Dialog 1 (Dark Theme)</caption>
-  </screenshot>
-  <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_main_window_dark_theme_2.png</image>
-   <caption>Profile Configuration Dialog 2 (Dark Theme)</caption>
-  </screenshot>
-  <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_configure_dark_theme.png</image>
-   <caption>Analog Sticks Configuration Dialog (Dark Theme)</caption>
-  </screenshot>
-  <screenshot>
-   <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controller_mapping_dark_theme.png</image>
-   <caption>Controller Mapping Dialog (Dark Theme)</caption>
-  </screenshot>
- </screenshots>
- <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
- <keywords>
-   <keyword>game</keyword>
-   <keyword>controller</keyword>
-   <keyword>joystick</keyword>
-   <keyword>keyboard</keyword>
-   <keyword>mouse</keyword>
- </keywords>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/app_light.png</image>
+      <caption>Main Window (Light Theme)</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/app_dark.png</image>
+      <caption>Main Window (Dark Theme)</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/calibration.png</image>
+      <caption>Controller Calibration (Dark Theme)</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/controllermapping.png</image>
+      <caption>Controller Mapping (Dark Theme)</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/advanced.png</image>
+      <caption>Advanced Settings (Dark Theme)</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/appdata/screenshots/about.png</image>
+      <caption>About Window (Dark Theme)</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
+  <keywords>
+    <keyword>game</keyword>
+    <keyword>controller</keyword>
+    <keyword>joystick</keyword>
+    <keyword>keyboard</keyword>
+    <keyword>mouse</keyword>
+  </keywords>
+  <categories>
+    <category>Utility</category>
+  </categories>
+  <mimetypes>
+    <mimetype>application/x-amgp</mimetype>
+  </mimetypes>
   <content_rating type="oars-1.0">
     <content_attribute id="language-profanity">none</content_attribute>
     <content_attribute id="language-humor">none</content_attribute>

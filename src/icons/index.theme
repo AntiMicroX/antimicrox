@@ -1,6 +1,6 @@
 [Icon Theme]
 Name=Hicolor
-Directories=16x16/actions,16x16/apps,24x24/apps,32x32/apps,48x48/apps,64x64/apps,scalable/apps
+Directories=16x16/actions,16x16/apps,24x24/apps,32x32/apps,48x48/apps,64x64/apps,128x128/apps,scalable/apps
 
 [16x16/actions]
 Size=16
@@ -28,6 +28,11 @@ Context=Applications
 Type=Fixed
 
 [64x64/apps]
+Size=64
+Context=Applications
+Type=Fixed
+
+[128x128/apps]
 Size=64
 Context=Applications
 Type=Fixed
