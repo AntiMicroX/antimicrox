@@ -109,6 +109,7 @@ trizen -S antimicrox
 **or**
 
 pre-built version can de downloaded from unofficial repository called [chaotic-aur](https://lonewolf.pedrohlc.com/chaotic-aur/).
+
 Append (one of listed mirrors) to `/etc/pacman.conf`:
 ```bash
 # Brazil
@@ -136,6 +137,7 @@ Download from the [release site](https://github.com/AntiMicroX/antimicrox/releas
 
 ### AppImage
 Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
+
 It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
 
 ### Running using Docker
