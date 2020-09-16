@@ -53,7 +53,7 @@ void JoyButtonContextMenu::buildMenu()
     action = this->addAction(tr("Turbo"));
     action->setCheckable(true);
     action->setChecked(button->isUsingTurbo());
-    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchToggle);
+    connect(action, &QAction::triggered, this, &JoyButtonContextMenu::switchTurbo);
 
     this->addSeparator();
 
@@ -134,7 +134,7 @@ void JoyButtonContextMenu::switchTurbo()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     PadderCommon::inputDaemonMutex.lock();
-    button->setToggle(!button->isUsingTurbo());
+    button->setUseTurbo(!button->isUsingTurbo());
     PadderCommon::inputDaemonMutex.unlock();
 }
 
