@@ -193,7 +193,7 @@ Full list is available [here](https://github.com/AntiMicroX/antimicrox/graphs/co
 | :--------- | :------------- | :----------- |
 | Arch Linux | frealgagu   | [antimicrox](https://aur.archlinux.org/packages/antimicrox/) <sup>AUR</sup> |
 | Arch Linux | FabioLolix   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
-| Fedora Linux | [Gergely Gombos](https://github.com/gombosg) | antimicroX |
+| Fedora Linux | [Gergely Gombos](https://github.com/gombosg) | antimicrox |
 
 ### Translators
 
