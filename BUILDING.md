@@ -20,11 +20,11 @@ installed on your system in order to build this program:
 - `g++`
 - `cmake`
 - `extra-cmake-modules`
-- `qttools5-dev` and qttools5-dev-tools (qt5-tools on distros based on Arch Linux) (Qt5 support)
-- `libsdl2-dev` (sdl2 on distros based on Arch Linux) (SDL2)
-- `libxi-dev` (libxi on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
-- `libxtst-dev` (libxtst on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
-- `libx11-dev` (libx11 on distros based on Arch Linux) (Needed to compile with Qt5 support)
+- `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux) (Qt5 support)
+- `libsdl2-dev` (`sdl2` on distros based on Arch Linux) (SDL2)
+- `libxi-dev` (`libxi` on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
+- `libxtst-dev` (`libxtst` on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
+- `libx11-dev` (`libx11` on distros based on Arch Linux) (Needed to compile with Qt5 support)
 - `itstool` (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 - `gettext`
 - `libqt5x11extras5-dev`
@@ -136,16 +136,16 @@ Create AppImage file
 
 ## Running with Docker
 
-Warning: these Docker images are from the parent repo that we have forked from. See #50.
+⚠ Warning: these Docker images are from the parent repo that we have forked from. See [#50](https://github.com/AntiMicroX/antimicrox/issues/50).
 
 If you want to run application without building process and choose between various distributions, then [look here](https://hub.docker.com/r/juliagoda/antimicrox).
 
 All full tags variations:
 
-- juliagoda/antimicrox:latest
-- juliagoda/antimicrox:3.0-ubuntu-bionic
-- juliagoda/antimicrox:3.0-fedora-latest
-- juliagoda/antimicrox:3.0-suseleap15.2
+- `juliagoda/antimicrox:latest`
+- `juliagoda/antimicrox:3.0-ubuntu-bionic`
+- `juliagoda/antimicrox:3.0-fedora-latest`
+- `juliagoda/antimicrox:3.0-suseleap15.2`
 
 
 Because the docker likes to replace the README on the docker hub website with this one. I need to add informations about how to run image:  
