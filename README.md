@@ -3,7 +3,7 @@
 1. [Description](#description)  
 2. [License](#license)  
 3. [Command Line](#command-line) 
-4. [Install](#installation)
+4. [Installation](#installation)
 5. [Wiki](#wiki)
 6. [Testing Under Linux](#testing-under-linux)  
 7. [AntiMicroX Profiles](#antimicrox-profiles)
@@ -96,7 +96,18 @@ http://www.gnu.org/licenses/gpl.txt
 
 ## Installation
 
+### Flatpak
+
+The flatpak version is distributed on Flathub, and runs on most major Linux distributions. See instructions here: [Flathub application page](https://flathub.org/apps/details/io.github.antimicrox.antimicrox)
+
+If you have Flathub [set up](https://flatpak.org/setup/) already:
+
+```
+flatpak install flathub io.github.antimicrox.antimicrox
+```
+
 ### Fedora
+
 ```
 dnf install antimicrox
 ```
@@ -193,7 +204,8 @@ Full list is available [here](https://github.com/AntiMicroX/antimicrox/graphs/co
 | :--------- | :------------- | :----------- |
 | Arch Linux | frealgagu   | [antimicrox](https://aur.archlinux.org/packages/antimicrox/) <sup>AUR</sup> |
 | Arch Linux | FabioLolix   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
-| Fedora Linux | [Gergely Gombos](https://github.com/gombosg) | antimicrox |
+| Fedora Linux | [gombosg](https://github.com/gombosg) | antimicrox |
+| Flatpak | [gombosg](https://github.com/gombosg) | [io.github.antimicrox.antimicrox](https://flathub.org/apps/details/io.github.antimicrox.antimicrox) |
 
 ### Translators
 
