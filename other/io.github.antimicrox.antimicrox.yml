@@ -1,3 +1,5 @@
+# Maintained on Flathub at https://github.com/flathub/io.github.antimicrox.antimicrox
+
 app-id: io.github.antimicrox.antimicrox
 runtime: org.kde.Platform
 runtime-version: '5.11'
@@ -7,7 +9,6 @@ finish-args:
   # X11 + XShm access
   - --share=ipc
   - --socket=x11
-  - --device=dri
   # Gamepads
   - --device=all
 
@@ -20,5 +21,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/AntiMicroX/antimicrox.git
-        tag: 3.1
-        commit: 58cbb66bb4e079ca3e08de991ebed6a51d755426
+        # Build top commit of master branch
+        branch: master
+        # You can also set a tag and/or commit to build
+        # tag: 3.xx
+        # commit: xxx
+
