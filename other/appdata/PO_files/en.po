@@ -16,7 +16,7 @@ msgstr ""
 
 #. (itstool) path: description/p
 #: io.github.antimicrox.antimicrox.appdata.xml.in:9
-msgid "AntiMicroX is a graphical program used to map keyboard keys and mouse controls to a gamepad. This program is useful for playing PC games using a gamepad that do not have any form of built-in gamepad support."
+msgid "AntiMicroX is a graphical program used for mapping gamepad buttons to keyboard, mouse, scripts and macros."
 msgstr ""
 
 #. (itstool) path: description/p
