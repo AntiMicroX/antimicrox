@@ -147,18 +147,17 @@ pacman -S antimicrox
 ```
 
 ### Debian/Ubuntu-based distributions:
+
 Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
 
 ### AppImage
+
 Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
 
 It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
 
-### Running using Docker
-If you want to run application without building process and choose between various distributions, then [look here](https://hub.docker.com/r/juliagoda/antimicrox)  
-This method is described in details [here](./BUILDING.md)
-
 ### Building Yourself
+
 List of required dependencies and build instructions can be found [here](./BUILDING.md).
 
 ## Wiki
