@@ -16,7 +16,7 @@ msgstr ""
 
 #. (itstool) path: description/p
 #: io.github.antimicrox.antimicrox.appdata.xml.in:9
-msgid "AntiMicroX is a graphical program used for mapping gamepad buttons to keyboard, mouse, scripts and macros."
+msgid "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros."
 msgstr ""
 
 #. (itstool) path: description/p
