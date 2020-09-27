@@ -14,10 +14,12 @@
     </p>
     <p>
     It allows mapping of gamepads/joystick buttons to:
-    - keyboard buttons
-    - mouse buttons and moves
-    - scripts and launching apps
-    - macros consisting of elements mentioned above
+    <ul>
+    <li>keyboard buttons</li>
+    <li>mouse buttons and moves</li>
+    <li>scripts and launching apps</li>
+    <li>macros consisting of elements mentioned above</li>
+    </ul>
     </p>
     <p>
      AntiMicroX was inspired by QJoyPad.
