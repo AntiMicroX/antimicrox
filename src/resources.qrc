@@ -52,6 +52,6 @@
         <file>images/battery-low-level.png</file>
         <file>icons/icons/16x16/actions/16-actions-join_slots.png</file>
         <file>icons/icons/16x16/actions/16-actions-split_slot.png</file>
-        <file>Changelog</file>
+        <file>CHANGELOG.md</file>
     </qresource>
 </RCC>

@@ -67,7 +67,7 @@ endif()
 # The version number.
 set(ANTIMICROX_MAJOR_VERSION 3)
 set(ANTIMICROX_MINOR_VERSION 1)
-set(ANTIMICROX_PATCH_VERSION 1)
+set(ANTIMICROX_PATCH_VERSION 2)
 
 # antilib soname version
 set(ANTILIB_MAJOR_VERSION 1)
@@ -606,12 +606,12 @@ if(UNIX)
     install(FILES src/images/antimicrox.png src/images/antimicrox_trayicon.png src/images/axis.png src/images/button.png src/images/controllermap.png DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/images")
 
     install(FILES src/icons/index.theme DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/icons/hicolor")
-    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/antimicrox")
+    install(FILES CHANGELOG.md DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/antimicrox")
     install(FILES other/io.github.antimicrox.antimicrox.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
     install(FILES other/io.github.antimicrox.antimicrox.xml DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/mime/packages")
 
     # Copy current Changelog file to location that the resource file expects.
-    install(FILES Changelog DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox")
+    install(FILES CHANGELOG.md DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox")
 endif(UNIX)
 
 # Add man page for *nix platforms.
@@ -647,7 +647,7 @@ configure_file(
     "${PROJECT_BINARY_DIR}/config.h"
 )
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Changelog DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG.md DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
 if(WITH_TESTS)
     enable_testing ()
@@ -691,7 +691,7 @@ It is a new fork of discontinued AntiMicro.")
 
   #Compress changelog and save it as share/doc/xournalpp/changelog.Debian.gz
   add_custom_command(TARGET package_docummentation PRE_BUILD
-  COMMAND gzip -c -9 -n "${PROJECT_SOURCE_DIR}/Changelog" > "changelog.Debian.gz" VERBATIM)
+  COMMAND gzip -c -9 -n "${PROJECT_SOURCE_DIR}/CHANGELOG.md" > "changelog.Debian.gz" VERBATIM)
   install(FILES "${CMAKE_CURRENT_BINARY_DIR}/changelog.Debian.gz" DESTINATION "share/doc/antimicrox/")
 
   #Strip binaries from unnecessary notes, comments, etc

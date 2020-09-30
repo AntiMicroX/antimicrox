@@ -94,7 +94,7 @@ void AboutDialog::fillInfoTextBrowser()
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));
 
     // Read Changelog text from resource and put text in text box.
-    QResource changelogFile(":/Changelog");
+    QResource changelogFile(":/CHANGELOG.md");
     QFile temp(changelogFile.absoluteFilePath());
     temp.open(QIODevice::Text | QIODevice::ReadOnly);
     QTextStream changelogStream(&temp);
