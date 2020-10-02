@@ -9,24 +9,14 @@
 - Right click - Turbo and Clear not working properly [\#7](https://github.com/AntiMicroX/antimicrox/issues/7)
 - Wrong order for setting sets [\#6](https://github.com/AntiMicroX/antimicrox/issues/6)
 
-**Closed issues:**
+**Notable closed issues:**
 
-- Docker Hub upload - or removing Docker [\#50](https://github.com/AntiMicroX/antimicrox/issues/50)
-- Please release a Win Installer/.exe [\#42](https://github.com/AntiMicroX/antimicrox/issues/42)
-- \[Question\] Is "antimicro" profiles is compatible with antimicrox ? [\#41](https://github.com/AntiMicroX/antimicrox/issues/41)
-- I can not install from Fedora repositories ! [\#40](https://github.com/AntiMicroX/antimicrox/issues/40)
 - Fedora resubmission [\#29](https://github.com/AntiMicroX/antimicrox/issues/29)
 - Flatpak packaging [\#9](https://github.com/AntiMicroX/antimicrox/issues/9)
 
-**Merged pull requests:**
+**Other merged pull requests:**
 
 - refactor: remove Dockerfiles [\#52](https://github.com/AntiMicroX/antimicrox/pull/52) ([gombosg](https://github.com/gombosg))
-- docs: flatpak readme [\#51](https://github.com/AntiMicroX/antimicrox/pull/51) ([gombosg](https://github.com/gombosg))
-- docs: update app descriptions [\#49](https://github.com/AntiMicroX/antimicrox/pull/49) ([pktiuk](https://github.com/pktiuk))
-- docs: add flatpak info to README [\#48](https://github.com/AntiMicroX/antimicrox/pull/48) ([gombosg](https://github.com/gombosg))
-- docs: readme Fedora update [\#46](https://github.com/AntiMicroX/antimicrox/pull/46) ([gombosg](https://github.com/gombosg))
-- fix: Fix converting hash dictionary to random list. issue \#6 [\#44](https://github.com/AntiMicroX/antimicrox/pull/44) ([pktiuk](https://github.com/pktiuk))
-- fix: wrong button assignment \#7 [\#43](https://github.com/AntiMicroX/antimicrox/pull/43) ([pktiuk](https://github.com/pktiuk))
 
 2020-09-15 Gergely Gombos <gombosg@disroot.org>
 
