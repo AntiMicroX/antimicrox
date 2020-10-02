@@ -23,7 +23,7 @@ other/antimicrox.1.gz
 other/license-template.txt
 doc/
 compile/
-src/Changelog
+src/CHANGELOG.md
 SDL2_*
 *.kate-swp
 repo/
