@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
+labels: 'bug'
 assignees: ''
 
 ---
@@ -23,8 +23,9 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Version**
-Version or commit ID:
+**Configuration**
+Version of antimicrox and source of application (for example flatpak package 3.2.9)  
+System version
 
 **Additional context**
 Add any other context about the problem here.
