@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYKEYREPEATHELPER_H
 #define JOYKEYREPEATHELPER_H
 
@@ -29,20 +28,20 @@ class JoyKeyRepeatHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoyKeyRepeatHelper(QObject *parent = nullptr);
-    QTimer* getRepeatTimer();
+    QTimer *getRepeatTimer();
 
     void setLastActiveKey(JoyButtonSlot *slot);
-    JoyButtonSlot* getLastActiveKey();
+    JoyButtonSlot *getLastActiveKey();
 
     void setKeyRepeatRate(int repeatRate);
     int getKeyRepeatRate();
 
-private slots:
+  private slots:
     void repeatKeysEvent();
 
-protected:
+  protected:
     QTimer keyRepeatTimer;
     JoyButtonSlot *lastActiveKey;
     int keyRepeatDelay;

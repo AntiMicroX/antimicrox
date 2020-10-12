@@ -25,12 +25,12 @@
 
 #include <SDL2/SDL_gamecontroller.h>
 
-#include <QXmlStreamWriter>
-#include <QXmlStreamReader>
 #include <QDebug>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 
-
-GameControllerTriggerXml::GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, QObject *parent) : JoyAxisXml(gameContrTrigger, parent)
+GameControllerTriggerXml::GameControllerTriggerXml(GameControllerTrigger *gameContrTrigger, QObject *parent)
+    : JoyAxisXml(gameContrTrigger, parent)
 {
     m_gameContrTrigger = gameContrTrigger;
     joyButtonXmlNAxis = new JoyButtonXml(gameContrTrigger->getNAxisButton(), this);
@@ -56,20 +56,19 @@ void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
 
                 qDebug() << "Index for axis in readJoystickConfig is: " << index;
 
-                switch (index) {
+                switch (index)
+                {
 
-                    case 1:
-                        found = true;
-                        triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(m_gameContrTrigger->getNAxisButton());
-                        triggerButton->readJoystickConfig(xml);
+                case 1:
+                    found = true;
+                    triggerButton = qobject_cast<GameControllerTriggerButton *>(m_gameContrTrigger->getNAxisButton());
+                    triggerButton->readJoystickConfig(xml);
                     break;
 
-                    case 2:
-                        found = true;
-                        triggerButton =
-                            qobject_cast<GameControllerTriggerButton*>(m_gameContrTrigger->getPAxisButton());
-                        triggerButton->readJoystickConfig(xml);
+                case 2:
+                    found = true;
+                    triggerButton = qobject_cast<GameControllerTriggerButton *>(m_gameContrTrigger->getPAxisButton());
+                    triggerButton->readJoystickConfig(xml);
                     break;
                 }
             }
@@ -87,7 +86,8 @@ void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
     {
         m_gameContrTrigger->setThrottle(static_cast<int>(JoyAxis::PositiveHalfThrottle));
         m_gameContrTrigger->setCurrentRawValue(m_gameContrTrigger->getCurrentThrottledDeadValue());
-        m_gameContrTrigger->updateCurrentThrottledValue(m_gameContrTrigger->calculateThrottledValue(m_gameContrTrigger->getCurrentRawValue()));
+        m_gameContrTrigger->updateCurrentThrottledValue(
+            m_gameContrTrigger->calculateThrottledValue(m_gameContrTrigger->getCurrentRawValue()));
     }
 }
 
@@ -112,30 +112,30 @@ void GameControllerTriggerXml::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeStartElement("throttle");
 
-        switch(m_gameContrTrigger->getThrottle())
-        {
-            case -2:
-                xml->writeCharacters("negativehalf");
-            break;
+    switch (m_gameContrTrigger->getThrottle())
+    {
+    case -2:
+        xml->writeCharacters("negativehalf");
+        break;
 
-            case -1:
-                xml->writeCharacters("negative");
-            break;
+    case -1:
+        xml->writeCharacters("negative");
+        break;
 
-            case 0:
-                xml->writeCharacters("normal");
-            break;
+    case 0:
+        xml->writeCharacters("normal");
+        break;
 
-            case 1:
-                xml->writeCharacters("positive");
-            break;
+    case 1:
+        xml->writeCharacters("positive");
+        break;
 
-            case 2:
-                xml->writeCharacters("positivehalf");
-            break;
-        }
+    case 2:
+        xml->writeCharacters("positivehalf");
+        break;
+    }
 
-        xml->writeEndElement();
+    xml->writeEndElement();
 
     if (!currentlyDefault)
     {

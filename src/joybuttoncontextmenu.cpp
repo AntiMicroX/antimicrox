@@ -18,19 +18,18 @@
 
 #include "joybuttoncontextmenu.h"
 
-#include "globalvariables.h"
-#include "messagehandler.h"
-#include "inputdevice.h"
 #include "common.h"
+#include "globalvariables.h"
+#include "inputdevice.h"
 #include "joybutton.h"
+#include "messagehandler.h"
 
-#include <QDebug>
 #include <QActionGroup>
+#include <QDebug>
 #include <QWidget>
 
-
-JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent) :
-    QMenu(parent)
+JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent)
+    : QMenu(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -77,7 +76,7 @@ void JoyButtonContextMenu::buildMenu()
 
     for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
-        QMenu *tempSetMenu = setSectionMenu->addMenu(tr("Set %1").arg(i+1));
+        QMenu *tempSetMenu = setSectionMenu->addMenu(tr("Set %1").arg(i + 1));
         int setSelection = i * 3;
 
         if (i == button->getSetSelection())
@@ -99,8 +98,9 @@ void JoyButtonContextMenu::buildMenu()
     PadderCommon::inputDaemonMutex.unlock();
 }
 
-
-void JoyButtonContextMenu::createActionForGroup(QActionGroup *tempGroup, QString actionText, QAction *action, QMenu *tempSetMenu, int setSelection, int currentSelection, int setDataInc, int setCondition)
+void JoyButtonContextMenu::createActionForGroup(QActionGroup *tempGroup, QString actionText, QAction *action,
+                                                QMenu *tempSetMenu, int setSelection, int currentSelection, int setDataInc,
+                                                int setCondition)
 {
     action = tempSetMenu->addAction(actionText.arg(currentSelection + 1));
     action->setData(QVariant(setSelection + setDataInc));
@@ -112,13 +112,10 @@ void JoyButtonContextMenu::createActionForGroup(QActionGroup *tempGroup, QString
         action->setChecked(true);
     }
 
-    connect(action, &QAction::triggered, this, [this, action]() {
-        switchSetMode(action);
-    });
+    connect(action, &QAction::triggered, this, [this, action]() { switchSetMode(action); });
 
     tempGroup->addAction(action);
 }
-
 
 void JoyButtonContextMenu::switchToggle()
 {
@@ -138,7 +135,7 @@ void JoyButtonContextMenu::switchTurbo()
     PadderCommon::inputDaemonMutex.unlock();
 }
 
-void JoyButtonContextMenu::switchSetMode(QAction* action)
+void JoyButtonContextMenu::switchSetMode(QAction *action)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -147,21 +144,20 @@ void JoyButtonContextMenu::switchSetMode(QAction* action)
     int setChangeCondition = item % 3;
     JoyButton::SetChangeCondition temp = JoyButton::SetChangeOneWay;
 
-    switch(setChangeCondition)
+    switch (setChangeCondition)
     {
-        case 0:
-            temp = JoyButton::SetChangeOneWay;
-            break;
+    case 0:
+        temp = JoyButton::SetChangeOneWay;
+        break;
 
-        case 1:
-            temp = JoyButton::SetChangeTwoWay;
-            break;
+    case 1:
+        temp = JoyButton::SetChangeTwoWay;
+        break;
 
-        case 2:
-            temp = JoyButton::SetChangeWhileHeld;
-            break;
+    case 2:
+        temp = JoyButton::SetChangeWhileHeld;
+        break;
     }
-
 
     PadderCommon::inputDaemonMutex.lock();
 

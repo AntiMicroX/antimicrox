@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SETAXISTHROTTLEDIALOG_H
 #define SETAXISTHROTTLEDIALOG_H
 
@@ -32,24 +31,23 @@ class SetAxisThrottleDialog;
 class SetAxisThrottleDialog : public QDialog
 {
     Q_OBJECT
-    
-public:
+
+  public:
     explicit SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent = nullptr);
     ~SetAxisThrottleDialog();
-    
-    JoyAxis* getAxis() const;
 
-signals:
+    JoyAxis *getAxis() const;
+
+  signals:
     void initiateSetAxisThrottleChange();
 
-private slots:
+  private slots:
     void propogateThrottleChange();
 
-private:
+  private:
     Ui::SetAxisThrottleDialog *ui;
 
     JoyAxis *axis;
-
 };
 
 #endif // SETAXISTHROTTLEDIALOG_H

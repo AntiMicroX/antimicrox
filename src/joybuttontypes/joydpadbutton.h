@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYDPADBUTTON_H
 #define JOYDPADBUTTON_H
 
@@ -29,33 +28,41 @@ class JoyDPadButton : public JoyButton
 {
     Q_OBJECT
 
-public:
-    JoyDPadButton(int direction, int originset, JoyDPad* dpad, SetJoystick *parentSet, QObject *parent=0);
+  public:
+    JoyDPadButton(int direction, int originset, JoyDPad *dpad, SetJoystick *parentSet, QObject *parent = 0);
 
     virtual int getRealJoyNumber() const override;
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const override;
+    virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const override;
     virtual QString getXmlName() override;
 
-    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false, bool updateActiveString=true) override;
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive = false,
+                                       bool updateActiveString = true) override;
 
-    enum JoyDPadDirections {
-        DpadCentered = 0, DpadUp = 1, DpadRight = 2,
-        DpadDown = 4, DpadLeft = 8, DpadRightUp = 3,
-        DpadRightDown = 6, DpadLeftUp = 9, DpadLeftDown = 12
+    enum JoyDPadDirections
+    {
+        DpadCentered = 0,
+        DpadUp = 1,
+        DpadRight = 2,
+        DpadDown = 4,
+        DpadLeft = 8,
+        DpadRightUp = 3,
+        DpadRightDown = 6,
+        DpadLeftUp = 9,
+        DpadLeftDown = 12
     };
 
     QString getDirectionName() const;
     int getDirection() const;
     JoyDPad *getDPad() const;
 
-signals:
+  signals:
     void setAssignmentChanged(int current_button, int dpad_index, int associated_set, int mode);
 
-public slots:
+  public slots:
     virtual void reset() override;
     virtual void reset(int index) override;
 
-private:
+  private:
     int m_direction;
     JoyDPad *m_dpad;
 };

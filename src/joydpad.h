@@ -16,38 +16,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYDPAD_H
 #define JOYDPAD_H
 
-
 #include "joybuttontypes/joydpadbutton.h"
-
 
 class JoyDPad : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
+  public:
+    explicit JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
     ~JoyDPad();
 
-    enum JoyMode {StandardMode=0, EightWayMode, FourWayCardinal, FourWayDiagonal};
+    enum JoyMode
+    {
+        StandardMode = 0,
+        EightWayMode,
+        FourWayCardinal,
+        FourWayDiagonal
+    };
 
-    JoyDPadButton* getJoyButton(int index_local);
-    QHash<int, JoyDPadButton*>* getJoyButtons();
+    JoyDPadButton *getJoyButton(int index_local);
+    QHash<int, JoyDPadButton *> *getJoyButtons();
 
     int getCurrentDirection();
     int getJoyNumber();
     int getIndex();
     int getRealJoyNumber();
-    virtual QString getName(bool fullForceFormat=false, bool displayNames=false);
+    virtual QString getName(bool fullForceFormat = false, bool displayNames = false);
 
-    void joyEvent(int value, bool ignoresets=false); // JoyDPadEvent class
-    void queuePendingEvent(int value, bool ignoresets=false); // JoyDPadEvent class
-    void activatePendingEvent(); // JoyDPadEvent class
-    bool hasPendingEvent(); // JoyDPadEvent class
-    void clearPendingEvent(); // JoyDPadEvent class
+    void joyEvent(int value, bool ignoresets = false);          // JoyDPadEvent class
+    void queuePendingEvent(int value, bool ignoresets = false); // JoyDPadEvent class
+    void activatePendingEvent();                                // JoyDPadEvent class
+    bool hasPendingEvent();                                     // JoyDPadEvent class
+    void clearPendingEvent();                                   // JoyDPadEvent class
 
     void setJoyMode(JoyMode mode);
     JoyMode getJoyMode();
@@ -79,14 +82,14 @@ public:
 
     virtual bool isDefault();
 
-    QHash<int, JoyDPadButton*>* getButtons();
+    QHash<int, JoyDPadButton *> *getButtons();
 
     virtual QString getXmlName(); // JoyDPadXml class
 
     virtual void setDefaultDPadName(QString tempname);
     virtual QString getDefaultDPadName();
 
-    SetJoystick* getParentSet();
+    SetJoystick *getParentSet();
     bool hasSlotsAssigned();
 
     bool isRelativeSpring();
@@ -101,14 +104,14 @@ public:
     void setButtonsExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyExtraAccelerationCurve getButtonsExtraAccelerationCurve();
 
-    QHash<int, JoyDPadButton*> getDirectionButtons(JoyDPadButton::JoyDPadDirections direction);
+    QHash<int, JoyDPadButton *> getDirectionButtons(JoyDPadButton::JoyDPadDirections direction);
 
     void setDirButtonsUpdateInitAccel(JoyDPadButton::JoyDPadDirections direction, bool state);
     void copyLastDistanceValues(JoyDPad *srcDPad);
 
     virtual void eventReset(); // JoyDPadEvent class
 
-signals:
+  signals:
     void active(int value);
     void released(int value);
     void dpadNameChanged();
@@ -116,7 +119,7 @@ signals:
     void joyModeChanged();
     void propertyUpdated();
 
-public slots:
+  public slots:
     void setDPadName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
     void setDPadDelay(int value);
@@ -124,16 +127,16 @@ public slots:
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 
-private slots:
+  private slots:
     void dpadDirectionChangeEvent();
 
-protected:
+  protected:
     void populateButtons();
     void createDeskEvent(bool ignoresets = false); // JoyDPadEvent class
-    QHash<int, JoyDPadButton*> getApplicableButtons();
+    QHash<int, JoyDPadButton *> getApplicableButtons();
 
-private:
-    QHash<int, JoyDPadButton*> buttons;
+  private:
+    QHash<int, JoyDPadButton *> buttons;
 
     JoyDPadButton::JoyDPadDirections prevDirection;
     JoyDPadButton::JoyDPadDirections pendingDirection;
@@ -153,7 +156,6 @@ private:
 
     bool pendingEvent;
     bool pendingIgnoreSets;
-
 };
 
 #endif // JOYDPAD_H

@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef UNIXCAPTUREWINDOWUTILITY_H
 #define UNIXCAPTUREWINDOWUTILITY_H
 
@@ -26,19 +25,19 @@ class UnixCaptureWindowUtility : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit UnixCaptureWindowUtility(QObject *parent = nullptr);
     QString getTargetPath() const;
     bool hasFailed() const;
     long getTargetWindow() const;
 
-signals:
+  signals:
     void captureFinished();
 
-public slots:
+  public slots:
     void attemptWindowCapture();
 
-private:
+  private:
     QString targetPath;
     bool failed;
     long targetWindow;

@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSEBUTTONSETTINGSDIALOG_H
 #define MOUSEBUTTONSETTINGSDIALOG_H
 
@@ -25,7 +24,6 @@
 #include "mousesettingsdialog.h"
 #include "uihelpers/mousebuttonsettingsdialoghelper.h"
 
-
 class JoyButton;
 class SpringModeRegionPreview;
 
@@ -33,21 +31,21 @@ class MouseButtonSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseButtonSettingsDialog(JoyButton *button, QWidget *parent = nullptr);
 
     JoyButton *getButton() const;
     SpringModeRegionPreview *getSpringPreviewWidget() const;
-    MouseButtonSettingsDialogHelper const& getHelper();
-    
-protected:
+    MouseButtonSettingsDialogHelper const &getHelper();
+
+  protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
     void updateWindowTitleButtonName();
     void calculateExtraAccelerationCurve();
-    
-public slots:
+
+  public slots:
     void changeMouseMode(int index);
     void changeMouseCurve(int index);
     void updateConfigHorizontalSpeed(int value);
@@ -57,11 +55,11 @@ public slots:
     void updateSensitivity(double value);
     void updateAccelerationCurvePresetComboBox();
 
-private slots:
+  private slots:
     void updateExtraAccelerationCurve(int index);
 
-private:
-    MouseButtonSettingsDialogHelper& getHelperLocal();
+  private:
+    MouseButtonSettingsDialogHelper &getHelperLocal();
 
     JoyButton *button;
     SpringModeRegionPreview *springPreviewWidget;

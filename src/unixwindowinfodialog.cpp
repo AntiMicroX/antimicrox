@@ -17,14 +17,14 @@
 
 #include <QPushButton>
 
-#include "unixwindowinfodialog.h"
 #include "ui_unixwindowinfodialog.h"
+#include "unixwindowinfodialog.h"
 
 #include "x11info.h"
 
-UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::UnixWindowInfoDialog)
+UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::UnixWindowInfoDialog)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -38,8 +38,7 @@ UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent
     {
         ui->winClassCheckBox->setEnabled(false);
         ui->winClassCheckBox->setChecked(false);
-    }
-    else
+    } else
     {
         ui->winClassCheckBox->setChecked(true);
         setRadioDefault = true;
@@ -51,8 +50,7 @@ UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent
     {
         ui->winTitleCheckBox->setEnabled(false);
         ui->winTitleCheckBox->setChecked(false);
-    }
-    else if (!setRadioDefault)
+    } else if (!setRadioDefault)
     {
         ui->winTitleCheckBox->setChecked(true);
         setRadioDefault = true;
@@ -72,21 +70,18 @@ UnixWindowInfoDialog::UnixWindowInfoDialog(unsigned long window, QWidget *parent
                 ui->winTitleCheckBox->setChecked(true);
                 setRadioDefault = true;
             }
-        }
-        else
+        } else
         {
             ui->winPathCheckBox->setEnabled(false);
             ui->winPathCheckBox->setChecked(false);
         }
-    }
-    else
+    } else
     {
         ui->winPathCheckBox->setEnabled(false);
         ui->winPathCheckBox->setChecked(false);
     }
 
-    if (winClass.isEmpty() && winName.isEmpty() &&
-        winPath.isEmpty())
+    if (winClass.isEmpty() && winName.isEmpty() && winPath.isEmpty())
     {
         QPushButton *button = ui->buttonBox->button(QDialogButtonBox::Ok);
         button->setEnabled(false);
@@ -113,27 +108,12 @@ void UnixWindowInfoDialog::populateOption()
     }
 }
 
-UnixWindowInfoDialog::DialogWindowOption UnixWindowInfoDialog::getSelectedOptions() const
-{
-    return selectedMatch;
-}
+UnixWindowInfoDialog::DialogWindowOption UnixWindowInfoDialog::getSelectedOptions() const { return selectedMatch; }
 
-QString UnixWindowInfoDialog::getWindowClass() const
-{
-    return winClass;
-}
+QString UnixWindowInfoDialog::getWindowClass() const { return winClass; }
 
-QString UnixWindowInfoDialog::getWindowName() const
-{
-    return winName;
-}
+QString UnixWindowInfoDialog::getWindowName() const { return winName; }
 
-QString UnixWindowInfoDialog::getWindowPath() const
-{
-    return winPath;
-}
+QString UnixWindowInfoDialog::getWindowPath() const { return winPath; }
 
-UnixWindowInfoDialog::~UnixWindowInfoDialog()
-{
-    delete ui;
-}
+UnixWindowInfoDialog::~UnixWindowInfoDialog() { delete ui; }

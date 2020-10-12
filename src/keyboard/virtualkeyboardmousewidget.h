@@ -16,12 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef VIRTUALKEYBOARDMOUSEWIDGET_H
 #define VIRTUALKEYBOARDMOUSEWIDGET_H
 
-#include <QTabWidget>
 #include <QMenu>
+#include <QTabWidget>
 
 class JoyButton;
 class JoyButtonSlot;
@@ -37,48 +36,49 @@ class VirtualKeyboardMouseWidget : public QTabWidget
 {
     Q_OBJECT
 
-public:
-    explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper* helper, bool isNumKeypad, QuickSetDialog* quickSetDialog = nullptr, JoyButton* button = nullptr, QWidget *parent = nullptr);
+  public:
+    explicit VirtualKeyboardMouseWidget(InputDevice *joystick, ButtonEditDialogHelper *helper, bool isNumKeypad,
+                                        QuickSetDialog *quickSetDialog = nullptr, JoyButton *button = nullptr,
+                                        QWidget *parent = nullptr);
     explicit VirtualKeyboardMouseWidget(bool isNumKeypad, QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
     bool is_numlock_activated(); // RealSystemInfo class
-    bool isLaptop(); // RealSystemInfo class
+    bool isLaptop();             // RealSystemInfo class
 
     InputDevice *getJoystick() const;
-    ButtonEditDialogHelper* getHelper() const;
+    ButtonEditDialogHelper *getHelper() const;
     QWidget *getKeyboardTab() const;
     QWidget *getMouseTab() const;
     QPushButton *getNoneButton() const;
     QPushButton *getMouseSettingsPushButton() const;
     QMenu *getOtherKeysMenu() const;
-    QuickSetDialog* getCurrentQuickDialog() const;
+    QuickSetDialog *getCurrentQuickDialog() const;
 
     static QHash<QString, QString> topRowKeys;
 
-protected:
+  protected:
     void setupVirtualKeyboardLayout();
-    QVBoxLayout* setupMainKeyboardLayout();
-    QVBoxLayout* setupAuxKeyboardLayout();
-    QVBoxLayout* setupKeyboardNumPadLayout();
+    QVBoxLayout *setupMainKeyboardLayout();
+    QVBoxLayout *setupAuxKeyboardLayout();
+    QVBoxLayout *setupKeyboardNumPadLayout();
 
     void setupMouseControlLayout();
-    VirtualKeyPushButton* createNewKey(QString xcodestring);
-    QPushButton* createNoneKey();
+    VirtualKeyPushButton *createNewKey(QString xcodestring);
+    QPushButton *createNoneKey();
     void populateTopRowKeys();
     void addFButtonToOthers(int qt_keycode, QString keycode_text);
-    QPushButton* createOtherKeysMenu();
+    QPushButton *createOtherKeysMenu();
 
     virtual void resizeEvent(QResizeEvent *event);
 
-
-signals:
+  signals:
     void selectionFinished();
     void selectionCleared();
     void selectionMade(int keycode, int alias);
     void selectionMade(JoyButtonSlot *slot);
     void buttonDialogClosed();
 
-public slots:
+  public slots:
     void establishVirtualKeyboardSingleSignalConnections();
     void establishVirtualMouseSignalConnections();
     void establishVirtualKeyboardAdvancedSignalConnections();
@@ -86,7 +86,7 @@ public slots:
     void enableMouseSettingButton();
     void disableMouseSettingButton();
 
-private slots:
+  private slots:
     void processSingleKeyboardSelection(int keycode, int alias);
     void processAdvancedKeyboardSelection(int keycode, int alias);
     void processSingleMouseSelection(JoyButtonSlot *tempslot);
@@ -95,24 +95,22 @@ private slots:
     void clearButtonSlotsFinish();
     void openMouseSettingsDialog();
     void setButtonFontSizes();
-    void otherKeysActionSingle(QAction* action, bool triggered);
-    void otherKeysActionAdvanced(QAction* action, bool triggered);
+    void otherKeysActionSingle(QAction *action, bool triggered);
+    void otherKeysActionAdvanced(QAction *action, bool triggered);
     void nullifyDialogPointer();
 
-private:
+  private:
     bool withoutQuickSetDialog;
     bool m_isNumKeypad;
     InputDevice *joystick;
-    JoyButton* lastPressedBtn;
-    ButtonEditDialogHelper* helper;
+    JoyButton *lastPressedBtn;
+    ButtonEditDialogHelper *helper;
     QWidget *keyboardTab;
     QWidget *mouseTab;
     QPushButton *noneButton;
     QPushButton *mouseSettingsPushButton;
     QMenu *otherKeysMenu;
-    QuickSetDialog* currentQuickDialog;
-
-
+    QuickSetDialog *currentQuickDialog;
 };
 
 #endif // VIRTUALKEYBOARDMOUSEWIDGET_H

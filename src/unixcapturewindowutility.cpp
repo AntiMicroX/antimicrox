@@ -21,18 +21,16 @@
 #include "messagehandler.h"
 #include "qtx11keymapper.h"
 
-#include <QDebug>
 #include <QDataStream>
+#include <QDebug>
 
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h> // for XGrabPointer
 
 #include "x11extras.h"
 
-
-
-UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent) :
-    QObject(parent)
+UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -67,8 +65,7 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     {
         QByteArray tempByteArray = potentialXDisplayString.toLocal8Bit();
         display = XOpenDisplay(tempByteArray.constData());
-    }
-    else
+    } else
     {
         display = XOpenDisplay(nullptr);
     }
@@ -76,52 +73,49 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
     Window rootWin = XDefaultRootWindow(display);
 
     cursor = XCreateFontCursor(display, XC_crosshair);
-    status = XGrabPointer(display, rootWin, False, ButtonPressMask,
-                 GrabModeSync, GrabModeAsync, None,
-                 cursor, CurrentTime);
+    status = XGrabPointer(display, rootWin, False, ButtonPressMask, GrabModeSync, GrabModeAsync, None, cursor, CurrentTime);
 
     if (status == Success)
     {
-        XGrabKey(display, XKeysymToKeycode(display, static_cast<KeySym>(x11KeyMapper.returnVirtualKey(Qt::Key_Escape))), 0, rootWin,
-                 true, GrabModeAsync, GrabModeAsync);
+        XGrabKey(display, XKeysymToKeycode(display, static_cast<KeySym>(x11KeyMapper.returnVirtualKey(Qt::Key_Escape))), 0,
+                 rootWin, true, GrabModeAsync, GrabModeAsync);
 
         XEvent event;
         XAllowEvents(display, SyncPointer, CurrentTime);
-        XWindowEvent(display, rootWin, ButtonPressMask|KeyPressMask, &event);
+        XWindowEvent(display, rootWin, ButtonPressMask | KeyPressMask, &event);
 
         switch (event.type)
         {
-            case (ButtonPress):
+        case (ButtonPress):
 
-                target_window = event.xbutton.subwindow;
+            target_window = event.xbutton.subwindow;
 
-                if (target_window == None)
-                    target_window = event.xbutton.window;
+            if (target_window == None)
+                target_window = event.xbutton.window;
 
+            qDebug() << QString::number(target_window, 16);
 
-                qDebug() << QString::number(target_window, 16);
+            break;
 
-
-                break;
-
-            case (KeyPress):
-            {
-                escaped = true;
-                break;
-            }
+        case (KeyPress): {
+            escaped = true;
+            break;
+        }
 
         default:
             break;
         }
 
-        XUngrabKey(display, XKeysymToKeycode(display, static_cast<KeySym>(x11KeyMapper.returnVirtualKey(Qt::Key_Escape))),
-                   0, rootWin);
+        XUngrabKey(display, XKeysymToKeycode(display, static_cast<KeySym>(x11KeyMapper.returnVirtualKey(Qt::Key_Escape))), 0,
+                   rootWin);
         XUngrabPointer(display, CurrentTime);
         XFlush(display);
     }
 
-    if (target_window != None) targetWindow = target_window;
-    else if (!escaped) failed = true;
+    if (target_window != None)
+        targetWindow = target_window;
+    else if (!escaped)
+        failed = true;
 
     XCloseDisplay(display);
     emit captureFinished();

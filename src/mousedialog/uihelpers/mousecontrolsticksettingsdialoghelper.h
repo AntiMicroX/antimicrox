@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSECONTROLSTICKSETTINGSDIALOGHELPER_H
 #define MOUSECONTROLSTICKSETTINGSDIALOGHELPER_H
 
@@ -24,17 +23,16 @@
 
 class JoyControlStick;
 
-
 class MouseControlStickSettingsDialogHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseControlStickSettingsDialogHelper(JoyControlStick *stick, QObject *parent = nullptr);
 
-    JoyControlStick* getStick() const;
+    JoyControlStick *getStick() const;
 
-public slots:
+  public slots:
     void updateExtraAccelerationStatus(bool checked);
     void updateExtraAccelerationMultiplier(double value);
     void updateStartMultiPercentage(double value);
@@ -43,7 +41,7 @@ public slots:
     void updateAccelExtraDuration(double value);
     void updateReleaseSpringRadius(int value);
 
-private:
+  private:
     JoyControlStick *stick;
 };
 

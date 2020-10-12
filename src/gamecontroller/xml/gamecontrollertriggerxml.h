@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLERTRIGGERXML_H
 #define GAMECONTROLLERTRIGGERXML_H
 
@@ -23,20 +22,19 @@
 
 class GameControllerTrigger;
 
-
 class GameControllerTriggerXml : public JoyAxisXml
 {
 
-    public:
-        explicit GameControllerTriggerXml(GameControllerTrigger* gameContrTrigger, QObject *parent = 0);
+  public:
+    explicit GameControllerTriggerXml(GameControllerTrigger *gameContrTrigger, QObject *parent = 0);
 
-        void readJoystickConfig(QXmlStreamReader *xml);
-        virtual void writeConfig(QXmlStreamWriter *xml);
+    void readJoystickConfig(QXmlStreamReader *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml);
 
-    private:
-        GameControllerTrigger* m_gameContrTrigger;
-        JoyButtonXml* joyButtonXmlNAxis;
-        JoyButtonXml* joyButtonXmlPAxis;
+  private:
+    GameControllerTrigger *m_gameContrTrigger;
+    JoyButtonXml *joyButtonXmlNAxis;
+    JoyButtonXml *joyButtonXmlPAxis;
 };
 
 #endif // GAMECONTROLLERTRIGGERXML_H

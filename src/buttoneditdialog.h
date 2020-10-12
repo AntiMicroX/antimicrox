@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef BUTTONEDITDIALOGTWO_H
 #define BUTTONEDITDIALOGTWO_H
 
@@ -38,28 +37,32 @@ class ButtonEditDialog;
 class ButtonEditDialog : public QDialog
 {
     Q_OBJECT
-    
-public:
-    explicit ButtonEditDialog(JoyButton* button, InputDevice* joystick, bool isNumKeypad, QWidget *parent = nullptr); // called for chosen button
-    explicit ButtonEditDialog(InputDevice* joystick, bool isNumKeypad, QWidget *parent = nullptr); // Accessed by pressing the "Quick Set" button
+
+  public:
+    explicit ButtonEditDialog(JoyButton *button, InputDevice *joystick, bool isNumKeypad,
+                              QWidget *parent = nullptr); // called for chosen button
+    explicit ButtonEditDialog(InputDevice *joystick, bool isNumKeypad,
+                              QWidget *parent = nullptr); // Accessed by pressing the "Quick Set" button
     ButtonEditDialog(QWidget *parent = 0);
     ~ButtonEditDialog();
 
-    static ButtonEditDialog* getInstance();
-    JoyButton* getLastJoyButton();
-    void setUpLastJoyButton(JoyButton*);
+    static ButtonEditDialog *getInstance();
+    JoyButton *getLastJoyButton();
+    void setUpLastJoyButton(JoyButton *);
     void refreshForLastBtn();
-    void invokeMethodLastBtn(JoyButton* lastJoyBtn, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll);
-    
-protected:
+    void invokeMethodLastBtn(JoyButton *lastJoyBtn, ButtonEditDialogHelper *helper, const char *invokeString, int code,
+                             int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue,
+                             Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing,
+                             Qt::ConnectionType connTypeForAll);
+
+  protected:
     virtual void keyReleaseEvent(QKeyEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
 
-
-private:
+  private:
     ButtonEditDialogHelper helper;
     Ui::ButtonEditDialog *ui;
-    ButtonEditDialogHelper& getHelperLocal();
+    ButtonEditDialogHelper &getHelperLocal();
 
     QElapsedTimer buttonEventInterval;
     InputDevice *joystick;
@@ -67,11 +70,11 @@ private:
     bool ignoreRelease;
     bool withoutQuickSetDialog;
     bool m_isNumKeypad;
-    JoyButton* lastJoyButton;
+    JoyButton *lastJoyButton;
 
     static ButtonEditDialog *instance;
 
-signals:
+  signals:
     void advancedDialogOpened();
     void sendTempSlotToAdvanced(JoyButtonSlot *tempslot);
     void keyGrabbed(JoyButtonSlot *tempslot);
@@ -79,7 +82,7 @@ signals:
     void selectionFinished();
     void buttonDialogClosed();
 
-private slots:
+  private slots:
     void nullifyDialogPointer();
     void refreshSlotSummaryLabel();
     void changeToggleSetting();

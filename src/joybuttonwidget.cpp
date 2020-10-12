@@ -18,16 +18,16 @@
 
 #include "joybuttonwidget.h"
 
-#include "messagehandler.h"
-#include "joybuttoncontextmenu.h"
 #include "joybutton.h"
+#include "joybuttoncontextmenu.h"
+#include "messagehandler.h"
 
+#include <QDebug>
 #include <QMenu>
 #include <QPoint>
-#include <QDebug>
 
-JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
-    FlashButtonWidget(displayNames, parent)
+JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent)
+    : FlashButtonWidget(displayNames, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -45,7 +45,7 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     connect(button, &JoyButton::activeZoneChanged, this, &JoyButtonWidget::refreshLabel);
 }
 
-JoyButton* JoyButtonWidget::getJoyButton() const
+JoyButton *JoyButtonWidget::getJoyButton() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -76,7 +76,7 @@ QString JoyButtonWidget::generateLabel()
 
     QString temp = m_button->getName(false, ifDisplayNames()).replace("&", "&&");
 
-        qDebug() << "Name of joy button is: " << temp;
+    qDebug() << "Name of joy button is: " << temp;
 
     return temp;
 }
@@ -95,5 +95,6 @@ void JoyButtonWidget::tryFlash()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (m_button->getButtonState()) flash();
+    if (m_button->getButtonState())
+        flash();
 }

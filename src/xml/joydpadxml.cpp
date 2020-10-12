@@ -1,33 +1,27 @@
 
 #include "globalvariables.h"
 
-#include "xml/joybuttonxml.h"
+#include "gamecontroller/gamecontrollerdpad.h"
 #include "joydpad.h"
 #include "vdpad.h"
-#include "gamecontroller/gamecontrollerdpad.h"
-
-
+#include "xml/joybuttonxml.h"
 
 #include "messagehandler.h"
 
 #include <QDebug>
-#include <QPointer>
 #include <QHashIterator>
+#include <QPointer>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-
-
-
 template <class T>
-JoyDPadXml<T>::JoyDPadXml(T* joydpad, QObject *parent) : QObject(parent)
+JoyDPadXml<T>::JoyDPadXml(T *joydpad, QObject *parent)
+    : QObject(parent)
 {
     m_joydpad = joydpad;
 }
 
-
-template <class T>
-void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
+template <class T> void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -47,8 +41,7 @@ void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
     }
 }
 
-template <class T>
-void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
+template <class T> void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -60,12 +53,10 @@ void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
         if (m_joydpad->getJoyMode() == JoyDPad::EightWayMode)
         {
             xml->writeTextElement("mode", "eight-way");
-        }
-        else if (m_joydpad->getJoyMode() == JoyDPad::FourWayCardinal)
+        } else if (m_joydpad->getJoyMode() == JoyDPad::FourWayCardinal)
         {
             xml->writeTextElement("mode", "four-way");
-        }
-        else if (m_joydpad->getJoyMode() == JoyDPad::FourWayDiagonal)
+        } else if (m_joydpad->getJoyMode() == JoyDPad::FourWayDiagonal)
         {
             xml->writeTextElement("mode", "diagonal");
         }
@@ -75,11 +66,11 @@ void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("dpadDelay", QString::number(m_joydpad->getDPadDelay()));
         }
 
-        QHashIterator<int, JoyDPadButton*> iter(*m_joydpad->getJoyButtons());
+        QHashIterator<int, JoyDPadButton *> iter(*m_joydpad->getJoyButtons());
         while (iter.hasNext())
         {
             JoyDPadButton *button = iter.next().value();
-            JoyButtonXml* joyBtnXml = new JoyButtonXml(button);
+            JoyButtonXml *joyBtnXml = new JoyButtonXml(button);
             joyBtnXml->writeConfig(xml);
         }
 
@@ -87,8 +78,7 @@ void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
     }
 }
 
-template <class T>
-bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
+template <class T> bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -98,19 +88,17 @@ bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
     {
         found = true;
         int index_local = xml->attributes().value("index").toString().toInt();
-        JoyDPadButton* button = m_joydpad->getJoyButton(index_local);
+        JoyDPadButton *button = m_joydpad->getJoyButton(index_local);
 
         if (button != nullptr)
         {
-            JoyButtonXml* joyBtnXml = new JoyButtonXml(button);
+            JoyButtonXml *joyBtnXml = new JoyButtonXml(button);
             joyBtnXml->readConfig(xml);
-        }
-        else
+        } else
         {
             xml->skipCurrentElement();
         }
-    }
-    else if ((xml->name() == "mode") && xml->isStartElement())
+    } else if ((xml->name() == "mode") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -118,17 +106,14 @@ bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
         if (temptext == "eight-way")
         {
             m_joydpad->setJoyMode(JoyDPad::EightWayMode);
-        }
-        else if (temptext == "four-way")
+        } else if (temptext == "four-way")
         {
             m_joydpad->setJoyMode(JoyDPad::FourWayCardinal);
-        }
-        else if (temptext == "diagonal")
+        } else if (temptext == "diagonal")
         {
             m_joydpad->setJoyMode(JoyDPad::FourWayDiagonal);
         }
-    }
-    else if ((xml->name() == "dpadDelay") && xml->isStartElement())
+    } else if ((xml->name() == "dpadDelay") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -141,4 +126,4 @@ bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
 
 template class JoyDPadXml<JoyDPad>;
 template class JoyDPadXml<VDPad>;
-//template class JoyDPadXml<GameControllerDPad>;
+// template class JoyDPadXml<GameControllerDPad>;

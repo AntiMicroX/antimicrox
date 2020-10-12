@@ -18,14 +18,14 @@
 
 #include "mousebuttonsettingsdialoghelper.h"
 
-#include "messagehandler.h"
 #include "joybutton.h"
 #include "joybuttonslot.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent) :
-    QObject(parent)
+MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -90,7 +90,4 @@ void MouseButtonSettingsDialogHelper::updateSpringRelativeStatus(bool value)
     button->setSpringRelativeStatus(value);
 }
 
-JoyButton *MouseButtonSettingsDialogHelper::getButton() const {
-
-    return button;
-}
+JoyButton *MouseButtonSettingsDialogHelper::getButton() const { return button; }

@@ -16,13 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef DPADPUSHBUTTON_H
 #define DPADPUSHBUTTON_H
 
-
 #include "flashbuttonwidget.h"
-
 
 class JoyDPad;
 class QWidget;
@@ -31,25 +28,24 @@ class DPadPushButton : public FlashButtonWidget
 {
     Q_OBJECT
 
-public:
+  public:
     explicit DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent = nullptr);
 
-    JoyDPad* getDPad() const;
+    JoyDPad *getDPad() const;
     void tryFlash();
 
-protected:
+  protected:
     QString generateLabel() override;
 
-public slots:
+  public slots:
     void disableFlashes() override;
     void enableFlashes() override;
 
-private slots:
+  private slots:
     void showContextMenu(const QPoint &point);
 
-private:
+  private:
     JoyDPad *dpad;
-
 };
 
 #endif // DPADPUSHBUTTON_H

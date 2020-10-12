@@ -19,7 +19,6 @@
 #ifndef JOYCONTROLSTICKEDITDIALOG_H
 #define JOYCONTROLSTICKEDITDIALOG_H
 
-
 #include "uihelpers/joycontrolstickeditdialoghelper.h"
 
 #include <QDialog>
@@ -34,24 +33,24 @@ class JoyControlStickEditDialog;
 class JoyControlStickEditDialog : public QDialog
 {
     Q_OBJECT
-    
-public:
+
+  public:
     explicit JoyControlStickEditDialog(JoyControlStick *stick, bool keypadUnlocked, QWidget *parent = nullptr);
-   // JoyControlStickEditDialog(QWidget *parent = nullptr);
+    // JoyControlStickEditDialog(QWidget *parent = nullptr);
     ~JoyControlStickEditDialog();
-    
-protected:
+
+  protected:
     void selectCurrentPreset();
 
-private:
+  private:
     Ui::JoyControlStickEditDialog *ui;
     bool keypadUnlocked;
-    JoyControlStickEditDialogHelper& getHelperLocal();
+    JoyControlStickEditDialogHelper &getHelperLocal();
 
     JoyControlStick *stick;
     JoyControlStickEditDialogHelper helper;
 
-private slots:
+  private slots:
     void implementPresets(int index);
     void implementModes(int index);
 

@@ -19,15 +19,14 @@
 #include "extraprofilesettingsdialog.h"
 #include "ui_extraprofilesettingsdialog.h"
 
-#include "messagehandler.h"
 #include "inputdevice.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-
-ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ExtraProfileSettingsDialog)
+ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::ExtraProfileSettingsDialog)
 {
     ui->setupUi(this);
 
@@ -67,7 +66,4 @@ void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
     ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));
 }
 
-InputDevice* ExtraProfileSettingsDialog::getDevice() const  {
-
-    return device;
-}
+InputDevice *ExtraProfileSettingsDialog::getDevice() const { return device; }

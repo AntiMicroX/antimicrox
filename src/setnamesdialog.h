@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SETNAMESDIALOG_H
 #define SETNAMESDIALOG_H
 
@@ -33,18 +32,18 @@ class SetNamesDialog : public QDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit SetNamesDialog(InputDevice *device, QWidget *parent = nullptr);
     ~SetNamesDialog();
 
-    InputDevice* getDevice() const;
+    InputDevice *getDevice() const;
 
-private:
+  private:
     Ui::SetNamesDialog *ui;
 
     InputDevice *device;
 
-private slots:
+  private slots:
     void saveSetNameChanges();
 };
 

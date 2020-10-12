@@ -1,0 +1,14 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+
+BreakBeforeBraces: Custom
+ColumnLimit: 125
+IndentPPDirectives: BeforeHash
+BraceWrapping:
+  AfterEnum: true
+  AfterStruct: true
+  AfterClass: true
+  AfterControlStatement: true
+  AfterFunction: true
+  AfterUnion: true
+BreakConstructorInitializersBeforeComma: true

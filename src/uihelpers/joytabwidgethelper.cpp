@@ -18,18 +18,18 @@
 
 #include "joytabwidgethelper.h"
 
-#include "messagehandler.h"
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "joybuttonslot.h"
+#include "messagehandler.h"
+#include "xml/inputdevicexml.h"
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"
-#include "xml/inputdevicexml.h"
 
 #include <QDebug>
 
-JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent) :
-    QObject(parent)
+JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -65,7 +65,7 @@ bool JoyTabWidgetHelper::hasReader()
     return (this->reader != nullptr);
 }
 
-XMLConfigReader* JoyTabWidgetHelper::getReader()
+XMLConfigReader *JoyTabWidgetHelper::getReader()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -79,7 +79,7 @@ bool JoyTabWidgetHelper::hasWriter()
     return (this->writer != nullptr);
 }
 
-XMLConfigWriter* JoyTabWidgetHelper::getWriter()
+XMLConfigWriter *JoyTabWidgetHelper::getWriter()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -136,7 +136,6 @@ bool JoyTabWidgetHelper::readConfigFileWithRevert(QString filepath)
     device->revertProfileEdited();
 
     return readConfigFile(filepath);
-
 }
 
 bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
@@ -153,7 +152,7 @@ bool JoyTabWidgetHelper::writeConfigFile(QString filepath)
 
     this->writer = new XMLConfigWriter;
     this->writer->setFileName(filepath);
-    InputDeviceXml* deviceXml = new InputDeviceXml(device);
+    InputDeviceXml *deviceXml = new InputDeviceXml(device);
     this->writer->write(deviceXml);
     delete deviceXml;
 
@@ -175,7 +174,6 @@ void JoyTabWidgetHelper::reInitDevice()
     device->transferReset();
     device->resetButtonDownCount();
     device->reInitButtons();
-
 
     device->establishPropertyUpdatedConnection();
 }

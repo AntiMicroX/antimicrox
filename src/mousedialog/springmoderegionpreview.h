@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SPRINGMODEREGIONPREVIEW_H
 #define SPRINGMODEREGIONPREVIEW_H
 
@@ -24,21 +23,20 @@
 
 class QPaintEvent;
 
-
 class SpringModeRegionPreview : public QWidget
 {
     Q_OBJECT
 
-public:
+  public:
     explicit SpringModeRegionPreview(int width = 0, int height = 0, QWidget *parent = nullptr);
 
-protected:
+  protected:
     void paintEvent(QPaintEvent *event);
 
     int adjustSpringSizeWidth(int width);
     int adjustSpringSizeHeight(int height);
 
-public slots:
+  public slots:
     void setSpringWidth(int width);
     void setSpringHeight(int height);
     void setSpringSize(int width, int height);

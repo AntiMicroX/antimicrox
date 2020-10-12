@@ -15,16 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MESSAGEHANDLER_H
 #define MESSAGEHANDLER_H
 
-#include <QtGlobal>
 #include <QString>
+#include <QtGlobal>
 
 namespace MessageHandler // prevents polluting the global namespace
 {
-   extern void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+extern void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 }
 
 #endif // MESSAGEHANDLER_H

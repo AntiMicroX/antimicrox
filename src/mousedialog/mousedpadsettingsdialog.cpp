@@ -18,22 +18,21 @@
 
 #include "mousedpadsettingsdialog.h"
 
+#include "joydpad.h"
 #include "messagehandler.h"
 #include "springmoderegionpreview.h"
-#include "joydpad.h"
 
+#include "common.h"
 #include "inputdevice.h"
 #include "setjoystick.h"
-#include "common.h"
 
-#include <QSpinBox>
 #include <QComboBox>
 #include <QDebug>
+#include <QSpinBox>
 
-
-MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent) :
-    MouseSettingsDialog(parent),
-    helper(dpad)
+MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
+    : MouseSettingsDialog(parent)
+    , helper(dpad)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -57,10 +56,8 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
-        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(),
-                                                          ui->springHeightSpinBox->value());
-    }
-    else
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+    } else
     {
         springPreviewWidget = new SpringModeRegionPreview(0, 0);
     }
@@ -85,33 +82,49 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
     connect(this, &MouseDPadSettingsDialog::finished, springPreviewWidget, &SpringModeRegionPreview::deleteLater);
 
-    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseDPadSettingsDialog::changeMouseMode);
-    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseDPadSettingsDialog::changeMouseCurve);
+    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseDPadSettingsDialog::changeMouseMode);
+    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseDPadSettingsDialog::changeMouseCurve);
 
-    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateConfigHorizontalSpeed);
-    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateConfigVerticalSpeed);
+    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateConfigHorizontalSpeed);
+    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateConfigVerticalSpeed);
 
-    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateSpringWidth);
-    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget, &SpringModeRegionPreview::setSpringWidth);
+    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateSpringWidth);
+    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget,
+            &SpringModeRegionPreview::setSpringWidth);
 
-    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateSpringHeight);
-    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget, &SpringModeRegionPreview::setSpringHeight);
+    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateSpringHeight);
+    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget,
+            &SpringModeRegionPreview::setSpringHeight);
 
     connect(ui->relativeSpringCheckBox, &QCheckBox::clicked, this, &MouseDPadSettingsDialog::updateSpringRelativeStatus);
 
-    connect(ui->sensitivityDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateSensitivity);
+    connect(ui->sensitivityDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateSensitivity);
 
-    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateWheelSpeedHorizontalSpeed);
-    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateWheelSpeedVerticalSpeed);
+    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateWheelSpeedHorizontalSpeed);
+    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateWheelSpeedVerticalSpeed);
 
-    connect(ui->easingDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), dpad, &JoyDPad::setButtonsEasingDuration);
+    connect(ui->easingDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), dpad,
+            &JoyDPad::setButtonsEasingDuration);
 
-    connect(ui->releaseSpringRadiusspinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseDPadSettingsDialog::updateReleaseSpringRadius);
-    connect(ui->extraAccelCurveComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseDPadSettingsDialog::updateExtraAccelerationCurve);
+    connect(ui->releaseSpringRadiusspinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseDPadSettingsDialog::updateReleaseSpringRadius);
+    connect(ui->extraAccelCurveComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseDPadSettingsDialog::updateExtraAccelerationCurve);
 
     JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();
-    connect(mouseHelper, &JoyButtonMouseHelper::mouseCursorMoved, this, &MouseDPadSettingsDialog::updateMouseCursorStatusLabels);
-    connect(mouseHelper, &JoyButtonMouseHelper::mouseSpringMoved, this, &MouseDPadSettingsDialog::updateMouseSpringStatusLabels);
+    connect(mouseHelper, &JoyButtonMouseHelper::mouseCursorMoved, this,
+            &MouseDPadSettingsDialog::updateMouseCursorStatusLabels);
+    connect(mouseHelper, &JoyButtonMouseHelper::mouseSpringMoved, this,
+            &MouseDPadSettingsDialog::updateMouseSpringStatusLabels);
     lastMouseStatUpdate.start();
 }
 
@@ -126,8 +139,7 @@ void MouseDPadSettingsDialog::changeMouseMode(int index)
         {
             springPreviewWidget->hide();
         }
-    }
-    else if (index == 2)
+    } else if (index == 2)
     {
         dpad->setButtonsMouseMode(JoyButton::MouseSpring);
         if (!springPreviewWidget->isVisible())
@@ -150,7 +162,7 @@ void MouseDPadSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
+    QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
@@ -162,7 +174,7 @@ void MouseDPadSettingsDialog::updateConfigVerticalSpeed(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
+    QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     while (iter.hasNext())
     {
         JoyDPadButton *button = iter.next().value();
@@ -195,13 +207,11 @@ void MouseDPadSettingsDialog::selectCurrentMouseModePreset()
         if (mode == JoyButton::MouseCursor)
         {
             ui->mouseModeComboBox->setCurrentIndex(1);
-        }
-        else if (mode == JoyButton::MouseSpring)
+        } else if (mode == JoyButton::MouseSpring)
         {
             ui->mouseModeComboBox->setCurrentIndex(2);
         }
-    }
-    else
+    } else
     {
         ui->mouseModeComboBox->setCurrentIndex(0);
     }
@@ -229,7 +239,7 @@ void MouseDPadSettingsDialog::calculateMouseSpeedPreset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
+    QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     int tempMouseSpeedX = 0;
     while (iter.hasNext())
     {
@@ -268,7 +278,7 @@ void MouseDPadSettingsDialog::calculateWheelSpeedPreset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QHashIterator<int, JoyDPadButton*> iter(*dpad->getButtons());
+    QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     int tempWheelSpeedX = 0;
     int tempWheelSpeedY = 0;
     while (iter.hasNext())
@@ -312,8 +322,7 @@ void MouseDPadSettingsDialog::updateWindowTitleDPadName()
     if (!dpad->getDpadName().isEmpty())
     {
         temp.append(dpad->getName(false, true));
-    }
-    else
+    } else
     {
         temp.append(dpad->getName());
     }
@@ -377,22 +386,10 @@ void MouseDPadSettingsDialog::updateExtraAccelerationCurve(int index)
     }
 }
 
-JoyDPad *MouseDPadSettingsDialog::getDPad() const {
+JoyDPad *MouseDPadSettingsDialog::getDPad() const { return dpad; }
 
-    return dpad;
-}
+SpringModeRegionPreview *MouseDPadSettingsDialog::getSpringPreviewWidget() const { return springPreviewWidget; }
 
-SpringModeRegionPreview *MouseDPadSettingsDialog::getSpringPreviewWidget() const {
+MouseDpadSettingsDialogHelper const &MouseDPadSettingsDialog::getHelper() { return helper; }
 
-    return springPreviewWidget;
-}
-
-MouseDpadSettingsDialogHelper const& MouseDPadSettingsDialog::getHelper() {
-
-    return helper;
-}
-
-MouseDpadSettingsDialogHelper& MouseDPadSettingsDialog::getHelperLocal() {
-
-    return helper;
-}
+MouseDpadSettingsDialogHelper &MouseDPadSettingsDialog::getHelperLocal() { return helper; }

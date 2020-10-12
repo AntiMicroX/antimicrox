@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef INPUTDEVICEXML_H
 #define INPUTDEVICEXML_H
 
@@ -29,17 +28,16 @@ class AntiMicroSettings;
 class InputDeviceXml : public QObject
 {
     Q_OBJECT
-public:
+  public:
     explicit InputDeviceXml(InputDevice *inputDevice, QObject *parent = nullptr);
 
-public slots:
+  public slots:
 
-    virtual void readConfig(QXmlStreamReader *xml); // InputDeviceXml class
+    virtual void readConfig(QXmlStreamReader *xml);  // InputDeviceXml class
     virtual void writeConfig(QXmlStreamWriter *xml); // InputDeviceXml class
 
-private:
-    InputDevice* m_inputDevice;
-
+  private:
+    InputDevice *m_inputDevice;
 };
 
 #endif // INPUTDEVICEXML_H

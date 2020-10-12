@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYBUTTONMOUSEHELPER_H
 #define JOYBUTTONMOUSEHELPER_H
 
 #include <QObject>
-
 
 class QThread;
 
@@ -29,7 +27,7 @@ class JoyButtonMouseHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoyButtonMouseHelper(QObject *parent = nullptr);
     void resetButtonMouseDistances();
     void setFirstSpringStatus(bool status);
@@ -37,19 +35,19 @@ public:
     void carryGamePollRateUpdate(int pollRate);
     void carryMouseRefreshRateUpdate(int refreshRate);
 
-signals:
+  signals:
     void mouseCursorMoved(int mouseX, int mouseY, int elapsed);
     void mouseSpringMoved(int mouseX, int mouseY);
     void gamepadRefreshRateUpdated(int pollRate);
     void mouseRefreshRateUpdated(int refreshRate);
 
-public slots:
+  public slots:
     void moveMouseCursor();
     void moveSpringMouse();
     void mouseEvent();
     void changeThread(QThread *thread);
 
-private:
+  private:
     bool firstSpringEvent;
 };
 

@@ -18,17 +18,17 @@
 
 #include "inputdevicebitarraystatus.h"
 
-#include "messagehandler.h"
 #include "inputdevice.h"
-#include "setjoystick.h"
-#include "joystick.h"
-#include "joydpad.h"
 #include "joybutton.h"
+#include "joydpad.h"
+#include "joystick.h"
+#include "messagehandler.h"
+#include "setjoystick.h"
 
 #include <QDebug>
 
-InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent, QObject *parent) :
-    QObject(parent)
+InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -40,8 +40,7 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
         if ((axis != nullptr) && readCurrent)
         {
             axesStatus.append(!axis->inDeadZone(axis->getCurrentRawValue()) ? true : false);
-        }
-        else
+        } else
         {
             axesStatus.append(false);
         }
@@ -55,8 +54,7 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
         if ((dpad != nullptr) && readCurrent)
         {
             hatButtonStatus.append(dpad->getCurrentDirection() != JoyDPadButton::DpadCentered ? true : false);
-        }
-        else
+        } else
         {
             hatButtonStatus.append(false);
         }
@@ -150,7 +148,4 @@ void InputDeviceBitArrayStatus::clearStatusValues()
     getButtonStatusLocal().fill(false);
 }
 
-QBitArray& InputDeviceBitArrayStatus::getButtonStatusLocal() {
-
-    return buttonStatus;
-}
+QBitArray &InputDeviceBitArrayStatus::getButtonStatusLocal() { return buttonStatus; }

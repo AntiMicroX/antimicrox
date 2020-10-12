@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYBUTTONWIDGET_H
 #define JOYBUTTONWIDGET_H
 
 #include "flashbuttonwidget.h"
-
 
 class JoyButton;
 class QWidget;
@@ -30,24 +28,24 @@ class JoyButtonWidget : public FlashButtonWidget
 {
     Q_OBJECT
 
-public:
-    explicit JoyButtonWidget(JoyButton* button, bool displayNames, QWidget *parent=0);
+  public:
+    explicit JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent = 0);
 
-    JoyButton* getJoyButton() const;
+    JoyButton *getJoyButton() const;
     void tryFlash();
 
-protected:
+  protected:
     virtual QString generateLabel() override;
 
-public slots:
+  public slots:
     void disableFlashes() override;
     void enableFlashes() override;
 
-private slots:
+  private slots:
     void showContextMenu(const QPoint &point);
 
-private:
-    JoyButton* m_button;
+  private:
+    JoyButton *m_button;
 };
 
 #endif // JOYBUTTONWIDGET_H

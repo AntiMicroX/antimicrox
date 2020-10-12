@@ -19,20 +19,18 @@
 #include "gamecontrollermappingdialoghelper.h"
 
 #include "globalvariables.h"
-#include "messagehandler.h"
 #include "inputdevice.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-GameControllerMappingDialogHelper::GameControllerMappingDialogHelper(InputDevice *device,
-                                                                     QObject *parent) :
-    QObject(parent)
+GameControllerMappingDialogHelper::GameControllerMappingDialogHelper(InputDevice *device, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->device = device;
 }
-
 
 void GameControllerMappingDialogHelper::raiseDeadZones()
 {

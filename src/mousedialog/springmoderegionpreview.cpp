@@ -20,16 +20,16 @@
 
 #include "messagehandler.h"
 
-#include <QDebug>
 #include <QApplication>
+#include <QDebug>
 #include <QDesktopWidget>
-#include <QPainter>
 #include <QPaintEvent>
+#include <QPainter>
 
+SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent)
+    :
 
-SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent) :
-
-        QWidget(parent, Qt::FramelessWindowHint)
+    QWidget(parent, Qt::FramelessWindowHint)
 
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -50,8 +50,7 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
 
         setGeometry(cw, ch, tempwidth, tempheight);
         show();
-    }
-    else
+    } else
     {
         resize(0, 0);
         move(0, 0);
@@ -71,7 +70,7 @@ void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
     border.setColor(Qt::black);
     p.setPen(border);
 
-    p.drawRect(1, 1, width()-3, height()-3);
+    p.drawRect(1, 1, width() - 3, height() - 3);
 }
 
 int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
@@ -82,8 +81,7 @@ int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
     if (width >= 2)
     {
         tempwidth = width;
-    }
-    else
+    } else
     {
         tempwidth = 0;
     }
@@ -100,8 +98,7 @@ int SpringModeRegionPreview::adjustSpringSizeHeight(int height)
     if (height >= 2)
     {
         tempheight = height;
-    }
-    else
+    } else
     {
         tempheight = 0;
     }
@@ -129,8 +126,7 @@ void SpringModeRegionPreview::setSpringWidth(int width)
         {
             show();
         }
-    }
-    else
+    } else
     {
 
         resize(tempwidth, height);
@@ -158,8 +154,7 @@ void SpringModeRegionPreview::setSpringHeight(int height)
         {
             show();
         }
-    }
-    else
+    } else
     {
 
         resize(width, tempheight);

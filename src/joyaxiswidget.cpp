@@ -18,14 +18,14 @@
 
 #include "joyaxiswidget.h"
 
-#include "messagehandler.h"
-#include "joyaxiscontextmenu.h"
 #include "joyaxis.h"
+#include "joyaxiscontextmenu.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) :
-    FlashButtonWidget(displayNames, parent)
+JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent)
+    : FlashButtonWidget(displayNames, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -54,7 +54,7 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent) 
     pAxisButton->establishPropertyUpdatedConnections();
 }
 
-JoyAxis* JoyAxisWidget::getAxis() const
+JoyAxis *JoyAxisWidget::getAxis() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -88,7 +88,7 @@ QString JoyAxisWidget::generateLabel()
 
     QString temp = m_axis->getName(false, ifDisplayNames()).replace("&", "&&");
 
-        qDebug() << "Name of joy axis is: " << temp;
+    qDebug() << "Name of joy axis is: " << temp;
 
     return temp;
 }

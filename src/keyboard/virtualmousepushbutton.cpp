@@ -22,8 +22,9 @@
 
 #include <QDebug>
 
-VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode, QWidget *parent) :
-    QPushButton(parent)
+VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode,
+                                               QWidget *parent)
+    : QPushButton(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -35,28 +36,24 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
         {
             switch (code)
             {
-                case JoyButtonSlot::MouseUp:
-                case JoyButtonSlot::MouseDown:
-                case JoyButtonSlot::MouseLeft:
-                case JoyButtonSlot::MouseRight:
-                {
-                    this->code = code;
-                    break;
-                }
-                default:
-                {
-                    this->code = 0;
-                    break;
-                }
+            case JoyButtonSlot::MouseUp:
+            case JoyButtonSlot::MouseDown:
+            case JoyButtonSlot::MouseLeft:
+            case JoyButtonSlot::MouseRight: {
+                this->code = code;
+                break;
             }
-        }
-        else
+            default: {
+                this->code = 0;
+                break;
+            }
+            }
+        } else
         {
             this->code = code;
         }
         this->mode = mode;
-    }
-    else
+    } else
     {
         this->setText(tr("INVALID"));
         this->code = 0;

@@ -18,14 +18,14 @@
 
 #include "joycontrolstickeditdialoghelper.h"
 
-#include "messagehandler.h"
 #include "joybuttonslot.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent) :
-    QObject(parent)
+JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -34,14 +34,13 @@ JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick
     this->stick = stick;
 }
 
-void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections,
-                                                      JoyButtonSlot *> *tempSlots)
+void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> *tempSlots)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     pendingSlots.clear();
 
-    QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot*> iter(*tempSlots);
+    QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot *> iter(*tempSlots);
     while (iter.hasNext())
     {
         iter.next();
@@ -65,7 +64,7 @@ void JoyControlStickEditDialogHelper::setFromPendingSlots()
 
     if (!getPendingSlots().isEmpty())
     {
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot*> iter(getPendingSlots());
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot *> iter(getPendingSlots());
         while (iter.hasNext())
         {
             iter.next();
@@ -78,8 +77,7 @@ void JoyControlStickEditDialogHelper::setFromPendingSlots()
                 if (button)
                 {
                     button->clearSlotsEventReset(false);
-                    button->setAssignedSlot(slot->getSlotCode(), slot->getSlotCodeAlias(),
-                                            slot->getSlotMode());
+                    button->setAssignedSlot(slot->getSlotCode(), slot->getSlotCodeAlias(), slot->getSlotMode());
                 }
 
                 slot->deleteLater();
@@ -92,8 +90,8 @@ void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *buttons = stick->getButtons();
-    QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*buttons);
+    QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton *> *buttons = stick->getButtons();
+    QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton *> iter(*buttons);
     while (iter.hasNext())
     {
         JoyControlStickButton *button = iter.next().value();
@@ -115,7 +113,8 @@ void JoyControlStickEditDialogHelper::updateControlStickDelay(int value)
     }
 }
 
-QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> const& JoyControlStickEditDialogHelper::getPendingSlots() {
+QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> const &JoyControlStickEditDialogHelper::getPendingSlots()
+{
 
     return pendingSlots;
 }

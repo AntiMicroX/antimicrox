@@ -19,21 +19,20 @@
 #include "gamecontrollerdpad.h"
 
 #include "globalvariables.h"
+#include "joybutton.h"
 #include "messagehandler.h"
 #include "setjoystick.h"
-#include "joybutton.h"
 #include "xml/joydpadxml.h"
 
 #include <QDebug>
 
-
-GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
-                                       int index, int originset, SetJoystick *parentSet, QObject *parent) :
-    VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
+GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton,
+                                       JoyButton *rightButton, int index, int originset, SetJoystick *parentSet,
+                                       QObject *parent)
+    : VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
-
 
 QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 {
@@ -49,8 +48,7 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
         }
 
         label.append(getDpadName());
-    }
-    else if (!getDefaultDpadName().isEmpty())
+    } else if (!getDefaultDpadName().isEmpty())
     {
         if (forceFullFormat)
         {
@@ -58,8 +56,7 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
         }
 
         label.append(getDefaultDpadName());
-    }
-    else
+    } else
     {
         label.append(tr("DPad")).append(" ");
         label.append(QString::number(getRealJoyNumber()));
@@ -67,7 +64,6 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 
     return label;
 }
-
 
 QString GameControllerDPad::getXmlName()
 {

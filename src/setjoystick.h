@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SETJOYSTICK_H
 #define SETJOYSTICK_H
 
@@ -33,15 +32,15 @@ class SetJoystick : public SetJoystickXml
 {
     Q_OBJECT
 
-public:
-    explicit SetJoystick(InputDevice *device, int index, QObject *parent=0);
-    explicit SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent=0);
+  public:
+    explicit SetJoystick(InputDevice *device, int index, QObject *parent = 0);
+    explicit SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent = 0);
     ~SetJoystick();
 
-    JoyAxis* getJoyAxis(int index) const;
-    JoyButton* getJoyButton(int index) const;
-    JoyDPad* getJoyDPad(int index) const;
-    JoyControlStick* getJoyStick(int index) const;
+    JoyAxis *getJoyAxis(int index) const;
+    JoyButton *getJoyButton(int index) const;
+    JoyDPad *getJoyDPad(int index) const;
+    JoyControlStick *getJoyStick(int index) const;
     VDPad *getVDPad(int index) const;
 
     int getNumberButtons() const;
@@ -50,134 +49,131 @@ public:
     int getNumberSticks() const;
     int getNumberVDPads() const;
 
-    QHash<int, JoyButton*> const& getButtons() const;
-    QHash<int, JoyDPad*> const& getHats() const;
-    QHash<int, JoyControlStick*> const& getSticks() const;
-    QHash<int, VDPad*> const& getVdpads() const;
-    QHash<int, JoyAxis*>* getAxes();
+    QHash<int, JoyButton *> const &getButtons() const;
+    QHash<int, JoyDPad *> const &getHats() const;
+    QHash<int, JoyControlStick *> const &getSticks() const;
+    QHash<int, VDPad *> const &getVdpads() const;
+    QHash<int, JoyAxis *> *getAxes();
 
     int getIndex() const;
     int getRealIndex() const;
-    virtual void refreshButtons (); // SetButton class
-    virtual void refreshAxes(); // SetAxis class
-    virtual void refreshHats(); // SetHat class
+    virtual void refreshButtons(); // SetButton class
+    virtual void refreshAxes();    // SetAxis class
+    virtual void refreshHats();    // SetHat class
     void release();
     void addControlStick(int index, JoyControlStick *stick); // SetStick class
-    void removeControlStick(int index); // SetStick class
-    void addVDPad(int index, VDPad *vdpad); // SetVDPad class
-    void removeVDPad(int index); // SetVDPad class
+    void removeControlStick(int index);                      // SetStick class
+    void addVDPad(int index, VDPad *vdpad);                  // SetVDPad class
+    void removeVDPad(int index);                             // SetVDPad class
     void setIgnoreEventState(bool ignore);
 
-    InputDevice* getInputDevice() const;
+    InputDevice *getInputDevice() const;
 
     void setName(QString name);
     QString getName() const;
     QString getSetLabel();
 
-    void raiseAxesDeadZones(int deadZone=0); // SetAxis class
-    void currentAxesDeadZones(QList<int> *axesDeadZones); // SetAxis class
-    void setAxesDeadZones(QList<int> *axesDeadZones); // SetAxis class
+    void raiseAxesDeadZones(int deadZone = 0);                          // SetAxis class
+    void currentAxesDeadZones(QList<int> *axesDeadZones);               // SetAxis class
+    void setAxesDeadZones(QList<int> *axesDeadZones);                   // SetAxis class
     void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle); // SetAxis class
-    QList<JoyButton*> const& getLastClickedButtons() const;
+    QList<JoyButton *> const &getLastClickedButtons() const;
     void removeAllBtnFromQueue();
     int getCountBtnInList(QString partialName);
     bool isSetEmpty();
 
-protected:
-
+  protected:
     void deleteButtons(); // SetButton class
-    void deleteAxes(); // SetAxis class
-    void deleteHats(); // SetHat class
-    void deleteSticks(); // SetStick class
-    void deleteVDpads(); // SetVDPad class
-
-
+    void deleteAxes();    // SetAxis class
+    void deleteHats();    // SetHat class
+    void deleteSticks();  // SetStick class
+    void deleteVDpads();  // SetVDPad class
 
     void enableButtonConnections(JoyButton *button); // SetButton class
-    void enableAxisConnections(JoyAxis *axis); // SetAxis class
-    void enableHatConnections(JoyDPad *dpad); // SetHat class
+    void enableAxisConnections(JoyAxis *axis);       // SetAxis class
+    void enableHatConnections(JoyDPad *dpad);        // SetHat class
 
-signals:
+  signals:
     void setChangeActivated(int index);
-    void setAssignmentButtonChanged(int button, int originset, int newset, int mode); // SetButton class
-    void setAssignmentAxisChanged(int button, int axis, int originset, int newset, int mode); // SetAxis class
+    void setAssignmentButtonChanged(int button, int originset, int newset, int mode);           // SetButton class
+    void setAssignmentAxisChanged(int button, int axis, int originset, int newset, int mode);   // SetAxis class
     void setAssignmentStickChanged(int button, int stick, int originset, int newset, int mode); // SetStick class
-    void setAssignmentDPadChanged(int button, int dpad, int originset, int newset, int mode); // SetHat class
-    void setAssignmentVDPadChanged(int button, int dpad, int originset, int newset, int mode); // SetVDPad class
-    void setAssignmentAxisThrottleChanged(int axis, int originset); // SetAxis class
-    void setButtonClick(int index, int button); // SetButton class
-    void setButtonRelease(int index, int button); // SetButton class
-    void setAxisButtonClick(int setindex, int axis, int button); // SetAxis class
-    void setAxisButtonRelease(int setindex, int axis, int button); // SetAxis class
-    void setAxisActivated(int setindex, int axis, int value); // SetAxis class
-    void setAxisReleased(int setindex, int axis, int value); // SetAxis class
-    void setStickButtonClick(int setindex, int stick, int button); // SetStick class
-    void setStickButtonRelease(int setindex, int stick, int button); // SetStick class
-    void setDPadButtonClick(int setindex, int dpad, int button);  // SetHat class
-    void setDPadButtonRelease(int setindex, int dpad, int button); // SetHat class
+    void setAssignmentDPadChanged(int button, int dpad, int originset, int newset, int mode);   // SetHat class
+    void setAssignmentVDPadChanged(int button, int dpad, int originset, int newset, int mode);  // SetVDPad class
+    void setAssignmentAxisThrottleChanged(int axis, int originset);                             // SetAxis class
+    void setButtonClick(int index, int button);                                                 // SetButton class
+    void setButtonRelease(int index, int button);                                               // SetButton class
+    void setAxisButtonClick(int setindex, int axis, int button);                                // SetAxis class
+    void setAxisButtonRelease(int setindex, int axis, int button);                              // SetAxis class
+    void setAxisActivated(int setindex, int axis, int value);                                   // SetAxis class
+    void setAxisReleased(int setindex, int axis, int value);                                    // SetAxis class
+    void setStickButtonClick(int setindex, int stick, int button);                              // SetStick class
+    void setStickButtonRelease(int setindex, int stick, int button);                            // SetStick class
+    void setDPadButtonClick(int setindex, int dpad, int button);                                // SetHat class
+    void setDPadButtonRelease(int setindex, int dpad, int button);                              // SetHat class
 
-    void setButtonNameChange(int index); // SetButton class
-    void setAxisButtonNameChange(int axisIndex, int buttonIndex); // SetAxis class
+    void setButtonNameChange(int index);                            // SetButton class
+    void setAxisButtonNameChange(int axisIndex, int buttonIndex);   // SetAxis class
     void setStickButtonNameChange(int stickIndex, int buttonIndex); // SetStick class
-    void setDPadButtonNameChange(int dpadIndex, int buttonIndex); // SetHat class
+    void setDPadButtonNameChange(int dpadIndex, int buttonIndex);   // SetHat class
     void setVDPadButtonNameChange(int vdpadIndex, int buttonIndex); // SetVDPad class
 
-    void setAxisNameChange(int axisIndex); // SetAxis class
+    void setAxisNameChange(int axisIndex);   // SetAxis class
     void setStickNameChange(int stickIndex); // SetStick class
-    void setDPadNameChange(int dpadIndex); // SetHat class
+    void setDPadNameChange(int dpadIndex);   // SetHat class
     void setVDPadNameChange(int vdpadIndex); // SetVDPad class
     void propertyUpdated();
-    
-public slots:
+
+  public slots:
     virtual void reset();
     void copyAssignments(SetJoystick *destSet);
     void propogateSetChange(int index);
-    void propogateSetButtonAssociation(int button, int newset, int mode); // SetButton class
-    void propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode); // SetAxis class
+    void propogateSetButtonAssociation(int button, int newset, int mode);                 // SetButton class
+    void propogateSetAxisButtonAssociation(int button, int axis, int newset, int mode);   // SetAxis class
     void propogateSetStickButtonAssociation(int button, int stick, int newset, int mode); // SetStick class
-    void propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode); // SetHat class
-    void propogateSetVDPadButtonAssociation(int button, int dpad, int newset, int mode); // SetVDPad class
+    void propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode);   // SetHat class
+    void propogateSetVDPadButtonAssociation(int button, int dpad, int newset, int mode);  // SetVDPad class
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 
-protected slots:
+  protected slots:
     void propogateSetAxisThrottleSetting(int index); // SetAxis class
-    void propogateSetButtonClick(int button); // SetButton class
-    void propogateSetButtonRelease(int button); // SetButton class
-    void propogateSetAxisButtonClick(int button); // SetAxis class
-    void propogateSetAxisButtonRelease(int button); // SetAxis class
-    void propogateSetStickButtonClick(int button); // SetStick class
+    void propogateSetButtonClick(int button);        // SetButton class
+    void propogateSetButtonRelease(int button);      // SetButton class
+    void propogateSetAxisButtonClick(int button);    // SetAxis class
+    void propogateSetAxisButtonRelease(int button);  // SetAxis class
+    void propogateSetStickButtonClick(int button);   // SetStick class
     void propogateSetStickButtonRelease(int button); // SetStick class
-    void propogateSetDPadButtonClick(int button); // SetHat class
-    void propogateSetDPadButtonRelease(int button); // SetHat class
-    void propogateSetAxisActivated(int value); // SetAxis class
-    void propogateSetAxisReleased(int value); // SetAxis class
+    void propogateSetDPadButtonClick(int button);    // SetHat class
+    void propogateSetDPadButtonRelease(int button);  // SetHat class
+    void propogateSetAxisActivated(int value);       // SetAxis class
+    void propogateSetAxisReleased(int value);        // SetAxis class
 
-    void propogateSetButtonNameChange(); // SetButton class
-    void propogateSetAxisButtonNameChange(); // SetAxis class
+    void propogateSetButtonNameChange();      // SetButton class
+    void propogateSetAxisButtonNameChange();  // SetAxis class
     void propogateSetStickButtonNameChange(); // SetStick class
-    void propogateSetDPadButtonNameChange(); // SetHat class
+    void propogateSetDPadButtonNameChange();  // SetHat class
     void propogateSetVDPadButtonNameChange(); // SetVDPad class
 
-    void propogateSetAxisNameChange(); // SetAxis class
+    void propogateSetAxisNameChange();  // SetAxis class
     void propogateSetStickNameChange(); // SetStick class
-    void propogateSetDPadNameChange(); // SetHat class
+    void propogateSetDPadNameChange();  // SetHat class
     void propogateSetVDPadNameChange(); // SetVDPad class
 
-private:
-    QHash<int, JoyButton*> m_buttons;
-    QHash<int, JoyAxis*> axes;
-    QHash<int, JoyDPad*> hats;
-    QHash<int, JoyControlStick*> sticks;
-    QHash<int, VDPad*> vdpads;
+  private:
+    QHash<int, JoyButton *> m_buttons;
+    QHash<int, JoyAxis *> axes;
+    QHash<int, JoyDPad *> hats;
+    QHash<int, JoyControlStick *> sticks;
+    QHash<int, VDPad *> vdpads;
 
-    QList<JoyButton*> lastClickedButtons;
+    QList<JoyButton *> lastClickedButtons;
 
     int m_index;
     InputDevice *m_device;
     QString m_name;
 };
 
-Q_DECLARE_METATYPE(SetJoystick*)
+Q_DECLARE_METATYPE(SetJoystick *)
 
 #endif // SETJOYSTICK_H

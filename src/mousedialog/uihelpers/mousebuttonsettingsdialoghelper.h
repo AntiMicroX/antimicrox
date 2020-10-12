@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSEBUTTONSETTINGSDIALOGHELPER_H
 #define MOUSEBUTTONSETTINGSDIALOGHELPER_H
 
@@ -28,12 +27,12 @@ class MouseButtonSettingsDialogHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent = nullptr);
 
     JoyButton *getButton() const;
 
-public slots:
+  public slots:
     void updateExtraAccelerationStatus(bool checked);
     void updateExtraAccelerationMultiplier(double value);
     void updateStartMultiPercentage(double value);
@@ -43,9 +42,8 @@ public slots:
     void updateReleaseSpringRadius(int value);
     void updateSpringRelativeStatus(bool value);
 
-private:
+  private:
     JoyButton *button;
-
 };
 
 #endif // MOUSEBUTTONSETTINGSDIALOGHELPER_H

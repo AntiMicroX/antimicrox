@@ -18,41 +18,35 @@
 
 #include "sdleventreader.h"
 
-
-#include "globalvariables.h"
-#include "messagehandler.h"
-#include "inputdevice.h"
 #include "antimicrosettings.h"
 #include "common.h"
+#include "globalvariables.h"
+#include "inputdevice.h"
+#include "messagehandler.h"
 //#include "logger.h"
 
 #include <SDL2/SDL.h>
 
 #include <QDebug>
+#include <QMapIterator>
+#include <QSettings>
 #include <QStringListIterator>
 #include <QVariant>
-#include <QSettings>
-#include <QMapIterator>
 
-
-
-
-SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks,
-                               AntiMicroSettings *settings, QObject *parent) :
-    QObject(parent)
+SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMicroSettings *settings, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     this->joysticks = joysticks;
     this->settings = settings;
     settings->getLock()->lock();
-    this->pollRate = settings->value("GamepadPollRate",
-                                     GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toUInt();
+    this->pollRate =
+        settings->value("GamepadPollRate", GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toUInt();
     settings->getLock()->unlock();
 
     pollRateTimer.setParent(this);
     pollRateTimer.setTimerType(Qt::PreciseTimer);
-
 
     initSDL();
 
@@ -117,7 +111,9 @@ void SDLEventReader::closeSDL()
     closeDevices();
 
     // Clear any pending events
-    while (SDL_PollEvent(&event) > 0) {}
+    while (SDL_PollEvent(&event) > 0)
+    {
+    }
 
     SDL_Quit();
 
@@ -164,7 +160,8 @@ void SDLEventReader::secondaryRefresh()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (sdlIsOpen) closeSDL();
+    if (sdlIsOpen)
+        closeSDL();
 
     initSDL();
 }
@@ -176,7 +173,9 @@ void SDLEventReader::clearEvents()
     if (sdlIsOpen)
     {
         SDL_Event event;
-        while (SDL_PollEvent(&event) > 0) {}
+        while (SDL_PollEvent(&event) > 0)
+        {
+        }
     }
 }
 
@@ -195,26 +194,22 @@ int SDLEventReader::eventStatus()
 
     switch (SDL_PeepEvents(nullptr, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
     {
-        case -1:
-        {
-            Logger::LogError(QString("SDL Error: %1").
-			   arg(QString(SDL_GetError())),
-			   true, true);
-            result = 0;
+    case -1: {
+        Logger::LogError(QString("SDL Error: %1").arg(QString(SDL_GetError())), true, true);
+        result = 0;
 
-            break;
-        }
-        case 0:
-        {
-            if (!pollRateTimer.isActive()) pollRateTimer.start();
+        break;
+    }
+    case 0: {
+        if (!pollRateTimer.isActive())
+            pollRateTimer.start();
 
-            break;
-        }
-        default:
-        {
-            result = 1;
-            break;
-        }
+        break;
+    }
+    default: {
+        result = 1;
+        break;
+    }
     }
 
     return result;
@@ -232,7 +227,8 @@ void SDLEventReader::updatePollRate(int tempPollRate)
         this->pollRate = tempPollRate;
         pollRateTimer.setInterval(pollRate);
 
-        if (pollTimerWasActive) pollRateTimer.start();
+        if (pollTimerWasActive)
+            pollRateTimer.start();
     }
 }
 
@@ -260,7 +256,7 @@ void SDLEventReader::closeDevices()
 
     if (sdlIsOpen && (joysticks != nullptr))
     {
-        QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+        QMapIterator<SDL_JoystickID, InputDevice *> iter(*joysticks);
 
         while (iter.hasNext())
         {
@@ -283,18 +279,8 @@ void SDLEventReader::haltServices()
     PadderCommon::unlockInputDevices();
 }
 
+QMap<SDL_JoystickID, InputDevice *> *SDLEventReader::getJoysticks() const { return joysticks; }
 
-QMap<SDL_JoystickID, InputDevice*> *SDLEventReader::getJoysticks() const {
+AntiMicroSettings *SDLEventReader::getSettings() const { return settings; }
 
-    return joysticks;
-}
-
-AntiMicroSettings *SDLEventReader::getSettings() const {
-
-    return settings;
-}
-
-QTimer const& SDLEventReader::getPollRateTimer() {
-
-    return pollRateTimer;
-}
+QTimer const &SDLEventReader::getPollRateTimer() { return pollRateTimer; }

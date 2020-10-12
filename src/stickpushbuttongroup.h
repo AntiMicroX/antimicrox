@@ -16,14 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef STICKPUSHBUTTONGROUP_H
 #define STICKPUSHBUTTONGROUP_H
 
 #include "joycontrolstickdirectionstype.h"
 
 #include <QGridLayout>
-
 
 class JoyControlStick;
 class QWidget;
@@ -34,8 +32,9 @@ class StickPushButtonGroup : public QGridLayout
 {
     Q_OBJECT
 
-public:
-    explicit StickPushButtonGroup(JoyControlStick *stick, bool keypadUnlocked, bool displayNames = false, QWidget *parent = nullptr);
+  public:
+    explicit StickPushButtonGroup(JoyControlStick *stick, bool keypadUnlocked, bool displayNames = false,
+                                  QWidget *parent = nullptr);
     JoyControlStick *getStick() const;
 
     bool ifDisplayNames() const;
@@ -52,22 +51,22 @@ public:
 
     JoyControlStickPushButton *getStickWidget() const;
 
-protected:
+  protected:
     void generateButtons();
 
-signals:
+  signals:
     void buttonSlotChanged();
 
-public slots:
+  public slots:
     void changeButtonLayout();
     void toggleNameDisplay();
 
-private slots:
+  private slots:
     void propogateSlotsChanged();
-    void openStickButtonDialog(JoyControlStickButtonPushButton* pushbutton);
+    void openStickButtonDialog(JoyControlStickButtonPushButton *pushbutton);
     void showStickDialog();
 
-private:
+  private:
     JoyControlStick *stick;
     bool displayNames;
     bool keypadUnlocked;
@@ -84,7 +83,9 @@ private:
 
     JoyControlStickPushButton *stickWidget;
 
-    JoyControlStickButtonPushButton * generateBtnToGrid(JoyControlStickButtonPushButton *pushbutton, JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections stickValue, int gridRow, int gridCol);
+    JoyControlStickButtonPushButton *generateBtnToGrid(JoyControlStickButtonPushButton *pushbutton, JoyControlStick *stick,
+                                                       JoyStickDirectionsType::JoyStickDirections stickValue, int gridRow,
+                                                       int gridCol);
 };
 
 #endif // STICKPUSHBUTTONGROUP_H

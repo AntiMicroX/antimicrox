@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef DPADCONTEXTMENUHELPER_H
 #define DPADCONTEXTMENUHELPER_H
 
@@ -28,20 +27,19 @@ class DPadContextMenuHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit DPadContextMenuHelper(JoyDPad *dpad, QObject *parent = nullptr);
-    void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> *tempSlots);
+    void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> *tempSlots);
     void clearPendingSlots();
-    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> const& getPendingSlots();
+    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> const &getPendingSlots();
 
-public slots:
+  public slots:
     void setFromPendingSlots();
     void clearButtonsSlotsEventReset();
 
-private:
+  private:
     JoyDPad *dpad;
-    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> pendingSlots;
-
+    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> pendingSlots;
 };
 
 #endif // DPADCONTEXTMENUHELPER_H

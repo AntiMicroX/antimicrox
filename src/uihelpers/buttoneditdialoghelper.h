@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef BUTTONEDITDIALOGHELPER_H
 #define BUTTONEDITDIALOGHELPER_H
 
@@ -24,26 +23,23 @@
 
 class JoyButton;
 
-
 class ButtonEditDialogHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit ButtonEditDialogHelper(JoyButton *button, QObject *parent = nullptr);
     explicit ButtonEditDialogHelper(QObject *parent = nullptr);
     void setThisButton(JoyButton *btn);
 
-protected:
+  protected:
     JoyButton *button;
 
-public slots:
-    void setAssignedSlot(int code,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    void setAssignedSlot(int code, int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+  public slots:
+    void setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
+    void setAssignedSlot(int code, int alias, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
     void setAssignedSlot(int code, int alias, int index,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+                         JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
     void setUseTurbo(bool useTurbo);
 };
 

@@ -25,7 +25,7 @@ class UInputEventHandler : public BaseEventHandler
 {
     Q_OBJECT
 
-public:
+  public:
     explicit UInputEventHandler(QObject *parent = nullptr);
     ~UInputEventHandler();
 
@@ -36,8 +36,7 @@ public:
     virtual void sendMouseEvent(int xDis, int yDis) override;
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen) override;
 
-    virtual void sendMouseSpringEvent(int xDis, int yDis,
-                                      int width, int height) override;
+    virtual void sendMouseSpringEvent(int xDis, int yDis, int width, int height) override;
     virtual void sendMouseSpringEvent(int xDis, int yDis) override;
 
     virtual QString getName() override;
@@ -51,7 +50,7 @@ public:
     int getSpringMouseFileHandler();
     const QString getUinputDeviceLocation();
 
-protected:
+  protected:
     int openUInputHandle();
     void setKeyboardEvents(int filehandle);
     void setRelMouseEvents(int filehandle);
@@ -61,24 +60,22 @@ protected:
     void createUInputMouseDevice(int filehandle);
     void createUInputSpringMouseDevice(int filehandle);
     void closeUInputDevice(int filehandle);
-    void write_uinput_event(int filehandle, int type,
-                            int code, int value, bool syn=true);
+    void write_uinput_event(int filehandle, int type, int code, int value, bool syn = true);
 
-private slots:
+  private slots:
 #ifdef WITH_X11
     void x11ResetMouseAccelerationChange();
 #endif
 
-private:
+  private:
     int keyboardFileHandler;
     int mouseFileHandler;
     int springMouseFileHandler;
     QString uinputDeviceLocation;
 
     bool cleanupUinputEvHand();
-    void testAndAppend(bool tested, QList<unsigned int>& tempList, unsigned int key);
-    void initDevice(int& device, QString name, bool& result);
-
+    void testAndAppend(bool tested, QList<unsigned int> &tempList, unsigned int key);
+    void initDevice(int &device, QString name, bool &result);
 };
 
 #endif // UINPUTEVENTHANDLER_H

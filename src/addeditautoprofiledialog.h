@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef ADDEDITAUTOPROFILEDIALOG_H
 #define ADDEDITAUTOPROFILEDIALOG_H
 
@@ -36,35 +35,33 @@ class AddEditAutoProfileDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings, QList<InputDevice*> *devices,
-                                      QList<QString> &reservedUniques,
-                                      bool edit=false, QWidget *parent = nullptr);
+  public:
+    explicit AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings, QList<InputDevice *> *devices,
+                                      QList<QString> &reservedUniques, bool edit = false, QWidget *parent = nullptr);
 
     AddEditAutoProfileDialog(QWidget *parent = nullptr);
 
     ~AddEditAutoProfileDialog();
 
-    AutoProfileInfo* getAutoProfile() const;
+    AutoProfileInfo *getAutoProfile() const;
     QString getOriginalUniqueID() const;
     QString getOriginalExe() const;
     QString getOriginalWindowClass() const;
     QString getOriginalWindowName() const;
 
-    QList<InputDevice*> *getDevices() const;
+    QList<InputDevice *> *getDevices() const;
     AntiMicroSettings *getSettings() const;
     bool getEditForm() const;
     bool getDefaultInfo() const;
-    QList<QString> const& getReservedUniques();
+    QList<QString> const &getReservedUniques();
 
-
-protected:
+  protected:
     virtual void accept();
 
-signals:
+  signals:
     void captureFinished();
 
-private slots:
+  private slots:
     void openProfileBrowseDialog();
     void openApplicationBrowseDialog();
     void saveAutoProfileInformation();
@@ -72,15 +69,15 @@ private slots:
     void checkForDefaultStatus();
     void windowPropAssignment(CapturedWindowInfoDialog *dialog);
     void showCaptureHelpWindow();
-    void checkForGrabbedWindow(UnixCaptureWindowUtility* util);
+    void checkForGrabbedWindow(UnixCaptureWindowUtility *util);
     void on_setPartialCheckBox_stateChanged(int arg1);
-    void checkDefaultCheckbox(const QString& text);
+    void checkDefaultCheckbox(const QString &text);
 
-private:
+  private:
     Ui::AddEditAutoProfileDialog *ui;
 
     AutoProfileInfo *info;
-    QList<InputDevice*> *devices;
+    QList<InputDevice *> *devices;
     AntiMicroSettings *settings;
     bool editForm;
     bool defaultInfo;
@@ -89,7 +86,6 @@ private:
     QString originalExe;
     QString originalWindowClass;
     QString originalWindowName;
-
 };
 
 #endif // ADDEDITAUTOPROFILEDIALOG_H

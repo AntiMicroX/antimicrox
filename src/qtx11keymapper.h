@@ -21,32 +21,30 @@
 
 #include "qtkeymapperbase.h"
 
-
 class QtX11KeyMapper : public QtKeyMapperBase
 {
     Q_OBJECT
 
-public:
+  public:
     explicit QtX11KeyMapper(QObject *parent = nullptr);
 
-protected:
+  protected:
     void populateMappingHashes() override;
     void populateCharKeyInformation() override;
 
-private:
-    void mapMiscKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapCursorMovesKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapModifiersKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapAdditionalKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapKeypadKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapInternationKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapJapanKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapKoreanKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapDeadKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapBrowseKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapMediaKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapLaunchKeysQtX11(QHash<int, int>& qtKeyToVirtKeyHash);
-
+  private:
+    void mapMiscKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapCursorMovesKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapModifiersKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapAdditionalKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapKeypadKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapInternationKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapJapanKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapKoreanKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapDeadKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapBrowseKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapMediaKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapLaunchKeysQtX11(QHash<int, int> &qtKeyToVirtKeyHash);
 };
 
 #endif // QTX11KEYMAPPER_H

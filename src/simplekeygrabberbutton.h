@@ -16,14 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SIMPLEKEYGRABBERBUTTON_H
 #define SIMPLEKEYGRABBERBUTTON_H
 
 #include "joybuttonslot.h"
 
 #include <QPushButton>
-
 
 class QKeyEvent;
 class QEvent;
@@ -33,39 +31,39 @@ class SimpleKeyGrabberButton : public QPushButton
 {
     Q_OBJECT
 
-public:
+  public:
     explicit SimpleKeyGrabberButton(QWidget *parent = nullptr);
 
-    void setValue(int value, int alias, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard); // (.., unsigned)
-    void setValue(int value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    void setValue(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyLoadProfile);
-    void setValues(QString value, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyMix);
-    void setValues(QString value, QList<JoyButtonSlot *> *jbtn, JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyMix);
-    JoyButtonSlot* getValue();
-    JoyButtonSlot& getValueNonPointer();
-    void setValue(JoyButtonSlot* jbS);
+    void setValue(int value, int alias,
+                  JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard); // (.., unsigned)
+    void setValue(int value, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
+    void setValue(QString value, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyLoadProfile);
+    void setValues(QString value, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyMix);
+    void setValues(QString value, QList<JoyButtonSlot *> *jbtn,
+                   JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyMix);
+    JoyButtonSlot *getValue();
+    JoyButtonSlot &getValueNonPointer();
+    void setValue(JoyButtonSlot *jbS);
     bool isEdited();
     bool isGrabbing();
 
-
-protected:
+  protected:
     virtual void keyPressEvent(QKeyEvent *event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
-signals:
+  signals:
     void buttonCodeChanged(int value);
-    
-public slots:
+
+  public slots:
     void refreshButtonLabel();
 
-private:
+  private:
     bool grabNextAction;
     bool grabbingWheel;
     bool edited;
     JoyButtonSlot buttonslot;
-
 };
 
-Q_DECLARE_METATYPE(SimpleKeyGrabberButton*)
+Q_DECLARE_METATYPE(SimpleKeyGrabberButton *)
 
 #endif // SIMPLEKEYGRABBERBUTTON_H

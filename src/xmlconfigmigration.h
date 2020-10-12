@@ -16,13 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef XMLCONFIGMIGRATION_H
 #define XMLCONFIGMIGRATION_H
 
-
 #include <QObject>
-
 
 class QXmlStreamReader;
 
@@ -30,7 +27,7 @@ class XMLConfigMigration : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit XMLConfigMigration(QXmlStreamReader *reader, QObject *parent = nullptr);
 
     bool requiresMigration();
@@ -39,13 +36,12 @@ public:
     const QXmlStreamReader *getReader();
     int getFileVersion() const;
 
-private:
+  private:
     QString readConfigToString();
     QString version0006Migration();
 
     QXmlStreamReader *reader;
     int fileVersion;
-
 };
 
 #endif // XMLCONFIGMIGRATION_H

@@ -18,14 +18,13 @@
 
 #include "mousecontrolsticksettingsdialoghelper.h"
 
-#include "messagehandler.h"
 #include "joycontrolstick.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-MouseControlStickSettingsDialogHelper::MouseControlStickSettingsDialogHelper(JoyControlStick *stick,
-                                                                             QObject *parent) :
-    QObject(parent)
+MouseControlStickSettingsDialogHelper::MouseControlStickSettingsDialogHelper(JoyControlStick *stick, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -83,7 +82,4 @@ void MouseControlStickSettingsDialogHelper::updateReleaseSpringRadius(int value)
     stick->setButtonsSpringDeadCircleMultiplier(value);
 }
 
-JoyControlStick* MouseControlStickSettingsDialogHelper::getStick() const {
-
-    return stick;
-}
+JoyControlStick *MouseControlStickSettingsDialogHelper::getStick() const { return stick; }

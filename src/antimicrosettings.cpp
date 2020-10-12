@@ -22,9 +22,8 @@
 
 #include <QDebug>
 
-
-AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent) :
-    QSettings(fileName, format, parent)
+AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent)
+    : QSettings(fileName, format, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
@@ -44,8 +43,10 @@ QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &def
     QString inGroup = group();
     QString fullKey = QString(inGroup).append("/").append(key);
 
-    if (cmdSettings.contains(fullKey)) settingValue = cmdSettings.value(fullKey, defaultValue);
-    else settingValue = value(key, defaultValue);
+    if (cmdSettings.contains(fullKey))
+        settingValue = cmdSettings.value(fullKey, defaultValue);
+    else
+        settingValue = value(key, defaultValue);
 
     return settingValue;
 }
@@ -73,14 +74,15 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
     }
 }
 
-QMutex* AntiMicroSettings::getLock()
+QMutex *AntiMicroSettings::getLock()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return &lock;
 }
 
-QSettings& AntiMicroSettings::getCmdSettings() {
+QSettings &AntiMicroSettings::getCmdSettings()
+{
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 

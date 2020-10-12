@@ -16,39 +16,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLEREXAMPLE_H
 #define GAMECONTROLLEREXAMPLE_H
 
-#include <QWidget>
 #include <QImage>
+#include <QWidget>
 
 class QPaintEvent;
-
 
 class GameControllerExample : public QWidget
 {
     Q_OBJECT
 
-public:
+  public:
     explicit GameControllerExample(QWidget *parent = nullptr);
 
-    enum ButtonType {
-        Button, AxisX, AxisY,
+    enum ButtonType
+    {
+        Button,
+        AxisX,
+        AxisY,
     };
 
     static const int MAXBUTTONINDEX = 20;
 
-protected:
+  protected:
     virtual void paintEvent(QPaintEvent *event);
 
-signals:
+  signals:
     void indexUpdated(int index);
 
-public slots:
+  public slots:
     void setActiveButton(int button);
 
-private:
+  private:
     QImage controllerimage;
     QImage buttonimage;
     QImage axisimage;

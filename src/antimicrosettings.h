@@ -16,32 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef ANTIMICROSETTINGS_H
 #define ANTIMICROSETTINGS_H
-
 
 #include "commandlineutility.h"
 
 #include <QSettings>
 
-
 class AntiMicroSettings : public QSettings
 {
     Q_OBJECT
 
-public:
+  public:
     explicit AntiMicroSettings(const QString &fileName, Format format, QObject *parent = nullptr);
 
     QVariant runtimeValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void importFromCommandLine(CommandLineUtility &cmdutility);
-    QMutex* getLock();
-    QSettings& getCmdSettings();
+    QMutex *getLock();
+    QSettings &getCmdSettings();
 
-protected:
+  protected:
     QSettings cmdSettings;
     QMutex lock;
-
 };
 
 #endif // ANTIMICROSETTINGS_H

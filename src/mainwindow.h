@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -50,27 +49,25 @@ class MainWindow : public QMainWindow
 {
 
     Q_OBJECT
-    
-public:
-    MainWindow(QMap<SDL_JoystickID, InputDevice*> *joysticks,
-               CommandLineUtility *cmdutility,
-               AntiMicroSettings *settings,
-               bool graphical=true, QWidget *parent = nullptr);
+
+  public:
+    MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLineUtility *cmdutility, AntiMicroSettings *settings,
+               bool graphical = true, QWidget *parent = nullptr);
     ~MainWindow();
 
     bool getGraphicalStatus();
 
     void setTranslator(QTranslator *translator);
-    QTranslator* getTranslator() const;
+    QTranslator *getTranslator() const;
 
     void setAppTranslator(QTranslator *translator);
-    QTranslator* getAppTranslator() const;
+    QTranslator *getAppTranslator() const;
 
-    QMap<int, QList<QAction*> > const& getProfileActions();
-    
+    QMap<int, QList<QAction *>> const &getProfileActions();
+
     bool isKeypadUnlocked();
 
-protected:
+  protected:
     virtual void showEvent(QShowEvent *event);
     virtual void changeEvent(QEvent *event);
     virtual void closeEvent(QCloseEvent *event);
@@ -78,33 +75,30 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
     void retranslateUi();
-    void loadConfigFile(QString fileLocation, int joystickIndex=0); // MainConfiguration class
-    void loadConfigFile(QString fileLocation, QString controllerID); // MainConfiguration class
-    void unloadCurrentConfig(int joystickIndex=0); // MainConfiguration class
-    void unloadCurrentConfig(QString controllerID); // MainConfiguration class
-    void changeStartSetNumber(int startSetNumber, QString controllerID); // MainConfiguration class
-    void changeStartSetNumber(int startSetNumber, int joystickIndex=0); // MainConfiguration class
-    void convertGUIDtoUniqueID(InputDevice* currentDevice, QString controlEntryLastSelectedGUID);
+    void loadConfigFile(QString fileLocation, int joystickIndex = 0);     // MainConfiguration class
+    void loadConfigFile(QString fileLocation, QString controllerID);      // MainConfiguration class
+    void unloadCurrentConfig(int joystickIndex = 0);                      // MainConfiguration class
+    void unloadCurrentConfig(QString controllerID);                       // MainConfiguration class
+    void changeStartSetNumber(int startSetNumber, QString controllerID);  // MainConfiguration class
+    void changeStartSetNumber(int startSetNumber, int joystickIndex = 0); // MainConfiguration class
+    void convertGUIDtoUniqueID(InputDevice *currentDevice, QString controlEntryLastSelectedGUID);
 
-
-
-signals:
+  signals:
     void joystickRefreshRequested();
     void readConfig(int index); // MainConfiguration class
     void mappingUpdated(QString mapping, InputDevice *device);
 
-
-public slots:
-    void checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice*> *joysticks);
+  public slots:
+    void checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice *> *joysticks);
     void fillButtons();
     void makeJoystickTabs();
     void alterConfigFromSettings(); // MainConfiguration class
     void fillButtonsID(InputDevice *joystick);
-    void fillButtonsMap(QMap<SDL_JoystickID, InputDevice*> *joysticks);
+    void fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks);
     void startJoystickRefresh();
     void hideWindow();
-    void saveAppConfig(); // MainConfiguration class
-    void loadAppConfig(bool forceRefresh=false); // MainConfiguration class
+    void saveAppConfig();                          // MainConfiguration class
+    void loadAppConfig(bool forceRefresh = false); // MainConfiguration class
     void removeJoyTabs();
     void quitProgram();
     void changeWindowStatus();
@@ -117,15 +111,14 @@ public slots:
     void selectControllerJoyTab(int index);
     void handleInstanceDisconnect();
 
-
-private slots:
+  private slots:
     void refreshTrayIconMenu();
     void trayIconClickAction(QSystemTrayIcon::ActivationReason reason);
-    void mainMenuChange(QMenu* tempMenu);
+    void mainMenuChange(QMenu *tempMenu);
     void disableFlashActions();
     void enableFlashActions();
 
-    void joystickTrayShow(QMenu* tempmenu);
+    void joystickTrayShow(QMenu *tempmenu);
     void singleTrayProfileMenuShow();
     void profileTrayActionTriggered(QAction *action, bool checked);
 
@@ -137,25 +130,25 @@ private slots:
     void openIssuesPage();
     void openWikiPage();
     void openCalibration();
-    void propogateNameDisplayStatus(JoyTabWidget* tabwidget, bool displayNames);
+    void propogateNameDisplayStatus(JoyTabWidget *tabwidget, bool displayNames);
     void changeLanguage(QString language); // MainConfiguration class
     void openMainSettingsDialog();
     void showStickAssignmentDialog();
     void checkHideEmptyOption();
 
-    void openGameControllerMappingWindow(bool openAsMain=false);
+    void openGameControllerMappingWindow(bool openAsMain = false);
     void propogateMappingUpdate(QString mapping, InputDevice *device);
     void autoprofileLoad(AutoProfileInfo *info); // MainConfiguration class
-    void checkAutoProfileWatcherTimer(); // MainConfiguration class
+    void checkAutoProfileWatcherTimer();         // MainConfiguration class
     void updateMenuOptions();
 
-private:
-    void showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString batteryLev, QString percent, InputDevice* device);
+  private:
+    void showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString batteryLev, QString percent, InputDevice *device);
 
     Ui::MainWindow *ui;
 
-    QMap<SDL_JoystickID, InputDevice*> *m_joysticks;
-    QMap<int, QList<QAction*> > profileActions;
+    QMap<SDL_JoystickID, InputDevice *> *m_joysticks;
+    QMap<int, QList<QAction *>> profileActions;
 
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
@@ -174,7 +167,6 @@ private:
     bool signalDisconnect;
     bool showTrayIcon;
     bool m_graphical;
-
 };
 
 #endif // MAINWINDOW_H

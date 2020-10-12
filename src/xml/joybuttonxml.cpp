@@ -16,20 +16,20 @@
  */
 
 #include "joybuttonxml.h"
-#include "joybuttonslotxml.h"
 #include "joybutton.h"
+#include "joybuttonslotxml.h"
 
 #include "messagehandler.h"
 
+#include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include <QDebug>
 
-JoyButtonXml::JoyButtonXml(JoyButton* joyButton, QObject *parent) : QObject(parent)
+JoyButtonXml::JoyButtonXml(JoyButton *joyButton, QObject *parent)
+    : QObject(parent)
 {
     m_joyButton = joyButton;
 }
-
 
 bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
 {
@@ -42,53 +42,52 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "true") m_joyButton->setToggle(true);
-    }
-    else if ((xml->name() == "turbointerval") && xml->isStartElement())
+        if (temptext == "true")
+            m_joyButton->setToggle(true);
+    } else if ((xml->name() == "turbointerval") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         m_joyButton->setTurboInterval(tempchoice);
-    }
-    else if ((xml->name() == "turbomode") && xml->isStartElement())
+    } else if ((xml->name() == "turbomode") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "normal") m_joyButton->setTurboMode(JoyButton::NormalTurbo);
-        else if (temptext == "gradient") m_joyButton->setTurboMode(JoyButton::GradientTurbo);
-        else if (temptext == "pulse") m_joyButton->setTurboMode(JoyButton::PulseTurbo);
-    }
-    else if ((xml->name() == "useturbo") && xml->isStartElement())
+        if (temptext == "normal")
+            m_joyButton->setTurboMode(JoyButton::NormalTurbo);
+        else if (temptext == "gradient")
+            m_joyButton->setTurboMode(JoyButton::GradientTurbo);
+        else if (temptext == "pulse")
+            m_joyButton->setTurboMode(JoyButton::PulseTurbo);
+    } else if ((xml->name() == "useturbo") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "true") m_joyButton->setUseTurbo(true);
-    }
-    else if ((xml->name() == "mousespeedx") && xml->isStartElement())
+        if (temptext == "true")
+            m_joyButton->setUseTurbo(true);
+    } else if ((xml->name() == "mousespeedx") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         m_joyButton->setMouseSpeedX(tempchoice);
-    }
-    else if ((xml->name() == "mousespeedy") && xml->isStartElement())
+    } else if ((xml->name() == "mousespeedy") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         m_joyButton->setMouseSpeedY(tempchoice);
-    }
-    else if ((xml->name() == "cycleresetactive") && xml->isStartElement())
+    } else if ((xml->name() == "cycleresetactive") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "true") m_joyButton->setCycleResetStatus(true);
-    }
-    else if ((xml->name() == "cycleresetinterval") && xml->isStartElement())
+        if (temptext == "true")
+            m_joyButton->setCycleResetStatus(true);
+    } else if ((xml->name() == "cycleresetinterval") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -96,8 +95,7 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
 
         if (tempchoice >= GlobalVariables::JoyButton::MINCYCLERESETTIME)
             m_joyButton->setCycleResetTime(tempchoice);
-    }
-    else if ((xml->name() == "slots") && xml->isStartElement())
+    } else if ((xml->name() == "slots") && xml->isStartElement())
     {
         found = true;
         xml->readNextStartElement();
@@ -107,7 +105,7 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
             if ((xml->name() == "slot") && xml->isStartElement())
             {
                 JoyButtonSlot *buttonslot = new JoyButtonSlot(m_joyButton);
-                JoyButtonSlotXml* buttonSlotXml = new JoyButtonSlotXml(buttonslot);
+                JoyButtonSlotXml *buttonSlotXml = new JoyButtonSlotXml(buttonslot);
                 buttonSlotXml->readConfig(xml);
                 delete buttonSlotXml;
                 buttonSlotXml = nullptr;
@@ -129,8 +127,7 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
                         delete buttonslot;
                         buttonslot = nullptr;
                     }
-                }
-                else
+                } else
                 {
                     if (buttonslot->getSlotMode() == JoyButtonSlot::JoyMix && buttonslot->getMixSlots() != nullptr)
                     {
@@ -143,16 +140,14 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
                     delete buttonslot;
                     buttonslot = nullptr;
                 }
-            }
-            else
+            } else
             {
                 xml->skipCurrentElement();
             }
 
             xml->readNextStartElement();
         }
-    }
-    else if ((xml->name() == "setselect") && xml->isStartElement())
+    } else if ((xml->name() == "setselect") && xml->isStartElement())
     {
         if (!m_joyButton->isModifierButton())
         {
@@ -163,8 +158,7 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
             if ((tempchoice >= 0) && (tempchoice <= GlobalVariables::InputDevice::NUMBER_JOYSETS))
                 m_joyButton->setChangeSetSelection(tempchoice - 1, false);
         }
-    }
-    else if ((xml->name() == "setselectcondition") && xml->isStartElement())
+    } else if ((xml->name() == "setselectcondition") && xml->isStartElement())
     {
         if (!m_joyButton->isModifierButton())
         {
@@ -172,155 +166,158 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
             QString temptext = xml->readElementText();
             JoyButton::SetChangeCondition tempcondition = JoyButton::SetChangeDisabled;
 
-            if (temptext == "one-way") tempcondition = JoyButton::SetChangeOneWay;
-            else if (temptext == "two-way") tempcondition = JoyButton::SetChangeTwoWay;
-            else if (temptext == "while-held") tempcondition = JoyButton::SetChangeWhileHeld;
+            if (temptext == "one-way")
+                tempcondition = JoyButton::SetChangeOneWay;
+            else if (temptext == "two-way")
+                tempcondition = JoyButton::SetChangeTwoWay;
+            else if (temptext == "while-held")
+                tempcondition = JoyButton::SetChangeWhileHeld;
 
             if (tempcondition != JoyButton::SetChangeDisabled)
                 m_joyButton->setChangeSetCondition(tempcondition, false, false);
         }
-    }
-    else if ((xml->name() == "mousemode") && xml->isStartElement())
+    } else if ((xml->name() == "mousemode") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "cursor") m_joyButton->setMouseMode(JoyButton::MouseCursor);
-        else if (temptext == "spring") m_joyButton->setMouseMode(JoyButton::MouseSpring);
-    }
-    else if ((xml->name() == "mouseacceleration") && xml->isStartElement())
+        if (temptext == "cursor")
+            m_joyButton->setMouseMode(JoyButton::MouseCursor);
+        else if (temptext == "spring")
+            m_joyButton->setMouseMode(JoyButton::MouseSpring);
+    } else if ((xml->name() == "mouseacceleration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "linear") m_joyButton->setMouseCurve(JoyButton::LinearCurve);
-        else if (temptext == "quadratic") m_joyButton->setMouseCurve(JoyButton::QuadraticCurve);
-        else if (temptext == "cubic") m_joyButton->setMouseCurve(JoyButton::CubicCurve);
-        else if (temptext == "quadratic-extreme") m_joyButton->setMouseCurve(JoyButton::QuadraticExtremeCurve);
-        else if (temptext == "power") m_joyButton->setMouseCurve(JoyButton::PowerCurve);
-        else if (temptext == "precision") m_joyButton->setMouseCurve(JoyButton::EnhancedPrecisionCurve);
-        else if (temptext == "easing-quadratic") m_joyButton->setMouseCurve(JoyButton::EasingQuadraticCurve);
-        else if (temptext == "easing-cubic") m_joyButton->setMouseCurve(JoyButton::EasingCubicCurve);
-    }
-    else if ((xml->name() == "mousespringwidth") && xml->isStartElement())
+        if (temptext == "linear")
+            m_joyButton->setMouseCurve(JoyButton::LinearCurve);
+        else if (temptext == "quadratic")
+            m_joyButton->setMouseCurve(JoyButton::QuadraticCurve);
+        else if (temptext == "cubic")
+            m_joyButton->setMouseCurve(JoyButton::CubicCurve);
+        else if (temptext == "quadratic-extreme")
+            m_joyButton->setMouseCurve(JoyButton::QuadraticExtremeCurve);
+        else if (temptext == "power")
+            m_joyButton->setMouseCurve(JoyButton::PowerCurve);
+        else if (temptext == "precision")
+            m_joyButton->setMouseCurve(JoyButton::EnhancedPrecisionCurve);
+        else if (temptext == "easing-quadratic")
+            m_joyButton->setMouseCurve(JoyButton::EasingQuadraticCurve);
+        else if (temptext == "easing-cubic")
+            m_joyButton->setMouseCurve(JoyButton::EasingCubicCurve);
+    } else if ((xml->name() == "mousespringwidth") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         m_joyButton->setSpringWidth(tempchoice);
-    }
-    else if ((xml->name() == "mousespringheight") && xml->isStartElement())
+    } else if ((xml->name() == "mousespringheight") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         m_joyButton->setSpringHeight(tempchoice);
-    }
-    else if ((xml->name() == "mousesensitivity") && xml->isStartElement())
+    } else if ((xml->name() == "mousesensitivity") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         m_joyButton->setSensitivity(tempchoice);
-    }
-    else if ((xml->name() == "actionname") && xml->isStartElement())
+    } else if ((xml->name() == "actionname") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (!temptext.isEmpty()) m_joyButton->setActionName(temptext);
-    }
-    else if ((xml->name() == "wheelspeedx") && xml->isStartElement())
+        if (!temptext.isEmpty())
+            m_joyButton->setActionName(temptext);
+    } else if ((xml->name() == "wheelspeedx") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         m_joyButton->setWheelSpeed(tempchoice, 'X');
-    }
-    else if ((xml->name() == "wheelspeedy") && xml->isStartElement())
+    } else if ((xml->name() == "wheelspeedy") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
         m_joyButton->setWheelSpeed(tempchoice, 'Y');
-    }
-    else if ((xml->name() == "relativespring") && xml->isStartElement())
+    } else if ((xml->name() == "relativespring") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "true") m_joyButton->setSpringRelativeStatus(true);
-    }
-    else if ((xml->name() == "easingduration") && xml->isStartElement())
+        if (temptext == "true")
+            m_joyButton->setSpringRelativeStatus(true);
+    } else if ((xml->name() == "easingduration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         m_joyButton->setEasingDuration(tempchoice);
-    }
-    else if ((xml->name() == "extraacceleration") && xml->isStartElement())
+    } else if ((xml->name() == "extraacceleration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
 
-        if (temptext == "true") m_joyButton->setExtraAccelerationStatus(true);
-    }
-    else if ((xml->name() == "accelerationmultiplier") && xml->isStartElement())
+        if (temptext == "true")
+            m_joyButton->setExtraAccelerationStatus(true);
+    } else if ((xml->name() == "accelerationmultiplier") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         m_joyButton->setExtraAccelerationMultiplier(tempchoice);
-    }
-    else if ((xml->name() == "startaccelmultiplier") && xml->isStartElement())
+    } else if ((xml->name() == "startaccelmultiplier") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         m_joyButton->setStartAccelMultiplier(tempchoice);
-    }
-    else if ((xml->name() == "minaccelthreshold") && xml->isStartElement())
+    } else if ((xml->name() == "minaccelthreshold") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         m_joyButton->setMinAccelThreshold(tempchoice);
-    }
-    else if ((xml->name() == "maxaccelthreshold") && xml->isStartElement())
+    } else if ((xml->name() == "maxaccelthreshold") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         m_joyButton->setMaxAccelThreshold(tempchoice);
-    }
-    else if ((xml->name() == "accelextraduration") && xml->isStartElement())
+    } else if ((xml->name() == "accelextraduration") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         double tempchoice = temptext.toDouble();
         m_joyButton->setAccelExtraDuration(tempchoice);
-    }
-    else if ((xml->name() == "extraaccelerationcurve") && xml->isStartElement())
+    } else if ((xml->name() == "extraaccelerationcurve") && xml->isStartElement())
     {
         found = true;
 
         QString temptext = xml->readElementText();
         JoyButton::JoyExtraAccelerationCurve tempcurve = JoyButton::DEFAULTEXTRAACCELCURVE;
 
-        if (temptext == "linear") tempcurve = JoyButton::LinearAccelCurve;
-        else if (temptext == "easeoutsine") tempcurve = JoyButton::EaseOutSineCurve;
-        else if (temptext == "easeoutquad") tempcurve = JoyButton::EaseOutQuadAccelCurve;
-        else if (temptext == "easeoutcubic") tempcurve = JoyButton::EaseOutCubicAccelCurve;
+        if (temptext == "linear")
+            tempcurve = JoyButton::LinearAccelCurve;
+        else if (temptext == "easeoutsine")
+            tempcurve = JoyButton::EaseOutSineCurve;
+        else if (temptext == "easeoutquad")
+            tempcurve = JoyButton::EaseOutQuadAccelCurve;
+        else if (temptext == "easeoutcubic")
+            tempcurve = JoyButton::EaseOutCubicAccelCurve;
 
         m_joyButton->setExtraAccelerationCurve(tempcurve);
-    }
-    else if ((xml->name() == "springreleaseradius") && xml->isStartElement())
+    } else if ((xml->name() == "springreleaseradius") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
 
-        if (!m_joyButton->isRelativeSpring()) m_joyButton->setSpringDeadCircleMultiplier(tempchoice);
+        if (!m_joyButton->isRelativeSpring())
+            m_joyButton->setSpringDeadCircleMultiplier(tempchoice);
     }
 
     return found;
@@ -338,8 +335,10 @@ void JoyButtonXml::readConfig(QXmlStreamReader *xml)
         {
             bool found = readButtonConfig(xml);
 
-            if (!found) xml->skipCurrentElement();
-            else m_joyButton->buildActiveZoneSummaryString();
+            if (!found)
+                xml->skipCurrentElement();
+            else
+                m_joyButton->buildActiveZoneSummaryString();
 
             xml->readNextStartElement();
         }
@@ -361,8 +360,12 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
         if (m_joyButton->getTurboInterval() != GlobalVariables::JoyButton::DEFAULTTURBOINTERVAL)
             xml->writeTextElement("turbointerval", QString::number(m_joyButton->getTurboInterval()));
 
-        if ((m_joyButton->getTurboMode() != JoyButton::DEFAULTTURBOMODE) && (m_joyButton->getTurboMode() == JoyButton::GradientTurbo)) xml->writeTextElement("turbomode", "gradient");
-        else if ((m_joyButton->getTurboMode() != JoyButton::DEFAULTTURBOMODE) && (m_joyButton->getTurboMode() == JoyButton::PulseTurbo)) xml->writeTextElement("turbomode", "pulse");
+        if ((m_joyButton->getTurboMode() != JoyButton::DEFAULTTURBOMODE) &&
+            (m_joyButton->getTurboMode() == JoyButton::GradientTurbo))
+            xml->writeTextElement("turbomode", "gradient");
+        else if ((m_joyButton->getTurboMode() != JoyButton::DEFAULTTURBOMODE) &&
+                 (m_joyButton->getTurboMode() == JoyButton::PulseTurbo))
+            xml->writeTextElement("turbomode", "pulse");
 
         if (m_joyButton->isUsingTurbo() != GlobalVariables::JoyButton::DEFAULTUSETURBO)
             xml->writeTextElement("useturbo", m_joyButton->isUsingTurbo() ? "true" : "false");
@@ -373,11 +376,12 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
         if (m_joyButton->getMouseSpeedY() != GlobalVariables::JoyButton::DEFAULTMOUSESPEEDY)
             xml->writeTextElement("mousespeedy", QString::number(m_joyButton->getMouseSpeedY()));
 
-        if ((m_joyButton->getMouseMode() != JoyButton::DEFAULTMOUSEMODE) && (m_joyButton->getMouseMode() == JoyButton::MouseCursor))
+        if ((m_joyButton->getMouseMode() != JoyButton::DEFAULTMOUSEMODE) &&
+            (m_joyButton->getMouseMode() == JoyButton::MouseCursor))
         {
             xml->writeTextElement("mousemode", "cursor");
-        }
-         else if ((m_joyButton->getMouseMode() != JoyButton::DEFAULTMOUSEMODE) && (m_joyButton->getMouseMode() == JoyButton::MouseSpring))
+        } else if ((m_joyButton->getMouseMode() != JoyButton::DEFAULTMOUSEMODE) &&
+                   (m_joyButton->getMouseMode() == JoyButton::MouseSpring))
         {
             xml->writeTextElement("mousemode", "spring");
             xml->writeTextElement("mousespringwidth", QString::number(m_joyButton->getSpringWidth()));
@@ -386,40 +390,40 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
 
         if (m_joyButton->getMouseCurve() != JoyButton::DEFAULTMOUSECURVE)
         {
-            switch(m_joyButton->getMouseCurve())
+            switch (m_joyButton->getMouseCurve())
             {
-                case JoyButton::LinearCurve:
-                    xml->writeTextElement("mouseacceleration", "linear");
-                    break;
+            case JoyButton::LinearCurve:
+                xml->writeTextElement("mouseacceleration", "linear");
+                break;
 
-                case JoyButton::QuadraticCurve:
-                    xml->writeTextElement("mouseacceleration", "quadratic");
-                    break;
+            case JoyButton::QuadraticCurve:
+                xml->writeTextElement("mouseacceleration", "quadratic");
+                break;
 
-                case JoyButton::CubicCurve:
-                    xml->writeTextElement("mouseacceleration", "cubic");
-                    break;
+            case JoyButton::CubicCurve:
+                xml->writeTextElement("mouseacceleration", "cubic");
+                break;
 
-                case JoyButton::QuadraticExtremeCurve:
-                    xml->writeTextElement("mouseacceleration", "quadratic-extreme");
-                    break;
+            case JoyButton::QuadraticExtremeCurve:
+                xml->writeTextElement("mouseacceleration", "quadratic-extreme");
+                break;
 
-                case JoyButton::PowerCurve:
-                    xml->writeTextElement("mouseacceleration", "power");
-                    xml->writeTextElement("mousesensitivity", QString::number(m_joyButton->getSensitivity()));
-                    break;
+            case JoyButton::PowerCurve:
+                xml->writeTextElement("mouseacceleration", "power");
+                xml->writeTextElement("mousesensitivity", QString::number(m_joyButton->getSensitivity()));
+                break;
 
-                case JoyButton::EnhancedPrecisionCurve:
-                    xml->writeTextElement("mouseacceleration", "precision");
-                    break;
+            case JoyButton::EnhancedPrecisionCurve:
+                xml->writeTextElement("mouseacceleration", "precision");
+                break;
 
-                case JoyButton::EasingQuadraticCurve:
-                    xml->writeTextElement("mouseacceleration", "easing-quadratic");
-                    break;
+            case JoyButton::EasingQuadraticCurve:
+                xml->writeTextElement("mouseacceleration", "easing-quadratic");
+                break;
 
-                case JoyButton::EasingCubicCurve:
-                    xml->writeTextElement("mouseacceleration", "easing-cubic");
-                    break;
+            case JoyButton::EasingCubicCurve:
+                xml->writeTextElement("mouseacceleration", "easing-cubic");
+                break;
             }
         }
 
@@ -436,22 +440,22 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
                 xml->writeTextElement("setselect", QString::number(m_joyButton->getSetSelection() + 1));
                 QString temptext = QString();
 
-                switch(m_joyButton->getChangeSetCondition())
+                switch (m_joyButton->getChangeSetCondition())
                 {
-                    case JoyButton::SetChangeOneWay:
-                        temptext = "one-way";
-                        break;
+                case JoyButton::SetChangeOneWay:
+                    temptext = "one-way";
+                    break;
 
-                    case JoyButton::SetChangeTwoWay:
-                        temptext = "two-way";
-                        break;
+                case JoyButton::SetChangeTwoWay:
+                    temptext = "two-way";
+                    break;
 
-                    case JoyButton::SetChangeWhileHeld:
-                        temptext = "while-held";
-                        break;
+                case JoyButton::SetChangeWhileHeld:
+                    temptext = "while-held";
+                    break;
 
-                    default:
-                        break;
+                default:
+                    break;
                 }
 
                 xml->writeTextElement("setselectcondition", temptext);
@@ -498,23 +502,23 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
         {
             QString temp = QString();
 
-            switch(m_joyButton->getExtraAccelerationCurve())
+            switch (m_joyButton->getExtraAccelerationCurve())
             {
-                 case JoyButton::LinearAccelCurve:
-                    temp = "linear";
-                    break;
+            case JoyButton::LinearAccelCurve:
+                temp = "linear";
+                break;
 
-                 case JoyButton::EaseOutSineCurve:
-                    temp = "easeoutsine";
-                    break;
+            case JoyButton::EaseOutSineCurve:
+                temp = "easeoutsine";
+                break;
 
-                 case JoyButton::EaseOutQuadAccelCurve:
-                    temp = "easeoutquad";
-                    break;
+            case JoyButton::EaseOutQuadAccelCurve:
+                temp = "easeoutquad";
+                break;
 
-                 case JoyButton::EaseOutCubicAccelCurve:
-                    temp = "easeoutcubic";
-                    break;
+            case JoyButton::EaseOutCubicAccelCurve:
+                temp = "easeoutcubic";
+                break;
             }
 
             if (!temp.isEmpty())
@@ -525,12 +529,12 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
         if (!m_joyButton->getAssignedSlots()->isEmpty())
         {
             xml->writeStartElement("slots");
-            QListIterator<JoyButtonSlot*> iter(*m_joyButton->getAssignedSlots());
+            QListIterator<JoyButtonSlot *> iter(*m_joyButton->getAssignedSlots());
 
             while (iter.hasNext())
             {
                 JoyButtonSlot *buttonslot = iter.next();
-                JoyButtonSlotXml* buttonslotxml = new JoyButtonSlotXml(buttonslot);
+                JoyButtonSlotXml *buttonslotxml = new JoyButtonSlotXml(buttonslot);
                 buttonslotxml->writeConfig(xml);
                 delete buttonslotxml;
                 buttonslotxml = nullptr;
@@ -542,4 +546,3 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
         xml->writeEndElement();
     }
 }
-

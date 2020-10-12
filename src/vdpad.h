@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef VDPAD_H
 #define VDPAD_H
 
@@ -26,22 +25,22 @@ class VDPad : public JoyDPad
 {
     Q_OBJECT
 
-public:
+  public:
     explicit VDPad(int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
-    explicit VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton,
-                   int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
+    explicit VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, JoyButton *rightButton, int index,
+                   int originset, SetJoystick *parentSet, QObject *parent = nullptr);
     ~VDPad();
 
-    void joyEvent(bool pressed, bool ignoresets=false);
+    void joyEvent(bool pressed, bool ignoresets = false);
     void addVButton(JoyDPadButton::JoyDPadDirections direction, JoyButton *button);
     void removeVButton(JoyDPadButton::JoyDPadDirections direction);
     void removeVButton(JoyButton *button);
-    JoyButton* getVButton(JoyDPadButton::JoyDPadDirections direction);
+    JoyButton *getVButton(JoyDPadButton::JoyDPadDirections direction);
     bool isEmpty();
-    virtual QString getName(bool forceFullFormat=false, bool displayName=false) override;
+    virtual QString getName(bool forceFullFormat = false, bool displayName = false) override;
     virtual QString getXmlName() override;
 
-    void queueJoyEvent(bool ignoresets=false);
+    void queueJoyEvent(bool ignoresets = false);
     bool hasPendingEvent();
     void clearPendingEvent();
 
@@ -51,16 +50,15 @@ public:
     JoyButton *getRightButton() const;
     bool getPendingVDPadEvent() const;
 
-public slots:
+  public slots:
     void activatePendingEvent();
 
-private:
+  private:
     JoyButton *upButton;
     JoyButton *downButton;
     JoyButton *leftButton;
     JoyButton *rightButton;
     bool pendingVDPadEvent;
-
 };
 
 #endif // VDPAD_H

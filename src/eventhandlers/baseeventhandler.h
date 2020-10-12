@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef BASEEVENTHANDLER_H
 #define BASEEVENTHANDLER_H
 
@@ -24,12 +23,11 @@
 
 class JoyButtonSlot;
 
-
 class BaseEventHandler : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit BaseEventHandler(QObject *parent = nullptr);
     virtual ~BaseEventHandler();
 
@@ -41,8 +39,7 @@ public:
     virtual void sendMouseEvent(int xDis, int yDis) = 0;
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
 
-    virtual void sendMouseSpringEvent(int xDis, int yDis,
-                                      int width, int height);
+    virtual void sendMouseSpringEvent(int xDis, int yDis, int width, int height);
     virtual void sendMouseSpringEvent(int xDis, int yDis);
 
     virtual void sendTextEntryEvent(QString maintext);
@@ -52,10 +49,8 @@ public:
     virtual void printPostMessages();
     QString getErrorString();
 
-
-protected:
+  protected:
     QString lastErrorString;
-
 };
 
 #endif // BASEEVENTHANDLER_H

@@ -21,17 +21,15 @@
 
 #include "messagehandler.h"
 
+#include <QDebug>
 #include <QPushButton>
 #include <QWidget>
-#include <QDebug>
 
 #include "x11extras.h"
 
-
-
-CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::CapturedWindowInfoDialog)
+CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::CapturedWindowInfoDialog)
 {
     ui->setupUi(this);
 
@@ -53,8 +51,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     {
         ui->winClassCheckBox->setEnabled(false);
         ui->winClassCheckBox->setChecked(false);
-    }
-    else
+    } else
     {
         ui->winClassCheckBox->setChecked(true);
         setRadioDefault = true;
@@ -70,8 +67,7 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     {
         ui->winTitleCheckBox->setEnabled(false);
         ui->winTitleCheckBox->setChecked(false);
-    }
-    else if (!setRadioDefault)
+    } else if (!setRadioDefault)
     {
         ui->winTitleCheckBox->setChecked(true);
         setRadioDefault = true;
@@ -90,24 +86,21 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
             ui->winPathLabel->setText(exepath);
             winPath = exepath;
 
-            if (!setRadioDefault) ui->winTitleCheckBox->setChecked(true);
+            if (!setRadioDefault)
+                ui->winTitleCheckBox->setChecked(true);
 
-        }
-        else
+        } else
         {
             ui->winPathCheckBox->setEnabled(false);
             ui->winPathCheckBox->setChecked(false);
         }
-    }
-    else
+    } else
     {
         ui->winPathCheckBox->setEnabled(false);
         ui->winPathCheckBox->setChecked(false);
     }
 
-
-    if (winClass.isEmpty() && winName.isEmpty() &&
-        winPath.isEmpty())
+    if (winClass.isEmpty() && winName.isEmpty() && winPath.isEmpty())
     {
         QPushButton *button = ui->buttonBox->button(QDialogButtonBox::Ok);
         button->setEnabled(false);
@@ -137,8 +130,10 @@ void CapturedWindowInfoDialog::populateOption()
     {
         selectedMatch = selectedMatch | WindowPath;
 
-        if (ui->winPathChoiceComboBox->currentIndex() == 0) fullWinPath = true;
-        else fullWinPath = false;
+        if (ui->winPathChoiceComboBox->currentIndex() == 0)
+            fullWinPath = true;
+        else
+            fullWinPath = false;
     }
 }
 

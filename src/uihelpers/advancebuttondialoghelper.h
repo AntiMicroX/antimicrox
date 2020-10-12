@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef ADVANCEBUTTONDIALOGHELPER_H
 #define ADVANCEBUTTONDIALOGHELPER_H
 
@@ -24,24 +23,22 @@
 
 class JoyButton;
 
-
 class AdvanceButtonDialogHelper : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit AdvanceButtonDialogHelper(JoyButton *button,
-                                       QObject *parent = nullptr);
+  public:
+    explicit AdvanceButtonDialogHelper(JoyButton *button, QObject *parent = nullptr);
 
-protected:
+  protected:
     JoyButton *button;
 
-public slots:
+  public slots:
     void setAssignedSlot(JoyButtonSlot *otherSlot, int index);
     void setAssignedSlot(int code, int alias, int index,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+                         JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
     void insertAssignedSlot(int code, int alias, int index,
-                            JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+                            JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
     void insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString);
     void removeAssignedSlot(int index);
     void onlyReset();

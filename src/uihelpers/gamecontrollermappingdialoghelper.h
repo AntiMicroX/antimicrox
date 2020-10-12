@@ -16,31 +16,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLERMAPPINGDIALOGHELPER_H
 #define GAMECONTROLLERMAPPINGDIALOGHELPER_H
 
-#include <QObject>
 #include <QList>
+#include <QObject>
 
 class InputDevice;
 
 class GameControllerMappingDialogHelper : public QObject
 {
     Q_OBJECT
-public:
+  public:
     explicit GameControllerMappingDialogHelper(InputDevice *device, QObject *parent = nullptr);
 
-public slots:
+  public slots:
     void raiseDeadZones();
     void raiseDeadZones(int deadZone);
     void setupDeadZones();
     void restoreDeviceDeadZones();
 
-private:
+  private:
     InputDevice *device;
     QList<int> originalAxesDeadZones;
-
 };
 
 #endif // GAMECONTROLLERMAPPINGDIALOGHELPER_H

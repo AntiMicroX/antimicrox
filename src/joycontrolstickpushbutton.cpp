@@ -18,14 +18,14 @@
 
 #include "joycontrolstickpushbutton.h"
 
-#include "messagehandler.h"
-#include "joycontrolstickcontextmenu.h"
 #include "joycontrolstick.h"
+#include "joycontrolstickcontextmenu.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent) :
-    FlashButtonWidget(displayNames, parent)
+JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent)
+    : FlashButtonWidget(displayNames, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -43,7 +43,7 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
     connect(stick, &JoyControlStick::stickNameChanged, this, &JoyControlStickPushButton::refreshLabel);
 }
 
-JoyControlStick* JoyControlStickPushButton::getStick() const
+JoyControlStick *JoyControlStickPushButton::getStick() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -62,8 +62,7 @@ QString JoyControlStickPushButton::generateLabel()
     if (!stick->getStickName().isEmpty() && ifDisplayNames())
     {
         temp.append(stick->getPartialName(false, true));
-    }
-    else
+    } else
     {
         temp.append(stick->getPartialName(false));
     }

@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MAINSETTINGSDIALOG_H
 #define MAINSETTINGSDIALOG_H
 
@@ -41,81 +40,82 @@ class MainSettingsDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice*> *devices, QWidget *parent = nullptr);
+  public:
+    explicit MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice *> *devices, QWidget *parent = nullptr);
     ~MainSettingsDialog();
 
     AntiMicroSettings *getSettings() const;
 
-    QMap<QString, AutoProfileInfo*>* getDefaultAutoProfiles(); // Default profiles assigned to a specific device
-    QMap<QString, QList<AutoProfileInfo*> >* getDeviceAutoProfiles(); // Profiles assigned with an association with an application
-    QMap<QString, QList<AutoProfileInfo*> >* getExeAutoProfiles();
+    QMap<QString, AutoProfileInfo *> *getDefaultAutoProfiles(); // Default profiles assigned to a specific device
+    QMap<QString, QList<AutoProfileInfo *>> *
+    getDeviceAutoProfiles(); // Profiles assigned with an association with an application
+    QMap<QString, QList<AutoProfileInfo *>> *getExeAutoProfiles();
 
-    QList<AutoProfileInfo*>* getDefaultList();
-    QList<AutoProfileInfo*>* getProfileList();
+    QList<AutoProfileInfo *> *getDefaultList();
+    QList<AutoProfileInfo *> *getProfileList();
 
-    AutoProfileInfo* getAllDefaultProfile() const;
-    QList<InputDevice*>* getConnectedDevices() const;
-    QStringList& getChosenQuitComboKeys() const;
+    AutoProfileInfo *getAllDefaultProfile() const;
+    QList<InputDevice *> *getConnectedDevices() const;
+    QStringList &getChosenQuitComboKeys() const;
 
-protected:
-    void fillControllerMappingsTable(); // MainSettingsMapping class
-    void insertTempControllerMapping(QHash<QString, QList<QVariant> > &hash, QString newGUID); // MainSettingsMapping class
-    void checkLocaleChange(); // MainSettingsLang class
-    void populateAutoProfiles(); // MainSettingsProfile class
-    void fillAutoProfilesTable(QString guid); // MainSettingsProfile class
-    void fillAllAutoProfilesTable(); // MainSettingsProfile class
-    void clearAutoProfileData(); // MainSettingsProfile class
-    void changePresetLanguage(); // MainSettingsLang class
-    void fillSpringScreenPresets(); // MainSettingsMouse class
-    void refreshExtraMouseInfo(); // MainSettingsMouse class
-    void convToUniqueIDAutoProfGroupSett(QSettings* sett, QString guidAutoProfSett, QString uniqueAutoProfSett);
+  protected:
+    void fillControllerMappingsTable();                                                       // MainSettingsMapping class
+    void insertTempControllerMapping(QHash<QString, QList<QVariant>> &hash, QString newGUID); // MainSettingsMapping class
+    void checkLocaleChange();                                                                 // MainSettingsLang class
+    void populateAutoProfiles();                                                              // MainSettingsProfile class
+    void fillAutoProfilesTable(QString guid);                                                 // MainSettingsProfile class
+    void fillAllAutoProfilesTable();                                                          // MainSettingsProfile class
+    void clearAutoProfileData();                                                              // MainSettingsProfile class
+    void changePresetLanguage();                                                              // MainSettingsLang class
+    void fillSpringScreenPresets();                                                           // MainSettingsMouse class
+    void refreshExtraMouseInfo();                                                             // MainSettingsMouse class
+    void convToUniqueIDAutoProfGroupSett(QSettings *sett, QString guidAutoProfSett, QString uniqueAutoProfSett);
 
-signals:
+  signals:
     void changeLanguage(QString language); // MainSettingsLang class
 
-protected slots:
+  protected slots:
     void mappingsTableItemChanged(QTableWidgetItem *item); // MainSettingsMapping class
-    void insertMappingRow(); // MainSettingsMapping class
-    void deleteMappingRow(); // MainSettingsMapping class
-    void syncMappingSettings(); // MainSettingsMapping class
+    void insertMappingRow();                               // MainSettingsMapping class
+    void deleteMappingRow();                               // MainSettingsMapping class
+    void syncMappingSettings();                            // MainSettingsMapping class
     void saveNewSettings();
-    void selectDefaultProfileDir(); // MainSettingsProfile class
-    void fillGUIDComboBox(); // MainSettingsProfile class
-    void changeDeviceForProfileTable(int index); // MainSettingsProfile class
-    void addKeyToQuitCombination(QString key); // MainSettingsProfile class
-    void saveAutoProfileSettings(); // MainSettingsProfile class
-    void processAutoProfileActiveClick(QTableWidgetItem *item); // MainSettingsProfile class
-    void openAddAutoProfileDialog(); // MainSettingsProfile class
-    void openEditAutoProfileDialog(); // MainSettingsProfile class
-    void openDeleteAutoProfileConfirmDialog(); // MainSettingsProfile class
-    void changeAutoProfileButtonsState(); // MainSettingsProfile class
-    void transferEditsToCurrentTableRow(AddEditAutoProfileDialog *dialog); // MainSettingsProfile class
-    void transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog* dialog); // MainSettingsProfile class
-    void addNewAutoProfile(AddEditAutoProfileDialog *dialog); // MainSettingsProfile class
-    void autoProfileButtonsActiveState(bool enabled); // MainSettingsProfile class
-    void changeKeyRepeatWidgetsStatus(bool enabled); // MainSettingsProfile class
-    void checkSmoothingWidgetStatus(bool enabled); // MainSettingsMouse class
-    void resetMouseAcceleration(); // MainSettingsMouse class
-    void selectLogFile(); // MainSettingsLogs class
+    void selectDefaultProfileDir();                                                        // MainSettingsProfile class
+    void fillGUIDComboBox();                                                               // MainSettingsProfile class
+    void changeDeviceForProfileTable(int index);                                           // MainSettingsProfile class
+    void addKeyToQuitCombination(QString key);                                             // MainSettingsProfile class
+    void saveAutoProfileSettings();                                                        // MainSettingsProfile class
+    void processAutoProfileActiveClick(QTableWidgetItem *item);                            // MainSettingsProfile class
+    void openAddAutoProfileDialog();                                                       // MainSettingsProfile class
+    void openEditAutoProfileDialog();                                                      // MainSettingsProfile class
+    void openDeleteAutoProfileConfirmDialog();                                             // MainSettingsProfile class
+    void changeAutoProfileButtonsState();                                                  // MainSettingsProfile class
+    void transferEditsToCurrentTableRow(AddEditAutoProfileDialog *dialog);                 // MainSettingsProfile class
+    void transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog *dialog); // MainSettingsProfile class
+    void addNewAutoProfile(AddEditAutoProfileDialog *dialog);                              // MainSettingsProfile class
+    void autoProfileButtonsActiveState(bool enabled);                                      // MainSettingsProfile class
+    void changeKeyRepeatWidgetsStatus(bool enabled);                                       // MainSettingsProfile class
+    void checkSmoothingWidgetStatus(bool enabled);                                         // MainSettingsMouse class
+    void resetMouseAcceleration();                                                         // MainSettingsMouse class
+    void selectLogFile();                                                                  // MainSettingsLogs class
 
-private slots:
+  private slots:
     void on_resetBtn_clicked();
 
-private:
+  private:
     Ui::MainSettingsDialog *ui;
 
     AntiMicroSettings *settings;
 
-    QMap<QString, AutoProfileInfo*> defaultAutoProfiles; // Default profiles assigned to a specific device
-    QMap<QString, QList<AutoProfileInfo*> > deviceAutoProfiles; // Profiles assigned with an association with an application
-    QMap<QString, QList<AutoProfileInfo*> > exeAutoProfiles;
+    QMap<QString, AutoProfileInfo *> defaultAutoProfiles;       // Default profiles assigned to a specific device
+    QMap<QString, QList<AutoProfileInfo *>> deviceAutoProfiles; // Profiles assigned with an association with an application
+    QMap<QString, QList<AutoProfileInfo *>> exeAutoProfiles;
 
-    QList<AutoProfileInfo*> defaultList;
-    QList<AutoProfileInfo*> profileList;
+    QList<AutoProfileInfo *> defaultList;
+    QList<AutoProfileInfo *> profileList;
 
-    AutoProfileInfo* allDefaultProfile;
-    QList<InputDevice*> *connectedDevices;
+    AutoProfileInfo *allDefaultProfile;
+    QList<InputDevice *> *connectedDevices;
 
     void resetGeneralSett();
     void resetAutoProfSett();

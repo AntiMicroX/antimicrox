@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef AXISEDITDIALOG_H
 #define AXISEDITDIALOG_H
 
 #include <QDialog>
-
 
 class JoyAxis;
 class SetAxisThrottleDialog;
@@ -34,20 +32,20 @@ class AxisEditDialog;
 class AxisEditDialog : public QDialog
 {
     Q_OBJECT
-    
-public:
-    explicit AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *parent=0);
-    AxisEditDialog(QWidget *parent=0);
+
+  public:
+    explicit AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *parent = 0);
+    AxisEditDialog(QWidget *parent = 0);
     ~AxisEditDialog();
 
-protected:
+  protected:
     void selectAxisCurrentPreset();
     void selectTriggerPreset();
 
     void buildTriggerPresetsMenu();
     void buildAxisPresetsMenu();
 
-private:
+  private:
     Ui::AxisEditDialog *ui;
 
     JoyAxis *m_axis;
@@ -55,7 +53,7 @@ private:
     SetAxisThrottleDialog *setAxisThrottleConfirm;
     int initialThrottleState;
 
-private slots:
+  private slots:
     void implementAxisPresets(int index);
     void implementTriggerPresets(int index);
     void implementPresets(int index);

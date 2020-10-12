@@ -18,19 +18,18 @@
 
 #include "joytabwidgetcontainer.h"
 
-#include "messagehandler.h"
 #include "joystick.h"
 #include "joytabwidget.h"
+#include "messagehandler.h"
 
-#include <QWidget>
-#include <QTabBar>
 #include <QDebug>
+#include <QTabBar>
+#include <QWidget>
 
-JoyTabWidgetContainer::JoyTabWidgetContainer(QWidget *parent) :
-    QTabWidget(parent)
+JoyTabWidgetContainer::JoyTabWidgetContainer(QWidget *parent)
+    : QTabWidget(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 }
 
 int JoyTabWidgetContainer::addTab(QWidget *widget, const QString &string)
@@ -55,7 +54,7 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
     return QTabWidget::addTab(widget, string);
 }
 
-void JoyTabWidgetContainer::flash(InputDevice* joystick)
+void JoyTabWidgetContainer::flash(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -63,7 +62,7 @@ void JoyTabWidgetContainer::flash(InputDevice* joystick)
 
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
-        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
 
         if ((tab != nullptr) && (tab->getJoystick() == joystick))
         {
@@ -80,7 +79,7 @@ void JoyTabWidgetContainer::unflash(InputDevice *joystick)
     bool found = false;
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
-        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
         if ((tab != nullptr) && (tab->getJoystick() == joystick))
         {
             tabBar()->setTabTextColor(i, Qt::black);
@@ -97,7 +96,7 @@ void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
-        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
         if (tab == tabWidget)
         {
             tabBar()->setTabTextColor(i, Qt::black);
@@ -111,7 +110,7 @@ void JoyTabWidgetContainer::unflashAll()
 
     for (int i = 0; i < tabBar()->count(); i++)
     {
-        JoyTabWidget *tab = qobject_cast<JoyTabWidget*>(widget(i)); // static_cast
+        JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
         if (tab != nullptr)
         {
             tabBar()->setTabTextColor(i, Qt::black);
@@ -133,10 +132,8 @@ void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    connect(joystick, &InputDevice::clicked, this, [this, joystick] {
-        flash(joystick);
-    }, Qt::QueuedConnection);
-    connect(joystick, &InputDevice::released, this, [this, joystick] {
-        unflash(joystick);
-    }, Qt::QueuedConnection);
+    connect(
+        joystick, &InputDevice::clicked, this, [this, joystick] { flash(joystick); }, Qt::QueuedConnection);
+    connect(
+        joystick, &InputDevice::released, this, [this, joystick] { unflash(joystick); }, Qt::QueuedConnection);
 }

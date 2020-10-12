@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLERTRIGGER_H
 #define GAMECONTROLLERTRIGGER_H
 
@@ -30,7 +29,7 @@ class GameControllerTrigger : public JoyAxis
 {
     Q_OBJECT
 
-public:
+  public:
     explicit GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
     virtual QString getXmlName(); // GameControllerTriggerXml class
@@ -42,13 +41,12 @@ public:
 
     static const ThrottleTypes DEFAULTTHROTTLE;
 
-public slots:
+  public slots:
     virtual void reset();
     virtual void reset(int index);
 
-protected:
+  protected:
     void correctJoystickThrottle();
-
 };
 
 #endif // GAMECONTROLLERTRIGGER_H

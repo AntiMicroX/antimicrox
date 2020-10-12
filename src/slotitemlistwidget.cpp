@@ -21,23 +21,20 @@
 #include "messagehandler.h"
 #include "simplekeygrabberbutton.h"
 
-#include <QListWidgetItem>
-#include <QKeyEvent>
-#include <QWidget>
 #include <QDebug>
+#include <QKeyEvent>
+#include <QListWidgetItem>
+#include <QWidget>
 
-
-
-SlotItemListWidget::SlotItemListWidget(QWidget *parent) :
-    QListWidget(parent)
+SlotItemListWidget::SlotItemListWidget(QWidget *parent)
+    : QListWidget(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 }
 
 void SlotItemListWidget::insertItems(int row, QList<QListWidgetItem *> items)
 {
-    for(auto el : items)
+    for (auto el : items)
     {
         insertItem(row, el);
         row++;
@@ -54,23 +51,23 @@ void SlotItemListWidget::keyPressEvent(QKeyEvent *event)
     SimpleKeyGrabberButton *tempbutton = nullptr;
 
     if (currentItem != nullptr)
-        tempbutton = currentItem->data(Qt::UserRole).value<SimpleKeyGrabberButton*>();
+        tempbutton = currentItem->data(Qt::UserRole).value<SimpleKeyGrabberButton *>();
 
     if (tempbutton != nullptr && tempbutton->isGrabbing())
     {
         switch (event->key())
         {
-            case Qt::Key_Home:
-            case Qt::Key_End:
-            {
-                propogate = false;
-                break;
-            }
+        case Qt::Key_Home:
+        case Qt::Key_End: {
+            propogate = false;
+            break;
+        }
 
-            default:
+        default:
             break;
         }
     }
 
-    if (propogate) QListWidget::keyPressEvent(event);
+    if (propogate)
+        QListWidget::keyPressEvent(event);
 }

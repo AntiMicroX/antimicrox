@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYCONTROLSTICKEDITDIALOGHELPER_H
 #define JOYCONTROLSTICKEDITDIALOGHELPER_H
 
@@ -27,20 +26,20 @@ class JoyButtonSlot;
 class JoyControlStickEditDialogHelper : public QObject
 {
     Q_OBJECT
-public:
+  public:
     explicit JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent = nullptr);
-    void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> *tempSlots);
+    void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> *tempSlots);
     void clearPendingSlots();
-    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> const& getPendingSlots();
+    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> const &getPendingSlots();
 
-public slots:
+  public slots:
     void setFromPendingSlots();
     void clearButtonsSlotsEventReset();
     void updateControlStickDelay(int value);
 
-private:
+  private:
     JoyControlStick *stick;
-    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot*> pendingSlots;
+    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> pendingSlots;
 };
 
 #endif // JOYCONTROLSTICKEDITDIALOGHELPER_H

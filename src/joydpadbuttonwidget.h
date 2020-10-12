@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYDPADBUTTONWIDGET_H
 #define JOYDPADBUTTONWIDGET_H
 
@@ -29,12 +28,11 @@ class JoyDPadButtonWidget : public JoyButtonWidget
 {
     Q_OBJECT
 
-public:
-    explicit JoyDPadButtonWidget(JoyButton* button, bool displayNames, QWidget *parent = nullptr);
+  public:
+    explicit JoyDPadButtonWidget(JoyButton *button, bool displayNames, QWidget *parent = nullptr);
 
-protected:
+  protected:
     virtual QString generateLabel() override;
-
 };
 
 #endif // JOYDPADBUTTONWIDGET_H

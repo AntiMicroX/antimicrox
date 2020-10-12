@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSEDPADSETTINGSDIALOG_H
 #define MOUSEDPADSETTINGSDIALOG_H
 
@@ -25,7 +24,6 @@
 #include "mousesettingsdialog.h"
 #include "uihelpers/mousedpadsettingsdialoghelper.h"
 
-
 class JoyDPad;
 class SpringModeRegionPreview;
 
@@ -33,14 +31,14 @@ class MouseDPadSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent = nullptr);
 
     JoyDPad *getDPad() const;
     SpringModeRegionPreview *getSpringPreviewWidget() const;
-    MouseDpadSettingsDialogHelper const& getHelper();
+    MouseDpadSettingsDialogHelper const &getHelper();
 
-protected:
+  protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
@@ -49,7 +47,7 @@ protected:
     void calculateReleaseSpringRadius();
     void calculateExtraAccelerationCurve();
 
-public slots:
+  public slots:
     void changeMouseMode(int index);
     void changeMouseCurve(int index);
     void updateConfigHorizontalSpeed(int value);
@@ -62,17 +60,16 @@ public slots:
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
 
-private slots:
+  private slots:
     void updateReleaseSpringRadius(int value);
     void updateExtraAccelerationCurve(int index);
 
-private:
-    MouseDpadSettingsDialogHelper& getHelperLocal();
+  private:
+    MouseDpadSettingsDialogHelper &getHelperLocal();
 
     JoyDPad *dpad;
     SpringModeRegionPreview *springPreviewWidget;
     MouseDpadSettingsDialogHelper helper;
-
 };
 
 #endif // MOUSEDPADSETTINGSDIALOG_H

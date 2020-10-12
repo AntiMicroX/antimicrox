@@ -21,8 +21,6 @@
 
 #include <cmath>
 
-
-
 // ---- JOYBUTTON --- //
 
 const QString GlobalVariables::JoyButton::xmlName = "button";
@@ -32,7 +30,7 @@ const int GlobalVariables::JoyButton::ENABLEDTURBODEFAULT = 100;
 const double GlobalVariables::JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double GlobalVariables::JoyButton::mouseSpeedModifier = GlobalVariables::JoyButton::DEFAULTMOUSESPEEDMOD;
 const int GlobalVariables::JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
-const int GlobalVariables::JoyButton::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
+const int GlobalVariables::JoyButton::DEFAULTKEYREPEATRATE = 40;   // 40 ms. 25 times per second
 const bool GlobalVariables::JoyButton::DEFAULTTOGGLE = false;
 const int GlobalVariables::JoyButton::DEFAULTTURBOINTERVAL = 0;
 const bool GlobalVariables::JoyButton::DEFAULTUSETURBO = false;
@@ -87,7 +85,6 @@ int GlobalVariables::JoyButton::mouseRefreshRate = 5;
 int GlobalVariables::JoyButton::springModeScreen = -1;
 int GlobalVariables::JoyButton::gamepadRefreshRate = 10;
 
-
 // ---- ANTIMICROSETTINGS --- //
 
 const bool GlobalVariables::AntimicroSettings::defaultDisabledWinEnhanced = false;
@@ -101,9 +98,9 @@ const int GlobalVariables::InputDevice::NUMBER_JOYSETS = 8;
 const int GlobalVariables::InputDevice::DEFAULTKEYPRESSTIME = 100;
 const int GlobalVariables::InputDevice::RAISEDDEADZONE = 20000;
 const int GlobalVariables::InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
-const int GlobalVariables::InputDevice::DEFAULTKEYREPEATRATE = 40; // 40 ms. 25 times per second
+const int GlobalVariables::InputDevice::DEFAULTKEYREPEATRATE = 40;   // 40 ms. 25 times per second
 
-//QRegExp GlobalVariables::InputDevice::emptyGUID("^[0]+$");
+// QRegExp GlobalVariables::InputDevice::emptyGUID("^[0]+$");
 QRegExp GlobalVariables::InputDevice::emptyUniqueID("^[0]+$");
 
 // ---- JOYAXIS ---- //
@@ -119,8 +116,7 @@ const float GlobalVariables::JoyAxis::JOYSPEED = 20.0;
 
 const QString GlobalVariables::JoyAxis::xmlName = "axis";
 
-
-    #ifdef WITH_X11
+#ifdef WITH_X11
 
 // ---- X11EXTRAS ---- //
 
@@ -130,18 +126,15 @@ const QString GlobalVariables::X11Extras::xtestMouseDeviceName = QString("Virtua
 
 QString GlobalVariables::X11Extras::_customDisplayString = QString("");
 
-    #endif
-
+#endif
 
 // ---- GameController ---- //
 
 const QString GlobalVariables::GameController::xmlName = "gamecontroller";
 
-
 // ---- GameControllerDPad ---- //
 
 const QString GlobalVariables::GameControllerDPad::xmlName = "dpad";
-
 
 // ---- GameControllerTrigger ---- //
 
@@ -150,38 +143,31 @@ const int GlobalVariables::GameControllerTrigger::AXISMAXZONE = 32000;
 
 const QString GlobalVariables::GameControllerTrigger::xmlName = "trigger";
 
-
 // ---- GameControllerTriggerButton ---- //
 
 const QString GlobalVariables::GameControllerTriggerButton::xmlName = "triggerbutton";
-
 
 // ---- InputDaemon ---- //
 
 const int GlobalVariables::InputDaemon::GAMECONTROLLERTRIGGERRELEASE = 16384;
 
-
 // ---- VDPad ---- //
 
 const QString GlobalVariables::VDPad::xmlName = "vdpad";
-
 
 // ---- SetJoystick ---- //
 
 const int GlobalVariables::SetJoystick::MAXNAMELENGTH = 30;
 const int GlobalVariables::SetJoystick::RAISEDDEADZONE = 20000;
 
-
 // ---- Joystick ---- //
 
 const QString GlobalVariables::Joystick::xmlName = "joystick";
-
 
 // ---- JoyDPad ---- //
 
 const QString GlobalVariables::JoyDPad::xmlName = "dpad";
 const int GlobalVariables::JoyDPad::DEFAULTDPADDELAY = 0;
-
 
 // ---- JoyControlStick ---- //
 
@@ -195,34 +181,27 @@ const int GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE = 45;
 const double GlobalVariables::JoyControlStick::DEFAULTCIRCLE = 0.0;
 const int GlobalVariables::JoyControlStick::DEFAULTSTICKDELAY = 0;
 
-
 // ---- JoyButtonSlot ---- //
 
 const int GlobalVariables::JoyButtonSlot::JOYSPEED = 20;
 const QString GlobalVariables::JoyButtonSlot::xmlName = "slot";
 const int GlobalVariables::JoyButtonSlot::MAXTEXTENTRYDISPLAYLENGTH = 40;
 
-
-
 // ---- AdvanceButtonDialog ---- //
 
 const int GlobalVariables::AdvanceButtonDialog::MINIMUMTURBO = 2;
-
 
 // ---- JoyAxisButton ---- //
 
 const QString GlobalVariables::JoyAxisButton::xmlName = "axisbutton";
 
-
 // ---- JoyControlStickButton ---- //
 
 const QString GlobalVariables::JoyControlStickButton::xmlName = "stickbutton";
 
-
 // ---- JoyControlStickModifierButton ---- //
 
 const QString GlobalVariables::JoyControlStickModifierButton::xmlName = "stickmodifierbutton";
-
 
 // ---- JoyDPadButton ---- //
 

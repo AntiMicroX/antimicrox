@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef CALIBRATION_H
 #define CALIBRATION_H
 
@@ -24,7 +23,6 @@
 #include <SDL2/SDL_joystick.h>
 
 #include <QProgressBar>
-
 
 class JoyControlStick;
 class InputDevice;
@@ -37,23 +35,22 @@ class Calibration : public QWidget
 {
     Q_OBJECT
 
-public:
-    explicit Calibration(InputDevice* joystick, QWidget *parent = 0);
+  public:
+    explicit Calibration(InputDevice *joystick, QWidget *parent = 0);
     ~Calibration();
 
     int chooseMinMax(QString min_max_sign, QList<int> ax_values);
     void setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y);
 
-protected:
+  protected:
     void setProgressBars(int setJoyNr, int stickNr);
-    void setProgressBars(JoyControlStick* controlstick);
+    void setProgressBars(JoyControlStick *controlstick);
     void updateAxesBox();
     void restoreCalValues();
     bool enoughProb(int x_count, int y_count, QString character);
     int calibratedDeadZone(int center, int deadzone);
 
-
-private:
+  private:
     static int fakeMapFunc(const int &x);
     static void summarizeValues(int &numbFromList, const int &mappednumb);
     static void getMinVal(int &numbFromList, const int &mappednumb);
@@ -61,14 +58,14 @@ private:
 
     Ui::Calibration *ui;
     JoyControlStick *stick;
-    InputDevice* currentJoystick;
+    InputDevice *currentJoystick;
     JoyControlStickEditDialogHelper helper;
-    JoyAxis* joyAxisX;
-    JoyAxis* joyAxisY;
+    JoyAxis *joyAxisX;
+    JoyAxis *joyAxisY;
     QProgressBar *axisBarX;
     QProgressBar *axisBarY;
-    QMultiHash<QString,int> x_es_val;
-    QMultiHash<QString,int> y_es_val;
+    QMultiHash<QString, int> x_es_val;
+    QMultiHash<QString, int> y_es_val;
     int center_calibrated_x;
     int center_calibrated_y;
     int max_axis_val_x;
@@ -82,7 +79,7 @@ private:
     bool calibrated;
     QString text;
 
-public slots:
+  public slots:
     void saveSettings();
     void checkX(int value);
     void checkY(int value);
@@ -91,13 +88,12 @@ public slots:
     void startSecondStep();
     void startLastStep();
 
-protected slots:
+  protected slots:
     void resetSettings(bool silentReset, bool clicked = false);
 
-signals:
+  signals:
     void deadZoneChanged(int value);
     void propertyUpdated();
-
 };
 
 #endif // CALIBRATION_H

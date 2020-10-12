@@ -16,18 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef QTKEYMAPPERBASE_H
 #define QTKEYMAPPERBASE_H
 
-#include <QObject>
 #include <QHash>
+#include <QObject>
 
 class QtKeyMapperBase : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit QtKeyMapperBase(QObject *parent = nullptr);
 
     typedef struct _charKeyInformation
@@ -37,7 +36,7 @@ public:
     } charKeyInformation;
 
     virtual int returnVirtualKey(int qkey);
-    virtual int returnQtKey(int key, int scancode=0);
+    virtual int returnQtKey(int key, int scancode = 0);
     virtual bool isModifier(int qkey);
     charKeyInformation getCharKeyInformation(QChar value);
     QString getIdentifier();
@@ -46,7 +45,8 @@ public:
     static const int customKeyPrefix = 0x20000000;
     static const int nativeKeyPrefix = 0x60000000;
 
-    enum {
+    enum
+    {
         AntKey_Shift_R = Qt::Key_Shift | customQtKeyPrefix,
         AntKey_Control_R = Qt::Key_Control | customQtKeyPrefix,
         AntKey_Shift_Lock = 0xffe6 | customKeyPrefix, // XK_Shift_Lock | 0x20000000
@@ -82,7 +82,7 @@ public:
         AntKey_KP_9 = 0xffb9 | customKeyPrefix
     };
 
-protected:
+  protected:
     virtual void populateMappingHashes() = 0;
     virtual void populateCharKeyInformation() = 0;
 
@@ -90,7 +90,6 @@ protected:
     QHash<int, int> virtKeyToQtKeyHash;
     QHash<int, charKeyInformation> virtkeyToCharKeyInfo; // Unicode representation -> VK+Modifier information
     QString identifier;
-
 };
 
 #endif // QTKEYMAPPERBASE_H

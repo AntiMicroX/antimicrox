@@ -18,18 +18,19 @@
 
 #include "joycontrolstickbuttonpushbutton.h"
 
-#include "messagehandler.h"
+#include "joybuttoncontextmenu.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
-#include "joybuttoncontextmenu.h"
 #include "joycontrolstick.h"
+#include "messagehandler.h"
 
+#include <QDebug>
 #include <QMenu>
 #include <QWidget>
-#include <QDebug>
 
-JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStickButton *button, bool displayNames, QWidget *parent) :
-    FlashButtonWidget(displayNames, parent)
+JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStickButton *button, bool displayNames,
+                                                                 QWidget *parent)
+    : FlashButtonWidget(displayNames, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -41,14 +42,15 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
     tryFlash();
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, &JoyControlStickButtonPushButton::customContextMenuRequested, this, &JoyControlStickButtonPushButton::showContextMenu);
+    connect(this, &JoyControlStickButtonPushButton::customContextMenuRequested, this,
+            &JoyControlStickButtonPushButton::showContextMenu);
     connect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
     connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel);
-    connect(button->getStick()->getModifierButton(), &JoyControlStickModifierButton::activeZoneChanged,
-            this, &JoyControlStickButtonPushButton::refreshLabel);
+    connect(button->getStick()->getModifierButton(), &JoyControlStickModifierButton::activeZoneChanged, this,
+            &JoyControlStickButtonPushButton::refreshLabel);
 }
 
-JoyControlStickButton* JoyControlStickButtonPushButton::getButton()
+JoyControlStickButton *JoyControlStickButtonPushButton::getButton()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -63,7 +65,8 @@ void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
     if (this->button != nullptr)
     {
         disconnect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
-        disconnect(this->button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel);
+        disconnect(this->button, &JoyControlStickButton::activeZoneChanged, this,
+                   &JoyControlStickButtonPushButton::refreshLabel);
     }
 
     this->button = button;
@@ -71,9 +74,9 @@ void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
     enableFlashes();
 
     connect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
-    connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel, Qt::QueuedConnection);
+    connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel,
+            Qt::QueuedConnection);
 }
-
 
 void JoyControlStickButtonPushButton::disableFlashes()
 {
@@ -93,8 +96,10 @@ void JoyControlStickButtonPushButton::enableFlashes()
 
     if (button != nullptr)
     {
-        connect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash, Qt::QueuedConnection);
-        connect(button, &JoyControlStickButton::released, this, &JoyControlStickButtonPushButton::unflash, Qt::QueuedConnection);
+        connect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash,
+                Qt::QueuedConnection);
+        connect(button, &JoyControlStickButton::released, this, &JoyControlStickButtonPushButton::unflash,
+                Qt::QueuedConnection);
     }
 }
 
@@ -115,8 +120,7 @@ QString JoyControlStickButtonPushButton::generateLabel()
 
             temp = button->getActionName().replace("&", "&&");
 
-        }
-        else
+        } else
         {
             qDebug() << "Action name was empty";
 

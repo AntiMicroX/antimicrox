@@ -19,27 +19,26 @@
 #include "joystickstatuswindow.h"
 #include "ui_joystickstatuswindow.h"
 
-#include "globalvariables.h"
-#include "messagehandler.h"
-#include "joybuttonstatusbox.h"
-#include "inputdevice.h"
 #include "common.h"
-#include "joydpad.h"
+#include "globalvariables.h"
+#include "inputdevice.h"
+#include "joybuttonstatusbox.h"
 #include "joybuttontypes/joydpadbutton.h"
+#include "joydpad.h"
+#include "messagehandler.h"
 
 #include <QDebug>
-#include <QProgressBar>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QGridLayout>
+#include <QHBoxLayout>
 #include <QLabel>
+#include <QProgressBar>
 #include <QSpacerItem>
+#include <QVBoxLayout>
 #include <QWidget>
 
-
-JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::JoystickStatusWindow)
+JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::JoystickStatusWindow)
 {
     ui->setupUi(this);
 
@@ -50,40 +49,38 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     PadderCommon::inputDaemonMutex.lock();
 
-    setWindowTitle(tr("%1 (#%2) Properties").arg(joystick->getSDLName())
-                   .arg(joystick->getRealJoyNumber()));
+    setWindowTitle(tr("%1 (#%2) Properties").arg(joystick->getSDLName()).arg(joystick->getRealJoyNumber()));
 
     SDL_JoystickPowerLevel powerLevel = SDL_JoystickCurrentPowerLevel(joystick->getJoyHandle());
 
-
-    switch(powerLevel)
+    switch (powerLevel)
     {
-     case SDL_JOYSTICK_POWER_EMPTY:
+    case SDL_JOYSTICK_POWER_EMPTY:
 
-            ui->batteryValueLabel->setText("Empty");
-            break;
+        ui->batteryValueLabel->setText("Empty");
+        break;
 
-     case SDL_JOYSTICK_POWER_LOW:
+    case SDL_JOYSTICK_POWER_LOW:
 
-            ui->batteryValueLabel->setText("Low");
-            break;
+        ui->batteryValueLabel->setText("Low");
+        break;
 
-     case SDL_JOYSTICK_POWER_MEDIUM:
+    case SDL_JOYSTICK_POWER_MEDIUM:
 
-            ui->batteryValueLabel->setText("Medium");
-            break;
+        ui->batteryValueLabel->setText("Medium");
+        break;
 
-     case SDL_JOYSTICK_POWER_FULL:
+    case SDL_JOYSTICK_POWER_FULL:
 
-            ui->batteryValueLabel->setText("Full");
-            break;
+        ui->batteryValueLabel->setText("Full");
+        break;
 
-     default:
+    default:
 
-            ui->batteryLabel->hide();
-            ui->batteryValueLabel->hide();
-            break;
-     }
+        ui->batteryLabel->hide();
+        ui->batteryValueLabel->hide();
+        break;
+    }
 
     ui->joystickNameLabel->setText(joystick->getSDLName());
     ui->joystickNumberLabel->setText(QString::number(joystick->getRealJoyNumber()));
@@ -129,14 +126,13 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     int currentRow = 0;
     int currentColumn = 0;
-    for (int i=0; i < joystick->getNumberButtons(); i++)
+    for (int i = 0; i < joystick->getNumberButtons(); i++)
     {
         JoyButton *button = joystick->getActiveSetJoystick()->getJoyButton(i);
         if (button != nullptr)
         {
             JoyButtonStatusBox *statusbox = new JoyButtonStatusBox(button);
-            statusbox->setSizePolicy(QSizePolicy::Expanding,
-                                     QSizePolicy::Expanding);
+            statusbox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
             buttonsGrid->addWidget(statusbox, currentRow, currentColumn);
             currentColumn++;
@@ -185,18 +181,18 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
 
     ui->hatsGroupBox->setLayout(hatsBox);
 
-//    QString guidString = joystick->getGUIDString();
-//    if (!guidString.isEmpty())
-//    {
-//        ui->guidHeaderLabel->show();
-//        ui->guidLabel->setText(guidString);
-//        ui->guidLabel->show();
-//    }
-//    else
-//    {
-//        ui->guidHeaderLabel->hide();
-//        ui->guidLabel->hide();
-//    }
+    //    QString guidString = joystick->getGUIDString();
+    //    if (!guidString.isEmpty())
+    //    {
+    //        ui->guidHeaderLabel->show();
+    //        ui->guidLabel->setText(guidString);
+    //        ui->guidLabel->show();
+    //    }
+    //    else
+    //    {
+    //        ui->guidHeaderLabel->hide();
+    //        ui->guidLabel->hide();
+    //    }
 
     QString uniqueString = joystick->getUniqueIDString();
 
@@ -205,8 +201,7 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
         ui->guidHeaderLabel->show();
         ui->guidLabel->setText(uniqueString);
         ui->guidLabel->show();
-    }
-    else
+    } else
     {
         ui->guidHeaderLabel->hide();
         ui->guidLabel->hide();
@@ -255,7 +250,4 @@ void JoystickStatusWindow::obliterate()
     this->done(QDialogButtonBox::DestructiveRole);
 }
 
-InputDevice* JoystickStatusWindow::getJoystick() const {
-
-    return joystick;
-}
+InputDevice *JoystickStatusWindow::getJoystick() const { return joystick; }

@@ -16,25 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef X11EXTRAS_H
 #define X11EXTRAS_H
 
+#include <QHash>
 #include <QObject>
 #include <QPoint>
-#include <QHash>
 
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
-
-
 
 class X11Extras : public QObject
 {
     Q_OBJECT
 
-public:
-    struct ptrInformation {
+  public:
+    struct ptrInformation
+    {
         long id;
         int threshold;
         int accelNum;
@@ -52,7 +50,7 @@ public:
     ~X11Extras();
 
     unsigned long appRootWindow(int screen = -1);
-    Display* display();
+    Display *display();
     bool hasValidDisplay();
     QString getDisplayString(QString xcodestring);
     int getApplicationPid(Window window);
@@ -75,14 +73,14 @@ public:
 
     static void setCustomDisplay(QString displayString);
 
-    const char* getEnvVariable(const char* var) const;
+    const char *getEnvVariable(const char *var) const;
 
-    static X11Extras* getInstance();
+    static X11Extras *getInstance();
     static void deleteInstance();
 
-    QHash<QString, QString> const& getKnownAliases();
+    QHash<QString, QString> const &getKnownAliases();
 
-protected:
+  protected:
     explicit X11Extras(QObject *parent = nullptr);
 
     void populateKnownAliases();
@@ -90,16 +88,18 @@ protected:
     bool windowIsViewable(Display *display, Window window);
     bool isWindowRelevant(Display *display, Window window);
 
-    static X11Extras *_instance;  
-    
-public slots:
+    static X11Extras *_instance;
+
+  public slots:
     QPoint getPos();
 
-private:
-    void checkPropertyOnWin(bool windowCorrected, Window& window, Window& parent, Window& finalwindow, Window& root, Window *children, Display *display, unsigned int& num_children);
+  private:
+    void checkPropertyOnWin(bool windowCorrected, Window &window, Window &parent, Window &finalwindow, Window &root,
+                            Window *children, Display *display, unsigned int &num_children);
     void freeDisplay();
-    void checkFeedback(XFeedbackState *temp, int& num_feedbacks, int& feedback_id);
-    void findVirtualPtr(int num_devices, XIDeviceInfo *current_devices, XIDeviceInfo *mouse_device, XIDeviceInfo *all_devices, QString pointerName);
+    void checkFeedback(XFeedbackState *temp, int &num_feedbacks, int &feedback_id);
+    void findVirtualPtr(int num_devices, XIDeviceInfo *current_devices, XIDeviceInfo *mouse_device,
+                        XIDeviceInfo *all_devices, QString pointerName);
 
     QHash<QString, QString> knownAliases;
     Display *_display;

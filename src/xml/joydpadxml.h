@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYDPADXML_H
 #define JOYDPADXML_H
 
@@ -24,20 +23,18 @@
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
-template<class T>
-class JoyDPadXml : public QObject
+template <class T> class JoyDPadXml : public QObject
 {
 
-public:
-    explicit JoyDPadXml(T* joydpad, QObject *parent = nullptr);
+  public:
+    explicit JoyDPadXml(T *joydpad, QObject *parent = nullptr);
 
-    void readConfig(QXmlStreamReader *xml); // JoyDPadXml class
+    void readConfig(QXmlStreamReader *xml);  // JoyDPadXml class
     void writeConfig(QXmlStreamWriter *xml); // JoyDPadXml class
     bool readMainConfig(QXmlStreamReader *xml);
 
-private:
-
-    T* m_joydpad;
+  private:
+    T *m_joydpad;
 };
 
 #include "joydpadxml.cpp"

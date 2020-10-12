@@ -20,125 +20,126 @@
 
 #include "messagehandler.h"
 
-#include <QDebug>
-#include <QReadWriteLock>
 #include <QApplication>
+#include <QDebug>
 #include <QLibraryInfo>
+#include <QReadWriteLock>
 
-
-namespace PadderCommon
+namespace PadderCommon {
+QString preferredProfileDir(AntiMicroSettings *settings)
 {
-    QString preferredProfileDir(AntiMicroSettings *settings)
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QString lastProfileDir = settings->value("LastProfileDir", "").toString();
+    QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
+    QString lookupDir = QString();
+
+    if (!defaultProfileDir.isEmpty())
     {
-        qInstallMessageHandler(MessageHandler::myMessageOutput);
+        QFileInfo dirinfo(defaultProfileDir);
 
-        QString lastProfileDir = settings->value("LastProfileDir", "").toString();
-        QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
-        QString lookupDir = QString();
-
-        if (!defaultProfileDir.isEmpty())
-        {
-            QFileInfo dirinfo(defaultProfileDir);
-
-            if (dirinfo.isDir() && dirinfo.isReadable()) lookupDir = defaultProfileDir;
-        }
-
-        if (lookupDir.isEmpty() && !lastProfileDir.isEmpty())
-        {
-            QFileInfo dirinfo(lastProfileDir);
-
-            if (dirinfo.isDir() && dirinfo.isReadable()) lookupDir = lastProfileDir;
-        }
-
-        if (lookupDir.isEmpty())
-        {
-            lookupDir = QDir::homePath();
-        }
-
-        return lookupDir;
+        if (dirinfo.isDir() && dirinfo.isReadable())
+            lookupDir = defaultProfileDir;
     }
 
-    QStringList arguments(const int &argc, char **argv)
+    if (lookupDir.isEmpty() && !lastProfileDir.isEmpty())
     {
-        qInstallMessageHandler(MessageHandler::myMessageOutput);
+        QFileInfo dirinfo(lastProfileDir);
 
-        QStringList list = QStringList();
-
-        for (int a = 0; a < argc; ++a)
-            list << QString::fromLocal8Bit(argv[a]);
-
-        return list;
+        if (dirinfo.isDir() && dirinfo.isReadable())
+            lookupDir = lastProfileDir;
     }
 
-    QStringList parseArgumentsString(QString tempString)
+    if (lookupDir.isEmpty())
     {
-        qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-        bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
-        QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
-        QStringList finalList = QStringList();
-        QStringListIterator iter(tempList);
-
-        while (iter.hasNext())
-        {
-            QString temp = iter.next();
-
-            if (inside) finalList.append(temp);
-            else finalList.append(temp.split(QRegExp("\\s+"), QString::SkipEmptyParts));
-
-            inside = !inside;
-        }
-
-        return finalList;
+        lookupDir = QDir::homePath();
     }
 
-    /**
-     * @brief Reload main application and base Qt translation files.
-     * @param Based Qt translator
-     * @param Application translator
-     * @param Language code
-     */
-    void reloadTranslations(QTranslator *translator,
-                           QTranslator *appTranslator,
-                           QString language)
-    {
-        qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-        // Remove application specific translation strings
-        qApp->removeTranslator(translator);
-
-        // Remove old Qt translation strings
-        qApp->removeTranslator(appTranslator);
-
-        // Load new Qt translation strings
-        translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-
-        qApp->installTranslator(appTranslator);
-
-        // Load application specific translation strings
-        translator->load("antimicrox_" + language, QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
-
-        qApp->installTranslator(translator);
-    }
-
-    void lockInputDevices()
-    {
-        qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-        sdlWaitMutex.lock();
-    }
-
-    void unlockInputDevices()
-    {
-        qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-        sdlWaitMutex.unlock();
-    }
-
-    QWaitCondition waitThisOut;
-    QMutex sdlWaitMutex;
-    QMutex inputDaemonMutex;
-    QReadWriteLock editingLock;
-    bool editingBindings = false;
-    MouseHelper mouseHelperObj;
+    return lookupDir;
 }
+
+QStringList arguments(const int &argc, char **argv)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    QStringList list = QStringList();
+
+    for (int a = 0; a < argc; ++a)
+        list << QString::fromLocal8Bit(argv[a]);
+
+    return list;
+}
+
+QStringList parseArgumentsString(QString tempString)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
+    QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
+    QStringList finalList = QStringList();
+    QStringListIterator iter(tempList);
+
+    while (iter.hasNext())
+    {
+        QString temp = iter.next();
+
+        if (inside)
+            finalList.append(temp);
+        else
+            finalList.append(temp.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+
+        inside = !inside;
+    }
+
+    return finalList;
+}
+
+/**
+ * @brief Reload main application and base Qt translation files.
+ * @param Based Qt translator
+ * @param Application translator
+ * @param Language code
+ */
+void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QString language)
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    // Remove application specific translation strings
+    qApp->removeTranslator(translator);
+
+    // Remove old Qt translation strings
+    qApp->removeTranslator(appTranslator);
+
+    // Load new Qt translation strings
+    translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+
+    qApp->installTranslator(appTranslator);
+
+    // Load application specific translation strings
+    translator->load("antimicrox_" + language,
+                     QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
+
+    qApp->installTranslator(translator);
+}
+
+void lockInputDevices()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    sdlWaitMutex.lock();
+}
+
+void unlockInputDevices()
+{
+    qInstallMessageHandler(MessageHandler::myMessageOutput);
+
+    sdlWaitMutex.unlock();
+}
+
+QWaitCondition waitThisOut;
+QMutex sdlWaitMutex;
+QMutex inputDaemonMutex;
+QReadWriteLock editingLock;
+bool editingBindings = false;
+MouseHelper mouseHelperObj;
+} // namespace PadderCommon

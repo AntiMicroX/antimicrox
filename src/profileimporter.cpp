@@ -2,22 +2,20 @@
 #include "ui_profileimporter.h"
 
 #include <QDebug>
-#include <QMessageBox>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QMessageBox>
 #include <QSettings>
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 using namespace std;
 
-
-
-ProfileImporter::ProfileImporter(AntiMicroXSettings* settings, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ProfileImporter)
+ProfileImporter::ProfileImporter(AntiMicroXSettings *settings, QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::ProfileImporter)
 {
     ui->setupUi(this);
 
@@ -26,24 +24,20 @@ ProfileImporter::ProfileImporter(AntiMicroXSettings* settings, QWidget *parent) 
     rewriteButtonGroup();
 }
 
-
-ProfileImporter::~ProfileImporter()
-{
-    delete ui;
-}
-
+ProfileImporter::~ProfileImporter() { delete ui; }
 
 // Author: Lex Fridman
 // http://lexfridman.com/convert-string-to-qt-keycode-in-c/
-int ProfileImporter::convertStringToQtKey(QString const & keyString)
+int ProfileImporter::convertStringToQtKey(QString const &keyString)
 {
     QKeySequence seq(keyString);
     int keyCode;
 
     // We should only working with a single key here
-    if(seq.count() == 1)
+    if (seq.count() == 1)
         keyCode = seq[0];
-    else {
+    else
+    {
         // Should be here only if a modifier key (e.g. Ctrl, Alt) is pressed.
         assert(seq.count() == 0);
 
@@ -59,52 +53,48 @@ int ProfileImporter::convertStringToQtKey(QString const & keyString)
     return keyCode;
 }
 
-
 // http://programmingknowledgeblog.blogspot.com/2013/05/c-program-to-convert-hex-to-ascii-string.html
-QChar ProfileImporter::convertHexToString_QChar(QString const & hexValue)
+QChar ProfileImporter::convertHexToString_QChar(QString const &hexValue)
 {
-   std::istringstream iss (hexValue.toStdString());
-   iss.flags(std::ios::hex);
-   int i;
-   iss >> i;
+    std::istringstream iss(hexValue.toStdString());
+    iss.flags(std::ios::hex);
+    int i;
+    iss >> i;
 
-   return QChar(i);
+    return QChar(i);
 }
 
-
-char ProfileImporter::convertHexToString_char(string const & hexValue)
+char ProfileImporter::convertHexToString_char(string const &hexValue)
 {
-   std::istringstream iss (hexValue);
-   iss.flags(std::ios::hex);
-   int i;
-   iss >> i;
+    std::istringstream iss(hexValue);
+    iss.flags(std::ios::hex);
+    int i;
+    iss >> i;
 
-   return static_cast<char>(i);
+    return static_cast<char>(i);
 }
-
 
 void ProfileImporter::putGamecontrMapping()
 {
-/*  QString mappingString = generateSDLMappingString();
+    /*  QString mappingString = generateSDLMappingString();
 
-    settings->getLock()->lock();
+        settings->getLock()->lock();
 
-    settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
-    settings->setValue(QString("Mappings/%1%2").arg(device->getGUIDString()).arg("Disable"), "0");
-    settings->sync();
+        settings->setValue(QString("Mappings/").append(device->getGUIDString()), mappingString);
+        settings->setValue(QString("Mappings/%1%2").arg(device->getGUIDString()).arg("Disable"), "0");
+        settings->sync();
 
-    bool displayMapping = settings->runtimeValue("DisplaySDLMapping", false).toBool();
-    settings->getLock()->unlock();
+        bool displayMapping = settings->runtimeValue("DisplaySDLMapping", false).toBool();
+        settings->getLock()->unlock();
 
-    if (displayMapping)
-    {
-        QTextStream out(stdout);
-        out << generateSDLMappingString();
-    }
+        if (displayMapping)
+        {
+            QTextStream out(stdout);
+            out << generateSDLMappingString();
+        }
 
-    emit mappingUpdate(mappingString, device); */
+        emit mappingUpdate(mappingString, device); */
 }
-
 
 void ProfileImporter::putSettingsToApp()
 {
@@ -113,7 +103,6 @@ void ProfileImporter::putSettingsToApp()
     // data for gamecontroller mapping
     // data for mapping from keyboard/mouse to gamecontroller
 }
-
 
 /*
    // rough draft
@@ -164,27 +153,25 @@ void ProfileImporter::putSettingsToApp()
 
     */
 
-
 bool ProfileImporter::allFilled()
 {
     if ((!ui->profileLineEdit->text().isEmpty()) && (radioBtnProfiles.checkedButton() != nullptr))
     {
         if (ui->fullSettCheckBox->isChecked())
         {
-            if (ui->configLineEdit->text().isEmpty()) return false;
-            else return true;
-        }
-        else
+            if (ui->configLineEdit->text().isEmpty())
+                return false;
+            else
+                return true;
+        } else
         {
             return true;
         }
-    }
-    else
+    } else
     {
         return false;
     }
 }
-
 
 void ProfileImporter::changeExtensionFile(QString filePath)
 {
@@ -197,8 +184,7 @@ void ProfileImporter::changeExtensionFile(QString filePath)
             QFile renamed(filePath);
             renamed.rename(filePath, strNewName);
         }
-    }
-    else
+    } else
     {
         QMessageBox box;
         box.setText(trUtf8("Extension of file is incorrect. Choose one type of profile and define full path of file."));
@@ -209,7 +195,6 @@ void ProfileImporter::changeExtensionFile(QString filePath)
     }
 }
 
-
 void ProfileImporter::backExtensionFile(QString filePath)
 {
     QFileInfo info(filePath);
@@ -219,30 +204,31 @@ void ProfileImporter::backExtensionFile(QString filePath)
     renamed.rename(filePath, strNewName);
 }
 
-
 QString ProfileImporter::extensionProfile()
 {
-    if ((radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey")) return QString("cfg");
-    else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "XPadder")) return QString("xpaddercontroller");
-    else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "Pinnacle Game Profiler")) return QString("pin");
+    if ((radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey"))
+        return QString("cfg");
+    else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "XPadder"))
+        return QString("xpaddercontroller");
+    else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "Pinnacle Game Profiler"))
+        return QString("pin");
 
     return QString("cfg");
 }
 
-
-bool ProfileImporter::properExtension(const QString& profilePath)
+bool ProfileImporter::properExtension(const QString &profilePath)
 {
     QFileInfo info(profilePath);
 
     if ((radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey") && (info.completeSuffix() == "cfg"))
     {
         return true;
-    }
-    else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "XPadder") && (info.completeSuffix() == "xpaddercontroller"))
+    } else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "XPadder") &&
+               (info.completeSuffix() == "xpaddercontroller"))
     {
         return true;
-    }
-    else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "Pinnacle Game Profiler") && (info.completeSuffix() == "pin"))
+    } else if ((radioBtnProfiles.checkedButton()->text().remove('&') == "Pinnacle Game Profiler") &&
+               (info.completeSuffix() == "pin"))
     {
         return true;
     }
@@ -250,66 +236,43 @@ bool ProfileImporter::properExtension(const QString& profilePath)
     return false;
 }
 
-
-bool ProfileImporter::properExtensionSett(const QString & settfilePath)
+bool ProfileImporter::properExtensionSett(const QString &settfilePath)
 {
     QFileInfo info(settfilePath);
 
-    if (info.completeSuffix() == "ini") return true;
+    if (info.completeSuffix() == "ini")
+        return true;
 
     return false;
 }
 
+void ProfileImporter::openFile(QString importedFilePath) { QSettings settings(importedFilePath, QSettings::NativeFormat); }
 
-void ProfileImporter::openFile(QString importedFilePath)
-{
-    QSettings settings(importedFilePath, QSettings::NativeFormat);
+void ProfileImporter::readSettGroups() {}
 
+const QString ProfileImporter::displayModeJoyToKey() { return displayedModeJoyToKey; }
 
-
-}
-
-
-void ProfileImporter::readSettGroups()
-{
-
-
-}
-
-
-const QString ProfileImporter::displayModeJoyToKey()
-{
-    return displayedModeJoyToKey;
-}
-
-
-void ProfileImporter::setDisplayModeJoyToKey(QString const & displayMode)
-{
-    displayedModeJoyToKey = displayMode;
-}
-
+void ProfileImporter::setDisplayModeJoyToKey(QString const &displayMode) { displayedModeJoyToKey = displayMode; }
 
 QString ProfileImporter::filedialogDescExt()
 {
-    if (radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey") return trUtf8("JoyToKey profiles (*.cfg)");
-    else if (radioBtnProfiles.checkedButton()->text().remove('&') == "XPadder") return trUtf8("XPadder profiles (*.xpaddercontroller)");
-    else if (radioBtnProfiles.checkedButton()->text().remove('&') == "Pinnacle Game Profiler") return trUtf8("Pinnacle Game profiles (*.pin)");
+    if (radioBtnProfiles.checkedButton()->text().remove('&') == "JoyToKey")
+        return trUtf8("JoyToKey profiles (*.cfg)");
+    else if (radioBtnProfiles.checkedButton()->text().remove('&') == "XPadder")
+        return trUtf8("XPadder profiles (*.xpaddercontroller)");
+    else if (radioBtnProfiles.checkedButton()->text().remove('&') == "Pinnacle Game Profiler")
+        return trUtf8("Pinnacle Game profiles (*.pin)");
 
     return "";
 }
 
-
 const QString ProfileImporter::importedFilePath(QString title, QString extensionFile)
 {
     QString fileName = QFileDialog::getOpenFileName(
-            this, title,
-            QFileDialog::getExistingDirectory(this, trUtf8("Find"),
-                                              QDir::currentPath()),
-            extensionFile);
+        this, title, QFileDialog::getExistingDirectory(this, trUtf8("Find"), QDir::currentPath()), extensionFile);
 
     return fileName;
 }
-
 
 void ProfileImporter::rewriteButtonGroup()
 {
@@ -317,36 +280,22 @@ void ProfileImporter::rewriteButtonGroup()
 
     qDebug() << allButtons.size();
 
-        for(int i = 0; i < allButtons.size(); ++i)
-        {
-            radioBtnProfiles.addButton(allButtons[i],i);
-        }
+    for (int i = 0; i < allButtons.size(); ++i)
+    {
+        radioBtnProfiles.addButton(allButtons[i], i);
+    }
 
     qDebug() << radioBtnProfiles.checkedId();
     qDebug() << radioBtnProfiles.checkedButton();
 }
 
+void ProfileImporter::putSettingsFromJoyToKey() {}
 
-void ProfileImporter::putSettingsFromJoyToKey()
-{
+void ProfileImporter::putSettingsFromXPadder() {}
 
-}
-
-
-void ProfileImporter::putSettingsFromXPadder()
-{
-
-}
-
-
-void ProfileImporter::putSettingsFromPinnacle()
-{
-
-}
-
+void ProfileImporter::putSettingsFromPinnacle() {}
 
 // ----------------------------- SLOTS ------------------------------------- //
-
 
 // 0 - unchecked
 // 2 - checked
@@ -354,34 +303,33 @@ void ProfileImporter::on_fullSettCheckBox_stateChanged(int state)
 {
     switch (state)
     {
-        case 0:
+    case 0:
 
-            ui->configLineEdit->clear();
-            ui->configLabel->setDisabled(true);
-            ui->configLineEdit->setDisabled(true);
-            ui->findConfigBtn->setDisabled(true);
-
-        break;
-
-        case 2:
-
-            ui->configLabel->setDisabled(false);
-            ui->configLineEdit->setDisabled(false);
-            ui->findConfigBtn->setDisabled(false);
+        ui->configLineEdit->clear();
+        ui->configLabel->setDisabled(true);
+        ui->configLineEdit->setDisabled(true);
+        ui->findConfigBtn->setDisabled(true);
 
         break;
 
-        default:
+    case 2:
 
-            ui->configLineEdit->clear();
-            ui->configLabel->setDisabled(true);
-            ui->configLineEdit->setDisabled(true);
-            ui->findConfigBtn->setDisabled(true);
+        ui->configLabel->setDisabled(false);
+        ui->configLineEdit->setDisabled(false);
+        ui->findConfigBtn->setDisabled(false);
+
+        break;
+
+    default:
+
+        ui->configLineEdit->clear();
+        ui->configLabel->setDisabled(true);
+        ui->configLineEdit->setDisabled(true);
+        ui->findConfigBtn->setDisabled(true);
 
         break;
     }
 }
-
 
 void ProfileImporter::on_AcceptBtn_clicked()
 {
@@ -393,24 +341,17 @@ void ProfileImporter::on_AcceptBtn_clicked()
         box.setStandardButtons(QMessageBox::Close);
         box.raise();
         box.exec();
-    }
-    else
+    } else
     {
-
-
     }
 }
 
-
-void ProfileImporter::on_cancelBtn_clicked()
-{
-    close();
-}
-
+void ProfileImporter::on_cancelBtn_clicked() { close(); }
 
 void ProfileImporter::on_findProfileBtn_clicked()
 {
-    if (radioBtnProfiles.checkedButton() == nullptr) {
+    if (radioBtnProfiles.checkedButton() == nullptr)
+    {
 
         QMessageBox box;
         box.setText(trUtf8("Could not define file's extension. Choose profile's type first above."));
@@ -419,7 +360,8 @@ void ProfileImporter::on_findProfileBtn_clicked()
         box.raise();
         box.exec();
 
-    } else {
+    } else
+    {
 
         QString profile = importedFilePath(trUtf8("Choose game profile"), filedialogDescExt());
 
@@ -432,7 +374,8 @@ void ProfileImporter::on_findProfileBtn_clicked()
             box.raise();
             box.exec();
 
-        } else {
+        } else
+        {
 
             ui->profileLineEdit->setText(profile);
 
@@ -441,7 +384,6 @@ void ProfileImporter::on_findProfileBtn_clicked()
         }
     }
 }
-
 
 void ProfileImporter::on_findConfigBtn_clicked()
 {
@@ -454,7 +396,8 @@ void ProfileImporter::on_findConfigBtn_clicked()
         box.raise();
         box.exec();
 
-    } else {
+    } else
+    {
 
         QString settingsFile = importedFilePath(trUtf8("Choose app settings file"), trUtf8("Settings file (*.ini)"));
 
@@ -467,7 +410,8 @@ void ProfileImporter::on_findConfigBtn_clicked()
             box.raise();
             box.exec();
 
-        } else {
+        } else
+        {
 
             ui->configLineEdit->setText(settingsFile);
 

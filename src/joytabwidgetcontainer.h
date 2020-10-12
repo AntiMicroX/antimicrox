@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYTABWIDGETCONTAINER_H
 #define JOYTABWIDGETCONTAINER_H
 
 #include <QTabWidget>
-
 
 class QWidget;
 class JoyTabWidget;
@@ -31,18 +29,18 @@ class JoyTabWidgetContainer : public QTabWidget
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoyTabWidgetContainer(QWidget *parent = nullptr);
 
     int addTab(QWidget *widget, const QString &string);
     int addTab(JoyTabWidget *widget, const QString &string);
 
-public slots:
+  public slots:
     void disableFlashes(InputDevice *joystick);
     void enableFlashes(InputDevice *joystick);
 
-private slots:
-    void flash(InputDevice* joystick);
+  private slots:
+    void flash(InputDevice *joystick);
     void unflash(InputDevice *joystick);
     void unflashAll();
     void unflashTab(JoyTabWidget *tabWidget);

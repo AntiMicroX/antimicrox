@@ -19,8 +19,8 @@
 
 #include "qtvmultikeymapper.h"
 
-QtVMultiKeyMapper::QtVMultiKeyMapper(QObject *parent) :
-    QtKeyMapperBase(parent)
+QtVMultiKeyMapper::QtVMultiKeyMapper(QObject *parent)
+    : QtKeyMapperBase(parent)
 {
     identifier = "vmulti";
     populateMappingHashes();
@@ -31,13 +31,13 @@ void QtVMultiKeyMapper::populateMappingHashes()
     if (qtKeyToVirtualKey.isEmpty())
     {
         // Map A - Z keys
-        for (int i=0; i <= (Qt::Key_Z - Qt::Key_A); i++)
+        for (int i = 0; i <= (Qt::Key_Z - Qt::Key_A); i++)
         {
             qtKeyToVirtualKey[Qt::Key_A + i] = 0x04 + i;
         }
 
         // Map 1 - 9 numeric keys
-        for (int i=0; i <= (Qt::Key_9 - Qt::Key_1); i++)
+        for (int i = 0; i <= (Qt::Key_9 - Qt::Key_1); i++)
         {
             qtKeyToVirtualKey[Qt::Key_1 + i] = 0x1E + i;
         }
@@ -65,7 +65,7 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_CapsLock] = 0x39;
 
         // Map F1 - F12 keys
-        for (int i=0; i <= (Qt::Key_F12 - Qt::Key_F1); i++)
+        for (int i = 0; i <= (Qt::Key_F12 - Qt::Key_F1); i++)
         {
             qtKeyToVirtualKey[Qt::Key_F1 + i] = 0x3A + i;
         }
@@ -92,7 +92,7 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Enter] = 0x58;
 
         // Map Numpad 1 - 9 keys
-        for (int i=0; i <= (AntKey_KP_9 - AntKey_KP_1); i++)
+        for (int i = 0; i <= (AntKey_KP_9 - AntKey_KP_1); i++)
         {
             qtKeyToVirtualKey[AntKey_KP_1 + i] = 0x59 + i;
         }
@@ -102,12 +102,12 @@ void QtVMultiKeyMapper::populateMappingHashes()
 
         qtKeyToVirtualKey[AntKey_KP_Decimal] = 0x63;
 
-        //qtKeyToVirtualKey[Qt::Key_Backslash] = 0x64;
+        // qtKeyToVirtualKey[Qt::Key_Backslash] = 0x64;
         qtKeyToVirtualKey[Qt::Key_ApplicationLeft] = 0x65;
         qtKeyToVirtualKey[Qt::Key_PowerOff] = 0x66;
-        //qtKeyToVirtualKey[] = 0x67;
+        // qtKeyToVirtualKey[] = 0x67;
 
-        for (int i=0; i <= (Qt::Key_F24 - Qt::Key_F13); i++)
+        for (int i = 0; i <= (Qt::Key_F24 - Qt::Key_F13); i++)
         {
             qtKeyToVirtualKey[Qt::Key_F13 + i] = 0x68 + i;
         }
@@ -117,7 +117,7 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_Menu] = 0x76;
         qtKeyToVirtualKey[Qt::Key_Select] = 0x77;
         qtKeyToVirtualKey[Qt::Key_Stop] = 0x78;
-        //qtKeyToVirtualKey[] = 0x79;
+        // qtKeyToVirtualKey[] = 0x79;
         qtKeyToVirtualKey[Qt::Key_Undo] = 0x7A;
         qtKeyToVirtualKey[Qt::Key_Cut] = 0x7B;
         qtKeyToVirtualKey[Qt::Key_Copy] = 0x7C;
@@ -126,21 +126,21 @@ void QtVMultiKeyMapper::populateMappingHashes()
         qtKeyToVirtualKey[Qt::Key_VolumeMute] = 0x7F;
         qtKeyToVirtualKey[Qt::Key_VolumeUp] = 0x80;
         qtKeyToVirtualKey[Qt::Key_VolumeDown] = 0x81;
-        //qtKeyToVirtualKey[] = 0x82;
-        //qtKeyToVirtualKey[] = 0x83;
-        //qtKeyToVirtualKey[] = 0x84;
-        //qtKeyToVirtualKey[] = 0x85;
+        // qtKeyToVirtualKey[] = 0x82;
+        // qtKeyToVirtualKey[] = 0x83;
+        // qtKeyToVirtualKey[] = 0x84;
+        // qtKeyToVirtualKey[] = 0x85;
 
         // International Keys?
-        //qtKeyToVirtualKey[] = 0x87;
-        //qtKeyToVirtualKey[] = 0x88;
-        //qtKeyToVirtualKey[] = 0x89;
-        //qtKeyToVirtualKey[] = 0x8A;
-        //qtKeyToVirtualKey[] = 0x8B;
-        //qtKeyToVirtualKey[] = 0x8C;
-        //qtKeyToVirtualKey[] = 0x8D;
-        //qtKeyToVirtualKey[] = 0x8E;
-        //qtKeyToVirtualKey[] = 0x8F;
+        // qtKeyToVirtualKey[] = 0x87;
+        // qtKeyToVirtualKey[] = 0x88;
+        // qtKeyToVirtualKey[] = 0x89;
+        // qtKeyToVirtualKey[] = 0x8A;
+        // qtKeyToVirtualKey[] = 0x8B;
+        // qtKeyToVirtualKey[] = 0x8C;
+        // qtKeyToVirtualKey[] = 0x8D;
+        // qtKeyToVirtualKey[] = 0x8E;
+        // qtKeyToVirtualKey[] = 0x8F;
 
         qtKeyToVirtualKey[Qt::Key_Control] = 0xE0;
         qtKeyToVirtualKey[Qt::Key_Shift] = 0xE1;
@@ -175,7 +175,4 @@ void QtVMultiKeyMapper::populateMappingHashes()
     }
 }
 
-void QtVMultiKeyMapper::populateCharKeyInformation()
-{
-
-}
+void QtVMultiKeyMapper::populateCharKeyInformation() {}

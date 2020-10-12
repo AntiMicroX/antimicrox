@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYAXISWIDGET_H
 #define JOYAXISWIDGET_H
 
@@ -25,28 +24,27 @@
 class JoyAxis;
 class QWidget;
 
-
 class JoyAxisWidget : public FlashButtonWidget
 {
     Q_OBJECT
 
-public:
-    explicit JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent=0);
+  public:
+    explicit JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent = 0);
 
-    JoyAxis* getAxis() const;
+    JoyAxis *getAxis() const;
     void tryFlash();
 
-protected:
+  protected:
     virtual QString generateLabel() override;
 
-public slots:
+  public slots:
     void disableFlashes() override;
     void enableFlashes() override;
 
-private slots:
+  private slots:
     void showContextMenu(const QPoint &point);
 
-private:
+  private:
     JoyAxis *m_axis;
 };
 

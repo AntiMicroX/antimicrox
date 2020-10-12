@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
@@ -33,8 +32,9 @@ class GameController : public InputDevice
 {
     Q_OBJECT
 
-public:
-    explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, int counterUniques, QObject *parent = nullptr);
+  public:
+    explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, int counterUniques,
+                            QObject *parent = nullptr);
 
     virtual QString getName() override;
     virtual QString getSDLName() override;
@@ -61,32 +61,33 @@ public:
     virtual int getNumberRawHats() override;
     void setCounterUniques(int counter) override;
 
-    QString getBindStringForAxis(int index, bool trueIndex=true);
-    QString getBindStringForButton(int index, bool trueIndex=true);
+    QString getBindStringForAxis(int index, bool trueIndex = true);
+    QString getBindStringForButton(int index, bool trueIndex = true);
 
     SDL_GameControllerButtonBind getBindForAxis(int index);
     SDL_GameControllerButtonBind getBindForButton(int index);
 
-    //bool isRelevantGUID(QString tempGUID);
+    // bool isRelevantGUID(QString tempGUID);
     bool isRelevantUniqueID(QString tempUniqueID);
     void rawButtonEvent(int index, bool pressed);
     void rawAxisEvent(int index, int value);
     void rawDPadEvent(int index, int value);
 
-    QHash<int, bool> const& getRawbuttons();
-    QHash<int, int> const& getAxisvalues();
-    QHash<int, int> const& getDpadvalues();
+    QHash<int, bool> const &getRawbuttons();
+    QHash<int, int> const &getAxisvalues();
+    QHash<int, int> const &getDpadvalues();
 
     SDL_GameController *getController() const;
 
-    void fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes, QList<SDL_GameControllerButtonBind> &hatButtons);
+    void fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes,
+                        QList<SDL_GameControllerButtonBind> &hatButtons);
 
-protected slots:
+  protected slots:
     virtual void axisActivatedEvent(int setindex, int axisindex, int value) override;
     virtual void buttonClickEvent(int buttonindex) override;
     virtual void buttonReleaseEvent(int buttonindex) override;
 
-private:
+  private:
     QHash<int, bool> rawbuttons;
     QHash<int, int> axisvalues;
     QHash<int, int> dpadvalues;
@@ -94,7 +95,6 @@ private:
 
     SDL_JoystickID joystickID;
     SDL_GameController *controller;
-
 };
 
 #endif // GAMECONTROLLER_H

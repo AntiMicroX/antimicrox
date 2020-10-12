@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef DPADEDITDIALOGHELPER_H
 #define DPADEDITDIALOGHELPER_H
 
@@ -28,21 +27,20 @@ class DPadEditDialogHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit DPadEditDialogHelper(JoyDPad *dpad, QObject *parent = nullptr);
-    void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> *tempSlots);
+    void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> *tempSlots);
     void clearPendingSlots();
-    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> const& getPendingSlots();
+    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> const &getPendingSlots();
 
-public slots:
+  public slots:
     void setFromPendingSlots();
     void clearButtonsSlotsEventReset();
     void updateJoyDPadDelay(int value);
 
-private:
+  private:
     JoyDPad *dpad;
-    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot*> pendingSlots;
-
+    QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> pendingSlots;
 };
 
 #endif // DPADEDITDIALOGHELPER_H

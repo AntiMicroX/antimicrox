@@ -16,14 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYTABWIDGET_H
 #define JOYTABWIDGET_H
 
 #include <QWidget>
 
 #include "uihelpers/joytabwidgethelper.h"
-
 
 class InputDevice;
 class AntiMicroSettings;
@@ -45,16 +43,16 @@ class JoyTabWidget : public QWidget
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent = nullptr);
 
-    void saveSettings(); // JoyTabSettings class
-    void loadSettings(bool forceRefresh=false); // JoyTabSettings class
-    void setCurrentConfig(int index); // JoyTabSettings class
-    void unloadConfig(); // JoyTabSettings class
+    void saveSettings();                          // JoyTabSettings class
+    void loadSettings(bool forceRefresh = false); // JoyTabSettings class
+    void setCurrentConfig(int index);             // JoyTabSettings class
+    void unloadConfig();                          // JoyTabSettings class
     void checkHideEmptyOption();
     void refreshHelperThread();
-    void convToUniqueIDControllerGroupSett(QSettings* sett, QString guidControllerSett, QString uniqueControllerSett);
+    void convToUniqueIDControllerGroupSett(QSettings *sett, QString guidControllerSett, QString uniqueControllerSett);
 
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();
@@ -62,15 +60,14 @@ public:
 
     int getCurrentConfigIndex(); // JoyTabSettings class
 
-    QHash<int, QString>* recentConfigs(); // JoyTabSettings class
+    QHash<int, QString> *recentConfigs(); // JoyTabSettings class
 
     QString getCurrentConfigName(); // JoyTabSettings class
     QString getConfigName(int index);
 
     InputDevice *getJoystick();
 
-
-protected:
+  protected:
     virtual void changeEvent(QEvent *event);
     void removeCurrentButtons();
     void retranslateUi();
@@ -78,34 +75,34 @@ protected:
     void reconnectMainComboBoxEvents();
     void disconnectCheckUnsavedEvent();
     void reconnectCheckUnsavedEvent();
-    void fillSetButtons(SetJoystick *set); // JoyTabWidgetSets class
+    void fillSetButtons(SetJoystick *set);   // JoyTabWidgetSets class
     void removeSetButtons(SetJoystick *set); // JoyTabWidgetSets class
     bool isKeypadUnlocked();
 
     static const int DEFAULTNUMBERPROFILES = 5;
 
-signals:
+  signals:
     void joystickConfigChanged(int index); // JoyTabSettings class
     void joystickAxisRefreshLabels(int axisIndex);
     void namesDisplayChanged(bool status);
     void forceTabUnflash(JoyTabWidget *tabWidget);
     void mappingUpdated(QString mapping, InputDevice *device);
 
-public slots:
-    void openConfigFileDialog(); // JoyTabSettings class
-    void fillButtons(); // JoyTabWidgetSets class
-    void saveDeviceSettings(bool sync=false); // JoyTabSettings class
-    void loadDeviceSettings(); // JoyTabSettings class
+  public slots:
+    void openConfigFileDialog();                // JoyTabSettings class
+    void fillButtons();                         // JoyTabWidgetSets class
+    void saveDeviceSettings(bool sync = false); // JoyTabSettings class
+    void loadDeviceSettings();                  // JoyTabSettings class
     void changeNameDisplay(bool displayNames);
-    void changeCurrentSet(int index); // JoyTabWidgetSets class
+    void changeCurrentSet(int index);          // JoyTabWidgetSets class
     void loadConfigFile(QString fileLocation); // JoyTabSettings class
     void refreshButtons();
 
-private slots:
+  private slots:
     void saveConfigFile(); // JoyTabSettings class
     void resetJoystick();
-    void saveAsConfig(); // JoyTabSettings class
-    void removeConfig(); // JoyTabSettings class
+    void saveAsConfig();             // JoyTabSettings class
+    void removeConfig();             // JoyTabSettings class
     void changeJoyConfig(int index); // JoyTabSettings class
     void showAxisDialog();
     void showButtonDialog();
@@ -115,17 +112,17 @@ private slots:
     void showSetNamesDialog(); // JoyTabWidgetSets class
     void toggleNames();
 
-    void changeSetOne(); // JoyTabWidgetSets class
-    void changeSetTwo(); // JoyTabWidgetSets class
+    void changeSetOne();   // JoyTabWidgetSets class
+    void changeSetTwo();   // JoyTabWidgetSets class
     void changeSetThree(); // JoyTabWidgetSets class
-    void changeSetFour(); // JoyTabWidgetSets class
-    void changeSetFive(); // JoyTabWidgetSets class
-    void changeSetSix(); // JoyTabWidgetSets class
+    void changeSetFour();  // JoyTabWidgetSets class
+    void changeSetFive();  // JoyTabWidgetSets class
+    void changeSetSix();   // JoyTabWidgetSets class
     void changeSetSeven(); // JoyTabWidgetSets class
     void changeSetEight(); // JoyTabWidgetSets class
     void displayProfileEditNotification();
     void removeProfileEditNotification();
-    void checkForUnsavedProfile(int newindex=-1);
+    void checkForUnsavedProfile(int newindex = -1);
 
     void checkStickDisplay();
     void checkDPadButtonDisplay();
@@ -138,13 +135,13 @@ private slots:
     void checkButtonEmptyDisplay();
     void editCurrentProfileItemText(QString text);
     void refreshCopySetActions(); // JoyTabWidgetSets class
-    void performSetCopy(); // JoyTabWidgetSets class
+    void performSetCopy();        // JoyTabWidgetSets class
     void disableCopyCurrentSet(); // JoyTabWidgetSets class
-    void refreshSetButtons(); // JoyTabWidgetSets class
+    void refreshSetButtons();     // JoyTabWidgetSets class
     void openGameControllerMappingWindow();
     void propogateMappingUpdate(QString mapping, InputDevice *device);
 
-private:
+  private:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
     QPushButton *removeButton;
@@ -216,7 +213,6 @@ private:
     QString oldProfileName;
 
     JoyTabWidgetHelper tabHelper;
-
 };
 
 #endif // JOYTABWIDGET_H

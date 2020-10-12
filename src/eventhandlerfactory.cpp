@@ -18,12 +18,11 @@
 
 #include "eventhandlerfactory.h"
 
-#include "messagehandler.h"
 #include "eventhandlers/baseeventhandler.h"
+#include "messagehandler.h"
 
-#include <QHash>
 #include <QDebug>
-
+#include <QHash>
 
 static QHash<QString, QString> buildDisplayNames()
 {
@@ -39,29 +38,26 @@ static QHash<QString, QString> buildDisplayNames()
 
 QHash<QString, QString> handlerDisplayNames = buildDisplayNames();
 
-EventHandlerFactory* EventHandlerFactory::instance = nullptr;
+EventHandlerFactory *EventHandlerFactory::instance = nullptr;
 
-
-
-EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent) :
-    QObject(parent)
+EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    #ifdef WITH_UINPUT
+#ifdef WITH_UINPUT
 
     if (handler == "uinput")
         eventHandler = new UInputEventHandler(this);
 
-    #endif
+#endif
 
-    #ifdef WITH_XTEST
+#ifdef WITH_XTEST
 
     if (handler == "xtest")
         eventHandler = new XTestEventHandler(this);
 
-    #endif
-
+#endif
 }
 
 EventHandlerFactory::~EventHandlerFactory()
@@ -75,7 +71,7 @@ EventHandlerFactory::~EventHandlerFactory()
     }
 }
 
-EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
+EventHandlerFactory *EventHandlerFactory::getInstance(QString handler)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -83,8 +79,10 @@ EventHandlerFactory* EventHandlerFactory::getInstance(QString handler)
     {
         QStringList temp = buildEventGeneratorList();
 
-        if (!handler.isEmpty() && temp.contains(handler)) instance = new EventHandlerFactory(handler);
-        else instance = new EventHandlerFactory(fallBackIdentifier());
+        if (!handler.isEmpty() && temp.contains(handler))
+            instance = new EventHandlerFactory(handler);
+        else
+            instance = new EventHandlerFactory(fallBackIdentifier());
     }
 
     return instance;
@@ -101,7 +99,7 @@ void EventHandlerFactory::deleteInstance()
     }
 }
 
-BaseEventHandler* EventHandlerFactory::handler()
+BaseEventHandler *EventHandlerFactory::handler()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -114,13 +112,13 @@ QString EventHandlerFactory::fallBackIdentifier()
 
     QString temp = QString();
 
-  #if defined(WITH_XTEST)
+#if defined(WITH_XTEST)
     temp = "xtest";
-  #elif defined(WITH_UINPUT)
+#elif defined(WITH_UINPUT)
     temp = "uinput";
-  #else
+#else
     temp = "xtest";
-  #endif
+#endif
 
     return temp;
 }
