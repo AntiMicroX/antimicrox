@@ -571,6 +571,7 @@ int main(int argc, char *argv[])
     antimicrox.setQuitOnLastWindowClosed(false);
 
     QStringList appDirsLocations = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    appDirsLocations.append(QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation));
     QStringList themePathsTries = QStringList();
 
     QList<QString>::const_iterator i;
@@ -582,12 +583,7 @@ int main(int argc, char *argv[])
     }
 
     QIcon::setThemeSearchPaths(themePathsTries);
-    QIcon::setThemeName("hicolor");
-    bool tr = QIcon::hasThemeIcon("games_config_custom"); // real
-    bool tr2 = QIcon::hasThemeIcon("xxx");                // fake
     qDebug() << "Theme name: " << QIcon::themeName();
-    qDebug() << "has icon theme named games_config_custom: " << tr;
-    qDebug() << "if icon theme always returns true: " << tr2;
 
     importLegacySettingsIfExist();
 
