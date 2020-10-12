@@ -114,9 +114,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     loadButton->setObjectName(QString::fromUtf8("loadButton"));
     loadButton->setToolTip(tr("Load configuration file."));
     loadButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    qDebug() << " Application theme has icon named document_open: " << QIcon::hasThemeIcon("document_open");
-    loadButton->setIcon(
-        QIcon::fromTheme(QString::fromUtf8("document_open"), QIcon(":/icons/hicolor/16x16/actions/document_open.png")));
+    loadButton->setIcon(PadderCommon::loadIcon("document-open", ":/icons/hicolor/16x16/actions/document_open.png"));
 
     configHorizontalLayout->addWidget(loadButton);
 
@@ -124,16 +122,14 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     saveButton->setObjectName(QString::fromUtf8("saveButton"));
     saveButton->setToolTip(tr("Save changes to configuration file."));
     saveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    saveButton->setIcon(
-        QIcon::fromTheme(QString::fromUtf8("document_save"), QIcon(":/icons/hicolor/16x16/actions/document_save.png")));
+    saveButton->setIcon(PadderCommon::loadIcon("document-save", ":/icons/hicolor/16x16/actions/document_save.png"));
     configHorizontalLayout->addWidget(saveButton);
 
     saveAsButton = new QPushButton(tr("Save As"), this);
     saveAsButton->setObjectName(QString::fromUtf8("saveAsButton"));
     saveAsButton->setToolTip(tr("Save changes to a new configuration file."));
     saveAsButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    saveAsButton->setIcon(QIcon::fromTheme(QString::fromUtf8("document_save_as"),
-                                           QIcon(":/icons/hicolor/16x16/actions/document_save_as.png")));
+    saveAsButton->setIcon(PadderCommon::loadIcon("document-save-as", ":/icons/hicolor/16x16/actions/document_save_as.png"));
 
     configHorizontalLayout->addWidget(saveAsButton);
 
@@ -469,8 +465,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     resetButton->setObjectName(QString::fromUtf8("resetButton"));
     resetButton->setToolTip(tr("Revert changes to the configuration. Reload configuration file."));
     resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    resetButton->setIcon(
-        QIcon::fromTheme(QString::fromUtf8("document_revert"), QIcon(":/icons/hicolor/16x16/actions/document_revert.png")));
+    resetButton->setIcon(PadderCommon::loadIcon("document-revert", ":/icons/hicolor/16x16/actions/document_revert.png"));
 
     horizontalLayout_3->addWidget(resetButton);
 
@@ -1610,8 +1605,8 @@ void JoyTabWidget::displayProfileEditNotification()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int currentIndex = configBox->currentIndex();
-    configBox->setItemIcon(
-        currentIndex, QIcon::fromTheme("document_save_as", QIcon(":/icons/hicolor/16x16/actions/document_save_as.png")));
+    configBox->setItemIcon(currentIndex,
+                           PadderCommon::loadIcon("document-save-as", ":/icons/hicolor/16x16/actions/document_save_as.png"));
 
     changedNotSaved = true;
 }
