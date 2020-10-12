@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
+ * Copyright (C) 2020 Paweł Kotiuk <kotiuk@zohomail.eu>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -134,6 +135,23 @@ void unlockInputDevices()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     sdlWaitMutex.unlock();
+}
+/**
+ * @brief Universal method for loading icons
+ *
+ * @param name - name of used icon
+ * @param fallback_location - location of icon loaded when icon described by name not found
+ * @return QIcon
+ */
+QIcon loadIcon(const QString &name, const QString &fallback_location)
+{
+    qDebug() << " Application theme has icon named: " << name << " " << QIcon::hasThemeIcon(name);
+    QFileInfo f(fallback_location);
+    if (!f.exists())
+    {
+        qWarning() << "file " << fallback_location << " does not exist!";
+    }
+    return QIcon::fromTheme(name, QIcon(fallback_location));
 }
 
 QWaitCondition waitThisOut;

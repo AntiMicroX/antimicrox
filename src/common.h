@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2020 Paweł Kotiuk <kotiuk@zohomail.eu>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +25,7 @@
 #include "mousehelper.h"
 
 #include <QDir>
+#include <QIcon>
 #include <QThread>
 #include <QTranslator>
 #include <QWaitCondition>
@@ -84,6 +86,7 @@ void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QSt
 void lockInputDevices();
 void unlockInputDevices();
 
+QIcon loadIcon(const QString &name, const QString &fallback_location);
 /*!
  * \brief Returns the "human-readable" name of the given profile.
  */
