@@ -19,18 +19,15 @@
 #include "event.h"
 #include "joybuttonslot.h"
 
-JoyKeyRepeatHelper::JoyKeyRepeatHelper(QObject *parent) :
-    QObject(parent)
+JoyKeyRepeatHelper::JoyKeyRepeatHelper(QObject *parent)
+    : QObject(parent)
 {
     lastActiveKey = 0;
     keyRepeatTimer.setParent(this);
     connect(&keyRepeatTimer, SIGNAL(timeout()), this, SLOT(repeatKeysEvent()));
 }
 
-QTimer* JoyKeyRepeatHelper::getRepeatTimer()
-{
-    return &keyRepeatTimer;
-}
+QTimer *JoyKeyRepeatHelper::getRepeatTimer() { return &keyRepeatTimer; }
 
 void JoyKeyRepeatHelper::repeatKeysEvent()
 {
@@ -42,22 +39,15 @@ void JoyKeyRepeatHelper::repeatKeysEvent()
         sendevent(slot);
 
         keyRepeatTimer.start(keyRepeatRate);
-    }
-    else
+    } else
     {
         keyRepeatTimer.stop();
     }
 }
 
-void JoyKeyRepeatHelper::setLastActiveKey(JoyButtonSlot *slot)
-{
-    lastActiveKey = slot;
-}
+void JoyKeyRepeatHelper::setLastActiveKey(JoyButtonSlot *slot) { lastActiveKey = slot; }
 
-JoyButtonSlot* JoyKeyRepeatHelper::getLastActiveKey()
-{
-    return lastActiveKey;
-}
+JoyButtonSlot *JoyKeyRepeatHelper::getLastActiveKey() { return lastActiveKey; }
 
 /*void JoyKeyRepeatHelper::setKeyRepeatDelay(unsigned int repeatDelay)
 {
@@ -81,7 +71,4 @@ void JoyKeyRepeatHelper::setKeyRepeatRate(int repeatRate)
     }
 }
 
-int JoyKeyRepeatHelper::getKeyRepeatRate()
-{
-    return keyRepeatRate;
-}
+int JoyKeyRepeatHelper::getKeyRepeatRate() { return keyRepeatRate; }

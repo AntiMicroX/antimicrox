@@ -20,11 +20,11 @@
 
 #include "messagehandler.h"
 
-#include <QDesktopWidget>
 #include <QDebug>
+#include <QDesktopWidget>
 
-MouseHelper::MouseHelper(QObject *parent) :
-    QObject(parent)
+MouseHelper::MouseHelper(QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -49,7 +49,8 @@ void MouseHelper::initDeskWid()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (deskWid == nullptr) deskWid = new QDesktopWidget;
+    if (deskWid == nullptr)
+        deskWid = new QDesktopWidget;
 }
 
 void MouseHelper::deleteDeskWid()
@@ -63,7 +64,7 @@ void MouseHelper::deleteDeskWid()
     }
 }
 
-QDesktopWidget* MouseHelper::getDesktopWidget() const
+QDesktopWidget *MouseHelper::getDesktopWidget() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 

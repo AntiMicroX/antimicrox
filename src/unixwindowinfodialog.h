@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef UNIXWINDOWINFODIALOG_H
 #define UNIXWINDOWINFODIALOG_H
 
@@ -31,11 +30,12 @@ class UnixWindowInfoDialog : public QDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit UnixWindowInfoDialog(long window, QWidget *parent = nullptr);
     ~UnixWindowInfoDialog();
 
-    enum {
+    enum
+    {
         WindowClass = (1 << 0),
         WindowName = (1 << 1),
         WindowPath = (1 << 2)
@@ -47,7 +47,7 @@ public:
     QString getWindowPath() const;
     DialogWindowOption getSelectedOptions() const;
 
-private:
+  private:
     Ui::UnixWindowInfoDialog *ui;
     DialogWindowOption selectedMatch;
 
@@ -55,8 +55,7 @@ private:
     QString winName;
     QString winPath;
 
-
-private slots:
+  private slots:
     void populateOption();
 };
 

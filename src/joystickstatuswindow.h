@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYSTICKSTATUSWINDOW_H
 #define JOYSTICKSTATUSWINDOW_H
 
@@ -33,18 +32,18 @@ class JoystickStatusWindow : public QDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoystickStatusWindow(InputDevice *joystick, QWidget *parent = nullptr);
     ~JoystickStatusWindow();
 
-    InputDevice* getJoystick() const;
+    InputDevice *getJoystick() const;
 
-private:
+  private:
     Ui::JoystickStatusWindow *ui;
 
     InputDevice *joystick;
 
-private slots:
+  private slots:
     void restoreButtonStates(int code);
     void obliterate();
 };

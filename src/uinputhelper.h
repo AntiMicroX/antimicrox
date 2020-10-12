@@ -16,28 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef UINPUTHELPER_H
 #define UINPUTHELPER_H
 
+#include <QHash>
 #include <QObject>
 #include <QString>
-#include <QHash>
 
 class UInputHelper : public QObject
 {
     Q_OBJECT
 
-public:
-    static UInputHelper* getInstance();
+  public:
+    static UInputHelper *getInstance();
     void deleteInstance();
 
     QString getDisplayString(int virtualkey);
     int getVirtualKey(QString codestring);
-    QHash<QString, int> const& getKnownAliasesX11SymVK();
-    QHash<int, QString> const& getKnownAliasesVKStrings();
+    QHash<QString, int> const &getKnownAliasesX11SymVK();
+    QHash<int, QString> const &getKnownAliasesVKStrings();
 
-protected:
+  protected:
     explicit UInputHelper(QObject *parent = nullptr);
     ~UInputHelper();
 
@@ -47,10 +46,9 @@ protected:
     QHash<QString, int> knownAliasesX11SymVK;
     QHash<int, QString> knownAliasesVKStrings;
 
-private:
-    void populateXVkStrings(QHash<int, QString>& knownAliasesVKStrings);
-    void populateX11SymVk(QHash<QString, int>& knownAliasesX11SymVK);
-
+  private:
+    void populateXVkStrings(QHash<int, QString> &knownAliasesVKStrings);
+    void populateX11SymVk(QHash<QString, int> &knownAliasesX11SymVK);
 };
 
 #endif // UINPUTHELPER_H

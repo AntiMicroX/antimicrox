@@ -20,11 +20,11 @@
 
 #include "gamecontroller/gamecontrollerdpad.h"
 
-#include <QXmlStreamReader>
 #include <QDebug>
+#include <QXmlStreamReader>
 
-
-GameControllerDPadXml::GameControllerDPadXml(GameControllerDPad* gameContrDpad, QObject* parent) : JoyDPadXml<VDPad>(gameContrDpad, parent)
+GameControllerDPadXml::GameControllerDPadXml(GameControllerDPad *gameContrDpad, QObject *parent)
+    : JoyDPadXml<VDPad>(gameContrDpad, parent)
 {
     dpadXml = new JoyDPadXml<GameControllerDPad>(gameContrDpad, this);
 }

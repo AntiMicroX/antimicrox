@@ -18,14 +18,14 @@
 
 #include "joydpadbuttonwidget.h"
 
-#include "messagehandler.h"
 #include "joybutton.h"
+#include "messagehandler.h"
 
-#include <QWidget>
 #include <QDebug>
+#include <QWidget>
 
-JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, QWidget *parent) :
-    JoyButtonWidget(button, displayNames, parent)
+JoyDPadButtonWidget::JoyDPadButtonWidget(JoyButton *button, bool displayNames, QWidget *parent)
+    : JoyButtonWidget(button, displayNames, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -45,8 +45,7 @@ QString JoyDPadButtonWidget::generateLabel()
     if (!getJoyButton()->getActionName().isEmpty() && ifDisplayNames())
     {
         temp = getJoyButton()->getActionName();
-    }
-    else
+    } else
     {
         temp = getJoyButton()->getCalculatedActiveZoneSummary();
     }

@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef VIRTUALMOUSEPUSHBUTTON_H
 #define VIRTUALMOUSEPUSHBUTTON_H
 
@@ -28,19 +27,20 @@ class VirtualMousePushButton : public QPushButton
 {
     Q_OBJECT
 
-public:
-    explicit VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode, QWidget *parent = nullptr);
+  public:
+    explicit VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode,
+                                    QWidget *parent = nullptr);
 
     int getMouseCode() const;
     JoyButtonSlot::JoySlotInputAction getMouseMode() const;
 
-signals:
+  signals:
     void mouseSlotCreated(JoyButtonSlot *tempslot);
 
-private slots:
+  private slots:
     void createTempSlot();
 
-private:
+  private:
     int code;
     JoyButtonSlot::JoySlotInputAction mode;
 };

@@ -20,22 +20,22 @@
 
 #include "gamecontrollertrigger.h"
 
+#include "gamecontrollertriggerbutton.h"
 #include "globalvariables.h"
 #include "messagehandler.h"
-#include "gamecontrollertriggerbutton.h"
 #include "xml/joyaxisxml.h"
 
 #include <SDL2/SDL_gamecontroller.h>
 
+#include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include <QDebug>
 
+const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTLE =
+    GameControllerTrigger::PositiveHalfThrottle;
 
-const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTLE = GameControllerTrigger::PositiveHalfThrottle;
-
-GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent) :
-    JoyAxis(index, originset, parentSet, parent)
+GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent)
+    : JoyAxis(index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -44,7 +44,6 @@ GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoysti
     reset(index);
 }
 
-
 void GameControllerTrigger::reset(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -52,7 +51,6 @@ void GameControllerTrigger::reset(int index)
     reset();
     m_index = index;
 }
-
 
 void GameControllerTrigger::reset()
 {
@@ -81,14 +79,12 @@ void GameControllerTrigger::reset()
     pendingIgnoreSets = false;
 }
 
-
 QString GameControllerTrigger::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return GlobalVariables::GameControllerTrigger::xmlName;
 }
-
 
 QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool displayNames)
 {
@@ -104,8 +100,7 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
         {
             label.append(" ").append(tr("Trigger"));
         }
-    }
-    else if (!defaultAxisName.isEmpty())
+    } else if (!defaultAxisName.isEmpty())
     {
         label.append(defaultAxisName);
 
@@ -113,8 +108,7 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
         {
             label.append(" ").append(tr("Trigger"));
         }
-    }
-    else
+    } else
     {
         label.append(tr("Trigger")).append(" ");
         label.append(QString::number(getRealJoyIndex() - SDL_CONTROLLER_AXIS_TRIGGERLEFT));
@@ -136,7 +130,6 @@ void GameControllerTrigger::correctJoystickThrottle()
     }
 }
 
-
 int GameControllerTrigger::getDefaultDeadZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -144,14 +137,12 @@ int GameControllerTrigger::getDefaultDeadZone()
     return GlobalVariables::GameControllerTrigger::AXISDEADZONE;
 }
 
-
 int GameControllerTrigger::getDefaultMaxZone()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return GlobalVariables::GameControllerTrigger::AXISMAXZONE;
 }
-
 
 JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 {

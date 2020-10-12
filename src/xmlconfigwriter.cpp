@@ -18,19 +18,18 @@
 
 #include "xmlconfigwriter.h"
 
-#include "messagehandler.h"
-#include "inputdevice.h"
 #include "common.h"
+#include "inputdevice.h"
+#include "messagehandler.h"
 #include "xml/inputdevicexml.h"
 
+#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QXmlStreamWriter>
-#include <QDebug>
 
-
-XMLConfigWriter::XMLConfigWriter(QObject *parent) :
-    QObject(parent)
+XMLConfigWriter::XMLConfigWriter(QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -72,8 +71,7 @@ void XMLConfigWriter::write(InputDeviceXml *joystickXml)
     {
         configFile->open(QFile::WriteOnly | QFile::Text);
         xml->setDevice(configFile);
-    }
-    else
+    } else
     {
         writerError = true;
         writerErrorString = tr("Could not write to profile at %1.").arg(configFile->fileName());
@@ -113,22 +111,10 @@ const QString XMLConfigWriter::getErrorString()
     return writerErrorString;
 }
 
-const QXmlStreamWriter *XMLConfigWriter::getXml() {
+const QXmlStreamWriter *XMLConfigWriter::getXml() { return xml; }
 
-    return xml;
-}
+QString const &XMLConfigWriter::getFileName() { return fileName; }
 
-QString const& XMLConfigWriter::getFileName() {
+const QFile *XMLConfigWriter::getConfigFile() { return configFile; }
 
-    return fileName;
-}
-
-const QFile *XMLConfigWriter::getConfigFile() {
-
-    return configFile;
-}
-
-const InputDevice* XMLConfigWriter::getJoystick() {
-
-    return m_joystick;
-}
+const InputDevice *XMLConfigWriter::getJoystick() { return m_joystick; }

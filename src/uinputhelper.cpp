@@ -16,28 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QApplication>
 #include <linux/input.h>
 #include <linux/uinput.h>
-#include <QApplication>
 
-#include "uinputhelper.h"
 #include "messagehandler.h"
+#include "uinputhelper.h"
 
+UInputHelper *UInputHelper::_instance = nullptr;
 
-
-UInputHelper* UInputHelper::_instance = nullptr;
-
-UInputHelper::UInputHelper(QObject *parent) :
-    QObject(parent)
+UInputHelper::UInputHelper(QObject *parent)
+    : QObject(parent)
 {
     populateKnownAliases();
     connect(qApp, &QApplication::aboutToQuit, this, &UInputHelper::deleteLater);
 }
 
-UInputHelper::~UInputHelper()
-{
-    _instance = nullptr;
-}
+UInputHelper::~UInputHelper() { _instance = nullptr; }
 
 void UInputHelper::populateKnownAliases()
 {
@@ -48,7 +43,7 @@ void UInputHelper::populateKnownAliases()
         populateXVkStrings(knownAliasesVKStrings);
 }
 
-void UInputHelper::populateX11SymVk(QHash<QString, int>& knownAliasesX11SymVK)
+void UInputHelper::populateX11SymVk(QHash<QString, int> &knownAliasesX11SymVK)
 {
     knownAliasesX11SymVK.insert("a", KEY_A);
     knownAliasesX11SymVK.insert("b", KEY_B);
@@ -174,7 +169,7 @@ void UInputHelper::populateX11SymVk(QHash<QString, int>& knownAliasesX11SymVK)
     knownAliasesX11SymVK.insert("Multi_key", KEY_RIGHTALT);
 }
 
-void UInputHelper::populateXVkStrings(QHash<int, QString>& knownAliasesVKStrings)
+void UInputHelper::populateXVkStrings(QHash<int, QString> &knownAliasesVKStrings)
 {
     knownAliasesVKStrings.insert(KEY_A, tr("a"));
     knownAliasesVKStrings.insert(KEY_B, tr("b"));
@@ -308,7 +303,7 @@ void UInputHelper::populateXVkStrings(QHash<int, QString>& knownAliasesVKStrings
     knownAliasesVKStrings.insert(KEY_NEXTSONG, tr("Next"));
 }
 
-UInputHelper* UInputHelper::getInstance()
+UInputHelper *UInputHelper::getInstance()
 {
     if (!_instance)
         _instance = new UInputHelper();
@@ -329,8 +324,10 @@ QString UInputHelper::getDisplayString(int virtualkey)
 {
     QString temp = QString();
 
-    if (virtualkey <= 0) temp = tr("[NO KEY]");
-    else if (getKnownAliasesVKStrings().contains(virtualkey)) temp = getKnownAliasesVKStrings().value(virtualkey);
+    if (virtualkey <= 0)
+        temp = tr("[NO KEY]");
+    else if (getKnownAliasesVKStrings().contains(virtualkey))
+        temp = getKnownAliasesVKStrings().value(virtualkey);
 
     return temp;
 }
@@ -345,12 +342,6 @@ int UInputHelper::getVirtualKey(QString codestring)
     return temp;
 }
 
-QHash<QString, int> const& UInputHelper::getKnownAliasesX11SymVK() {
+QHash<QString, int> const &UInputHelper::getKnownAliasesX11SymVK() { return knownAliasesX11SymVK; }
 
-    return knownAliasesX11SymVK;
-}
-
-QHash<int, QString> const& UInputHelper::getKnownAliasesVKStrings() {
-
-    return knownAliasesVKStrings;
-}
+QHash<int, QString> const &UInputHelper::getKnownAliasesVKStrings() { return knownAliasesVKStrings; }

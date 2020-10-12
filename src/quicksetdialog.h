@@ -16,13 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef QUICKSETDIALOG_H
 #define QUICKSETDIALOG_H
 
 #include "uihelpers/buttoneditdialoghelper.h"
 #include <QDialog>
-
 
 class InputDevice;
 class QWidget;
@@ -41,48 +39,50 @@ class QuickSetDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-
+  public:
     explicit QuickSetDialog(InputDevice *joystick, QWidget *parent = nullptr);
-    QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* helper, const char* invokeString, int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue, QWidget *parent = nullptr);
+    QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper *helper, const char *invokeString, int code, int alias,
+                   int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue,
+                   QWidget *parent = nullptr);
     ~QuickSetDialog();
 
-    JoyButton* getLastPressedButton() const;
+    JoyButton *getLastPressedButton() const;
     InputDevice *getJoystick() const;
     QDialog *getCurrentButtonDialog() const;
-    const char* getInvokeString() const;
-    ButtonEditDialogHelper* getHelper() const;
+    const char *getInvokeString() const;
+    ButtonEditDialogHelper *getHelper() const;
     JoyButtonSlot::JoySlotInputAction getMode() const;
 
-
-private slots:
-    void showAxisButtonDialog(JoyAxisButton* joybtn); // QuickSetDialogAxisBtn class
-    void showButtonDialog(JoyButton* joybtn); // QuickSetDialogBtn class
-    void showStickButtonDialog(JoyControlStickButton* joyctrlstickbtn); // QuickSetDialogStick class
-    void showDPadButtonDialog(JoyDPadButton* joydpadbtn); // QuickSetDialogHat class
+  private slots:
+    void showAxisButtonDialog(JoyAxisButton *joybtn);                   // QuickSetDialogAxisBtn class
+    void showButtonDialog(JoyButton *joybtn);                           // QuickSetDialogBtn class
+    void showStickButtonDialog(JoyControlStickButton *joyctrlstickbtn); // QuickSetDialogStick class
+    void showDPadButtonDialog(JoyDPadButton *joydpadbtn);               // QuickSetDialogHat class
     void restoreJoystickState();
 
-private:
-    void invokeMethodLastBtn(JoyButton* lastJoyBtn, Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll, bool possibleAxisAction = false);
-    void restoreSticksStates(SetJoystick *currentset); // QuickSetDialogStick class
-    void restoreAxesStates(SetJoystick *currentset); // QuickSetDialogAxis class
-    void restoreHatsStates(SetJoystick *currentset); // QuickSetDialogHat class
-    void restoreVDPadsStates(SetJoystick *currentset);  // QuickSetDialogVDPad class
-    void restoreButtonsStates(SetJoystick *currentset); // QuickSetDialogBtn class
-    void connectSticksForDialog(SetJoystick* currentset); // QuickSetDialogStick class
-    void connectAxesForDialog(SetJoystick* currentset); // QuickSetDialogAxis class
-    void connectDpadForDialog(SetJoystick* currentset); // QuickSetDialogHat class
-    void connectVDpadForDialog(SetJoystick* currentset); // QuickSetDialogVDPad class
-    void connectBtnForDialog(SetJoystick* currentset); // QuickSetDialogBtn class
+  private:
+    void invokeMethodLastBtn(JoyButton *lastJoyBtn, Qt::ConnectionType connTypeForAlias,
+                             Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll,
+                             bool possibleAxisAction = false);
+    void restoreSticksStates(SetJoystick *currentset);    // QuickSetDialogStick class
+    void restoreAxesStates(SetJoystick *currentset);      // QuickSetDialogAxis class
+    void restoreHatsStates(SetJoystick *currentset);      // QuickSetDialogHat class
+    void restoreVDPadsStates(SetJoystick *currentset);    // QuickSetDialogVDPad class
+    void restoreButtonsStates(SetJoystick *currentset);   // QuickSetDialogBtn class
+    void connectSticksForDialog(SetJoystick *currentset); // QuickSetDialogStick class
+    void connectAxesForDialog(SetJoystick *currentset);   // QuickSetDialogAxis class
+    void connectDpadForDialog(SetJoystick *currentset);   // QuickSetDialogHat class
+    void connectVDpadForDialog(SetJoystick *currentset);  // QuickSetDialogVDPad class
+    void connectBtnForDialog(SetJoystick *currentset);    // QuickSetDialogBtn class
 
     Ui::QuickSetDialog *ui;
 
     InputDevice *joystick;
     QDialog *currentButtonDialog;
-    ButtonEditDialogHelper* helper;
-    JoyButton* lastButton;
+    ButtonEditDialogHelper *helper;
+    JoyButton *lastButton;
 
-    const char* invokeString;
+    const char *invokeString;
 
     int code;
     int alias;
@@ -92,7 +92,6 @@ private:
 
     bool withClear;
     bool withTrue;
-
 };
 
 #endif // QUICKSETDIALOG_H

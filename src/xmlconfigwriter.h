@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef XMLCONFIGWRITER_H
 #define XMLCONFIGWRITER_H
 
 #include <QObject>
-
 
 class InputDevice;
 class QXmlStreamWriter;
@@ -32,7 +30,7 @@ class XMLConfigWriter : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit XMLConfigWriter(QObject *parent = nullptr);
     ~XMLConfigWriter();
     void setFileName(QString filename);
@@ -40,22 +38,21 @@ public:
     const QString getErrorString();
 
     const QXmlStreamWriter *getXml();
-    QString const& getFileName();
+    QString const &getFileName();
     const QFile *getConfigFile();
-    const InputDevice* getJoystick();
-    
-public slots:
+    const InputDevice *getJoystick();
+
+  public slots:
     void write(InputDeviceXml *joystickXml);
 
-private:
+  private:
     QXmlStreamWriter *xml;
     QString fileName;
     QFile *configFile;
-    InputDevice* m_joystick;
-    InputDeviceXml* m_joystickXml;
+    InputDevice *m_joystick;
+    InputDeviceXml *m_joystickXml;
     bool writerError;
     QString writerErrorString;
-
 };
 
 #endif // XMLCONFIGWRITER_H

@@ -16,26 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef QTWINKEYMAPPER_H
 #define QTWINKEYMAPPER_H
 
 #include "qtkeymapperbase.h"
 
-
 class QtWinKeyMapper : public QtKeyMapperBase
 {
     Q_OBJECT
 
-public:
+  public:
     explicit QtWinKeyMapper(QObject *parent = nullptr);
 
-    virtual int returnQtKey(int key, int scancode=0) override;
+    virtual int returnQtKey(int key, int scancode = 0) override;
 
-protected:
+  protected:
     void populateMappingHashes() override;
     void populateCharKeyInformation() override;
-
 };
 
 #endif // QTWINKEYMAPPER_H

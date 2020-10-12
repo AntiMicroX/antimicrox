@@ -16,12 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYAXIS_H
 #define JOYAXIS_H
 
-#include <QObject>
 #include <QList>
+#include <QObject>
 
 #include "joybuttontypes/joyaxisbutton.h"
 
@@ -32,16 +31,16 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class JoyAxis;
 
-
 class JoyAxis : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
+  public:
+    explicit JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
     ~JoyAxis();
 
-    enum ThrottleTypes {
+    enum ThrottleTypes
+    {
         NegativeHalfThrottle = -2,
         NegativeThrottle = -1,
         NormalThrottle = 0,
@@ -49,15 +48,15 @@ public:
         PositiveHalfThrottle = 2
     };
 
-    void joyEvent(int value, bool ignoresets=false, bool updateLastValues=true); // JoyAxisEvent class
-    void queuePendingEvent(int value, bool ignoresets=false, bool updateLastValues=true); // JoyAxisEvent class
-    void activatePendingEvent(); // JoyAxisEvent class
-    bool hasPendingEvent(); // JoyAxisEvent class
-    void clearPendingEvent(); // JoyAxisEvent class
+    void joyEvent(int value, bool ignoresets = false, bool updateLastValues = true);          // JoyAxisEvent class
+    void queuePendingEvent(int value, bool ignoresets = false, bool updateLastValues = true); // JoyAxisEvent class
+    void activatePendingEvent();                                                              // JoyAxisEvent class
+    bool hasPendingEvent();                                                                   // JoyAxisEvent class
+    void clearPendingEvent();                                                                 // JoyAxisEvent class
     bool inDeadZone(int value);
 
-    virtual QString getName(bool forceFullFormat=false, bool displayNames=false);
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false);
+    virtual QString getName(bool forceFullFormat = false, bool displayNames = false);
+    virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false);
     virtual QString getXmlName(); // JoyAxisXml class
 
     void setIndex(int index);
@@ -78,7 +77,7 @@ public:
     int getCurrentRawValue();
     int getCurrentThrottledDeadValue();
     int getCurrentlyAssignedSet();
-    JoyAxisButton* getAxisButtonByValue(int value);
+    JoyAxisButton *getAxisButtonByValue(int value);
 
     double getDistanceFromDeadZone();
     double getDistanceFromDeadZone(int value);
@@ -87,7 +86,7 @@ public:
     void setControlStick(JoyControlStick *stick);
     void removeControlStick(bool performRelease = true);
     bool isPartControlStick();
-    JoyControlStick* getControlStick();
+    JoyControlStick *getControlStick();
     bool hasControlOfButtons();
     void removeVDPads();
 
@@ -130,7 +129,7 @@ public:
     virtual void setDefaultAxisName(QString tempname);
     virtual QString getDefaultAxisName();
 
-    SetJoystick* getParentSet();
+    SetJoystick *getParentSet();
 
     virtual bool isDefault();
 
@@ -154,12 +153,12 @@ public:
     static const ThrottleTypes DEFAULTTHROTTLE;
     int calculateThrottledValue(int value);
 
-protected:
+  protected:
     void createDeskEvent(bool ignoresets = false); // JoyAxisEvent class
     void adjustRange();
 
     void performCalibration(int value);
-    void stickPassEvent(int value, bool ignoresets=false, bool updateLastValues=true); // JoyAxisEvent class
+    void stickPassEvent(int value, bool ignoresets = false, bool updateLastValues = true); // JoyAxisEvent class
 
     JoyAxisButton *paxisbutton;
     JoyAxisButton *naxisbutton;
@@ -189,9 +188,9 @@ protected:
     JoyAxisButton *activeButton;
 
     // TODO: CHECK IF PROPERTY IS NEEDED.
-    //bool pendingUpdateLastValues;
+    // bool pendingUpdateLastValues;
 
-signals:
+  signals:
     void active(int value);
     void released(int value);
     void moved(int value);
@@ -200,10 +199,10 @@ signals:
     void axisNameChanged();
     void propertyUpdated();
 
-public slots:
+  public slots:
     virtual void reset();
     virtual void reset(int index);
-    void propogateThrottleChange();    
+    void propogateThrottleChange();
 
     void setDeadZone(int value);
     void setMaxZoneValue(int value);
@@ -214,14 +213,12 @@ public slots:
     void establishPropertyUpdatedConnection();
     void disconnectPropertyUpdatedConnection();
 
-private:
-
+  private:
     int m_originset;
 
     JoyControlStick *m_stick;
 
     SetJoystick *m_parentSet;
-
 
     void resetPrivateVars();
 };

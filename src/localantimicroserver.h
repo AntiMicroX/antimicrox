@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef LOCALANTIMICROSERVER_H
 #define LOCALANTIMICROSERVER_H
 
 #include <QObject>
-
 
 class QLocalServer;
 
@@ -29,24 +27,22 @@ class LocalAntiMicroServer : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit LocalAntiMicroServer(QObject *parent = nullptr);
 
-    QLocalServer* getLocalServer() const;
+    QLocalServer *getLocalServer() const;
 
-
-signals:
+  signals:
     void clientdisconnect();
 
-public slots:
+  public slots:
     void startLocalServer();
     void handleOutsideConnection();
     void handleSocketDisconnect();
     void close();
 
-private:
+  private:
     QLocalServer *localServer;
-
 };
 
 #endif // LOCALANTIMICROSERVER_H

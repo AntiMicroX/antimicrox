@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef EDITALLDEFAULTAUTOPROFILEDIALOG_H
 #define EDITALLDEFAULTAUTOPROFILEDIALOG_H
 
@@ -34,26 +33,23 @@ class EditAllDefaultAutoProfileDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings,
-                                             QWidget *parent = nullptr);
+  public:
+    explicit EditAllDefaultAutoProfileDialog(AutoProfileInfo *info, AntiMicroSettings *settings, QWidget *parent = nullptr);
     ~EditAllDefaultAutoProfileDialog();
 
-    AutoProfileInfo* getAutoProfile() const;
-    AntiMicroSettings* getSettings() const;
+    AutoProfileInfo *getAutoProfile() const;
+    AntiMicroSettings *getSettings() const;
 
-
-protected:
+  protected:
     virtual void accept();
 
-
-private:
+  private:
     Ui::EditAllDefaultAutoProfileDialog *ui;
 
     AutoProfileInfo *info;
     AntiMicroSettings *settings;
 
-private slots:
+  private slots:
     void openProfileBrowseDialog();
     void saveAutoProfileInformation();
 };

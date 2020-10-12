@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef UNIXWINDOWINFODIALOG_H
 #define UNIXWINDOWINFODIALOG_H
 
@@ -32,12 +31,12 @@ class CapturedWindowInfoDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-
+  public:
     explicit CapturedWindowInfoDialog(long window, QWidget *parent = nullptr);
     ~CapturedWindowInfoDialog();
 
-    enum {
+    enum
+    {
         WindowNone = 0,
         WindowClass = (1 << 0),
         WindowName = (1 << 1),
@@ -51,7 +50,7 @@ public:
     bool useFullWindowPath();
     CapturedWindowOption getSelectedOptions();
 
-private:
+  private:
     Ui::CapturedWindowInfoDialog *ui;
 
     CapturedWindowOption selectedMatch;
@@ -61,8 +60,7 @@ private:
     QString winPath;
     bool fullWinPath;
 
-
-private slots:
+  private slots:
     void populateOption();
 };
 

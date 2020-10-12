@@ -21,15 +21,14 @@
 #include "messagehandler.h"
 
 #include <QDebug>
-#include <QStyle>
 #include <QFontMetrics>
-#include <QPainter>
 #include <QPaintEvent>
+#include <QPainter>
+#include <QStyle>
 #include <QWidget>
 
-
-FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
-    QPushButton(parent)
+FlashButtonWidget::FlashButtonWidget(QWidget *parent)
+    : QPushButton(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -38,8 +37,8 @@ FlashButtonWidget::FlashButtonWidget(QWidget *parent) :
     leftAlignText = false;
 }
 
-FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent) :
-    QPushButton(parent)
+FlashButtonWidget::FlashButtonWidget(bool displayNames, QWidget *parent)
+    : QPushButton(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -78,9 +77,7 @@ void FlashButtonWidget::refreshLabel()
 
     setText(generateLabel());
 
-
-        qDebug() << "label has been set: " << generateLabel();
-
+    qDebug() << "label has been set: " << generateLabel();
 }
 
 bool FlashButtonWidget::isButtonFlashing()
@@ -114,7 +111,7 @@ bool FlashButtonWidget::isDisplayingNames()
 
 void FlashButtonWidget::paintEvent(QPaintEvent *event)
 {
-   // qInstallMessageHandler(MessageHandler::myMessageOutput);
+    // qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QPainter painter(this);
 
@@ -127,7 +124,7 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
 
     while ((this->width() < fm.width(text())) && (tempScaledFont.pointSize() >= 7))
     {
-        tempScaledFont.setPointSize(tempScaledFont.pointSize()-1);
+        tempScaledFont.setPointSize(tempScaledFont.pointSize() - 1);
         painter.setFont(tempScaledFont);
         fm = painter.fontMetrics();
         reduce = true;
@@ -143,8 +140,7 @@ void FlashButtonWidget::paintEvent(QPaintEvent *event)
             setStyleSheet("text-align: left;");
             this->style()->unpolish(this);
             this->style()->polish(this);
-        }
-        else if (!reduce && leftAlignText)
+        } else if (!reduce && leftAlignText)
         {
             leftAlignText = !leftAlignText;
             setStyleSheet("text-align: center;");
@@ -165,7 +161,4 @@ void FlashButtonWidget::retranslateUi()
     refreshLabel();
 }
 
-bool FlashButtonWidget::ifDisplayNames() {
-
-    return m_displayNames;
-}
+bool FlashButtonWidget::ifDisplayNames() { return m_displayNames; }

@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYBUTTONSLOTXML_H
 #define JOYBUTTONSLOTXML_H
 
@@ -26,27 +25,26 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class JoyButtonSlot;
 
-
 class JoyButtonSlotXml : public QObject
 {
     Q_OBJECT
 
-public:
-     explicit JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent = nullptr);
+  public:
+    explicit JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent = nullptr);
 
-     virtual void readConfig(QXmlStreamReader *xml);
-     virtual void writeConfig(QXmlStreamWriter *xml);
-     static int timeoutWrite;
-     static int timeoutRead;
+    virtual void readConfig(QXmlStreamReader *xml);
+    virtual void writeConfig(QXmlStreamWriter *xml);
+    static int timeoutWrite;
+    static int timeoutRead;
 
-private:
-     void writeEachSlot(QXmlStreamWriter *xml, JoyButtonSlot *joyBtnSlot);
-     void readEachSlot(QXmlStreamReader *xml,  JoyButtonSlot* joyBtnSlot, QString &profile, QString &tempStringData, QString &extraStringData);
-     void setSlotData(JoyButtonSlot *joyBtnSlot, QString profile, QString tempStringData, QString extraStringData);
+  private:
+    void writeEachSlot(QXmlStreamWriter *xml, JoyButtonSlot *joyBtnSlot);
+    void readEachSlot(QXmlStreamReader *xml, JoyButtonSlot *joyBtnSlot, QString &profile, QString &tempStringData,
+                      QString &extraStringData);
+    void setSlotData(JoyButtonSlot *joyBtnSlot, QString profile, QString tempStringData, QString extraStringData);
 
-     JoyButtonSlot* m_joyBtnSlot;
-     QReadWriteLock xmlLock;
-
+    JoyButtonSlot *m_joyBtnSlot;
+    QReadWriteLock xmlLock;
 };
 
 #endif // JOYBUTTONSLOTXML_H

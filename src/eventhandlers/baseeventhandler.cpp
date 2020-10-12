@@ -23,19 +23,13 @@
 
 #include <QDebug>
 
-
-BaseEventHandler::BaseEventHandler(QObject *parent) :
-    QObject(parent)
+BaseEventHandler::BaseEventHandler(QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
-
-BaseEventHandler::~BaseEventHandler()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-}
-
+BaseEventHandler::~BaseEventHandler() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
 
 QString BaseEventHandler::getErrorString()
 {
@@ -48,10 +42,7 @@ QString BaseEventHandler::getErrorString()
  * @brief Do nothing by default. Allow child classes to specify text to output
  *     to a text stream.
  */
-void BaseEventHandler::printPostMessages()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-}
+void BaseEventHandler::printPostMessages() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
 
 /**
  * @brief Do nothing by default. Useful for child classes to define behavior.
@@ -75,8 +66,7 @@ void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
  * @param Bounding box width
  * @param Bounding box height
  */
-void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis,
-                                            int width, int height)
+void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int height)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 

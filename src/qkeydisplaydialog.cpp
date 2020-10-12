@@ -19,26 +19,23 @@
 #include "qkeydisplaydialog.h"
 #include "ui_qkeydisplaydialog.h"
 
-#include "messagehandler.h"
-#include "eventhandlerfactory.h"
 #include "antkeymapper.h"
+#include "eventhandlerfactory.h"
+#include "messagehandler.h"
 
-#include <QDebug>
-#include <QKeySequence>
-#include <QKeyEvent>
-#include <QWidget>
 #include <QApplication>
+#include <QDebug>
+#include <QKeyEvent>
+#include <QKeySequence>
+#include <QWidget>
 
 #ifdef WITH_X11
     #include "x11extras.h"
 #endif
 
-
-
-
-QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::QKeyDisplayDialog)
+QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::QKeyDisplayDialog)
 {
     ui->setupUi(this);
 
@@ -62,13 +59,13 @@ void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 
     switch (event->key())
     {
-        case Qt::Key_Escape:
-        case Qt::Key_Enter:
-        case Qt::Key_Return:
-            break;
+    case Qt::Key_Escape:
+    case Qt::Key_Enter:
+    case Qt::Key_Return:
+        break;
 
-        default:
-            QDialog::keyPressEvent(event);
+    default:
+        QDialog::keyPressEvent(event);
     }
 }
 
@@ -81,14 +78,14 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 
     int finalvirtual = 0;
 
-    #ifdef WITH_X11
+#ifdef WITH_X11
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
-{
+    {
         // Obtain group 1 X11 keysym. Removes effects from modifiers.
         finalvirtual = X11Extras::getInstance()->getGroup1KeySym(virtualkey);
 
-        #ifdef WITH_UINPUT
+    #ifdef WITH_UINPUT
         QtKeyMapperBase *nativeKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
 
         if (nativeKeyMapper && (nativeKeyMapper->getIdentifier() == "xtest"))
@@ -96,26 +93,23 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
             int tempalias = nativeKeyMapper->returnQtKey(virtualkey);
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempalias);
         }
-        #endif
-    }
-    else
+    #endif
+    } else
     {
         finalvirtual = scancode;
     }
 
-    #else
+#else
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
-    }
-    else
+    } else
     {
         finalvirtual = scancode;
     }
 
-    #endif
-
+#endif
 
     ui->nativeKeyLabel->setText(QString("0x%1").arg(finalvirtual, 0, 16));
     ui->qtKeyLabel->setText(QString("0x%1").arg(event->key(), 0, 16));

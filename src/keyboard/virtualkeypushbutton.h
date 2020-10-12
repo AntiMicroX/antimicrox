@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef VIRTUALKEYPUSHBUTTON_H
 #define VIRTUALKEYPUSHBUTTON_H
 
@@ -26,10 +25,10 @@ class VirtualKeyPushButton : public QPushButton
 {
     Q_OBJECT
 
-public:
+  public:
     explicit VirtualKeyPushButton(QString xcodestring, QWidget *parent = nullptr);
     int calculateFontSize();
-    
+
     QString getXcodestring() const;
     QString getDisplayString() const;
     int getKeycode() const;
@@ -39,24 +38,23 @@ public:
 
     static QHash<QString, QString> knownAliases;
 
-protected:
+  protected:
     QString setDisplayString(QString xcodestring);
     void populateKnownAliases();
 
-signals:
+  signals:
     void keycodeObtained(int code, int alias);
 
-private slots:
+  private slots:
     void processSingleSelection();
 
-private:
+  private:
     int keycode;
     int qkeyalias;
     QString xcodestring;
     QString displayString;
     bool currentlyActive;
     bool onCurrentButton;
-
 };
 
 #endif // VIRTUALKEYPUSHBUTTON_H

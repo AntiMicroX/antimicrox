@@ -32,7 +32,7 @@ class XMLConfigReader : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit XMLConfigReader(QObject *parent = nullptr);
     ~XMLConfigReader();
     void setJoystick(InputDevice *joystick);
@@ -42,25 +42,24 @@ public:
     bool read();
 
     const QXmlStreamReader *getXml();
-    QString const& getFileName();
-    const QFile* getConfigFile();
-    const InputDevice* getJoystick();
+    QString const &getFileName();
+    const QFile *getConfigFile();
+    const InputDevice *getJoystick();
     QPointer<InputDeviceXml> m_joystickXml;
-    QStringList const& getDeviceTypes();
+    QStringList const &getDeviceTypes();
 
-protected:
+  protected:
     void initDeviceTypes();
-    
-public slots:
+
+  public slots:
     void configJoystick(InputDevice *joystick);
 
-private:
+  private:
     QXmlStreamReader *xml;
     QString fileName;
     QFile *configFile;
-    InputDevice* m_joystick;
+    InputDevice *m_joystick;
     QStringList deviceTypes;
-
 };
 
 #endif // XMLCONFIGREADER_H

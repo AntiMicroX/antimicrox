@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSEDPADSETTINGSDIALOGHELPER_H
 #define MOUSEDPADSETTINGSDIALOGHELPER_H
 
@@ -24,19 +23,17 @@
 
 class JoyDPad;
 
-
 class MouseDpadSettingsDialogHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseDpadSettingsDialogHelper(JoyDPad *dpad, QObject *parent = nullptr);
 
-    JoyDPad* getDPad() const;
+    JoyDPad *getDPad() const;
 
-private:
+  private:
     JoyDPad *dpad;
-
 };
 
 #endif // MOUSEDPADSETTINGSDIALOGHELPER_H

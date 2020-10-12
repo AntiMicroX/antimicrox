@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYAXISCONTEXTMENUHELPER_H
 #define JOYAXISCONTEXTMENUHELPER_H
 
@@ -27,17 +26,15 @@ class JoyAxis;
 class JoyAxisContextMenuHelper : public QObject
 {
     Q_OBJECT
-public:
+  public:
     explicit JoyAxisContextMenuHelper(JoyAxis *axis, QObject *parent = nullptr);
 
-protected:
+  protected:
     JoyAxis *axis;
 
-public slots:
-    void setNAssignedSlot(int code, int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
-    void setPAssignedSlot(int code, int alias,
-                         JoyButtonSlot::JoySlotInputAction mode=JoyButtonSlot::JoyKeyboard);
+  public slots:
+    void setNAssignedSlot(int code, int alias, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
+    void setPAssignedSlot(int code, int alias, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
     void clearAndResetAxisButtons();
 };
 

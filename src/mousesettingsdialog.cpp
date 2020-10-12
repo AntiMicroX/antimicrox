@@ -22,18 +22,17 @@
 #include "globalvariables.h"
 #include "messagehandler.h"
 
-#include <QString>
-#include <QLabel>
-#include <QDoubleSpinBox>
-#include <QSpinBox>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDebug>
+#include <QDoubleSpinBox>
+#include <QLabel>
+#include <QSpinBox>
+#include <QString>
 
-
-MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
-    QDialog(parent, Qt::Window),
-    ui(new Ui::MouseSettingsDialog)
+MouseSettingsDialog::MouseSettingsDialog(QWidget *parent)
+    : QDialog(parent, Qt::Window)
+    , ui(new Ui::MouseSettingsDialog)
 {
     ui->setupUi(this);
 
@@ -45,21 +44,33 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent) :
     connect(mouseHelper, &JoyButtonMouseHelper::mouseSpringMoved, this, &MouseSettingsDialog::updateMouseSpringStatusLabels);
     lastMouseStatUpdate.start();
 
-    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseSettingsDialog::changeSettingsWidgetStatus);
-    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseSettingsDialog::refreshMouseCursorSpeedValues);
-    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseSettingsDialog::changeSpringSectionStatus);
-    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseSettingsDialog::changeMouseSpeedBoxStatus);
-    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseSettingsDialog::changeWheelSpeedBoxStatus);
-    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseSettingsDialog::changeSensitivityStatusForMouseMode);
+    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseSettingsDialog::changeSettingsWidgetStatus);
+    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseSettingsDialog::refreshMouseCursorSpeedValues);
+    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseSettingsDialog::changeSpringSectionStatus);
+    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseSettingsDialog::changeMouseSpeedBoxStatus);
+    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseSettingsDialog::changeWheelSpeedBoxStatus);
+    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseSettingsDialog::changeSensitivityStatusForMouseMode);
 
-    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseSettingsDialog::updateHorizontalSpeedConvertLabel);
-    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseSettingsDialog::moveSpeedsTogether);
+    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseSettingsDialog::updateHorizontalSpeedConvertLabel);
+    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseSettingsDialog::moveSpeedsTogether);
 
-    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseSettingsDialog::updateVerticalSpeedConvertLabel);
-    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseSettingsDialog::moveSpeedsTogether);
+    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseSettingsDialog::updateVerticalSpeedConvertLabel);
+    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseSettingsDialog::moveSpeedsTogether);
 
-    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseSettingsDialog::updateWheelVerticalSpeedLabel);
-    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseSettingsDialog::updateWheelHorizontalSpeedLabel);
+    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseSettingsDialog::updateWheelVerticalSpeedLabel);
+    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseSettingsDialog::updateWheelHorizontalSpeedLabel);
 
     connect(ui->relativeSpringCheckBox, &QCheckBox::clicked, this, &MouseSettingsDialog::disableReleaseSpringBox);
     connect(ui->relativeSpringCheckBox, &QCheckBox::clicked, this, &MouseSettingsDialog::resetReleaseRadius);
@@ -81,18 +92,15 @@ void MouseSettingsDialog::changeSettingsWidgetStatus(int index)
     if ((currentMouseMode == 1) && (temp == JoyButton::PowerCurve))
     {
         ui->sensitivityDoubleSpinBox->setEnabled(true);
-    }
-    else
+    } else
     {
         ui->sensitivityDoubleSpinBox->setEnabled(false);
     }
 
-    if ((currentMouseMode == 1) && ((temp == JoyButton::EasingQuadraticCurve) ||
-                                  (temp == JoyButton::EasingCubicCurve)))
+    if ((currentMouseMode == 1) && ((temp == JoyButton::EasingQuadraticCurve) || (temp == JoyButton::EasingCubicCurve)))
     {
         ui->easingDoubleSpinBox->setEnabled(true);
-    }
-    else
+    } else
     {
         ui->easingDoubleSpinBox->setEnabled(false);
     }
@@ -109,8 +117,7 @@ void MouseSettingsDialog::changeSpringSectionStatus(int index)
         ui->relativeSpringCheckBox->setEnabled(true);
         bool enableSpringRadiusBox = !ui->relativeSpringCheckBox->isChecked();
         ui->releaseSpringRadiusspinBox->setEnabled(enableSpringRadiusBox);
-    }
-    else
+    } else
     {
         ui->springWidthSpinBox->setEnabled(false);
         ui->springHeightSpinBox->setEnabled(false);
@@ -123,7 +130,7 @@ void MouseSettingsDialog::updateHorizontalSpeedConvertLabel(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString label = QString (QString::number(value));
+    QString label = QString(QString::number(value));
 
     int currentCurveIndex = ui->accelerationComboBox->currentIndex();
     JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
@@ -137,7 +144,7 @@ void MouseSettingsDialog::updateVerticalSpeedConvertLabel(int value)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    QString label = QString (QString::number(value));
+    QString label = QString(QString::number(value));
 
     int currentCurveIndex = ui->accelerationComboBox->currentIndex();
     JoyButton::JoyMouseCurve tempCurve = getMouseCurveForIndex(currentCurveIndex);
@@ -169,8 +176,7 @@ void MouseSettingsDialog::changeMouseSpeedBoxStatus(int index)
         ui->changeMouseSpeedsTogetherCheckBox->setEnabled(false);
         ui->extraAccelerationGroupBox->setChecked(false);
         ui->extraAccelerationGroupBox->setEnabled(false);
-    }
-    else
+    } else
     {
         ui->horizontalSpinBox->setEnabled(true);
         ui->verticalSpinBox->setEnabled(true);
@@ -190,8 +196,7 @@ void MouseSettingsDialog::changeWheelSpeedBoxStatus(int index)
     {
         ui->wheelHoriSpeedSpinBox->setEnabled(false);
         ui->wheelVertSpeedSpinBox->setEnabled(false);
-    }
-    else
+    } else
     {
         ui->wheelHoriSpeedSpinBox->setEnabled(true);
         ui->wheelVertSpeedSpinBox->setEnabled(true);
@@ -222,48 +227,40 @@ void MouseSettingsDialog::updateAccelerationCurvePresetComboBox(JoyButton::JoyMo
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    switch(mouseCurve)
+    switch (mouseCurve)
     {
-        case JoyButton::EnhancedPrecisionCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(1);
-            break;
-        }
-        case JoyButton::LinearCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(2);
-            break;
-        }
-        case JoyButton::QuadraticCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(3);
-            break;
-        }
-        case JoyButton::CubicCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(4);
-            break;
-        }
-        case JoyButton::QuadraticExtremeCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(5);
-            break;
-        }
-        case JoyButton::PowerCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(6);
-            break;
-        }
-        case JoyButton::EasingQuadraticCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(7);
-            break;
-        }
-        case JoyButton::EasingCubicCurve:
-        {
-            ui->accelerationComboBox->setCurrentIndex(8);
-            break;
-        }
+    case JoyButton::EnhancedPrecisionCurve: {
+        ui->accelerationComboBox->setCurrentIndex(1);
+        break;
+    }
+    case JoyButton::LinearCurve: {
+        ui->accelerationComboBox->setCurrentIndex(2);
+        break;
+    }
+    case JoyButton::QuadraticCurve: {
+        ui->accelerationComboBox->setCurrentIndex(3);
+        break;
+    }
+    case JoyButton::CubicCurve: {
+        ui->accelerationComboBox->setCurrentIndex(4);
+        break;
+    }
+    case JoyButton::QuadraticExtremeCurve: {
+        ui->accelerationComboBox->setCurrentIndex(5);
+        break;
+    }
+    case JoyButton::PowerCurve: {
+        ui->accelerationComboBox->setCurrentIndex(6);
+        break;
+    }
+    case JoyButton::EasingQuadraticCurve: {
+        ui->accelerationComboBox->setCurrentIndex(7);
+        break;
+    }
+    case JoyButton::EasingCubicCurve: {
+        ui->accelerationComboBox->setCurrentIndex(8);
+        break;
+    }
     }
 }
 
@@ -273,48 +270,40 @@ JoyButton::JoyMouseCurve MouseSettingsDialog::getMouseCurveForIndex(int index)
 
     JoyButton::JoyMouseCurve temp = JoyButton::DEFAULTMOUSECURVE;
 
-    switch(index)
+    switch (index)
     {
-        case 1:
-        {
-            temp = JoyButton::EnhancedPrecisionCurve;
-            break;
-        }
-        case 2:
-        {
-            temp = JoyButton::LinearCurve;
-            break;
-        }
-        case 3:
-        {
-            temp = JoyButton::QuadraticCurve;
-            break;
-        }
-        case 4:
-        {
-            temp = JoyButton::CubicCurve;
-            break;
-        }
-        case 5:
-        {
-            temp = JoyButton::QuadraticExtremeCurve;
-            break;
-        }
-        case 6:
-        {
-            temp = JoyButton::PowerCurve;
-            break;
-        }
-        case 7:
-        {
-            temp = JoyButton::EasingQuadraticCurve;
-            break;
-        }
-        case 8:
-        {
-            temp = JoyButton::EasingCubicCurve;
-            break;
-        }
+    case 1: {
+        temp = JoyButton::EnhancedPrecisionCurve;
+        break;
+    }
+    case 2: {
+        temp = JoyButton::LinearCurve;
+        break;
+    }
+    case 3: {
+        temp = JoyButton::QuadraticCurve;
+        break;
+    }
+    case 4: {
+        temp = JoyButton::CubicCurve;
+        break;
+    }
+    case 5: {
+        temp = JoyButton::QuadraticExtremeCurve;
+        break;
+    }
+    case 6: {
+        temp = JoyButton::PowerCurve;
+        break;
+    }
+    case 7: {
+        temp = JoyButton::EasingQuadraticCurve;
+        break;
+    }
+    case 8: {
+        temp = JoyButton::EasingCubicCurve;
+        break;
+    }
     }
 
     return temp;
@@ -327,16 +316,14 @@ void MouseSettingsDialog::changeSensitivityStatusForMouseMode(int index)
     if (index == 2)
     {
         ui->sensitivityDoubleSpinBox->setEnabled(false);
-    }
-    else if (index == 1)
+    } else if (index == 1)
     {
         int currentCurveIndex = ui->accelerationComboBox->currentIndex();
         JoyButton::JoyMouseCurve temp = getMouseCurveForIndex(currentCurveIndex);
 
         if (temp == JoyButton::PowerCurve)
             ui->sensitivityDoubleSpinBox->setEnabled(true);
-    }
-    else
+    } else
     {
         ui->sensitivityDoubleSpinBox->setEnabled(false);
     }
@@ -358,8 +345,8 @@ void MouseSettingsDialog::updateMouseCursorStatusLabels(int mouseX, int mouseY, 
         QString tempX("%1 (%2 pps) (%3 ms)");
         QString tempY("%1 (%2 pps) (%3 ms)");
 
-        ui->mouseStatusXLabel->setText(tempX.arg(mouseX).arg(mouseX * (1000/elapsed)).arg(elapsed));
-        ui->mouseStatusYLabel->setText(tempY.arg(mouseY).arg(mouseY * (1000/elapsed)).arg(elapsed));
+        ui->mouseStatusXLabel->setText(tempX.arg(mouseX).arg(mouseX * (1000 / elapsed)).arg(elapsed));
+        ui->mouseStatusYLabel->setText(tempY.arg(mouseY).arg(mouseY * (1000 / elapsed)).arg(elapsed));
 
         lastMouseStatUpdate.start();
     }
@@ -385,7 +372,6 @@ void MouseSettingsDialog::updateMouseSpringStatusLabels(int coordX, int coordY)
         lastMouseStatUpdate.start();
     }
 }
-
 
 void MouseSettingsDialog::refreshMouseCursorSpeedValues(int index)
 {
@@ -420,63 +406,53 @@ JoyButton::JoyExtraAccelerationCurve MouseSettingsDialog::getExtraAccelCurveForI
 
     JoyButton::JoyExtraAccelerationCurve temp = JoyButton::LinearAccelCurve;
 
-    switch(index)
+    switch (index)
     {
-        case 1:
-        {
-            temp = JoyButton::LinearAccelCurve;
-            break;
-        }
-        case 2:
-        {
-            temp = JoyButton::EaseOutSineCurve;
-            break;
-        }
-        case 3:
-        {
-            temp = JoyButton::EaseOutQuadAccelCurve;
-            break;
-        }
-        case 4:
-        {
-            temp = JoyButton::EaseOutCubicAccelCurve;
-            break;
-        }
+    case 1: {
+        temp = JoyButton::LinearAccelCurve;
+        break;
+    }
+    case 2: {
+        temp = JoyButton::EaseOutSineCurve;
+        break;
+    }
+    case 3: {
+        temp = JoyButton::EaseOutQuadAccelCurve;
+        break;
+    }
+    case 4: {
+        temp = JoyButton::EaseOutCubicAccelCurve;
+        break;
+    }
     }
 
     return temp;
 }
 
-void
-MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox
-(JoyButton::JoyExtraAccelerationCurve curve)
+void MouseSettingsDialog::updateExtraAccelerationCurvePresetComboBox(JoyButton::JoyExtraAccelerationCurve curve)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int temp = 0;
 
-    switch(curve)
+    switch (curve)
     {
-        case JoyButton::LinearAccelCurve:
-        {
-            temp = 1;
-            break;
-        }
-        case JoyButton::EaseOutSineCurve:
-        {
-            temp = 2;
-            break;
-        }
-        case JoyButton::EaseOutQuadAccelCurve:
-        {
-            temp = 3;
-            break;
-        }
-        case JoyButton::EaseOutCubicAccelCurve:
-        {
-            temp = 4;
-            break;
-        }
+    case JoyButton::LinearAccelCurve: {
+        temp = 1;
+        break;
+    }
+    case JoyButton::EaseOutSineCurve: {
+        temp = 2;
+        break;
+    }
+    case JoyButton::EaseOutQuadAccelCurve: {
+        temp = 3;
+        break;
+    }
+    case JoyButton::EaseOutCubicAccelCurve: {
+        temp = 4;
+        break;
+    }
     }
 
     ui->extraAccelCurveComboBox->setCurrentIndex(temp);

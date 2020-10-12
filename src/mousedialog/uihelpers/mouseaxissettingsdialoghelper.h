@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSEAXISSETTINGSDIALOGHELPER_H
 #define MOUSEAXISSETTINGSDIALOGHELPER_H
 
@@ -28,12 +27,12 @@ class MouseAxisSettingsDialogHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent = nullptr);
 
-    JoyAxis* getAxis() const;
+    JoyAxis *getAxis() const;
 
-public slots:
+  public slots:
     void updateExtraAccelerationStatus(bool checked);
     void updateExtraAccelerationMultiplier(double value);
 
@@ -43,9 +42,8 @@ public slots:
     void updateAccelExtraDuration(double value);
     void updateReleaseSpringRadius(int value);
 
-private:
+  private:
     JoyAxis *axis;
-
 };
 
 #endif // MOUSEAXISSETTINGSDIALOGHELPER_H

@@ -19,24 +19,24 @@
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
 
-#include "messagehandler.h"
 #include "common.h"
 #include "eventhandlerfactory.h"
+#include "messagehandler.h"
 
-#include <SDL2/SDL_version.h>
 #include <SDL2/SDL_gamecontroller.h>
+#include <SDL2/SDL_version.h>
 
-#include <QtGlobal>
-#include <QResource>
-#include <QTextStream>
+#include <QDebug>
 #include <QEvent>
 #include <QFile>
+#include <QResource>
 #include <QStringList>
-#include <QDebug>
+#include <QTextStream>
+#include <QtGlobal>
 
-AboutDialog::AboutDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AboutDialog)
+AboutDialog::AboutDialog(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
 
@@ -107,7 +107,8 @@ void AboutDialog::changeEvent(QEvent *event)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    if (event->type() == QEvent::LanguageChange) retranslateUi();
+    if (event->type() == QEvent::LanguageChange)
+        retranslateUi();
 
     QDialog::changeEvent(event);
 }

@@ -25,13 +25,11 @@
 #include <QList>
 #include <QListIterator>
 
-#include "qtuinputkeymapper.h"
 #include "messagehandler.h"
+#include "qtuinputkeymapper.h"
 
-
-
-QtUInputKeyMapper::QtUInputKeyMapper(QObject *parent) :
-    QtKeyMapperBase(parent)
+QtUInputKeyMapper::QtUInputKeyMapper(QObject *parent)
+    : QtKeyMapperBase(parent)
 {
     identifier = "uinput";
     populateMappingHashes();
@@ -294,13 +292,13 @@ void QtUInputKeyMapper::populateCharKeyInformation()
     addVirtualKeyToHash(KEY_SLASH, QChar('?'), charKeyInfo);
 }
 
-void QtUInputKeyMapper::addVirtualKeyToHash(int key, QChar character, charKeyInformation& charKeyInfo)
+void QtUInputKeyMapper::addVirtualKeyToHash(int key, QChar character, charKeyInformation &charKeyInfo)
 {
     charKeyInfo.virtualkey = key;
     virtkeyToCharKeyInfo.insert(character.unicode(), charKeyInfo);
 }
 
-void QtUInputKeyMapper::mapMiscKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
+void QtUInputKeyMapper::mapMiscKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash)
 {
     qtKeyToVirtKeyHash[Qt::Key_Escape] = KEY_ESC;
     qtKeyToVirtKeyHash[Qt::Key_Tab] = KEY_TAB;
@@ -317,7 +315,7 @@ void QtUInputKeyMapper::mapMiscKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
     qtKeyToVirtKeyHash[Qt::Key_Refresh] = KEY_REFRESH;
     qtKeyToVirtKeyHash[Qt::Key_Copy] = KEY_COPY;
     qtKeyToVirtKeyHash[Qt::Key_Paste] = KEY_PASTE;
-    //qtKeyToVirtKeyHash[Qt::Key_Search] = KEY_FIND;
+    // qtKeyToVirtKeyHash[Qt::Key_Search] = KEY_FIND;
     qtKeyToVirtKeyHash[Qt::Key_Cut] = KEY_CUT;
     qtKeyToVirtKeyHash[Qt::Key_Sleep] = KEY_SLEEP;
     qtKeyToVirtKeyHash[Qt::Key_Calculator] = KEY_CALC;
@@ -334,7 +332,7 @@ void QtUInputKeyMapper::mapMiscKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
     qtKeyToVirtKeyHash[Qt::Key_Forward] = KEY_FORWARD;
     qtKeyToVirtKeyHash[Qt::Key_Suspend] = KEY_SUSPEND;
     qtKeyToVirtKeyHash[Qt::Key_Close] = KEY_CLOSE;
-    //qtKeyToVirtKeyHash[Qt::Key_Search] = KEY_SEARCH;
+    // qtKeyToVirtKeyHash[Qt::Key_Search] = KEY_SEARCH;
     qtKeyToVirtKeyHash[Qt::Key_Camera] = KEY_CAMERA;
     qtKeyToVirtKeyHash[Qt::Key_MonBrightnessUp] = KEY_BRIGHTNESSUP;
     qtKeyToVirtKeyHash[Qt::Key_MonBrightnessDown] = KEY_BRIGHTNESSDOWN;
@@ -348,12 +346,12 @@ void QtUInputKeyMapper::mapMiscKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
     qtKeyToVirtKeyHash[Qt::Key_WLAN] = KEY_WLAN;
     qtKeyToVirtKeyHash[Qt::Key_Cancel] = KEY_CANCEL;
     qtKeyToVirtKeyHash[Qt::Key_Shop] = KEY_SHOP;
-    qtKeyToVirtKeyHash[Qt::Key_Finance]  = KEY_FINANCE;
+    qtKeyToVirtKeyHash[Qt::Key_Finance] = KEY_FINANCE;
     qtKeyToVirtKeyHash[Qt::Key_Question] = KEY_QUESTION;
     qtKeyToVirtKeyHash[Qt::Key_BassBoost] = KEY_BASSBOOST;
 }
 
-void QtUInputKeyMapper::mapCursorMovesKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
+void QtUInputKeyMapper::mapCursorMovesKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash)
 {
     qtKeyToVirtKeyHash[Qt::Key_Home] = KEY_HOME;
     qtKeyToVirtKeyHash[Qt::Key_End] = KEY_END;
@@ -365,7 +363,7 @@ void QtUInputKeyMapper::mapCursorMovesKeysQtUinput(QHash<int, int>& qtKeyToVirtK
     qtKeyToVirtKeyHash[Qt::Key_PageDown] = KEY_PAGEDOWN;
 }
 
-void QtUInputKeyMapper::mapModifiersKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
+void QtUInputKeyMapper::mapModifiersKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash)
 {
     qtKeyToVirtKeyHash[Qt::Key_Shift] = KEY_LEFTSHIFT;
     qtKeyToVirtKeyHash[Qt::Key_Control] = KEY_LEFTCTRL;
@@ -379,7 +377,7 @@ void QtUInputKeyMapper::mapModifiersKeysQtUinput(QHash<int, int>& qtKeyToVirtKey
     qtKeyToVirtKeyHash[Qt::Key_Help] = KEY_HELP;
 }
 
-void QtUInputKeyMapper::mapKeypadKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
+void QtUInputKeyMapper::mapKeypadKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash)
 {
     qtKeyToVirtKeyHash[AntKey_KP_Enter] = KEY_KPENTER;
     qtKeyToVirtKeyHash[AntKey_KP_Home] = KEY_HOME;
@@ -409,18 +407,18 @@ void QtUInputKeyMapper::mapKeypadKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHas
     qtKeyToVirtKeyHash[AntKey_KP_0] = KEY_KP0;
 }
 
-void QtUInputKeyMapper::mapJapanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
+void QtUInputKeyMapper::mapJapanKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash)
 {
     // qtKeyToVirtKeyHash[Qt::Key_Kanji] = XK_Kanji;
-     qtKeyToVirtKeyHash[Qt::Key_Muhenkan] = KEY_MUHENKAN;
-     qtKeyToVirtKeyHash[Qt::Key_Henkan] = KEY_HENKAN;
-     qtKeyToVirtKeyHash[Qt::Key_Romaji] = KEY_RO;
-     qtKeyToVirtKeyHash[Qt::Key_Hiragana] = KEY_HIRAGANA;
-     qtKeyToVirtKeyHash[Qt::Key_Katakana] = KEY_KATAKANA;
-     qtKeyToVirtKeyHash[Qt::Key_Hiragana_Katakana] = KEY_KATAKANAHIRAGANA;
+    qtKeyToVirtKeyHash[Qt::Key_Muhenkan] = KEY_MUHENKAN;
+    qtKeyToVirtKeyHash[Qt::Key_Henkan] = KEY_HENKAN;
+    qtKeyToVirtKeyHash[Qt::Key_Romaji] = KEY_RO;
+    qtKeyToVirtKeyHash[Qt::Key_Hiragana] = KEY_HIRAGANA;
+    qtKeyToVirtKeyHash[Qt::Key_Katakana] = KEY_KATAKANA;
+    qtKeyToVirtKeyHash[Qt::Key_Hiragana_Katakana] = KEY_KATAKANAHIRAGANA;
     // qtKeyToVirtKeyHash[Qt::Key_Zenkaku] = XK_Zenkaku;
     // qtKeyToVirtKeyHash[Qt::Key_Hankaku] = XK_Hankaku;
-     qtKeyToVirtKeyHash[Qt::Key_Zenkaku_Hankaku] = KEY_ZENKAKUHANKAKU;
+    qtKeyToVirtKeyHash[Qt::Key_Zenkaku_Hankaku] = KEY_ZENKAKUHANKAKU;
     /* qtKeyToVirtKeyHash[Qt::Key_Touroku] = XK_Touroku;
      qtKeyToVirtKeyHash[Qt::Key_Massyo] = XK_Massyo;
      qtKeyToVirtKeyHash[Qt::Key_Kana_Lock] = XK_Kana_Lock;
@@ -432,27 +430,27 @@ void QtUInputKeyMapper::mapJapanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash
      qtKeyToX11KeySym[Qt::Key_PreviousCandidate] = XK_Mae_Koho;*/
 }
 
-void QtUInputKeyMapper::mapKoreanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
+void QtUInputKeyMapper::mapKoreanKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash)
 {
     qtKeyToVirtKeyHash[Qt::Key_Hangul] = KEY_HANGEUL;
-   /* qtKeyToVirtKeyHash[Qt::Key_Hangul_Start] = XK_Hangul_Start;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_End] = XK_Hangul_End;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_Hanja] = KEY_HANJA;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_Jamo] = XK_Hangul_Jamo;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_Romaja] = XK_Hangul_Romaja;
-    //qtKeyToX11KeySym[Qt::Key_Codeinput] = XK_Hangul_Codeinput;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_Jeonja] = XK_Hangul_Jeonja;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_Banja] = XK_Hangul_Banja;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_PreHanja] = XK_Hangul_PreHanja;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_PostHanja] = XK_Hangul_PostHanja;
-    //qtKeyToX11KeySym[Qt::Key_SingleCandidate] = XK_Hangul_SingleCandidate;
-    //qtKeyToX11KeySym[Qt::Key_MultipleCandidate] = XK_Hangul_MultipleCandidate;
-    //qtKeyToX11KeySym[Qt::Key_PreviousCandidate] = XK_Hangul_PreviousCandidate;
-    qtKeyToVirtKeyHash[Qt::Key_Hangul_Special] = XK_Hangul_Special;
-    //qtKeyToX11KeySym[Qt::Key_Mode_switch] = XK_Hangul_switch;*/
+    /* qtKeyToVirtKeyHash[Qt::Key_Hangul_Start] = XK_Hangul_Start;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_End] = XK_Hangul_End;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_Hanja] = KEY_HANJA;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_Jamo] = XK_Hangul_Jamo;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_Romaja] = XK_Hangul_Romaja;
+     //qtKeyToX11KeySym[Qt::Key_Codeinput] = XK_Hangul_Codeinput;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_Jeonja] = XK_Hangul_Jeonja;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_Banja] = XK_Hangul_Banja;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_PreHanja] = XK_Hangul_PreHanja;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_PostHanja] = XK_Hangul_PostHanja;
+     //qtKeyToX11KeySym[Qt::Key_SingleCandidate] = XK_Hangul_SingleCandidate;
+     //qtKeyToX11KeySym[Qt::Key_MultipleCandidate] = XK_Hangul_MultipleCandidate;
+     //qtKeyToX11KeySym[Qt::Key_PreviousCandidate] = XK_Hangul_PreviousCandidate;
+     qtKeyToVirtKeyHash[Qt::Key_Hangul_Special] = XK_Hangul_Special;
+     //qtKeyToX11KeySym[Qt::Key_Mode_switch] = XK_Hangul_switch;*/
 }
 
-void QtUInputKeyMapper::mapMediaKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash)
+void QtUInputKeyMapper::mapMediaKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash)
 {
     qtKeyToVirtKeyHash[Qt::Key_VolumeDown] = KEY_VOLUMEDOWN;
     qtKeyToVirtKeyHash[Qt::Key_VolumeMute] = KEY_MUTE;

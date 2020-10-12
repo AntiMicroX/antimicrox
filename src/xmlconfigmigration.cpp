@@ -18,19 +18,18 @@
 
 #include "xmlconfigmigration.h"
 
-#include "messagehandler.h"
-#include "event.h"
 #include "antkeymapper.h"
 #include "common.h"
+#include "event.h"
 #include "eventhandlerfactory.h"
+#include "messagehandler.h"
 
+#include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include <QDebug>
 
-
-XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent) :
-    QObject(parent)
+XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -39,8 +38,7 @@ XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent
     if (reader->device() && reader->device()->isOpen())
     {
         this->fileVersion = reader->attributes().value("configversion").toString().toInt();
-    }
-    else
+    } else
     {
         this->fileVersion = 0;
     }
@@ -130,12 +128,10 @@ QString XMLConfigMigration::version0006Migration()
                 {
                     QString tempcode = reader->readElementText();
                     slotcode = tempcode.toInt();
-                }
-                else if ((reader->name() == "mode") && reader->isStartElement())
+                } else if ((reader->name() == "mode") && reader->isStartElement())
                 {
                     slotmode = reader->readElementText();
-                }
-                else
+                } else
                 {
                     writer.writeCurrentToken(*reader);
                 }
@@ -155,8 +151,7 @@ QString XMLConfigMigration::version0006Migration()
                     if (handler->getIdentifier() == "xtest")
                     {
                         slotcode = AntKeyMapper::getInstance()->returnQtKey(X11KeyCodeToX11KeySym(slotcode));
-                    }
-                    else
+                    } else
                     {
                         slotcode = 0;
                         tempcode = 0;
@@ -165,13 +160,12 @@ QString XMLConfigMigration::version0006Migration()
                     if (slotcode > 0)
                     {
                         writer.writeTextElement("code", QString("0x%1").arg(slotcode, 0, 16));
-                    }
-                    else if (tempcode > 0)
+                    } else if (tempcode > 0)
                     {
-                        writer.writeTextElement("code", QString("0x%1").arg(tempcode | QtKeyMapperBase::nativeKeyPrefix, 0, 16));
+                        writer.writeTextElement("code",
+                                                QString("0x%1").arg(tempcode | QtKeyMapperBase::nativeKeyPrefix, 0, 16));
                     }
-                }
-                else
+                } else
                 {
                     writer.writeTextElement("code", QString::number(slotcode));
                 }
@@ -180,8 +174,7 @@ QString XMLConfigMigration::version0006Migration()
             }
 
             writer.writeCurrentToken(*reader);
-        }
-        else
+        } else
         {
             writer.writeCurrentToken(*reader);
         }
@@ -192,12 +185,6 @@ QString XMLConfigMigration::version0006Migration()
     return tempXmlString;
 }
 
-const QXmlStreamReader* XMLConfigMigration::getReader() {
+const QXmlStreamReader *XMLConfigMigration::getReader() { return reader; }
 
-    return reader;
-}
-
-int XMLConfigMigration::getFileVersion() const {
-
-    return fileVersion;
-}
+int XMLConfigMigration::getFileVersion() const { return fileVersion; }

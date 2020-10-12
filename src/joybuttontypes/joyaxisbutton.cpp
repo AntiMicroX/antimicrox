@@ -18,27 +18,25 @@
 
 #include "joyaxisbutton.h"
 
+#include "event.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 #include "joyaxis.h"
 #include "joybutton.h"
+#include "messagehandler.h"
 #include "setjoystick.h"
 #include "vdpad.h"
-#include "event.h"
 
 #include <cmath>
 
 #include <QDebug>
 
-
-JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent) :
-    JoyGradientButton(index, originset, parentSet, parent)
+JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent)
+    : JoyGradientButton(index, originset, parentSet, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     m_axis = axis;
 }
-
 
 QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
@@ -55,8 +53,7 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
         }
 
         temp.append(buttonName);
-    }
-    else if (!defaultButtonName.isEmpty() && displayNames)
+    } else if (!defaultButtonName.isEmpty() && displayNames)
     {
         if (forceFullFormat)
         {
@@ -64,26 +61,24 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
         }
 
         temp.append(defaultButtonName);
-    }
-    else
+    } else
     {
         QString buttontype = QString();
 
-        switch(m_index)
+        switch (m_index)
         {
 
-            case 0:
+        case 0:
             buttontype = tr("Negative");
             break;
 
-            case 1:
+        case 1:
             buttontype = tr("Positive");
             break;
 
-            default:
+        default:
             buttontype = tr("Unknown");
             break;
-
         }
 
         temp.append(tr("Button")).append(" ").append(buttontype);
@@ -92,7 +87,6 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
     return temp;
 }
 
-
 QString JoyAxisButton::getXmlName()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -100,11 +94,9 @@ QString JoyAxisButton::getXmlName()
     return GlobalVariables::JoyAxisButton::xmlName;
 }
 
-
 void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 
     SetChangeCondition oldCondition = setSelectionCondition;
 
@@ -114,16 +106,14 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
         {
             // Set new condition
             emit setAssignmentChanged(m_index, m_axis->getIndex(), setSelection, condition);
-        }
-        else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
+        } else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
             emit setAssignmentChanged(m_index, m_axis->getIndex(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
-    }
-    else if (passive)
+    } else if (passive)
     {
         setSelectionCondition = condition;
     }
@@ -167,7 +157,6 @@ double JoyAxisButton::getMouseDistanceFromDeadZone()
     return this->getDistanceFromDeadZone();
 }
 
-
 void JoyAxisButton::setVDPad(VDPad *vdpad)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -207,7 +196,6 @@ bool JoyAxisButton::isPartRealAxis()
     return true;
 }
 
-
 double JoyAxisButton::getAccelerationDistance()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -215,14 +203,12 @@ double JoyAxisButton::getAccelerationDistance()
     return m_axis->getRawDistance(m_axis->getCurrentThrottledValue());
 }
 
-
 double JoyAxisButton::getLastAccelerationDistance()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return m_axis->getRawDistance(m_axis->getLastKnownThrottleValue());
 }
-
 
 double JoyAxisButton::getLastMouseDistanceFromDeadZone()
 {
@@ -238,8 +224,4 @@ double JoyAxisButton::getLastMouseDistanceFromDeadZone()
     return distance;
 }
 
-
-JoyAxis* JoyAxisButton::getAxis() const {
-
-    return m_axis;
-}
+JoyAxis *JoyAxisButton::getAxis() const { return m_axis; }

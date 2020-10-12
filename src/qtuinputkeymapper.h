@@ -16,21 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef QTUINPUTKEYMAPPER_H
 #define QTUINPUTKEYMAPPER_H
 
 #include "qtkeymapperbase.h"
 
-
 class QtUInputKeyMapper : public QtKeyMapperBase
 {
     Q_OBJECT
 
-public:
+  public:
     explicit QtUInputKeyMapper(QObject *parent = nullptr);
 
-protected:
+  protected:
     void populateMappingHashes() override;
     void populateCharKeyInformation() override;
 
@@ -39,16 +37,15 @@ protected:
     void populateNumPadHashes();
     void populateSpecialCharHashes();
 
-private:
-    void addVirtualKeyToHash(int key, QChar character, charKeyInformation& charKeyInfo);
-    void mapMiscKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapCursorMovesKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapModifiersKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapKeypadKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapJapanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapKoreanKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
-    void mapMediaKeysQtUinput(QHash<int, int>& qtKeyToVirtKeyHash);
-
+  private:
+    void addVirtualKeyToHash(int key, QChar character, charKeyInformation &charKeyInfo);
+    void mapMiscKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapCursorMovesKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapModifiersKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapKeypadKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapJapanKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapKoreanKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash);
+    void mapMediaKeysQtUinput(QHash<int, int> &qtKeyToVirtKeyHash);
 };
 
 #endif // QTUINPUTKEYMAPPER_H

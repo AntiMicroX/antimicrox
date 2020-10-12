@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYAXISBUTTON_H
 #define JOYAXISBUTTON_H
 
@@ -26,23 +25,21 @@ class VDPad;
 class SetJoystick;
 class JoyAxis;
 
-
 class JoyAxisButton : public JoyGradientButton
 {
     Q_OBJECT
 
-public:
-    explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent=0);
+  public:
+    explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
 
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const;
+    virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
 
     virtual double getMouseDistanceFromDeadZone();
     virtual double getLastMouseDistanceFromDeadZone();
 
-    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false,
-                                       bool updateActiveString=true);
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive = false, bool updateActiveString = true);
     virtual void setVDPad(VDPad *vdpad);
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
@@ -50,12 +47,12 @@ public:
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
-    JoyAxis* getAxis() const;
+    JoyAxis *getAxis() const;
 
-signals:
+  signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
 
-private:
+  private:
     JoyAxis *m_axis;
 };
 

@@ -16,15 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYBUTTONSLOT_H
 #define JOYBUTTONSLOT_H
 
-#include <QObject>
 #include <QElapsedTimer>
+#include <QObject>
+#include <QPointer>
 #include <QTime>
 #include <QVariant>
-#include <QPointer>
 #include <QtWidgets/QApplication>
 
 class QXmlStreamReader;
@@ -34,22 +33,53 @@ class JoyButtonSlot : public QObject
 {
     Q_OBJECT
 
-public:
-    enum JoySlotInputAction {JoyKeyboard=0, JoyMouseButton, JoyMouseMovement,
-                             JoyPause, JoyHold, JoyCycle, JoyDistance,
-                             JoyRelease, JoyMouseSpeedMod, JoyKeyPress, JoyDelay,
-                             JoyLoadProfile, JoySetChange, JoyTextEntry, JoyExecute, JoyMix};
+  public:
+    enum JoySlotInputAction
+    {
+        JoyKeyboard = 0,
+        JoyMouseButton,
+        JoyMouseMovement,
+        JoyPause,
+        JoyHold,
+        JoyCycle,
+        JoyDistance,
+        JoyRelease,
+        JoyMouseSpeedMod,
+        JoyKeyPress,
+        JoyDelay,
+        JoyLoadProfile,
+        JoySetChange,
+        JoyTextEntry,
+        JoyExecute,
+        JoyMix
+    };
 
-    enum JoySlotMouseDirection {MouseUp=1, MouseDown, MouseLeft, MouseRight};
-    enum JoySlotMouseWheelButton {MouseWheelUp=4, MouseWheelDown=5,
-                                  MouseWheelLeft=6, MouseWheelRight=7};
-    enum JoySlotMouseButton {MouseLB=1, MouseMB, MouseRB};
+    enum JoySlotMouseDirection
+    {
+        MouseUp = 1,
+        MouseDown,
+        MouseLeft,
+        MouseRight
+    };
+    enum JoySlotMouseWheelButton
+    {
+        MouseWheelUp = 4,
+        MouseWheelDown = 5,
+        MouseWheelLeft = 6,
+        MouseWheelRight = 7
+    };
+    enum JoySlotMouseButton
+    {
+        MouseLB = 1,
+        MouseMB,
+        MouseRB
+    };
 
     explicit JoyButtonSlot(QObject *parent = nullptr);
-    explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent=nullptr);
-    explicit JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent=nullptr);
-    explicit JoyButtonSlot(JoyButtonSlot *slot, QObject *parent=nullptr);
-    explicit JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent=nullptr);
+    explicit JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent = nullptr);
+    explicit JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent = nullptr);
+    explicit JoyButtonSlot(JoyButtonSlot *slot, QObject *parent = nullptr);
+    explicit JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent = nullptr);
     ~JoyButtonSlot();
 
     void setSlotCode(int code);
@@ -60,11 +90,11 @@ public:
     void setMouseSpeed(int value);
     void setDistance(double distance);
     double getMouseDistance();
-    QElapsedTimer* getMouseInterval();
+    QElapsedTimer *getMouseInterval();
     void restartMouseInterval();
     QString getXmlName();
     QString getSlotString();
-    void setSlotCode(int code,int alias);
+    void setSlotCode(int code, int alias);
     int getSlotCodeAlias();
     void setPreviousDistance(double distance);
     double getPreviousDistance();
@@ -73,7 +103,7 @@ public:
 
     bool isEasingActive();
     void setEasingStatus(bool isActive);
-    QTime* getEasingTime();
+    QTime *getEasingTime();
 
     void setTextData(QString textData);
     QString getTextData();
@@ -81,8 +111,8 @@ public:
     void setExtraData(QVariant data);
     QVariant getExtraData();
 
-    void setMixSlots(QList<JoyButtonSlot*>* slots);
-    QList<JoyButtonSlot*>* getMixSlots();
+    void setMixSlots(QList<JoyButtonSlot *> *slots);
+    QList<JoyButtonSlot *> *getMixSlots();
 
     template <typename T> void appendMiniSlot(T minislot)
     {
@@ -96,16 +126,15 @@ public:
 
     void cleanMixSlots();
 
-    JoyButtonSlot& operator=(JoyButtonSlot* slot);
+    JoyButtonSlot &operator=(JoyButtonSlot *slot);
 
-
-private:
+  private:
     void secureMixSlotsInit();
 
     int deviceCode;
     int qkeyaliasCode;
     JoySlotInputAction m_mode;
-    QList<JoyButtonSlot*>* mix_slots;
+    QList<JoyButtonSlot *> *mix_slots;
     double m_distance;
     double previousDistance;
     QElapsedTimer mouseInterval;
@@ -113,11 +142,9 @@ private:
     bool easingActive;
     QString m_textData;
     QVariant extraData;
-    
 };
 
-Q_DECLARE_METATYPE(JoyButtonSlot*)
+Q_DECLARE_METATYPE(JoyButtonSlot *)
 Q_DECLARE_METATYPE(JoyButtonSlot::JoySlotInputAction)
-
 
 #endif // JOYBUTTONSLOT_H

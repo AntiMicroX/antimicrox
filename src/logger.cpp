@@ -16,15 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "logger.h"
 
 #include "messagehandler.h"
 
-#include <QTime>
 #include <QDebug>
+#include <QTime>
 
-Logger* Logger::instance = nullptr;
+Logger *Logger::instance = nullptr;
 
 /**
  * @brief Outputs log messages to a given text stream. Client code
@@ -34,8 +33,8 @@ Logger* Logger::instance = nullptr;
  * @param Messages based of a given output level or lower will be logged
  * @param Parent object
  */
-Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
-    QObject(parent)
+Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -60,9 +59,8 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent) :
  * @param Messages based of a given output level or lower will be logged
  * @param Parent object
  */
-Logger::Logger(QTextStream *stream, QTextStream *errorStream,
-               LogLevel outputLevel, QObject *parent) :
-    QObject(parent)
+Logger::Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLevel, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -132,7 +130,7 @@ void Logger::setCurrentStream(QTextStream *stream)
     instance->outputStream = stream;
 }
 
-QTextStream* Logger::getCurrentStream()
+QTextStream *Logger::getCurrentStream()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -158,7 +156,7 @@ void Logger::setCurrentErrorStream(QTextStream *stream)
     instance->errorStream = stream;
 }
 
-QTextStream* Logger::getCurrentErrorStream()
+QTextStream *Logger::getCurrentErrorStream()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -339,7 +337,7 @@ void Logger::logMessage(LogMessage msg)
  * @brief Get the associated timer used by the logger.
  * @return QTimer instance
  */
-QTimer* Logger::getLogTimer()
+QTimer *Logger::getLogTimer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -402,39 +400,39 @@ void Logger::startPendingTimer()
     }
 }
 
-void Logger::setCurrentLogFile(QString filename) {
+void Logger::setCurrentLogFile(QString filename)
+{
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-  Q_ASSERT(instance != nullptr);
-  
-  if( instance->outputFile.isOpen() ) {
-    instance->closeLogger(true);
-  }
-  instance->outputFile.setFileName( filename );
-  instance->outputFile.open( QIODevice::WriteOnly | QIODevice::Append );
-  instance->outFileStream.setDevice( &instance->outputFile );
-  instance->setCurrentStream( &instance->outFileStream );
-  instance->LogInfo(QObject::tr("Logging started"), true, true);
+    Q_ASSERT(instance != nullptr);
+
+    if (instance->outputFile.isOpen())
+    {
+        instance->closeLogger(true);
+    }
+    instance->outputFile.setFileName(filename);
+    instance->outputFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    instance->outFileStream.setDevice(&instance->outputFile);
+    instance->setCurrentStream(&instance->outFileStream);
+    instance->LogInfo(QObject::tr("Logging started"), true, true);
 }
 
-void Logger::setCurrentErrorLogFile(QString filename) {
+void Logger::setCurrentErrorLogFile(QString filename)
+{
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-  Q_ASSERT(instance != nullptr);
+    Q_ASSERT(instance != nullptr);
 
-  if( instance->errorFile.isOpen() ) {
-    instance->closeErrorLogger(true);
-  }
-  instance->errorFile.setFileName( filename );
-  instance->errorFile.open( QIODevice::WriteOnly | QIODevice::Append );
-  instance->outErrorFileStream.setDevice( &instance->errorFile );
-  instance->setCurrentErrorStream( &instance->outErrorFileStream );
+    if (instance->errorFile.isOpen())
+    {
+        instance->closeErrorLogger(true);
+    }
+    instance->errorFile.setFileName(filename);
+    instance->errorFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    instance->outErrorFileStream.setDevice(&instance->errorFile);
+    instance->setCurrentErrorStream(&instance->outErrorFileStream);
 }
 
-QList<Logger::LogMessage> const& Logger::getPendingMessages() {
-
-    return pendingMessages;
-}
-
+QList<Logger::LogMessage> const &Logger::getPendingMessages() { return pendingMessages; }

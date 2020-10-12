@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYAXISXML_H
 #define JOYAXISXML_H
 
@@ -31,8 +30,8 @@ class JoyAxisXml : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit JoyAxisXml(JoyAxis* axis, QObject *parent = nullptr);
+  public:
+    explicit JoyAxisXml(JoyAxis *axis, QObject *parent = nullptr);
     ~JoyAxisXml();
 
     virtual void readConfig(QXmlStreamReader *xml);
@@ -41,8 +40,8 @@ public:
     virtual bool readMainConfig(QXmlStreamReader *xml);
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
-private:
-    JoyAxis* m_joyAxis;
+  private:
+    JoyAxis *m_joyAxis;
     QPointer<JoyButtonXml> joyButtonXmlNAxis;
     QPointer<JoyButtonXml> joyButtonXmlPAxis;
 };

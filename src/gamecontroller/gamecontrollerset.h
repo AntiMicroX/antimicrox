@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLERSET_H
 #define GAMECONTROLLERSET_H
 
@@ -27,31 +26,30 @@
 class QXmlStreamReader;
 class InputDevice;
 
-
 class GameControllerSet : public SetJoystick
 {
     Q_OBJECT
 
-public:
+  public:
     explicit GameControllerSet(InputDevice *device, int index, QObject *parent = nullptr);
 
     virtual void refreshAxes();
 
     virtual void readConfig(QXmlStreamReader *xml); // GameControllerSetXml
-    virtual void readJoystickConfig(QXmlStreamReader *xml,
-                            QHash<int, SDL_GameControllerButton> &buttons,
-                            QHash<int, SDL_GameControllerAxis> &axes,
-                            QList<SDL_GameControllerButtonBind> &hatButtons); // GameControllerSetXml class
+    virtual void readJoystickConfig(QXmlStreamReader *xml, QHash<int, SDL_GameControllerButton> &buttons,
+                                    QHash<int, SDL_GameControllerAxis> &axes,
+                                    QList<SDL_GameControllerButtonBind> &hatButtons); // GameControllerSetXml class
 
-protected:
+  protected:
     void populateSticksDPad();
 
-public slots:
+  public slots:
     virtual void reset();
 
-private:
+  private:
     void getElemFromXml(QString elemName, QXmlStreamReader *xml); // GameControllerSetXml class
-    void readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists, bool dpadExists); // GameControllerSetXml class
+    void readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists,
+                      bool dpadExists); // GameControllerSetXml class
     void resetSticks();
 };
 

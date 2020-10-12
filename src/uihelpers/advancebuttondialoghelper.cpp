@@ -18,14 +18,13 @@
 
 #include "advancebuttondialoghelper.h"
 
-#include "messagehandler.h"
 #include "joybutton.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button,
-                                                     QObject *parent) :
-    QObject(parent)
+AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -34,8 +33,7 @@ AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button,
     this->button = button;
 }
 
-void AdvanceButtonDialogHelper::insertAssignedSlot(int code, int alias, int index,
-                                                    JoyButtonSlot::JoySlotInputAction mode)
+void AdvanceButtonDialogHelper::insertAssignedSlot(int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -59,8 +57,7 @@ void AdvanceButtonDialogHelper::setAssignedSlot(JoyButtonSlot *otherSlot, int in
     button->setAssignedSlot(otherSlot, index);
 }
 
-void AdvanceButtonDialogHelper::setAssignedSlot(int code, int alias, int index,
-                                                JoyButtonSlot::JoySlotInputAction mode)
+void AdvanceButtonDialogHelper::setAssignedSlot(int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -74,7 +71,7 @@ void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
 
     int j = 0;
     qDebug() << "Assigned list slots after joining";
-    for(auto el : *button->getAssignedSlots())
+    for (auto el : *button->getAssignedSlots())
     {
         qDebug() << j << ")";
         qDebug() << "code: " << el->getSlotCode();
@@ -86,7 +83,7 @@ void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
 
     j = 0;
     qDebug() << "Assigned list slots after joining";
-    for(auto el : *button->getAssignedSlots())
+    for (auto el : *button->getAssignedSlots())
     {
         qDebug() << j << ")";
         qDebug() << "code: " << el->getSlotCode();

@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef QKEYDISPLAYDIALOG_H
 #define QKEYDISPLAYDIALOG_H
 
 #include <QDialog>
-
 
 class QKeyEvent;
 class QWidget;
@@ -34,15 +32,15 @@ class QKeyDisplayDialog : public QDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit QKeyDisplayDialog(QWidget *parent = nullptr);
     ~QKeyDisplayDialog();
 
-protected:
+  protected:
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
 
-private:
+  private:
     Ui::QKeyDisplayDialog *ui;
 };
 

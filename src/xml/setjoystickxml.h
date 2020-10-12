@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SETJOYSTICKXML_H
 #define SETJOYSTICKXML_H
 
@@ -27,24 +26,22 @@ class JoyButtonXml;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
-
 class SetJoystickXml : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit SetJoystickXml(SetJoystick* setJoystick, QObject *parent = nullptr);
+  public:
+    explicit SetJoystickXml(SetJoystick *setJoystick, QObject *parent = nullptr);
 
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
-private:
-    SetJoystick* m_setJoystick;
+  private:
+    SetJoystick *m_setJoystick;
 
-    //JoyDPadXml* joydpadXml;
-    JoyAxisXml* joyAxisXml;
-    JoyButtonXml* joyButtonXml;
-
+    // JoyDPadXml* joydpadXml;
+    JoyAxisXml *joyAxisXml;
+    JoyButtonXml *joyButtonXml;
 };
 
 #endif // SETJOYSTICKXML_H

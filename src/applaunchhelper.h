@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef APPLAUNCHHELPER_H
 #define APPLAUNCHHELPER_H
 
@@ -32,31 +31,28 @@ class AppLaunchHelper : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit AppLaunchHelper(AntiMicroSettings *settings, bool graphical=false,
-                             QObject *parent=0);
+  public:
+    explicit AppLaunchHelper(AntiMicroSettings *settings, bool graphical = false, QObject *parent = 0);
 
     void printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks);
 
     AntiMicroSettings *getSettings() const;
 
-
-protected:
+  protected:
     void enablePossibleMouseSmoothing();
     void establishMouseTimerConnections();
     void changeMouseRefreshRate();
     void changeSpringModeScreen();
     void changeGamepadPollRate();
 
-public slots:
+  public slots:
     void initRunMethods();
     void revertMouseThread();
     void changeMouseThread(QThread *thread);
 
-private:
+  private:
     AntiMicroSettings *settings;
     bool graphical;
-
 };
 
 #endif // APPLAUNCHHELPER_H

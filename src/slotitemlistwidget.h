@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SLOTITEMLISTWIDGET_H
 #define SLOTITEMLISTWIDGET_H
 
 #include <QListWidget>
-
 
 class QWidget;
 class QKeyEvent;
@@ -30,13 +28,12 @@ class SlotItemListWidget : public QListWidget
 {
     Q_OBJECT
 
-public:
+  public:
     explicit SlotItemListWidget(QWidget *parent = nullptr);
-    void insertItems(int row, QList<QListWidgetItem*> items);
+    void insertItems(int row, QList<QListWidgetItem *> items);
 
-protected:
+  protected:
     virtual void keyPressEvent(QKeyEvent *event);
-
 };
 
 #endif // SLOTITEMLISTWIDGET_H

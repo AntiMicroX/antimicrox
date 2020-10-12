@@ -18,22 +18,19 @@
 
 #include "joystick.h"
 
+#include "antimicrosettings.h"
 #include "globalvariables.h"
 #include "messagehandler.h"
-#include "antimicrosettings.h"
 
-#include <SDL2/SDL_version.h>
 #include <SDL2/SDL_gamecontroller.h>
+#include <SDL2/SDL_version.h>
 
 #include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-
-
-Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex,
-                   AntiMicroSettings *settings, QObject *parent) :
-    InputDevice(joyhandle, deviceIndex, settings, parent)
+Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *settings, QObject *parent)
+    : InputDevice(joyhandle, deviceIndex, settings, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -77,7 +74,6 @@ QString Joystick::getSDLName()
     return temp;
 }
 
-
 QString Joystick::getGUIDString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -93,7 +89,6 @@ QString Joystick::getGUIDString()
     return temp;
 }
 
-
 QString Joystick::getVendorString()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
@@ -102,16 +97,15 @@ QString Joystick::getVendorString()
 
     if (controller != nullptr)
     {
-            Uint16 tempVendor = SDL_GameControllerGetVendor(controller);
-            char buffer [50];
-            sprintf (buffer, "%u", tempVendor);
+        Uint16 tempVendor = SDL_GameControllerGetVendor(controller);
+        char buffer[50];
+        sprintf(buffer, "%u", tempVendor);
 
-            temp = QString(buffer);
+        temp = QString(buffer);
     }
 
     return temp;
 }
-
 
 QString Joystick::getProductIDString()
 {
@@ -121,11 +115,11 @@ QString Joystick::getProductIDString()
 
     if (controller != nullptr)
     {
-            Uint16 tempProduct = SDL_GameControllerGetProduct(controller);
-            char buffer [50];
-            sprintf (buffer, "%u", tempProduct);
+        Uint16 tempProduct = SDL_GameControllerGetProduct(controller);
+        char buffer[50];
+        sprintf(buffer, "%u", tempProduct);
 
-            temp = QString(buffer);
+        temp = QString(buffer);
     }
 
     return temp;
@@ -139,16 +133,15 @@ QString Joystick::getProductVersion()
 
     if (controller != nullptr)
     {
-            Uint16 tempProductVersion = SDL_GameControllerGetProductVersion(controller);
-            char buffer [50];
-            sprintf (buffer, "%u", tempProductVersion);
+        Uint16 tempProductVersion = SDL_GameControllerGetProductVersion(controller);
+        char buffer[50];
+        sprintf(buffer, "%u", tempProductVersion);
 
-            temp = QString(buffer);
+        temp = QString(buffer);
     }
 
     return temp;
 }
-
 
 QString Joystick::getUniqueIDString()
 {
@@ -156,7 +149,6 @@ QString Joystick::getUniqueIDString()
 
     return (getGUIDString() + getVendorString() + getProductIDString());
 }
-
 
 void Joystick::closeSDLDevice()
 {
@@ -192,10 +184,7 @@ int Joystick::getNumberRawHats()
     return numhats;
 }
 
-void Joystick::setCounterUniques(int counter)
-{
-    counterUniques = counter;
-}
+void Joystick::setCounterUniques(int counter) { counterUniques = counter; }
 
 SDL_JoystickID Joystick::getSDLJoystickID()
 {
@@ -204,7 +193,4 @@ SDL_JoystickID Joystick::getSDLJoystickID()
     return joystickID;
 }
 
-SDL_Joystick* Joystick::getJoyhandle() const {
-
-    return m_joyhandle;
-}
+SDL_Joystick *Joystick::getJoyhandle() const { return m_joyhandle; }

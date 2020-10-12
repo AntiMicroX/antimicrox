@@ -19,27 +19,26 @@
 #include "quicksetdialog.h"
 #include "ui_quicksetdialog.h"
 
-#include "messagehandler.h"
-#include "setjoystick.h"
 #include "buttoneditdialog.h"
-#include "uihelpers/buttoneditdialoghelper.h"
 #include "inputdevice.h"
-#include "joycontrolstick.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joydpadbutton.h"
+#include "joycontrolstick.h"
 #include "joydpad.h"
+#include "messagehandler.h"
+#include "setjoystick.h"
+#include "uihelpers/buttoneditdialoghelper.h"
 #include "vdpad.h"
 
+#include <QDebug>
 #include <QHash>
 #include <QHashIterator>
-#include <QWidget>
 #include <QLabel>
-#include <QDebug>
+#include <QWidget>
 
-
-QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::QuickSetDialog)
+QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::QuickSetDialog)
 {
     ui->setupUi(this);
 
@@ -69,13 +68,11 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent) :
     connect(this, &QuickSetDialog::finished, this, &QuickSetDialog::restoreJoystickState);
 }
 
-
-QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* helper, const char* invokeString,
-                               int code, int alias, int index,
-                               JoyButtonSlot::JoySlotInputAction mode,
-                               bool withClear, bool withTrue, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::QuickSetDialog)
+QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper *helper, const char *invokeString, int code,
+                               int alias, int index, JoyButtonSlot::JoySlotInputAction mode, bool withClear, bool withTrue,
+                               QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::QuickSetDialog)
 {
     ui->setupUi(this);
 
@@ -111,16 +108,15 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, ButtonEditDialogHelper* he
     connect(this, &QuickSetDialog::finished, this, &QuickSetDialog::restoreJoystickState);
 }
 
-
-void QuickSetDialog::connectSticksForDialog(SetJoystick* currentset)
+void QuickSetDialog::connectSticksForDialog(SetJoystick *currentset)
 {
-    QListIterator<JoyControlStick*> sticksList = currentset->getSticks().values();
+    QListIterator<JoyControlStick *> sticksList = currentset->getSticks().values();
 
     while (sticksList.hasNext())
     {
         JoyControlStick *stick = sticksList.next();
-        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stickButtons);
+        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton *> *stickButtons = stick->getButtons();
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton *> iter(*stickButtons);
 
         while (iter.hasNext())
         {
@@ -133,16 +129,13 @@ void QuickSetDialog::connectSticksForDialog(SetJoystick* currentset)
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickLeftDown)) &&
                     (stickbutton->getJoyNumber() != static_cast<int>(JoyControlStick::StickRightDown)))
                 {
-                    connect(stickbutton, &JoyControlStickButton::clicked, this, [this, stickbutton]() {
-                        showStickButtonDialog(stickbutton);
-                    });
+                    connect(stickbutton, &JoyControlStickButton::clicked, this,
+                            [this, stickbutton]() { showStickButtonDialog(stickbutton); });
                 }
-            }
-            else
+            } else
             {
-                connect(stickbutton, &JoyControlStickButton::clicked, this, [this, stickbutton]() {
-                    showStickButtonDialog(stickbutton);
-                });
+                connect(stickbutton, &JoyControlStickButton::clicked, this,
+                        [this, stickbutton]() { showStickButtonDialog(stickbutton); });
             }
 
             if (!stickbutton->getIgnoreEventState())
@@ -151,10 +144,9 @@ void QuickSetDialog::connectSticksForDialog(SetJoystick* currentset)
     }
 }
 
-
-void QuickSetDialog::connectAxesForDialog(SetJoystick* currentset)
+void QuickSetDialog::connectAxesForDialog(SetJoystick *currentset)
 {
-    QListIterator<JoyAxis*> axesList = currentset->getAxes()->values();
+    QListIterator<JoyAxis *> axesList = currentset->getAxes()->values();
 
     while (axesList.hasNext())
     {
@@ -165,13 +157,11 @@ void QuickSetDialog::connectAxesForDialog(SetJoystick* currentset)
             JoyAxisButton *naxisbutton = axis->getNAxisButton();
             JoyAxisButton *paxisbutton = axis->getPAxisButton();
 
-            connect(naxisbutton, &JoyAxisButton::clicked, this, [this, naxisbutton]() {
-                showAxisButtonDialog(naxisbutton);
-            });
+            connect(naxisbutton, &JoyAxisButton::clicked, this,
+                    [this, naxisbutton]() { showAxisButtonDialog(naxisbutton); });
 
-            connect(paxisbutton, &JoyAxisButton::clicked, this, [this, paxisbutton]() {
-                showAxisButtonDialog(paxisbutton);
-            });
+            connect(paxisbutton, &JoyAxisButton::clicked, this,
+                    [this, paxisbutton]() { showAxisButtonDialog(paxisbutton); });
 
             if (!naxisbutton->getIgnoreEventState())
                 naxisbutton->setIgnoreEventState(true);
@@ -182,16 +172,15 @@ void QuickSetDialog::connectAxesForDialog(SetJoystick* currentset)
     }
 }
 
-
-void QuickSetDialog::connectDpadForDialog(SetJoystick* currentset)
+void QuickSetDialog::connectDpadForDialog(SetJoystick *currentset)
 {
-    QListIterator<JoyDPad*> dpadsList = currentset->getHats().values();
+    QListIterator<JoyDPad *> dpadsList = currentset->getHats().values();
 
     while (dpadsList.hasNext())
     {
         JoyDPad *dpad = dpadsList.next();
-        QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
-        QHashIterator<int, JoyDPadButton*> iter(*dpadbuttons);
+        QHash<int, JoyDPadButton *> *dpadbuttons = dpad->getButtons();
+        QHashIterator<int, JoyDPadButton *> iter(*dpadbuttons);
 
         while (iter.hasNext())
         {
@@ -204,16 +193,12 @@ void QuickSetDialog::connectDpadForDialog(SetJoystick* currentset)
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                     (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                 {
-                    connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
-                        showDPadButtonDialog(dpadbutton);
-                    });
+                    connect(dpadbutton, &JoyDPadButton::clicked, this,
+                            [this, dpadbutton] { showDPadButtonDialog(dpadbutton); });
                 }
-            }
-            else
+            } else
             {
-                connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
-                    showDPadButtonDialog(dpadbutton);
-                });
+                connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] { showDPadButtonDialog(dpadbutton); });
             }
 
             if (!dpadbutton->getIgnoreEventState())
@@ -222,19 +207,18 @@ void QuickSetDialog::connectDpadForDialog(SetJoystick* currentset)
     }
 }
 
-
-void QuickSetDialog::connectVDpadForDialog(SetJoystick* currentset)
+void QuickSetDialog::connectVDpadForDialog(SetJoystick *currentset)
 {
-    QListIterator<VDPad*> vdpadsList = currentset->getVdpads().values();
+    QListIterator<VDPad *> vdpadsList = currentset->getVdpads().values();
 
-    while(vdpadsList.hasNext())
+    while (vdpadsList.hasNext())
     {
         VDPad *dpad = vdpadsList.next();
 
         if (dpad != nullptr)
         {
-            QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
-            QHashIterator<int, JoyDPadButton*> iter(*dpadbuttons);
+            QHash<int, JoyDPadButton *> *dpadbuttons = dpad->getButtons();
+            QHashIterator<int, JoyDPadButton *> iter(*dpadbuttons);
 
             while (iter.hasNext())
             {
@@ -247,16 +231,13 @@ void QuickSetDialog::connectVDpadForDialog(SetJoystick* currentset)
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadLeftDown) &&
                         (dpadbutton->getJoyNumber() != JoyDPadButton::DpadRightDown))
                     {
-                        connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
-                            showDPadButtonDialog(dpadbutton);
-                        });
+                        connect(dpadbutton, &JoyDPadButton::clicked, this,
+                                [this, dpadbutton] { showDPadButtonDialog(dpadbutton); });
                     }
-                }
-                else
+                } else
                 {
-                    connect(dpadbutton, &JoyDPadButton::clicked, this, [this, dpadbutton] {
-                        showDPadButtonDialog(dpadbutton);
-                    });
+                    connect(dpadbutton, &JoyDPadButton::clicked, this,
+                            [this, dpadbutton] { showDPadButtonDialog(dpadbutton); });
                 }
 
                 if (!dpadbutton->getIgnoreEventState())
@@ -266,10 +247,9 @@ void QuickSetDialog::connectVDpadForDialog(SetJoystick* currentset)
     }
 }
 
-
-void QuickSetDialog::connectBtnForDialog(SetJoystick* currentset)
+void QuickSetDialog::connectBtnForDialog(SetJoystick *currentset)
 {
-    QListIterator<JoyButton*> btnsList = currentset->getButtons().values();
+    QListIterator<JoyButton *> btnsList = currentset->getButtons().values();
 
     while (btnsList.hasNext())
     {
@@ -277,16 +257,13 @@ void QuickSetDialog::connectBtnForDialog(SetJoystick* currentset)
 
         if ((button != nullptr) && !button->isPartVDPad())
         {
-            connect(button, &JoyButton::clicked, this, [this, button] {
-                showButtonDialog(button);
-            });
+            connect(button, &JoyButton::clicked, this, [this, button] { showButtonDialog(button); });
 
             if (!button->getIgnoreEventState())
                 button->setIgnoreEventState(true);
         }
     }
 }
-
 
 QuickSetDialog::~QuickSetDialog()
 {
@@ -295,8 +272,9 @@ QuickSetDialog::~QuickSetDialog()
     delete ui;
 }
 
-
-void QuickSetDialog::invokeMethodLastBtn(JoyButton* lastJoyBtn, Qt::ConnectionType connTypeForAlias, Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll, bool possibleAxisAction)
+void QuickSetDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, Qt::ConnectionType connTypeForAlias,
+                                         Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll,
+                                         bool possibleAxisAction)
 {
     lastButton = lastJoyBtn;
 
@@ -309,9 +287,10 @@ void QuickSetDialog::invokeMethodLastBtn(JoyButton* lastJoyBtn, Qt::ConnectionTy
     // if lastButton is still a null pointer, check possible value correctness coming from axis
 
     if (possibleAxisAction && (lastButton == nullptr))
-        lastButton = qobject_cast<JoyAxisButton*>(sender());
+        lastButton = qobject_cast<JoyAxisButton *>(sender());
 
-    if (helper != nullptr) helper = new ButtonEditDialogHelper();
+    if (helper != nullptr)
+        helper = new ButtonEditDialogHelper();
 
     if (lastButton != nullptr)
     {
@@ -320,36 +299,34 @@ void QuickSetDialog::invokeMethodLastBtn(JoyButton* lastJoyBtn, Qt::ConnectionTy
 
         qDebug() << "Thread in QuickSetDialog";
 
-        if (withClear) QMetaObject::invokeMethod(lastButton, "clearSlotsEventReset", Q_ARG(bool, withTrue));
+        if (withClear)
+            QMetaObject::invokeMethod(lastButton, "clearSlotsEventReset", Q_ARG(bool, withTrue));
 
         // when alias exists but not index
-        if ((alias != -1) && (index == -1)) {
+        if ((alias != -1) && (index == -1))
+        {
 
-            QMetaObject::invokeMethod(helper, invokeString, connTypeForAlias,
-                                      Q_ARG(int, code),
-                                      Q_ARG(int, alias),
+            QMetaObject::invokeMethod(helper, invokeString, connTypeForAlias, Q_ARG(int, code), Q_ARG(int, alias),
                                       Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
 
-         // when alias doesn't exists and index too
-        } else if ((alias == -1) && (index == -1)) {
+            // when alias doesn't exists and index too
+        } else if ((alias == -1) && (index == -1))
+        {
 
-            QMetaObject::invokeMethod(helper, invokeString, connTypeForNothing,
-                                      Q_ARG(int, code),
+            QMetaObject::invokeMethod(helper, invokeString, connTypeForNothing, Q_ARG(int, code),
                                       Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
 
-         // when all exist (code, alias, index)
-        } else {
+            // when all exist (code, alias, index)
+        } else
+        {
 
-            QMetaObject::invokeMethod(helper, invokeString, connTypeForAll,
-                                      Q_ARG(int, code),
-                                      Q_ARG(int, alias),
-                                      Q_ARG(int, index),
-                                      Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
+            QMetaObject::invokeMethod(helper, invokeString, connTypeForAll, Q_ARG(int, code), Q_ARG(int, alias),
+                                      Q_ARG(int, index), Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
         }
     }
 }
 
-void QuickSetDialog::showAxisButtonDialog(JoyAxisButton* joybtn)
+void QuickSetDialog::showAxisButtonDialog(JoyAxisButton *joybtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -358,7 +335,7 @@ void QuickSetDialog::showAxisButtonDialog(JoyAxisButton* joybtn)
     this->close();
 }
 
-void QuickSetDialog::showButtonDialog(JoyButton* joybtn)
+void QuickSetDialog::showButtonDialog(JoyButton *joybtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -367,7 +344,7 @@ void QuickSetDialog::showButtonDialog(JoyButton* joybtn)
     this->close();
 }
 
-void QuickSetDialog::showStickButtonDialog(JoyControlStickButton* joyctrlstickbtn)
+void QuickSetDialog::showStickButtonDialog(JoyControlStickButton *joyctrlstickbtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -378,8 +355,7 @@ void QuickSetDialog::showStickButtonDialog(JoyControlStickButton* joyctrlstickbt
     this->close();
 }
 
-
-void QuickSetDialog::showDPadButtonDialog(JoyDPadButton* joydpadbtn)
+void QuickSetDialog::showDPadButtonDialog(JoyDPadButton *joydpadbtn)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -387,7 +363,6 @@ void QuickSetDialog::showDPadButtonDialog(JoyDPadButton* joydpadbtn)
 
     this->close();
 }
-
 
 void QuickSetDialog::restoreJoystickState()
 {
@@ -404,16 +379,15 @@ void QuickSetDialog::restoreJoystickState()
     currentset->release();
 }
 
-
 void QuickSetDialog::restoreSticksStates(SetJoystick *currentset)
 {
-    QListIterator<JoyControlStick*> sticksList = currentset->getSticks().values();
+    QListIterator<JoyControlStick *> sticksList = currentset->getSticks().values();
 
     while (sticksList.hasNext())
     {
         JoyControlStick *stick = sticksList.next();
-        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton*> *stickButtons = stick->getButtons();
-        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton*> iter(*stickButtons);
+        QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton *> *stickButtons = stick->getButtons();
+        QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton *> iter(*stickButtons);
 
         while (iter.hasNext())
         {
@@ -427,10 +401,9 @@ void QuickSetDialog::restoreSticksStates(SetJoystick *currentset)
     }
 }
 
-
 void QuickSetDialog::restoreAxesStates(SetJoystick *currentset)
 {
-    QListIterator<JoyAxis*> axesList = currentset->getAxes()->values();
+    QListIterator<JoyAxis *> axesList = currentset->getAxes()->values();
 
     while (axesList.hasNext())
     {
@@ -454,16 +427,15 @@ void QuickSetDialog::restoreAxesStates(SetJoystick *currentset)
     }
 }
 
-
 void QuickSetDialog::restoreHatsStates(SetJoystick *currentset)
 {
-    QListIterator<JoyDPad*> hatsList = currentset->getHats().values();
+    QListIterator<JoyDPad *> hatsList = currentset->getHats().values();
 
     while (hatsList.hasNext())
     {
         JoyDPad *dpad = hatsList.next();
-        QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
-        QHashIterator<int, JoyDPadButton*> iter(*dpadbuttons);
+        QHash<int, JoyDPadButton *> *dpadbuttons = dpad->getButtons();
+        QHashIterator<int, JoyDPadButton *> iter(*dpadbuttons);
 
         while (iter.hasNext())
         {
@@ -477,10 +449,9 @@ void QuickSetDialog::restoreHatsStates(SetJoystick *currentset)
     }
 }
 
-
 void QuickSetDialog::restoreVDPadsStates(SetJoystick *currentset)
 {
-    QListIterator<VDPad*> vdpadsList = currentset->getVdpads().values();
+    QListIterator<VDPad *> vdpadsList = currentset->getVdpads().values();
 
     while (vdpadsList.hasNext())
     {
@@ -488,8 +459,8 @@ void QuickSetDialog::restoreVDPadsStates(SetJoystick *currentset)
 
         if (dpad != nullptr)
         {
-            QHash<int, JoyDPadButton*>* dpadbuttons = dpad->getButtons();
-            QHashIterator<int, JoyDPadButton*> iter(*dpadbuttons);
+            QHash<int, JoyDPadButton *> *dpadbuttons = dpad->getButtons();
+            QHashIterator<int, JoyDPadButton *> iter(*dpadbuttons);
 
             while (iter.hasNext())
             {
@@ -504,10 +475,9 @@ void QuickSetDialog::restoreVDPadsStates(SetJoystick *currentset)
     }
 }
 
-
 void QuickSetDialog::restoreButtonsStates(SetJoystick *currentset)
 {
-    QListIterator<JoyButton*> btnsList = currentset->getButtons().values();
+    QListIterator<JoyButton *> btnsList = currentset->getButtons().values();
 
     while (btnsList.hasNext())
     {
@@ -523,33 +493,14 @@ void QuickSetDialog::restoreButtonsStates(SetJoystick *currentset)
     }
 }
 
+JoyButton *QuickSetDialog::getLastPressedButton() const { return lastButton; }
 
-JoyButton* QuickSetDialog::getLastPressedButton() const {
+InputDevice *QuickSetDialog::getJoystick() const { return joystick; }
 
-    return lastButton;
-}
+QDialog *QuickSetDialog::getCurrentButtonDialog() const { return currentButtonDialog; }
 
-InputDevice *QuickSetDialog::getJoystick() const {
+const char *QuickSetDialog::getInvokeString() const { return invokeString; }
 
-    return joystick;
-}
+ButtonEditDialogHelper *QuickSetDialog::getHelper() const { return helper; }
 
-QDialog *QuickSetDialog::getCurrentButtonDialog() const {
-
-    return currentButtonDialog;
-}
-
-const char* QuickSetDialog::getInvokeString() const {
-
-    return invokeString;
-}
-
-ButtonEditDialogHelper* QuickSetDialog::getHelper() const {
-
-    return helper;
-}
-
-JoyButtonSlot::JoySlotInputAction QuickSetDialog::getMode() const {
-
-    return mode;
-}
+JoyButtonSlot::JoySlotInputAction QuickSetDialog::getMode() const { return mode; }

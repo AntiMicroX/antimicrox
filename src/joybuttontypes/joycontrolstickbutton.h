@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYCONTROLSTICKBUTTON_H
 #define JOYCONTROLSTICKBUTTON_H
 
@@ -26,24 +25,25 @@
 class JoyControlStick;
 class SetJoystick;
 
-
 class JoyControlStickButton : public JoyGradientButton
 {
     Q_OBJECT
 
-public:
-    explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
-    explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
+  public:
+    explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet,
+                                   QObject *parent = nullptr);
+    explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset,
+                                   SetJoystick *parentSet, QObject *parent = nullptr);
 
     virtual int getRealJoyNumber() const;
-    virtual QString getPartialName(bool forceFullFormat=false, bool displayNames=false) const;
+    virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
     virtual QString getXmlName();
     virtual double getDistanceFromDeadZone();
 
     virtual double getMouseDistanceFromDeadZone();
     virtual double getLastMouseDistanceFromDeadZone();
 
-    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive=false, bool updateActiveString=true);
+    virtual void setChangeSetCondition(SetChangeCondition condition, bool passive = false, bool updateActiveString = true);
     virtual void setTurboMode(TurboMode mode);
     virtual bool isPartRealAxis();
     virtual QString getActiveZoneSummary();
@@ -52,19 +52,18 @@ public:
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
-    JoyControlStick* getStick() const;
+    JoyControlStick *getStick() const;
     QString getDirectionName() const;
     JoyStickDirectionsType::JoyStickDirections getDirection() const;
 
-protected:
+  protected:
     virtual double getCurrentSpringDeadCircle();
 
-signals:
+  signals:
     void setAssignmentChanged(int current_button, int axis_index, int associated_set, int mode);
 
-private:
+  private:
     JoyControlStick *stick;
-
 };
 
 #endif // JOYCONTROLSTICKBUTTON_H

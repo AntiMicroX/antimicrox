@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SDLEVENTREADER_H
 #define SDLEVENTREADER_H
 
@@ -25,36 +24,34 @@
 class InputDevice;
 class AntiMicroSettings;
 
-
 class SDLEventReader : public QObject
 {
     Q_OBJECT
 
-public:
-    explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice*> *joysticks,
-                            AntiMicroSettings *settings,
+  public:
+    explicit SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMicroSettings *settings,
                             QObject *parent = nullptr);
     ~SDLEventReader();
 
     bool isSDLOpen();
 
-    QMap<SDL_JoystickID, InputDevice*> *getJoysticks() const;
+    QMap<SDL_JoystickID, InputDevice *> *getJoysticks() const;
     AntiMicroSettings *getSettings() const;
-    QTimer const& getPollRateTimer();
+    QTimer const &getPollRateTimer();
 
-protected:
+  protected:
     void initSDL();
     void closeSDL();
     void clearEvents();
     int eventStatus();
 
-signals:
+  signals:
     void eventRaised();
     void finished();
     void sdlStarted();
     void sdlClosed();
 
-public slots:
+  public slots:
     void performWork();
     void stop();
     void refresh();
@@ -64,16 +61,15 @@ public slots:
     void closeDevices();
     void haltServices();
 
-private slots:
+  private slots:
     void secondaryRefresh();
 
-private:
-    QMap<SDL_JoystickID, InputDevice*> *joysticks;
+  private:
+    QMap<SDL_JoystickID, InputDevice *> *joysticks;
     bool sdlIsOpen;
     AntiMicroSettings *settings;
     int pollRate;
     QTimer pollRateTimer;
-
 };
 
 #endif // SDLEVENTREADER_H

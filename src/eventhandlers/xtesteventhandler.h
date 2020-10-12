@@ -16,21 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef XTESTEVENTHANDLER_H
 #define XTESTEVENTHANDLER_H
 
 #include "baseeventhandler.h"
 
-
 class JoyButtonSlot;
-
 
 class XTestEventHandler : public BaseEventHandler
 {
     Q_OBJECT
 
-public:
+  public:
     explicit XTestEventHandler(QObject *parent = nullptr);
     virtual ~XTestEventHandler();
 
@@ -42,8 +39,7 @@ public:
     void sendMouseEvent(int xDis, int yDis) override;
     void sendMouseAbsEvent(int xDis, int yDis, int screen) override;
 
-    void sendMouseSpringEvent(int xDis, int yDis,
-                              int width, int height) override;
+    void sendMouseSpringEvent(int xDis, int yDis, int width, int height) override;
     void sendMouseSpringEvent(int xDis, int yDis) override;
 
     void sendTextEntryEvent(QString maintext) override;
@@ -51,7 +47,6 @@ public:
     QString getName() override;
     QString getIdentifier() override;
     void printPostMessages() override;
-
 };
 
 #endif // XTESTEVENTHANDLER_H

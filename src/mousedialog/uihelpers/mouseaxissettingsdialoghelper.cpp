@@ -18,13 +18,13 @@
 
 #include "mouseaxissettingsdialoghelper.h"
 
-#include "messagehandler.h"
 #include "joyaxis.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent) :
-    QObject(parent)
+MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -89,8 +89,4 @@ void MouseAxisSettingsDialogHelper::updateReleaseSpringRadius(int value)
     axis->getNAxisButton()->setSpringDeadCircleMultiplier(value);
 }
 
-JoyAxis* MouseAxisSettingsDialogHelper::getAxis() const {
-
-    return axis;
-}
-
+JoyAxis *MouseAxisSettingsDialogHelper::getAxis() const { return axis; }

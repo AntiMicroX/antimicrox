@@ -16,14 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef INPUTDEVICESTATUSEVENT_H
 #define INPUTDEVICESTATUSEVENT_H
 
-#include <QObject>
-#include <QList>
 #include <QBitArray>
-
+#include <QList>
+#include <QObject>
 
 class InputDevice;
 
@@ -31,7 +29,7 @@ class InputDeviceBitArrayStatus : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent = true, QObject *parent = nullptr);
 
     void changeAxesStatus(int axisIndex, bool value);
@@ -41,13 +39,12 @@ public:
     QBitArray generateFinalBitArray();
     void clearStatusValues();
 
-private:
-    QBitArray& getButtonStatusLocal();
+  private:
+    QBitArray &getButtonStatusLocal();
 
     QList<bool> axesStatus;
     QList<bool> hatButtonStatus;
     QBitArray buttonStatus;
-
 };
 
 #endif // INPUTDEVICESTATUSEVENT_H

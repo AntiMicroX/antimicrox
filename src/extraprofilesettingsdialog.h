@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef KEYDELAYDIALOG_H
 #define KEYDELAYDIALOG_H
 
@@ -33,18 +32,18 @@ class ExtraProfileSettingsDialog : public QDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent = nullptr);
     ~ExtraProfileSettingsDialog();
 
-    InputDevice* getDevice() const;
+    InputDevice *getDevice() const;
 
-private:
+  private:
     Ui::ExtraProfileSettingsDialog *ui;
 
     InputDevice *device;
 
-private slots:
+  private slots:
     void changeDeviceKeyPress(int value);
 };
 

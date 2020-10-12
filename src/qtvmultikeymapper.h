@@ -16,25 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef QTVMULTIKEYMAPPER_H
 #define QTVMULTIKEYMAPPER_H
 
 #include "qtkeymapperbase.h"
 
-
 class QtVMultiKeyMapper : public QtKeyMapperBase
 {
 
-public:
+  public:
     explicit QtVMultiKeyMapper(QObject *parent = nullptr);
 
     static const int consumerUsagePagePrefix = 0x12000;
 
-protected:
+  protected:
     void populateMappingHashes() override;
     void populateCharKeyInformation() override;
-
 };
 
 #endif // QTVMULTIKEYMAPPER_H

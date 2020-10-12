@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLERDPADXML_H
 #define GAMECONTROLLERDPADXML_H
 
@@ -24,18 +23,17 @@
 class GameControllerDPad;
 class QXmlStreamReader;
 
-
 class GameControllerDPadXml : public JoyDPadXml<VDPad>
 {
     Q_OBJECT
 
-public:
-    explicit GameControllerDPadXml(GameControllerDPad* gameContrDpad, QObject* parent = nullptr);
+  public:
+    explicit GameControllerDPadXml(GameControllerDPad *gameContrDpad, QObject *parent = nullptr);
 
     void readJoystickConfig(QXmlStreamReader *xml);
 
-private:
-    JoyDPadXml<GameControllerDPad>* dpadXml;
+  private:
+    JoyDPadXml<GameControllerDPad> *dpadXml;
 };
 
 #endif // GAMECONTROLLERDPADXML_H

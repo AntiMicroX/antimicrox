@@ -16,16 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLERMAPPINGDIALOG_H
 #define GAMECONTROLLERMAPPINGDIALOG_H
 
-
-#include "uihelpers/gamecontrollermappingdialoghelper.h"
 #include "gamecontroller/gamecontroller.h"
+#include "uihelpers/gamecontrollermappingdialoghelper.h"
 
 #include <QDialog>
-
 
 class InputDevice;
 class AntiMicroSettings;
@@ -40,7 +37,7 @@ class GameControllerMappingDialog : public QDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit GameControllerMappingDialog(InputDevice *device, AntiMicroSettings *settings, QWidget *parent = nullptr);
     ~GameControllerMappingDialog();
 
@@ -48,7 +45,7 @@ public:
     static QHash<SDL_GameControllerButton, int> buttonPlacement;
     static QHash<SDL_GameControllerAxis, int> axisPlacement;
 
-protected:
+  protected:
     void populateGameControllerBindings(GameController *controller);
     void removeControllerMapping();
     void enableDeviceConnections();
@@ -59,13 +56,13 @@ protected:
     QString bindingString(SDL_GameControllerButtonBind bind);
     QList<QVariant> bindingValues(SDL_GameControllerButtonBind bind);
 
-private:
+  private:
     Ui::GameControllerMappingDialog *ui;
 
-signals:
+  signals:
     void mappingUpdate(QString mapping, InputDevice *device);
 
-private slots:
+  private slots:
     void buttonAssign(int buttonindex);
     void axisAssign(int axis, int value);
     void dpadAssign(int dpad, int buttonindex);
@@ -81,9 +78,9 @@ private slots:
     void updateLastAxisLineEdit(JoyAxis *tempAxis, int value);
     void updateLastAxisLineEditRaw(int index, int value);
 
-private:
-    GameControllerMappingDialogHelper& getHelperLocal();
-    QList<int>& getEventTriggerAxesLocal();
+  private:
+    GameControllerMappingDialogHelper &getHelperLocal();
+    QList<int> &getEventTriggerAxesLocal();
 
     InputDevice *device;
     AntiMicroSettings *settings;

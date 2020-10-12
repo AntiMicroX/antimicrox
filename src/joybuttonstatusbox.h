@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYBUTTONSTATUSBOX_H
 #define JOYBUTTONSTATUSBOX_H
 
@@ -30,19 +29,19 @@ class JoyButtonStatusBox : public QPushButton
     Q_OBJECT
     Q_PROPERTY(bool isflashing READ isButtonFlashing)
 
-public:
+  public:
     explicit JoyButtonStatusBox(JoyButton *button, QWidget *parent = nullptr);
-    JoyButton* getJoyButton() const;
+    JoyButton *getJoyButton() const;
     bool isButtonFlashing();
 
-signals:
+  signals:
     void flashed(bool flashing);
 
-private slots:
+  private slots:
     void flash();
     void unflash();
 
-private:
+  private:
     JoyButton *button;
     bool isflashing;
 };

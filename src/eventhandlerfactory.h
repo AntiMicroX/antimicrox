@@ -16,66 +16,60 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef EVENTHANDLERFACTORY_H
 #define EVENTHANDLERFACTORY_H
 
 #include <QObject>
 #include <QStringList>
 
-
-  #ifdef WITH_UINPUT
+#ifdef WITH_UINPUT
     #include "eventhandlers/uinputeventhandler.h"
-  #endif
+#endif
 
-  #ifdef WITH_XTEST
+#ifdef WITH_XTEST
     #include "eventhandlers/xtesteventhandler.h"
-  #endif
+#endif
 
-
-  #ifdef WITH_XTEST
+#ifdef WITH_XTEST
     #define ADD_XTEST 1
-  #else
+#else
     #define ADD_XTEST 0
-  #endif
+#endif
 
-  #ifdef WITH_UINPUT
+#ifdef WITH_UINPUT
     #define ADD_UINPUT 1
-  #else
+#else
     #define ADD_UINPUT 0
-  #endif
+#endif
 
-  #define NUM_BACKENDS (ADD_XTEST + ADD_UINPUT)
-
+#define NUM_BACKENDS (ADD_XTEST + ADD_UINPUT)
 
 #if (NUM_BACKENDS > 1)
-  #define BACKEND_ELSE_IF else if
+    #define BACKEND_ELSE_IF else if
 #else
-  #define BACKEND_ELSE_IF if
+    #define BACKEND_ELSE_IF if
 #endif
 
 class BaseEventHandler;
-
 
 class EventHandlerFactory : public QObject
 {
     Q_OBJECT
 
-public:
-    static EventHandlerFactory* getInstance(QString handler = "");
+  public:
+    static EventHandlerFactory *getInstance(QString handler = "");
     void deleteInstance();
-    BaseEventHandler* handler();
+    BaseEventHandler *handler();
     static QString fallBackIdentifier();
     static QStringList buildEventGeneratorList();
     static QString handlerDisplayName(QString handler);
 
-protected:
+  protected:
     explicit EventHandlerFactory(QString handler, QObject *parent = nullptr);
     ~EventHandlerFactory();
 
     BaseEventHandler *eventHandler;
     static EventHandlerFactory *instance;
-
 };
 
 #endif // EVENTHANDLERFACTORY_H

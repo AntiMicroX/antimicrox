@@ -18,15 +18,15 @@
 
 #include "joybuttonstatusbox.h"
 
-#include "messagehandler.h"
 #include "joybutton.h"
+#include "messagehandler.h"
 
-#include <QWidget>
-#include <QStyle>
 #include <QDebug>
+#include <QStyle>
+#include <QWidget>
 
-JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
-    QPushButton(parent)
+JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent)
+    : QPushButton(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -39,7 +39,7 @@ JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent) :
     connect(button, &JoyButton::released, this, &JoyButtonStatusBox::unflash);
 }
 
-JoyButton* JoyButtonStatusBox::getJoyButton() const
+JoyButton *JoyButtonStatusBox::getJoyButton() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 

@@ -18,28 +18,27 @@
 
 #include "virtualkeypushbutton.h"
 
-#include "messagehandler.h"
-#include "event.h"
 #include "antkeymapper.h"
+#include "event.h"
 #include "eventhandlerfactory.h"
+#include "messagehandler.h"
 
 #include <QDebug>
-#include <QPainter>
 #include <QFont>
 #include <QFontMetrics>
+#include <QPainter>
 
+QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString>();
 
-QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QString> ();
-
-VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent) :
-    QPushButton(parent)
+VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
+    : QPushButton(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     populateKnownAliases();
 
-    //qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
-    //qDebug() << "Question: " << X11KeySymToKeycode(79) << endl;
+    // qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
+    // qDebug() << "Question: " << X11KeySymToKeycode(79) << endl;
     this->keycode = 0;
     this->qkeyalias = 0;
     this->xcodestring = "";
@@ -63,13 +62,12 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
     if (temp > 0)
     {
         this->keycode = temp;
-        //this->keycode = X11KeyCodeToX11KeySym(temp);
+        // this->keycode = X11KeyCodeToX11KeySym(temp);
         this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
 
-        //this->keycode = temp;
+        // this->keycode = temp;
         this->xcodestring = xcodestring;
         this->displayString = setDisplayString(xcodestring);
-
     }
 
     qDebug() << "qkeyalias after returnQtKey: " << this->qkeyalias;
@@ -97,8 +95,7 @@ QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
     if (knownAliases.contains(xcodestring))
     {
         temp = knownAliases.value(xcodestring);
-    }
-    else
+    } else
     {
         temp = keycodeToKeyString(X11KeySymToKeycode(xcodestring));
     }
@@ -188,7 +185,8 @@ int VirtualKeyPushButton::calculateFontSize()
     QFontMetrics fm(tempScaledFont);
     int less_width = this->width() - 4;
 
-    while ((less_width < fm.boundingRect(this->rect(), Qt::AlignCenter, this->text()).width()) && (tempScaledFont.pointSize() > 5))
+    while ((less_width < fm.boundingRect(this->rect(), Qt::AlignCenter, this->text()).width()) &&
+           (tempScaledFont.pointSize() > 5))
     {
         tempScaledFont.setPointSize(tempScaledFont.pointSize() - 1);
         fm = QFontMetrics(tempScaledFont);
@@ -197,32 +195,14 @@ int VirtualKeyPushButton::calculateFontSize()
     return tempScaledFont.pointSize();
 }
 
-int VirtualKeyPushButton::getKeycode() const {
+int VirtualKeyPushButton::getKeycode() const { return keycode; }
 
-    return keycode;
-}
+int VirtualKeyPushButton::getQkeyalias() const { return qkeyalias; }
 
-int VirtualKeyPushButton::getQkeyalias() const {
+QString VirtualKeyPushButton::getXcodestring() const { return xcodestring; }
 
-    return qkeyalias;
-}
+QString VirtualKeyPushButton::getDisplayString() const { return displayString; }
 
-QString VirtualKeyPushButton::getXcodestring() const {
+bool VirtualKeyPushButton::getCurrentlyActive() const { return currentlyActive; }
 
-    return xcodestring;
-}
-
-QString VirtualKeyPushButton::getDisplayString() const {
-
-    return displayString;
-}
-
-bool VirtualKeyPushButton::getCurrentlyActive() const {
-
-    return currentlyActive;
-}
-
-bool VirtualKeyPushButton::getOnCurrentButton() const {
-
-    return onCurrentButton;
-}
+bool VirtualKeyPushButton::getOnCurrentButton() const { return onCurrentButton; }

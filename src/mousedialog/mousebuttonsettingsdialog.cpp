@@ -18,22 +18,22 @@
 
 #include "mousebuttonsettingsdialog.h"
 
-#include "messagehandler.h"
+#include "common.h"
 #include "inputdevice.h"
+#include "joybutton.h"
+#include "messagehandler.h"
 #include "setjoystick.h"
 #include "springmoderegionpreview.h"
-#include "joybutton.h"
-#include "common.h"
 
-#include <QSpinBox>
 #include <QCheckBox>
 #include <QComboBox>
-#include <QMetaObject>
 #include <QDebug>
+#include <QMetaObject>
+#include <QSpinBox>
 
-MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget *parent) :
-    MouseSettingsDialog(parent),
-    helper(button)
+MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget *parent)
+    : MouseSettingsDialog(parent)
+    , helper(button)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -57,10 +57,8 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     if (ui->mouseModeComboBox->currentIndex() == 2)
     {
-        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(),
-                                                          ui->springHeightSpinBox->value());
-    }
-    else
+        springPreviewWidget = new SpringModeRegionPreview(ui->springWidthSpinBox->value(), ui->springHeightSpinBox->value());
+    } else
     {
         springPreviewWidget = new SpringModeRegionPreview(0, 0);
     }
@@ -84,8 +82,7 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
         ui->minThresholdDoubleSpinBox->setValue(button->getMinAccelThreshold());
         ui->maxThresholdDoubleSpinBox->setValue(button->getMaxAccelThreshold());
         ui->accelExtraDurationDoubleSpinBox->setValue(button->getAccelExtraDuration());
-    }
-    else
+    } else
     {
         ui->extraAccelerationGroupBox->setVisible(false);
     }
@@ -98,40 +95,60 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
     connect(this, &MouseButtonSettingsDialog::finished, springPreviewWidget, &SpringModeRegionPreview::deleteLater);
 
-    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseButtonSettingsDialog::changeMouseMode);
-    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseButtonSettingsDialog::changeMouseCurve);
+    connect(ui->mouseModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseButtonSettingsDialog::changeMouseMode);
+    connect(ui->accelerationComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseButtonSettingsDialog::changeMouseCurve);
 
-    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseButtonSettingsDialog::updateConfigHorizontalSpeed);
-    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseButtonSettingsDialog::updateConfigVerticalSpeed);
+    connect(ui->horizontalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseButtonSettingsDialog::updateConfigHorizontalSpeed);
+    connect(ui->verticalSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseButtonSettingsDialog::updateConfigVerticalSpeed);
 
-    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseButtonSettingsDialog::updateSpringWidth);
-    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget, &SpringModeRegionPreview::setSpringWidth);
+    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseButtonSettingsDialog::updateSpringWidth);
+    connect(ui->springWidthSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget,
+            &SpringModeRegionPreview::setSpringWidth);
 
-    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &MouseButtonSettingsDialog::updateSpringHeight);
-    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget, &SpringModeRegionPreview::setSpringHeight);
+    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &MouseButtonSettingsDialog::updateSpringHeight);
+    connect(ui->springHeightSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), springPreviewWidget,
+            &SpringModeRegionPreview::setSpringHeight);
 
-    connect(ui->relativeSpringCheckBox, &QCheckBox::clicked, &helper, &MouseButtonSettingsDialogHelper::updateSpringRelativeStatus);
+    connect(ui->relativeSpringCheckBox, &QCheckBox::clicked, &helper,
+            &MouseButtonSettingsDialogHelper::updateSpringRelativeStatus);
 
-    connect(ui->sensitivityDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &MouseButtonSettingsDialog::updateSensitivity);
+    connect(ui->sensitivityDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,
+            &MouseButtonSettingsDialog::updateSensitivity);
 
     QChar x = 'X';
     QChar y = 'Y';
 
-    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button, [button, x](int value)
-    { button->setWheelSpeed(value, x); });
-    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button, [button, y](int value)
-    { button->setWheelSpeed(value, y); });
+    connect(ui->wheelHoriSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button,
+            [button, x](int value) { button->setWheelSpeed(value, x); });
+    connect(ui->wheelVertSpeedSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), button,
+            [button, y](int value) { button->setWheelSpeed(value, y); });
 
-    connect(ui->easingDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), button, &JoyButton::setEasingDuration);
-    connect(ui->extraAccelerationGroupBox, &QGroupBox::clicked, &helper, &MouseButtonSettingsDialogHelper::updateExtraAccelerationStatus);
-    connect(ui->extraAccelDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateExtraAccelerationMultiplier);
-    connect(ui->minMultiDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateStartMultiPercentage);
-    connect(ui->minThresholdDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateMinAccelThreshold);
-    connect(ui->maxThresholdDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateMaxAccelThreshold);
-    connect(ui->accelExtraDurationDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateAccelExtraDuration);
-    connect(ui->releaseSpringRadiusspinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), &helper, &MouseButtonSettingsDialogHelper::updateReleaseSpringRadius);
+    connect(ui->easingDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), button,
+            &JoyButton::setEasingDuration);
+    connect(ui->extraAccelerationGroupBox, &QGroupBox::clicked, &helper,
+            &MouseButtonSettingsDialogHelper::updateExtraAccelerationStatus);
+    connect(ui->extraAccelDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+            &helper, &MouseButtonSettingsDialogHelper::updateExtraAccelerationMultiplier);
+    connect(ui->minMultiDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper,
+            &MouseButtonSettingsDialogHelper::updateStartMultiPercentage);
+    connect(ui->minThresholdDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+            &helper, &MouseButtonSettingsDialogHelper::updateMinAccelThreshold);
+    connect(ui->maxThresholdDoubleSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+            &helper, &MouseButtonSettingsDialogHelper::updateMaxAccelThreshold);
+    connect(ui->accelExtraDurationDoubleSpinBox,
+            static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), &helper,
+            &MouseButtonSettingsDialogHelper::updateAccelExtraDuration);
+    connect(ui->releaseSpringRadiusspinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), &helper,
+            &MouseButtonSettingsDialogHelper::updateReleaseSpringRadius);
 
-    connect(ui->extraAccelCurveComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &MouseButtonSettingsDialog::updateExtraAccelerationCurve);
+    connect(ui->extraAccelCurveComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &MouseButtonSettingsDialog::updateExtraAccelerationCurve);
 }
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
@@ -145,8 +162,7 @@ void MouseButtonSettingsDialog::changeMouseMode(int index)
         {
             springPreviewWidget->hide();
         }
-    }
-    else if (index == 2)
+    } else if (index == 2)
     {
         button->setMouseMode(JoyButton::MouseSpring);
         if (!springPreviewWidget->isVisible())
@@ -206,8 +222,7 @@ void MouseButtonSettingsDialog::selectCurrentMouseModePreset()
     if (mode == JoyButton::MouseCursor)
     {
         ui->mouseModeComboBox->setCurrentIndex(1);
-    }
-    else if (mode == JoyButton::MouseSpring)
+    } else if (mode == JoyButton::MouseSpring)
     {
         ui->mouseModeComboBox->setCurrentIndex(2);
     }
@@ -264,7 +279,6 @@ void MouseButtonSettingsDialog::updateWindowTitleButtonName()
     QString temp = QString();
     temp.append(tr("Mouse Settings - ")).append(button->getPartialName(false, true));
 
-
     if (button->getParentSet()->getIndex() != 0)
     {
         int setIndex = button->getParentSet()->getRealIndex();
@@ -307,22 +321,10 @@ void MouseButtonSettingsDialog::updateExtraAccelerationCurve(int index)
     }
 }
 
-JoyButton *MouseButtonSettingsDialog::getButton() const {
+JoyButton *MouseButtonSettingsDialog::getButton() const { return button; }
 
-    return button;
-}
+SpringModeRegionPreview *MouseButtonSettingsDialog::getSpringPreviewWidget() const { return springPreviewWidget; }
 
-SpringModeRegionPreview *MouseButtonSettingsDialog::getSpringPreviewWidget() const {
+MouseButtonSettingsDialogHelper const &MouseButtonSettingsDialog::getHelper() { return helper; }
 
-    return springPreviewWidget;
-}
-
-MouseButtonSettingsDialogHelper const& MouseButtonSettingsDialog::getHelper() {
-
-    return helper;
-}
-
-MouseButtonSettingsDialogHelper& MouseButtonSettingsDialog::getHelperLocal() {
-
-    return helper;
-}
+MouseButtonSettingsDialogHelper &MouseButtonSettingsDialog::getHelperLocal() { return helper; }

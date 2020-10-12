@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSEAXISSETTINGSDIALOG_H
 #define MOUSEAXISSETTINGSDIALOG_H
 
@@ -25,7 +24,6 @@
 #include "mousesettingsdialog.h"
 #include "uihelpers/mouseaxissettingsdialoghelper.h"
 
-
 class JoyAxis;
 class SpringModeRegionPreview;
 
@@ -33,14 +31,14 @@ class MouseAxisSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent = nullptr);
 
-    JoyAxis* getAxis() const;
-    SpringModeRegionPreview* getSpringPreviewWidget() const;
-    MouseAxisSettingsDialogHelper const& getHelper();
+    JoyAxis *getAxis() const;
+    SpringModeRegionPreview *getSpringPreviewWidget() const;
+    MouseAxisSettingsDialogHelper const &getHelper();
 
-protected:
+  protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
@@ -55,8 +53,8 @@ protected:
     void calculateAccelExtraDuration();
     void calculateReleaseSpringRadius();
     void calculateExtraAccelerationCurve();
-    
-public slots:
+
+  public slots:
     void changeMouseMode(int index);
     void changeMouseCurve(int index);
     void updateConfigHorizontalSpeed(int value);
@@ -69,16 +67,15 @@ public slots:
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
 
-private slots:
+  private slots:
     void updateExtraAccelerationCurve(int index);
 
-private:
-    MouseAxisSettingsDialogHelper& getHelperLocal();
+  private:
+    MouseAxisSettingsDialogHelper &getHelperLocal();
 
     JoyAxis *axis;
     SpringModeRegionPreview *springPreviewWidget;
     MouseAxisSettingsDialogHelper helper;
-
 };
 
 #endif // MOUSEAXISSETTINGSDIALOG_H

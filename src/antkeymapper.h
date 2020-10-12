@@ -16,53 +16,50 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef ANTKEYMAPPER_H
 #define ANTKEYMAPPER_H
 
 #include <QObject>
 
-  #if defined(WITH_XTEST)
+#if defined(WITH_XTEST)
     #include "qtx11keymapper.h"
-  #endif
+#endif
 
-  #if defined(WITH_UINPUT)
+#if defined(WITH_UINPUT)
     #include "qtuinputkeymapper.h"
-  #endif
-
+#endif
 
 class AntKeyMapper : public QObject
 {
     Q_OBJECT
 
-public:
-    static AntKeyMapper* getInstance(QString handler = "");
+  public:
+    static AntKeyMapper *getInstance(QString handler = "");
     void deleteInstance();
 
     int returnVirtualKey(int qkey);
-    int returnQtKey(int key, int scancode=0);
+    int returnQtKey(int key, int scancode = 0);
     bool isModifierKey(int qkey);
-    QtKeyMapperBase* getNativeKeyMapper() const;
-    QtKeyMapperBase* getKeyMapper() const;
+    QtKeyMapperBase *getNativeKeyMapper() const;
+    QtKeyMapperBase *getKeyMapper() const;
     bool hasNativeKeyMapper();
 
-protected:
+  protected:
     static AntKeyMapper *_instance;
 
-private:
+  private:
     explicit AntKeyMapper(QString handler = "", QObject *parent = nullptr);
 
     QtKeyMapperBase *internalMapper;
     QtKeyMapperBase *nativeKeyMapper;
 
-  #if defined(WITH_XTEST)
+#if defined(WITH_XTEST)
     QtX11KeyMapper x11Mapper;
-  #endif
+#endif
 
-  #if defined(WITH_UINPUT)
+#if defined(WITH_UINPUT)
     QtUInputKeyMapper uinputMapper;
-  #endif
-
+#endif
 };
 
 #endif // ANTKEYMAPPER_H

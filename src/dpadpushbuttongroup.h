@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef DPADPUSHBUTTONGROUP_H
 #define DPADPUSHBUTTONGROUP_H
 
@@ -33,27 +32,27 @@ class DPadPushButtonGroup : public QGridLayout
 {
     Q_OBJECT
 
-public:
+  public:
     explicit DPadPushButtonGroup(JoyDPad *dpad, bool keypadUnlocked, bool displayNames = false, QWidget *parent = nullptr);
 
     JoyDPad *getDPad() const;
 
-protected:
+  protected:
     void generateButtons();
 
-signals:
+  signals:
     void buttonSlotChanged();
 
-public slots:
+  public slots:
     void changeButtonLayout();
     void toggleNameDisplay();
 
-private slots:
+  private slots:
     void propogateSlotsChanged();
-    void openDPadButtonDialog(JoyButtonWidget* buttonWidget);
+    void openDPadButtonDialog(JoyButtonWidget *buttonWidget);
     void showDPadDialog();
 
-private:
+  private:
     JoyDPad *dpad;
     bool keypadUnlocked;
     bool displayNames;
@@ -70,7 +69,8 @@ private:
 
     DPadPushButton *dpadWidget;
 
-    JoyDPadButtonWidget * generateBtnForGrid(QHash<int, JoyDPadButton*> *buttons, int dpadDirection , int cellRow, int cellCol);
+    JoyDPadButtonWidget *generateBtnForGrid(QHash<int, JoyDPadButton *> *buttons, int dpadDirection, int cellRow,
+                                            int cellCol);
 };
 
 #endif // DPADPUSHBUTTONGROUP_H

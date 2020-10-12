@@ -21,7 +21,6 @@
 
 #include <QMenu>
 
-
 class JoyButton;
 class QWidget;
 
@@ -29,20 +28,21 @@ class JoyButtonContextMenu : public QMenu
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoyButtonContextMenu(JoyButton *button, QWidget *parent = nullptr);
     void buildMenu();
 
-protected:
+  protected:
     JoyButton *button;
 
-private slots:
+  private slots:
     void switchToggle();
     void switchTurbo();
-    void switchSetMode(QAction* action);
+    void switchSetMode(QAction *action);
     void disableSetMode();
     void clearButton();
-    void createActionForGroup(QActionGroup *tempGroup, QString actionText, QAction *action, QMenu *tempSetMenu, int setSelection, int currentSelection, int setDataInc, int setCondition);
+    void createActionForGroup(QActionGroup *tempGroup, QString actionText, QAction *action, QMenu *tempSetMenu,
+                              int setSelection, int currentSelection, int setDataInc, int setCondition);
 };
 
 #endif // JOYBUTTONCONTEXTMENU_H

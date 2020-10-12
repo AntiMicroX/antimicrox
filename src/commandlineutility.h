@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef COMMANDLINEPARSER_H
 #define COMMANDLINEPARSER_H
 
@@ -24,11 +23,10 @@ class QCommandLineParser;
 
 #include "logger.h"
 
+class ControllerOptionsInfo
+{
 
-class ControllerOptionsInfo {
-
-public:
-
+  public:
     ControllerOptionsInfo()
     {
         controllerNumber = 0;
@@ -36,70 +34,31 @@ public:
         unloadProfile = false;
     }
 
-    bool hasProfile()
-    {
-        return !profileLocation.isEmpty();
-    }
+    bool hasProfile() { return !profileLocation.isEmpty(); }
 
-    QString getProfileLocation()
-    {
-        return profileLocation;
-    }
+    QString getProfileLocation() { return profileLocation; }
 
-    void setProfileLocation(QString location)
-    {
-        profileLocation = location;
-    }
+    void setProfileLocation(QString location) { profileLocation = location; }
 
-    bool hasControllerNumber()
-    {
-        return (controllerNumber > 0);
-    }
+    bool hasControllerNumber() { return (controllerNumber > 0); }
 
-    int getControllerNumber()
-    {
-        return controllerNumber;
-    }
+    int getControllerNumber() { return controllerNumber; }
 
-    void setControllerNumber(int temp)
-    {
-        controllerNumber = temp;
-    }
+    void setControllerNumber(int temp) { controllerNumber = temp; }
 
-    bool hasControllerID()
-    {
-        return !controllerIDString.isEmpty();
-    }
+    bool hasControllerID() { return !controllerIDString.isEmpty(); }
 
-    QString getControllerID()
-    {
-        return controllerIDString;
-    }
+    QString getControllerID() { return controllerIDString; }
 
-    void setControllerID(QString temp)
-    {
-        controllerIDString = temp;
-    }
+    void setControllerID(QString temp) { controllerIDString = temp; }
 
-    bool isUnloadRequested()
-    {
-        return unloadProfile;
-    }
+    bool isUnloadRequested() { return unloadProfile; }
 
-    void setUnloadRequest(bool status)
-    {
-        unloadProfile = status;
-    }
+    void setUnloadRequest(bool status) { unloadProfile = status; }
 
-    int getStartSetNumber()
-    {
-        return startSetNumber;
-    }
+    int getStartSetNumber() { return startSetNumber; }
 
-    int getJoyStartSetNumber()
-    {
-        return startSetNumber - 1;
-    }
+    int getJoyStartSetNumber() { return startSetNumber - 1; }
 
     void setStartSetNumber(int temp)
     {
@@ -109,7 +68,7 @@ public:
         }
     }
 
-private:
+  private:
     QString profileLocation;
     int controllerNumber;
     QString controllerIDString;
@@ -121,10 +80,10 @@ class CommandLineUtility : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit CommandLineUtility(QObject *parent = nullptr);
 
-    void parseArguments(QCommandLineParser* parser);
+    void parseArguments(QCommandLineParser *parser);
 
     bool isLaunchInTrayEnabled();
     bool isTrayHidden();
@@ -148,18 +107,18 @@ public:
     QString getCurrentLogFile();
     QString getErrorText();
 
-    QList<int>* getJoyStartSetNumberList();
-    QList<ControllerOptionsInfo> const& getControllerOptionsList();
+    QList<int> *getJoyStartSetNumberList();
+    QList<ControllerOptionsInfo> const &getControllerOptionsList();
 
     bool launchAsDaemon();
     QString getDisplayString();
 
     Logger::LogLevel getCurrentLogLevel();
 
-protected:
+  protected:
     void setErrorMessage(QString temp);
 
-private:
+  private:
     bool launchInTray;
     bool hideTrayIcon;
     bool encounteredError;
@@ -186,12 +145,11 @@ private:
 
     static QStringList eventGeneratorsList;
 
-    void parseArgsProfile(QCommandLineParser* parser);
-    void parseArgsPrControle(QCommandLineParser* parser);
-    void parseArgsUnload(QCommandLineParser* parser);
-    void parseArgsStartSet(QCommandLineParser* parser);
-    void parseArgsMap(QCommandLineParser* parser);
-    
+    void parseArgsProfile(QCommandLineParser *parser);
+    void parseArgsPrControle(QCommandLineParser *parser);
+    void parseArgsUnload(QCommandLineParser *parser);
+    void parseArgsStartSet(QCommandLineParser *parser);
+    void parseArgsMap(QCommandLineParser *parser);
 };
 
 #endif // COMMANDLINEPARSER_H

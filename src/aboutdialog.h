@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
@@ -31,15 +30,15 @@ class AboutDialog;
 class AboutDialog : public QDialog
 {
     Q_OBJECT
-    
-public:
+
+  public:
     explicit AboutDialog(QWidget *parent = nullptr);
     ~AboutDialog();
-    
-private:
+
+  private:
     Ui::AboutDialog *ui;
 
-protected:
+  protected:
     void fillInfoTextBrowser();
     virtual void changeEvent(QEvent *event);
     void retranslateUi();

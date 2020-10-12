@@ -16,35 +16,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef EVENT_H
 #define EVENT_H
 
-
+#include "common.h"
 #include "joybuttonslot.h"
 #include "springmousemoveinfo.h"
-#include "common.h"
 
-
-void sendevent (JoyButtonSlot *slot, bool pressed=true);
+void sendevent(JoyButtonSlot *slot, bool pressed = true);
 void sendevent(int code1, int code2);
-void sendKeybEvent(JoyButtonSlot *slot, bool pressed=true);
-void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring,
-                        PadderCommon::springModeInfo *relativeSpring=0,
-                        int* const mousePosX=0, int* const mousePos=0);
+void sendKeybEvent(JoyButtonSlot *slot, bool pressed = true);
+void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring = 0,
+                             int *const mousePosX = 0, int *const mousePos = 0);
 
-void sendSpringEvent(PadderCommon::springModeInfo *fullSpring,
-                     PadderCommon::springModeInfo *relativeSpring=0,
-                     int* const mousePosX=0, int* const mousePos=0);
+void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring = 0,
+                     int *const mousePosX = 0, int *const mousePos = 0);
 
-void fakeAbsMouseCoordinates(double springX, double springY,
-                             int width, int height,
-                             int &finalx, int &finaly, int screen=-1);
+void fakeAbsMouseCoordinates(double springX, double springY, int width, int height, int &finalx, int &finaly,
+                             int screen = -1);
 
 QString detectedScriptExt(QString file);
 int X11KeySymToKeycode(QString key);
-QString keycodeToKeyString(int keycode, int alias=0);
+QString keycodeToKeyString(int keycode, int alias = 0);
 int X11KeyCodeToX11KeySym(int keycode);
-QString keysymToKeyString(int keysym, int alias=0);
+QString keysymToKeyString(int keysym, int alias = 0);
 
 #endif // EVENT_H

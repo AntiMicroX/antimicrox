@@ -18,14 +18,14 @@
 
 #include "dpadpushbutton.h"
 
-#include "messagehandler.h"
-#include "joydpad.h"
 #include "dpadcontextmenu.h"
+#include "joydpad.h"
+#include "messagehandler.h"
 
 #include <QDebug>
 
-DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent) :
-    FlashButtonWidget(displayNames, parent)
+DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent)
+    : FlashButtonWidget(displayNames, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -42,7 +42,7 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
     connect(dpad, &JoyDPad::dpadNameChanged, this, &DPadPushButton::refreshLabel);
 }
 
-JoyDPad* DPadPushButton::getDPad() const
+JoyDPad *DPadPushButton::getDPad() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -55,12 +55,12 @@ QString DPadPushButton::generateLabel()
 
     QString temp = QString();
 
-    if (!dpad->getDpadName().isEmpty()) temp.append(dpad->getName(false, ifDisplayNames()));
-    else temp.append(dpad->getName());
-
+    if (!dpad->getDpadName().isEmpty())
+        temp.append(dpad->getName(false, ifDisplayNames()));
+    else
+        temp.append(dpad->getName());
 
     qDebug() << "Dpad button name is: " << temp;
-
 
     return temp;
 }

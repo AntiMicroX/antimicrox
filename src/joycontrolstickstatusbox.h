@@ -16,10 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYCONTROLSTICKSTATUSBOX_H
 #define JOYCONTROLSTICKSTATUSBOX_H
-
 
 #include <QSize>
 #include <QWidget>
@@ -27,31 +25,29 @@
 class JoyControlStick;
 class QPaintEvent;
 
-
 class JoyControlStickStatusBox : public QWidget
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoyControlStickStatusBox(QWidget *parent = nullptr);
     explicit JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent = nullptr);
 
     void setStick(JoyControlStick *stick);
 
-    JoyControlStick* getStick() const;
+    JoyControlStick *getStick() const;
 
     virtual int heightForWidth(int width) const;
     QSize sizeHint() const;
 
-protected:
+  protected:
     virtual void paintEvent(QPaintEvent *event);
     void drawEightWayBox();
     void drawFourWayCardinalBox();
     void drawFourWayDiagonalBox();
 
-private:
+  private:
     JoyControlStick *stick;
-    
 };
 
 #endif // JOYCONTROLSTICKSTATUSBOX_H

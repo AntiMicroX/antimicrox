@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYGRADIENTBUTTON_H
 #define JOYGRADIENTBUTTON_H
 
@@ -28,13 +27,13 @@ class JoyGradientButton : public JoyButton
 {
     Q_OBJECT
 
-public:
-    explicit JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent=0);
+  public:
+    explicit JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
 
     using JoyButton::getPartialName;
     using JoyButton::setChangeSetCondition;
 
-protected slots:
+  protected slots:
     virtual void turboEvent();
     virtual void wheelEventVertical();
     virtual void wheelEventHorizontal();

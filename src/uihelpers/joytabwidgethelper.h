@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYTABWIDGETHELPER_H
 #define JOYTABWIDGETHELPER_H
 
@@ -30,27 +29,27 @@ class JoyTabWidgetHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit JoyTabWidgetHelper(InputDevice *device, QObject *parent = nullptr);
     ~JoyTabWidgetHelper();
 
     bool hasReader();
-    XMLConfigReader* getReader();
+    XMLConfigReader *getReader();
 
     bool hasWriter();
-    XMLConfigWriter* getWriter();
+    XMLConfigWriter *getWriter();
 
     bool hasError();
     QString getErrorString();
 
-protected:
+  protected:
     InputDevice *device;
     XMLConfigReader *reader;
     XMLConfigWriter *writer;
     bool errorOccurred;
     QString lastErrorString;
 
-public slots:
+  public slots:
     bool readConfigFile(QString filepath);
     bool readConfigFileWithRevert(QString filepath);
     bool writeConfigFile(QString filepath);

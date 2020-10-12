@@ -18,15 +18,14 @@
 
 #include "antkeymapper.h"
 
-#include "messagehandler.h"
 #include "eventhandlerfactory.h"
+#include "messagehandler.h"
 
 #include <QDebug>
-#include <QtGlobal>
 #include <QStringList>
+#include <QtGlobal>
 
-
-AntKeyMapper* AntKeyMapper::_instance = nullptr;
+AntKeyMapper *AntKeyMapper::_instance = nullptr;
 
 static QStringList buildEventGeneratorList()
 {
@@ -34,18 +33,18 @@ static QStringList buildEventGeneratorList()
 
     QStringList temp = QStringList();
 
-  #ifdef WITH_XTEST
+#ifdef WITH_XTEST
     temp.append("xtest");
-  #endif
-  #ifdef WITH_UINPUT
+#endif
+#ifdef WITH_UINPUT
     temp.append("uinput");
-  #endif
+#endif
 
     return temp;
 }
 
-AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
-    QObject(parent)
+AntKeyMapper::AntKeyMapper(QString handler, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -64,18 +63,18 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent) :
     if (handler == "uinput")
     {
         internalMapper = &uinputMapper;
-#ifdef WITH_XTEST
+        #ifdef WITH_XTEST
         nativeKeyMapper = &x11Mapper;
-#else
+        #else
         nativeKeyMapper = nullptr;
-#endif
+        #endif
     }
     #endif
 
 #endif
 }
 
-AntKeyMapper* AntKeyMapper::getInstance(QString handler)
+AntKeyMapper *AntKeyMapper::getInstance(QString handler)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -122,14 +121,14 @@ bool AntKeyMapper::isModifierKey(int qkey)
     return internalMapper->isModifier(qkey);
 }
 
-QtKeyMapperBase* AntKeyMapper::getNativeKeyMapper() const
+QtKeyMapperBase *AntKeyMapper::getNativeKeyMapper() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return nativeKeyMapper;
 }
 
-QtKeyMapperBase* AntKeyMapper::getKeyMapper() const
+QtKeyMapperBase *AntKeyMapper::getKeyMapper() const
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 

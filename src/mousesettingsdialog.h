@@ -16,15 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSESETTINGSDIALOG_H
 #define MOUSESETTINGSDIALOG_H
 
 #include "joybutton.h"
 
 #include <QDialog>
-
-
 
 namespace Ui {
 class MouseSettingsDialog;
@@ -33,12 +30,12 @@ class MouseSettingsDialog;
 class MouseSettingsDialog : public QDialog
 {
     Q_OBJECT
-    
-public:
+
+  public:
     explicit MouseSettingsDialog(QWidget *parent = nullptr);
     ~MouseSettingsDialog();
-    
-protected:
+
+  protected:
     void updateAccelerationCurvePresetComboBox(JoyButton::JoyMouseCurve mouseCurve);
     void updateExtraAccelerationCurvePresetComboBox(JoyButton::JoyExtraAccelerationCurve curve);
     JoyButton::JoyMouseCurve getMouseCurveForIndex(int index);
@@ -47,7 +44,7 @@ protected:
     Ui::MouseSettingsDialog *ui;
     QTime lastMouseStatUpdate;
 
-public slots:
+  public slots:
     void changeSettingsWidgetStatus(int index);
     void changeSpringSectionStatus(int index);
     void changeMouseSpeedBoxStatus(int index);
@@ -64,7 +61,7 @@ public slots:
     virtual void changeMouseMode(int index) = 0;
     virtual void changeMouseCurve(int index) = 0;
 
-private slots:
+  private slots:
     void refreshMouseCursorSpeedValues(int index);
     void disableReleaseSpringBox(bool enable);
     void resetReleaseRadius(bool enabled);

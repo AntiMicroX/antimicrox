@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSECONTROLSTICKSETTINGSDIALOG_H
 #define MOUSECONTROLSTICKSETTINGSDIALOG_H
 
@@ -25,8 +24,6 @@
 #include "mousesettingsdialog.h"
 #include "uihelpers/mousecontrolsticksettingsdialoghelper.h"
 
-
-
 class JoyControlStick;
 class SpringModeRegionPreview;
 
@@ -34,14 +31,14 @@ class MouseControlStickSettingsDialog : public MouseSettingsDialog
 {
     Q_OBJECT
 
-public:
-    explicit MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent=0);
+  public:
+    explicit MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent = 0);
 
     JoyControlStick *getStick() const;
     SpringModeRegionPreview *getSpringPreviewWidget() const;
-    MouseControlStickSettingsDialogHelper const& getHelper();
-    
-protected:
+    MouseControlStickSettingsDialogHelper const &getHelper();
+
+  protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
     void calculateMouseSpeedPreset();
@@ -59,8 +56,7 @@ protected:
     void calculateReleaseSpringRadius();
     void calculateExtraAccelerationCurve();
 
-
-public slots:
+  public slots:
     void changeMouseMode(int index);
     void changeMouseCurve(int index);
     void updateConfigHorizontalSpeed(int value);
@@ -73,11 +69,11 @@ public slots:
     void updateWheelSpeedVerticalSpeed(int value);
     void updateSpringRelativeStatus(bool value);
 
-private slots:
+  private slots:
     void updateExtraAccelerationCurve(int index);
 
-private:
-    MouseControlStickSettingsDialogHelper& getHelperLocal();
+  private:
+    MouseControlStickSettingsDialogHelper &getHelperLocal();
 
     JoyControlStick *stick;
     SpringModeRegionPreview *springPreviewWidget;

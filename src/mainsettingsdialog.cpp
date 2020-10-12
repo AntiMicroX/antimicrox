@@ -18,82 +18,75 @@
 
 #include "mainsettingsdialog.h"
 
-#include "globalvariables.h"
-#include "messagehandler.h"
 #include "addeditautoprofiledialog.h"
-#include "editalldefaultautoprofiledialog.h"
-#include "common.h"
-#include "autoprofileinfo.h"
-#include "inputdevice.h"
 #include "antimicrosettings.h"
-#include "eventhandlerfactory.h"
-#include "event.h"
 #include "antkeymapper.h"
+#include "autoprofileinfo.h"
+#include "common.h"
+#include "editalldefaultautoprofiledialog.h"
+#include "event.h"
+#include "eventhandlerfactory.h"
+#include "globalvariables.h"
+#include "inputdevice.h"
+#include "messagehandler.h"
 
 #ifdef WITH_X11
-  #include "x11extras.h"
-  #include <X11/keysymdef.h>
-  #include <X11/XF86keysym.h>
-  #include <X11/XKBlib.h>
-  #include <X11/Xutil.h>
+    #include "x11extras.h"
+    #include <X11/XF86keysym.h>
+    #include <X11/XKBlib.h>
+    #include <X11/Xutil.h>
+    #include <X11/keysymdef.h>
 #elif WITH_UINPUT
-  #include <linux/input.h>
-  #include <linux/uinput.h>
+    #include <linux/input.h>
+    #include <linux/uinput.h>
 #endif
 
-#include <QTableWidgetItem>
+#include <QApplication>
+#include <QComboBox>
 #include <QDebug>
+#include <QDesktopWidget>
 #include <QDir>
 #include <QFileDialog>
-#include <QLocale>
-#include <QTranslator>
-#include <QListIterator>
-#include <QStringList>
-#include <QTableWidgetItem>
-#include <QMapIterator>
-#include <QVariant>
-#include <QMessageBox>
-#include <QDesktopWidget>
-#include <QComboBox>
-#include <QPushButton>
 #include <QLabel>
 #include <QList>
+#include <QListIterator>
 #include <QListWidget>
+#include <QLocale>
+#include <QMapIterator>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QStringList>
+#include <QTableWidgetItem>
+#include <QTranslator>
+#include <QVariant>
 #include <QWidget>
-#include <QApplication>
 
+static const QString RUNATSTARTUPREGKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
+static const QString RUNATSTARTUPLOCATION(QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicrox.lnk")
+                                              .arg(QString::fromUtf8(qgetenv("AppData"))));
 
-
-static const QString RUNATSTARTUPREGKEY(
-        "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
-static const QString RUNATSTARTUPLOCATION(
-        QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicrox.lnk")
-        .arg(QString::fromUtf8(qgetenv("AppData"))));
-
-MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
-                                       QList<InputDevice *> *devices,
-                                       QWidget *parent) :
-    QDialog(parent, Qt::Dialog),
-    ui(new Ui::MainSettingsDialog)
+MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice *> *devices, QWidget *parent)
+    : QDialog(parent, Qt::Dialog)
+    , ui(new Ui::MainSettingsDialog)
 {
     ui->setupUi(this);
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    #ifndef WITH_X11
-        ui->quitCombLineEdit->hide();
-        ui->quitComboLabel->hide();
-        ui->keysComboBox->hide();
-        ui->keysLabel->hide();
-        ui->warningComb->hide();
-    #endif
+#ifndef WITH_X11
+    ui->quitCombLineEdit->hide();
+    ui->quitComboLabel->hide();
+    ui->keysComboBox->hide();
+    ui->keysLabel->hide();
+    ui->warningComb->hide();
+#endif
 
-    ui->profileOpenDirPushButton->setIcon(QIcon::fromTheme("document_open_folder",
-                                                           QIcon(":/icons/hicolor/16x16/actions/document_open_folder.png")));
+    ui->profileOpenDirPushButton->setIcon(
+        QIcon::fromTheme("document_open_folder", QIcon(":/icons/hicolor/16x16/actions/document_open_folder.png")));
 
-    ui->logFilePushButton->setIcon(QIcon::fromTheme("document_open_folder",
-                            QIcon(":/icons/hicolor/16x16/actions/document_open_folder.png")));
+    ui->logFilePushButton->setIcon(
+        QIcon::fromTheme("document_open_folder", QIcon(":/icons/hicolor/16x16/actions/document_open_folder.png")));
 
     this->settings = settings;
     this->allDefaultProfile = nullptr;
@@ -112,8 +105,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     if (!defaultProfileDir.isEmpty() && QDir(defaultProfileDir).exists())
     {
         ui->profileDefaultDirLineEdit->setText(defaultProfileDir);
-    }
-    else
+    } else
     {
         ui->profileDefaultDirLineEdit->setText(PadderCommon::preferredProfileDir(settings));
     }
@@ -127,27 +119,23 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     changePresetLanguage();
 
-
     ui->autoProfileTableWidget->hideColumn(7);
 
-
-    #if defined(WITH_X11)
+#if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-    populateAutoProfiles();
-    fillAllAutoProfilesTable();
-    fillGUIDComboBox();
-    }
-    else
+        populateAutoProfiles();
+        fillAllAutoProfilesTable();
+        fillGUIDComboBox();
+    } else
     {
         delete ui->categoriesListWidget->item(2);
         ui->stackedWidget->removeWidget(ui->page_2);
     }
-    #elif !defined(WITH_X11)
+#elif !defined(WITH_X11)
     delete ui->categoriesListWidget->item(2);
     ui->stackedWidget->removeWidget(ui->page_2);
-    #endif
-
+#endif
 
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
     if (autoProfileActive == "1")
@@ -156,7 +144,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
         ui->autoProfileTableWidget->setEnabled(true);
         ui->autoProfileAddPushButton->setEnabled(true);
     }
-
 
     ui->launchAtWinStartupCheckBox->setVisible(false);
     ui->keyRepeatGroupBox->setVisible(false);
@@ -183,8 +170,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     if (autoOpenLastProfile)
     {
         ui->autoLoadPreviousCheckBox->setChecked(true);
-    }
-    else
+    } else
     {
         ui->autoLoadPreviousCheckBox->setChecked(false);
     }
@@ -205,7 +191,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     initializeKeysList();
 
     ui->quitCombLineEdit->setText(quitComboKeys);
-
 
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
     if (smoothingEnabled)
@@ -240,7 +225,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
 
     fillSpringScreenPresets();
 
-    for (int i=1; i <= 16; i++)
+    for (int i = 1; i <= 16; i++)
     {
         ui->gamepadPollRateComboBox->addItem(QString("%1 ms").arg(i), QVariant(i));
     }
@@ -254,8 +239,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         refreshExtraMouseInfo();
-    }
-    else
+    } else
     {
         ui->extraInfoFrame->hide();
     }
@@ -264,36 +248,45 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings,
     QString curLogFile = settings->value("LogFile", "").toString();
     int logLevel = settings->value("LogLevel", Logger::LOG_NONE).toInt();
 
-    if( !curLogFile.isEmpty() ) {
-      ui->logFilePathEdit->setText(curLogFile);
+    if (!curLogFile.isEmpty())
+    {
+        ui->logFilePathEdit->setText(curLogFile);
     }
 
-    ui->logLevelComboBox->setCurrentIndex( logLevel );
+    ui->logLevelComboBox->setCurrentIndex(logLevel);
     // End Advanced Tab
 
     settings->getLock()->unlock();
 
     connect(ui->categoriesListWidget, &QListWidget::currentRowChanged, ui->stackedWidget, &QStackedWidget::setCurrentIndex);
-    connect(ui->controllerMappingsTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::mappingsTableItemChanged);
+    connect(ui->controllerMappingsTableWidget, &QTableWidget::itemChanged, this,
+            &MainSettingsDialog::mappingsTableItemChanged);
     connect(ui->mappingDeletePushButton, &QPushButton::clicked, this, &MainSettingsDialog::deleteMappingRow);
     connect(ui->mappngInsertPushButton, &QPushButton::clicked, this, &MainSettingsDialog::insertMappingRow);
     connect(this, &MainSettingsDialog::accepted, this, &MainSettingsDialog::saveNewSettings);
     connect(ui->profileOpenDirPushButton, &QPushButton::clicked, this, &MainSettingsDialog::selectDefaultProfileDir);
     connect(ui->activeCheckBox, &QCheckBox::toggled, ui->autoProfileTableWidget, &QTableWidget::setEnabled);
     connect(ui->activeCheckBox, &QCheckBox::toggled, this, &MainSettingsDialog::autoProfileButtonsActiveState);
-    connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &MainSettingsDialog::changeDeviceForProfileTable);
-    connect(ui->keysComboBox, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentTextChanged), this, &MainSettingsDialog::addKeyToQuitCombination);
-    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+    connect(ui->devicesComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this,
+            &MainSettingsDialog::changeDeviceForProfileTable);
+    connect(ui->keysComboBox, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::currentTextChanged), this,
+            &MainSettingsDialog::addKeyToQuitCombination);
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this,
+            &MainSettingsDialog::processAutoProfileActiveClick);
     connect(ui->autoProfileAddPushButton, &QPushButton::clicked, this, &MainSettingsDialog::openAddAutoProfileDialog);
-    connect(ui->autoProfileDeletePushButton, &QPushButton::clicked, this, &MainSettingsDialog::openDeleteAutoProfileConfirmDialog);
+    connect(ui->autoProfileDeletePushButton, &QPushButton::clicked, this,
+            &MainSettingsDialog::openDeleteAutoProfileConfirmDialog);
     connect(ui->autoProfileEditPushButton, &QPushButton::clicked, this, &MainSettingsDialog::openEditAutoProfileDialog);
-    connect(ui->autoProfileTableWidget, &QTableWidget::itemSelectionChanged, this, &MainSettingsDialog::changeAutoProfileButtonsState);
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemSelectionChanged, this,
+            &MainSettingsDialog::changeAutoProfileButtonsState);
 
     connect(ui->keyRepeatEnableCheckBox, &QCheckBox::clicked, this, &MainSettingsDialog::changeKeyRepeatWidgetsStatus);
     connect(ui->keyDelayHorizontalSlider, &QSlider::valueChanged, ui->keyDelaySpinBox, &QSpinBox::setValue);
-    connect(ui->keyDelaySpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->keyDelayHorizontalSlider, &QSlider::setValue);
+    connect(ui->keyDelaySpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->keyDelayHorizontalSlider,
+            &QSlider::setValue);
     connect(ui->keyRateHorizontalSlider, &QSlider::valueChanged, ui->keyRateSpinBox, &QSpinBox::setValue);
-    connect(ui->keyRateSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->keyRateHorizontalSlider, &QSlider::setValue);
+    connect(ui->keyRateSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->keyRateHorizontalSlider,
+            &QSlider::setValue);
 
     connect(ui->smoothingEnableCheckBox, &QCheckBox::toggled, this, &MainSettingsDialog::checkSmoothingWidgetStatus);
     connect(ui->resetAccelPushButton, &QPushButton::clicked, this, &MainSettingsDialog::resetMouseAcceleration);
@@ -313,7 +306,6 @@ MainSettingsDialog::~MainSettingsDialog()
     }
 
     delete ui;
-
 }
 
 void MainSettingsDialog::fillControllerMappingsTable()
@@ -322,7 +314,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
 
     ui->controllerMappingsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    QHash<QString, QList<QVariant> > tempHash;
+    QHash<QString, QList<QVariant>> tempHash;
 
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
@@ -347,8 +339,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
                 templist.replace(2, QVariant(disableGameController));
                 tempHash.insert(tempGUID, templist); // Overwrite original list
             }
-        }
-        else
+        } else
         {
             QString mappingString = settings->value(tempkey, QString()).toString();
             if (!mappingString.isEmpty())
@@ -369,14 +360,14 @@ void MainSettingsDialog::fillControllerMappingsTable()
     settings->endGroup();
     settings->getLock()->unlock();
 
-    QHashIterator<QString, QList<QVariant> > iter2(tempHash);
+    QHashIterator<QString, QList<QVariant>> iter2(tempHash);
     int i = 0;
     while (iter2.hasNext())
     {
         ui->controllerMappingsTableWidget->insertRow(i);
 
         QList<QVariant> templist = iter2.next().value();
-        QTableWidgetItem* item = new QTableWidgetItem(templist.at(0).toString());
+        QTableWidgetItem *item = new QTableWidgetItem(templist.at(0).toString());
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         item->setData(Qt::UserRole, iter2.key());
         item->setToolTip(templist.at(0).toString());
@@ -398,7 +389,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
     }
 }
 
-void MainSettingsDialog::insertTempControllerMapping(QHash<QString, QList<QVariant> > &hash, QString newGUID)
+void MainSettingsDialog::insertTempControllerMapping(QHash<QString, QList<QVariant>> &hash, QString newGUID)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -439,7 +430,7 @@ void MainSettingsDialog::insertMappingRow()
     int insertRowIndex = ui->controllerMappingsTableWidget->rowCount();
     ui->controllerMappingsTableWidget->insertRow(insertRowIndex);
 
-    QTableWidgetItem* item = new QTableWidgetItem();
+    QTableWidgetItem *item = new QTableWidgetItem();
 
     ui->controllerMappingsTableWidget->setItem(insertRowIndex, 0, item);
 
@@ -520,8 +511,7 @@ void MainSettingsDialog::saveNewSettings()
         if (QFileInfo(possibleProfileDir).exists())
         {
             settings->setValue("DefaultProfileDir", possibleProfileDir);
-        }
-        else if (possibleProfileDir.isEmpty())
+        } else if (possibleProfileDir.isEmpty())
         {
             settings->remove("DefaultProfileDir");
         }
@@ -533,8 +523,7 @@ void MainSettingsDialog::saveNewSettings()
     if (closeToTray)
     {
         settings->setValue("CloseToTray", closeToTray ? "1" : "0");
-    }
-    else
+    } else
     {
         settings->remove("CloseToTray");
     }
@@ -542,25 +531,22 @@ void MainSettingsDialog::saveNewSettings()
 
     checkLocaleChange();
 
-    #if defined(WITH_X11)
+#if defined(WITH_X11)
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
 
-    saveAutoProfileSettings();
-
+        saveAutoProfileSettings();
     }
 
-    #endif
-
+#endif
 
     settings->getLock()->lock();
 
     if (ui->traySingleProfileListCheckBox->isChecked())
     {
         settings->setValue("TrayProfileList", "1");
-    }
-    else
+    } else
     {
         settings->setValue("TrayProfileList", "0");
     }
@@ -585,7 +571,6 @@ void MainSettingsDialog::saveNewSettings()
         QMetaObject::invokeMethod(tempDevice, "haltServices", Qt::BlockingQueuedConnection);
     }
 
-
     bool smoothingEnabled = ui->smoothingEnableCheckBox->isChecked();
     int historySize = ui->historySizeSpinBox->value();
     double weightModifier = ui->weightModifierDoubleSpinBox->value();
@@ -595,18 +580,24 @@ void MainSettingsDialog::saveNewSettings()
     {
         if (historySize > 0)
         {
-            JoyButton::setMouseHistorySize(historySize, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
+            JoyButton::setMouseHistorySize(historySize, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE,
+                                           GlobalVariables::JoyButton::mouseHistorySize,
+                                           &GlobalVariables::JoyButton::mouseHistoryX,
+                                           &GlobalVariables::JoyButton::mouseHistoryY);
         }
 
         if (weightModifier != 0.0)
         {
-            JoyButton::setWeightModifier(weightModifier, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER, GlobalVariables::JoyButton::weightModifier);
+            JoyButton::setWeightModifier(weightModifier, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER,
+                                         GlobalVariables::JoyButton::weightModifier);
         }
-    }
-    else
+    } else
     {
-        JoyButton::setMouseHistorySize(1, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
-        JoyButton::setWeightModifier(0.0, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER, GlobalVariables::JoyButton::weightModifier);
+        JoyButton::setMouseHistorySize(
+            1, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize,
+            &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
+        JoyButton::setWeightModifier(0.0, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER,
+                                     GlobalVariables::JoyButton::weightModifier);
     }
 
     if (historySize > 0)
@@ -624,7 +615,11 @@ void MainSettingsDialog::saveNewSettings()
     if (mouseRefreshRate != GlobalVariables::JoyButton::mouseRefreshRate)
     {
         settings->setValue("Mouse/RefreshRate", mouseRefreshRate);
-        JoyButton::setMouseRefreshRate(mouseRefreshRate, GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(), &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer());
+        JoyButton::setMouseRefreshRate(mouseRefreshRate, GlobalVariables::JoyButton::mouseRefreshRate,
+                                       GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(),
+                                       &GlobalVariables::JoyButton::mouseHistoryX,
+                                       &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(),
+                                       JoyButton::getStaticMouseEventTimer());
     }
 
     int springIndex = ui->springScreenComboBox->currentIndex();
@@ -636,18 +631,21 @@ void MainSettingsDialog::saveNewSettings()
     int gamepadPollRate = ui->gamepadPollRateComboBox->itemData(pollIndex).toInt();
     if (gamepadPollRate != GlobalVariables::JoyButton::gamepadRefreshRate)
     {
-        JoyButton::setGamepadRefreshRate(gamepadPollRate, GlobalVariables::JoyButton::gamepadRefreshRate, JoyButton::getMouseHelper());
+        JoyButton::setGamepadRefreshRate(gamepadPollRate, GlobalVariables::JoyButton::gamepadRefreshRate,
+                                         JoyButton::getMouseHelper());
         settings->setValue("GamepadPollRate", QString::number(gamepadPollRate));
     }
 
     // Advanced Tab
     settings->setValue("LogFile", ui->logFilePathEdit->text());
     int logLevel = ui->logLevelComboBox->currentIndex();
-    if( logLevel < 0 ) {
-      logLevel = 0;
+    if (logLevel < 0)
+    {
+        logLevel = 0;
     }
-    if( Logger::LOG_MAX < logLevel ) {
-      logLevel = Logger::LOG_MAX;
+    if (Logger::LOG_MAX < logLevel)
+    {
+        logLevel = Logger::LOG_MAX;
     }
     settings->setValue("LogLevel", logLevel);
     // End Advanced Tab
@@ -685,75 +683,61 @@ void MainSettingsDialog::checkLocaleChange()
 
         settings->getLock()->unlock();
         emit changeLanguage(QLocale::system().name());
-    }
-    else
+    } else
     {
         QString newLocale = "en";
 
-        switch(row)
+        switch (row)
         {
 
-            case 1:
-            {
-                newLocale = "br";
-                break;
-            }
-            case 2:
-            {
-                newLocale = "en";
-                break;
-            }
-            case 3:
-            {
-                newLocale = "fr";
-                break;
-            }
-            case 4:
-            {
-                newLocale = "de";
-                break;
-            }
-            case 5:
-            {
-                newLocale = "it";
-                break;
-            }
-            case 6:
-            {
-                newLocale = "ja";
-                break;
-            }
-            case 7:
-            {
-                newLocale = "ru";
-                break;
-            }
-            case 8:
-            {
-                newLocale = "sr";
-                break;
-            }
-            case 9:
-            {
-                newLocale = "zh_CN";
-                break;
-            }
-            case 10:
-            {
-                newLocale = "es";
-                break;
-            }
-            case 11:
-            {
-                newLocale = "uk";
-                break;
-            }
-           case 12:
-            {
-                newLocale = "pl";
-                break;
-            }
-
+        case 1: {
+            newLocale = "br";
+            break;
+        }
+        case 2: {
+            newLocale = "en";
+            break;
+        }
+        case 3: {
+            newLocale = "fr";
+            break;
+        }
+        case 4: {
+            newLocale = "de";
+            break;
+        }
+        case 5: {
+            newLocale = "it";
+            break;
+        }
+        case 6: {
+            newLocale = "ja";
+            break;
+        }
+        case 7: {
+            newLocale = "ru";
+            break;
+        }
+        case 8: {
+            newLocale = "sr";
+            break;
+        }
+        case 9: {
+            newLocale = "zh_CN";
+            break;
+        }
+        case 10: {
+            newLocale = "es";
+            break;
+        }
+        case 11: {
+            newLocale = "uk";
+            break;
+        }
+        case 12: {
+            newLocale = "pl";
+            break;
+        }
         }
 
         settings->setValue("Language", newLocale);
@@ -811,7 +795,7 @@ void MainSettingsDialog::populateAutoProfiles()
                 info->setWindowClass(windowClass);
                 defaultAutoProfiles.insert(guid, info);
                 defaultList.append(info);
-                QList<AutoProfileInfo*> templist;
+                QList<AutoProfileInfo *> templist;
                 templist.append(info);
                 deviceAutoProfiles.insert(guid, templist);
             }
@@ -828,7 +812,8 @@ void MainSettingsDialog::populateAutoProfiles()
 
         QString windowClass = settings->value(QString("AutoProfile%1WindowClass").arg(i), "").toString();
 
-        convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i), QString("AutoProfile%1UniqueID").arg(i));
+        convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i),
+                                        QString("AutoProfile%1UniqueID").arg(i));
 
         QString guid = settings->value(QString("AutoProfile%1UniqueID").arg(i), "").toString();
         QString profile = settings->value(QString("AutoProfile%1Profile").arg(i), "").toString();
@@ -839,8 +824,7 @@ void MainSettingsDialog::populateAutoProfiles()
 
         // Check if all required elements exist. If not, assume that the end of the
         // list has been reached.
-        if ((!exe.isEmpty() || !windowClass.isEmpty() || !windowName.isEmpty()) &&
-            !guid.isEmpty())
+        if ((!exe.isEmpty() || !windowClass.isEmpty() || !windowName.isEmpty()) && !guid.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
             AutoProfileInfo *info = new AutoProfileInfo(guid, profile, exe, profileActive, partialTitleBool, this);
@@ -853,9 +837,8 @@ void MainSettingsDialog::populateAutoProfiles()
 
             info->setWindowClass(windowClass);
 
-
             profileList.append(info);
-            QList<AutoProfileInfo*> templist;
+            QList<AutoProfileInfo *> templist;
             if (guid != "all")
             {
                 if (deviceAutoProfiles.contains(guid))
@@ -865,8 +848,7 @@ void MainSettingsDialog::populateAutoProfiles()
                 templist.append(info);
                 deviceAutoProfiles.insert(guid, templist);
             }
-        }
-        else
+        } else
         {
             quitSearch = true;
         }
@@ -886,8 +868,7 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
 
     ui->autoProfileTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    if (defaultAutoProfiles.contains(guid) ||
-        deviceAutoProfiles.contains(guid))
+    if (defaultAutoProfiles.contains(guid) || deviceAutoProfiles.contains(guid))
     {
         int i = 0;
 
@@ -949,13 +930,13 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
             ui->autoProfileTableWidget->setItem(i, 6, item);
 
             item = new QTableWidgetItem("Instance");
-            item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo*>(info));
+            item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo *>(info));
             ui->autoProfileTableWidget->setItem(i, 7, item);
 
             i++;
         }
 
-        QListIterator<AutoProfileInfo*> iter(deviceAutoProfiles.value(guid));
+        QListIterator<AutoProfileInfo *> iter(deviceAutoProfiles.value(guid));
         while (iter.hasNext())
         {
             AutoProfileInfo *info = iter.next();
@@ -1012,7 +993,7 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
                 ui->autoProfileTableWidget->setItem(i, 5, item);
 
                 item = new QTableWidgetItem("Instance");
-                item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo*>(info));
+                item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo *>(info));
                 ui->autoProfileTableWidget->setItem(i, 7, item);
 
                 i++;
@@ -1021,10 +1002,7 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
     }
 }
 
-void MainSettingsDialog::clearAutoProfileData()
-{
-qInstallMessageHandler(MessageHandler::myMessageOutput);
-}
+void MainSettingsDialog::clearAutoProfileData() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
 
 void MainSettingsDialog::fillGUIDComboBox()
 {
@@ -1037,7 +1015,7 @@ void MainSettingsDialog::fillGUIDComboBox()
     while (iter.hasNext())
     {
         QString guid = iter.next();
-        QList<AutoProfileInfo*> temp = deviceAutoProfiles.value(guid);
+        QList<AutoProfileInfo *> temp = deviceAutoProfiles.value(guid);
 
         if (temp.count() > 0)
         {
@@ -1046,13 +1024,11 @@ void MainSettingsDialog::fillGUIDComboBox()
             if (!deviceName.isEmpty())
             {
                 ui->devicesComboBox->addItem(deviceName, QVariant(guid));
-            }
-            else
+            } else
             {
                 ui->devicesComboBox->addItem(guid, QVariant(guid));
             }
-        }
-        else
+        } else
         {
             ui->devicesComboBox->addItem(guid, QVariant(guid));
         }
@@ -1063,19 +1039,20 @@ void MainSettingsDialog::changeDeviceForProfileTable(int index)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    disconnect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+    disconnect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this,
+               &MainSettingsDialog::processAutoProfileActiveClick);
 
     if (index == 0)
     {
         fillAllAutoProfilesTable();
-    }
-    else
+    } else
     {
         QString guid = ui->devicesComboBox->itemData(index).toString();
         fillAutoProfilesTable(guid);
     }
 
-    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this,
+            &MainSettingsDialog::processAutoProfileActiveClick);
 }
 
 void MainSettingsDialog::addKeyToQuitCombination(QString key)
@@ -1126,7 +1103,7 @@ void MainSettingsDialog::saveAutoProfileSettings()
         settings->setValue(QString("DefaultAutoProfileAll/Active"), defaultActive);
     }
 
-    QMapIterator<QString, AutoProfileInfo*> iter(defaultAutoProfiles);
+    QMapIterator<QString, AutoProfileInfo *> iter(defaultAutoProfiles);
     QStringList registeredGUIDs = QStringList();
     while (iter.hasNext())
     {
@@ -1153,7 +1130,7 @@ void MainSettingsDialog::saveAutoProfileSettings()
     QString autoActive = ui->activeCheckBox->isChecked() ? "1" : "0";
     settings->setValue("AutoProfilesActive", autoActive);
 
-    QListIterator<AutoProfileInfo*> iterProfiles(profileList);
+    QListIterator<AutoProfileInfo *> iterProfiles(profileList);
     int i = 1;
     while (iterProfiles.hasNext())
     {
@@ -1175,7 +1152,8 @@ void MainSettingsDialog::saveAutoProfileSettings()
             settings->setValue(QString("AutoProfile%1WindowName").arg(i), info->getWindowName());
         }
 
-        convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i), QString("AutoProfile%1UniqueID").arg(i));
+        convToUniqueIDAutoProfGroupSett(settings, QString("AutoProfile%1GUID").arg(i),
+                                        QString("AutoProfile%1UniqueID").arg(i));
 
         settings->setValue(QString("AutoProfile%1UniqueID").arg(i), info->getUniqueID());
         settings->setValue(QString("AutoProfile%1Profile").arg(i), info->getProfileLocation());
@@ -1192,7 +1170,7 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    for (int i = ui->autoProfileTableWidget->rowCount()-1; i >= 0; i--)
+    for (int i = ui->autoProfileTableWidget->rowCount() - 1; i >= 0; i--)
     {
         ui->autoProfileTableWidget->removeRow(i);
     }
@@ -1245,12 +1223,12 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
     ui->autoProfileTableWidget->setItem(i, 6, item);
 
     item = new QTableWidgetItem("Instance");
-    item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo*>(info));
+    item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo *>(info));
     ui->autoProfileTableWidget->setItem(i, 7, item);
 
     i++;
 
-    QListIterator<AutoProfileInfo*> iterDefaults(defaultList);
+    QListIterator<AutoProfileInfo *> iterDefaults(defaultList);
     while (iterDefaults.hasNext())
     {
         AutoProfileInfo *info = iterDefaults.next();
@@ -1306,13 +1284,13 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
         ui->autoProfileTableWidget->setItem(i, 6, item);
 
         item = new QTableWidgetItem("Instance");
-        item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo*>(info));
+        item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo *>(info));
         ui->autoProfileTableWidget->setItem(i, 7, item);
 
         i++;
     }
 
-    QListIterator<AutoProfileInfo*> iter(profileList);
+    QListIterator<AutoProfileInfo *> iter(profileList);
     while (iter.hasNext())
     {
         AutoProfileInfo *info = iter.next();
@@ -1368,7 +1346,7 @@ void MainSettingsDialog::fillAllAutoProfilesTable()
         ui->autoProfileTableWidget->setItem(i, 6, item);
 
         item = new QTableWidgetItem("Instance");
-        item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo*>(info));
+        item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo *>(info));
         ui->autoProfileTableWidget->setItem(i, 7, item);
 
         i++;
@@ -1382,13 +1360,12 @@ void MainSettingsDialog::processAutoProfileActiveClick(QTableWidgetItem *item)
     if (item && (item->column() == 0))
     {
         QTableWidgetItem *infoitem = ui->autoProfileTableWidget->item(item->row(), 7);
-        AutoProfileInfo *info = infoitem->data(Qt::UserRole).value<AutoProfileInfo*>();
+        AutoProfileInfo *info = infoitem->data(Qt::UserRole).value<AutoProfileInfo *>();
         Qt::CheckState active = item->checkState();
         if (active == Qt::Unchecked)
         {
             info->setActive(false);
-        }
-        else if (active == Qt::Checked)
+        } else if (active == Qt::Checked)
         {
             info->setActive(true);
         }
@@ -1401,12 +1378,10 @@ void MainSettingsDialog::openAddAutoProfileDialog()
 
     QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
     AutoProfileInfo *info = new AutoProfileInfo(this);
-    AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
+    AddEditAutoProfileDialog *dialog =
+        new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, false, this);
 
-    connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog]
-    {
-        addNewAutoProfile(dialog);
-    });
+    connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] { addNewAutoProfile(dialog); });
 
     connect(dialog, &AddEditAutoProfileDialog::rejected, info, &AutoProfileInfo::deleteLater);
     dialog->show();
@@ -1421,7 +1396,7 @@ void MainSettingsDialog::openEditAutoProfileDialog()
     {
         QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);
 
-        AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo*>();
+        AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo *>();
         if (info != allDefaultProfile)
         {
             QList<QString> reservedGUIDs = defaultAutoProfiles.keys();
@@ -1437,24 +1412,22 @@ void MainSettingsDialog::openEditAutoProfileDialog()
             }
 
             QTableWidgetItem *itemDefault = ui->autoProfileTableWidget->item(selectedRow, 6);
-            if (itemDefault->data(Qt::UserRole) == "default" || itemDefault->text() == "Default") info->setDefaultState(true);
+            if (itemDefault->data(Qt::UserRole) == "default" || itemDefault->text() == "Default")
+                info->setDefaultState(true);
 
-
-            AddEditAutoProfileDialog *dialog = new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, true, this);
-            connect(dialog, &AddEditAutoProfileDialog::accepted, this, [this, dialog] {
-                transferEditsToCurrentTableRow(dialog);
-            });
+            AddEditAutoProfileDialog *dialog =
+                new AddEditAutoProfileDialog(info, settings, connectedDevices, reservedGUIDs, true, this);
+            connect(dialog, &AddEditAutoProfileDialog::accepted, this,
+                    [this, dialog] { transferEditsToCurrentTableRow(dialog); });
 
             dialog->show();
-        }
-        else
+        } else
         {
             info->setDefaultState(true);
             EditAllDefaultAutoProfileDialog *dialog = new EditAllDefaultAutoProfileDialog(info, settings, this);
             dialog->show();
-            connect(dialog, &EditAllDefaultAutoProfileDialog::accepted, this, [this, dialog] {
-                transferAllProfileEditToCurrentTableRow(dialog);
-            });
+            connect(dialog, &EditAllDefaultAutoProfileDialog::accepted, this,
+                    [this, dialog] { transferAllProfileEditToCurrentTableRow(dialog); });
         }
     }
 }
@@ -1476,7 +1449,7 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
         if (selectedRow >= 0)
         {
             QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);
-            AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo*>();
+            AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo *>();
 
             if (info->isCurrentDefault())
             {
@@ -1484,20 +1457,18 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
                 {
                     delete allDefaultProfile;
                     allDefaultProfile = nullptr;
-                }
-                else if (defaultAutoProfiles.contains(info->getUniqueID()))
+                } else if (defaultAutoProfiles.contains(info->getUniqueID()))
                 {
                     defaultAutoProfiles.remove(info->getUniqueID());
                     defaultList.removeAll(info);
                     delete info;
                     info = nullptr;
                 }
-            }
-            else
+            } else
             {
                 if (deviceAutoProfiles.contains(info->getUniqueID()))
                 {
-                    QList<AutoProfileInfo*> temp = deviceAutoProfiles.value(info->getUniqueID());
+                    QList<AutoProfileInfo *> temp = deviceAutoProfiles.value(info->getUniqueID());
                     temp.removeAll(info);
                     deviceAutoProfiles.insert(info->getUniqueID(), temp);
                 }
@@ -1523,22 +1494,20 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
     {
         QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);
 
-        AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo*>();
+        AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo *>();
 
         if (info == allDefaultProfile)
         {
             ui->autoProfileAddPushButton->setEnabled(true);
             ui->autoProfileEditPushButton->setEnabled(true);
             ui->autoProfileDeletePushButton->setEnabled(false);
-        }
-        else
+        } else
         {
             ui->autoProfileAddPushButton->setEnabled(true);
             ui->autoProfileEditPushButton->setEnabled(true);
             ui->autoProfileDeletePushButton->setEnabled(true);
         }
-    }
-    else
+    } else
     {
         ui->autoProfileAddPushButton->setEnabled(true);
         ui->autoProfileDeletePushButton->setEnabled(false);
@@ -1546,7 +1515,7 @@ void MainSettingsDialog::changeAutoProfileButtonsState()
     }
 }
 
-void MainSettingsDialog::transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog* dialog)
+void MainSettingsDialog::transferAllProfileEditToCurrentTableRow(EditAllDefaultAutoProfileDialog *dialog)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -1580,38 +1549,35 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
 
     if ((oldGUID != info->getUniqueID()) && deviceAutoProfiles.contains(oldGUID))
     {
-        QList<AutoProfileInfo*> temp = deviceAutoProfiles.value(oldGUID);
+        QList<AutoProfileInfo *> temp = deviceAutoProfiles.value(oldGUID);
         temp.removeAll(info);
 
         if (temp.count() > 0)
         {
             deviceAutoProfiles.insert(oldGUID, temp);
-        }
-        else
+        } else
         {
             deviceAutoProfiles.remove(oldGUID);
         }
 
         if (deviceAutoProfiles.contains(info->getUniqueID()))
         {
-            QList<AutoProfileInfo*> temp2 = deviceAutoProfiles.value(oldGUID);
+            QList<AutoProfileInfo *> temp2 = deviceAutoProfiles.value(oldGUID);
 
             if (!temp2.contains(info))
             {
                 temp2.append(info);
                 deviceAutoProfiles.insert(info->getUniqueID(), temp2);
             }
-        }
-        else if (info->getUniqueID().toLower() != "all")
+        } else if (info->getUniqueID().toLower() != "all")
         {
-            QList<AutoProfileInfo*> temp2;
+            QList<AutoProfileInfo *> temp2;
             temp2.append(info);
             deviceAutoProfiles.insert(info->getUniqueID(), temp2);
         }
-    }
-    else if ((oldGUID != info->getUniqueID()) && (info->getUniqueID().toLower() != "all"))
+    } else if ((oldGUID != info->getUniqueID()) && (info->getUniqueID().toLower() != "all"))
     {
-        QList<AutoProfileInfo*> temp;
+        QList<AutoProfileInfo *> temp;
         temp.append(info);
         deviceAutoProfiles.insert(info->getUniqueID(), temp);
     }
@@ -1624,8 +1590,7 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
         {
             profileList.append(info);
         }
-    }
-    else
+    } else
     {
         profileList.removeAll(info);
 
@@ -1637,17 +1602,16 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
 
     if (deviceAutoProfiles.contains(info->getUniqueID()))
     {
-        QList<AutoProfileInfo*> temp2 = deviceAutoProfiles.value(info->getUniqueID());
+        QList<AutoProfileInfo *> temp2 = deviceAutoProfiles.value(info->getUniqueID());
 
         if (!temp2.contains(info))
         {
             temp2.append(info);
             deviceAutoProfiles.insert(info->getUniqueID(), temp2);
         }
-    }
-    else
+    } else
     {
-        QList<AutoProfileInfo*> temp2;
+        QList<AutoProfileInfo *> temp2;
         temp2.append(info);
         deviceAutoProfiles.insert(info->getUniqueID(), temp2);
     }
@@ -1661,7 +1625,7 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-   // AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
+    // AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
     AutoProfileInfo *info = dialog->getAutoProfile();
     bool found = false;
 
@@ -1679,17 +1643,15 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
                 defaultAutoProfiles.insert(info->getUniqueID(), info);
                 defaultList.append(info);
             }
-        }
-        else
+        } else
         {
-            if (!info->getUniqueID().isEmpty() &&
-                !info->getExe().isEmpty())
+            if (!info->getUniqueID().isEmpty() && !info->getExe().isEmpty())
             {
                 profileList.append(info);
 
                 if (info->getUniqueID() != "all")
                 {
-                    QList<AutoProfileInfo*> tempDevProfileList;
+                    QList<AutoProfileInfo *> tempDevProfileList;
 
                     if (deviceAutoProfiles.contains(info->getUniqueID()))
                         tempDevProfileList = deviceAutoProfiles.value(info->getUniqueID());
@@ -1712,8 +1674,7 @@ void MainSettingsDialog::autoProfileButtonsActiveState(bool enabled)
     if (enabled)
     {
         changeAutoProfileButtonsState();
-    }
-    else
+    } else
     {
         ui->autoProfileAddPushButton->setEnabled(false);
         ui->autoProfileEditPushButton->setEnabled(false);
@@ -1739,14 +1700,12 @@ void MainSettingsDialog::checkSmoothingWidgetStatus(bool enabled)
     {
         ui->historySizeSpinBox->setEnabled(true);
         ui->weightModifierDoubleSpinBox->setEnabled(true);
-    }
-    else
+    } else
     {
         ui->historySizeSpinBox->setEnabled(false);
         ui->weightModifierDoubleSpinBox->setEnabled(false);
     }
 }
-
 
 void MainSettingsDialog::changePresetLanguage()
 {
@@ -1758,57 +1717,44 @@ void MainSettingsDialog::changePresetLanguage()
         if (targetLang == "br")
         {
             ui->localeListWidget->setCurrentRow(1);
-        }
-        else if (targetLang == "en")
+        } else if (targetLang == "en")
         {
             ui->localeListWidget->setCurrentRow(2);
-        }
-        else if (targetLang == "fr")
+        } else if (targetLang == "fr")
         {
             ui->localeListWidget->setCurrentRow(3);
-        }
-        else if (targetLang == "de")
+        } else if (targetLang == "de")
         {
             ui->localeListWidget->setCurrentRow(4);
-        }
-        else if (targetLang == "it")
+        } else if (targetLang == "it")
         {
             ui->localeListWidget->setCurrentRow(5);
-        }
-        else if (targetLang == "ja")
+        } else if (targetLang == "ja")
         {
             ui->localeListWidget->setCurrentRow(6);
-        }
-        else if (targetLang == "ru")
+        } else if (targetLang == "ru")
         {
             ui->localeListWidget->setCurrentRow(7);
-        }
-        else if (targetLang == "sr")
+        } else if (targetLang == "sr")
         {
             ui->localeListWidget->setCurrentRow(8);
-        }
-        else if (targetLang == "zh_CN")
+        } else if (targetLang == "zh_CN")
         {
             ui->localeListWidget->setCurrentRow(9);
-        }
-        else if (targetLang == "es")
+        } else if (targetLang == "es")
         {
             ui->localeListWidget->setCurrentRow(10);
-        }
-        else if (targetLang == "uk")
+        } else if (targetLang == "uk")
         {
             ui->localeListWidget->setCurrentRow(11);
-        }
-        else if (targetLang == "pl")
+        } else if (targetLang == "pl")
         {
             ui->localeListWidget->setCurrentRow(12);
-        }
-        else
+        } else
         {
             ui->localeListWidget->setCurrentRow(0);
         }
-    }
-    else
+    } else
     {
         ui->localeListWidget->setCurrentRow(0);
     }
@@ -1819,8 +1765,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     ui->springScreenComboBox->clear();
-    ui->springScreenComboBox->addItem(tr("Default"),
-                                      QVariant(GlobalVariables::AntimicroSettings::defaultSpringScreen));
+    ui->springScreenComboBox->addItem(tr("Default"), QVariant(GlobalVariables::AntimicroSettings::defaultSpringScreen));
 
     QDesktopWidget deskWid;
 
@@ -1850,8 +1795,7 @@ void MainSettingsDialog::refreshExtraMouseInfo()
         if (handler == "uinput")
         {
             temp = X11Extras::getInstance()->getPointInformation();
-        }
-        else if (handler == "xtest")
+        } else if (handler == "xtest")
         {
             temp = X11Extras::getInstance()->getPointInformation(GlobalVariables::X11Extras::xtestMouseDeviceName);
         }
@@ -1880,56 +1824,33 @@ void MainSettingsDialog::resetMouseAcceleration()
 #endif
 }
 
-void MainSettingsDialog::selectLogFile() {
+void MainSettingsDialog::selectLogFile()
+{
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QString oldLogFile = settings->value("LogFile", "").toString();
     QString newLogFile = QFileDialog::getSaveFileName(this, tr("Save Log File As"), oldLogFile, tr("Log Files (*.log)"));
 
-    if (!newLogFile.isEmpty()) ui->logFilePathEdit->setText(newLogFile);
-
+    if (!newLogFile.isEmpty())
+        ui->logFilePathEdit->setText(newLogFile);
 }
 
-AntiMicroSettings *MainSettingsDialog::getSettings() const {
+AntiMicroSettings *MainSettingsDialog::getSettings() const { return settings; }
 
-    return settings;
-}
+QMap<QString, AutoProfileInfo *> *MainSettingsDialog::getDefaultAutoProfiles() { return &defaultAutoProfiles; }
 
-QMap<QString, AutoProfileInfo*>* MainSettingsDialog::getDefaultAutoProfiles() {
+QMap<QString, QList<AutoProfileInfo *>> *MainSettingsDialog::getDeviceAutoProfiles() { return &deviceAutoProfiles; }
 
-    return &defaultAutoProfiles;
-}
+QMap<QString, QList<AutoProfileInfo *>> *MainSettingsDialog::getExeAutoProfiles() { return &exeAutoProfiles; }
 
-QMap<QString, QList<AutoProfileInfo*> >* MainSettingsDialog::getDeviceAutoProfiles() {
+QList<AutoProfileInfo *> *MainSettingsDialog::getDefaultList() { return &defaultList; }
 
-    return &deviceAutoProfiles;
-}
+QList<AutoProfileInfo *> *MainSettingsDialog::getProfileList() { return &profileList; }
 
-QMap<QString, QList<AutoProfileInfo*> >* MainSettingsDialog::getExeAutoProfiles() {
+AutoProfileInfo *MainSettingsDialog::getAllDefaultProfile() const { return allDefaultProfile; }
 
-    return &exeAutoProfiles;
-}
-
-QList<AutoProfileInfo*>* MainSettingsDialog::getDefaultList() {
-
-    return &defaultList;
-}
-
-QList<AutoProfileInfo*>* MainSettingsDialog::getProfileList() {
-
-    return &profileList;
-}
-
-AutoProfileInfo* MainSettingsDialog::getAllDefaultProfile() const {
-
-    return allDefaultProfile;
-}
-
-QList<InputDevice*>* MainSettingsDialog::getConnectedDevices() const {
-
-    return connectedDevices;
-}
+QList<InputDevice *> *MainSettingsDialog::getConnectedDevices() const { return connectedDevices; }
 
 void MainSettingsDialog::on_resetBtn_clicked()
 {
@@ -1937,22 +1858,22 @@ void MainSettingsDialog::on_resetBtn_clicked()
     msgBox.setText(tr("Do you really want to reset setting?"));
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
-    switch(msgBox.exec())
+    switch (msgBox.exec())
     {
-        case QMessageBox::Ok:
-            resetGeneralSett();
-            resetAutoProfSett();
-            resetMouseSett();
-            resetAdvancedSett();
-            ui->localeListWidget->setCurrentRow(0);
+    case QMessageBox::Ok:
+        resetGeneralSett();
+        resetAutoProfSett();
+        resetMouseSett();
+        resetAdvancedSett();
+        ui->localeListWidget->setCurrentRow(0);
 
         break;
 
-        case QMessageBox::Cancel:
+    case QMessageBox::Cancel:
 
         break;
 
-        default:
+    default:
 
         break;
     }
@@ -1961,24 +1882,23 @@ void MainSettingsDialog::on_resetBtn_clicked()
     msgBox2.setText(tr("Would you like to reset mappings too?"));
     msgBox2.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
-    switch(msgBox2.exec())
+    switch (msgBox2.exec())
     {
-        case QMessageBox::Ok:
+    case QMessageBox::Ok:
 
-            ui->controllerMappingsTableWidget->setRowCount(0);
-
-        break;
-
-        case QMessageBox::Cancel:
+        ui->controllerMappingsTableWidget->setRowCount(0);
 
         break;
 
-        default:
+    case QMessageBox::Cancel:
+
+        break;
+
+    default:
 
         break;
     }
 }
-
 
 void MainSettingsDialog::resetGeneralSett()
 {
@@ -2006,11 +1926,11 @@ void MainSettingsDialog::resetGeneralSett()
     ui->keyRateHorizontalSlider->setValue(25);
 }
 
-
 void MainSettingsDialog::resetAutoProfSett()
 {
 
-    disconnect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+    disconnect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this,
+               &MainSettingsDialog::processAutoProfileActiveClick);
 
     ui->activeCheckBox->setChecked(false);
     ui->devicesComboBox->setCurrentIndex(0);
@@ -2044,14 +1964,15 @@ void MainSettingsDialog::resetAutoProfSett()
     ui->autoProfileTableWidget->setItem(0, 6, item);
 
     item = new QTableWidgetItem("Instance");
-    item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo*>(info));
+    item->setData(Qt::UserRole, QVariant::fromValue<AutoProfileInfo *>(info));
     ui->autoProfileTableWidget->setItem(0, 7, item);
 
-    if (ui->autoProfileTableWidget->rowCount() == 1) profileList.clear();
+    if (ui->autoProfileTableWidget->rowCount() == 1)
+        profileList.clear();
 
-    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this, &MainSettingsDialog::processAutoProfileActiveClick);
+    connect(ui->autoProfileTableWidget, &QTableWidget::itemChanged, this,
+            &MainSettingsDialog::processAutoProfileActiveClick);
 }
-
 
 void MainSettingsDialog::resetMouseSett()
 {
@@ -2081,7 +2002,6 @@ void MainSettingsDialog::resetMouseSett()
         ui->springScreenComboBox->setCurrentIndex(screenIndex);
     }
 }
-
 
 void MainSettingsDialog::resetAdvancedSett()
 {
@@ -2185,8 +2105,8 @@ void MainSettingsDialog::initializeKeysList()
     update();
 }
 
-
-void MainSettingsDialog::convToUniqueIDAutoProfGroupSett(QSettings* sett, QString guidAutoProfSett, QString uniqueAutoProfSett)
+void MainSettingsDialog::convToUniqueIDAutoProfGroupSett(QSettings *sett, QString guidAutoProfSett,
+                                                         QString uniqueAutoProfSett)
 {
     if (sett->contains(guidAutoProfSett))
     {

@@ -16,16 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef JOYSTICK_H
 #define JOYSTICK_H
-
-
 
 #include "inputdevice.h"
 
 #include <SDL2/SDL_gamecontroller.h>
-
 
 class AntiMicroSettings;
 
@@ -33,8 +29,8 @@ class Joystick : public InputDevice
 {
     Q_OBJECT
 
-public:
-    explicit Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *settings, QObject *parent=0);
+  public:
+    explicit Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *settings, QObject *parent = 0);
 
     virtual QString getName() override;
     virtual QString getSDLName() override;
@@ -52,16 +48,16 @@ public:
     virtual int getNumberRawHats() override;
     void setCounterUniques(int counter) override;
 
-    SDL_Joystick* getJoyhandle() const;
+    SDL_Joystick *getJoyhandle() const;
     virtual QString getXmlName() override;
 
-private:
+  private:
     SDL_Joystick *m_joyhandle;
     SDL_GameController *controller;
     SDL_JoystickID joystickID;
     int counterUniques;
 };
 
-Q_DECLARE_METATYPE(Joystick*)
+Q_DECLARE_METATYPE(Joystick *)
 
 #endif // JOYSTICK_H

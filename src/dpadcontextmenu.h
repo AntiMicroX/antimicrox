@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef DPADCONTEXTMENU_H
 #define DPADCONTEXTMENU_H
 
@@ -31,26 +30,28 @@ class DPadContextMenu : public QMenu
 {
     Q_OBJECT
 
-public:
+  public:
     explicit DPadContextMenu(JoyDPad *dpad, QWidget *parent = nullptr);
     void buildMenu();
 
-protected:
+  protected:
     int getPresetIndex();
 
-private slots:
-    void setDPadPreset(QAction* action);
-    void setDPadMode(QAction* action);
+  private slots:
+    void setDPadPreset(QAction *action);
+    void setDPadMode(QAction *action);
     void openMouseSettingsDialog();
 
-private:
-    DPadContextMenuHelper& getHelper();
+  private:
+    DPadContextMenuHelper &getHelper();
 
     JoyDPad *dpad;
     DPadContextMenuHelper helper;
 
-    void generateActionPreset(QAction* action, QString actionText, int currentPreset, int& presetMode, QActionGroup* presetGroup);
-    void generateActionMode(QActionGroup *modesGroup, QAction* action, QString actionText, int currentPreset, int presetMode);
+    void generateActionPreset(QAction *action, QString actionText, int currentPreset, int &presetMode,
+                              QActionGroup *presetGroup);
+    void generateActionMode(QActionGroup *modesGroup, QAction *action, QString actionText, int currentPreset,
+                            int presetMode);
 };
 
 #endif // DPADCONTEXTMENU_H

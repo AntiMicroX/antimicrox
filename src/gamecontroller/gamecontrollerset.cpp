@@ -18,28 +18,26 @@
 
 #include "gamecontrollerset.h"
 
-#include "messagehandler.h"
+#include "gamecontroller/xml/gamecontrollertriggerxml.h"
 #include "gamecontrollerdpad.h"
 #include "gamecontrollertrigger.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
-#include "xml/joydpadxml.h"
+#include "messagehandler.h"
 #include "xml/joyaxisxml.h"
-#include "gamecontroller/xml/gamecontrollertriggerxml.h"
 #include "xml/joybuttonxml.h"
+#include "xml/joydpadxml.h"
 
-#include <QXmlStreamReader>
 #include <QDebug>
+#include <QXmlStreamReader>
 
-
-GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *parent) :
-    SetJoystick(device, index, false, parent)
+GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *parent)
+    : SetJoystick(device, index, false, parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     resetSticks();
 }
-
 
 void GameControllerSet::reset()
 {
@@ -78,7 +76,8 @@ void GameControllerSet::populateSticksDPad()
     JoyButton *buttonDown = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_DOWN);
     JoyButton *buttonLeft = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_LEFT);
     JoyButton *buttonRight = getJoyButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
-    GameControllerDPad *controllerDPad = new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, getIndex(), this, this);
+    GameControllerDPad *controllerDPad =
+        new GameControllerDPad(buttonUp, buttonDown, buttonLeft, buttonRight, 0, getIndex(), this, this);
     controllerDPad->setDefaultDPadName("DPad");
     addVDPad(0, controllerDPad);
 
@@ -100,22 +99,19 @@ void GameControllerSet::populateSticksDPad()
     getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)->setDefaultAxisName(tr("R Trigger"));
 }
 
-
-template <typename T>
-void readConf(T* x, QXmlStreamReader *xml)
+template <typename T> void readConf(T *x, QXmlStreamReader *xml)
 {
     if (x != nullptr)
     {
         x->readConfig(xml);
-    }
-    else
+    } else
     {
         xml->skipCurrentElement();
     }
 }
 
-
-void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons, bool vdpadExists, bool dpadExists)
+void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameControllerButtonBind> &hatButtons,
+                                     bool vdpadExists, bool dpadExists)
 {
     int index = xml->attributes().value("index").toString().toInt();
     index = index - 1;
@@ -132,7 +128,7 @@ void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameContro
     }
 
     VDPad *dpad = nullptr;
-    JoyDPadXml<VDPad>* dpadXml = nullptr;
+    JoyDPadXml<VDPad> *dpadXml = nullptr;
 
     if (found)
     {
@@ -143,16 +139,13 @@ void GameControllerSet::readConfDpad(QXmlStreamReader *xml, QList<SDL_GameContro
     if ((dpad != nullptr) && !vdpadExists)
     {
         dpadXml->readConfig(xml);
-    }
-    else
+    } else
     {
         xml->skipCurrentElement();
     }
 }
 
-
-void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
-                                           QHash<int, SDL_GameControllerButton> &buttons,
+void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml, QHash<int, SDL_GameControllerButton> &buttons,
                                            QHash<int, SDL_GameControllerAxis> &axes,
                                            QList<SDL_GameControllerButtonBind> &hatButtons)
 {
@@ -172,28 +165,27 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyButton *button = nullptr;
-                JoyButtonXml* joyButtonXml = nullptr;
+                JoyButtonXml *joyButtonXml = nullptr;
 
-                if (buttons.contains(index-1))
+                if (buttons.contains(index - 1))
                 {
-                    SDL_GameControllerButton current = buttons.value(index-1);
+                    SDL_GameControllerButton current = buttons.value(index - 1);
                     button = getJoyButton(current);
                     joyButtonXml = new JoyButtonXml(button);
                 }
 
                 readConf(joyButtonXml, xml);
 
-            }
-            else if ((xml->name() == "axis") && xml->isStartElement())
+            } else if ((xml->name() == "axis") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 GameControllerTrigger *trigger = nullptr;
-                GameControllerTriggerXml* gameContrTriggerXml = nullptr;
+                GameControllerTriggerXml *gameContrTriggerXml = nullptr;
 
-                if (axes.contains(index-1))
+                if (axes.contains(index - 1))
                 {
-                    SDL_GameControllerAxis current = axes.value(index-1);
-                    trigger = qobject_cast<GameControllerTrigger*>(getJoyAxis(static_cast<int>(current)));
+                    SDL_GameControllerAxis current = axes.value(index - 1);
+                    trigger = qobject_cast<GameControllerTrigger *>(getJoyAxis(static_cast<int>(current)));
                     gameContrTriggerXml = new GameControllerTriggerXml(trigger);
                 }
 
@@ -201,25 +193,20 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
                 {
                     gameContrTriggerXml->readJoystickConfig(xml);
                     delete gameContrTriggerXml;
-                }
-                else
+                } else
                 {
                     xml->skipCurrentElement();
                 }
-            }
-            else if ((xml->name() == "dpad") && xml->isStartElement())
+            } else if ((xml->name() == "dpad") && xml->isStartElement())
             {
                 readConfDpad(xml, hatButtons, vdpadExists, dpadExists);
-            }
-            else if ((xml->name() == "stick") && xml->isStartElement())
+            } else if ((xml->name() == "stick") && xml->isStartElement())
             {
                 getElemFromXml("stick", xml);
-            }
-            else if ((xml->name() == "vdpad") && xml->isStartElement())
+            } else if ((xml->name() == "vdpad") && xml->isStartElement())
             {
-               readConfDpad(xml, hatButtons, vdpadExists, dpadExists);
-            }
-            else if ((xml->name() == "name") && xml->isStartElement())
+                readConfDpad(xml, hatButtons, vdpadExists, dpadExists);
+            } else if ((xml->name() == "name") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
 
@@ -227,8 +214,7 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
                 {
                     setName(temptext);
                 }
-            }
-            else
+            } else
             {
                 // If none of the above, skip the element
                 xml->skipCurrentElement();
@@ -238,7 +224,6 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml,
         }
     }
 }
-
 
 void GameControllerSet::readConfig(QXmlStreamReader *xml)
 {
@@ -253,20 +238,16 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
             if ((xml->name() == "button") && xml->isStartElement())
             {
                 getElemFromXml("button", xml);
-            }
-            else if ((xml->name() == "trigger") && xml->isStartElement())
+            } else if ((xml->name() == "trigger") && xml->isStartElement())
             {
                 getElemFromXml("trigger", xml);
-            }
-            else if ((xml->name() == "stick") && xml->isStartElement())
+            } else if ((xml->name() == "stick") && xml->isStartElement())
             {
                 getElemFromXml("stick", xml);
-            }
-            else if ((xml->name() == "dpad") && xml->isStartElement())
+            } else if ((xml->name() == "dpad") && xml->isStartElement())
             {
                 getElemFromXml("dpad", xml);
-            }
-            else if ((xml->name() == "name") && xml->isStartElement())
+            } else if ((xml->name() == "name") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
 
@@ -274,8 +255,7 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
                 {
                     setName(temptext);
                 }
-            }
-            else
+            } else
             {
                 // If none of the above, skip the element
                 xml->skipCurrentElement();
@@ -286,78 +266,74 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
     }
 }
 
-
 void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
 {
     int index = xml->attributes().value("index").toString().toInt();
 
-    if (elemName == "button") {
-        JoyButton *button = getJoyButton(index-1);
-        JoyButtonXml* joyButtonXml = new JoyButtonXml(button, this);
+    if (elemName == "button")
+    {
+        JoyButton *button = getJoyButton(index - 1);
+        JoyButtonXml *joyButtonXml = new JoyButtonXml(button, this);
         readConf(joyButtonXml, xml);
-    }
-    else if (elemName == "dpad") {
-        GameControllerDPad *vdpad = qobject_cast<GameControllerDPad*>(getVDPad(index-1));
-        JoyDPadXml<GameControllerDPad>* dpadXml = new JoyDPadXml<GameControllerDPad>(vdpad);
+    } else if (elemName == "dpad")
+    {
+        GameControllerDPad *vdpad = qobject_cast<GameControllerDPad *>(getVDPad(index - 1));
+        JoyDPadXml<GameControllerDPad> *dpadXml = new JoyDPadXml<GameControllerDPad>(vdpad);
         readConf(dpadXml, xml);
 
-       // if (!dpadXml.isNull()) delete dpadXml;
-    }
-    else if (elemName == "trigger")
+        // if (!dpadXml.isNull()) delete dpadXml;
+    } else if (elemName == "trigger")
     {
         GameControllerTrigger *axis = nullptr;
-        GameControllerTriggerXml* triggerAxisXml = nullptr;
+        GameControllerTriggerXml *triggerAxisXml = nullptr;
 
-        switch(index - 1)
+        switch (index - 1)
         {
-            // for older profiles
-            case 0:
-                axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
-                triggerAxisXml = new GameControllerTriggerXml(axis, this);
-                readConf(triggerAxisXml, xml);
+        // for older profiles
+        case 0:
+            axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+            triggerAxisXml = new GameControllerTriggerXml(axis, this);
+            readConf(triggerAxisXml, xml);
             break;
 
-            // for older profiles
-            case 1:
-                axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
-                triggerAxisXml = new GameControllerTriggerXml(axis, this);
-                readConf(triggerAxisXml, xml);
+        // for older profiles
+        case 1:
+            axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
+            triggerAxisXml = new GameControllerTriggerXml(axis, this);
+            readConf(triggerAxisXml, xml);
             break;
 
-            case 4:
-                axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
-                triggerAxisXml = new GameControllerTriggerXml(axis, this);
-                readConf(triggerAxisXml, xml);
+        case 4:
+            axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
+            triggerAxisXml = new GameControllerTriggerXml(axis, this);
+            readConf(triggerAxisXml, xml);
             break;
 
-            case 5:
-                axis = qobject_cast<GameControllerTrigger*>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
-                triggerAxisXml = new GameControllerTriggerXml(axis, this);
-                readConf(triggerAxisXml, xml);
+        case 5:
+            axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
+            triggerAxisXml = new GameControllerTriggerXml(axis, this);
+            readConf(triggerAxisXml, xml);
             break;
         }
-    }
-    else if (elemName == "stick") {
+    } else if (elemName == "stick")
+    {
         if (index > 0)
         {
             index -= 1;
             JoyControlStick *stick = getJoyStick(index);
             readConf(stick, xml);
-        }
-        else
+        } else
         {
             xml->skipCurrentElement();
         }
     }
 }
 
-
 void GameControllerSet::refreshAxes()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     deleteAxes();
-
 
     for (int i = 0; i < getInputDevice()->getNumberRawAxes(); i++)
     {
@@ -367,8 +343,7 @@ void GameControllerSet::refreshAxes()
             GameControllerTrigger *trigger = new GameControllerTrigger(i, getIndex(), this, this);
             getAxes()->insert(i, trigger);
             enableAxisConnections(trigger);
-        }
-        else
+        } else
         {
             JoyAxis *axis = new JoyAxis(i, getIndex(), this, this);
             getAxes()->insert(i, axis);

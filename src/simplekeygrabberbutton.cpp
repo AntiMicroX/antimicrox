@@ -16,26 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "simplekeygrabberbutton.h"
 
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QObject>
 
-#include "messagehandler.h"
-#include "event.h"
 #include "antkeymapper.h"
+#include "event.h"
 #include "eventhandlerfactory.h"
+#include "messagehandler.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QMetaType>
 #include <QWidget>
-#include <QDebug>
 
-
-SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent) :
-    QPushButton(parent)
+SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent)
+    : QPushButton(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -50,7 +48,8 @@ void SimpleKeyGrabberButton::keyPressEvent(QKeyEvent *event)
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     // Do not allow closing of dialog using Escape key
-    if (event->key() == Qt::Key_Escape) return;
+    if (event->key() == Qt::Key_Escape)
+        return;
 
     QPushButton::keyPressEvent(event);
 }
@@ -65,11 +64,14 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
     if (grabNextAction && (event->type() == QEvent::MouseButtonRelease))
     {
-        QMouseEvent *mouseEve = static_cast<QMouseEvent*>(event);
+        QMouseEvent *mouseEve = static_cast<QMouseEvent *>(event);
 
-        if (mouseEve->button() == Qt::RightButton) controlcode = 3;
-        else if (mouseEve->button() == Qt::MiddleButton) controlcode = 2;
-        else controlcode = mouseEve->button();
+        if (mouseEve->button() == Qt::RightButton)
+            controlcode = 3;
+        else if (mouseEve->button() == Qt::MiddleButton)
+            controlcode = 2;
+        else
+            controlcode = mouseEve->button();
 
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
@@ -80,10 +82,9 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
         grabNextAction = grabbingWheel = false;
         emit buttonCodeChanged(controlcode);
-    }
-    else if (grabNextAction && (event->type() == static_cast<QEvent::Type>(7)))
+    } else if (grabNextAction && (event->type() == static_cast<QEvent::Type>(7)))
     {
-        QKeyEvent *keyEve = static_cast<QKeyEvent*>(event);
+        QKeyEvent *keyEve = static_cast<QKeyEvent *>(event);
         int tempcode = keyEve->nativeScanCode();
         int virtualactual = keyEve->nativeVirtualKey();
 
@@ -92,53 +93,52 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         int finalvirtual = 0;
         int checkalias = 0;
 
-
-    #if defined(WITH_X11)
+#if defined(WITH_X11)
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
-        {  
+        {
             finalvirtual = X11KeyCodeToX11KeySym(tempcode); // Obtain group 1 X11 keysym. Removes effects from modifiers.
 
-            #ifdef WITH_UINPUT
+    #ifdef WITH_UINPUT
 
             if (handler->getIdentifier() == "uinput")
             {
-                QtKeyMapperBase *x11KeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper(); // Find Qt Key corresponding to X11 KeySym.
+                QtKeyMapperBase *x11KeyMapper =
+                    AntKeyMapper::getInstance()->getNativeKeyMapper(); // Find Qt Key corresponding to X11 KeySym.
                 checkalias = x11KeyMapper->returnQtKey(finalvirtual);
-                finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(checkalias); // Find corresponding Linux input key for the Qt key.
+                finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(
+                    checkalias); // Find corresponding Linux input key for the Qt key.
             }
 
-            #endif
+    #endif
 
-            #ifdef WITH_XTEST
+    #ifdef WITH_XTEST
 
             if (handler->getIdentifier() == "xtest")
-                checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual); // Check for alias against group 1 keysym.
+                checkalias =
+                    AntKeyMapper::getInstance()->returnQtKey(finalvirtual); // Check for alias against group 1 keysym.
 
-            #endif
-        }
-        else
+    #endif
+        } else
         {
             // Not running on xcb platform.
             finalvirtual = tempcode;
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
 
-    #else
+#else
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(keyEve->key());
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
-        }
-        else
+        } else
         {
             // Not running on xcb platform.
             finalvirtual = tempcode;
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
 
-    #endif
-
+#endif
 
         controlcode = tempcode;
         bool valueUpdated = false;
@@ -149,15 +149,13 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         {
             controlcode = 0;
             refreshButtonLabel();
-        }
-        else if (controlcode <= 0)
+        } else if (controlcode <= 0)
         {
             controlcode = 0;
             setText("");
             valueUpdated = true;
             edited = true;
-        }
-        else if ((checkalias > 0) && (finalvirtual > 0))
+        } else if ((checkalias > 0) && (finalvirtual > 0))
         {
             buttonslot.setSlotCode(finalvirtual, checkalias);
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
@@ -165,8 +163,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
             edited = true;
             valueUpdated = true;
-        }
-        else if (virtualactual > 0)
+        } else if (virtualactual > 0)
         {
             buttonslot.setSlotCode(virtualactual);
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
@@ -183,29 +180,24 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
         if (valueUpdated)
             emit buttonCodeChanged(controlcode);
-    }
-    else if (grabNextAction && (event->type() == QEvent::Wheel) && !grabbingWheel)
+    } else if (grabNextAction && (event->type() == QEvent::Wheel) && !grabbingWheel)
     {
         grabbingWheel = true;
-    }
-    else if (grabNextAction && (event->type() == QEvent::Wheel))
+    } else if (grabNextAction && (event->type() == QEvent::Wheel))
     {
-        QWheelEvent *wheelEve = static_cast<QWheelEvent*>(event);
+        QWheelEvent *wheelEve = static_cast<QWheelEvent *>(event);
         QString text = QString(tr("Mouse")).append(" ");
 
         if ((wheelEve->orientation() == Qt::Vertical) && (wheelEve->delta() >= 120))
         {
             controlcode = 4;
-        }
-        else if ((wheelEve->orientation() == Qt::Vertical) && (wheelEve->delta() <= -120))
+        } else if ((wheelEve->orientation() == Qt::Vertical) && (wheelEve->delta() <= -120))
         {
             controlcode = 5;
-        }
-        else if ((wheelEve->orientation() == Qt::Horizontal) && (wheelEve->delta() >= 120))
+        } else if ((wheelEve->orientation() == Qt::Horizontal) && (wheelEve->delta() >= 120))
         {
             controlcode = 6;
-        }
-        else if ((wheelEve->orientation() == Qt::Horizontal) && (wheelEve->delta() <= -120))
+        } else if ((wheelEve->orientation() == Qt::Horizontal) && (wheelEve->delta() <= -120))
         {
             controlcode = 7;
         }
@@ -224,10 +216,9 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
             emit buttonCodeChanged(controlcode);
         }
-    }
-    else if (event->type() == QEvent::MouseButtonRelease)
+    } else if (event->type() == QEvent::MouseButtonRelease)
     {
-        QMouseEvent *mouseEve = static_cast<QMouseEvent*>(event);
+        QMouseEvent *mouseEve = static_cast<QMouseEvent *>(event);
 
         if (mouseEve->button() == Qt::LeftButton)
         {
@@ -270,23 +261,20 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
 
     switch (mode)
     {
-        case JoyButtonSlot::JoyLoadProfile:
-        case JoyButtonSlot::JoyTextEntry:
-        case JoyButtonSlot::JoyExecute:
-        {
-            buttonslot.setTextData(value);
-            buttonslot.setSlotMode(mode);
-            edited = true;
-            break;
-        }
-        case JoyButtonSlot::JoyMix:
-        {
-            break;
-        }
-        default:
-        {
-            break;
-        }
+    case JoyButtonSlot::JoyLoadProfile:
+    case JoyButtonSlot::JoyTextEntry:
+    case JoyButtonSlot::JoyExecute: {
+        buttonslot.setTextData(value);
+        buttonslot.setSlotMode(mode);
+        edited = true;
+        break;
+    }
+    case JoyButtonSlot::JoyMix: {
+        break;
+    }
+    default: {
+        break;
+    }
     }
 
     setText(buttonslot.getSlotString());
@@ -298,18 +286,16 @@ void SimpleKeyGrabberButton::setValues(QString value, JoyButtonSlot::JoySlotInpu
 
     switch (mode)
     {
-        case JoyButtonSlot::JoyMix:
-        {
-           // buttonslot.setSlotCode(-1);
-            buttonslot.setTextData(value);
-            buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
-            edited = true;
-            break;
-        }
-        default:
-        {
-            break;
-        }
+    case JoyButtonSlot::JoyMix: {
+        // buttonslot.setSlotCode(-1);
+        buttonslot.setTextData(value);
+        buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
+        edited = true;
+        break;
+    }
+    default: {
+        break;
+    }
     }
 
     setText(buttonslot.getSlotString());
@@ -321,43 +307,37 @@ void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jb
 
     switch (mode)
     {
-        case JoyButtonSlot::JoyMix:
-        {
-           // buttonslot.setSlotCode(-1);
-            buttonslot.setTextData(value);
-            buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
-            buttonslot.setMixSlots(jbtn);
-            edited = true;
-            break;
-        }
-        default:
-        {
-            break;
-        }
+    case JoyButtonSlot::JoyMix: {
+        // buttonslot.setSlotCode(-1);
+        buttonslot.setTextData(value);
+        buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
+        buttonslot.setMixSlots(jbtn);
+        edited = true;
+        break;
+    }
+    default: {
+        break;
+    }
     }
 
     setText(buttonslot.getSlotString());
 }
 
-JoyButtonSlot* SimpleKeyGrabberButton::getValue()
+JoyButtonSlot *SimpleKeyGrabberButton::getValue()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return &buttonslot;
 }
 
-
-JoyButtonSlot& SimpleKeyGrabberButton::getValueNonPointer()
+JoyButtonSlot &SimpleKeyGrabberButton::getValueNonPointer()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return buttonslot;
 }
 
-void SimpleKeyGrabberButton::setValue(JoyButtonSlot *jbS)
-{
-    buttonslot = jbS;
-}
+void SimpleKeyGrabberButton::setValue(JoyButtonSlot *jbS) { buttonslot = jbS; }
 
 void SimpleKeyGrabberButton::refreshButtonLabel()
 {

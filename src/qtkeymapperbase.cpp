@@ -22,13 +22,12 @@
 
 #include <QDebug>
 
-
 const int QtKeyMapperBase::customQtKeyPrefix;
 const int QtKeyMapperBase::customKeyPrefix;
 const int QtKeyMapperBase::nativeKeyPrefix;
 
-QtKeyMapperBase::QtKeyMapperBase(QObject *parent) :
-    QObject(parent)
+QtKeyMapperBase::QtKeyMapperBase(QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
@@ -56,28 +55,24 @@ bool QtKeyMapperBase::isModifier(int qkey)
     bool modifier = false;
     int qtKeyValue = qkey & 0x0FFFFFFF;
 
-    switch(qtKeyValue)
+    switch (qtKeyValue)
     {
-        case Qt::Key_Shift:
-        {
-            modifier = true;
-            break;
-        }
-        case Qt::Key_Control:
-        {
-            modifier = true;
-            break;
-        }
-        case Qt::Key_Alt:
-        {
-            modifier = true;
-            break;
-        }
-        case Qt::Key_Meta:
-        {
-            modifier = true;
-            break;
-        }
+    case Qt::Key_Shift: {
+        modifier = true;
+        break;
+    }
+    case Qt::Key_Control: {
+        modifier = true;
+        break;
+    }
+    case Qt::Key_Alt: {
+        modifier = true;
+        break;
+    }
+    case Qt::Key_Meta: {
+        modifier = true;
+        break;
+    }
     }
 
     return modifier;

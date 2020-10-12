@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef FLASHBUTTONWIDGET_H
 #define FLASHBUTTONWIDGET_H
 
@@ -25,13 +24,12 @@
 class QWidget;
 class QPaintEvent;
 
-
 class FlashButtonWidget : public QPushButton
 {
     Q_OBJECT
     Q_PROPERTY(bool isflashing READ isButtonFlashing)
 
-public:
+  public:
     explicit FlashButtonWidget(QWidget *parent = nullptr);
     explicit FlashButtonWidget(bool displayNames, QWidget *parent = nullptr);
 
@@ -39,30 +37,29 @@ public:
     void setDisplayNames(bool display);
     bool isDisplayingNames();
 
-protected:
+  protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual QString generateLabel() = 0;
     virtual void retranslateUi();
     bool ifDisplayNames();
 
-signals:
+  signals:
     void flashed(bool flashing);
 
-public slots:
+  public slots:
     void refreshLabel();
     void toggleNameDisplay();
     virtual void disableFlashes() = 0;
     virtual void enableFlashes() = 0;
 
-protected slots:
+  protected slots:
     void flash();
     void unflash();
 
-private:
+  private:
     bool isflashing;
     bool m_displayNames;
     bool leftAlignText;
-
 };
 
 #endif // FLASHBUTTONWIDGET_H

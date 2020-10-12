@@ -16,21 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef SPRINGMOUSEMOVEINFO_H
 #define SPRINGMOUSEMOVEINFO_H
 
 namespace PadderCommon {
 
-    typedef struct _springModeInfo
-    {
+typedef struct _springModeInfo
+{
     // Displacement of the X axis
     double displacementX;
     // Displacement of the Y axis
     double displacementY;
 
     // Width and height of the spring mode box
-    int width; // unsigned
+    int width;  // unsigned
     int height; // unsigned
     // Should the cursor not move around the center
     // of the screen.
@@ -39,7 +38,7 @@ namespace PadderCommon {
     double springDeadX;
     double springDeadY;
 
-    } springModeInfo;
-}
+} springModeInfo;
+} // namespace PadderCommon
 
 #endif // SPRINGMOUSEMOVEINFO_H

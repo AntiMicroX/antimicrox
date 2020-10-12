@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef AXISVALUEBOX_H
 #define AXISVALUEBOX_H
 
@@ -29,7 +28,7 @@ class JoyAxis;
 class AxisValueBox : public QWidget
 {
     Q_OBJECT
-public:
+  public:
     explicit AxisValueBox(QWidget *parent = nullptr);
 
     int getDeadZone();
@@ -39,21 +38,21 @@ public:
     int getMinAxValue();
     int getMaxAxValue();
 
-protected:
+  protected:
     virtual void resizeEvent(QResizeEvent *event);
     virtual void paintEvent(QPaintEvent *event);
-    
-public slots:
+
+  public slots:
     void setThrottle(int throttle);
     void setValue(int value);
-    void setValue(JoyAxis* axis, int value);
+    void setValue(JoyAxis *axis, int value);
     void setDeadZone(int deadZone);
-    void setDeadZone(JoyAxis* axis, int deadZone);
+    void setDeadZone(JoyAxis *axis, int deadZone);
     void setMaxZone(int maxZone);
-    void setMaxZone(JoyAxis* axis, int deadZone);
+    void setMaxZone(JoyAxis *axis, int deadZone);
 
-private:
-    JoyAxis* m_axis;
+  private:
+    JoyAxis *m_axis;
     int m_deadZone;
     int m_maxZone;
     int joyValue;
@@ -66,7 +65,6 @@ private:
     int rboxend;
     int singlewidth;
     int singleend;
-
 };
 
 #endif // AXISVALUEBOX_H

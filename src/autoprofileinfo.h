@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef AUTOPROFILEINFO_H
 #define AUTOPROFILEINFO_H
 
@@ -27,16 +26,16 @@ class AutoProfileInfo : public QObject
 
     Q_OBJECT
 
-public:
-    explicit AutoProfileInfo(QString uniqueID, QString profileLocation,
-                             bool active, bool partialTitle, QObject *parent = nullptr);
-    explicit AutoProfileInfo(QString uniqueID, QString profileLocation,
-                             QString exe, bool active, bool partialTitle, QObject *parent = nullptr);
-    explicit AutoProfileInfo(QObject *parent=0);
+  public:
+    explicit AutoProfileInfo(QString uniqueID, QString profileLocation, bool active, bool partialTitle,
+                             QObject *parent = nullptr);
+    explicit AutoProfileInfo(QString uniqueID, QString profileLocation, QString exe, bool active, bool partialTitle,
+                             QObject *parent = nullptr);
+    explicit AutoProfileInfo(QObject *parent = 0);
     ~AutoProfileInfo();
 
-   // void setGUID(QString guid);
-   // QString getGUID() const;
+    // void setGUID(QString guid);
+    // QString getGUID() const;
 
     void setUniqueID(QString guid);
     QString getUniqueID() const;
@@ -65,7 +64,7 @@ public:
     void setPartialState(bool value);
     bool isPartialState();
 
-private:
+  private:
     QString guid;
     QString uniqueID;
     QString profileLocation;
@@ -76,9 +75,8 @@ private:
     bool active;
     bool defaultState;
     bool partialState;
-
 };
 
-Q_DECLARE_METATYPE(AutoProfileInfo*)
+Q_DECLARE_METATYPE(AutoProfileInfo *)
 
 #endif // AUTOPROFILEINFO_H

@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef GAMECONTROLLERBUTTON_H
 #define GAMECONTROLLERBUTTON_H
 
@@ -26,17 +25,16 @@ class QXmlStreamReader;
 class SetJoystick;
 class JoyAxis;
 
-
 class GameControllerTriggerButton : public JoyAxisButton
 {
     Q_OBJECT
 
-public:
-    explicit GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
+  public:
+    explicit GameControllerTriggerButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet,
+                                         QObject *parent = nullptr);
 
-    virtual QString getXmlName(); // GameContrTriggerBtnXml class
+    virtual QString getXmlName();                   // GameContrTriggerBtnXml class
     void readJoystickConfig(QXmlStreamReader *xml); // GameContrTriggerBtnXml class
-
 };
 
 #endif // GAMECONTROLLERBUTTON_H

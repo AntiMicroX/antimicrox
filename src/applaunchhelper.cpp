@@ -18,22 +18,20 @@
 
 #include "applaunchhelper.h"
 
+#include "antimicrosettings.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 #include "inputdevice.h"
 #include "joybutton.h"
-#include "antimicrosettings.h"
+#include "messagehandler.h"
 
-#include <QTextStream>
-#include <QMapIterator>
-#include <QDesktopWidget>
-#include <QThread>
 #include <QDebug>
+#include <QDesktopWidget>
+#include <QMapIterator>
+#include <QTextStream>
+#include <QThread>
 
-
-AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical,
-                                 QObject *parent) :
-    QObject(parent)
+AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical, QObject *parent)
+    : QObject(parent)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
@@ -67,14 +65,18 @@ void AppLaunchHelper::enablePossibleMouseSmoothing()
 
         if (historySize > 0)
         {
-            JoyButton::setMouseHistorySize(historySize, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE, GlobalVariables::JoyButton::mouseHistorySize, &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY);
+            JoyButton::setMouseHistorySize(historySize, GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE,
+                                           GlobalVariables::JoyButton::mouseHistorySize,
+                                           &GlobalVariables::JoyButton::mouseHistoryX,
+                                           &GlobalVariables::JoyButton::mouseHistoryY);
         }
 
         double weightModifier = settings->value("Mouse/WeightModifier", 0.0).toDouble();
 
         if (weightModifier > 0.0)
         {
-            JoyButton::setWeightModifier(weightModifier, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER, GlobalVariables::JoyButton::weightModifier);
+            JoyButton::setWeightModifier(weightModifier, GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER,
+                                         GlobalVariables::JoyButton::weightModifier);
         }
     }
 }
@@ -87,7 +89,11 @@ void AppLaunchHelper::changeMouseRefreshRate()
 
     if (refreshRate > 0)
     {
-        JoyButton::setMouseRefreshRate(refreshRate, GlobalVariables::JoyButton::mouseRefreshRate, GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(), &GlobalVariables::JoyButton::mouseHistoryX, &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(), JoyButton::getStaticMouseEventTimer());
+        JoyButton::setMouseRefreshRate(refreshRate, GlobalVariables::JoyButton::mouseRefreshRate,
+                                       GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper(),
+                                       &GlobalVariables::JoyButton::mouseHistoryX,
+                                       &GlobalVariables::JoyButton::mouseHistoryY, JoyButton::getTestOldMouseTime(),
+                                       JoyButton::getStaticMouseEventTimer());
     }
 }
 
@@ -95,11 +101,11 @@ void AppLaunchHelper::changeGamepadPollRate()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    int pollRate = settings->value("GamepadPollRate",
-                                            GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toInt();
+    int pollRate = settings->value("GamepadPollRate", GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toInt();
     if (pollRate > 0)
     {
-        JoyButton::setGamepadRefreshRate(pollRate, GlobalVariables::JoyButton::gamepadRefreshRate, JoyButton::getMouseHelper());
+        JoyButton::setGamepadRefreshRate(pollRate, GlobalVariables::JoyButton::gamepadRefreshRate,
+                                         JoyButton::getMouseHelper());
     }
 }
 
@@ -113,7 +119,7 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
     outstream << endl;
     outstream << QObject::tr("List Joysticks:") << endl;
     outstream << QObject::tr("---------------") << endl;
-    QMapIterator<SDL_JoystickID, InputDevice*> iter(*joysticks);
+    QMapIterator<SDL_JoystickID, InputDevice *> iter(*joysticks);
     int indexNumber = 1;
 
     while (iter.hasNext())
@@ -121,15 +127,14 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
         InputDevice *tempdevice = iter.next().value();
         outstream << QObject::tr("Joystick %1:").arg(indexNumber) << endl;
         outstream << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
-        //outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
+        // outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
         outstream << "  " << QObject::tr("UniqueID:            %1").arg(tempdevice->getUniqueIDString()) << endl;
         outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
         outstream << "  " << QObject::tr("VendorID:            %1").arg(tempdevice->getVendorString()) << endl;
         outstream << "  " << QObject::tr("ProductID:            %1").arg(tempdevice->getProductIDString()) << endl;
         outstream << "  " << QObject::tr("Product Version:            %1").arg(tempdevice->getProductVersion()) << endl;
         outstream << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << endl;
-        QString gameControllerStatus = tempdevice->isGameController() ?
-                                       QObject::tr("Yes") : QObject::tr("No");
+        QString gameControllerStatus = tempdevice->isGameController() ? QObject::tr("Yes") : QObject::tr("No");
         outstream << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << endl;
 
         outstream << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
@@ -149,33 +154,33 @@ void AppLaunchHelper::changeSpringModeScreen()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QDesktopWidget deskWid;
-    int springScreen = settings->value("Mouse/SpringScreen",
-                                       GlobalVariables::AntimicroSettings::defaultSpringScreen).toInt();
+    int springScreen =
+        settings->value("Mouse/SpringScreen", GlobalVariables::AntimicroSettings::defaultSpringScreen).toInt();
 
     if (springScreen >= deskWid.screenCount())
     {
         springScreen = -1;
-        settings->setValue("Mouse/SpringScreen",
-                           GlobalVariables::AntimicroSettings::defaultSpringScreen);
+        settings->setValue("Mouse/SpringScreen", GlobalVariables::AntimicroSettings::defaultSpringScreen);
         settings->sync();
     }
 
     JoyButton::setSpringModeScreen(springScreen, GlobalVariables::JoyButton::springModeScreen);
 }
 
-
 void AppLaunchHelper::revertMouseThread()
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButton::indirectStaticMouseThread(QThread::currentThread(), JoyButton::getStaticMouseEventTimer(), JoyButton::getMouseHelper());
+    JoyButton::indirectStaticMouseThread(QThread::currentThread(), JoyButton::getStaticMouseEventTimer(),
+                                         JoyButton::getMouseHelper());
 }
 
 void AppLaunchHelper::changeMouseThread(QThread *thread)
 {
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
-    JoyButton::setStaticMouseThread(thread, JoyButton::getStaticMouseEventTimer(), JoyButton::getTestOldMouseTime(), GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper());
+    JoyButton::setStaticMouseThread(thread, JoyButton::getStaticMouseEventTimer(), JoyButton::getTestOldMouseTime(),
+                                    GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper());
 }
 
 void AppLaunchHelper::establishMouseTimerConnections()
@@ -185,7 +190,4 @@ void AppLaunchHelper::establishMouseTimerConnections()
     JoyButton::establishMouseTimerConnections();
 }
 
-AntiMicroSettings *AppLaunchHelper::getSettings() const {
-
-    return settings;
-}
+AntiMicroSettings *AppLaunchHelper::getSettings() const { return settings; }

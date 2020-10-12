@@ -16,18 +16,18 @@
  */
 
 #include "joyaxisxml.h"
-#include "joyaxis.h"
-#include "messagehandler.h"
 #include "inputdevice.h"
-#include "xml/joybuttonxml.h"
+#include "joyaxis.h"
 #include "joybuttontypes/joyaxisbutton.h"
+#include "messagehandler.h"
+#include "xml/joybuttonxml.h"
 
+#include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include <QDebug>
 
-
-JoyAxisXml::JoyAxisXml(JoyAxis* axis, QObject *parent) : QObject(parent)
+JoyAxisXml::JoyAxisXml(JoyAxis *axis, QObject *parent)
+    : QObject(parent)
 {
     m_joyAxis = axis;
     joyButtonXmlNAxis = new JoyButtonXml(axis->getNAxisButton());
@@ -36,10 +36,11 @@ JoyAxisXml::JoyAxisXml(JoyAxis* axis, QObject *parent) : QObject(parent)
 
 JoyAxisXml::~JoyAxisXml()
 {
-    if (!joyButtonXmlNAxis.isNull()) delete joyButtonXmlNAxis;
-    if (!joyButtonXmlPAxis.isNull()) delete joyButtonXmlPAxis;
+    if (!joyButtonXmlNAxis.isNull())
+        delete joyButtonXmlNAxis;
+    if (!joyButtonXmlPAxis.isNull())
+        delete joyButtonXmlPAxis;
 }
-
 
 void JoyAxisXml::readConfig(QXmlStreamReader *xml)
 {
@@ -59,7 +60,8 @@ void JoyAxisXml::readConfig(QXmlStreamReader *xml)
                 readButtonConfig(xml);
             }
 
-            if (!found) xml->skipCurrentElement();
+            if (!found)
+                xml->skipCurrentElement();
 
             xml->readNextStartElement();
         }
@@ -89,28 +91,28 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
     xml->writeTextElement("max_value", QString::number(m_joyAxis->getAxisMaxCal()));
     xml->writeStartElement("throttle");
 
-        switch(m_joyAxis->getThrottle())
-        {
-            case -2:
-                xml->writeCharacters("negativehalf");
-            break;
+    switch (m_joyAxis->getThrottle())
+    {
+    case -2:
+        xml->writeCharacters("negativehalf");
+        break;
 
-            case -1:
-                xml->writeCharacters("negative");
-            break;
+    case -1:
+        xml->writeCharacters("negative");
+        break;
 
-            case 0:
-                xml->writeCharacters("normal");
-            break;
+    case 0:
+        xml->writeCharacters("normal");
+        break;
 
-            case 1:
-                xml->writeCharacters("positive");
-            break;
+    case 1:
+        xml->writeCharacters("positive");
+        break;
 
-            case 2:
-                xml->writeCharacters("positivehalf");
-            break;
-        }
+    case 2:
+        xml->writeCharacters("positivehalf");
+        break;
+    }
 
     xml->writeEndElement();
 
@@ -122,7 +124,6 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeEndElement();
 }
-
 
 bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 {
@@ -139,8 +140,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config dead zone is: " << tempchoice;
 
         m_joyAxis->setDeadZone(tempchoice);
-    }
-    else if ((xml->name() == "maxZone") && xml->isStartElement())
+    } else if ((xml->name() == "maxZone") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -149,8 +149,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config max zone is: " << tempchoice;
 
         m_joyAxis->setMaxZoneValue(tempchoice);
-    }
-    else if ((xml->name() == "center_value") && xml->isStartElement())
+    } else if ((xml->name() == "center_value") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -159,8 +158,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config center value is: " << tempchoice;
 
         m_joyAxis->setAxisCenterCal(tempchoice);
-    }
-    else if ((xml->name() == "min_value") && xml->isStartElement())
+    } else if ((xml->name() == "min_value") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -169,8 +167,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config min value is: " << tempchoice;
 
         m_joyAxis->setAxisMinCal(tempchoice);
-    }
-    else if ((xml->name() == "max_value") && xml->isStartElement())
+    } else if ((xml->name() == "max_value") && xml->isStartElement())
     {
 
         found = true;
@@ -180,8 +177,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config max value is: " << tempchoice;
 
         m_joyAxis->setAxisMaxCal(tempchoice);
-    }
-    else if ((xml->name() == "throttle") && xml->isStartElement())
+    } else if ((xml->name() == "throttle") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -191,20 +187,16 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         if (temptext == "negativehalf")
         {
             m_joyAxis->setThrottle(static_cast<int>(JoyAxis::NegativeHalfThrottle));
-        }
-        else if (temptext == "negative")
+        } else if (temptext == "negative")
         {
             m_joyAxis->setThrottle(static_cast<int>(JoyAxis::NegativeThrottle));
-        }
-        else if (temptext == "normal")
+        } else if (temptext == "normal")
         {
             m_joyAxis->setThrottle(static_cast<int>(JoyAxis::NormalThrottle));
-        }
-        else if (temptext == "positive")
+        } else if (temptext == "positive")
         {
             m_joyAxis->setThrottle(static_cast<int>(JoyAxis::PositiveThrottle));
-        }
-        else if (temptext == "positivehalf")
+        } else if (temptext == "positivehalf")
         {
             m_joyAxis->setThrottle(static_cast<int>(JoyAxis::PositiveHalfThrottle));
         }
@@ -236,8 +228,7 @@ bool JoyAxisXml::readButtonConfig(QXmlStreamReader *xml)
     {
         found = true;
         joyButtonXmlNAxis->readConfig(xml);
-    }
-    else if (index_local == 2)
+    } else if (index_local == 2)
     {
         found = true;
         joyButtonXmlPAxis->readConfig(xml);

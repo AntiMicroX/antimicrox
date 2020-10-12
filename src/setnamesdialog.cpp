@@ -20,17 +20,16 @@
 #include "ui_setnamesdialog.h"
 
 #include "globalvariables.h"
-#include "messagehandler.h"
 #include "inputdevice.h"
+#include "messagehandler.h"
 
+#include <QDebug>
 #include <QTableWidgetItem>
 #include <QWidget>
-#include <QDebug>
 
-
-SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SetNamesDialog)
+SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::SetNamesDialog)
 {
     ui->setupUi(this);
 
@@ -67,12 +66,9 @@ void SetNamesDialog::saveSetNameChanges()
         QString oldSetNameText = device->getSetJoystick(i)->getName();
 
         if (setNameText != oldSetNameText)
-            qDebug() << "Set number: "  << i << "  Renamed to: " << setNameText;
-            device->getSetJoystick(i)->setName(setNameText);
+            qDebug() << "Set number: " << i << "  Renamed to: " << setNameText;
+        device->getSetJoystick(i)->setName(setNameText);
     }
 }
 
-InputDevice* SetNamesDialog::getDevice() const {
-
-    return device;
-}
+InputDevice *SetNamesDialog::getDevice() const { return device; }

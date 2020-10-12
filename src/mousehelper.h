@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef MOUSEHELPER_H
 #define MOUSEHELPER_H
 
@@ -29,22 +28,22 @@ class MouseHelper : public QObject
 {
     Q_OBJECT
 
-public:
+  public:
     explicit MouseHelper(QObject *parent = nullptr);
-    QDesktopWidget* getDesktopWidget() const;
+    QDesktopWidget *getDesktopWidget() const;
     bool springMouseMoving;
     int previousCursorLocation[2];
     int pivotPoint[2];
     QTimer mouseTimer;
 
-public slots:
+  public slots:
     void deleteDeskWid();
     void initDeskWid();
-    
-private slots:
+
+  private slots:
     void resetSpringMouseMoving();
 
-private:
+  private:
     QDesktopWidget *deskWid;
 };
 
