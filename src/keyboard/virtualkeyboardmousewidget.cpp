@@ -615,8 +615,7 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout->addSpacerItem(new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
     mouseSettingsPushButton = new QPushButton(tr("Mouse Settings"), this);
-    mouseSettingsPushButton->setIcon(
-        QIcon::fromTheme(QString::fromUtf8("edit_select"), QIcon(":/icons/hicolor/16x16/actions/edit_select.png")));
+    mouseSettingsPushButton->setIcon(PadderCommon::loadIcon("input-mouse", ":/icons/hicolor/16x16/actions/edit_select.png"));
 
     tempVBoxLayout->addWidget(mouseSettingsPushButton);
 

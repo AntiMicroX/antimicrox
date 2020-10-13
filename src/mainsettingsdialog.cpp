@@ -83,10 +83,10 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 #endif
 
     ui->profileOpenDirPushButton->setIcon(
-        QIcon::fromTheme("document_open_folder", QIcon(":/icons/hicolor/16x16/actions/document_open_folder.png")));
+        PadderCommon::loadIcon("document-open", ":/icons/hicolor/16x16/actions/document_open_folder.png"));
 
     ui->logFilePushButton->setIcon(
-        QIcon::fromTheme("document_open_folder", QIcon(":/icons/hicolor/16x16/actions/document_open_folder.png")));
+        PadderCommon::loadIcon("document-open", ":/icons/hicolor/16x16/actions/document_open_folder.png"));
 
     this->settings = settings;
     this->allDefaultProfile = nullptr;
