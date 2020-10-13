@@ -2,16 +2,15 @@
 
 1. [Description](#description)  
 2. [License](#license)  
-3. [Command Line](#command-line) 
-4. [Installation](#installation)
-5. [Wiki](#wiki)
-6. [Testing Under Linux](#testing-under-linux)  
-7. [AntiMicroX Profiles](#antimicrox-profiles)
-8. [Support](#support)  
-9. [Bugs](#bugs)  
-10. [Shoutout](#shoutout)  
-11. [Credits](#credits)  
-12. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+3. [Installation](#installation)
+4. [Wiki](#wiki)
+5. [Testing Under Linux](#testing-under-linux)  
+6. [AntiMicroX Profiles](#antimicrox-profiles)
+7. [Support](#support)  
+8. [Bugs](#bugs)  
+9. [Shoutout](#shoutout)  
+10. [Credits](#credits)  
+11. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
 
 ## Description
 
@@ -64,38 +63,6 @@ This program is licensed under the GPL v.3. Please read the LICENSE text documen
 included with the source code if you would like to read the terms of the license.
 The license can also be found online at
 http://www.gnu.org/licenses/gpl.txt
-
-## Command Line
-
-    Usage: antimicrox [options] [profile]
-
-    Options:
-    -h, --help                     Print help text.
-    -v, --version                  Print version information.
-    --tray                         Launch program in system tray only.
-    --no-tray                      Launch program with the tray menu disabled.
-    --hidden                       Launch program without the main window
-                                   displayed.
-    --profile <location>           Launch program with the configuration file
-                                   selected as the default for selected
-                                   controllers. Defaults to all controllers.
-    --profile-controller <value>   Apply configuration file to a specific
-                                   controller. Value can be a
-                                   controller index, name, or GUID.
-    --unload [<value>]             Unload currently enabled profile(s).
-                                   Value can be a controller index, name, or GUID.
-    --startSet <number> [<value>]  Start joysticks on a specific set.
-                                   Value can be a controller index, name, or GUID.
-    -d, --daemon                   Launch program as a daemon. Use only on Linux.
-    --log-level (debug|info)       Enable logging. Default: debug.
-    --log-file <filename>          Choose a file for writing logs
-    --eventgen (xtest|uinput)      Choose between using XTest support and uinput
-                                   support for event generation. Use only if you have
-                                   enabled xtest and uinput options on Linux. Default: xtest.
-    -l, --list                     Print information about joysticks detected by
-                                   SDL. Use only if you have sdl library. You can 
-                                   check your controller index, name or 
-                                   even GUID.  
 
 ## Installation
 
