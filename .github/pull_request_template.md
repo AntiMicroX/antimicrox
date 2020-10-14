@@ -8,6 +8,8 @@ Closes #...
 
 ----
 
+
+<!-- 
     Please, go through these steps before you submit a PR.
 
     Make sure that your PR is not a duplicate.
@@ -22,6 +24,5 @@ Closes #...
 
     - Put closes #XXXX in your comment to auto-close the issue that your PR fixes (if such).
     
-    - When merging, don't forget to squash commits!
+    - When merging, don't forget to squash commits! -->
 
-    PLEASE REMOVE THIS TEMPLATE BEFORE SUBMITTING
