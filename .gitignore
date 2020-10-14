@@ -1,31 +1,17 @@
-*.o
-.*.swp
-.directory
-*.qm
-*.diff
-*.mo
-.flatpak-builder
-Makefile
-antimicrox
-!share/antimicrox
-antimicrox.pro.user
-antimicrox.pro.user.*
-moc_*
-qrc_resources.cpp
-ui_*.h
-*.*~
-SDL2-*
+# Build directories
+
 build/
 build-dir/
 Build/
-CMakeLists.txt.user*
-other/antimicrox.1.gz
-other/license-template.txt
-doc/
-compile/
-src/CHANGELOG.md
-SDL2_*
-*.kate-swp
-repo/
 .flatpak-builder/
-.vscode/
+repo/
+doc/
+
+# Changelogs
+src/Changelog
+src/CHANGELOG.md
+
+
+# IDE- related files
+.vscode
+

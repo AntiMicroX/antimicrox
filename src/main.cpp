@@ -209,7 +209,7 @@ int main(int argc, char *argv[])
                                              "controller index, name, or GUID"),
          QCoreApplication::translate("main", "number value")},
         {{"daemon", "d"}, QCoreApplication::translate("main", "Launch program as a daemon. Use only on Linux.")},
-        {"log-level", QCoreApplication::translate("main", "Enable logging"),
+        {"log-level", QCoreApplication::translate("main", "Enable logging. Levels (from the least strict): warn,info,debug"),
          QCoreApplication::translate("main", "log-type")},
         {"log-file", QCoreApplication::translate("main", "Choose a file for logs writing"),
          QCoreApplication::translate("main", "filename")},
