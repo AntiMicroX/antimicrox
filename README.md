@@ -4,13 +4,14 @@
 2. [License](#license)  
 3. [Installation](#installation)
 4. [Wiki](#wiki)
-5. [Testing Under Linux](#testing-under-linux)  
-6. [AntiMicroX Profiles](#antimicrox-profiles)
-7. [Support](#support)  
-8. [Bugs](#bugs)  
-9. [Shoutout](#shoutout)  
-10. [Credits](#credits)  
-11. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+5. [Command Line](#command-line) 
+6. [Testing Under Linux](#testing-under-linux)  
+7. [AntiMicroX Profiles](#antimicrox-profiles)
+8. [Support](#support)  
+9. [Bugs](#bugs)  
+10. [Shoutout](#shoutout)  
+11. [Credits](#credits)  
+12. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
 
 ## Description
 
@@ -126,6 +127,10 @@ It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppIm
 ### Building Yourself
 
 List of required dependencies and build instructions can be found [here](./BUILDING.md).
+
+## Command Line
+
+Run `antimicrox --help` or read `man antimicrox` for command-line parameters.
 
 ## Wiki
 
