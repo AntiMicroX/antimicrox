@@ -335,7 +335,7 @@
                </property>
                <property name="icon">
                 <iconset theme="join_slots" resource="resources.qrc">
-                 <normaloff>:/icons/icons/16x16/actions/join_slots.png</normaloff>:/icons/icons/16x16/actions/join_slots.png</iconset>
+                 <normaloff>:/icons/actions/join_slots.png</normaloff>:/icons/actions/join_slots.png</iconset>
                </property>
               </widget>
              </item>
@@ -352,7 +352,7 @@
                </property>
                <property name="icon">
                 <iconset theme="split_slot" resource="resources.qrc">
-                 <normaloff>:/icons/icons/16x16/actions/split_slot.png</normaloff>:/icons/icons/16x16/actions/split_slot.png</iconset>
+                 <normaloff>:/icons/actions/split_slot.png</normaloff>:/icons/actions/split_slot.png</iconset>
                </property>
               </widget>
              </item>
