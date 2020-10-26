@@ -232,7 +232,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionQuit">
    <property name="icon">
     <iconset theme="application_exit" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-application_exit.png</normaloff>:/icons/icons/16x16/actions/16-actions-application_exit.png</iconset>
+     <normaloff>:/icons/actions/application_exit.png</normaloff>:/icons/actions/application_exit.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -247,7 +247,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
    </property>
    <property name="icon">
     <iconset theme="view_refresh" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-view_refresh.png</normaloff>:/icons/icons/16x16/actions/16-actions-view_refresh.png</iconset>
+     <normaloff>:/icons/actions/view_refresh.png</normaloff>:/icons/actions/view_refresh.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Update Joysticks</string>
@@ -259,7 +259,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionHide">
    <property name="icon">
     <iconset theme="view_restore" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-view_restore.png</normaloff>:/icons/icons/16x16/actions/16-actions-view_restore.png</iconset>
+     <normaloff>:/icons/actions/view_restore.png</normaloff>:/icons/actions/view_restore.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Hide</string>
@@ -271,7 +271,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionAbout">
    <property name="icon">
     <iconset theme="about_antimicrox" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-about_antimicrox.png</normaloff>:/icons/icons/16x16/actions/16-actions-about_antimicrox.png</iconset>
+     <normaloff>:/icons/actions/about_antimicrox.png</normaloff>:/icons/actions/about_antimicrox.png</iconset>
    </property>
    <property name="text">
     <string>&amp;About</string>
@@ -283,7 +283,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionAbout_Qt">
    <property name="icon">
     <iconset theme="about_qt" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-about_qt.png</normaloff>:/icons/icons/16x16/actions/16-actions-about_qt.png</iconset>
+     <normaloff>:/icons/actions/about_qt.png</normaloff>:/icons/actions/about_qt.png</iconset>
    </property>
    <property name="text">
     <string>About &amp;Qt</string>
@@ -295,7 +295,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionProperties">
    <property name="icon">
     <iconset theme="sliders" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-sliders.png</normaloff>:/icons/icons/16x16/actions/16-actions-sliders.png</iconset>
+     <normaloff>:/icons/actions/sliders.png</normaloff>:/icons/actions/sliders.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Properties</string>
@@ -307,7 +307,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionKeyValue">
    <property name="icon">
     <iconset theme="key_checker" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-key_checker.png</normaloff>:/icons/icons/16x16/actions/16-actions-key_checker.png</iconset>
+     <normaloff>:/icons/actions/key_checker.png</normaloff>:/icons/actions/key_checker.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Key Checker</string>
@@ -327,7 +327,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionGitHubPage">
    <property name="icon">
     <iconset theme="github_page" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-github_page.png</normaloff>:/icons/icons/16x16/actions/16-actions-github_page.png</iconset>
+     <normaloff>:/icons/actions/github_page.png</normaloff>:/icons/actions/github_page.png</iconset>
    </property>
    <property name="text">
     <string>&amp;GitHub Page</string>
@@ -339,7 +339,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionGameController_Mapping">
    <property name="icon">
     <iconset theme="map_controller" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-map_controller.png</normaloff>:/icons/icons/16x16/actions/16-actions-map_controller.png</iconset>
+     <normaloff>:/icons/actions/map_controller.png</normaloff>:/icons/actions/map_controller.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Game Controller Mapping</string>
@@ -351,7 +351,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionOptions">
    <property name="icon">
     <iconset theme="settings" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-settings.png</normaloff>:/icons/icons/16x16/actions/16-actions-settings.png</iconset>
+     <normaloff>:/icons/actions/settings.png</normaloff>:/icons/actions/settings.png</iconset>
    </property>
    <property name="text">
     <string>S&amp;ettings</string>
@@ -363,7 +363,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionStick_Pad_Assign">
    <property name="icon">
     <iconset theme="stick_pad_assign" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-stick_pad_assign.png</normaloff>:/icons/icons/16x16/actions/16-actions-stick_pad_assign.png</iconset>
+     <normaloff>:/icons/actions/stick_pad_assign.png</normaloff>:/icons/actions/stick_pad_assign.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Stick/Pad Assign</string>
@@ -375,7 +375,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionWiki">
    <property name="icon">
     <iconset theme="wiki" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-wiki.png</normaloff>:/icons/icons/16x16/actions/16-actions-wiki.png</iconset>
+     <normaloff>:/icons/actions/wiki.png</normaloff>:/icons/actions/wiki.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Wiki</string>
@@ -387,7 +387,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionIssues">
    <property name="icon">
     <iconset theme="issues" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-issues.png</normaloff>:/icons/icons/16x16/actions/16-actions-issues.png</iconset>
+     <normaloff>:/icons/actions/issues.png</normaloff>:/icons/actions/issues.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Issues</string>
@@ -399,7 +399,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   <action name="actionCalibration">
    <property name="icon">
     <iconset theme="calibration" resource="resources.qrc">
-     <normaloff>:/icons/icons/16x16/actions/16-actions-calibration.png</normaloff>:/icons/icons/16x16/actions/16-actions-calibration.png</iconset>
+     <normaloff>:/icons/actions/calibration.png</normaloff>:/icons/actions/calibration.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Calibration</string>
