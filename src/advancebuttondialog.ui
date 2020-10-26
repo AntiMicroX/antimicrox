@@ -298,8 +298,27 @@
                 <string>Insert</string>
                </property>
                <property name="icon">
-                <iconset theme="archive_insert">
+                <iconset theme="list-add">
                  <normaloff>.</normaloff>.</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="deleteSlotButton">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>Delete a slot.</string>
+               </property>
+               <property name="text">
+                <string>Delete</string>
+               </property>
+               <property name="icon">
+                <iconset theme="list-remove"/>
                </property>
               </widget>
              </item>
@@ -338,26 +357,6 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="deleteSlotButton">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>20</height>
-                </size>
-               </property>
-               <property name="toolTip">
-                <string>Delete a slot.</string>
-               </property>
-               <property name="text">
-                <string>Delete</string>
-               </property>
-               <property name="icon">
-                <iconset theme="edit_delete">
-                 <normaloff>.</normaloff>.</iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QPushButton" name="clearAllPushButton">
                <property name="minimumSize">
                 <size>
@@ -372,7 +371,7 @@
                 <string>Clear All</string>
                </property>
                <property name="icon">
-                <iconset theme="edit_clear">
+                <iconset theme="edit-delete">
                  <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>

@@ -699,7 +699,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="edit_table_delete_row">
+              <iconset theme="list-add">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -1007,7 +1007,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Edit</string>
              </property>
              <property name="icon">
-              <iconset theme="document_edit">
+              <iconset>
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -1021,7 +1021,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="edit_table_delete_row">
+              <iconset theme="list-remove">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>

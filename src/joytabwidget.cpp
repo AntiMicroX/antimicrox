@@ -106,8 +106,7 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     removeButton->setObjectName(QString::fromUtf8("removeButton"));
     removeButton->setToolTip(tr("Remove configuration from recent list."));
     removeButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    removeButton->setIcon(
-        QIcon::fromTheme(QString::fromUtf8("edit_clear_list"), QIcon(":/icons/hicolor/16x16/actions/edit_clear_list.png")));
+    removeButton->setIcon(PadderCommon::loadIcon("user-trash", ":/icons/hicolor/16x16/actions/edit_clear_list.png"));
     configHorizontalLayout->addWidget(removeButton);
 
     loadButton = new QPushButton(tr("Load"), this);
