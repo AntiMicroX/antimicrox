@@ -5,42 +5,44 @@
         <file>images/axis.png</file>
         <file>images/button.png</file>
         <file>images/controllermap.png</file>
-        <file>icons/icons/16x16/actions/16-actions-wiki.png</file>
-        <file>icons/icons/16x16/actions/16-actions-about_qt.png</file>
-        <file>icons/icons/16x16/actions/16-actions-about_antimicrox.png</file>
-        <file>icons/icons/16x16/actions/16-actions-github_page.png</file>
-        <file>icons/icons/16x16/actions/16-actions-issues.png</file>
-        <file>icons/icons/16x16/actions/16-actions-settings.png</file>
-        <file>icons/icons/16x16/actions/16-actions-stick_pad_assign.png</file>
-        <file>icons/icons/16x16/actions/16-actions-calibration.png</file>
-        <file>icons/icons/16x16/actions/16-actions-map_controller.png</file>
-        <file>icons/icons/16x16/actions/16-actions-sliders.png</file>
-        <file>icons/icons/16x16/actions/16-actions-key_checker.png</file>
-        <file>icons/icons/16x16/actions/16-actions-application_exit.png</file>
-        <file>icons/icons/16x16/actions/16-actions-archive_insert.png</file>
-        <file>icons/icons/16x16/actions/16-actions-dialog_cancel.png</file>
-        <file>icons/icons/16x16/actions/16-actions-dialog_close.png</file>
-        <file>icons/icons/16x16/actions/16-actions-dialog_ok.png</file>
-        <file>icons/icons/16x16/actions/16-actions-document_close.png</file>
-        <file>icons/icons/16x16/actions/16-actions-document_open.png</file>
-        <file>icons/icons/16x16/actions/16-actions-document_open_folder.png</file>
-        <file>icons/icons/16x16/actions/16-actions-document_revert.png</file>
-        <file>icons/icons/16x16/actions/16-actions-document_revert_small.png</file>
-        <file>icons/icons/16x16/actions/16-actions-document_save.png</file>
-        <file>icons/icons/16x16/actions/16-actions-document_save_as.png</file>
-        <file>icons/icons/16x16/actions/16-actions-edit_clear.png</file>
-        <file>icons/icons/16x16/actions/16-actions-edit_clear_list.png</file>
-        <file>icons/icons/16x16/actions/16-actions-edit_delete.png</file>
-        <file>icons/icons/16x16/actions/16-actions-edit_select.png</file>
-        <file>icons/icons/16x16/actions/16-actions-edit_table_delete_row.png</file>
-        <file>icons/icons/16x16/actions/16-actions-edit_table_insert_row_below.png</file>
-        <file>icons/icons/16x16/actions/16-actions-games_config_custom.png</file>
-        <file>icons/icons/16x16/actions/16-actions-games_config_options.png</file>
-        <file>icons/icons/16x16/actions/16-actions-help_about.png</file>
-        <file>icons/icons/16x16/actions/16-actions-text_field.png</file>
-        <file>icons/icons/16x16/actions/16-actions-view_fullscreen.png</file>
-        <file>icons/icons/16x16/actions/16-actions-view_refresh.png</file>
-        <file>icons/icons/16x16/actions/16-actions-view_restore.png</file>
+
+        <file>icons/actions/wiki.png</file>
+        <file>icons/actions/about_qt.png</file>
+        <file>icons/actions/about_antimicrox.png</file>
+        <file>icons/actions/github_page.png</file>
+        <file>icons/actions/issues.png</file>
+        <file>icons/actions/settings.png</file>
+        <file>icons/actions/stick_pad_assign.png</file>
+        <file>icons/actions/calibration.png</file>
+        <file>icons/actions/map_controller.png</file>
+        <file>icons/actions/sliders.png</file>
+        <file>icons/actions/key_checker.png</file>
+        <file>icons/actions/application_exit.png</file>
+        <file>icons/actions/archive_insert.png</file>
+        <file>icons/actions/dialog_cancel.png</file>
+        <file>icons/actions/dialog_close.png</file>
+        <file>icons/actions/dialog_ok.png</file>
+        <file>icons/actions/document_close.png</file>
+        <file>icons/actions/document_open.png</file>
+        <file>icons/actions/document_open_folder.png</file>
+        <file>icons/actions/document_revert.png</file>
+        <file>icons/actions/document_revert_small.png</file>
+        <file>icons/actions/document_save.png</file>
+        <file>icons/actions/document_save_as.png</file>
+        <file>icons/actions/edit_clear.png</file>
+        <file>icons/actions/edit_clear_list.png</file>
+        <file>icons/actions/edit_delete.png</file>
+        <file>icons/actions/edit_select.png</file>
+        <file>icons/actions/edit_table_delete_row.png</file>
+        <file>icons/actions/edit_table_insert_row_below.png</file>
+        <file>icons/actions/games_config_custom.png</file>
+        <file>icons/actions/games_config_options.png</file>
+        <file>icons/actions/help_about.png</file>
+        <file>icons/actions/text_field.png</file>
+        <file>icons/actions/view_fullscreen.png</file>
+        <file>icons/actions/view_refresh.png</file>
+        <file>icons/actions/view_restore.png</file>
+
         <file>icons/application/16x16/apps/16-apps-io.github.antimicrox.antimicrox.png</file>
         <file>icons/application/24x24/apps/24-apps-io.github.antimicrox.antimicrox.png</file>
         <file>icons/application/32x32/apps/32-apps-io.github.antimicrox.antimicrox.png</file>
@@ -48,9 +50,10 @@
         <file>icons/application/64x64/apps/64-apps-io.github.antimicrox.antimicrox.png</file>
         <file>icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png</file>
         <file>icons/application/scalable/apps/sc-apps-io.github.antimicrox.antimicrox.svg</file>
+
         <file>images/battery-low-level.png</file>
-        <file>icons/icons/16x16/actions/16-actions-join_slots.png</file>
-        <file>icons/icons/16x16/actions/16-actions-split_slot.png</file>
+        <file>icons/actions/join_slots.png</file>
+        <file>icons/actions/split_slot.png</file>
         <file>CHANGELOG.md</file>
     </qresource>
 </RCC>
