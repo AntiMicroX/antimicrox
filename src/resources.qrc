@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/index.theme</file>
         <file>images/antimicrox.png</file>
         <file>images/antimicrox_trayicon.png</file>
         <file>images/axis.png</file>
