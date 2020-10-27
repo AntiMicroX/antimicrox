@@ -57,8 +57,8 @@ void DPadPushButtonGroup::generateButtons()
     leftButton = generateBtnForGrid(buttons, 8, 1, 0);
 
     dpadWidget = new DPadPushButton(dpad, displayNames, parentWidget());
-    dpadWidget->setIcon(QIcon::fromTheme(QString::fromUtf8("games_config_options"),
-                                         QIcon(":/icons/hicolor/16x16/actions/games_config_options.png")));
+    dpadWidget->setIcon(
+        QIcon::fromTheme(QString::fromUtf8("games_config_options"), QIcon(":/icons/actions/games_config_options.png")));
     connect(dpadWidget, &DPadPushButton::clicked, this, &DPadPushButtonGroup::showDPadDialog);
     addWidget(dpadWidget, 1, 1);
 
