@@ -454,22 +454,22 @@ void MainWindow::populateTrayIcon()
     profileActions.clear();
 
     closeAction = new QAction(tr("&Quit"), trayIconMenu);
-    closeAction->setIcon(PadderCommon::loadIcon("application-exit", ":/icons/hicolor/16x16/actions/application_exit.png"));
+    closeAction->setIcon(PadderCommon::loadIcon("application-exit", ":/icons/actions/application_exit.png"));
 
     connect(closeAction, &QAction::triggered, this, &MainWindow::quitProgram, Qt::DirectConnection);
 
     hideAction = new QAction(tr("&Hide"), trayIconMenu);
-    hideAction->setIcon(PadderCommon::loadIcon("view-restore", ":/icons/hicolor/16x16/actions/view_restore.png"));
+    hideAction->setIcon(PadderCommon::loadIcon("view-restore", ":/icons/actions/view_restore.png"));
 
     connect(hideAction, &QAction::triggered, this, &MainWindow::hideWindow);
 
     restoreAction = new QAction(tr("&Restore"), trayIconMenu);
-    restoreAction->setIcon(PadderCommon::loadIcon("view-fullscreen", ":/icons/hicolor/16x16/actions/view_fullscreen.png"));
+    restoreAction->setIcon(PadderCommon::loadIcon("view-fullscreen", ":/icons/actions/view_fullscreen.png"));
 
     connect(restoreAction, &QAction::triggered, this, &MainWindow::show);
 
     updateJoy = new QAction(tr("&Update Joysticks"), trayIconMenu);
-    updateJoy->setIcon(PadderCommon::loadIcon("view-refresh", ":/icons/hicolor/16x16/actions/view_refresh.png"));
+    updateJoy->setIcon(PadderCommon::loadIcon("view-refresh", ":/icons/actions/view_refresh.png"));
 
     connect(updateJoy, &QAction::triggered, this, &MainWindow::startJoystickRefresh);
 
@@ -609,8 +609,7 @@ void MainWindow::populateTrayIcon()
                     newaction = new QAction(tr("Open File"), trayIconMenu);
                 }
 
-                newaction->setIcon(
-                    PadderCommon::loadIcon("document-open", ":/icons/hicolor/16x16/actions/document_open.png"));
+                newaction->setIcon(PadderCommon::loadIcon("document-open", ":/icons/actions/document_open.png"));
 
                 connect(newaction, &QAction::triggered, widget, &JoyTabWidget::openConfigFileDialog);
 
@@ -952,8 +951,7 @@ void MainWindow::joystickTrayShow(QMenu *tempmenu)
 
                 if (widget->getJoystick()->isDeviceEdited())
                 {
-                    action->setIcon(
-                        PadderCommon::loadIcon("document-save-as", ":/icons/hicolor/16x16/actions/document_save_as.png"));
+                    action->setIcon(PadderCommon::loadIcon("document-save-as", ":/icons/actions/document_save_as.png"));
 
                 } else if (!action->icon().isNull())
                 {
@@ -1420,8 +1418,8 @@ void MainWindow::singleTrayProfileMenuShow()
 
                         if (widget->getJoystick()->isDeviceEdited())
                         {
-                            action->setIcon(PadderCommon::loadIcon("document-save-as",
-                                                                   ":/icons/hicolor/16x16/actions/document_save_as.png"));
+                            action->setIcon(
+                                PadderCommon::loadIcon("document-save-as", ":/icons/actions/document_save_as.png"));
                         } else if (!action->icon().isNull())
                         {
                             action->setIcon(QIcon());
