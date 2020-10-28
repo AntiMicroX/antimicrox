@@ -694,9 +694,9 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QPushButton" name="mappingDeletePushButton">
+            <widget class="QPushButton" name="mappngInsertPushButton">
              <property name="text">
-              <string>Delete</string>
+              <string>Add</string>
              </property>
              <property name="icon">
               <iconset theme="list-add">
@@ -705,12 +705,12 @@ Settings will not take affect until you either refresh all joysticks or unplug t
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="mappngInsertPushButton">
+            <widget class="QPushButton" name="mappingDeletePushButton">
              <property name="text">
-              <string>Insert</string>
+              <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="edit_table_insert_row_below">
+              <iconset theme="list-remove">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
@@ -993,7 +993,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Add</string>
              </property>
              <property name="icon">
-              <iconset theme="edit_table_insert_row_below">
+              <iconset theme="list-add">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
