@@ -261,7 +261,7 @@ this button is being used.</string>
         <string>Advanced</string>
        </property>
        <property name="icon">
-        <iconset theme="games_config_options">
+        <iconset theme="games_config_options" resource="resources.qrc">
          <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
