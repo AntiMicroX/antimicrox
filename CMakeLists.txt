@@ -232,7 +232,7 @@ set(antimicrox_SOURCES
     src/xml/joyaxisxml.cpp
     src/xml/joybuttonslotxml.cpp
     src/xml/joybuttonxml.cpp
-    #src/xml/joydpadxml.cpp
+    src/xml/joydpadxml.cpp
     src/xml/setjoystickxml.cpp
     src/xmlconfigmigration.cpp
     src/xmlconfigreader.cpp
@@ -514,16 +514,16 @@ endif(UNIX)
             set_target_properties(antilib PROPERTIES
                 SOVERSION ${ANTILIB_VERSION}
             )
-            
-            
+
+
             #target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Test Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
             target_link_libraries (antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
 
             if (WITH_X11)
                 target_link_libraries(antilib Qt5::X11Extras)
             endif()
-            
-            
+
+
             add_executable(antimicrox ${antimicrox_MAIN})
             target_link_libraries (antimicrox antilib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
 
@@ -682,10 +682,10 @@ if(UNIX)
 if(CPACK_GENERATOR STREQUAL "DEB")
   set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
   set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
-  set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros. 
+  set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.
 
 It is a new fork of discontinued AntiMicro.")
-  
+
   message("Preparing documentation for DEB package")
   add_custom_target(package_docummentation ALL)
 
@@ -697,10 +697,10 @@ It is a new fork of discontinued AntiMicro.")
   #Strip binaries from unnecessary notes, comments, etc
   add_custom_command(TARGET antimicrox POST_BUILD
   COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
-  
+
   add_custom_command(TARGET antimicrox POST_BUILD
   COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/libantilib.so.1" VERBATIM)
-  
+
 endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
