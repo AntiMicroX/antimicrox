@@ -18,8 +18,8 @@
 #ifndef GAMECONTROLLERDPADXML_H
 #define GAMECONTROLLERDPADXML_H
 
-#include "xml/joydpadxml.h"
 #include "vdpad.h"
+#include "xml/joydpadxml.h"
 
 class GameControllerDPad;
 class QXmlStreamReader;
