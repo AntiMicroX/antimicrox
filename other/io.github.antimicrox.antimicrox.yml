@@ -16,8 +16,6 @@ finish-args:
 modules:
   - name: antimicrox
     buildsystem: cmake
-    post-install:
-      - gtk-update-icon-cache --force --ignore-theme-index "${FLATPAK_DEST}/share/antimicrox/icons/hicolor"
     sources:
       - type: git
         url: https://github.com/AntiMicroX/antimicrox.git
