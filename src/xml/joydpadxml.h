@@ -37,6 +37,4 @@ template <class T> class JoyDPadXml : public QObject
     T *m_joydpad;
 };
 
-#include "joydpadxml.cpp"
-
 #endif // JOYDPADXML_H

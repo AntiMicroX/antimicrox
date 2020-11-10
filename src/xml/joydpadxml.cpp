@@ -1,4 +1,5 @@
 
+#include "joydpadxml.h"
 #include "globalvariables.h"
 
 #include "gamecontroller/gamecontrollerdpad.h"
@@ -126,4 +127,4 @@ template <class T> bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
 
 template class JoyDPadXml<JoyDPad>;
 template class JoyDPadXml<VDPad>;
-// template class JoyDPadXml<GameControllerDPad>;
+template class JoyDPadXml<GameControllerDPad>;

@@ -18,6 +18,7 @@
 #ifndef GAMECONTROLLERDPADXML_H
 #define GAMECONTROLLERDPADXML_H
 
+#include "vdpad.h"
 #include "xml/joydpadxml.h"
 
 class GameControllerDPad;
