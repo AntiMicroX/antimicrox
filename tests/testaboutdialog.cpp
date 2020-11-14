@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QTextBrowser>
 #include <QPlainTextEdit>
+#include <QTextEdit>
 
 class TestAboutDialog: public QObject
 {
@@ -39,7 +40,7 @@ void TestAboutDialog::infoTextBrowserEmpty()
 
 void TestAboutDialog::changelogTextEditEmpty()
 {
-    QPlainTextEdit* changelogTextEdit = aboutDialog.findChild<QTextEdit*>("changelogTextEdit");
+    QTextEdit* changelogTextEdit = aboutDialog.findChild<QTextEdit*>("changelogTextEdit");
     QVERIFY2(!changelogTextEdit->toPlainText().isEmpty(), "changelogTextEdit is empty");
 }
 
