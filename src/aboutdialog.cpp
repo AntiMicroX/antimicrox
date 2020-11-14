@@ -100,7 +100,7 @@ void AboutDialog::fillInfoTextBrowser()
     QTextStream changelogStream(&temp);
     QString changelogText = changelogStream.readAll();
     temp.close();
-    ui->changelogPlainTextEdit->setPlainText(changelogText);
+    ui->changelogTextEdit->setMarkdown(changelogText);
 }
 
 void AboutDialog::changeEvent(QEvent *event)
