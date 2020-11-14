@@ -1,6 +1,27 @@
 # Changelog
 
-## [3.1.2](https://github.com/AntiMicroX/antimicrox/tree/3.1.2) (2020-09-30)
+## [3.1.3](https://github.com/AntiMicroX/antimicrox/tree/3.1.3) (2020-11-14)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.2...3.1.3)
+
+**Fixed bugs:**
+
+- ARM build failure [\#80](https://github.com/AntiMicroX/antimicrox/issues/80)
+- AntiMicroX system tray icon not appearing in flatpak package [\#58](https://github.com/AntiMicroX/antimicrox/issues/58)
+- Icons in tray menu only showing up as "X" [\#56](https://github.com/AntiMicroX/antimicrox/issues/56)
+- Outdated information in the "Credits" tab in the "About" window [\#67](https://github.com/AntiMicroX/antimicrox/issues/67)
+
+**Notable closed issues:**
+
+- Consistent style of code [\#25](https://github.com/AntiMicroX/antimicrox/issues/25)
+
+**Other merged pull requests:**
+
+- Icons overhaul [\#73](https://github.com/AntiMicroX/antimicrox/pull/73) ([pktiuk](https://github.com/pktiuk))
+- Fix: Use system icons in common cases to avoid incompatibility issues [\#62](https://github.com/AntiMicroX/antimicrox/pull/62) ([pktiuk](https://github.com/pktiuk))
+- General cleanup of repository [\#18](https://github.com/AntiMicroX/antimicrox/pull/18) ([pktiuk](https://github.com/pktiuk))
+
+## [3.1.2](https://github.com/AntiMicroX/antimicrox/tree/3.1.2) (2020-10-02)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.1...3.1.2)
 
@@ -213,13 +234,13 @@ Version 2.24.1
 
 * First preparation for unit tests (app splitted into library (antilib) and executable (antimicro))
 
-* Updated calibration - reset old values during calibration startup 
+* Updated calibration - reset old values during calibration startup
 
-* Fixed part of memory leaks with Memcheck (application exit) 
+* Fixed part of memory leaks with Memcheck (application exit)
 
-* Fixed bug in gamecontrollermappingdialog class 
+* Fixed bug in gamecontrollermappingdialog class
 
-* Fixed segmentation fault for activating Turbo option 
+* Fixed segmentation fault for activating Turbo option
 
 * Unblocked delay sliders
 
@@ -1164,15 +1185,15 @@ This allows the list to be in sync while utilizing hotplugging.
 Version 2.0
 
 * Migrated profiles to use Qt key values as opposed to using native key code
-values. Allows for better cross-platform compatibility. Current 
+values. Allows for better cross-platform compatibility. Current
 joystick profiles will be migrated when first loaded by the program.
 
 * Program can now be compiled against SDL 2.
 
 * The Game Controller API provided by SDL 2 has been integrated into the
-application. The API is used to abstract various gamepads to a unified 
+application. The API is used to abstract various gamepads to a unified
 standard. Profiles made against the Game Controller API can be used with
-any controller that is supported. Unsupported controllers will have to be 
+any controller that is supported. Unsupported controllers will have to be
 mapped in the program.
 
 * A simple Game Controller mapping window has been made so people that are using
@@ -1181,35 +1202,35 @@ the Game Controller API. Any saved mapping string will be loaded into
 SDL when antimicro is first launched or when you select the
 "Update Joysticks" option in the main window.
 
-* Any new saved profile will include the device type that it is 
-associated with in the filename. Joysticks and game controllers use slightly 
+* Any new saved profile will include the device type that it is
+associated with in the filename. Joysticks and game controllers use slightly
 different file specifications.
 
 * Joystick hotplugging support has been added thanks to SDL 2.
 
-* On Windows, XInput support is now available. This allows the Xbox 360 
-controller guide button to be usable and both gamepad triggers can be used at 
-the same time. Previously, only DirectInput was being used so both triggers were 
-being mapped to one axis so they would negate each other if used at the same 
-time. This problem would really affect people trying to play Call of Duty with a 
+* On Windows, XInput support is now available. This allows the Xbox 360
+controller guide button to be usable and both gamepad triggers can be used at
+the same time. Previously, only DirectInput was being used so both triggers were
+being mapped to one axis so they would negate each other if used at the same
+time. This problem would really affect people trying to play Call of Duty with a
 360 controller when the "Hold Aim Down the Sight" option is enabled in the game.
 
-* The list of recent profiles is now tied to a joystick GUID or joystick name 
+* The list of recent profiles is now tied to a joystick GUID or joystick name
 if the GUID is not available (compiled against SDL 1.2).
 
-* Program options window has been made. For right now, it is only being used to 
+* Program options window has been made. For right now, it is only being used to
 allow users to be able to disable Game Controller integration for specific
 controllers.
 
-* Mouse events are queued before a mouse event is sent to the system. This 
-allows for smoother diagonal mouse movement. This really helped improve camera 
+* Mouse events are queued before a mouse event is sent to the system. This
+allows for smoother diagonal mouse movement. This really helped improve camera
 control for me in Warsow.
 
-* Key checker dialog has been made so you can check the alias values that are 
-being used for keyboard keys. This is mainly for debugging purposes. If you 
-find that a keyboard key that you use does not have a built-in alias, please 
-let me know so an alias can be added. Although, the key can still be used in 
-the program and saved to a profile. The major downside is that a profile 
+* Key checker dialog has been made so you can check the alias values that are
+being used for keyboard keys. This is mainly for debugging purposes. If you
+find that a keyboard key that you use does not have a built-in alias, please
+let me know so an alias can be added. Although, the key can still be used in
+the program and saved to a profile. The major downside is that a profile
 that uses an unsupported key will not be cross-platform compatible.
 
 
@@ -1299,7 +1320,7 @@ combobox.
 * Brazilian Portuguese translation provided by VaGNaroK.
 
 
-2013-07-12 Travis Nickles <nickles.travis@gmail.com> 
+2013-07-12 Travis Nickles <nickles.travis@gmail.com>
 
 Version 1.0
 
