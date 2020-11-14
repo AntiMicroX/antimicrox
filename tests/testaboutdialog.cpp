@@ -37,10 +37,10 @@ void TestAboutDialog::infoTextBrowserEmpty()
     QVERIFY2(!infoTextBrowser->toPlainText().isEmpty(), "infoTextBrowser is empty");
 }
 
-void TestAboutDialog::changelogTextEditEmpty()
+void TestAboutDialog::changelogPlainEmpty()
 {
-    QPlainTextEdit* changelogTextEdit = aboutDialog.findChild<QTextEdit*>("changelogTextEdit");
-    QVERIFY2(!changelogTextEdit->toPlainText().isEmpty(), "changelogTextEdit is empty");
+    QPlainTextEdit* changelogPlainTextEdit = aboutDialog.findChild<QPlainTextEdit*>("changelogPlainTextEdit");
+    QVERIFY2(!changelogPlainTextEdit->toPlainText().isEmpty(), "changelogPlainTextEdit is empty");
 }
 
 void TestAboutDialog::textBrowserDevsEmpty()
