@@ -1,5 +1,5 @@
 user=AntiMicroX
 project=antimicrox
 since-tag=3.1.1
-pr-label=Other merged pull requests:
-issues-label=Notable closed issues:
+pr-label=**Other merged pull requests:**
+issues-label=**Notable closed issues:**
