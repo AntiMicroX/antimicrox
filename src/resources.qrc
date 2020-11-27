@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>images/antimicrox.png</file>
-        <file>images/antimicrox_trayicon.png</file>
+        <file alias="images/antimicrox_trayicon.png">images/48-apps-antimicrox_trayicon.png</file>
         <file>images/axis.png</file>
         <file>images/button.png</file>
         <file>images/controllermap.png</file>
