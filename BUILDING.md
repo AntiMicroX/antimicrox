@@ -16,7 +16,7 @@ This program is written in C++ using the [Qt](https://www.qt.io/)
 framework. A C++ compiler and a proper C++ build environment will need to be installed on your system prior to building this program. Under Debian and Debian-based distributions like Ubuntu, the easiest way to get a base build environment set up is to install the meta-package **build-essential**. The following packages are required to be
 installed on your system in order to build this program:
 
-- `g++`
+- `g++` from `gcc`
 - `cmake`
 - `extra-cmake-modules`
 - `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux) (Qt5 support)
@@ -26,7 +26,7 @@ installed on your system in order to build this program:
 - `libx11-dev` (`libx11` on distros based on Arch Linux) (Needed to compile with Qt5 support)
 - `itstool` (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 - `gettext`
-- `libqt5x11extras5-dev`
+- `libqt5x11extras5-dev` (`qt5-x11extras` on distros based on Arch Linux)
 
 ## Building Under Linux
 
