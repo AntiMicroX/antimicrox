@@ -80,7 +80,6 @@ if(UNIX)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
     option(APPDATA "Build project with AppData file support." ON)
-    option(ANTIMICROLIB_PATH "Set your own path for antimicrolib" OFF)
 endif(UNIX)
 
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
@@ -461,6 +460,8 @@ if(UNIX)
     if(WITH_X11)
         LIST(APPEND LIBS ${X11_X11_LIB})
         LIST(APPEND LIBS ${X11_Xi_LIB})
+        LIST(APPEND LIBS X11::xcb)
+        LIST(APPEND LIBS Qt5::X11Extras)
     endif(WITH_X11)
 
     if(WITH_XTEST)
@@ -485,60 +486,24 @@ if(UNIX)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 endif(UNIX)
 
-    if(UNIX)
-
-        if(ANTIMICROLIB_PATH)
-            ADD_DEFINITIONS(-DANTIMICROLIB_PATH="${ANTIMICROLIB_PATH}")
-
-            # Generally package manager takes care of this while installing the new library, but not always
-            # especially with cmake
-            ADD_DEFINITIONS(-DLD_LIBRARY_PATH="${ANTIMICROLIB_PATH}:${LD_LIBRARY_PATH}")
-
-            # those instructions have to be before add_executable() or add_library() is called, otherwise it has no effect
-            set(CMAKE_INSTALL_RPATH "${ANTIMICROLIB_PATH}")
-            set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-        endif()
-
-            add_library( antimicrolib
-                SHARED
-                ${antimicrox_HEADERS_MOC}
-                ${antimicrox_SOURCES}
-                ${antimicrox_FORMS_HEADERS}
-                ${antimicrox_RESOURCES_RCC}
-            )
-
-            set_target_properties(antimicrolib PROPERTIES
-                NO_SONAME 1
-            )
-
-            set_target_properties(antimicrolib PROPERTIES
-                OUTPUT_NAME "antimicro"
-            )
-
-            #target_link_libraries (antimicrolib Qt5::Widgets Qt5::Core Qt5::Test Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
-            target_link_libraries (antimicrolib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
-
-            if (WITH_X11)
-                target_link_libraries(antimicrolib Qt5::X11Extras)
-            endif()
+if(UNIX)
+        add_executable(antimicrox
+            ${antimicrox_MAIN}
+            ${antimicrox_HEADERS_MOC}
+            ${antimicrox_SOURCES}
+            ${antimicrox_FORMS_HEADERS}
+            ${antimicrox_RESOURCES_RCC}
+        )
 
 
-            add_executable(antimicrox ${antimicrox_MAIN})
-            target_link_libraries (antimicrox antimicrolib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent)
+        target_link_libraries(antimicrox Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${LIBS})
 
-    endif(UNIX)
+endif(UNIX)
 
 
 # Specify out directory for final executable.
 if(UNIX)
         install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-
-        if(ANTIMICROLIB_PATH)
-            install(TARGETS antimicrolib DESTINATION "${ANTIMICROLIB_PATH}")
-        else()
-            install(TARGETS antimicrolib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-        endif()
-
         install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
 endif(UNIX)
 
@@ -644,9 +609,6 @@ It is a new fork of discontinued AntiMicro.")
   #Strip binaries from unnecessary notes, comments, etc
   add_custom_command(TARGET antimicrox POST_BUILD
   COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
-
-  add_custom_command(TARGET antimicrox POST_BUILD
-  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/libantimicro.so" VERBATIM)
 
 endif()
 
