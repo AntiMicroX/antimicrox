@@ -519,9 +519,6 @@ endif(UNIX)
                 OUTPUT_NAME "antimicro"
             )
 
-
-
-
             #target_link_libraries (antimicrolib Qt5::Widgets Qt5::Core Qt5::Test Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
             target_link_libraries (antimicrolib Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${SDL_LIBRARY} ${LIBS})
 
@@ -653,7 +650,7 @@ It is a new fork of discontinued AntiMicro.")
   COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
 
   add_custom_command(TARGET antimicrox POST_BUILD
-  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/libantimicrolib.so" VERBATIM)
+  COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/libantimicro.so" VERBATIM)
 
 endif()
 
