@@ -18,6 +18,8 @@
 
 
 cmake_minimum_required(VERSION 3.6)
+set(QT_REQUIRED_VERSION 5.8)
+set(SDL_REQUIRED_VERSION 2.0.6)
 project(antimicrox)
 
 if(POLICY CMP0071)
@@ -440,12 +442,12 @@ endif(UNIX)
 
 if (UNIX)
 
-        find_package(Qt5Widgets REQUIRED)
-        find_package(Qt5Core REQUIRED)
-        find_package(Qt5Gui REQUIRED)
-        find_package(Qt5Network REQUIRED)
-        find_package(Qt5LinguistTools REQUIRED)
-        find_package(Qt5Concurrent REQUIRED)
+        find_package(Qt5Widgets ${QT_REQUIRED_VERSION}  REQUIRED)
+        find_package(Qt5Core ${QT_REQUIRED_VERSION}  REQUIRED)
+        find_package(Qt5Gui ${QT_REQUIRED_VERSION}  REQUIRED)
+        find_package(Qt5Network ${QT_REQUIRED_VERSION}  REQUIRED)
+        find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION}  REQUIRED)
+        find_package(Qt5Concurrent ${QT_REQUIRED_VERSION}  REQUIRED)
         #find_package(Qt5Test REQUIRED)
 
         if (WITH_X11)
@@ -628,7 +630,7 @@ if(UNIX)
 
 # Building .deb package
 if(CPACK_GENERATOR STREQUAL "DEB")
-  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libqt5x11extras5, libc6")
   set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
   set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.
 
