@@ -21,7 +21,7 @@ cmake_minimum_required(VERSION 3.6)
 project(antimicrox)
 
 if(POLICY CMP0071)
-  cmake_policy(SET CMP0071 NEW)
+    cmake_policy(SET CMP0071 NEW)
 endif()
 
 if(UNIX)
@@ -38,9 +38,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
 if (UNIX AND NOT APPLE)
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "force cmake prefix to be set for /usr" FORCE)
-endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+        set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "force cmake prefix to be set for /usr" FORCE)
+    endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(UNIX AND NOT APPLE)
 
 include(CheckCXXCompilerFlag)
@@ -117,7 +117,7 @@ endif(UNIX)
 
 set(antimicrox_MAIN
     src/main.cpp
-    )
+)
 
 set(antimicrox_SOURCES
     src/aboutdialog.cpp
@@ -354,7 +354,7 @@ if(ATTACH_FAKE_CLASSES)
 
     LIST(APPEND antimicrox_HEADERS
         src/fakeclasses/xbox360wireless.h
-        )
+    )
 endif(ATTACH_FAKE_CLASSES)
 
 set(antimicrox_FORMS
@@ -434,26 +434,25 @@ if(UNIX)
 endif(UNIX)
 
 if (UNIX)
+    find_package(Qt5Widgets REQUIRED)
+    find_package(Qt5Core REQUIRED)
+    find_package(Qt5Gui REQUIRED)
+    find_package(Qt5Network REQUIRED)
+    find_package(Qt5LinguistTools REQUIRED)
+    find_package(Qt5Concurrent REQUIRED)
+    #find_package(Qt5Test REQUIRED)
 
-        find_package(Qt5Widgets REQUIRED)
-        find_package(Qt5Core REQUIRED)
-        find_package(Qt5Gui REQUIRED)
-        find_package(Qt5Network REQUIRED)
-        find_package(Qt5LinguistTools REQUIRED)
-        find_package(Qt5Concurrent REQUIRED)
-        #find_package(Qt5Test REQUIRED)
+    if (WITH_X11)
+        find_package(Qt5X11Extras REQUIRED)
+    endif()
 
-        if (WITH_X11)
-            find_package(Qt5X11Extras REQUIRED)
-        endif()
+    QT5_WRAP_CPP(antimicrox_HEADERS_MOC ${antimicrox_HEADERS})
+    QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+    QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
 
-        QT5_WRAP_CPP(antimicrox_HEADERS_MOC ${antimicrox_HEADERS})
-        QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
-        QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+    add_subdirectory("share/antimicrox/translations")
 
-        add_subdirectory("share/antimicrox/translations")
-
-        set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif(UNIX)
 
 if(UNIX)
@@ -468,7 +467,7 @@ if(UNIX)
         LIST(APPEND LIBS ${X11_XTest_LIB})
     endif(WITH_XTEST)
 
-   list(APPEND LIBS ${SDL2_LIBRARIES})
+    list(APPEND LIBS ${SDL2_LIBRARIES})
 
 endif (UNIX)
 
@@ -478,7 +477,7 @@ include_directories(
     "${CMAKE_CURRENT_BINARY_DIR}/src"
     ${PROJECT_SOURCE_DIR}
     "${PROJECT_SOURCE_DIR}/src"
-    )
+)
 
 
 if(UNIX)
@@ -487,24 +486,22 @@ if(UNIX)
 endif(UNIX)
 
 if(UNIX)
-        add_executable(antimicrox
-            ${antimicrox_MAIN}
-            ${antimicrox_HEADERS_MOC}
-            ${antimicrox_SOURCES}
-            ${antimicrox_FORMS_HEADERS}
-            ${antimicrox_RESOURCES_RCC}
-        )
+    add_executable(antimicrox
+        ${antimicrox_MAIN}
+        ${antimicrox_HEADERS_MOC}
+        ${antimicrox_SOURCES}
+        ${antimicrox_FORMS_HEADERS}
+        ${antimicrox_RESOURCES_RCC}
+    )
 
-
-        target_link_libraries(antimicrox Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${LIBS})
-
+    target_link_libraries(antimicrox Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${LIBS})
 endif(UNIX)
 
 
 # Specify out directory for final executable.
 if(UNIX)
-        install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-        install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
+    install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
+    install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
 endif(UNIX)
 
 if(UNIX)
@@ -546,8 +543,7 @@ configure_file(
     "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
     IMMEDIATE @ONLY)
 
-add_custom_target(uninstall
-    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 
 
 # Only way to force install target to be dependent on updateqm.
@@ -586,9 +582,9 @@ set(CPACK_PACKAGE_FILE_NAME "antimicrox-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
 if(UNIX)
-  set(CPACK_STRIP_FILES "")
-  set(CPACK_SOURCE_STRIP_FILES "")
-  endif()
+    set(CPACK_STRIP_FILES "")
+    set(CPACK_SOURCE_STRIP_FILES "")
+endif()
 
 # Building .deb package
 if(CPACK_GENERATOR STREQUAL "DEB")
@@ -609,7 +605,6 @@ It is a new fork of discontinued AntiMicro.")
   #Strip binaries from unnecessary notes, comments, etc
   add_custom_command(TARGET antimicrox POST_BUILD
   COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
-
 endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
