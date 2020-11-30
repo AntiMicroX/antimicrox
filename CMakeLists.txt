@@ -456,19 +456,22 @@ if (UNIX)
 endif(UNIX)
 
 if(UNIX)
+    list(APPEND QT_LIBS Qt5::Widgets)
+    list(APPEND QT_LIBS Qt5::Core)
+    list(APPEND QT_LIBS Qt5::Gui)
+    list(APPEND QT_LIBS Qt5::Network)
+    list(APPEND QT_LIBS Qt5::Concurrent)
+
     if(WITH_X11)
-        LIST(APPEND LIBS ${X11_X11_LIB})
-        LIST(APPEND LIBS ${X11_Xi_LIB})
-        LIST(APPEND LIBS X11::xcb)
-        LIST(APPEND LIBS Qt5::X11Extras)
+        LIST(APPEND EXTRA_LIBS ${X11_X11_LIB})
+        LIST(APPEND EXTRA_LIBS ${X11_Xi_LIB})
+        LIST(APPEND EXTRA_LIBS X11::xcb)
+        LIST(APPEND QT_LIBS Qt5::X11Extras)
     endif(WITH_X11)
 
     if(WITH_XTEST)
-        LIST(APPEND LIBS ${X11_XTest_LIB})
+        LIST(APPEND EXTRA_LIBS ${X11_XTest_LIB})
     endif(WITH_XTEST)
-
-    list(APPEND LIBS ${SDL2_LIBRARIES})
-
 endif (UNIX)
 
 
@@ -494,7 +497,7 @@ if(UNIX)
         ${antimicrox_RESOURCES_RCC}
     )
 
-    target_link_libraries(antimicrox Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Network Qt5::Concurrent ${LIBS})
+    target_link_libraries(antimicrox ${QT_LIBS} ${SDL2_LIBRARIES} ${EXTRA_LIBS})
 endif(UNIX)
 
 
