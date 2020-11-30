@@ -18,6 +18,8 @@
 
 
 cmake_minimum_required(VERSION 3.6)
+set(QT_REQUIRED_VERSION 5.8)
+set(SDL_REQUIRED_VERSION 2.0.6)
 project(antimicrox)
 
 if(POLICY CMP0071)
@@ -591,7 +593,7 @@ endif()
 
 # Building .deb package
 if(CPACK_GENERATOR STREQUAL "DEB")
-  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev, libsdl2-2.0-0, libqt5x11extras5, libc6")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libqt5x11extras5, libc6")
   set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
   set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.
 
