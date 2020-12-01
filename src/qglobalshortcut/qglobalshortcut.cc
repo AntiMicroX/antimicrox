@@ -12,7 +12,7 @@
     #include <QX11Info>
     #include <X11/Xlib.h>
     #include <X11/keysym.h>
-    #include <xcb/xcb.h>
+    #include <X11/Xlib-xcb.h>
 #endif
 
 QMultiHash<quint32, QGlobalShortcut *> QGlobalShortcut::shortcuts_;

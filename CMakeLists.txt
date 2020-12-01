@@ -96,7 +96,7 @@ if(UNIX)
     pkg_check_modules(SDL2 REQUIRED sdl2)
 
     if(WITH_X11)
-        find_package(X11 REQUIRED)
+        find_package(X11 REQUIRED COMPONENTS ${X11_X11_xcb_LIB})
     endif(WITH_X11)
 
     if(WITH_XTEST AND NOT WITH_X11)
@@ -467,7 +467,7 @@ if(UNIX)
     if(WITH_X11)
         LIST(APPEND EXTRA_LIBS ${X11_X11_LIB})
         LIST(APPEND EXTRA_LIBS ${X11_Xi_LIB})
-        LIST(APPEND EXTRA_LIBS X11::xcb)
+        LIST(APPEND EXTRA_LIBS ${X11_X11_xcb_LIB})
         LIST(APPEND QT_LIBS Qt5::X11Extras)
     endif(WITH_X11)
 
