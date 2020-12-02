@@ -147,6 +147,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     ui->launchAtWinStartupCheckBox->setVisible(false);
     ui->keyRepeatGroupBox->setVisible(false);
 
+    ui->quitKeysLayout->setVisible(false);
+
     bool useSingleProfileList = settings->value("TrayProfileList", false).toBool();
     if (useSingleProfileList)
     {
