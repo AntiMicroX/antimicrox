@@ -849,7 +849,6 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
-
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow,
                      &MainWindow::handleInstanceDisconnect);
     QObject::connect(mainWindow, &MainWindow::mappingUpdated, joypad_worker.data(), &InputDaemon::refreshMapping);
