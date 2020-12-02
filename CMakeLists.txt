@@ -386,14 +386,12 @@ if(UNIX)
                 src/unixcapturewindowutility.cpp
                 src/autoprofilewatcher.cpp
                 src/capturedwindowinfodialog.cpp
-                src/qglobalshortcut/qglobalshortcut.cc
                 )
         LIST(APPEND antimicrox_HEADERS src/x11extras.h
                 src/qtx11keymapper.h
                 src/unixcapturewindowutility.h
                 src/autoprofilewatcher.h
                 src/capturedwindowinfodialog.h
-                src/qglobalshortcut/qglobalshortcut.h
                 )
 
         if(WITH_XTEST)

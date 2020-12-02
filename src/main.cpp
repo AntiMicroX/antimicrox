@@ -26,7 +26,6 @@
 #include "joybuttonslot.h"
 #include "localantimicroserver.h"
 #include "mainwindow.h"
-#include "qglobalshortcut/qglobalshortcut.h"
 #include "setjoystick.h"
 #include "simplekeygrabberbutton.h"
 
@@ -850,19 +849,6 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
-#if defined(WITH_X11)
-    QString quitComboKeys = settings->value("QuitComboKeys", "").toString();
-
-    if (quitComboKeys != "")
-    {
-        qDebug() << "Loaded quit combo keys: " << quitComboKeys;
-        QGlobalShortcut *gs = new QGlobalShortcut;
-        gs->setKey(QKeySequence(quitComboKeys));
-        QObject::connect(gs, &QGlobalShortcut::activated, &antimicrox, &QApplication::quit);
-
-        QObject::connect(&antimicrox, &QApplication::aboutToQuit, gs, &QGlobalShortcut::deleteLater);
-    }
-#endif
 
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow,
                      &MainWindow::handleInstanceDisconnect);
