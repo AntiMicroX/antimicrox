@@ -10,15 +10,15 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5Test REQUIRED)
 
-set( GUIS_SRCS testaboutdialog.cpp
-    testaddeditautoprofiledialog.cpp
-    testadvancebuttondialog.cpp
-    testcalibration.cpp
-    testjoycontrolstickeditdialog.cpp
-    testbuttoneditdialog.cpp
-    testquicksetdialog.cpp
-    testqkeydisplaydialog.cpp
-    )
-add_executable( GuiTests ${GUIS_SRCS} )
+set(GUIS_SRCS testaboutdialog.cpp
+        testaddeditautoprofiledialog.cpp
+        testadvancebuttondialog.cpp
+        testcalibration.cpp
+        testjoycontrolstickeditdialog.cpp
+        testbuttoneditdialog.cpp
+        testquicksetdialog.cpp
+        testqkeydisplaydialog.cpp
+        )
+add_executable(GuiTests ${GUIS_SRCS})
 #target_link_libraries( GuiTests antilib Qt5::Test )
-ADD_TEST( NAME GuiTests COMMAND GuiTests )
+ADD_TEST(NAME GuiTests COMMAND GuiTests)
