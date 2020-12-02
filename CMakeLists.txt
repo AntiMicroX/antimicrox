@@ -31,9 +31,6 @@ if(UNIX)
     set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
 endif(UNIX)
 
-# for systems like Rapsberry Pi
-list(APPEND CMAKE_PREFIX_PATH "/usr/lib/arm-linux-gnueabihf")
-
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
