@@ -22,44 +22,44 @@ set(QT_REQUIRED_VERSION 5.8)
 set(SDL_REQUIRED_VERSION 2.0.6)
 project(antimicrox)
 
-if (POLICY CMP0071)
+if(POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
-endif ()
+endif()
 
-if (UNIX)
+if(UNIX)
     find_package(ECM REQUIRED NO_MODULE)
     set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
-endif (UNIX)
+endif(UNIX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
-if (UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+if(UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "force cmake prefix to be set for /usr" FORCE)
-endif (UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+endif(UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
 
-if (UNIX)
+if(UNIX)
     include(ECMInstallIcons)
-endif (UNIX)
+endif(UNIX)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
 
-if (COMPILER_SUPPORTS_CXX11)
-    if (NOT WIN32)
+if(COMPILER_SUPPORTS_CXX11)
+    if(NOT WIN32)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
         #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++11")
-    else ()
+    else()
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-    endif ()
-else ()
+    endif()
+else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif (COMPILER_SUPPORTS_CXX11)
+endif(COMPILER_SUPPORTS_CXX11)
 
 # The version number.
 set(ANTIMICROX_MAJOR_VERSION 3)
@@ -68,49 +68,49 @@ set(ANTIMICROX_PATCH_VERSION 3)
 
 option(WITH_TESTS "Allow tests for classes" OFF)
 
-if (WITH_TESTS)
+if(WITH_TESTS)
     message("Tests enabled")
-endif (WITH_TESTS)
+endif(WITH_TESTS)
 
-if (UNIX)
+if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
     option(APPDATA "Build project with AppData file support." ON)
-endif (UNIX)
+endif(UNIX)
 
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 option(TRANS_KEEP_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
 
 
-if (UNIX)
+if(UNIX)
     find_package(PkgConfig REQUIRED)
 
     pkg_check_modules(SDL2 REQUIRED sdl2)
 #    find_package(SDL2 REQUIRED) -> will fail on some systems
 
-    if (WITH_X11)
+    if(WITH_X11)
         find_package(X11 REQUIRED)
-    endif (WITH_X11)
+    endif(WITH_X11)
 
-    if (WITH_XTEST AND NOT WITH_X11)
+    if(WITH_XTEST AND NOT WITH_X11)
         set(WITH_XTEST OFF)
         message("Cannot use XTest without X11. Disabling XTest support.")
-    endif (WITH_XTEST AND NOT WITH_X11)
+    endif(WITH_XTEST AND NOT WITH_X11)
 
-    if (WITH_XTEST)
+    if(WITH_XTEST)
         message("XTest support allowed for simulating events.")
-    endif (WITH_XTEST)
+    endif(WITH_XTEST)
 
-    if (WITH_UINPUT)
+    if(WITH_UINPUT)
         message("uinput support allowed for simulating events.")
-    endif (WITH_UINPUT)
+    endif(WITH_UINPUT)
 
-    if (NOT WITH_XTEST AND NOT WITH_UINPUT)
+    if(NOT WITH_XTEST AND NOT WITH_UINPUT)
         message(FATAL_ERROR "No system is defined for simulating events.")
-    endif (NOT WITH_XTEST AND NOT WITH_UINPUT)
-endif (UNIX)
+    endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
+endif(UNIX)
 
 set(antimicrox_MAIN src/main.cpp)
 
@@ -342,7 +342,7 @@ set(antimicrox_HEADERS
         src/xmlconfigwriter.h
         )
 
-if (ATTACH_FAKE_CLASSES)
+if(ATTACH_FAKE_CLASSES)
     LIST(APPEND antimicrox_SOURCES
             src/fakeclasses/xbox360wireless.cpp
             )
@@ -350,7 +350,7 @@ if (ATTACH_FAKE_CLASSES)
     LIST(APPEND antimicrox_HEADERS
             src/fakeclasses/xbox360wireless.h
             )
-endif (ATTACH_FAKE_CLASSES)
+endif(ATTACH_FAKE_CLASSES)
 
 set(antimicrox_FORMS
         src/aboutdialog.ui
@@ -379,8 +379,8 @@ set(antimicrox_FORMS
 set(antimicrox_RESOURCES src/resources.qrc)
 
 # Platform dependent files.
-if (UNIX)
-    if (WITH_X11)
+if(UNIX)
+    if(WITH_X11)
         LIST(APPEND antimicrox_SOURCES src/x11extras.cpp
                 src/qtx11keymapper.cpp
                 src/unixcapturewindowutility.cpp
@@ -396,13 +396,13 @@ if (UNIX)
                 src/qglobalshortcut/qglobalshortcut.h
                 )
 
-        if (WITH_XTEST)
+        if(WITH_XTEST)
             LIST(APPEND antimicrox_SOURCES src/eventhandlers/xtesteventhandler.cpp)
             LIST(APPEND antimicrox_HEADERS src/eventhandlers/xtesteventhandler.h)
-        endif (WITH_XTEST)
-    endif (WITH_X11)
+        endif(WITH_XTEST)
+    endif(WITH_X11)
 
-    if (WITH_UINPUT)
+    if(WITH_UINPUT)
         LIST(APPEND antimicrox_SOURCES src/qtuinputkeymapper.cpp
                 src/uinputhelper.cpp
                 src/eventhandlers/uinputeventhandler.cpp
@@ -411,24 +411,24 @@ if (UNIX)
                 src/uinputhelper.h
                 src/eventhandlers/uinputeventhandler.h
                 )
-    endif (WITH_UINPUT)
-endif (UNIX)
+    endif(WITH_UINPUT)
+endif(UNIX)
 
-if (UNIX)
-    if (WITH_X11)
+if(UNIX)
+    if(WITH_X11)
         add_definitions(-DWITH_X11)
-    endif (WITH_X11)
+    endif(WITH_X11)
 
-    if (WITH_XTEST)
+    if(WITH_XTEST)
         add_definitions(-DWITH_XTEST)
-    endif (WITH_XTEST)
+    endif(WITH_XTEST)
 
-    if (WITH_UINPUT)
+    if(WITH_UINPUT)
         add_definitions(-DWITH_UINPUT)
-    endif (WITH_UINPUT)
-endif (UNIX)
+    endif(WITH_UINPUT)
+endif(UNIX)
 
-if (UNIX)
+if(UNIX)
     find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
     find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
     find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
@@ -437,9 +437,9 @@ if (UNIX)
     find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
     #find_package(Qt5Test REQUIRED)
 
-    if (WITH_X11)
+    if(WITH_X11)
         find_package(Qt5X11Extras REQUIRED)
-    endif ()
+    endif()
 
     QT5_WRAP_CPP(antimicrox_HEADERS_MOC ${antimicrox_HEADERS})
     QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
@@ -448,7 +448,7 @@ if (UNIX)
     add_subdirectory("share/antimicrox/translations")
 
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-endif (UNIX)
+endif(UNIX)
 
 
 # linker libraries
@@ -458,23 +458,23 @@ LIST(APPEND QT_LIBS Qt5::Widgets)
 LIST(APPEND QT_LIBS Qt5::Concurrent)
 LIST(APPEND QT_LIBS Qt5::Network)
 
-if (UNIX)
-    if (WITH_X11)
+if(UNIX)
+    if(WITH_X11)
         LIST(APPEND X11_LIBS ${X11_X11_LIB})
         LIST(APPEND X11_LIBS ${X11_Xi_LIB})
         LIST(APPEND X11_LIBS Qt5::X11Extras)
         LIST(APPEND X11_LIBS xcb)
-    endif (WITH_X11)
+    endif(WITH_X11)
 
-    if (WITH_XTEST)
+    if(WITH_XTEST)
         LIST(APPEND EXTRA_LIBS ${X11_XTest_LIB})
-    endif (WITH_XTEST)
+    endif(WITH_XTEST)
 
-     # necessary if we use find_package for SDL2
+     # necessary ifwe use find_package for SDL2
 #    if(NOT DEFINED SDL2_LIBRARIES)
 #        set(SDL2_LIBRARIES SDL2::SDL2)
-#    endif ()
-endif (UNIX)
+#    endif()
+endif(UNIX)
 
 
 include_directories(
@@ -485,10 +485,10 @@ include_directories(
 )
 
 
-if (UNIX)
+if(UNIX)
     # Store executable in a bin subdir. Needed here so translations can be loaded.
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
-endif (UNIX)
+endif(UNIX)
 
 
 add_executable(antimicrox
@@ -508,13 +508,13 @@ target_link_libraries(antimicrox
 
 
 # Specify out directory for final executable.
-if (UNIX)
+if(UNIX)
     install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
     #           install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
     install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
-endif (UNIX)
+endif(UNIX)
 
-if (UNIX)
+if(UNIX)
     ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
@@ -532,20 +532,20 @@ if (UNIX)
 
     # Copy current Changelog file to location that the resource file expects.
     install(FILES CHANGELOG.md DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox")
-endif (UNIX)
+endif(UNIX)
 
 # Add man page for *nix platforms.
-if (UNIX)
+if(UNIX)
     add_subdirectory(other)
 
     # Only way to force install target to be dependent on manpage.
     install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} manpage WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
 
-    if (APPDATA)
+    if(APPDATA)
         # Only way to force install target to be dependent on appdata.
         install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} appdata WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
-    endif (APPDATA)
-endif (UNIX)
+    endif(APPDATA)
+endif(UNIX)
 
 # uninstall target
 configure_file(
@@ -569,10 +569,10 @@ configure_file(
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG.md DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
-if (WITH_TESTS)
+if(WITH_TESTS)
     enable_testing()
     add_subdirectory(tests)
-endif (WITH_TESTS)
+endif(WITH_TESTS)
 
 
 #building package using CPack
@@ -592,13 +592,13 @@ set(CPACK_PACKAGE_FILE_NAME "antimicrox-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX
 
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 
-if (UNIX)
+if(UNIX)
     set(CPACK_STRIP_FILES "")
     set(CPACK_SOURCE_STRIP_FILES "")
-endif ()
+endif()
 
 # Building .deb package
-if (CPACK_GENERATOR STREQUAL "DEB")
+if(CPACK_GENERATOR STREQUAL "DEB")
     set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libqt5x11extras5, libc6")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
     set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.
@@ -616,7 +616,7 @@ It is a new fork of discontinued AntiMicro.")
     #Strip binaries from unnecessary notes, comments, etc
     add_custom_command(TARGET antimicrox POST_BUILD
             COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
-endif ()
+endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
 include(CPack)
