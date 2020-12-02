@@ -20,5 +20,5 @@ set( GUIS_SRCS testaboutdialog.cpp
     testqkeydisplaydialog.cpp
     )
 add_executable( GuiTests ${GUIS_SRCS} )
-target_link_libraries( GuiTests antilib Qt5::Test )
+#target_link_libraries( GuiTests antilib Qt5::Test )
 ADD_TEST( NAME GuiTests COMMAND GuiTests )
