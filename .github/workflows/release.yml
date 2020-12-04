@@ -3,7 +3,7 @@ name: Release_actions
 on:
   release:
     types: [published]
-    
+
 jobs:
 #Build .deb files for debian-based systems.
   build_deb:
@@ -12,8 +12,8 @@ jobs:
 
     steps:
     - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev
-    
+      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
@@ -30,17 +30,17 @@ jobs:
       with:
         files: ./build/*.deb
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        
+
   #Build universal and portable AppImage package.
   build-appimage:
     # Version of ubuntu building this appimage, it shouldn't be the latest verion of ubuntu to avoid breaking compatibility with older systems
     runs-on: ubuntu-18.04
     needs: build_deb
-    
+
     steps:
     - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext libqt5x11extras5-dev qt5-default libsdl2-2.0-0 libqt5x11extras5 zsync
-    
+      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default libsdl2-2.0-0 zsync
+
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
@@ -52,9 +52,9 @@ jobs:
         MINOR=`echo $VERSION | cut -d " " -f 2`
         PATCH=`echo $VERSION | cut -d " " -f 3`
         wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-$MAJOR.$MINOR.$PATCH-amd64.deb"
-        sudo dpkg -i `ls -1 | grep .deb` 
+        sudo dpkg -i `ls -1 | grep .deb`
 
-        
+
     - name: Prepare files to create apppimage
       run: |
         mkdir build && cd ./build

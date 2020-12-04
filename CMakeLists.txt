@@ -435,10 +435,6 @@ if(UNIX)
     find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
     #find_package(Qt5Test REQUIRED)
 
-    if(WITH_X11)
-        find_package(Qt5X11Extras REQUIRED)
-    endif()
-
     QT5_WRAP_CPP(antimicrox_HEADERS_MOC ${antimicrox_HEADERS})
     QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
     QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
@@ -460,7 +456,6 @@ if(UNIX)
     if(WITH_X11)
         LIST(APPEND X11_LIBS ${X11_X11_LIB})
         LIST(APPEND X11_LIBS ${X11_Xi_LIB})
-        LIST(APPEND X11_LIBS Qt5::X11Extras)
         LIST(APPEND X11_LIBS xcb)
     endif(WITH_X11)
 
@@ -597,7 +592,7 @@ endif()
 
 # Building .deb package
 if(CPACK_GENERATOR STREQUAL "DEB")
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libqt5x11extras5, libc6")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libc6")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
     set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.
 

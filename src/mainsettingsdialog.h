@@ -56,7 +56,6 @@ class MainSettingsDialog : public QDialog
 
     AutoProfileInfo *getAllDefaultProfile() const;
     QList<InputDevice *> *getConnectedDevices() const;
-    QStringList &getChosenQuitComboKeys() const;
 
   protected:
     void fillControllerMappingsTable();                                                       // MainSettingsMapping class
@@ -83,7 +82,6 @@ class MainSettingsDialog : public QDialog
     void selectDefaultProfileDir();                                                        // MainSettingsProfile class
     void fillGUIDComboBox();                                                               // MainSettingsProfile class
     void changeDeviceForProfileTable(int index);                                           // MainSettingsProfile class
-    void addKeyToQuitCombination(QString key);                                             // MainSettingsProfile class
     void saveAutoProfileSettings();                                                        // MainSettingsProfile class
     void processAutoProfileActiveClick(QTableWidgetItem *item);                            // MainSettingsProfile class
     void openAddAutoProfileDialog();                                                       // MainSettingsProfile class
@@ -121,7 +119,6 @@ class MainSettingsDialog : public QDialog
     void resetAutoProfSett();
     void resetMouseSett();
     void resetAdvancedSett();
-    void initializeKeysList();
 };
 
 #endif // MAINSETTINGSDIALOG_H
