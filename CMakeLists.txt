@@ -456,7 +456,6 @@ if(UNIX)
     if(WITH_X11)
         LIST(APPEND X11_LIBS ${X11_X11_LIB})
         LIST(APPEND X11_LIBS ${X11_Xi_LIB})
-        LIST(APPEND X11_LIBS xcb)
     endif(WITH_X11)
 
     if(WITH_XTEST)
