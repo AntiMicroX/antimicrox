@@ -3228,14 +3228,9 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
 
     while (iter.hasNext())
     {
-        auto el = iter.next();
-        qDebug() << "AssignedSLot mode: " << el->getSlotMode();
-    }
+        auto *slot = iter.next();
 
-    while (iter.hasNext())
-    {
-        JoyButtonSlot *slot = iter.next();
-
+        qDebug() << "AssignedSLot mode: " << slot->getSlotMode();
         qDebug() << "cleared assigned slot's mode: " << slot->getSlotMode();
         qDebug() << "list of mix slots is a null pointer? " << ((slot->getMixSlots() == nullptr) ? "yes" : "no");
 
@@ -3304,6 +3299,7 @@ void JoyButton::removeAssignedSlot(int index)
 
 void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 {
+    qWarning() << "RECEIVED";
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     QWriteLocker tempAssignLocker(&assignmentsLock);
@@ -3314,7 +3310,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     clearAssignedSlots(clearSignalEmit);
     clearQueues();
 
-    qDebug() << "all current slots and previous slots ale cleared";
+    qWarning() << "all current slots and previous slots ale cleared";
 }
 
 void JoyButton::eventReset()
