@@ -610,8 +610,8 @@ It is a new fork of discontinued AntiMicro.")
 
     #Compress changelog and save it as share/doc/xournalpp/changelog.Debian.gz
     add_custom_command(TARGET package_docummentation PRE_BUILD
-            COMMAND gzip -c -9 -n "${PROJECT_SOURCE_DIR}/CHANGELOG.md" > "changelog.Debian.gz" VERBATIM)
-    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/changelog.Debian.gz" DESTINATION "share/doc/antimicrox/")
+            COMMAND gzip -c -9 -n "${PROJECT_SOURCE_DIR}/CHANGELOG.md" > "changelog.gz" VERBATIM)
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/changelog.gz" DESTINATION "share/doc/antimicrox/")
 
     #Strip binaries from unnecessary notes, comments, etc
     add_custom_command(TARGET antimicrox POST_BUILD
