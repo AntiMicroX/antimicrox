@@ -10,11 +10,11 @@
     <x>0</x>
     <y>0</y>
     <width>555</width>
-    <height>844</height>
+    <height>664</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+   <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -341,7 +341,7 @@ first launches.</string>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>100</height>
+             <height>10</height>
             </size>
            </property>
           </spacer>
