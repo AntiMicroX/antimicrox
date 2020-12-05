@@ -16,25 +16,27 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# TODO
+set(SDL2_DIR "C:/Users/HP/Desktop/prog/antimicrox/SDL2-2.0.12/i686-w64-mingw32")
 
 cmake_minimum_required(VERSION 3.6)
 set(QT_REQUIRED_VERSION 5.8)
 set(SDL_REQUIRED_VERSION 2.0.6)
 project(antimicrox)
 
-if(POLICY CMP0071)
-    cmake_policy(SET CMP0071 NEW)
-endif()
+# already default?
+# if(POLICY CMP0071)
+#     cmake_policy(SET CMP0071 NEW)
+# endif()
 
-if(UNIX)
-    find_package(ECM REQUIRED NO_MODULE)
-    set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
-endif(UNIX)
+# if(UNIX)
+#     find_package(ECM REQUIRED NO_MODULE)
+#     set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
+# endif(UNIX)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 
 if(UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "force cmake prefix to be set for /usr" FORCE)
@@ -49,14 +51,8 @@ endif(UNIX)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
-
 if(COMPILER_SUPPORTS_CXX11)
-    if(NOT WIN32)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-        #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++11")
-    else()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-    endif()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif(COMPILER_SUPPORTS_CXX11)
@@ -85,9 +81,9 @@ option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests fun
 
 
 if(UNIX)
-    find_package(PkgConfig REQUIRED)
+    # find_package(PkgConfig REQUIRED)
 
-    pkg_check_modules(SDL2 REQUIRED sdl2)
+    # pkg_check_modules(SDL2 REQUIRED sdl2)
 #    find_package(SDL2 REQUIRED) -> will fail on some systems
 
     if(WITH_X11)
@@ -111,6 +107,38 @@ if(UNIX)
         message(FATAL_ERROR "No system is defined for simulating events.")
     endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
 endif(UNIX)
+
+if(WIN32)
+    option(PORTABLE_PACKAGE "Create portable Windows package" OFF)
+    #option(TARGET_ARCH "Choose which version of some libraries to use. (x86, x86_64)" "x86")
+    # option(WITH_VMULTI "Compile with support for vmulti." OFF)
+    option(PERFORM_SIGNING "Sign final executable." OFF)
+
+    if(PORTABLE_PACKAGE)
+        message("Portable package mode build")
+
+        add_definitions(-DWIN_PORTABLE_PACKAGE)
+
+        # Only way to force install target to be dependent on createprofiledir.
+        add_custom_target(createprofiledir)
+        add_custom_command(TARGET createprofiledir PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/profiles"
+        )
+        install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} createprofiledir WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
+        install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/profiles" DESTINATION ${CMAKE_INSTALL_PREFIX})
+    endif(PORTABLE_PACKAGE)
+
+    # Find target architecture based on the compiler.
+    if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(TARGET_ARCH "x86_64")
+    else()
+        set(TARGET_ARCH "x86")
+    endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+
+    # if(WITH_VMULTI)
+    #     add_definitions(-DWITH_VMULTI)
+    # endif(WITH_VMULTI)
+endif(WIN32)
 
 set(antimicrox_MAIN src/main.cpp)
 
@@ -378,7 +406,10 @@ set(antimicrox_FORMS
 
 set(antimicrox_RESOURCES src/resources.qrc)
 
-# Platform dependent files.
+###############################
+# PLATFORM-DEPENDENT FILES
+###############################
+
 if(UNIX)
     if(WITH_X11)
         LIST(APPEND antimicrox_SOURCES src/x11extras.cpp
@@ -412,7 +443,45 @@ if(UNIX)
                 src/eventhandlers/uinputeventhandler.h
                 )
     endif(WITH_UINPUT)
+
+elseif(WIN32)
+    LIST(APPEND antimicro_SOURCES
+        src/winextras.cpp
+         src/qtwinkeymapper.cpp
+        #  src/winappprofiletimerdialog.cpp
+        #  src/capturedwindowinfodialog.cpp
+         src/eventhandlers/winsendinputeventhandler.cpp
+         src/joykeyrepeathelper.cpp
+    )
+    LIST(APPEND antimicro_HEADERS
+        src/winextras.h
+        src/qtwinkeymapper.h
+        # src/winappprofiletimerdialog.h
+        # src/capturedwindowinfodialog.h
+        src/eventhandlers/winsendinputeventhandler.h
+        src/joykeyrepeathelper.h
+    )
+    # LIST(APPEND antimicro_FORMS src/winappprofiletimerdialog.ui)
+    # Add Windows specific resource file used for application icons.
+    # LIST(APPEND antimicro_RESOURCES src/resources_windows.qrc)
+
+#     if(WITH_VMULTI)
+#         list(APPEND antimicro_SOURCES src/qtvmultikeymapper.cpp
+#              src/eventhandlers/winvmultieventhandler.cpp
+# #            vmulti/client/client.c
+#         )
+#         list(APPEND antimicro_HEADERS src/qtvmultikeymapper.h
+#              src/eventhandlers/winvmultieventhandler.h
+#         )
+#     endif(WITH_VMULTI)
+
 endif(UNIX)
+
+###############################
+# DEFINITIONS
+###############################
+
+add_definitions(-DUSE_SDL_2)
 
 if(UNIX)
     if(WITH_X11)
@@ -427,6 +496,10 @@ if(UNIX)
         add_definitions(-DWITH_UINPUT)
     endif(WITH_UINPUT)
 endif(UNIX)
+
+###############################
+# PACKAGES
+###############################
 
 if(UNIX)
     find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
@@ -448,10 +521,46 @@ if(UNIX)
     add_subdirectory("share/antimicrox/translations")
 
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+elseif(WIN32)
+    find_package(Qt5Widgets REQUIRED)
+    find_package(Qt5Core REQUIRED)
+    find_package(Qt5Gui REQUIRED)
+    find_package(Qt5Network REQUIRED)
+    find_package(Qt5LinguistTools REQUIRED)
+    find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
+
+    QT5_WRAP_UI(antimicro_FORMS_HEADERS ${antimicro_FORMS})
+    QT5_ADD_RESOURCES(antimicro_RESOURCES_RCC ${antimicro_RESOURCES})
+    add_subdirectory("share/antimicrox/translations")
+
+    include_directories(${Qt5Widgets_INCLUDE_DIRS})
+    add_definitions(${Qt5Widgets_DEFINITIONS})
+    include_directories(${Qt5Core_INCLUDE_DIRS})
+    add_definitions(${Qt5Core_DEFINITIONS})
+    include_directories(${Qt5Gui_INCLUDE_DIRS})
+    add_definitions(${Qt5Gui_DEFINITIONS})
+    include_directories(${Qt5Network_INCLUDE_DIRS})
+    add_definitions(${Qt5Network_DEFINITIONS})
+
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+    # Add compiler flags for building executables (-fPIE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+
+    # LIST(APPEND LIBS ${Qt5Widgets_LIBRARIES}
+    #     ${Qt5Core_LIBRARIES}
+    #     ${Qt5Gui_LIBRARIES}
+    #     ${Qt5Network_LIBRARIES}
+    # )
 endif(UNIX)
 
+find_package(SDL2 REQUIRED)
 
-# linker libraries
+###############################
+# LINKER LIBRARIES
+###############################
+
 LIST(APPEND QT_LIBS Qt5::Core)
 LIST(APPEND QT_LIBS Qt5::Gui)
 LIST(APPEND QT_LIBS Qt5::Widgets)
@@ -474,44 +583,78 @@ if(UNIX)
 #    if(NOT DEFINED SDL2_LIBRARIES)
 #        set(SDL2_LIBRARIES SDL2::SDL2)
 #    endif()
-endif(UNIX)
+elseif (WIN32)
+    # include_directories(${SDL2_INCLUDE_DIRS})
+    message("SDL2 include dir: ${SDL2_INCLUDE_DIRS}")
+    # list(APPEND LIBS ${SDL2_LIBRARIES})
 
+    add_definitions(-DUNICODE -D_UNICODE)
+
+    list(APPEND WIN_LIBS "psapi")
+
+    if(WITH_VMULTI)
+        include_directories("${PROJECT_SOURCE_DIR}/vmulti/inc")
+        list(APPEND WIN_LIBS "hid" "setupapi")
+    endif(WITH_VMULTI)
+endif(UNIX)
 
 include_directories(
         ${CMAKE_CURRENT_BINARY_DIR}
         "${CMAKE_CURRENT_BINARY_DIR}/src"
         ${PROJECT_SOURCE_DIR}
         "${PROJECT_SOURCE_DIR}/src"
+        ${SDL2_INCLUDE_DIRS}
 )
-
 
 if(UNIX)
     # Store executable in a bin subdir. Needed here so translations can be loaded.
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 endif(UNIX)
 
+###############################
+# COMPILE & LINK
+###############################
 
-add_executable(antimicrox
+if(UNIX)
+    add_executable(antimicrox
+            ${antimicrox_MAIN}
+            ${antimicrox_HEADERS_MOC}
+            ${antimicrox_SOURCES}
+            ${antimicrox_FORMS_HEADERS}
+            ${antimicrox_RESOURCES_RCC}
+            )
+elseif(WIN32)
+    # The WIN32 is required to specify a GUI application.
+    add_executable(antimicrox WIN32
         ${antimicrox_MAIN}
         ${antimicrox_HEADERS_MOC}
         ${antimicrox_SOURCES}
         ${antimicrox_FORMS_HEADERS}
         ${antimicrox_RESOURCES_RCC}
-        )
+        # TODO create this with windows .ico icon
+        # src/antimicrox.rc
+    )
+endif(UNIX)
 
 target_link_libraries(antimicrox
         ${QT_LIBS}
         ${X11_LIBS}
+        ${WIN_LIBS}
         ${SDL2_LIBRARIES}
         ${EXTRA_LIBS}
         )
 
+###############################
+# INSTALL
+###############################
 
 # Specify out directory for final executable.
 if(UNIX)
     install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
     #           install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
     install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
+elseif(WIN32)
+	install(TARGETS antimicrox RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif(UNIX)
 
 if(UNIX)
@@ -569,15 +712,195 @@ configure_file(
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG.md DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
+###############################
+# WINDOWS PACKAGING WARNING UNTESTED
+###############################
+
+if(WIN32)
+    #if(TARGET_ARCH STREQUAL "x86_64")
+    #    # Copy SDL2.dll to find installation directory.
+    #    add_custom_target(copy_sdl_dll
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #    )
+    #else()
+    #    # Copy SDL2.dll to find installation directory.
+    #    add_custom_target(copy_sdl_dll
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    #    )
+    #endif(TARGET_ARCH STREQUAL "x86_64")
+
+    add_custom_target(copy_sdl_dll
+        COMMAND ${CMAKE_COMMAND} -E copy "${SDL2_DLL_LOCATION_DIR}/SDL2.dll" ${CMAKE_CURRENT_BINARY_DIR}
+    )
+
+
+    # Obtain location of Qt5 DLL files and assign them to a list.
+    # This list will only be used for Release builds.
+    get_target_property(QTCORE_DLL_LOCATION Qt5::Core LOCATION)
+    string(REPLACE "/Qt5Core.dll" "" QTCORE_DLL_LOCATION ${QTCORE_DLL_LOCATION})
+    set(EXTRA_QT_DLL_FILES
+        "${QTCORE_DLL_LOCATION}/Qt5Core.dll"
+        "${QTCORE_DLL_LOCATION}/Qt5Gui.dll"
+        "${QTCORE_DLL_LOCATION}/Qt5Network.dll"
+        "${QTCORE_DLL_LOCATION}/Qt5Widgets.dll"
+    )
+
+    find_library(EXTRA_DLLS_PTHREAD NAMES "libwinpthread-1.dll" )
+    find_library(EXTRA_DLLS_LIBCPP NAMES "libstdc++-6.dll" )
+
+    # Don't think find_library will handle versioned DLLS, so we'll try each one until we find something
+    foreach( ICU_VER 51 52 53 54 55 56 57 58 59 )
+      find_library(ICU_DT_DLL NAMES "icudt${ICU_VER}.dll")
+      find_library(ICU_IN_DLL NAMES "icuin${ICU_VER}.dll")
+      find_library(ICU_UC_DLL NAMES "icuuc${ICU_VER}.dll")
+    endforeach( ICU_VER )
+
+    list(APPEND EXTRA_DLL_FILES
+      ${EXTRA_QT_DLL_FILES}
+      ${EXTRA_DLLS_PTHREAD}
+      ${EXTRA_DLLS_LIBCPP}
+      ${ICU_DT_DLL}
+      ${ICU_IN_DLL}
+      ${ICU_UC_DLL}
+      )
+
+    # Copy relevant DLL files depending on the chosen architecture.
+    if(TARGET_ARCH STREQUAL "x86_64")
+      find_library( GCC_DLL "libgcc_s_seh-1.dll" )
+
+      list(APPEND EXTRA_DLL_FILES
+        ${GCC_DLL}
+        "${SDL2_BASE_DIR}/x86_64-w64-mingw32/bin/SDL2.dll"
+        )
+    else()
+      find_library( GCC_DLL "libgcc_s_dw2-1.dll" )
+
+      list(APPEND EXTRA_DLL_FILES
+	${GCC_DLL}
+        "${SDL2_BASE_DIR}/i686-w64-mingw32/bin/SDL2.dll"
+        )
+    endif(TARGET_ARCH STREQUAL "x86_64")
+
+    # Not a DLL file, but needs to travel with SDL2.DLL
+    list(APPEND EXTRA_DLL_FILES "${SDL2_BASE_DIR}/README-SDL.txt")
+
+    # Target to copy Qt DLL files.
+    add_custom_target(install_extra_dlls)
+
+    # Create destination directory if it does not exist.
+    add_custom_command(TARGET install_extra_dlls PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_INSTALL_PREFIX}/"
+    )
+
+    foreach(CURRENT_DLL_FILE ${EXTRA_DLL_FILES})
+        add_custom_command(TARGET install_extra_dlls PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy ${CURRENT_DLL_FILE} "${CMAKE_INSTALL_PREFIX}/"
+        )
+    endforeach()
+
+    # Target to copy qwindows.dll platforms file.
+    add_custom_target(install_platforms_dll)
+    add_custom_command(TARGET install_platforms_dll PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy "${QTCORE_DLL_LOCATION}/../plugins/platforms/qwindows.dll"
+        "${CMAKE_INSTALL_PREFIX}/platforms/qwindows.dll"
+    )
+
+    # Combine the two targets into a single target that will be used
+    # while bundling the program.
+    add_custom_target(install_dlls)
+    add_dependencies(install_dlls
+        install_extra_dlls
+        install_platforms_dll
+    )
+
+    # Copy bundled Qt translation files.
+    SET(QT_TRANSLATION_PATH "${QTCORE_DLL_LOCATION}/../translations/" )
+    file(GLOB QT_TRANSLATION_FILES "${QT_TRANSLATION_PATH}qt_[^help]*.qm")
+    add_custom_target(copy_qt_translations)
+    foreach(CURRENT_QM_FILE ${QT_TRANSLATION_FILES})
+        set(CURRENT_QM_FILENAME "")
+        string(REPLACE ${QT_TRANSLATION_PATH} "" CURRENT_QM_FILENAME ${CURRENT_QM_FILE})
+        add_custom_command(TARGET copy_qt_translations PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy "${CURRENT_QM_FILE}"
+            "${CMAKE_INSTALL_PREFIX}/share/qt/translations/${CURRENT_QM_FILENAME}"
+        )
+    endforeach()
+
+    # Sign final executable
+    if(PERFORM_SIGNING)
+      install(CODE "execute_process(COMMAND \"C:/Program Files (x86)/Windows Kits/8.1/bin/x64/signtool.exe\"
+              sign /v /a /s ROOT /n antimicrox ${CMAKE_INSTALL_PREFIX}/antimicrox.exe)")
+    endif(PERFORM_SIGNING)
+
+    # Set variables needed for MSI building.
+    set(MSIFOLDER "${PROJECT_SOURCE_DIR}/windows")
+    set(WIXENV $ENV{WIX})
+
+    # Use a different file for each architecture due
+    # to some DLL differences.
+    if(TARGET_ARCH STREQUAL "x86_64")
+        set(WIXWXS "${MSIFOLDER}/antimicro_64.wxs")
+    else()
+        set(WIXWXS "${MSIFOLDER}/antimicrox.wxs")
+    endif(TARGET_ARCH STREQUAL "x86_64")
+
+    set(WIXOBJ "${MSIFOLDER}/antimicrox.wixobj")
+
+    # Use version number in output file name.
+    set(MSIFILENAME "${ANTIMICRO_MAJOR_VERSION}.${ANTIMICRO_MINOR_VERSION}")
+    if(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
+        set(MSIFILENAME "${MSIFILENAME}.${ANTIMICRO_PATCH_VERSION}")
+    endif(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
+
+    # Change output file depending on the target architecture.
+    if(TARGET_ARCH STREQUAL "x86_64")
+        set(WIXMSI "${MSIFOLDER}/antimicrox-${MSIFILENAME}-win64.msi")
+    else()
+        set(WIXMSI "${MSIFOLDER}/antimicrox-${MSIFILENAME}-win32.msi")
+    endif(TARGET_ARCH STREQUAL "x86_64")
+
+    if(NOT WIXENV)
+        # Display message when WIX is not set up. No extra target will be added.
+        message("MSI package building not possible: WIX environment variable not defined.")
+    else()
+        # Target to build .msi installer file.
+        add_custom_target(buildmsi)
+
+        # Change arch value passed to candle.exe
+        set(WIXARCH "")
+        if(TARGET_ARCH STREQUAL "x86_64")
+            set(WIXARCH "x64")
+        else()
+            set(WIXARCH "x86")
+        endif(TARGET_ARCH STREQUAL "x86_64")
+
+        add_custom_command(TARGET buildmsi PRE_BUILD
+            COMMAND "${WIXENV}\\bin\\candle.exe" ${WIXWXS} -out ${WIXOBJ} -sw1113 -arch ${WIXARCH} &&
+            "${WIXENV}\\bin\\light.exe" ${WIXOBJ} -out ${WIXMSI} -sw1076 -spdb
+        )
+        set(WIXFILES ${WIXOBJ} ${WIXMSI})
+        set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${WIXFILES}")
+    endif(NOT WIXENV)
+
+    # Copy extra files to include in the final archive.
+    install(FILES gpl.txt Changelog README.md ProfileTips.md
+            DESTINATION ${CMAKE_INSTALL_PREFIX})
+endif(WIN32)
+
+###############################
+# TESTING
+###############################
+
 if(WITH_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif(WITH_TESTS)
 
+###############################
+# CPACK BUILD
+###############################
 
-#building package using CPack
 include(InstallRequiredSystemLibraries)
-
 
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Program used to map keyboard keys and mouse controls to a gamepad.")
 
@@ -603,7 +926,7 @@ if(CPACK_GENERATOR STREQUAL "DEB")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
     set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.
 
-It is a new fork of discontinued AntiMicro.")
+It is a new fork of discontinued antimicrox.")
 
     message("Preparing documentation for DEB package")
     add_custom_target(package_docummentation ALL)

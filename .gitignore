@@ -15,3 +15,6 @@ src/CHANGELOG.md
 # IDE- related files
 .vscode
 
+# Windows SDL
+SDL2-*/
+CMakeLists.txt.user
