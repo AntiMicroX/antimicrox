@@ -62,7 +62,10 @@
     #ifdef WITH_X11
         #include "x11extras.h"
     #endif
+#endif
 
+#ifdef Q_OS_WIN
+    #include "winextras.h"
 #endif
 
 static void termSignalTermHandler(int signal)
@@ -144,6 +147,27 @@ void importLegacySettingsIfExist()
             }
         }
     }
+}
+
+void handleTerminationSignals()
+{
+#ifndef Q_OS_WIN
+    // Have program handle SIGTERM
+    struct sigaction termaction;
+    termaction.sa_handler = &termSignalTermHandler;
+    sigemptyset(&termaction.sa_mask);
+    termaction.sa_flags = 0;
+
+    sigaction(SIGTERM, &termaction, nullptr);
+
+    // Have program handle SIGINT
+    struct sigaction termint;
+    termint.sa_handler = &termSignalIntHandler;
+    sigemptyset(&termint.sa_mask);
+    termint.sa_flags = 0;
+
+    sigaction(SIGINT, &termint, nullptr);
+#endif
 }
 
 int main(int argc, char *argv[])
@@ -637,21 +661,7 @@ int main(int argc, char *argv[])
 
     antimicrox.installTranslator(&myappTranslator);
 
-    // Have program handle SIGTERM
-    struct sigaction termaction;
-    termaction.sa_handler = &termSignalTermHandler;
-    sigemptyset(&termaction.sa_mask);
-    termaction.sa_flags = 0;
-
-    sigaction(SIGTERM, &termaction, nullptr);
-
-    // Have program handle SIGINT
-    struct sigaction termint;
-    termint.sa_handler = &termSignalIntHandler;
-    sigemptyset(&termint.sa_mask);
-    termint.sa_flags = 0;
-
-    sigaction(SIGINT, &termint, nullptr);
+    handleTerminationSignals();
 
     if (cmdutility.shouldListControllers())
     {

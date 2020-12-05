@@ -443,7 +443,7 @@ if(UNIX)
     endif(WITH_UINPUT)
 
 elseif(WIN32)
-    LIST(APPEND antimicro_SOURCES
+    LIST(APPEND antimicrox_SOURCES
         src/winextras.cpp
          src/qtwinkeymapper.cpp
         #  src/winappprofiletimerdialog.cpp
@@ -451,7 +451,7 @@ elseif(WIN32)
          src/eventhandlers/winsendinputeventhandler.cpp
          src/joykeyrepeathelper.cpp
     )
-    LIST(APPEND antimicro_HEADERS
+    LIST(APPEND antimicrox_HEADERS
         src/winextras.h
         src/qtwinkeymapper.h
         # src/winappprofiletimerdialog.h
@@ -459,16 +459,16 @@ elseif(WIN32)
         src/eventhandlers/winsendinputeventhandler.h
         src/joykeyrepeathelper.h
     )
-    # LIST(APPEND antimicro_FORMS src/winappprofiletimerdialog.ui)
+    # LIST(APPEND antimicrox_FORMS src/winappprofiletimerdialog.ui)
     # Add Windows specific resource file used for application icons.
-    # LIST(APPEND antimicro_RESOURCES src/resources_windows.qrc)
+    # LIST(APPEND antimicrox_RESOURCES src/resources_windows.qrc)
 
 #     if(WITH_VMULTI)
-#         list(APPEND antimicro_SOURCES src/qtvmultikeymapper.cpp
+#         list(APPEND antimicrox_SOURCES src/qtvmultikeymapper.cpp
 #              src/eventhandlers/winvmultieventhandler.cpp
 # #            vmulti/client/client.c
 #         )
-#         list(APPEND antimicro_HEADERS src/qtvmultikeymapper.h
+#         list(APPEND antimicrox_HEADERS src/qtvmultikeymapper.h
 #              src/eventhandlers/winvmultieventhandler.h
 #         )
 #     endif(WITH_VMULTI)
@@ -524,8 +524,8 @@ elseif(WIN32)
     find_package(Qt5LinguistTools REQUIRED)
     find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
 
-    QT5_WRAP_UI(antimicro_FORMS_HEADERS ${antimicro_FORMS})
-    QT5_ADD_RESOURCES(antimicro_RESOURCES_RCC ${antimicro_RESOURCES})
+    QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+    QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
     add_subdirectory("share/antimicrox/translations")
 
     include_directories(${Qt5Widgets_INCLUDE_DIRS})
@@ -831,7 +831,7 @@ if(WIN32)
     # Use a different file for each architecture due
     # to some DLL differences.
     if(TARGET_ARCH STREQUAL "x86_64")
-        set(WIXWXS "${MSIFOLDER}/antimicro_64.wxs")
+        set(WIXWXS "${MSIFOLDER}/antimicrox_64.wxs")
     else()
         set(WIXWXS "${MSIFOLDER}/antimicrox.wxs")
     endif(TARGET_ARCH STREQUAL "x86_64")
@@ -839,10 +839,10 @@ if(WIN32)
     set(WIXOBJ "${MSIFOLDER}/antimicrox.wixobj")
 
     # Use version number in output file name.
-    set(MSIFILENAME "${ANTIMICRO_MAJOR_VERSION}.${ANTIMICRO_MINOR_VERSION}")
-    if(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
-        set(MSIFILENAME "${MSIFILENAME}.${ANTIMICRO_PATCH_VERSION}")
-    endif(ANTIMICRO_PATCH_VERSION AND NOT ANTIMICRO_PATCH_VERSION EQUAL 0)
+    set(MSIFILENAME "${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX_MINOR_VERSION}")
+    if(ANTIMICROX_PATCH_VERSION AND NOT ANTIMICROX_PATCH_VERSION EQUAL 0)
+        set(MSIFILENAME "${MSIFILENAME}.${ANTIMICROX_PATCH_VERSION}")
+    endif(ANTIMICROX_PATCH_VERSION AND NOT ANTIMICROX_PATCH_VERSION EQUAL 0)
 
     # Change output file depending on the target architecture.
     if(TARGET_ARCH STREQUAL "x86_64")
