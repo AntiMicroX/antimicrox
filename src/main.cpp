@@ -126,20 +126,18 @@ void importLegacySettingsIfExist()
         const QFileInfo fileToCopy = legacyConfigExists ? legacyConfig : legacyAntimicroConfig;
         const bool copySuccess = QFile::copy(fileToCopy.canonicalFilePath(), PadderCommon::configFilePath());
         qDebug() << "Legacy settings found";
-        const QString successMessage = QString(
-                "Your original settings (previously stored in %1) "
-                "have been copied to "
-                "~/.config/antimicrox to ensure consistent naming across "
-                "entire project.\nIf you want you can "
-                "delete the original directory or leave it as it is."
-            ).arg(fileToCopy.canonicalFilePath());
-        const QString errorMessage = QString(
-                "Some problem with settings migration occurred.\nOriginal "
-                "configs are stored in %1 "
-                "but their new location is ~/.config/antimicrox.\n"
-                "You can migrate manually by renaming old directory and "
-                "renaming file to antimicrox_settings.ini."
-            ).arg(fileToCopy.canonicalFilePath());
+        const QString successMessage = QString("Your original settings (previously stored in %1) "
+                                               "have been copied to "
+                                               "~/.config/antimicrox to ensure consistent naming across "
+                                               "entire project.\nIf you want you can "
+                                               "delete the original directory or leave it as it is.")
+                                           .arg(fileToCopy.canonicalFilePath());
+        const QString errorMessage = QString("Some problem with settings migration occurred.\nOriginal "
+                                             "configs are stored in %1 "
+                                             "but their new location is ~/.config/antimicrox.\n"
+                                             "You can migrate manually by renaming old directory and "
+                                             "renaming file to antimicrox_settings.ini.")
+                                         .arg(fileToCopy.canonicalFilePath());
 
         QMessageBox msgBox;
         if (copySuccess)
@@ -148,9 +146,8 @@ void importLegacySettingsIfExist()
             msgBox.setText(successMessage);
         } else
         {
-            qDebug() << "Problem with importing settings from: "
-                << fileToCopy.canonicalFilePath()
-                << " to: " << PadderCommon::configFilePath();
+            qDebug() << "Problem with importing settings from: " << fileToCopy.canonicalFilePath()
+                     << " to: " << PadderCommon::configFilePath();
             msgBox.setText(errorMessage);
         }
         msgBox.exec();
