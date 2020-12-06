@@ -105,44 +105,52 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 }
 
 /**
- * @brief Function used for copying settings used by previous revisions of
- * antimicrox to provide backward compatibility
- * TODO remove it later
+ * @brief Function used for copying settings used by antimicro and
+ * previous revisions of antimicrox to provide backward compatibility
  */
 void importLegacySettingsIfExist()
 {
     qDebug() << "Importing settings";
-    QFileInfo current(PadderCommon::configFilePath());
-    QFileInfo legacy(PadderCommon::configLegacyFilePath());
-    if (legacy.exists() && legacy.isFile())
+    const QFileInfo config(PadderCommon::configFilePath());
+    const bool configExists = config.exists() && config.isFile();
+    // 'antimicroX'
+    const QFileInfo legacyConfig(PadderCommon::configLegacyFilePath());
+    const bool legacyConfigExists = legacyConfig.exists() && legacyConfig.isFile();
+    // 'antimicro'
+    const QFileInfo legacyAntimicroConfig(PadderCommon::configAntimicroLegacyFilePath());
+    const bool legacyAntimicroConfigExists = legacyAntimicroConfig.exists() && legacyAntimicroConfig.isFile();
+
+    const bool requireMigration = !configExists && (legacyConfigExists || legacyAntimicroConfigExists);
+    if (requireMigration)
     {
+        const QFileInfo fileToCopy = legacyConfigExists ? legacyConfig : legacyAntimicroConfig;
+        const bool copySuccess = QFile::copy(fileToCopy.canonicalFilePath(), PadderCommon::configFilePath());
         qDebug() << "Legacy settings found";
-        if (!current.exists())
+        const QString successMessage = QString("Your original settings (previously stored in %1) "
+                                               "have been copied to "
+                                               "~/.config/antimicrox to ensure consistent naming across "
+                                               "entire project.\nIf you want you can "
+                                               "delete the original directory or leave it as it is.")
+                                           .arg(fileToCopy.canonicalFilePath());
+        const QString errorMessage = QString("Some problem with settings migration occurred.\nOriginal "
+                                             "configs are stored in %1 "
+                                             "but their new location is ~/.config/antimicrox.\n"
+                                             "You can migrate manually by renaming old directory and "
+                                             "renaming file to antimicrox_settings.ini.")
+                                         .arg(fileToCopy.canonicalFilePath());
+
+        QMessageBox msgBox;
+        if (copySuccess)
         {
-            if (QFile::copy(PadderCommon::configLegacyFilePath(), PadderCommon::configFilePath()))
-            {
-                qDebug() << "Legacy antimicroX settings copied";
-                QMessageBox msgBox;
-                msgBox.setText("Your original settings (previously stored in "
-                               "~/.config/antimicroX) have been copied to "
-                               "~/.config/antimicrox to ensure consistent naming across "
-                               "entire project, if you want you can "
-                               "delete original directory or leave it as it is");
-                msgBox.exec();
-            } else
-            {
-                qDebug() << "Problem with importing antimicroX settings from: " << PadderCommon::configLegacyFilePath()
-                         << " to: " << PadderCommon::configFilePath();
-                QMessageBox msgBox;
-                msgBox.setText("Some problem with settings migration occurred.\nOriginal "
-                               "configs are stored in ~/.config/antimicroX, "
-                               "but their new location is ~/.config/antimicrox\nYou can "
-                               "do it manually by renaming old directory and "
-                               "renaming file antimicroX_settings.ini to "
-                               "antimicrox_settings.ini");
-                msgBox.exec();
-            }
+            qDebug() << "Legacy settings copied";
+            msgBox.setText(successMessage);
+        } else
+        {
+            qWarning() << "Problem with importing settings from: " << fileToCopy.canonicalFilePath()
+                       << " to: " << PadderCommon::configFilePath();
+            msgBox.setText(errorMessage);
         }
+        msgBox.exec();
     }
 }
 
