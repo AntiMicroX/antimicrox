@@ -50,6 +50,15 @@ inline QString configLegacyFilePath()
     return QString(configPath).append("/").append("antimicroX_settings.ini");
 }
 
+inline QString configAntimicroLegacyFilePath()
+{
+    QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty())
+                             ? QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro"
+                             : QDir::homePath() + "/.config/antimicro";
+
+    return QString(configPath).append("/").append("antimicro_settings.ini");
+}
+
 const int LATESTCONFIGFILEVERSION = 19;
 // Specify the last known profile version that requires a migration
 // to be performed in order to be compatible with the latest version.
