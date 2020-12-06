@@ -127,6 +127,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     }
 
     ui->launchAtWinStartupCheckBox->setVisible(false);
+
+    // TODO #115
     ui->keyRepeatGroupBox->setVisible(false);
 
     bool useSingleProfileList = settings->value("TrayProfileList", false).toBool();
