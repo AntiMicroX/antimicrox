@@ -146,7 +146,7 @@ void importLegacySettingsIfExist()
             msgBox.setText(successMessage);
         } else
         {
-            qDebug() << "Problem with importing settings from: " << fileToCopy.canonicalFilePath()
+            qWarning() << "Problem with importing settings from: " << fileToCopy.canonicalFilePath()
                      << " to: " << PadderCommon::configFilePath();
             msgBox.setText(errorMessage);
         }
