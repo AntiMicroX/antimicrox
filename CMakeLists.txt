@@ -24,15 +24,10 @@ set(QT_REQUIRED_VERSION 5.8)
 set(SDL_REQUIRED_VERSION 2.0.6)
 project(antimicrox)
 
-# already default?
-# if(POLICY CMP0071)
-#     cmake_policy(SET CMP0071 NEW)
-# endif()
-
-# if(UNIX)
-#     find_package(ECM REQUIRED NO_MODULE)
-#     set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
-# endif(UNIX)
+if(UNIX)
+    find_package(ECM REQUIRED NO_MODULE)
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
+endif(UNIX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/")
 
@@ -81,11 +76,6 @@ option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests fun
 
 
 if(UNIX)
-    # find_package(PkgConfig REQUIRED)
-
-    # pkg_check_modules(SDL2 REQUIRED sdl2)
-#    find_package(SDL2 REQUIRED) -> will fail on some systems
-
     if(WITH_X11)
         find_package(X11 REQUIRED)
     endif(WITH_X11)

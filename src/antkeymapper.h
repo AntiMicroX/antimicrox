@@ -28,11 +28,11 @@
     #include "qtvmultikeymapper.h"
   #endif
 #else
-  #ifdef(WITH_XTEST)
+  #ifdef WITH_XTEST
       #include "qtx11keymapper.h"
   #endif
 
-  #ifdef(WITH_UINPUT)
+  #ifdef WITH_UINPUT
       #include "qtuinputkeymapper.h"
   #endif
 #endif
