@@ -45,6 +45,7 @@ or
 ```bash
 cd antimicrox
 mkdir build && cd build
+cmake ..
 cmake --build .
 sudo cmake --install .
 ```
