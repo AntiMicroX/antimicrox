@@ -18,4 +18,18 @@ foreach(file ${files})
   else(IS_SYMLINK "$ENV{DESTDIR}${file}" OR EXISTS "$ENV{DESTDIR}${file}")
     message(STATUS "File $ENV{DESTDIR}${file} does not exist.")
   endif(IS_SYMLINK "$ENV{DESTDIR}${file}" OR EXISTS "$ENV{DESTDIR}${file}")
+
+  get_filename_component(ITEM_PATH ${file} DIRECTORY)
+  if(${ITEM_PATH} MATCHES ".*antimicrox$")
+    list(APPEND DIRECTORIES_TO_BE_DELETED ${ITEM_PATH}) 
+  endif()
+
 endforeach(file)
+
+list(REMOVE_DUPLICATES DIRECTORIES_TO_BE_DELETED)
+message("Deleting remaining directories: ${DIRECTORIES_TO_BE_DELETED}")
+exec_program(
+      "@CMAKE_COMMAND@" ARGS "-E remove_directory  ${DIRECTORIES_TO_BE_DELETED}"
+      OUTPUT_VARIABLE rm_out
+      RETURN_VALUE rm_retval
+      )
