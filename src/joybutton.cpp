@@ -3305,7 +3305,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
     resetSlotsProp();
-    stopTimers(true, true, false);
+    stopTimers(true, false, false);
     releaseActiveSlots();
     clearAssignedSlots(clearSignalEmit);
     clearQueues();
