@@ -2,7 +2,7 @@
 
 - [Building AntiMicroX](#building-antimicrox)
   - [Build Dependencies](#build-dependencies)
-  - [Building Under Linux](#building-under-linux)
+  - [Basic building](#basic-building)
     - [Build Options for CMake](#build-options-for-cmake)
     - [Universal Options](#universal-options)
     - [Linux Options](#linux-options)
@@ -27,28 +27,41 @@ installed on your system in order to build this program:
 - `itstool` (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 - `gettext`
 
-## Building Under Linux
+## Basic building
+
+This way of building is useful for testing purposes.
 
 In order to build this program, open a terminal and cd into the antimicrox
-directory. Enter the following commands in order to build the program:
+directory. Enter the following commands in order to:
 
-```bash
-cd antimicrox
-mkdir build && cd build
-cmake ..
-make
-sudo make install
-```
-
-or
-
+Build the program:
 ```bash
 cd antimicrox
 mkdir build && cd build
 cmake ..
 cmake --build .
+```
+Run built binaries
+```
+./bin/antimicrox
+```
+A recommended way of installation is building package typical for for your system (or building universal one like an AppImage).
+<details>
+  <summary>Installation using cmake (not recommended)</summary>
+
+This way of installation is not recommended, because it doesn't integrate very well with some environments.  
+
+
+Install:
+```bash
 sudo cmake --install .
 ```
+
+Uninstall:
+```bash
+sudo make uninstall
+```
+</details>
 
 ### Build Options for CMake
 
