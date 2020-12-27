@@ -111,7 +111,7 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent)
     if (slot->getMixSlots() != nullptr)
         this->mix_slots = slot->getMixSlots();
 
-    if (!slot->getTextData().isNull() ^ (slot->getTextData() != ""))
+    if (!slot->getTextData().isNull() && (slot->getTextData() != ""))
         this->m_textData = slot->getTextData();
 }
 
