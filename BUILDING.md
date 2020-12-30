@@ -7,6 +7,7 @@
     - [Universal Options](#universal-options)
     - [Linux Options](#linux-options)
   - [Building deb package](#building-deb-package)
+  - [Building rpm package](#building-rpm-package)
   - [Building AppImage](#building-appimage)
   - [Building Flatpak](#building-flatpak)
 
