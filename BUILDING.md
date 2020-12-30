@@ -1,5 +1,7 @@
 # Building AntiMicroX
 
+Most of these packages are already built and available on [Release Page](https://github.com/AntiMicroX/antimicrox/releases), but if you want, you can also build AntiMicroX by yourself.
+
 - [Building AntiMicroX](#building-antimicrox)
   - [Build Dependencies](#build-dependencies)
   - [Basic building](#basic-building)
@@ -106,8 +108,6 @@ Default: ON. Compile the program with X11 support.
 Default: ON. Compile the program with XTest support.
 
 ## Building DEB package
-
-Already built .deb files are available on [Release Page](https://github.com/AntiMicroX/antimicrox/releases)
 
 ```bash
 cd antimicrox
