@@ -49,7 +49,7 @@ A recommended way of installation is building package typical for for your syste
 <details>
   <summary>Installation using cmake (not recommended)</summary>
 
-This way of installation is not recommended, because it doesn't integrate very well with some environments.  
+This way of installation is not recommended, because it doesn't integrate very well with some environments.
 
 
 Install:
@@ -104,7 +104,7 @@ Default: ON. Compile the program with X11 support.
 
 Default: ON. Compile the program with XTest support.
 
-## Building deb package
+## Building DEB package
 
 Already built .deb files are available on [Release Page](https://github.com/AntiMicroX/antimicrox/releases)
 
@@ -112,6 +112,17 @@ Already built .deb files are available on [Release Page](https://github.com/Anti
 cd antimicrox
 mkdir build && cd build
 cmake .. -DCPACK_GENERATOR="DEB"
+cmake --build . --target package
+```
+
+## Building RPM package
+
+If your distribution doesn't yet have an RPM package, you can easily build one for yourself.
+
+```bash
+cd antimicrox
+mkdir build && cd build
+cmake .. -DCPACK_GENERATOR="RPM"
 cmake --build . --target package
 ```
 
