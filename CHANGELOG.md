@@ -1,6 +1,37 @@
 # Changelog
 
-## [3.1.3](https://github.com/AntiMicroX/antimicrox/tree/3.1.3) (2020-11-14)
+## [3.1.4](https://github.com/AntiMicroX/antimicrox/tree/3.1.4) (2021-01-11)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.3...3.1.4)
+
+Kudos to @Janfel for PR!
+
+**Implemented enhancements:**
+
+- Remove qglobalshortcuts [\#106](https://github.com/AntiMicroX/antimicrox/issues/106)
+- File cleanup [\#104](https://github.com/AntiMicroX/antimicrox/issues/104)
+- Cmakefile fixes [\#102](https://github.com/AntiMicroX/antimicrox/issues/102)
+- Add dark tray icon [\#66](https://github.com/AntiMicroX/antimicrox/issues/66)
+- Icons overhaul [\#61](https://github.com/AntiMicroX/antimicrox/issues/61)
+- Automate generating changelogs [\#10](https://github.com/AntiMicroX/antimicrox/issues/10)
+
+**Fixed bugs:**
+
+- Clear shortcut not working [\#116](https://github.com/AntiMicroX/antimicrox/issues/116)
+- Assigning Text Entry to button doesn't assign proper string. [\#79](https://github.com/AntiMicroX/antimicrox/issues/79)
+- The uninstallation leaves several folders and files behind \(cmake\) [\#68](https://github.com/AntiMicroX/antimicrox/issues/68)
+
+**Notable closed issues:**
+
+- Remove antilib shared object because it's not really shared! [\#98](https://github.com/AntiMicroX/antimicrox/issues/98)
+
+**Other merged pull requests:**
+
+- feat: improve mime type definition [\#132](https://github.com/AntiMicroX/antimicrox/pull/132) ([Janfel](https://github.com/Janfel))
+- docs: update building and installation instructions [\#129](https://github.com/AntiMicroX/antimicrox/pull/129) ([pktiuk](https://github.com/pktiuk))
+- feat: antimicro config migration [\#120](https://github.com/AntiMicroX/antimicrox/pull/120) ([gombosg](https://github.com/gombosg))
+
+## [3.1.3](https://github.com/AntiMicroX/antimicrox/tree/3.1.3) (2020-11-15)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.2...3.1.3)
 
@@ -1345,6 +1376,7 @@ that was not possible before.
 
 * Toggle and Turbo can be used together to create automated key macros for
 use in MMORPGs.
+
 
 
 
