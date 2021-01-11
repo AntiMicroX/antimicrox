@@ -51,7 +51,7 @@ jobs:
         MAJOR=`echo $VERSION | cut -d " " -f 1`
         MINOR=`echo $VERSION | cut -d " " -f 2`
         PATCH=`echo $VERSION | cut -d " " -f 3`
-        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-$MAJOR.$MINOR.$PATCH-amd64.deb"
+        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-$MAJOR.$MINOR.$PATCH-x86_64.deb"
         sudo dpkg -i `ls -1 | grep .deb`
 
 
