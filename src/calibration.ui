@@ -158,7 +158,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QLabel" name="Informations">
+          <widget class="QLabel" name="Information">
            <property name="text">
             <string/>
            </property>

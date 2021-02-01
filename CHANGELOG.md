@@ -217,17 +217,17 @@ Version 2.24.2
 
 * Fixed bug with too many "emit propertyUpdated()"
 
-* Splitted JoyButtonSlot class into JoyButtonSlotXml and the original
+* Split JoyButtonSlot class into JoyButtonSlotXml and the original
 
 * Created template class for JoyDPad and VDPad xml
 
-* Splitted GameControllerDPad class into GameControllerDPadXml and the original
+* Split GameControllerDPad class into GameControllerDPadXml and the original
 
 * Replaced for loops with iterators and functional mappers
 
 * Replaced for loops with hashiterators
 
-* Added functions about vendor and product informations
+* Added functions about vendor and product information
 
 * Changed guid to uniqueID
 
@@ -253,7 +253,7 @@ Version 2.24.1
 
 * Created smaller functions in part of classes
 
-* Splitted part of classes into new xml classes
+* Split part of classes into new xml classes
 
 * Added com.github.juliagoda.antimicro.json for Flatpak (building and installation on Linux)
 
@@ -263,7 +263,7 @@ Version 2.24.1
 
 * Changed if else to switch statements for int data types
 
-* First preparation for unit tests (app splitted into library (antilib) and executable (antimicro))
+* First preparation for unit tests (app split into library (antilib) and executable (antimicro))
 
 * Updated calibration - reset old values during calibration startup
 
