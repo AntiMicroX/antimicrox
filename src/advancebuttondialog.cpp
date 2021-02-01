@@ -683,30 +683,30 @@ void AdvanceButtonDialog::splitSlot()
 
         for (auto minislot : minislots)
         {
-            qDebug() << "MINISLOT SPLITTED NAME: " << minislot->getSlotString();
-            QListWidgetItem *splittedItem = new QListWidgetItem();
+            qDebug() << "MINISLOT SPLIT NAME: " << minislot->getSlotString();
+            QListWidgetItem *splitItem = new QListWidgetItem();
 
             SimpleKeyGrabberButton *blankButton = new SimpleKeyGrabberButton(this);
 
             JoyButtonSlot *slotmini =
                 new JoyButtonSlot(minislot->getSlotCode(), minislot->getSlotCodeAlias(), minislot->getSlotMode());
 
-            ui->slotListWidget->insertItem(qMax(0, indexKeyboardSlot), splittedItem);
+            ui->slotListWidget->insertItem(qMax(0, indexKeyboardSlot), splitItem);
 
             blankButton->setValue(slotmini);
 
             delete slotmini;
             slotmini = nullptr;
 
-            splittedItem->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton *>(blankButton));
+            splitItem->setData(Qt::UserRole, QVariant::fromValue<SimpleKeyGrabberButton *>(blankButton));
 
             QHBoxLayout *layout = new QHBoxLayout();
             layout->addWidget(blankButton);
             QWidget *widget = new QWidget();
             widget->setLayout(layout);
-            splittedItem->setSizeHint(widget->sizeHint());
-            ui->slotListWidget->setItemWidget(splittedItem, widget);
-            // ui->slotListWidget->setCurrentItem(splittedItem);
+            splitItem->setSizeHint(widget->sizeHint());
+            ui->slotListWidget->setItemWidget(splitItem, widget);
+            // ui->slotListWidget->setCurrentItem(splitItem);
 
             connectButtonEvents(blankButton);
             blankButton->refreshButtonLabel(); // instead of blankButton->setText(text);

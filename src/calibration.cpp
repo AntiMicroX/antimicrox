@@ -69,7 +69,7 @@ Calibration::Calibration(InputDevice *joystick, QWidget *parent)
     QPointer<JoyControlStick> controlstick = currentJoystick->getActiveSetJoystick()->getJoyStick(0);
     this->stick = controlstick.data();
     calibrated = this->stick->wasCalibrated();
-    ui->Informations->setText(stick->getCalibrationSummary());
+    ui->Information->setText(stick->getCalibrationSummary());
 
     ui->resetBtn->setEnabled(calibrated);
     ui->saveBtn->setEnabled(false);
@@ -181,7 +181,7 @@ void Calibration::restoreCalValues()
 
     stick->setCalibrationFlag(false);
     stick->setCalibrationSummary(QString());
-    ui->Informations->clear();
+    ui->Information->clear();
 
     calibrated = false;
 
@@ -334,7 +334,7 @@ void Calibration::startCalibration()
         QString text = QString();
         text.append(tr("\n\nCenter X: %1").arg(center_calibrated_x));
         text.append(tr("\nCenter Y: %1").arg(center_calibrated_y));
-        ui->Informations->setText(text);
+        ui->Information->setText(text);
         this->text = text;
 
         x_es_val.clear();
@@ -383,10 +383,10 @@ void Calibration::startSecondStep()
             min_axis_val_x = min_x;
             min_axis_val_y = min_y;
 
-            QString text = ui->Informations->text();
+            QString text = ui->Information->text();
             text.append(tr("\n\nX: %1").arg(min_axis_val_x));
             text.append(tr("\nY: %1").arg(min_axis_val_y));
-            ui->Informations->setText(text);
+            ui->Information->setText(text);
             this->text = text;
 
             x_es_val.clear();
@@ -434,10 +434,10 @@ void Calibration::startLastStep()
             max_axis_val_x = max_x;
             max_axis_val_y = max_y;
 
-            QString text2 = ui->Informations->text();
+            QString text2 = ui->Information->text();
             text2.append(tr("\n\nX: %1").arg(max_axis_val_x));
             text2.append(tr("\nY: %1").arg(max_axis_val_y));
-            ui->Informations->setText(text2);
+            ui->Information->setText(text2);
             this->text = text2;
             update();
 
@@ -446,12 +446,12 @@ void Calibration::startLastStep()
             deadzone_calibrated_x = (max_axis_val_y + max_axis_val_x) / 4;
             deadzone_calibrated_y = (max_axis_val_y + max_axis_val_x) / 4;
 
-            QString text3 = ui->Informations->text();
+            QString text3 = ui->Information->text();
             text3.append(tr("\n\nrange X: %1 - %2").arg(min_axis_val_x).arg(max_axis_val_x));
             text3.append(tr("\nrange Y: %1 - %2").arg(min_axis_val_y).arg(max_axis_val_y));
             text3.append(tr("\n\ndeadzone X: %1").arg(deadzone_calibrated_x));
             text3.append(tr("\ndeadzone Y: %1").arg(deadzone_calibrated_y));
-            ui->Informations->setText(text3);
+            ui->Information->setText(text3);
             this->text = text3;
 
             if (stick != nullptr)
@@ -740,7 +740,7 @@ void Calibration::setProgressBars(JoyControlStick *controlstick)
     joyAxisY = controlstick->getAxisY();
 
     calibrated = controlstick->wasCalibrated();
-    ui->Informations->setText(controlstick->getCalibrationSummary());
+    ui->Information->setText(controlstick->getCalibrationSummary());
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
     {
@@ -802,7 +802,7 @@ void Calibration::setProgressBars(int setJoyNr, int stickNr)
     joyAxisY = controlstick->getAxisY();
 
     calibrated = controlstick->wasCalibrated();
-    ui->Informations->setText(controlstick->getCalibrationSummary());
+    ui->Information->setText(controlstick->getCalibrationSummary());
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
     {

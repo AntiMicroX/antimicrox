@@ -27,8 +27,8 @@ resetBtn should be disabled when stick->wasCalibrated()
 Calibration->findChildren<QProgressBar*>() count is equal to 2
 startButton cannot be disabled
 cancelBtn cannot be disabled
-saveBtn is enabled when ui->steps->text() == tr("\n---Calibration done!---\n") && stick->setCalibrationSummary != ui->Informations->text() || this->text != stick->setCalibrationSummary
-saveBtn is disabled when ui->steps->text() != tr("\n---Calibration done!---\n") && stick->setCalibrationSummary == ui->Informations->text() || this->text == stick->setCalibrationSummary
+saveBtn is enabled when ui->steps->text() == tr("\n---Calibration done!---\n") && stick->setCalibrationSummary != ui->Information->text() || this->text != stick->setCalibrationSummary
+saveBtn is disabled when ui->steps->text() != tr("\n---Calibration done!---\n") && stick->setCalibrationSummary == ui->Information->text() || this->text == stick->setCalibrationSummary
 controllersBox->count() == this->joysticks->count
 
 int currContrBoxIndex = ui->controllersBox->currentIndex();
