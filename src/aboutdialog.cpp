@@ -60,7 +60,11 @@ void AboutDialog::fillInfoTextBrowser()
     QStringList finalInfoText = QStringList();
 
     finalInfoText.append(tr("Program Version %1").arg(PadderCommon::programVersion));
+#ifdef ANTIMICROX_PKG_VERSION
+    finalInfoText.append(tr("compiled from packaging: %1").arg(ANTIMICROX_PKG_VERSION));
+#else
     finalInfoText.append(tr("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
+#endif
 
     QString sdlCompiledVersionNumber("%1.%2.%3");
     QString sdlLinkedVersionNumber("%1.%2.%3");
