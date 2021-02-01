@@ -4,7 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>AntiMicroX</name>
-  <summary>Graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.</summary>
+  <summary>Graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros</summary>
   <description>
     <p>
      AntiMicroX is a graphical program used to map gamepad buttons/joysticks
@@ -14,13 +14,13 @@
     </p>
     <p>
     It allows mapping of gamepads/joystick buttons to:
+    </p>
     <ul>
     <li>keyboard buttons</li>
     <li>mouse buttons and moves</li>
     <li>scripts and launching apps</li>
     <li>macros consisting of elements mentioned above</li>
     </ul>
-    </p>
     <p>
      AntiMicroX was inspired by QJoyPad.
     </p>
