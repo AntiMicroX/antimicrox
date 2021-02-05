@@ -35,7 +35,6 @@ jobs:
   build-appimage:
     # Version of ubuntu building this appimage, it shouldn't be the latest verion of ubuntu to avoid breaking compatibility with older systems
     runs-on: ubuntu-18.04
-    needs: build_deb
 
     steps:
     - name: Install Dependencies
@@ -44,18 +43,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Installing antimicrox is required for appimage creator
-    - name: Install antimicrox
-      run: |
-        VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
-        MAJOR=`echo $VERSION | cut -d " " -f 1`
-        MINOR=`echo $VERSION | cut -d " " -f 2`
-        PATCH=`echo $VERSION | cut -d " " -f 3`
-        wget "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-$MAJOR.$MINOR.$PATCH-x86_64.deb"
-        sudo dpkg -i `ls -1 | grep .deb`
-
-
-    - name: Prepare files to create apppimage
+    - name: Prepare files needed to create AppImage
       run: |
         mkdir build && cd ./build
         wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
@@ -64,7 +52,15 @@ jobs:
         chmod +x linuxdeploy-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
         chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
-        cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+
+    - name: Build AntiMicroX
+      run: |
+        VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
+        MAJOR=`echo $VERSION | cut -d " " -f 1`
+        MINOR=`echo $VERSION | cut -d " " -f 2`
+        PATCH=`echo $VERSION | cut -d " " -f 3`
+        cd build
+        cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-x86_64 \(AppImage\)"
         make
         make install DESTDIR=AppDir
 

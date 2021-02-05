@@ -82,7 +82,12 @@ endif(UNIX)
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 option(TRANS_KEEP_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
+option(ANTIMICROX_PKG_VERSION "Manually define version of package displayed in info tab" OFF)
 
+if(ANTIMICROX_PKG_VERSION)
+    message("This build will be marked as: ${ANTIMICROX_PKG_VERSION}")
+    add_compile_definitions(ANTIMICROX_PKG_VERSION="${ANTIMICROX_PKG_VERSION}")
+endif((ANTIMICROX_PKG_VERSION))
 
 if(UNIX)
     find_package(PkgConfig REQUIRED)

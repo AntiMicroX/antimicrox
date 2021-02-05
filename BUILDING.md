@@ -89,6 +89,9 @@ command for qm files. -noobsolete is a method for getting rid of obsolete text e
 
 Default: OFF. Allows for the launch of test sources with unit tests
 
+    -DANTIMICROX_PKG_VERSION
+Default: Not defined. (feature intended for packagers) Manually define version of package displayed in info tab. When not defined building time is displayed instead.
+
 ### Linux Options
 
     -DAPPDATA
