@@ -61,7 +61,7 @@ void AboutDialog::fillInfoTextBrowser()
 
     finalInfoText.append(tr("Program Version %1").arg(PadderCommon::programVersion));
 #ifdef ANTIMICROX_PKG_VERSION
-    finalInfoText.append(tr("compiled from packaging: %1").arg(ANTIMICROX_PKG_VERSION));
+    finalInfoText.append(tr("Compiled from packaging: %1").arg(ANTIMICROX_PKG_VERSION));
 #else
     finalInfoText.append(tr("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
 #endif
