@@ -166,6 +166,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 
     ui->showSetChangeNotification->setChecked(settings->value("Notifications/notify_about_set_change", false).toBool());
 
+    ui->showSetChangeNotification->setChecked(settings->value("Notifications/notify_about_set_change", false).toBool());
+
     ui->associateProfilesCheckBox->setVisible(false);
 
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);

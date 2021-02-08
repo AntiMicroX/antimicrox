@@ -1300,6 +1300,8 @@ void JoyTabWidget::changeCurrentSet(int index)
     }
 
     ///This takes the value from the settings, and feeds it into the if-function.
+<<<<<<< HEAD
+<<<<<<< HEAD
     if(m_settings->value("Notifications/notify_about_set_change", false).toBool() == true){
 
         ///This only works if this is a Linux system. This gives the possibility to add windows and mac notifications later on
@@ -1307,6 +1309,26 @@ void JoyTabWidget::changeCurrentSet(int index)
 
             ///This takes the message to be echoed to the shell, inserts index (much cleaner than before), and sends it to the shell, triggering the notification.
             system(qPrintable(QString("notify-send \"AntiMicroX\" \"Set %1 is now active\" --urgency=normal -i \"/home/guttmann/Desktop/antimicrox/src/icons/antimicrox.ico\"").arg(index + 1)));
+=======
+    if(m_settings->value("Notifications/notify_about_set-change", true).toBool()){
+=======
+    if(m_settings->value("Notifications/notify_about_set_change", false).toBool() == true){
+>>>>>>> 53eefcf8... Solved compiling errors and made the setting actually work
+
+        ///This only works if this is a Linux system. This gives the possibility to add windows and mac notifications later on
+        #if defined(Q_OS_LINUX)
+
+            ///This takes the message to be echoed to the shell, inserts index (much cleaner than before), and sends it to the shell, triggering the notification.
+<<<<<<< HEAD
+<<<<<<< HEAD
+            system(QString("notify-send \"AntiMicroX\" \"Set %1 is now active\" --urgency=normal -i\"/home/guttmann/Desktop/antimicrox/src/icons/antimicrox.ico\"").arg(index));
+>>>>>>> 5cb5c2ed... Added a possibility to disable the messages, and cleaned up code.
+=======
+            system(qPrintable(QString("notify-send \"AntiMicroX\" \"Set %1 is now active\" --urgency=normal -i\"/home/guttmann/Desktop/antimicrox/src/icons/antimicrox.ico\"").arg(index)));
+>>>>>>> fc2546c0... Needed to convert QString to printable
+=======
+            system(qPrintable(QString("notify-send \"AntiMicroX\" \"Set %1 is now active\" --urgency=normal -i \"/home/guttmann/Desktop/antimicrox/src/icons/antimicrox.ico\"").arg(index + 1)));
+>>>>>>> 53eefcf8... Solved compiling errors and made the setting actually work
         #endif
     }
 
