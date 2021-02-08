@@ -164,6 +164,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         ui->launchInTrayCheckBox->setChecked(true);
     }
 
+    ui->showSetChangeNotification->setChecked(settings->value("Notifications/notify_about_set_change", false).toBool());
+
     ui->associateProfilesCheckBox->setVisible(false);
 
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
@@ -535,6 +537,9 @@ void MainSettingsDialog::saveNewSettings()
 
     bool launchInTray = ui->launchInTrayCheckBox->isChecked();
     settings->setValue("LaunchInTray", launchInTray ? "1" : "0");
+
+    bool notify_set_change = ui->showSetChangeNotification->isChecked();
+    settings->setValue("Notifications/notify_about_set_change", notify_set_change);
 
     PadderCommon::lockInputDevices();
 
@@ -1887,6 +1892,7 @@ void MainSettingsDialog::resetGeneralSett()
     ui->launchInTrayCheckBox->setChecked(false);
     ui->associateProfilesCheckBox->setChecked(true);
     ui->keyRepeatEnableCheckBox->setChecked(false);
+    ui->showSetChangeNotification->setChecked(false);
 
     ui->keyDelayHorizontalSlider->setValue(660);
     ui->keyRateHorizontalSlider->setValue(25);

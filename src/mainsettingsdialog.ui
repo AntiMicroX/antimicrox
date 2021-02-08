@@ -331,6 +331,13 @@ first launches.</string>
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="showSetChangeNotification">
+           <property name="text">
+            <string>Show notifications when changing between sets. (Only works on Linux so far)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
