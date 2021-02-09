@@ -1303,7 +1303,7 @@ void JoyTabWidget::changeCurrentSet(int index)
 
         ///This only works if this is a Linux system. This gives the possibility to add windows and mac notifications later on
         #if defined(Q_OS_LINUX)
-        )
+        
             ///This takes the message to be echoed to the shell, inserts index (much cleaner than before), and sends it to the shell, triggering the notification.
             system(QString("notify-send \"AntiMicroX\" \"Set %1 is now active\" --urgency=normal -i\"/home/guttmann/Desktop/antimicrox/src/icons/antimicrox.ico\"").arg(index));
         #endif
