@@ -163,8 +163,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     {
         ui->launchInTrayCheckBox->setChecked(true);
     }
-    //@TODO: This may need to be false. I have no idea what the trues purpose is
-    ui->showSetChangeNotification->setChecked(settings->"Notifications/notify_about_set_change", true).toBool());
+
+    ui->showSetChangeNotification->setChecked(settings->value("Notifications/notify_about_set_change", false).toBool());
 
     ui->associateProfilesCheckBox->setVisible(false);
 
