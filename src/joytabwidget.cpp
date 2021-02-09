@@ -1272,62 +1272,41 @@ void JoyTabWidget::changeCurrentSet(int index)
     {
     case 0:
         activeSetButton = setPushButton1;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 1 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     case 1:
         activeSetButton = setPushButton2;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 2 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     case 2:
         activeSetButton = setPushButton3;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 3 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     case 3:
         activeSetButton = setPushButton4;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 4 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     case 4:
         activeSetButton = setPushButton5;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 5 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     case 5:
         activeSetButton = setPushButton6;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 6 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     case 6:
         activeSetButton = setPushButton7;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 7 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     case 7:
         activeSetButton = setPushButton8;
-#if defined(Q_OS_LINUX)
-        system("notify-send \"AntiMicroX\" \"Set 8 is now active\" --urgency=normal -i "
-               "\":/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png\"");
-#endif
         break;
     default:
         break;
+    }
+
+    ///This takes the value from the settings, and feeds it into the if-function.
+    if(m_settings->value("Notifications/notify_about_set-change", true).toBool()){
+
+        ///This only works if this is a Linux system. This gives the possibility to add windows and mac notifications later on
+        #if defined(Q_OS_LINUX
+        )
+            ///This takes the message to be echoed to the shell, inserts index (much cleaner than before), and sends it to the shell, triggering the notification.
+            system(QString("notify-send \"AntiMicroX\" \"Set %1 is now active\" --urgency=normal -i\"/home/guttmann/Desktop/antimicrox/src/icons/antimicrox.ico\"").arg(index));
+        #endif
     }
 
     if (activeSetButton != nullptr)

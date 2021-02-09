@@ -163,6 +163,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     {
         ui->launchInTrayCheckBox->setChecked(true);
     }
+    //@TODO: This may need to be false. I have no idea what the trues purpose is
+    ui->showSetChangeNotification->setChecked(settings->"Notifications/notify_about_set_change", true).toBool());
 
     ui->associateProfilesCheckBox->setVisible(false);
 
@@ -535,6 +537,9 @@ void MainSettingsDialog::saveNewSettings()
 
     bool launchInTray = ui->launchInTrayCheckBox->isChecked();
     settings->setValue("LaunchInTray", launchInTray ? "1" : "0");
+
+    bool notify_set_change = ui->showSetChangeNotification->isChecked();
+    settings->setValue("Notifications/notify_about_set_change", notify_set_change);
 
     PadderCommon::lockInputDevices();
 
@@ -1887,6 +1892,7 @@ void MainSettingsDialog::resetGeneralSett()
     ui->launchInTrayCheckBox->setChecked(false);
     ui->associateProfilesCheckBox->setChecked(true);
     ui->keyRepeatEnableCheckBox->setChecked(false);
+    ui->showSetChangeNotification->setChecked(false);
 
     ui->keyDelayHorizontalSlider->setValue(660);
     ui->keyRateHorizontalSlider->setValue(25);
