@@ -507,8 +507,6 @@ target_link_libraries(antimicrox
 # Specify out directory for final executable.
 if(UNIX)
     install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-    #           install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-    install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
 endif(UNIX)
 
 if(UNIX)
