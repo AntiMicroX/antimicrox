@@ -87,7 +87,7 @@ option(ANTIMICROX_PKG_VERSION "Manually define version of package displayed in i
 if(ANTIMICROX_PKG_VERSION)
     message("This build will be marked as: ${ANTIMICROX_PKG_VERSION}")
     add_compile_definitions(ANTIMICROX_PKG_VERSION="${ANTIMICROX_PKG_VERSION}")
-endif((ANTIMICROX_PKG_VERSION))
+endif(ANTIMICROX_PKG_VERSION)
 
 if(UNIX)
     find_package(PkgConfig REQUIRED)
@@ -507,8 +507,6 @@ target_link_libraries(antimicrox
 # Specify out directory for final executable.
 if(UNIX)
     install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-    #           install(TARGETS antilib DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-    install(FILES ${antimicrox_HEADERS} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/antimicrox")
 endif(UNIX)
 
 if(UNIX)

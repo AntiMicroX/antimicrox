@@ -614,7 +614,6 @@ void GameControllerXml::readJoystickConfigXmlLong(QList<SDL_GameControllerButton
 {
     int index = -1;
     bool first = false;
-    bool second = false;
     QString temp = QString();
 
     assignVariablesShort(xml, index, temp);
@@ -622,11 +621,9 @@ void GameControllerXml::readJoystickConfigXmlLong(QList<SDL_GameControllerButton
     if (xml->name() == "vdpadname")
     {
         first = dpadNameExists;
-        second = vdpadNameExists;
     } else if (xml->name() == "dpadname")
     {
         first = vdpadNameExists;
-        second = dpadNameExists;
     }
 
     if ((index >= 0) && !temp.isEmpty() && !first)
@@ -648,7 +645,6 @@ void GameControllerXml::readJoystickConfigXmlLong(QList<SDL_GameControllerButton
 
         if (found)
         {
-            second = true;
             VDPad *dpad = m_gameController->getActiveSetJoystick()->getVDPad(0);
 
             if (dpad != nullptr)
