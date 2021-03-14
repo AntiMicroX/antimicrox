@@ -83,6 +83,14 @@ flatpak install flathub io.github.antimicrox.antimicrox
 dnf install antimicrox
 ```
 
+### openSUSE
+
+A [package](https://software.opensuse.org/package/antimicrox) is available.
+
+```
+zypper install antimicrox
+```
+
 ### Arch Linux or Arch Linux based distributions:
 
 ```
