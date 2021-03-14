@@ -12,7 +12,6 @@ Big thanks to @mirabilos for help with Debian packages migration and cleaning up
 
 **Other merged pull requests:**
 
-- chore: cleanup in code [\#152](https://github.com/AntiMicroX/antimicrox/pull/152) ([pktiuk](https://github.com/pktiuk))
 - Allow cleaner marking package builds [\#143](https://github.com/AntiMicroX/antimicrox/pull/143) ([mirabilos](https://github.com/mirabilos))
 - fix appdata formatting [\#142](https://github.com/AntiMicroX/antimicrox/pull/142) ([mirabilos](https://github.com/mirabilos))
 - apply lintian-provided spelling fixes [\#141](https://github.com/AntiMicroX/antimicrox/pull/141) ([mirabilos](https://github.com/mirabilos))
