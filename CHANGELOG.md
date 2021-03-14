@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.1.5](https://github.com/AntiMicroX/antimicrox/tree/3.1.5) (2021-03-14)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.4...3.1.5)
+
+Big thanks to @mirabilos for help with Debian packages migration and cleaning up project.
+
+**Notable closed issues:**
+- Migrate DEB packages to antimicrox [\#87](https://github.com/AntiMicroX/antimicrox/issues/87) 
+- Integrate builds marking with docs cmake and CI [\#143](https://github.com/AntiMicroX/antimicrox/pull/143)
+
+**Other merged pull requests:**
+
+- chore: cleanup in code [\#152](https://github.com/AntiMicroX/antimicrox/pull/152) ([pktiuk](https://github.com/pktiuk))
+- Allow cleaner marking package builds [\#143](https://github.com/AntiMicroX/antimicrox/pull/143) ([mirabilos](https://github.com/mirabilos))
+- fix appdata formatting [\#142](https://github.com/AntiMicroX/antimicrox/pull/142) ([mirabilos](https://github.com/mirabilos))
+- apply lintian-provided spelling fixes [\#141](https://github.com/AntiMicroX/antimicrox/pull/141) ([mirabilos](https://github.com/mirabilos))
+- fix the manpage \(hyphen as minus sign\) [\#140](https://github.com/AntiMicroX/antimicrox/pull/140) ([mirabilos](https://github.com/mirabilos))
+- fix: change deb arch prefix for building AppImage [\#135](https://github.com/AntiMicroX/antimicrox/pull/135) ([pktiuk](https://github.com/pktiuk))
+
 ## [3.1.4](https://github.com/AntiMicroX/antimicrox/tree/3.1.4) (2021-01-11)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.3...3.1.4)
