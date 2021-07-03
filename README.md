@@ -140,6 +140,18 @@ List of required dependencies and build instructions can be found [here](./BUILD
 
 Run `antimicrox --help` or read `man antimicrox` for command-line parameters.
 
+<details>
+  <summary>Commandline for flatpak</summary>
+  In case of flatpak package AntiMicroX can be launched with command:
+  <br>
+  <code>flatpak run io.github.antimicrox.antimicrox</code> instead of just <code>antimicrox</code>
+  <br>
+  In some cases it may be good to add alias
+  <br>
+  <code>alias antimicrox='flatpak run io.github.antimicrox.antimicrox'</code><br>
+  fo file <code>~/.bashrc</code>
+</details>
+
 ## Wiki
 
 [Look here](https://github.com/juliagoda/antimicroX/wiki)
