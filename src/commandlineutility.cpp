@@ -26,6 +26,8 @@
 #include <QDebug>
 #include <QFileInfo>
 
+#include <stdexcept>
+
 QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::buildEventGeneratorList();
 
 CommandLineUtility::CommandLineUtility(QObject *parent)
@@ -37,7 +39,6 @@ CommandLineUtility::CommandLineUtility(QObject *parent)
     hideTrayIcon = false;
     profileLocation = "";
     controllerNumber = 0;
-    encounteredError = false;
     hiddenRequest = false;
     unloadProfile = false;
     startSetNumber = 0;
@@ -122,7 +123,7 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
 
     int i = 0;
 
-    while ((i < parser.optionNames().count()) && !encounteredError)
+    while ((i < parser.optionNames().count()))
     {
         if (parser.isSet("tray"))
         {
@@ -194,7 +195,7 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
                 displayString = parser.value("display");
             } else
             {
-                setErrorMessage(QObject::tr("No display string was specified."));
+                throw std::runtime_error(QObject::tr("No display string was specified.").toStdString());
             }
         }
 #endif
@@ -208,13 +209,13 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
             if (!eventGenText.isEmpty() && !eventGeneratorsList.contains(eventGenText))
             {
                 eventGenerator = "";
-                setErrorMessage(QObject::tr("An invalid event generator was specified."));
+                throw std::runtime_error(QObject::tr("An invalid event generator was specified.").toStdString());
             } else if (!eventGenText.isEmpty() && eventGeneratorsList.contains(eventGenText))
             {
                 eventGenerator = eventGenText;
             } else
             {
-                setErrorMessage(QObject::tr("No event generator string was specified."));
+                throw std::runtime_error(QObject::tr("No event generator string was specified.").toStdString());
             }
         }
 #endif
@@ -231,6 +232,10 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
                 currentLogLevel = Logger::LOG_WARNING;
             else if (logLevelText == "error")
                 currentLogLevel = Logger::LOG_ERROR;
+            else
+            {
+                throw std::runtime_error((QObject::tr("Unknown log level: ") + logLevelText).toStdString());
+            }
         }
 
         if (parser.isSet("log-file"))
@@ -240,7 +245,7 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
                 currentLogFile = parser.value("log-file");
             } else
             {
-                setErrorMessage(QObject::tr("No log file specified."));
+                throw std::runtime_error(QObject::tr("No log file specified.").toStdString());
             }
         }
 
@@ -254,7 +259,8 @@ void CommandLineUtility::parseArgsProfile(const QCommandLineParser &parser)
 
     if (profileFileInfo.exists() && (profileFileInfo.suffix() != "amgp") && (profileFileInfo.suffix() != "xml"))
     {
-        setErrorMessage(QObject::tr("Profile location %1 is not an XML file.").arg(parser.value("profile")));
+        throw std::runtime_error(
+            QObject::tr("Profile location %1 is not an XML file.").arg(parser.value("profile")).toStdString());
     } else if (profileFileInfo.exists() && ((profileFileInfo.suffix() == "amgp") || (profileFileInfo.suffix() == "xml")))
     {
         QString tempProfileLocation = profileFileInfo.absoluteFilePath();
@@ -263,7 +269,8 @@ void CommandLineUtility::parseArgsProfile(const QCommandLineParser &parser)
         controllerOptionsList.replace(currentListsIndex, tempInfo);
     } else
     {
-        setErrorMessage(QObject::tr("Profile location %1 does not exist.").arg(parser.value("profile")));
+        throw std::runtime_error(
+            QObject::tr("Profile location %1 does not exist.").arg(parser.value("profile")).toStdString());
     }
 }
 
@@ -290,7 +297,7 @@ void CommandLineUtility::parseArgsPrControle(const QCommandLineParser &parser)
         controllerOptionsList.replace(currentListsIndex, tempInfo);
     } else
     {
-        setErrorMessage(QObject::tr("Controller identifier is not a valid value."));
+        throw std::runtime_error(QObject::tr("Controller identifier is not a valid value.").toStdString());
     }
 }
 
@@ -329,7 +336,7 @@ void CommandLineUtility::parseArgsUnload(const QCommandLineParser &parser)
             controllerOptionsList.replace(currentListsIndex, gameControllerOptionInfo);
         } else
         {
-            setErrorMessage(QObject::tr("Controller identifier is not a valid value."));
+            throw std::runtime_error(QObject::tr("Controller identifier is not a valid value.").toStdString());
         }
     } else
     {
@@ -359,7 +366,7 @@ void CommandLineUtility::parseArgsStartSet(const QCommandLineParser &parser)
             controllerOptionsList.replace(currentListsIndex, tempInfo);
         } else if (validNumber)
         {
-            setErrorMessage(QObject::tr("An invalid set number '%1' was specified.").arg(tempNumber));
+            throw std::runtime_error(QObject::tr("An invalid set number '%1' was specified.").arg(tempNumber).toStdString());
         }
 
         if (profileForStartset.hasNext())
@@ -380,12 +387,13 @@ void CommandLineUtility::parseArgsStartSet(const QCommandLineParser &parser)
                 controllerOptionsList.replace(currentListsIndex, tempInfo);
             } else
             {
-                setErrorMessage(QObject::tr("Controller identifier '%s'' is not a valid value.").arg(startSetText));
+                throw std::runtime_error(
+                    QObject::tr("Controller identifier '%s'' is not a valid value.").arg(startSetText).toStdString());
             }
         }
     } else
     {
-        setErrorMessage(QObject::tr("No set number was specified."));
+        throw std::runtime_error(QObject::tr("No set number was specified.").toStdString());
     }
 }
 
@@ -409,11 +417,11 @@ void CommandLineUtility::parseArgsMap(const QCommandLineParser &parser)
             mappingController = true;
         } else
         {
-            setErrorMessage(QObject::tr("Controller identifier is not a valid value."));
+            throw std::runtime_error(QObject::tr("Controller identifier is not a valid value.").toStdString());
         }
     } else
     {
-        setErrorMessage(QObject::tr("No controller was specified."));
+        throw std::runtime_error(QObject::tr("No controller was specified.").toStdString());
     }
 }
 
@@ -457,13 +465,6 @@ int CommandLineUtility::getControllerNumber()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return controllerNumber;
-}
-
-bool CommandLineUtility::hasError()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return encounteredError;
 }
 
 bool CommandLineUtility::isHiddenRequested()
@@ -556,22 +557,6 @@ QString CommandLineUtility::getCurrentLogFile()
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     return currentLogFile;
-}
-
-QString CommandLineUtility::getErrorText()
-{
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return errorText;
-}
-
-void CommandLineUtility::setErrorMessage(QString temp)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    errorText = temp;
-    encounteredError = true;
 }
 
 QList<ControllerOptionsInfo> const &CommandLineUtility::getControllerOptionsList()

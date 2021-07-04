@@ -51,6 +51,9 @@
 #include <QTranslator>
 #include <QtGlobal>
 
+#include <iostream>
+#include <stdexcept>
+
 #ifdef Q_OS_UNIX
     #include <signal.h>
     #include <unistd.h>
@@ -183,12 +186,17 @@ int main(int argc, char *argv[])
     QTextStream outstream(stdout);
     QTextStream errorstream(stderr);
 
-    
-
-    
-
     CommandLineUtility cmdutility;
-    cmdutility.parseArguments(antimicrox);
+
+    try
+    {
+        cmdutility.parseArguments(antimicrox);
+    } catch (const std::runtime_error &e)
+    {
+        std::cerr << e.what() << '\n';
+        std::cerr << "Closing\n";
+        return -1;
+    }
 
     Logger appLogger(&outstream, &errorstream);
 
@@ -276,10 +284,10 @@ int main(int argc, char *argv[])
         mainWindow.fillButtons();
         mainWindow.alterConfigFromSettings();
 
-        if (!cmdutility.hasError() && (cmdutility.hasProfile() || cmdutility.hasProfileInOptions()))
+        if (cmdutility.hasProfile() || cmdutility.hasProfileInOptions())
         {
             mainWindow.saveAppConfig();
-        } else if (!cmdutility.hasError() && cmdutility.isUnloadRequested())
+        } else if (cmdutility.isUnloadRequested())
         {
             mainWindow.saveAppConfig();
         }

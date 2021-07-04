@@ -86,6 +86,12 @@ class CommandLineUtility : public QObject
   public:
     explicit CommandLineUtility(QObject *parent = nullptr);
 
+    /**
+     * @brief load and parse arguments from commandline
+     *
+     * @param parsed_app
+     * @exception std::runtime_error - in case of problems with parsing like unknown flag, wrong value etc
+     */
     void parseArguments(const QApplication &parsed_app);
 
     bool isLaunchInTrayEnabled();
@@ -98,7 +104,6 @@ class CommandLineUtility : public QObject
     bool shouldListControllers();
     bool shouldMapController();
     bool hasProfileInOptions();
-    bool hasError();
 
     int getControllerNumber();
     int getStartSetNumber();
@@ -108,7 +113,6 @@ class CommandLineUtility : public QObject
     QString getProfileLocation();
     QString getEventGenerator();
     QString getCurrentLogFile();
-    QString getErrorText();
 
     QList<int> *getJoyStartSetNumberList();
     QList<ControllerOptionsInfo> const &getControllerOptionsList();
@@ -119,12 +123,9 @@ class CommandLineUtility : public QObject
     Logger::LogLevel getCurrentLogLevel();
 
   protected:
-    void setErrorMessage(QString temp);
-
   private:
     bool launchInTray;
     bool hideTrayIcon;
-    bool encounteredError;
     bool hiddenRequest;
     bool unloadProfile;
     bool daemonMode;
@@ -139,7 +140,6 @@ class CommandLineUtility : public QObject
     QString controllerIDString;
     QString displayString;
     QString eventGenerator;
-    QString errorText;
     QString currentLogFile;
 
     Logger::LogLevel currentLogLevel;
