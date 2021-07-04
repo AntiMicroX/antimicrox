@@ -22,7 +22,6 @@
 #include "eventhandlerfactory.h"
 #include "messagehandler.h"
 
-#include <QApplication>
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QFileInfo>
@@ -55,23 +54,84 @@ CommandLineUtility::CommandLineUtility(QObject *parent)
     eventGenerator = EventHandlerFactory::fallBackIdentifier();
 }
 
-void CommandLineUtility::parseArguments(QCommandLineParser *parser)
+void CommandLineUtility::parseArguments(const QApplication &parsed_app)
 {
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription(
+        QCoreApplication::translate("antimicrox", "Graphical program used to map keyboard buttons and mouse controls to "
+                                                  "a "
+                                                  "gamepad. Useful for playing games with no gamepad support."));
+    parser.addHelpOption();
+    parser.addVersionOption();
+
+    parser.addOptions({
+        // A boolean option with a single name (-p)
+        {"tray", QCoreApplication::translate("main", "Launch program in system tray only.")},
+        // A boolean option with multiple names (-f, --force)
+        {"no-tray", QCoreApplication::translate("main", "Launch program with the tray menu disabled")},
+        // An option with a value
+        {"hidden", QCoreApplication::translate("main", "Launch program without the main window displayed")},
+        {"profile",
+         QCoreApplication::translate("main", "Launch program with the configuration file selected as "
+                                             "the default for "
+                                             "selected controllers. Defaults to all controllers"),
+         QCoreApplication::translate("main", "location")},
+        {"profile-controller",
+         QCoreApplication::translate("main", "Apply configuration file to a specific controller. Value "
+                                             "can be a controller index, name, or GUID"),
+         QCoreApplication::translate("main", "value")},
+        {"unload", QCoreApplication::translate("main", "Unload currently enabled profile(s)"),
+         QCoreApplication::translate("main", "value(s)")},
+        {"startSet",
+         QCoreApplication::translate("main", "Start joysticks on a specific set. Value can be a "
+                                             "controller index, name, or GUID"),
+         QCoreApplication::translate("main", "number value")},
+        {{"daemon", "d"}, QCoreApplication::translate("main", "Launch program as a daemon. Use only on Linux.")},
+        {"log-level", QCoreApplication::translate("main", "Enable logging. Levels (from the least strict): warn,info,debug"),
+         QCoreApplication::translate("main", "log-type")},
+        {"log-file", QCoreApplication::translate("main", "Choose a file for logs writing"),
+         QCoreApplication::translate("main", "filename")},
+        {"eventgen",
+         QCoreApplication::translate("main", "Choose between using XTest support and uinput support "
+                                             "for event generation. Use only if you have "
+                                             "enabled xtest and uinput options on Linux or vmulti on "
+                                             "Windows. Default: xtest."),
+         QCoreApplication::translate("main", "event-generation-type"), "xtest"}, // default
+        {{"list", "l"},
+         QCoreApplication::translate("main", "Print information about joysticks detected by SDL. Use "
+                                             "only if you have sdl "
+                                             "library. You can check your controller index, name or "
+                                             "even GUID.")},
+        // {"display",
+        //     QCoreApplication::translate("main", "Use specified display for
+        //     X11 calls")},
+        // {"next",
+        //     QCoreApplication::translate("main", "Advance profile loading set
+        //     options")},
+        //  {"map",
+        //      QCoreApplication::translate("main", "Open game controller
+        //      mapping window of selected controller. Value can be
+        //      a controller index or GUID."),
+        //      QCoreApplication::translate("main", "value")},
+    });
+
+    parser.process(parsed_app);
 
     qInstallMessageHandler(MessageHandler::myMessageOutput);
 
     int i = 0;
 
-    while ((i < parser->optionNames().count()) && !encounteredError)
+    while ((i < parser.optionNames().count()) && !encounteredError)
     {
-        if (parser->isSet("tray"))
+        if (parser.isSet("tray"))
         {
 
             qDebug() << "tray is set";
 
             launchInTray = true;
             hideTrayIcon = false;
-        } else if (parser->isSet("no-tray"))
+        } else if (parser.isSet("no-tray"))
         {
 
             qDebug() << "no-tray is set";
@@ -80,58 +140,58 @@ void CommandLineUtility::parseArguments(QCommandLineParser *parser)
             launchInTray = false;
         }
 
-        if (parser->isSet("profile"))
+        if (parser.isSet("profile"))
         {
             parseArgsProfile(parser);
         }
 
-        if (parser->isSet("profile-controller"))
+        if (parser.isSet("profile-controller"))
         {
             parseArgsPrControle(parser);
         }
 
-        if (parser->isSet("hidden"))
+        if (parser.isSet("hidden"))
         {
             hiddenRequest = true;
         }
 
-        if (parser->isSet("unload"))
+        if (parser.isSet("unload"))
         {
             parseArgsUnload(parser);
         }
 
-        if (parser->isSet("startSet"))
+        if (parser.isSet("startSet"))
         {
             parseArgsStartSet(parser);
         }
 
-        if (parser->isSet("next"))
+        if (parser.isSet("next"))
         {
             currentListsIndex++;
             ControllerOptionsInfo tempInfo;
             controllerOptionsList.append(tempInfo);
         }
 
-        if (parser->isSet("list"))
+        if (parser.isSet("list"))
         {
             listControllers = true;
         }
 
-        if (parser->isSet("map"))
+        if (parser.isSet("map"))
         {
             parseArgsMap(parser);
         }
 
-        if (parser->isSet("daemon"))
+        if (parser.isSet("daemon"))
         {
             daemonMode = true;
         }
 #ifdef WITH_X11
-        if (parser->isSet("display"))
+        if (parser.isSet("display"))
         {
-            if (!parser->value("display").isEmpty())
+            if (!parser.value("display").isEmpty())
             {
-                displayString = parser->value("display");
+                displayString = parser.value("display");
             } else
             {
                 setErrorMessage(QObject::tr("No display string was specified."));
@@ -141,9 +201,9 @@ void CommandLineUtility::parseArguments(QCommandLineParser *parser)
 
 #if (defined(WITH_UINPUT) && defined(WITH_XTEST))
 
-        if (parser->isSet("eventgen"))
+        if (parser.isSet("eventgen"))
         {
-            QString eventGenText = parser->value("eventgen");
+            QString eventGenText = parser.value("eventgen");
 
             if (!eventGenText.isEmpty() && !eventGeneratorsList.contains(eventGenText))
             {
@@ -159,9 +219,9 @@ void CommandLineUtility::parseArguments(QCommandLineParser *parser)
         }
 #endif
 
-        if (parser->isSet("log-level"))
+        if (parser.isSet("log-level"))
         {
-            QString logLevelText = parser->value("log-level");
+            QString logLevelText = parser.value("log-level");
 
             if (logLevelText == "debug")
                 currentLogLevel = Logger::LOG_DEBUG;
@@ -173,11 +233,11 @@ void CommandLineUtility::parseArguments(QCommandLineParser *parser)
                 currentLogLevel = Logger::LOG_ERROR;
         }
 
-        if (parser->isSet("log-file"))
+        if (parser.isSet("log-file"))
         {
-            if (!parser->value("log-file").isEmpty())
+            if (!parser.value("log-file").isEmpty())
             {
-                currentLogFile = parser->value("log-file");
+                currentLogFile = parser.value("log-file");
             } else
             {
                 setErrorMessage(QObject::tr("No log file specified."));
@@ -188,13 +248,13 @@ void CommandLineUtility::parseArguments(QCommandLineParser *parser)
     }
 }
 
-void CommandLineUtility::parseArgsProfile(QCommandLineParser *parser)
+void CommandLineUtility::parseArgsProfile(const QCommandLineParser &parser)
 {
-    QFileInfo profileFileInfo(parser->value("profile"));
+    QFileInfo profileFileInfo(parser.value("profile"));
 
     if (profileFileInfo.exists() && (profileFileInfo.suffix() != "amgp") && (profileFileInfo.suffix() != "xml"))
     {
-        setErrorMessage(QObject::tr("Profile location %1 is not an XML file.").arg(parser->value("profile")));
+        setErrorMessage(QObject::tr("Profile location %1 is not an XML file.").arg(parser.value("profile")));
     } else if (profileFileInfo.exists() && ((profileFileInfo.suffix() == "amgp") || (profileFileInfo.suffix() == "xml")))
     {
         QString tempProfileLocation = profileFileInfo.absoluteFilePath();
@@ -203,14 +263,14 @@ void CommandLineUtility::parseArgsProfile(QCommandLineParser *parser)
         controllerOptionsList.replace(currentListsIndex, tempInfo);
     } else
     {
-        setErrorMessage(QObject::tr("Profile location %1 does not exist.").arg(parser->value("profile")));
+        setErrorMessage(QObject::tr("Profile location %1 does not exist.").arg(parser.value("profile")));
     }
 }
 
-void CommandLineUtility::parseArgsPrControle(QCommandLineParser *parser)
+void CommandLineUtility::parseArgsPrControle(const QCommandLineParser &parser)
 {
     bool validNumber = false;
-    int tempNumber = parser->value("profile-controller").toInt(&validNumber);
+    int tempNumber = parser.value("profile-controller").toInt(&validNumber);
 
     if (validNumber)
     {
@@ -220,13 +280,13 @@ void CommandLineUtility::parseArgsPrControle(QCommandLineParser *parser)
         ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
         tempInfo.setControllerNumber(tempNumber);
         controllerOptionsList.replace(currentListsIndex, tempInfo);
-    } else if (!parser->value("profile-controller").isEmpty())
+    } else if (!parser.value("profile-controller").isEmpty())
     {
         if (controllerIDString.isEmpty())
-            controllerIDString = parser->value("profile-controller");
+            controllerIDString = parser.value("profile-controller");
 
         ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
-        tempInfo.setControllerID(parser->value("profile-controller"));
+        tempInfo.setControllerID(parser.value("profile-controller"));
         controllerOptionsList.replace(currentListsIndex, tempInfo);
     } else
     {
@@ -234,14 +294,14 @@ void CommandLineUtility::parseArgsPrControle(QCommandLineParser *parser)
     }
 }
 
-void CommandLineUtility::parseArgsUnload(QCommandLineParser *parser)
+void CommandLineUtility::parseArgsUnload(const QCommandLineParser &parser)
 {
     ControllerOptionsInfo gameControllerOptionInfo = getControllerOptionsList().at(currentListsIndex);
     gameControllerOptionInfo.setProfileLocation("");
     gameControllerOptionInfo.setUnloadRequest(true);
     controllerOptionsList.replace(currentListsIndex, gameControllerOptionInfo);
 
-    QStringList parserVals = QStringList() << parser->values("unload");
+    QStringList parserVals = QStringList() << parser.values("unload");
     QListIterator<QString> profileForUnload(parserVals);
     QString unloadedProfText = QString();
 
@@ -278,9 +338,9 @@ void CommandLineUtility::parseArgsUnload(QCommandLineParser *parser)
     }
 }
 
-void CommandLineUtility::parseArgsStartSet(QCommandLineParser *parser)
+void CommandLineUtility::parseArgsStartSet(const QCommandLineParser &parser)
 {
-    QStringList parserValues = QStringList() << parser->values("startSet");
+    QStringList parserValues = QStringList() << parser.values("startSet");
     QListIterator<QString> profileForStartset(parserValues);
     QString startSetText = QString();
 
@@ -329,9 +389,9 @@ void CommandLineUtility::parseArgsStartSet(QCommandLineParser *parser)
     }
 }
 
-void CommandLineUtility::parseArgsMap(QCommandLineParser *parser)
+void CommandLineUtility::parseArgsMap(const QCommandLineParser &parser)
 {
-    QString mapOptionText = parser->value("map");
+    QString mapOptionText = parser.value("map");
 
     if (!mapOptionText.isEmpty())
     {

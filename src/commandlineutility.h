@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2021 Paweł Kotiuk <kotiuk@zohomail.eu>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +21,8 @@
 #define COMMANDLINEPARSER_H
 
 class QCommandLineParser;
+
+#include <QApplication>
 
 #include "logger.h"
 
@@ -83,7 +86,7 @@ class CommandLineUtility : public QObject
   public:
     explicit CommandLineUtility(QObject *parent = nullptr);
 
-    void parseArguments(QCommandLineParser *parser);
+    void parseArguments(const QApplication &parsed_app);
 
     bool isLaunchInTrayEnabled();
     bool isTrayHidden();
@@ -145,11 +148,11 @@ class CommandLineUtility : public QObject
 
     static QStringList eventGeneratorsList;
 
-    void parseArgsProfile(QCommandLineParser *parser);
-    void parseArgsPrControle(QCommandLineParser *parser);
-    void parseArgsUnload(QCommandLineParser *parser);
-    void parseArgsStartSet(QCommandLineParser *parser);
-    void parseArgsMap(QCommandLineParser *parser);
+    void parseArgsProfile(const QCommandLineParser &parser);
+    void parseArgsPrControle(const QCommandLineParser &parser);
+    void parseArgsUnload(const QCommandLineParser &parser);
+    void parseArgsStartSet(const QCommandLineParser &parser);
+    void parseArgsMap(const QCommandLineParser &parser);
 };
 
 #endif // COMMANDLINEPARSER_H
