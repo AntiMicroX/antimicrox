@@ -37,14 +37,12 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
                 fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
                         context.function);
             break;
-#if QT_VERSION > QT_VERSION_CHECK(5, 5, 0)
         case QtInfoMsg:
             if (Logger::instance->getCurrentLogLevel() == Logger::LOG_INFO ||
                 Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
                 fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
                         context.function);
             break;
-#endif
         case QtWarningMsg:
             if (Logger::instance->getCurrentLogLevel() == Logger::LOG_WARNING ||
                 Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
