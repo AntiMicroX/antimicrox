@@ -29,8 +29,6 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
     , ui(new Ui::ExtraProfileSettingsDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->device = device;
@@ -50,17 +48,10 @@ ExtraProfileSettingsDialog::ExtraProfileSettingsDialog(InputDevice *device, QWid
     connect(ui->profileNameLineEdit, &QLineEdit::textChanged, device, &InputDevice::setProfileName);
 }
 
-ExtraProfileSettingsDialog::~ExtraProfileSettingsDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+ExtraProfileSettingsDialog::~ExtraProfileSettingsDialog() { delete ui; }
 
 void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int temppress = value * 10;
     device->setDeviceKeyPressTime(temppress);
     ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));

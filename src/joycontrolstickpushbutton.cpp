@@ -27,8 +27,6 @@
 JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent)
     : FlashButtonWidget(displayNames, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->stick = stick;
 
     refreshLabel();
@@ -43,12 +41,7 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
     connect(stick, &JoyControlStick::stickNameChanged, this, &JoyControlStickPushButton::refreshLabel);
 }
 
-JoyControlStick *JoyControlStickPushButton::getStick() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return stick;
-}
+JoyControlStick *JoyControlStickPushButton::getStick() const { return stick; }
 
 /**
  * @brief Generate the string that will be displayed on the button
@@ -56,8 +49,6 @@ JoyControlStick *JoyControlStickPushButton::getStick() const
  */
 QString JoyControlStickPushButton::generateLabel()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
     if (!stick->getStickName().isEmpty() && ifDisplayNames())
     {
@@ -74,8 +65,6 @@ QString JoyControlStickPushButton::generateLabel()
 
 void JoyControlStickPushButton::disableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disconnect(stick, &JoyControlStick::active, this, &JoyControlStickPushButton::flash);
     disconnect(stick, &JoyControlStick::released, this, &JoyControlStickPushButton::unflash);
     this->unflash();
@@ -83,16 +72,12 @@ void JoyControlStickPushButton::disableFlashes()
 
 void JoyControlStickPushButton::enableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     connect(stick, &JoyControlStick::active, this, &JoyControlStickPushButton::flash, Qt::QueuedConnection);
     connect(stick, &JoyControlStick::released, this, &JoyControlStickPushButton::unflash, Qt::QueuedConnection);
 }
 
 void JoyControlStickPushButton::showContextMenu(const QPoint &point)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QPoint globalPos = this->mapToGlobal(point);
     JoyControlStickContextMenu *contextMenu = new JoyControlStickContextMenu(stick, this);
     contextMenu->buildMenu();
@@ -101,8 +86,6 @@ void JoyControlStickPushButton::showContextMenu(const QPoint &point)
 
 void JoyControlStickPushButton::tryFlash()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (stick->getCurrentDirection() != JoyControlStick::StickCentered)
     {
         flash();

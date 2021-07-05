@@ -33,7 +33,6 @@
 namespace PadderCommon {
 inline QString configPath()
 {
-
     return (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ? QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicrox"
                                                    : QDir::homePath() + "/.config/antimicrox";
 }

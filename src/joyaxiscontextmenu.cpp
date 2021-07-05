@@ -32,8 +32,6 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent)
     : QMenu(parent)
     , helper(axis)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->axis = axis;
     getHelperLocal().moveToThread(axis->thread());
 
@@ -42,8 +40,6 @@ JoyAxisContextMenu::JoyAxisContextMenu(JoyAxis *axis, QWidget *parent)
 
 void JoyAxisContextMenu::buildMenu()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool actAsTrigger = false;
 
     PadderCommon::inputDaemonMutex.lock();
@@ -64,8 +60,6 @@ void JoyAxisContextMenu::buildMenu()
 
 void JoyAxisContextMenu::buildAxisMenu()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QActionGroup *presetGroup = new QActionGroup(this);
     int presetMode = 0;
     int currentPreset = getPresetIndex();
@@ -188,7 +182,6 @@ void JoyAxisContextMenu::buildAxisMenu()
 
 int JoyAxisContextMenu::getPresetIndex()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     int result = 0;
 
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
@@ -273,8 +266,6 @@ int JoyAxisContextMenu::getPresetIndex()
 
 void JoyAxisContextMenu::setAxisPreset(QAction *action)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int item = action->data().toInt();
 
     JoyButtonSlot *nbuttonslot = nullptr;
@@ -370,16 +361,12 @@ void JoyAxisContextMenu::setAxisPreset(QAction *action)
 
 void JoyAxisContextMenu::openMouseSettingsDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     MouseAxisSettingsDialog *dialog = new MouseAxisSettingsDialog(this->axis, parentWidget());
     dialog->show();
 }
 
 void JoyAxisContextMenu::buildTriggerMenu()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QActionGroup *presetGroup = new QActionGroup(this);
     int presetMode = 0;
     int currentPreset = getTriggerPresetIndex();
@@ -422,8 +409,6 @@ void JoyAxisContextMenu::buildTriggerMenu()
 
 int JoyAxisContextMenu::getTriggerPresetIndex()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int result = 0;
 
     PadderCommon::inputDaemonMutex.lock();
@@ -455,8 +440,6 @@ int JoyAxisContextMenu::getTriggerPresetIndex()
 
 void JoyAxisContextMenu::setTriggerPreset(QAction *action)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int item = action->data().toInt();
 
     JoyButtonSlot *pbuttonslot = nullptr;

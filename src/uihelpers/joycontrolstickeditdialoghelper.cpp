@@ -27,8 +27,6 @@
 JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(stick);
 
     this->stick = stick;
@@ -36,8 +34,6 @@ JoyControlStickEditDialogHelper::JoyControlStickEditDialogHelper(JoyControlStick
 
 void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> *tempSlots)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     pendingSlots.clear();
 
     QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot *> iter(*tempSlots);
@@ -51,17 +47,10 @@ void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::Joy
     }
 }
 
-void JoyControlStickEditDialogHelper::clearPendingSlots()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    pendingSlots.clear();
-}
+void JoyControlStickEditDialogHelper::clearPendingSlots() { pendingSlots.clear(); }
 
 void JoyControlStickEditDialogHelper::setFromPendingSlots()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!getPendingSlots().isEmpty())
     {
         QHashIterator<JoyControlStick::JoyStickDirections, JoyButtonSlot *> iter(getPendingSlots());
@@ -88,8 +77,6 @@ void JoyControlStickEditDialogHelper::setFromPendingSlots()
 
 void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHash<JoyControlStick::JoyStickDirections, JoyControlStickButton *> *buttons = stick->getButtons();
     QHashIterator<JoyControlStick::JoyStickDirections, JoyControlStickButton *> iter(*buttons);
     while (iter.hasNext())
@@ -104,8 +91,6 @@ void JoyControlStickEditDialogHelper::clearButtonsSlotsEventReset()
 
 void JoyControlStickEditDialogHelper::updateControlStickDelay(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int temp = value * 10;
     if (stick->getStickDelay() != temp)
     {
@@ -115,6 +100,5 @@ void JoyControlStickEditDialogHelper::updateControlStickDelay(int value)
 
 QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> const &JoyControlStickEditDialogHelper::getPendingSlots()
 {
-
     return pendingSlots;
 }

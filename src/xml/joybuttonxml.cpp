@@ -33,8 +33,6 @@ JoyButtonXml::JoyButtonXml(JoyButton *joyButton, QObject *parent)
 
 bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
 
     if ((xml->name() == "toggle") && xml->isStartElement())
@@ -325,8 +323,6 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
 
 void JoyButtonXml::readConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == m_joyButton->getXmlName()))
     {
         xml->readNextStartElement();
@@ -347,8 +343,6 @@ void JoyButtonXml::readConfig(QXmlStreamReader *xml)
 
 void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!m_joyButton->isDefault())
     {
         xml->writeStartElement(m_joyButton->getXmlName());

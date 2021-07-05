@@ -26,8 +26,6 @@
 ButtonEditDialogHelper::ButtonEditDialogHelper(JoyButton *button, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(button);
 
     this->button = button;
@@ -36,43 +34,30 @@ ButtonEditDialogHelper::ButtonEditDialogHelper(JoyButton *button, QObject *paren
 ButtonEditDialogHelper::ButtonEditDialogHelper(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, mode);
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code, int alias, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, mode);
 }
 
 void ButtonEditDialogHelper::setAssignedSlot(int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->clearSlotsEventReset(false);
     button->setAssignedSlot(code, alias, index, mode);
 }
 
-void ButtonEditDialogHelper::setUseTurbo(bool useTurbo)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    button->setUseTurbo(useTurbo);
-}
+void ButtonEditDialogHelper::setUseTurbo(bool useTurbo) { button->setUseTurbo(useTurbo); }
 
 void ButtonEditDialogHelper::setThisButton(JoyButton *btn)
 {
-
     Q_ASSERT(btn);
 
     button = btn;

@@ -32,8 +32,6 @@
 Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *settings, QObject *parent)
     : InputDevice(joyhandle, deviceIndex, settings, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_joyhandle = joyhandle;
     controller = SDL_GameControllerOpen(deviceIndex);
     joystickID = SDL_JoystickInstanceID(joyhandle);
@@ -46,24 +44,12 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *
     }
 }
 
-QString Joystick::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString Joystick::getXmlName() { return GlobalVariables::Joystick::xmlName; }
 
-    return GlobalVariables::Joystick::xmlName;
-}
-
-QString Joystick::getName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return QString(tr("Joystick")).append(" ").append(QString::number(getRealJoyNumber()));
-}
+QString Joystick::getName() { return QString(tr("Joystick")).append(" ").append(QString::number(getRealJoyNumber())); }
 
 QString Joystick::getSDLName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (m_joyhandle != nullptr)
@@ -76,8 +62,6 @@ QString Joystick::getSDLName()
 
 QString Joystick::getGUIDString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(m_joyhandle);
@@ -91,8 +75,6 @@ QString Joystick::getGUIDString()
 
 QString Joystick::getVendorString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -109,8 +91,6 @@ QString Joystick::getVendorString()
 
 QString Joystick::getProductIDString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -127,8 +107,6 @@ QString Joystick::getProductIDString()
 
 QString Joystick::getProductVersion()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -143,17 +121,10 @@ QString Joystick::getProductVersion()
     return temp;
 }
 
-QString Joystick::getUniqueIDString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return (getGUIDString() + getVendorString() + getProductIDString());
-}
+QString Joystick::getUniqueIDString() { return (getGUIDString() + getVendorString() + getProductIDString()); }
 
 void Joystick::closeSDLDevice()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((m_joyhandle != nullptr) && SDL_JoystickGetAttached(m_joyhandle))
     {
         SDL_JoystickClose(m_joyhandle);
@@ -162,35 +133,24 @@ void Joystick::closeSDLDevice()
 
 int Joystick::getNumberRawButtons()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int numbuttons = SDL_JoystickNumButtons(m_joyhandle);
     return numbuttons;
 }
 
 int Joystick::getNumberRawAxes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int numaxes = SDL_JoystickNumAxes(m_joyhandle);
     return numaxes;
 }
 
 int Joystick::getNumberRawHats()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int numhats = SDL_JoystickNumHats(m_joyhandle);
     return numhats;
 }
 
 void Joystick::setCounterUniques(int counter) { counterUniques = counter; }
 
-SDL_JoystickID Joystick::getSDLJoystickID()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return joystickID;
-}
+SDL_JoystickID Joystick::getSDLJoystickID() { return joystickID; }
 
 SDL_Joystick *Joystick::getJoyhandle() const { return m_joyhandle; }

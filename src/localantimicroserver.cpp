@@ -29,15 +29,11 @@
 LocalAntiMicroServer::LocalAntiMicroServer(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     localServer = new QLocalServer(this);
 }
 
 void LocalAntiMicroServer::startLocalServer()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (localServer != nullptr)
     {
         bool removedServer = QLocalServer::removeServer(PadderCommon::localSocketKey);
@@ -71,8 +67,6 @@ void LocalAntiMicroServer::startLocalServer()
 
 void LocalAntiMicroServer::handleOutsideConnection()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (localServer != nullptr)
     {
         QLocalSocket *socket = localServer->nextPendingConnection();
@@ -92,18 +86,8 @@ void LocalAntiMicroServer::handleOutsideConnection()
     }
 }
 
-void LocalAntiMicroServer::handleSocketDisconnect()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void LocalAntiMicroServer::handleSocketDisconnect() { emit clientdisconnect(); }
 
-    emit clientdisconnect();
-}
-
-void LocalAntiMicroServer::close()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    localServer->close();
-}
+void LocalAntiMicroServer::close() { localServer->close(); }
 
 QLocalServer *LocalAntiMicroServer::getLocalServer() const { return localServer; }

@@ -39,8 +39,6 @@ X11Extras::X11Extras(QObject *parent)
     : QObject(parent)
     , knownAliases()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     _display = XOpenDisplay(nullptr);
     populateKnownAliases();
     _instance = this;
@@ -51,8 +49,6 @@ X11Extras::X11Extras(QObject *parent)
  */
 X11Extras::~X11Extras()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     freeDisplay();
     _instance = nullptr;
 }
@@ -77,8 +73,6 @@ void X11Extras::freeDisplay()
 
 X11Extras *X11Extras::getInstance()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     X11Extras *temp = nullptr;
 
     if (!displays.hasLocalData())
@@ -97,8 +91,6 @@ X11Extras *X11Extras::getInstance()
 
 void X11Extras::deleteInstance()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (displays.hasLocalData())
     {
         X11Extras *temp = displays.localData();
@@ -123,39 +115,19 @@ const char *X11Extras::getEnvVariable(const char *var) const
  * @brief Get display instance
  * @return Display struct
  */
-Display *X11Extras::display()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+Display *X11Extras::display() { return _display; }
 
-    return _display;
-}
-
-bool X11Extras::hasValidDisplay()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return (_display != nullptr);
-}
+bool X11Extras::hasValidDisplay() { return (_display != nullptr); }
 
 /**
  * @brief CURRENTLY NOT USED
  */
-void X11Extras::closeDisplay()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    freeDisplay();
-}
+void X11Extras::closeDisplay() { freeDisplay(); }
 
 /**
  * @brief Grab instance of active display.
  */
-void X11Extras::syncDisplay()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    _display = XOpenDisplay(nullptr);
-}
+void X11Extras::syncDisplay() { _display = XOpenDisplay(nullptr); }
 
 /**
  * @brief Grab instance of specified display. Useful for having the GUI
@@ -164,18 +136,11 @@ void X11Extras::syncDisplay()
  */
 void X11Extras::syncDisplay(QString displayString)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QByteArray tempByteArray = displayString.toLocal8Bit();
     _display = XOpenDisplay(tempByteArray.constData());
 }
 
-void X11Extras::setCustomDisplay(QString displayString)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    GlobalVariables::X11Extras::_customDisplayString = displayString;
-}
+void X11Extras::setCustomDisplay(QString displayString) { GlobalVariables::X11Extras::_customDisplayString = displayString; }
 
 /**
  * @brief Return root window for a given X display
@@ -184,8 +149,6 @@ void X11Extras::setCustomDisplay(QString displayString)
  */
 unsigned long X11Extras::appRootWindow(int screen)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return (screen == -1) ? XDefaultRootWindow(display()) : XRootWindowOfScreen(XScreenOfDisplay(display(), screen));
 }
 
@@ -197,8 +160,6 @@ unsigned long X11Extras::appRootWindow(int screen)
  */
 QString X11Extras::getDisplayString(QString xcodestring)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (knownAliases.contains(xcodestring))
@@ -208,10 +169,7 @@ QString X11Extras::getDisplayString(QString xcodestring)
 }
 
 void X11Extras::populateKnownAliases()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // These aliases are needed for xstrings that would
+{ // These aliases are needed for xstrings that would
     // return empty space characters from XLookupString
     if (knownAliases.isEmpty())
     {
@@ -228,8 +186,6 @@ void X11Extras::populateKnownAliases()
 
 Window X11Extras::findParentClient(Window window)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Window parent = 0;
     Window root = 0;
     Window *children = 0;
@@ -303,8 +259,6 @@ Window X11Extras::findParentClient(Window window)
  */
 int X11Extras::getApplicationPid(Window window)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Atom atom, actual_type;
     int actual_format = 0;
     unsigned long nitems = 0;
@@ -397,8 +351,6 @@ void X11Extras::checkPropertyOnWin(bool windowCorrected, Window &window, Window 
  */
 QString X11Extras::getApplicationLocation(int pid)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString exepath = QString();
 
     if (pid > 0)
@@ -438,8 +390,6 @@ QString X11Extras::getApplicationLocation(int pid)
  */
 Window X11Extras::findClientWindow(Window window)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Window parent = 1;
     Window root = 0;
     Window *children = nullptr;
@@ -481,8 +431,6 @@ Window X11Extras::findClientWindow(Window window)
 
 bool X11Extras::windowHasProperty(Display *display, Window window, Atom atom)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool result = false;
 
     Atom actual_type;
@@ -506,8 +454,6 @@ bool X11Extras::windowHasProperty(Display *display, Window window, Atom atom)
 
 bool X11Extras::windowIsViewable(Display *display, Window window)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool result = false;
     XWindowAttributes xwa;
     XGetWindowAttributes(display, window, &xwa);
@@ -530,8 +476,6 @@ bool X11Extras::windowIsViewable(Display *display, Window window)
  */
 bool X11Extras::isWindowRelevant(Display *display, Window window)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool result = false;
 
     QList<Atom> temp;
@@ -557,8 +501,6 @@ bool X11Extras::isWindowRelevant(Display *display, Window window)
 
 QString X11Extras::getWindowTitle(Window window)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     Atom atom, actual_type;
@@ -609,8 +551,6 @@ QString X11Extras::getWindowTitle(Window window)
 
 QString X11Extras::getWindowClass(Window window)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     Atom atom, actual_type;
@@ -649,8 +589,6 @@ QString X11Extras::getWindowClass(Window window)
 
 unsigned long X11Extras::getWindowInFocus()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     unsigned long result = 0;
     Window currentWindow = 0;
     int focusState = 0;
@@ -678,17 +616,10 @@ unsigned long X11Extras::getWindowInFocus()
  * @brief Get QString representation of currently utilized X display.
  * @return
  */
-QString X11Extras::getXDisplayString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::X11Extras::_customDisplayString;
-}
+QString X11Extras::getXDisplayString() { return GlobalVariables::X11Extras::_customDisplayString; }
 
 int X11Extras::getGroup1KeySym(int virtualkey)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Display *display = this->display();
     int temp = XKeysymToKeycode(display, virtualkey);
 
@@ -697,8 +628,6 @@ int X11Extras::getGroup1KeySym(int virtualkey)
 
 void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int xi_opcode, event, error;
     xi_opcode = event = error = 0;
     Display *display = this->display();
@@ -778,15 +707,11 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
 void X11Extras::x11ResetMouseAccelerationChange()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     x11ResetMouseAccelerationChange(GlobalVariables::X11Extras::mouseDeviceName);
 }
 
 struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerName)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     struct ptrInformation tempInfo;
 
     int xi_opcode, event, error;
@@ -884,15 +809,11 @@ void X11Extras::checkFeedback(XFeedbackState *temp, int &num_feedbacks, int &fee
 
 struct X11Extras::ptrInformation X11Extras::getPointInformation()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return getPointInformation(GlobalVariables::X11Extras::mouseDeviceName);
 }
 
 QPoint X11Extras::getPos()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     XEvent mouseEvent;
     Window wid = DefaultRootWindow(display());
     XWindowAttributes xwAttr;

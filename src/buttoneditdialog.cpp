@@ -63,8 +63,6 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
     update();
 
     instance = this;
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->joystick = joystick;
     lastJoyButton = nullptr;
     currentQuickDialog = nullptr;
@@ -130,8 +128,6 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, InputDevice *joystick, boo
     update();
 
     instance = this;
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     lastJoyButton = button;
     this->joystick = joystick;
     currentQuickDialog = nullptr;
@@ -188,8 +184,6 @@ ButtonEditDialog *ButtonEditDialog::getInstance() { return instance; }
 
 void ButtonEditDialog::checkForKeyboardWidgetFocus(QWidget *old, QWidget *now)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(old);
     Q_UNUSED(now);
 
@@ -204,8 +198,6 @@ void ButtonEditDialog::checkForKeyboardWidgetFocus(QWidget *old, QWidget *now)
 
 ButtonEditDialog::~ButtonEditDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     instance = nullptr;
 
     delete ui;
@@ -213,8 +205,6 @@ ButtonEditDialog::~ButtonEditDialog()
 
 void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool ignore = false;
     // Ignore the following keys that might
     // trigger an event in QDialog::keyPressEvent
@@ -240,8 +230,6 @@ void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 
 void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     qDebug() << "It's keyrelease event";
 
     if (ui->actionNameLineEdit->hasFocus() || ui->buttonNameLineEdit->hasFocus())
@@ -340,8 +328,6 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
 void ButtonEditDialog::refreshSlotSummaryLabel()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (lastJoyButton != nullptr)
         ui->slotSummaryLabel->setText(lastJoyButton->getSlotsString().replace("&", "&&"));
     else
@@ -350,8 +336,6 @@ void ButtonEditDialog::refreshSlotSummaryLabel()
 
 void ButtonEditDialog::changeToggleSetting()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (lastJoyButton != nullptr)
         lastJoyButton->setToggle(ui->toggleCheckBox->isChecked());
     else
@@ -362,8 +346,6 @@ void ButtonEditDialog::changeToggleSetting()
 
 void ButtonEditDialog::changeTurboSetting()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (lastJoyButton != nullptr)
         lastJoyButton->setUseTurbo(ui->turboCheckBox->isChecked());
     else
@@ -374,13 +356,10 @@ void ButtonEditDialog::changeTurboSetting()
 
 void ButtonEditDialog::openAdvancedDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (lastJoyButton != nullptr)
     {
         if (lastJoyButton->getAssignedSlots()->count() > 0)
         {
-
             AdvanceButtonDialog *dialog = new AdvanceButtonDialog(lastJoyButton, this);
             dialog->show();
 
@@ -420,7 +399,6 @@ void ButtonEditDialog::openAdvancedDialog()
 
     } else
     {
-
         QMessageBox::information(
             this, tr("Last button"),
             tr("To open advanced dialog, it's needed to map at least one button from keyboard to gamepad"));
@@ -429,19 +407,14 @@ void ButtonEditDialog::openAdvancedDialog()
 
 void ButtonEditDialog::createTempSlot(int keycode, int alias)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButtonSlot *slot = new JoyButtonSlot(keycode, alias, JoyButtonSlot::JoyKeyboard, this);
     emit sendTempSlotToAdvanced(slot);
 }
 
 void ButtonEditDialog::checkTurboSetting(bool state)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (lastJoyButton != nullptr)
     {
-
         if (lastJoyButton->containsSequence())
         {
             ui->turboCheckBox->setChecked(false);
@@ -454,17 +427,10 @@ void ButtonEditDialog::checkTurboSetting(bool state)
     }
 }
 
-void ButtonEditDialog::setTurboButtonEnabled(bool state)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    ui->turboCheckBox->setEnabled(state);
-}
+void ButtonEditDialog::setTurboButtonEnabled(bool state) { ui->turboCheckBox->setEnabled(state); }
 
 void ButtonEditDialog::closedAdvancedDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     refreshForLastBtn();
 
     disconnect(ui->virtualKeyMouseTabWidget,
@@ -479,8 +445,6 @@ void ButtonEditDialog::closedAdvancedDialog()
 
 void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (withoutQuickSetDialog)
     {
         invokeMethodLastBtn(lastJoyButton, &helper, "setAssignedSlot", tempslot->getSlotCode(), tempslot->getSlotCodeAlias(),
@@ -513,8 +477,6 @@ void ButtonEditDialog::processSlotAssignment(JoyButtonSlot *tempslot)
 
 void ButtonEditDialog::clearButtonSlots()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (lastJoyButton != nullptr)
         QMetaObject::invokeMethod(lastJoyButton, "clearSlotsEventReset", Q_ARG(bool, false));
     else
@@ -523,20 +485,12 @@ void ButtonEditDialog::clearButtonSlots()
                                     "keyboard for gamepad. Map at least one button from keyboard to gamepad"));
 }
 
-void ButtonEditDialog::sendSelectionFinished()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    emit selectionFinished();
-}
+void ButtonEditDialog::sendSelectionFinished() { emit selectionFinished(); }
 
 void ButtonEditDialog::updateWindowTitleButtonName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (lastJoyButton != nullptr)
     {
-
         QString temp = QString(tr("As last gamepad button has been set"))
                            .append(" \"")
                            .append(lastJoyButton->getPartialName(false, true))
@@ -558,15 +512,12 @@ void ButtonEditDialog::updateWindowTitleButtonName()
 
     } else
     {
-
         setWindowTitle(tr("Choose your keyboard key"));
     }
 }
 
 void ButtonEditDialog::nullifyDialogPointer()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (currentQuickDialog != nullptr)
     {
         lastJoyButton = currentQuickDialog->getLastPressedButton();
@@ -579,10 +530,8 @@ void ButtonEditDialog::nullifyDialogPointer()
 
 void ButtonEditDialog::refreshForLastBtn()
 {
-
     if (lastJoyButton != nullptr)
     {
-
         ui->slotSummaryLabel->setText(lastJoyButton->getSlotsString());
 
         updateWindowTitleButtonName();
@@ -598,7 +547,6 @@ void ButtonEditDialog::refreshForLastBtn()
 
         if (lastJoyButton != nullptr)
         {
-
             QListIterator<JoyButtonSlot *> iter(*(lastJoyButton->getAssignedSlots()));
 
             ui->virtualKeyMouseTabWidget->disableMouseSettingButton();
@@ -656,21 +604,18 @@ void ButtonEditDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, ButtonEditDial
         // when alias exists but not index
         if ((alias != -1) && (index == -1))
         {
-
             QMetaObject::invokeMethod(helper, invokeString, connTypeForAlias, Q_ARG(int, code), Q_ARG(int, alias),
                                       Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
 
             // when alias doesn't exists and index too
         } else if ((alias == -1) && (index == -1))
         {
-
             QMetaObject::invokeMethod(helper, invokeString, connTypeForNothing, Q_ARG(int, code),
                                       Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
 
             // when all exist (code, alias, index)
         } else
         {
-
             if (lastJoyBtn->isPartVDPad())
                 connTypeForAll = Qt::BlockingQueuedConnection;
 

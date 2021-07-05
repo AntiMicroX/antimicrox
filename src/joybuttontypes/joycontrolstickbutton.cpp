@@ -34,8 +34,6 @@ JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, int index, 
                                              QObject *parent)
     : JoyGradientButton(index, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->stick = stick;
 }
 
@@ -43,15 +41,11 @@ JoyControlStickButton::JoyControlStickButton(JoyControlStick *stick, JoyStickDir
                                              int originset, SetJoystick *parentSet, QObject *parent)
     : JoyGradientButton(index, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->stick = stick;
 }
 
 QString JoyControlStickButton::getDirectionName() const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString label = QString();
 
     switch (m_index)
@@ -94,8 +88,6 @@ QString JoyControlStickButton::getDirectionName() const
 
 QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = stick->getPartialName(forceFullFormat, displayNames);
 
     temp.append(": ");
@@ -125,42 +117,24 @@ QString JoyControlStickButton::getPartialName(bool forceFullFormat, bool display
     return temp;
 }
 
-QString JoyControlStickButton::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyControlStickButton::xmlName;
-}
+QString JoyControlStickButton::getXmlName() { return GlobalVariables::JoyControlStickButton::xmlName; }
 
 /**
  * @brief Get the distance that an element is away from its assigned
  *     dead zone
  * @return Normalized distance away from dead zone
  */
-double JoyControlStickButton::getDistanceFromDeadZone()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return stick->calculateDirectionalDistance();
-}
+double JoyControlStickButton::getDistanceFromDeadZone() { return stick->calculateDirectionalDistance(); }
 
 /**
  * @brief Get the distance factor that should be used for mouse movement
  * @return Distance factor that should be used for mouse movement
  */
-double JoyControlStickButton::getMouseDistanceFromDeadZone()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return stick->calculateMouseDirectionalDistance(this);
-}
+double JoyControlStickButton::getMouseDistanceFromDeadZone() { return stick->calculateMouseDirectionalDistance(this); }
 
 void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
     Q_UNUSED(updateActiveString);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     SetChangeCondition oldCondition = setSelectionCondition;
 
     if ((condition != setSelectionCondition) && !passive)
@@ -193,17 +167,10 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
     }
 }
 
-int JoyControlStickButton::getRealJoyNumber() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_index;
-}
+int JoyControlStickButton::getRealJoyNumber() const { return m_index; }
 
 JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection() const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return static_cast<JoyStickDirectionsType::JoyStickDirections>(m_index);
 }
 
@@ -213,8 +180,6 @@ JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection()
  */
 void JoyControlStickButton::setTurboMode(TurboMode mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (isPartRealAxis())
     {
         currentTurboMode = mode;
@@ -227,25 +192,16 @@ void JoyControlStickButton::setTurboMode(TurboMode mode)
  *     type checking.
  * @return Status of being part of a real controller axis
  */
-bool JoyControlStickButton::isPartRealAxis()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return true;
-}
+bool JoyControlStickButton::isPartRealAxis() { return true; }
 
 double JoyControlStickButton::getLastAccelerationDistance()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double temp = stick->calculateLastAccelerationButtonDistance(this);
     return temp;
 }
 
 double JoyControlStickButton::getAccelerationDistance()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double temp = stick->calculateAccelerationDistance(this);
     return temp;
 }
@@ -257,8 +213,6 @@ double JoyControlStickButton::getAccelerationDistance()
  */
 QString JoyControlStickButton::getActiveZoneSummary()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<JoyButtonSlot *> tempList;
 
     tempList.append(getActiveZoneList());
@@ -268,8 +222,6 @@ QString JoyControlStickButton::getActiveZoneSummary()
 
 QString JoyControlStickButton::getCalculatedActiveZoneSummary()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyControlStickModifierButton *tempButton = stick->getModifierButton();
     QString temp = QString();
     QStringList stringlist = QStringList();
@@ -291,15 +243,11 @@ QString JoyControlStickButton::getCalculatedActiveZoneSummary()
 
 double JoyControlStickButton::getLastMouseDistanceFromDeadZone()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return stick->calculateLastMouseDirectionalDistance(this);
 }
 
 double JoyControlStickButton::getCurrentSpringDeadCircle()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double result = (springDeadCircleMultiplier * 0.01);
 
     if ((m_index == static_cast<int>(JoyControlStick::StickLeft)) ||
@@ -321,10 +269,4 @@ double JoyControlStickButton::getCurrentSpringDeadCircle()
     return result;
 }
 
-JoyControlStick *JoyControlStickButton::getStick() const
-{
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return stick;
-}
+JoyControlStick *JoyControlStickButton::getStick() const { return stick; }

@@ -41,9 +41,6 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent)
     , ui(new Ui::QuickSetDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->joystick = joystick;
@@ -265,12 +262,7 @@ void QuickSetDialog::connectBtnForDialog(SetJoystick *currentset)
     }
 }
 
-QuickSetDialog::~QuickSetDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+QuickSetDialog::~QuickSetDialog() { delete ui; }
 
 void QuickSetDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, Qt::ConnectionType connTypeForAlias,
                                          Qt::ConnectionType connTypeForNothing, Qt::ConnectionType connTypeForAll,
@@ -305,21 +297,18 @@ void QuickSetDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, Qt::ConnectionTy
         // when alias exists but not index
         if ((alias != -1) && (index == -1))
         {
-
             QMetaObject::invokeMethod(helper, invokeString, connTypeForAlias, Q_ARG(int, code), Q_ARG(int, alias),
                                       Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
 
             // when alias doesn't exists and index too
         } else if ((alias == -1) && (index == -1))
         {
-
             QMetaObject::invokeMethod(helper, invokeString, connTypeForNothing, Q_ARG(int, code),
                                       Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
 
             // when all exist (code, alias, index)
         } else
         {
-
             QMetaObject::invokeMethod(helper, invokeString, connTypeForAll, Q_ARG(int, code), Q_ARG(int, alias),
                                       Q_ARG(int, index), Q_ARG(JoyButtonSlot::JoySlotInputAction, mode));
         }
@@ -328,8 +317,6 @@ void QuickSetDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, Qt::ConnectionTy
 
 void QuickSetDialog::showAxisButtonDialog(JoyAxisButton *joybtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     invokeMethodLastBtn(joybtn, Qt::QueuedConnection, Qt::QueuedConnection, Qt::QueuedConnection);
 
     this->close();
@@ -337,8 +324,6 @@ void QuickSetDialog::showAxisButtonDialog(JoyAxisButton *joybtn)
 
 void QuickSetDialog::showButtonDialog(JoyButton *joybtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     invokeMethodLastBtn(joybtn, Qt::QueuedConnection, Qt::QueuedConnection, Qt::QueuedConnection);
 
     this->close();
@@ -346,8 +331,6 @@ void QuickSetDialog::showButtonDialog(JoyButton *joybtn)
 
 void QuickSetDialog::showStickButtonDialog(JoyControlStickButton *joyctrlstickbtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     lastButton = joyctrlstickbtn;
 
     invokeMethodLastBtn(joyctrlstickbtn, Qt::QueuedConnection, Qt::QueuedConnection, Qt::QueuedConnection, true);
@@ -357,8 +340,6 @@ void QuickSetDialog::showStickButtonDialog(JoyControlStickButton *joyctrlstickbt
 
 void QuickSetDialog::showDPadButtonDialog(JoyDPadButton *joydpadbtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     invokeMethodLastBtn(joydpadbtn, Qt::QueuedConnection, Qt::QueuedConnection, Qt::BlockingQueuedConnection);
 
     this->close();
@@ -366,8 +347,6 @@ void QuickSetDialog::showDPadButtonDialog(JoyDPadButton *joydpadbtn)
 
 void QuickSetDialog::restoreJoystickState()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     SetJoystick *currentset = joystick->getActiveSetJoystick();
 
     restoreSticksStates(currentset);

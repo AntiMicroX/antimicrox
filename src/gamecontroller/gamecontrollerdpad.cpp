@@ -31,13 +31,10 @@ GameControllerDPad::GameControllerDPad(JoyButton *upButton, JoyButton *downButto
                                        QObject *parent)
     : VDPad(upButton, downButton, leftButton, rightButton, index, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString label = QString();
 
     if (!getDpadName().isEmpty() && displayName)
@@ -65,9 +62,4 @@ QString GameControllerDPad::getName(bool forceFullFormat, bool displayName)
     return label;
 }
 
-QString GameControllerDPad::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::GameControllerDPad::xmlName;
-}
+QString GameControllerDPad::getXmlName() { return GlobalVariables::GameControllerDPad::xmlName; }

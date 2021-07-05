@@ -93,7 +93,6 @@ bool UInputEventHandler::init()
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
-
     #endif
 
             // Some time needs to elapse after device creation before changing

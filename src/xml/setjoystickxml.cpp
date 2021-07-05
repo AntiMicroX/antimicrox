@@ -46,8 +46,6 @@ SetJoystickXml::SetJoystickXml(SetJoystick *setJoystick, QObject *parent)
 
 void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == "set"))
     {
         xml->readNextStartElement();
@@ -129,8 +127,6 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 
 void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!m_setJoystick->isSetEmpty())
     {
         xml->writeStartElement("set");

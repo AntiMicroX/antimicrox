@@ -26,8 +26,6 @@
 MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(axis);
 
     this->axis = axis;
@@ -35,56 +33,42 @@ MouseAxisSettingsDialogHelper::MouseAxisSettingsDialogHelper(JoyAxis *axis, QObj
 
 void MouseAxisSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setExtraAccelerationStatus(checked);
     axis->getNAxisButton()->setExtraAccelerationStatus(checked);
 }
 
 void MouseAxisSettingsDialogHelper::updateExtraAccelerationMultiplier(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setExtraAccelerationMultiplier(value);
     axis->getNAxisButton()->setExtraAccelerationMultiplier(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateStartMultiPercentage(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setStartAccelMultiplier(value);
     axis->getNAxisButton()->setStartAccelMultiplier(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateMinAccelThreshold(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setMinAccelThreshold(value);
     axis->getNAxisButton()->setMinAccelThreshold(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateMaxAccelThreshold(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setMaxAccelThreshold(value);
     axis->getNAxisButton()->setMaxAccelThreshold(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateAccelExtraDuration(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setAccelExtraDuration(value);
     axis->getNAxisButton()->setAccelExtraDuration(value);
 }
 
 void MouseAxisSettingsDialogHelper::updateReleaseSpringRadius(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setSpringDeadCircleMultiplier(value);
     axis->getNAxisButton()->setSpringDeadCircleMultiplier(value);
 }

@@ -31,8 +31,6 @@ GameControllerDPadXml::GameControllerDPadXml(GameControllerDPad *gameContrDpad, 
 
 void GameControllerDPadXml::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == GlobalVariables::VDPad::xmlName))
     {
         xml->readNextStartElement();

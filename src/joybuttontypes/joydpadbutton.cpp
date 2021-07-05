@@ -30,16 +30,12 @@
 JoyDPadButton::JoyDPadButton(int direction, int originset, JoyDPad *dpad, SetJoystick *parentSet, QObject *parent)
     : JoyButton(direction, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_direction = direction;
     m_dpad = dpad;
 }
 
 QString JoyDPadButton::getDirectionName() const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString label = QString();
 
     switch (m_direction)
@@ -80,24 +76,12 @@ QString JoyDPadButton::getDirectionName() const
     return label;
 }
 
-QString JoyDPadButton::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString JoyDPadButton::getXmlName() { return GlobalVariables::JoyDPadButton::xmlName; }
 
-    return GlobalVariables::JoyDPadButton::xmlName;
-}
-
-int JoyDPadButton::getRealJoyNumber() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_index;
-}
+int JoyDPadButton::getRealJoyNumber() const { return m_index; }
 
 QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = m_dpad->getName().append(" - ");
 
     if (!buttonName.isEmpty() && displayNames)
@@ -125,17 +109,10 @@ QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames) c
     return temp;
 }
 
-void JoyDPadButton::reset()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    JoyButton::reset();
-}
+void JoyDPadButton::reset() { JoyButton::reset(); }
 
 void JoyDPadButton::reset(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(index);
     reset();
 }
@@ -143,9 +120,6 @@ void JoyDPadButton::reset(int index)
 void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
     Q_UNUSED(updateActiveString);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     SetChangeCondition oldCondition = setSelectionCondition;
 
     if ((condition != setSelectionCondition) && !passive)
@@ -178,16 +152,6 @@ void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool pas
     }
 }
 
-JoyDPad *JoyDPadButton::getDPad() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+JoyDPad *JoyDPadButton::getDPad() const { return m_dpad; }
 
-    return m_dpad;
-}
-
-int JoyDPadButton::getDirection() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_direction;
-}
+int JoyDPadButton::getDirection() const { return m_direction; }

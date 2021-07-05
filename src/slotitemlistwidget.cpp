@@ -29,7 +29,6 @@
 SlotItemListWidget::SlotItemListWidget(QWidget *parent)
     : QListWidget(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 void SlotItemListWidget::insertItems(int row, QList<QListWidgetItem *> items)
@@ -43,8 +42,6 @@ void SlotItemListWidget::insertItems(int row, QList<QListWidgetItem *> items)
 
 void SlotItemListWidget::keyPressEvent(QKeyEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool propogate = true;
 
     QListWidgetItem *currentItem = this->item(this->currentRow());

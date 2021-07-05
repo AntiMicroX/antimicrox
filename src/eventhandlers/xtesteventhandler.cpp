@@ -32,15 +32,12 @@
 XTestEventHandler::XTestEventHandler(QObject *parent)
     : BaseEventHandler(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
-XTestEventHandler::~XTestEventHandler() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+XTestEventHandler::~XTestEventHandler() {}
 
 bool XTestEventHandler::init()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     X11Extras *instance = X11Extras::getInstance();
 
     if (instance != nullptr)
@@ -51,17 +48,10 @@ bool XTestEventHandler::init()
     return true;
 }
 
-bool XTestEventHandler::cleanup()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return true;
-}
+bool XTestEventHandler::cleanup() { return true; }
 
 void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Display *display = X11Extras::getInstance()->display();
 
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
@@ -82,8 +72,6 @@ void XTestEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 
 void XTestEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Display *display = X11Extras::getInstance()->display();
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
@@ -98,8 +86,6 @@ void XTestEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
 
 void XTestEventHandler::sendMouseEvent(int xDis, int yDis)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Display *display = X11Extras::getInstance()->display();
     XTestFakeRelativeMotionEvent(display, xDis, yDis, 0);
     XFlush(display);
@@ -107,31 +93,17 @@ void XTestEventHandler::sendMouseEvent(int xDis, int yDis)
 
 void XTestEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Display *display = X11Extras::getInstance()->display();
     XTestFakeMotionEvent(display, screen, xDis, yDis, 0);
     XFlush(display);
 }
 
-QString XTestEventHandler::getName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString XTestEventHandler::getName() { return QString("XTest"); }
 
-    return QString("XTest");
-}
-
-QString XTestEventHandler::getIdentifier()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return QString("xtest");
-}
+QString XTestEventHandler::getIdentifier() { return QString("xtest"); }
 
 void XTestEventHandler::sendTextEntryEvent(QString maintext)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     AntKeyMapper *mapper = AntKeyMapper::getInstance();
 
     if ((mapper != nullptr) && mapper->getKeyMapper())
@@ -205,15 +177,12 @@ void XTestEventHandler::sendTextEntryEvent(QString maintext)
 
 void XTestEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int height)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(width);
     Q_UNUSED(height);
 }
 
-void XTestEventHandler::sendMouseSpringEvent(int, int) { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+void XTestEventHandler::sendMouseSpringEvent(int, int) {}
 
-void XTestEventHandler::printPostMessages() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+void XTestEventHandler::printPostMessages() {}

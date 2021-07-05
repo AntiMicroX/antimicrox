@@ -67,8 +67,6 @@
 
 static void termSignalTermHandler(int signal)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(signal)
 
     qApp->exit(0);
@@ -76,8 +74,6 @@ static void termSignalTermHandler(int signal)
 
 static void termSignalIntHandler(int signal)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(signal)
 
     qApp->exit(0);
@@ -86,8 +82,6 @@ static void termSignalIntHandler(int signal)
 // was non static
 static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMapIterator<SDL_JoystickID, InputDevice *> iter(*joysticks);
 
     while (iter.hasNext())
@@ -459,7 +453,6 @@ int main(int argc, char *argv[])
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
-
             if (cmdutility.getDisplayString().isEmpty())
             {
                 X11Extras::getInstance()->syncDisplay();

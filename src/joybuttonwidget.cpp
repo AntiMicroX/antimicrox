@@ -29,8 +29,6 @@
 JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *parent)
     : FlashButtonWidget(displayNames, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_button = button;
 
     refreshLabel();
@@ -45,17 +43,10 @@ JoyButtonWidget::JoyButtonWidget(JoyButton *button, bool displayNames, QWidget *
     connect(button, &JoyButton::activeZoneChanged, this, &JoyButtonWidget::refreshLabel);
 }
 
-JoyButton *JoyButtonWidget::getJoyButton() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_button;
-}
+JoyButton *JoyButtonWidget::getJoyButton() const { return m_button; }
 
 void JoyButtonWidget::disableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disconnect(m_button, &JoyButton::clicked, this, &JoyButtonWidget::flash);
     disconnect(m_button, &JoyButton::released, this, &JoyButtonWidget::unflash);
 
@@ -64,16 +55,12 @@ void JoyButtonWidget::disableFlashes()
 
 void JoyButtonWidget::enableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     connect(m_button, &JoyButton::clicked, this, &JoyButtonWidget::flash, Qt::QueuedConnection);
     connect(m_button, &JoyButton::released, this, &JoyButtonWidget::unflash, Qt::QueuedConnection);
 }
 
 QString JoyButtonWidget::generateLabel()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = m_button->getName(false, ifDisplayNames()).replace("&", "&&");
 
     qDebug() << "Name of joy button is: " << temp;
@@ -83,8 +70,6 @@ QString JoyButtonWidget::generateLabel()
 
 void JoyButtonWidget::showContextMenu(const QPoint &point)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QPoint globalPos = this->mapToGlobal(point);
     JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(m_button, this);
     contextMenu->buildMenu();
@@ -93,8 +78,6 @@ void JoyButtonWidget::showContextMenu(const QPoint &point)
 
 void JoyButtonWidget::tryFlash()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (m_button->getButtonState())
         flash();
 }

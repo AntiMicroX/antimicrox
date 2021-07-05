@@ -23,7 +23,6 @@
 
 class AutoProfileInfo : public QObject
 {
-
     Q_OBJECT
 
   public:

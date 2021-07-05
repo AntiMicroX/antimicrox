@@ -36,8 +36,6 @@ Logger *Logger::instance = nullptr;
 Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     instance = this;
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
@@ -62,8 +60,6 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent)
 Logger::Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLevel, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     instance = this;
     instance->outputStream = stream;
     instance->outputLevel = outputLevel;
@@ -81,8 +77,6 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLev
  */
 Logger::~Logger()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     closeLogger();
     closeErrorLogger();
 }
@@ -94,8 +88,6 @@ Logger::~Logger()
  */
 void Logger::setLogLevel(LogLevel level)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
@@ -110,8 +102,6 @@ void Logger::setLogLevel(LogLevel level)
  */
 Logger::LogLevel Logger::getCurrentLogLevel()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     return instance->outputLevel;
@@ -119,8 +109,6 @@ Logger::LogLevel Logger::getCurrentLogLevel()
 
 void Logger::setCurrentStream(QTextStream *stream)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
@@ -132,8 +120,6 @@ void Logger::setCurrentStream(QTextStream *stream)
 
 QTextStream *Logger::getCurrentStream()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     return instance->outputStream;
@@ -141,8 +127,6 @@ QTextStream *Logger::getCurrentStream()
 
 void Logger::setCurrentErrorStream(QTextStream *stream)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
@@ -158,8 +142,6 @@ void Logger::setCurrentErrorStream(QTextStream *stream)
 
 QTextStream *Logger::getCurrentErrorStream()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     return instance->errorStream;
@@ -175,8 +157,6 @@ QTextStream *Logger::getCurrentErrorStream()
  */
 void Logger::Log()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMutexLocker locker(&logMutex);
     Q_UNUSED(locker);
 
@@ -197,8 +177,6 @@ void Logger::Log()
  */
 void Logger::closeLogger(bool closeStream)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (outputStream != nullptr)
     {
         outputStream->flush();
@@ -220,8 +198,6 @@ void Logger::closeLogger(bool closeStream)
  */
 void Logger::closeErrorLogger(bool closeStream)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (errorStream != nullptr)
     {
         errorStream->flush();
@@ -250,8 +226,6 @@ void Logger::closeErrorLogger(bool closeStream)
  */
 void Logger::appendLog(LogLevel level, const QString &message, bool newline)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
@@ -276,8 +250,6 @@ void Logger::appendLog(LogLevel level, const QString &message, bool newline)
  */
 void Logger::directLog(LogLevel level, const QString &message, bool newline)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
@@ -297,8 +269,6 @@ void Logger::directLog(LogLevel level, const QString &message, bool newline)
  */
 void Logger::logMessage(LogMessage msg)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     LogLevel level = msg.level;
     QString message = msg.message;
     bool newline = msg.newline;
@@ -337,20 +307,13 @@ void Logger::logMessage(LogMessage msg)
  * @brief Get the associated timer used by the logger.
  * @return QTimer instance
  */
-QTimer *Logger::getLogTimer()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return &pendingTimer;
-}
+QTimer *Logger::getLogTimer() { return &pendingTimer; }
 
 /**
  * @brief Stop the logger's timer if it is currently active.
  */
 void Logger::stopLogTimer()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (pendingTimer.isActive())
     {
         pendingTimer.stop();
@@ -364,8 +327,6 @@ void Logger::stopLogTimer()
  */
 void Logger::setWriteTime(bool status)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     QMutexLocker locker(&instance->logMutex);
@@ -381,8 +342,6 @@ void Logger::setWriteTime(bool status)
  */
 bool Logger::getWriteTime()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     return writeTime;
@@ -390,8 +349,6 @@ bool Logger::getWriteTime()
 
 void Logger::startPendingTimer()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     if (!instance->pendingTimer.isActive())
@@ -402,9 +359,6 @@ void Logger::startPendingTimer()
 
 void Logger::setCurrentLogFile(QString filename)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     if (instance->outputFile.isOpen())
@@ -420,9 +374,6 @@ void Logger::setCurrentLogFile(QString filename)
 
 void Logger::setCurrentErrorLogFile(QString filename)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(instance != nullptr);
 
     if (instance->errorFile.isOpen())

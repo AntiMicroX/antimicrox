@@ -42,8 +42,6 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMic
     : QObject(parent)
     , pollResetTimer(this)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_joysticks = joysticks;
     // Xbox360Wireless* xbox360class = new Xbox360Wireless();
     // xbox360 = xbox360class->getResult();
@@ -83,8 +81,6 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMic
 
 InputDaemon::~InputDaemon()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (eventWorker != nullptr)
         quit();
 
@@ -99,16 +95,12 @@ InputDaemon::~InputDaemon()
 
 void InputDaemon::startWorker()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!sdlWorkerThread->isRunning())
         sdlWorkerThread->start(QThread::HighPriority);
 }
 
 void InputDaemon::run()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
 
     // SDL has found events. The timeout is not necessary.
@@ -161,8 +153,6 @@ QString InputDaemon::getJoyInfo(Uint16 sdlvalue)
 
 void InputDaemon::refreshJoysticks()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMapIterator<SDL_JoystickID, InputDevice *> iter(*m_joysticks);
 
     while (iter.hasNext())
@@ -304,8 +294,6 @@ void InputDaemon::refreshJoysticks()
 
 void InputDaemon::deleteJoysticks()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMapIterator<SDL_JoystickID, InputDevice *> iter(*m_joysticks);
 
     while (iter.hasNext())
@@ -330,15 +318,12 @@ void InputDaemon::deleteJoysticks()
 
 void InputDaemon::stop()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     stopped = true;
     pollResetTimer.stop();
 }
 
 void InputDaemon::refresh()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     qDebug() << "REFRESH";
 
     stop();
@@ -371,8 +356,6 @@ void InputDaemon::refresh()
 
 void InputDaemon::refreshJoystick(InputDevice *joystick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     joystick->reset();
 
     emit joystickRefreshed(joystick);
@@ -380,8 +363,6 @@ void InputDaemon::refreshJoystick(InputDevice *joystick)
 
 void InputDaemon::quit()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     stopped = true;
     pollResetTimer.stop();
 
@@ -406,8 +387,6 @@ void InputDaemon::quit()
 
 void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
 
     QMap<QString, int> uniques = QMap<QString, int>();
@@ -483,8 +462,6 @@ void InputDaemon::refreshMapping(QString mapping, InputDevice *device)
 
 void InputDaemon::removeDevice(InputDevice *device)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (device != nullptr)
     {
         SDL_JoystickID deviceID = device->getSDLJoystickID();
@@ -501,8 +478,6 @@ void InputDaemon::removeDevice(InputDevice *device)
 
 void InputDaemon::refreshIndexes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < SDL_NumJoysticks(); i++)
     // for (int i = 0; i < 1; i++)
     {
@@ -519,8 +494,6 @@ void InputDaemon::refreshIndexes()
 
 void InputDaemon::addInputDevice(int index, QMap<QString, int> &uniques, int &counterUniques, bool &duplicatedGamepad)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 #ifdef USE_NEW_ADD
     // Check if device is considered a Game Controller at the start.
     if (SDL_IsGameController(index))
@@ -717,10 +690,7 @@ void InputDaemon::addInputDevice(int index, QMap<QString, int> &uniques, int &co
 }
 
 Joystick *InputDaemon::openJoystickDevice(int index)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Check if joystick is considered connected.
+{ // Check if joystick is considered connected.
     SDL_Joystick *joystick = SDL_JoystickOpen(index);
     // SDL_Joystick* joystick = xbox360;
     Joystick *curJoystick = nullptr;
@@ -741,8 +711,6 @@ InputDeviceBitArrayStatus *
 InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArrayStatus *> *statusHash, InputDevice *device,
                                         bool readCurrent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     InputDeviceBitArrayStatus *bitArrayStatus = nullptr;
 
     if (!statusHash->contains(device))
@@ -759,8 +727,6 @@ InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArray
 
 void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     SDL_Event event;
 
     while (SDL_PollEvent(&event) > 0)
@@ -905,8 +871,6 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
 void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHashIterator<InputDevice *, InputDeviceBitArrayStatus *> genIter(getReleaseEventsGeneratedLocal());
 
     while (genIter.hasNext())
@@ -1005,7 +969,6 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
                         }
                         case SDL_CONTROLLERBUTTONDOWN:
                         case SDL_CONTROLLERBUTTONUP: {
-
                             tempQueue.enqueue(event);
                             break;
                         }
@@ -1031,8 +994,6 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 
 QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     InputDeviceBitArrayStatus tempStatus(device, false);
 
     for (int i = 0; i < device->getNumberRawAxes(); i++)
@@ -1049,8 +1010,6 @@ QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
 
 void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMap<QString, int> uniques = QMap<QString, int>();
     int counterUniques = 1;
     bool duplicatedGamepad = false;
@@ -1089,7 +1048,6 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
         }
 
         case SDL_JOYAXISMOTION: {
-
             InputDevice *joy = getTrackjoysticksLocal().value(event.jaxis.which);
 
             if (joy != nullptr)
@@ -1233,8 +1191,6 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
 void InputDaemon::clearBitArrayStatusInstances()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHashIterator<InputDevice *, InputDeviceBitArrayStatus *> genIter(getReleaseEventsGeneratedLocal());
 
     while (genIter.hasNext())
@@ -1268,8 +1224,6 @@ void InputDaemon::clearBitArrayStatusInstances()
 
 void InputDaemon::resetActiveButtonMouseDistances()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     pollResetTimer.stop();
 
     JoyButton::resetActiveButtonMouseDistances(JoyButton::getMouseHelper());
@@ -1277,8 +1231,6 @@ void InputDaemon::resetActiveButtonMouseDistances()
 
 void InputDaemon::updatePollResetRate(int tempPollRate)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(tempPollRate);
 
     bool wasActive = pollResetTimer.isActive();
@@ -1316,7 +1268,6 @@ QHash<SDL_JoystickID, Joystick *> &InputDaemon::getTrackjoysticksLocal() { retur
 
 QHash<InputDevice *, InputDeviceBitArrayStatus *> &InputDaemon::getReleaseEventsGeneratedLocal()
 {
-
     return releaseEventsGenerated;
 }
 

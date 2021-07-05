@@ -33,8 +33,6 @@ QHash<QString, QString> VirtualKeyPushButton::knownAliases = QHash<QString, QStr
 VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
     : QPushButton(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     populateKnownAliases();
 
     // qDebug() << "Question: " << X11KeySymToKeycode("KP_7") << endl;
@@ -80,17 +78,10 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
     connect(this, &VirtualKeyPushButton::clicked, this, &VirtualKeyPushButton::processSingleSelection);
 }
 
-void VirtualKeyPushButton::processSingleSelection()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    emit keycodeObtained(keycode, qkeyalias);
-}
+void VirtualKeyPushButton::processSingleSelection() { emit keycodeObtained(keycode, qkeyalias); }
 
 QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
     if (knownAliases.contains(xcodestring))
     {
@@ -112,8 +103,6 @@ QString VirtualKeyPushButton::setDisplayString(QString xcodestring)
 // virtual keyboard.
 void VirtualKeyPushButton::populateKnownAliases()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (knownAliases.isEmpty())
     {
         knownAliases.insert("space", tr("Space"));
@@ -178,8 +167,6 @@ void VirtualKeyPushButton::populateKnownAliases()
 
 int VirtualKeyPushButton::calculateFontSize()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QFont tempScaledFont(this->font());
     tempScaledFont.setPointSize(10);
     QFontMetrics fm(tempScaledFont);

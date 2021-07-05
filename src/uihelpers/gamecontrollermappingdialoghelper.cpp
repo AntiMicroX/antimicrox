@@ -27,31 +27,23 @@
 GameControllerMappingDialogHelper::GameControllerMappingDialogHelper(InputDevice *device, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->device = device;
 }
 
 void GameControllerMappingDialogHelper::raiseDeadZones()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     device->setRawAxisDeadZone(GlobalVariables::InputDevice::RAISEDDEADZONE);
     device->getActiveSetJoystick()->raiseAxesDeadZones();
 }
 
 void GameControllerMappingDialogHelper::raiseDeadZones(int deadZone)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     device->getActiveSetJoystick()->raiseAxesDeadZones(deadZone);
     device->setRawAxisDeadZone(deadZone);
 }
 
 void GameControllerMappingDialogHelper::setupDeadZones()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     device->getActiveSetJoystick()->setIgnoreEventState(true);
     device->getActiveSetJoystick()->release();
 
@@ -63,8 +55,6 @@ void GameControllerMappingDialogHelper::setupDeadZones()
 
 void GameControllerMappingDialogHelper::restoreDeviceDeadZones()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     device->getActiveSetJoystick()->setIgnoreEventState(false);
     device->getActiveSetJoystick()->release();
     device->getActiveSetJoystick()->setAxesDeadZones(&originalAxesDeadZones);

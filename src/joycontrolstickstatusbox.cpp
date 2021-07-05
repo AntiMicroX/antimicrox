@@ -36,16 +36,12 @@
 JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent)
     : QWidget(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->stick = nullptr;
 }
 
 JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidget *parent)
     : QWidget(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->stick = stick;
 
     connect(stick, SIGNAL(deadZoneChanged(int)), this, SLOT(update()));
@@ -58,8 +54,6 @@ JoyControlStickStatusBox::JoyControlStickStatusBox(JoyControlStick *stick, QWidg
 
 void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (stick != nullptr)
     {
         disconnect(stick, SIGNAL(deadZoneChanged(int)), this, nullptr);
@@ -79,31 +73,14 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
     update();
 }
 
-JoyControlStick *JoyControlStickStatusBox::getStick() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+JoyControlStick *JoyControlStickStatusBox::getStick() const { return stick; }
 
-    return stick;
-}
+int JoyControlStickStatusBox::heightForWidth(int width) const { return width; }
 
-int JoyControlStickStatusBox::heightForWidth(int width) const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return width;
-}
-
-QSize JoyControlStickStatusBox::sizeHint() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return QSize(-1, -1);
-}
+QSize JoyControlStickStatusBox::sizeHint() const { return QSize(-1, -1); }
 
 void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(event);
 
     PadderCommon::inputDaemonMutex.lock();
@@ -124,8 +101,6 @@ void JoyControlStickStatusBox::paintEvent(QPaintEvent *event)
 
 void JoyControlStickStatusBox::drawEightWayBox()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
 
@@ -276,8 +251,6 @@ void JoyControlStickStatusBox::drawEightWayBox()
 
 void JoyControlStickStatusBox::drawFourWayCardinalBox()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
 
@@ -425,8 +398,6 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
 
 void JoyControlStickStatusBox::drawFourWayDiagonalBox()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QPainter paint(this);
     paint.setRenderHint(QPainter::Antialiasing, true);
 

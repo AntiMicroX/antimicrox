@@ -32,8 +32,6 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent)
     , ui(new Ui::SetNamesDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
     this->device = device;
 
@@ -48,17 +46,10 @@ SetNamesDialog::SetNamesDialog(InputDevice *device, QWidget *parent)
     connect(this, &SetNamesDialog::accepted, this, &SetNamesDialog::saveSetNameChanges);
 }
 
-SetNamesDialog::~SetNamesDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+SetNamesDialog::~SetNamesDialog() { delete ui; }
 
 void SetNamesDialog::saveSetNameChanges()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < ui->setNamesTableWidget->rowCount(); i++)
     {
         QTableWidgetItem *setNameItem = ui->setNamesTableWidget->item(i, 0);

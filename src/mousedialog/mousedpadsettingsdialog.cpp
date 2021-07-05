@@ -34,8 +34,6 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
     : MouseSettingsDialog(parent)
     , helper(dpad)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setAttribute(Qt::WA_DeleteOnClose);
     resize(size().width(), 450);
 
@@ -130,8 +128,6 @@ MouseDPadSettingsDialog::MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent)
 
 void MouseDPadSettingsDialog::changeMouseMode(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (index == 1)
     {
         dpad->setButtonsMouseMode(JoyButton::MouseCursor);
@@ -152,16 +148,12 @@ void MouseDPadSettingsDialog::changeMouseMode(int index)
 
 void MouseDPadSettingsDialog::changeMouseCurve(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyMouseCurve temp = MouseSettingsDialog::getMouseCurveForIndex(index);
     dpad->setButtonsMouseCurve(temp);
 }
 
 void MouseDPadSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     while (iter.hasNext())
     {
@@ -172,8 +164,6 @@ void MouseDPadSettingsDialog::updateConfigHorizontalSpeed(int value)
 
 void MouseDPadSettingsDialog::updateConfigVerticalSpeed(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     while (iter.hasNext())
     {
@@ -182,24 +172,12 @@ void MouseDPadSettingsDialog::updateConfigVerticalSpeed(int value)
     }
 }
 
-void MouseDPadSettingsDialog::updateSpringWidth(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MouseDPadSettingsDialog::updateSpringWidth(int value) { dpad->setButtonsSpringWidth(value); }
 
-    dpad->setButtonsSpringWidth(value);
-}
-
-void MouseDPadSettingsDialog::updateSpringHeight(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    dpad->setButtonsSpringHeight(value);
-}
+void MouseDPadSettingsDialog::updateSpringHeight(int value) { dpad->setButtonsSpringHeight(value); }
 
 void MouseDPadSettingsDialog::selectCurrentMouseModePreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool presetDefined = dpad->hasSameButtonsMouseMode();
     if (presetDefined)
     {
@@ -219,8 +197,6 @@ void MouseDPadSettingsDialog::selectCurrentMouseModePreset()
 
 void MouseDPadSettingsDialog::calculateSpringPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempWidth = dpad->getButtonsPresetSpringWidth();
     int tempHeight = dpad->getButtonsPresetSpringHeight();
 
@@ -237,8 +213,6 @@ void MouseDPadSettingsDialog::calculateSpringPreset()
 
 void MouseDPadSettingsDialog::calculateMouseSpeedPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     int tempMouseSpeedX = 0;
     while (iter.hasNext())
@@ -259,25 +233,16 @@ void MouseDPadSettingsDialog::calculateMouseSpeedPreset()
     ui->verticalSpinBox->setValue(tempMouseSpeedY);
 }
 
-void MouseDPadSettingsDialog::updateSensitivity(double value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    dpad->setButtonsSensitivity(value);
-}
+void MouseDPadSettingsDialog::updateSensitivity(double value) { dpad->setButtonsSensitivity(value); }
 
 void MouseDPadSettingsDialog::updateAccelerationCurvePresetComboBox()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyMouseCurve temp = dpad->getButtonsPresetMouseCurve();
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseDPadSettingsDialog::calculateWheelSpeedPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHashIterator<int, JoyDPadButton *> iter(*dpad->getButtons());
     int tempWheelSpeedX = 0;
     int tempWheelSpeedY = 0;
@@ -292,31 +257,14 @@ void MouseDPadSettingsDialog::calculateWheelSpeedPreset()
     ui->wheelVertSpeedSpinBox->setValue(tempWheelSpeedY);
 }
 
-void MouseDPadSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MouseDPadSettingsDialog::updateWheelSpeedHorizontalSpeed(int value) { dpad->setButtonsWheelSpeedX(value); }
 
-    dpad->setButtonsWheelSpeedX(value);
-}
+void MouseDPadSettingsDialog::updateWheelSpeedVerticalSpeed(int value) { dpad->setButtonsWheelSpeedY(value); }
 
-void MouseDPadSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    dpad->setButtonsWheelSpeedY(value);
-}
-
-void MouseDPadSettingsDialog::updateSpringRelativeStatus(bool value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    dpad->setButtonsSpringRelativeStatus(value);
-}
+void MouseDPadSettingsDialog::updateSpringRelativeStatus(bool value) { dpad->setButtonsSpringRelativeStatus(value); }
 
 void MouseDPadSettingsDialog::updateWindowTitleDPadName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString(tr("Mouse Settings")).append(" - ");
 
     if (!dpad->getDpadName().isEmpty())
@@ -344,32 +292,21 @@ void MouseDPadSettingsDialog::updateWindowTitleDPadName()
     setWindowTitle(temp);
 }
 
-void MouseDPadSettingsDialog::updateReleaseSpringRadius(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    dpad->setButtonsSpringDeadCircleMultiplier(value);
-}
+void MouseDPadSettingsDialog::updateReleaseSpringRadius(int value) { dpad->setButtonsSpringDeadCircleMultiplier(value); }
 
 void MouseDPadSettingsDialog::calculateReleaseSpringRadius()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->releaseSpringRadiusspinBox->setValue(dpad->getButtonsSpringDeadCircleMultiplier());
 }
 
 void MouseDPadSettingsDialog::calculateExtraAccelerationCurve()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyExtraAccelerationCurve curve = dpad->getButtonsExtraAccelerationCurve();
     updateExtraAccelerationCurvePresetComboBox(curve);
 }
 
 void MouseDPadSettingsDialog::updateExtraAccelerationCurve(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyExtraAccelerationCurve temp = JoyButton::LinearAccelCurve;
 
     if (index > 0)

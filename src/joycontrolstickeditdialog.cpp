@@ -44,8 +44,6 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, boo
 {
     ui->setupUi(this);
     this->keypadUnlocked = keypadUnlocked;
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->stick = stick;
@@ -180,16 +178,10 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, boo
     helper = new JoyControlStick();
 }*/
 
-JoyControlStickEditDialog::~JoyControlStickEditDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-    delete ui;
-}
+JoyControlStickEditDialog::~JoyControlStickEditDialog() { delete ui; }
 
 void JoyControlStickEditDialog::implementPresets(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButtonSlot *upButtonSlot = nullptr;
     JoyButtonSlot *downButtonSlot = nullptr;
     JoyButtonSlot *leftButtonSlot = nullptr;
@@ -201,7 +193,6 @@ void JoyControlStickEditDialog::implementPresets(int index)
 
     switch (index)
     {
-
     case 1: {
         PadderCommon::inputDaemonMutex.lock();
 
@@ -387,8 +378,6 @@ void JoyControlStickEditDialog::implementPresets(int index)
 
 void JoyControlStickEditDialog::refreshStickStats(int x, int y)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(x);
     Q_UNUSED(y);
 
@@ -419,8 +408,6 @@ void JoyControlStickEditDialog::refreshStickStats(int x, int y)
 
 void JoyControlStickEditDialog::checkMaxZone(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (value > ui->deadZoneSpinBox->value())
     {
         QMetaObject::invokeMethod(stick, "setMaxZone", Q_ARG(int, value));
@@ -429,8 +416,6 @@ void JoyControlStickEditDialog::checkMaxZone(int value)
 
 void JoyControlStickEditDialog::implementModes(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
 
     stick->releaseButtonEvents();
@@ -472,8 +457,6 @@ void JoyControlStickEditDialog::implementModes(int index)
 
 void JoyControlStickEditDialog::selectCurrentPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyControlStickButton *upButton = stick->getDirectionButton(JoyControlStick::StickUp);
     QList<JoyButtonSlot *> *upslots = upButton->getAssignedSlots();
     JoyControlStickButton *downButton = stick->getDirectionButton(JoyControlStick::StickDown);
@@ -572,8 +555,6 @@ void JoyControlStickEditDialog::selectCurrentPreset()
 
 void JoyControlStickEditDialog::updateMouseMode(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
 
     if (index == 1)
@@ -589,8 +570,6 @@ void JoyControlStickEditDialog::updateMouseMode(int index)
 
 void JoyControlStickEditDialog::openMouseSettingsDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->mouseSettingsPushButton->setEnabled(false);
 
     MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(this->stick, this);
@@ -599,17 +578,10 @@ void JoyControlStickEditDialog::openMouseSettingsDialog()
     connect(dialog, SIGNAL(finished(int)), this, SLOT(enableMouseSettingButton()));
 }
 
-void JoyControlStickEditDialog::enableMouseSettingButton()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    ui->mouseSettingsPushButton->setEnabled(true);
-}
+void JoyControlStickEditDialog::enableMouseSettingButton() { ui->mouseSettingsPushButton->setEnabled(true); }
 
 void JoyControlStickEditDialog::updateWindowTitleStickName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString(tr("Set")).append(" ");
 
     if (!stick->getStickName().isEmpty())
@@ -639,8 +611,6 @@ void JoyControlStickEditDialog::updateWindowTitleStickName()
 
 void JoyControlStickEditDialog::changeCircleAdjust(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMetaObject::invokeMethod(stick, "setCircleAdjust", Q_ARG(double, value * 0.01));
 }
 
@@ -650,8 +620,6 @@ void JoyControlStickEditDialog::changeCircleAdjust(int value)
  */
 void JoyControlStickEditDialog::updateStickDelaySpinBox(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double temp = value * 0.001;
     ui->stickDelayDoubleSpinBox->setValue(temp);
 }
@@ -662,8 +630,6 @@ void JoyControlStickEditDialog::updateStickDelaySpinBox(int value)
  */
 void JoyControlStickEditDialog::updateStickDelaySlider(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int temp = value * 100;
 
     if (ui->stickDelaySlider->value() != temp)
@@ -674,8 +640,6 @@ void JoyControlStickEditDialog::updateStickDelaySlider(double value)
 
 void JoyControlStickEditDialog::openModifierEditDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ButtonEditDialog *dialog =
         new ButtonEditDialog(stick->getModifierButton(), stick->getParentSet()->getInputDevice(), keypadUnlocked, this);
     dialog->show();
@@ -683,8 +647,6 @@ void JoyControlStickEditDialog::openModifierEditDialog()
 
 void JoyControlStickEditDialog::changeModifierSummary()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->modifierPushButton->setText(stick->getModifierButton()->getSlotsSummary());
 }
 

@@ -31,8 +31,6 @@
 JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent)
     : QMenu(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->button = button;
 
     connect(this, &JoyButtonContextMenu::aboutToHide, this, &JoyButtonContextMenu::deleteLater);
@@ -40,8 +38,6 @@ JoyButtonContextMenu::JoyButtonContextMenu(JoyButton *button, QWidget *parent)
 
 void JoyButtonContextMenu::buildMenu()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
 
     QAction *action = this->addAction(tr("Toggle"));
@@ -119,8 +115,6 @@ void JoyButtonContextMenu::createActionForGroup(QActionGroup *tempGroup, QString
 
 void JoyButtonContextMenu::switchToggle()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
     button->setToggle(!button->getToggleState());
     PadderCommon::inputDaemonMutex.unlock();
@@ -128,8 +122,6 @@ void JoyButtonContextMenu::switchToggle()
 
 void JoyButtonContextMenu::switchTurbo()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
     button->setUseTurbo(!button->isUsingTurbo());
     PadderCommon::inputDaemonMutex.unlock();
@@ -137,8 +129,6 @@ void JoyButtonContextMenu::switchTurbo()
 
 void JoyButtonContextMenu::switchSetMode(QAction *action)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int item = action->data().toInt();
     int setSelection = item / 3;
     int setChangeCondition = item % 3;
@@ -171,16 +161,9 @@ void JoyButtonContextMenu::switchSetMode(QAction *action)
 
 void JoyButtonContextMenu::disableSetMode()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
     button->setChangeSetCondition(JoyButton::SetChangeDisabled);
     PadderCommon::inputDaemonMutex.unlock();
 }
 
-void JoyButtonContextMenu::clearButton()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    QMetaObject::invokeMethod(button, "clearSlotsEventReset");
-}
+void JoyButtonContextMenu::clearButton() { QMetaObject::invokeMethod(button, "clearSlotsEventReset"); }

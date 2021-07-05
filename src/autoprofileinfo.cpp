@@ -27,8 +27,6 @@ AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation, QStr
                                  QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setUniqueID(uniqueID);
     setProfileLocation(profileLocation);
     setExe(exe);
@@ -40,8 +38,6 @@ AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation, QStr
 AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation, bool active, bool partialTitle, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setUniqueID(uniqueID);
     setProfileLocation(profileLocation);
     setActive(active);
@@ -52,33 +48,19 @@ AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation, bool
 AutoProfileInfo::AutoProfileInfo(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setActive(true);
     setDefaultState(false);
     setPartialState(false);
 }
 
-AutoProfileInfo::~AutoProfileInfo() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+AutoProfileInfo::~AutoProfileInfo() {}
 
-void AutoProfileInfo::setUniqueID(QString uniqueID)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void AutoProfileInfo::setUniqueID(QString uniqueID) { this->uniqueID = uniqueID; }
 
-    this->uniqueID = uniqueID;
-}
-
-QString AutoProfileInfo::getUniqueID() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return uniqueID;
-}
+QString AutoProfileInfo::getUniqueID() const { return uniqueID; }
 
 void AutoProfileInfo::setProfileLocation(QString profileLocation)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QFileInfo info(profileLocation);
 
     if ((profileLocation != this->profileLocation) && info.exists() && info.isReadable())
@@ -90,17 +72,10 @@ void AutoProfileInfo::setProfileLocation(QString profileLocation)
     }
 }
 
-QString AutoProfileInfo::getProfileLocation() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return profileLocation;
-}
+QString AutoProfileInfo::getProfileLocation() const { return profileLocation; }
 
 void AutoProfileInfo::setExe(QString exe)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!exe.isEmpty())
     {
         QFileInfo info(exe);
@@ -115,96 +90,34 @@ void AutoProfileInfo::setExe(QString exe)
     }
 }
 
-QString AutoProfileInfo::getExe() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString AutoProfileInfo::getExe() const { return exe; }
 
-    return exe;
-}
+void AutoProfileInfo::setWindowClass(QString windowClass) { this->windowClass = windowClass; }
 
-void AutoProfileInfo::setWindowClass(QString windowClass)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString AutoProfileInfo::getWindowClass() const { return windowClass; }
 
-    this->windowClass = windowClass;
-}
+void AutoProfileInfo::setWindowName(QString winName) { this->windowName = winName; }
 
-QString AutoProfileInfo::getWindowClass() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString AutoProfileInfo::getWindowName() const { return windowName; }
 
-    return windowClass;
-}
+void AutoProfileInfo::setActive(bool active) { this->active = active; }
 
-void AutoProfileInfo::setWindowName(QString winName)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool AutoProfileInfo::isActive() { return active; }
 
-    this->windowName = winName;
-}
+void AutoProfileInfo::setDefaultState(bool value) { this->defaultState = value; }
 
-QString AutoProfileInfo::getWindowName() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool AutoProfileInfo::isCurrentDefault() { return defaultState; }
 
-    return windowName;
-}
-
-void AutoProfileInfo::setActive(bool active)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    this->active = active;
-}
-
-bool AutoProfileInfo::isActive()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return active;
-}
-
-void AutoProfileInfo::setDefaultState(bool value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    this->defaultState = value;
-}
-
-bool AutoProfileInfo::isCurrentDefault()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return defaultState;
-}
-
-void AutoProfileInfo::setDeviceName(QString name)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    this->deviceName = name;
-}
+void AutoProfileInfo::setDeviceName(QString name) { this->deviceName = name; }
 
 QString AutoProfileInfo::getDeviceName() const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (deviceName.isNull())
         return "";
     else
         return deviceName;
 }
 
-void AutoProfileInfo::setPartialState(bool value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void AutoProfileInfo::setPartialState(bool value) { this->partialState = value; }
 
-    this->partialState = value;
-}
-
-bool AutoProfileInfo::isPartialState()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return partialState;
-}
+bool AutoProfileInfo::isPartialState() { return partialState; }

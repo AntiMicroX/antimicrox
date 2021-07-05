@@ -53,9 +53,6 @@
 // based around a fixed bounding box resolution.
 void fakeAbsMouseCoordinates(double springX, double springY, int width, int height, int &finalx, int &finaly, int screen)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int screenWidth = 0;
     int screenHeight = 0;
     int screenMidwidth = 0;
@@ -94,8 +91,6 @@ void fakeAbsMouseCoordinates(double springX, double springY, int width, int heig
 // Create the event used by the operating system.
 void sendevent(JoyButtonSlot *slot, bool pressed)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
 
     if (device == JoyButtonSlot::JoyKeyboard)
@@ -168,12 +163,7 @@ QString detectedScriptExt(QString file)
 }
 
 // Create the relative mouse event used by the operating system.
-void sendevent(int code1, int code2)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2);
-}
+void sendevent(int code1, int code2) { EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2); }
 
 // TODO: Re-implement spring event generation to simplify the process
 // and reduce overhead. Refactor old function to only be used when an absmouse
@@ -184,9 +174,6 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring, PadderCom
     Q_UNUSED(relativeSpring)
     Q_UNUSED(mousePosX)
     Q_UNUSED(mousePosY)
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::mouseHelperObj.mouseTimer.stop();
 
     if (fullSpring != nullptr)
@@ -232,7 +219,6 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring, PadderCom
 
             if ((pivotX >= 0) && (pivotY >= 0))
             {
-
                 // Find a use for this routine in this context.
                 int destRelativeWidth = relativeSpring->width;
                 int destRelativeHeight = relativeSpring->height;
@@ -274,9 +260,6 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring, PadderCom
 void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring,
                      int *const mousePosX, int *const mousePosY)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::mouseHelperObj.mouseTimer.stop();
 
     if (((fullSpring->displacementX >= -2.0) && (fullSpring->displacementX <= 1.0) && (fullSpring->displacementY >= -2.0) &&
@@ -411,7 +394,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             // If either position is set to center, force update.
             if ((xmovecoor == (deskRect.x() + midwidth)) || (ymovecoor == (deskRect.y() + midheight)))
             {
-
                 BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
                 if (fullSpring->screen <= -1)
                 {
@@ -536,8 +518,6 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
 
 int X11KeySymToKeycode(QString key)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempcode = 0;
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
@@ -565,8 +545,6 @@ int X11KeySymToKeycode(QString key)
 
 QString keycodeToKeyString(int keycode, int alias)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString newkey = QString();
 
     Q_UNUSED(alias)
@@ -637,8 +615,6 @@ QString keycodeToKeyString(int keycode, int alias)
 
 int X11KeyCodeToX11KeySym(int keycode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 #ifdef WITH_X11
 
     Display *display = X11Extras::getInstance()->display();
@@ -654,8 +630,6 @@ int X11KeyCodeToX11KeySym(int keycode)
 
 QString keysymToKeyString(int keysym, int alias)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString newkey = QString();
 
 #ifdef WITH_X11

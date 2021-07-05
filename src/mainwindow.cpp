@@ -82,8 +82,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
     ui->setupUi(this);
 
     setWindowIcon(PadderCommon::loadIcon("antimicrox", ":/images/antimicrox.png"));
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     ui->stackedWidget->setCurrentIndex(0);
 
     m_translator = nullptr;
@@ -181,8 +179,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
 
 MainWindow::~MainWindow()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     qDebug() << "removing main window";
 
     if (trayIconMenu != nullptr)
@@ -201,8 +197,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::alterConfigFromSettings()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (m_cmdutility->shouldListControllers())
     {
         m_graphical = false;
@@ -271,8 +265,6 @@ void MainWindow::alterConfigFromSettings()
 
 void MainWindow::controllerMapOpening()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (m_cmdutility->shouldMapController())
     {
         m_graphical = false;
@@ -282,7 +274,6 @@ void MainWindow::controllerMapOpening()
 
         if (temp.hasControllerNumber())
         {
-
             int joypadIndex = m_cmdutility->getControllerNumber();
 
             qDebug() << "It was antimicrox --map controllerNumber";
@@ -310,17 +301,10 @@ void MainWindow::controllerMapOpening()
     }
 }
 
-void MainWindow::fillButtons()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    fillButtonsMap(m_joysticks);
-}
+void MainWindow::fillButtons() { fillButtonsMap(m_joysticks); }
 
 void MainWindow::makeJoystickTabs()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
@@ -359,8 +343,6 @@ void MainWindow::makeJoystickTabs()
 
 void MainWindow::fillButtonsID(InputDevice *joystick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int joyindex = joystick->getJoyNumber();
     JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(joyindex)); // static_cast
     tabwidget->refreshButtons();
@@ -368,8 +350,6 @@ void MainWindow::fillButtonsID(InputDevice *joystick)
 
 void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->stackedWidget->setCurrentIndex(0);
     removeJoyTabs();
 
@@ -433,8 +413,6 @@ void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 // Intermediate slot to be used in Form Designer
 void MainWindow::startJoystickRefresh()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->stackedWidget->setCurrentIndex(0);
     ui->actionUpdate_Joysticks->setEnabled(false);
     ui->actionHide->setEnabled(false);
@@ -446,8 +424,6 @@ void MainWindow::startJoystickRefresh()
 
 void MainWindow::populateTrayIcon()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disconnect(trayIconMenu, &QMenu::aboutToShow, this, &MainWindow::singleTrayProfileMenuShow);
 
     trayIconMenu->clear();
@@ -667,8 +643,6 @@ void MainWindow::populateTrayIcon()
 
 void MainWindow::quitProgram()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool discard = true;
 #ifdef WITH_X11
     AutoProfileWatcher::getAutoProfileWatcherInstance()->disconnectWindowTimer();
@@ -686,8 +660,6 @@ void MainWindow::quitProgram()
 
 void MainWindow::refreshTrayIconMenu()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (this->isHidden())
     {
         hideAction->setEnabled(false);
@@ -701,8 +673,6 @@ void MainWindow::refreshTrayIconMenu()
 
 void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (reason == QSystemTrayIcon::Trigger)
     {
         if (this->isHidden())
@@ -717,8 +687,6 @@ void MainWindow::trayIconClickAction(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::mainMenuChange(QMenu *tempMenu)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (tempMenu == ui->menuQuit)
     {
         if (showTrayIcon)
@@ -733,8 +701,6 @@ void MainWindow::mainMenuChange(QMenu *tempMenu)
 
 void MainWindow::saveAppConfig()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (m_joysticks->size() > 0)
     {
         JoyTabWidget *temptabwidget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(0)); // static_cast
@@ -780,8 +746,6 @@ void MainWindow::saveAppConfig()
 
 void MainWindow::loadAppConfig(bool forceRefresh)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(i)); // static_cast
@@ -791,8 +755,6 @@ void MainWindow::loadAppConfig(bool forceRefresh)
 
 void MainWindow::disableFlashActions()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         QList<JoyButtonWidget *> list = ui->tabWidget->widget(i)->findChildren<JoyButtonWidget *>();
@@ -851,8 +813,6 @@ void MainWindow::disableFlashActions()
 
 void MainWindow::enableFlashActions()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         QList<JoyButtonWidget *> list = ui->tabWidget->widget(i)->findChildren<JoyButtonWidget *>();
@@ -918,8 +878,6 @@ void MainWindow::enableFlashActions()
 // Intermediate slot used in Design mode
 void MainWindow::hideWindow()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disableFlashActions();
     signalDisconnect = true;
     hide();
@@ -927,8 +885,6 @@ void MainWindow::hideWindow()
 
 void MainWindow::joystickTrayShow(QMenu *tempmenu)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<QAction *> menuactions = tempmenu->actions();
     QListIterator<QAction *> listiter(menuactions);
     while (listiter.hasNext())
@@ -971,10 +927,7 @@ void MainWindow::joystickTrayShow(QMenu *tempmenu)
 }
 
 void MainWindow::showEvent(QShowEvent *event)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Check if hideEvent has been processed
+{ // Check if hideEvent has been processed
     if (signalDisconnect && isVisible())
     {
         // Restore flashing buttons
@@ -1005,8 +958,6 @@ void MainWindow::showEvent(QShowEvent *event)
 
 void MainWindow::changeEvent(QEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (event->type() == QEvent::WindowStateChange)
     {
         QWindowStateChangeEvent *e = static_cast<QWindowStateChangeEvent *>(event);
@@ -1030,17 +981,10 @@ void MainWindow::changeEvent(QEvent *event)
     QMainWindow::changeEvent(event);
 }
 
-void MainWindow::openAboutDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    aboutDialog->show();
-}
+void MainWindow::openAboutDialog() { aboutDialog->show(); }
 
 void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((joystickIndex > 0) && m_joysticks->contains(joystickIndex - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(joystickIndex - 1)); // static_cast
@@ -1063,8 +1007,6 @@ void MainWindow::loadConfigFile(QString fileLocation, int joystickIndex)
 
 void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!controllerID.isEmpty())
     {
         QListIterator<JoyTabWidget *> iter(ui->tabWidget->findChildren<JoyTabWidget *>());
@@ -1085,8 +1027,6 @@ void MainWindow::loadConfigFile(QString fileLocation, QString controllerID)
 
 void MainWindow::removeJoyTabs()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int oldtabcount = ui->tabWidget->count();
 
     for (int i = oldtabcount - 1; i >= 0; i--)
@@ -1101,16 +1041,12 @@ void MainWindow::removeJoyTabs()
 
 void MainWindow::handleInstanceDisconnect()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_settings->sync();
     loadAppConfig(true);
 }
 
 void MainWindow::openJoystickStatusWindow()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
@@ -1126,46 +1062,25 @@ void MainWindow::openJoystickStatusWindow()
 
 void MainWindow::openKeyCheckerDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QKeyDisplayDialog *dialog = new QKeyDisplayDialog(this);
     dialog->show();
 }
 
-void MainWindow::openGitHubPage()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MainWindow::openGitHubPage() { QDesktopServices::openUrl(QUrl(PadderCommon::githubProjectPage)); }
 
-    QDesktopServices::openUrl(QUrl(PadderCommon::githubProjectPage));
-}
+void MainWindow::openIssuesPage() { QDesktopServices::openUrl(QUrl(PadderCommon::githubIssuesPage)); }
 
-void MainWindow::openIssuesPage()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    QDesktopServices::openUrl(QUrl(PadderCommon::githubIssuesPage));
-}
-
-void MainWindow::openWikiPage()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    QDesktopServices::openUrl(QUrl(PadderCommon::wikiPage));
-}
+void MainWindow::openWikiPage() { QDesktopServices::openUrl(QUrl(PadderCommon::wikiPage)); }
 
 void MainWindow::openCalibration()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (m_joysticks->isEmpty())
     {
-
         QMessageBox::information(this, tr("Calibration couldn't be opened"),
                                  tr("You must connect at least one controller to open the window"));
 
     } else
     {
-
         int index = ui->tabWidget->currentIndex();
         if (index >= 0)
         {
@@ -1186,8 +1101,6 @@ void MainWindow::openCalibration()
 
 void MainWindow::unloadCurrentConfig(int joystickIndex)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((joystickIndex > 0) && m_joysticks->contains(joystickIndex - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(joystickIndex - 1)); // static_cast
@@ -1210,8 +1123,6 @@ void MainWindow::unloadCurrentConfig(int joystickIndex)
 
 void MainWindow::unloadCurrentConfig(QString controllerID)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!controllerID.isEmpty())
     {
         QListIterator<JoyTabWidget *> iter(ui->tabWidget->findChildren<JoyTabWidget *>());
@@ -1232,8 +1143,6 @@ void MainWindow::unloadCurrentConfig(QString controllerID)
 
 void MainWindow::propogateNameDisplayStatus(JoyTabWidget *tabwidget, bool displayNames)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(i)); // static_cast
@@ -1249,8 +1158,6 @@ void MainWindow::propogateNameDisplayStatus(JoyTabWidget *tabwidget, bool displa
 
 void MainWindow::changeStartSetNumber(int startSetNumber, QString controllerID)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!controllerID.isEmpty())
     {
         QListIterator<JoyTabWidget *> iter(ui->tabWidget->findChildren<JoyTabWidget *>());
@@ -1271,8 +1178,6 @@ void MainWindow::changeStartSetNumber(int startSetNumber, QString controllerID)
 
 void MainWindow::changeStartSetNumber(int startSetNumber, int joystickIndex)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((joystickIndex > 0) && m_joysticks->contains(joystickIndex - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(joystickIndex - 1)); // static_cast
@@ -1300,8 +1205,6 @@ void MainWindow::changeStartSetNumber(int startSetNumber, int joystickIndex)
 
 void MainWindow::openMainSettingsDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<InputDevice *> *devices = new QList<InputDevice *>(m_joysticks->values());
     MainSettingsDialog *dialog = new MainSettingsDialog(m_settings, devices, this);
     connect(dialog, &MainSettingsDialog::changeLanguage, this, &MainWindow::changeLanguage);
@@ -1332,8 +1235,6 @@ void MainWindow::openMainSettingsDialog()
  */
 void MainWindow::changeLanguage(QString language)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((m_translator != nullptr) && (m_appTranslator != nullptr))
     {
         PadderCommon::reloadTranslations(m_translator, m_appTranslator, language);
@@ -1347,8 +1248,6 @@ void MainWindow::changeLanguage(QString language)
  */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool closeToTray = m_settings->value("CloseToTray", false).toBool();
     if (closeToTray && QSystemTrayIcon::isSystemTrayAvailable() && showTrayIcon)
     {
@@ -1368,8 +1267,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
  */
 void MainWindow::showStickAssignmentDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
@@ -1388,8 +1285,6 @@ void MainWindow::showStickAssignmentDialog()
  */
 void MainWindow::singleTrayProfileMenuShow()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!getProfileActions().isEmpty())
     {
         QMapIterator<int, QList<QAction *>> mapIter(getProfileActions());
@@ -1440,10 +1335,7 @@ void MainWindow::singleTrayProfileMenuShow()
 }
 
 void MainWindow::profileTrayActionTriggered(QAction *action, bool checked)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Obtaining the selected config
+{ // Obtaining the selected config
     QHash<QString, QVariant> tempmap = action->data().toHash();
     QHashIterator<QString, QVariant> iter(tempmap);
 
@@ -1472,8 +1364,6 @@ void MainWindow::profileTrayActionTriggered(QAction *action, bool checked)
 
 void MainWindow::checkHideEmptyOption()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(i)); // static_cast
@@ -1486,8 +1376,6 @@ void MainWindow::checkHideEmptyOption()
 
 void MainWindow::openGameControllerMappingWindow(bool openAsMain)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
@@ -1516,17 +1404,10 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
     }
 }
 
-void MainWindow::propogateMappingUpdate(QString mapping, InputDevice *device)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    emit mappingUpdated(mapping, device);
-}
+void MainWindow::propogateMappingUpdate(QString mapping, InputDevice *device) { emit mappingUpdated(mapping, device); }
 
 void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QWidget *tab = ui->tabWidget->widget(index);
     if (tab != nullptr)
     {
@@ -1556,8 +1437,6 @@ void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
 
 void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
     for (int i = 0; (i < ui->tabWidget->count()) && !found; i++)
     {
@@ -1602,8 +1481,6 @@ void MainWindow::removeJoyTab(SDL_JoystickID deviceID)
 
 void MainWindow::addJoyTab(InputDevice *device)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyTabWidget *tabwidget = new JoyTabWidget(device, m_settings, this);
     QString joytabName = device->getSDLName();
     joytabName.append(" ").append(tr("(%1)").arg(device->getName()));
@@ -1639,8 +1516,6 @@ void MainWindow::addJoyTab(InputDevice *device)
 
 void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (info != nullptr)
     {
         Logger::LogDebug(QObject::tr("Auto-switching to profile \"%1\".").arg(info->getProfileLocation()));
@@ -1653,7 +1528,6 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-
         for (int i = 0; i < ui->tabWidget->count(); i++)
         {
             JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(i)); // static_cast
@@ -1747,8 +1621,6 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 
 void MainWindow::checkAutoProfileWatcherTimer()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 #if defined(WITH_X11)
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -1772,8 +1644,6 @@ void MainWindow::checkAutoProfileWatcherTimer()
  */
 void MainWindow::updateMenuOptions()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int index = ui->tabWidget->currentIndex();
     if (index >= 0)
     {
@@ -1817,8 +1687,6 @@ void MainWindow::showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString ba
  */
 void MainWindow::selectControllerJoyTab(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((index > 0) && m_joysticks->contains(index - 1))
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(index - 1)); // static_cast
@@ -1839,8 +1707,6 @@ void MainWindow::selectControllerJoyTab(int index)
  */
 void MainWindow::selectControllerJoyTab(QString GUID)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!GUID.isEmpty())
     {
         InputDevice *device = nullptr;
@@ -1871,10 +1737,7 @@ void MainWindow::selectControllerJoyTab(QString GUID)
 }
 
 void MainWindow::changeWindowStatus()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Check flags to see if user requested for the main window and the tray icon
+{ // Check flags to see if user requested for the main window and the tray icon
     // to not be displayed.
 
     if (m_graphical)
@@ -1901,52 +1764,20 @@ void MainWindow::changeWindowStatus()
     }
 }
 
-bool MainWindow::getGraphicalStatus()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool MainWindow::getGraphicalStatus() { return m_graphical; }
 
-    return m_graphical;
-}
+void MainWindow::setTranslator(QTranslator *translator) { m_translator = translator; }
 
-void MainWindow::setTranslator(QTranslator *translator)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QTranslator *MainWindow::getTranslator() const { return m_translator; }
 
-    m_translator = translator;
-}
+void MainWindow::setAppTranslator(QTranslator *translator) { m_appTranslator = translator; }
 
-QTranslator *MainWindow::getTranslator() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QTranslator *MainWindow::getAppTranslator() const { return m_appTranslator; }
 
-    return m_translator;
-}
-
-void MainWindow::setAppTranslator(QTranslator *translator)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    m_appTranslator = translator;
-}
-
-QTranslator *MainWindow::getAppTranslator() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_appTranslator;
-}
-
-void MainWindow::retranslateUi()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    ui->retranslateUi(this);
-}
+void MainWindow::retranslateUi() { ui->retranslateUi(this); }
 
 void MainWindow::refreshTabHelperThreads()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < ui->tabWidget->count(); i++)
     {
         JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(i));

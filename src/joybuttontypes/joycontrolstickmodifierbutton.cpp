@@ -32,15 +32,11 @@ JoyControlStickModifierButton::JoyControlStickModifierButton(JoyControlStick *st
                                                              QObject *parent)
     : JoyGradientButton(0, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->stick = stick;
 }
 
 QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = stick->getPartialName(forceFullFormat, displayNames);
 
     temp.append(": ");
@@ -69,52 +65,30 @@ QString JoyControlStickModifierButton::getPartialName(bool forceFullFormat, bool
     return temp;
 }
 
-QString JoyControlStickModifierButton::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyControlStickModifierButton::xmlName;
-}
+QString JoyControlStickModifierButton::getXmlName() { return GlobalVariables::JoyControlStickModifierButton::xmlName; }
 
 /**
  * @brief Get the distance that an element is away from its assigned
  *     dead zone
  * @return Normalized distance away from dead zone
  */
-double JoyControlStickModifierButton::getDistanceFromDeadZone()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return stick->calculateDirectionalDistance();
-}
+double JoyControlStickModifierButton::getDistanceFromDeadZone() { return stick->calculateDirectionalDistance(); }
 
 /**
  * @brief Get the distance factor that should be used for mouse movement
  * @return Distance factor that should be used for mouse movement
  */
-double JoyControlStickModifierButton::getMouseDistanceFromDeadZone()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return getDistanceFromDeadZone();
-}
+double JoyControlStickModifierButton::getMouseDistanceFromDeadZone() { return getDistanceFromDeadZone(); }
 
 void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition condition, bool passive,
                                                           bool updateActiveString)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(updateActiveString);
     Q_UNUSED(condition);
     Q_UNUSED(passive);
 }
 
-JoyControlStick *JoyControlStickModifierButton::getStick() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return stick;
-}
+JoyControlStick *JoyControlStickModifierButton::getStick() const { return stick; }
 
 /**
  * @brief Set the turbo mode that the button should use
@@ -122,8 +96,6 @@ JoyControlStick *JoyControlStickModifierButton::getStick() const
  */
 void JoyControlStickModifierButton::setTurboMode(TurboMode mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (isPartRealAxis())
     {
         currentTurboMode = mode;
@@ -136,39 +108,23 @@ void JoyControlStickModifierButton::setTurboMode(TurboMode mode)
  *     type checking.
  * @return Status of being part of a real controller axis
  */
-bool JoyControlStickModifierButton::isPartRealAxis()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool JoyControlStickModifierButton::isPartRealAxis() { return true; }
 
-    return true;
-}
-
-bool JoyControlStickModifierButton::isModifierButton()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return true;
-}
+bool JoyControlStickModifierButton::isModifierButton() { return true; }
 
 double JoyControlStickModifierButton::getAccelerationDistance()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double temp = stick->getAbsoluteRawDistance();
     return temp;
 }
 
 double JoyControlStickModifierButton::getLastAccelerationDistance()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double temp = stick->calculateLastAccelerationDirectionalDistance();
     return temp;
 }
 
 double JoyControlStickModifierButton::getLastMouseDistanceFromDeadZone()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return stick->calculateLastDirectionalDistance();
 }

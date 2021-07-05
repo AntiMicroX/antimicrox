@@ -36,8 +36,6 @@
 SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMicroSettings *settings, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->joysticks = joysticks;
     this->settings = settings;
     settings->getLock()->lock();
@@ -55,8 +53,6 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, A
 
 SDLEventReader::~SDLEventReader()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (sdlIsOpen)
     {
         closeSDL();
@@ -64,10 +60,7 @@ SDLEventReader::~SDLEventReader()
 }
 
 void SDLEventReader::initSDL()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // SDL_INIT_GAMECONTROLLER should automatically initialize SDL_INIT_JOYSTICK
+{ // SDL_INIT_GAMECONTROLLER should automatically initialize SDL_INIT_JOYSTICK
     // but it doesn't seem to be the case with v2.0.4
     SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK);
     SDL_JoystickEventState(SDL_ENABLE);
@@ -102,8 +95,6 @@ void SDLEventReader::initSDL()
 
 void SDLEventReader::closeSDL()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     pollRateTimer.stop();
 
     SDL_Event event;
@@ -133,8 +124,6 @@ void SDLEventReader::performWork()
 
 void SDLEventReader::stop()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (sdlIsOpen)
     {
         SDL_Event event;
@@ -147,8 +136,6 @@ void SDLEventReader::stop()
 
 void SDLEventReader::refresh()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (sdlIsOpen)
     {
         stop();
@@ -158,8 +145,6 @@ void SDLEventReader::refresh()
 
 void SDLEventReader::secondaryRefresh()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (sdlIsOpen)
         closeSDL();
 
@@ -168,8 +153,6 @@ void SDLEventReader::secondaryRefresh()
 
 void SDLEventReader::clearEvents()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (sdlIsOpen)
     {
         SDL_Event event;
@@ -179,12 +162,7 @@ void SDLEventReader::clearEvents()
     }
 }
 
-bool SDLEventReader::isSDLOpen()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return sdlIsOpen;
-}
+bool SDLEventReader::isSDLOpen() { return sdlIsOpen; }
 
 int SDLEventReader::eventStatus()
 {
@@ -217,8 +195,6 @@ int SDLEventReader::eventStatus()
 
 void SDLEventReader::updatePollRate(int tempPollRate)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((tempPollRate >= 1) && (tempPollRate <= 16))
     {
         bool pollTimerWasActive = pollRateTimer.isActive();
@@ -232,17 +208,10 @@ void SDLEventReader::updatePollRate(int tempPollRate)
     }
 }
 
-void SDLEventReader::resetJoystickMap()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    joysticks = nullptr;
-}
+void SDLEventReader::resetJoystickMap() { joysticks = nullptr; }
 
 void SDLEventReader::quit()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (sdlIsOpen)
     {
         closeSDL();
@@ -252,8 +221,6 @@ void SDLEventReader::quit()
 
 void SDLEventReader::closeDevices()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (sdlIsOpen && (joysticks != nullptr))
     {
         QMapIterator<SDL_JoystickID, InputDevice *> iter(*joysticks);
@@ -273,8 +240,6 @@ void SDLEventReader::closeDevices()
  */
 void SDLEventReader::haltServices()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::lockInputDevices();
     PadderCommon::unlockInputDevices();
 }

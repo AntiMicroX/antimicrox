@@ -33,8 +33,6 @@
 DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool keypadUnlocked, bool displayNames, QWidget *parent)
     : QGridLayout(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->dpad = dpad;
     this->displayNames = displayNames;
     this->keypadUnlocked = keypadUnlocked;
@@ -47,8 +45,6 @@ DPadPushButtonGroup::DPadPushButtonGroup(JoyDPad *dpad, bool keypadUnlocked, boo
 
 void DPadPushButtonGroup::generateButtons()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHash<int, JoyDPadButton *> *buttons = dpad->getJoyButtons();
 
     upLeftButton = generateBtnForGrid(buttons, 9, 0, 0);
@@ -85,8 +81,6 @@ JoyDPadButtonWidget *DPadPushButtonGroup::generateBtnForGrid(QHash<int, JoyDPadB
 
 void DPadPushButtonGroup::changeButtonLayout()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((dpad->getJoyMode() == JoyDPad::StandardMode) || (dpad->getJoyMode() == JoyDPad::EightWayMode) ||
         (dpad->getJoyMode() == JoyDPad::FourWayCardinal))
     {
@@ -117,24 +111,12 @@ void DPadPushButtonGroup::changeButtonLayout()
     }
 }
 
-void DPadPushButtonGroup::propogateSlotsChanged()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void DPadPushButtonGroup::propogateSlotsChanged() { emit buttonSlotChanged(); }
 
-    emit buttonSlotChanged();
-}
-
-JoyDPad *DPadPushButtonGroup::getDPad() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return dpad;
-}
+JoyDPad *DPadPushButtonGroup::getDPad() const { return dpad; }
 
 void DPadPushButtonGroup::openDPadButtonDialog(JoyButtonWidget *buttonWidget)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton *button = buttonWidget->getJoyButton();
 
     ButtonEditDialog *dialog =
@@ -144,16 +126,12 @@ void DPadPushButtonGroup::openDPadButtonDialog(JoyButtonWidget *buttonWidget)
 
 void DPadPushButtonGroup::showDPadDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     DPadEditDialog *dialog = new DPadEditDialog(dpad, parentWidget());
     dialog->show();
 }
 
 void DPadPushButtonGroup::toggleNameDisplay()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     displayNames = !displayNames;
 
     upButton->toggleNameDisplay();

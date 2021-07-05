@@ -46,8 +46,6 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(AutoProfileInfo *info, AntiMi
     , ui(new Ui::AddEditAutoProfileDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->info = info;
@@ -134,17 +132,10 @@ AddEditAutoProfileDialog::AddEditAutoProfileDialog(QWidget *parent)
 {
 }
 
-AddEditAutoProfileDialog::~AddEditAutoProfileDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+AddEditAutoProfileDialog::~AddEditAutoProfileDialog() { delete ui; }
 
 void AddEditAutoProfileDialog::openProfileBrowseDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString lookupDir = PadderCommon::preferredProfileDir(settings);
     QString filename =
         QFileDialog::getOpenFileName(this, tr("Open Config"), lookupDir, QString("Config Files (*.amgp *.xml)"));
@@ -155,8 +146,6 @@ void AddEditAutoProfileDialog::openProfileBrowseDialog()
 
 void AddEditAutoProfileDialog::openApplicationBrowseDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString filename = QFileDialog::getOpenFileName(this, tr("Select Program"), QDir::homePath(), QString());
 
     if (!filename.isNull() && !filename.isEmpty())
@@ -168,23 +157,15 @@ void AddEditAutoProfileDialog::openApplicationBrowseDialog()
     }
 }
 
-AutoProfileInfo *AddEditAutoProfileDialog::getAutoProfile() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return info;
-}
+AutoProfileInfo *AddEditAutoProfileDialog::getAutoProfile() const { return info; }
 
 void AddEditAutoProfileDialog::saveAutoProfileInformation()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     info->setProfileLocation(ui->profileLineEdit->text());
     int deviceIndex = ui->devicesComboBox->currentIndex();
 
     if (deviceIndex > 0)
     {
-
         // Assume that if the following is not true, the GUID should
         // not be changed.
         if (!ui->devicesComboBox->itemData(deviceIndex, Qt::UserRole).isNull())
@@ -208,8 +189,6 @@ void AddEditAutoProfileDialog::saveAutoProfileInformation()
 
 void AddEditAutoProfileDialog::checkForReservedUniques(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QVariant data = ui->devicesComboBox->itemData(index);
 
     if (index == 0)
@@ -231,40 +210,19 @@ void AddEditAutoProfileDialog::checkForReservedUniques(int index)
     }
 }
 
-QString AddEditAutoProfileDialog::getOriginalUniqueID() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString AddEditAutoProfileDialog::getOriginalUniqueID() const { return originalUniqueID; }
 
-    return originalUniqueID;
-}
+QString AddEditAutoProfileDialog::getOriginalExe() const { return originalExe; }
 
-QString AddEditAutoProfileDialog::getOriginalExe() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString AddEditAutoProfileDialog::getOriginalWindowClass() const { return originalWindowClass; }
 
-    return originalExe;
-}
-
-QString AddEditAutoProfileDialog::getOriginalWindowClass() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return originalWindowClass;
-}
-
-QString AddEditAutoProfileDialog::getOriginalWindowName() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return originalWindowName;
-}
+QString AddEditAutoProfileDialog::getOriginalWindowName() const { return originalWindowName; }
 
 /**
  * @brief Display a simple message box and attempt to capture a window using the mouse
  */
 void AddEditAutoProfileDialog::showCaptureHelpWindow()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 #ifdef WITH_X11
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -301,10 +259,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
  */
 void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility *util)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-#ifdef WITH_X11
-    if (QApplication::platformName() == QStringLiteral("xcb"))
+#ifdef WITH_X11 if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         long targetWindow = util->getTargetWindow();
         bool escaped = !util->hasFailed();
@@ -356,8 +311,6 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility *u
 
 void AddEditAutoProfileDialog::windowPropAssignment(CapturedWindowInfoDialog *dialog)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disconnect(ui->applicationLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
     disconnect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
     disconnect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
@@ -410,8 +363,6 @@ void AddEditAutoProfileDialog::windowPropAssignment(CapturedWindowInfoDialog *di
 
 void AddEditAutoProfileDialog::checkForDefaultStatus()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool status = ui->applicationLineEdit->text().length() > 0;
     status = status ? status : (ui->winClassLineEdit->text().length() > 0);
     status = status ? status : (ui->winNameLineEdit->text().length() > 0);
@@ -431,8 +382,6 @@ void AddEditAutoProfileDialog::checkForDefaultStatus()
  */
 void AddEditAutoProfileDialog::accept()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool validForm = true;
     bool propertyFound = false;
     QString errorString = QString();

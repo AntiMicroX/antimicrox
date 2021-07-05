@@ -25,7 +25,6 @@
 AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent)
     : QSettings(fileName, format, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 /**
@@ -37,8 +36,6 @@ AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QOb
  */
 QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &defaultValue) const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QVariant settingValue;
     QString inGroup = group();
     QString fullKey = QString(inGroup).append("/").append(key);
@@ -60,8 +57,6 @@ QVariant AntiMicroSettings::runtimeValue(const QString &key, const QVariant &def
  */
 void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     getCmdSettings().clear();
 
     if (cmdutility.isLaunchInTrayEnabled())
@@ -74,17 +69,6 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
     }
 }
 
-QMutex *AntiMicroSettings::getLock()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QMutex *AntiMicroSettings::getLock() { return &lock; }
 
-    return &lock;
-}
-
-QSettings &AntiMicroSettings::getCmdSettings()
-{
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return cmdSettings;
-}
+QSettings &AntiMicroSettings::getCmdSettings() { return cmdSettings; }

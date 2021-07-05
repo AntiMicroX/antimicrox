@@ -30,8 +30,6 @@
 InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < device->getNumberRawAxes(); i++)
     {
         SetJoystick *currentSet = device->getActiveSetJoystick();
@@ -77,8 +75,6 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
 
 void InputDeviceBitArrayStatus::changeAxesStatus(int axisIndex, bool value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((axisIndex >= 0) && (axisIndex <= axesStatus.size()))
     {
         axesStatus.replace(axisIndex, value);
@@ -87,8 +83,6 @@ void InputDeviceBitArrayStatus::changeAxesStatus(int axisIndex, bool value)
 
 void InputDeviceBitArrayStatus::changeButtonStatus(int buttonIndex, bool value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((buttonIndex >= 0) && (buttonIndex <= getButtonStatusLocal().size()))
     {
         getButtonStatusLocal().setBit(buttonIndex, value);
@@ -97,8 +91,6 @@ void InputDeviceBitArrayStatus::changeButtonStatus(int buttonIndex, bool value)
 
 void InputDeviceBitArrayStatus::changeHatStatus(int hatIndex, bool value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((hatIndex >= 0) && (hatIndex <= hatButtonStatus.size()))
     {
         hatButtonStatus.replace(hatIndex, value);
@@ -107,8 +99,6 @@ void InputDeviceBitArrayStatus::changeHatStatus(int hatIndex, bool value)
 
 QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int totalArraySize = 0;
     totalArraySize = axesStatus.size() + hatButtonStatus.size() + getButtonStatusLocal().size();
     QBitArray aggregateBitArray(totalArraySize, false);
@@ -137,8 +127,6 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
 
 void InputDeviceBitArrayStatus::clearStatusValues()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < axesStatus.size(); i++)
         axesStatus.replace(i, false);
 

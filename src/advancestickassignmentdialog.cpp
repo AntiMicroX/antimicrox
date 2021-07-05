@@ -40,8 +40,6 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(Joystick *joystick, Q
     , ui(new Ui::AdvanceStickAssignmentDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->joystick = joystick;
@@ -127,32 +125,21 @@ AdvanceStickAssignmentDialog::AdvanceStickAssignmentDialog(QWidget *parent)
 {
 }
 
-AdvanceStickAssignmentDialog::~AdvanceStickAssignmentDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+AdvanceStickAssignmentDialog::~AdvanceStickAssignmentDialog() { delete ui; }
 
 void AdvanceStickAssignmentDialog::checkForAxisAssignmentStickOne(QWidget *comboBox)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     checkForAxisAssignmentSticks(comboBox, ui->xAxisTwoComboBox, ui->yAxisTwoComboBox, 0);
 }
 
 void AdvanceStickAssignmentDialog::checkForAxisAssignmentStickTwo(QWidget *comboBox)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     checkForAxisAssignmentSticks(comboBox, ui->xAxisTwoComboBox, ui->yAxisTwoComboBox, 1);
 }
 
 void AdvanceStickAssignmentDialog::checkForAxisAssignmentSticks(QWidget *comboBox, QComboBox *xAxisComboBox,
                                                                 QComboBox *yAxisComboBox, int controlStickNumber)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((xAxisComboBox->currentIndex() > 0) && (yAxisComboBox->currentIndex() > 0))
     {
         if (xAxisComboBox->currentIndex() != yAxisComboBox->currentIndex())
@@ -196,8 +183,6 @@ void AdvanceStickAssignmentDialog::checkForAxisAssignmentSticks(QWidget *comboBo
 
 void AdvanceStickAssignmentDialog::changeStateVDPadWidgets(bool enabledVDPads)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->vdpadUpComboBox->setEnabled(enabledVDPads);
     ui->vdpadDownComboBox->setEnabled(enabledVDPads);
     ui->vdpadLeftComboBox->setEnabled(enabledVDPads);
@@ -229,8 +214,6 @@ void AdvanceStickAssignmentDialog::changeStateVDPadWidgets(bool enabledVDPads)
 
 void AdvanceStickAssignmentDialog::changeStateStickOneWidgets(bool enabled)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (enabled)
     {
         ui->xAxisOneComboBox->setEnabled(true);
@@ -262,8 +245,6 @@ void AdvanceStickAssignmentDialog::changeStateStickOneWidgets(bool enabled)
 
 void AdvanceStickAssignmentDialog::changeStateStickTwoWidgets(bool enabled)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (enabled)
     {
         ui->xAxisTwoComboBox->setEnabled(true);
@@ -291,8 +272,6 @@ void AdvanceStickAssignmentDialog::changeStateStickTwoWidgets(bool enabled)
 
 void AdvanceStickAssignmentDialog::refreshStickConfiguration(JoyControlStick *stick1, JoyControlStick *stick2)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((stick1 != nullptr) && (stick1->getAxisX() != nullptr) && (stick1->getAxisY() != nullptr))
     {
         refreshSticksForAxes(true, stick1->getAxisX()->getRealJoyIndex(), stick1->getAxisY()->getRealJoyIndex(),
@@ -331,8 +310,6 @@ void AdvanceStickAssignmentDialog::refreshSticksForAxes(bool axesExist, int xAxi
 
 void AdvanceStickAssignmentDialog::refreshVDPadsConfiguration()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     VDPad *vdpad = joystick->getActiveSetJoystick()->getVDPad(0);
 
     if (vdpad != nullptr)
@@ -413,8 +390,6 @@ void AdvanceStickAssignmentDialog::refreshVDPadConf(JoyButton *vdpadButton, QCom
 
 void AdvanceStickAssignmentDialog::populateDPadComboBoxes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->vdpadUpComboBox->clear();
     ui->vdpadDownComboBox->clear();
     ui->vdpadLeftComboBox->clear();
@@ -466,8 +441,6 @@ void AdvanceStickAssignmentDialog::populateDPadComboBoxes()
 
 void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (index > 0)
     {
         if (ui->vdpadDownComboBox->currentIndex() == index)
@@ -546,8 +519,6 @@ void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
 
 void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (index > 0)
     {
         if (ui->vdpadUpComboBox->currentIndex() == index)
@@ -626,8 +597,6 @@ void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
 
 void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (index > 0)
     {
         if (ui->vdpadUpComboBox->currentIndex() == index)
@@ -706,8 +675,6 @@ void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
 
 void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (index > 0)
     {
         if (ui->vdpadUpComboBox->currentIndex() == index)
@@ -786,8 +753,6 @@ void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
 
 void AdvanceStickAssignmentDialog::enableVDPadComboBoxes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     connect(ui->vdpadUpComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
             &AdvanceStickAssignmentDialog::changeVDPadUpButton);
     connect(ui->vdpadDownComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
@@ -800,8 +765,6 @@ void AdvanceStickAssignmentDialog::enableVDPadComboBoxes()
 
 void AdvanceStickAssignmentDialog::disableVDPadComboBoxes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disconnect(ui->vdpadUpComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
                &AdvanceStickAssignmentDialog::changeVDPadUpButton);
     disconnect(ui->vdpadDownComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
@@ -814,8 +777,6 @@ void AdvanceStickAssignmentDialog::disableVDPadComboBoxes()
 
 void AdvanceStickAssignmentDialog::openQuickAssignDialogStick1()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMessageBox msgBox;
     msgBox.setText(tr("Move stick 1 along the X axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
@@ -866,8 +827,6 @@ void AdvanceStickAssignmentDialog::openQuickAssignDialogStick1()
 
 void AdvanceStickAssignmentDialog::openQuickAssignDialogStick2()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMessageBox msgBox;
     msgBox.setText(tr("Move stick 2 along the X axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
@@ -917,16 +876,12 @@ void AdvanceStickAssignmentDialog::openQuickAssignDialogStick2()
 
 void AdvanceStickAssignmentDialog::reenableButtonEvents()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     joystick->getActiveSetJoystick()->setIgnoreEventState(false);
     joystick->getActiveSetJoystick()->release();
 }
 
 void AdvanceStickAssignmentDialog::openAssignVDPadUp()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMessageBox msgBox;
     msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
@@ -988,8 +943,6 @@ void AdvanceStickAssignmentDialog::openAssignVDPadUp()
 
 void AdvanceStickAssignmentDialog::openAssignVDPadDown()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMessageBox msgBox;
     msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
@@ -1051,8 +1004,6 @@ void AdvanceStickAssignmentDialog::openAssignVDPadDown()
 
 void AdvanceStickAssignmentDialog::openAssignVDPadLeft()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMessageBox msgBox;
     msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
@@ -1116,9 +1067,6 @@ void AdvanceStickAssignmentDialog::openAssignVDPadLeft()
 
 void AdvanceStickAssignmentDialog::openAssignVDPadRight()
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMessageBox msgBox;
     msgBox.setText(tr("Press a button or move an axis"));
     msgBox.setStandardButtons(QMessageBox::Close);
@@ -1182,8 +1130,6 @@ void AdvanceStickAssignmentDialog::openAssignVDPadRight()
 
 void AdvanceStickAssignmentDialog::quickAssignVDPadUp(JoyAxisButton *joyaxisbtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<QVariant> templist;
     templist.append(QVariant(joyaxisbtn->getAxis()->getRealJoyIndex()));
 
@@ -1202,9 +1148,6 @@ void AdvanceStickAssignmentDialog::quickAssignVDPadUp(JoyAxisButton *joyaxisbtn)
 
 void AdvanceStickAssignmentDialog::quickAssignVDPadUpBtn(JoyButton *joybtn)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<QVariant> templist;
     templist.append(QVariant(0));
     templist.append(QVariant(joybtn->getJoyNumber() + 1));
@@ -1219,8 +1162,6 @@ void AdvanceStickAssignmentDialog::quickAssignVDPadUpBtn(JoyButton *joybtn)
 
 void AdvanceStickAssignmentDialog::quickAssignVDPadDown(JoyAxisButton *axbtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<QVariant> templist;
     templist.append(QVariant(axbtn->getAxis()->getRealJoyIndex()));
 
@@ -1249,8 +1190,6 @@ void AdvanceStickAssignmentDialog::quickAssignVDPadDownJbtn(JoyButton *joybtn)
 
 void AdvanceStickAssignmentDialog::quickAssignVDPadLeft(JoyAxisButton *joyaxisbtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<QVariant> templist;
     templist.append(QVariant(joyaxisbtn->getAxis()->getRealJoyIndex()));
 
@@ -1279,8 +1218,6 @@ void AdvanceStickAssignmentDialog::quickAssignVDPadLeftJbtn(JoyButton *joybtn)
 
 void AdvanceStickAssignmentDialog::quickAssignVDPadRight(JoyAxisButton *joyaxisbtn)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<QVariant> templist;
     templist.append(QVariant(joyaxisbtn->getAxis()->getRealJoyIndex()));
 

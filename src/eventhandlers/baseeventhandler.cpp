@@ -26,23 +26,17 @@
 BaseEventHandler::BaseEventHandler(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
-BaseEventHandler::~BaseEventHandler() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+BaseEventHandler::~BaseEventHandler() {}
 
-QString BaseEventHandler::getErrorString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return lastErrorString;
-}
+QString BaseEventHandler::getErrorString() { return lastErrorString; }
 
 /**
  * @brief Do nothing by default. Allow child classes to specify text to output
  *     to a text stream.
  */
-void BaseEventHandler::printPostMessages() { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+void BaseEventHandler::printPostMessages() {}
 
 /**
  * @brief Do nothing by default. Useful for child classes to define behavior.
@@ -52,8 +46,6 @@ void BaseEventHandler::printPostMessages() { qInstallMessageHandler(MessageHandl
  */
 void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(screen);
@@ -68,8 +60,6 @@ void BaseEventHandler::sendMouseAbsEvent(int xDis, int yDis, int screen)
  */
 void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int height)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
     Q_UNUSED(width);
@@ -83,15 +73,8 @@ void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int h
  */
 void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(xDis);
     Q_UNUSED(yDis);
 }
 
-void BaseEventHandler::sendTextEntryEvent(QString maintext)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    Q_UNUSED(maintext);
-}
+void BaseEventHandler::sendTextEntryEvent(QString maintext) { Q_UNUSED(maintext); }

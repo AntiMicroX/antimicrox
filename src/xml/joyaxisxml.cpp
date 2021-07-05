@@ -44,8 +44,6 @@ JoyAxisXml::~JoyAxisXml()
 
 void JoyAxisXml::readConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == m_joyAxis->getXmlName()))
     {
         xml->readNextStartElement();
@@ -70,8 +68,6 @@ void JoyAxisXml::readConfig(QXmlStreamReader *xml)
 
 void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool currentlyDefault = m_joyAxis->isDefault();
 
     xml->writeStartElement(m_joyAxis->getXmlName());
@@ -127,8 +123,6 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 
 bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
 
     if ((xml->name() == "deadZone") && xml->isStartElement())
@@ -169,7 +163,6 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         m_joyAxis->setAxisMinCal(tempchoice);
     } else if ((xml->name() == "max_value") && xml->isStartElement())
     {
-
         found = true;
         QString temptext = xml->readElementText();
         int tempchoice = temptext.toInt();
@@ -218,8 +211,6 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 
 bool JoyAxisXml::readButtonConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
 
     int index_local = xml->attributes().value("index").toString().toInt();

@@ -29,8 +29,6 @@
 JoyButtonMouseHelper::JoyButtonMouseHelper(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     firstSpringEvent = false;
 }
 
@@ -39,8 +37,6 @@ JoyButtonMouseHelper::JoyButtonMouseHelper(QObject *parent)
  */
 void JoyButtonMouseHelper::moveMouseCursor()
 {
-    // qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int finalx = 0;
     int finaly = 0;
     int elapsedTime = 5;
@@ -61,8 +57,6 @@ void JoyButtonMouseHelper::moveMouseCursor()
  */
 void JoyButtonMouseHelper::moveSpringMouse()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int finalx = 0;
     int finaly = 0;
     bool hasMoved = false;
@@ -80,8 +74,6 @@ void JoyButtonMouseHelper::moveSpringMouse()
  */
 void JoyButtonMouseHelper::mouseEvent()
 {
-    // qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!JoyButton::hasCursorEvents(JoyButton::getCursorXSpeeds(), JoyButton::getCursorYSpeeds()) &&
         !JoyButton::hasSpringEvents(JoyButton::getSpringXSpeeds(), JoyButton::getSpringYSpeeds()))
     {
@@ -108,8 +100,6 @@ void JoyButtonMouseHelper::mouseEvent()
 
 void JoyButtonMouseHelper::resetButtonMouseDistances()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<JoyButton *> *buttonList = JoyButton::getPendingMouseButtons();
     QListIterator<JoyButton *> iter(*buttonList);
 
@@ -120,38 +110,16 @@ void JoyButtonMouseHelper::resetButtonMouseDistances()
     }
 }
 
-void JoyButtonMouseHelper::setFirstSpringStatus(bool status)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void JoyButtonMouseHelper::setFirstSpringStatus(bool status) { firstSpringEvent = status; }
 
-    firstSpringEvent = status;
-}
+bool JoyButtonMouseHelper::getFirstSpringStatus() { return firstSpringEvent; }
 
-bool JoyButtonMouseHelper::getFirstSpringStatus()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void JoyButtonMouseHelper::carryGamePollRateUpdate(int pollRate) { emit gamepadRefreshRateUpdated(pollRate); }
 
-    return firstSpringEvent;
-}
-
-void JoyButtonMouseHelper::carryGamePollRateUpdate(int pollRate)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    emit gamepadRefreshRateUpdated(pollRate);
-}
-
-void JoyButtonMouseHelper::carryMouseRefreshRateUpdate(int refreshRate)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    emit mouseRefreshRateUpdated(refreshRate);
-}
+void JoyButtonMouseHelper::carryMouseRefreshRateUpdate(int refreshRate) { emit mouseRefreshRateUpdated(refreshRate); }
 
 void JoyButtonMouseHelper::changeThread(QThread *thread)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::setStaticMouseThread(thread, JoyButton::getStaticMouseEventTimer(), JoyButton::getTestOldMouseTime(),
                                     GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper());
 }

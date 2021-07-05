@@ -32,20 +32,12 @@ GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int inde
                                                          QObject *parent)
     : JoyAxisButton(axis, index, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
-QString GameControllerTriggerButton::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::GameControllerTriggerButton::xmlName;
-}
+QString GameControllerTriggerButton::getXmlName() { return GlobalVariables::GameControllerTriggerButton::xmlName; }
 
 void GameControllerTriggerButton::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == GlobalVariables::JoyAxisButton::xmlName))
     {
         disconnect(this, &GameControllerTriggerButton::slotsChanged, m_parentSet->getInputDevice(),

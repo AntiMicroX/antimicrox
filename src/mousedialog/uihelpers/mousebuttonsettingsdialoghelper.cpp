@@ -27,8 +27,6 @@
 MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(button);
 
     this->button = button;
@@ -36,58 +34,24 @@ MouseButtonSettingsDialogHelper::MouseButtonSettingsDialogHelper(JoyButton *butt
 
 void MouseButtonSettingsDialogHelper::updateExtraAccelerationStatus(bool checked)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->setExtraAccelerationStatus(checked);
 }
 
 void MouseButtonSettingsDialogHelper::updateExtraAccelerationMultiplier(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->setExtraAccelerationMultiplier(value);
 }
 
-void MouseButtonSettingsDialogHelper::updateStartMultiPercentage(double value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MouseButtonSettingsDialogHelper::updateStartMultiPercentage(double value) { button->setStartAccelMultiplier(value); }
 
-    button->setStartAccelMultiplier(value);
-}
+void MouseButtonSettingsDialogHelper::updateMinAccelThreshold(double value) { button->setMinAccelThreshold(value); }
 
-void MouseButtonSettingsDialogHelper::updateMinAccelThreshold(double value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MouseButtonSettingsDialogHelper::updateMaxAccelThreshold(double value) { button->setMaxAccelThreshold(value); }
 
-    button->setMinAccelThreshold(value);
-}
+void MouseButtonSettingsDialogHelper::updateAccelExtraDuration(double value) { button->setAccelExtraDuration(value); }
 
-void MouseButtonSettingsDialogHelper::updateMaxAccelThreshold(double value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MouseButtonSettingsDialogHelper::updateReleaseSpringRadius(int value) { button->setSpringDeadCircleMultiplier(value); }
 
-    button->setMaxAccelThreshold(value);
-}
-
-void MouseButtonSettingsDialogHelper::updateAccelExtraDuration(double value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    button->setAccelExtraDuration(value);
-}
-
-void MouseButtonSettingsDialogHelper::updateReleaseSpringRadius(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    button->setSpringDeadCircleMultiplier(value);
-}
-
-void MouseButtonSettingsDialogHelper::updateSpringRelativeStatus(bool value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    button->setSpringRelativeStatus(value);
-}
+void MouseButtonSettingsDialogHelper::updateSpringRelativeStatus(bool value) { button->setSpringRelativeStatus(value); }
 
 JoyButton *MouseButtonSettingsDialogHelper::getButton() const { return button; }

@@ -29,29 +29,19 @@ const int QtKeyMapperBase::nativeKeyPrefix;
 QtKeyMapperBase::QtKeyMapperBase(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 int QtKeyMapperBase::returnQtKey(int key, int scancode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(scancode);
 
     return virtKeyToQtKeyHash.value(key);
 }
 
-int QtKeyMapperBase::returnVirtualKey(int qkey)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return qtKeyToVirtKeyHash.value(qkey);
-}
+int QtKeyMapperBase::returnVirtualKey(int qkey) { return qtKeyToVirtKeyHash.value(qkey); }
 
 bool QtKeyMapperBase::isModifier(int qkey)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool modifier = false;
     int qtKeyValue = qkey & 0x0FFFFFFF;
 
@@ -80,8 +70,6 @@ bool QtKeyMapperBase::isModifier(int qkey)
 
 QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     charKeyInformation temp;
     temp.virtualkey = 0;
     temp.modifiers = Qt::NoModifier;
@@ -96,9 +84,4 @@ QtKeyMapperBase::charKeyInformation QtKeyMapperBase::getCharKeyInformation(QChar
  * @brief Obtain identifier string for key mapper.
  * @return Identifier string.
  */
-QString QtKeyMapperBase::getIdentifier()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return identifier;
-}
+QString QtKeyMapperBase::getIdentifier() { return identifier; }

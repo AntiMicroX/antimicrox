@@ -32,8 +32,6 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
     QWidget(parent, Qt::FramelessWindowHint)
 
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);
 
@@ -59,8 +57,6 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
 
 void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(event);
 
     QPainter p(this);
@@ -75,8 +71,6 @@ void SpringModeRegionPreview::paintEvent(QPaintEvent *event)
 
 int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempwidth = size().width();
     if (width >= 2)
     {
@@ -91,8 +85,6 @@ int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
 
 int SpringModeRegionPreview::adjustSpringSizeHeight(int height)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempheight = size().height();
 
     if (height >= 2)
@@ -108,8 +100,6 @@ int SpringModeRegionPreview::adjustSpringSizeHeight(int height)
 
 void SpringModeRegionPreview::setSpringWidth(int width)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempwidth = adjustSpringSizeWidth(width);
 
     int height = size().height();
@@ -128,7 +118,6 @@ void SpringModeRegionPreview::setSpringWidth(int width)
         }
     } else
     {
-
         resize(tempwidth, height);
         move(0, 0);
     }
@@ -136,8 +125,6 @@ void SpringModeRegionPreview::setSpringWidth(int width)
 
 void SpringModeRegionPreview::setSpringHeight(int height)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempheight = adjustSpringSizeHeight(height);
 
     int width = size().width();
@@ -156,7 +143,6 @@ void SpringModeRegionPreview::setSpringHeight(int height)
         }
     } else
     {
-
         resize(width, tempheight);
         move(0, 0);
     }
@@ -164,8 +150,6 @@ void SpringModeRegionPreview::setSpringHeight(int height)
 
 void SpringModeRegionPreview::setSpringSize(int width, int height)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);
 

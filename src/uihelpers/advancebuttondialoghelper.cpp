@@ -26,8 +26,6 @@
 AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(button);
 
     this->button = button;
@@ -35,40 +33,30 @@ AdvanceButtonDialogHelper::AdvanceButtonDialogHelper(JoyButton *button, QObject 
 
 void AdvanceButtonDialogHelper::insertAssignedSlot(int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->eventReset();
     button->insertAssignedSlot(code, alias, index, mode);
 }
 
 void AdvanceButtonDialogHelper::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->eventReset();
     button->insertAssignedSlot(newSlot, index, updateActiveString);
 }
 
 void AdvanceButtonDialogHelper::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->eventReset();
     button->setAssignedSlot(otherSlot, index);
 }
 
 void AdvanceButtonDialogHelper::setAssignedSlot(int code, int alias, int index, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     button->eventReset();
     button->setAssignedSlot(code, alias, index, mode);
 }
 
 void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int j = 0;
     qDebug() << "Assigned list slots after joining";
     for (auto el : *button->getAssignedSlots())
@@ -94,16 +82,6 @@ void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
     button->removeAssignedSlot(index);
 }
 
-void AdvanceButtonDialogHelper::onlyReset()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void AdvanceButtonDialogHelper::onlyReset() { button->eventReset(); }
 
-    button->eventReset();
-}
-
-void AdvanceButtonDialogHelper::onlyRemoveAssignedSlot(int index)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    button->removeAssignedSlot(index);
-}
+void AdvanceButtonDialogHelper::onlyRemoveAssignedSlot(int index) { button->removeAssignedSlot(index); }
