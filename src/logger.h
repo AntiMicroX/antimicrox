@@ -26,6 +26,13 @@
 #include <QTextStream>
 #include <QTimer>
 
+/**
+ * @brief Custom class used for logging across application.
+ *
+ * It manages log-levels, formatting, printing logs and saving them to file.
+ * Logs across the program can be written using  qDebug(), qInfo(), qWarning(), qCritical, and qFatal() functions
+ *
+ */
 class Logger : public QObject
 {
     Q_OBJECT
@@ -53,6 +60,15 @@ class Logger : public QObject
                     QObject *parent = nullptr);
     ~Logger();
 
+    /**
+     * @brief log message handling function
+     *
+     * It is meant to be registered via qInstallMessageHandler() at the beginning of application
+     *
+     * @param type
+     * @param context
+     * @param msg
+     */
     static void loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
     static void setLogLevel(LogLevel level);
