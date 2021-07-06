@@ -479,12 +479,12 @@ void UInputEventHandler::printPostMessages()
 {
     if (!lastErrorString.isEmpty())
     {
-        Logger::LogInfo(lastErrorString);
+        qInfo() << lastErrorString;
     }
 
     if (!uinputDeviceLocation.isEmpty())
     {
-        Logger::LogInfo(tr("Using uinput device file %1").arg(uinputDeviceLocation));
+        qInfo() << tr("Using uinput device file %1").arg(uinputDeviceLocation);
     }
 }
 

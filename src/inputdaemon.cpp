@@ -327,7 +327,7 @@ void InputDaemon::refresh()
 
     stop();
 
-    Logger::LogInfo("Refreshing joystick list");
+    qInfo() << "Refreshing joystick list";
 
     QEventLoop q;
     connect(eventWorker, &SDLEventReader::sdlStarted, &q, &QEventLoop::quit);
@@ -528,9 +528,8 @@ void InputDaemon::addInputDevice(int index, QMap<QString, int> &uniques, int &co
                     m_joysticks->insert(tempJoystickID, damncontroller);
                     trackcontrollers.insert(tempJoystickID, damncontroller);
 
-                    Logger::LogInfo(QString("New game controller found - #%1 [%2]")
-                                        .arg(index + 1)
-                                        .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
+                    qInfo() << QString("New game controller found - #%1 [%2]".arg(index + 1).arg(
+                        QTime::currentTime().toString("hh:mm:ss.zzz")));
 
                     emit deviceAdded(damncontroller);
                 } else
@@ -540,9 +539,8 @@ void InputDaemon::addInputDevice(int index, QMap<QString, int> &uniques, int &co
                     Joystick *joystick = openJoystickDevice(index);
                     if (joystick != nullptr)
                     {
-                        Logger::LogInfo(QString("New joystick found - #%1 [%2]")
-                                            .arg(index + 1)
-                                            .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
+                        qInfo() << QString("New joystick found - #%1 [%2]".arg(index + 1).arg(
+                            QTime::currentTime().toString("hh:mm:ss.zzz")));
 
                         emit deviceAdded(joystick);
                     }
@@ -1143,9 +1141,9 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
             if (device != nullptr)
             {
-                Logger::LogInfo(QString("Removing joystick #%1 [%2]")
-                                    .arg(device->getRealJoyNumber())
-                                    .arg(QTime::currentTime().toString("hh:mm:ss.zzz")));
+                qInfo() << QString("Removing joystick #%1 [%2]")
+                               .arg(device->getRealJoyNumber())
+                               .arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
 
                 removeDevice(device);
             }

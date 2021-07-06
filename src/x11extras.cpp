@@ -634,14 +634,14 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
     if (!result)
     {
-        Logger::LogInfo(tr("xinput extension was not found. No mouse acceleration changes will occur."));
+        qInfo() << tr("xinput extension was not found. No mouse acceleration changes will occur.");
     } else
     {
         int ximajor = 2, ximinor = 0;
 
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
-            Logger::LogInfo(tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            qInfo() << tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.");
             result = false;
         }
     }
@@ -673,14 +673,14 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
 
             if (feedback_id <= -1)
             {
-                Logger::LogInfo(tr("PtrFeedbackClass was not found for virtual pointer."
-                                   "No change to mouse acceleration will occur for device with id=%1")
-                                    .arg(device->device_id));
+                qInfo() << tr("PtrFeedbackClass was not found for virtual pointer."
+                              "No change to mouse acceleration will occur for device with id=%1")
+                               .arg(device->device_id);
 
                 result = false;
             } else
             {
-                Logger::LogInfo(tr("Changing mouse acceleration for device with id=%1").arg(device->device_id));
+                qInfo() << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id);
 
                 XPtrFeedbackControl feedback;
                 feedback.c_class = PtrFeedbackClass;
@@ -725,7 +725,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
 
         if (XIQueryVersion(display, &ximajor, &ximinor) != Success)
         {
-            Logger::LogInfo(QObject::tr("xinput version must be at least 2.0. No mouse acceleration changes will occur."));
+            qInfo() << QObject::tr("xinput version must be at least 2.0. No mouse acceleration changes will occur.");
             result = false;
         }
     }

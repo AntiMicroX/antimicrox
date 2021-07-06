@@ -172,7 +172,7 @@ int SDLEventReader::eventStatus()
     switch (SDL_PeepEvents(nullptr, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT))
     {
     case -1: {
-        Logger::LogError(QString("SDL Error: %1").arg(QString(SDL_GetError())), true, true);
+        qCritical() << QString("SDL Error: %1").arg(QString(SDL_GetError())), true, true;
         result = 0;
 
         break;

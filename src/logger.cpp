@@ -367,7 +367,7 @@ void Logger::setCurrentLogFile(QString filename)
     instance->outputFile.open(QIODevice::WriteOnly | QIODevice::Append);
     instance->outFileStream.setDevice(&instance->outputFile);
     instance->setCurrentStream(&instance->outFileStream);
-    instance->LogInfo(QObject::tr("Logging started"), true, true);
+    qInfo() << "Logging started";
 }
 
 void Logger::setCurrentErrorLogFile(QString filename)

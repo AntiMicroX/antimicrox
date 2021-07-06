@@ -293,8 +293,8 @@ void MainWindow::controllerMapOpening()
         {
             qDebug() << "Could not find a proper controller identifier. Exiting";
 
-            Logger::LogInfo(tr("Could not find a proper controller identifier. "
-                               "Exiting."));
+            qInfo() << tr("Could not find a proper controller identifier. "
+                          "Exiting.");
             qApp->quit();
         }
     }
@@ -1398,7 +1398,7 @@ void MainWindow::openGameControllerMappingWindow(bool openAsMain)
         }
     } else if (openAsMain)
     {
-        Logger::LogInfo(tr("Could not find controller. Exiting."));
+        qInfo() << tr("Could not find controller. Exiting.");
         qApp->quit();
     }
 }
@@ -1517,10 +1517,10 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
     if (info != nullptr)
     {
-        Logger::LogDebug(QObject::tr("Auto-switching to profile \"%1\".").arg(info->getProfileLocation()));
+        qDebug() << QObject::tr("Auto-switching to profile \"%1\".").arg(info->getProfileLocation());
     } else
     {
-        Logger::LogError(QObject::tr("Auto-switching to nullptr profile!"));
+        qCritical() << QObject::tr("Auto-switching to nullptr profile!");
     }
 
 #if defined(WITH_X11)

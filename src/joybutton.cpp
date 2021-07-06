@@ -250,9 +250,9 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 } else if (!isButtonPressed && !activePress && turboTimer.isActive())
                 {
                     turboTimer.stop();
-                    Logger::LogDebug(tr("Finishing turbo for button #%1 - %2")
-                                         .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
-                                         .arg(getPartialName()));
+                    qDebug() << tr("Finishing turbo for button #%1 - %2")
+                                    .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
+                                    .arg(getPartialName());
 
                     if (isKeyPressed)
                         turboEvent();
@@ -280,9 +280,9 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 }
             } else if (!isButtonPressed && !activePress)
             {
-                Logger::LogDebug(tr("Processing release for button #%1 - %2")
-                                     .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
-                                     .arg(getPartialName()));
+                qDebug() << tr("Processing release for button #%1 - %2")
+                                .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
+                                .arg(getPartialName());
 
                 waitForReleaseDeskEvent();
             }
@@ -306,9 +306,9 @@ void JoyButton::updateParamsAfterDistEvent()
 {
     if (distanceEvent())
     {
-        Logger::LogDebug(tr("Distance change for button #%1 - %2")
-                             .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
-                             .arg(getPartialName()));
+        qDebug() << tr("Distance change for button #%1 - %2")
+                        .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
+                        .arg(getPartialName());
 
         quitEvent = true;
         buttonHold.restart();
@@ -345,7 +345,7 @@ void JoyButton::startSequenceOfPressActive(bool isTurbo, QString debugText)
 
     currentAccelerationDistance = getAccelerationDistance();
 
-    Logger::LogDebug(debugText.arg(m_parentSet->getInputDevice()->getRealJoyNumber()).arg(getPartialName()));
+    qDebug() << debugText.arg(m_parentSet->getInputDevice()->getRealJoyNumber()).arg(getPartialName());
 }
 
 /**
