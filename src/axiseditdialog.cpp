@@ -27,7 +27,6 @@
 #include "inputdevice.h"
 #include "joyaxis.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 #include "setaxisthrottledialog.h"
 #include "setjoystick.h"

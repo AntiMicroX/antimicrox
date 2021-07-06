@@ -19,7 +19,6 @@
 #include "joygradientbutton.h"
 
 #include "event.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 
 #include <cmath>

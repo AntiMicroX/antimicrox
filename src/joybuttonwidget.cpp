@@ -20,7 +20,6 @@
 
 #include "joybutton.h"
 #include "joybuttoncontextmenu.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QMenu>

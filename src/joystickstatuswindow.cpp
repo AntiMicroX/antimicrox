@@ -25,7 +25,6 @@
 #include "joybuttonstatusbox.h"
 #include "joybuttontypes/joydpadbutton.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QGridLayout>

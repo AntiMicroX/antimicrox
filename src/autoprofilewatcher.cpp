@@ -20,7 +20,6 @@
 
 #include "antimicrosettings.h"
 #include "autoprofileinfo.h"
-#include "messagehandler.h"
 
 #include <QApplication>
 #include <QDebug>

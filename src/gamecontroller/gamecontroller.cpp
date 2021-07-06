@@ -25,7 +25,6 @@
 #include "globalvariables.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 //#include "logger.h"
 
 #include <cmath>

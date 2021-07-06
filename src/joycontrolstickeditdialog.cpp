@@ -27,7 +27,6 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 #include "setjoystick.h"
 

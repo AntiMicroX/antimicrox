@@ -21,7 +21,6 @@
 #include "event.h"
 #include "globalvariables.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 
 #include <QDebug>

@@ -20,7 +20,6 @@
 
 #include "globalvariables.h"
 #include "joyaxis.h"
-#include "messagehandler.h"
 
 #include <qdrawutil.h>
 

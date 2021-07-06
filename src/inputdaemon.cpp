@@ -25,7 +25,6 @@
 #include "joydpad.h"
 #include "joystick.h"
 #include "logger.h"
-#include "messagehandler.h"
 #include "sdleventreader.h"
 
 #include <QDebug>

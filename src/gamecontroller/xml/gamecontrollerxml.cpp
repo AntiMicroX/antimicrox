@@ -21,7 +21,6 @@
 
 #include "common.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 //#include "logger.h"
 #include "gamecontroller/gamecontrollerdpad.h"
 #include "gamecontroller/gamecontrollerset.h"

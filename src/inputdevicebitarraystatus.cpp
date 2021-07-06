@@ -22,7 +22,6 @@
 #include "joybutton.h"
 #include "joydpad.h"
 #include "joystick.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 
 #include <QDebug>

@@ -20,7 +20,6 @@
 
 #include "common.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QApplication>
 #include <QCommandLineParser>

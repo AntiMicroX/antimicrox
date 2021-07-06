@@ -25,7 +25,6 @@
 #include "antkeymapper.h"
 #include "event.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QApplication>
 #include <QDebug>

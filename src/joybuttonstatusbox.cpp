@@ -19,7 +19,6 @@
 #include "joybuttonstatusbox.h"
 
 #include "joybutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QStyle>

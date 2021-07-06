@@ -22,7 +22,6 @@
 #include "common.h"
 #include "inputdevice.h"
 #include "joyaxis.h"
-#include "messagehandler.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 
 #include <QDebug>

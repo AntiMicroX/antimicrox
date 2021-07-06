@@ -20,7 +20,6 @@
 
 #include "joybuttonslot.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QHashIterator>

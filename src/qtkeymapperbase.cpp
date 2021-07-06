@@ -18,8 +18,6 @@
 
 #include "qtkeymapperbase.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 
 const int QtKeyMapperBase::customQtKeyPrefix;

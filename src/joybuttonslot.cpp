@@ -22,7 +22,6 @@
 #include "event.h"
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QFileInfo>

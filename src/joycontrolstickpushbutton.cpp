@@ -20,7 +20,6 @@
 
 #include "joycontrolstick.h"
 #include "joycontrolstickcontextmenu.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

@@ -19,7 +19,6 @@
 #include "eventhandlerfactory.h"
 
 #include "eventhandlers/baseeventhandler.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QHash>

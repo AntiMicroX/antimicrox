@@ -23,7 +23,6 @@
 #include "autoprofileinfo.h"
 #include "common.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 
 #ifdef WITH_X11
     #include "capturedwindowinfodialog.h"

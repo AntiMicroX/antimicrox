@@ -19,7 +19,6 @@
 #include "mousedpadsettingsdialog.h"
 
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "springmoderegionpreview.h"
 
 #include "common.h"

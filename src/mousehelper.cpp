@@ -18,8 +18,6 @@
 
 #include "mousehelper.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QDesktopWidget>
 

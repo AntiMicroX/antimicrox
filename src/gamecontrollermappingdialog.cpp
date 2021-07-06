@@ -22,7 +22,6 @@
 #include "antimicrosettings.h"
 #include "common.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 
 #include <QAbstractButton>
 #include <QAbstractItemModel>

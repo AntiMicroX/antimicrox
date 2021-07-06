@@ -18,8 +18,6 @@
 
 #include "flashbuttonwidget.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QFontMetrics>
 #include <QPaintEvent>

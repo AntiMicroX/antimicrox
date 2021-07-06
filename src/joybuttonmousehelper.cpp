@@ -20,7 +20,6 @@
 
 #include "globalvariables.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QList>

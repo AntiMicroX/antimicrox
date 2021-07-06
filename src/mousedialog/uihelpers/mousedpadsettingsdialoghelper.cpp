@@ -20,7 +20,6 @@
 
 #include "joydpad.h"
 #include "joydpadbuttonwidget.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

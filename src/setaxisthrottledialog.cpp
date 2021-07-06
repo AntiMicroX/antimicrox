@@ -20,7 +20,6 @@
 #include "ui_setaxisthrottledialog.h"
 
 #include "joyaxis.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QWidget>

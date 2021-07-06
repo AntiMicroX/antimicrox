@@ -21,7 +21,6 @@
 #include "common.h"
 #include "inputdevice.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "springmoderegionpreview.h"
 

@@ -22,7 +22,6 @@
 #include "inputdevice.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "springmoderegionpreview.h"
 

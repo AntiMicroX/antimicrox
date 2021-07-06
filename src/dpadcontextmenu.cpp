@@ -22,7 +22,6 @@
 #include "common.h"
 #include "inputdevice.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 
 #include <QDebug>

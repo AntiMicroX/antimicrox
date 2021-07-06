@@ -18,8 +18,6 @@
 
 #include "antimicrosettings.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 
 AntiMicroSettings::AntiMicroSettings(const QString &fileName, Format format, QObject *parent)

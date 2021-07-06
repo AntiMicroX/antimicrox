@@ -19,8 +19,6 @@
 #include "capturedwindowinfodialog.h"
 #include "ui_capturedwindowinfodialog.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QPushButton>
 #include <QWidget>

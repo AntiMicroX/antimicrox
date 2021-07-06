@@ -22,7 +22,6 @@
 #include "common.h"
 #include "event.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QXmlStreamReader>

@@ -20,7 +20,6 @@
 #include "ui_extraprofilesettingsdialog.h"
 
 #include "inputdevice.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

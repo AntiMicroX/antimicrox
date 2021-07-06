@@ -24,7 +24,6 @@
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "joytabwidget.h"
-#include "messagehandler.h"
 #include "simplekeygrabberbutton.h"
 //#include "logger.h"
 

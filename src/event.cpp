@@ -31,7 +31,6 @@
 #include "eventhandlerfactory.h"
 #include "globalvariables.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 
 #if defined(WITH_X11)
 

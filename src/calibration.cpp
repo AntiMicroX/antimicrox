@@ -23,7 +23,6 @@
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
 #include "joycontrolstick.h"
 #include "joytabwidget.h"
-#include "messagehandler.h"
 
 #include <SDL2/SDL_joystick.h>
 

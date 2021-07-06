@@ -20,7 +20,6 @@
 
 #include "joystick.h"
 #include "joytabwidget.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QTabBar>

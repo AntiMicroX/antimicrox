@@ -24,7 +24,6 @@
 #include "autoprofileinfo.h"
 #include "commandlineutility.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 //#include "autoprofilewatcher.h"
 #include "advancestickassignmentdialog.h"
 #include "calibration.h"

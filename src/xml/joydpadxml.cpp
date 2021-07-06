@@ -7,8 +7,6 @@
 #include "vdpad.h"
 #include "xml/joybuttonxml.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QHashIterator>
 #include <QPointer>

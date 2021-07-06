@@ -18,7 +18,6 @@
 
 #include "slotitemlistwidget.h"
 
-#include "messagehandler.h"
 #include "simplekeygrabberbutton.h"
 
 #include <QDebug>

@@ -22,7 +22,6 @@
 #include "common.h"
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 //#include "logger.h"
 
 #include <SDL2/SDL.h>

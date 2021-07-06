@@ -34,7 +34,6 @@
 #include "joycontrolstick.h"
 #include "joydpad.h"
 #include "joystick.h"
-#include "messagehandler.h"
 #include "quicksetdialog.h"
 #include "setnamesdialog.h"
 #include "stickpushbuttongroup.h"

@@ -19,7 +19,6 @@
 #include "mousecontrolsticksettingsdialoghelper.h"
 
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

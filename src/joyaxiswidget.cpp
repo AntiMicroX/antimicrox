@@ -20,7 +20,6 @@
 
 #include "joyaxis.h"
 #include "joyaxiscontextmenu.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

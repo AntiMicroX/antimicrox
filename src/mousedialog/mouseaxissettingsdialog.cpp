@@ -21,7 +21,6 @@
 #include "common.h"
 #include "inputdevice.h"
 #include "joyaxis.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "springmoderegionpreview.h"
 #include "springmousemoveinfo.h"

@@ -21,7 +21,6 @@
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "joybuttonslot.h"
-#include "messagehandler.h"
 #include "xml/inputdevicexml.h"
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"

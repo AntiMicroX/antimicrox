@@ -19,7 +19,6 @@
 #include "baseeventhandler.h"
 
 #include "joybuttonslot.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

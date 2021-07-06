@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "joycontrolstick.h"
 #include "joycontrolstickmodifierbutton.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 
 #include <cmath>

@@ -18,7 +18,6 @@
 
 #include "unixcapturewindowutility.h"
 
-#include "messagehandler.h"
 #include "qtx11keymapper.h"
 
 #include <QDataStream>

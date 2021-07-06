@@ -23,7 +23,6 @@
 #include "inputdevice.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 
 #include <QDebug>

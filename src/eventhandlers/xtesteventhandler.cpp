@@ -21,7 +21,6 @@
 #include "antkeymapper.h"
 #include "globalvariables.h"
 #include "joybuttonslot.h"
-#include "messagehandler.h"
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>

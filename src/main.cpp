@@ -31,7 +31,6 @@
 
 #include "eventhandlerfactory.h"
 #include "logger.h"
-#include "messagehandler.h"
 
 #include <QApplication>
 #include <QCommandLineParser>
@@ -150,7 +149,7 @@ void importLegacySettingsIfExist()
 
 int main(int argc, char *argv[])
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+    qInstallMessageHandler(Logger::loggerMessageHandler);
 
     QApplication antimicrox(argc, argv);
     QCoreApplication::setApplicationName("antimicrox");

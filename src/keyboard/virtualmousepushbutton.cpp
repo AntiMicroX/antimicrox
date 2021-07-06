@@ -18,8 +18,6 @@
 
 #include "virtualmousepushbutton.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 
 VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, JoyButtonSlot::JoySlotInputAction mode,

@@ -20,7 +20,6 @@
 
 #include "antimicrosettings.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 
 #include <SDL2/SDL_gamecontroller.h>
 #include <SDL2/SDL_version.h>

@@ -34,7 +34,6 @@
 #include <X11/Xutil.h>
 #include <X11/keysymdef.h>
 
-#include "messagehandler.h"
 #include "x11extras.h"
 
 QtX11KeyMapper::QtX11KeyMapper(QObject *parent)

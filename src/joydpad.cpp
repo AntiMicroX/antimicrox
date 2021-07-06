@@ -20,7 +20,6 @@
 
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QHashIterator>

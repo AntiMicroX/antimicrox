@@ -20,7 +20,6 @@
 
 #include "common.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 #include "xml/inputdevicexml.h"
 
 #include <QDebug>

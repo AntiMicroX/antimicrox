@@ -19,7 +19,6 @@
 #include "antkeymapper.h"
 #include "globalvariables.h"
 #include "joybuttonslot.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QFileInfo>

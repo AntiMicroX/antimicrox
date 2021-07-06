@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "joycontrolstick.h"
 #include "joystick.h"
-#include "messagehandler.h"
 #include "vdpad.h"
 
 #include <typeinfo>

@@ -23,7 +23,6 @@
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "keyboard/virtualkeyboardmousewidget.h"
-#include "messagehandler.h"
 #include "quicksetdialog.h"
 
 #include "antkeymapper.h"

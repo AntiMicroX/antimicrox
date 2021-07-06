@@ -45,7 +45,6 @@ static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName
     #include <x11extras.h>
 #endif
 
-#include "messagehandler.h"
 #include "uinputeventhandler.h"
 
 UInputEventHandler::UInputEventHandler(QObject *parent)

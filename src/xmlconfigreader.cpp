@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "inputdevice.h"
 #include "joystick.h"
-#include "messagehandler.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
 

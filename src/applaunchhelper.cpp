@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "inputdevice.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QDesktopWidget>

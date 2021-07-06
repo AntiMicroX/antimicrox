@@ -21,7 +21,6 @@
 #include "antkeymapper.h"
 #include "buttoneditdialog.h"
 #include "event.h"
-#include "messagehandler.h"
 #include "mousedialog/mousebuttonsettingsdialog.h"
 #include "qtkeymapperbase.h"
 #include "quicksetdialog.h"

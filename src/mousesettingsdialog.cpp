@@ -20,7 +20,6 @@
 #include "ui_mousesettingsdialog.h"
 
 #include "globalvariables.h"
-#include "messagehandler.h"
 
 #include <QCheckBox>
 #include <QComboBox>

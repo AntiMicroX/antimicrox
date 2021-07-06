@@ -18,8 +18,6 @@
 
 #include "gamecontrollerexample.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QPaintEvent>
 #include <QPainter>

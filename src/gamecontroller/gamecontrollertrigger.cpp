@@ -22,7 +22,6 @@
 
 #include "gamecontrollertriggerbutton.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 #include "xml/joyaxisxml.h"
 
 #include <SDL2/SDL_gamecontroller.h>

@@ -24,7 +24,6 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "vdpad.h"
 
 #include <QDebug>

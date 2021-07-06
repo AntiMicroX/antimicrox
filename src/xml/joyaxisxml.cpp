@@ -19,7 +19,6 @@
 #include "inputdevice.h"
 #include "joyaxis.h"
 #include "joybuttontypes/joyaxisbutton.h"
-#include "messagehandler.h"
 #include "xml/joybuttonxml.h"
 
 #include <QDebug>

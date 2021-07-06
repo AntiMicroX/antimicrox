@@ -19,7 +19,6 @@
 #include "dpadcontextmenuhelper.h"
 
 #include "joybuttonslot.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QHashIterator>

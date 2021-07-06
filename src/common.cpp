@@ -19,8 +19,6 @@
 
 #include "common.h"
 
-#include "messagehandler.h"
-
 #include <QApplication>
 #include <QDebug>
 #include <QLibraryInfo>

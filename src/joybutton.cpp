@@ -21,7 +21,6 @@
 #include "event.h"
 #include "inputdevice.h"
 #include "logger.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "vdpad.h"
 

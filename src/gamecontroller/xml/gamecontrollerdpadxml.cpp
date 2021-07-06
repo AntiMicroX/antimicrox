@@ -16,7 +16,6 @@
  */
 
 #include "gamecontrollerdpadxml.h"
-#include "messagehandler.h"
 
 #include "gamecontroller/gamecontrollerdpad.h"
 

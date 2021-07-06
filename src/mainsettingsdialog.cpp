@@ -26,7 +26,6 @@
 #include "eventhandlerfactory.h"
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 
 #ifdef WITH_X11
     #include "x11extras.h"

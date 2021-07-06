@@ -25,7 +25,6 @@
 #include "joycontrolstickbuttonpushbutton.h"
 #include "joycontrolstickeditdialog.h"
 #include "joycontrolstickpushbutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QHash>

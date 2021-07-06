@@ -18,8 +18,6 @@
 
 #include "autoprofileinfo.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QFileInfo>
 

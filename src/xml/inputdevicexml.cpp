@@ -23,7 +23,6 @@
 
 #include "common.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QXmlStreamReader>

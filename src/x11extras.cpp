@@ -19,7 +19,6 @@
 #include "common.h"
 
 #include "globalvariables.h"
-#include "messagehandler.h"
 
 #include <X11/XKBlib.h>
 #include <X11/Xatom.h>

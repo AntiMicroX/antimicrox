@@ -19,7 +19,6 @@
 #include "localantimicroserver.h"
 
 #include "common.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QLocalServer>

@@ -23,7 +23,6 @@
 #include "inputdevice.h"
 #include "joyaxis.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 
 #include <cmath>

@@ -25,7 +25,6 @@
 #include "joybuttontypes/joydpadbutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "uihelpers/buttoneditdialoghelper.h"
 #include "vdpad.h"

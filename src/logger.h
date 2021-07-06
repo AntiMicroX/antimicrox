@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2020 Paweł Kotiuk
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,6 +52,8 @@ class Logger : public QObject
     explicit Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLevel = LOG_INFO,
                     QObject *parent = nullptr);
     ~Logger();
+
+    static void loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
     static void setLogLevel(LogLevel level);
     LogLevel getCurrentLogLevel();

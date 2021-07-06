@@ -19,7 +19,6 @@
 #include "mouseaxissettingsdialoghelper.h"
 
 #include "joyaxis.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

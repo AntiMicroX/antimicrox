@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "joyaxis.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "vdpad.h"
 

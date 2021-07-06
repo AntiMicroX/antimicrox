@@ -22,7 +22,6 @@
 #include "antimicrosettings.h"
 #include "autoprofileinfo.h"
 #include "common.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QFileDialog>

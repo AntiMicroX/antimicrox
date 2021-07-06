@@ -23,7 +23,6 @@
 #include "gamecontrollertrigger.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "xml/joyaxisxml.h"
 #include "xml/joybuttonxml.h"
 #include "xml/joydpadxml.h"

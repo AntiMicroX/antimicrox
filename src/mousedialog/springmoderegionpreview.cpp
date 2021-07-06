@@ -18,8 +18,6 @@
 
 #include "springmoderegionpreview.h"
 
-#include "messagehandler.h"
-
 #include <QApplication>
 #include <QDebug>
 #include <QDesktopWidget>

@@ -30,8 +30,6 @@
 
 #include "setjoystick.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QFuture>
 #include <QXmlStreamReader>

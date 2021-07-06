@@ -19,7 +19,6 @@
 #include "vdpad.h"
 
 #include "globalvariables.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

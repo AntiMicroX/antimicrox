@@ -20,7 +20,6 @@
 
 #include "dpadcontextmenu.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 

@@ -22,7 +22,6 @@
 #include "joyaxis.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
-#include "messagehandler.h"
 #include "xml/joybuttonxml.h"
 
 #include <QDebug>

@@ -24,7 +24,6 @@
 #include "event.h"
 #include "inputdevice.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 #include "setjoystick.h"
 

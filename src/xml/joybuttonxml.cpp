@@ -19,8 +19,6 @@
 #include "joybutton.h"
 #include "joybuttonslotxml.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>

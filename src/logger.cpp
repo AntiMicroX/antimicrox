@@ -18,8 +18,6 @@
 
 #include "logger.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QTime>
 
@@ -387,3 +385,47 @@ void Logger::setCurrentErrorLogFile(QString filename)
 }
 
 QList<Logger::LogMessage> const &Logger::getPendingMessages() { return pendingMessages; }
+
+void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+
+    if (Logger::instance != nullptr)
+    {
+        switch (type)
+        {
+        case QtDebugMsg:
+            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_DEBUG ||
+                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+                fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
+                        context.function);
+            break;
+        case QtInfoMsg:
+            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_INFO ||
+                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+                fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
+                        context.function);
+            break;
+        case QtWarningMsg:
+            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_WARNING ||
+                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+                fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
+                        context.function);
+            break;
+        case QtCriticalMsg:
+            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR ||
+                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+                fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
+                        context.function);
+            break;
+        case QtFatalMsg:
+            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR ||
+                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+                fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
+                        context.function);
+            abort();
+        default:
+            break;
+        }
+    }
+}
