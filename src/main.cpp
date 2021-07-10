@@ -34,7 +34,6 @@
 #include "messagehandler.h"
 
 #include <QApplication>
-#include <QCommandLineParser>
 #include <QDebug>
 #include <QDir>
 #include <QException>
@@ -51,6 +50,9 @@
 #include <QThread>
 #include <QTranslator>
 #include <QtGlobal>
+
+#include <iostream>
+#include <stdexcept>
 
 #ifdef Q_OS_UNIX
     #include <signal.h>
@@ -184,119 +186,17 @@ int main(int argc, char *argv[])
     QTextStream outstream(stdout);
     QTextStream errorstream(stderr);
 
-    QCommandLineParser parser;
-    parser.setApplicationDescription(
-        QCoreApplication::translate("antimicrox", "Graphical program used to map keyboard buttons and mouse controls to "
-                                                  "a "
-                                                  "gamepad. Useful for playing games with no gamepad support."));
-    parser.addHelpOption();
-    parser.addVersionOption();
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
-    parser.addOptions({
-        // A boolean option with a single name (-p)
-        {"tray", QCoreApplication::translate("main", "Launch program in system tray only.")},
-        // A boolean option with multiple names (-f, --force)
-        {"no-tray", QCoreApplication::translate("main", "Launch program with the tray menu disabled")},
-        // An option with a value
-        {"hidden", QCoreApplication::translate("main", "Launch program without the main window displayed")},
-        {"profile",
-         QCoreApplication::translate("main", "Launch program with the configuration file selected as "
-                                             "the default for "
-                                             "selected controllers. Defaults to all controllers"),
-         QCoreApplication::translate("main", "location")},
-        {"profile-controller",
-         QCoreApplication::translate("main", "Apply configuration file to a specific controller. Value "
-                                             "can be a controller index, name, or GUID"),
-         QCoreApplication::translate("main", "value")},
-        {"unload", QCoreApplication::translate("main", "Unload currently enabled profile(s)"),
-         QCoreApplication::translate("main", "value(s)")},
-        {"startSet",
-         QCoreApplication::translate("main", "Start joysticks on a specific set. Value can be a "
-                                             "controller index, name, or GUID"),
-         QCoreApplication::translate("main", "number value")},
-        {{"daemon", "d"}, QCoreApplication::translate("main", "Launch program as a daemon. Use only on Linux.")},
-        {"log-level", QCoreApplication::translate("main", "Enable logging. Levels (from the least strict): warn,info,debug"),
-         QCoreApplication::translate("main", "log-type")},
-        {"log-file", QCoreApplication::translate("main", "Choose a file for logs writing"),
-         QCoreApplication::translate("main", "filename")},
-        {"eventgen",
-         QCoreApplication::translate("main", "Choose between using XTest support and uinput support "
-                                             "for event generation. Use only if you have "
-                                             "enabled xtest and uinput options on Linux or vmulti on "
-                                             "Windows. Default: xtest."),
-         QCoreApplication::translate("main", "event-generation-type"), "xtest"}, // default
-        {{"list", "l"},
-         QCoreApplication::translate("main", "Print information about joysticks detected by SDL. Use "
-                                             "only if you have sdl "
-                                             "library. You can check your controller index, name or "
-                                             "even GUID.")},
-        // {"display",
-        //     QCoreApplication::translate("main", "Use specified display for
-        //     X11 calls")},
-        // {"next",
-        //     QCoreApplication::translate("main", "Advance profile loading set
-        //     options")},
-        //  {"map",
-        //      QCoreApplication::translate("main", "Open game controller
-        //      mapping window of selected controller. Value can be
-        //      a controller index or GUID."),
-        //      QCoreApplication::translate("main", "value")},
-    });
-
-#else
-    parser.addOption(QCommandLineOption("tray", QObject::trUtf8("Launch program in system tray only.")));
-    parser.addOption(QCommandLineOption("no-tray", QObject::trUtf8("Launch program with the tray menu disabled")));
-    parser.addOption(QCommandLineOption("hidden", QObject::trUtf8("Launch program without the main window displayed")));
-
-    parser.addOption(QCommandLineOption("profile",
-                                        QObject::trUtf8("Launch program with the configuration file selected as the "
-                                                        "default "
-                                                        "for selected controllers. Defaults to all controllers"),
-                                        QObject::trUtf8("location")));
-
-    parser.addOption(QCommandLineOption("profile-controller",
-                                        QObject::trUtf8("Apply configuration file to a specific controller. "
-                                                        "Value can be a controller index, name, or GUID"),
-                                        QObject::trUtf8("value")));
-
-    parser.addOption(
-        QCommandLineOption("unload", QObject::trUtf8("Unload currently enabled profile(s)"), QObject::trUtf8("value(s)")));
-
-    parser.addOption(QCommandLineOption("startSet",
-                                        QObject::trUtf8("Start joysticks on a specific set. Value can be a "
-                                                        "controller index, name, or GUID"),
-                                        QObject::trUtf8("number value")));
-
-    parser.addOption(QCommandLineOption(QStringList() << "daemon"
-                                                      << "d",
-                                        QObject::trUtf8("Launch program as a daemon. Use only on Linux.")));
-
-    parser.addOption(QCommandLineOption("log-level", QObject::trUtf8("Enable logging"), QObject::trUtf8("log-type")));
-
-    parser.addOption(
-        QCommandLineOption("log-file", QObject::trUtf8("Choose a file for logs writing"), QObject::trUtf8("filename")));
-
-    parser.addOption(QCommandLineOption("eventgen",
-                                        QObject::trUtf8("Choose between using XTest support and uinput support "
-                                                        "for event generation. Use only if you have "
-                                                        "enabled xtest and uinput options on Linux or vmulti "
-                                                        "on Windows. Default: xtest."),
-                                        QObject::trUtf8("event-generation-type"), "xtest"));
-
-    parser.addOption(QCommandLineOption(QStringList() << "list"
-                                                      << "l",
-                                        QObject::trUtf8("Print information about joysticks detected by SDL. "
-                                                        "Use only if you have sdl "
-                                                        "library. You can check your controller index, name or "
-                                                        "even GUID.")));
-
-#endif
-
-    parser.process(antimicrox);
-
     CommandLineUtility cmdutility;
-    cmdutility.parseArguments(&parser);
+
+    try
+    {
+        cmdutility.parseArguments(antimicrox);
+    } catch (const std::runtime_error &e)
+    {
+        std::cerr << e.what() << '\n';
+        std::cerr << "Closing\n";
+        return -1;
+    }
 
     Logger appLogger(&outstream, &errorstream);
 
@@ -384,10 +284,10 @@ int main(int argc, char *argv[])
         mainWindow.fillButtons();
         mainWindow.alterConfigFromSettings();
 
-        if (!cmdutility.hasError() && (cmdutility.hasProfile() || cmdutility.hasProfileInOptions()))
+        if (cmdutility.hasProfile() || cmdutility.hasProfileInOptions())
         {
             mainWindow.saveAppConfig();
-        } else if (!cmdutility.hasError() && cmdutility.isUnloadRequested())
+        } else if (cmdutility.isUnloadRequested())
         {
             mainWindow.saveAppConfig();
         }
