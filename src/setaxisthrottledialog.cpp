@@ -20,7 +20,6 @@
 #include "ui_setaxisthrottledialog.h"
 
 #include "joyaxis.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QWidget>
@@ -30,9 +29,6 @@ SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent)
     , ui(new Ui::SetAxisThrottleDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->axis = axis;
 
     QString currentText = ui->label->text();
@@ -43,18 +39,8 @@ SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent)
     connect(this, &SetAxisThrottleDialog::initiateSetAxisThrottleChange, axis, &JoyAxis::propogateThrottleChange);
 }
 
-SetAxisThrottleDialog::~SetAxisThrottleDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+SetAxisThrottleDialog::~SetAxisThrottleDialog() { delete ui; }
 
-    delete ui;
-}
-
-void SetAxisThrottleDialog::propogateThrottleChange()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    emit initiateSetAxisThrottleChange();
-}
+void SetAxisThrottleDialog::propogateThrottleChange() { emit initiateSetAxisThrottleChange(); }
 
 JoyAxis *SetAxisThrottleDialog::getAxis() const { return axis; }

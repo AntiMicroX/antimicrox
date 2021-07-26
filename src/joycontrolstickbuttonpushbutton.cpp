@@ -22,7 +22,6 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QMenu>
@@ -32,8 +31,6 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
                                                                  QWidget *parent)
     : FlashButtonWidget(displayNames, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->button = button;
 
     refreshLabel();
@@ -50,17 +47,10 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
             &JoyControlStickButtonPushButton::refreshLabel);
 }
 
-JoyControlStickButton *JoyControlStickButtonPushButton::getButton()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return button;
-}
+JoyControlStickButton *JoyControlStickButtonPushButton::getButton() { return button; }
 
 void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disableFlashes();
     if (this->button != nullptr)
     {
@@ -80,8 +70,6 @@ void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
 
 void JoyControlStickButtonPushButton::disableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (button != nullptr)
     {
         disconnect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash);
@@ -92,8 +80,6 @@ void JoyControlStickButtonPushButton::disableFlashes()
 
 void JoyControlStickButtonPushButton::enableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (button != nullptr)
     {
         connect(button, &JoyControlStickButton::clicked, this, &JoyControlStickButtonPushButton::flash,
@@ -109,8 +95,6 @@ void JoyControlStickButtonPushButton::enableFlashes()
  */
 QString JoyControlStickButtonPushButton::generateLabel()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
     if (button != nullptr)
     {
@@ -135,8 +119,6 @@ QString JoyControlStickButtonPushButton::generateLabel()
 
 void JoyControlStickButtonPushButton::showContextMenu(const QPoint &point)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QPoint globalPos = this->mapToGlobal(point);
     JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(button, this);
     contextMenu->buildMenu();
@@ -145,8 +127,6 @@ void JoyControlStickButtonPushButton::showContextMenu(const QPoint &point)
 
 void JoyControlStickButtonPushButton::tryFlash()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (button->getButtonState())
     {
         flash();

@@ -21,7 +21,6 @@
 #include "common.h"
 #include "inputdevice.h"
 #include "joyaxis.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "springmoderegionpreview.h"
 #include "springmousemoveinfo.h"
@@ -34,8 +33,6 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
     : MouseSettingsDialog(parent)
     , helper(axis)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->axis = axis;
@@ -141,8 +138,6 @@ MouseAxisSettingsDialog::MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent)
 
 void MouseAxisSettingsDialog::changeMouseMode(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (index == 1)
     {
         axis->setButtonsMouseMode(JoyButton::MouseCursor);
@@ -165,46 +160,28 @@ void MouseAxisSettingsDialog::changeMouseMode(int index)
 
 void MouseAxisSettingsDialog::changeMouseCurve(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyMouseCurve temp = MouseSettingsDialog::getMouseCurveForIndex(index);
     axis->setButtonsMouseCurve(temp);
 }
 
 void MouseAxisSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setMouseSpeedX(value);
     axis->getNAxisButton()->setMouseSpeedX(value);
 }
 
 void MouseAxisSettingsDialog::updateConfigVerticalSpeed(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     axis->getPAxisButton()->setMouseSpeedY(value);
     axis->getNAxisButton()->setMouseSpeedY(value);
 }
 
-void MouseAxisSettingsDialog::updateSpringWidth(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MouseAxisSettingsDialog::updateSpringWidth(int value) { axis->setButtonsSpringWidth(value); }
 
-    axis->setButtonsSpringWidth(value);
-}
-
-void MouseAxisSettingsDialog::updateSpringHeight(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    axis->setButtonsSpringHeight(value);
-}
+void MouseAxisSettingsDialog::updateSpringHeight(int value) { axis->setButtonsSpringHeight(value); }
 
 void MouseAxisSettingsDialog::selectCurrentMouseModePreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool presetDefined = axis->hasSameButtonsMouseMode();
     if (presetDefined)
     {
@@ -224,8 +201,6 @@ void MouseAxisSettingsDialog::selectCurrentMouseModePreset()
 
 void MouseAxisSettingsDialog::calculateSpringPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempWidth = axis->getButtonsPresetSpringWidth();
     int tempHeight = axis->getButtonsPresetSpringHeight();
 
@@ -242,8 +217,6 @@ void MouseAxisSettingsDialog::calculateSpringPreset()
 
 void MouseAxisSettingsDialog::calculateMouseSpeedPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempMouseSpeedX = 0;
     tempMouseSpeedX = qMax(axis->getPAxisButton()->getMouseSpeedX(), axis->getNAxisButton()->getMouseSpeedX());
 
@@ -254,25 +227,16 @@ void MouseAxisSettingsDialog::calculateMouseSpeedPreset()
     ui->verticalSpinBox->setValue(tempMouseSpeedY);
 }
 
-void MouseAxisSettingsDialog::updateSensitivity(double value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    axis->setButtonsSensitivity(value);
-}
+void MouseAxisSettingsDialog::updateSensitivity(double value) { axis->setButtonsSensitivity(value); }
 
 void MouseAxisSettingsDialog::updateAccelerationCurvePresetComboBox()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyMouseCurve temp = axis->getButtonsPresetMouseCurve();
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseAxisSettingsDialog::calculateWheelSpeedPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyAxisButton *paxisbutton = axis->getPAxisButton();
     JoyAxisButton *naxisbutton = axis->getNAxisButton();
 
@@ -283,31 +247,14 @@ void MouseAxisSettingsDialog::calculateWheelSpeedPreset()
     ui->wheelVertSpeedSpinBox->setValue(tempWheelSpeedY);
 }
 
-void MouseAxisSettingsDialog::updateWheelSpeedHorizontalSpeed(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void MouseAxisSettingsDialog::updateWheelSpeedHorizontalSpeed(int value) { axis->setButtonsWheelSpeedX(value); }
 
-    axis->setButtonsWheelSpeedX(value);
-}
+void MouseAxisSettingsDialog::updateWheelSpeedVerticalSpeed(int value) { axis->setButtonsWheelSpeedY(value); }
 
-void MouseAxisSettingsDialog::updateWheelSpeedVerticalSpeed(int value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    axis->setButtonsWheelSpeedY(value);
-}
-
-void MouseAxisSettingsDialog::updateSpringRelativeStatus(bool value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    axis->setButtonsSpringRelativeStatus(value);
-}
+void MouseAxisSettingsDialog::updateSpringRelativeStatus(bool value) { axis->setButtonsSpringRelativeStatus(value); }
 
 void MouseAxisSettingsDialog::updateWindowTitleAxisName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
     temp.append(tr("Mouse Settings - "));
 
@@ -338,8 +285,6 @@ void MouseAxisSettingsDialog::updateWindowTitleAxisName()
 
 void MouseAxisSettingsDialog::calculateExtraAccelrationStatus()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((axis->getPAxisButton()->isExtraAccelerationEnabled()) && (axis->getNAxisButton()->isExtraAccelerationEnabled()))
     {
         ui->extraAccelerationGroupBox->setChecked(true);
@@ -351,8 +296,6 @@ void MouseAxisSettingsDialog::calculateExtraAccelrationStatus()
 
 void MouseAxisSettingsDialog::calculateExtraAccelerationMultiplier()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (qFuzzyCompare(axis->getPAxisButton()->getExtraAccelerationMultiplier(),
                       axis->getNAxisButton()->getExtraAccelerationMultiplier()))
     {
@@ -363,9 +306,6 @@ void MouseAxisSettingsDialog::calculateExtraAccelerationMultiplier()
 
 void MouseAxisSettingsDialog::calculateStartAccelerationMultiplier()
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (qFuzzyCompare(axis->getPAxisButton()->getStartAccelMultiplier(), axis->getNAxisButton()->getStartAccelMultiplier()))
     {
         double temp = axis->getPAxisButton()->getStartAccelMultiplier();
@@ -375,8 +315,6 @@ void MouseAxisSettingsDialog::calculateStartAccelerationMultiplier()
 
 void MouseAxisSettingsDialog::calculateMinAccelerationThreshold()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (qFuzzyCompare(axis->getPAxisButton()->getMinAccelThreshold(), axis->getNAxisButton()->getMinAccelThreshold()))
     {
         double temp = axis->getPAxisButton()->getMinAccelThreshold();
@@ -386,8 +324,6 @@ void MouseAxisSettingsDialog::calculateMinAccelerationThreshold()
 
 void MouseAxisSettingsDialog::calculateMaxAccelerationThreshold()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (qFuzzyCompare(axis->getPAxisButton()->getMaxAccelThreshold(), axis->getNAxisButton()->getMaxAccelThreshold()))
     {
         double temp = axis->getPAxisButton()->getMaxAccelThreshold();
@@ -397,8 +333,6 @@ void MouseAxisSettingsDialog::calculateMaxAccelerationThreshold()
 
 void MouseAxisSettingsDialog::calculateAccelExtraDuration()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (qFuzzyCompare(axis->getPAxisButton()->getAccelExtraDuration(), axis->getNAxisButton()->getAccelExtraDuration()))
     {
         double temp = axis->getPAxisButton()->getAccelExtraDuration();
@@ -408,8 +342,6 @@ void MouseAxisSettingsDialog::calculateAccelExtraDuration()
 
 void MouseAxisSettingsDialog::calculateReleaseSpringRadius()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int result = 0;
     if ((axis->getPAxisButton()->getSpringDeadCircleMultiplier()) ==
         (axis->getNAxisButton()->getSpringDeadCircleMultiplier()))
@@ -422,8 +354,6 @@ void MouseAxisSettingsDialog::calculateReleaseSpringRadius()
 
 void MouseAxisSettingsDialog::updateExtraAccelerationCurve(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
 
     if (index > 0)
@@ -439,8 +369,6 @@ void MouseAxisSettingsDialog::updateExtraAccelerationCurve(int index)
 
 void MouseAxisSettingsDialog::calculateExtraAccelerationCurve()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (axis->getPAxisButton()->getExtraAccelerationCurve() == axis->getNAxisButton()->getExtraAccelerationCurve())
     {
         JoyButton::JoyExtraAccelerationCurve temp = axis->getPAxisButton()->getExtraAccelerationCurve();

@@ -18,16 +18,12 @@
 
 #include "mousehelper.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QDesktopWidget>
 
 MouseHelper::MouseHelper(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     springMouseMoving = false;
     previousCursorLocation[0] = 0;
     previousCursorLocation[1] = 0;
@@ -38,25 +34,16 @@ MouseHelper::MouseHelper(QObject *parent)
     QObject::connect(&mouseTimer, &QTimer::timeout, this, &MouseHelper::resetSpringMouseMoving);
 }
 
-void MouseHelper::resetSpringMouseMoving()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    springMouseMoving = false;
-}
+void MouseHelper::resetSpringMouseMoving() { springMouseMoving = false; }
 
 void MouseHelper::initDeskWid()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (deskWid == nullptr)
         deskWid = new QDesktopWidget;
 }
 
 void MouseHelper::deleteDeskWid()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (deskWid != nullptr)
     {
         delete deskWid;
@@ -64,9 +51,4 @@ void MouseHelper::deleteDeskWid()
     }
 }
 
-QDesktopWidget *MouseHelper::getDesktopWidget() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return deskWid;
-}
+QDesktopWidget *MouseHelper::getDesktopWidget() const { return deskWid; }

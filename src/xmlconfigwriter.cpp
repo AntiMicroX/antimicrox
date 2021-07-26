@@ -20,7 +20,6 @@
 
 #include "common.h"
 #include "inputdevice.h"
-#include "messagehandler.h"
 #include "xml/inputdevicexml.h"
 
 #include <QDebug>
@@ -31,8 +30,6 @@
 XMLConfigWriter::XMLConfigWriter(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     xml = new QXmlStreamWriter();
     xml->setAutoFormatting(true);
     configFile = nullptr;
@@ -43,8 +40,6 @@ XMLConfigWriter::XMLConfigWriter(QObject *parent)
 
 XMLConfigWriter::~XMLConfigWriter()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (configFile != nullptr)
     {
         if (configFile->isOpen())
@@ -63,8 +58,6 @@ XMLConfigWriter::~XMLConfigWriter()
 
 void XMLConfigWriter::write(InputDeviceXml *joystickXml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     writerError = false;
 
     if (!configFile->isOpen())
@@ -90,26 +83,14 @@ void XMLConfigWriter::write(InputDeviceXml *joystickXml)
 
 void XMLConfigWriter::setFileName(QString filename)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QFile *temp = new QFile(filename);
     fileName = filename;
     configFile = temp;
 }
 
-bool XMLConfigWriter::hasError()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool XMLConfigWriter::hasError() { return writerError; }
 
-    return writerError;
-}
-
-const QString XMLConfigWriter::getErrorString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return writerErrorString;
-}
+const QString XMLConfigWriter::getErrorString() { return writerErrorString; }
 
 const QXmlStreamWriter *XMLConfigWriter::getXml() { return xml; }
 

@@ -19,7 +19,6 @@
 #include "joygradientbutton.h"
 
 #include "event.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 
 #include <cmath>
@@ -29,7 +28,6 @@
 JoyGradientButton::JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent)
     : JoyButton(index, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
 /**
@@ -37,8 +35,6 @@ JoyGradientButton::JoyGradientButton(int index, int originset, SetJoystick *pare
  */
 void JoyGradientButton::turboEvent()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int m_turboInterval = containsJoyMixSlot() && allSlotTimeBetweenSlots > 0 ? allSlotTimeBetweenSlots : turboInterval;
 
     if (getTurboMode() == NormalTurbo)
@@ -224,8 +220,6 @@ void JoyGradientButton::turboEvent()
 
 void JoyGradientButton::wheelEventVertical()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButtonSlot *buttonslot = nullptr;
     bool activateEvent = false;
 
@@ -375,8 +369,6 @@ void JoyGradientButton::wheelEventVertical()
 
 void JoyGradientButton::wheelEventHorizontal()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButtonSlot *buttonslot = nullptr;
     bool activateEvent = false;
 

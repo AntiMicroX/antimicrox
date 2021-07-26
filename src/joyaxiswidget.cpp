@@ -20,15 +20,12 @@
 
 #include "joyaxis.h"
 #include "joyaxiscontextmenu.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 
 JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent)
     : FlashButtonWidget(displayNames, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_axis = axis;
 
     refreshLabel();
@@ -54,17 +51,10 @@ JoyAxisWidget::JoyAxisWidget(JoyAxis *axis, bool displayNames, QWidget *parent)
     pAxisButton->establishPropertyUpdatedConnections();
 }
 
-JoyAxis *JoyAxisWidget::getAxis() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_axis;
-}
+JoyAxis *JoyAxisWidget::getAxis() const { return m_axis; }
 
 void JoyAxisWidget::disableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     disconnect(m_axis, &JoyAxis::active, this, &JoyAxisWidget::flash);
     disconnect(m_axis, &JoyAxis::released, this, &JoyAxisWidget::unflash);
     this->unflash();
@@ -72,8 +62,6 @@ void JoyAxisWidget::disableFlashes()
 
 void JoyAxisWidget::enableFlashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     connect(m_axis, &JoyAxis::active, this, &JoyAxisWidget::flash, Qt::QueuedConnection);
     connect(m_axis, &JoyAxis::released, this, &JoyAxisWidget::unflash, Qt::QueuedConnection);
 }
@@ -84,8 +72,6 @@ void JoyAxisWidget::enableFlashes()
  */
 QString JoyAxisWidget::generateLabel()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = m_axis->getName(false, ifDisplayNames()).replace("&", "&&");
 
     qDebug() << "Name of joy axis is: " << temp;
@@ -95,8 +81,6 @@ QString JoyAxisWidget::generateLabel()
 
 void JoyAxisWidget::showContextMenu(const QPoint &point)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QPoint globalPos = this->mapToGlobal(point);
     JoyAxisContextMenu *contextMenu = new JoyAxisContextMenu(m_axis, this);
     contextMenu->buildMenu();
@@ -105,8 +89,6 @@ void JoyAxisWidget::showContextMenu(const QPoint &point)
 
 void JoyAxisWidget::tryFlash()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyAxisButton *nAxisButton = m_axis->getNAxisButton();
     JoyAxisButton *pAxisButton = m_axis->getPAxisButton();
 

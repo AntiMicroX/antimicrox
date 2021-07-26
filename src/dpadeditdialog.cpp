@@ -24,7 +24,6 @@
 #include "event.h"
 #include "inputdevice.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 #include "setjoystick.h"
 
@@ -38,8 +37,6 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent)
     , helper(dpad)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->dpad = dpad;
@@ -94,17 +91,10 @@ DPadEditDialog::DPadEditDialog(JoyDPad *dpad, QWidget *parent)
     connect(dpad, &JoyDPad::dpadNameChanged, this, &DPadEditDialog::updateWindowTitleDPadName);
 }
 
-DPadEditDialog::~DPadEditDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+DPadEditDialog::~DPadEditDialog() { delete ui; }
 
 void DPadEditDialog::implementPresets(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButtonSlot *upButtonSlot = nullptr;
     JoyButtonSlot *downButtonSlot = nullptr;
     JoyButtonSlot *leftButtonSlot = nullptr;
@@ -296,8 +286,6 @@ void DPadEditDialog::implementPresets(int index)
 
 void DPadEditDialog::implementModes(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     PadderCommon::inputDaemonMutex.lock();
 
     dpad->releaseButtonEvents();
@@ -326,8 +314,6 @@ void DPadEditDialog::implementModes(int index)
 
 void DPadEditDialog::selectCurrentPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyDPadButton *upButton = dpad->getJoyButton(JoyDPadButton::DpadUp);
     QList<JoyButtonSlot *> *upslots = upButton->getAssignedSlots();
 
@@ -429,8 +415,6 @@ void DPadEditDialog::selectCurrentPreset()
 
 void DPadEditDialog::openMouseSettingsDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->mouseSettingsPushButton->setEnabled(false);
 
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(this->dpad, this);
@@ -439,12 +423,7 @@ void DPadEditDialog::openMouseSettingsDialog()
     connect(dialog, &MouseDPadSettingsDialog::finished, this, &DPadEditDialog::enableMouseSettingButton);
 }
 
-void DPadEditDialog::enableMouseSettingButton()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    ui->mouseSettingsPushButton->setEnabled(true);
-}
+void DPadEditDialog::enableMouseSettingButton() { ui->mouseSettingsPushButton->setEnabled(true); }
 
 /**
  * @brief Update QDoubleSpinBox value based on updated dpad delay value.
@@ -452,8 +431,6 @@ void DPadEditDialog::enableMouseSettingButton()
  */
 void DPadEditDialog::updateDPadDelaySpinBox(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double temp = value * 0.001;
     ui->dpadDelayDoubleSpinBox->setValue(temp);
 }
@@ -464,8 +441,6 @@ void DPadEditDialog::updateDPadDelaySpinBox(int value)
  */
 void DPadEditDialog::updateDPadDelaySlider(double value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int currentDpadDelay = value * 100;
 
     if (ui->dpadDelaySlider->value() != currentDpadDelay)
@@ -476,8 +451,6 @@ void DPadEditDialog::updateDPadDelaySlider(double value)
 
 void DPadEditDialog::updateWindowTitleDPadName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString(tr("Set")).append(" ");
 
     if (!dpad->getDpadName().isEmpty())

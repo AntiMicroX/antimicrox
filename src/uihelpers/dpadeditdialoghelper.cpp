@@ -19,7 +19,6 @@
 #include "dpadeditdialoghelper.h"
 
 #include "joybuttonslot.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QHashIterator>
@@ -27,8 +26,6 @@
 DPadEditDialogHelper::DPadEditDialogHelper(JoyDPad *dpad, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(dpad);
 
     this->dpad = dpad;
@@ -36,8 +33,6 @@ DPadEditDialogHelper::DPadEditDialogHelper(JoyDPad *dpad, QObject *parent)
 
 void DPadEditDialogHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> *tempSlots)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     pendingSlots.clear();
 
     QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> iter(*tempSlots);
@@ -51,17 +46,10 @@ void DPadEditDialogHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirection
     }
 }
 
-void DPadEditDialogHelper::clearPendingSlots()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    pendingSlots.clear();
-}
+void DPadEditDialogHelper::clearPendingSlots() { pendingSlots.clear(); }
 
 void DPadEditDialogHelper::setFromPendingSlots()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!getPendingSlots().isEmpty())
     {
         QHashIterator<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> iter(getPendingSlots());
@@ -84,8 +72,6 @@ void DPadEditDialogHelper::setFromPendingSlots()
 
 void DPadEditDialogHelper::clearButtonsSlotsEventReset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QHash<int, JoyDPadButton *> *buttons = dpad->getButtons();
     QHashIterator<int, JoyDPadButton *> iter(*buttons);
     while (iter.hasNext())
@@ -97,8 +83,6 @@ void DPadEditDialogHelper::clearButtonsSlotsEventReset()
 
 void DPadEditDialogHelper::updateJoyDPadDelay(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int temp = value * 10;
     if (dpad->getDPadDelay() != temp)
     {
@@ -108,6 +92,5 @@ void DPadEditDialogHelper::updateJoyDPadDelay(int value)
 
 QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> const &DPadEditDialogHelper::getPendingSlots()
 {
-
     return pendingSlots;
 }

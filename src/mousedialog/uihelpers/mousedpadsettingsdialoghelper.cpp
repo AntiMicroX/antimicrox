@@ -20,15 +20,12 @@
 
 #include "joydpad.h"
 #include "joydpadbuttonwidget.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 
 MouseDpadSettingsDialogHelper::MouseDpadSettingsDialogHelper(JoyDPad *dpad, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_ASSERT(dpad);
 
     this->dpad = dpad;

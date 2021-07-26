@@ -23,7 +23,6 @@
 #include "gamecontrollertrigger.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "xml/joyaxisxml.h"
 #include "xml/joybuttonxml.h"
 #include "xml/joydpadxml.h"
@@ -34,17 +33,10 @@
 GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *parent)
     : SetJoystick(device, index, false, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     resetSticks();
 }
 
-void GameControllerSet::reset()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    resetSticks();
-}
+void GameControllerSet::reset() { resetSticks(); }
 
 void GameControllerSet::resetSticks()
 {
@@ -53,10 +45,7 @@ void GameControllerSet::resetSticks()
 }
 
 void GameControllerSet::populateSticksDPad()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Left Stick Assignment
+{ // Left Stick Assignment
     JoyAxis *axisX = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTX);
     JoyAxis *axisY = getJoyAxis(SDL_CONTROLLER_AXIS_LEFTY);
     JoyControlStick *stick1 = new JoyControlStick(axisX, axisY, 0, getIndex(), this);
@@ -149,9 +138,6 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml, QHash<int, SDL
                                            QHash<int, SDL_GameControllerAxis> &axes,
                                            QList<SDL_GameControllerButtonBind> &hatButtons)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == "set"))
     {
         xml->readNextStartElement();
@@ -227,8 +213,6 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml, QHash<int, SDL
 
 void GameControllerSet::readConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == "set"))
     {
         xml->readNextStartElement();
@@ -331,8 +315,6 @@ void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
 
 void GameControllerSet::refreshAxes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     deleteAxes();
 
     for (int i = 0; i < getInputDevice()->getNumberRawAxes(); i++)

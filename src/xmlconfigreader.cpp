@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "inputdevice.h"
 #include "joystick.h"
-#include "messagehandler.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
 
@@ -39,8 +38,6 @@
 XMLConfigReader::XMLConfigReader(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     xml = new QXmlStreamReader();
     configFile = nullptr;
     m_joystick = nullptr;
@@ -49,8 +46,6 @@ XMLConfigReader::XMLConfigReader(QObject *parent)
 
 XMLConfigReader::~XMLConfigReader()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (configFile != nullptr)
     {
         if (configFile->isOpen())
@@ -70,17 +65,10 @@ XMLConfigReader::~XMLConfigReader()
         delete m_joystickXml;
 }
 
-void XMLConfigReader::setJoystick(InputDevice *joystick)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    m_joystick = joystick;
-}
+void XMLConfigReader::setJoystick(InputDevice *joystick) { m_joystick = joystick; }
 
 void XMLConfigReader::setFileName(QString filename)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QFile *temp = new QFile(filename);
 
     if (temp->exists())
@@ -95,16 +83,12 @@ void XMLConfigReader::setFileName(QString filename)
 
 void XMLConfigReader::configJoystick(InputDevice *joystick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_joystick = joystick;
     read();
 }
 
 bool XMLConfigReader::read()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool error = false;
 
     if ((configFile != nullptr) && configFile->exists() && (m_joystick != nullptr))
@@ -154,7 +138,6 @@ bool XMLConfigReader::read()
         {
             if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
-
                 m_joystickXml = new InputDeviceXml(m_joystick);
                 m_joystickXml->readConfig(xml);
                 // if (!m_joystickXml.isNull()) delete m_joystickXml;
@@ -184,8 +167,6 @@ bool XMLConfigReader::read()
 
 const QString XMLConfigReader::getErrorString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (xml->hasError())
@@ -194,17 +175,10 @@ const QString XMLConfigReader::getErrorString()
     return temp;
 }
 
-bool XMLConfigReader::hasError()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return xml->hasError();
-}
+bool XMLConfigReader::hasError() { return xml->hasError(); }
 
 void XMLConfigReader::initDeviceTypes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     deviceTypes.clear();
     deviceTypes.append(GlobalVariables::Joystick::xmlName);
     deviceTypes.append(GlobalVariables::GameController::xmlName);

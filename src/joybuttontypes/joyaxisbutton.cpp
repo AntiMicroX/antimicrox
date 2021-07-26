@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "joyaxis.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "vdpad.h"
 
@@ -33,15 +32,11 @@
 JoyAxisButton::JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent)
     : JoyGradientButton(index, originset, parentSet, parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     m_axis = axis;
 }
 
 QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString(m_axis->getPartialName(forceFullFormat, displayNames));
     temp.append(": ");
 
@@ -67,7 +62,6 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
 
         switch (m_index)
         {
-
         case 0:
             buttontype = tr("Negative");
             break;
@@ -87,17 +81,10 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
     return temp;
 }
 
-QString JoyAxisButton::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return GlobalVariables::JoyAxisButton::xmlName;
-}
+QString JoyAxisButton::getXmlName() { return GlobalVariables::JoyAxisButton::xmlName; }
 
 void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     SetChangeCondition oldCondition = setSelectionCondition;
 
     if ((condition != setSelectionCondition) && !passive)
@@ -139,28 +126,16 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
  *     dead zone
  * @return Normalized distance away from dead zone
  */
-double JoyAxisButton::getDistanceFromDeadZone()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_axis->getDistanceFromDeadZone();
-}
+double JoyAxisButton::getDistanceFromDeadZone() { return m_axis->getDistanceFromDeadZone(); }
 
 /**
  * @brief Get the distance factor that should be used for mouse movement
  * @return Distance factor that should be used for mouse movement
  */
-double JoyAxisButton::getMouseDistanceFromDeadZone()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return this->getDistanceFromDeadZone();
-}
+double JoyAxisButton::getMouseDistanceFromDeadZone() { return this->getDistanceFromDeadZone(); }
 
 void JoyAxisButton::setVDPad(VDPad *vdpad)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (m_axis->isPartControlStick())
     {
         m_axis->removeControlStick();
@@ -175,8 +150,6 @@ void JoyAxisButton::setVDPad(VDPad *vdpad)
  */
 void JoyAxisButton::setTurboMode(TurboMode mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (isPartRealAxis())
     {
         currentTurboMode = mode;
@@ -189,31 +162,14 @@ void JoyAxisButton::setTurboMode(TurboMode mode)
  *     type checking.
  * @return Status of being part of a real controller axis
  */
-bool JoyAxisButton::isPartRealAxis()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool JoyAxisButton::isPartRealAxis() { return true; }
 
-    return true;
-}
+double JoyAxisButton::getAccelerationDistance() { return m_axis->getRawDistance(m_axis->getCurrentThrottledValue()); }
 
-double JoyAxisButton::getAccelerationDistance()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_axis->getRawDistance(m_axis->getCurrentThrottledValue());
-}
-
-double JoyAxisButton::getLastAccelerationDistance()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return m_axis->getRawDistance(m_axis->getLastKnownThrottleValue());
-}
+double JoyAxisButton::getLastAccelerationDistance() { return m_axis->getRawDistance(m_axis->getLastKnownThrottleValue()); }
 
 double JoyAxisButton::getLastMouseDistanceFromDeadZone()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     double distance = 0.0;
 
     if (m_axis->getAxisButtonByValue(m_axis->getLastKnownThrottleValue()) == this)

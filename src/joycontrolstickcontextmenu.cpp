@@ -23,7 +23,6 @@
 #include "inputdevice.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 
 #include <QDebug>
@@ -34,8 +33,6 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
     : QMenu(parent)
     , helper(stick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->stick = stick;
     getHelperLocal().moveToThread(stick->thread());
 
@@ -44,8 +41,6 @@ JoyControlStickContextMenu::JoyControlStickContextMenu(JoyControlStick *stick, Q
 
 void JoyControlStickContextMenu::buildMenu()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QActionGroup *presetGroup = new QActionGroup(this);
     int presetMode = 0;
     int currentPreset = getPresetIndex();
@@ -170,16 +165,12 @@ void JoyControlStickContextMenu::buildMenu()
 
 void JoyControlStickContextMenu::setStickMode(QAction *action)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int item = action->data().toInt();
     stick->setJoyMode(static_cast<JoyControlStick::JoyMode>(item));
 }
 
 void JoyControlStickContextMenu::setStickPreset(QAction *action)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int item = action->data().toInt();
 
     JoyButtonSlot *upButtonSlot = nullptr;
@@ -372,8 +363,6 @@ void JoyControlStickContextMenu::setStickPreset(QAction *action)
 
 int JoyControlStickContextMenu::getPresetIndex()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int result = 0;
 
     PadderCommon::inputDaemonMutex.lock();
@@ -480,8 +469,6 @@ int JoyControlStickContextMenu::getPresetIndex()
 
 void JoyControlStickContextMenu::openMouseSettingsDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     MouseControlStickSettingsDialog *dialog = new MouseControlStickSettingsDialog(stick, parentWidget());
     dialog->show();
 }

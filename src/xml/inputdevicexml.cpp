@@ -23,7 +23,6 @@
 
 #include "common.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QXmlStreamReader>
@@ -37,8 +36,6 @@ InputDeviceXml::InputDeviceXml(InputDevice *inputDevice, QObject *parent)
 
 void InputDeviceXml::readConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == m_inputDevice->getXmlName()))
     {
         m_inputDevice->transferReset();
@@ -336,8 +333,6 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
 
 void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     xml->writeStartElement(m_inputDevice->getXmlName());
     xml->writeAttribute("configversion", QString::number(PadderCommon::LATESTCONFIGFILEVERSION));
     xml->writeAttribute("appversion", PadderCommon::programVersion);

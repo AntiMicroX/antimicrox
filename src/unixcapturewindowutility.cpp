@@ -18,7 +18,6 @@
 
 #include "unixcapturewindowutility.h"
 
-#include "messagehandler.h"
 #include "qtx11keymapper.h"
 
 #include <QDataStream>
@@ -32,8 +31,6 @@
 UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     targetPath = "";
     failed = false;
     targetWindow = None;
@@ -43,10 +40,7 @@ UnixCaptureWindowUtility::UnixCaptureWindowUtility(QObject *parent)
  * @brief Attempt to capture window selected with the mouse
  */
 void UnixCaptureWindowUtility::attemptWindowCapture()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Only create instance when needed.
+{ // Only create instance when needed.
     static QtX11KeyMapper x11KeyMapper;
 
     targetPath = "";
@@ -125,27 +119,12 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
  * @brief Get the saved path for a window
  * @return Program path
  */
-QString UnixCaptureWindowUtility::getTargetPath() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return targetPath;
-}
+QString UnixCaptureWindowUtility::getTargetPath() const { return targetPath; }
 
 /**
  * @brief Check if attemptWindowCapture failed to obtain an application
  * @return Error status
  */
-bool UnixCaptureWindowUtility::hasFailed() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool UnixCaptureWindowUtility::hasFailed() const { return failed; }
 
-    return failed;
-}
-
-long UnixCaptureWindowUtility::getTargetWindow() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return targetWindow;
-}
+long UnixCaptureWindowUtility::getTargetWindow() const { return targetWindow; }

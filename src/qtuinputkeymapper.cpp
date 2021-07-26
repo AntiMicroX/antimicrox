@@ -25,7 +25,6 @@
 #include <QList>
 #include <QListIterator>
 
-#include "messagehandler.h"
 #include "qtuinputkeymapper.h"
 
 QtUInputKeyMapper::QtUInputKeyMapper(QObject *parent)

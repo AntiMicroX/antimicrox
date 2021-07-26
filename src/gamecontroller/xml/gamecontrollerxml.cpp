@@ -21,7 +21,6 @@
 
 #include "common.h"
 #include "globalvariables.h"
-#include "messagehandler.h"
 //#include "logger.h"
 #include "gamecontroller/gamecontrollerdpad.h"
 #include "gamecontroller/gamecontrollerset.h"
@@ -42,8 +41,6 @@ GameControllerXml::GameControllerXml(GameController *gameController, QObject *pa
 
 void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int index = 0;
     int buttonIndex = 0;
     QString temp = QString();
@@ -278,8 +275,6 @@ void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
 
 void GameControllerXml::readConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == m_gameController->getXmlName()))
     {
         m_gameController->transferReset();
@@ -378,8 +373,6 @@ void GameControllerXml::readConfig(QXmlStreamReader *xml)
 
 void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     xml->writeStartElement(m_gameController->getXmlName());
     xml->writeAttribute("configversion", QString::number(PadderCommon::LATESTCONFIGFILEVERSION));
     xml->writeAttribute("appversion", PadderCommon::programVersion);

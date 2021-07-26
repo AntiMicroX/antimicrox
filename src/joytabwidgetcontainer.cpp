@@ -20,7 +20,6 @@
 
 #include "joystick.h"
 #include "joytabwidget.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QTabBar>
@@ -29,20 +28,12 @@
 JoyTabWidgetContainer::JoyTabWidgetContainer(QWidget *parent)
     : QTabWidget(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
 }
 
-int JoyTabWidgetContainer::addTab(QWidget *widget, const QString &string)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return QTabWidget::addTab(widget, string);
-}
+int JoyTabWidgetContainer::addTab(QWidget *widget, const QString &string) { return QTabWidget::addTab(widget, string); }
 
 int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     InputDevice *joystick = widget->getJoystick();
 
     if (joystick != nullptr)
@@ -56,8 +47,6 @@ int JoyTabWidgetContainer::addTab(JoyTabWidget *widget, const QString &string)
 
 void JoyTabWidgetContainer::flash(InputDevice *joystick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
 
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
@@ -74,8 +63,6 @@ void JoyTabWidgetContainer::flash(InputDevice *joystick)
 
 void JoyTabWidgetContainer::unflash(InputDevice *joystick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
     {
@@ -90,8 +77,6 @@ void JoyTabWidgetContainer::unflash(InputDevice *joystick)
 
 void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
 
     for (int i = 0; (i < tabBar()->count()) && !found; i++)
@@ -106,8 +91,6 @@ void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
 
 void JoyTabWidgetContainer::unflashAll()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     for (int i = 0; i < tabBar()->count(); i++)
     {
         JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
@@ -120,8 +103,6 @@ void JoyTabWidgetContainer::unflashAll()
 
 void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     unflashAll();
 
     disconnect(joystick, &InputDevice::clicked, this, nullptr);
@@ -130,8 +111,6 @@ void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 
 void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     connect(
         joystick, &InputDevice::clicked, this, [this, joystick] { flash(joystick); }, Qt::QueuedConnection);
     connect(

@@ -19,8 +19,6 @@
 
 #include "common.h"
 
-#include "messagehandler.h"
-
 #include <QApplication>
 #include <QDebug>
 #include <QLibraryInfo>
@@ -29,8 +27,6 @@
 namespace PadderCommon {
 QString preferredProfileDir(AntiMicroSettings *settings)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString lastProfileDir = settings->value("LastProfileDir", "").toString();
     QString defaultProfileDir = settings->value("DefaultProfileDir", "").toString();
     QString lookupDir = QString();
@@ -61,8 +57,6 @@ QString preferredProfileDir(AntiMicroSettings *settings)
 
 QStringList arguments(const int &argc, char **argv)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QStringList list = QStringList();
 
     for (int a = 0; a < argc; ++a)
@@ -73,8 +67,6 @@ QStringList arguments(const int &argc, char **argv)
 
 QStringList parseArgumentsString(QString tempString)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
     QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
     QStringList finalList = QStringList();
@@ -102,10 +94,7 @@ QStringList parseArgumentsString(QString tempString)
  * @param Language code
  */
 void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QString language)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Remove application specific translation strings
+{ // Remove application specific translation strings
     qApp->removeTranslator(translator);
 
     // Remove old Qt translation strings
@@ -123,19 +112,9 @@ void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QSt
     qApp->installTranslator(translator);
 }
 
-void lockInputDevices()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void lockInputDevices() { sdlWaitMutex.lock(); }
 
-    sdlWaitMutex.lock();
-}
-
-void unlockInputDevices()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    sdlWaitMutex.unlock();
-}
+void unlockInputDevices() { sdlWaitMutex.unlock(); }
 /**
  * @brief Universal method for loading icons
  *

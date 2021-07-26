@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2020 Paweł Kotiuk
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +26,13 @@
 #include <QTextStream>
 #include <QTimer>
 
+/**
+ * @brief Custom class used for logging across application.
+ *
+ * It manages log-levels, formatting, printing logs and saving them to file.
+ * Logs across the program can be written using  qDebug(), qInfo(), qWarning(), qCritical, and qFatal() functions
+ *
+ */
 class Logger : public QObject
 {
     Q_OBJECT
@@ -52,6 +60,17 @@ class Logger : public QObject
                     QObject *parent = nullptr);
     ~Logger();
 
+    /**
+     * @brief log message handling function
+     *
+     * It is meant to be registered via qInstallMessageHandler() at the beginning of application
+     *
+     * @param type
+     * @param context
+     * @param msg
+     */
+    static void loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+
     static void setLogLevel(LogLevel level);
     LogLevel getCurrentLogLevel();
     QList<LogMessage> const &getPendingMessages();
@@ -72,52 +91,6 @@ class Logger : public QObject
 
     static void appendLog(LogLevel level, const QString &message, bool newline = true);
     static void directLog(LogLevel level, const QString &message, bool newline = true);
-
-    // Some convenience functions that will hopefully speed up
-    // logging operations.
-    inline static void LogInfo(const QString &message, bool newline = true, bool direct = false)
-    {
-        if (!direct)
-        {
-            appendLog(LOG_INFO, message, newline);
-        } else
-        {
-            directLog(LOG_INFO, message, newline);
-        }
-    }
-
-    inline static void LogDebug(const QString &message, bool newline = true, bool direct = false)
-    {
-        if (!direct)
-        {
-            appendLog(LOG_DEBUG, message, newline);
-        } else
-        {
-            directLog(LOG_DEBUG, message, newline);
-        }
-    }
-
-    inline static void LogWarning(const QString &message, bool newline = true, bool direct = false)
-    {
-        if (!direct)
-        {
-            appendLog(LOG_WARNING, message, newline);
-        } else
-        {
-            directLog(LOG_WARNING, message, newline);
-        }
-    }
-
-    inline static void LogError(const QString &message, bool newline = true, bool direct = false)
-    {
-        if (!direct)
-        {
-            appendLog(LOG_ERROR, message, newline);
-        } else
-        {
-            directLog(LOG_ERROR, message, newline);
-        }
-    }
 
     inline static Logger *getInstance()
     {

@@ -24,7 +24,6 @@ class GameControllerTrigger;
 
 class GameControllerTriggerXml : public JoyAxisXml
 {
-
   public:
     explicit GameControllerTriggerXml(GameControllerTrigger *gameContrTrigger, QObject *parent = 0);
 

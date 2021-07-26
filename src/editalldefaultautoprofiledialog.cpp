@@ -22,7 +22,6 @@
 #include "antimicrosettings.h"
 #include "autoprofileinfo.h"
 #include "common.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QFileDialog>
@@ -36,9 +35,6 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
     , ui(new Ui::EditAllDefaultAutoProfileDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->info = info;
@@ -53,17 +49,10 @@ EditAllDefaultAutoProfileDialog::EditAllDefaultAutoProfileDialog(AutoProfileInfo
             &EditAllDefaultAutoProfileDialog::saveAutoProfileInformation);
 }
 
-EditAllDefaultAutoProfileDialog::~EditAllDefaultAutoProfileDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+EditAllDefaultAutoProfileDialog::~EditAllDefaultAutoProfileDialog() { delete ui; }
 
 void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString preferredProfileDir = PadderCommon::preferredProfileDir(settings);
     QString profileFilename =
         QFileDialog::getOpenFileName(this, tr("Open Config"), preferredProfileDir, QString("Config Files (*.amgp *.xml)"));
@@ -73,26 +62,16 @@ void EditAllDefaultAutoProfileDialog::openProfileBrowseDialog()
 }
 
 void EditAllDefaultAutoProfileDialog::saveAutoProfileInformation()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // info->setGUID("all");
+{ // info->setGUID("all");
     info->setUniqueID("all");
     info->setProfileLocation(ui->profileLineEdit->text());
     info->setActive(true);
 }
 
-AutoProfileInfo *EditAllDefaultAutoProfileDialog::getAutoProfile() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return info;
-}
+AutoProfileInfo *EditAllDefaultAutoProfileDialog::getAutoProfile() const { return info; }
 
 void EditAllDefaultAutoProfileDialog::accept()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool validForm = true;
     QString errorString = QString();
 

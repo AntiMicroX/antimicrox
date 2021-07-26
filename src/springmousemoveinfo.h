@@ -20,7 +20,6 @@
 #define SPRINGMOUSEMOVEINFO_H
 
 namespace PadderCommon {
-
 typedef struct _springModeInfo
 {
     // Displacement of the X axis

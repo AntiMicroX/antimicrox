@@ -21,7 +21,6 @@
 
 #include "antkeymapper.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -38,8 +37,6 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent)
     , ui(new Ui::QKeyDisplayDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
     this->setFocus();
 
@@ -47,16 +44,10 @@ QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent)
     ui->eventHandlerLabel->setText(handler->getName());
 }
 
-QKeyDisplayDialog::~QKeyDisplayDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-    delete ui;
-}
+QKeyDisplayDialog::~QKeyDisplayDialog() { delete ui; }
 
 void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     switch (event->key())
     {
     case Qt::Key_Escape:
@@ -71,8 +62,6 @@ void QKeyDisplayDialog::keyPressEvent(QKeyEvent *event)
 
 void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int scancode = event->nativeScanCode();
     int virtualkey = event->nativeVirtualKey();
 

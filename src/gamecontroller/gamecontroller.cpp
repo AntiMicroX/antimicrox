@@ -25,7 +25,6 @@
 #include "globalvariables.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
-#include "messagehandler.h"
 //#include "logger.h"
 
 #include <cmath>
@@ -38,9 +37,6 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex, 
                                int counterUniques, QObject *parent)
     : InputDevice(SDL_GameControllerGetJoystick(controller), deviceIndex, settings, parent)
 {
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->controller = controller;
     this->counterUniques = counterUniques;
 
@@ -57,15 +53,11 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex, 
 
 QString GameController::getName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return QString(tr("Game Controller")).append(" ").append(QString::number(getRealJoyNumber()));
 }
 
 QString GameController::getSDLName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -76,47 +68,20 @@ QString GameController::getSDLName()
     return temp;
 }
 
-QString GameController::getXmlName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString GameController::getXmlName() { return GlobalVariables::GameController::xmlName; }
 
-    return GlobalVariables::GameController::xmlName;
-}
+QString GameController::getGUIDString() { return getRawGUIDString(); }
 
-QString GameController::getGUIDString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString GameController::getVendorString() { return getRawVendorString(); }
 
-    return getRawGUIDString();
-}
+QString GameController::getProductIDString() { return getRawProductIDString(); }
 
-QString GameController::getVendorString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return getRawVendorString();
-}
-
-QString GameController::getProductIDString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return getRawProductIDString();
-}
-
-QString GameController::getUniqueIDString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return getRawUniqueIDString();
-}
+QString GameController::getUniqueIDString() { return getRawUniqueIDString(); }
 
 QString GameController::getProductVersion() { return getRawProductVersion(); }
 
 QString GameController::getRawGUIDString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -137,8 +102,6 @@ QString GameController::getRawGUIDString()
 
 QString GameController::getRawVendorString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -155,8 +118,6 @@ QString GameController::getRawVendorString()
 
 QString GameController::getRawProductIDString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -173,8 +134,6 @@ QString GameController::getRawProductIDString()
 
 QString GameController::getRawProductVersion()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     if (controller != nullptr)
@@ -196,8 +155,6 @@ QString GameController::getRawUniqueIDString()
 
 void GameController::closeSDLDevice()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((controller != nullptr) && SDL_GameControllerGetAttached(controller))
     {
         SDL_GameControllerClose(controller);
@@ -205,35 +162,22 @@ void GameController::closeSDLDevice()
     }
 }
 
-int GameController::getNumberRawButtons()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return SDL_CONTROLLER_BUTTON_MAX;
-}
+int GameController::getNumberRawButtons() { return SDL_CONTROLLER_BUTTON_MAX; }
 
 int GameController::getNumberRawAxes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     qDebug() << "Controller has " << SDL_CONTROLLER_AXIS_MAX << " raw axes";
 
     return SDL_CONTROLLER_AXIS_MAX;
 }
 
-int GameController::getNumberRawHats()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return 0;
-}
+int GameController::getNumberRawHats() { return 0; }
 
 void GameController::setCounterUniques(int counter) { counterUniques = counter; }
 
 void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes,
                                     QList<SDL_GameControllerButtonBind> &hatButtons)
 {
-
     for (int i = 0; i < SDL_JoystickNumHats(getJoyHandle()); i++)
     {
         SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
@@ -249,7 +193,6 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
 
     for (int i = 0; i < SDL_JoystickNumButtons(getJoyHandle()); i++)
     {
-
         qDebug() << "Button " << (i + 1);
 
         SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
@@ -263,7 +206,6 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
 
     for (int i = 0; i < SDL_JoystickNumAxes(getJoyHandle()); i++)
     {
-
         qDebug() << "Axis " << (i + 1);
 
         SDL_GameControllerAxis currentAxis = static_cast<SDL_GameControllerAxis>(i);
@@ -278,8 +220,6 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
 
 QString GameController::getBindStringForAxis(int index, bool)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     SDL_GameControllerButtonBind bind =
@@ -298,8 +238,6 @@ QString GameController::getBindStringForAxis(int index, bool)
 
 QString GameController::getBindStringForButton(int index, bool trueIndex)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
 
     SDL_GameControllerButtonBind bind =
@@ -310,7 +248,6 @@ QString GameController::getBindStringForButton(int index, bool trueIndex)
 
     switch (bindInt)
     {
-
     case SDL_CONTROLLER_BINDTYPE_BUTTON:
         temp.append(QString("Button %1").arg(bind.value.button + offset));
         break;
@@ -329,41 +266,27 @@ QString GameController::getBindStringForButton(int index, bool trueIndex)
 
 SDL_GameControllerButtonBind GameController::getBindForAxis(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return SDL_GameControllerGetBindForAxis(controller, static_cast<SDL_GameControllerAxis>(index));
 }
 
 SDL_GameControllerButtonBind GameController::getBindForButton(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     return SDL_GameControllerGetBindForButton(controller, static_cast<SDL_GameControllerButton>(index));
 }
 
-void GameController::buttonClickEvent(int) { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+void GameController::buttonClickEvent(int) {}
 
-void GameController::buttonReleaseEvent(int) { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+void GameController::buttonReleaseEvent(int) {}
 
-void GameController::axisActivatedEvent(int, int, int) { qInstallMessageHandler(MessageHandler::myMessageOutput); }
+void GameController::axisActivatedEvent(int, int, int) {}
 
-SDL_JoystickID GameController::getSDLJoystickID()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return joystickID;
-}
+SDL_JoystickID GameController::getSDLJoystickID() { return joystickID; }
 
 /**
  * @brief Check if device is using the SDL Game Controller API
  * @return Status showing if device is using the Game Controller API
  */
-bool GameController::isGameController()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return true;
-}
+bool GameController::isGameController() { return true; }
 
 /**
  * @brief Check if GUID passed matches the expected GUID for a device.
@@ -373,22 +296,13 @@ bool GameController::isGameController()
  */
 // bool GameController::isRelevantGUID(QString tempGUID)
 //{
-//    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
 //    return InputDevice::isRelevantGUID(tempGUID);
 //}
 
-bool GameController::isRelevantUniqueID(QString tempUniqueID)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return InputDevice::isRelevantUniqueID(tempUniqueID);
-}
+bool GameController::isRelevantUniqueID(QString tempUniqueID) { return InputDevice::isRelevantUniqueID(tempUniqueID); }
 
 void GameController::rawButtonEvent(int index, bool pressed)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool knownbutton = getRawbuttons().contains(index);
 
     if (!knownbutton && pressed)
@@ -404,8 +318,6 @@ void GameController::rawButtonEvent(int index, bool pressed)
 
 void GameController::rawAxisEvent(int index, int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool knownaxis = getAxisvalues().contains(index);
 
     if (!knownaxis && (fabs(value) > rawAxisDeadZone))
@@ -423,8 +335,6 @@ void GameController::rawAxisEvent(int index, int value)
 
 void GameController::rawDPadEvent(int index, int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool knowndpad = getDpadvalues().contains(index);
 
     if (!knowndpad && (value != 0))

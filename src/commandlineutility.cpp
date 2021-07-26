@@ -20,7 +20,6 @@
 
 #include "common.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QCommandLineParser>
 #include <QDebug>
@@ -33,8 +32,6 @@ QStringList CommandLineUtility::eventGeneratorsList = EventHandlerFactory::build
 CommandLineUtility::CommandLineUtility(QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     launchInTray = false;
     hideTrayIcon = false;
     profileLocation = "";
@@ -57,7 +54,6 @@ CommandLineUtility::CommandLineUtility(QObject *parent)
 
 void CommandLineUtility::parseArguments(const QApplication &parsed_app)
 {
-
     QCommandLineParser parser;
     parser.setApplicationDescription(
         QCoreApplication::translate("antimicrox", "Graphical program used to map keyboard buttons and mouse controls to "
@@ -119,22 +115,18 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
 
     parser.process(parsed_app);
 
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int i = 0;
 
     while ((i < parser.optionNames().count()))
     {
         if (parser.isSet("tray"))
         {
-
             qDebug() << "tray is set";
 
             launchInTray = true;
             hideTrayIcon = false;
         } else if (parser.isSet("no-tray"))
         {
-
             qDebug() << "no-tray is set";
 
             hideTrayIcon = true;
@@ -403,7 +395,6 @@ void CommandLineUtility::parseArgsMap(const QCommandLineParser &parser)
 
     if (!mapOptionText.isEmpty())
     {
-
         bool validNumber = false;
         int tempNumber = mapOptionText.toInt(&validNumber);
 
@@ -425,151 +416,48 @@ void CommandLineUtility::parseArgsMap(const QCommandLineParser &parser)
     }
 }
 
-bool CommandLineUtility::isLaunchInTrayEnabled()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool CommandLineUtility::isLaunchInTrayEnabled() { return launchInTray; }
 
-    return launchInTray;
-}
+bool CommandLineUtility::isTrayHidden() { return hideTrayIcon; }
 
-bool CommandLineUtility::isTrayHidden()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool CommandLineUtility::hasProfile() { return !profileLocation.isEmpty(); }
 
-    return hideTrayIcon;
-}
+bool CommandLineUtility::hasControllerNumber() { return (controllerNumber > 0); }
 
-bool CommandLineUtility::hasProfile()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString CommandLineUtility::getProfileLocation() { return profileLocation; }
 
-    return !profileLocation.isEmpty();
-}
+int CommandLineUtility::getControllerNumber() { return controllerNumber; }
 
-bool CommandLineUtility::hasControllerNumber()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool CommandLineUtility::isHiddenRequested() { return hiddenRequest; }
 
-    return (controllerNumber > 0);
-}
+bool CommandLineUtility::hasControllerID() { return !controllerIDString.isEmpty(); }
 
-QString CommandLineUtility::getProfileLocation()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString CommandLineUtility::getControllerID() { return controllerIDString; }
 
-    return profileLocation;
-}
+bool CommandLineUtility::isUnloadRequested() { return unloadProfile; }
 
-int CommandLineUtility::getControllerNumber()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+int CommandLineUtility::getStartSetNumber() { return startSetNumber; }
 
-    return controllerNumber;
-}
+int CommandLineUtility::getJoyStartSetNumber() { return startSetNumber - 1; }
 
-bool CommandLineUtility::isHiddenRequested()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool CommandLineUtility::shouldListControllers() { return listControllers; }
 
-    return hiddenRequest;
-}
+bool CommandLineUtility::shouldMapController() { return mappingController; }
 
-bool CommandLineUtility::hasControllerID()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString CommandLineUtility::getEventGenerator() { return eventGenerator; }
 
-    return !controllerIDString.isEmpty();
-}
+bool CommandLineUtility::launchAsDaemon() { return daemonMode; }
 
-QString CommandLineUtility::getControllerID()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString CommandLineUtility::getDisplayString() { return displayString; }
 
-    return controllerIDString;
-}
+Logger::LogLevel CommandLineUtility::getCurrentLogLevel() { return currentLogLevel; }
 
-bool CommandLineUtility::isUnloadRequested()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString CommandLineUtility::getCurrentLogFile() { return currentLogFile; }
 
-    return unloadProfile;
-}
-
-int CommandLineUtility::getStartSetNumber()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return startSetNumber;
-}
-
-int CommandLineUtility::getJoyStartSetNumber()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return startSetNumber - 1;
-}
-
-bool CommandLineUtility::shouldListControllers()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return listControllers;
-}
-
-bool CommandLineUtility::shouldMapController()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return mappingController;
-}
-
-QString CommandLineUtility::getEventGenerator()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return eventGenerator;
-}
-
-bool CommandLineUtility::launchAsDaemon()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return daemonMode;
-}
-
-QString CommandLineUtility::getDisplayString()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return displayString;
-}
-
-Logger::LogLevel CommandLineUtility::getCurrentLogLevel()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return currentLogLevel;
-}
-
-QString CommandLineUtility::getCurrentLogFile()
-{
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return currentLogFile;
-}
-
-QList<ControllerOptionsInfo> const &CommandLineUtility::getControllerOptionsList()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return controllerOptionsList;
-}
+QList<ControllerOptionsInfo> const &CommandLineUtility::getControllerOptionsList() { return controllerOptionsList; }
 
 bool CommandLineUtility::hasProfileInOptions()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool result = false;
     QListIterator<ControllerOptionsInfo> iter(getControllerOptionsList());
 

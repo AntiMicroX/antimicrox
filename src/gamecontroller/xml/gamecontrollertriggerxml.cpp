@@ -21,8 +21,6 @@
 #include "xml/joyaxisxml.h"
 #include "xml/joybuttonxml.h"
 
-#include "messagehandler.h"
-
 #include <SDL2/SDL_gamecontroller.h>
 
 #include <QDebug>
@@ -39,8 +37,6 @@ GameControllerTriggerXml::GameControllerTriggerXml(GameControllerTrigger *gameCo
 
 void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == GlobalVariables::JoyAxis::xmlName))
     {
         xml->readNextStartElement();
@@ -58,7 +54,6 @@ void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
 
                 switch (index)
                 {
-
                 case 1:
                     found = true;
                     triggerButton = qobject_cast<GameControllerTriggerButton *>(m_gameContrTrigger->getNAxisButton());
@@ -93,8 +88,6 @@ void GameControllerTriggerXml::readJoystickConfig(QXmlStreamReader *xml)
 
 void GameControllerTriggerXml::writeConfig(QXmlStreamWriter *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool currentlyDefault = m_gameContrTrigger->isDefault();
 
     xml->writeStartElement(m_gameContrTrigger->getXmlName());

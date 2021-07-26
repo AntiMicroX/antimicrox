@@ -25,7 +25,6 @@ class QXmlStreamWriter;
 
 template <class T> class JoyDPadXml : public QObject
 {
-
   public:
     explicit JoyDPadXml(T *joydpad, QObject *parent = nullptr);
 

@@ -22,7 +22,6 @@
 #include "globalvariables.h"
 #include "inputdevice.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QDesktopWidget>
@@ -33,16 +32,12 @@
 AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->settings = settings;
     this->graphical = graphical;
 }
 
 void AppLaunchHelper::initRunMethods()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (graphical)
     {
         establishMouseTimerConnections();
@@ -55,8 +50,6 @@ void AppLaunchHelper::initRunMethods()
 
 void AppLaunchHelper::enablePossibleMouseSmoothing()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool smoothingEnabled = settings->value("Mouse/Smoothing", false).toBool();
 
     if (smoothingEnabled)
@@ -83,8 +76,6 @@ void AppLaunchHelper::enablePossibleMouseSmoothing()
 
 void AppLaunchHelper::changeMouseRefreshRate()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int refreshRate = settings->value("Mouse/RefreshRate", 0).toInt();
 
     if (refreshRate > 0)
@@ -99,8 +90,6 @@ void AppLaunchHelper::changeMouseRefreshRate()
 
 void AppLaunchHelper::changeGamepadPollRate()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int pollRate = settings->value("GamepadPollRate", GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toInt();
     if (pollRate > 0)
     {
@@ -111,8 +100,6 @@ void AppLaunchHelper::changeGamepadPollRate()
 
 void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QTextStream outstream(stdout);
 
     outstream << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << endl;
@@ -151,8 +138,6 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
 
 void AppLaunchHelper::changeSpringModeScreen()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QDesktopWidget deskWid;
     int springScreen =
         settings->value("Mouse/SpringScreen", GlobalVariables::AntimicroSettings::defaultSpringScreen).toInt();
@@ -169,25 +154,16 @@ void AppLaunchHelper::changeSpringModeScreen()
 
 void AppLaunchHelper::revertMouseThread()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::indirectStaticMouseThread(QThread::currentThread(), JoyButton::getStaticMouseEventTimer(),
                                          JoyButton::getMouseHelper());
 }
 
 void AppLaunchHelper::changeMouseThread(QThread *thread)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::setStaticMouseThread(thread, JoyButton::getStaticMouseEventTimer(), JoyButton::getTestOldMouseTime(),
                                     GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE, JoyButton::getMouseHelper());
 }
 
-void AppLaunchHelper::establishMouseTimerConnections()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    JoyButton::establishMouseTimerConnections();
-}
+void AppLaunchHelper::establishMouseTimerConnections() { JoyButton::establishMouseTimerConnections(); }
 
 AntiMicroSettings *AppLaunchHelper::getSettings() const { return settings; }

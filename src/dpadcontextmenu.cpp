@@ -22,7 +22,6 @@
 #include "common.h"
 #include "inputdevice.h"
 #include "joydpad.h"
-#include "messagehandler.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 
 #include <QDebug>
@@ -33,8 +32,6 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent)
     , helper(dpad)
 {
     this->dpad = dpad;
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     getHelper().moveToThread(dpad->thread());
 
     connect(this, &DPadContextMenu::aboutToHide, this, &DPadContextMenu::deleteLater);
@@ -46,8 +43,6 @@ DPadContextMenu::DPadContextMenu(JoyDPad *dpad, QWidget *parent)
  */
 void DPadContextMenu::buildMenu()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QActionGroup *presetGroup = new QActionGroup(this);
     QAction *action = nullptr;
     int presetMode = 0;
@@ -115,8 +110,6 @@ void DPadContextMenu::generateActionMode(QActionGroup *modesGroup, QAction *acti
  */
 void DPadContextMenu::setDPadMode(QAction *action)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int item = action->data().toInt();
     dpad->setJoyMode(static_cast<JoyDPad::JoyMode>(item));
 }
@@ -127,8 +120,6 @@ void DPadContextMenu::setDPadMode(QAction *action)
  */
 void DPadContextMenu::setDPadPreset(QAction *action)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int item = action->data().toInt();
 
     JoyButtonSlot *upButtonSlot = nullptr;
@@ -318,8 +309,6 @@ void DPadContextMenu::setDPadPreset(QAction *action)
  */
 int DPadContextMenu::getPresetIndex()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int result = 0;
 
     PadderCommon::inputDaemonMutex.lock();
@@ -433,8 +422,6 @@ int DPadContextMenu::getPresetIndex()
  */
 void DPadContextMenu::openMouseSettingsDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     MouseDPadSettingsDialog *dialog = new MouseDPadSettingsDialog(dpad, parentWidget());
     dialog->show();
 }

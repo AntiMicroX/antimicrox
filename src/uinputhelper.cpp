@@ -20,7 +20,6 @@
 #include <linux/input.h>
 #include <linux/uinput.h>
 
-#include "messagehandler.h"
 #include "uinputhelper.h"
 
 UInputHelper *UInputHelper::_instance = nullptr;

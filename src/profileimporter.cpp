@@ -352,7 +352,6 @@ void ProfileImporter::on_findProfileBtn_clicked()
 {
     if (radioBtnProfiles.checkedButton() == nullptr)
     {
-
         QMessageBox box;
         box.setText(trUtf8("Could not define file's extension. Choose profile's type first above."));
         box.setWindowTitle(trUtf8("Insufficient data"));
@@ -362,7 +361,6 @@ void ProfileImporter::on_findProfileBtn_clicked()
 
     } else
     {
-
         QString profile = importedFilePath(trUtf8("Choose game profile"), filedialogDescExt());
 
         if (!properExtension(profile))
@@ -376,7 +374,6 @@ void ProfileImporter::on_findProfileBtn_clicked()
 
         } else
         {
-
             ui->profileLineEdit->setText(profile);
 
             QFileInfo info(profile);
@@ -398,7 +395,6 @@ void ProfileImporter::on_findConfigBtn_clicked()
 
     } else
     {
-
         QString settingsFile = importedFilePath(trUtf8("Choose app settings file"), trUtf8("Settings file (*.ini)"));
 
         if (!properExtensionSett(settingsFile))
@@ -412,7 +408,6 @@ void ProfileImporter::on_findConfigBtn_clicked()
 
         } else
         {
-
             ui->configLineEdit->setText(settingsFile);
 
             QFileInfo info(settingsFile);

@@ -7,8 +7,6 @@
 #include "vdpad.h"
 #include "xml/joybuttonxml.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QHashIterator>
 #include <QPointer>
@@ -24,8 +22,6 @@ JoyDPadXml<T>::JoyDPadXml(T *joydpad, QObject *parent)
 
 template <class T> void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == m_joydpad->getXmlName()))
     {
         xml->readNextStartElement();
@@ -44,8 +40,6 @@ template <class T> void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
 
 template <class T> void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (!m_joydpad->isDefault())
     {
         xml->writeStartElement(m_joydpad->getXmlName());
@@ -81,8 +75,6 @@ template <class T> void JoyDPadXml<T>::writeConfig(QXmlStreamWriter *xml)
 
 template <class T> bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool found = false;
 
     if ((xml->name() == "dpadbutton") && xml->isStartElement())

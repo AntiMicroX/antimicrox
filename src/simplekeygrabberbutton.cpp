@@ -25,7 +25,6 @@
 #include "antkeymapper.h"
 #include "event.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -35,8 +34,6 @@
 SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent)
     : QPushButton(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     grabNextAction = false;
     grabbingWheel = false;
     edited = false;
@@ -44,10 +41,7 @@ SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent)
 }
 
 void SimpleKeyGrabberButton::keyPressEvent(QKeyEvent *event)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // Do not allow closing of dialog using Escape key
+{ // Do not allow closing of dialog using Escape key
     if (event->key() == Qt::Key_Escape)
         return;
 
@@ -56,8 +50,6 @@ void SimpleKeyGrabberButton::keyPressEvent(QKeyEvent *event)
 
 bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     Q_UNUSED(obj);
 
     int controlcode = 0;
@@ -235,8 +227,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
 void SimpleKeyGrabberButton::setValue(int value, int alias, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     buttonslot.setSlotCode(value, alias);
     buttonslot.setSlotMode(mode);
     edited = true;
@@ -246,8 +236,6 @@ void SimpleKeyGrabberButton::setValue(int value, int alias, JoyButtonSlot::JoySl
 
 void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     buttonslot.setSlotCode(value);
     buttonslot.setSlotMode(mode);
     edited = true;
@@ -257,8 +245,6 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
 
 void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     switch (mode)
     {
     case JoyButtonSlot::JoyLoadProfile:
@@ -282,8 +268,6 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
 
 void SimpleKeyGrabberButton::setValues(QString value, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     switch (mode)
     {
     case JoyButtonSlot::JoyMix: {
@@ -303,8 +287,6 @@ void SimpleKeyGrabberButton::setValues(QString value, JoyButtonSlot::JoySlotInpu
 
 void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jbtn, JoyButtonSlot::JoySlotInputAction mode)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     switch (mode)
     {
     case JoyButtonSlot::JoyMix: {
@@ -323,40 +305,18 @@ void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jb
     setText(buttonslot.getSlotString());
 }
 
-JoyButtonSlot *SimpleKeyGrabberButton::getValue()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+JoyButtonSlot *SimpleKeyGrabberButton::getValue() { return &buttonslot; }
 
-    return &buttonslot;
-}
-
-JoyButtonSlot &SimpleKeyGrabberButton::getValueNonPointer()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return buttonslot;
-}
+JoyButtonSlot &SimpleKeyGrabberButton::getValueNonPointer() { return buttonslot; }
 
 void SimpleKeyGrabberButton::setValue(JoyButtonSlot *jbS) { buttonslot = jbS; }
 
 void SimpleKeyGrabberButton::refreshButtonLabel()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setText(buttonslot.getSlotString());
     updateGeometry();
 }
 
-bool SimpleKeyGrabberButton::isEdited()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool SimpleKeyGrabberButton::isEdited() { return edited; }
 
-    return edited;
-}
-
-bool SimpleKeyGrabberButton::isGrabbing()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return grabNextAction;
-}
+bool SimpleKeyGrabberButton::isGrabbing() { return grabNextAction; }

@@ -22,7 +22,6 @@
 #include "common.h"
 #include "event.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QXmlStreamReader>
@@ -31,8 +30,6 @@
 XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->reader = reader;
 
     if (reader->device() && reader->device()->isOpen())
@@ -46,8 +43,6 @@ XMLConfigMigration::XMLConfigMigration(QXmlStreamReader *reader, QObject *parent
 
 bool XMLConfigMigration::requiresMigration()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool toMigrate = false;
 
     if ((fileVersion >= 2) && (fileVersion <= PadderCommon::LATESTCONFIGMIGRATIONVERSION))
@@ -60,8 +55,6 @@ bool XMLConfigMigration::requiresMigration()
 
 QString XMLConfigMigration::migrate()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString tempXmlString = QString();
 
     if (requiresMigration())
@@ -82,8 +75,6 @@ QString XMLConfigMigration::migrate()
 
 QString XMLConfigMigration::readConfigToString()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);
     writer.setAutoFormatting(true);
@@ -99,8 +90,6 @@ QString XMLConfigMigration::readConfigToString()
 
 QString XMLConfigMigration::version0006Migration()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString tempXmlString = QString();
     QXmlStreamWriter writer(&tempXmlString);
     writer.setAutoFormatting(true);

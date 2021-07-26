@@ -19,7 +19,6 @@
 #include "joybuttonstatusbox.h"
 
 #include "joybutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QStyle>
@@ -28,8 +27,6 @@
 JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent)
     : QPushButton(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->button = button;
     isflashing = false;
 
@@ -39,24 +36,12 @@ JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent)
     connect(button, &JoyButton::released, this, &JoyButtonStatusBox::unflash);
 }
 
-JoyButton *JoyButtonStatusBox::getJoyButton() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+JoyButton *JoyButtonStatusBox::getJoyButton() const { return button; }
 
-    return button;
-}
-
-bool JoyButtonStatusBox::isButtonFlashing()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return isflashing;
-}
+bool JoyButtonStatusBox::isButtonFlashing() { return isflashing; }
 
 void JoyButtonStatusBox::flash()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     isflashing = true;
 
     this->style()->unpolish(this);
@@ -67,8 +52,6 @@ void JoyButtonStatusBox::flash()
 
 void JoyButtonStatusBox::unflash()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     isflashing = false;
 
     this->style()->unpolish(this);

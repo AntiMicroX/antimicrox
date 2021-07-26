@@ -28,7 +28,6 @@ class QCommandLineParser;
 
 class ControllerOptionsInfo
 {
-
   public:
     ControllerOptionsInfo()
     {

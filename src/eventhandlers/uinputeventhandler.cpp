@@ -45,7 +45,6 @@ static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName
     #include <x11extras.h>
 #endif
 
-#include "messagehandler.h"
 #include "uinputeventhandler.h"
 
 UInputEventHandler::UInputEventHandler(QObject *parent)
@@ -93,7 +92,6 @@ bool UInputEventHandler::init()
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
-
     #endif
 
             // Some time needs to elapse after device creation before changing
@@ -481,12 +479,12 @@ void UInputEventHandler::printPostMessages()
 {
     if (!lastErrorString.isEmpty())
     {
-        Logger::LogInfo(lastErrorString);
+        qInfo() << lastErrorString;
     }
 
     if (!uinputDeviceLocation.isEmpty())
     {
-        Logger::LogInfo(tr("Using uinput device file %1").arg(uinputDeviceLocation));
+        qInfo() << tr("Using uinput device file %1").arg(uinputDeviceLocation);
     }
 }
 

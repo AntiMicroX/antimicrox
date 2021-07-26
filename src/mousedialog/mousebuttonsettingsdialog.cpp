@@ -21,7 +21,6 @@
 #include "common.h"
 #include "inputdevice.h"
 #include "joybutton.h"
-#include "messagehandler.h"
 #include "setjoystick.h"
 #include "springmoderegionpreview.h"
 
@@ -35,8 +34,6 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
     : MouseSettingsDialog(parent)
     , helper(button)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     setAttribute(Qt::WA_DeleteOnClose);
     resize(size().width(), 450);
 
@@ -153,8 +150,6 @@ MouseButtonSettingsDialog::MouseButtonSettingsDialog(JoyButton *button, QWidget 
 
 void MouseButtonSettingsDialog::changeMouseMode(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (index == 1)
     {
         button->setMouseMode(JoyButton::MouseCursor);
@@ -180,44 +175,32 @@ void MouseButtonSettingsDialog::changeMouseMode(int index)
 
 void MouseButtonSettingsDialog::changeMouseCurve(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyMouseCurve temp = MouseSettingsDialog::getMouseCurveForIndex(index);
     button->setMouseCurve(temp);
 }
 
 void MouseButtonSettingsDialog::updateConfigHorizontalSpeed(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMetaObject::invokeMethod(button, "setMouseSpeedX", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::updateConfigVerticalSpeed(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMetaObject::invokeMethod(button, "setMouseSpeedY", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::updateSpringWidth(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMetaObject::invokeMethod(button, "setSpringWidth", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::updateSpringHeight(int value)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QMetaObject::invokeMethod(button, "setSpringHeight", Q_ARG(int, value));
 }
 
 void MouseButtonSettingsDialog::selectCurrentMouseModePreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyMouseMovementMode mode = button->getMouseMode();
     if (mode == JoyButton::MouseCursor)
     {
@@ -230,8 +213,6 @@ void MouseButtonSettingsDialog::selectCurrentMouseModePreset()
 
 void MouseButtonSettingsDialog::calculateSpringPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempWidth = button->getSpringWidth();
     int tempHeight = button->getSpringHeight();
 
@@ -248,8 +229,6 @@ void MouseButtonSettingsDialog::calculateSpringPreset()
 
 void MouseButtonSettingsDialog::calculateMouseSpeedPreset()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     int tempMouseSpeedX = button->getMouseSpeedX();
     int tempMouseSpeedY = button->getMouseSpeedY();
 
@@ -257,25 +236,16 @@ void MouseButtonSettingsDialog::calculateMouseSpeedPreset()
     ui->verticalSpinBox->setValue(tempMouseSpeedY);
 }
 
-void MouseButtonSettingsDialog::updateSensitivity(double value)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    button->setSensitivity(value);
-}
+void MouseButtonSettingsDialog::updateSensitivity(double value) { button->setSensitivity(value); }
 
 void MouseButtonSettingsDialog::updateAccelerationCurvePresetComboBox()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyMouseCurve temp = button->getMouseCurve();
     MouseSettingsDialog::updateAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseButtonSettingsDialog::updateWindowTitleButtonName()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString temp = QString();
     temp.append(tr("Mouse Settings - ")).append(button->getPartialName(false, true));
 
@@ -298,16 +268,12 @@ void MouseButtonSettingsDialog::updateWindowTitleButtonName()
 
 void MouseButtonSettingsDialog::calculateExtraAccelerationCurve()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
     updateExtraAccelerationCurvePresetComboBox(temp);
 }
 
 void MouseButtonSettingsDialog::updateExtraAccelerationCurve(int index)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
 
     if (index > 0)

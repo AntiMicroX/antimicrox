@@ -19,7 +19,6 @@
 #include "antkeymapper.h"
 #include "globalvariables.h"
 #include "joybuttonslot.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QFileInfo>
@@ -36,10 +35,7 @@ JoyButtonSlotXml::JoyButtonSlotXml(JoyButtonSlot *joyBtnSlot, QObject *parent)
 }
 
 void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // QWriteLocker tempLocker(&xmlLock);
+{ // QWriteLocker tempLocker(&xmlLock);
     std::chrono::time_point<std::chrono::high_resolution_clock> t1, t2;
     t1 = std::chrono::high_resolution_clock::now();
 
@@ -136,7 +132,6 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
             }
         } else
         {
-
             readEachSlot(xml, m_joyBtnSlot, profile, tempStringData, extraStringData);
 
             qDebug() << "Detected simple slot: " << m_joyBtnSlot->getSlotString();
@@ -296,10 +291,7 @@ void JoyButtonSlotXml::setSlotData(JoyButtonSlot *joyBtnSlot, QString profile, Q
 }
 
 void JoyButtonSlotXml::writeConfig(QXmlStreamWriter *xml)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    // QReadLocker tempLocker(&xmlLock);
+{ // QReadLocker tempLocker(&xmlLock);
     std::chrono::time_point<std::chrono::high_resolution_clock> t1, t2;
     t1 = std::chrono::high_resolution_clock::now();
 

@@ -20,7 +20,6 @@
 
 #include "antimicrosettings.h"
 #include "autoprofileinfo.h"
-#include "messagehandler.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -41,8 +40,6 @@ QTimer AutoProfileWatcher::checkWindowTimer;
 AutoProfileWatcher::AutoProfileWatcher(AntiMicroSettings *settings, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->settings = settings;
     allDefaultInfo = nullptr;
     currentApplication = "";
@@ -57,7 +54,6 @@ AutoProfileWatcher::~AutoProfileWatcher()
 {
     if (checkWindowTimer.isActive())
     {
-
         checkWindowTimer.stop();
         disconnect(&(checkWindowTimer), &QTimer::timeout, _instance, nullptr);
     }
@@ -73,24 +69,12 @@ void AutoProfileWatcher::disconnectWindowTimer()
     disconnect(&(checkWindowTimer), &QTimer::timeout, _instance, nullptr);
 }
 
-void AutoProfileWatcher::startTimer()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void AutoProfileWatcher::startTimer() { checkWindowTimer.start(CHECKTIME); }
 
-    checkWindowTimer.start(CHECKTIME);
-}
-
-void AutoProfileWatcher::stopTimer()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    checkWindowTimer.stop();
-}
+void AutoProfileWatcher::stopTimer() { checkWindowTimer.stop(); }
 
 void AutoProfileWatcher::runAppCheck()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     qDebug() << qApp->applicationFilePath();
 
     QString appLocation = QString();
@@ -148,13 +132,12 @@ void AutoProfileWatcher::runAppCheck()
     if (!focusedWidget && ((!nowWindow.isEmpty() && (nowWindow != currentApplication)) ||
                            (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
     {
-
         currentApplication = nowWindow;
         currentAppWindowTitle = nowWindowName;
 
-        Logger::LogDebug(QObject::tr("Active window changed to: Title = \"%1\", "
-                                     "Class = \"%2\", Program = \"%3\" or \"%4\".")
-                             .arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName));
+        qInfo() << QObject::tr("Active window changed to: Title = \"%1\", "
+                               "Class = \"%2\", Program = \"%3\" or \"%4\".")
+                       .arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName);
 
         QSet<AutoProfileInfo *> fullSet;
 
@@ -190,7 +173,6 @@ void AutoProfileWatcher::runAppCheck()
                 QListIterator<AutoProfileInfo *> iterList(iter.value());
                 while (iterList.hasNext())
                 {
-
                     AutoProfileInfo *autoInfo = iterList.next();
 
                     if (autoInfo->isPartialState())
@@ -202,12 +184,10 @@ void AutoProfileWatcher::runAppCheck()
 
                 if (hasOnePartName)
                 {
-
                     qDebug() << "IT HAS A PARTIAL TITLE NAME";
 
                     if (nowWindowName.contains(iter.key()))
                     {
-
                         qDebug() << "WINDOW: \"" << nowWindowName << "\" includes \"" << iter.key() << "\"";
 
                         QSet<AutoProfileInfo *> tempSet;
@@ -217,18 +197,15 @@ void AutoProfileWatcher::runAppCheck()
 
                     } else
                     {
-
                         qDebug() << "WINDOW: \"" << nowWindowName << "\" doesn't include \"" << iter.key() << "\"";
                     }
 
                 } else
                 {
-
                     qDebug() << "IT HAS A FULL TITLE NAME";
 
                     if (iter.key() == nowWindowName)
                     {
-
                         qDebug() << "WINDOW: \"" << nowWindowName << "\" is equal to hash key: \"" << iter.key() << "\"";
 
                         QSet<AutoProfileInfo *> tempSet;
@@ -237,7 +214,6 @@ void AutoProfileWatcher::runAppCheck()
 
                     } else
                     {
-
                         qDebug() << "WINDOW: \"" << nowWindowName << "\" is not equal to hash key: \"" << iter.key() << "\"";
                     }
                 }
@@ -266,12 +242,10 @@ void AutoProfileWatcher::runAppCheck()
 
                 if (info->isPartialState())
                 {
-
                     numMatched +=
                         (!info->getWindowName().isEmpty() && nowWindowName.contains(info->getWindowName())) ? 1 : 0;
                 } else
                 {
-
                     numMatched += (!info->getWindowName().isEmpty() && info->getWindowName() == nowWindowName) ? 1 : 0;
                 }
 
@@ -325,8 +299,6 @@ void AutoProfileWatcher::runAppCheck()
 
 void AutoProfileWatcher::syncProfileAssignment()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     clearProfileAssignments();
 
     currentApplication = "";
@@ -449,7 +421,6 @@ void AutoProfileWatcher::syncProfileAssignment()
 
                     while (windows.hasNext())
                     {
-
                         windows.next();
                         qDebug() << windows.key();
                     }
@@ -461,7 +432,6 @@ void AutoProfileWatcher::syncProfileAssignment()
 
                     } else
                     {
-
                         qDebug() << "getWindowNameProfileAssignments doesn't contain " << windowName;
                     }
 
@@ -506,8 +476,6 @@ void AutoProfileWatcher::syncProfileAssignment()
 
 void AutoProfileWatcher::clearProfileAssignments()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QSet<AutoProfileInfo *> terminateProfiles;
     QListIterator<QList<AutoProfileInfo *>> iterDelete(getAppProfileAssignments().values());
 
@@ -570,8 +538,6 @@ void AutoProfileWatcher::clearProfileAssignments()
 
 QString AutoProfileWatcher::findAppLocation()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QString exepath = QString();
 
 #ifdef WITH_X11
@@ -590,8 +556,6 @@ QString AutoProfileWatcher::findAppLocation()
 
 QList<AutoProfileInfo *> *AutoProfileWatcher::getCustomDefaults()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QList<AutoProfileInfo *> *temp = new QList<AutoProfileInfo *>();
     QHashIterator<QString, AutoProfileInfo *> iter(getDefaultProfileAssignments());
 
@@ -604,41 +568,27 @@ QList<AutoProfileInfo *> *AutoProfileWatcher::getCustomDefaults()
     return temp;
 }
 
-AutoProfileInfo *AutoProfileWatcher::getDefaultAllProfile()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+AutoProfileInfo *AutoProfileWatcher::getDefaultAllProfile() { return allDefaultInfo; }
 
-    return allDefaultInfo;
-}
-
-bool AutoProfileWatcher::isUniqueIDLocked(QString uniqueID)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return getUniqeIDSetLocal().contains(uniqueID);
-}
+bool AutoProfileWatcher::isUniqueIDLocked(QString uniqueID) { return getUniqeIDSetLocal().contains(uniqueID); }
 
 QHash<QString, QList<AutoProfileInfo *>> const &AutoProfileWatcher::getAppProfileAssignments()
 {
-
     return appProfileAssignments;
 }
 
 QHash<QString, QList<AutoProfileInfo *>> const &AutoProfileWatcher::getWindowClassProfileAssignments()
 {
-
     return windowClassProfileAssignments;
 }
 
 QHash<QString, QList<AutoProfileInfo *>> const &AutoProfileWatcher::getWindowNameProfileAssignments()
 {
-
     return windowNameProfileAssignments;
 }
 
 QHash<QString, AutoProfileInfo *> const &AutoProfileWatcher::getDefaultProfileAssignments()
 {
-
     return defaultProfileAssignments;
 }
 

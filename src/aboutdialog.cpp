@@ -21,7 +21,6 @@
 
 #include "common.h"
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <SDL2/SDL_gamecontroller.h>
 #include <SDL2/SDL_version.h>
@@ -39,24 +38,14 @@ AboutDialog::AboutDialog(QWidget *parent)
     , ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->versionLabel->setText(PadderCommon::programVersion);
     fillInfoTextBrowser();
 }
 
-AboutDialog::~AboutDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+AboutDialog::~AboutDialog() { delete ui; }
 
 void AboutDialog::fillInfoTextBrowser()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QStringList finalInfoText = QStringList();
 
     finalInfoText.append(tr("Program Version %1").arg(PadderCommon::programVersion));
@@ -113,8 +102,6 @@ void AboutDialog::fillInfoTextBrowser()
 
 void AboutDialog::changeEvent(QEvent *event)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (event->type() == QEvent::LanguageChange)
         retranslateUi();
 
@@ -123,8 +110,6 @@ void AboutDialog::changeEvent(QEvent *event)
 
 void AboutDialog::retranslateUi()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ui->retranslateUi(this);
 
     ui->versionLabel->setText(PadderCommon::programVersion);

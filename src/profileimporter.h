@@ -30,7 +30,6 @@ class ProfileImporter;
 }
 
 namespace Converters {
-
 const QHash<QString, int> joyToKeyForAntimicroX{
     {"Axis1n", 11}, // left (left-stick)
     {"Axis1p", 11}, // right (left-stick)

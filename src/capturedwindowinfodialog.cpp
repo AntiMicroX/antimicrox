@@ -19,8 +19,6 @@
 #include "capturedwindowinfodialog.h"
 #include "ui_capturedwindowinfodialog.h"
 
-#include "messagehandler.h"
-
 #include <QDebug>
 #include <QPushButton>
 #include <QWidget>
@@ -32,8 +30,6 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     , ui(new Ui::CapturedWindowInfoDialog)
 {
     ui->setupUi(this);
-
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
     setAttribute(Qt::WA_DeleteOnClose);
 
     selectedMatch = WindowNone;
@@ -109,17 +105,10 @@ CapturedWindowInfoDialog::CapturedWindowInfoDialog(long window, QWidget *parent)
     connect(this, &CapturedWindowInfoDialog::accepted, this, &CapturedWindowInfoDialog::populateOption);
 }
 
-CapturedWindowInfoDialog::~CapturedWindowInfoDialog()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    delete ui;
-}
+CapturedWindowInfoDialog::~CapturedWindowInfoDialog() { delete ui; }
 
 void CapturedWindowInfoDialog::populateOption()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (ui->winClassCheckBox->isChecked())
         selectedMatch = selectedMatch | WindowClass;
 
@@ -137,37 +126,12 @@ void CapturedWindowInfoDialog::populateOption()
     }
 }
 
-CapturedWindowInfoDialog::CapturedWindowOption CapturedWindowInfoDialog::getSelectedOptions()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+CapturedWindowInfoDialog::CapturedWindowOption CapturedWindowInfoDialog::getSelectedOptions() { return selectedMatch; }
 
-    return selectedMatch;
-}
+QString CapturedWindowInfoDialog::getWindowClass() { return winClass; }
 
-QString CapturedWindowInfoDialog::getWindowClass()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+QString CapturedWindowInfoDialog::getWindowName() { return winName; }
 
-    return winClass;
-}
+QString CapturedWindowInfoDialog::getWindowPath() { return winPath; }
 
-QString CapturedWindowInfoDialog::getWindowName()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return winName;
-}
-
-QString CapturedWindowInfoDialog::getWindowPath()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return winPath;
-}
-
-bool CapturedWindowInfoDialog::useFullWindowPath()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return fullWinPath;
-}
+bool CapturedWindowInfoDialog::useFullWindowPath() { return fullWinPath; }

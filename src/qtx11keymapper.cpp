@@ -34,14 +34,11 @@
 #include <X11/Xutil.h>
 #include <X11/keysymdef.h>
 
-#include "messagehandler.h"
 #include "x11extras.h"
 
 QtX11KeyMapper::QtX11KeyMapper(QObject *parent)
     : QtKeyMapperBase(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     identifier = "xtest";
     populateMappingHashes();
     populateCharKeyInformation();
@@ -55,8 +52,6 @@ QtX11KeyMapper::QtX11KeyMapper(QObject *parent)
  */
 void QtX11KeyMapper::populateMappingHashes()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (qtKeyToVirtKeyHash.isEmpty())
     {
         mapMiscKeysQtX11(qtKeyToVirtKeyHash);
@@ -135,8 +130,6 @@ void QtX11KeyMapper::populateMappingHashes()
 
 void QtX11KeyMapper::populateCharKeyInformation()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     virtkeyToCharKeyInfo.clear();
     Display *display = X11Extras::getInstance()->display();
     int total = 0;

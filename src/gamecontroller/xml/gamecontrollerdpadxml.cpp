@@ -16,7 +16,6 @@
  */
 
 #include "gamecontrollerdpadxml.h"
-#include "messagehandler.h"
 
 #include "gamecontroller/gamecontrollerdpad.h"
 
@@ -31,8 +30,6 @@ GameControllerDPadXml::GameControllerDPadXml(GameControllerDPad *gameContrDpad, 
 
 void GameControllerDPadXml::readJoystickConfig(QXmlStreamReader *xml)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (xml->isStartElement() && (xml->name() == GlobalVariables::VDPad::xmlName))
     {
         xml->readNextStartElement();

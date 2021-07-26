@@ -656,7 +656,6 @@ class JoyButton : public QObject
 
 class MiniSlotRun : public QRunnable, public QObject
 {
-
   public:
     MiniSlotRun(JoyButtonSlot *slot, JoyButtonSlot *slotmini, JoyButton *btn, int milisec)
         : QObject(btn)

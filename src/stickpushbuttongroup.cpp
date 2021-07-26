@@ -25,7 +25,6 @@
 #include "joycontrolstickbuttonpushbutton.h"
 #include "joycontrolstickeditdialog.h"
 #include "joycontrolstickpushbutton.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QHash>
@@ -34,8 +33,6 @@
 StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool keypadUnlocked, bool displayNames, QWidget *parent)
     : QGridLayout(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     this->keypadUnlocked = keypadUnlocked;
     this->stick = stick;
     this->displayNames = displayNames;
@@ -48,8 +45,6 @@ StickPushButtonGroup::StickPushButtonGroup(JoyControlStick *stick, bool keypadUn
 
 void StickPushButtonGroup::generateButtons()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyControlStickButtonPushButton *pushbutton = nullptr;
 
     upLeftButton = generateBtnToGrid(pushbutton, stick, JoyControlStick::StickLeftUp, 0, 0);
@@ -90,8 +85,6 @@ StickPushButtonGroup::generateBtnToGrid(JoyControlStickButtonPushButton *pushbut
 
 void StickPushButtonGroup::changeButtonLayout()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if ((stick->getJoyMode() == JoyControlStick::StandardMode) || (stick->getJoyMode() == JoyControlStick::EightWayMode) ||
         (stick->getJoyMode() == JoyControlStick::FourWayCardinal))
     {
@@ -122,24 +115,12 @@ void StickPushButtonGroup::changeButtonLayout()
     }
 }
 
-void StickPushButtonGroup::propogateSlotsChanged()
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+void StickPushButtonGroup::propogateSlotsChanged() { emit buttonSlotChanged(); }
 
-    emit buttonSlotChanged();
-}
-
-JoyControlStick *StickPushButtonGroup::getStick() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return stick;
-}
+JoyControlStick *StickPushButtonGroup::getStick() const { return stick; }
 
 void StickPushButtonGroup::openStickButtonDialog(JoyControlStickButtonPushButton *pushbutton)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     ButtonEditDialog *dialog = new ButtonEditDialog(pushbutton->getButton(), stick->getParentSet()->getInputDevice(),
                                                     keypadUnlocked, parentWidget());
     dialog->show();
@@ -147,16 +128,12 @@ void StickPushButtonGroup::openStickButtonDialog(JoyControlStickButtonPushButton
 
 void StickPushButtonGroup::showStickDialog()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     JoyControlStickEditDialog *dialog = new JoyControlStickEditDialog(stick, keypadUnlocked, parentWidget());
     dialog->show();
 }
 
 void StickPushButtonGroup::toggleNameDisplay()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     displayNames = !displayNames;
 
     upButton->toggleNameDisplay();

@@ -19,7 +19,6 @@
 #include "antkeymapper.h"
 
 #include "eventhandlerfactory.h"
-#include "messagehandler.h"
 
 #include <QDebug>
 #include <QStringList>
@@ -29,8 +28,6 @@ AntKeyMapper *AntKeyMapper::_instance = nullptr;
 
 static QStringList buildEventGeneratorList()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     QStringList temp = QStringList();
 
 #ifdef WITH_XTEST
@@ -46,8 +43,6 @@ static QStringList buildEventGeneratorList()
 AntKeyMapper::AntKeyMapper(QString handler, QObject *parent)
     : QObject(parent)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     internalMapper = nullptr;
 
 #if defined(Q_OS_UNIX)
@@ -76,8 +71,6 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent)
 
 AntKeyMapper *AntKeyMapper::getInstance(QString handler)
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (_instance == nullptr)
     {
         Q_ASSERT(!handler.isEmpty());
@@ -91,8 +84,6 @@ AntKeyMapper *AntKeyMapper::getInstance(QString handler)
 
 void AntKeyMapper::deleteInstance()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     if (_instance != nullptr)
     {
         delete _instance;
@@ -100,45 +91,18 @@ void AntKeyMapper::deleteInstance()
     }
 }
 
-int AntKeyMapper::returnQtKey(int key, int scancode)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+int AntKeyMapper::returnQtKey(int key, int scancode) { return internalMapper->returnQtKey(key, scancode); }
 
-    return internalMapper->returnQtKey(key, scancode);
-}
+int AntKeyMapper::returnVirtualKey(int qkey) { return internalMapper->returnVirtualKey(qkey); }
 
-int AntKeyMapper::returnVirtualKey(int qkey)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
+bool AntKeyMapper::isModifierKey(int qkey) { return internalMapper->isModifier(qkey); }
 
-    return internalMapper->returnVirtualKey(qkey);
-}
+QtKeyMapperBase *AntKeyMapper::getNativeKeyMapper() const { return nativeKeyMapper; }
 
-bool AntKeyMapper::isModifierKey(int qkey)
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return internalMapper->isModifier(qkey);
-}
-
-QtKeyMapperBase *AntKeyMapper::getNativeKeyMapper() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return nativeKeyMapper;
-}
-
-QtKeyMapperBase *AntKeyMapper::getKeyMapper() const
-{
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
-    return internalMapper;
-}
+QtKeyMapperBase *AntKeyMapper::getKeyMapper() const { return internalMapper; }
 
 bool AntKeyMapper::hasNativeKeyMapper()
 {
-    qInstallMessageHandler(MessageHandler::myMessageOutput);
-
     bool result = (nativeKeyMapper != nullptr);
     return result;
 }

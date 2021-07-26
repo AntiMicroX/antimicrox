@@ -70,7 +70,6 @@ struct _SDL_Joystick
 
 class Xbox360Wireless
 {
-
   public:
     Xbox360Wireless();
     ~Xbox360Wireless();

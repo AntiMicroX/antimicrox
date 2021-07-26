@@ -191,7 +191,6 @@ set(antimicrox_SOURCES
         src/logger.cpp
         src/mainsettingsdialog.cpp
         src/mainwindow.cpp
-        src/messagehandler.cpp
         src/mousedialog/mouseaxissettingsdialog.cpp
         src/mousedialog/mousebuttonsettingsdialog.cpp
         src/mousedialog/mousecontrolsticksettingsdialog.cpp
@@ -304,7 +303,6 @@ set(antimicrox_HEADERS
         src/logger.h
         src/mainsettingsdialog.h
         src/mainwindow.h
-        src/messagehandler.h
         src/mousedialog/mouseaxissettingsdialog.h
         src/mousedialog/mousebuttonsettingsdialog.h
         src/mousedialog/mousecontrolsticksettingsdialog.h
