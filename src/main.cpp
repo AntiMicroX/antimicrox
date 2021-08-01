@@ -177,7 +177,6 @@ int main(int argc, char *argv[])
     QFile logFile;
     QTextStream logFileStream;
     QTextStream outstream(stdout);
-    QTextStream errorstream(stderr);
 
     CommandLineUtility cmdutility;
 
@@ -191,21 +190,21 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    Logger appLogger(&outstream, &errorstream);
+    Logger *appLogger = Logger::getInstance(&outstream);
+    appLogger->setParent(&antimicrox);
 
     // If a log level wasn't specified at the command-line, then use a default.
     if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE)
     {
-        appLogger.setLogLevel(Logger::LOG_WARNING);
-    } else if (cmdutility.getCurrentLogLevel() != appLogger.getCurrentLogLevel())
+        appLogger->setLogLevel(Logger::LOG_WARNING);
+    } else if (cmdutility.getCurrentLogLevel() != appLogger->getCurrentLogLevel())
     {
-        appLogger.setLogLevel(cmdutility.getCurrentLogLevel());
+        appLogger->setLogLevel(cmdutility.getCurrentLogLevel());
     }
 
     if (!cmdutility.getCurrentLogFile().isEmpty())
     {
-        appLogger.setCurrentLogFile(cmdutility.getCurrentLogFile());
-        appLogger.setCurrentErrorStream(nullptr);
+        appLogger->setCurrentLogFile(cmdutility.getCurrentLogFile());
     }
 
     Q_INIT_RESOURCE(resources);
@@ -263,13 +262,12 @@ int main(int argc, char *argv[])
         // Update log info based on config values
         if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE && settings.contains("LogLevel"))
         {
-            appLogger.setLogLevel(static_cast<Logger::LogLevel>(settings.value("LogLevel").toInt()));
+            appLogger->setLogLevel(static_cast<Logger::LogLevel>(settings.value("LogLevel").toInt()));
         }
 
         if (cmdutility.getCurrentLogFile().isEmpty() && settings.contains("LogFile"))
         {
-            appLogger.setCurrentLogFile(settings.value("LogFile").toString());
-            appLogger.setCurrentErrorStream(nullptr);
+            appLogger->setCurrentLogFile(settings.value("LogFile").toString());
         }
 
         QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings, false);
@@ -490,13 +488,12 @@ int main(int argc, char *argv[])
     // Update log info based on config values
     if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE && settings->contains("LogLevel"))
     {
-        appLogger.setLogLevel(static_cast<Logger::LogLevel>(settings->value("LogLevel").toInt()));
+        appLogger->setLogLevel(static_cast<Logger::LogLevel>(settings->value("LogLevel").toInt()));
     }
 
     if (cmdutility.getCurrentLogFile().isEmpty() && settings->contains("LogFile"))
     {
-        appLogger.setCurrentLogFile(settings->value("LogFile").toString());
-        appLogger.setCurrentErrorStream(nullptr);
+        appLogger->setCurrentLogFile(settings->value("LogFile").toString());
     }
 
     QString targetLang = QLocale::system().name();
@@ -608,8 +605,6 @@ int main(int argc, char *argv[])
 
         int app_result = antimicrox.exec();
 
-        appLogger.Log(); // Log any remaining messages if they exist.
-
         inputEventThread->quit();
         inputEventThread->wait();
 
@@ -692,7 +687,6 @@ int main(int argc, char *argv[])
     if (!status)
     {
         qCritical() << QObject::tr("Failed to open event generator. Exiting.");
-        appLogger.Log();
 
         deleteInputDevices(joysticks);
         delete joysticks;
@@ -771,7 +765,6 @@ int main(int argc, char *argv[])
 
     int app_result = antimicrox.exec();
 
-    appLogger.Log(); // Log any remaining messages if they exist.
     qInfo() << QObject::tr("Quitting Program");
 
     delete localServer;
