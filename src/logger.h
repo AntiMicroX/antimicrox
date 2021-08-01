@@ -24,10 +24,10 @@
 #include <QMutex>
 #include <QObject>
 #include <QTextStream>
-#include <QTimer>
+#include <QThread>
 
 /**
- * @brief Custom class used for logging across application.
+ * @brief Custom singleton class used for logging across application.
  *
  * It manages log-levels, formatting, printing logs and saving them to file.
  * Logs across the program can be written using  qDebug(), qInfo(), qWarning(), qCritical, and qFatal() functions
@@ -36,6 +36,7 @@
 class Logger : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(LogLevel);
 
   public:
     enum LogLevel
@@ -48,16 +49,6 @@ class Logger : public QObject
         LOG_MAX = LOG_DEBUG
     };
 
-    typedef struct
-    {
-        QString message;
-        LogLevel level;
-        bool newline;
-    } LogMessage;
-
-    explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
-    explicit Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLevel = LOG_INFO,
-                    QObject *parent = nullptr);
     ~Logger();
 
     /**
@@ -73,61 +64,78 @@ class Logger : public QObject
 
     static void setLogLevel(LogLevel level);
     LogLevel getCurrentLogLevel();
-    QList<LogMessage> const &getPendingMessages();
 
     static void setCurrentStream(QTextStream *stream);
     static void setCurrentLogFile(QString filename);
     static QTextStream *getCurrentStream();
 
-    static void setCurrentErrorStream(QTextStream *stream);
-    static void setCurrentErrorLogFile(QString filename);
-    static QTextStream *getCurrentErrorStream();
-
-    QTimer *getLogTimer();
-    void stopLogTimer();
-
     bool getWriteTime();
     void setWriteTime(bool status);
 
-    static void appendLog(LogLevel level, const QString &message, bool newline = true);
-    static void directLog(LogLevel level, const QString &message, bool newline = true);
-
-    inline static Logger *getInstance()
+    /**
+     * @brief Get the Instance of logger if instance doesn't exist, then create a new one using passed arguments
+     *
+     * @return Logger*
+     */
+    inline static Logger *getInstance(QTextStream *stream = nullptr, LogLevel outputLevel = LOG_INFO,
+                                      QObject *parent = nullptr)
     {
-        Q_ASSERT(instance != nullptr);
+        if (instance == nullptr)
+        {
+            instance = new Logger(stream, outputLevel, parent);
+        }
+
         return instance;
     }
 
     static Logger *instance;
 
   protected:
+    explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
     void closeLogger(bool closeStream = true);
-    void closeErrorLogger(bool closeStream = true);
-    void logMessage(LogMessage msg);
 
     bool writeTime;
 
     QFile outputFile;
-    QFile errorFile;
 
     QTextStream outFileStream;
     QTextStream *outputStream;
-    QTextStream outErrorFileStream;
-    QTextStream *errorStream;
 
     LogLevel outputLevel;
     QMutex logMutex;
-    QTimer pendingTimer;
-
-    QList<LogMessage> pendingMessages;
-
-  signals:
-    void stringWritten(QString text);
-    void pendingMessage();
+    QThread *loggingThread; // in this thread all of writing operations will be executed
 
   public slots:
-    void Log();
-    void startPendingTimer();
+    void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
+};
+
+/**
+ * @brief simple helper class used for constructing log message and sending it to Logger
+ *
+ */
+class LogHelper : public QObject
+{
+    Q_OBJECT
+  public:
+    QString message;
+    Logger::LogLevel level;
+    uint lineno;
+    QString filename;
+
+    LogHelper(const Logger::LogLevel level, const uint lineno, const QString &filename, const QString &message = "")
+        : message(message)
+        , level(level)
+        , lineno(lineno)
+        , filename(filename)
+    {
+        Logger *pointer = Logger::getInstance();
+        connect(this, &LogHelper::logMessage, pointer, &Logger::logMessage);
+    };
+
+    void sendMessage() { emit logMessage(message, level, lineno, filename); };
+
+  signals:
+    void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
 };
 
 #endif // LOGGER_H

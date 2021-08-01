@@ -19,6 +19,7 @@
 #include "logger.h"
 
 #include <QDebug>
+#include <QMetaObject>
 #include <QTime>
 
 Logger *Logger::instance = nullptr;
@@ -34,40 +35,15 @@ Logger *Logger::instance = nullptr;
 Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent)
     : QObject(parent)
 {
-    instance = this;
-    instance->outputStream = stream;
-    instance->outputLevel = outputLevel;
-    instance->errorStream = nullptr;
-    instance->pendingTimer.setInterval(1);
-    instance->pendingTimer.setSingleShot(true);
-    instance->writeTime = false;
+    // needed to allow sending LogLevel using signals and slots
+    qRegisterMetaType<Logger::LogLevel>("Logger::LogLevel");
+    loggingThread = new QThread(this);
+    outputStream = stream;
+    outputLevel = outputLevel;
+    writeTime = false;
 
-    connect(instance, &Logger::pendingMessage, instance, &Logger::startPendingTimer);
-    connect(&(instance->pendingTimer), &QTimer::timeout, instance, &Logger::Log);
-}
-
-/**
- * @brief Outputs log messages to a given text stream. Client code
- *     should determine whether it points to a console stream or
- *     to a file.
- * @param Stream used to output standard text
- * @param Stream used to output error text
- * @param Messages based of a given output level or lower will be logged
- * @param Parent object
- */
-Logger::Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLevel, QObject *parent)
-    : QObject(parent)
-{
-    instance = this;
-    instance->outputStream = stream;
-    instance->outputLevel = outputLevel;
-    instance->errorStream = errorStream;
-    instance->pendingTimer.setInterval(1);
-    instance->pendingTimer.setSingleShot(true);
-    instance->writeTime = false;
-
-    connect(instance, &Logger::pendingMessage, instance, &Logger::startPendingTimer);
-    connect(&(instance->pendingTimer), &QTimer::timeout, instance, &Logger::Log);
+    this->moveToThread(loggingThread);
+    loggingThread->start();
 }
 
 /**
@@ -75,8 +51,9 @@ Logger::Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLev
  */
 Logger::~Logger()
 {
+    loggingThread->quit();
+    loggingThread->wait();
     closeLogger();
-    closeErrorLogger();
 }
 
 /**
@@ -101,7 +78,6 @@ void Logger::setLogLevel(LogLevel level)
 Logger::LogLevel Logger::getCurrentLogLevel()
 {
     Q_ASSERT(instance != nullptr);
-
     return instance->outputLevel;
 }
 
@@ -121,52 +97,6 @@ QTextStream *Logger::getCurrentStream()
     Q_ASSERT(instance != nullptr);
 
     return instance->outputStream;
-}
-
-void Logger::setCurrentErrorStream(QTextStream *stream)
-{
-    Q_ASSERT(instance != nullptr);
-
-    QMutexLocker locker(&instance->logMutex);
-    Q_UNUSED(locker);
-
-    if (instance->errorStream)
-    {
-        instance->errorStream->flush();
-    }
-
-    instance->errorStream = stream;
-}
-
-QTextStream *Logger::getCurrentErrorStream()
-{
-    Q_ASSERT(instance != nullptr);
-
-    return instance->errorStream;
-}
-
-/**
- * @brief Go through a list of pending messages and check if message should be
- *     logged according to the set log level. Log the message to the output
- *     stream.
- * @param Log level
- * @param String to write to output stream if appropriate to the current
- *     log level.
- */
-void Logger::Log()
-{
-    QMutexLocker locker(&logMutex);
-    Q_UNUSED(locker);
-
-    QListIterator<LogMessage> iter(getPendingMessages());
-    while (iter.hasNext())
-    {
-        LogMessage pendingMessage = iter.next();
-        logMessage(pendingMessage);
-    }
-
-    pendingMessages.clear();
-    instance->pendingTimer.stop();
 }
 
 /**
@@ -191,86 +121,10 @@ void Logger::closeLogger(bool closeStream)
 }
 
 /**
- * @brief Flushes output stream and closes stream if requested.
- * @param Whether to close the current stream. Defaults to true.
- */
-void Logger::closeErrorLogger(bool closeStream)
-{
-    if (errorStream != nullptr)
-    {
-        errorStream->flush();
-
-        if (closeStream && (errorStream->device() != nullptr))
-        {
-            QIODevice *device = errorStream->device();
-            if (device->isOpen())
-            {
-                device->close();
-            }
-        }
-    }
-
-    instance->pendingTimer.stop();
-    instance = nullptr;
-}
-
-/**
- * @brief Append message to list of messages that might get placed in the
- *     log. Messages will be written later.
- * @param Log level
- * @param String to write to output stream if appropriate to the current
- *     log level.
- * @param Whether the logger should add a newline to the end of the message.
- */
-void Logger::appendLog(LogLevel level, const QString &message, bool newline)
-{
-    Q_ASSERT(instance != nullptr);
-
-    QMutexLocker locker(&instance->logMutex);
-    Q_UNUSED(locker);
-
-    LogMessage temp;
-    temp.level = level;
-    temp.message = QString(message);
-    temp.newline = newline;
-
-    instance->pendingMessages.append(temp);
-
-    emit instance->pendingMessage();
-}
-
-/**
- * @brief Immediately write a message to a text stream.
- * @param Log level
- * @param String to write to output stream if appropriate to the current
- *   log level.
- * @param Whether the logger should add a newline to the end of the message.
- */
-void Logger::directLog(LogLevel level, const QString &message, bool newline)
-{
-    Q_ASSERT(instance != nullptr);
-
-    QMutexLocker locker(&instance->logMutex);
-    Q_UNUSED(locker);
-
-    LogMessage temp;
-    temp.level = level;
-    temp.message = QString(message);
-    temp.newline = newline;
-
-    instance->logMessage(temp);
-}
-
-/**
  * @brief Write an individual message to the text stream.
- * @param LogMessage instance for a single message
  */
-void Logger::logMessage(LogMessage msg)
+void Logger::logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename)
 {
-    LogLevel level = msg.level;
-    QString message = msg.message;
-    bool newline = msg.newline;
-
     if ((outputLevel != LOG_NONE) && (level <= outputLevel))
     {
         QString displayTime = "";
@@ -281,41 +135,12 @@ void Logger::logMessage(LogMessage msg)
             displayTime = QString("[%1] - ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
             initialPrefix = displayTime;
         }
-
-        QTextStream *writeStream = outputStream;
-        if ((level < LOG_INFO) && (errorStream != nullptr))
-        {
-            writeStream = errorStream;
-        }
-
         finalMessage.append(initialPrefix).append(message);
 
-        if (newline)
-        {
-            finalMessage.append("\n");
-        }
-
-        *writeStream << finalMessage;
-        writeStream->flush();
-        emit stringWritten(finalMessage);
+        *outputStream << finalMessage;
+        outputStream->flush();
     }
-}
-
-/**
- * @brief Get the associated timer used by the logger.
- * @return QTimer instance
- */
-QTimer *Logger::getLogTimer() { return &pendingTimer; }
-
-/**
- * @brief Stop the logger's timer if it is currently active.
- */
-void Logger::stopLogTimer()
-{
-    if (pendingTimer.isActive())
-    {
-        pendingTimer.stop();
-    }
+    // TODO printing to file
 }
 
 /**
@@ -325,9 +150,7 @@ void Logger::stopLogTimer()
  */
 void Logger::setWriteTime(bool status)
 {
-    Q_ASSERT(instance != nullptr);
-
-    QMutexLocker locker(&instance->logMutex);
+    QMutexLocker locker(&logMutex);
     Q_UNUSED(locker);
 
     writeTime = status;
@@ -345,16 +168,6 @@ bool Logger::getWriteTime()
     return writeTime;
 }
 
-void Logger::startPendingTimer()
-{
-    Q_ASSERT(instance != nullptr);
-
-    if (!instance->pendingTimer.isActive())
-    {
-        instance->pendingTimer.start();
-    }
-}
-
 void Logger::setCurrentLogFile(QString filename)
 {
     Q_ASSERT(instance != nullptr);
@@ -367,29 +180,10 @@ void Logger::setCurrentLogFile(QString filename)
     instance->outputFile.open(QIODevice::WriteOnly | QIODevice::Append);
     instance->outFileStream.setDevice(&instance->outputFile);
     instance->setCurrentStream(&instance->outFileStream);
-    qInfo() << "Logging started";
 }
-
-void Logger::setCurrentErrorLogFile(QString filename)
-{
-    Q_ASSERT(instance != nullptr);
-
-    if (instance->errorFile.isOpen())
-    {
-        instance->closeErrorLogger(true);
-    }
-    instance->errorFile.setFileName(filename);
-    instance->errorFile.open(QIODevice::WriteOnly | QIODevice::Append);
-    instance->outErrorFileStream.setDevice(&instance->errorFile);
-    instance->setCurrentErrorStream(&instance->outErrorFileStream);
-}
-
-QList<Logger::LogMessage> const &Logger::getPendingMessages() { return pendingMessages; }
 
 void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
-    QByteArray localMsg = msg.toLocal8Bit();
-
     if (Logger::instance != nullptr)
     {
         switch (type)
@@ -397,32 +191,27 @@ void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &cont
         case QtDebugMsg:
             if (Logger::instance->getCurrentLogLevel() == Logger::LOG_DEBUG ||
                 Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
-                fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
-                        context.function);
+                LogHelper(LogLevel::LOG_DEBUG, context.line, context.file, msg).sendMessage();
             break;
         case QtInfoMsg:
             if (Logger::instance->getCurrentLogLevel() == Logger::LOG_INFO ||
                 Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
-                fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
-                        context.function);
+                LogHelper(LogLevel::LOG_INFO, context.line, context.file, msg).sendMessage();
             break;
         case QtWarningMsg:
             if (Logger::instance->getCurrentLogLevel() == Logger::LOG_WARNING ||
                 Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
-                fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
-                        context.function);
+                LogHelper(LogLevel::LOG_WARNING, context.line, context.file, msg).sendMessage();
             break;
         case QtCriticalMsg:
             if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR ||
                 Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
-                fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
-                        context.function);
+                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
             break;
         case QtFatalMsg:
             if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR ||
                 Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
-                fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line,
-                        context.function);
+                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
             abort();
         default:
             break;
