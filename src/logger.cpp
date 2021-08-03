@@ -120,27 +120,28 @@ void Logger::closeLogger(bool closeStream)
     }
 }
 
-/**
- * @brief Write an individual message to the text stream.
- */
 void Logger::logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename)
 {
+    const static QMap<Logger::LogLevel, QString> TYPE_NAMES = {{LogLevel::LOG_DEBUG, "DEBUG"},
+                                                               {LogLevel::LOG_INFO, "INFO"},
+                                                               {LogLevel::LOG_WARNING, "WARN"},
+                                                               {LogLevel::LOG_ERROR, "ERROR"},
+                                                               {LogLevel::LOG_NONE, "NONE"}};
+    QString displayTime = QString("[%1] ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
     if ((outputLevel != LOG_NONE) && (level <= outputLevel))
     {
-        QString displayTime = "";
-        QString initialPrefix = "";
-        QString finalMessage = QString();
-        if ((outputLevel > LOG_INFO) || writeTime)
-        {
-            displayTime = QString("[%1] - ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
-            initialPrefix = displayTime;
-        }
-        finalMessage.append(initialPrefix).append(message);
+        bool extendedLogs = (outputLevel == LOG_DEBUG) || writeTime;
+        if (extendedLogs)
+            *outputStream << displayTime;
 
-        *outputStream << finalMessage;
+        *outputStream << TYPE_NAMES[level] << "\t" << message;
+
+        if (extendedLogs)
+            *outputStream << " (file " << filename.mid(7) << ":" << lineno << ")\n";
+        else
+            *outputStream << "\n";
         outputStream->flush();
     }
-    // TODO printing to file
 }
 
 /**
@@ -170,6 +171,8 @@ bool Logger::getWriteTime()
 
 void Logger::setCurrentLogFile(QString filename)
 {
+    if (filename.isEmpty())
+        return;
     Q_ASSERT(instance != nullptr);
 
     if (instance->outputFile.isOpen())
@@ -177,7 +180,7 @@ void Logger::setCurrentLogFile(QString filename)
         instance->closeLogger(true);
     }
     instance->outputFile.setFileName(filename);
-    instance->outputFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    instance->outputFile.open(QIODevice::WriteOnly);
     instance->outFileStream.setDevice(&instance->outputFile);
     instance->setCurrentStream(&instance->outFileStream);
 }
