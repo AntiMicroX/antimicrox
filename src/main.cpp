@@ -231,14 +231,14 @@ int main(int argc, char *argv[])
 
         if (!socket.waitForConnected(3000))
         {
-            qDebug() << "Socket's state: " << socket.state() << endl;
-            qDebug() << "Server name: " << socket.serverName() << endl;
-            qDebug() << "Socket descriptor: " << socket.socketDescriptor() << endl;
+            qDebug() << "Socket's state: " << socket.state();
+            qDebug() << "Server name: " << socket.serverName();
+            qDebug() << "Socket descriptor: " << socket.socketDescriptor();
             qDebug() << "The connection hasn't been established: \nerror text -> " << socket.error() << "\nerror text 2 ->"
-                     << socket.errorString() << endl;
+                     << socket.errorString();
         } else
         {
-            qDebug() << "Socket connected" << endl;
+            qDebug() << "Socket connected";
         }
     } else
     {
@@ -247,10 +247,10 @@ int main(int argc, char *argv[])
 
     if (!socket.isValid())
     {
-        qDebug() << "Socket is not valid" << endl;
-        qDebug() << "Socket's state: " << socket.state() << endl;
-        qDebug() << "Server name: " << socket.serverName() << endl;
-        qDebug() << "Socket descriptor: " << socket.socketDescriptor() << endl;
+        qDebug() << "Socket is not valid";
+        qDebug() << "Socket's state: " << socket.state();
+        qDebug() << "Server name: " << socket.serverName();
+        qDebug() << "Socket descriptor: " << socket.socketDescriptor();
     }
 
     if (socket.state() == QLocalSocket::ConnectedState)
@@ -297,7 +297,7 @@ int main(int argc, char *argv[])
         settings.sync();
         socket.disconnectFromServer();
         if (socket.waitForDisconnected(2000))
-            qDebug() << "Socket " << socket.socketDescriptor() << " disconnected!" << endl;
+            qDebug() << "Socket " << socket.socketDescriptor() << " disconnected!";
         deleteInputDevices(joysticks);
 
         delete joysticks;

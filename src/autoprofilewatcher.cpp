@@ -86,37 +86,37 @@ void AutoProfileWatcher::runAppCheck()
     if (!getAppProfileAssignments().isEmpty())
     {
         appLocation = findAppLocation();
-        qDebug() << "appLocation is " << appLocation << endl;
+        qDebug() << "appLocation is " << appLocation;
     }
 
     // More portable check for whether antimicrox is the current application
     // with focus.
     QWidget *focusedWidget = qApp->activeWindow();
     if (focusedWidget != nullptr)
-        qDebug() << "get active window of app" << endl;
+        qDebug() << "get active window of app";
     QString nowWindow = QString();
     QString nowWindowClass = QString();
     QString nowWindowName = QString();
 
     long currentWindow = X11Extras::getInstance()->getWindowInFocus();
-    qDebug() << "getWindowInFocus: " << currentWindow << endl;
+    qDebug() << "getWindowInFocus: " << currentWindow;
 
     if (currentWindow > 0)
     {
         long tempWindow = X11Extras::getInstance()->findParentClient(currentWindow);
-        qDebug() << "findParentClient: " << tempWindow << endl;
+        qDebug() << "findParentClient: " << tempWindow;
 
         if (tempWindow > 0)
             currentWindow = tempWindow;
 
         nowWindow = QString::number(currentWindow);
-        qDebug() << "number of window now: " << nowWindow << endl;
+        qDebug() << "number of window now: " << nowWindow;
 
         nowWindowClass = X11Extras::getInstance()->getWindowClass(static_cast<Window>(currentWindow));
-        qDebug() << "class of window now: " << nowWindowClass << endl;
+        qDebug() << "class of window now: " << nowWindowClass;
 
         nowWindowName = X11Extras::getInstance()->getWindowTitle(static_cast<Window>(currentWindow));
-        qDebug() << "title of window now: " << nowWindowName << endl;
+        qDebug() << "title of window now: " << nowWindowName;
     }
 
     qDebug() << "WINDOW CLASS: " << nowWindowClass;
@@ -125,7 +125,7 @@ void AutoProfileWatcher::runAppCheck()
 
     bool checkForTitleChange = getWindowNameProfileAssignments().size() > 0;
 
-    qDebug() << "window profile assignments size: " << getWindowNameProfileAssignments().size() << endl;
+    qDebug() << "window profile assignments size: " << getWindowNameProfileAssignments().size();
 
     qDebug() << "checkForTitleChange: " << checkForTitleChange;
 

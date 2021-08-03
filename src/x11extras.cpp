@@ -239,14 +239,14 @@ Window X11Extras::findParentClient(Window window)
     }
 
     if (display != nullptr)
-        qDebug() << "display in X11Extras::findParentClient(Window window) exists" << endl;
+        qDebug() << "display in X11Extras::findParentClient(Window window) exists";
     else
-        qDebug() << "display in X11Extras::findParentClient(Window window) doesn't exist" << endl;
+        qDebug() << "display in X11Extras::findParentClient(Window window) doesn't exist";
 
-    qDebug() << "parent: " << parent << endl;
-    qDebug() << "root: " << root << endl;
-    qDebug() << "num_children: " << num_children << endl;
-    qDebug() << "finalwindow: " << finalwindow << endl;
+    qDebug() << "parent: " << parent;
+    qDebug() << "root: " << root;
+    qDebug() << "num_children: " << num_children;
+    qDebug() << "finalwindow: " << finalwindow;
 
     return finalwindow;
 }
@@ -594,9 +594,9 @@ unsigned long X11Extras::getWindowInFocus()
     Display *display = this->display();
 
     if (display != nullptr)
-        qDebug() << "display in X11Extras::getWindowInFocus() exists" << endl;
+        qDebug() << "display in X11Extras::getWindowInFocus() exists";
     else
-        qDebug() << "display in X11Extras::getWindowInFocus() doesn't exist" << endl;
+        qDebug() << "display in X11Extras::getWindowInFocus() doesn't exist";
 
     XGetInputFocus(display, &currentWindow, &focusState);
 
@@ -605,8 +605,8 @@ unsigned long X11Extras::getWindowInFocus()
         result = static_cast<unsigned long>(currentWindow);
     }
 
-    qDebug() << "focusState of currentWindow: " << focusState << endl;
-    qDebug() << "result of currentWindow: " << result << endl;
+    qDebug() << "focusState of currentWindow: " << focusState;
+    qDebug() << "result of currentWindow: " << result;
 
     return result;
 }
