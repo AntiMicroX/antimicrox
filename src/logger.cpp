@@ -40,7 +40,6 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent)
     loggingThread = new QThread(this);
     outputStream = stream;
     outputLevel = outputLevel;
-    writeTime = false;
 
     this->moveToThread(loggingThread);
     loggingThread->start();
@@ -130,7 +129,7 @@ void Logger::logMessage(const QString &message, const Logger::LogLevel level, co
     QString displayTime = QString("[%1] ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
     if ((outputLevel != LOG_NONE) && (level <= outputLevel))
     {
-        bool extendedLogs = (outputLevel == LOG_DEBUG) || writeTime;
+        bool extendedLogs = (outputLevel == LOG_DEBUG);
         if (extendedLogs)
             *outputStream << displayTime;
 
@@ -142,31 +141,6 @@ void Logger::logMessage(const QString &message, const Logger::LogLevel level, co
             *outputStream << "\n";
         outputStream->flush();
     }
-}
-
-/**
- * @brief Set whether the current time should be written with a message.
- *   This property is only used if outputLevel is set to LOG_INFO.
- * @param status
- */
-void Logger::setWriteTime(bool status)
-{
-    QMutexLocker locker(&logMutex);
-    Q_UNUSED(locker);
-
-    writeTime = status;
-}
-
-/**
- * @brief Get whether the current time should be written with a LOG_INFO
- *   message.
- * @return Whether the current time is written with a LOG_INFO message
- */
-bool Logger::getWriteTime()
-{
-    Q_ASSERT(instance != nullptr);
-
-    return writeTime;
 }
 
 void Logger::setCurrentLogFile(QString filename)

@@ -69,9 +69,6 @@ class Logger : public QObject
     static void setCurrentLogFile(QString filename);
     static QTextStream *getCurrentStream();
 
-    bool getWriteTime();
-    void setWriteTime(bool status);
-
     /**
      * @brief Get the Instance of logger if instance doesn't exist, then create a new one using passed arguments
      *
@@ -94,10 +91,7 @@ class Logger : public QObject
     explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
     void closeLogger(bool closeStream = true);
 
-    bool writeTime;
-
     QFile outputFile;
-
     QTextStream outFileStream;
     QTextStream *outputStream;
 
@@ -106,6 +100,11 @@ class Logger : public QObject
     QThread *loggingThread; // in this thread all of writing operations will be executed
 
   public slots:
+    /**
+     * @brief Write an individual message to the text stream.
+     *
+     * This socket method is executed in separate logging thread
+     */
     void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
 };
 
