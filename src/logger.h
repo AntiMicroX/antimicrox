@@ -74,22 +74,22 @@ class Logger : public QObject
      *
      * @return Logger*
      */
-    inline static Logger *getInstance(QTextStream *stream = nullptr, LogLevel outputLevel = LOG_INFO,
-                                      QObject *parent = nullptr)
+    inline static Logger *getInstance(bool raiseExceptionForNull = true)
     {
-        if (instance == nullptr)
+        if (raiseExceptionForNull && instance == nullptr)
         {
-            instance = new Logger(stream, outputLevel, parent);
+            throw std::runtime_error("There is no logger instance");
         }
-
         return instance;
     }
 
-    static Logger *instance;
+    static Logger *createInstance(QTextStream *stream = nullptr, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
 
   protected:
     explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
     void closeLogger(bool closeStream = true);
+
+    static Logger *instance;
 
     QFile outputFile;
     QTextStream outFileStream;

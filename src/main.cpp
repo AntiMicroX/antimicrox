@@ -158,8 +158,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
     QTextStream outstream(stdout);
-    Logger *appLogger = Logger::getInstance(&outstream);
-    appLogger->setParent(&antimicrox);
+    Logger *appLogger = Logger::createInstance(&outstream, Logger::LogLevel::LOG_WARNING, &antimicrox);
 
     qRegisterMetaType<JoyButtonSlot *>();
     qRegisterMetaType<SetJoystick *>();

@@ -50,9 +50,11 @@ Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent)
  */
 Logger::~Logger()
 {
+    qDebug() << "Closing logger";
     loggingThread->quit();
     loggingThread->wait();
     closeLogger();
+    instance = nullptr;
 }
 
 /**
@@ -196,4 +198,14 @@ void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &cont
             break;
         }
     }
+}
+
+Logger *Logger::createInstance(QTextStream *stream, LogLevel outputLevel, QObject *parent)
+{
+    if (instance != nullptr)
+    {
+        delete instance;
+    }
+    instance = new Logger(stream, outputLevel, parent);
+    return instance;
 }
