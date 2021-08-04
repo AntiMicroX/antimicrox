@@ -157,6 +157,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("antimicrox");
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
+    QTextStream outstream(stdout);
+    Logger *appLogger = Logger::getInstance(&outstream);
+    appLogger->setParent(&antimicrox);
+
     qRegisterMetaType<JoyButtonSlot *>();
     qRegisterMetaType<SetJoystick *>();
     qRegisterMetaType<InputDevice *>();
@@ -176,8 +180,6 @@ int main(int argc, char *argv[])
 
     QFile logFile;
     QTextStream logFileStream;
-    QTextStream outstream(stdout);
-
     CommandLineUtility cmdutility;
 
     try
@@ -189,9 +191,6 @@ int main(int argc, char *argv[])
         std::cerr << "Closing\n";
         return -1;
     }
-
-    Logger *appLogger = Logger::getInstance(&outstream);
-    appLogger->setParent(&antimicrox);
 
     // If a log level wasn't specified at the command-line, then use a default.
     if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE)
