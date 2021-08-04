@@ -51,15 +51,6 @@ class Logger : public QObject
 
     ~Logger();
 
-    /**
-     * @brief log message handling function
-     *
-     * It is meant to be registered via qInstallMessageHandler() at the beginning of application
-     *
-     * @param type
-     * @param context
-     * @param msg
-     */
     static void loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
     static void setLogLevel(LogLevel level);
@@ -70,8 +61,9 @@ class Logger : public QObject
     static QTextStream *getCurrentStream();
 
     /**
-     * @brief Get the Instance of logger if instance doesn't exist, then create a new one using passed arguments
+     * @brief Get the Instance of logger
      *
+     * @param raiseException - raise std::runtime_error when instance doesn't exist
      * @return Logger*
      */
     inline static Logger *getInstance(bool raiseExceptionForNull = true)
@@ -100,11 +92,6 @@ class Logger : public QObject
     QThread *loggingThread; // in this thread all of writing operations will be executed
 
   public slots:
-    /**
-     * @brief Write an individual message to the text stream.
-     *
-     * This socket method is executed in separate logging thread
-     */
     void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
 };
 

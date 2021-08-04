@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2021 Paweł Kotiuk
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,6 +122,11 @@ void Logger::closeLogger(bool closeStream)
     }
 }
 
+/**
+ * @brief Write an individual message to the text stream.
+ *
+ * This socket method is executed in separate logging thread
+ */
 void Logger::logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename)
 {
     const static QMap<Logger::LogLevel, QString> TYPE_NAMES = {{LogLevel::LOG_DEBUG, "🐞DEBUG"},
@@ -163,6 +169,15 @@ void Logger::setCurrentLogFile(QString filename)
     instance->setCurrentStream(&instance->outFileStream);
 }
 
+/**
+ * @brief log message handling function
+ *
+ * It is meant to be registered via qInstallMessageHandler() at the beginning of application
+ *
+ * @param type
+ * @param context
+ * @param msg
+ */
 void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     if (Logger::instance != nullptr)
@@ -200,6 +215,11 @@ void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &cont
     }
 }
 
+/**
+ * @brief Create instance of logger, if there is any other instance it will de deleted
+ *
+ * @return Logger* - pointer to newly created instance
+ */
 Logger *Logger::createInstance(QTextStream *stream, LogLevel outputLevel, QObject *parent)
 {
     if (instance != nullptr)
