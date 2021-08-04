@@ -177,9 +177,6 @@ int main(int argc, char *argv[])
     }
 
 #endif
-
-    QFile logFile;
-    QTextStream logFileStream;
     CommandLineUtility cmdutility;
 
     try
