@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
     QTextStream outstream(stdout);
-    Logger *appLogger = Logger::createInstance(&outstream, Logger::LogLevel::LOG_WARNING, &antimicrox);
+    Logger *appLogger = Logger::createInstance(&outstream, Logger::LogLevel::LOG_WARNING);
 
     qRegisterMetaType<JoyButtonSlot *>();
     qRegisterMetaType<SetJoystick *>();
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
             delete joypad_worker;
             joypad_worker.clear();
         }
-
+        delete appLogger;
         return result;
     }
 
@@ -540,7 +540,7 @@ int main(int argc, char *argv[])
         }
 
 #endif
-
+        delete appLogger;
         return 0;
     } else if (cmdutility.shouldMapController())
     {
@@ -603,7 +603,7 @@ int main(int argc, char *argv[])
             delete joypad_worker;
             joypad_worker.clear();
         }
-
+        delete appLogger;
         return app_result;
     }
 
@@ -678,7 +678,7 @@ int main(int argc, char *argv[])
         }
 
 #endif
-
+        delete appLogger;
         return EXIT_FAILURE;
     } else
     {
@@ -771,5 +771,6 @@ int main(int argc, char *argv[])
         joypad_worker.clear();
     }
 
+    delete appLogger;
     return app_result;
 }
