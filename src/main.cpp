@@ -177,6 +177,8 @@ int main(int argc, char *argv[])
     }
 
 #endif
+    importLegacySettingsIfExist();
+    AntiMicroSettings settings(PadderCommon::configFilePath(), QSettings::IniFormat);
     CommandLineUtility cmdutility;
 
     try
@@ -188,20 +190,8 @@ int main(int argc, char *argv[])
         std::cerr << "Closing\n";
         return -1;
     }
-
-    // If a log level wasn't specified at the command-line, then use a default.
-    if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE)
-    {
-        appLogger->setLogLevel(Logger::LOG_WARNING);
-    } else if (cmdutility.getCurrentLogLevel() != appLogger->getCurrentLogLevel())
-    {
-        appLogger->setLogLevel(cmdutility.getCurrentLogLevel());
-    }
-
-    if (!cmdutility.getCurrentLogFile().isEmpty())
-    {
-        appLogger->setCurrentLogFile(cmdutility.getCurrentLogFile());
-    }
+    settings.importFromCommandLine(cmdutility);
+    settings.applySettingsToLogger(cmdutility, appLogger);
 
     Q_INIT_RESOURCE(resources);
 
@@ -253,18 +243,6 @@ int main(int argc, char *argv[])
     {
         // An instance of this program is already running.
         // Save app config and exit.
-        AntiMicroSettings settings(PadderCommon::configFilePath(), QSettings::IniFormat);
-
-        // Update log info based on config values
-        if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE && settings.contains("LogLevel"))
-        {
-            appLogger->setLogLevel(static_cast<Logger::LogLevel>(settings.value("LogLevel").toInt()));
-        }
-
-        if (cmdutility.getCurrentLogFile().isEmpty() && settings.contains("LogFile"))
-        {
-            appLogger->setCurrentLogFile(settings.value("LogFile").toString());
-        }
 
         QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings, false);
         MainWindow mainWindow(joysticks, &cmdutility, &settings, false);
@@ -476,27 +454,22 @@ int main(int argc, char *argv[])
     QIcon::setThemeSearchPaths(themePathsTries);
     qDebug() << "Theme name: " << QIcon::themeName();
 
-    importLegacySettingsIfExist();
-
-    AntiMicroSettings *settings = new AntiMicroSettings(PadderCommon::configFilePath(), QSettings::IniFormat);
-    settings->importFromCommandLine(cmdutility);
-
     // Update log info based on config values
-    if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE && settings->contains("LogLevel"))
+    if (cmdutility.getCurrentLogLevel() == Logger::LOG_NONE && settings.contains("LogLevel"))
     {
-        appLogger->setLogLevel(static_cast<Logger::LogLevel>(settings->value("LogLevel").toInt()));
+        appLogger->setLogLevel(static_cast<Logger::LogLevel>(settings.value("LogLevel").toInt()));
     }
 
-    if (cmdutility.getCurrentLogFile().isEmpty() && settings->contains("LogFile"))
+    if (cmdutility.getCurrentLogFile().isEmpty() && settings.contains("LogFile"))
     {
-        appLogger->setCurrentLogFile(settings->value("LogFile").toString());
+        appLogger->setCurrentLogFile(settings.value("LogFile").toString());
     }
 
     QString targetLang = QLocale::system().name();
 
-    if (settings->contains("Language"))
+    if (settings.contains("Language"))
     {
-        targetLang = settings->value("Language").toString();
+        targetLang = settings.value("Language").toString();
     }
 
     QTranslator qtTranslator;
@@ -546,8 +519,8 @@ int main(int argc, char *argv[])
 
     if (cmdutility.shouldListControllers())
     {
-        QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, settings, false);
-        AppLaunchHelper mainAppHelper(settings, false);
+        QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings, false);
+        AppLaunchHelper mainAppHelper(&settings, false);
         mainAppHelper.printControllerList(joysticks);
 
         joypad_worker->quit();
@@ -572,10 +545,10 @@ int main(int argc, char *argv[])
     } else if (cmdutility.shouldMapController())
     {
         PadderCommon::mouseHelperObj.initDeskWid();
-        QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, settings);
+        QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings);
         inputEventThread = new QThread;
 
-        MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, settings);
+        MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, &settings);
 
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
@@ -713,15 +686,15 @@ int main(int argc, char *argv[])
     }
 
     PadderCommon::mouseHelperObj.initDeskWid();
-    QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, settings);
+    QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings);
     inputEventThread = new QThread();
 
-    MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, settings);
+    MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, &settings);
 
     mainWindow->setAppTranslator(&qtTranslator);
     mainWindow->setTranslator(&myappTranslator);
 
-    AppLaunchHelper mainAppHelper(settings, mainWindow->getGraphicalStatus());
+    AppLaunchHelper mainAppHelper(&settings, mainWindow->getGraphicalStatus());
 
     QObject::connect(mainWindow, &MainWindow::joystickRefreshRequested, joypad_worker.data(), &InputDaemon::refresh);
     QObject::connect(joypad_worker.data(), &InputDaemon::joystickRefreshed, mainWindow, &MainWindow::fillButtonsID);
@@ -791,9 +764,6 @@ int main(int argc, char *argv[])
 
     delete mainWindow;
     mainWindow = nullptr;
-
-    delete settings;
-    settings = nullptr;
 
     if (!joypad_worker.isNull())
     {
