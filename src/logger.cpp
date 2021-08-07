@@ -164,7 +164,11 @@ void Logger::setCurrentLogFile(QString filename)
         instance->closeLogger(true);
     }
     instance->outputFile.setFileName(filename);
-    instance->outputFile.open(QIODevice::WriteOnly);
+    if (!instance->outputFile.open(QIODevice::WriteOnly))
+    {
+        qCritical() << "Couldn't open log file: " << filename;
+        return;
+    }
     instance->outFileStream.setDevice(&instance->outputFile);
     instance->setCurrentStream(&instance->outFileStream);
 }
