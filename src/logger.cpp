@@ -169,6 +169,8 @@ void Logger::setCurrentLogFile(QString filename)
     instance->setCurrentStream(&instance->outFileStream);
 }
 
+bool Logger::isWritingToFile() { return outputFile.isOpen(); }
+
 /**
  * @brief log message handling function
  *

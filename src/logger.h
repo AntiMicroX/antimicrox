@@ -26,6 +26,18 @@
 #include <QTextStream>
 #include <QThread>
 
+#include <sstream>
+
+/**
+ * @brief Macro used for printing messages to stdout
+ *
+ * Example usage
+ * PRINT_STDOUT() << "my message";
+ *
+ */
+#define PRINT_STDOUT() StreamPrinter(stdout, __LINE__, __FILE__)
+#define PRINT_STDERR() StreamPrinter(stderr, __LINE__, __FILE__)
+
 /**
  * @brief Custom singleton class used for logging across application.
  *
@@ -58,6 +70,7 @@ class Logger : public QObject
 
     static void setCurrentStream(QTextStream *stream);
     static void setCurrentLogFile(QString filename);
+    bool isWritingToFile();
     static QTextStream *getCurrentStream();
 
     /**
@@ -122,6 +135,134 @@ class LogHelper : public QObject
 
   signals:
     void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
+};
+
+/**
+ * @brief Simple adapter for QTextStream additionally logging printed values
+ * Logs are printed when StreamPrinter is destroyed or logContent() is called
+ *
+ * Recommended usage with macros PRINT_STDOUT() and PRINT_STDERR()
+ */
+class StreamPrinter : public QObject
+{
+    Q_OBJECT
+  private:
+    QTextStream m_stream;
+    std::stringstream m_message;
+    uint m_lineno;
+    QString m_filename;
+
+  public:
+    StreamPrinter(FILE *file, uint lineno = 0, QString filename = "")
+        : m_stream(file)
+        , m_message("")
+        , m_lineno(lineno)
+        , m_filename(filename)
+    {
+        if (file == stdout)
+        {
+            m_message << "Printed stdout message📓: ";
+        } else if (file == stderr)
+        {
+            m_message << "Printed stderr message📓: ";
+        } else
+        {
+            m_message << "unknown stream ";
+        }
+    };
+
+    ~StreamPrinter()
+    {
+        // When logger prints to stream, then we already have printed messages into console,
+        // there is no need to duplicate
+        if (Logger::getInstance()->isWritingToFile())
+            LogHelper(Logger::LogLevel::LOG_INFO, m_lineno, m_filename, QString(m_message.str().c_str())).sendMessage();
+    };
+
+    StreamPrinter &operator<<(char ch)
+    {
+        m_stream << ch;
+        m_message << ch;
+        return *this;
+    };
+    StreamPrinter &operator<<(signed short i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(unsigned short i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(signed int i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(unsigned int i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(signed long i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(unsigned long i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(float f)
+    {
+        m_stream << f;
+        m_message << f;
+        return *this;
+    };
+    StreamPrinter &operator<<(double f)
+    {
+        m_stream << f;
+        m_message << f;
+        return *this;
+    };
+    StreamPrinter &operator<<(const QString &s)
+    {
+        m_stream << s;
+        m_message << s.toStdString();
+        return *this;
+    };
+    StreamPrinter &operator<<(QStringView s)
+    {
+        m_stream << s;
+        m_message << s.toString().toStdString();
+        return *this;
+    };
+    StreamPrinter &operator<<(const QStringRef &s)
+    {
+        m_stream << s;
+        m_message << s.toString().toStdString();
+        return *this;
+    };
+    StreamPrinter &operator<<(const char *c)
+    {
+        m_stream << c;
+        m_message << c;
+        return *this;
+    };
+    StreamPrinter &operator<<(const void *ptr)
+    {
+        m_stream << ptr;
+        m_message << ptr;
+        return *this;
+    };
 };
 
 #endif // LOGGER_H
