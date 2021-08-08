@@ -32,7 +32,6 @@
 #include <QModelIndexList>
 #include <QStringList>
 #include <QTableWidgetItem>
-#include <QTextStream>
 #include <QVariant>
 #include <QWidget>
 
@@ -338,8 +337,7 @@ void GameControllerMappingDialog::saveChanges()
 
     if (displayMapping)
     {
-        QTextStream out(stdout);
-        out << generateSDLMappingString();
+        PRINT_STDOUT() << generateSDLMappingString();
     }
 
     emit mappingUpdate(mappingString, device);

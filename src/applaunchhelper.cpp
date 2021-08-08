@@ -26,7 +26,6 @@
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QMapIterator>
-#include <QTextStream>
 #include <QThread>
 
 AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical, QObject *parent)
@@ -100,37 +99,36 @@ void AppLaunchHelper::changeGamepadPollRate()
 
 void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
-    QTextStream outstream(stdout);
-
-    outstream << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << endl;
-    outstream << endl;
-    outstream << QObject::tr("List Joysticks:") << endl;
-    outstream << QObject::tr("---------------") << endl;
+    PRINT_STDOUT() << QObject::tr("# of joysticks found: %1").arg(joysticks->size()) << "\n"
+                   << "\n"
+                   << QObject::tr("List Joysticks:") << "\n"
+                   << QObject::tr("---------------") << "\n";
     QMapIterator<SDL_JoystickID, InputDevice *> iter(*joysticks);
     int indexNumber = 1;
 
     while (iter.hasNext())
     {
         InputDevice *tempdevice = iter.next().value();
-        outstream << QObject::tr("Joystick %1:").arg(indexNumber) << endl;
-        outstream << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << endl;
-        // outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
-        outstream << "  " << QObject::tr("UniqueID:            %1").arg(tempdevice->getUniqueIDString()) << endl;
-        outstream << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << endl;
-        outstream << "  " << QObject::tr("VendorID:            %1").arg(tempdevice->getVendorString()) << endl;
-        outstream << "  " << QObject::tr("ProductID:            %1").arg(tempdevice->getProductIDString()) << endl;
-        outstream << "  " << QObject::tr("Product Version:            %1").arg(tempdevice->getProductVersion()) << endl;
-        outstream << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << endl;
-        QString gameControllerStatus = tempdevice->isGameController() ? QObject::tr("Yes") : QObject::tr("No");
-        outstream << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << endl;
+        PRINT_STDOUT() << QObject::tr("Joystick %1:").arg(indexNumber) << "\n"
+                       << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << "\n"
+                       << "  " << QObject::tr("UniqueID:            %1").arg(tempdevice->getUniqueIDString()) << "\n"
+                       << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << "\n"
+                       << "  " << QObject::tr("VendorID:            %1").arg(tempdevice->getVendorString()) << "\n"
+                       << "  " << QObject::tr("ProductID:            %1").arg(tempdevice->getProductIDString()) << "\n"
+                       << "  " << QObject::tr("Product Version:            %1").arg(tempdevice->getProductVersion()) << "\n"
+                       << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << "\n";
 
-        outstream << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << endl;
-        outstream << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << endl;
-        outstream << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << endl;
+        // PRINT_STDOUT() << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << "\n";
+        QString gameControllerStatus = tempdevice->isGameController() ? QObject::tr("Yes") : QObject::tr("No");
+
+        PRINT_STDOUT() << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << "\n"
+                       << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << "\n"
+                       << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << "\n"
+                       << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << "\n";
 
         if (iter.hasNext())
         {
-            outstream << endl;
+            PRINT_STDOUT() << "\n";
             indexNumber++;
         }
     }

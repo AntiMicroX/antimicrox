@@ -23,7 +23,6 @@
 #include <QDebug>
 #include <QLocalServer>
 #include <QLocalSocket>
-#include <QTextStream>
 
 LocalAntiMicroServer::LocalAntiMicroServer(QObject *parent)
     : QObject(parent)
@@ -47,10 +46,9 @@ void LocalAntiMicroServer::startLocalServer()
         {
             if (!localServer->listen(PadderCommon::localSocketKey))
             {
-                QTextStream errorstream(stderr);
                 QString message("Could not start signal server. Profiles cannot be reloaded\n");
                 message.append("from command-line");
-                errorstream << tr(message.toStdString().c_str()) << endl;
+                PRINT_STDERR() << tr(message.toStdString().c_str()) << "\n";
                 qDebug() << "Could not start signal server. Profiles cannot be reloaded\n"
                          << " \nfrom command-line\n " << tr(message.toStdString().c_str());
             } else
