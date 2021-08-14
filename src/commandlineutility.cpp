@@ -256,6 +256,7 @@ void CommandLineUtility::parseArgsProfile(const QCommandLineParser &parser)
     } else if (profileFileInfo.exists() && ((profileFileInfo.suffix() == "amgp") || (profileFileInfo.suffix() == "xml")))
     {
         QString tempProfileLocation = profileFileInfo.absoluteFilePath();
+        qDebug() << "Profile file is set: " << tempProfileLocation;
         ControllerOptionsInfo tempInfo = getControllerOptionsList().at(currentListsIndex);
         tempInfo.setProfileLocation(tempProfileLocation);
         controllerOptionsList.replace(currentListsIndex, tempInfo);
