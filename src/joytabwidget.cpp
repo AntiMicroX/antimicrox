@@ -1289,6 +1289,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
         QFileInfo fileinfo(fileLocation);
         if (fileinfo.exists() && ((fileinfo.suffix() == "xml") || (fileinfo.suffix() == "amgp")))
         {
+            qDebug() << "Loading config file: " << fileLocation;
             int searchIndex = configBox->findData(fileinfo.absoluteFilePath());
             if (searchIndex == -1)
             {
