@@ -239,12 +239,6 @@ class StreamPrinter : public QObject
         m_message << s.toStdString();
         return *this;
     };
-    StreamPrinter &operator<<(QStringView s)
-    {
-        m_stream << s;
-        m_message << s.toString().toStdString();
-        return *this;
-    };
     StreamPrinter &operator<<(const QStringRef &s)
     {
         m_stream << s;
