@@ -21,7 +21,7 @@ jobs:
       id: create_deb
       run: |
         mkdir build && cd ./build
-        cmake .. -DCPACK_GENERATOR="DEB" ..
+        cmake .. -DCPACK_GENERATOR="DEB" -DANTIMICROX_PKG_VERSION="GitHub Release" ..
         cmake --build . --target package
 
     #upload generated files to release
