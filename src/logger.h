@@ -54,10 +54,10 @@ class Logger : public QObject
     enum LogLevel
     {
         LOG_NONE = 0,
-        LOG_ERROR,
-        LOG_WARNING,
-        LOG_INFO,
-        LOG_DEBUG,
+        LOG_ERROR = 1,
+        LOG_WARNING = 2,
+        LOG_INFO = 3,
+        LOG_DEBUG = 4,
         LOG_MAX = LOG_DEBUG
     };
 
