@@ -188,31 +188,29 @@ void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &cont
 {
     if (Logger::instance != nullptr)
     {
+        Logger::LogLevel level = Logger::instance->getCurrentLogLevel();
+        if (level == LogLevel::LOG_NONE)
+            return;
         switch (type)
         {
         case QtDebugMsg:
-            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_DEBUG ||
-                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+            if (level == Logger::LOG_DEBUG || level == Logger::LOG_MAX)
                 LogHelper(LogLevel::LOG_DEBUG, context.line, context.file, msg).sendMessage();
             break;
         case QtInfoMsg:
-            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_INFO ||
-                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+            if (level == Logger::LOG_INFO || level == Logger::LOG_MAX)
                 LogHelper(LogLevel::LOG_INFO, context.line, context.file, msg).sendMessage();
             break;
         case QtWarningMsg:
-            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_WARNING ||
-                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+            if (level == Logger::LOG_WARNING || level == Logger::LOG_MAX)
                 LogHelper(LogLevel::LOG_WARNING, context.line, context.file, msg).sendMessage();
             break;
         case QtCriticalMsg:
-            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR ||
-                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+            if (level == Logger::LOG_ERROR || level == Logger::LOG_MAX)
                 LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
             break;
         case QtFatalMsg:
-            if (Logger::instance->getCurrentLogLevel() == Logger::LOG_ERROR ||
-                Logger::instance->getCurrentLogLevel() == Logger::LOG_MAX)
+            if (level == Logger::LOG_ERROR || level == Logger::LOG_MAX)
                 LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
             abort();
         default:
