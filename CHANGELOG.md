@@ -1,5 +1,25 @@
 # Changelog
 
+## [3.1.6](https://github.com/AntiMicroX/antimicrox/tree/3.1.6) (2021-08-14)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.5...3.1.6)
+
+**Fixed bugs:**
+
+- Saving logs into file doesn't work properly. [\#78](https://github.com/AntiMicroX/antimicrox/issues/78)
+- Doesn't save my configurations/Wont auto load [\#70](https://github.com/AntiMicroX/antimicrox/issues/70)
+
+**Notable closed issues:**
+
+- Refactor logging system [\#177](https://github.com/AntiMicroX/antimicrox/issues/177)
+
+**Other merged pull requests:**
+
+- Add new logs associated with loading profile files [\#182](https://github.com/AntiMicroX/antimicrox/pull/182) ([pktiuk](https://github.com/pktiuk))
+- Refactor arguments parsing [\#174](https://github.com/AntiMicroX/antimicrox/pull/174) ([pktiuk](https://github.com/pktiuk))
+- docs: Add information about commandline for flatpak packages [\#173](https://github.com/AntiMicroX/antimicrox/pull/173) ([pktiuk](https://github.com/pktiuk))
+- Added openSUSE instruction [\#158](https://github.com/AntiMicroX/antimicrox/pull/158) ([Mailaender](https://github.com/Mailaender))
+
 ## [3.1.5](https://github.com/AntiMicroX/antimicrox/tree/3.1.5) (2021-03-14)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.4...3.1.5)
