@@ -35,6 +35,8 @@ class AntiMicroSettings : public QSettings
     QMutex *getLock();
     QSettings &getCmdSettings();
 
+    void applySettingsToLogger(CommandLineUtility &cmdutility, Logger *logger = nullptr);
+
   protected:
     QSettings cmdSettings;
     QMutex lock;

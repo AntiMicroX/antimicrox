@@ -24,10 +24,22 @@
 #include <QMutex>
 #include <QObject>
 #include <QTextStream>
-#include <QTimer>
+#include <QThread>
+
+#include <sstream>
 
 /**
- * @brief Custom class used for logging across application.
+ * @brief Macro used for printing messages to stdout
+ *
+ * Example usage
+ * PRINT_STDOUT() << "my message";
+ *
+ */
+#define PRINT_STDOUT() StreamPrinter(stdout, __LINE__, __FILE__)
+#define PRINT_STDERR() StreamPrinter(stderr, __LINE__, __FILE__)
+
+/**
+ * @brief Custom singleton class used for logging across application.
  *
  * It manages log-levels, formatting, printing logs and saving them to file.
  * Logs across the program can be written using  qDebug(), qInfo(), qWarning(), qCritical, and qFatal() functions
@@ -36,6 +48,7 @@
 class Logger : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(LogLevel);
 
   public:
     enum LogLevel
@@ -48,86 +61,208 @@ class Logger : public QObject
         LOG_MAX = LOG_DEBUG
     };
 
-    typedef struct
-    {
-        QString message;
-        LogLevel level;
-        bool newline;
-    } LogMessage;
-
-    explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
-    explicit Logger(QTextStream *stream, QTextStream *errorStream, LogLevel outputLevel = LOG_INFO,
-                    QObject *parent = nullptr);
     ~Logger();
 
-    /**
-     * @brief log message handling function
-     *
-     * It is meant to be registered via qInstallMessageHandler() at the beginning of application
-     *
-     * @param type
-     * @param context
-     * @param msg
-     */
     static void loggerMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
     static void setLogLevel(LogLevel level);
     LogLevel getCurrentLogLevel();
-    QList<LogMessage> const &getPendingMessages();
 
     static void setCurrentStream(QTextStream *stream);
     static void setCurrentLogFile(QString filename);
+    bool isWritingToFile();
     static QTextStream *getCurrentStream();
 
-    static void setCurrentErrorStream(QTextStream *stream);
-    static void setCurrentErrorLogFile(QString filename);
-    static QTextStream *getCurrentErrorStream();
-
-    QTimer *getLogTimer();
-    void stopLogTimer();
-
-    bool getWriteTime();
-    void setWriteTime(bool status);
-
-    static void appendLog(LogLevel level, const QString &message, bool newline = true);
-    static void directLog(LogLevel level, const QString &message, bool newline = true);
-
-    inline static Logger *getInstance()
+    /**
+     * @brief Get the Instance of logger
+     *
+     * @param raiseException - raise std::runtime_error when instance doesn't exist
+     * @return Logger*
+     */
+    inline static Logger *getInstance(bool raiseExceptionForNull = true)
     {
-        Q_ASSERT(instance != nullptr);
+        if (raiseExceptionForNull && instance == nullptr)
+        {
+            throw std::runtime_error("There is no logger instance");
+        }
         return instance;
     }
 
-    static Logger *instance;
+    static Logger *createInstance(QTextStream *stream = nullptr, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
 
   protected:
+    explicit Logger(QTextStream *stream, LogLevel outputLevel = LOG_INFO, QObject *parent = nullptr);
     void closeLogger(bool closeStream = true);
-    void closeErrorLogger(bool closeStream = true);
-    void logMessage(LogMessage msg);
 
-    bool writeTime;
+    static Logger *instance;
 
     QFile outputFile;
-    QFile errorFile;
-
     QTextStream outFileStream;
     QTextStream *outputStream;
-    QTextStream outErrorFileStream;
-    QTextStream *errorStream;
 
     LogLevel outputLevel;
     QMutex logMutex;
-    QTimer pendingTimer;
-
-    QList<LogMessage> pendingMessages;
-
-  signals:
-    void stringWritten(QString text);
-    void pendingMessage();
+    QThread *loggingThread; // in this thread all of writing operations will be executed
 
   public slots:
-    void Log();
-    void startPendingTimer();
+    void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
+};
+
+/**
+ * @brief simple helper class used for constructing log message and sending it to Logger
+ *
+ */
+class LogHelper : public QObject
+{
+    Q_OBJECT
+  public:
+    QString message;
+    Logger::LogLevel level;
+    uint lineno;
+    QString filename;
+
+    LogHelper(const Logger::LogLevel level, const uint lineno, const QString &filename, const QString &message = "")
+        : message(message)
+        , level(level)
+        , lineno(lineno)
+        , filename(filename)
+    {
+        Logger *pointer = Logger::getInstance();
+        connect(this, &LogHelper::logMessage, pointer, &Logger::logMessage);
+    };
+
+    void sendMessage() { emit logMessage(message, level, lineno, filename); };
+
+  signals:
+    void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
+};
+
+/**
+ * @brief Simple adapter for QTextStream additionally logging printed values
+ * Logs are printed when StreamPrinter is destroyed or logContent() is called
+ *
+ * Recommended usage with macros PRINT_STDOUT() and PRINT_STDERR()
+ */
+class StreamPrinter : public QObject
+{
+    Q_OBJECT
+  private:
+    QTextStream m_stream;
+    std::stringstream m_message;
+    uint m_lineno;
+    QString m_filename;
+
+  public:
+    StreamPrinter(FILE *file, uint lineno = 0, QString filename = "")
+        : m_stream(file)
+        , m_message("")
+        , m_lineno(lineno)
+        , m_filename(filename)
+    {
+        if (file == stdout)
+        {
+            m_message << "Printed stdout message📓: ";
+        } else if (file == stderr)
+        {
+            m_message << "Printed stderr message📓: ";
+        } else
+        {
+            m_message << "unknown stream ";
+        }
+    };
+
+    ~StreamPrinter()
+    {
+        // When logger prints to stream, then we already have printed messages into console,
+        // there is no need to duplicate
+        if (Logger::getInstance()->isWritingToFile())
+            LogHelper(Logger::LogLevel::LOG_INFO, m_lineno, m_filename, QString(m_message.str().c_str())).sendMessage();
+    };
+
+    StreamPrinter &operator<<(char ch)
+    {
+        m_stream << ch;
+        m_message << ch;
+        return *this;
+    };
+    StreamPrinter &operator<<(signed short i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(unsigned short i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(signed int i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(unsigned int i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(signed long i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(unsigned long i)
+    {
+        m_stream << i;
+        m_message << i;
+        return *this;
+    };
+    StreamPrinter &operator<<(float f)
+    {
+        m_stream << f;
+        m_message << f;
+        return *this;
+    };
+    StreamPrinter &operator<<(double f)
+    {
+        m_stream << f;
+        m_message << f;
+        return *this;
+    };
+    StreamPrinter &operator<<(const QString &s)
+    {
+        m_stream << s;
+        m_message << s.toStdString();
+        return *this;
+    };
+    StreamPrinter &operator<<(QStringView s)
+    {
+        m_stream << s;
+        m_message << s.toString().toStdString();
+        return *this;
+    };
+    StreamPrinter &operator<<(const QStringRef &s)
+    {
+        m_stream << s;
+        m_message << s.toString().toStdString();
+        return *this;
+    };
+    StreamPrinter &operator<<(const char *c)
+    {
+        m_stream << c;
+        m_message << c;
+        return *this;
+    };
+    StreamPrinter &operator<<(const void *ptr)
+    {
+        m_stream << ptr;
+        m_message << ptr;
+        return *this;
+    };
 };
 
 #endif // LOGGER_H

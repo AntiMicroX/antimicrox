@@ -61,7 +61,6 @@
 #include <QSpacerItem>
 #include <QStackedWidget>
 #include <QStringListIterator>
-#include <QTextStream>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -654,8 +653,7 @@ void JoyTabWidget::saveConfigFile()
             msg.exec();
         } else if (writer->hasError() && !this->window()->isEnabled())
         {
-            QTextStream error(stderr);
-            error << writer->getErrorString() << endl;
+            PRINT_STDERR() << writer->getErrorString() << "\n";
         } else
         {
             int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
@@ -753,8 +751,7 @@ void JoyTabWidget::resetJoystick()
                 msg.exec();
             } else if (reader->hasError() && !this->window()->isEnabled())
             {
-                QTextStream error(stderr);
-                error << reader->getErrorString() << endl;
+                PRINT_STDERR() << reader->getErrorString() << "\n";
             }
 
             displayProfileEditNotification();
@@ -831,8 +828,7 @@ void JoyTabWidget::saveAsConfig()
             msg.exec();
         } else if (writer->hasError() && !this->window()->isEnabled())
         {
-            QTextStream error(stderr);
-            error << writer->getErrorString() << endl;
+            PRINT_STDERR() << writer->getErrorString() << "\n";
         } else
         {
             int existingIndex = configBox->findData(fileinfo.absoluteFilePath());
@@ -933,8 +929,7 @@ void JoyTabWidget::changeJoyConfig(int index)
             msg.exec();
         } else if (reader->hasError() && !this->window()->isEnabled())
         {
-            QTextStream error(stderr);
-            error << reader->getErrorString() << endl;
+            PRINT_STDERR() << reader->getErrorString() << "\n";
         }
     } else if (index == 0)
     {

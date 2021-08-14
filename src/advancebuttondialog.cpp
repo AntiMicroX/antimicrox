@@ -547,7 +547,7 @@ void AdvanceButtonDialog::joinSlot()
                              tr("It's only possible to join simple and mix keyboard slots"));
     } else
     {
-        qDebug() << "Chosen " << ui->slotListWidget->selectedItems().count() << " slots" << endl;
+        qDebug() << "Chosen " << ui->slotListWidget->selectedItems().count() << " slots";
 
         QListWidgetItem *firstSelected = ui->slotListWidget->selectedItems().at(0);
         QString text = "";
@@ -908,7 +908,7 @@ void AdvanceButtonDialog::updateSetSelection()
             chosen_set = (ui->setSelectionComboBox->currentIndex() + 2) / 3;
         }
 
-        qDebug() << "CONDITION: " << QString::number(condition_choice) << endl;
+        qDebug() << "CONDITION: " << QString::number(condition_choice);
 
         switch (condition_choice)
         {
@@ -925,7 +925,7 @@ void AdvanceButtonDialog::updateSetSelection()
             break;
         }
 
-        qDebug() << "CHOSEN SET: " << chosen_set << endl;
+        qDebug() << "CHOSEN SET: " << chosen_set;
 
     } else
     {

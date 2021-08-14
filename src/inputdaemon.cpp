@@ -1250,12 +1250,12 @@ void InputDaemon::convertMappingsToUnique(QSettings *sett, QString guidString, Q
     if (sett->contains(guidString))
     {
         QStringList gg = sett->value(guidString).toString().split(",");
-        qDebug() << "Convert guidString to uniqueString 1): " << gg << endl;
+        qDebug() << "Convert guidString to uniqueString 1): " << gg;
         gg.removeFirst();
-        qDebug() << "Convert guidString to uniqueString 2): " << gg << endl;
+        qDebug() << "Convert guidString to uniqueString 2): " << gg;
         gg.prepend(uniqueIdString);
-        qDebug() << "Convert guidString to uniqueString 3): " << gg << endl;
-        qDebug() << "Joined uniqueMapping: " << gg.join(",") << endl;
+        qDebug() << "Convert guidString to uniqueString 3): " << gg;
+        qDebug() << "Joined uniqueMapping: " << gg.join(",");
         sett->setValue(uniqueIdString, gg.join(","));
         sett->remove(guidString);
     }

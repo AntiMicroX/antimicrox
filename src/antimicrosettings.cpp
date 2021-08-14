@@ -66,6 +66,33 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
         getCmdSettings().setValue("DisplaySDLMapping", 1);
     }
 }
+/**
+ * @brief applies settings from command line to logger
+ *
+ * @param cmdutility
+ * @param logger pointer to logger, if nullptr then getInstance() is used
+ */
+void AntiMicroSettings::applySettingsToLogger(CommandLineUtility &cmdutility, Logger *logger_ptr)
+{
+    if (logger_ptr == nullptr)
+        logger_ptr = Logger::getInstance();
+
+    if (cmdutility.getCurrentLogLevel() != Logger::LOG_NONE)
+    {
+        logger_ptr->setLogLevel(cmdutility.getCurrentLogLevel());
+    } else if (contains("LogLevel"))
+    {
+        logger_ptr->setLogLevel(static_cast<Logger::LogLevel>(value("LogLevel").toInt()));
+    }
+
+    if (!cmdutility.getCurrentLogFile().isEmpty())
+    {
+        logger_ptr->setCurrentLogFile(cmdutility.getCurrentLogFile());
+    } else if (contains("LogFile"))
+    {
+        logger_ptr->setCurrentLogFile(value("LogFile").toString());
+    }
+}
 
 QMutex *AntiMicroSettings::getLock() { return &lock; }
 

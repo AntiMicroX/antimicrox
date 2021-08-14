@@ -450,7 +450,7 @@ void MainWindow::populateTrayIcon()
 
     int joystickCount = m_joysticks->size();
 
-    qDebug() << "joystickCount: " << joystickCount << endl;
+    qDebug() << "joystickCount: " << joystickCount;
 
     QMap<QString, int> uniques = QMap<QString, int>();
     int counterUniques = 1;
@@ -461,7 +461,7 @@ void MainWindow::populateTrayIcon()
         QMapIterator<SDL_JoystickID, InputDevice *> iter(*m_joysticks);
         bool useSingleList = m_settings->value("TrayProfileList", false).toBool();
 
-        qDebug() << "TrayProfileList: " << useSingleList << endl;
+        qDebug() << "TrayProfileList: " << useSingleList;
 
         if (!useSingleList && (joystickCount == 1))
             useSingleList = true;
@@ -476,7 +476,7 @@ void MainWindow::populateTrayIcon()
             QString joytabName = current->getSDLName();
             joytabName.append(" ").append(tr("(%1)").arg(current->getName()));
 
-            qDebug() << "joytabName" << i << ": " << joytabName << endl;
+            qDebug() << "joytabName" << i << ": " << joytabName;
             QMenu *joysticksubMenu = nullptr;
 
             if (!useSingleList)
@@ -521,13 +521,13 @@ void MainWindow::populateTrayIcon()
 
                     current->setCounterUniques(resultDuplicated);
                     QString identifier = current->getStringIdentifier();
-                    qDebug() << "current identifier: " << current->getStringIdentifier() << endl;
+                    qDebug() << "current identifier: " << current->getStringIdentifier();
                     widget->convToUniqueIDControllerGroupSett(
                         m_settings, QString("Controller%1LastSelected").arg(current->getGUIDString()),
                         QString("Controller%1LastSelected").arg(current->getUniqueIDString()));
                     QString controlEntryLastSelected = QString("Controller%1LastSelected").arg(identifier);
 
-                    qDebug() << "controlEntryLastSelected: " << controlEntryLastSelected << endl;
+                    qDebug() << "controlEntryLastSelected: " << controlEntryLastSelected;
 
                     duplicatedGamepad = false;
 
@@ -535,22 +535,22 @@ void MainWindow::populateTrayIcon()
 
                     QFileInfo fileInfo(contrFile);
 
-                    qDebug() << "controlEntryLastSelected in config file: " << contrFile << endl;
+                    qDebug() << "controlEntryLastSelected in config file: " << contrFile;
 
-                    qDebug() << "fileInfo.exists(): " << fileInfo.exists() << endl;
-                    qDebug() << "fileInfo.size(): " << fileInfo.size() << endl;
-                    qDebug() << "fileInfo.permissions(): " << fileInfo.permissions() << endl;
+                    qDebug() << "fileInfo.exists(): " << fileInfo.exists();
+                    qDebug() << "fileInfo.size(): " << fileInfo.size();
+                    qDebug() << "fileInfo.permissions(): " << fileInfo.permissions();
 
                     if ((configIter.value() == fileInfo.baseName()) ||
                         (configIter.value() == widget->getCurrentConfigName()))
                     {
-                        qDebug() << "fileInfo.baseName(): " << fileInfo.baseName() << endl;
-                        qDebug() << "widget->getCurrentConfigName(): " << widget->getCurrentConfigName() << endl;
+                        qDebug() << "fileInfo.baseName(): " << fileInfo.baseName();
+                        qDebug() << "widget->getCurrentConfigName(): " << widget->getCurrentConfigName();
                         newaction->setChecked(true);
                     }
 
                     QHash<QString, QVariant> tempmap;
-                    qDebug() << "insert " << QString::number(i) << ": " << configIter.key() << endl;
+                    qDebug() << "insert " << QString::number(i) << ": " << configIter.key();
                     tempmap.insert(QString::number(i), QVariant(configIter.key()));
                     QVariant tempvar(tempmap);
                     newaction->setData(tempvar);
@@ -560,11 +560,11 @@ void MainWindow::populateTrayIcon()
 
                     if (useSingleList)
                     {
-                        qDebug() << "useSingleList" << endl;
+                        qDebug() << "useSingleList";
                         tempProfileList.append(newaction);
                     } else
                     {
-                        qDebug() << "doesn't useSingleList" << endl;
+                        qDebug() << "doesn't useSingleList";
                         joysticksubMenu->addAction(newaction);
                     }
                 }
@@ -576,11 +576,11 @@ void MainWindow::populateTrayIcon()
 
                 if (joysticksubMenu != nullptr)
                 {
-                    qDebug() << "joysticksubmenu exists" << endl;
+                    qDebug() << "joysticksubmenu exists";
                     newaction = new QAction(tr("Open File"), joysticksubMenu);
                 } else
                 {
-                    qDebug() << "created action open file for tray" << endl;
+                    qDebug() << "created action open file for tray";
                     newaction = new QAction(tr("Open File"), trayIconMenu);
                 }
 
@@ -590,7 +590,7 @@ void MainWindow::populateTrayIcon()
 
                 if (useSingleList)
                 {
-                    qDebug() << "usesinglelist" << endl;
+                    qDebug() << "usesinglelist";
                     QAction *titleAction = new QAction(joytabName, trayIconMenu);
                     titleAction->setCheckable(false);
 
@@ -603,7 +603,7 @@ void MainWindow::populateTrayIcon()
                     trayIconMenu->addAction(newaction);
 
                     profileActions.insert(i, tempProfileList);
-                    qDebug() << "inserted profile action " << i << ": " << tempProfileList << endl;
+                    qDebug() << "inserted profile action " << i << ": " << tempProfileList;
 
                     if (iter.hasNext())
                     {
@@ -637,7 +637,7 @@ void MainWindow::populateTrayIcon()
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 
-    qDebug() << "end of MainWindow::populateTrayIcon function" << endl;
+    qDebug() << "end of MainWindow::populateTrayIcon function";
 }
 
 void MainWindow::quitProgram()
