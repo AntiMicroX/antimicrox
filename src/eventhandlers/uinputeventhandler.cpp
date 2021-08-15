@@ -318,7 +318,7 @@ int UInputEventHandler::openUInputHandle()
         {
             lastErrorString = tr("Could not open uinput device file\n"
                                  "Please check that you have permission to write to the device");
-            lastErrorString.append("\n").append(possibleLocation);
+            lastErrorString.append(": ").append(possibleLocation).append('\n');
         } else
         {
             uinputDeviceLocation = possibleLocation;
@@ -479,7 +479,7 @@ void UInputEventHandler::printPostMessages()
 {
     if (!lastErrorString.isEmpty())
     {
-        qInfo() << lastErrorString;
+        PRINT_STDERR() << lastErrorString;
     }
 
     if (!uinputDeviceLocation.isEmpty())

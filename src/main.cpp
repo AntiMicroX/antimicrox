@@ -653,7 +653,7 @@ int main(int argc, char *argv[])
 
     if (!status)
     {
-        qCritical() << QObject::tr("Failed to open event generator. Exiting.");
+        PRINT_STDERR() << QObject::tr("Failed to open event generator. Exiting.") << "\n";
 
         deleteInputDevices(joysticks);
         delete joysticks;
