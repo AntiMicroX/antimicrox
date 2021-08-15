@@ -443,9 +443,7 @@ int main(int argc, char *argv[])
     appDirsLocations.append(QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation));
     QStringList themePathsTries = QStringList();
 
-    QList<QString>::const_iterator i;
-
-    for (i = appDirsLocations.constBegin(); i != appDirsLocations.constEnd(); ++i)
+    for (QList<QString>::const_iterator i = appDirsLocations.constBegin(); i != appDirsLocations.constEnd(); ++i)
     {
         themePathsTries.append(QString("%1%2").arg(*i).arg("/icons"));
         qDebug() << QString("%1%2").arg(*i).arg("/icons");
