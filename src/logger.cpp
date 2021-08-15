@@ -33,14 +33,14 @@ Logger *Logger::instance = nullptr;
  * @param Messages based of a given output level or lower will be logged
  * @param Parent object
  */
-Logger::Logger(QTextStream *stream, LogLevel outputLevel, QObject *parent)
+Logger::Logger(QTextStream *stream, LogLevel output_lvl, QObject *parent)
     : QObject(parent)
 {
     // needed to allow sending LogLevel using signals and slots
     qRegisterMetaType<Logger::LogLevel>("Logger::LogLevel");
     loggingThread = new QThread(this);
     outputStream = stream;
-    outputLevel = outputLevel;
+    outputLevel = output_lvl;
 
     this->moveToThread(loggingThread);
     loggingThread->start();
