@@ -38,7 +38,10 @@ jobs:
 
     steps:
     - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default libsdl2-2.0-0 zsync
+      run: |
+        sudo apt-get update && sudo apt-get install g++ extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default libsdl2-2.0-0 zsync
+        sudo snap install cmake --classic
+      #required newer cmake than 3.10 from Ubuntu 18.04
 
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
