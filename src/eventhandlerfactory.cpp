@@ -17,6 +17,7 @@
  */
 
 #include "eventhandlerfactory.h"
+#include "logger.h"
 
 #include "eventhandlers/baseeventhandler.h"
 
@@ -92,16 +93,37 @@ BaseEventHandler *EventHandlerFactory::handler() { return eventHandler; }
 
 QString EventHandlerFactory::fallBackIdentifier()
 {
-    QString temp = QString();
+    static QString temp = "xtest";
+    static bool identifier_obtained = false;
+    if (identifier_obtained)
+        return temp;
+    QString detected_xdg_session = qgetenv("XDG_SESSION_TYPE");
 
+    bool compiled_with_x11 = false;
+    bool compiled_with_uinput = false;
 #if defined(WITH_XTEST)
-    temp = "xtest";
-#elif defined(WITH_UINPUT)
-    temp = "uinput";
-#else
-    temp = "xtest";
+    compiled_with_x11 = true;
+#endif
+#if defined(WITH_UINPUT)
+    compiled_with_uinput = true;
 #endif
 
+    if (detected_xdg_session == "wayland")
+    {
+        if (compiled_with_uinput)
+        {
+            PRINT_STDOUT() << "Selecting uinput as a default event generator.";
+            qInfo() << "uinput is default for wayland";
+            temp = "uinput";
+        } else
+        {
+            qWarning() << "Detected wayland session, but there is no support for uinput detected, defaulting to xtest.";
+            temp = "xtest";
+        }
+    }
+    if (!compiled_with_uinput && !compiled_with_x11)
+        qWarning() << "Neither uinput nor xtest support is detected.";
+    identifier_obtained = true;
     return temp;
 }
 
