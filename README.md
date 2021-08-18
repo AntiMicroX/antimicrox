@@ -18,7 +18,7 @@
 AntiMicroX is a graphical program used to map gamepad keys to keyboard, mouse, scripts and macros. You can use this program to control any desktop application with a gamepad on Linux. 
 It can be also used for generating SDL2 configuration (useful for mapping atypical gamepads to generic ones like xbox360).
 
-Currently we don't support Wayland ([#32](https://github.com/AntiMicroX/antimicrox/issues/32)) - your system has to be running X.org in order to run this program.
+We support Wayland and X.org.
 
 It allows mapping of gamepads/joystick buttons to:
 - keyboard buttons
