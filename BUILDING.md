@@ -8,8 +8,8 @@ Most of these packages are already built and available on [Release Page](https:/
     - [Build Options for CMake](#build-options-for-cmake)
     - [Universal Options](#universal-options)
     - [Linux Options](#linux-options)
-  - [Building deb package](#building-deb-package)
-  - [Building rpm package](#building-rpm-package)
+  - [Building DEB package](#building-deb-package)
+  - [Building RPM package](#building-rpm-package)
   - [Building AppImage](#building-appimage)
   - [Building Flatpak](#building-flatpak)
 
@@ -90,6 +90,7 @@ command for qm files. -noobsolete is a method for getting rid of obsolete text e
 Default: OFF. Allows for the launch of test sources with unit tests
 
     -DANTIMICROX_PKG_VERSION
+
 Default: Not defined. (feature intended for packagers) Manually define version of package displayed in info tab. When not defined building time is displayed instead.
 
 ### Linux Options
@@ -101,6 +102,10 @@ Default: ON. Build the project with AppData support.
     -DWITH_UINPUT
 
 Default: ON. Compile the program with uinput support.
+
+    -DINSTALL_UINPUT_UDEV_RULES
+
+Default: ON. During installation process create new udev rule allowing regular users using uinput.
 
     -DWITH_X11
 

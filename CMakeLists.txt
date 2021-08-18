@@ -75,6 +75,7 @@ endif(WITH_TESTS)
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
+    option(INSTALL_UINPUT_UDEV_RULES "Generate udev rules allowing users using uinput without root permissions." ON)
     option(WITH_XTEST "Compile with support for XTest.  XTest will be usable to simulate events." ON)
     option(APPDATA "Build project with AppData file support." ON)
 endif(UNIX)
@@ -110,6 +111,8 @@ if(UNIX)
 
     if(WITH_UINPUT)
         message("uinput support allowed for simulating events.")
+    else()
+        set(INSTALL_UINPUT_UDEV_RULES OFF)
     endif(WITH_UINPUT)
 
     if(NOT WITH_XTEST AND NOT WITH_UINPUT)
@@ -538,6 +541,13 @@ if(UNIX)
         # Only way to force install target to be dependent on appdata.
         install(CODE "execute_process(COMMAND ${CMAKE_BUILD_TOOL} appdata WORKING_DIRECTORY \"${CMAKE_CURRENT_BINARY_DIR}\")")
     endif(APPDATA)
+endif(UNIX)
+
+if(UNIX)
+    if(INSTALL_UINPUT_UDEV_RULES)
+        message("Udev rules installation enabled.")
+        install(FILES other/60-antimcrox-uinput.rules DESTINATION "/usr/lib/udev/rules.d/")
+    endif(INSTALL_UINPUT_UDEV_RULES)
 endif(UNIX)
 
 # uninstall target
