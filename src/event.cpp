@@ -103,23 +103,19 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
         EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent(slot->getTextData());
     } else if ((device == JoyButtonSlot::JoyExecute) && pressed && !slot->getTextData().isEmpty())
     {
+        QString argumentsString = "";
         if (slot->getExtraData().canConvert<QString>())
         {
-            QString argumentsString = slot->getExtraData().toString();
+            argumentsString = slot->getExtraData().toString();
             // QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
-            bool success = QProcess::startDetached(QString("%1 %2 %3")
-                                                       .arg(detectedScriptExt(slot->getTextData()))
-                                                       .arg(slot->getTextData())
-                                                       .arg(argumentsString));
-            if (!success)
-                qDebug() << "Script cannot be executed";
-        } else
-        {
-            bool success = QProcess::startDetached(
-                QString("%1 %2").arg(detectedScriptExt(slot->getTextData())).arg(slot->getTextData()));
-            if (!success)
-                qDebug() << "Script cannot be executed";
         }
+
+        QString launched_command =
+            QString("%1 %2 %3").arg(detectedScriptExt(slot->getTextData())).arg(slot->getTextData()).arg(argumentsString);
+        qInfo() << "Executing command: " << launched_command;
+        bool success = QProcess::startDetached(launched_command);
+        if (!success)
+            qWarning() << "Command cannot be executed";
     }
 }
 
