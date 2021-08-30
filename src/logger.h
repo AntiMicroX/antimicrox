@@ -179,60 +179,13 @@ class StreamPrinter : public QObject
             LogHelper(Logger::LogLevel::LOG_INFO, m_lineno, m_filename, QString(m_message.str().c_str())).sendMessage();
     };
 
-    StreamPrinter &operator<<(char ch)
+    template <typename Message> StreamPrinter &operator<<(Message ch)
     {
         m_stream << ch;
         m_message << ch;
         return *this;
     };
-    StreamPrinter &operator<<(signed short i)
-    {
-        m_stream << i;
-        m_message << i;
-        return *this;
-    };
-    StreamPrinter &operator<<(unsigned short i)
-    {
-        m_stream << i;
-        m_message << i;
-        return *this;
-    };
-    StreamPrinter &operator<<(signed int i)
-    {
-        m_stream << i;
-        m_message << i;
-        return *this;
-    };
-    StreamPrinter &operator<<(unsigned int i)
-    {
-        m_stream << i;
-        m_message << i;
-        return *this;
-    };
-    StreamPrinter &operator<<(signed long i)
-    {
-        m_stream << i;
-        m_message << i;
-        return *this;
-    };
-    StreamPrinter &operator<<(unsigned long i)
-    {
-        m_stream << i;
-        m_message << i;
-        return *this;
-    };
-    StreamPrinter &operator<<(float f)
-    {
-        m_stream << f;
-        m_message << f;
-        return *this;
-    };
-    StreamPrinter &operator<<(double f)
-    {
-        m_stream << f;
-        m_message << f;
-        return *this;
-    };
+
     StreamPrinter &operator<<(const QString &s)
     {
         m_stream << s;
@@ -243,18 +196,6 @@ class StreamPrinter : public QObject
     {
         m_stream << s;
         m_message << s.toString().toStdString();
-        return *this;
-    };
-    StreamPrinter &operator<<(const char *c)
-    {
-        m_stream << c;
-        m_message << c;
-        return *this;
-    };
-    StreamPrinter &operator<<(const void *ptr)
-    {
-        m_stream << ptr;
-        m_message << ptr;
         return *this;
     };
 };
