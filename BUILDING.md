@@ -38,32 +38,39 @@ In order to build this program, open a terminal and cd into the antimicrox
 directory. Enter the following commands in order to:
 
 Build the program:
+
 ```bash
 cd antimicrox
 mkdir build && cd build
 cmake ..
 cmake --build .
 ```
+
 Run built binaries
+
 ```
 ./bin/antimicrox
 ```
+
 A recommended way of installation is building package typical for for your system (or building universal one like an AppImage).
+
 <details>
   <summary>Installation using cmake (not recommended)</summary>
 
 This way of installation is not recommended, because it doesn't integrate very well with some environments.
 
-
 Install:
+
 ```bash
 sudo cmake --install .
 ```
 
 Uninstall:
+
 ```bash
 sudo make uninstall
 ```
+
 </details>
 
 ### Build Options for CMake
@@ -72,8 +79,11 @@ There are a few application specific options that can be used when running
 cmake to build antimicrox. The following file will attempt to list some of those
 options and describe their use in the project.
 
-
 ### Universal Options
+
+    -DBUILD_DOCS
+
+Default: OFF. Build documentation using doxygen (installed doxygen and dot required). Generated files can be found in `docs` directory
 
     -DUPDATE_TRANSLATIONS
 
@@ -138,11 +148,13 @@ cmake --build . --target package
 ## Building AppImage
 
 Create build directory
+
 ```bash
 mkdir build && cd ./build
 ```
 
 Download tools used for creating appimages (and make them executable)
+
 ```bash
 wget https://github.com/linuxdeploy/linuxdeploy/releases/downloacontinuous/linuxdeploy-x86_64.AppImage
 wget https://github.com/AppImage/AppImageKit/releases/downloacontinuous/appimagetool-x86_64.AppImage
@@ -153,14 +165,15 @@ chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
 ```
 
 Build antimicrox and install it in AppDir directory
+
 ```bash
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 make
 make install DESTDIR=AppDir
 ```
 
-
 Create AppImage file
+
 ```bash
 ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
 ./appimagetool-x86_64.AppImage AppDir/ --no-appstream

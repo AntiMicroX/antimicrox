@@ -1,0 +1,41 @@
+PROJECT_NAME           = "AntiMicroX"
+
+OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/docs/
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/src/
+
+QT_AUTOBRIEF           = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+PROJECT_LOGO           = @CMAKE_CURRENT_SOURCE_DIR@/src/icons/application/48x48/apps/48-apps-io.github.antimicrox.antimicrox.png
+
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# If the CLASS_GRAPH tag is set to YES then doxygen will generate a graph for
+# each documented class showing the direct and indirect inheritance relations.
+# Setting this tag to YES will force the CLASS_DIAGRAMS tag to NO.
+# The default value is: YES.
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+CLASS_GRAPH            = YES
+
+COLLABORATION_GRAPH    = YES
+
+# If the UML_LOOK tag is set to YES, doxygen will generate inheritance and
+# collaboration diagrams in a style similar to the OMG's Unified Modeling
+# Language.
+# The default value is: NO.
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+UML_LOOK               = NO
+
+
+CALL_GRAPH             = YES
+
+CALLER_GRAPH           = YES
+
+GRAPHICAL_HIERARCHY    = YES
