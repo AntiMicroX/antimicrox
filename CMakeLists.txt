@@ -84,6 +84,7 @@ option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source
 option(TRANS_KEEP_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
 option(ANTIMICROX_PKG_VERSION "Manually define version of package displayed in info tab" OFF)
+option(BUILD_DOCS "Build documentation" OFF)
 
 if(ANTIMICROX_PKG_VERSION)
     message("This build will be marked as: ${ANTIMICROX_PKG_VERSION}")
@@ -623,3 +624,30 @@ endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
 include(CPack)
+
+
+# Building docs using doxygen
+if(BUILD_DOCS)
+    message("Docs build enabled")
+    find_package(Doxygen)
+
+    if (DOXYGEN_FOUND)
+        # set input and output files
+        set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/other/Doxyfile_config.in)
+        set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/docs/Doxyfile)
+
+        # request to configure the file
+        configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+        message("Doxygen build started")
+
+        # note the option ALL which allows to build the docs together with the application
+        add_custom_target( doc_doxygen ALL
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            COMMENT "Generating API documentation with Doxygen"
+            VERBATIM )
+
+    else (DOXYGEN_FOUND)
+      message("Doxygen need to be installed to generate the doxygen documentation")
+    endif (DOXYGEN_FOUND)
+endif(BUILD_DOCS)
