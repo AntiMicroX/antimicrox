@@ -21,6 +21,8 @@
 
 #include "joydpad.h"
 
+#include <QPointer>
+
 class VDPad : public JoyDPad
 {
     Q_OBJECT
@@ -54,10 +56,10 @@ class VDPad : public JoyDPad
     void activatePendingEvent();
 
   private:
-    JoyButton *upButton;
-    JoyButton *downButton;
-    JoyButton *leftButton;
-    JoyButton *rightButton;
+    QPointer<JoyButton> upButton;
+    QPointer<JoyButton> downButton;
+    QPointer<JoyButton> leftButton;
+    QPointer<JoyButton> rightButton;
     bool pendingVDPadEvent;
 };
 
