@@ -733,6 +733,11 @@ int main(int argc, char *argv[])
     delete localServer;
     localServer = nullptr;
 
+    if (!joypad_worker.isNull())
+    {
+        joypad_worker->deleteLater();
+    }
+
     inputEventThread->quit();
     inputEventThread->wait();
 
@@ -758,12 +763,6 @@ int main(int argc, char *argv[])
 
     delete mainWindow;
     mainWindow = nullptr;
-
-    if (!joypad_worker.isNull())
-    {
-        delete joypad_worker;
-        joypad_worker.clear();
-    }
 
     delete appLogger;
     return app_result;
