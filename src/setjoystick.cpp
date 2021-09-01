@@ -119,7 +119,7 @@ void SetJoystick::deleteButtons()
 
         if (button != nullptr)
         {
-            delete button;
+            button->deleteLater();
             button = nullptr;
         }
     }
@@ -138,7 +138,7 @@ void SetJoystick::deleteAxes()
         if (axis != nullptr)
         {
             axes.remove(iter.key());
-            delete axis;
+            axis->deleteLater();
         }
     }
 
@@ -155,7 +155,7 @@ void SetJoystick::deleteSticks()
 
         if (stick != nullptr)
         {
-            delete stick;
+            stick->deleteLater();
             stick = nullptr;
         }
     }
@@ -173,7 +173,7 @@ void SetJoystick::deleteVDpads()
 
         if (dpad != nullptr)
         {
-            delete dpad;
+            dpad->deleteLater();
             dpad = nullptr;
         }
     }
@@ -192,7 +192,7 @@ void SetJoystick::deleteHats()
         if (dpad != nullptr)
         {
             hats.remove(iter.key());
-            delete dpad;
+            dpad->deleteLater();
         }
     }
 
