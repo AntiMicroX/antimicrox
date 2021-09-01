@@ -476,7 +476,7 @@ void MainWindow::populateTrayIcon()
             QString joytabName = current->getSDLName();
             joytabName.append(" ").append(tr("(%1)").arg(current->getName()));
 
-            qDebug() << "joytabName" << i << ": " << joytabName;
+            qDebug() << i << " Controller SDL name: " << joytabName;
             QMenu *joysticksubMenu = nullptr;
 
             if (!useSingleList)
