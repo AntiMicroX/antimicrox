@@ -2994,8 +2994,7 @@ bool JoyButton::containsDistanceSlots()
 
 void JoyButton::clearAssignedSlots(bool signalEmit)
 {
-    QListIterator<JoyButtonSlot *> iter(*getAssignedSlots());
-
+    QListIterator<JoyButtonSlot *> iter(assignments);
     while (iter.hasNext())
     {
         auto *slot = iter.next();
