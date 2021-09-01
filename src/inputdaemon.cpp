@@ -291,30 +291,6 @@ void InputDaemon::refreshJoysticks()
     emit joysticksRefreshed(m_joysticks);
 }
 
-void InputDaemon::deleteJoysticks()
-{
-    QMapIterator<SDL_JoystickID, InputDevice *> iter(*m_joysticks);
-
-    while (iter.hasNext())
-    {
-        InputDevice *joystick = iter.next().value();
-
-        for (auto el : joystick->getJoystick_sets().values())
-        {
-        }
-
-        if (joystick != nullptr)
-        {
-            delete joystick;
-            joystick = nullptr;
-        }
-    }
-
-    m_joysticks->clear();
-    getTrackjoysticksLocal().clear();
-    trackcontrollers.clear();
-}
-
 void InputDaemon::stop()
 {
     stopped = true;

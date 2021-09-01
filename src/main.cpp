@@ -522,7 +522,6 @@ int main(int argc, char *argv[])
         mainAppHelper.printControllerList(joysticks);
 
         joypad_worker->quit();
-        joypad_worker->deleteJoysticks();
 
         delete joysticks;
         joysticks = nullptr;
@@ -550,8 +549,6 @@ int main(int argc, char *argv[])
 
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-        QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteJoysticks,
-                         Qt::BlockingQueuedConnection);
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                          Qt::DirectConnection);
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater,
@@ -703,7 +700,6 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::revertMouseThread);
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-    QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteJoysticks);
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater);
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
