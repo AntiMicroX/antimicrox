@@ -29,8 +29,7 @@ class JoyControlStickModifierButton : public JoyGradientButton
     Q_OBJECT
 
   public:
-    explicit JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet,
-                                           QObject *parent = nullptr);
+    explicit JoyControlStickModifierButton(JoyControlStick *stick, int originset, SetJoystick *parentSet, QObject *parent);
 
     virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
     virtual QString getXmlName();

@@ -49,16 +49,7 @@ SetJoystick::SetJoystick(InputDevice *device, int index, bool runreset, QObject 
         reset();
 }
 
-SetJoystick::~SetJoystick()
-{
-    deleteSticks();
-    deleteVDpads();
-    deleteButtons();
-    deleteAxes();
-    deleteHats();
-
-    removeAllBtnFromQueue();
-}
+SetJoystick::~SetJoystick() { removeAllBtnFromQueue(); }
 
 JoyButton *SetJoystick::getJoyButton(int index) const { return getButtons().value(index); }
 

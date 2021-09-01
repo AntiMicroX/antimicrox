@@ -33,7 +33,7 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     Q_OBJECT
 
   public:
-    explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY, int index, int originset = 0, QObject *parent = nullptr);
+    explicit JoyControlStick(JoyAxis *axisX, JoyAxis *axisY, int index, int originset, QObject *parent);
     ~JoyControlStick();
 
     enum JoyMode

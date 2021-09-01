@@ -59,8 +59,6 @@ JoyControlStick::~JoyControlStick()
 {
     axisX->removeControlStick(false);
     axisY->removeControlStick(false);
-
-    deleteButtons();
 }
 
 /**
@@ -915,6 +913,8 @@ void JoyControlStick::refreshButtons()
 
 /**
  * @brief Delete stick direction buttons and stick modifier button.
+ *
+ * (Not used by destructor because parents delete children automatically)
  */
 void JoyControlStick::deleteButtons()
 {

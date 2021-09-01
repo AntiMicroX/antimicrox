@@ -43,7 +43,7 @@ class JoyButton : public QObject
     Q_OBJECT
 
   public:
-    explicit JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
+    explicit JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent);
     ~JoyButton();
 
     enum SetChangeCondition

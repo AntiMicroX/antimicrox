@@ -72,7 +72,6 @@ class InputDaemon : public QObject
     void refresh();
     void refreshJoystick(InputDevice *joystick);
     void refreshJoysticks();
-    void deleteJoysticks();
     void startWorker();
     void refreshMapping(QString mapping, InputDevice *device);
     void removeDevice(InputDevice *device);

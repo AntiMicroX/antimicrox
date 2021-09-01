@@ -36,7 +36,7 @@ class JoyAxis : public QObject
     Q_OBJECT
 
   public:
-    explicit JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
+    explicit JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *parent);
     ~JoyAxis();
 
     enum ThrottleTypes

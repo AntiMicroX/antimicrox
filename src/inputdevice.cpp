@@ -50,23 +50,7 @@ InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSetti
     m_settings = settings;
 }
 
-InputDevice::~InputDevice()
-{
-    QHashIterator<int, SetJoystick *> iter(getJoystick_sets());
-
-    while (iter.hasNext())
-    {
-        SetJoystick *setjoystick = iter.next().value();
-
-        if (setjoystick != nullptr)
-        {
-            getJoystick_sets().remove(iter.key());
-            delete setjoystick;
-        }
-    }
-
-    getJoystick_sets().clear();
-}
+InputDevice::~InputDevice() {}
 
 int InputDevice::getJoyNumber() { return joyNumber; }
 

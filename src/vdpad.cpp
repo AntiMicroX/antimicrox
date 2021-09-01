@@ -54,25 +54,25 @@ VDPad::VDPad(JoyButton *upButton, JoyButton *downButton, JoyButton *leftButton, 
 
 VDPad::~VDPad()
 {
-    if (upButton != nullptr)
+    if (!upButton.isNull())
     {
         upButton->removeVDPad();
         upButton = nullptr;
     }
 
-    if (downButton != nullptr)
+    if (!downButton.isNull())
     {
         downButton->removeVDPad();
         downButton = nullptr;
     }
 
-    if (leftButton != nullptr)
+    if (!leftButton.isNull())
     {
         leftButton->removeVDPad();
         leftButton = nullptr;
     }
 
-    if (rightButton != nullptr)
+    if (!rightButton.isNull())
     {
         rightButton->removeVDPad();
         rightButton = nullptr;

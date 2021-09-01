@@ -31,9 +31,9 @@ class JoyControlStickButton : public JoyGradientButton
 
   public:
     explicit JoyControlStickButton(JoyControlStick *stick, int index, int originset, SetJoystick *parentSet,
-                                   QObject *parent = nullptr);
+                                   QObject *parent);
     explicit JoyControlStickButton(JoyControlStick *stick, JoyStickDirectionsType::JoyStickDirections index, int originset,
-                                   SetJoystick *parentSet, QObject *parent = nullptr);
+                                   SetJoystick *parentSet, QObject *parent);
 
     virtual int getRealJoyNumber() const;
     virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
