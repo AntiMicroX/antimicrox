@@ -34,7 +34,7 @@ class GameController : public InputDevice
 
   public:
     explicit GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings, int counterUniques,
-                            QObject *parent = nullptr);
+                            QObject *parent);
 
     virtual QString getName() override;
     virtual QString getSDLName() override;

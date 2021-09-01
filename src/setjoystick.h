@@ -33,8 +33,8 @@ class SetJoystick : public SetJoystickXml
     Q_OBJECT
 
   public:
-    explicit SetJoystick(InputDevice *device, int index, QObject *parent = 0);
-    explicit SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent = 0);
+    explicit SetJoystick(InputDevice *device, int index, QObject *parent);
+    explicit SetJoystick(InputDevice *device, int index, bool runreset, QObject *parent);
     ~SetJoystick();
 
     JoyAxis *getJoyAxis(int index) const;

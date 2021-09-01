@@ -34,7 +34,7 @@ class InputDevice : public QObject
     Q_OBJECT
 
   public:
-    explicit InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent = nullptr);
+    explicit InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent);
     virtual ~InputDevice();
 
     virtual int getNumberButtons();
