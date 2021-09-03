@@ -5,7 +5,7 @@ build-dir/
 Build/
 .flatpak-builder/
 repo/
-doc/
+docs/
 
 # Changelogs
 src/Changelog
