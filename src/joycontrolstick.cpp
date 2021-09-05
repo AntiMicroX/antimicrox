@@ -925,7 +925,7 @@ void JoyControlStick::deleteButtons()
 
         if (button != nullptr)
         {
-            delete button;
+            button->deleteLater();
             button = nullptr;
         }
     }

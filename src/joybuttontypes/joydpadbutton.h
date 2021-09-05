@@ -29,7 +29,7 @@ class JoyDPadButton : public JoyButton
     Q_OBJECT
 
   public:
-    JoyDPadButton(int direction, int originset, JoyDPad *dpad, SetJoystick *parentSet, QObject *parent = 0);
+    JoyDPadButton(int direction, int originset, JoyDPad *dpad, SetJoystick *parentSet, QObject *parent);
 
     virtual int getRealJoyNumber() const override;
     virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const override;
