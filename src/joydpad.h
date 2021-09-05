@@ -27,7 +27,6 @@ class JoyDPad : public QObject
 
   public:
     explicit JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *parent);
-    ~JoyDPad();
 
     enum JoyMode
     {
