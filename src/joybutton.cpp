@@ -2072,7 +2072,7 @@ bool JoyButton::setAssignedSlot(int code, JoyButtonSlot::JoySlotInputAction mode
         emit slotsChanged();
     } else if (slot != nullptr)
     {
-        delete slot;
+        slot->deleteLater();
         slot = nullptr;
     }
 
@@ -2117,7 +2117,7 @@ bool JoyButton::setAssignedSlot(int code, int alias, JoyButtonSlot::JoySlotInput
         emit slotsChanged();
     } else if (slot != nullptr)
     {
-        delete slot;
+        slot->deleteLater();
         slot = nullptr;
     }
 
@@ -2157,7 +2157,7 @@ bool JoyButton::setAssignedSlot(int code, int alias, int index, JoyButtonSlot::J
             JoyButtonSlot *temp = getAssignedSlots()->at(index);
             if (temp != nullptr)
             {
-                delete temp;
+                temp->deleteLater();
                 temp = nullptr;
             }
 
@@ -2174,7 +2174,7 @@ bool JoyButton::setAssignedSlot(int code, int alias, int index, JoyButtonSlot::J
         emit slotsChanged();
     } else if (slot != nullptr)
     {
-        delete slot;
+        slot->deleteLater();
         slot = nullptr;
     }
 
@@ -2226,7 +2226,7 @@ bool JoyButton::insertAssignedSlot(int code, int alias, int index, JoyButtonSlot
         emit slotsChanged();
     } else if (slot != nullptr)
     {
-        delete slot;
+        slot->deleteLater();
         slot = nullptr;
     }
 
@@ -2309,7 +2309,7 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updat
             qDeleteAll(*slot->getMixSlots());
         }*/
 
-        delete slot;
+        slot->deleteLater();
         slot = nullptr;
     }
 
@@ -2356,7 +2356,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
             {
                 for (auto minislot : *temp->getMixSlots())
                 {
-                    delete minislot;
+                    minislot->deleteLater();
                     minislot = nullptr;
                 }
 
@@ -2366,7 +2366,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
 
             if (temp != nullptr)
             {
-                delete temp;
+                temp->deleteLater();
                 temp = nullptr;
             }
 
@@ -2382,7 +2382,7 @@ bool JoyButton::setAssignedSlot(JoyButtonSlot *otherSlot, int index)
         emit slotsChanged();
     } else if (newslot != nullptr)
     {
-        delete newslot;
+        newslot->deleteLater();
         newslot = nullptr;
     }
 
@@ -3010,7 +3010,7 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
                 slot->cleanMixSlots();
             }
 
-            delete slot;
+            slot->deleteLater();
             slot = nullptr;
         }
     }
@@ -3043,7 +3043,7 @@ void JoyButton::removeAssignedSlot(int index)
         {
             for (auto minislot : *slot->getMixSlots())
             {
-                delete minislot;
+                minislot->deleteLater();
                 minislot = nullptr;
             }
 
@@ -3054,7 +3054,7 @@ void JoyButton::removeAssignedSlot(int index)
             getAssignedSlots()->removeAt(index);
         } else
         {
-            delete slot;
+            slot->deleteLater();
             slot = nullptr;
         }
 
