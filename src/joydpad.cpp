@@ -47,19 +47,6 @@ JoyDPad::JoyDPad(int index, int originset, SetJoystick *parentSet, QObject *pare
     connect(&directionDelayTimer, &QTimer::timeout, this, &JoyDPad::dpadDirectionChangeEvent);
 }
 
-JoyDPad::~JoyDPad()
-{
-    QHashIterator<int, JoyDPadButton *> iter(buttons);
-    while (iter.hasNext())
-    {
-        JoyDPadButton *button = iter.next().value();
-        delete button;
-        button = nullptr;
-    }
-
-    buttons.clear();
-}
-
 JoyDPadButton *JoyDPad::getJoyButton(int index_local) { return buttons.value(index_local); }
 
 void JoyDPad::populateButtons()
