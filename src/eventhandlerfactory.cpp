@@ -56,15 +56,6 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent)
 #endif
 }
 
-EventHandlerFactory::~EventHandlerFactory()
-{
-    if (eventHandler != nullptr)
-    {
-        delete eventHandler;
-        eventHandler = nullptr;
-    }
-}
-
 EventHandlerFactory *EventHandlerFactory::getInstance(QString handler)
 {
     if (instance == nullptr)
