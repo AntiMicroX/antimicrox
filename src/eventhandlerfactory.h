@@ -66,7 +66,6 @@ class EventHandlerFactory : public QObject
 
   protected:
     explicit EventHandlerFactory(QString handler, QObject *parent = nullptr);
-    ~EventHandlerFactory();
 
     BaseEventHandler *eventHandler;
     static EventHandlerFactory *instance;
