@@ -1376,7 +1376,7 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
             {
                 if (info->getUniqueID() == "all")
                 {
-                    delete allDefaultProfile;
+                    allDefaultProfile->deleteLater();
                     allDefaultProfile = nullptr;
                 } else if (defaultAutoProfiles.contains(info->getUniqueID()))
                 {

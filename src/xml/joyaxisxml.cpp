@@ -36,9 +36,9 @@ JoyAxisXml::JoyAxisXml(JoyAxis *axis, QObject *parent)
 JoyAxisXml::~JoyAxisXml()
 {
     if (!joyButtonXmlNAxis.isNull())
-        delete joyButtonXmlNAxis;
+        joyButtonXmlNAxis->deleteLater();
     if (!joyButtonXmlPAxis.isNull())
-        delete joyButtonXmlPAxis;
+        joyButtonXmlPAxis->deleteLater();
 }
 
 void JoyAxisXml::readConfig(QXmlStreamReader *xml)

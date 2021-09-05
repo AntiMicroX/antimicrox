@@ -120,7 +120,7 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
                             buttonslot->assignMixSlotsToNull();
                         }
 
-                        delete buttonslot;
+                        buttonslot->deleteLater();
                         buttonslot = nullptr;
                     }
                 } else
@@ -133,7 +133,7 @@ bool JoyButtonXml::readButtonConfig(QXmlStreamReader *xml)
                         buttonslot->assignMixSlotsToNull();
                     }
 
-                    delete buttonslot;
+                    buttonslot->deleteLater();
                     buttonslot = nullptr;
                 }
             } else

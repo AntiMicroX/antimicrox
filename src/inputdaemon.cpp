@@ -87,7 +87,7 @@ InputDaemon::~InputDaemon()
     {
         sdlWorkerThread->quit();
         sdlWorkerThread->wait();
-        delete sdlWorkerThread;
+        sdlWorkerThread->deleteLater();
         sdlWorkerThread = nullptr;
     }
 }
