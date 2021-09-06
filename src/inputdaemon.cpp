@@ -161,7 +161,7 @@ void InputDaemon::refreshJoysticks()
         if (joystick != nullptr)
         {
             m_joysticks->remove(iter.key());
-            delete joystick;
+            joystick->deleteLater();
         }
     }
 
@@ -688,7 +688,7 @@ InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArray
 
     if (!statusHash->contains(device))
     {
-        bitArrayStatus = new InputDeviceBitArrayStatus(device, readCurrent);
+        bitArrayStatus = new InputDeviceBitArrayStatus(device, readCurrent, this);
         statusHash->insert(device, bitArrayStatus);
     } else
     {
@@ -967,7 +967,7 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 
 QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
 {
-    InputDeviceBitArrayStatus tempStatus(device, false);
+    InputDeviceBitArrayStatus tempStatus(device, false, this);
 
     for (int i = 0; i < device->getNumberRawAxes(); i++)
     {
@@ -1164,7 +1164,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
 void InputDaemon::clearBitArrayStatusInstances()
 {
-    QHashIterator<InputDevice *, InputDeviceBitArrayStatus *> genIter(getReleaseEventsGeneratedLocal());
+    QHashIterator<InputDevice *, InputDeviceBitArrayStatus *> genIter(releaseEventsGenerated);
 
     while (genIter.hasNext())
     {
@@ -1172,14 +1172,14 @@ void InputDaemon::clearBitArrayStatusInstances()
 
         if (temp != nullptr)
         {
-            delete temp;
+            temp->deleteLater();
             temp = nullptr;
         }
     }
 
     getReleaseEventsGeneratedLocal().clear();
 
-    QHashIterator<InputDevice *, InputDeviceBitArrayStatus *> pendIter(getPendingEventValuesLocal());
+    QHashIterator<InputDevice *, InputDeviceBitArrayStatus *> pendIter(pendingEventValues);
 
     while (pendIter.hasNext())
     {
@@ -1187,7 +1187,7 @@ void InputDaemon::clearBitArrayStatusInstances()
 
         if (temp != nullptr)
         {
-            delete temp;
+            temp->deleteLater();
             temp = nullptr;
         }
     }

@@ -446,7 +446,7 @@ void AutoProfileWatcher::syncProfileAssignment()
                     QList<AutoProfileInfo *> templist;
 
                     if (getAppProfileAssignments().contains(exe))
-                        templist = getAppProfileAssignments().value(exe);
+                        templist = appProfileAssignments.value(exe);
 
                     templist.append(info);
                     appProfileAssignments.insert(exe, templist);
@@ -477,7 +477,7 @@ void AutoProfileWatcher::syncProfileAssignment()
 void AutoProfileWatcher::clearProfileAssignments()
 {
     QSet<AutoProfileInfo *> terminateProfiles;
-    QListIterator<QList<AutoProfileInfo *>> iterDelete(getAppProfileAssignments().values());
+    QListIterator<QList<AutoProfileInfo *>> iterDelete(appProfileAssignments.values());
 
     while (iterDelete.hasNext())
     {
@@ -487,7 +487,7 @@ void AutoProfileWatcher::clearProfileAssignments()
 
     appProfileAssignments.clear();
 
-    QListIterator<QList<AutoProfileInfo *>> iterClassDelete(getWindowClassProfileAssignments().values());
+    QListIterator<QList<AutoProfileInfo *>> iterClassDelete(windowClassProfileAssignments.values());
 
     while (iterClassDelete.hasNext())
     {
@@ -497,7 +497,7 @@ void AutoProfileWatcher::clearProfileAssignments()
 
     windowClassProfileAssignments.clear();
 
-    QListIterator<QList<AutoProfileInfo *>> iterNameDelete(getWindowNameProfileAssignments().values());
+    QListIterator<QList<AutoProfileInfo *>> iterNameDelete(windowNameProfileAssignments.values());
 
     while (iterNameDelete.hasNext())
     {
@@ -514,7 +514,7 @@ void AutoProfileWatcher::clearProfileAssignments()
         AutoProfileInfo *info = iterTerminate.next();
         if (info != nullptr)
         {
-            delete info;
+            info->deleteLater();
             info = nullptr;
         }
     }
@@ -526,7 +526,7 @@ void AutoProfileWatcher::clearProfileAssignments()
         AutoProfileInfo *info = iterDefaultsDelete.next();
         if (info != nullptr)
         {
-            delete info;
+            info->deleteLater();
             info = nullptr;
         }
     }

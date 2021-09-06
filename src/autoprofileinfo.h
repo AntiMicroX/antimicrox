@@ -26,11 +26,10 @@ class AutoProfileInfo : public QObject
     Q_OBJECT
 
   public:
-    explicit AutoProfileInfo(QString uniqueID, QString profileLocation, bool active, bool partialTitle,
-                             QObject *parent = nullptr);
+    explicit AutoProfileInfo(QString uniqueID, QString profileLocation, bool active, bool partialTitle, QObject *parent);
     explicit AutoProfileInfo(QString uniqueID, QString profileLocation, QString exe, bool active, bool partialTitle,
-                             QObject *parent = nullptr);
-    explicit AutoProfileInfo(QObject *parent = 0);
+                             QObject *parent);
+    explicit AutoProfileInfo(QObject *parent);
     ~AutoProfileInfo();
 
     // void setGUID(QString guid);
