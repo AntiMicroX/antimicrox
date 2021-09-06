@@ -380,11 +380,11 @@ void SetJoystick::addControlStick(int index, JoyControlStick *stick)
 
 void SetJoystick::removeControlStick(int index)
 {
-    if (getSticks().contains(index))
+    if (sticks.contains(index))
     {
         JoyControlStick *stick = getSticks().value(index);
         sticks.remove(index);
-        delete stick;
+        stick->deleteLater();
         stick = nullptr;
     }
 }
@@ -414,11 +414,11 @@ void SetJoystick::addVDPad(int index, VDPad *vdpad)
 
 void SetJoystick::removeVDPad(int index)
 {
-    if (getVdpads().contains(index))
+    if (vdpads.contains(index))
     {
-        VDPad *vdpad = getVdpads().value(index);
+        VDPad *vdpad = vdpads.value(index);
         vdpads.remove(index);
-        delete vdpad;
+        vdpad->deleteLater();
         vdpad = nullptr;
     }
 }

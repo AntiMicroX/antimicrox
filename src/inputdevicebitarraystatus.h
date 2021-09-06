@@ -30,7 +30,7 @@ class InputDeviceBitArrayStatus : public QObject
     Q_OBJECT
 
   public:
-    explicit InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent = true, QObject *parent = nullptr);
+    explicit InputDeviceBitArrayStatus(InputDevice *device, bool readCurrent, QObject *parent);
 
     void changeAxesStatus(int axisIndex, bool value);
     void changeButtonStatus(int buttonIndex, bool value);

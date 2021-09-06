@@ -638,10 +638,10 @@ void Calibration::createAxesConnection()
         while (!hb->isEmpty())
         {
             QWidget *w = hb->takeAt(0)->widget();
-            delete w;
+            w->deleteLater();
         }
 
-        delete hb;
+        hb->deleteLater();
     }
 
     update();
