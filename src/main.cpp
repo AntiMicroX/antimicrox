@@ -243,7 +243,7 @@ int main(int argc, char *argv[])
     {
         // An instance of this program is already running.
         // Save app config and exit.
-
+        PRINT_STDOUT() << "AntiMicroX is already running.\n";
         QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings, false);
         MainWindow mainWindow(joysticks, &cmdutility, &settings, false);
         mainWindow.fillButtons();
@@ -251,6 +251,7 @@ int main(int argc, char *argv[])
 
         if (cmdutility.hasProfile() || cmdutility.hasProfileInOptions())
         {
+            PRINT_STDOUT() << "Update selected profile\n";
             mainWindow.saveAppConfig();
         } else if (cmdutility.isUnloadRequested())
         {
