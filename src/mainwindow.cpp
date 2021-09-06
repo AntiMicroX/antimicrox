@@ -77,6 +77,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
                        AntiMicroSettings *settings, bool graphical, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , trayIconMenu(nullptr)
+    , trayIcon(nullptr)
 {
     ui->setupUi(this);
 
@@ -185,11 +187,6 @@ MainWindow::~MainWindow()
 
     installEventFilter(trayIconMenu);
     installEventFilter(trayIcon);
-
-    if (trayIconMenu != nullptr)
-        delete trayIconMenu;
-    if (trayIcon != nullptr)
-        delete trayIcon;
 
     delete ui;
 }
