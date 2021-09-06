@@ -20,6 +20,7 @@
 #define JOYAXISBUTTON_H
 
 #include "joybuttontypes/joygradientbutton.h"
+#include "logger.h"
 
 class VDPad;
 class SetJoystick;
@@ -30,7 +31,7 @@ class JoyAxisButton : public JoyGradientButton
     Q_OBJECT
 
   public:
-    explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent = 0);
+    explicit JoyAxisButton(JoyAxis *axis, int index, int originset, SetJoystick *parentSet, QObject *parent);
 
     virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
     virtual QString getXmlName();
