@@ -176,7 +176,7 @@ Create AppImage file
 
 ```bash
 ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
-./appimagetool-x86_64.AppImage AppDir/ --no-appstream
+./appimagetool-x86_64.AppImage AppDir/
 ```
 
 ## Building Flatpak
