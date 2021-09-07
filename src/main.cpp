@@ -270,7 +270,12 @@ int main(int argc, char *argv[])
 
         settings.sync();
         socket.disconnectFromServer();
-        if (socket.waitForDisconnected(2000))
+        if (socket.state() == QLocalSocket::LocalSocketState::ConnectedState ||
+            socket.state() == QLocalSocket::LocalSocketState::ClosingState)
+        {
+            if (socket.waitForDisconnected(2000))
+                qDebug() << "Socket " << socket.socketDescriptor() << " disconnected!";
+        } else
             qDebug() << "Socket " << socket.socketDescriptor() << " disconnected!";
         deleteInputDevices(joysticks);
 
