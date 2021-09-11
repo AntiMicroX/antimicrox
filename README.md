@@ -154,7 +154,7 @@ Run `antimicrox --help` or read `man antimicrox` for command-line parameters.
 
 ## Wiki
 
-[Look here](https://github.com/juliagoda/antimicroX/wiki)
+[Look here](https://github.com/AntiMicroX/antimicrox/wiki)
 
 ## Testing Under Linux
 
