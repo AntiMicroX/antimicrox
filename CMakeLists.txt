@@ -547,7 +547,7 @@ endif(UNIX)
 if(UNIX)
     if(INSTALL_UINPUT_UDEV_RULES)
         message("Udev rules installation enabled.")
-        install(FILES other/60-antimcrox-uinput.rules DESTINATION "/usr/lib/udev/rules.d/")
+        install(FILES other/60-antimicrox-uinput.rules DESTINATION "/usr/lib/udev/rules.d/")
     endif(INSTALL_UINPUT_UDEV_RULES)
 endif(UNIX)
 
