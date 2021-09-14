@@ -26,11 +26,6 @@ if(POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 
-if(UNIX)
-    find_package(ECM REQUIRED NO_MODULE)
-    set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
-endif(UNIX)
-
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -42,10 +37,6 @@ endif(UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
-
-if(UNIX)
-    include(ECMInstallIcons)
-endif(UNIX)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
@@ -62,12 +53,6 @@ set(ANTIMICROX_MAJOR_VERSION 3)
 set(ANTIMICROX_MINOR_VERSION 1)
 set(ANTIMICROX_PATCH_VERSION 7)
 
-option(WITH_TESTS "Allow tests for classes" OFF)
-
-if(WITH_TESTS)
-    message("Tests enabled")
-endif(WITH_TESTS)
-
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
     option(WITH_UINPUT "Compile with support for uinput. uinput will be usable to simulate events." ON)
@@ -81,6 +66,11 @@ option(TRANS_KEEP_OBSOLETE "Add -noobsolete option to lupdate command to get rid
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
 option(ANTIMICROX_PKG_VERSION "Manually define version of package displayed in info tab" OFF)
 option(BUILD_DOCS "Build documentation" OFF)
+option(WITH_TESTS "Allow tests for classes" OFF)
+
+if(WITH_TESTS)
+    message("Tests enabled")
+endif(WITH_TESTS)
 
 if(ANTIMICROX_PKG_VERSION)
     message("This build will be marked as: ${ANTIMICROX_PKG_VERSION}")
@@ -88,15 +78,6 @@ if(ANTIMICROX_PKG_VERSION)
 endif(ANTIMICROX_PKG_VERSION)
 
 if(UNIX)
-    find_package(PkgConfig REQUIRED)
-
-    pkg_check_modules(SDL2 REQUIRED sdl2)
-#    find_package(SDL2 REQUIRED) -> will fail on some systems
-
-    if(WITH_X11)
-        find_package(X11 REQUIRED)
-    endif(WITH_X11)
-
     if(WITH_XTEST AND NOT WITH_X11)
         set(WITH_XTEST OFF)
         message("Cannot use XTest without X11. Disabling XTest support.")
@@ -457,6 +438,13 @@ QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
 add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(SDL2 REQUIRED sdl2)
+find_package(SDL2 REQUIRED)
+
+if(WITH_X11)
+    find_package(X11 REQUIRED)
+endif(WITH_X11)
 
 ###############################
 # LINKER LIBRARIES
@@ -527,6 +515,10 @@ if(UNIX)
 endif(UNIX)
 
 if(UNIX)
+    find_package(ECM REQUIRED NO_MODULE)
+    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_DIR})
+    include(ECMInstallIcons)
+
     ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
