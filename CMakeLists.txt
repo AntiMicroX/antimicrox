@@ -438,8 +438,6 @@ QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
 add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(SDL2 REQUIRED sdl2)
 find_package(SDL2 REQUIRED)
 
 if(WITH_X11)
