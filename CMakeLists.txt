@@ -448,22 +448,18 @@ endif(UNIX)
 # PACKAGES
 ###############################
 
-if(UNIX)
-    find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
+set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
 
-    set(CMAKE_AUTOMOC TRUE)
-    QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
-    QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
-
-    add_subdirectory("share/antimicrox/translations")
-
-    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-endif(UNIX)
+QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+add_subdirectory("share/antimicrox/translations")
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 
 ###############################
