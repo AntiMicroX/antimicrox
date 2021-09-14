@@ -121,6 +121,10 @@ if(UNIX)
     endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
 endif(UNIX)
 
+###############################
+# PLATFORM-INDEPENDENT FILES
+###############################
+
 set(antimicrox_MAIN src/main.cpp)
 
 set(antimicrox_SOURCES
@@ -385,7 +389,10 @@ set(antimicrox_FORMS
 
 set(antimicrox_RESOURCES src/resources.qrc)
 
-# Platform dependent files.
+###############################
+# PLATFORM-DEPENDENT FILES
+###############################
+
 if(UNIX)
     if(WITH_X11)
         LIST(APPEND antimicrox_SOURCES src/x11extras.cpp
@@ -419,6 +426,10 @@ if(UNIX)
     endif(WITH_UINPUT)
 endif(UNIX)
 
+###############################
+# DEFINITIONS
+###############################
+
 if(UNIX)
     if(WITH_X11)
         add_definitions(-DWITH_X11)
@@ -432,6 +443,10 @@ if(UNIX)
         add_definitions(-DWITH_UINPUT)
     endif(WITH_UINPUT)
 endif(UNIX)
+
+###############################
+# PACKAGES
+###############################
 
 if(UNIX)
     find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
@@ -451,7 +466,10 @@ if(UNIX)
 endif(UNIX)
 
 
-# linker libraries
+###############################
+# LINKER LIBRARIES
+###############################
+
 LIST(APPEND QT_LIBS Qt5::Core)
 LIST(APPEND QT_LIBS Qt5::Gui)
 LIST(APPEND QT_LIBS Qt5::Widgets)
@@ -488,6 +506,9 @@ if(UNIX)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 endif(UNIX)
 
+###############################
+# COMPILE & LINK
+###############################
 
 add_executable(antimicrox
         ${antimicrox_MAIN}
@@ -504,6 +525,9 @@ target_link_libraries(antimicrox
         ${EXTRA_LIBS}
         )
 
+###############################
+# INSTALL
+###############################
 
 # Specify out directory for final executable.
 if(UNIX)
@@ -578,7 +602,10 @@ if(WITH_TESTS)
 endif(WITH_TESTS)
 
 
-#building package using CPack
+###############################
+# PACKAGES BUILDING WITH CPACK
+###############################
+
 include(InstallRequiredSystemLibraries)
 
 
@@ -625,7 +652,10 @@ set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
 include(CPack)
 
 
-# Building docs using doxygen
+###############################
+# DOCS
+###############################
+
 if(BUILD_DOCS)
     message("Doxygen build enabled")
     find_package(Doxygen)
