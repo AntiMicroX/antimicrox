@@ -440,9 +440,8 @@ if(UNIX)
     find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
     find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
     find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
-    #find_package(Qt5Test REQUIRED)
 
-    QT5_WRAP_CPP(antimicrox_HEADERS_MOC ${antimicrox_HEADERS})
+    set(CMAKE_AUTOMOC TRUE)
     QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
     QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
 
