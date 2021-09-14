@@ -476,6 +476,7 @@ include_directories(
         "${CMAKE_CURRENT_BINARY_DIR}/src"
         ${PROJECT_SOURCE_DIR}
         "${PROJECT_SOURCE_DIR}/src"
+        ${SDL2_INCLUDE_DIRS}
 )
 
 
