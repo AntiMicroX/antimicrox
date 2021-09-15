@@ -120,131 +120,131 @@ QtWinKeyMapper::QtWinKeyMapper(QObject *parent)
 
 void QtWinKeyMapper::populateMappingHashes()
 {
-    if (qtKeyToVirtualKey.isEmpty())
+    if (qtKeyToVirtKeyHash.isEmpty())
     {
-        qtKeyToVirtualKey[Qt::Key_Cancel] = VK_CANCEL;
-        qtKeyToVirtualKey[Qt::Key_Backspace] = VK_BACK;
-        qtKeyToVirtualKey[Qt::Key_Tab] = VK_TAB;
-        qtKeyToVirtualKey[Qt::Key_Clear] = VK_CLEAR;
-        qtKeyToVirtualKey[Qt::Key_Return] = VK_RETURN;
-        qtKeyToVirtualKey[Qt::Key_Enter] = VK_RETURN;
+        qtKeyToVirtKeyHash[Qt::Key_Cancel] = VK_CANCEL;
+        qtKeyToVirtKeyHash[Qt::Key_Backspace] = VK_BACK;
+        qtKeyToVirtKeyHash[Qt::Key_Tab] = VK_TAB;
+        qtKeyToVirtKeyHash[Qt::Key_Clear] = VK_CLEAR;
+        qtKeyToVirtKeyHash[Qt::Key_Return] = VK_RETURN;
+        qtKeyToVirtKeyHash[Qt::Key_Enter] = VK_RETURN;
         // qtKeyToWinVirtualKey[Qt::Key_Shift] = VK_SHIFT;
         // qtKeyToWinVirtualKey[Qt::Key_Control] = VK_CONTROL;
         // qtKeyToWinVirtualKey[Qt::Key_Alt] = VK_MENU;
-        qtKeyToVirtualKey[Qt::Key_Pause] = VK_PAUSE;
-        qtKeyToVirtualKey[Qt::Key_CapsLock] = VK_CAPITAL;
-        qtKeyToVirtualKey[Qt::Key_Escape] = VK_ESCAPE;
-        qtKeyToVirtualKey[Qt::Key_Mode_switch] = VK_MODECHANGE;
-        qtKeyToVirtualKey[Qt::Key_Space] = VK_SPACE;
-        qtKeyToVirtualKey[Qt::Key_PageUp] = VK_PRIOR;
-        qtKeyToVirtualKey[Qt::Key_PageDown] = VK_NEXT;
-        qtKeyToVirtualKey[Qt::Key_End] = VK_END;
-        qtKeyToVirtualKey[Qt::Key_Home] = VK_HOME;
-        qtKeyToVirtualKey[Qt::Key_Left] = VK_LEFT;
-        qtKeyToVirtualKey[Qt::Key_Up] = VK_UP;
-        qtKeyToVirtualKey[Qt::Key_Right] = VK_RIGHT;
-        qtKeyToVirtualKey[Qt::Key_Down] = VK_DOWN;
-        qtKeyToVirtualKey[Qt::Key_Select] = VK_SELECT;
-        qtKeyToVirtualKey[Qt::Key_Printer] = VK_PRINT;
-        qtKeyToVirtualKey[Qt::Key_Execute] = VK_EXECUTE;
-        qtKeyToVirtualKey[Qt::Key_Print] = VK_SNAPSHOT;
-        qtKeyToVirtualKey[Qt::Key_Insert] = VK_INSERT;
-        qtKeyToVirtualKey[Qt::Key_Delete] = VK_DELETE;
-        qtKeyToVirtualKey[Qt::Key_Help] = VK_HELP;
-        qtKeyToVirtualKey[Qt::Key_Meta] = VK_LWIN;
+        qtKeyToVirtKeyHash[Qt::Key_Pause] = VK_PAUSE;
+        qtKeyToVirtKeyHash[Qt::Key_CapsLock] = VK_CAPITAL;
+        qtKeyToVirtKeyHash[Qt::Key_Escape] = VK_ESCAPE;
+        qtKeyToVirtKeyHash[Qt::Key_Mode_switch] = VK_MODECHANGE;
+        qtKeyToVirtKeyHash[Qt::Key_Space] = VK_SPACE;
+        qtKeyToVirtKeyHash[Qt::Key_PageUp] = VK_PRIOR;
+        qtKeyToVirtKeyHash[Qt::Key_PageDown] = VK_NEXT;
+        qtKeyToVirtKeyHash[Qt::Key_End] = VK_END;
+        qtKeyToVirtKeyHash[Qt::Key_Home] = VK_HOME;
+        qtKeyToVirtKeyHash[Qt::Key_Left] = VK_LEFT;
+        qtKeyToVirtKeyHash[Qt::Key_Up] = VK_UP;
+        qtKeyToVirtKeyHash[Qt::Key_Right] = VK_RIGHT;
+        qtKeyToVirtKeyHash[Qt::Key_Down] = VK_DOWN;
+        qtKeyToVirtKeyHash[Qt::Key_Select] = VK_SELECT;
+        qtKeyToVirtKeyHash[Qt::Key_Printer] = VK_PRINT;
+        qtKeyToVirtKeyHash[Qt::Key_Execute] = VK_EXECUTE;
+        qtKeyToVirtKeyHash[Qt::Key_Print] = VK_SNAPSHOT;
+        qtKeyToVirtKeyHash[Qt::Key_Insert] = VK_INSERT;
+        qtKeyToVirtKeyHash[Qt::Key_Delete] = VK_DELETE;
+        qtKeyToVirtKeyHash[Qt::Key_Help] = VK_HELP;
+        qtKeyToVirtKeyHash[Qt::Key_Meta] = VK_LWIN;
         // qtKeyToWinVirtualKey[Qt::Key_Meta] = VK_RWIN;
-        qtKeyToVirtualKey[Qt::Key_Menu] = VK_APPS;
-        qtKeyToVirtualKey[Qt::Key_Sleep] = VK_SLEEP;
+        qtKeyToVirtKeyHash[Qt::Key_Menu] = VK_APPS;
+        qtKeyToVirtKeyHash[Qt::Key_Sleep] = VK_SLEEP;
 
-        qtKeyToVirtualKey[AntKey_KP_Multiply] = VK_MULTIPLY;
-        // qtKeyToVirtualKey[Qt::Key_Asterisk] = VK_MULTIPLY;
-        qtKeyToVirtualKey[AntKey_KP_Add] = VK_ADD;
-        // qtKeyToVirtualKey[Qt::Key_Comma] = VK_SEPARATOR;
-        qtKeyToVirtualKey[AntKey_KP_Subtract] = VK_SUBTRACT;
-        qtKeyToVirtualKey[AntKey_KP_Decimal] = VK_DECIMAL;
-        qtKeyToVirtualKey[AntKey_KP_Divide] = VK_DIVIDE;
+        qtKeyToVirtKeyHash[AntKey_KP_Multiply] = VK_MULTIPLY;
+        // qtKeyToVirtKeyHash[Qt::Key_Asterisk] = VK_MULTIPLY;
+        qtKeyToVirtKeyHash[AntKey_KP_Add] = VK_ADD;
+        // qtKeyToVirtKeyHash[Qt::Key_Comma] = VK_SEPARATOR;
+        qtKeyToVirtKeyHash[AntKey_KP_Subtract] = VK_SUBTRACT;
+        qtKeyToVirtKeyHash[AntKey_KP_Decimal] = VK_DECIMAL;
+        qtKeyToVirtKeyHash[AntKey_KP_Divide] = VK_DIVIDE;
 
-        qtKeyToVirtualKey[Qt::Key_NumLock] = VK_NUMLOCK;
-        qtKeyToVirtualKey[Qt::Key_ScrollLock] = VK_SCROLL;
-        qtKeyToVirtualKey[Qt::Key_Massyo] = VK_OEM_FJ_MASSHOU;
-        qtKeyToVirtualKey[Qt::Key_Touroku] = VK_OEM_FJ_TOUROKU;
+        qtKeyToVirtKeyHash[Qt::Key_NumLock] = VK_NUMLOCK;
+        qtKeyToVirtKeyHash[Qt::Key_ScrollLock] = VK_SCROLL;
+        qtKeyToVirtKeyHash[Qt::Key_Massyo] = VK_OEM_FJ_MASSHOU;
+        qtKeyToVirtKeyHash[Qt::Key_Touroku] = VK_OEM_FJ_TOUROKU;
 
-        qtKeyToVirtualKey[Qt::Key_Shift] = VK_LSHIFT;
+        qtKeyToVirtKeyHash[Qt::Key_Shift] = VK_LSHIFT;
         // qtKeyToWinVirtualKey[Qt::Key_Shift] = VK_RSHIFT;
-        qtKeyToVirtualKey[Qt::Key_Control] = VK_LCONTROL;
+        qtKeyToVirtKeyHash[Qt::Key_Control] = VK_LCONTROL;
         // qtKeyToWinVirtualKey[Qt::Key_Control] = VK_RCONTROL;
-        qtKeyToVirtualKey[Qt::Key_Alt] = VK_LMENU;
+        qtKeyToVirtKeyHash[Qt::Key_Alt] = VK_LMENU;
         // qtKeyToWinVirtualKey[Qt::Key_Alt] = VK_RMENU;
-        qtKeyToVirtualKey[Qt::Key_Back] = VK_BROWSER_BACK;
-        qtKeyToVirtualKey[Qt::Key_Forward] = VK_BROWSER_FORWARD;
-        qtKeyToVirtualKey[Qt::Key_Refresh] = VK_BROWSER_REFRESH;
-        qtKeyToVirtualKey[Qt::Key_Stop] = VK_BROWSER_STOP;
-        qtKeyToVirtualKey[Qt::Key_Search] = VK_BROWSER_SEARCH;
-        qtKeyToVirtualKey[Qt::Key_Favorites] = VK_BROWSER_FAVORITES;
-        qtKeyToVirtualKey[Qt::Key_HomePage] = VK_BROWSER_HOME;
-        qtKeyToVirtualKey[Qt::Key_VolumeMute] = VK_VOLUME_MUTE;
-        qtKeyToVirtualKey[Qt::Key_VolumeDown] = VK_VOLUME_DOWN;
-        qtKeyToVirtualKey[Qt::Key_VolumeUp] = VK_VOLUME_UP;
-        qtKeyToVirtualKey[Qt::Key_MediaNext] = VK_MEDIA_NEXT_TRACK;
-        qtKeyToVirtualKey[Qt::Key_MediaPrevious] = VK_MEDIA_PREV_TRACK;
-        qtKeyToVirtualKey[Qt::Key_MediaStop] = VK_MEDIA_STOP;
-        qtKeyToVirtualKey[Qt::Key_MediaPlay] = VK_MEDIA_PLAY_PAUSE;
-        qtKeyToVirtualKey[Qt::Key_LaunchMail] = VK_LAUNCH_MAIL;
-        qtKeyToVirtualKey[Qt::Key_LaunchMedia] = VK_LAUNCH_MEDIA_SELECT;
-        qtKeyToVirtualKey[Qt::Key_Launch0] = VK_LAUNCH_APP1;
-        qtKeyToVirtualKey[Qt::Key_Launch1] = VK_LAUNCH_APP2;
-        qtKeyToVirtualKey[Qt::Key_Kanji] = VK_KANJI;
+        qtKeyToVirtKeyHash[Qt::Key_Back] = VK_BROWSER_BACK;
+        qtKeyToVirtKeyHash[Qt::Key_Forward] = VK_BROWSER_FORWARD;
+        qtKeyToVirtKeyHash[Qt::Key_Refresh] = VK_BROWSER_REFRESH;
+        qtKeyToVirtKeyHash[Qt::Key_Stop] = VK_BROWSER_STOP;
+        qtKeyToVirtKeyHash[Qt::Key_Search] = VK_BROWSER_SEARCH;
+        qtKeyToVirtKeyHash[Qt::Key_Favorites] = VK_BROWSER_FAVORITES;
+        qtKeyToVirtKeyHash[Qt::Key_HomePage] = VK_BROWSER_HOME;
+        qtKeyToVirtKeyHash[Qt::Key_VolumeMute] = VK_VOLUME_MUTE;
+        qtKeyToVirtKeyHash[Qt::Key_VolumeDown] = VK_VOLUME_DOWN;
+        qtKeyToVirtKeyHash[Qt::Key_VolumeUp] = VK_VOLUME_UP;
+        qtKeyToVirtKeyHash[Qt::Key_MediaNext] = VK_MEDIA_NEXT_TRACK;
+        qtKeyToVirtKeyHash[Qt::Key_MediaPrevious] = VK_MEDIA_PREV_TRACK;
+        qtKeyToVirtKeyHash[Qt::Key_MediaStop] = VK_MEDIA_STOP;
+        qtKeyToVirtKeyHash[Qt::Key_MediaPlay] = VK_MEDIA_PLAY_PAUSE;
+        qtKeyToVirtKeyHash[Qt::Key_LaunchMail] = VK_LAUNCH_MAIL;
+        qtKeyToVirtKeyHash[Qt::Key_LaunchMedia] = VK_LAUNCH_MEDIA_SELECT;
+        qtKeyToVirtKeyHash[Qt::Key_Launch0] = VK_LAUNCH_APP1;
+        qtKeyToVirtKeyHash[Qt::Key_Launch1] = VK_LAUNCH_APP2;
+        qtKeyToVirtKeyHash[Qt::Key_Kanji] = VK_KANJI;
 
         // The following VK_OEM_* keys are consistent across all
         // keyboard layouts.
-        qtKeyToVirtualKey[Qt::Key_Equal] = VK_OEM_PLUS;
-        qtKeyToVirtualKey[Qt::Key_Minus] = VK_OEM_MINUS;
-        qtKeyToVirtualKey[Qt::Key_Period] = VK_OEM_PERIOD;
-        qtKeyToVirtualKey[Qt::Key_Comma] = VK_OEM_COMMA;
-        /*qtKeyToVirtualKey[Qt::Key_Semicolon] = VK_OEM_1;
-        qtKeyToVirtualKey[Qt::Key_Slash] = VK_OEM_2;
-        qtKeyToVirtualKey[Qt::Key_Equal] = VK_OEM_PLUS;
-        qtKeyToVirtualKey[Qt::Key_Minus] = VK_OEM_MINUS;
-        qtKeyToVirtualKey[Qt::Key_Period]  = VK_OEM_PERIOD;
-        qtKeyToVirtualKey[Qt::Key_QuoteLeft] = VK_OEM_3;
-        qtKeyToVirtualKey[Qt::Key_BracketLeft] = VK_OEM_4;
-        qtKeyToVirtualKey[Qt::Key_Backslash] = VK_OEM_5;
-        qtKeyToVirtualKey[Qt::Key_BracketRight] = VK_OEM_6;
-        qtKeyToVirtualKey[Qt::Key_Apostrophe] = VK_OEM_7;*/
+        qtKeyToVirtKeyHash[Qt::Key_Equal] = VK_OEM_PLUS;
+        qtKeyToVirtKeyHash[Qt::Key_Minus] = VK_OEM_MINUS;
+        qtKeyToVirtKeyHash[Qt::Key_Period] = VK_OEM_PERIOD;
+        qtKeyToVirtKeyHash[Qt::Key_Comma] = VK_OEM_COMMA;
+        /*qtKeyToVirtKeyHash[Qt::Key_Semicolon] = VK_OEM_1;
+        qtKeyToVirtKeyHash[Qt::Key_Slash] = VK_OEM_2;
+        qtKeyToVirtKeyHash[Qt::Key_Equal] = VK_OEM_PLUS;
+        qtKeyToVirtKeyHash[Qt::Key_Minus] = VK_OEM_MINUS;
+        qtKeyToVirtKeyHash[Qt::Key_Period]  = VK_OEM_PERIOD;
+        qtKeyToVirtKeyHash[Qt::Key_QuoteLeft] = VK_OEM_3;
+        qtKeyToVirtKeyHash[Qt::Key_BracketLeft] = VK_OEM_4;
+        qtKeyToVirtKeyHash[Qt::Key_Backslash] = VK_OEM_5;
+        qtKeyToVirtKeyHash[Qt::Key_BracketRight] = VK_OEM_6;
+        qtKeyToVirtKeyHash[Qt::Key_Apostrophe] = VK_OEM_7;*/
 
-        qtKeyToVirtualKey[Qt::Key_Play] = VK_PLAY;
-        qtKeyToVirtualKey[Qt::Key_Zoom] = VK_ZOOM;
+        qtKeyToVirtKeyHash[Qt::Key_Play] = VK_PLAY;
+        qtKeyToVirtKeyHash[Qt::Key_Zoom] = VK_ZOOM;
         // qtKeyToWinVirtualKey[Qt::Key_Clear] = VK_OEM_CLEAR;
 
         // Map 0-9 ASCII codes
         for (int i = 0; i <= (0x39 - 0x30); i++)
         {
-            qtKeyToVirtualKey[Qt::Key_0 + i] = 0x30 + i;
+            qtKeyToVirtKeyHash[Qt::Key_0 + i] = 0x30 + i;
         }
 
         // Map A-Z ASCII codes
         for (int i = 0; i <= (0x5a - 0x41); i++)
         {
-            qtKeyToVirtualKey[Qt::Key_A + i] = 0x41 + i;
+            qtKeyToVirtKeyHash[Qt::Key_A + i] = 0x41 + i;
         }
 
         // Map function keys
         for (int i = 0; i <= (VK_F24 - VK_F1); i++)
         {
-            qtKeyToVirtualKey[Qt::Key_F1 + i] = VK_F1 + i;
+            qtKeyToVirtKeyHash[Qt::Key_F1 + i] = VK_F1 + i;
         }
 
         // Map numpad keys
         for (int i = 0; i <= (VK_NUMPAD9 - VK_NUMPAD0); i++)
         {
-            qtKeyToVirtualKey[AntKey_KP_0 + i] = VK_NUMPAD0 + i;
+            qtKeyToVirtKeyHash[AntKey_KP_0 + i] = VK_NUMPAD0 + i;
         }
 
         // Map custom keys
-        qtKeyToVirtualKey[AntKey_Alt_R] = VK_RMENU;
-        qtKeyToVirtualKey[AntKey_Meta_R] = VK_RWIN;
-        qtKeyToVirtualKey[AntKey_Shift_R] = VK_RSHIFT;
-        qtKeyToVirtualKey[AntKey_Control_R] = VK_RCONTROL;
+        qtKeyToVirtKeyHash[AntKey_Alt_R] = VK_RMENU;
+        qtKeyToVirtKeyHash[AntKey_Meta_R] = VK_RWIN;
+        qtKeyToVirtKeyHash[AntKey_Shift_R] = VK_RSHIFT;
+        qtKeyToVirtKeyHash[AntKey_Control_R] = VK_RCONTROL;
 
         // Go through VK_OEM_* values and find the appropriate association
         // with a key defined in Qt. Association is decided based on char
@@ -303,35 +303,35 @@ void QtWinKeyMapper::populateMappingHashes()
         {
             iterDynamic.next();
             unsigned int tempvalue = iterDynamic.value();
-            if (tempvalue != 0 && !qtKeyToVirtualKey.contains(tempvalue))
+            if (tempvalue != 0 && !qtKeyToVirtKeyHash.contains(tempvalue))
             {
-                qtKeyToVirtualKey.insert(tempvalue, iterDynamic.key());
+                qtKeyToVirtKeyHash.insert(tempvalue, iterDynamic.key());
             }
         }
 
         // Populate other hash. Flip key and value so mapping
         // goes VK -> Qt Key.
-        QHashIterator<int, int> iter(qtKeyToVirtualKey);
+        QHashIterator<int, int> iter(qtKeyToVirtKeyHash);
         while (iter.hasNext())
         {
             iter.next();
-            virtualKeyToQtKey[iter.value()] = iter.key();
+            virtKeyToQtKeyHash[iter.value()] = iter.key();
         }
 
         // Override current item for VK_RETURN
-        virtualKeyToQtKey[VK_RETURN] = Qt::Key_Return;
+        virtKeyToQtKeyHash[VK_RETURN] = Qt::Key_Return;
 
         // Insert more aliases that would have resulted in
         // overwrites in other hash.
-        virtualKeyToQtKey[VK_SHIFT] = Qt::Key_Shift;
-        virtualKeyToQtKey[VK_CONTROL] = Qt::Key_Control;
-        virtualKeyToQtKey[VK_MENU] = Qt::Key_Alt;
+        virtKeyToQtKeyHash[VK_SHIFT] = Qt::Key_Shift;
+        virtKeyToQtKeyHash[VK_CONTROL] = Qt::Key_Control;
+        virtKeyToQtKeyHash[VK_MENU] = Qt::Key_Alt;
     }
 }
 
 int QtWinKeyMapper::returnQtKey(int key, int scancode)
 {
-    int tempkey = virtualKeyToQtKey.value(key);
+    int tempkey = virtKeyToQtKeyHash.value(key);
     int extended = scancode & WinExtras::EXTENDED_FLAG;
     if (key == VK_RETURN && extended)
     {
@@ -343,7 +343,7 @@ int QtWinKeyMapper::returnQtKey(int key, int scancode)
 
 void QtWinKeyMapper::populateCharKeyInformation()
 {
-    virtualkeyToCharKeyInformation.clear();
+    virtkeyToCharKeyInfo.clear();
 
     unsigned int total = 0;
     // BYTE ks[256];
@@ -394,9 +394,9 @@ void QtWinKeyMapper::populateCharKeyInformation()
                     charKeyInformation tempinfo;
                     tempinfo.modifiers = dicis;
                     tempinfo.virtualkey = i;
-                    if (!virtualkeyToCharKeyInformation.contains(tempchar.unicode()))
+                    if (!virtkeyToCharKeyInfo.contains(tempchar.unicode()))
                     {
-                        virtualkeyToCharKeyInformation.insert(tempchar.unicode(), tempinfo);
+                        virtkeyToCharKeyInfo.insert(tempchar.unicode(), tempinfo);
                         total++;
                     }
                 }
