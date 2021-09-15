@@ -289,16 +289,18 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         width = deskRect.width();
         height = deskRect.height();
 
-#if defined(WITH_X11)
         QPoint currentPoint;
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
+#if defined(WITH_X11)
             currentPoint = X11Extras::getInstance()->getPos();
+#else
+            qCritical() << "Platform name returned 'xcb', but X11 support is disabled";
+#endif
         } else
         {
             currentPoint = QCursor::pos();
         }
-#endif
 
         currentMouseX = currentPoint.x();
         currentMouseY = currentPoint.y();
