@@ -483,9 +483,11 @@ if(UNIX)
     endif(WITH_XTEST)
 
      # necessary ifwe use find_package for SDL2
-#    if(NOT DEFINED SDL2_LIBRARIES)
+     #    if(NOT DEFINED SDL2_LIBRARIES)
 #        set(SDL2_LIBRARIES SDL2::SDL2)
 #    endif()
+elseif (WIN32)
+    list(APPEND WIN_LIBS "psapi")
 endif(UNIX)
 
 
