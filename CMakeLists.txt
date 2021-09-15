@@ -26,11 +26,6 @@ if(POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 
-if(UNIX)
-    find_package(ECM REQUIRED NO_MODULE)
-    set(CMAKE_MODULE_PATH ${ECM_MODULE_DIR})
-endif(UNIX)
-
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -43,20 +38,12 @@ endif(UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
 
-if(UNIX)
-    include(ECMInstallIcons)
-endif(UNIX)
-
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
 
 if(COMPILER_SUPPORTS_CXX11)
-    if(NOT WIN32)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
         #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++11")
-    else()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-    endif()
 else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif(COMPILER_SUPPORTS_CXX11)
@@ -65,12 +52,6 @@ endif(COMPILER_SUPPORTS_CXX11)
 set(ANTIMICROX_MAJOR_VERSION 3)
 set(ANTIMICROX_MINOR_VERSION 1)
 set(ANTIMICROX_PATCH_VERSION 7)
-
-option(WITH_TESTS "Allow tests for classes" OFF)
-
-if(WITH_TESTS)
-    message("Tests enabled")
-endif(WITH_TESTS)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)
@@ -85,6 +66,11 @@ option(TRANS_KEEP_OBSOLETE "Add -noobsolete option to lupdate command to get rid
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
 option(ANTIMICROX_PKG_VERSION "Manually define version of package displayed in info tab" OFF)
 option(BUILD_DOCS "Build documentation" OFF)
+option(WITH_TESTS "Allow tests for classes" OFF)
+
+if(WITH_TESTS)
+    message("Tests enabled")
+endif(WITH_TESTS)
 
 if(ANTIMICROX_PKG_VERSION)
     message("This build will be marked as: ${ANTIMICROX_PKG_VERSION}")
@@ -92,15 +78,6 @@ if(ANTIMICROX_PKG_VERSION)
 endif(ANTIMICROX_PKG_VERSION)
 
 if(UNIX)
-    find_package(PkgConfig REQUIRED)
-
-    pkg_check_modules(SDL2 REQUIRED sdl2)
-#    find_package(SDL2 REQUIRED) -> will fail on some systems
-
-    if(WITH_X11)
-        find_package(X11 REQUIRED)
-    endif(WITH_X11)
-
     if(WITH_XTEST AND NOT WITH_X11)
         set(WITH_XTEST OFF)
         message("Cannot use XTest without X11. Disabling XTest support.")
@@ -120,6 +97,10 @@ if(UNIX)
         message(FATAL_ERROR "No system is defined for simulating events.")
     endif(NOT WITH_XTEST AND NOT WITH_UINPUT)
 endif(UNIX)
+
+###############################
+# PLATFORM-INDEPENDENT FILES
+###############################
 
 set(antimicrox_MAIN src/main.cpp)
 
@@ -385,7 +366,10 @@ set(antimicrox_FORMS
 
 set(antimicrox_RESOURCES src/resources.qrc)
 
-# Platform dependent files.
+###############################
+# PLATFORM-DEPENDENT FILES
+###############################
+
 if(UNIX)
     if(WITH_X11)
         LIST(APPEND antimicrox_SOURCES src/x11extras.cpp
@@ -419,6 +403,10 @@ if(UNIX)
     endif(WITH_UINPUT)
 endif(UNIX)
 
+###############################
+# DEFINITIONS
+###############################
+
 if(UNIX)
     if(WITH_X11)
         add_definitions(-DWITH_X11)
@@ -433,26 +421,33 @@ if(UNIX)
     endif(WITH_UINPUT)
 endif(UNIX)
 
-if(UNIX)
-    find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
-    find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
-    #find_package(Qt5Test REQUIRED)
+###############################
+# PACKAGES
+###############################
 
-    QT5_WRAP_CPP(antimicrox_HEADERS_MOC ${antimicrox_HEADERS})
-    QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
-    QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
+set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
 
-    add_subdirectory("share/antimicrox/translations")
+QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+add_subdirectory("share/antimicrox/translations")
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-endif(UNIX)
+find_package(SDL2 REQUIRED)
 
+if(WITH_X11)
+    find_package(X11 REQUIRED)
+endif(WITH_X11)
 
-# linker libraries
+###############################
+# LINKER LIBRARIES
+###############################
+
 LIST(APPEND QT_LIBS Qt5::Core)
 LIST(APPEND QT_LIBS Qt5::Gui)
 LIST(APPEND QT_LIBS Qt5::Widgets)
@@ -481,6 +476,7 @@ include_directories(
         "${CMAKE_CURRENT_BINARY_DIR}/src"
         ${PROJECT_SOURCE_DIR}
         "${PROJECT_SOURCE_DIR}/src"
+        ${SDL2_INCLUDE_DIRS}
 )
 
 
@@ -489,6 +485,9 @@ if(UNIX)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 endif(UNIX)
 
+###############################
+# COMPILE & LINK
+###############################
 
 add_executable(antimicrox
         ${antimicrox_MAIN}
@@ -505,6 +504,9 @@ target_link_libraries(antimicrox
         ${EXTRA_LIBS}
         )
 
+###############################
+# INSTALL
+###############################
 
 # Specify out directory for final executable.
 if(UNIX)
@@ -512,6 +514,10 @@ if(UNIX)
 endif(UNIX)
 
 if(UNIX)
+    find_package(ECM REQUIRED NO_MODULE)
+    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_DIR})
+    include(ECMInstallIcons)
+
     ecm_install_icons(ICONS src/icons/application/16x16/apps/16-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/24x24/apps/24-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS src/icons/application/32x32/apps/32-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
@@ -579,7 +585,10 @@ if(WITH_TESTS)
 endif(WITH_TESTS)
 
 
-#building package using CPack
+###############################
+# PACKAGES BUILDING WITH CPACK
+###############################
+
 include(InstallRequiredSystemLibraries)
 
 
@@ -626,7 +635,10 @@ set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
 include(CPack)
 
 
-# Building docs using doxygen
+###############################
+# DOCS
+###############################
+
 if(BUILD_DOCS)
     message("Doxygen build enabled")
     find_package(Doxygen)
