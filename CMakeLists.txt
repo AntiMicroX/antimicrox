@@ -506,14 +506,29 @@ endif(UNIX)
 ###############################
 # COMPILE & LINK
 ###############################
-
-add_executable(antimicrox
+if(UNIX)
+    add_executable(antimicrox
         ${antimicrox_MAIN}
         ${antimicrox_HEADERS_MOC}
         ${antimicrox_SOURCES}
         ${antimicrox_FORMS_HEADERS}
         ${antimicrox_RESOURCES_RCC}
         )
+elseif(WIN32)
+    # The WIN32 is required to specify a GUI application.
+    add_executable(antimicrox WIN32
+        ${antimicrox_MAIN}
+        ${antimicrox_HEADERS_MOC}
+        ${antimicrox_SOURCES}
+        ${antimicrox_FORMS_HEADERS}
+        ${antimicrox_RESOURCES_RCC}
+        # TODO create this with windows .ico icon
+        # src/antimicrox.rc
+    )
+    target_link_libraries(antimicrox
+        ${WIN_LIBS}
+    )
+endif(UNIX)
 
 target_link_libraries(antimicrox
         ${QT_LIBS}
