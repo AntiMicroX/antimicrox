@@ -15,27 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <qt_windows.h>
 #include <cmath>
+#include <qt_windows.h>
 
 #include "winsendinputeventhandler.h"
-#include <winextras.h>
 #include <antkeymapper.h>
+#include <winextras.h>
 
-WinSendInputEventHandler::WinSendInputEventHandler(QObject *parent) :
-    BaseEventHandler(parent)
+WinSendInputEventHandler::WinSendInputEventHandler(QObject *parent)
+    : BaseEventHandler(parent)
 {
 }
 
-bool WinSendInputEventHandler::init()
-{
-    return true;
-}
+bool WinSendInputEventHandler::init() { return true; }
 
-bool WinSendInputEventHandler::cleanup()
-{
-    return true;
-}
+bool WinSendInputEventHandler::cleanup() { return true; }
 
 void WinSendInputEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool pressed)
 {
@@ -47,7 +41,7 @@ void WinSendInputEventHandler::sendKeyboardEvent(JoyButtonSlot *slot, bool press
     int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
 
     temp[0].type = INPUT_KEYBOARD;
-    //temp[0].ki.wScan = MapVirtualKey(code, MAPVK_VK_TO_VSC);
+    // temp[0].ki.wScan = MapVirtualKey(code, MAPVK_VK_TO_VSC);
     temp[0].ki.wScan = scancode;
     temp[0].ki.time = 0;
     temp[0].ki.dwExtraInfo = 0;
@@ -66,41 +60,33 @@ void WinSendInputEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pr
     if (code == 1)
     {
         temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_LEFTDOWN : MOUSEEVENTF_LEFTUP;
-    }
-    else if (code == 2)
+    } else if (code == 2)
     {
         temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_MIDDLEDOWN : MOUSEEVENTF_MIDDLEUP;
-    }
-    else if (code == 3)
+    } else if (code == 3)
     {
         temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_RIGHTDOWN : MOUSEEVENTF_RIGHTUP;
-    }
-    else if (code == 4)
+    } else if (code == 4)
     {
         temp[0].mi.dwFlags = MOUSEEVENTF_WHEEL;
         temp[0].mi.mouseData = pressed ? WHEEL_DELTA : 0;
-    }
-    else if (code == 5)
+    } else if (code == 5)
     {
         temp[0].mi.dwFlags = MOUSEEVENTF_WHEEL;
         temp[0].mi.mouseData = pressed ? -WHEEL_DELTA : 0;
-    }
-    else if (code == 6)
+    } else if (code == 6)
     {
         temp[0].mi.dwFlags = 0x01000;
         temp[0].mi.mouseData = pressed ? -WHEEL_DELTA : 0;
-    }
-    else if (code == 7)
+    } else if (code == 7)
     {
         temp[0].mi.dwFlags = 0x01000;
         temp[0].mi.mouseData = pressed ? WHEEL_DELTA : 0;
-    }
-    else if (code == 8)
+    } else if (code == 8)
     {
         temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_XDOWN : MOUSEEVENTF_XUP;
         temp[0].mi.mouseData = XBUTTON1;
-    }
-    else if (code == 9)
+    } else if (code == 9)
     {
         temp[0].mi.dwFlags = pressed ? MOUSEEVENTF_XDOWN : MOUSEEVENTF_XUP;
         temp[0].mi.mouseData = XBUTTON2;
@@ -114,24 +100,18 @@ void WinSendInputEventHandler::sendMouseEvent(int xDis, int yDis)
     INPUT temp[1] = {};
     temp[0].type = INPUT_MOUSE;
     temp[0].mi.mouseData = 0;
-    temp[0].mi.dwFlags   =  MOUSEEVENTF_MOVE;
+    temp[0].mi.dwFlags = MOUSEEVENTF_MOVE;
     temp[0].mi.dx = xDis;
     temp[0].mi.dy = yDis;
     SendInput(1, temp, sizeof(INPUT));
 }
 
-QString WinSendInputEventHandler::getName()
-{
-    return QString("SendInput");
-}
+QString WinSendInputEventHandler::getName() { return QString("SendInput"); }
 
-QString WinSendInputEventHandler::getIdentifier()
-{
-    return QString("sendinput");
-}
+QString WinSendInputEventHandler::getIdentifier() { return QString("sendinput"); }
 
-void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
-                                                    unsigned int width, unsigned int height)
+void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis, unsigned int width,
+                                                    unsigned int height)
 {
     if (width > 0 && height > 0)
     {
@@ -140,8 +120,8 @@ void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned 
         temp[0].mi.mouseData = 0;
         temp[0].mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
 
-        int fx = ceil(xDis * (65535.0/static_cast<double>(width)));
-        int fy = ceil(yDis * (65535.0/static_cast<double>(height)));
+        int fx = ceil(xDis * (65535.0 / static_cast<double>(width)));
+        int fy = ceil(yDis * (65535.0 / static_cast<double>(height)));
         temp[0].mi.dx = fx;
         temp[0].mi.dy = fy;
         SendInput(1, temp, sizeof(INPUT));
@@ -154,9 +134,9 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
 
     if (mapper && mapper->getKeyMapper())
     {
-        QtWinKeyMapper *keymapper = static_cast<QtWinKeyMapper*>(mapper->getKeyMapper());
+        QtWinKeyMapper *keymapper = static_cast<QtWinKeyMapper *>(mapper->getKeyMapper());
 
-        for (int i=0; i < maintext.size(); i++)
+        for (int i = 0; i < maintext.size(); i++)
         {
             QtWinKeyMapper::charKeyInformation temp = keymapper->getCharKeyInformation(maintext.at(i));
             QList<unsigned int> tempList;
@@ -214,7 +194,7 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
                 tempiter.toBack();
                 j = 0;
                 memset(tempBuffer, 0, sizeof(tempBuffer));
-                //INPUT tempBuffer2[tempList.size()] = {0};
+                // INPUT tempBuffer2[tempList.size()] = {0};
                 while (tempiter.hasPrevious())
                 {
                     unsigned int tempcode = tempiter.previous();

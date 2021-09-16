@@ -2,14 +2,14 @@
 
 #include <windows.h>
 
-#include <qt_windows.h>
 #include <psapi.h>
-//#include <QDebug>
+#include <qt_windows.h>
+
+#include <QCoreApplication>
+#include <QDebug>
+#include <QDir>
 #include <QHashIterator>
 #include <QSettings>
-#include <QCoreApplication>
-#include <QDir>
-#include <QDebug>
 
 #include "winextras.h"
 #include <shlobj.h>
@@ -17,8 +17,8 @@
 typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD, LPTSTR, PDWORD);
 // Check if QueryFullProcessImageNameW function exists in kernel32.dll.
 // Function does not exist in Windows XP.
-static MYPROC pQueryFullProcessImageNameW = (MYPROC) GetProcAddress(
-            GetModuleHandle(TEXT("kernel32.dll")), "QueryFullProcessImageNameW");
+static MYPROC pQueryFullProcessImageNameW =
+    (MYPROC)GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "QueryFullProcessImageNameW");
 
 /*static bool isWindowsVistaOrHigher()
 {
@@ -39,8 +39,8 @@ static const QString PROGRAMASSOCIATIONKEY(QString("%1\\%2").arg(ROOTASSOCIATION
 
 WinExtras WinExtras::_instance;
 
-WinExtras::WinExtras(QObject *parent) :
-    QObject(parent)
+WinExtras::WinExtras(QObject *parent)
+    : QObject(parent)
 {
     populateKnownAliases();
 }
@@ -51,8 +51,7 @@ QString WinExtras::getDisplayString(unsigned int virtualkey)
     if (virtualkey <= 0)
     {
         temp = tr("[NO KEY]");
-    }
-    else if (_instance.knownAliasesVKStrings.contains(virtualkey))
+    } else if (_instance.knownAliasesVKStrings.contains(virtualkey))
     {
         temp = _instance.knownAliasesVKStrings.value(virtualkey);
     }
@@ -213,41 +212,43 @@ unsigned int WinExtras::scancodeFromVirtualKey(unsigned int virtualkey, unsigned
     {
         // MapVirtualKey does not work with VK_PAUSE
         scancode = 0x45;
-    }
-    else
+    } else
     {
         scancode = MapVirtualKey(virtualkey, MAPVK_VK_TO_VSC);
     }
 
     switch (virtualkey)
     {
-         case VK_LEFT: case VK_UP: case VK_RIGHT: case VK_DOWN: // arrow keys
-         case VK_PRIOR: case VK_NEXT: // page up and page down
-         case VK_END: case VK_HOME:
-         case VK_INSERT: case VK_DELETE:
-         case VK_DIVIDE: // numpad slash
-         case VK_NUMLOCK:
-         case VK_RCONTROL:
-         case VK_RMENU:
-         {
-             scancode |= EXTENDED_FLAG; // set extended bit
-             break;
-         }
-         case VK_RETURN:
-         {
-             // Remove ambiguity between Enter and Numpad Enter.
-             // In Windows, VK_RETURN is used for both.
-             if (alias == Qt::Key_Enter)
-             {
-                 scancode |= EXTENDED_FLAG; // set extended bit
-                 break;
-             }
-         }
+    case VK_LEFT:
+    case VK_UP:
+    case VK_RIGHT:
+    case VK_DOWN: // arrow keys
+    case VK_PRIOR:
+    case VK_NEXT: // page up and page down
+    case VK_END:
+    case VK_HOME:
+    case VK_INSERT:
+    case VK_DELETE:
+    case VK_DIVIDE: // numpad slash
+    case VK_NUMLOCK:
+    case VK_RCONTROL:
+    case VK_RMENU: {
+        scancode |= EXTENDED_FLAG; // set extended bit
+        break;
+    }
+    case VK_RETURN: {
+        // Remove ambiguity between Enter and Numpad Enter.
+        // In Windows, VK_RETURN is used for both.
+        if (alias == Qt::Key_Enter)
+        {
+            scancode |= EXTENDED_FLAG; // set extended bit
+            break;
+        }
+    }
     }
 
     return scancode;
 }
-
 
 bool WinExtras::containsFileAssociationinRegistry()
 {
@@ -271,8 +272,11 @@ void WinExtras::writeFileAssocationToRegistry()
 
     QSettings programAssociationReg(PROGRAMASSOCIATIONKEY, QSettings::NativeFormat);
     programAssociationReg.setValue("Default", tr("AntiMicro Profile"));
-    programAssociationReg.setValue("shell/open/command/Default", QString("\"%1\" \"%2\"").arg(QDir::toNativeSeparators(qApp->applicationFilePath())).arg("%1"));
-    programAssociationReg.setValue("DefaultIcon/Default", QString("%1,%2").arg(QDir::toNativeSeparators(qApp->applicationFilePath())).arg("0"));
+    programAssociationReg.setValue(
+        "shell/open/command/Default",
+        QString("\"%1\" \"%2\"").arg(QDir::toNativeSeparators(qApp->applicationFilePath())).arg("%1"));
+    programAssociationReg.setValue("DefaultIcon/Default",
+                                   QString("%1,%2").arg(QDir::toNativeSeparators(qApp->applicationFilePath())).arg("0"));
     programAssociationReg.sync();
 
     // Required to refresh settings used in Windows Explorer
@@ -306,9 +310,8 @@ bool WinExtras::IsRunningAsAdmin()
     BOOL isAdmin = FALSE;
     PSID administratorsGroup;
     SID_IDENTIFIER_AUTHORITY ntAuthority = SECURITY_NT_AUTHORITY;
-    isAdmin = AllocateAndInitializeSid(&ntAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID,
-                             DOMAIN_ALIAS_RID_ADMINS, 0, 0, 0, 0, 0, 0,
-                             &administratorsGroup);
+    isAdmin = AllocateAndInitializeSid(&ntAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0, 0, 0, 0, 0,
+                                       0, &administratorsGroup);
     if (isAdmin)
     {
         if (!CheckTokenMembership(NULL, administratorsGroup, &isAdmin))
@@ -383,7 +386,6 @@ void WinExtras::grabCurrentPointerPrecision()
     SystemParametersInfo(SPI_GETMOUSE, 0, &mouseInfo, 0);
     originalMouseAccel = mouseInfo[2];
 }
-
 
 bool WinExtras::raiseProcessPriority()
 {

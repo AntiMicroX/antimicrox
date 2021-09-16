@@ -1,20 +1,19 @@
 #ifndef WINEXTRAS_H
 #define WINEXTRAS_H
 
-#include <QObject>
-#include <QString>
 #include <QHash>
+#include <QObject>
 #include <QPoint>
+#include <QString>
 
 class WinExtras : public QObject
 {
     Q_OBJECT
-public:
+  public:
     static QString getDisplayString(unsigned int virtualkey);
     static unsigned int getVirtualKey(QString codestring);
-    static unsigned int correctVirtualKey(unsigned int scancode,
-                                          unsigned int virtualkey);
-    static unsigned int scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias=0);
+    static unsigned int correctVirtualKey(unsigned int scancode, unsigned int virtualkey);
+    static unsigned int scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias = 0);
 
     static const unsigned int EXTENDED_FLAG;
     static bool containsFileAssociationinRegistry();
@@ -28,7 +27,7 @@ public:
     static bool raiseProcessPriority();
     static QPoint getCursorPos();
 
-protected:
+  protected:
     explicit WinExtras(QObject *parent = 0);
     void populateKnownAliases();
 
@@ -37,10 +36,9 @@ protected:
     QHash<unsigned int, QString> knownAliasesVKStrings;
     static int originalMouseAccel;
 
-signals:
+  signals:
 
-public slots:
-
+  public slots:
 };
 
 #endif // WINEXTRAS_H

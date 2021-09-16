@@ -27,14 +27,13 @@
 
 #include <vmulticlient.h>
 
-#include <antkeymapper.h>
 #include "winsendinputeventhandler.h"
-
+#include <antkeymapper.h>
 
 class WinVMultiEventHandler : public BaseEventHandler
 {
     Q_OBJECT
-public:
+  public:
     explicit WinVMultiEventHandler(QObject *parent = 0);
     ~WinVMultiEventHandler();
 
@@ -44,8 +43,7 @@ public:
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed);
     virtual void sendMouseEvent(int xDis, int yDis);
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
-    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis,
-                                      unsigned int width, unsigned int height);
+    virtual void sendMouseSpringEvent(unsigned int xDis, unsigned int yDis, unsigned int width, unsigned int height);
 
     // TODO: Implement text event using information from QtWinKeyMapper.
     virtual void sendTextEntryEvent(QString maintext);
@@ -53,7 +51,7 @@ public:
     virtual QString getName();
     virtual QString getIdentifier();
 
-protected:
+  protected:
     pvmulti_client vmulti;
     BYTE mouseButtons;
     BYTE shiftKeys;
@@ -63,11 +61,9 @@ protected:
     WinSendInputEventHandler sendInputHandler;
     QtKeyMapperBase *nativeKeyMapper;
 
+  signals:
 
-signals:
-
-public slots:
-
+  public slots:
 };
 
 #endif // WINVMULTIEVENTHANDLER_H
