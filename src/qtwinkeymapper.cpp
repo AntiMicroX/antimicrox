@@ -21,6 +21,7 @@
 
 #include "qtwinkeymapper.h"
 #include "winextras.h"
+#include <QDebug>
 
 static QHash<unsigned int, unsigned int> initDynamicKeyMapping()
 {

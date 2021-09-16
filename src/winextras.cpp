@@ -1,5 +1,7 @@
 #define _WIN32_WINNT 0x0600
 
+#include <windows.h>
+
 #include <qt_windows.h>
 #include <psapi.h>
 //#include <QDebug>
@@ -7,6 +9,7 @@
 #include <QSettings>
 #include <QCoreApplication>
 #include <QDir>
+#include <QDebug>
 
 #include "winextras.h"
 #include <shlobj.h>
