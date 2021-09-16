@@ -21,12 +21,16 @@
 
 #include <QObject>
 
-#if defined(WITH_XTEST)
-    #include "qtx11keymapper.h"
-#endif
+#ifdef Q_OS_WIN
+    #include "qtwinkeymapper.h"
+#else
+    #ifdef WITH_XTEST
+        #include "qtx11keymapper.h"
+    #endif
 
-#if defined(WITH_UINPUT)
-    #include "qtuinputkeymapper.h"
+    #ifdef WITH_UINPUT
+        #include "qtuinputkeymapper.h"
+    #endif
 #endif
 
 class AntKeyMapper : public QObject
@@ -53,12 +57,16 @@ class AntKeyMapper : public QObject
     QtKeyMapperBase *internalMapper;
     QtKeyMapperBase *nativeKeyMapper;
 
-#if defined(WITH_XTEST)
+#ifdef Q_OS_WIN
+    QtWinKeyMapper winMapper;
+#else
+    #if defined(WITH_XTEST)
     QtX11KeyMapper x11Mapper;
-#endif
+    #endif
 
-#if defined(WITH_UINPUT)
+    #if defined(WITH_UINPUT)
     QtUInputKeyMapper uinputMapper;
+    #endif
 #endif
 };
 
