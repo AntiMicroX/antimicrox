@@ -27,10 +27,15 @@
 static QHash<QString, QString> buildDisplayNames()
 {
     QHash<QString, QString> temp;
-
+#ifdef Q_OS_WIN
+    temp.insert("sendinput", "SendInput");
+    #ifdef WITH_VMULTI
+    temp.insert("vmulti", "Vmulti");
+    #endif
+#else
     temp.insert("xtest", "Xtest");
     temp.insert("uinput", "uinput");
-
+#endif
     return temp;
 }
 
