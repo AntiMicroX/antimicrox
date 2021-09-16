@@ -27,10 +27,15 @@
 static QHash<QString, QString> buildDisplayNames()
 {
     QHash<QString, QString> temp;
-
+#ifdef Q_OS_WIN
+    temp.insert("sendinput", "SendInput");
+    #ifdef WITH_VMULTI
+    temp.insert("vmulti", "Vmulti");
+    #endif
+#else
     temp.insert("xtest", "Xtest");
     temp.insert("uinput", "uinput");
-
+#endif
     return temp;
 }
 
@@ -53,6 +58,13 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent)
     if (handler == "xtest")
         eventHandler = new XTestEventHandler(this);
 
+#endif
+
+#if defined(Q_OS_WIN)
+    if (handler == "sendinput")
+    {
+        eventHandler = new WinSendInputEventHandler(this);
+    }
 #endif
 }
 
@@ -84,6 +96,7 @@ BaseEventHandler *EventHandlerFactory::handler() { return eventHandler; }
 
 QString EventHandlerFactory::fallBackIdentifier()
 {
+#if defined(Q_OS_UNIX)
     static QString temp = "xtest";
     static bool identifier_obtained = false;
     if (identifier_obtained)
@@ -92,12 +105,12 @@ QString EventHandlerFactory::fallBackIdentifier()
 
     bool compiled_with_x11 = false;
     bool compiled_with_uinput = false;
-#if defined(WITH_XTEST)
+    #if defined(WITH_XTEST)
     compiled_with_x11 = true;
-#endif
-#if defined(WITH_UINPUT)
+    #endif
+    #if defined(WITH_UINPUT)
     compiled_with_uinput = true;
-#endif
+    #endif
 
     if (detected_xdg_session == "wayland")
     {
@@ -116,15 +129,21 @@ QString EventHandlerFactory::fallBackIdentifier()
         qWarning() << "Neither uinput nor xtest support is detected.";
     identifier_obtained = true;
     return temp;
+#elif defined(Q_OS_WIN)
+    return "sendinput";
+#endif
 }
 
 QStringList EventHandlerFactory::buildEventGeneratorList()
 {
     QStringList temp = QStringList();
 
+#ifdef Q_OS_WIN
+    temp.append("sendinput");
+#else
     temp.append("xtest");
     temp.append("uinput");
-
+#endif
     return temp;
 }
 

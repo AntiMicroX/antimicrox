@@ -401,6 +401,24 @@ if(UNIX)
                 src/eventhandlers/uinputeventhandler.h
                 )
     endif(WITH_UINPUT)
+
+elseif(WIN32)
+    LIST(APPEND antimicrox_SOURCES
+        src/winextras.cpp
+         src/qtwinkeymapper.cpp
+        #  src/winappprofiletimerdialog.cpp
+        #  src/capturedwindowinfodialog.cpp
+         src/eventhandlers/winsendinputeventhandler.cpp
+         src/joykeyrepeathelper.cpp
+    )
+    LIST(APPEND antimicrox_HEADERS
+        src/winextras.h
+        src/qtwinkeymapper.h
+        # src/winappprofiletimerdialog.h
+        # src/capturedwindowinfodialog.h
+        src/eventhandlers/winsendinputeventhandler.h
+        src/joykeyrepeathelper.h
+    )
 endif(UNIX)
 
 ###############################
@@ -465,9 +483,11 @@ if(UNIX)
     endif(WITH_XTEST)
 
      # necessary ifwe use find_package for SDL2
-#    if(NOT DEFINED SDL2_LIBRARIES)
+     #    if(NOT DEFINED SDL2_LIBRARIES)
 #        set(SDL2_LIBRARIES SDL2::SDL2)
 #    endif()
+elseif (WIN32)
+    list(APPEND WIN_LIBS "psapi")
 endif(UNIX)
 
 
@@ -488,14 +508,29 @@ endif(UNIX)
 ###############################
 # COMPILE & LINK
 ###############################
-
-add_executable(antimicrox
+if(UNIX)
+    add_executable(antimicrox
         ${antimicrox_MAIN}
         ${antimicrox_HEADERS_MOC}
         ${antimicrox_SOURCES}
         ${antimicrox_FORMS_HEADERS}
         ${antimicrox_RESOURCES_RCC}
         )
+elseif(WIN32)
+    # The WIN32 is required to specify a GUI application.
+    add_executable(antimicrox WIN32
+        ${antimicrox_MAIN}
+        ${antimicrox_HEADERS_MOC}
+        ${antimicrox_SOURCES}
+        ${antimicrox_FORMS_HEADERS}
+        ${antimicrox_RESOURCES_RCC}
+        # TODO create this with windows .ico icon
+        # src/antimicrox.rc
+    )
+    target_link_libraries(antimicrox
+        ${WIN_LIBS}
+    )
+endif(UNIX)
 
 target_link_libraries(antimicrox
         ${QT_LIBS}

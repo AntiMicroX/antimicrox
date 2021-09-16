@@ -30,6 +30,9 @@ static QStringList buildEventGeneratorList()
 {
     QStringList temp = QStringList();
 
+#ifdef Q_OS_WIN
+    temp.append("sendinput");
+#endif
 #ifdef WITH_XTEST
     temp.append("xtest");
 #endif
@@ -65,7 +68,12 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent)
         #endif
     }
     #endif
-
+#elif defined Q_OS_WIN
+    BACKEND_ELSE_IF(handler == "sendinput")
+    {
+        internalMapper = &winMapper;
+        nativeKeyMapper = 0;
+    }
 #endif
 }
 

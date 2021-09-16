@@ -33,6 +33,8 @@
 #include <QXmlStreamWriter>
 //#include <QtTest/QTest>
 
+#include <math.h>
+
 const JoyControlStick::JoyMode JoyControlStick::DEFAULTMODE = JoyControlStick::StandardMode;
 
 JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int originset, QObject *parent)
