@@ -248,49 +248,6 @@ unsigned int WinExtras::scancodeFromVirtualKey(unsigned int virtualkey, unsigned
     return scancode;
 }
 
-/**
- * @brief Check foreground window (window in focus) and obtain the
- *     corresponding exe file path.
- * @return File path of executable
- */
-QString WinExtras::getForegroundWindowExePath()
-{
-    QString exePath;
-    HWND foreground = GetForegroundWindow();
-    HANDLE windowProcess = NULL;
-    if (foreground)
-    {
-        DWORD processId;
-        GetWindowThreadProcessId(foreground, &processId);
-        windowProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, true, processId);
-    }
-
-    if (windowProcess != NULL)
-    {
-        TCHAR filename[MAX_PATH];
-        memset(filename, 0, sizeof(filename));
-        //qDebug() << QString::number(sizeof(filename)/sizeof(TCHAR));
-        if (pQueryFullProcessImageNameW)
-        {
-            // Windows Vista and later
-            DWORD pathLength = MAX_PATH * sizeof(TCHAR);
-            pQueryFullProcessImageNameW(windowProcess, 0, filename, &pathLength);
-            //qDebug() << pathLength;
-        }
-        else
-        {
-            // Windows XP
-            GetModuleFileNameEx(windowProcess, NULL, filename, MAX_PATH * sizeof(TCHAR));
-            //qDebug() << pathLength;
-        }
-
-        exePath = QString::fromWCharArray(filename);
-        //qDebug() << QString::fromWCharArray(filename);
-        CloseHandle(windowProcess);
-    }
-
-    return exePath;
-}
 
 bool WinExtras::containsFileAssociationinRegistry()
 {
@@ -338,29 +295,6 @@ void WinExtras::removeFileAssociationFromRegistry()
 
     // Required to refresh settings used in Windows Explorer
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
-}
-
-/**
- * @brief Attempt to elevate process using runas
- * @return Execution status
- */
-bool WinExtras::elevateAntiMicro()
-{
-    QString antiProgramLocation = QDir::toNativeSeparators(qApp->applicationFilePath());
-    QByteArray temp = antiProgramLocation.toUtf8();
-    SHELLEXECUTEINFO sei = { sizeof(sei) };
-    wchar_t tempverb[6];
-    wchar_t tempfile[antiProgramLocation.length() + 1];
-    QString("runas").toWCharArray(tempverb);
-    antiProgramLocation.toWCharArray(tempfile);
-    tempverb[5] = '\0';
-    tempfile[antiProgramLocation.length()] = '\0';
-    sei.lpVerb = tempverb;
-    sei.lpFile = tempfile;
-    sei.hwnd = NULL;
-    sei.nShow = SW_NORMAL;
-    BOOL result = ShellExecuteEx(&sei);
-    return result;
 }
 
 /**
@@ -450,37 +384,6 @@ void WinExtras::grabCurrentPointerPrecision()
     originalMouseAccel = mouseInfo[2];
 }
 
-/**
- * @brief Get the window text of the window currently in focus.
- * @return Window title of application in focus.
- */
-QString WinExtras::getCurrentWindowText()
-{
-    QString windowText;
-
-    HWND foreground = GetForegroundWindow();
-
-    if (foreground != NULL)
-    {
-        TCHAR foundWindowTitle[256];
-        memset(foundWindowTitle, 0, sizeof(foundWindowTitle));
-        GetWindowTextW(foreground, foundWindowTitle, 255);
-        QString temp = QString::fromWCharArray(foundWindowTitle);
-        if (temp.isEmpty())
-        {
-            memset(foundWindowTitle, 0, sizeof(foundWindowTitle));
-            SendMessageA(foreground, WM_GETTEXT, 255, (LPARAM)foundWindowTitle);
-            temp = QString::fromWCharArray(foundWindowTitle);
-        }
-
-        if (!temp.isEmpty())
-        {
-            windowText = temp;
-        }
-    }
-
-    return windowText;
-}
 
 bool WinExtras::raiseProcessPriority()
 {
