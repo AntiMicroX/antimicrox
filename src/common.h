@@ -30,15 +30,78 @@
 #include <QTranslator>
 #include <QWaitCondition>
 
+#ifdef Q_OS_WIN
+
+static QString findWinSystemConfigPath()
+{
+    QString temp;
+    temp = (!qgetenv("LocalAppData").isEmpty()) ? QString::fromUtf8(qgetenv("LocalAppData")) + "/antimicrox"
+                                                : QDir::homePath() + "/.antimicrox";
+    return temp;
+}
+
+static QString findWinLocalConfigPath()
+{
+    QString temp = QCoreApplication::applicationDirPath();
+    return temp;
+}
+
+static QString findWinDefaultConfigPath()
+{
+    QString temp = findWinLocalConfigPath();
+    QFileInfo dirInfo(temp);
+    if (!dirInfo.isWritable())
+    {
+        temp = findWinSystemConfigPath();
+    }
+
+    return temp;
+}
+
+static QString findWinConfigPath(QString configFileName)
+{
+    QString temp;
+    QFileInfo localConfigInfo(findWinLocalConfigPath().append("/").append(configFileName));
+    QFileInfo systemConfigInfo(findWinSystemConfigPath().append("/").append(configFileName));
+    if (localConfigInfo.exists() && localConfigInfo.isWritable())
+    {
+        temp = localConfigInfo.absoluteFilePath();
+    } else if (systemConfigInfo.exists() && systemConfigInfo.isWritable())
+    {
+        temp = systemConfigInfo.absoluteFilePath();
+    } else
+    {
+        temp = findWinDefaultConfigPath().append("/").append(configFileName);
+    }
+
+    return temp;
+}
+#endif
+
 namespace PadderCommon {
 inline QString configPath()
 {
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+    return findWinLocalConfigPath();
+#elif defined(Q_OS_WIN)
+    return findWinSystemConfigPath();
+#else
     return (!qgetenv("XDG_CONFIG_HOME").isEmpty()) ? QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicrox"
                                                    : QDir::homePath() + "/.config/antimicrox";
+#endif
 }
 
 const QString configFileName = "antimicrox_settings.ini";
-inline QString configFilePath() { return QString(configPath()).append("/").append(configFileName); }
+inline QString configFilePath()
+{
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+    return QString(configPath()).append("/").append(configFileName);
+#elif defined(Q_OS_WIN)
+    return QString(configPath()).append("/").append(configFileName);
+#else
+    return QString(configPath()).append("/").append(configFileName);
+#endif
+}
 
 inline QString configLegacyFilePath()
 {

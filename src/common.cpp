@@ -23,6 +23,9 @@
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QReadWriteLock>
+#ifdef Q_OS_WIN
+    #include <QStandardPaths>
+#endif
 
 namespace PadderCommon {
 QString preferredProfileDir(AntiMicroSettings *settings)
@@ -49,7 +52,23 @@ QString preferredProfileDir(AntiMicroSettings *settings)
 
     if (lookupDir.isEmpty())
     {
+#ifdef Q_OS_WIN
+    #ifdef WIN_PORTABLE_PACKAGE
+        QString portableProDir = QDir::currentPath().append("/profiles");
+        QFileInfo portableProDirInfo(portableProDir);
+        if (portableProDirInfo.isDir() && portableProDirInfo.isReadable())
+        {
+            lookupDir = portableProDir;
+        } else
+        {
+            lookupDir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+        }
+    #else
+        lookupDir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    #endif
+#else
         lookupDir = QDir::homePath();
+#endif
     }
 
     return lookupDir;
@@ -101,13 +120,27 @@ void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QSt
     qApp->removeTranslator(appTranslator);
 
     // Load new Qt translation strings
+#if defined(Q_OS_UNIX)
     translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#elif defined(Q_OS_WIN)
+    #ifdef QT_DEBUG
+    translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    #else
+    translator->load(QString("qt_").append(language),
+                     QApplication::applicationDirPath().append("\\share\\qt\\translations"));
+    #endif
+#endif
 
     qApp->installTranslator(appTranslator);
 
     // Load application specific translation strings
+#if defined(Q_OS_UNIX)
     translator->load("antimicrox_" + language,
                      QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
+#elif defined(Q_OS_WIN)
+    translator->load("antimicrox_" + language,
+                     QApplication::applicationDirPath().append("\\share\\antimicrox\\translations"));
+#endif
 
     qApp->installTranslator(translator);
 }
