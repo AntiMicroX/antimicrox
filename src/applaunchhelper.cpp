@@ -28,6 +28,10 @@
 #include <QMapIterator>
 #include <QThread>
 
+#ifdef Q_OS_WIN
+    #include <winextras.h>
+#endif
+
 AppLaunchHelper::AppLaunchHelper(AntiMicroSettings *settings, bool graphical, QObject *parent)
     : QObject(parent)
 {
@@ -44,6 +48,9 @@ void AppLaunchHelper::initRunMethods()
         changeMouseRefreshRate();
         changeSpringModeScreen();
         changeGamepadPollRate();
+#ifdef Q_OS_WIN
+        checkPointerPrecision();
+#endif
     }
 }
 
@@ -149,6 +156,29 @@ void AppLaunchHelper::changeSpringModeScreen()
 
     JoyButton::setSpringModeScreen(springScreen, GlobalVariables::JoyButton::springModeScreen);
 }
+
+#ifdef Q_OS_WIN
+void AppLaunchHelper::checkPointerPrecision()
+{
+    WinExtras::grabCurrentPointerPrecision();
+    bool disableEnhandedPoint =
+        settings->value("Mouse/DisableWinEnhancedPointer", AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
+    if (disableEnhandedPoint)
+    {
+        WinExtras::disablePointerPrecision();
+    }
+}
+
+void AppLaunchHelper::appQuitPointerPrecision()
+{
+    bool disableEnhancedPoint =
+        settings->value("Mouse/DisableWinEnhancedPointer", AntiMicroSettings::defaultDisabledWinEnhanced).toBool();
+    if (disableEnhancedPoint && !WinExtras::isUsingEnhancedPointerPrecision())
+    {
+        WinExtras::enablePointerPrecision();
+    }
+}
+#endif
 
 void AppLaunchHelper::revertMouseThread()
 {
