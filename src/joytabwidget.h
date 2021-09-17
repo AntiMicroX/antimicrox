@@ -39,6 +39,11 @@ class QMenu;
 class QStackedWidget;
 class QSettings;
 
+/**
+ * @brief Widget containing tab representing selected joystick.
+ *
+ * It is visible in main window of application.
+ */
 class JoyTabWidget : public QWidget
 {
     Q_OBJECT

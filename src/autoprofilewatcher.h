@@ -27,6 +27,11 @@ class AntiMicroSettings;
 class AutoProfileInfo;
 class QSettings;
 
+/**
+ * @brief Manages auto profile functionality. Allows for profiles to be associated with specific applications.
+ *
+ * Watches currently focused window and changes current set to pre-defined one when app is recognized.
+ */
 class AutoProfileWatcher : public QObject
 {
     Q_OBJECT

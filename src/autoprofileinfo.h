@@ -21,6 +21,11 @@
 
 #include <QObject>
 
+/**
+ * @brief Links information about targeted application with recommended profile.
+ *
+ * Used by AutoProfileWatcher as a part of implementation on auto profile functionality.
+ */
 class AutoProfileInfo : public QObject
 {
     Q_OBJECT
