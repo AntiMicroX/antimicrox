@@ -30,8 +30,12 @@
 #include <QSetIterator>
 #include <QStringListIterator>
 
-#if defined(WITH_X11)
+#if defined(Q_OS_UNIX) && defined(WITH_X11)
     #include "x11extras.h"
+
+#elif defined(Q_OS_WIN)
+    #include "winextras.h"
+
 #endif
 
 AutoProfileWatcher *AutoProfileWatcher::_instance = nullptr;
@@ -83,11 +87,21 @@ void AutoProfileWatcher::runAppCheck()
 
     // Check whether program path needs to be parsed. Removes processing time
     // and need to run Linux specific code searching /proc.
-    if (!getAppProfileAssignments().isEmpty())
+#ifdef Q_OS_LINUX
+    if (!appProfileAssignments.isEmpty())
     {
         appLocation = findAppLocation();
-        qDebug() << "appLocation is " << appLocation;
     }
+#else
+    // In Windows, get program location no matter what.
+    appLocation = findAppLocation();
+    if (!appLocation.isEmpty())
+    {
+        baseAppFileName = QFileInfo(appLocation).fileName();
+    }
+#endif
+
+    qDebug() << "appLocation is " << appLocation;
 
     // More portable check for whether antimicrox is the current application
     // with focus.
@@ -97,7 +111,9 @@ void AutoProfileWatcher::runAppCheck()
     QString nowWindow = QString();
     QString nowWindowClass = QString();
     QString nowWindowName = QString();
-
+#ifdef Q_OS_WIN
+    nowWindowName = WinExtras::getCurrentWindowText();
+#else
     long currentWindow = X11Extras::getInstance()->getWindowInFocus();
     qDebug() << "getWindowInFocus: " << currentWindow;
 
@@ -118,10 +134,10 @@ void AutoProfileWatcher::runAppCheck()
         nowWindowName = X11Extras::getInstance()->getWindowTitle(static_cast<Window>(currentWindow));
         qDebug() << "title of window now: " << nowWindowName;
     }
-
     qDebug() << "WINDOW CLASS: " << nowWindowClass;
-    qDebug() << "WINDOW NAME: " << nowWindowName;
     qDebug() << "WINDOW IN FOCUS: " << nowWindow;
+#endif
+    qDebug() << "WINDOW NAME: " << nowWindowName;
 
     bool checkForTitleChange = getWindowNameProfileAssignments().size() > 0;
 
@@ -132,7 +148,11 @@ void AutoProfileWatcher::runAppCheck()
     if (!focusedWidget && ((!nowWindow.isEmpty() && (nowWindow != currentApplication)) ||
                            (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
     {
+#ifdef Q_OS_WIN
+        currentApplication = appLocation;
+#else
         currentApplication = nowWindow;
+#endif
         currentAppWindowTitle = nowWindowName;
 
         qInfo() << QObject::tr("Active window changed to: Title = \"%1\", "
@@ -539,8 +559,8 @@ void AutoProfileWatcher::clearProfileAssignments()
 QString AutoProfileWatcher::findAppLocation()
 {
     QString exepath = QString();
-
-#ifdef WITH_X11
+#if defined(Q_OS_LINUX)
+    #ifdef WITH_X11
     Window currentWindow = 0;
     int pid = 0;
 
@@ -549,6 +569,9 @@ QString AutoProfileWatcher::findAppLocation()
         pid = X11Extras::getInstance()->getApplicationPid(currentWindow);
     if (pid > 0)
         exepath = X11Extras::getInstance()->getApplicationLocation(pid);
+    #endif
+#elif defined(Q_OS_WIN)
+    exepath = WinExtras::getForegroundWindowExePath();
 #endif
 
     return exepath;
