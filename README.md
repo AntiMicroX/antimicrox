@@ -3,23 +3,23 @@
 1. [Description](#description)  
 2. [License](#license)  
 3. [Installation](#installation)
-4.  [windows]
-5.  [Flatpak]
-6.  [AppImage]
-7.  [Fedora]
-8.  [openSUSE]
-9.  [Arch Linux]
-10.  
-
-6. [Wiki](#wiki)
-7. [Command Line](#command-line) 
-8. [Testing Under Linux](#testing-under-linux)  
-9. [AntiMicroX Profiles](#antimicrox-profiles)
-10. [Support](#support)  
-11. [Bugs](#bugs)  
-12. [Shoutout](#shoutout)  
-13. [Credits](#credits)  
-14. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+4.  [windows](#Windows (soon))
+5.  [Flatpak](#Flatpak)
+6.  [AppImage](#AppImage)
+7.  [Debian/Ubuntu](#Debian/Ubuntu-based distributions:)
+8.  [Fedora](#Fedora)
+9.  [openSUSE](#openSUSE)
+10. [Arch Linux](#Arch Linux or Arch Linux based distributions:)
+11. [From Sources](#Building Yourself)
+12. [Wiki](#wiki)
+13. [Command Line](#command-line) 
+14. [Testing Under Linux](#testing-under-linux)  
+15. [AntiMicroX Profiles](#antimicrox-profiles)
+16. [Support](#support)  
+17. [Bugs](#bugs)  
+18. [Shoutout](#shoutout)  
+19. [Credits](#credits)  
+20. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
 
 ## Description
 
