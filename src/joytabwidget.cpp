@@ -549,6 +549,18 @@ void JoyTabWidget::openConfigFileDialog()
 
         QString outputFilename = fileinfo.absoluteDir().absolutePath();
 
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+        if (fileinfo.absoluteDir().isAbsolute())
+        {
+            QDir tempDir = fileinfo.dir();
+            tempDir.cdUp();
+            if (tempDir.path() == qApp->applicationDirPath())
+            {
+                outputFilename = QString("%1/").arg(fileinfo.dir().dirName());
+            }
+        }
+#endif
+
         m_settings->getLock()->lock();
 
         m_settings->setValue("LastProfileDir", outputFilename);
@@ -989,6 +1001,18 @@ void JoyTabWidget::saveSettings()
             QFileInfo profileBaseFile(filename);
             QString outputFilename = filename;
 
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+            if (profileBaseFile.isAbsolute())
+            {
+                QDir tempDir = profileBaseFile.dir();
+                tempDir.cdUp();
+                if (tempDir.path() == qApp->applicationDirPath())
+                {
+                    outputFilename = QString("%1/%2").arg(profileBaseFile.dir().dirName()).arg(profileBaseFile.fileName());
+                }
+            }
+#endif
+
             m_settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
 
             if (PadderCommon::getProfileName(profileBaseFile) != profileText)
@@ -1015,6 +1039,19 @@ void JoyTabWidget::saveSettings()
                 QFileInfo profileBaseFile(filename);
                 QString outputFilename = filename;
 
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+                if (profileBaseFile.isAbsolute())
+                {
+                    QDir tempDir = profileBaseFile.dir();
+                    tempDir.cdUp();
+                    if (tempDir.path() == qApp->applicationDirPath())
+                    {
+                        outputFilename =
+                            QString("%1/%2").arg(profileBaseFile.dir().dirName()).arg(profileBaseFile.fileName());
+                    }
+                }
+#endif
+
                 m_settings->setValue(controlEntryString.arg(currentjoy), outputFilename);
 
                 if (PadderCommon::getProfileName(profileBaseFile) != profileText)
@@ -1031,6 +1068,17 @@ void JoyTabWidget::saveSettings()
     {
         QFileInfo profileBaseFile(lastfile);
         QString outputFilename = lastfile;
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+        if (profileBaseFile.isAbsolute())
+        {
+            QDir tempDir = profileBaseFile.dir();
+            tempDir.cdUp();
+            if (tempDir.path() == qApp->applicationDirPath())
+            {
+                outputFilename = QString("%1/%2").arg(profileBaseFile.dir().dirName()).arg(profileBaseFile.fileName());
+            }
+        }
+#endif
 
         m_settings->setValue(controlEntryLastSelected, outputFilename);
     }
@@ -1126,6 +1174,11 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     if (!lastfile.isEmpty())
     {
         QString lastFileAbsolute = lastfile;
+
+#if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
+        QFileInfo lastFileInfo(lastfile);
+        lastFileAbsolute = lastFileInfo.absoluteFilePath();
+#endif
 
         int lastindex = configBox->findData(lastFileAbsolute);
         if (lastindex > 0)
