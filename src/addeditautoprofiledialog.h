@@ -68,10 +68,15 @@ class AddEditAutoProfileDialog : public QDialog
     void checkForReservedUniques(int index);
     void checkForDefaultStatus();
     void windowPropAssignment(CapturedWindowInfoDialog *dialog);
-    void showCaptureHelpWindow();
-    void checkForGrabbedWindow(UnixCaptureWindowUtility *util);
     void on_setPartialCheckBox_stateChanged(int arg1);
     void checkDefaultCheckbox(const QString &text);
+#ifdef Q_OS_WIN
+    void openWinAppProfileDialog();
+    void captureWindowsApplicationPath();
+#else
+    void showCaptureHelpWindow();
+    void checkForGrabbedWindow(UnixCaptureWindowUtility *util);
+#endif
 
   private:
     Ui::AddEditAutoProfileDialog *ui;
