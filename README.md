@@ -3,15 +3,23 @@
 1. [Description](#description)  
 2. [License](#license)  
 3. [Installation](#installation)
-4. [Wiki](#wiki)
-5. [Command Line](#command-line) 
-6. [Testing Under Linux](#testing-under-linux)  
-7. [AntiMicroX Profiles](#antimicrox-profiles)
-8. [Support](#support)  
-9. [Bugs](#bugs)  
-10. [Shoutout](#shoutout)  
-11. [Credits](#credits)  
-12. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+4.  [windows]
+5.  [Flatpak]
+6.  [AppImage]
+7.  [Fedora]
+8.  [openSUSE]
+9.  [Arch Linux]
+10.  
+
+6. [Wiki](#wiki)
+7. [Command Line](#command-line) 
+8. [Testing Under Linux](#testing-under-linux)  
+9. [AntiMicroX Profiles](#antimicrox-profiles)
+10. [Support](#support)  
+11. [Bugs](#bugs)  
+12. [Shoutout](#shoutout)  
+13. [Credits](#credits)  
+14. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
 
 ## Description
 
@@ -67,6 +75,8 @@ http://www.gnu.org/licenses/gpl.txt
 
 ## Installation
 
+### Windows (soon)
+
 ### Flatpak
 
 The flatpak version is distributed on Flathub, and runs on most major Linux distributions. See instructions here: [Flathub application page](https://flathub.org/apps/details/io.github.antimicrox.antimicrox)
@@ -76,6 +86,16 @@ If you have Flathub [set up](https://flatpak.org/setup/) already:
 ```
 flatpak install flathub io.github.antimicrox.antimicrox
 ```
+
+### AppImage
+
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
+
+It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
+
+### Debian/Ubuntu-based distributions:
+
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
 
 ### Fedora
 
@@ -121,16 +141,6 @@ Install package
 ```bash
 pacman -S antimicrox
 ```
-
-### Debian/Ubuntu-based distributions:
-
-Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
-
-### AppImage
-
-Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
-
-It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
 
 ### Building Yourself
 
