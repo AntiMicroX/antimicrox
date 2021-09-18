@@ -237,12 +237,13 @@ QString AddEditAutoProfileDialog::getOriginalWindowClass() const { return origin
 
 QString AddEditAutoProfileDialog::getOriginalWindowName() const { return originalWindowName; }
 
+#ifdef Q_OS_UNIX
 /**
  * @brief Display a simple message box and attempt to capture a window using the mouse
  */
 void AddEditAutoProfileDialog::showCaptureHelpWindow()
 {
-#ifdef WITH_X11
+    #ifdef WITH_X11
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -269,7 +270,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
         thread->start();
     }
 
-#endif
+    #endif
 }
 
 /**
@@ -278,7 +279,7 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
  */
 void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility *util)
 {
-#ifdef WITH_X11 if (QApplication::platformName() == QStringLiteral("xcb"))
+    #ifdef WITH_X11 if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         long targetWindow = util->getTargetWindow();
         bool escaped = !util->hasFailed();
@@ -325,8 +326,9 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility *u
         util->deleteLater();
     }
 
-#endif
+    #endif
 }
+#endif
 
 void AddEditAutoProfileDialog::windowPropAssignment(CapturedWindowInfoDialog *dialog)
 {
