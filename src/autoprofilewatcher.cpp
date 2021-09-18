@@ -145,8 +145,15 @@ void AutoProfileWatcher::runAppCheck()
 
     qDebug() << "checkForTitleChange: " << checkForTitleChange;
 
-    if (!focusedWidget && ((!nowWindow.isEmpty() && (nowWindow != currentApplication)) ||
-                           (checkForTitleChange && (nowWindowName != currentAppWindowTitle))))
+#ifdef Q_OS_WIN
+    if (!focusedWidget && ((!appLocation.isEmpty() && appLocation != currentApplication) ||
+                           (checkForTitleChange && nowWindowName != currentAppWindowTitle)))
+
+#else
+    if (!focusedWidget && ((!nowWindow.isEmpty() && nowWindow != currentApplication) ||
+                           (checkForTitleChange && nowWindowName != currentAppWindowTitle)))
+
+#endif
     {
 #ifdef Q_OS_WIN
         currentApplication = appLocation;
