@@ -16,14 +16,17 @@ class WinExtras : public QObject
     static unsigned int scancodeFromVirtualKey(unsigned int virtualkey, unsigned int alias = 0);
 
     static const unsigned int EXTENDED_FLAG;
+    static QString getForegroundWindowExePath();
     static bool containsFileAssociationinRegistry();
     static void writeFileAssocationToRegistry();
     static void removeFileAssociationFromRegistry();
     static bool IsRunningAsAdmin();
+    static bool elevateAntiMicro();
     static void disablePointerPrecision();
     static void enablePointerPrecision();
     static bool isUsingEnhancedPointerPrecision();
     static void grabCurrentPointerPrecision();
+    static QString getCurrentWindowText();
     static bool raiseProcessPriority();
     static QPoint getCursorPos();
 
