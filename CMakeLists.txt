@@ -407,7 +407,7 @@ elseif(WIN32)
         src/winextras.cpp
          src/qtwinkeymapper.cpp
          src/winappprofiletimerdialog.cpp
-        #  src/capturedwindowinfodialog.cpp
+         src/capturedwindowinfodialog.cpp
          src/eventhandlers/winsendinputeventhandler.cpp
          src/joykeyrepeathelper.cpp
     )
@@ -415,7 +415,7 @@ elseif(WIN32)
         src/winextras.h
         src/qtwinkeymapper.h
         src/winappprofiletimerdialog.h
-        # src/capturedwindowinfodialog.h
+        src/capturedwindowinfodialog.h
         src/eventhandlers/winsendinputeventhandler.h
         src/joykeyrepeathelper.h
     )
