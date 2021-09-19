@@ -77,6 +77,16 @@ If you have Flathub [set up](https://flatpak.org/setup/) already:
 flatpak install flathub io.github.antimicrox.antimicrox
 ```
 
+### AppImage
+
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
+
+It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
+
+### Debian/Ubuntu-based distributions
+
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
+
 ### Fedora
 
 ```
@@ -121,16 +131,6 @@ Install package
 ```bash
 pacman -S antimicrox
 ```
-
-### Debian/Ubuntu-based distributions:
-
-Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
-
-### AppImage
-
-Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
-
-It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
 
 ### Building Yourself
 
