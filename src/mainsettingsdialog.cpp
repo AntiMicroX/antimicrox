@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2021 Paweł Kotiuk <kotiuk@zohomail.eu>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -160,6 +161,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     {
         ui->launchInTrayCheckBox->setChecked(true);
     }
+
+    ui->showLowBatteryNotification->setChecked(settings->value("Notifications/notify_about_low_battery", true).toBool());
+    ui->showEmptyBatteryNotification->setChecked(settings->value("Notifications/notify_about_empty_battery", true).toBool());
 
     ui->associateProfilesCheckBox->setVisible(false);
 
@@ -515,6 +519,12 @@ void MainSettingsDialog::saveNewSettings()
 
     bool launchInTray = ui->launchInTrayCheckBox->isChecked();
     settings->setValue("LaunchInTray", launchInTray ? "1" : "0");
+
+    bool notify_bat_low = ui->showLowBatteryNotification->isChecked();
+    settings->setValue("Notifications/notify_about_low_battery", notify_bat_low);
+
+    bool notify_bat_empty = ui->showEmptyBatteryNotification->isChecked();
+    settings->setValue("Notifications/notify_about_empty_battery", notify_bat_empty);
 
     PadderCommon::lockInputDevices();
 
@@ -1816,6 +1826,8 @@ void MainSettingsDialog::resetGeneralSett()
     ui->launchInTrayCheckBox->setChecked(false);
     ui->associateProfilesCheckBox->setChecked(true);
     ui->keyRepeatEnableCheckBox->setChecked(false);
+    ui->showLowBatteryNotification->setChecked(true);
+    ui->showEmptyBatteryNotification->setChecked(true);
 
     ui->keyDelayHorizontalSlider->setValue(660);
     ui->keyRateHorizontalSlider->setValue(25);

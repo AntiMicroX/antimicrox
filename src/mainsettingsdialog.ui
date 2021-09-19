@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>555</width>
+    <width>575</width>
     <height>664</height>
    </rect>
   </property>
@@ -327,6 +327,20 @@ first launches.</string>
            </property>
            <property name="text">
             <string>Attach the numeric keypad</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="showLowBatteryNotification">
+           <property name="text">
+            <string>Show low battery notification</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="showEmptyBatteryNotification">
+           <property name="text">
+            <string>Show empty battery notification</string>
            </property>
           </widget>
          </item>

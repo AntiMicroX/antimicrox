@@ -51,7 +51,6 @@
         <file>icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png</file>
         <file>icons/application/scalable/apps/sc-apps-io.github.antimicrox.antimicrox.svg</file>
 
-        <file>images/battery-low-level.png</file>
         <file>icons/actions/join_slots.png</file>
         <file>icons/actions/split_slot.png</file>
         <file>CHANGELOG.md</file>
