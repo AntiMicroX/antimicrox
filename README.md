@@ -18,7 +18,7 @@
 AntiMicroX is a graphical program used to map gamepad keys to keyboard, mouse, scripts and macros. You can use this program to control any desktop application with a gamepad on Linux. 
 It can be also used for generating SDL2 configuration (useful for mapping atypical gamepads to generic ones like xbox360).
 
-We support X.org and Wayland (Wayland is not supported in flatpak package(.
+We support X.org and Wayland.
 
 It allows mapping of gamepads/joystick buttons to:
 - keyboard buttons
@@ -73,9 +73,28 @@ The flatpak version is distributed on Flathub, and runs on most major Linux dist
 
 If you have Flathub [set up](https://flatpak.org/setup/) already:
 
-```
+```bash
 flatpak install flathub io.github.antimicrox.antimicrox
 ```
+
+<details>
+  <summary>❕ Flatpak package may not work correctly with wayland (fix)</summary>
+  This is caused by missing udev rule. TO fix this issue you can apply udev rule by yourself.
+
+  <pre>
+cd /etc/udev/rules.d/
+sudo wget https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/60-antimicrox-uinput.rules</pre>
+</details>
+
+### AppImage
+
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
+
+It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
+
+### Debian/Ubuntu-based distributions
+
+Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
 
 ### Fedora
 
@@ -121,16 +140,6 @@ Install package
 ```bash
 pacman -S antimicrox
 ```
-
-### Debian/Ubuntu-based distributions:
-
-Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases) and install `.deb` package.
-
-### AppImage
-
-Download from the [release site](https://github.com/AntiMicroX/antimicrox/releases).
-
-It is recommended to use [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher) with this package.
 
 ### Building Yourself
 
