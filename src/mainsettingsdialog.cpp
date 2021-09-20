@@ -29,6 +29,10 @@
 
 #ifdef WITH_X11
     #include "x11extras.h"
+#elif defined Q_OS_WIN
+    #include "eventhandlerfactory.h"
+    #include "winextras.h"
+    #include <QSysInfo>
 #endif
 
 #include <QApplication>
@@ -97,6 +101,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 
     changePresetLanguage();
 
+#ifdef Q_OS_WIN
+    ui->autoProfileTableWidget->hideColumn(3);
+#endif
     ui->autoProfileTableWidget->hideColumn(7);
 
 #if defined(WITH_X11)
@@ -122,11 +129,33 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         ui->autoProfileTableWidget->setEnabled(true);
         ui->autoProfileAddPushButton->setEnabled(true);
     }
+#ifdef Q_OS_WIN
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
+    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+    {
+        // Handle Windows Vista and later
+        QFile tempFile(RUNATSTARTUPLOCATION);
+        if (tempFile.exists())
+        {
+            ui->launchAtWinStartupCheckBox->setChecked(true);
+        }
+    } else
+    {
+        // Handle Windows XP
+        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
+        QString autoRunEntry = autoRunReg.value("antimicrox", "").toString();
+        if (!autoRunEntry.isEmpty())
+        {
+            ui->launchAtWinStartupCheckBox->setChecked(true);
+        }
+    }
+#else
     ui->launchAtWinStartupCheckBox->setVisible(false);
 
     // TODO #115
     ui->keyRepeatGroupBox->setVisible(false);
+#endif
 
     bool useSingleProfileList = settings->value("TrayProfileList", false).toBool();
     if (useSingleProfileList)
@@ -161,9 +190,26 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         ui->launchInTrayCheckBox->setChecked(true);
     }
 
+#ifdef Q_OS_WIN
+    bool associateProfiles = settings->value("AssociateProfiles", true).toBool();
+    if (associateProfiles)
+    {
+        ui->associateProfilesCheckBox->setChecked(true);
+    } else
+    {
+        ui->associateProfilesCheckBox->setChecked(false);
+    }
+
+    bool disableEnhancedMouse = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
+    if (disableEnhancedMouse)
+    {
+        ui->disableWindowsEnhancedPointCheckBox->setChecked(true);
+    }
+#else
     ui->associateProfilesCheckBox->setVisible(false);
 
     ui->disableWindowsEnhancedPointCheckBox->setVisible(false);
+#endif
 
     if (attachedNumKeypad)
         ui->attachNumKeypadCheckbox->setChecked(true);
@@ -198,6 +244,15 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     {
         ui->mouseRefreshRateComboBox->setCurrentIndex(refreshIndex);
     }
+
+#ifdef Q_OS_WIN
+    QString tempTooltip = ui->mouseRefreshRateComboBox->toolTip();
+    tempTooltip.append("\n\n");
+    tempTooltip.append(tr("Also, Windows users who want to use a low value should also check the\n"
+                          "\"Disable Enhance Pointer Precision\" checkbox if you haven't disabled\n"
+                          "the option in Windows."));
+    ui->mouseRefreshRateComboBox->setToolTip(tempTooltip);
+#endif
 
     fillSpringScreenPresets();
 
@@ -496,6 +551,42 @@ void MainSettingsDialog::saveNewSettings()
 
     settings->getLock()->lock();
 
+#ifdef Q_OS_WIN
+    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+    {
+        // Handle Windows Vista and later
+        QFile tempFile(RUNATSTARTUPLOCATION);
+
+        if (ui->launchAtWinStartupCheckBox->isChecked() && !tempFile.exists())
+        {
+            if (tempFile.open(QFile::WriteOnly))
+            {
+                QFile currentAppLocation(qApp->applicationFilePath());
+                currentAppLocation.link(QFileInfo(tempFile).absoluteFilePath());
+            }
+        } else if (tempFile.exists() && QFileInfo(tempFile).isWritable())
+        {
+            tempFile.remove();
+        }
+    } else
+    {
+        // Handle Windows XP
+        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
+        QString autoRunEntry = autoRunReg.value("antimicrox", "").toString();
+
+        if (ui->launchAtWinStartupCheckBox->isChecked())
+        {
+            QString nativeFilePath = QDir::toNativeSeparators(qApp->applicationFilePath());
+            autoRunReg.setValue("antimicrox", nativeFilePath);
+        } else if (!autoRunEntry.isEmpty())
+        {
+            autoRunReg.remove("antimicrox");
+        }
+    }
+
+    BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+#endif
+
     if (ui->traySingleProfileListCheckBox->isChecked())
     {
         settings->setValue("TrayProfileList", "1");
@@ -515,6 +606,37 @@ void MainSettingsDialog::saveNewSettings()
 
     bool launchInTray = ui->launchInTrayCheckBox->isChecked();
     settings->setValue("LaunchInTray", launchInTray ? "1" : "0");
+
+#ifdef Q_OS_WIN
+    bool associateProfiles = ui->associateProfilesCheckBox->isChecked();
+    settings->setValue("AssociateProfiles", associateProfiles ? "1" : "0");
+
+    bool associationExists = WinExtras::containsFileAssociationinRegistry();
+    if (associateProfiles && !associationExists)
+    {
+        WinExtras::writeFileAssocationToRegistry();
+    } else if (!associateProfiles && associationExists)
+    {
+        WinExtras::removeFileAssociationFromRegistry();
+    }
+
+    bool disableEnhancePoint = ui->disableWindowsEnhancedPointCheckBox->isChecked();
+    bool oldEnhancedValue = settings->value("Mouse/DisableWinEnhancedPointer", false).toBool();
+    bool usingEnhancedPointer = WinExtras::isUsingEnhancedPointerPrecision();
+    settings->setValue("Mouse/DisableWinEnhancedPointer", disableEnhancePoint ? "1" : "0");
+
+    if (disableEnhancePoint != oldEnhancedValue)
+    {
+        if (usingEnhancedPointer && disableEnhancePoint)
+        {
+            WinExtras::disablePointerPrecision();
+        } else if (!usingEnhancedPointer && !disableEnhancePoint)
+        {
+            WinExtras::enablePointerPrecision();
+        }
+    }
+
+#endif
 
     PadderCommon::lockInputDevices();
 
