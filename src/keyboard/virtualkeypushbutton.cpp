@@ -47,22 +47,40 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
     if (!xcodestring.isEmpty())
     {
         temp = X11KeySymToKeycode(xcodestring);
-
+#ifdef Q_OS_UNIX
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
         if (handler->getIdentifier() == "xtest")
         {
             temp = X11KeyCodeToX11KeySym(temp);
         }
+#endif
     }
 
     if (temp > 0)
     {
+#ifdef Q_OS_WIN
+        // static QtWinKeyMapper nativeWinKeyMapper;
+        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
+
+        BACKEND_ELSE_IF(handler->getIdentifier() == "sendinput")
+        {
+            this->keycode = temp;
+            this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
+        }
+
+        // Special exception for Numpad Enter on Windows.
+        if (xcodestring == "KP_Enter")
+        {
+            this->qkeyalias = Qt::Key_Enter;
+        }
+#else
         this->keycode = temp;
         // this->keycode = X11KeyCodeToX11KeySym(temp);
         this->qkeyalias = AntKeyMapper::getInstance()->returnQtKey(this->keycode);
 
         // this->keycode = temp;
+#endif
         this->xcodestring = xcodestring;
         this->displayString = setDisplayString(xcodestring);
     }

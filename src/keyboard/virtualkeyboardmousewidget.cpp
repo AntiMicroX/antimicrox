@@ -580,12 +580,20 @@ void VirtualKeyboardMouseWidget::setupMouseControlLayout()
     tempVBoxLayout = new QVBoxLayout();
     tempVBoxLayout->setSpacing(20);
 
+#ifdef Q_OS_WIN
+    pushButton = new VirtualMousePushButton(tr("Button 4", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
+#else
     pushButton = new VirtualMousePushButton(tr("Mouse 8", "Mouse"), 8, JoyButtonSlot::JoyMouseButton, this);
+#endif
 
     pushButton->setMinimumHeight(40);
     tempVBoxLayout->addWidget(pushButton);
 
+#ifdef Q_OS_WIN
+    pushButton = new VirtualMousePushButton(tr("Button 5", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
+#else
     pushButton = new VirtualMousePushButton(tr("Mouse 9", "Mouse"), 9, JoyButtonSlot::JoyMouseButton, this);
+#endif
 
     pushButton->setMinimumHeight(40);
     tempVBoxLayout->addWidget(pushButton);
@@ -989,6 +997,13 @@ QPushButton *VirtualKeyboardMouseWidget::createOtherKeysMenu()
 
     QAction *tempAction = nullptr;
     int temp = 0;
+
+#ifdef Q_OS_WIN
+    tempAction = new QAction(tr("Applications"), otherKeysMenu);
+    temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Menu);
+    tempAction->setData(temp);
+    otherKeysMenu->addAction(tempAction);
+#endif
 
     tempAction = new QAction(tr("Browser Back"), otherKeysMenu);
     temp = AntKeyMapper::getInstance()->returnVirtualKey(Qt::Key_Back);
