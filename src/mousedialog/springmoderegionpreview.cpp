@@ -26,9 +26,11 @@
 
 SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent)
     :
-
+#if defined(Q_OS_WIN)
+    QWidget(parent, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+#else
     QWidget(parent, Qt::FramelessWindowHint)
-
+#endif
 {
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);

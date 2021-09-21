@@ -134,6 +134,9 @@ QString XMLConfigMigration::version0006Migration()
                 if (slotmode == "keyboard")
                 {
                     int tempcode = slotcode;
+#ifdef Q_OS_WIN
+                    slotcode = AntKeyMapper::getInstance()->returnQtKey(slotcode);
+#else
 
                     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
@@ -145,7 +148,7 @@ QString XMLConfigMigration::version0006Migration()
                         slotcode = 0;
                         tempcode = 0;
                     }
-
+#endif
                     if (slotcode > 0)
                     {
                         writer.writeTextElement("code", QString("0x%1").arg(slotcode, 0, 16));

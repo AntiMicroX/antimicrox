@@ -40,6 +40,11 @@
 #include <QWidget>
 #include <QtGlobal>
 
+#ifdef Q_OS_WIN
+    #include "winextras.h"
+    #include <qt_windows.h>
+#endif
+
 ButtonEditDialog *ButtonEditDialog::instance = nullptr;
 
 ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWidget *parent)
@@ -241,16 +246,50 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
 
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-#if defined(WITH_X11)
         int finalvirtual = 0;
         int checkalias = 0;
+#ifdef Q_OS_WIN
+    #ifdef WITH_VMULTI
+        if (handler->getIdentifier() == "vmulti")
+        {
+            finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
+
+            // unsigned int tempQtKey = nativeWinKeyMapper.returnQtKey(finalvirtual);
+            QtKeyMapperBase *nativeWinKeyMapper = AntKeyMapper::getInstance()->getNativeKeyMapper();
+            unsigned int tempQtKey = 0;
+            if (nativeWinKeyMapper)
+            {
+                tempQtKey = nativeWinKeyMapper->returnQtKey(finalvirtual);
+            }
+
+            if (tempQtKey > 0)
+            {
+                finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(tempQtKey);
+                checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
+            } else
+            {
+                finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
+            }
+        }
+    #endif
+
+        BACKEND_ELSE_IF(handler->getIdentifier() == "sendinput")
+        {
+            // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
+            // by checking for extended bit in scan code.
+            finalvirtual = WinExtras::correctVirtualKey(controlcode, virtualactual);
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, controlcode);
+        }
+#else
+    #if defined(WITH_X11)
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
             // Obtain group 1 X11 keysym. Removes effects from modifiers.
             finalvirtual = X11KeyCodeToX11KeySym(controlcode);
 
-    #ifdef WITH_UINPUT
+        #ifdef WITH_UINPUT
             if (handler->getIdentifier() == "uinput")
             {
                 // Find Qt Key corresponding to X11 KeySym.
@@ -261,15 +300,15 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
                 finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(
                     checkalias); // Find corresponding Linux input key for the Qt key.
             }
-    #endif
+        #endif
 
-    #ifdef WITH_XTEST
+        #ifdef WITH_XTEST
             BACKEND_ELSE_IF(handler->getIdentifier() == "xtest")
             {
                 // Check for alias against group 1 keysym.
                 checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
             }
-    #endif
+        #endif
         } else
         {
             // Not running on xcb platform.
@@ -277,7 +316,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
 
-#else
+    #else
         int finalvirtual = 0;
         int checkalias = 0;
         if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -291,6 +330,7 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
 
+    #endif
 #endif
 
         if (!ignoreRelease && (event->modifiers() & Qt::ControlModifier) && (event->key() == Qt::Key_X))

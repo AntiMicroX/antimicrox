@@ -404,20 +404,25 @@ if(UNIX)
 
 elseif(WIN32)
     LIST(APPEND antimicrox_SOURCES
+        src/autoprofilewatcher.cpp
         src/winextras.cpp
          src/qtwinkeymapper.cpp
-        #  src/winappprofiletimerdialog.cpp
-        #  src/capturedwindowinfodialog.cpp
+         src/winappprofiletimerdialog.cpp
+         src/capturedwindowinfodialog.cpp
          src/eventhandlers/winsendinputeventhandler.cpp
          src/joykeyrepeathelper.cpp
     )
     LIST(APPEND antimicrox_HEADERS
+        src/autoprofilewatcher.h
         src/winextras.h
         src/qtwinkeymapper.h
-        # src/winappprofiletimerdialog.h
-        # src/capturedwindowinfodialog.h
+        src/winappprofiletimerdialog.h
+        src/capturedwindowinfodialog.h
         src/eventhandlers/winsendinputeventhandler.h
         src/joykeyrepeathelper.h
+    )
+    LIST(APPEND antimicrox_FORMS
+        src/winappprofiletimerdialog.ui    
     )
 endif(UNIX)
 

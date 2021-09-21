@@ -35,6 +35,8 @@ class AntiMicroSettings : public QSettings
     QMutex *getLock();
     QSettings &getCmdSettings();
 
+    static const bool defaultDisabledWinEnhanced;
+
     void applySettingsToLogger(CommandLineUtility &cmdutility, Logger *logger = nullptr);
 
   protected:

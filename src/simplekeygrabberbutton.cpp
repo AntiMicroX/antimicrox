@@ -31,6 +31,10 @@
 #include <QMetaType>
 #include <QWidget>
 
+#ifdef Q_OS_WIN
+    #include "winextras.h"
+#endif
+
 SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent)
     : QPushButton(parent)
 {
@@ -85,7 +89,15 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         int finalvirtual = 0;
         int checkalias = 0;
 
-#if defined(WITH_X11)
+#ifdef Q_OS_WIN
+        BACKEND_ELSE_IF(handler->getIdentifier() == "sendinput")
+        {
+            // Find more specific virtual key (VK_SHIFT -> VK_LSHIFT)
+            // by checking for extended bit in scan code.
+            finalvirtual = WinExtras::correctVirtualKey(tempcode, virtualactual);
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual, tempcode);
+        }
+#elif defined(WITH_X11)
 
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {

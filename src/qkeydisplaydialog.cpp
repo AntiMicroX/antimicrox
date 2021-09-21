@@ -32,6 +32,10 @@
     #include "x11extras.h"
 #endif
 
+#ifdef Q_OS_WIN
+    #include "winextras.h"
+#endif
+
 QKeyDisplayDialog::QKeyDisplayDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::QKeyDisplayDialog)
@@ -67,7 +71,10 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 
     int finalvirtual = 0;
 
-#ifdef WITH_X11
+#ifdef Q_OS_WIN
+    finalvirtual = WinExtras::correctVirtualKey(scancode, virtualkey);
+    unsigned int tempvirtual = finalvirtual;
+#elif defined WITH_X11
 
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
@@ -103,7 +110,11 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
     ui->nativeKeyLabel->setText(QString("0x%1").arg(finalvirtual, 0, 16));
     ui->qtKeyLabel->setText(QString("0x%1").arg(event->key(), 0, 16));
 
+#ifdef Q_OS_WIN
+    QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(tempvirtual, scancode), 0, 16);
+#else
     QString tempValue = QString("0x%1").arg(AntKeyMapper::getInstance()->returnQtKey(finalvirtual), 0, 16);
+#endif
 
     ui->antimicroKeyLabel->setText(tempValue);
 }
