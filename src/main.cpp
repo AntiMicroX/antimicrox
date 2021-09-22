@@ -192,6 +192,7 @@ int main(int argc, char *argv[])
     }
     settings.importFromCommandLine(cmdutility);
     settings.applySettingsToLogger(cmdutility, appLogger);
+    qDebug() << "AntiMicroX version: " << PadderCommon::programVersion;
 
     Q_INIT_RESOURCE(resources);
 
