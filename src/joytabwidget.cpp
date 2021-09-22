@@ -1366,6 +1366,7 @@ void JoyTabWidget::loadConfigFile(QString fileLocation)
                 configBox->setCurrentIndex(searchIndex);
                 emit joystickConfigChanged(m_joystick->getJoyNumber());
             }
+            qDebug() << "Config file loaded";
         }
     }
 }
