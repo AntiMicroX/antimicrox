@@ -146,9 +146,12 @@ void Logger::logMessage(const QString &message, const Logger::LogLevel level, co
         *outputStream << TYPE_NAMES[level] << "\t" << finalMessage;
 
         if (extendedLogs)
-            *outputStream << " (file " << filename.mid(7) << ":" << lineno << ")\n";
-        else
-            *outputStream << "\n";
+        {
+            if (lineno != 0)
+                *outputStream << " (file " << filename.mid(7) << ":" << lineno << ")";
+        }
+
+        *outputStream << "\n";
         outputStream->flush();
     }
 }
