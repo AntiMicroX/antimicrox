@@ -23,6 +23,10 @@
 
 #include <joybuttonslot.h>
 
+/**
+ * @brief PushButton representing mouse action in VirtualKeyboardMouseWidget
+ *
+ */
 class VirtualMousePushButton : public QPushButton
 {
     Q_OBJECT
