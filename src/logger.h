@@ -76,7 +76,7 @@ class Logger : public QObject
     /**
      * @brief Get the Instance of logger
      *
-     * @param raiseException - raise std::runtime_error when instance doesn't exist
+     * @param raiseExceptionForNull - raise std::runtime_error when instance doesn't exist
      * @return Logger*
      */
     inline static Logger *getInstance(bool raiseExceptionForNull = true)
