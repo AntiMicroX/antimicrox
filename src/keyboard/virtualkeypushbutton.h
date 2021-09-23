@@ -21,6 +21,10 @@
 
 #include <QPushButton>
 
+/**
+ * @brief PushButton representing keyboard button on VirtualKeyboardMouseWidget
+ *
+ */
 class VirtualKeyPushButton : public QPushButton
 {
     Q_OBJECT

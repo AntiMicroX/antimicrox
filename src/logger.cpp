@@ -29,9 +29,9 @@ Logger *Logger::instance = nullptr;
  * @brief Outputs log messages to a given text stream. Client code
  *     should determine whether it points to a console stream or
  *     to a file.
- * @param Stream used to output text
- * @param Messages based of a given output level or lower will be logged
- * @param Parent object
+ * @param stream used to output text
+ * @param output_lvl Messages based of a given output level or lower will be logged
+ * @param parent object
  */
 Logger::Logger(QTextStream *stream, LogLevel output_lvl, QObject *parent)
     : QObject(parent)
@@ -61,7 +61,7 @@ Logger::~Logger()
 /**
  * @brief Set the highest logging level. Determines which messages
  *     are output to the output stream.
- * @param Highest log level utilized.
+ * @param level Highest log level utilized.
  */
 void Logger::setLogLevel(LogLevel level)
 {
@@ -103,7 +103,7 @@ QTextStream *Logger::getCurrentStream()
 
 /**
  * @brief Flushes output stream and closes stream if requested.
- * @param Whether to close the current stream. Defaults to true.
+ * @param closeStream Whether to close the current stream. Defaults to true.
  */
 void Logger::closeLogger(bool closeStream)
 {

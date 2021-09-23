@@ -32,6 +32,11 @@ class InputDevice;
 class QuickSetDialog;
 class ButtonEditDialogHelper;
 
+/**
+ * @brief Widget visualizing possible keyboard and mouse assignments.
+ *
+ * It is part of buttoneditdialog.
+ */
 class VirtualKeyboardMouseWidget : public QTabWidget
 {
     Q_OBJECT
