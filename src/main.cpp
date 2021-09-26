@@ -91,6 +91,33 @@ static void termSignalSegfaultHandler(int signal)
     segint.sa_flags = 0;
     sigaction(SIGSEGV, &segint, nullptr);
 }
+
+void installSignalHandlers()
+{
+    // Have program handle SIGTERM
+    struct sigaction termaction;
+    termaction.sa_handler = &termSignalTermHandler;
+    sigemptyset(&termaction.sa_mask);
+    termaction.sa_flags = 0;
+
+    sigaction(SIGTERM, &termaction, nullptr);
+
+    // Have program handle SIGINT
+    struct sigaction termint;
+    termint.sa_handler = &termSignalIntHandler;
+    sigemptyset(&termint.sa_mask);
+    termint.sa_flags = 0;
+
+    sigaction(SIGINT, &termint, nullptr);
+
+    // Have program handle SIGSEGV
+    struct sigaction segint;
+    segint.sa_handler = &termSignalSegfaultHandler;
+    sigemptyset(&segint.sa_mask);
+    segint.sa_flags = 0;
+
+    sigaction(SIGSEGV, &segint, nullptr);
+}
 #endif
 
 // was non static
@@ -492,29 +519,7 @@ int main(int argc, char *argv[])
     QTranslator qtTranslator;
 
 #if defined(Q_OS_UNIX)
-    // Have program handle SIGTERM
-    struct sigaction termaction;
-    termaction.sa_handler = &termSignalTermHandler;
-    sigemptyset(&termaction.sa_mask);
-    termaction.sa_flags = 0;
-
-    sigaction(SIGTERM, &termaction, nullptr);
-
-    // Have program handle SIGINT
-    struct sigaction termint;
-    termint.sa_handler = &termSignalIntHandler;
-    sigemptyset(&termint.sa_mask);
-    termint.sa_flags = 0;
-
-    sigaction(SIGINT, &termint, nullptr);
-
-    // Have program handle SIGSEGV
-    struct sigaction segint;
-    segint.sa_handler = &termSignalSegfaultHandler;
-    sigemptyset(&segint.sa_mask);
-    segint.sa_flags = 0;
-
-    sigaction(SIGSEGV, &segint, nullptr);
+    installSignalHandlers();
 
     QString transPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
