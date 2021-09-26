@@ -65,21 +65,60 @@
         #include "x11extras.h"
     #endif
 
-#endif
-
 static void termSignalTermHandler(int signal)
 {
     Q_UNUSED(signal)
-
+    qDebug() << "Received SIGTERM. Closing...";
     qApp->exit(0);
 }
 
 static void termSignalIntHandler(int signal)
 {
     Q_UNUSED(signal)
-
+    qDebug() << "Received SIGINT. Closing...";
     qApp->exit(0);
 }
+
+static void termSignalSegfaultHandler(int signal)
+{
+    qCritical() << "Received SIGSEGV (segmentation fault)";
+    delete Logger::getInstance();
+
+    // Restore default handler
+    struct sigaction segint;
+    segint.sa_handler = SIG_DFL;
+    sigemptyset(&segint.sa_mask);
+    segint.sa_flags = 0;
+    sigaction(SIGSEGV, &segint, nullptr);
+}
+
+void installSignalHandlers()
+{
+    // Have program handle SIGTERM
+    struct sigaction termaction;
+    termaction.sa_handler = &termSignalTermHandler;
+    sigemptyset(&termaction.sa_mask);
+    termaction.sa_flags = 0;
+
+    sigaction(SIGTERM, &termaction, nullptr);
+
+    // Have program handle SIGINT
+    struct sigaction termint;
+    termint.sa_handler = &termSignalIntHandler;
+    sigemptyset(&termint.sa_mask);
+    termint.sa_flags = 0;
+
+    sigaction(SIGINT, &termint, nullptr);
+
+    // Have program handle SIGSEGV
+    struct sigaction segint;
+    segint.sa_handler = &termSignalSegfaultHandler;
+    sigemptyset(&segint.sa_mask);
+    segint.sa_flags = 0;
+
+    sigaction(SIGSEGV, &segint, nullptr);
+}
+#endif
 
 // was non static
 static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice *> *joysticks)
@@ -480,21 +519,7 @@ int main(int argc, char *argv[])
     QTranslator qtTranslator;
 
 #if defined(Q_OS_UNIX)
-    // Have program handle SIGTERM
-    struct sigaction termaction;
-    termaction.sa_handler = &termSignalTermHandler;
-    sigemptyset(&termaction.sa_mask);
-    termaction.sa_flags = 0;
-
-    sigaction(SIGTERM, &termaction, nullptr);
-
-    // Have program handle SIGINT
-    struct sigaction termint;
-    termint.sa_handler = &termSignalIntHandler;
-    sigemptyset(&termint.sa_mask);
-    termint.sa_flags = 0;
-
-    sigaction(SIGINT, &termint, nullptr);
+    installSignalHandlers();
 
     QString transPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
