@@ -78,6 +78,19 @@ static void termSignalIntHandler(int signal)
     qDebug() << "Received SIGINT. Closing...";
     qApp->exit(0);
 }
+
+static void termSignalSegfaultHandler(int signal)
+{
+    qCritical() << "Received SIGSEGV (segmentation fault)";
+    delete Logger::getInstance();
+
+    // Restore default handler
+    struct sigaction segint;
+    segint.sa_handler = SIG_DFL;
+    sigemptyset(&segint.sa_mask);
+    segint.sa_flags = 0;
+    sigaction(SIGSEGV, &segint, nullptr);
+}
 #endif
 
 // was non static
@@ -494,6 +507,14 @@ int main(int argc, char *argv[])
     termint.sa_flags = 0;
 
     sigaction(SIGINT, &termint, nullptr);
+
+    // Have program handle SIGSEGV
+    struct sigaction segint;
+    segint.sa_handler = &termSignalSegfaultHandler;
+    sigemptyset(&segint.sa_mask);
+    segint.sa_flags = 0;
+
+    sigaction(SIGSEGV, &segint, nullptr);
 
     QString transPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
