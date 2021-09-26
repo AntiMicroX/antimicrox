@@ -65,21 +65,20 @@
         #include "x11extras.h"
     #endif
 
-#endif
-
 static void termSignalTermHandler(int signal)
 {
     Q_UNUSED(signal)
-
+    qDebug() << "Received SIGTERM. Closing...";
     qApp->exit(0);
 }
 
 static void termSignalIntHandler(int signal)
 {
     Q_UNUSED(signal)
-
+    qDebug() << "Received SIGINT. Closing...";
     qApp->exit(0);
 }
+#endif
 
 // was non static
 static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice *> *joysticks)
