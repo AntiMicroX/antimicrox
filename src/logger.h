@@ -48,7 +48,7 @@
 class Logger : public QObject
 {
     Q_OBJECT
-    Q_ENUMS(LogLevel);
+    Q_ENUMS(LogLevel)
 
   public:
     enum LogLevel
@@ -184,7 +184,7 @@ class StreamPrinter : public QObject
         m_stream << ch;
         m_message << ch;
         return *this;
-    };
+    }
 
     StreamPrinter &operator<<(const QString &s)
     {
