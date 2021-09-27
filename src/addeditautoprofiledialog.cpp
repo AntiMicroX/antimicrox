@@ -279,7 +279,8 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
  */
 void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility *util)
 {
-    #ifdef WITH_X11 if (QApplication::platformName() == QStringLiteral("xcb"))
+    #ifdef WITH_X11
+    if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         long targetWindow = util->getTargetWindow();
         bool escaped = !util->hasFailed();
