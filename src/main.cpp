@@ -58,6 +58,8 @@
     #include <signal.h>
     #include <unistd.h>
 
+    #include <execinfo.h>
+
     #include <sys/stat.h>
     #include <sys/types.h>
 
@@ -82,7 +84,20 @@ static void termSignalIntHandler(int signal)
 static void termSignalSegfaultHandler(int signal)
 {
     qCritical() << "Received SIGSEGV (segmentation fault)";
-    delete Logger::getInstance();
+    const int MAX_NUM = 32;
+    void *array[MAX_NUM];
+    size_t size;
+
+    // get void*'s for all entries on the stack
+    size = backtrace(array, MAX_NUM);
+
+    char **strings = backtrace_symbols(array, size);
+    qWarning() << "Stack trace:";
+    for (size_t i = 0; i < size; i++)
+    {
+        qWarning() << strings[i] << "\t";
+    }
+    free(strings);
 
     // Restore default handler
     struct sigaction segint;
@@ -90,6 +105,8 @@ static void termSignalSegfaultHandler(int signal)
     sigemptyset(&segint.sa_mask);
     segint.sa_flags = 0;
     sigaction(SIGSEGV, &segint, nullptr);
+
+    delete Logger::getInstance();
 }
 
 void installSignalHandlers()
