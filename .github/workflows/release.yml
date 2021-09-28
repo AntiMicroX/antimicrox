@@ -21,7 +21,7 @@ jobs:
       id: create_deb
       run: |
         mkdir build && cd ./build
-        cmake .. -DCPACK_GENERATOR="DEB" -DANTIMICROX_PKG_VERSION="GitHub Release" ..
+        cmake .. -DCPACK_GENERATOR="DEB" -DCMAKE_BUILD_TYPE=Release -DANTIMICROX_PKG_VERSION="GitHub Release" ..
         cmake --build . --target package
 
     #upload generated files to release
@@ -63,7 +63,7 @@ jobs:
         MINOR=`echo $VERSION | cut -d " " -f 2`
         PATCH=`echo $VERSION | cut -d " " -f 3`
         cd build
-        cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-x86_64 \(AppImage\)"
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-x86_64 \(AppImage\)"
         make
         make install DESTDIR=AppDir
 
@@ -80,4 +80,29 @@ jobs:
       uses: AButler/upload-release-assets@v2.0
       with:
         files: ./build/AntiMicroX*.AppImage;./build/AntiMicroX*.zsync
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build AntiMicroX-debug
+      run: |
+        VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
+        MAJOR=`echo $VERSION | cut -d " " -f 1`
+        MINOR=`echo $VERSION | cut -d " " -f 2`
+        PATCH=`echo $VERSION | cut -d " " -f 3`
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-debug-x86_64 \(AppImage-debug\)"
+        make
+        make install DESTDIR=AppDir
+
+    - name: Create AppImage debug file
+      run: |
+        cd build
+        ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
+        ./appimagetool-x86_64.AppImage AppDir/
+        mv AntiMicroX-x86_64.AppImage AntiMicroX-debug-x86_64.AppImage
+
+    #Upload generated files to release
+    - name: Upload binaries to release
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: ./build/AntiMicroX*.AppImage
         repo-token: ${{ secrets.GITHUB_TOKEN }}

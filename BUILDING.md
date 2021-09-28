@@ -90,6 +90,11 @@ Default: OFF. Build documentation using doxygen (installed doxygen and dot requi
 Default: OFF. Set updateqm target to call lupdate in order to update
 translation files from source.
 
+    -DCMAKE_BUILD_TYPE
+
+Default: Not defined. You can define build type.  
+Debug builds are compiled with enabled debug flags, disabled optimizations and better printing stack trace in case of crash.
+
     -DTRANS_KEEP_OBSOLETE
 
 Default: OFF. Do not specify -noobsolete option when calling lupdate
@@ -101,7 +106,7 @@ Default: OFF. Allows for the launch of test sources with unit tests
 
     -DANTIMICROX_PKG_VERSION
 
-Default: Not defined. (feature intended for packagers) Manually define version of package displayed in info tab. When not defined building time is displayed instead.
+Default: Not defined. (feature intended for packagers) Manually define version of package displayed in info tab. When not defined building time is displayed instead. Example: `-DANTIMICROX_PKG_VERSION=3.1.7-appimage`
 
 ### Linux Options
 
