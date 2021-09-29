@@ -551,9 +551,7 @@ target_link_libraries(antimicrox
 ###############################
 
 # Specify out directory for final executable.
-if(UNIX)
-    install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-endif(UNIX)
+install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 if(UNIX)
     find_package(ECM REQUIRED NO_MODULE)
