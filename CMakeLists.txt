@@ -597,6 +597,19 @@ if(UNIX)
     endif(INSTALL_UINPUT_UDEV_RULES)
 endif(UNIX)
 
+# Copy libraries needed by Windows
+if(WIN32)
+
+add_custom_command(TARGET antimicrox POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E echo "dll files linked with antimicrox executable: $<TARGET_RUNTIME_DLLS:antimicrox> "
+  COMMAND_EXPAND_LISTS
+  )
+add_custom_command(TARGET antimicrox POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:antimicrox> $<TARGET_FILE_DIR:antimicrox>
+  COMMAND_EXPAND_LISTS
+  )
+endif(WIN32)
+
 # uninstall target
 configure_file(
         "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
