@@ -505,6 +505,9 @@ int main(int argc, char *argv[])
 
     #endif
     }
+#elif defined(Q_OS_WIN)
+    localServer = new LocalAntiMicroServer();
+    localServer->startLocalServer();
 #endif
 
     antimicrox.setQuitOnLastWindowClosed(false);
