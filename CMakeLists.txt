@@ -507,10 +507,8 @@ include_directories(
 )
 
 
-if(UNIX)
-    # Store executable in a bin subdir. Needed here so translations can be loaded.
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
-endif(UNIX)
+# Store executable in a bin subdir. Needed here so translations can be loaded.
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
 ###############################
 # COMPILE & LINK
@@ -551,9 +549,7 @@ target_link_libraries(antimicrox
 ###############################
 
 # Specify out directory for final executable.
-if(UNIX)
-    install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
-endif(UNIX)
+install(TARGETS antimicrox RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 if(UNIX)
     find_package(ECM REQUIRED NO_MODULE)
@@ -598,6 +594,19 @@ if(UNIX)
         install(FILES other/60-antimicrox-uinput.rules DESTINATION "/usr/lib/udev/rules.d/")
     endif(INSTALL_UINPUT_UDEV_RULES)
 endif(UNIX)
+
+# Copy libraries needed by Windows
+if(WIN32)
+
+add_custom_command(TARGET antimicrox POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E echo "dll files linked with antimicrox executable: $<TARGET_RUNTIME_DLLS:antimicrox> "
+  COMMAND_EXPAND_LISTS
+  )
+add_custom_command(TARGET antimicrox POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:antimicrox> $<TARGET_FILE_DIR:antimicrox>
+  COMMAND_EXPAND_LISTS
+  )
+endif(WIN32)
 
 # uninstall target
 configure_file(
