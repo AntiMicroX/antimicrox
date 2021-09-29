@@ -507,10 +507,8 @@ include_directories(
 )
 
 
-if(UNIX)
-    # Store executable in a bin subdir. Needed here so translations can be loaded.
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
-endif(UNIX)
+# Store executable in a bin subdir. Needed here so translations can be loaded.
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
 ###############################
 # COMPILE & LINK
