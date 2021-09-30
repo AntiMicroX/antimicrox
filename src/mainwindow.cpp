@@ -82,8 +82,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
                        AntiMicroSettings *settings, bool graphical, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , trayIconMenu(nullptr)
     , trayIcon(nullptr)
+    , trayIconMenu(nullptr)
 {
     ui->setupUi(this);
 
