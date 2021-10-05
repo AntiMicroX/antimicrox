@@ -145,6 +145,16 @@ pacman -S antimicrox
 
 List of required dependencies and build instructions can be found [here](./BUILDING.md).
 
+### Packages status
+
+Status of package `anitmicrox`:  
+[![Packaging status](https://repology.org/badge/vertical-allrepos/antimicrox.svg)](https://repology.org/project/antimicrox/versions)
+
+And `antimicro` (in cases when it contains AntiMicroX)  
+[![Debian 12 package](https://repology.org/badge/version-for-repo/debian_12/antimicro.svg)](https://repology.org/project/antimicro/versions)  
+[![Debian Stable package](https://repology.org/badge/version-for-repo/debian_stable/antimicro.svg)](https://repology.org/project/antimicro/versions)  
+[![Ubuntu 21.04 package](https://repology.org/badge/version-for-repo/ubuntu_21_04/antimicro.svg)](https://repology.org/project/antimicro/versions)
+
 ## Command Line
 
 Run `antimicrox --help` or read `man antimicrox` for command-line parameters.
@@ -203,12 +213,12 @@ Full list is available [here](https://github.com/AntiMicroX/antimicrox/graphs/co
 
 ### Package Maintainers
 
- **Distro** | **Maintainer** | **Package**  |
-| :--------- | :------------- | :----------- |
-| Arch Linux | frealgagu   | [antimicrox](https://aur.archlinux.org/packages/antimicrox/) <sup>AUR</sup> |
-| Arch Linux | FabioLolix   | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup> |
-| Fedora Linux | [gombosg](https://github.com/gombosg) | antimicrox |
-| Flatpak | [gombosg](https://github.com/gombosg) | [io.github.antimicrox.antimicrox](https://flathub.org/apps/details/io.github.antimicrox.antimicrox) |
+| **Distro**   | **Maintainer**                        | **Package**                                                                                         |
+| :----------- | :------------------------------------ | :-------------------------------------------------------------------------------------------------- |
+| Arch Linux   | frealgagu                             | [antimicrox](https://aur.archlinux.org/packages/antimicrox/) <sup>AUR</sup>                         |
+| Arch Linux   | FabioLolix                            | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup>                  |
+| Fedora Linux | [gombosg](https://github.com/gombosg) | antimicrox                                                                                          |
+| Flatpak      | [gombosg](https://github.com/gombosg) | [io.github.antimicrox.antimicrox](https://flathub.org/apps/details/io.github.antimicrox.antimicrox) |
 
 ### Translators
 
