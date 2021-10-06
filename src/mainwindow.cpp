@@ -730,6 +730,7 @@ void MainWindow::saveAppConfig()
 {
     if (m_joysticks->size() > 0)
     {
+        qInfo() << "Started saving app config";
         JoyTabWidget *temptabwidget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(0)); // static_cast
         m_settings->setValue("DisplayNames", temptabwidget->isDisplayingNames() ? "1" : "0");
 
@@ -765,6 +766,7 @@ void MainWindow::saveAppConfig()
         }
 
         m_settings->endGroup();
+        qDebug() << "App config saved";
     }
 
     m_settings->setValue("WindowSize", size());

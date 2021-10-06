@@ -321,6 +321,7 @@ int main(int argc, char *argv[])
         {
             mainWindow.saveAppConfig();
         }
+        qDebug() << "Closing this app instance";
 
         mainWindow.removeJoyTabs();
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
