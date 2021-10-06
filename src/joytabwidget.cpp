@@ -894,6 +894,7 @@ void JoyTabWidget::changeJoyConfig(int index)
     if (index > 0)
     {
         filename = configBox->itemData(index).toString();
+        qInfo() << "Change joystick " << m_joystick->getSDLName() << " profile to: " << filename;
     }
 
     if (!filename.isEmpty())
@@ -964,6 +965,7 @@ void JoyTabWidget::changeJoyConfig(int index)
 
 void JoyTabWidget::saveSettings()
 {
+    qInfo() << "Saving config settings: " << configBox->currentText() << " for controller: " << m_joystick->getSDLName();
     QString filename = "";
     QString lastfile = "";
 
@@ -1088,6 +1090,7 @@ void JoyTabWidget::saveSettings()
 
 void JoyTabWidget::loadSettings(bool forceRefresh)
 {
+    qInfo() << "Loading device settings for: " << m_joystick->getSDLName();
     disconnect(configBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
                &JoyTabWidget::changeJoyConfig);
 
@@ -1430,6 +1433,7 @@ void JoyTabWidget::unloadConfig() { configBox->setCurrentIndex(0); }
 
 void JoyTabWidget::saveDeviceSettings(bool sync)
 {
+    qInfo() << "Saving device settings.";
     m_settings->getLock()->lock();
     m_settings->beginGroup("Controllers");
     m_settings->getLock()->unlock();
