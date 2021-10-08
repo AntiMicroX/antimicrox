@@ -203,23 +203,23 @@ void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &cont
         {
         case QtDebugMsg:
             if (level >= Logger::LOG_DEBUG || level == Logger::LOG_MAX)
-                LogHelper(LogLevel::LOG_DEBUG, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_DEBUG, context.line, context.file, msg);
             break;
         case QtInfoMsg:
             if (level >= Logger::LOG_INFO)
-                LogHelper(LogLevel::LOG_INFO, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_INFO, context.line, context.file, msg);
             break;
         case QtWarningMsg:
             if (level >= Logger::LOG_WARNING)
-                LogHelper(LogLevel::LOG_WARNING, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_WARNING, context.line, context.file, msg);
             break;
         case QtCriticalMsg:
             if (level >= Logger::LOG_ERROR)
-                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg);
             break;
         case QtFatalMsg:
             if (level >= Logger::LOG_ERROR)
-                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg);
             abort();
         default:
             break;
