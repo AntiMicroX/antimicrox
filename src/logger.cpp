@@ -134,11 +134,9 @@ void Logger::closeLogger(bool closeStream)
  */
 void Logger::logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename)
 {
-    const static QMap<Logger::LogLevel, QString> TYPE_NAMES = {{LogLevel::LOG_DEBUG, "🐞DEBUG"},
-                                                               {LogLevel::LOG_INFO, "🟢INFO"},
-                                                               {LogLevel::LOG_WARNING, "❗WARN"},
-                                                               {LogLevel::LOG_ERROR, "❌ERROR"},
-                                                               {LogLevel::LOG_NONE, "NONE"}};
+    const static QMap<Logger::LogLevel, QString> TYPE_NAMES = {
+        {LogLevel::LOG_DEBUG, "🐞DEBUG"},  {LogLevel::LOG_VERBOSE, "⚪VERBOSE"}, {LogLevel::LOG_INFO, "🟢INFO"},
+        {LogLevel::LOG_WARNING, "❗WARN"}, {LogLevel::LOG_ERROR, "❌ERROR"},     {LogLevel::LOG_NONE, "NONE"}};
     QString displayTime = QString("[%1] ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
     if ((outputLevel != LOG_NONE) && (level <= outputLevel))
     {

@@ -39,6 +39,7 @@
 #define PRINT_STDERR() StreamPrinter(stderr, __LINE__, __FILE__)
 
 #define DEBUG() LogHelper(Logger::LogLevel::LOG_DEBUG, __LINE__, __FILE__)
+#define VERBOSE() LogHelper(Logger::LogLevel::LOG_VERBOSE, __LINE__, __FILE__)
 #define INFO() LogHelper(Logger::LogLevel::LOG_INFO, __LINE__, __FILE__)
 #define WARN() LogHelper(Logger::LogLevel::LOG_WARNING, __LINE__, __FILE__)
 #define ERROR() LogHelper(Logger::LogLevel::LOG_ERROR, __LINE__, __FILE__)
@@ -46,6 +47,9 @@
  * @brief Custom singleton class used for logging across application.
  *
  * It manages log-levels, formatting, printing logs and saving them to file.
+ * Logs across the program can be written using
+ * Local macros(better support for showing log location in release builds):
+ * DEBUG(), INFO(), VERBOSE(), WARN(), ERROR()
  * QT macros:
  * qDebug(), qInfo(), qWarning(), qCritical, and qFatal()
  *
@@ -62,7 +66,8 @@ class Logger : public QObject
         LOG_ERROR = 1,
         LOG_WARNING = 2,
         LOG_INFO = 3,
-        LOG_DEBUG = 4,
+        LOG_VERBOSE = 4,
+        LOG_DEBUG = 5,
         LOG_MAX = LOG_DEBUG
     };
 

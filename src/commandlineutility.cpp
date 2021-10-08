@@ -85,7 +85,8 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
                                              "controller index, name, or GUID"),
          QCoreApplication::translate("main", "number value")},
         {{"daemon", "d"}, QCoreApplication::translate("main", "Launch program as a daemon. Use only on Linux.")},
-        {"log-level", QCoreApplication::translate("main", "Enable logging. Levels (from the least strict): warn,info,debug"),
+        {"log-level",
+         QCoreApplication::translate("main", "Enable logging. Levels (from the least strict): warn,info,verbose,debug"),
          QCoreApplication::translate("main", "log-type")},
         {"log-file", QCoreApplication::translate("main", "Choose a file for logs writing"),
          QCoreApplication::translate("main", "filename")},
@@ -218,6 +219,8 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
 
             if (logLevelText == "debug")
                 currentLogLevel = Logger::LOG_DEBUG;
+            else if (logLevelText == "verbose")
+                currentLogLevel = Logger::LOG_VERBOSE;
             else if (logLevelText == "info")
                 currentLogLevel = Logger::LOG_INFO;
             else if (logLevelText == "warn")
