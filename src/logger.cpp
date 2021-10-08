@@ -134,11 +134,9 @@ void Logger::closeLogger(bool closeStream)
  */
 void Logger::logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename)
 {
-    const static QMap<Logger::LogLevel, QString> TYPE_NAMES = {{LogLevel::LOG_DEBUG, "🐞DEBUG"},
-                                                               {LogLevel::LOG_INFO, "🟢INFO"},
-                                                               {LogLevel::LOG_WARNING, "❗WARN"},
-                                                               {LogLevel::LOG_ERROR, "❌ERROR"},
-                                                               {LogLevel::LOG_NONE, "NONE"}};
+    const static QMap<Logger::LogLevel, QString> TYPE_NAMES = {
+        {LogLevel::LOG_DEBUG, "🐞DEBUG"},  {LogLevel::LOG_VERBOSE, "⚪VERBOSE"}, {LogLevel::LOG_INFO, "🟢INFO"},
+        {LogLevel::LOG_WARNING, "❗WARN"}, {LogLevel::LOG_ERROR, "❌ERROR"},     {LogLevel::LOG_NONE, "NONE"}};
     QString displayTime = QString("[%1] ").arg(QTime::currentTime().toString("hh:mm:ss.zzz"));
     if ((outputLevel != LOG_NONE) && (level <= outputLevel))
     {
@@ -203,23 +201,23 @@ void Logger::loggerMessageHandler(QtMsgType type, const QMessageLogContext &cont
         {
         case QtDebugMsg:
             if (level >= Logger::LOG_DEBUG || level == Logger::LOG_MAX)
-                LogHelper(LogLevel::LOG_DEBUG, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_DEBUG, context.line, context.file, msg);
             break;
         case QtInfoMsg:
             if (level >= Logger::LOG_INFO)
-                LogHelper(LogLevel::LOG_INFO, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_INFO, context.line, context.file, msg);
             break;
         case QtWarningMsg:
             if (level >= Logger::LOG_WARNING)
-                LogHelper(LogLevel::LOG_WARNING, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_WARNING, context.line, context.file, msg);
             break;
         case QtCriticalMsg:
             if (level >= Logger::LOG_ERROR)
-                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg);
             break;
         case QtFatalMsg:
             if (level >= Logger::LOG_ERROR)
-                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg).sendMessage();
+                LogHelper(LogLevel::LOG_ERROR, context.line, context.file, msg);
             abort();
         default:
             break;

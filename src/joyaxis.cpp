@@ -28,6 +28,7 @@
 #include <cmath>
 
 #include <QDebug>
+#include <QScopedPointer>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QtGlobal>
@@ -256,40 +257,41 @@ void JoyAxis::updateCurrentThrottledValue(int newValue) { currentThrottledValue 
 
 int JoyAxis::calculateThrottledValue(int value)
 {
-    qDebug() << "Throtted value at start of function is: " << value;
+    QScopedPointer<LogHelper> log(new DEBUG());
+    *log << "Throtted value at start of function is: " << value;
 
     int temp = value;
 
     switch (throttle)
     {
     case -2:
-        qDebug() << "It's a negative half throttle";
+        *log << ". It's a negative half throttle.";
 
         value = (value <= 0) ? value : -value;
         temp = value;
         break;
 
     case -1:
-        qDebug() << "It's a negative throttle";
+        *log << ". It's a negative throttle.";
 
         temp = (value + getAxisMinCal()) / 2;
         break;
 
     case 1:
-        qDebug() << "It's a positive throttle";
+        *log << ". It's a positive throttle.";
 
         temp = (value + getAxisMaxCal()) / 2;
         break;
 
     case 2:
-        qDebug() << "It's a positive half throttle";
+        *log << ". It's a positive half throttle.";
 
         value = (value >= 0) ? value : -value;
         temp = value;
         break;
     }
 
-    qDebug() << "Calculated value of throttle is: " << temp;
+    *log << " Calculated value of throttle is: " << temp;
 
     return temp;
 }
@@ -556,24 +558,25 @@ bool JoyAxis::isDefault()
  */
 void JoyAxis::setCurrentRawValue(int value)
 {
+    QScopedPointer<LogHelper> log(new DEBUG());
     if ((value >= getAxisMinCal()) && (value <= getAxisMaxCal()))
     {
-        qDebug() << "Raw value is less than " << getAxisMaxCal() << " and greather than " << getAxisMinCal();
+        *log << "Raw value is less than " << getAxisMaxCal() << " and greather than " << getAxisMinCal();
 
         currentRawValue = value;
     } else if (value > getAxisMaxCal())
     {
-        qDebug() << "Raw value is greather than " << getAxisMaxCal();
+        *log << "Raw value is greather than " << getAxisMaxCal();
 
         currentRawValue = getAxisMaxCal();
     } else if (value < getAxisMinCal())
     {
-        qDebug() << "Raw value is less than " << getAxisMinCal();
+        *log << "Raw value is less than " << getAxisMinCal();
 
         currentRawValue = getAxisMinCal();
     }
 
-    qDebug() << "Raw value for axis is: " << currentRawValue;
+    *log << " (" << currentRawValue << ")";
 }
 
 void JoyAxis::setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode)

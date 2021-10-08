@@ -248,12 +248,14 @@ int main(int argc, char *argv[])
     }
     settings.importFromCommandLine(cmdutility);
     settings.applySettingsToLogger(cmdutility, appLogger);
-    qDebug() << "AntiMicroX version: " << PadderCommon::programVersion
+    VERBOSE() << "AntiMicroX version: " << PadderCommon::programVersion
 #ifdef ANTIMICROX_PKG_VERSION
-             << " Package: " << ANTIMICROX_PKG_VERSION
+              << " Package: " << ANTIMICROX_PKG_VERSION
 #endif
 #ifdef QT_DEBUG
-             << " Type: Debug"
+              << " Type: Debug"
+#else
+              << " Type: Release"
 #endif
         ;
 

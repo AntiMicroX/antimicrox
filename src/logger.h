@@ -38,11 +38,20 @@
 #define PRINT_STDOUT() StreamPrinter(stdout, __LINE__, __FILE__)
 #define PRINT_STDERR() StreamPrinter(stderr, __LINE__, __FILE__)
 
+#define DEBUG() LogHelper(Logger::LogLevel::LOG_DEBUG, __LINE__, __FILE__)
+#define VERBOSE() LogHelper(Logger::LogLevel::LOG_VERBOSE, __LINE__, __FILE__)
+#define INFO() LogHelper(Logger::LogLevel::LOG_INFO, __LINE__, __FILE__)
+#define WARN() LogHelper(Logger::LogLevel::LOG_WARNING, __LINE__, __FILE__)
+#define ERROR() LogHelper(Logger::LogLevel::LOG_ERROR, __LINE__, __FILE__)
 /**
  * @brief Custom singleton class used for logging across application.
  *
  * It manages log-levels, formatting, printing logs and saving them to file.
- * Logs across the program can be written using  qDebug(), qInfo(), qWarning(), qCritical, and qFatal() functions
+ * Logs across the program can be written using
+ * Local macros(better support for showing log location in release builds):
+ * DEBUG(), INFO(), VERBOSE(), WARN(), ERROR()
+ * QT macros:
+ * qDebug(), qInfo(), qWarning(), qCritical, and qFatal()
  *
  */
 class Logger : public QObject
@@ -57,7 +66,8 @@ class Logger : public QObject
         LOG_ERROR = 1,
         LOG_WARNING = 2,
         LOG_INFO = 3,
-        LOG_DEBUG = 4,
+        LOG_VERBOSE = 4,
+        LOG_DEBUG = 5,
         LOG_MAX = LOG_DEBUG
     };
 
@@ -111,6 +121,7 @@ class Logger : public QObject
 /**
  * @brief simple helper class used for constructing log message and sending it to Logger
  *
+ * Message is sent either by using sendMessage(), or during destruction.
  */
 class LogHelper : public QObject
 {
@@ -120,19 +131,56 @@ class LogHelper : public QObject
     Logger::LogLevel level;
     uint lineno;
     QString filename;
+    bool is_message_sent;
+    Logger::LogLevel log_level;
 
     LogHelper(const Logger::LogLevel level, const uint lineno, const QString &filename, const QString &message = "")
         : message(message)
         , level(level)
         , lineno(lineno)
         , filename(filename)
+        , is_message_sent(false)
     {
         Logger *pointer = Logger::getInstance();
+        log_level = pointer->getCurrentLogLevel();
         connect(this, &LogHelper::logMessage, pointer, &Logger::logMessage);
     };
 
-    void sendMessage() { emit logMessage(message, level, lineno, filename); };
+    ~LogHelper()
+    {
+        if (!is_message_sent)
+            sendMessage();
+    }
 
+    void sendMessage()
+    {
+        is_message_sent = true;
+        emit logMessage(message, level, lineno, filename);
+    };
+
+    LogHelper &operator<<(const QString &s)
+    {
+        if (log_level != Logger::LogLevel::LOG_NONE)
+            message = message + s;
+        return *this;
+    };
+    LogHelper &operator<<(const QStringRef &s)
+    {
+        if (log_level != Logger::LogLevel::LOG_NONE)
+            message = message + s;
+        return *this;
+    };
+    template <typename Message> LogHelper &operator<<(Message ch)
+    {
+        if (log_level != Logger::LogLevel::LOG_NONE)
+        {
+            // The simplest way of building string from possible variables
+            std::stringstream str;
+            str << ch;
+            message = message + str.str().c_str();
+        }
+        return *this;
+    }
   signals:
     void logMessage(const QString &message, const Logger::LogLevel level, const uint lineno, const QString &filename);
 };
