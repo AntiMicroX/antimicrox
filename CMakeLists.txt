@@ -503,6 +503,7 @@ include_directories(
         "${CMAKE_CURRENT_BINARY_DIR}/src"
         ${PROJECT_SOURCE_DIR}
         "${PROJECT_SOURCE_DIR}/src"
+        "${PROJECT_SOURCE_DIR}/src/gui"
         ${SDL2_INCLUDE_DIRS}
 )
 
