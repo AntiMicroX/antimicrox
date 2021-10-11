@@ -107,29 +107,19 @@ endif(UNIX)
 set(antimicrox_MAIN src/main.cpp)
 
 set(antimicrox_SOURCES
-        src/aboutdialog.cpp
-        src/addeditautoprofiledialog.cpp
-        src/advancebuttondialog.cpp
-        src/advancestickassignmentdialog.cpp
         src/antimicrosettings.cpp
         src/antkeymapper.cpp
         src/applaunchhelper.cpp
         src/autoprofileinfo.cpp
-        src/axiseditdialog.cpp
         src/axisvaluebox.cpp
-        src/buttoneditdialog.cpp
-        src/calibration.cpp
         src/commandlineutility.cpp
         src/common.cpp
         src/dpadcontextmenu.cpp
-        src/dpadeditdialog.cpp
         src/dpadpushbutton.cpp
         src/dpadpushbuttongroup.cpp
-        src/editalldefaultautoprofiledialog.cpp
         src/event.cpp
         src/eventhandlerfactory.cpp
         src/eventhandlers/baseeventhandler.cpp
-        src/extraprofilesettingsdialog.cpp
         src/flashbuttonwidget.cpp
         src/gamecontroller/gamecontroller.cpp
         src/gamecontroller/gamecontrollerdpad.cpp
@@ -140,8 +130,27 @@ set(antimicrox_SOURCES
         src/gamecontroller/xml/gamecontrollertriggerxml.cpp
         src/gamecontroller/xml/gamecontrollerxml.cpp
         src/gamecontrollerexample.cpp
-        src/gamecontrollermappingdialog.cpp
         src/globalvariables.cpp
+        src/gui/aboutdialog.cpp
+        src/gui/addeditautoprofiledialog.cpp
+        src/gui/advancebuttondialog.cpp
+        src/gui/advancestickassignmentdialog.cpp
+        src/gui/axiseditdialog.cpp
+        src/gui/buttoneditdialog.cpp
+        src/gui/calibration.cpp
+        src/gui/dpadeditdialog.cpp
+        src/gui/editalldefaultautoprofiledialog.cpp
+        src/gui/extraprofilesettingsdialog.cpp
+        src/gui/gamecontrollermappingdialog.cpp
+        src/gui/joycontrolstickeditdialog.cpp
+        src/gui/joystickstatuswindow.cpp
+        src/gui/mainsettingsdialog.cpp
+        src/gui/mainwindow.cpp
+        src/gui/mousesettingsdialog.cpp
+        src/gui/qkeydisplaydialog.cpp
+        src/gui/quicksetdialog.cpp
+        src/gui/setaxisthrottledialog.cpp
+        src/gui/setnamesdialog.cpp
         src/inputdaemon.cpp
         src/inputdevice.cpp
         src/inputdevicebitarraystatus.cpp
@@ -162,13 +171,11 @@ set(antimicrox_SOURCES
         src/joycontrolstick.cpp
         src/joycontrolstickbuttonpushbutton.cpp
         src/joycontrolstickcontextmenu.cpp
-        src/joycontrolstickeditdialog.cpp
         src/joycontrolstickpushbutton.cpp
         src/joycontrolstickstatusbox.cpp
         src/joydpad.cpp
         src/joydpadbuttonwidget.cpp
         src/joystick.cpp
-        src/joystickstatuswindow.cpp
         src/joytabwidget.cpp
         src/joytabwidgetcontainer.cpp
         src/keyboard/virtualkeyboardmousewidget.cpp
@@ -176,8 +183,6 @@ set(antimicrox_SOURCES
         src/keyboard/virtualmousepushbutton.cpp
         src/localantimicroserver.cpp
         src/logger.cpp
-        src/mainsettingsdialog.cpp
-        src/mainwindow.cpp
         src/mousedialog/mouseaxissettingsdialog.cpp
         src/mousedialog/mousebuttonsettingsdialog.cpp
         src/mousedialog/mousecontrolsticksettingsdialog.cpp
@@ -188,14 +193,9 @@ set(antimicrox_SOURCES
         src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
         src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
         src/mousehelper.cpp
-        src/mousesettingsdialog.cpp
-        src/qkeydisplaydialog.cpp
         src/qtkeymapperbase.cpp
-        src/quicksetdialog.cpp
         src/sdleventreader.cpp
-        src/setaxisthrottledialog.cpp
         src/setjoystick.cpp
-        src/setnamesdialog.cpp
         src/simplekeygrabberbutton.cpp
         src/slotitemlistwidget.cpp
         src/stickpushbuttongroup.cpp
@@ -221,27 +221,17 @@ set(antimicrox_SOURCES
         )
 
 set(antimicrox_HEADERS
-        src/aboutdialog.h
-        src/addeditautoprofiledialog.h
-        src/advancebuttondialog.h
-        src/advancestickassignmentdialog.h
         src/antimicrosettings.h
         src/antkeymapper.h
         src/applaunchhelper.h
         src/autoprofileinfo.h
-        src/axiseditdialog.h
         src/axisvaluebox.h
-        src/buttoneditdialog.h
-        src/calibration.h
         src/commandlineutility.h
         src/dpadcontextmenu.h
-        src/dpadeditdialog.h
         src/dpadpushbutton.h
         src/dpadpushbuttongroup.h
-        src/editalldefaultautoprofiledialog.h
         src/eventhandlerfactory.h
         src/eventhandlers/baseeventhandler.h
-        src/extraprofilesettingsdialog.h
         src/flashbuttonwidget.h
         src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
@@ -252,8 +242,27 @@ set(antimicrox_HEADERS
         src/gamecontroller/xml/gamecontrollertriggerxml.h
         src/gamecontroller/xml/gamecontrollerxml.h
         src/gamecontrollerexample.h
-        src/gamecontrollermappingdialog.h
         src/globalvariables.h
+        src/gui/aboutdialog.h
+        src/gui/addeditautoprofiledialog.h
+        src/gui/advancebuttondialog.h
+        src/gui/advancestickassignmentdialog.h
+        src/gui/axiseditdialog.h
+        src/gui/buttoneditdialog.h
+        src/gui/calibration.h
+        src/gui/dpadeditdialog.h
+        src/gui/editalldefaultautoprofiledialog.h
+        src/gui/extraprofilesettingsdialog.h
+        src/gui/gamecontrollermappingdialog.h
+        src/gui/joycontrolstickeditdialog.h
+        src/gui/joystickstatuswindow.h
+        src/gui/mainsettingsdialog.h
+        src/gui/mainwindow.h
+        src/gui/mousesettingsdialog.h
+        src/gui/qkeydisplaydialog.h
+        src/gui/quicksetdialog.h
+        src/gui/setaxisthrottledialog.h
+        src/gui/setnamesdialog.h
         src/inputdaemon.h
         src/inputdevice.h
         src/inputdevicebitarraystatus.h
@@ -274,13 +283,11 @@ set(antimicrox_HEADERS
         src/joycontrolstick.h
         src/joycontrolstickbuttonpushbutton.h
         src/joycontrolstickcontextmenu.h
-        src/joycontrolstickeditdialog.h
         src/joycontrolstickpushbutton.h
         src/joycontrolstickstatusbox.h
         src/joydpad.h
         src/joydpadbuttonwidget.h
         src/joystick.h
-        src/joystickstatuswindow.h
         src/joytabwidget.h
         src/joytabwidgetcontainer.h
         src/keyboard/virtualkeyboardmousewidget.h
@@ -288,8 +295,6 @@ set(antimicrox_HEADERS
         src/keyboard/virtualmousepushbutton.h
         src/localantimicroserver.h
         src/logger.h
-        src/mainsettingsdialog.h
-        src/mainwindow.h
         src/mousedialog/mouseaxissettingsdialog.h
         src/mousedialog/mousebuttonsettingsdialog.h
         src/mousedialog/mousecontrolsticksettingsdialog.h
@@ -300,14 +305,9 @@ set(antimicrox_HEADERS
         src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
         src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
         src/mousehelper.h
-        src/mousesettingsdialog.h
-        src/qkeydisplaydialog.h
         src/qtkeymapperbase.h
-        src/quicksetdialog.h
         src/sdleventreader.h
-        src/setaxisthrottledialog.h
         src/setjoystick.h
-        src/setnamesdialog.h
         src/simplekeygrabberbutton.h
         src/slotitemlistwidget.h
         src/stickpushbuttongroup.h
@@ -378,13 +378,13 @@ if(UNIX)
                 src/qtx11keymapper.cpp
                 src/unixcapturewindowutility.cpp
                 src/autoprofilewatcher.cpp
-                src/capturedwindowinfodialog.cpp
+                src/gui/capturedwindowinfodialog.cpp
                 )
         LIST(APPEND antimicrox_HEADERS src/x11extras.h
                 src/qtx11keymapper.h
                 src/unixcapturewindowutility.h
                 src/autoprofilewatcher.h
-                src/capturedwindowinfodialog.h
+                src/gui/capturedwindowinfodialog.h
                 )
 
         if(WITH_XTEST)
@@ -409,8 +409,8 @@ elseif(WIN32)
         src/autoprofilewatcher.cpp
         src/winextras.cpp
          src/qtwinkeymapper.cpp
-         src/winappprofiletimerdialog.cpp
-         src/capturedwindowinfodialog.cpp
+         src/gui/winappprofiletimerdialog.cpp
+         src/gui/capturedwindowinfodialog.cpp
          src/eventhandlers/winsendinputeventhandler.cpp
          src/joykeyrepeathelper.cpp
     )
@@ -418,8 +418,8 @@ elseif(WIN32)
         src/autoprofilewatcher.h
         src/winextras.h
         src/qtwinkeymapper.h
-        src/winappprofiletimerdialog.h
-        src/capturedwindowinfodialog.h
+        src/gui/winappprofiletimerdialog.h
+        src/gui/capturedwindowinfodialog.h
         src/eventhandlers/winsendinputeventhandler.h
         src/joykeyrepeathelper.h
     )
