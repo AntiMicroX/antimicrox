@@ -107,30 +107,19 @@ endif(UNIX)
 set(antimicrox_MAIN src/main.cpp)
 
 set(antimicrox_SOURCES
-        src/aboutdialog.cpp
-        src/addeditautoprofiledialog.cpp
-        src/advancebuttondialog.cpp
-        src/advancestickassignmentdialog.cpp
         src/antimicrosettings.cpp
         src/antkeymapper.cpp
         src/applaunchhelper.cpp
         src/autoprofileinfo.cpp
-        src/axiseditdialog.cpp
         src/axisvaluebox.cpp
-        src/buttoneditdialog.cpp
-        src/calibration.cpp
         src/commandlineutility.cpp
         src/common.cpp
         src/dpadcontextmenu.cpp
-        src/dpadeditdialog.cpp
         src/dpadpushbutton.cpp
         src/dpadpushbuttongroup.cpp
-        src/editalldefaultautoprofiledialog.cpp
         src/event.cpp
         src/eventhandlerfactory.cpp
         src/eventhandlers/baseeventhandler.cpp
-        src/extraprofilesettingsdialog.cpp
-        src/flashbuttonwidget.cpp
         src/gamecontroller/gamecontroller.cpp
         src/gamecontroller/gamecontrollerdpad.cpp
         src/gamecontroller/gamecontrollerset.cpp
@@ -140,14 +129,39 @@ set(antimicrox_SOURCES
         src/gamecontroller/xml/gamecontrollertriggerxml.cpp
         src/gamecontroller/xml/gamecontrollerxml.cpp
         src/gamecontrollerexample.cpp
-        src/gamecontrollermappingdialog.cpp
         src/globalvariables.cpp
+        src/gui/aboutdialog.cpp
+        src/gui/addeditautoprofiledialog.cpp
+        src/gui/advancebuttondialog.cpp
+        src/gui/advancestickassignmentdialog.cpp
+        src/gui/axiseditdialog.cpp
+        src/gui/buttoneditdialog.cpp
+        src/gui/calibration.cpp
+        src/gui/dpadeditdialog.cpp
+        src/gui/editalldefaultautoprofiledialog.cpp
+        src/gui/extraprofilesettingsdialog.cpp
+        src/gui/flashbuttonwidget.cpp
+        src/gui/gamecontrollermappingdialog.cpp
+        src/gui/joyaxiswidget.cpp
+        src/gui/joybuttonwidget.cpp
+        src/gui/joycontrolstickeditdialog.cpp
+        src/gui/joydpadbuttonwidget.cpp
+        src/gui/joystickstatuswindow.cpp
+        src/gui/joytabwidget.cpp
+        src/gui/joytabwidgetcontainer.cpp
+        src/gui/mainsettingsdialog.cpp
+        src/gui/mainwindow.cpp
+        src/gui/mousesettingsdialog.cpp
+        src/gui/qkeydisplaydialog.cpp
+        src/gui/quicksetdialog.cpp
+        src/gui/setaxisthrottledialog.cpp
+        src/gui/setnamesdialog.cpp
+        src/gui/slotitemlistwidget.cpp
         src/inputdaemon.cpp
         src/inputdevice.cpp
         src/inputdevicebitarraystatus.cpp
         src/joyaxis.cpp
         src/joyaxiscontextmenu.cpp
-        src/joyaxiswidget.cpp
         src/joybutton.cpp
         src/joybuttoncontextmenu.cpp
         src/joybuttonmousehelper.cpp
@@ -158,26 +172,18 @@ set(antimicrox_SOURCES
         src/joybuttontypes/joycontrolstickmodifierbutton.cpp
         src/joybuttontypes/joydpadbutton.cpp
         src/joybuttontypes/joygradientbutton.cpp
-        src/joybuttonwidget.cpp
         src/joycontrolstick.cpp
         src/joycontrolstickbuttonpushbutton.cpp
         src/joycontrolstickcontextmenu.cpp
-        src/joycontrolstickeditdialog.cpp
         src/joycontrolstickpushbutton.cpp
         src/joycontrolstickstatusbox.cpp
         src/joydpad.cpp
-        src/joydpadbuttonwidget.cpp
         src/joystick.cpp
-        src/joystickstatuswindow.cpp
-        src/joytabwidget.cpp
-        src/joytabwidgetcontainer.cpp
         src/keyboard/virtualkeyboardmousewidget.cpp
         src/keyboard/virtualkeypushbutton.cpp
         src/keyboard/virtualmousepushbutton.cpp
         src/localantimicroserver.cpp
         src/logger.cpp
-        src/mainsettingsdialog.cpp
-        src/mainwindow.cpp
         src/mousedialog/mouseaxissettingsdialog.cpp
         src/mousedialog/mousebuttonsettingsdialog.cpp
         src/mousedialog/mousecontrolsticksettingsdialog.cpp
@@ -188,16 +194,10 @@ set(antimicrox_SOURCES
         src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
         src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
         src/mousehelper.cpp
-        src/mousesettingsdialog.cpp
-        src/qkeydisplaydialog.cpp
         src/qtkeymapperbase.cpp
-        src/quicksetdialog.cpp
         src/sdleventreader.cpp
-        src/setaxisthrottledialog.cpp
         src/setjoystick.cpp
-        src/setnamesdialog.cpp
         src/simplekeygrabberbutton.cpp
-        src/slotitemlistwidget.cpp
         src/stickpushbuttongroup.cpp
         src/uihelpers/advancebuttondialoghelper.cpp
         src/uihelpers/buttoneditdialoghelper.cpp
@@ -221,28 +221,17 @@ set(antimicrox_SOURCES
         )
 
 set(antimicrox_HEADERS
-        src/aboutdialog.h
-        src/addeditautoprofiledialog.h
-        src/advancebuttondialog.h
-        src/advancestickassignmentdialog.h
         src/antimicrosettings.h
         src/antkeymapper.h
         src/applaunchhelper.h
         src/autoprofileinfo.h
-        src/axiseditdialog.h
         src/axisvaluebox.h
-        src/buttoneditdialog.h
-        src/calibration.h
         src/commandlineutility.h
         src/dpadcontextmenu.h
-        src/dpadeditdialog.h
         src/dpadpushbutton.h
         src/dpadpushbuttongroup.h
-        src/editalldefaultautoprofiledialog.h
         src/eventhandlerfactory.h
         src/eventhandlers/baseeventhandler.h
-        src/extraprofilesettingsdialog.h
-        src/flashbuttonwidget.h
         src/gamecontroller/gamecontroller.h
         src/gamecontroller/gamecontrollerdpad.h
         src/gamecontroller/gamecontrollerset.h
@@ -252,14 +241,39 @@ set(antimicrox_HEADERS
         src/gamecontroller/xml/gamecontrollertriggerxml.h
         src/gamecontroller/xml/gamecontrollerxml.h
         src/gamecontrollerexample.h
-        src/gamecontrollermappingdialog.h
         src/globalvariables.h
+        src/gui/aboutdialog.h
+        src/gui/addeditautoprofiledialog.h
+        src/gui/advancebuttondialog.h
+        src/gui/advancestickassignmentdialog.h
+        src/gui/axiseditdialog.h
+        src/gui/buttoneditdialog.h
+        src/gui/calibration.h
+        src/gui/dpadeditdialog.h
+        src/gui/editalldefaultautoprofiledialog.h
+        src/gui/extraprofilesettingsdialog.h
+        src/gui/flashbuttonwidget.h
+        src/gui/gamecontrollermappingdialog.h
+        src/gui/joyaxiswidget.h
+        src/gui/joybuttonwidget.h
+        src/gui/joycontrolstickeditdialog.h
+        src/gui/joydpadbuttonwidget.h
+        src/gui/joystickstatuswindow.h
+        src/gui/joytabwidget.h
+        src/gui/joytabwidgetcontainer.h
+        src/gui/mainsettingsdialog.h
+        src/gui/mainwindow.h
+        src/gui/mousesettingsdialog.h
+        src/gui/qkeydisplaydialog.h
+        src/gui/quicksetdialog.h
+        src/gui/setaxisthrottledialog.h
+        src/gui/setnamesdialog.h
+        src/gui/slotitemlistwidget.h
         src/inputdaemon.h
         src/inputdevice.h
         src/inputdevicebitarraystatus.h
         src/joyaxis.h
         src/joyaxiscontextmenu.h
-        src/joyaxiswidget.h
         src/joybutton.h
         src/joybuttoncontextmenu.h
         src/joybuttonmousehelper.h
@@ -270,26 +284,18 @@ set(antimicrox_HEADERS
         src/joybuttontypes/joycontrolstickmodifierbutton.h
         src/joybuttontypes/joydpadbutton.h
         src/joybuttontypes/joygradientbutton.h
-        src/joybuttonwidget.h
         src/joycontrolstick.h
         src/joycontrolstickbuttonpushbutton.h
         src/joycontrolstickcontextmenu.h
-        src/joycontrolstickeditdialog.h
         src/joycontrolstickpushbutton.h
         src/joycontrolstickstatusbox.h
         src/joydpad.h
-        src/joydpadbuttonwidget.h
         src/joystick.h
-        src/joystickstatuswindow.h
-        src/joytabwidget.h
-        src/joytabwidgetcontainer.h
         src/keyboard/virtualkeyboardmousewidget.h
         src/keyboard/virtualkeypushbutton.h
         src/keyboard/virtualmousepushbutton.h
         src/localantimicroserver.h
         src/logger.h
-        src/mainsettingsdialog.h
-        src/mainwindow.h
         src/mousedialog/mouseaxissettingsdialog.h
         src/mousedialog/mousebuttonsettingsdialog.h
         src/mousedialog/mousecontrolsticksettingsdialog.h
@@ -300,16 +306,10 @@ set(antimicrox_HEADERS
         src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
         src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
         src/mousehelper.h
-        src/mousesettingsdialog.h
-        src/qkeydisplaydialog.h
         src/qtkeymapperbase.h
-        src/quicksetdialog.h
         src/sdleventreader.h
-        src/setaxisthrottledialog.h
         src/setjoystick.h
-        src/setnamesdialog.h
         src/simplekeygrabberbutton.h
-        src/slotitemlistwidget.h
         src/stickpushbuttongroup.h
         src/uihelpers/advancebuttondialoghelper.h
         src/uihelpers/buttoneditdialoghelper.h
@@ -343,27 +343,27 @@ if(ATTACH_FAKE_CLASSES)
 endif(ATTACH_FAKE_CLASSES)
 
 set(antimicrox_FORMS
-        src/aboutdialog.ui
-        src/addeditautoprofiledialog.ui
-        src/advancebuttondialog.ui
-        src/advancestickassignmentdialog.ui
-        src/axiseditdialog.ui
-        src/buttoneditdialog.ui
-        src/calibration.ui
-        src/capturedwindowinfodialog.ui
-        src/dpadeditdialog.ui
-        src/editalldefaultautoprofiledialog.ui
-        src/extraprofilesettingsdialog.ui
-        src/gamecontrollermappingdialog.ui
-        src/joycontrolstickeditdialog.ui
-        src/joystickstatuswindow.ui
-        src/mainsettingsdialog.ui
-        src/mainwindow.ui
-        src/mousesettingsdialog.ui
-        src/qkeydisplaydialog.ui
-        src/quicksetdialog.ui
-        src/setaxisthrottledialog.ui
-        src/setnamesdialog.ui
+        src/gui/aboutdialog.ui
+        src/gui/addeditautoprofiledialog.ui
+        src/gui/advancebuttondialog.ui
+        src/gui/advancestickassignmentdialog.ui
+        src/gui/axiseditdialog.ui
+        src/gui/buttoneditdialog.ui
+        src/gui/calibration.ui
+        src/gui/capturedwindowinfodialog.ui
+        src/gui/dpadeditdialog.ui
+        src/gui/editalldefaultautoprofiledialog.ui
+        src/gui/extraprofilesettingsdialog.ui
+        src/gui/gamecontrollermappingdialog.ui
+        src/gui/joycontrolstickeditdialog.ui
+        src/gui/joystickstatuswindow.ui
+        src/gui/mainsettingsdialog.ui
+        src/gui/mainwindow.ui
+        src/gui/mousesettingsdialog.ui
+        src/gui/qkeydisplaydialog.ui
+        src/gui/quicksetdialog.ui
+        src/gui/setaxisthrottledialog.ui
+        src/gui/setnamesdialog.ui
         )
 
 set(antimicrox_RESOURCES src/resources.qrc)
@@ -378,13 +378,13 @@ if(UNIX)
                 src/qtx11keymapper.cpp
                 src/unixcapturewindowutility.cpp
                 src/autoprofilewatcher.cpp
-                src/capturedwindowinfodialog.cpp
+                src/gui/capturedwindowinfodialog.cpp
                 )
         LIST(APPEND antimicrox_HEADERS src/x11extras.h
                 src/qtx11keymapper.h
                 src/unixcapturewindowutility.h
                 src/autoprofilewatcher.h
-                src/capturedwindowinfodialog.h
+                src/gui/capturedwindowinfodialog.h
                 )
 
         if(WITH_XTEST)
@@ -409,8 +409,8 @@ elseif(WIN32)
         src/autoprofilewatcher.cpp
         src/winextras.cpp
          src/qtwinkeymapper.cpp
-         src/winappprofiletimerdialog.cpp
-         src/capturedwindowinfodialog.cpp
+         src/gui/winappprofiletimerdialog.cpp
+         src/gui/capturedwindowinfodialog.cpp
          src/eventhandlers/winsendinputeventhandler.cpp
          src/joykeyrepeathelper.cpp
     )
@@ -418,13 +418,13 @@ elseif(WIN32)
         src/autoprofilewatcher.h
         src/winextras.h
         src/qtwinkeymapper.h
-        src/winappprofiletimerdialog.h
-        src/capturedwindowinfodialog.h
+        src/gui/winappprofiletimerdialog.h
+        src/gui/capturedwindowinfodialog.h
         src/eventhandlers/winsendinputeventhandler.h
         src/joykeyrepeathelper.h
     )
     LIST(APPEND antimicrox_FORMS
-        src/winappprofiletimerdialog.ui    
+        src/gui/winappprofiletimerdialog.ui    
     )
 endif(UNIX)
 
@@ -503,6 +503,7 @@ include_directories(
         "${CMAKE_CURRENT_BINARY_DIR}/src"
         ${PROJECT_SOURCE_DIR}
         "${PROJECT_SOURCE_DIR}/src"
+        "${PROJECT_SOURCE_DIR}/src/gui"
         ${SDL2_INCLUDE_DIRS}
 )
 
