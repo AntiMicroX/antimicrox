@@ -343,27 +343,27 @@ if(ATTACH_FAKE_CLASSES)
 endif(ATTACH_FAKE_CLASSES)
 
 set(antimicrox_FORMS
-        src/aboutdialog.ui
-        src/addeditautoprofiledialog.ui
-        src/advancebuttondialog.ui
-        src/advancestickassignmentdialog.ui
-        src/axiseditdialog.ui
-        src/buttoneditdialog.ui
-        src/calibration.ui
-        src/capturedwindowinfodialog.ui
-        src/dpadeditdialog.ui
-        src/editalldefaultautoprofiledialog.ui
-        src/extraprofilesettingsdialog.ui
-        src/gamecontrollermappingdialog.ui
-        src/joycontrolstickeditdialog.ui
-        src/joystickstatuswindow.ui
-        src/mainsettingsdialog.ui
-        src/mainwindow.ui
-        src/mousesettingsdialog.ui
-        src/qkeydisplaydialog.ui
-        src/quicksetdialog.ui
-        src/setaxisthrottledialog.ui
-        src/setnamesdialog.ui
+        src/gui/aboutdialog.ui
+        src/gui/addeditautoprofiledialog.ui
+        src/gui/advancebuttondialog.ui
+        src/gui/advancestickassignmentdialog.ui
+        src/gui/axiseditdialog.ui
+        src/gui/buttoneditdialog.ui
+        src/gui/calibration.ui
+        src/gui/capturedwindowinfodialog.ui
+        src/gui/dpadeditdialog.ui
+        src/gui/editalldefaultautoprofiledialog.ui
+        src/gui/extraprofilesettingsdialog.ui
+        src/gui/gamecontrollermappingdialog.ui
+        src/gui/joycontrolstickeditdialog.ui
+        src/gui/joystickstatuswindow.ui
+        src/gui/mainsettingsdialog.ui
+        src/gui/mainwindow.ui
+        src/gui/mousesettingsdialog.ui
+        src/gui/qkeydisplaydialog.ui
+        src/gui/quicksetdialog.ui
+        src/gui/setaxisthrottledialog.ui
+        src/gui/setnamesdialog.ui
         )
 
 set(antimicrox_RESOURCES src/resources.qrc)
@@ -424,7 +424,7 @@ elseif(WIN32)
         src/joykeyrepeathelper.h
     )
     LIST(APPEND antimicrox_FORMS
-        src/winappprofiletimerdialog.ui    
+        src/gui/winappprofiletimerdialog.ui    
     )
 endif(UNIX)
 
