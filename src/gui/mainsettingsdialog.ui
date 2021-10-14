@@ -1335,6 +1335,11 @@ values used by the virtual mouse.</string>
              </item>
              <item>
               <property name="text">
+               <string>Verbose</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>Debug</string>
               </property>
              </item>
