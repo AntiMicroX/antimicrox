@@ -24,6 +24,9 @@
 
 class QLocalServer;
 
+/**
+ * @brief Class used for checking presence of other AntiMicroX instances and communicating with them.
+ */
 class LocalAntiMicroServer : public QObject
 {
     Q_OBJECT
