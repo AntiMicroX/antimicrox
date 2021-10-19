@@ -322,6 +322,11 @@ int main(int argc, char *argv[])
         } else if (cmdutility.isUnloadRequested())
         {
             mainWindow.saveAppConfig();
+        } else if (!cmdutility.isHiddenRequested() && mainWindow.isHidden())
+        {
+            INFO() << "Showing window if hidden.\n";
+            socket.write(PadderCommon::unhideCommand.toStdString().c_str());
+            socket.waitForBytesWritten(100);
         }
         qDebug() << "Closing this app instance";
 
@@ -766,6 +771,7 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
                      Qt::DirectConnection);
 
+    QObject::connect(localServer, &LocalAntiMicroServer::showHiddenWindow, mainWindow, &MainWindow::show);
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow,
                      &MainWindow::handleInstanceDisconnect);
     QObject::connect(mainWindow, &MainWindow::mappingUpdated, joypad_worker.data(), &InputDaemon::refreshMapping);

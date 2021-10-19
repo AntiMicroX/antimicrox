@@ -126,6 +126,7 @@ const int LATESTCONFIGFILEVERSION = 19;
 // to be performed in order to be compatible with the latest version.
 const int LATESTCONFIGMIGRATIONVERSION = 5;
 const QString localSocketKey = "antimicroxSignalListener";
+const QString unhideCommand = "unhideWindow";
 const QString githubProjectPage = "https://github.com/AntiMicroX/antimicrox/";
 const QString githubIssuesPage = "https://github.com/AntiMicroX/antimicrox/issues";
 const QString wikiPage = QString("%1/wiki").arg(githubProjectPage);

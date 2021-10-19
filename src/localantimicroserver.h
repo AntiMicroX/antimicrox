@@ -19,6 +19,7 @@
 #ifndef LOCALANTIMICROSERVER_H
 #define LOCALANTIMICROSERVER_H
 
+#include <QLocalSocket>
 #include <QObject>
 
 class QLocalServer;
@@ -34,6 +35,7 @@ class LocalAntiMicroServer : public QObject
 
   signals:
     void clientdisconnect();
+    void showHiddenWindow();
 
   public slots:
     void startLocalServer();
@@ -42,6 +44,8 @@ class LocalAntiMicroServer : public QObject
     void close();
 
   private:
+    void checkForMessages(QLocalSocket *socket);
+
     QLocalServer *localServer;
 };
 
