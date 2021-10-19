@@ -37,6 +37,7 @@ CommandLineUtility::CommandLineUtility(QObject *parent)
     profileLocation = "";
     controllerNumber = 0;
     hiddenRequest = false;
+    showRequest = false;
     unloadProfile = false;
     startSetNumber = 0;
     daemonMode = false;
@@ -69,6 +70,8 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
         {"no-tray", QCoreApplication::translate("main", "Launch program with the tray menu disabled")},
         // An option with a value
         {"hidden", QCoreApplication::translate("main", "Launch program without the main window displayed")},
+        {"show", QCoreApplication::translate(
+                     "main", "Show app window when hidden. (Used for unhiding window of already running app instance).")},
         {"profile",
          QCoreApplication::translate("main", "Launch program with the configuration file selected as "
                                              "the default for "
@@ -147,6 +150,11 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
         if (parser.isSet("hidden"))
         {
             hiddenRequest = true;
+        }
+
+        if (parser.isSet("show"))
+        {
+            showRequest = true;
         }
 
         if (parser.isSet("unload"))
@@ -246,6 +254,8 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
 
         i++;
     }
+    if (showRequest && hiddenRequest)
+        throw std::runtime_error(QObject::tr("Specified contradicting flags: --show and --hidden").toStdString());
 }
 
 void CommandLineUtility::parseArgsProfile(const QCommandLineParser &parser)
@@ -433,6 +443,8 @@ QString CommandLineUtility::getProfileLocation() { return profileLocation; }
 int CommandLineUtility::getControllerNumber() { return controllerNumber; }
 
 bool CommandLineUtility::isHiddenRequested() { return hiddenRequest; }
+
+bool CommandLineUtility::isShowRequested() { return showRequest; }
 
 bool CommandLineUtility::hasControllerID() { return !controllerIDString.isEmpty(); }
 

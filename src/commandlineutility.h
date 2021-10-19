@@ -99,6 +99,7 @@ class CommandLineUtility : public QObject
     bool hasControllerNumber();
     bool hasControllerID();
     bool isHiddenRequested();
+    bool isShowRequested();
     bool isUnloadRequested();
     bool shouldListControllers();
     bool shouldMapController();
@@ -126,6 +127,7 @@ class CommandLineUtility : public QObject
     bool launchInTray;
     bool hideTrayIcon;
     bool hiddenRequest;
+    bool showRequest;
     bool unloadProfile;
     bool daemonMode;
     bool listControllers;

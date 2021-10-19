@@ -73,6 +73,7 @@ void LocalAntiMicroServer::handleOutsideConnection()
             qDebug() << "There is next pending connection: " << socket->socketDescriptor();
             connect(socket, &QLocalSocket::disconnected, this, &LocalAntiMicroServer::handleSocketDisconnect);
             connect(socket, &QLocalSocket::disconnected, socket, &QLocalSocket::deleteLater);
+            checkForMessages(socket);
         } else
         {
             qDebug() << "There isn't next pending connection: ";
@@ -86,5 +87,23 @@ void LocalAntiMicroServer::handleOutsideConnection()
 void LocalAntiMicroServer::handleSocketDisconnect() { emit clientdisconnect(); }
 
 void LocalAntiMicroServer::close() { localServer->close(); }
+
+void LocalAntiMicroServer::checkForMessages(QLocalSocket *socket)
+{
+    DEBUG() << "Waiting for message";
+    socket->waitForConnected(50);
+    bool result = socket->waitForReadyRead(200);
+    DEBUG() << "Waiting for message ended with result: " << (result ? "true" : "false");
+    if (result)
+    {
+        QString msg = QString(socket->readLine(30));
+        DEBUG() << "Received external message:" << msg;
+        if (msg == PadderCommon::unhideCommand)
+        {
+            DEBUG() << "Showing hidden window because of external request";
+            emit showHiddenWindow();
+        }
+    }
+}
 
 QLocalServer *LocalAntiMicroServer::getLocalServer() const { return localServer; }

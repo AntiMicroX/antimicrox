@@ -19,10 +19,14 @@
 #ifndef LOCALANTIMICROSERVER_H
 #define LOCALANTIMICROSERVER_H
 
+#include <QLocalSocket>
 #include <QObject>
 
 class QLocalServer;
 
+/**
+ * @brief Class used for checking presence of other AntiMicroX instances and communicating with them.
+ */
 class LocalAntiMicroServer : public QObject
 {
     Q_OBJECT
@@ -34,6 +38,7 @@ class LocalAntiMicroServer : public QObject
 
   signals:
     void clientdisconnect();
+    void showHiddenWindow();
 
   public slots:
     void startLocalServer();
@@ -42,6 +47,8 @@ class LocalAntiMicroServer : public QObject
     void close();
 
   private:
+    void checkForMessages(QLocalSocket *socket);
+
     QLocalServer *localServer;
 };
 
