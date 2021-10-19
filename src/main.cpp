@@ -322,7 +322,7 @@ int main(int argc, char *argv[])
         } else if (cmdutility.isUnloadRequested())
         {
             mainWindow.saveAppConfig();
-        } else if (!cmdutility.isHiddenRequested() && mainWindow.isHidden())
+        } else if (cmdutility.isShowRequested())
         {
             INFO() << "Showing window if hidden.\n";
             socket.write(PadderCommon::unhideCommand.toStdString().c_str());
