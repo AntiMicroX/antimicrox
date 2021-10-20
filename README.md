@@ -1,26 +1,39 @@
 # <img src="./src/images/antimicrox.png" alt="Icon" width="60"/> AntiMicroX
 
-1. [Description](#description)  
-2. [License](#license)  
-3. [Installation](#installation)
-4. [Wiki](#wiki)
-5. [Command Line](#command-line) 
-6. [Testing Under Linux](#testing-under-linux)  
-7. [AntiMicroX Profiles](#antimicrox-profiles)
-8. [Support](#support)  
-9. [Bugs](#bugs)  
-10. [Shoutout](#shoutout)  
-11. [Credits](#credits)  
-12. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+- [<img src="./src/images/antimicrox.png" alt="Icon" width="60"/> AntiMicroX](#-antimicrox)
+  - [Description](#description)
+  - [License](#license)
+  - [Installation](#installation)
+    - [Flatpak](#flatpak)
+    - [AppImage](#appimage)
+    - [Debian/Ubuntu-based distributions](#debianubuntu-based-distributions)
+    - [Fedora](#fedora)
+    - [openSUSE](#opensuse)
+    - [Arch Linux or Arch Linux based distributions:](#arch-linux-or-arch-linux-based-distributions)
+    - [Building Yourself](#building-yourself)
+    - [Packages status](#packages-status)
+  - [Command Line](#command-line)
+  - [Wiki](#wiki)
+  - [Testing Under Linux](#testing-under-linux)
+  - [AntiMicroX Profiles](#antimicrox-profiles)
+  - [Support](#support)
+  - [Bugs](#bugs)
+  - [Shoutout](#shoutout)
+  - [Credits](#credits)
+    - [Contributors](#contributors)
+    - [Package Maintainers](#package-maintainers)
+    - [Translators](#translators)
+  - [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
 
 ## Description
 
-AntiMicroX is a graphical program used to map gamepad keys to keyboard, mouse, scripts and macros. You can use this program to control any desktop application with a gamepad on Linux. 
+AntiMicroX is a graphical program used to map gamepad keys to keyboard, mouse, scripts and macros. You can use this program to control any desktop application with a gamepad on Linux.
 It can be also used for generating SDL2 configuration (useful for mapping atypical gamepads to generic ones like xbox360).
 
 We support X.org and Wayland.
 
 It allows mapping of gamepads/joystick buttons to:
+
 - keyboard buttons
 - mouse buttons and moves
 - scripts and executables
@@ -32,6 +45,7 @@ distributions.
 This application is continuation of project called `AntiMicro`, which was later abandoned and revived by juliagoda.
 
 Legacy repositories:
+
 - First AntiMicroX repository: https://github.com/juliagoda/antimicroX
 - Second, maintained by organization: https://github.com/AntiMicro/antimicro
 - First, original AntiMicro repository: https://github.com/Ryochan7/antimicro
@@ -77,14 +91,7 @@ If you have Flathub [set up](https://flatpak.org/setup/) already:
 flatpak install flathub io.github.antimicrox.antimicrox
 ```
 
-<details>
-  <summary>❕ Flatpak package may not work correctly with wayland (fix)</summary>
-  This is caused by missing udev rule. TO fix this issue you can apply udev rule by yourself.
-
-  <pre>
-cd /etc/udev/rules.d/
-sudo wget https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/60-antimicrox-uinput.rules</pre>
-</details>
+❕ Flatpak package may not work correctly with wayland [(Fix available here)](https://github.com/AntiMicroX/antimicrox/wiki/Open-uinput-error)
 
 ### AppImage
 
@@ -115,11 +122,13 @@ zypper install antimicrox
 ```
 trizen -S antimicrox
 ```
+
 **or**
 
 pre-built version can de downloaded from unofficial repository called [chaotic-aur](https://lonewolf.pedrohlc.com/chaotic-aur/).
 
 Append (one of listed mirrors) to `/etc/pacman.conf`:
+
 ```bash
 # Brazil
 Server = http://lonewolf-builder.duckdns.org/$repo/$arch
@@ -130,13 +139,17 @@ Server = https://repo.kitsuna.net/$arch
 # Netherlands
 Server = https://chaotic.tn.dedyn.io/$arch
 ```
+
 To check signature, add keys:
+
 ```bash
 sudo pacman-key --keyserver hkp://keyserver.ubuntu.com -r 3056513887B78AEB 8A9E14A07010F7E3
 sudo pacman-key --lsign-key 3056513887B78AEB
 sudo pacman-key --lsign-key 8A9E14A07010F7E3
 ```
+
 Install package
+
 ```bash
 pacman -S antimicrox
 ```
@@ -183,13 +196,13 @@ antimicrox to check if the problem is with antimicrox or not. The two endorsed
 programs for testing gamepads outside of antimicrox are **sdl-jstest**
 (**sdl2-jstest**) and **evtest**. SDL2 utilizes evdev on Linux so performing
 testing with older programs that use joydev won't be as helpful since some
-devices behave a bit differently between the two systems. Another method also exist, 
+devices behave a bit differently between the two systems. Another method also exist,
 which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
 ## AntiMicroX Profiles
 
-If you would like to send the profile you are using for your application or find something 
-for yourself, [here](https://github.com/AntiMicroX/antimicrox-profiles) is the forked repository. If you want to report a bug, ask 
+If you would like to send the profile you are using for your application or find something
+for yourself, [here](https://github.com/AntiMicroX/antimicrox-profiles) is the forked repository. If you want to report a bug, ask
 a question or share a suggestion, you can do that on the antimicrox page or on the
 [antimicrox-profiles](https://github.com/AntiMicroX/antimicrox-profiles) page.
 
@@ -199,7 +212,7 @@ In order to obtain support, you can post an issue [here](https://github.com/Anti
 
 ## Bugs
 
-Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or questions from users. 
+Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or questions from users.
 
 ## Shoutout
 
