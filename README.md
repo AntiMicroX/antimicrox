@@ -77,14 +77,7 @@ If you have Flathub [set up](https://flatpak.org/setup/) already:
 flatpak install flathub io.github.antimicrox.antimicrox
 ```
 
-<details>
-  <summary>❕ Flatpak package may not work correctly with wayland (fix)</summary>
-  This is caused by missing udev rule. TO fix this issue you can apply udev rule by yourself.
-
-  <pre>
-cd /etc/udev/rules.d/
-sudo wget https://raw.githubusercontent.com/AntiMicroX/antimicrox/master/other/60-antimicrox-uinput.rules</pre>
-</details>
+❕ Flatpak package may not work correctly with wayland [(Fix available here)](https://github.com/AntiMicroX/antimicrox/wiki/Open-uinput-error)
 
 ### AppImage
 
