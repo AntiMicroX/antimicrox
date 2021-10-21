@@ -533,8 +533,7 @@ elseif(WIN32)
         ${antimicrox_SOURCES}
         ${antimicrox_FORMS_HEADERS}
         ${antimicrox_RESOURCES_RCC}
-        # TODO create this with windows .ico icon
-        # src/antimicrox.rc
+        src/antimicrox_windows_icon.rc # Embedding icon into Windows executable
     )
     target_link_libraries(antimicrox
         ${WIN_LIBS}
