@@ -53,7 +53,7 @@ jobs:
           version: "5.15.2"
           host: "windows"
           target: "desktop"
-          arch: "win64_mingw73"
+          arch: "win64_mingw81"
           dir: "${{github.workspace}}/qt/"
           install-deps: "true"
 
