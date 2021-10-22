@@ -690,9 +690,34 @@ It is a new fork of discontinued AntiMicro.")
             COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
 endif()
 
+if(WIN32 AND NOT UNIX)
+    # We set NSIS as generator for Windows
+    set(CPACK_GENERATOR NSIS)
+
+    # There is a bug in NSI that does not handle full UNIX paths properly.
+    # Make sure there is at least one set of four backlashes.
+    set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/src/icons\\\\antimicrox.ico")
+    set(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
+    set(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
+    set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\antimicrox.exe")
+
+    set(CPACK_NSIS_DISPLAY_NAME "AntiMicroX")
+    set(CPACK_NSIS_PACKAGE_NAME "AntiMicroX")
+    set(CPACK_NSIS_HELP_LINK "http:\\\\\\\\github.com/AntiMicroX/antimicrox/wiki")
+    set(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\github.com/AntiMicroX/antimicrox")
+    set(CPACK_NSIS_MODIFY_PATH ON)
+endif()
+
 set(CPACK_PACKAGE_EXECUTABLES "antimicrox;AntiMicroX")
 set(CPACK_CREATE_DESKTOP_LINKS "antimicrox")
 include(CPack)
+
+if(WIN32 AND NOT UNIX)
+configure_file(
+    ${PROJECT_SOURCE_DIR}/cmake/modules/NSIS.definitions.nsh.in
+    ${CMAKE_CURRENT_BINARY_DIR}/assets/nsis/NSIS.definitions.nsh
+    )
+endif()
 
 
 ###############################
