@@ -662,7 +662,7 @@ endif()
 
 set(CPACK_PACKAGE_FILE_NAME "antimicrox-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX_MINOR_VERSION}.${ANTIMICROX_PATCH_VERSION}-${CMAKE_HOST_SYSTEM_PROCESSOR}")
 
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "AntiMicroX")
 
 if(UNIX)
     set(CPACK_STRIP_FILES "")
@@ -690,7 +690,8 @@ It is a new fork of discontinued AntiMicro.")
             COMMAND strip --strip-unneeded --remove-section=.comment --remove-section=.note "${CMAKE_CURRENT_BINARY_DIR}/bin/antimicrox" VERBATIM)
 endif()
 
-set(CPACK_PACKAGE_EXECUTABLES "antimicrox" "antimicrox")
+set(CPACK_PACKAGE_EXECUTABLES "antimicrox;AntiMicroX")
+set(CPACK_CREATE_DESKTOP_LINKS "antimicrox")
 include(CPack)
 
 
