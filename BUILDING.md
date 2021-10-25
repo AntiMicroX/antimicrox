@@ -12,6 +12,7 @@ Most of these packages are already built and available on [Release Page](https:/
   - [Building RPM package](#building-rpm-package)
   - [Building AppImage](#building-appimage)
   - [Building Flatpak](#building-flatpak)
+  - [Building Windows installer](#building-windows-installer)
 
 ## Build Dependencies
 
@@ -29,6 +30,14 @@ installed on your system in order to build this program:
 - `libx11-dev` (`libx11` on distros based on Arch Linux) (Needed to compile with Qt5 support)
 - `itstool` (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 - `gettext`
+
+<details>
+  <summary>Windows dependencies</summary>
+    In case of Windows you need QT, SDL2 libraries, cmake and compiler (mingw for example).
+
+    For setting up your environment you may use `msys2`.
+
+</details>
 
 ## Basic building
 
@@ -192,4 +201,13 @@ The Flathub manifest can be located in [Flathub's Github repo](https://github.co
 ```bash
 flatpak install flathub org.kde.Platform//5.11 org.kde.Sdk//5.11
 flatpak-builder --user --install build/ other/io.github.antimicrox.antimicrox.yml --force-clean
+```
+
+## Building Windows installer
+
+In case of building Windows package you will need [NSIS](https://nsis.sourceforge.io/Download).
+
+```
+cmake -DCMAKE_BUILD_TYPE=Debug -B .\build
+cmake --build .\build --target package
 ```
