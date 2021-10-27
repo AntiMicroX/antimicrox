@@ -35,8 +35,8 @@
 static QString findWinSystemConfigPath()
 {
     QString temp;
-    temp = (!qgetenv("LocalAppData").isEmpty()) ? QString::fromUtf8(qgetenv("LocalAppData")) + "/antimicrox"
-                                                : QDir::homePath() + "/.antimicrox";
+    temp = (!qgetenv("LocalAppData").isEmpty()) ? QString::fromUtf8(qgetenv("LocalAppData")) + "\\antimicrox"
+                                                : QDir::homePath() + "\\.antimicrox";
     return temp;
 }
 
@@ -95,9 +95,9 @@ const QString configFileName = "antimicrox_settings.ini";
 inline QString configFilePath()
 {
 #if defined(Q_OS_WIN) && defined(WIN_PORTABLE_PACKAGE)
-    return QString(configPath()).append("/").append(configFileName);
+    return QString(configPath()).append("\\").append(configFileName);
 #elif defined(Q_OS_WIN)
-    return QString(configPath()).append("/").append(configFileName);
+    return QString(configPath()).append("\\").append(configFileName);
 #else
     return QString(configPath()).append("/").append(configFileName);
 #endif
@@ -105,20 +105,28 @@ inline QString configFilePath()
 
 inline QString configLegacyFilePath()
 {
+#if defined(Q_OS_WIN)
+    return ""; // earlier vesrions of antimicrox was not supported by Windows
+#else
     QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty())
                              ? QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicroX"
                              : QDir::homePath() + "/.config/antimicroX";
 
     return QString(configPath).append("/").append("antimicroX_settings.ini");
+#endif
 }
 
 inline QString configAntimicroLegacyFilePath()
 {
+#if defined(Q_OS_WIN)
+    QString temp = configFilePath().replace("antimicrox", "antimicro").replace("/", "\\");
+    return temp;
+#else
     QString configPath = (!qgetenv("XDG_CONFIG_HOME").isEmpty())
                              ? QString::fromUtf8(qgetenv("XDG_CONFIG_HOME")) + "/antimicro"
                              : QDir::homePath() + "/.config/antimicro";
-
     return QString(configPath).append("/").append("antimicro_settings.ini");
+#endif
 }
 
 const int LATESTCONFIGFILEVERSION = 19;

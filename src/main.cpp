@@ -176,20 +176,23 @@ void importLegacySettingsIfExist()
     if (requireMigration)
     {
         const QFileInfo fileToCopy = legacyConfigExists ? legacyConfig : legacyAntimicroConfig;
+#if defined(Q_OS_WIN)
+        const QString location = PadderCommon::configPath();
+#else
+        const QString location = "~/.config/antimicrox";
+#endif
+        QDir(PadderCommon::configPath()).mkpath(PadderCommon::configPath());
         const bool copySuccess = QFile::copy(fileToCopy.canonicalFilePath(), PadderCommon::configFilePath());
         qDebug() << "Legacy settings found";
-        const QString successMessage = QString("Your original settings (previously stored in %1) "
-                                               "have been copied to "
-                                               "~/.config/antimicrox to ensure consistent naming across "
-                                               "entire project.\nIf you want you can "
-                                               "delete the original directory or leave it as it is.")
-                                           .arg(fileToCopy.canonicalFilePath());
-        const QString errorMessage = QString("Some problem with settings migration occurred.\nOriginal "
-                                             "configs are stored in %1 "
-                                             "but their new location is ~/.config/antimicrox.\n"
-                                             "You can migrate manually by renaming old directory and "
-                                             "renaming file to antimicrox_settings.ini.")
-                                         .arg(fileToCopy.canonicalFilePath());
+        const QString successMessage =
+            QObject::tr("Your original settings (previously stored in %1) have been copied to\n%2\n If you want you can "
+                        "delete the original directory or leave it as it is.")
+                .arg(fileToCopy.canonicalFilePath(), location);
+        const QString errorMessage =
+            QObject::tr("Some problem with settings migration occurred.\nOriginal configs are stored in \n%1\n but their "
+                        "new location is: \n%2\nYou can migrate manually by renaming old directory and renaming file to "
+                        "antimicrox_settings.ini.")
+                .arg(fileToCopy.canonicalFilePath(), location);
 
         QMessageBox msgBox;
         if (copySuccess)
