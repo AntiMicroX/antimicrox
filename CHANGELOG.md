@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.2.0](https://github.com/AntiMicroX/antimicrox/tree/3.2.0) (2021-10-28)
+## [3.2.0](https://github.com/AntiMicroX/antimicrox/tree/3.2.0) (2021-10-29)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.7...3.2.0)
 
