@@ -35,7 +35,7 @@ First AntiMicroX release supporting Windows
 - Embed icon into windows executable [\#261](https://github.com/AntiMicroX/antimicrox/pull/261) ([pktiuk](https://github.com/pktiuk))
 - Saves migration win [\#266](https://github.com/AntiMicroX/antimicrox/pull/266) ([pktiuk](https://github.com/pktiuk))
 - Use -rdynamic only in Unix debug builds [\#259](https://github.com/AntiMicroX/antimicrox/pull/259) ([pktiuk](https://github.com/pktiuk))
-- Setup Github Actions for Windows build [\#260](https://github.com/AntiMicroX/antimicrox/pull/260) (big kudos to [avinal](https://github.com/avinal))
+- Setup Github Actions for Windows build [\#260](https://github.com/AntiMicroX/antimicrox/pull/260) ([avinal](https://github.com/avinal))
 
 ## [3.1.7](https://github.com/AntiMicroX/antimicrox/tree/3.1.7) (2021-09-10)
 
