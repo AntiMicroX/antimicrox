@@ -1,5 +1,42 @@
 # Changelog
 
+## [3.2.0](https://github.com/AntiMicroX/antimicrox/tree/3.2.0) (2021-10-29)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.7...3.2.0)
+
+First AntiMicroX release supporting Windows
+
+**Implemented enhancements:**
+
+- Prepare installer for Windows [\#237](https://github.com/AntiMicroX/antimicrox/issues/237)
+- Handle segfaults and other crashes in code [\#235](https://github.com/AntiMicroX/antimicrox/issues/235)
+- Create config for debug builds [\#218](https://github.com/AntiMicroX/antimicrox/issues/218)
+- Allow unhiding app window when second instance of AntiMicroX is launched [\#257](https://github.com/AntiMicroX/antimicrox/pull/257)
+
+**Fixed bugs:**
+
+- Typo in udev rule name: 60-antimicrox-uinput.rules instead 60-antimcrox-uinput.rules? [\#204](https://github.com/AntiMicroX/antimicrox/issues/204)
+
+**Notable merged pull requests:**
+
+- Move gui-related files to separate directory [\#253](https://github.com/AntiMicroX/antimicrox/pull/253) ([pktiuk](https://github.com/pktiuk))
+- Logging system improvements [\#250](https://github.com/AntiMicroX/antimicrox/pull/250) ([pktiuk](https://github.com/pktiuk))
+- Some additional logs and notes [\#233](https://github.com/AntiMicroX/antimicrox/pull/233) [\#249](https://github.com/AntiMicroX/antimicrox/pull/249) ([pktiuk](https://github.com/pktiuk))
+- Fix compile warnings [\#246](https://github.com/AntiMicroX/antimicrox/pull/246) [\#242](https://github.com/AntiMicroX/antimicrox/pull/242) ([pktiuk](https://github.com/pktiuk))
+- Set homepage url for packages [\#245](https://github.com/AntiMicroX/antimicrox/pull/245) ([pktiuk](https://github.com/pktiuk))
+- Create config for debug build [\#243](https://github.com/AntiMicroX/antimicrox/pull/243) ([pktiuk](https://github.com/pktiuk))
+- Cmake cleanup [\#219](https://github.com/AntiMicroX/antimicrox/pull/219) ([pktiuk](https://github.com/pktiuk))
+
+**Pull requests restoring Windows support:**
+
+- Add Cpack NSIS config for building packages [\#262](https://github.com/AntiMicroX/antimicrox/pull/262) ([pktiuk](https://github.com/pktiuk))
+- Restore full functionality of Windows build [\#225](https://github.com/AntiMicroX/antimicrox/pull/225) ([pktiuk](https://github.com/pktiuk))
+- Restore Windows build [\#220](https://github.com/AntiMicroX/antimicrox/pull/220) [\#244](https://github.com/AntiMicroX/antimicrox/pull/244) ([pktiuk](https://github.com/pktiuk))
+- Embed icon into windows executable [\#261](https://github.com/AntiMicroX/antimicrox/pull/261) ([pktiuk](https://github.com/pktiuk))
+- Saves migration win [\#266](https://github.com/AntiMicroX/antimicrox/pull/266) ([pktiuk](https://github.com/pktiuk))
+- Use -rdynamic only in Unix debug builds [\#259](https://github.com/AntiMicroX/antimicrox/pull/259) ([pktiuk](https://github.com/pktiuk))
+- Setup Github Actions for Windows build [\#260](https://github.com/AntiMicroX/antimicrox/pull/260) ([avinal](https://github.com/avinal))
+
 ## [3.1.7](https://github.com/AntiMicroX/antimicrox/tree/3.1.7) (2021-09-10)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.6...3.1.7)
