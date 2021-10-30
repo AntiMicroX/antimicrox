@@ -1,6 +1,6 @@
 name: Build
 
-on: [ push, pull_request]
+on: [push]
 
 jobs:
   # This workflow contains a single job called "build"
