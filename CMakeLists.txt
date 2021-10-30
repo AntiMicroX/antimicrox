@@ -604,15 +604,42 @@ endif(UNIX)
 
 # Copy libraries needed by Windows
 if(WIN32)
+    add_custom_command(TARGET antimicrox POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "dll files linked with antimicrox executable: $<TARGET_RUNTIME_DLLS:antimicrox> "
+        COMMAND_EXPAND_LISTS
+        )
+    add_custom_command(TARGET antimicrox POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:antimicrox> $<TARGET_FILE_DIR:antimicrox>
+        COMMAND_EXPAND_LISTS
+        )
 
-add_custom_command(TARGET antimicrox POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E echo "dll files linked with antimicrox executable: $<TARGET_RUNTIME_DLLS:antimicrox> "
-  COMMAND_EXPAND_LISTS
-  )
-add_custom_command(TARGET antimicrox POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:antimicrox> $<TARGET_FILE_DIR:antimicrox>
-  COMMAND_EXPAND_LISTS
-  )
+    find_path(SDL2_DLL_LOCATION_DIR "SDL2.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
+
+    #these three lines assume SDL2 in standard location TODO do it better
+    find_path(GCC_DLL "libgcc_s_seh-1.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
+    find_path(PTHREAD_DLL_DIR "libwinpthread-1.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
+    find_path(LIBCPP_DLL_DIR "libstdc++-6.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
+    list(APPEND DLL_FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Core.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Gui.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Concurrent.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Network.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Widgets.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/libEGL.dll"
+        "${SDL2_DLL_LOCATION_DIR}/SDL2.dll"
+        "${GCC_DLL}/libgcc_s_seh-1.dll"
+        "${PTHREAD_DLL_DIR}/libwinpthread-1.dll"
+        "${LIBCPP_DLL_DIR}/libstdc++-6.dll"
+        )
+
+    install(FILES ${DLL_FILES} TYPE BIN )
+
+    # Required platform plugin
+    get_target_property(QtCore_LOCATION Qt5::Core LOCATION)
+    get_filename_component(QT_DLL_DIR ${QtCore_LOCATION} PATH)
+    install(FILES
+        ${QT_DLL_DIR}/../plugins/platforms/qwindows.dll
+        DESTINATION ./bin/platforms/)
 endif(WIN32)
 
 # uninstall target
