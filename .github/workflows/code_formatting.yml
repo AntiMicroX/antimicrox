@@ -1,6 +1,16 @@
 name: Check code formatting
 
-on: pull_request
+concurrency:
+    group: format-${{ github.head_ref }}
+    cancel-in-progress: true
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
 
 jobs:
     test:
@@ -15,6 +25,6 @@ jobs:
                   clang-format --version
                   wget https://raw.githubusercontent.com/Sarcasm/run-clang-format/master/run-clang-format.py
                   chmod +x ./run-clang-format.py
-            
+
             - name: Test
               run: ./run-clang-format.py -r src

@@ -1,67 +1,71 @@
 name: Build
 
-on: [push]
+concurrency:
+    group: build-${{ github.head_ref }}
+    cancel-in-progress: true
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+    workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "build"
-  build-ubuntu:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-18.04
+    # Build job for Ubuntu
+    build-ubuntu:
+        name: Ubuntu 20.04 GCC
+        runs-on: ubuntu-20.04
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    - name: Install Dependencies
-      run: |
-            sudo apt-get update && sudo apt-get install g++ extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
-            sudo snap install cmake --classic
-        #required newer cmake than 3.10 from Ubuntu 18.04
+        steps:
+            - uses: actions/checkout@v2
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+            - name: Install Dependencies
+              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 
-    # Runs a set of commands using the runners shell
-    - name: Build
-      run: |
-        ls
-        pwd
-        mkdir build && cd ./build
-        cmake ..
-        make
+            - name: Configure CMake
+              run: cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -B ${{ github.workspace }}/build
 
-  build-windows:
-    runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
+            - name: Build AntiMicroX
+              run: cmake --build ${{ github.workspace }}/build --parallel 8
 
-    steps:
-      - uses: actions/checkout@v2
+    # Build job for Windows
+    build-windows:
+        name: Windows Server 2019 MinGW
+        runs-on: windows-latest
+        defaults:
+            run:
+                shell: msys2 {0}
 
-      - name: Install Dependencies
-        uses: msys2/setup-msys2@v2
-        with:
-          install: >-
-            mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-ninja
-            mingw-w64-x86_64-SDL2
-          msystem: mingw64
-          release: false
+        steps:
+            - uses: actions/checkout@v2
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v2
-        with:
-          version: "5.15.2"
-          host: "windows"
-          target: "desktop"
-          arch: "win64_mingw81"
-          dir: "${{github.workspace}}/qt/"
-          install-deps: "true"
+            - name: Install Dependencies
+              uses: msys2/setup-msys2@v2
+              with:
+                  install: >-
+                      mingw-w64-x86_64-toolchain
+                      mingw-w64-x86_64-ninja
+                      mingw-w64-x86_64-SDL2
+                  msystem: mingw64
+                  release: false
 
-      - name: Configure CMake
-        env:
-          CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -B '${{github.workspace}}'/build
-        
-      - name: Build
-        run: cmake --build '${{github.workspace}}'/build
+            - name: Install Qt
+              uses: jurplel/install-qt-action@v2
+              with:
+                  version: "5.15.2"
+                  host: "windows"
+                  target: "desktop"
+                  arch: "win64_mingw81"
+                  dir: "${{ github.workspace }}/qt/"
+                  install-deps: "true"
 
+            - name: Configure CMake
+              run: cmake -DCMAKE_BUILD_TYPE=Debug -B '${{ github.workspace }}'/build
+              env:
+                  CMAKE_PREFIX_PATH: ${{ env.Qt5_Dir }}
+
+            - name: Build
+              run: cmake --build '${{ github.workspace }}'/build --parallel 8
