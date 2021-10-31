@@ -3,18 +3,18 @@ name: Check code formatting
 on: pull_request
 
 jobs:
-    test:
-        # The type of runner that the job will run on
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - name: Download tools
-              run: |
-                  sudo apt-get update && sudo apt-get install clang-format-10
-                  echo "Clang-format version"
-                  clang-format --version
-                  wget https://raw.githubusercontent.com/Sarcasm/run-clang-format/master/run-clang-format.py
-                  chmod +x ./run-clang-format.py
-            
-            - name: Test
-              run: ./run-clang-format.py -r src
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download tools
+        run: |
+          sudo apt-get update && sudo apt-get install clang-format-10
+          echo "Clang-format version"
+          clang-format --version
+          wget https://raw.githubusercontent.com/Sarcasm/run-clang-format/master/run-clang-format.py
+          chmod +x ./run-clang-format.py
+
+      - name: Test
+        run: ./run-clang-format.py -r src

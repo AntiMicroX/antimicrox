@@ -10,23 +10,23 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Install Dependencies
-      run: |
-            sudo apt-get update && sudo apt-get install g++ extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
-            sudo snap install cmake --classic
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install g++ extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+          sudo snap install cmake --classic
         #required newer cmake than 3.10 from Ubuntu 18.04
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    # Runs a set of commands using the runners shell
-    - name: Build
-      run: |
-        ls
-        pwd
-        mkdir build && cd ./build
-        cmake ..
-        make
+      # Runs a set of commands using the runners shell
+      - name: Build
+        run: |
+          ls
+          pwd
+          mkdir build && cd ./build
+          cmake ..
+          make
 
   build-windows:
     runs-on: windows-latest
@@ -61,7 +61,6 @@ jobs:
         env:
           CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
         run: cmake -DCMAKE_BUILD_TYPE=Debug -B '${{github.workspace}}'/build
-        
+
       - name: Build
         run: cmake --build '${{github.workspace}}'/build
-

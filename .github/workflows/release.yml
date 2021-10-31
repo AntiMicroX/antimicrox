@@ -1,35 +1,34 @@
-
 name: Release_actions
 on:
   release:
     types: [published]
 
 jobs:
-#Build .deb files for debian-based systems.
+  #Build .deb files for debian-based systems.
   build_deb:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - name: Build deb file
-      id: create_deb
-      run: |
-        mkdir build && cd ./build
-        cmake .. -DCPACK_GENERATOR="DEB" -DCMAKE_BUILD_TYPE=Release -DANTIMICROX_PKG_VERSION="GitHub Release" ..
-        cmake --build . --target package
+      - name: Build deb file
+        id: create_deb
+        run: |
+          mkdir build && cd ./build
+          cmake .. -DCPACK_GENERATOR="DEB" -DCMAKE_BUILD_TYPE=Release -DANTIMICROX_PKG_VERSION="GitHub Release" ..
+          cmake --build . --target package
 
-    #upload generated files to release
-    - name: Upload binaries to release
-      uses: AButler/upload-release-assets@v2.0
-      with:
-        files: ./build/*.deb
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #upload generated files to release
+      - name: Upload binaries to release
+        uses: AButler/upload-release-assets@v2.0
+        with:
+          files: ./build/*.deb
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   #Build universal and portable AppImage package.
   build-appimage:
@@ -37,75 +36,75 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - name: Install Dependencies
-      run: |
-        sudo apt-get update && sudo apt-get install g++ extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default libsdl2-2.0-0 zsync
-        sudo snap install cmake --classic
-      #required newer cmake than 3.10 from Ubuntu 18.04
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install g++ extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default libsdl2-2.0-0 zsync
+          sudo snap install cmake --classic
+        #required newer cmake than 3.10 from Ubuntu 18.04
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - name: Prepare files needed to create AppImage
-      run: |
-        mkdir build && cd ./build
-        wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-        wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
-        chmod +x linuxdeploy-x86_64.AppImage
-        chmod +x appimagetool-x86_64.AppImage
-        chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+      - name: Prepare files needed to create AppImage
+        run: |
+          mkdir build && cd ./build
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
 
-    - name: Build AntiMicroX
-      run: |
-        VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
-        MAJOR=`echo $VERSION | cut -d " " -f 1`
-        MINOR=`echo $VERSION | cut -d " " -f 2`
-        PATCH=`echo $VERSION | cut -d " " -f 3`
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-x86_64 \(AppImage\)"
-        make
-        make install DESTDIR=AppDir
+      - name: Build AntiMicroX
+        run: |
+          VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
+          MAJOR=`echo $VERSION | cut -d " " -f 1`
+          MINOR=`echo $VERSION | cut -d " " -f 2`
+          PATCH=`echo $VERSION | cut -d " " -f 3`
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-x86_64 \(AppImage\)"
+          make
+          make install DESTDIR=AppDir
 
-#UPDATE_INFORMATION describes where information about updates can be found
-    - name: Create AppImage file
-      run: |
-        cd build
-        export UPDATE_INFORMATION="zsync|https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-x86_64.AppImage.zsync"
-        ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
-        ./appimagetool-x86_64.AppImage AppDir/ -u "$UPDATE_INFORMATION"
+      #UPDATE_INFORMATION describes where information about updates can be found
+      - name: Create AppImage file
+        run: |
+          cd build
+          export UPDATE_INFORMATION="zsync|https://github.com/$GITHUB_REPOSITORY/releases/latest/download/antimicrox-x86_64.AppImage.zsync"
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
+          ./appimagetool-x86_64.AppImage AppDir/ -u "$UPDATE_INFORMATION"
 
-    #Upload generated files to release
-    - name: Upload binaries to release
-      uses: AButler/upload-release-assets@v2.0
-      with:
-        files: ./build/AntiMicroX*.AppImage;./build/AntiMicroX*.zsync
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #Upload generated files to release
+      - name: Upload binaries to release
+        uses: AButler/upload-release-assets@v2.0
+        with:
+          files: ./build/AntiMicroX*.AppImage;./build/AntiMicroX*.zsync
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build AntiMicroX-debug
-      run: |
-        VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
-        MAJOR=`echo $VERSION | cut -d " " -f 1`
-        MINOR=`echo $VERSION | cut -d " " -f 2`
-        PATCH=`echo $VERSION | cut -d " " -f 3`
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-debug-x86_64 \(AppImage-debug\)"
-        make
-        make install DESTDIR=AppDir
+      - name: Build AntiMicroX-debug
+        run: |
+          VERSION=`cat ./CMakeLists.txt | grep "set(ANTIMICROX_" | grep _VERSION | cut -d " " -f 2 | cut -d ")" -f 1`
+          MAJOR=`echo $VERSION | cut -d " " -f 1`
+          MINOR=`echo $VERSION | cut -d " " -f 2`
+          PATCH=`echo $VERSION | cut -d " " -f 3`
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DANTIMICROX_PKG_VERSION="$MAJOR.$MINOR.$PATCH-debug-x86_64 \(AppImage-debug\)"
+          make
+          make install DESTDIR=AppDir
 
-    - name: Create AppImage debug file
-      run: |
-        cd build
-        ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
-        ./appimagetool-x86_64.AppImage AppDir/
-        mv AntiMicroX-x86_64.AppImage AntiMicroX-debug-x86_64.AppImage
+      - name: Create AppImage debug file
+        run: |
+          cd build
+          ./linuxdeploy-x86_64.AppImage --appdir AppDir --plugin qt
+          ./appimagetool-x86_64.AppImage AppDir/
+          mv AntiMicroX-x86_64.AppImage AntiMicroX-debug-x86_64.AppImage
 
-    #Upload generated files to release
-    - name: Upload binaries to release
-      uses: AButler/upload-release-assets@v2.0
-      with:
-        files: ./build/AntiMicroX*.AppImage
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #Upload generated files to release
+      - name: Upload binaries to release
+        uses: AButler/upload-release-assets@v2.0
+        with:
+          files: ./build/AntiMicroX*.AppImage
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build-windows-installer:
     runs-on: windows-latest
