@@ -83,7 +83,12 @@ static void termSignalIntHandler(int signal)
 
 static void termSignalSegfaultHandler(int signal)
 {
-    qCritical() << "Received SIGSEGV (segmentation fault)";
+    if (signal == SIGSEGV)
+        ERROR() << "Received SIGSEGV (segmentation fault)";
+    else if (signal == SIGABRT)
+        ERROR() << "Received SIGABRT (abort)";
+    else
+        ERROR() << "Received signal with number" << signal;
     const int MAX_NUM = 32;
     void *array[MAX_NUM];
     size_t size;
@@ -92,10 +97,10 @@ static void termSignalSegfaultHandler(int signal)
     size = backtrace(array, MAX_NUM);
 
     char **strings = backtrace_symbols(array, size);
-    qWarning() << "Stack trace:";
+    WARN() << "Stack trace:";
     for (size_t i = 0; i < size; i++)
     {
-        qWarning() << strings[i] << "\t";
+        WARN() << strings[i] << "\t";
     }
     free(strings);
 
@@ -104,7 +109,7 @@ static void termSignalSegfaultHandler(int signal)
     segint.sa_handler = SIG_DFL;
     sigemptyset(&segint.sa_mask);
     segint.sa_flags = 0;
-    sigaction(SIGSEGV, &segint, nullptr);
+    sigaction(signal, &segint, nullptr);
 
     delete Logger::getInstance();
 }
@@ -134,6 +139,14 @@ void installSignalHandlers()
     segint.sa_flags = 0;
 
     sigaction(SIGSEGV, &segint, nullptr);
+
+    // Have program handle SIGABRT
+    struct sigaction segabrt;
+    segabrt.sa_handler = &termSignalSegfaultHandler;
+    sigemptyset(&segabrt.sa_mask);
+    segabrt.sa_flags = 0;
+
+    sigaction(SIGABRT, &segabrt, nullptr);
 }
 #endif
 
