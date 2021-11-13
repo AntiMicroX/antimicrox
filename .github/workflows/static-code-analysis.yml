@@ -1,0 +1,44 @@
+name: Static Code Analysis
+
+concurrency:
+    group: static-code-analysis-${{ github.head_ref }}
+    cancel-in-progress: true
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+    workflow_dispatch:
+
+jobs:
+    codeql-analysis:
+        name: CodeQl Code Analysis
+        runs-on: ubuntu-latest
+        permissions:
+            actions: read
+            contents: read
+            security-events: write
+
+        steps:
+            - name: Clone Repository
+              uses: actions/checkout@v2
+
+            - name: Initialize CodeQL
+              uses: github/codeql-action/init@v1
+              with:
+                  languages: 'cpp'
+
+            - name: Install Dependencies
+              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+
+            - name: Configure CMake
+              run: cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -B ${{ github.workspace }}/build
+
+            - name: Build AntiMicroX
+              run: cmake --build ${{ github.workspace }}/build --parallel 4
+
+            - name: Run CodeQL
+              uses: github/codeql-action/analyze@v1
