@@ -16,8 +16,24 @@ on:
 jobs:
     # Build job for Ubuntu
     build-ubuntu:
-        name: Ubuntu 20.04 GCC
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - name: Ubuntu 20-04 GCC
+                      cc: gcc
+                      cxx: g++
+                      build-type: Debug
+                      experimental: false
+                    - name: Ubuntu 20-04 Clang
+                      cc: clang
+                      cxx: clang++
+                      build-type: Debug
+                      experimental: true
+
+        name: ${{ matrix.name }} ${{ matrix.build-type }}
         runs-on: ubuntu-20.04
+        continue-on-error: ${{ matrix.experimental }}
 
         steps:
             - uses: actions/checkout@v2
@@ -26,14 +42,17 @@ jobs:
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 
             - name: Configure CMake
-              run: cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -B ${{ github.workspace }}/build
+              run: cmake -GNinja -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B ${{ github.workspace }}/build
+              env:
+                  CXX: ${{ matrix.cxx }}
+                  CC: ${{ matrix.cc }}
 
             - name: Build AntiMicroX
-              run: cmake --build ${{ github.workspace }}/build --parallel 8
+              run: cmake --build ${{ github.workspace }}/build
 
     # Build job for Windows
     build-windows:
-        name: Windows Server 2019 MinGW
+        name: Windows Server 2019 MinGW Debug
         runs-on: windows-latest
         defaults:
             run:
