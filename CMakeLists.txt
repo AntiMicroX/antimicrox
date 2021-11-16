@@ -45,9 +45,9 @@ if(COMPILER_SUPPORTS_CXX11)
     message("Build type: ${CMAKE_BUILD_TYPE}")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g -O0 -fno-omit-frame-pointer")
-    if(UNIX)
+    if(UNIX AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -rdynamic")
-    endif(UNIX)
+    endif(UNIX AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++11")
 else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
@@ -545,6 +545,10 @@ target_link_libraries(antimicrox
         ${X11_LIBS}
         ${SDL2_LIBRARIES}
         ${EXTRA_LIBS}
+        )
+
+target_include_directories(antimicrox PUBLIC
+        ${SDL2_INCLUDE_DIRS}/SDL2
         )
 
 ###############################
