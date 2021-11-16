@@ -15,6 +15,7 @@ on:
 jobs:
     test:
         # The type of runner that the job will run on
+        name: Check Code Formatting
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2

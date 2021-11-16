@@ -14,6 +14,10 @@ on:
     workflow_dispatch:
 
 jobs:
+    # CodeQl Code Analysis helps discover security vulnerabilities in your code.
+    # Official website: https://codeql.github.com/
+    # See the results here: https://github.com/AntiMicroX/antimicrox/security/code-scanning
+
     codeql-analysis:
         name: CodeQl Code Analysis
         runs-on: ubuntu-latest
@@ -26,11 +30,13 @@ jobs:
             - name: Clone Repository
               uses: actions/checkout@v2
 
+            # Initialize CodeQl with language parameters
             - name: Initialize CodeQL
               uses: github/codeql-action/init@v1
               with:
-                  languages: 'cpp'
+                  languages: "cpp"
 
+            # Project must be built before codeql can run its analysis
             - name: Install Dependencies
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 
@@ -38,7 +44,48 @@ jobs:
               run: cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -B ${{ github.workspace }}/build
 
             - name: Build AntiMicroX
-              run: cmake --build ${{ github.workspace }}/build --parallel 4
+              run: cmake --build ${{ github.workspace }}/build
 
+            # Run codeql analysis
             - name: Run CodeQL
               uses: github/codeql-action/analyze@v1
+
+    infer-analysis:
+        # Infer is a static analysis tool, it produces a list of potential bugs.
+        # https://fbinfer.com/
+        # How to see the results?
+        # 1. Goto Static Code Analysis GitHub Actions: https://github.com/AntiMicroX/antimicrox/actions/workflows/static-code-analysis.yml
+        # 2. Click on the relevent workflow run (runs on push, pull_requestand manually using workflow_dispatch)
+        # 3. Here you can see the artifact named "report", Download it to see the details.
+        # 4. Or you can click on the "Infer Code Analysis" and check the "Run Infer" step.
+
+        name: Infer Code Analysis
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Clone Repository
+              uses: actions/checkout@v2
+
+            # Download Infer and install at workflow run to ensure latest version
+            - name: Install Dependencies
+              run: |
+                  sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+                  curl -sSL "https://github.com/facebook/infer/releases/download/v1.1.0/infer-linux64-v1.1.0.tar.xz" | sudo tar -C /opt -xJ && sudo ln -s "/opt/infer-linux64-v1.1.0/bin/infer" /usr/local/bin/infer
+
+            # Project must be built before infer can run its analysis, must export the compile_commands.json file
+            - name: Configure CMake
+              run: cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B ${{ github.workspace }}/build
+
+            - name: Build AntiMicroX
+              run: cmake --build ${{ github.workspace }}/build
+
+            # Run infer analysis using the compilation database
+            - name: Run Infer
+              run: infer run --compilation-database build/compile_commands.json
+
+            # Upload result to build artifacts
+            - name: Upload Results
+              uses: actions/upload-artifact@v2
+              with:
+                  name: report
+                  path: infer-out/report.txt
