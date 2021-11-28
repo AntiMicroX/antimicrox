@@ -580,7 +580,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page">
+       <widget class="QWidget" name="languageSettingsPage">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <property name="topMargin">
           <number>4</number>
@@ -685,7 +685,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_2">
+       <widget class="QWidget" name="autoProfileSettingsPage">
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <property name="topMargin">
           <number>4</number>

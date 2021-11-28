@@ -115,11 +115,11 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     } else
     {
         delete ui->categoriesListWidget->item(2);
-        ui->stackedWidget->removeWidget(ui->page_2);
+        ui->stackedWidget->removeWidget(ui->autoProfileSettingsPage);
     }
 #elif !defined(WITH_X11) && defined(Q_OS_UNIX)
     delete ui->categoriesListWidget->item(2);
-    ui->stackedWidget->removeWidget(ui->page_2);
+    ui->stackedWidget->removeWidget(ui->autoProfileSettingsPage);
 #endif
 
     QString autoProfileActive = settings->value("AutoProfiles/AutoProfilesActive", "").toString();
