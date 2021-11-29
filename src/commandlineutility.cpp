@@ -73,9 +73,9 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
         {"show", QCoreApplication::translate(
                      "main", "Show app window when hidden. (Used for unhiding window of already running app instance).")},
         {"profile",
-         QCoreApplication::translate("main", "Launch program with the configuration file selected as "
-                                             "the default for "
-                                             "selected controllers. Defaults to all controllers"),
+         QCoreApplication::translate("main",
+                                     "Launch program with the configuration file selected as the default for selected "
+                                     "controllers, or change active profile of running app. Defaults to all controllers"),
          QCoreApplication::translate("main", "location")},
         {"profile-controller",
          QCoreApplication::translate("main", "Apply configuration file to a specific controller. Value "
