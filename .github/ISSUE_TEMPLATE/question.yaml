@@ -1,0 +1,10 @@
+name: "\U00002753 Question"
+description: Questions should be asked ONLY via Discussion module. https://github.com/AntiMicroX/antimicrox/discussions
+labels: ["question"]
+body:
+  - type: textarea
+    attributes:
+      label: Use discussion module to ask question.
+      description: Questions should be asked ONLY via [Discussion](https://github.com/AntiMicroX/antimicrox/discussions) module.
+    validations:
+      required: false
