@@ -55,6 +55,7 @@ class InputDevice : public QObject
     virtual QString getXmlName() = 0;
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
+    virtual QString getDescription();
 
     // GUID only available on SDL 2.
     virtual QString getGUIDString() = 0;
