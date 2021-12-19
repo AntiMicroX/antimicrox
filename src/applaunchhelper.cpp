@@ -116,22 +116,7 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
     while (iter.hasNext())
     {
         InputDevice *tempdevice = iter.next().value();
-        PRINT_STDOUT() << QObject::tr("Joystick %1:").arg(indexNumber) << "\n"
-                       << "  " << QObject::tr("Index:           %1").arg(tempdevice->getRealJoyNumber()) << "\n"
-                       << "  " << QObject::tr("UniqueID:            %1").arg(tempdevice->getUniqueIDString()) << "\n"
-                       << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << "\n"
-                       << "  " << QObject::tr("VendorID:            %1").arg(tempdevice->getVendorString()) << "\n"
-                       << "  " << QObject::tr("ProductID:            %1").arg(tempdevice->getProductIDString()) << "\n"
-                       << "  " << QObject::tr("Product Version:            %1").arg(tempdevice->getProductVersion()) << "\n"
-                       << "  " << QObject::tr("Name:            %1").arg(tempdevice->getSDLName()) << "\n";
-
-        // PRINT_STDOUT() << "  " << QObject::tr("GUID:            %1").arg(tempdevice->getGUIDString()) << "\n";
-        QString gameControllerStatus = tempdevice->isGameController() ? QObject::tr("Yes") : QObject::tr("No");
-
-        PRINT_STDOUT() << "  " << QObject::tr("Game Controller: %1").arg(gameControllerStatus) << "\n"
-                       << "  " << QObject::tr("# of Axes:       %1").arg(tempdevice->getNumberRawAxes()) << "\n"
-                       << "  " << QObject::tr("# of Buttons:    %1").arg(tempdevice->getNumberRawButtons()) << "\n"
-                       << "  " << QObject::tr("# of Hats:       %1").arg(tempdevice->getNumberHats()) << "\n";
+        PRINT_STDOUT() << QObject::tr("Joystick %1:").arg(indexNumber) << "\n" << tempdevice->getDescription();
 
         if (iter.hasNext())
         {

@@ -1205,6 +1205,24 @@ QString InputDevice::getProfileName() { return profileName; }
 
 int InputDevice::getButtonDownCount() { return buttonDownCount; }
 
+QString InputDevice::getDescription()
+{
+    QString full_desc = QObject::tr("Index:            %1").arg(getRealJoyNumber()) + "\n  " +
+                        QObject::tr("UniqueID:         %1").arg(getUniqueIDString()) + "\n  " +
+                        QObject::tr("GUID:             %1").arg(getGUIDString()) + "\n  " +
+                        QObject::tr("VendorID:         %1").arg(getVendorString()) + "\n  " +
+                        QObject::tr("ProductID:        %1").arg(getProductIDString()) + "\n  " +
+                        QObject::tr("Product Version:  %1").arg(getProductVersion()) + "\n  " +
+                        QObject::tr("Name:             %1").arg(getSDLName()) + "\n";
+    QString gameControllerStatus = isGameController() ? QObject::tr("Yes") : QObject::tr("No");
+
+    full_desc = full_desc + "  " + QObject::tr("Game Controller: %1").arg(gameControllerStatus) + "\n  " +
+                QObject::tr("# of Axes:       %1").arg(getNumberRawAxes()) + "\n  " +
+                QObject::tr("# of Buttons:    %1").arg(getNumberRawButtons()) + "\n  " +
+                QObject::tr("# of Hats:       %1").arg(getNumberHats()) + "\n";
+    return full_desc;
+}
+
 QString InputDevice::getSDLPlatform()
 {
     QString temp = SDL_GetPlatform();
