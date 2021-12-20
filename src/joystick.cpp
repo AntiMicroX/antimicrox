@@ -41,6 +41,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *
         getJoystick_sets().insert(i, setstick);
         enableSetConnections(setstick);
     }
+    INFO() << "Created new Joystick:\n" << getDescription();
 }
 
 QString Joystick::getXmlName() { return GlobalVariables::Joystick::xmlName; }

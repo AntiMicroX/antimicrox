@@ -49,6 +49,7 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex, 
         getJoystick_sets().insert(i, controllerset);
         enableSetConnections(controllerset);
     }
+    INFO() << "Created new GameController:\n" << getDescription();
 }
 
 QString GameController::getName()
