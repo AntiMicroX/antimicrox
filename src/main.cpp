@@ -532,6 +532,7 @@ int main(int argc, char *argv[])
 #elif defined(Q_OS_WIN)
     localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();
+    qApp->setStyle("fusion");
 #endif
 
     antimicrox.setQuitOnLastWindowClosed(false);
