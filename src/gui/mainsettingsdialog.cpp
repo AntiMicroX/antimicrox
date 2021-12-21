@@ -114,11 +114,14 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         fillGUIDComboBox();
     } else
     {
-        delete ui->categoriesListWidget->item(2);
+        delete ui->categoriesListWidget->item(3);
         ui->stackedWidget->removeWidget(ui->autoProfileSettingsPage);
+        ui->categoriesListWidget->addItem(tr("AutoProfile (disabled in Wayland)"));
+        auto item = ui->categoriesListWidget->item(ui->categoriesListWidget->count() - 1);
+        item->setFlags(item->flags() & ~Qt::ItemIsEnabled);
     }
 #elif !defined(WITH_X11) && defined(Q_OS_UNIX)
-    delete ui->categoriesListWidget->item(2);
+    delete ui->categoriesListWidget->item(3);
     ui->stackedWidget->removeWidget(ui->autoProfileSettingsPage);
 #elif defined(Q_OS_WIN)
     populateAutoProfiles();
