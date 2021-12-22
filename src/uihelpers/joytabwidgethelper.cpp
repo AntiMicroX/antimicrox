@@ -21,6 +21,7 @@
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "joybuttonslot.h"
+#include "logger.h"
 #include "xml/inputdevicexml.h"
 #include "xmlconfigreader.h"
 #include "xmlconfigwriter.h"
@@ -89,6 +90,7 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
     device->establishPropertyUpdatedConnection();
 
     result = !this->reader->hasError();
+    VERBOSE() << "Loading config file: " << filepath << (result ? " succeeded." : " failed.");
     return result;
 }
 
