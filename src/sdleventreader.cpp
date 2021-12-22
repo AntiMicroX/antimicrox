@@ -65,6 +65,7 @@ void SDLEventReader::initSDL()
     SDL_JoystickEventState(SDL_ENABLE);
 
     sdlIsOpen = true;
+    loadSdlMappingsFromDatabase();
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
     QStringList mappings = settings->allKeys();
@@ -241,6 +242,31 @@ void SDLEventReader::haltServices()
 {
     PadderCommon::lockInputDevices();
     PadderCommon::unlockInputDevices();
+}
+
+/**
+ * @brief Loading additional gamepad mappings from database
+ *
+ */
+void SDLEventReader::loadSdlMappingsFromDatabase()
+{
+    QString database_file;
+#if defined(Q_OS_UNIX)
+    database_file = QApplication::applicationDirPath().append("/../share/antimicrox/gamecontrollerdb.txt");
+#elif defined(Q_OS_WIN)
+    database_file = QApplication::applicationDirPath().append("\\share\\antimicrox\\gamecontrollerdb.txt");
+#endif
+    if (QFile::exists(database_file))
+    {
+        int result = SDL_GameControllerAddMappingsFromFile(database_file.toStdString().c_str());
+        if (result == -1)
+            qWarning() << "Loading game controller mappings from database: " << database_file << " failed";
+        else
+            DEBUG() << "Loaded " << result << " game controller mappings from database";
+    } else
+    {
+        qWarning() << "File with game controller mappings " << database_file << " does not exist";
+    }
 }
 
 QMap<SDL_JoystickID, InputDevice *> *SDLEventReader::getJoysticks() const { return joysticks; }

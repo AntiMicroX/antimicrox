@@ -70,6 +70,8 @@ class SDLEventReader : public QObject
     AntiMicroSettings *settings;
     int pollRate;
     QTimer pollRateTimer;
+
+    void loadSdlMappingsFromDatabase();
 };
 
 #endif // SDLEVENTREADER_H
