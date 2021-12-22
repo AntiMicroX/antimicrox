@@ -902,7 +902,7 @@ void JoyTabWidget::changeJoyConfig(int index)
         removeCurrentButtons();
         emit forceTabUnflash(this);
 
-        qDebug() << "SDL Current Powerl Level: " << SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) << "\n";
+        qDebug() << "SDL Current Power Level: " << SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) << "\n";
 
         if (SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) == SDL_JOYSTICK_POWER_WIRED ||
             SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle()) == SDL_JOYSTICK_POWER_UNKNOWN)
