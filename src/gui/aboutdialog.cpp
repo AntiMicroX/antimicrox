@@ -95,6 +95,8 @@ void AboutDialog::fillInfoTextBrowser()
     temp.close();
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     ui->changelogTextEdit->setMarkdown(changelogText);
+    ui->changelogTextEdit->setTextInteractionFlags(ui->changelogTextEdit->textInteractionFlags() |
+                                                   Qt::LinksAccessibleByMouse);
 #else
     ui->changelogTextEdit->setPlainText(changelogText);
 #endif
