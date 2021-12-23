@@ -342,7 +342,7 @@ p, li { white-space: pre-wrap; }
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <widget class="QTextEdit" name="changelogTextEdit">
+        <widget class="QTextBrowser" name="changelogText">
          <property name="readOnly">
           <bool>true</bool>
          </property>
