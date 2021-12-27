@@ -25,6 +25,11 @@
 #include <QMap>
 #include <QSystemTrayIcon>
 
+#ifdef CHECK_FOR_UPDATES
+    #include <QNetworkAccessManager>
+    #include <QNetworkReply>
+#endif
+
 class InputDevice;
 class CommandLineUtility;
 class AntiMicroSettings;
@@ -170,6 +175,12 @@ class MainWindow : public QMainWindow
     bool signalDisconnect;
     bool showTrayIcon;
     bool m_graphical;
+
+#ifdef CHECK_FOR_UPDATES
+    QNetworkAccessManager m_network_manager; // Used for checking updates
+    void networkManagerFinished(QNetworkReply *reply);
+    void updateButtonPressed();
+#endif
 };
 
 #endif // MAINWINDOW_H
