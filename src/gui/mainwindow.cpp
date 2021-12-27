@@ -201,7 +201,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
 #else
     ui->uacPushButton->setVisible(false);
 #endif
-
+    ui->updateButton->setVisible(false);
     QTimer *timer = new QTimer(this);
 
     connect(timer, &QTimer::timeout, [this]() { this->checkEachTenMinutesBattery(m_joysticks); });
