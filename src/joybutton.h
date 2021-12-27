@@ -316,7 +316,7 @@ class JoyButton : public QObject
     QElapsedTimer wheelHorizontalTime;
     QElapsedTimer turboHold;
 
-    SetJoystick *m_parentSet; // Pointer to set that button is assigned to.
+    QPointer<SetJoystick> m_parentSet;
     SetChangeCondition setSelectionCondition;
     JoyButtonSlot *currentWheelVerticalEvent;   // JoyButtonEvents class
     JoyButtonSlot *currentWheelHorizontalEvent; // JoyButtonEvents class
