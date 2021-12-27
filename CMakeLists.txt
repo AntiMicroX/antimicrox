@@ -70,6 +70,7 @@ option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source
 option(TRANS_KEEP_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
 option(ANTIMICROX_PKG_VERSION "Manually define version of package displayed in info tab" OFF)
+option(CHECK_FOR_UPDATES "Enable checking for updates using GitHub REST API." OFF)
 option(BUILD_DOCS "Build documentation" OFF)
 option(WITH_TESTS "Allow tests for classes" OFF)
 
@@ -81,6 +82,11 @@ if(ANTIMICROX_PKG_VERSION)
     message("This build will be marked as: ${ANTIMICROX_PKG_VERSION}")
     add_compile_definitions(ANTIMICROX_PKG_VERSION="${ANTIMICROX_PKG_VERSION}")
 endif(ANTIMICROX_PKG_VERSION)
+
+if(CHECK_FOR_UPDATES)
+    message("This build will check for updates using GitHub API.")
+    add_compile_definitions(CHECK_FOR_UPDATES="${CHECK_FOR_UPDATES}")
+endif(CHECK_FOR_UPDATES)
 
 if(UNIX)
     if(WITH_XTEST AND NOT WITH_X11)
