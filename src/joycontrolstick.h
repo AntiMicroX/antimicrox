@@ -22,6 +22,8 @@
 #include "joybutton.h"
 #include "joycontrolstickdirectionstype.h"
 
+#include <QPointer>
+
 class JoyAxis;
 class JoyControlStickButton;
 class JoyControlStickModifierButton;
@@ -282,8 +284,8 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
 
     QString calibrationSummary;
 
-    JoyAxis *axisX;
-    JoyAxis *axisY;
+    QPointer<JoyAxis> axisX;
+    QPointer<JoyAxis> axisY;
 
     JoyControlStickButton *activeButton1;
     JoyControlStickButton *activeButton2;

@@ -59,8 +59,10 @@ JoyControlStick::JoyControlStick(JoyAxis *axis1, JoyAxis *axis2, int index, int 
 
 JoyControlStick::~JoyControlStick()
 {
-    axisX->removeControlStick(false);
-    axisY->removeControlStick(false);
+    if (!axisX.isNull())
+        axisX->removeControlStick(false);
+    if (!axisY.isNull())
+        axisY->removeControlStick(false);
 }
 
 /**
