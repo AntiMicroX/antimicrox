@@ -76,8 +76,6 @@ QList<JoyButton *> JoyButton::pendingMouseButtons;
 JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent)
     : QObject(parent)
 {
-    qDebug() << "Thread in Joybutton";
-
     m_vdpad = nullptr;
     slotiter = nullptr;
 

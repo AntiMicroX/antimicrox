@@ -81,8 +81,6 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
 
     ignoreRelease = false;
 
-    qDebug() << "Thread in ButtonEditDialog";
-
     PadderCommon::inputDaemonMutex.lock();
 
     ui->virtualKeyMouseTabWidget->hide();
@@ -634,8 +632,6 @@ void ButtonEditDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, ButtonEditDial
     {
         helper->setThisButton(lastJoyBtn);
         helper->moveToThread(lastJoyBtn->thread());
-
-        qDebug() << "Thread in QuickSetDialog";
 
         if (withClear)
             QMetaObject::invokeMethod(lastJoyBtn, "clearSlotsEventReset", Q_ARG(bool, withTrue));
