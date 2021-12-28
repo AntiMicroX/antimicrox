@@ -390,7 +390,7 @@ int main(int argc, char *argv[])
 
         if (pid == 0)
         {
-            qInfo() << QObject::tr("Daemon launched");
+            PRINT_STDOUT() << QObject::tr("Daemon launched");
 
             localServer = new LocalAntiMicroServer();
             localServer->startLocalServer();
@@ -402,16 +402,16 @@ int main(int argc, char *argv[])
             delete joysticks;
             joysticks = nullptr;
 
-            exit(EXIT_FAILURE);
+            return 1;
         } else if (pid > 0) // We got a good pid, Close the Parent Process
         {
-            qInfo() << QObject::tr("Launching daemon");
+            PRINT_STDOUT() << QObject::tr("Launching daemon") << " PID: " << pid << "\n";
 
             deleteInputDevices(joysticks);
             delete joysticks;
             joysticks = nullptr;
 
-            exit(EXIT_SUCCESS);
+            return 0;
         }
 
     #ifdef WITH_X11
