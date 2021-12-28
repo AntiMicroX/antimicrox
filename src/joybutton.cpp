@@ -250,6 +250,8 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 } else if (!isButtonPressed && !activePress && turboTimer.isActive())
                 {
                     turboTimer.stop();
+
+                    Q_ASSERT(!m_parentSet.isNull());
                     qDebug() << tr("Finishing turbo for button #%1 - %2")
                                     .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
                                     .arg(getPartialName());
@@ -345,6 +347,7 @@ void JoyButton::startSequenceOfPressActive(bool isTurbo, QString debugText)
 
     currentAccelerationDistance = getAccelerationDistance();
 
+    Q_ASSERT(!m_parentSet.isNull());
     qDebug() << debugText.arg(m_parentSet->getInputDevice()->getRealJoyNumber()).arg(getPartialName());
 }
 
@@ -4029,6 +4032,7 @@ bool JoyButton::isCycleResetActive() { return cycleResetActive; }
 
 void JoyButton::establishPropertyUpdatedConnections()
 {
+    Q_ASSERT(!m_parentSet.isNull());
     connect(this, &JoyButton::slotsChanged, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
     connect(this, &JoyButton::propertyUpdated, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
 }
@@ -4036,7 +4040,8 @@ void JoyButton::establishPropertyUpdatedConnections()
 void JoyButton::disconnectPropertyUpdatedConnections()
 {
     disconnect(this, &JoyButton::slotsChanged, nullptr, nullptr);
-    disconnect(this, &JoyButton::propertyUpdated, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
+    if (!m_parentSet.isNull())
+        disconnect(this, &JoyButton::propertyUpdated, m_parentSet->getInputDevice(), &InputDevice::profileEdited);
 }
 
 /**
