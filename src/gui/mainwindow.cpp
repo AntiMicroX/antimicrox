@@ -1778,6 +1778,12 @@ void MainWindow::showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString ba
 #ifdef CHECK_FOR_UPDATES
 void MainWindow::networkManagerFinished(QNetworkReply *reply)
 {
+    int status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    if (status_code != 200)
+    {
+        WARN() << "Invalid REST response status code: " << status_code;
+        return;
+    }
     QJsonDocument json = QJsonDocument::fromJson(reply->readAll());
     QString latest_version = json["tag_name"].toString();
     DEBUG() << "Latest version: " << latest_version << " Installed version: " << PadderCommon::programVersion;
