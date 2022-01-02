@@ -1782,6 +1782,8 @@ void MainWindow::networkManagerFinished(QNetworkReply *reply)
     if (status_code != 200)
     {
         WARN() << "Invalid REST response status code: " << status_code;
+        VERBOSE() << "Supports SSL: " << (QSslSocket::supportsSsl() ? "true " : "false ")
+                  << QSslSocket::sslLibraryBuildVersionString() << QSslSocket::sslLibraryVersionString();
         return;
     }
     QJsonDocument json = QJsonDocument::fromJson(reply->readAll());
