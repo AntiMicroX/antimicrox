@@ -169,20 +169,52 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="uacPushButton">
-      <property name="text">
-       <string>If events are not seen by a game, please click here to run this application as Administrator.</string>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="bottombuttonslayout">
+      <item>
+       <widget class="QPushButton" name="uacPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>If events are not seen by a game, please click here to run this application as Administrator.</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="updateButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Update Button</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -231,7 +263,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </widget>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="application_exit" resource="resources.qrc">
+    <iconset theme="application_exit" resource="../resources.qrc">
      <normaloff>:/icons/actions/application_exit.png</normaloff>:/icons/actions/application_exit.png</iconset>
    </property>
    <property name="text">
@@ -246,7 +278,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="view_refresh" resource="resources.qrc">
+    <iconset theme="view_refresh" resource="../resources.qrc">
      <normaloff>:/icons/actions/view_refresh.png</normaloff>:/icons/actions/view_refresh.png</iconset>
    </property>
    <property name="text">
@@ -258,7 +290,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionHide">
    <property name="icon">
-    <iconset theme="view_restore" resource="resources.qrc">
+    <iconset theme="view_restore" resource="../resources.qrc">
      <normaloff>:/icons/actions/view_restore.png</normaloff>:/icons/actions/view_restore.png</iconset>
    </property>
    <property name="text">
@@ -270,7 +302,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="about_antimicrox" resource="resources.qrc">
+    <iconset theme="about_antimicrox" resource="../resources.qrc">
      <normaloff>:/icons/actions/about_antimicrox.png</normaloff>:/icons/actions/about_antimicrox.png</iconset>
    </property>
    <property name="text">
@@ -282,7 +314,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionAbout_Qt">
    <property name="icon">
-    <iconset theme="about_qt" resource="resources.qrc">
+    <iconset theme="about_qt" resource="../resources.qrc">
      <normaloff>:/icons/actions/about_qt.png</normaloff>:/icons/actions/about_qt.png</iconset>
    </property>
    <property name="text">
@@ -294,7 +326,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionProperties">
    <property name="icon">
-    <iconset theme="sliders" resource="resources.qrc">
+    <iconset theme="sliders" resource="../resources.qrc">
      <normaloff>:/icons/actions/sliders.png</normaloff>:/icons/actions/sliders.png</iconset>
    </property>
    <property name="text">
@@ -306,7 +338,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionKeyValue">
    <property name="icon">
-    <iconset theme="key_checker" resource="resources.qrc">
+    <iconset theme="key_checker" resource="../resources.qrc">
      <normaloff>:/icons/actions/key_checker.png</normaloff>:/icons/actions/key_checker.png</iconset>
    </property>
    <property name="text">
@@ -326,7 +358,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionGitHubPage">
    <property name="icon">
-    <iconset theme="github_page" resource="resources.qrc">
+    <iconset theme="github_page" resource="../resources.qrc">
      <normaloff>:/icons/actions/github_page.png</normaloff>:/icons/actions/github_page.png</iconset>
    </property>
    <property name="text">
@@ -338,7 +370,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionGameController_Mapping">
    <property name="icon">
-    <iconset theme="map_controller" resource="resources.qrc">
+    <iconset theme="map_controller" resource="../resources.qrc">
      <normaloff>:/icons/actions/map_controller.png</normaloff>:/icons/actions/map_controller.png</iconset>
    </property>
    <property name="text">
@@ -350,7 +382,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionOptions">
    <property name="icon">
-    <iconset theme="settings" resource="resources.qrc">
+    <iconset theme="settings" resource="../resources.qrc">
      <normaloff>:/icons/actions/settings.png</normaloff>:/icons/actions/settings.png</iconset>
    </property>
    <property name="text">
@@ -362,7 +394,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionStick_Pad_Assign">
    <property name="icon">
-    <iconset theme="stick_pad_assign" resource="resources.qrc">
+    <iconset theme="stick_pad_assign" resource="../resources.qrc">
      <normaloff>:/icons/actions/stick_pad_assign.png</normaloff>:/icons/actions/stick_pad_assign.png</iconset>
    </property>
    <property name="text">
@@ -374,7 +406,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionWiki">
    <property name="icon">
-    <iconset theme="wiki" resource="resources.qrc">
+    <iconset theme="wiki" resource="../resources.qrc">
      <normaloff>:/icons/actions/wiki.png</normaloff>:/icons/actions/wiki.png</iconset>
    </property>
    <property name="text">
@@ -386,7 +418,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionIssues">
    <property name="icon">
-    <iconset theme="issues" resource="resources.qrc">
+    <iconset theme="issues" resource="../resources.qrc">
      <normaloff>:/icons/actions/issues.png</normaloff>:/icons/actions/issues.png</iconset>
    </property>
    <property name="text">
@@ -398,7 +430,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </action>
   <action name="actionCalibration">
    <property name="icon">
-    <iconset theme="calibration" resource="resources.qrc">
+    <iconset theme="calibration" resource="../resources.qrc">
      <normaloff>:/icons/actions/calibration.png</normaloff>:/icons/actions/calibration.png</iconset>
    </property>
    <property name="text">
@@ -419,7 +451,7 @@ QPushButton#namesPushButton[isDisplayingNames=&quot;true&quot;] {
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections>
   <connection>

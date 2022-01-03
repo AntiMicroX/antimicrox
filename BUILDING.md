@@ -109,6 +109,10 @@ Debug builds are compiled with enabled debug flags, disabled optimizations and b
 Default: OFF. Do not specify -noobsolete option when calling lupdate
 command for qm files. -noobsolete is a method for getting rid of obsolete text entries
 
+    -DCHECK_FOR_UPDATES
+
+Default: OFF. Show update button in GUI when newer version is available.
+
     -DWITH_TESTS
 
 Default: OFF. Allows for the launch of test sources with unit tests

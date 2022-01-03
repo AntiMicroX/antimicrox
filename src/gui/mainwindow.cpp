@@ -69,6 +69,10 @@
 #include <QTranslator>
 #include <QUrl>
 
+#ifdef CHECK_FOR_UPDATES
+    #include <QJsonDocument>
+#endif
+
 #include <SDL2/SDL_joystick.h>
 
 #ifdef Q_OS_WIN
@@ -201,10 +205,15 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
 #else
     ui->uacPushButton->setVisible(false);
 #endif
-
+    ui->updateButton->setVisible(false);
     QTimer *timer = new QTimer(this);
 
     connect(timer, &QTimer::timeout, [this]() { this->checkEachTenMinutesBattery(m_joysticks); });
+#ifdef CHECK_FOR_UPDATES
+    connect(&m_network_manager, &QNetworkAccessManager::finished, this, &MainWindow::networkManagerFinished);
+    QNetworkRequest request(QUrl("https://api.github.com/repos/antimicrox/antimicrox/releases/latest"));
+    m_network_manager.get(request);
+#endif
 
     timer->start(CHECK_BATTERIES_MSEC);
 }
@@ -1765,6 +1774,37 @@ void MainWindow::showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString ba
         msgBox.exec();
     }
 }
+
+#ifdef CHECK_FOR_UPDATES
+void MainWindow::networkManagerFinished(QNetworkReply *reply)
+{
+    int status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    if (status_code != 200)
+    {
+        WARN() << "Invalid REST response status code: " << status_code;
+        VERBOSE() << "Supports SSL: " << (QSslSocket::supportsSsl() ? "true " : "false ")
+                  << QSslSocket::sslLibraryBuildVersionString() << QSslSocket::sslLibraryVersionString();
+        return;
+    }
+    QJsonDocument json = QJsonDocument::fromJson(reply->readAll());
+    QString latest_version = json["tag_name"].toString();
+    DEBUG() << "Latest version: " << latest_version << " Installed version: " << PadderCommon::programVersion;
+    if (latest_version != PadderCommon::programVersion && latest_version.length())
+    {
+        INFO() << "Update to: " << latest_version << " is available.";
+        ui->updateButton->setVisible(true);
+        ui->updateButton->setText(tr("Update to %1 available").arg(latest_version));
+        connect(ui->updateButton, &QPushButton::clicked, this, &MainWindow::updateButtonPressed);
+    }
+}
+
+void MainWindow::updateButtonPressed()
+{
+    INFO() << "Opening update website";
+    QDesktopServices::openUrl(QUrl("https://github.com/antiMicroX/antimicrox/releases/latest"));
+}
+
+#endif
 
 /**
  * @brief Select appropriate tab with the specified index.
