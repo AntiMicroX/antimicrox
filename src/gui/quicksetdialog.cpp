@@ -288,8 +288,6 @@ void QuickSetDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, Qt::ConnectionTy
         helper->setThisButton(lastButton);
         helper->moveToThread(lastButton->thread());
 
-        qDebug() << "Thread in QuickSetDialog";
-
         if (withClear)
             QMetaObject::invokeMethod(lastButton, "clearSlotsEventReset", Q_ARG(bool, withTrue));
 

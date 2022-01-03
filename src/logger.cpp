@@ -54,7 +54,7 @@ Logger::Logger(QTextStream *stream, LogLevel output_lvl, QObject *parent)
  */
 Logger::~Logger()
 {
-    qDebug() << "Closing logger";
+    VERBOSE() << "Closing logger";
     // To be sure about proper processing logs before deleting logger
     std::this_thread::sleep_for(std::chrono::milliseconds(30));
     loggingThread->quit();
