@@ -1,5 +1,45 @@
 # Changelog
 
+## [3.2.1](https://github.com/AntiMicroX/antimicrox/tree/3.2.1) (2022-01-03)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.0...3.2.1)
+
+**Implemented enhancements:**
+
+- Add note about available update (enabled in Windows) [\#325](https://github.com/AntiMicroX/antimicrox/issues/325)
+- Add database of SDL gamepad mappings (more gamepads will be enabled by default) [\#296](https://github.com/AntiMicroX/antimicrox/issues/296)
+- Add proper printing information about connected devices to logs [\#282](https://github.com/AntiMicroX/antimicrox/issues/282)
+- Apply proper theme to Windows version of app [\#279](https://github.com/AntiMicroX/antimicrox/issues/279)
+- Add handling SIGABRT \(with printing stack\) [\#281](https://github.com/AntiMicroX/antimicrox/pull/281)
+- Set theme for Windows [\#317](https://github.com/AntiMicroX/antimicrox/pull/317)
+- Update QT version used in Windows Release to 5.15 [\#326](https://github.com/AntiMicroX/antimicrox/pull/326)
+
+**Fixed bugs:**
+
+- Crashes linked with deleting child objects [\#320](https://github.com/AntiMicroX/antimicrox/issues/320)
+- Broken Auto Profile list on Windows [\#278](https://github.com/AntiMicroX/antimicrox/issues/278)
+- Auto Profile Wrongly Shows Languages [\#273](https://github.com/AntiMicroX/antimicrox/issues/273)
+- Missing .dll files after Windows installation [\#268](https://github.com/AntiMicroX/antimicrox/issues/268)
+- Missing autoprofile settings tab in Windows [\#277](https://github.com/AntiMicroX/antimicrox/pull/277)
+
+**Notable changes:**
+
+- Add note about lack of AutoProfiles for Wayland users [\#314](https://github.com/AntiMicroX/antimicrox/issues/314)
+- Add message informaing about solutions in case of problems with uinput [\#248](https://github.com/AntiMicroX/antimicrox/pull/248)
+- Log improvements [\#322](https://github.com/AntiMicroX/antimicrox/pull/322) [\#336](https://github.com/AntiMicroX/antimicrox/pull/336)
+- Disable calibration for devices without joysticks [\#283](https://github.com/AntiMicroX/antimicrox/pull/283)
+- Clarification of names and --profile flag description [\#305](https://github.com/AntiMicroX/antimicrox/pull/305)
+
+**Others:**
+
+- Update copyright date [\#334](https://github.com/AntiMicroX/antimicrox/pull/334)
+- Cleanup daemon launching [\#331](https://github.com/AntiMicroX/antimicrox/pull/331)
+- Make Changelog links clickable [\#327](https://github.com/AntiMicroX/antimicrox/pull/327)
+- Print descriptions of devices in logs [\#319](https://github.com/AntiMicroX/antimicrox/pull/319)
+- Add experimental support for clang [\#288](https://github.com/AntiMicroX/antimicrox/pull/288) ([avinal](https://github.com/avinal))
+- CI: Add concurrency and remove redundant lines [\#272](https://github.com/AntiMicroX/antimicrox/pull/272) ([avinal](https://github.com/avinal))
+- CI: Add CodeQL and infer static code analysis [\#289](https://github.com/AntiMicroX/antimicrox/issues/289) [\#287](https://github.com/AntiMicroX/antimicrox/issues/287)
+
 ## [3.2.0](https://github.com/AntiMicroX/antimicrox/tree/3.2.0) (2021-10-29)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.1.7...3.2.0)
