@@ -119,6 +119,7 @@ jobs:
                       mingw-w64-x86_64-ninja
                       mingw-w64-x86_64-SDL2
                       mingw-w64-x86_64-nsis
+                      mingw-w64-x86_64-openssl
                   msystem: mingw64
                   release: false
 

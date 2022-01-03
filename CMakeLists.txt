@@ -638,6 +638,16 @@ if(WIN32)
         "${LIBCPP_DLL_DIR}/libstdc++-6.dll"
         )
 
+    if(CHECK_FOR_UPDATES)
+        message("Searching for SSL DLL-s.")
+        find_path(LIBCRYPTO_DLL_DIR "libcrypto-1_1-x64.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
+        find_path(LIBSSL_DLL_DIR "libssl-1_1-x64.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
+        list(APPEND DLL_FILES
+        "${LIBCRYPTO_DLL_DIR}/libcrypto-1_1-x64.dll"
+        "${LIBSSL_DLL_DIR}/libssl-1_1-x64.dll"
+        )
+    endif(CHECK_FOR_UPDATES)
+
     install(FILES ${DLL_FILES} TYPE BIN )
 
     # Required platform plugin
