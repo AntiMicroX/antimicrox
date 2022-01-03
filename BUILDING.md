@@ -111,7 +111,7 @@ command for qm files. -noobsolete is a method for getting rid of obsolete text e
 
     -DCHECK_FOR_UPDATES
 
-Default: OFF. Show update button in GUI when newer version is available.
+Default: OFF. Show update button in GUI when newer version is available. Recommended for builds distributed without package management systems.
 
     -DWITH_TESTS
 

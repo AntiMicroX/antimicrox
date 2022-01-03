@@ -16,7 +16,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
 
             - name: Configure CMake
-              run: cmake -DCPACK_GENERATOR="DEB" -DCMAKE_BUILD_TYPE=Release -DANTIMICROX_PKG_VERSION="GitHub Release" -B ${{ github.workspace }}/build
+              run: cmake -DCPACK_GENERATOR="DEB" -DCMAKE_BUILD_TYPE=Release -DCHECK_FOR_UPDATES=ON -DANTIMICROX_PKG_VERSION="GitHub Release" -B ${{ github.workspace }}/build
 
             - name: Create Deb package
               id: create_deb
