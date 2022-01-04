@@ -239,3 +239,12 @@ Logger *Logger::createInstance(QTextStream *stream, LogLevel outputLevel, QObjec
     instance = new Logger(stream, outputLevel, parent);
     return instance;
 }
+
+bool Logger::isDebugLevel()
+{
+    if (instance != nullptr)
+    {
+        return instance->outputLevel == LogLevel::LOG_DEBUG;
+    }
+    return false;
+}
