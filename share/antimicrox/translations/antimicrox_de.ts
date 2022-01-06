@@ -1592,7 +1592,7 @@ this button is being used.</source>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="415"/>
-        <source>Before you open window with advanced settins, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choice a key</source>
         <translation>Bevor du ein Fenster mit den erweiterten Einstellungen öffnest, musst du einen Schlüssel wählen</translation>
     </message>
     <message>
