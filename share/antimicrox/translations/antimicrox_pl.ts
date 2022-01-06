@@ -1965,7 +1965,7 @@ gdy przycisk jest wciśnięty.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="415"/>
-        <source>Before you open window with advanced settins, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choice a key</source>
         <translation>Zanim otworzysz okno z zaawansowanymi ustawieniami, musisz wybrać klawisz</translation>
     </message>
     <message>

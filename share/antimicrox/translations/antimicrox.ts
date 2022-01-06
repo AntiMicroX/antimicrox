@@ -2020,8 +2020,8 @@ this button is being used.</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="415"/>
-        <source>Before you open window with advanced settins, you have to choice a key</source>
-        <translation>Before you open window with advanced settins, you have to choice a key</translation>
+        <source>Before you open window with advanced settings, you have to choice a key</source>
+        <translation>Before you open window with advanced settings, you have to choice a key</translation>
     </message>
     <message>
         <location filename="../../../src/buttoneditdialog.cpp" line="420"/>
