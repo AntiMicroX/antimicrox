@@ -140,6 +140,8 @@ void InputDevice::reInitButtons()
 
 void InputDevice::setActiveSetNumber(int index)
 {
+    VERBOSE() << "Change active set number from: " << active_set << " to: " << index
+              << " for device with Index: " << getRealJoyNumber();
     if (((index >= 0) && (index < GlobalVariables::InputDevice::NUMBER_JOYSETS)) && (index != active_set))
     {
         QList<bool> buttonstates;
@@ -547,6 +549,9 @@ void InputDevice::setActiveSetNumber(int index)
         activatePossibleDPadEvents();
         activatePossibleVDPadEvents();
         activatePossibleButtonEvents();
+    } else
+    {
+        DEBUG() << "Set is not changed";
     }
 }
 

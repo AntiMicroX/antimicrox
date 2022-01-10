@@ -274,6 +274,8 @@ int main(int argc, char *argv[])
               << " Type: Release"
 #endif
         ;
+    VERBOSE() << "SDL version: " << PadderCommon::sdlVersionUsed << " (Compiled with: " << PadderCommon::sdlVersionCompiled
+              << ")";
 
     Q_INIT_RESOURCE(resources);
 

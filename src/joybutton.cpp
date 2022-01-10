@@ -175,6 +175,9 @@ void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
 
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
+    if (Logger::isDebugLevel())
+        DEBUG() << "Processing joyEvent for: " << getName();
+
     if ((m_vdpad != nullptr) && !pendingEvent)
     {
         vdpadPassEvent(pressed, ignoresets);
@@ -269,7 +272,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 updateParamsAfterDistEvent();
             } else if (isButtonPressed && activePress)
             {
-                startSequenceOfPressActive(false, tr("Processing press for button #%1 - %2"));
+                startSequenceOfPressActive(false, "Processing press for button #%1 - %2");
 
                 if (!keyPressTimer.isActive())
                 {
@@ -280,7 +283,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 }
             } else if (!isButtonPressed && !activePress)
             {
-                qDebug() << tr("Processing release for button #%1 - %2")
+                qDebug() << QString("Processing release for button #%1 - %2")
                                 .arg(m_parentSet->getInputDevice()->getRealJoyNumber())
                                 .arg(getPartialName());
 
@@ -1588,16 +1591,16 @@ QString JoyButton::getXmlName() { return GlobalVariables::JoyButton::xmlName; }
 QString JoyButton::getName(bool forceFullFormat, bool displayNames)
 {
     QString newlabel = getPartialName(forceFullFormat, displayNames);
-    qDebug() << "partial name is: " << newlabel;
+    // qDebug() << "partial name is: " << newlabel;
     newlabel.append(": ");
 
-    qDebug() << "actionName is " << actionName;
+    // qDebug() << "actionName is " << actionName;
     if (!actionName.isEmpty() && displayNames)
         newlabel.append(actionName);
     else
         newlabel.append(getCalculatedActiveZoneSummary());
 
-    qDebug() << "name in getName(bool forceFullFormat, bool displayNames) is now: " << newlabel;
+    // qDebug() << "name in getName(bool forceFullFormat, bool displayNames) is now: " << newlabel;
     return newlabel;
 }
 
