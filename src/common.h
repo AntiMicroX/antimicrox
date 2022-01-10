@@ -30,6 +30,8 @@
 #include <QTranslator>
 #include <QWaitCondition>
 
+#include <SDL2/SDL_version.h>
+
 #ifdef Q_OS_WIN
 
 static QString findWinSystemConfigPath()
@@ -153,6 +155,17 @@ const QString programVersion =
     + "-d"
 #endif
     ;
+const QString sdlVersionUsed = ([] {
+    SDL_version linkedver;
+    SDL_GetVersion(&linkedver);
+    return QString("%1.%2.%3").arg(linkedver.major).arg(linkedver.minor).arg(linkedver.patch);
+})();
+
+const QString sdlVersionCompiled = ([] {
+    SDL_version compver;
+    SDL_GetVersion(&compver);
+    return QString("%1.%2.%3").arg(compver.major).arg(compver.minor).arg(compver.patch);
+})();
 
 extern QWaitCondition waitThisOut;
 extern QMutex sdlWaitMutex;

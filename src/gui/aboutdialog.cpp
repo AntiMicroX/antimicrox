@@ -55,19 +55,8 @@ void AboutDialog::fillInfoTextBrowser()
     finalInfoText.append(tr("Program Compiled on %1 at %2").arg(__DATE__).arg(__TIME__));
 #endif
 
-    QString sdlCompiledVersionNumber("%1.%2.%3");
-    QString sdlLinkedVersionNumber("%1.%2.%3");
-
-    SDL_version compiledver;
-    SDL_version linkedver;
-    SDL_VERSION(&compiledver);
-    SDL_GetVersion(&linkedver);
-
-    sdlCompiledVersionNumber = sdlCompiledVersionNumber.arg(compiledver.major).arg(compiledver.minor).arg(compiledver.patch);
-    finalInfoText.append(tr("Built Against SDL %1").arg(sdlCompiledVersionNumber));
-
-    sdlLinkedVersionNumber = sdlLinkedVersionNumber.arg(linkedver.major).arg(linkedver.minor).arg(linkedver.patch);
-    finalInfoText.append(tr("Running With SDL %1").arg(sdlLinkedVersionNumber));
+    finalInfoText.append(tr("Built Against SDL %1").arg(PadderCommon::sdlVersionCompiled));
+    finalInfoText.append(tr("Running With SDL %1").arg(PadderCommon::sdlVersionUsed));
 
     finalInfoText.append(tr("Using Qt %1").arg(qVersion()));
 
