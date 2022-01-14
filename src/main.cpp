@@ -60,9 +60,6 @@
 
     #include <execinfo.h>
 
-    #include <sys/stat.h>
-    #include <sys/types.h>
-
     #ifdef WITH_X11
         #include "x11extras.h"
     #endif
@@ -385,152 +382,36 @@ int main(int argc, char *argv[])
     LocalAntiMicroServer *localServer = nullptr;
 
 #ifdef Q_OS_UNIX
-    if (cmdutility.launchAsDaemon())
+    localServer = new LocalAntiMicroServer();
+    localServer->startLocalServer();
+
+    #ifdef WITH_X11
+
+    if (QApplication::platformName() == QStringLiteral("xcb"))
     {
-        pid_t pid, sid;
-        pid = fork(); // Fork the Parent Process
-
-        if (pid == 0)
+        if (!cmdutility.getDisplayString().isEmpty())
         {
-            PRINT_STDOUT() << QObject::tr("Daemon launched");
+            X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
 
-            localServer = new LocalAntiMicroServer();
-            localServer->startLocalServer();
-        } else if (pid < 0)
-        {
-            qCritical() << QObject::tr("Failed to launch daemon");
-
-            deleteInputDevices(joysticks);
-            delete joysticks;
-            joysticks = nullptr;
-
-            return 1;
-        } else if (pid > 0) // We got a good pid, Close the Parent Process
-        {
-            PRINT_STDOUT() << QObject::tr("Launching daemon") << " PID: " << pid << "\n";
-
-            deleteInputDevices(joysticks);
-            delete joysticks;
-            joysticks = nullptr;
-
-            return 0;
-        }
-
-    #ifdef WITH_X11
-
-        if (QApplication::platformName() == QStringLiteral("xcb"))
-        {
-            if (cmdutility.getDisplayString().isEmpty())
+            if (X11Extras::getInstance()->display() == nullptr)
             {
-                X11Extras::getInstance()->syncDisplay();
-            } else
-            {
-                X11Extras::setCustomDisplay(cmdutility.getDisplayString());
-                X11Extras::getInstance()->syncDisplay();
+                qCritical() << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString());
 
-                if (X11Extras::getInstance()->display() == nullptr)
-                {
-                    qCritical() << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString());
+                deleteInputDevices(joysticks);
+                delete joysticks;
+                joysticks = nullptr;
 
-                    deleteInputDevices(joysticks);
-                    delete joysticks;
-                    joysticks = nullptr;
+                delete localServer;
+                localServer = nullptr;
 
-                    delete localServer;
-                    localServer = nullptr;
-
-                    X11Extras::getInstance()->closeDisplay();
-
-                    exit(EXIT_FAILURE);
-                }
-            }
-        }
-
-    #endif
-
-        umask(0);       // Change File Mask
-        sid = setsid(); // Create a new Signature Id for our child
-
-        if (sid < 0)
-        {
-            qCritical() << QObject::tr("Failed to set a signature id for the daemon");
-
-            deleteInputDevices(joysticks);
-            delete joysticks;
-            joysticks = nullptr;
-
-            delete localServer;
-            localServer = nullptr;
-
-    #ifdef WITH_X11
-            if (QApplication::platformName() == QStringLiteral("xcb"))
-            {
                 X11Extras::getInstance()->closeDisplay();
-            }
-    #endif
 
-            exit(EXIT_FAILURE);
-        }
-
-        if ((chdir("/")) < 0)
-        {
-            qCritical() << QObject::tr("Failed to change working directory to /");
-
-            deleteInputDevices(joysticks);
-            delete joysticks;
-            joysticks = nullptr;
-
-            delete localServer;
-            localServer = nullptr;
-
-    #ifdef WITH_X11
-
-            if (QApplication::platformName() == QStringLiteral("xcb"))
-            {
-                X11Extras::getInstance()->closeDisplay();
-            }
-    #endif
-
-            exit(EXIT_FAILURE);
-        }
-
-        // Close Standard File Descriptors
-        close(STDIN_FILENO);
-        close(STDOUT_FILENO);
-        close(STDERR_FILENO);
-    } else
-    {
-        localServer = new LocalAntiMicroServer();
-        localServer->startLocalServer();
-
-    #ifdef WITH_X11
-
-        if (QApplication::platformName() == QStringLiteral("xcb"))
-        {
-            if (!cmdutility.getDisplayString().isEmpty())
-            {
-                X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
-
-                if (X11Extras::getInstance()->display() == nullptr)
-                {
-                    qCritical() << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString());
-
-                    deleteInputDevices(joysticks);
-                    delete joysticks;
-                    joysticks = nullptr;
-
-                    delete localServer;
-                    localServer = nullptr;
-
-                    X11Extras::getInstance()->closeDisplay();
-
-                    exit(EXIT_FAILURE);
-                }
+                exit(EXIT_FAILURE);
             }
         }
-
-    #endif
     }
+    #endif
+
 #elif defined(Q_OS_WIN)
     localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();
