@@ -40,7 +40,6 @@ CommandLineUtility::CommandLineUtility(QObject *parent)
     showRequest = false;
     unloadProfile = false;
     startSetNumber = 0;
-    daemonMode = false;
     displayString = "";
     listControllers = false;
     mappingController = false;
@@ -87,7 +86,6 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
          QCoreApplication::translate("main", "Start joysticks on a specific set. Value can be a "
                                              "controller index, name, or GUID"),
          QCoreApplication::translate("main", "number value")},
-        {{"daemon", "d"}, QCoreApplication::translate("main", "Launch program as a daemon. Use only on Linux.")},
         {"log-level",
          QCoreApplication::translate("main", "Enable logging. Levels (from the least strict): warn,info,verbose,debug"),
          QCoreApplication::translate("main", "log-type")},
@@ -184,10 +182,6 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
             parseArgsMap(parser);
         }
 
-        if (parser.isSet("daemon"))
-        {
-            daemonMode = true;
-        }
 #ifdef WITH_X11
         if (parser.isSet("display"))
         {
@@ -461,8 +455,6 @@ bool CommandLineUtility::shouldListControllers() { return listControllers; }
 bool CommandLineUtility::shouldMapController() { return mappingController; }
 
 QString CommandLineUtility::getEventGenerator() { return eventGenerator; }
-
-bool CommandLineUtility::launchAsDaemon() { return daemonMode; }
 
 QString CommandLineUtility::getDisplayString() { return displayString; }
 

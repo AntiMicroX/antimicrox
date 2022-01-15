@@ -117,7 +117,6 @@ class CommandLineUtility : public QObject
     QList<int> *getJoyStartSetNumberList();
     QList<ControllerOptionsInfo> const &getControllerOptionsList();
 
-    bool launchAsDaemon();
     QString getDisplayString();
 
     Logger::LogLevel getCurrentLogLevel();
@@ -129,7 +128,6 @@ class CommandLineUtility : public QObject
     bool hiddenRequest;
     bool showRequest;
     bool unloadProfile;
-    bool daemonMode;
     bool listControllers;
     bool mappingController;
 
