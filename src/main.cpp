@@ -385,33 +385,6 @@ int main(int argc, char *argv[])
     localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();
 
-    #ifdef WITH_X11
-
-    if (QApplication::platformName() == QStringLiteral("xcb"))
-    {
-        if (!cmdutility.getDisplayString().isEmpty())
-        {
-            X11Extras::getInstance()->syncDisplay(cmdutility.getDisplayString());
-
-            if (X11Extras::getInstance()->display() == nullptr)
-            {
-                qCritical() << QObject::tr("Display string \"%1\" is not valid.").arg(cmdutility.getDisplayString());
-
-                deleteInputDevices(joysticks);
-                delete joysticks;
-                joysticks = nullptr;
-
-                delete localServer;
-                localServer = nullptr;
-
-                X11Extras::getInstance()->closeDisplay();
-
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-    #endif
-
 #elif defined(Q_OS_WIN)
     localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();

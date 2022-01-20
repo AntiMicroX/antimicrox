@@ -40,7 +40,6 @@ CommandLineUtility::CommandLineUtility(QObject *parent)
     showRequest = false;
     unloadProfile = false;
     startSetNumber = 0;
-    displayString = "";
     listControllers = false;
     mappingController = false;
     currentLogLevel = Logger::LOG_NONE;
@@ -102,9 +101,6 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
                                              "only if you have sdl "
                                              "library. You can check your controller index, name or "
                                              "even GUID.")},
-        // {"display",
-        //     QCoreApplication::translate("main", "Use specified display for
-        //     X11 calls")},
         // {"next",
         //     QCoreApplication::translate("main", "Advance profile loading set
         //     options")},
@@ -181,19 +177,6 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
         {
             parseArgsMap(parser);
         }
-
-#ifdef WITH_X11
-        if (parser.isSet("display"))
-        {
-            if (!parser.value("display").isEmpty())
-            {
-                displayString = parser.value("display");
-            } else
-            {
-                throw std::runtime_error(QObject::tr("No display string was specified.").toStdString());
-            }
-        }
-#endif
 
 #if (defined(WITH_UINPUT) && defined(WITH_XTEST))
 
@@ -455,8 +438,6 @@ bool CommandLineUtility::shouldListControllers() { return listControllers; }
 bool CommandLineUtility::shouldMapController() { return mappingController; }
 
 QString CommandLineUtility::getEventGenerator() { return eventGenerator; }
-
-QString CommandLineUtility::getDisplayString() { return displayString; }
 
 Logger::LogLevel CommandLineUtility::getCurrentLogLevel() { return currentLogLevel; }
 

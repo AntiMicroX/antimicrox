@@ -117,8 +117,6 @@ class CommandLineUtility : public QObject
     QList<int> *getJoyStartSetNumberList();
     QList<ControllerOptionsInfo> const &getControllerOptionsList();
 
-    QString getDisplayString();
-
     Logger::LogLevel getCurrentLogLevel();
 
   protected:
@@ -137,7 +135,6 @@ class CommandLineUtility : public QObject
 
     QString profileLocation;
     QString controllerIDString;
-    QString displayString;
     QString eventGenerator;
     QString currentLogFile;
 
