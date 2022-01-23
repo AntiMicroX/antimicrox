@@ -479,67 +479,6 @@ int main(int argc, char *argv[])
 #endif
         delete appLogger;
         return 0;
-    } else if (cmdutility.shouldMapController())
-    {
-        PadderCommon::mouseHelperObj.initDeskWid();
-        QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings);
-        inputEventThread = new QThread;
-
-        MainWindow *mainWindow = new MainWindow(joysticks, &cmdutility, &settings);
-
-        QObject::connect(&antimicrox, &QApplication::aboutToQuit, mainWindow, &MainWindow::removeJoyTabs);
-        QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
-        QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
-                         Qt::DirectConnection);
-        QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater,
-                         Qt::BlockingQueuedConnection);
-
-        mainWindow->makeJoystickTabs();
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
-        QTimer::singleShot(0, mainWindow, &MainWindow::controllerMapOpening);
-#else
-        QTimer::singleShot(0, mainWindow, SLOT(controllerMapOpening()));
-#endif
-
-        joypad_worker->startWorker();
-
-        joypad_worker->moveToThread(inputEventThread);
-        PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
-        inputEventThread->start(QThread::HighPriority);
-
-        int app_result = antimicrox.exec();
-
-        inputEventThread->quit();
-        inputEventThread->wait();
-
-        delete joysticks;
-        joysticks = nullptr;
-
-        delete localServer;
-        localServer = nullptr;
-
-        delete inputEventThread;
-        inputEventThread = nullptr;
-
-#ifdef WITH_X11
-
-        if (QApplication::platformName() == QStringLiteral("xcb"))
-        {
-            X11Extras::getInstance()->closeDisplay();
-        }
-
-#endif
-
-        delete mainWindow;
-        mainWindow = nullptr;
-
-        if (!joypad_worker.isNull())
-        {
-            delete joypad_worker;
-            joypad_worker.clear();
-        }
-        delete appLogger;
-        return app_result;
     }
 
     bool status = true;

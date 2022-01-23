@@ -107,12 +107,10 @@ class MainWindow : public QMainWindow
     void quitProgram();
     void changeWindowStatus();
     void refreshTabHelperThreads();
-    void controllerMapOpening();
     void testMappingUpdateNow(int index, InputDevice *device);
     void removeJoyTab(SDL_JoystickID deviceID);
     void addJoyTab(InputDevice *device);
     void selectControllerJoyTab(QString GUID);
-    void selectControllerJoyTab(int index);
     void handleInstanceDisconnect();
 
   private slots:
@@ -144,7 +142,6 @@ class MainWindow : public QMainWindow
     void restartAsElevated();
 #endif
 
-    void openGameControllerMappingWindow(bool openAsMain = false);
     void propogateMappingUpdate(QString mapping, InputDevice *device);
     void autoprofileLoad(AutoProfileInfo *info); // MainConfiguration class
     void checkAutoProfileWatcherTimer();         // MainConfiguration class
