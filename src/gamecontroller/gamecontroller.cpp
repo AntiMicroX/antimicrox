@@ -32,6 +32,7 @@
 #include <QDebug>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QMutex>
 
 GameController::GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings,
                                int counterUniques, QObject *parent)
@@ -163,10 +164,18 @@ void GameController::closeSDLDevice()
     }
 }
 
-int GameController::getNumberRawButtons() { return SDL_CONTROLLER_BUTTON_MAX; }
+int GameController::getNumberRawButtons()
+{
+    QMutex mutex;
+    QMutexLocker locker(&mutex);
+    return SDL_CONTROLLER_BUTTON_MAX;
+}
 
 int GameController::getNumberRawAxes()
 {
+    QMutex mutex;
+    QMutexLocker locker(&mutex);
+
     qDebug() << "Controller has " << SDL_CONTROLLER_AXIS_MAX << " raw axes";
 
     return SDL_CONTROLLER_AXIS_MAX;
@@ -179,6 +188,9 @@ void GameController::setCounterUniques(int counter) { counterUniques = counter; 
 void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes,
                                     QList<SDL_GameControllerButtonBind> &hatButtons)
 {
+    QMutex mutex;
+    QMutexLocker locker(&mutex);
+
     for (int i = 0; i < SDL_JoystickNumHats(getJoyHandle()); i++)
     {
         SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
@@ -221,6 +233,9 @@ void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &button
 
 QString GameController::getBindStringForAxis(int index, bool)
 {
+    QMutex mutex;
+    QMutexLocker locker(&mutex);
+
     QString temp = QString();
 
     SDL_GameControllerButtonBind bind =
@@ -239,6 +254,9 @@ QString GameController::getBindStringForAxis(int index, bool)
 
 QString GameController::getBindStringForButton(int index, bool trueIndex)
 {
+    QMutex mutex;
+    QMutexLocker locker(&mutex);
+
     QString temp = QString();
 
     SDL_GameControllerButtonBind bind =

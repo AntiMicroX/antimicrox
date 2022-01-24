@@ -24,6 +24,7 @@
 #include <QPainter>
 #include <QStyle>
 #include <QWidget>
+#include <QMutex>
 
 FlashButtonWidget::FlashButtonWidget(QWidget *parent)
     : QPushButton(parent)
@@ -63,9 +64,12 @@ void FlashButtonWidget::unflash()
 
 void FlashButtonWidget::refreshLabel()
 {
-    setText(generateLabel());
+    QMutex mutex;
+    QMutexLocker locker(&mutex);
+    QString temp = generateLabel();
 
-    qDebug() << "label has been set: " << generateLabel();
+    setText(temp);
+    qDebug() << "label has been set: " << temp;
 }
 
 bool FlashButtonWidget::isButtonFlashing() { return isflashing; }
