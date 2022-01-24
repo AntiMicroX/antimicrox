@@ -120,8 +120,7 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
 #endif
 
     signalDisconnect = false;
-    showTrayIcon = !cmdutility->isTrayHidden() && graphical && !cmdutility->shouldListControllers() &&
-                   !cmdutility->shouldMapController();
+    showTrayIcon = !cmdutility->isTrayHidden() && graphical && !cmdutility->shouldListControllers();
 
     m_joysticks = joysticks;
 
@@ -174,7 +173,6 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
     connect(ui->actionOptions, &QAction::triggered, this, &MainWindow::openMainSettingsDialog);
     connect(ui->actionWiki, &QAction::triggered, this, &MainWindow::openWikiPage);
     connect(ui->actionCalibration, &QAction::triggered, this, &MainWindow::openCalibration);
-    connect(ui->actionGameController_Mapping, &QAction::triggered, this, &MainWindow::openGameControllerMappingWindow);
 
 #if defined(WITH_X11)
     if (QApplication::platformName() == QStringLiteral("xcb"))
@@ -295,44 +293,6 @@ void MainWindow::alterConfigFromSettings()
             {
                 changeStartSetNumber(temp.getJoyStartSetNumber());
             }
-        }
-    }
-}
-
-void MainWindow::controllerMapOpening()
-{
-    if (m_cmdutility->shouldMapController())
-    {
-        m_graphical = false;
-
-        const QList<ControllerOptionsInfo> tempList = m_cmdutility->getControllerOptionsList();
-        ControllerOptionsInfo temp = tempList.at(0);
-
-        if (temp.hasControllerNumber())
-        {
-            int joypadIndex = m_cmdutility->getControllerNumber();
-
-            qDebug() << "It was antimicrox --map controllerNumber";
-            qDebug() << "controllerNumber: " << joypadIndex;
-
-            selectControllerJoyTab(joypadIndex);
-            openGameControllerMappingWindow(true);
-        } else if (temp.hasControllerID())
-        {
-            QString joypadGUID = m_cmdutility->getControllerID();
-
-            qDebug() << "It was antimicrox --map controllerID";
-            qDebug() << "controllerID: " << joypadGUID;
-
-            selectControllerJoyTab(joypadGUID);
-            openGameControllerMappingWindow(true);
-        } else
-        {
-            qDebug() << "Could not find a proper controller identifier. Exiting";
-
-            qInfo() << tr("Could not find a proper controller identifier. "
-                          "Exiting.");
-            qApp->quit();
         }
     }
 }
@@ -1468,36 +1428,6 @@ void MainWindow::restartAsElevated()
 }
 #endif
 
-void MainWindow::openGameControllerMappingWindow(bool openAsMain)
-{
-    int index = ui->tabWidget->currentIndex();
-    if (index >= 0)
-    {
-        JoyTabWidget *joyTab = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(index)); // static_cast
-        InputDevice *joystick = joyTab->getJoystick();
-        if (joystick != nullptr)
-        {
-            GameControllerMappingDialog *dialog = new GameControllerMappingDialog(joystick, m_settings, this);
-
-            if (openAsMain)
-            {
-                dialog->setParent(nullptr);
-                dialog->setWindowFlags(Qt::Window);
-                connect(dialog, &GameControllerMappingDialog::finished, qApp, &QApplication::quit);
-            } else
-            {
-                connect(dialog, &GameControllerMappingDialog::mappingUpdate, this, &MainWindow::propogateMappingUpdate);
-            }
-
-            dialog->show();
-        }
-    } else if (openAsMain)
-    {
-        qInfo() << tr("Could not find controller. Exiting.");
-        qApp->quit();
-    }
-}
-
 void MainWindow::propogateMappingUpdate(QString mapping, InputDevice *device) { emit mappingUpdated(mapping, device); }
 
 void MainWindow::testMappingUpdateNow(int index, InputDevice *device)
@@ -1805,26 +1735,6 @@ void MainWindow::updateButtonPressed()
 }
 
 #endif
-
-/**
- * @brief Select appropriate tab with the specified index.
- * @param Index of appropriate tab.
- */
-void MainWindow::selectControllerJoyTab(int index)
-{
-    if ((index > 0) && m_joysticks->contains(index - 1))
-    {
-        JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(index - 1)); // static_cast
-        if (widget != nullptr)
-        {
-            qDebug() << "JoyTabWidget was not a null pointer in selectControllerJoyTab of index";
-            ui->tabWidget->setCurrentIndex(index - 1);
-        } else
-        {
-            qDebug() << "JoyTabWidget was a NULL POINTER in selectControllerJoyTab of index";
-        }
-    }
-}
 
 /**
  * @brief Select appropriate tab that has a device with the specified GUID.

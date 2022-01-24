@@ -123,22 +123,6 @@ bool X11Extras::hasValidDisplay() { return (_display != nullptr); }
  */
 void X11Extras::closeDisplay() { freeDisplay(); }
 
-/**
- * @brief Grab instance of active display.
- */
-void X11Extras::syncDisplay() { _display = XOpenDisplay(nullptr); }
-
-/**
- * @brief Grab instance of specified display. Useful for having the GUI
- *     on one display while generating events on another during ssh tunneling.
- * @param Valid display string that X can use
- */
-void X11Extras::syncDisplay(QString displayString)
-{
-    QByteArray tempByteArray = displayString.toLocal8Bit();
-    _display = XOpenDisplay(tempByteArray.constData());
-}
-
 void X11Extras::setCustomDisplay(QString displayString) { GlobalVariables::X11Extras::_customDisplayString = displayString; }
 
 /**

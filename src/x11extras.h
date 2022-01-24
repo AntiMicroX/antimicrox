@@ -58,8 +58,6 @@ class X11Extras : public QObject
     Window findClientWindow(Window window);
     Window findParentClient(Window window);
     void closeDisplay();
-    void syncDisplay();
-    void syncDisplay(QString displayString);
     static QString getXDisplayString();
     QString getWindowTitle(Window window);
     QString getWindowClass(Window window);

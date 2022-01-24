@@ -102,7 +102,6 @@ class CommandLineUtility : public QObject
     bool isShowRequested();
     bool isUnloadRequested();
     bool shouldListControllers();
-    bool shouldMapController();
     bool hasProfileInOptions();
 
     int getControllerNumber();
@@ -117,8 +116,6 @@ class CommandLineUtility : public QObject
     QList<int> *getJoyStartSetNumberList();
     QList<ControllerOptionsInfo> const &getControllerOptionsList();
 
-    QString getDisplayString();
-
     Logger::LogLevel getCurrentLogLevel();
 
   protected:
@@ -129,7 +126,6 @@ class CommandLineUtility : public QObject
     bool showRequest;
     bool unloadProfile;
     bool listControllers;
-    bool mappingController;
 
     int startSetNumber;
     int controllerNumber;
@@ -137,7 +133,6 @@ class CommandLineUtility : public QObject
 
     QString profileLocation;
     QString controllerIDString;
-    QString displayString;
     QString eventGenerator;
     QString currentLogFile;
 
@@ -151,7 +146,6 @@ class CommandLineUtility : public QObject
     void parseArgsPrControle(const QCommandLineParser &parser);
     void parseArgsUnload(const QCommandLineParser &parser);
     void parseArgsStartSet(const QCommandLineParser &parser);
-    void parseArgsMap(const QCommandLineParser &parser);
 };
 
 #endif // COMMANDLINEPARSER_H

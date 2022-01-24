@@ -63,10 +63,6 @@ void AntiMicroSettings::importFromCommandLine(CommandLineUtility &cmdutility)
     {
         getCmdSettings().setValue("LaunchInTray", 1);
     }
-    if (cmdutility.shouldMapController())
-    {
-        getCmdSettings().setValue("DisplaySDLMapping", 1);
-    }
 }
 /**
  * @brief applies settings from command line to logger

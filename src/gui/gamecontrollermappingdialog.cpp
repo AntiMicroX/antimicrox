@@ -332,13 +332,7 @@ void GameControllerMappingDialog::saveChanges()
     settings->setValue(QString("Mappings/%1%2").arg(device->getUniqueIDString()).arg("Disable"), "0");
     settings->sync();
 
-    bool displayMapping = settings->runtimeValue("DisplaySDLMapping", false).toBool();
     settings->getLock()->unlock();
-
-    if (displayMapping)
-    {
-        PRINT_STDOUT() << generateSDLMappingString();
-    }
 
     emit mappingUpdate(mappingString, device);
 }
