@@ -151,6 +151,9 @@ class MainWindow : public QMainWindow
     void updateMenuOptions();
 
   private:
+    /**
+     * @brief Check state of batteries in controllers and notify user (only when powerLevSDL matches current battery level)
+     */
     void showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString batteryLev, QString percent, InputDevice *device);
 
     Ui::MainWindow *ui;
