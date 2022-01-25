@@ -1,6 +1,7 @@
 /* antimicrox Gamepad to KB+M event mapper
  * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
  * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2022 Paweł Kotiuk <kotiuk@zohomail.eu>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -204,16 +205,21 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
     ui->uacPushButton->setVisible(false);
 #endif
     ui->updateButton->setVisible(false);
-    QTimer *timer = new QTimer(this);
-
-    connect(timer, &QTimer::timeout, [this]() { this->checkEachTenMinutesBattery(m_joysticks); });
 #ifdef CHECK_FOR_UPDATES
     connect(&m_network_manager, &QNetworkAccessManager::finished, this, &MainWindow::networkManagerFinished);
     QNetworkRequest request(QUrl("https://api.github.com/repos/antimicrox/antimicrox/releases/latest"));
     m_network_manager.get(request);
 #endif
 
-    timer->start(CHECK_BATTERIES_MSEC);
+    bool notify_low = m_settings->value("Notifications/notify_about_low_battery", true).toBool();
+    bool notify_empty = m_settings->value("Notifications/notify_about_empty_battery", true).toBool();
+
+    if (notify_low || notify_empty)
+    {
+        QTimer *timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, [this]() { this->checkEachTenMinutesBattery(m_joysticks); });
+        timer->start(CHECK_BATTERIES_MSEC);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -1882,12 +1888,16 @@ void MainWindow::checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice *> 
 {
     QMapIterator<SDL_JoystickID, InputDevice *> deviceIter(*joysticks);
 
+    bool notify_about_empty_battery = m_settings->value("Notifications/notify_about_empty_battery", true).toBool();
+    bool notify_about_low_battery = m_settings->value("Notifications/notify_about_low_battery", true).toBool();
     while (deviceIter.hasNext())
     {
         deviceIter.next();
         InputDevice *tempDevice = deviceIter.value();
 
-        showBatteryLevel(SDL_JOYSTICK_POWER_LOW, "Low", "20%", tempDevice);
-        showBatteryLevel(SDL_JOYSTICK_POWER_EMPTY, "Empty", "5%", tempDevice);
+        if (notify_about_low_battery)
+            showBatteryLevel(SDL_JOYSTICK_POWER_LOW, "Low", "20%", tempDevice);
+        if (notify_about_empty_battery)
+            showBatteryLevel(SDL_JOYSTICK_POWER_EMPTY, "Empty", "5%", tempDevice);
     }
 }
