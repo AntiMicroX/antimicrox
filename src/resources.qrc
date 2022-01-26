@@ -43,14 +43,6 @@
         <file>images/actions/view_refresh.png</file>
         <file>images/actions/view_restore.png</file>
 
-        <file>images/application/16x16/apps/16-apps-io.github.antimicrox.antimicrox.png</file>
-        <file>images/application/24x24/apps/24-apps-io.github.antimicrox.antimicrox.png</file>
-        <file>images/application/32x32/apps/32-apps-io.github.antimicrox.antimicrox.png</file>
-        <file>images/application/48x48/apps/48-apps-io.github.antimicrox.antimicrox.png</file>
-        <file>images/application/64x64/apps/64-apps-io.github.antimicrox.antimicrox.png</file>
-        <file>images/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png</file>
-        <file>images/application/scalable/apps/sc-apps-io.github.antimicrox.antimicrox.svg</file>
-
         <file>images/battery-low-level.png</file>
         <file>images/actions/join_slots.png</file>
         <file>images/actions/split_slot.png</file>
