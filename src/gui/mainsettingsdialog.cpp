@@ -68,9 +68,9 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     setAttribute(Qt::WA_DeleteOnClose);
 
     ui->profileOpenDirPushButton->setIcon(
-        PadderCommon::loadIcon("document-open", ":/icons/actions/document_open_folder.png"));
+        PadderCommon::loadIcon("document-open", ":/images/actions/document_open_folder.png"));
 
-    ui->logFilePushButton->setIcon(PadderCommon::loadIcon("document-open", ":/icons/actions/document_open_folder.png"));
+    ui->logFilePushButton->setIcon(PadderCommon::loadIcon("document-open", ":/images/actions/document_open_folder.png"));
 
     this->settings = settings;
     this->allDefaultProfile = nullptr;

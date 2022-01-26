@@ -6,7 +6,7 @@ RECURSIVE              = YES
 
 QT_AUTOBRIEF           = YES
 OPTIMIZE_OUTPUT_FOR_C  = YES
-PROJECT_LOGO           = @CMAKE_CURRENT_SOURCE_DIR@/src/icons/application/48x48/apps/48-apps-io.github.antimicrox.antimicrox.png
+PROJECT_LOGO           = @CMAKE_CURRENT_SOURCE_DIR@/share/icons/application/48x48/apps/48-apps-io.github.antimicrox.antimicrox.png
 
 HAVE_DOT               = YES
 DOT_IMAGE_FORMAT       = svg

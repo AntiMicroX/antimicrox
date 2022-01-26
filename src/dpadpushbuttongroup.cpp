@@ -53,7 +53,7 @@ void DPadPushButtonGroup::generateButtons()
 
     dpadWidget = new DPadPushButton(dpad, displayNames, parentWidget());
     dpadWidget->setIcon(
-        QIcon::fromTheme(QString::fromUtf8("games_config_options"), QIcon(":/icons/actions/games_config_options.png")));
+        QIcon::fromTheme(QString::fromUtf8("games_config_options"), QIcon(":/images/actions/games_config_options.png")));
     connect(dpadWidget, &DPadPushButton::clicked, this, &DPadPushButtonGroup::showDPadDialog);
     addWidget(dpadWidget, 1, 1);
 
