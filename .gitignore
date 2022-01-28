@@ -1,6 +1,7 @@
 # Build directories
 
 build/
+builds/
 build-dir/
 Build/
 .flatpak-builder/
