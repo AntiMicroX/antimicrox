@@ -143,6 +143,13 @@ Default: ON. Compile the program with X11 support.
 
 Default: ON. Compile the program with XTest support.
 
+On some systems, particularly if you do not have QtCreator installed, you may notice that some debug info (in particular qDebug() statements) do not generate any output on a Linux terminal. To fix this, you can create a qtlogging.ini file:
+
+    mkdir ~/.config/QtProject
+    printf '[Rules]\n*.debug=true\nqt.*.debug=false\n' > ~/.config/QtProject/qtlogging.ini
+
+Once this file is created and has the debug rules present, it should be picked up and applied automatically the next time you run cmake to create a build.
+
 ## Building DEB package
 
 ```bash
