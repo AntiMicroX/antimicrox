@@ -29,6 +29,11 @@
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
+/**
+ * @brief Represents action which can be performed after pressing button
+ *
+ * It can represent pressing buttons, moving mouse, running executables, waiting, changing sets etc.
+ */
 class JoyButtonSlot : public QObject
 {
     Q_OBJECT
