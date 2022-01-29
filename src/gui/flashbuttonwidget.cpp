@@ -63,9 +63,10 @@ void FlashButtonWidget::unflash()
 
 void FlashButtonWidget::refreshLabel()
 {
-    setText(generateLabel());
+    QString new_label = generateLabel();
+    setText(new_label);
 
-    qDebug() << "label has been set: " << generateLabel();
+    qDebug() << "label has been set: " << new_label;
 }
 
 bool FlashButtonWidget::isButtonFlashing() { return isflashing; }
