@@ -636,7 +636,7 @@ void MainWindow::populateTrayIcon()
     trayIconMenu->addAction(updateJoy);
     trayIconMenu->addAction(closeAction);
 
-    QIcon icon = PadderCommon::loadIcon("antimicrox_trayicon", ":/images/antimicrox_trayicon.png");
+    QIcon icon = PadderCommon::loadIcon("antimicrox_trayicon", ":/images/antimicrox.png");
     trayIcon->setIcon(icon);
     trayIcon->setContextMenu(trayIconMenu);
 
