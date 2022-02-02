@@ -251,11 +251,7 @@ void SDLEventReader::haltServices()
 void SDLEventReader::loadSdlMappingsFromDatabase()
 {
     QString database_file;
-#if defined(Q_OS_UNIX)
     database_file = QApplication::applicationDirPath().append("/../share/antimicrox/gamecontrollerdb.txt");
-#elif defined(Q_OS_WIN)
-    database_file = QApplication::applicationDirPath().append("\\share\\antimicrox\\gamecontrollerdb.txt");
-#endif
     if (QFile::exists(database_file))
     {
         int result = SDL_GameControllerAddMappingsFromFile(database_file.toStdString().c_str());
