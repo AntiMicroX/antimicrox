@@ -379,15 +379,10 @@ int main(int argc, char *argv[])
         return result;
     }
 
-    LocalAntiMicroServer *localServer = nullptr;
-
-#ifdef Q_OS_UNIX
-    localServer = new LocalAntiMicroServer();
+    LocalAntiMicroServer *localServer = new LocalAntiMicroServer();
     localServer->startLocalServer();
 
-#elif defined(Q_OS_WIN)
-    localServer = new LocalAntiMicroServer();
-    localServer->startLocalServer();
+#if defined(Q_OS_WIN)
     qApp->setStyle("fusion");
 #endif
 
