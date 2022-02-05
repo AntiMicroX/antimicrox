@@ -268,7 +268,8 @@ int X11Extras::getApplicationPid(Window window)
 
         if ((status == 0) && (prop != nullptr))
         {
-            pid = prop[1] << 8;
+            pid = prop[2] << 16;
+            pid += prop[1] << 8;
             pid += prop[0];
             XFree(prop);
         }
