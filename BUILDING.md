@@ -31,6 +31,16 @@ installed on your system in order to build this program:
 - `itstool` (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 - `gettext`
 
+
+<details>
+  <summary>Fedora dependencies</summary>
+
+    One-liner for installing above dependencies:
+
+        sudo dnf install git make cmake gcc cmake extra-cmake-modules qt5-qttools-devel SDL2-devel libXi-devel libXtst-devel libX11-devel itstool gettext-devel;
+
+</details>
+
 <details>
   <summary>Windows dependencies</summary>
     In case of Windows you need QT, SDL2 libraries, cmake and compiler (mingw for example).
@@ -142,6 +152,17 @@ Default: ON. Compile the program with X11 support.
     -DWITH_XTEST
 
 Default: ON. Compile the program with XTest support.
+
+---
+
+**qDebug output on terminal:**
+
+On some systems, particularly if you do not have QtCreator installed, you may notice that some debug info (in particular qDebug() statements) do not generate any output on a Linux terminal. To fix this, you can create a qtlogging.ini file:
+
+    mkdir ~/.config/QtProject
+    printf '[Rules]\n*.debug=true\nqt.*.debug=false\n' > ~/.config/QtProject/qtlogging.ini
+
+Once this file is created and has the debug rules present, it should be picked up and applied automatically the next time you run cmake to create a build.
 
 ## Building DEB package
 
