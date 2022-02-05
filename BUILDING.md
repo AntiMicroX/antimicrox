@@ -153,6 +153,10 @@ Default: ON. Compile the program with X11 support.
 
 Default: ON. Compile the program with XTest support.
 
+---
+
+**qDebug output on terminal:**
+
 On some systems, particularly if you do not have QtCreator installed, you may notice that some debug info (in particular qDebug() statements) do not generate any output on a Linux terminal. To fix this, you can create a qtlogging.ini file:
 
     mkdir ~/.config/QtProject
