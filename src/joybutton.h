@@ -445,7 +445,7 @@ class JoyButton : public QObject
         quitEvent = true;
     }
 
-    inline void stopTimers(bool restartedActiveZoneTimer, bool stoppedActiveZoneTimer, bool stoppedSlotSetTimer)
+    inline void stopTimers(bool stoppedSlotSetTimer)
     {
         turboTimer.stop();
         pauseWaitTimer.stop();

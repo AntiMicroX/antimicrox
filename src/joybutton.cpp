@@ -387,7 +387,7 @@ void JoyButton::reset() { resetPrivVars(); }
 void JoyButton::resetPrivVars()
 {
     disconnectPropertyUpdatedConnections();
-    stopTimers(false, false, true);
+    stopTimers(true);
     releaseActiveSlots();
     clearAssignedSlots();
     clearQueues();
@@ -3064,7 +3064,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
     resetSlotsProp();
-    stopTimers(true, false, false);
+    stopTimers(false);
     releaseActiveSlots();
     clearAssignedSlots(clearSignalEmit);
     clearQueues();
@@ -3076,7 +3076,7 @@ void JoyButton::eventReset()
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
     resetSlotsProp();
-    stopTimers(false, true, false);
+    stopTimers(false);
     clearQueues();
 
     qDebug() << "all current slots and previous slots ale cleared";
