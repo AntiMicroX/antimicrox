@@ -93,7 +93,6 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     keyPressTimer.setParent(this);
     delayTimer.setParent(this);
     slotSetChangeTimer.setParent(this);
-    activeZoneTimer.setParent(this);
     setChangeTimer.setSingleShot(true);
     slotSetChangeTimer.setSingleShot(true);
     m_parentSet = parentSet;
@@ -109,10 +108,6 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     connect(&mouseWheelHorizontalEventTimer, &QTimer::timeout, this, &JoyButton::wheelEventHorizontal);
     connect(&setChangeTimer, &QTimer::timeout, this, &JoyButton::checkForSetChange);
     connect(&slotSetChangeTimer, &QTimer::timeout, this, &JoyButton::slotSetChange);
-    connect(&activeZoneTimer, &QTimer::timeout, this, &JoyButton::buildActiveZoneSummaryString);
-
-    activeZoneTimer.setInterval(0);
-    activeZoneTimer.setSingleShot(true);
 
     // Will only matter on the first call
     establishMouseTimerConnections();
@@ -261,8 +256,6 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                         turboEvent();
                     else
                         lastDistance = getMouseDistanceFromDeadZone();
-
-                    activeZoneTimer.start();
                 }
             }
             // Toogle is enabled and a controller button change has occurred.
@@ -394,7 +387,7 @@ void JoyButton::reset() { resetPrivVars(); }
 void JoyButton::resetPrivVars()
 {
     disconnectPropertyUpdatedConnections();
-    stopTimers(false, false, true);
+    stopTimers(true);
     releaseActiveSlots();
     clearAssignedSlots();
     clearQueues();
@@ -658,8 +651,6 @@ void JoyButton::activateSlots()
             keyPressHold.restart();
             keyPressEvent();
         }
-
-        activeZoneTimer.start();
     }
 }
 
@@ -3073,7 +3064,7 @@ void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
     resetSlotsProp();
-    stopTimers(true, false, false);
+    stopTimers(false);
     releaseActiveSlots();
     clearAssignedSlots(clearSignalEmit);
     clearQueues();
@@ -3085,7 +3076,7 @@ void JoyButton::eventReset()
     QWriteLocker tempAssignLocker(&assignmentsLock);
 
     resetSlotsProp();
-    stopTimers(false, true, false);
+    stopTimers(false);
     clearQueues();
 
     qDebug() << "all current slots and previous slots ale cleared";
@@ -3174,8 +3165,6 @@ void JoyButton::releaseActiveSlots()
             GlobalVariables::JoyButton::cursorRemainderX = 0;
             GlobalVariables::JoyButton::cursorRemainderY = 0;
         }
-
-        activeZoneTimer.start();
     }
 }
 

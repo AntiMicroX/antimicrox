@@ -445,11 +445,8 @@ class JoyButton : public QObject
         quitEvent = true;
     }
 
-    inline void stopTimers(bool restartedActiveZoneTimer, bool stoppedActiveZoneTimer, bool stoppedSlotSetTimer)
+    inline void stopTimers(bool stoppedSlotSetTimer)
     {
-        if (restartedActiveZoneTimer)
-            activeZoneTimer.start();
-
         turboTimer.stop();
         pauseWaitTimer.stop();
         createDeskTimer.stop();
@@ -460,9 +457,6 @@ class JoyButton : public QObject
         setChangeTimer.stop();
         keyPressTimer.stop();
         delayTimer.stop();
-
-        if (stoppedActiveZoneTimer)
-            activeZoneTimer.stop();
 
         if (stoppedSlotSetTimer)
             slotSetChangeTimer.stop();
@@ -608,7 +602,6 @@ class JoyButton : public QObject
     QTimer keyPressTimer;
     QTimer delayTimer;
     QTimer slotSetChangeTimer;
-    QTimer activeZoneTimer;
     static QTimer staticMouseEventTimer; // JoyButtonEvents class
 
     QString customName;
