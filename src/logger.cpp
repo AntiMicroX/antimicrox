@@ -251,3 +251,12 @@ bool Logger::isDebugEnabled()
     }
     return false;
 }
+
+QString Logger::getCurrentLogFile()
+{
+    Q_ASSERT(instance != nullptr);
+    if (instance->outputFile.exists())
+        return instance->outputFile.fileName();
+    else
+        return "";
+}
