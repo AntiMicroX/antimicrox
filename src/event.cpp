@@ -95,38 +95,9 @@ void fakeAbsMouseCoordinates(double springX, double springY, int width, int heig
     finaly = (screenMidheight + (springY * destMidHeight) + deskRect.y());
 }
 
-// Create the event used by the operating system.
-void sendevent(JoyButtonSlot *slot, bool pressed)
-{
-    JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
-
-    if (device == JoyButtonSlot::JoyKeyboard)
-    {
-        EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
-    } else if (device == JoyButtonSlot::JoyMouseButton)
-    {
-        EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
-    } else if ((device == JoyButtonSlot::JoyTextEntry) && pressed && !slot->getTextData().isEmpty())
-    {
-        EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent(slot->getTextData());
-    } else if ((device == JoyButtonSlot::JoyExecute) && pressed && !slot->getTextData().isEmpty())
-    {
-        QString argumentsString = "";
-        if (slot->getExtraData().canConvert<QString>())
-        {
-            argumentsString = slot->getExtraData().toString();
-            // QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
-        }
-
-        QString launched_command =
-            QString("%1 %2 %3").arg(detectedScriptExt(slot->getTextData())).arg(slot->getTextData()).arg(argumentsString);
-        qInfo() << "Executing command: " << launched_command;
-        bool success = QProcess::startDetached(launched_command);
-        if (!success)
-            qWarning() << "Command cannot be executed";
-    }
-}
-
+/**
+ * @brief detects executor for selected file (for .py files python, for .exe "" etc)
+ */
 QString detectedScriptExt(QString file)
 {
     QFileInfo fileinfo(file);
@@ -163,6 +134,38 @@ QString detectedScriptExt(QString file)
 
     // when run "chmod +x file_name"
     return "";
+}
+
+// Create the event used by the operating system.
+void sendevent(JoyButtonSlot *slot, bool pressed)
+{
+    JoyButtonSlot::JoySlotInputAction device = slot->getSlotMode();
+
+    if (device == JoyButtonSlot::JoyKeyboard)
+    {
+        EventHandlerFactory::getInstance()->handler()->sendKeyboardEvent(slot, pressed);
+    } else if (device == JoyButtonSlot::JoyMouseButton)
+    {
+        EventHandlerFactory::getInstance()->handler()->sendMouseButtonEvent(slot, pressed);
+    } else if ((device == JoyButtonSlot::JoyTextEntry) && pressed && !slot->getTextData().isEmpty())
+    {
+        EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent(slot->getTextData());
+    } else if ((device == JoyButtonSlot::JoyExecute) && pressed && !slot->getTextData().isEmpty())
+    {
+        QString argumentsString = "";
+        if (slot->getExtraData().canConvert<QString>())
+        {
+            argumentsString = slot->getExtraData().toString();
+            // QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
+        }
+
+        QString launched_command =
+            QString("%1 %2 %3").arg(detectedScriptExt(slot->getTextData())).arg(slot->getTextData()).arg(argumentsString);
+        qInfo() << "Executing command: " << launched_command;
+        bool success = QProcess::startDetached(launched_command);
+        if (!success)
+            qWarning() << "Command cannot be executed";
+    }
 }
 
 // Create the relative mouse event used by the operating system.
