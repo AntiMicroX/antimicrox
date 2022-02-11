@@ -32,6 +32,7 @@
 #include "eventhandlerfactory.h"
 #include "globalvariables.h"
 #include "joybutton.h"
+#include "logger.h"
 
 #if defined(Q_OS_UNIX)
     #if defined(WITH_X11)
@@ -152,19 +153,32 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
         EventHandlerFactory::getInstance()->handler()->sendTextEntryEvent(slot->getTextData());
     } else if ((device == JoyButtonSlot::JoyExecute) && pressed && !slot->getTextData().isEmpty())
     {
-        QString argumentsString = "";
+        QStringList argumentsTempList = {};
+        QString argumentsString = slot->getExtraData().toString();
         if (slot->getExtraData().canConvert<QString>())
         {
-            argumentsString = slot->getExtraData().toString();
-            // QStringList argumentsTempList(PadderCommon::parseArgumentsString(argumentsString));
+            argumentsTempList = PadderCommon::parseArgumentsString(argumentsString);
         }
 
-        QString launched_command =
-            QString("%1 %2 %3").arg(detectedScriptExt(slot->getTextData())).arg(slot->getTextData()).arg(argumentsString);
-        qInfo() << "Executing command: " << launched_command;
-        bool success = QProcess::startDetached(launched_command);
-        if (!success)
-            qWarning() << "Command cannot be executed";
+        QProcess process;
+        QString process_executor = detectedScriptExt(slot->getTextData());
+        if (process_executor.isEmpty())
+            process.setProgram(slot->getTextData());
+        else
+        {
+            process.setProgram(process_executor);
+            argumentsTempList.prepend(slot->getTextData());
+        }
+        process.setArguments(argumentsTempList);
+
+        process.setWorkingDirectory(QFileInfo(slot->getTextData()).absoluteDir().path());
+        qint64 pid = 0;
+        bool success = process.startDetached(&pid);
+        if (success)
+            qInfo() << "Command: " << slot->getTextData() << " " << argumentsString
+                    << " executed successfully with pid: " << pid;
+        else
+            qWarning() << "Command " << slot->getTextData() << " " << argumentsString << " cannot be executed, pid: " << pid;
     }
 }
 
