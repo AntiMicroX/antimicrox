@@ -243,11 +243,20 @@ Logger *Logger::createInstance(QTextStream *stream, LogLevel outputLevel, QObjec
     return instance;
 }
 
-bool Logger::isDebugLevel()
+bool Logger::isDebugEnabled()
 {
     if (instance != nullptr)
     {
         return instance->outputLevel == LogLevel::LOG_DEBUG;
     }
     return false;
+}
+
+QString Logger::getCurrentLogFile()
+{
+    Q_ASSERT(instance != nullptr);
+    if (instance->outputFile.exists())
+        return instance->outputFile.fileName();
+    else
+        return "";
 }

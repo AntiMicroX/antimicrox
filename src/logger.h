@@ -77,10 +77,11 @@ class Logger : public QObject
 
     static void setLogLevel(LogLevel level);
     LogLevel getCurrentLogLevel();
-    static bool isDebugLevel();
+    static bool isDebugEnabled();
 
     static void setCurrentStream(QTextStream *stream);
     static void setCurrentLogFile(QString filename);
+    static QString getCurrentLogFile();
     bool isWritingToFile();
     static QTextStream *getCurrentStream();
 

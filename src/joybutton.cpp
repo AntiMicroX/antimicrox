@@ -170,7 +170,7 @@ void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
 
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
-    if (Logger::isDebugLevel())
+    if (Logger::isDebugEnabled())
         DEBUG() << "Processing joyEvent for: " << getName();
 
     if ((m_vdpad != nullptr) && !pendingEvent)
