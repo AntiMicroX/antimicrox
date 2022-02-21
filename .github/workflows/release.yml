@@ -103,7 +103,7 @@ jobs:
 
     build-windows-installer:
         name: Create Windows Installer
-        runs-on: windows-latest
+        runs-on: windows-2019
         defaults:
             run:
                 shell: msys2 {0}

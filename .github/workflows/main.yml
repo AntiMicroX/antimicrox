@@ -61,7 +61,7 @@ jobs:
     # Build job for Windows
     build-windows:
         name: Windows Server 2019 MinGW Debug
-        runs-on: windows-latest
+        runs-on: windows-2019
         defaults:
             run:
                 shell: msys2 {0}
