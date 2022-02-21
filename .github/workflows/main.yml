@@ -21,18 +21,26 @@ jobs:
             matrix:
                 include:
                     - name: Ubuntu 20-04 GCC
+                      image: ubuntu-20.04
                       cc: gcc
                       cxx: g++
                       build-type: Debug
                       experimental: false
                     - name: Ubuntu 20-04 Clang
+                      image: ubuntu-20.04
                       cc: clang
                       cxx: clang++
                       build-type: Debug
                       experimental: true
+                    - name: Ubuntu 18-04 GCC (for AppImage comp)
+                      image: ubuntu-18.04
+                      cc: gcc
+                      cxx: g++
+                      build-type: Release
+                      experimental: false
 
         name: ${{ matrix.name }} ${{ matrix.build-type }}
-        runs-on: ubuntu-20.04
+        runs-on: ${{ matrix.image }}
         continue-on-error: ${{ matrix.experimental }}
 
         steps:
