@@ -160,20 +160,27 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
             argumentsTempList = PadderCommon::parseArgumentsString(argumentsString);
         }
 
-        QProcess process;
+        qint64 pid = 0;
         QString process_executor = detectedScriptExt(slot->getTextData());
         if (process_executor.isEmpty())
-            process.setProgram(slot->getTextData());
-        else
         {
-            process.setProgram(process_executor);
+            process_executor = slot->getTextData();
+        } else
+        {
             argumentsTempList.prepend(slot->getTextData());
         }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+        QProcess process;
+        process.setProgram(process_executor);
         process.setArguments(argumentsTempList);
 
         process.setWorkingDirectory(QFileInfo(slot->getTextData()).absoluteDir().path());
-        qint64 pid = 0;
+
         bool success = process.startDetached(&pid);
+#else
+        bool success = QProcess::startDetached(process_executor, argumentsTempList,
+                                               QFileInfo(slot->getTextData()).absoluteDir().path(), &pid);
+#endif
         if (success)
             qInfo() << "Command: " << slot->getTextData() << " " << argumentsString
                     << " executed successfully with pid: " << pid;
