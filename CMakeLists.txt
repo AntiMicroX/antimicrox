@@ -749,7 +749,7 @@ if(WIN32 AND NOT UNIX)
 
     # There is a bug in NSI that does not handle full UNIX paths properly.
     # Make sure there is at least one set of four backlashes.
-    set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/src/icons\\\\antimicrox.ico")
+    set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/src/images\\\\antimicrox.ico")
     set(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
     set(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
     set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\antimicrox.exe")
