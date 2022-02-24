@@ -1,5 +1,31 @@
 # Changelog
 
+## [3.2.2](https://github.com/AntiMicroX/antimicrox/tree/3.2.1) (2022-02-13)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.1...3.2.2)
+
+**Implemented enhancements:**
+
+- Add support for special characters in Windows log files [\#363](https://github.com/AntiMicroX/antimicrox/pull/363)
+- Change default working directory of launched executables [\#377](https://github.com/AntiMicroX/antimicrox/pull/377)
+
+**Fixed bugs:**
+
+- Fix typo (setting->settings) (by [jose1711](https://github.com/jose1711))
+- Random Crashes during longer sessions [\#133](https://github.com/AntiMicroX/antimicrox/issues/133)
+- File with gamecontroller mappings not found [\#364](https://github.com/AntiMicroX/antimicrox/pull/364)
+- Empty application path in autoprofile [/#371](https://github.com/AntiMicroX/antimicrox/pull/371)
+
+**Notable changes:**
+
+- Enable checking for updates in Debian builds from GitHub
+- Log improvements and cleanup [\#336](https://github.com/AntiMicroX/antimicrox/pull/336) [\#342](https://github.com/AntiMicroX/antimicrox/pull/342)
+- Daemon mode support removed [\#345](https://github.com/AntiMicroX/antimicrox/pull/345)
+- Remove unused "map" and "display" argument options [\#350](https://github.com/AntiMicroX/antimicrox/pull/350)
+- Remove unused files With icons, resources and pertially implemented importing utility
+- Use colourful antimicrox icon in tray by default [\#361](https://github.com/AntiMicroX/antimicrox/pull/361)
+- Update building docs [\#370](https://github.com/AntiMicroX/antimicrox/pull/370) (by [zpangwin](https://github.com/zpangwin))
+
 ## [3.2.1](https://github.com/AntiMicroX/antimicrox/tree/3.2.1) (2022-01-03)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.0...3.2.1)
