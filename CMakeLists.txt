@@ -685,12 +685,13 @@ if(WITH_TESTS)
     add_subdirectory(tests)
 endif(WITH_TESTS)
 
-# install SDL database
+# Install SDL database with linked License file
 if(UNIX)
     install(FILES share/gamecontrollerdb_linux.txt DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/" RENAME gamecontrollerdb.txt)
 elseif(WIN32)
     install(FILES share/gamecontrollerdb_windows.txt DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/" RENAME gamecontrollerdb.txt)
 endif(UNIX)
+install(FILES share/LICENSE_SDL_GameControllerDB DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/")
 
 ###############################
 # PACKAGES BUILDING WITH CPACK
