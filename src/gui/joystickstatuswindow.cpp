@@ -54,28 +54,39 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     {
     case SDL_JOYSTICK_POWER_EMPTY:
 
-        ui->batteryValueLabel->setText("Empty");
+        ui->batteryValueLabel->setText(tr("Empty"));
         break;
 
     case SDL_JOYSTICK_POWER_LOW:
 
-        ui->batteryValueLabel->setText("Low");
+        ui->batteryValueLabel->setText(tr("Low"));
         break;
 
     case SDL_JOYSTICK_POWER_MEDIUM:
 
-        ui->batteryValueLabel->setText("Medium");
+        ui->batteryValueLabel->setText(tr("Medium"));
         break;
 
     case SDL_JOYSTICK_POWER_FULL:
+    case SDL_JOYSTICK_POWER_MAX:
 
-        ui->batteryValueLabel->setText("Full");
+        ui->batteryValueLabel->setText(tr("Full"));
+        break;
+
+    case SDL_JOYSTICK_POWER_UNKNOWN:
+
+        ui->batteryValueLabel->setText(tr("Unknown"));
+        break;
+
+    case SDL_JOYSTICK_POWER_WIRED:
+
+        ui->batteryValueLabel->setText(tr("Wired"));
         break;
 
     default:
 
-        ui->batteryLabel->hide();
-        ui->batteryValueLabel->hide();
+        ui->batteryValueLabel->setText(tr("Different: %1").arg(powerLevel));
+        WARN() << "Unknown battery level:" << powerLevel;
         break;
     }
 
