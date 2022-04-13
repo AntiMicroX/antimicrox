@@ -1672,7 +1672,7 @@ wszystkie opcje profilu domyślnego.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="414"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="415"/>
         <source>Axis %1 -</source>
-        <translation>Oś  %1 -</translation>
+        <translation>Oś %1 -</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="421"/>
@@ -2475,7 +2475,7 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation>Standardowo: Ośmiokierunkowy analog z dwoma aktywnymi 
+        <translation>Standardowo: Ośmiokierunkowy analog z dwoma aktywnymi
 przyciskami nakierowującymi, gdy analog jest zwrócony w
 kierunku ukośnym.
 
@@ -2702,12 +2702,12 @@ odwołującymi się do stref przekątnych analogu.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation>Left Stick X</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation>Left Stick Y</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="202"/>
@@ -3877,7 +3877,7 @@ przypisania funkcji chodzenia/biegania do drążka analogowego.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1617"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1679"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
-        <translation>Zmiany dla profilu &quot;%1&quot; nie zostały zapisane.  Czy chcesz, aby zmiany dla aktualnego profilu zostały zapisane lub usunięte?</translation>
+        <translation>Zmiany dla profilu &quot;%1&quot; nie zostały zapisane. Czy chcesz, aby zmiany dla aktualnego profilu zostały zapisane lub usunięte?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1926"/>
@@ -7175,7 +7175,8 @@ Sprawdź uprawnienia zapisu dla pliku</translation>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
         <source>NUM
 LK</source>
-        <translation>NUM LK</translation>
+        <translation>NUM
+LK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="167"/>
