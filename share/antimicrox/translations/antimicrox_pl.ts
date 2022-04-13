@@ -2667,7 +2667,7 @@ odwołującymi się do stref przekątnych analogu.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation>Back</translation>
+        <translation>Powrót</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
@@ -2692,12 +2692,12 @@ odwołującymi się do stref przekątnych analogu.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation>Left Stick Click</translation>
+        <translation>Wciśnięcie lewego drążka</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation>Right Stick Click</translation>
+        <translation>Wciśnięcie prawego drążka</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
