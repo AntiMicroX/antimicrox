@@ -5459,12 +5459,12 @@ grandezza dello schermo.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="156"/>
         <source>Play/Pause</source>
-        <translation>Play/Pausa</translation>
+        <translation>Riproduci/Pausa</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="157"/>
         <source>Play</source>
-        <translation>Play</translation>
+        <translation>Riproduci</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="158"/>
@@ -5484,12 +5484,12 @@ grandezza dello schermo.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="161"/>
         <source>Mail</source>
-        <translation>Mail</translation>
+        <translation>E-mail</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="162"/>
         <source>Home</source>
-        <translation>Home</translation>
+        <translation>Principale</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="163"/>
@@ -6621,12 +6621,12 @@ Per favore controlla di avere i permessi di scrittura sul dispositivo.</translat
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="299"/>
         <source>Play</source>
-        <translation>Play</translation>
+        <translation>Riproduci</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="300"/>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation>Ferma</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="301"/>
@@ -7175,12 +7175,12 @@ O</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1048"/>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>E-mail</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1053"/>
         <source>F13</source>
-        <translation type="unfinished">F13</translation>
+        <translation>F13</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1054"/>
