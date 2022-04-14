@@ -67,9 +67,11 @@ class AutoProfileInfo : public QObject
     void setPartialState(bool value);
     bool isPartialState();
 
+    QString toString() const;
+
   private:
     QString guid;
-    QString uniqueID;
+    QString uniqueID; //unique ID of assigned controller (all, when none)
     QString profileLocation;
     QString exe;
     QString deviceName;
