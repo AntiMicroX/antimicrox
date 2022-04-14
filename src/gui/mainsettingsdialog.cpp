@@ -1695,7 +1695,7 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
         }
     } else
     {
-        if (!info->getUniqueID().isEmpty() && !info->getExe().isEmpty())
+        if (!info->getUniqueID().isEmpty() || !info->getExe().isEmpty())
         {
             profileList.append(info);
 
