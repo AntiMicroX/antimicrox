@@ -16,12 +16,12 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Infos</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Journal des modifications</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
@@ -5088,7 +5088,7 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="158"/>
         <source>antimicro Key Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valeur de la clé AntiMicroX&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -5106,27 +5106,27 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message>
         <location filename="../../../src/winextras.cpp" line="153"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Sourdine</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="154"/>
         <source>Vol+</source>
-        <translation type="unfinished"></translation>
+        <translation>Vol+</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="155"/>
         <source>Vol-</source>
-        <translation type="unfinished"></translation>
+        <translation>Vol-</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="156"/>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecture/Pause</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="157"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecture</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="158"/>
@@ -5146,22 +5146,22 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message>
         <location filename="../../../src/winextras.cpp" line="161"/>
         <source>Mail</source>
-        <translation type="unfinished"></translation>
+        <translation>Courriel</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="162"/>
         <source>Home</source>
-        <translation type="unfinished">Début</translation>
+        <translation>Accueil</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="163"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>Média</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="164"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="201"/>
@@ -6182,37 +6182,37 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="296"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Sourdine</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="297"/>
         <source>VolDn</source>
-        <translation type="unfinished"></translation>
+        <translation>Vol-</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="298"/>
         <source>VolUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Vol+</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="299"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Lire</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="300"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="301"/>
         <source>Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>Préc</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="302"/>
         <source>Next</source>
-        <translation type="unfinished">Suivant</translation>
+        <translation>Suivant</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="327"/>
@@ -6235,44 +6235,44 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>Classe&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="55"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Étiquette de texte</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="106"/>
         <source>Match By Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Correspondance par propriétés</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="121"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Classe</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="128"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="135"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin</translation>
     </message>
 </context>
 <context>
@@ -6707,7 +6707,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1002"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Applications</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1008"/>
@@ -6727,7 +6727,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1023"/>
         <source>Browser Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Accueil navigateur</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1028"/>
@@ -6752,7 +6752,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1048"/>
         <source>Email</source>
-        <translation type="unfinished"></translation>
+        <translation>Courriel</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1053"/>
@@ -6915,17 +6915,17 @@ E</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="175"/>
         <source>ESC</source>
-        <translation type="unfinished">ECHAP</translation>
+        <translation>Échap</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="176"/>
         <source>Tab</source>
-        <translation type="unfinished">Tab</translation>
+        <translation>Tab</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="177"/>
         <source>Space</source>
-        <translation type="unfinished">Espace</translation>
+        <translation>Espace</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="178"/>

@@ -171,7 +171,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
         <source>Changelog</source>
-        <translation>Changelog</translation>
+        <translation>Änderungsprotokoll</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="369"/>
@@ -431,7 +431,9 @@ wird in das Formular eingetragen.</translation>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation>Wählen Sie dieses Profil als Standard für das jeweilige Gerät. Diese Auswahl wird anstatt jeder anderen Standardeinstellung genutzt.</translation>
+        <translation>Wählen Sie dieses Profil als Standard für
+das jeweilige Gerät. Diese Auswahl wird anstatt
+jeder anderen Standardeinstellung genutzt.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="184"/>
@@ -1599,7 +1601,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="261"/>
         <source>Advanced</source>
-        <translation>Advanced</translation>
+        <translation>Fortgeschrittene</translation>
     </message>
     <message>
         <source>Set</source>
@@ -5500,12 +5502,12 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="154"/>
         <source>Vol+</source>
-        <translation type="unfinished"></translation>
+        <translation>Laut+</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="155"/>
         <source>Vol-</source>
-        <translation type="unfinished"></translation>
+        <translation>Laut-</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="156"/>
@@ -5520,7 +5522,7 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="158"/>
         <source>Pause</source>
-        <translation type="unfinished">Pause</translation>
+        <translation>Pause</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="159"/>
@@ -5535,7 +5537,7 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="161"/>
         <source>Mail</source>
-        <translation>EMail</translation>
+        <translation>E-Mail</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="162"/>
@@ -5545,7 +5547,7 @@ auf Ihrem Bildschirm nutzen.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="163"/>
         <source>Media</source>
-        <translation type="unfinished">Media</translation>
+        <translation>Medien</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="164"/>
@@ -6753,7 +6755,7 @@ Bitte überprüfen Sie ob Sie die Berechtigung haben auf dieses Gerät zu schrei
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="300"/>
         <source>Stop</source>
-        <translation></translation>
+        <translation>Stoppen</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="301"/>
@@ -7259,7 +7261,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1002"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Anwendungen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1008"/>
@@ -7304,7 +7306,7 @@ E</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1048"/>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>E-Mail</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1053"/>
@@ -7436,7 +7438,7 @@ E</translation>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="38"/>
         <source>Timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitschaltuhr:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="55"/>
@@ -7521,7 +7523,7 @@ E</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="676"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
-        <translation>PtrFeedbackCalls wurde nicht für den virtuellen Mauszeiger gefunden. Es wird keine Mausbeschleunigungsänderungen  für das Gerät mit id=%1 geben</translation>
+        <translation>PtrFeedbackCalls wurde nicht für den virtuellen Mauszeiger gefunden. Es wird keine Mausbeschleunigungsänderungen für das Gerät mit id=%1 geben</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="683"/>
