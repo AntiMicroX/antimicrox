@@ -221,21 +221,14 @@ Full list is available [here](https://github.com/AntiMicroX/antimicrox/graphs/co
 | Fedora Linux | [gombosg](https://github.com/gombosg) | antimicrox                                                                                          |
 | Flatpak      | [gombosg](https://github.com/gombosg) | [io.github.antimicrox.antimicrox](https://flathub.org/apps/details/io.github.antimicrox.antimicrox) |
 
-### Translators
+### Translation
 
-VaGNaroK <vagnarokalkimist@gmail.com> - Brazilian Portuguese  
-zzpxyx - Chinese  
-Belleguic Terence <hizo@free.fr> - French  
-Leonard Koenig <leonard.r.koenig@googlemail.com> - German  
-phob - German  
-tou omiya - Japanese  
-Dmitriy Koshel <form.eater@gmail.com> - Russian  
-Jay Alexander Fleming <tito.nehru.naser@gmail.com> - Serbian  
-burunduk - Ukrainian  
-Flavio HR <flavio.hrx@gmail.com> - Spanish  
-WAZAAAAA - <wazaaaaa00@gmail.com> - Italian  
-juliagoda <juliagoda.pl@protonmail.com> - Polish
+Translation process is handled via [Weblate](https://weblate.org/). If you want to help just click this [link](https://hosted.weblate.org/engage/antimicrox).
 
-## Participation in the translation of AntiMicroX
+Translation status
 
-If you want to participate in the translation of the program, but your language is not yet on the support list. Please check [this link](https://github.com/AntiMicroX/antimicrox/issues/1).
+<a href="https://hosted.weblate.org/engage/antimicrox/">
+<img src="https://hosted.weblate.org/widgets/antimicrox/-/gui/multi-auto.svg" alt="Translation status" />
+</a>
+
+More information about translating can be found [here](https://github.com/AntiMicroX/antimicrox/wiki/Translating-AntiMicroX).
