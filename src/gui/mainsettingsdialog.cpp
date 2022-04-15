@@ -1678,44 +1678,47 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
 void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
 { // AddEditAutoProfileDialog *dialog = static_cast<AddEditAutoProfileDialog*>(sender());
     AutoProfileInfo *info = dialog->getAutoProfile();
-    bool found = false;
 
     if (info->isCurrentDefault() && defaultAutoProfiles.contains(info->getUniqueID()))
     {
-        found = true;
+        WARN() << "Unable to add autoprofile with ID:" << info->getUniqueID()
+               << " because it already exists and belongs to default autoprofiles";
+        return;
     }
 
-    if (!found)
+    if (info->isCurrentDefault())
     {
-        if (info->isCurrentDefault())
+        if (!info->getUniqueID().isEmpty() && !info->getExe().isEmpty())
         {
-            if (!info->getUniqueID().isEmpty() && !info->getExe().isEmpty())
+            defaultAutoProfiles.insert(info->getUniqueID(), info);
+            defaultList.append(info);
+        }
+    } else
+    {
+        if (!info->getUniqueID().isEmpty() || !info->getExe().isEmpty())
+        {
+            profileList.append(info);
+
+            if (info->getUniqueID() != "all")
             {
-                defaultAutoProfiles.insert(info->getUniqueID(), info);
-                defaultList.append(info);
+                QList<AutoProfileInfo *> tempDevProfileList;
+
+                if (deviceAutoProfiles.contains(info->getUniqueID()))
+                    tempDevProfileList = deviceAutoProfiles.value(info->getUniqueID());
+
+                tempDevProfileList.append(info);
+                deviceAutoProfiles.insert(info->getUniqueID(), tempDevProfileList);
             }
         } else
         {
-            if (!info->getUniqueID().isEmpty() && !info->getExe().isEmpty())
-            {
-                profileList.append(info);
-
-                if (info->getUniqueID() != "all")
-                {
-                    QList<AutoProfileInfo *> tempDevProfileList;
-
-                    if (deviceAutoProfiles.contains(info->getUniqueID()))
-                        tempDevProfileList = deviceAutoProfiles.value(info->getUniqueID());
-
-                    tempDevProfileList.append(info);
-                    deviceAutoProfiles.insert(info->getUniqueID(), tempDevProfileList);
-                }
-            }
+            WARN() << "Unable to add because neither ID, nor Executable is defined";
         }
-
-        fillGUIDComboBox();
-        changeDeviceForProfileTable(ui->devicesComboBox->currentIndex());
     }
+
+    fillGUIDComboBox();
+    changeDeviceForProfileTable(ui->devicesComboBox->currentIndex());
+
+    INFO() << "Successfully added auto profile: " << info->toString();
 }
 
 void MainSettingsDialog::autoProfileButtonsActiveState(bool enabled)

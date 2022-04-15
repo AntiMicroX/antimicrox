@@ -110,6 +110,10 @@ bool AutoProfileInfo::isActive() { return active; }
 
 void AutoProfileInfo::setDefaultState(bool value) { this->defaultState = value; }
 
+/**
+ * @brief is this autoprofile loaded by default?
+ * There is one default profile for all of controllers and there can be also some default profiles for selected controllers
+ */
 bool AutoProfileInfo::isCurrentDefault() { return defaultState; }
 
 void AutoProfileInfo::setDeviceName(QString name) { this->deviceName = name; }
@@ -125,3 +129,10 @@ QString AutoProfileInfo::getDeviceName() const
 void AutoProfileInfo::setPartialState(bool value) { this->partialState = value; }
 
 bool AutoProfileInfo::isPartialState() { return partialState; }
+
+QString AutoProfileInfo::toString() const
+{
+    return QString("ID of assigned controller:%1, Profile Location:%2, Exe:%3,WindowClass:%4, WindowName:%5, isActive:%6, "
+                   "DeviceName:%7")
+        .arg(uniqueID, profileLocation, exe, windowClass, windowName, active ? "true" : "false", deviceName);
+}
