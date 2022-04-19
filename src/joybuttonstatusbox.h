@@ -34,9 +34,6 @@ class JoyButtonStatusBox : public QPushButton
     JoyButton *getJoyButton() const;
     bool isButtonFlashing();
 
-  signals:
-    void flashed(bool flashing);
-
   private slots:
     void flash();
     void unflash();

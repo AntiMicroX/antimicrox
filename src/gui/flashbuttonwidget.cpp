@@ -47,8 +47,6 @@ void FlashButtonWidget::flash()
 
     this->style()->unpolish(this);
     this->style()->polish(this);
-
-    emit flashed(isflashing);
 }
 
 void FlashButtonWidget::unflash()
@@ -57,8 +55,6 @@ void FlashButtonWidget::unflash()
 
     this->style()->unpolish(this);
     this->style()->polish(this);
-
-    emit flashed(isflashing);
 }
 
 void FlashButtonWidget::refreshLabel()

@@ -46,8 +46,6 @@ void JoyButtonStatusBox::flash()
 
     this->style()->unpolish(this);
     this->style()->polish(this);
-
-    emit flashed(isflashing);
 }
 
 void JoyButtonStatusBox::unflash()
@@ -56,6 +54,4 @@ void JoyButtonStatusBox::unflash()
 
     this->style()->unpolish(this);
     this->style()->polish(this);
-
-    emit flashed(isflashing);
 }
