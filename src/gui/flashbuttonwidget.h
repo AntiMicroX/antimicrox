@@ -43,9 +43,6 @@ class FlashButtonWidget : public QPushButton
     virtual void retranslateUi();
     bool ifDisplayNames();
 
-  signals:
-    void flashed(bool flashing);
-
   public slots:
     void refreshLabel();
     void toggleNameDisplay();
