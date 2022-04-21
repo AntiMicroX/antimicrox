@@ -84,7 +84,9 @@ JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent)
     this->m_distance = slot->getDistance();
     this->previousDistance = slot->getPreviousDistance();
     this->easingActive = slot->isEasingActive();
-    this->easingTime.fromString(slot->getEasingTime()->toString());
+    easingTime = QElapsedTimer();
+    if (slot->getEasingTime()->isValid())
+        easingTime.start();
     this->extraData = slot->getExtraData();
 
     /*
@@ -420,7 +422,7 @@ bool JoyButtonSlot::isEasingActive() { return easingActive; }
 
 void JoyButtonSlot::setEasingStatus(bool isActive) { easingActive = isActive; }
 
-QTime *JoyButtonSlot::getEasingTime() { return &easingTime; }
+QElapsedTimer *JoyButtonSlot::getEasingTime() { return &easingTime; }
 
 void JoyButtonSlot::setTextData(QString textData) { m_textData = textData; }
 
@@ -513,7 +515,9 @@ JoyButtonSlot &JoyButtonSlot::operator=(JoyButtonSlot *slot)
     this->m_distance = slot->getDistance();
     this->previousDistance = slot->getPreviousDistance();
     this->easingActive = slot->isEasingActive();
-    this->easingTime.fromString(slot->getEasingTime()->toString());
+    easingTime = QElapsedTimer();
+    if (slot->getEasingTime()->isValid())
+        easingTime.start();
     this->extraData = slot->getExtraData();
 
     if (slot->getMixSlots() != nullptr)

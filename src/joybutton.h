@@ -96,7 +96,6 @@ class JoyButton : public QObject
     void setJoyNumber(int index);
     void clearPendingEvent(); // JoyButtonEvents class
     void setCustomName(QString name);
-    void copyExtraAccelerationState(JoyButton *srcButton);
     void setUpdateInitAccel(bool state);
     void removeVDPad();
     void setIgnoreEventState(bool ignore); // JoyButtonEvents class
@@ -212,11 +211,11 @@ class JoyButton : public QObject
     static bool hasSpringEvents(QList<PadderCommon::springModeInfo> *springXSpeedsList,
                                 QList<PadderCommon::springModeInfo> *springYSpeedsList); // JoyButtonEvents class
     static bool shouldInvokeMouseEvents(QList<JoyButton *> *pendingMouseButtons, QTimer *staticMouseEventTimer,
-                                        QTime *testOldMouseTime); // JoyButtonEvents class
+                                        QElapsedTimer *testOldMouseTime);
 
     static void setWeightModifier(double modifier, double maxWeightModifier, double &weightModifier);
     static void moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QList<double> *mouseHistoryX,
-                                QList<double> *mouseHistoryY, QTime *testOldMouseTime, QTimer *staticMouseEventTimer,
+                                QList<double> *mouseHistoryY, QElapsedTimer *testOldMouseTime, QTimer *staticMouseEventTimer,
                                 int mouseRefreshRate, int mouseHistorySize, QList<JoyButton::mouseCursorInfo> *cursorXSpeeds,
                                 QList<JoyButton::mouseCursorInfo> *cursorYSpeeds, double &cursorRemainderX,
                                 double &cursorRemainderY, double weightModifier, int idleMouseRefrRate,
@@ -229,12 +228,13 @@ class JoyButton : public QObject
                                     QList<double> *mouseHistoryY);
     static void setMouseRefreshRate(int refresh, int &mouseRefreshRate, int idleMouseRefrRate,
                                     JoyButtonMouseHelper *mouseHelper, QList<double> *mouseHistoryX,
-                                    QList<double> *mouseHistoryY, QTime *testOldMouseTime, QTimer *staticMouseEventTimer);
+                                    QList<double> *mouseHistoryY, QElapsedTimer *testOldMouseTime,
+                                    QTimer *staticMouseEventTimer);
     static void setSpringModeScreen(int screen, int &springModeScreen);
     static void resetActiveButtonMouseDistances(JoyButtonMouseHelper *mouseHelper);
     static void setGamepadRefreshRate(int refresh, int &gamepadRefreshRate, JoyButtonMouseHelper *mouseHelper);
-    static void restartLastMouseTime(QTime *testOldMouseTime);
-    static void setStaticMouseThread(QThread *thread, QTimer *staticMouseEventTimer, QTime *testOldMouseTime,
+    static void restartLastMouseTime(QElapsedTimer *testOldMouseTime);
+    static void setStaticMouseThread(QThread *thread, QTimer *staticMouseEventTimer, QElapsedTimer *testOldMouseTime,
                                      int idleMouseRefrRate, JoyButtonMouseHelper *mouseHelper);
     static void indirectStaticMouseThread(QThread *thread, QTimer *staticMouseEventTimer, JoyButtonMouseHelper *mouseHelper);
     static void invokeMouseEvents(JoyButtonMouseHelper *mouseHelper); // JoyButtonEvents class
@@ -246,7 +246,7 @@ class JoyButton : public QObject
     static QList<PadderCommon::springModeInfo> *getSpringXSpeeds();
     static QList<PadderCommon::springModeInfo> *getSpringYSpeeds();
     static QTimer *getStaticMouseEventTimer(); // JoyButtonEvents class
-    static QTime *getTestOldMouseTime();
+    static QElapsedTimer *getTestOldMouseTime();
 
     JoyExtraAccelerationCurve getExtraAccelerationCurve();
 
@@ -629,9 +629,9 @@ class JoyButton : public QObject
     QElapsedTimer buttonHeldRelease;
     QElapsedTimer keyPressHold;
     QElapsedTimer buttonDelay;
-    QTime accelExtraDurationTime;
+    QElapsedTimer accelExtraDurationTime;
     QElapsedTimer cycleResetHold;
-    static QTime testOldMouseTime;
+    static QElapsedTimer testOldMouseTime;
 
     VDPad *m_vdpad;
     JoyMouseMovementMode mouseMode;
