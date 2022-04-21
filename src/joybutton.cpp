@@ -56,7 +56,7 @@ QList<PadderCommon::springModeInfo> JoyButton::springXSpeeds;
 QList<PadderCommon::springModeInfo> JoyButton::springYSpeeds;
 
 // Temporary test object to test old mouse time behavior.
-QTime JoyButton::testOldMouseTime;
+QElapsedTimer JoyButton::testOldMouseTime;
 
 // time when minislots next to each other in thread pool are waiting to execute function
 // at the same time
@@ -3612,7 +3612,7 @@ QString JoyButton::getDefaultButtonName() { return defaultButtonName; }
  *     send a cursor mode mouse event to the display server.
  */
 void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QList<double> *mouseHistoryX,
-                                QList<double> *mouseHistoryY, QTime *testOldMouseTime, QTimer *staticMouseEventTimer,
+                                QList<double> *mouseHistoryY, QElapsedTimer *testOldMouseTime, QTimer *staticMouseEventTimer,
                                 int mouseRefreshRate, int mouseHistorySize, QList<JoyButton::mouseCursorInfo> *cursorXSpeeds,
                                 QList<JoyButton::mouseCursorInfo> *cursorYSpeeds, double &cursorRemainderX,
                                 double &cursorRemainderY, double weightModifier, int idleMouseRefrRate,
@@ -4197,7 +4197,7 @@ QList<PadderCommon::springModeInfo> *JoyButton::getSpringYSpeeds() { return &spr
 
 QTimer *JoyButton::getStaticMouseEventTimer() { return &staticMouseEventTimer; }
 
-QTime *JoyButton::getTestOldMouseTime() { return &testOldMouseTime; }
+QElapsedTimer *JoyButton::getTestOldMouseTime() { return &testOldMouseTime; }
 
 bool JoyButton::hasCursorEvents(QList<JoyButton::mouseCursorInfo> *cursorXSpeedsList,
                                 QList<JoyButton::mouseCursorInfo> *cursorYSpeedsList)
@@ -4244,7 +4244,8 @@ void JoyButton::setMouseHistorySize(int size, int maxMouseHistSize, int &mouseHi
  */
 void JoyButton::setMouseRefreshRate(int refresh, int &mouseRefreshRate, int idleMouseRefrRate,
                                     JoyButtonMouseHelper *mouseHelper, QList<double> *mouseHistoryX,
-                                    QList<double> *mouseHistoryY, QTime *testOldMouseTime, QTimer *staticMouseEventTimer)
+                                    QList<double> *mouseHistoryY, QElapsedTimer *testOldMouseTime,
+                                    QTimer *staticMouseEventTimer)
 {
     if ((refresh >= 1) && (refresh <= 16))
     {
@@ -4531,9 +4532,9 @@ int JoyButton::getSpringDeadCircleMultiplier() { return springDeadCircleMultipli
 
 double JoyButton::getCurrentSpringDeadCircle() { return (springDeadCircleMultiplier * 0.01); }
 
-void JoyButton::restartLastMouseTime(QTime *testOldMouseTime) { testOldMouseTime->restart(); }
+void JoyButton::restartLastMouseTime(QElapsedTimer *testOldMouseTime) { testOldMouseTime->restart(); }
 
-void JoyButton::setStaticMouseThread(QThread *thread, QTimer *staticMouseEventTimer, QTime *testOldMouseTime,
+void JoyButton::setStaticMouseThread(QThread *thread, QTimer *staticMouseEventTimer, QElapsedTimer *testOldMouseTime,
                                      int idleMouseRefrRate, JoyButtonMouseHelper *mouseHelper)
 {
     int oldInterval = staticMouseEventTimer->interval();
@@ -4556,7 +4557,7 @@ void JoyButton::indirectStaticMouseThread(QThread *thread, QTimer *staticMouseEv
 }
 
 bool JoyButton::shouldInvokeMouseEvents(QList<JoyButton *> *pendingMouseButtons, QTimer *staticMouseEventTimer,
-                                        QTime *testOldMouseTime)
+                                        QElapsedTimer *testOldMouseTime)
 {
     bool result = false;
 
@@ -4580,24 +4581,6 @@ void JoyButton::setExtraAccelerationCurve(JoyExtraAccelerationCurve curve)
 }
 
 JoyButton::JoyExtraAccelerationCurve JoyButton::getExtraAccelerationCurve() { return extraAccelCurve; }
-
-void JoyButton::copyExtraAccelerationState(JoyButton *srcButton)
-{
-    this->currentAccelMulti = srcButton->currentAccelMulti;
-    this->oldAccelMulti = srcButton->oldAccelMulti;
-    this->accelTravel = srcButton->accelTravel;
-
-    this->startingAccelerationDistance = srcButton->startingAccelerationDistance;
-    this->lastAccelerationDistance = srcButton->lastAccelerationDistance;
-    this->lastMouseDistance = srcButton->lastMouseDistance;
-
-    this->accelExtraDurationTime.setHMS(srcButton->accelExtraDurationTime.hour(), srcButton->accelExtraDurationTime.minute(),
-                                        srcButton->accelExtraDurationTime.second(),
-                                        srcButton->accelExtraDurationTime.msec());
-
-    updateMouseParams((srcButton->lastMouseDistance != 0.0), srcButton->updateStartingMouseDistance,
-                      srcButton->updateOldAccelMulti);
-}
 
 void JoyButton::setUpdateInitAccel(bool state) { this->updateInitAccelValues = state; }
 

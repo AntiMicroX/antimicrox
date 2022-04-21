@@ -108,7 +108,7 @@ class JoyButtonSlot : public QObject
 
     bool isEasingActive();
     void setEasingStatus(bool isActive);
-    QTime *getEasingTime();
+    QElapsedTimer *getEasingTime();
 
     void setTextData(QString textData);
     QString getTextData();
@@ -143,7 +143,7 @@ class JoyButtonSlot : public QObject
     double m_distance;
     double previousDistance;
     QElapsedTimer mouseInterval;
-    QTime easingTime;
+    QElapsedTimer easingTime;
     bool easingActive;
     QString m_textData;
     QVariant extraData;
