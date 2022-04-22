@@ -252,24 +252,23 @@ bool JoyDPad::hasSameButtonsMouseMode()
     bool result = true;
 
     JoyButton::JoyMouseMovementMode initialMode = JoyButton::MouseCursor;
-
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return result;
+
+    JoyDPadButton *button = iter.value();
+    initialMode = button->getMouseMode();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
+        if (temp != initialMode)
         {
-            JoyDPadButton *button = iter.next().value();
-            initialMode = button->getMouseMode();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
-            if (temp != initialMode)
-            {
-                result = false;
-                iter.toBack();
-            }
+            result = false;
+            break;
         }
     }
 
@@ -281,22 +280,22 @@ JoyButton::JoyMouseMovementMode JoyDPad::getButtonsPresetMouseMode()
     JoyButton::JoyMouseMovementMode resultMode = JoyButton::MouseCursor;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return resultMode;
+
+    JoyDPadButton *button = iter.value();
+    resultMode = button->getMouseMode();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
+        if (temp != resultMode)
         {
-            JoyDPadButton *button = iter.next().value();
-            resultMode = button->getMouseMode();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
-            if (temp != resultMode)
-            {
-                resultMode = JoyButton::MouseCursor;
-                iter.toBack();
-            }
+            resultMode = JoyButton::MouseCursor;
+            break;
         }
     }
 
@@ -320,22 +319,22 @@ bool JoyDPad::hasSameButtonsMouseCurve()
     JoyButton::JoyMouseCurve initialCurve = JoyButton::LinearCurve;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return result;
+
+    JoyDPadButton *button = iter.value();
+    initialCurve = button->getMouseCurve();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+        if (temp != initialCurve)
         {
-            JoyDPadButton *button = iter.next().value();
-            initialCurve = button->getMouseCurve();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
-            if (temp != initialCurve)
-            {
-                result = false;
-                iter.toBack();
-            }
+            result = false;
+            break;
         }
     }
 
@@ -347,22 +346,22 @@ JoyButton::JoyMouseCurve JoyDPad::getButtonsPresetMouseCurve()
     JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return resultCurve;
+
+    JoyDPadButton *button = iter.value();
+    resultCurve = button->getMouseCurve();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+        if (temp != resultCurve)
         {
-            JoyDPadButton *button = iter.next().value();
-            resultCurve = button->getMouseCurve();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
-            if (temp != resultCurve)
-            {
-                resultCurve = JoyButton::LinearCurve;
-                iter.toBack();
-            }
+            resultCurve = JoyButton::LinearCurve;
+            break;
         }
     }
 
@@ -394,22 +393,22 @@ int JoyDPad::getButtonsPresetSpringWidth()
     int presetSpringWidth = 0;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return presetSpringWidth;
+
+    JoyDPadButton *button = iter.value();
+    presetSpringWidth = button->getSpringWidth();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        int temp = button->getSpringWidth();
+        if (temp != presetSpringWidth)
         {
-            JoyDPadButton *button = iter.next().value();
-            presetSpringWidth = button->getSpringWidth();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            int temp = button->getSpringWidth();
-            if (temp != presetSpringWidth)
-            {
-                presetSpringWidth = 0;
-                iter.toBack();
-            }
+            presetSpringWidth = 0;
+            break;
         }
     }
 
@@ -421,22 +420,22 @@ int JoyDPad::getButtonsPresetSpringHeight()
     int presetSpringHeight = 0;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return presetSpringHeight;
+
+    JoyDPadButton *button = iter.value();
+    presetSpringHeight = button->getSpringHeight();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        int temp = button->getSpringHeight();
+        if (temp != presetSpringHeight)
         {
-            JoyDPadButton *button = iter.next().value();
-            presetSpringHeight = button->getSpringHeight();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            int temp = button->getSpringHeight();
-            if (temp != presetSpringHeight)
-            {
-                presetSpringHeight = 0;
-                iter.toBack();
-            }
+            presetSpringHeight = 0;
+            break;
         }
     }
 
@@ -458,22 +457,22 @@ double JoyDPad::getButtonsPresetSensitivity()
     double presetSensitivity = 1.0;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return presetSensitivity;
+
+    JoyDPadButton *button = iter.value();
+    presetSensitivity = button->getSensitivity();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        double temp = button->getSensitivity();
+        if (!qFuzzyCompare(temp, presetSensitivity))
         {
-            JoyDPadButton *button = iter.next().value();
-            presetSensitivity = button->getSensitivity();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            double temp = button->getSensitivity();
-            if (!qFuzzyCompare(temp, presetSensitivity))
-            {
-                presetSensitivity = 1.0;
-                iter.toBack();
-            }
+            presetSensitivity = 1.0;
+            break;
         }
     }
 
@@ -594,22 +593,22 @@ bool JoyDPad::isRelativeSpring()
     bool relative = false;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return relative;
+
+    JoyDPadButton *button = iter.value();
+    relative = button->isRelativeSpring();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        bool temp = button->isRelativeSpring();
+        if (temp != relative)
         {
-            JoyDPadButton *button = iter.next().value();
-            relative = button->isRelativeSpring();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            bool temp = button->isRelativeSpring();
-            if (temp != relative)
-            {
-                relative = false;
-                iter.toBack();
-            }
+            relative = false;
+            break;
         }
     }
 
@@ -896,22 +895,22 @@ double JoyDPad::getButtonsEasingDuration()
     double result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return result;
+
+    JoyDPadButton *button = iter.value();
+    result = button->getEasingDuration();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        double temp = button->getEasingDuration();
+        if (!qFuzzyCompare(temp, result))
         {
-            JoyDPadButton *button = iter.next().value();
-            result = button->getEasingDuration();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            double temp = button->getEasingDuration();
-            if (!qFuzzyCompare(temp, result))
-            {
-                result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
-                iter.toBack();
-            }
+            result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
+            break;
         }
     }
 
@@ -934,22 +933,22 @@ int JoyDPad::getButtonsSpringDeadCircleMultiplier()
     int result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return result;
+
+    JoyDPadButton *button = iter.value();
+    result = button->getSpringDeadCircleMultiplier();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        int temp = button->getSpringDeadCircleMultiplier();
+        if (temp != result)
         {
-            JoyDPadButton *button = iter.next().value();
-            result = button->getSpringDeadCircleMultiplier();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            int temp = button->getSpringDeadCircleMultiplier();
-            if (temp != result)
-            {
-                result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
-                iter.toBack();
-            }
+            result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
+            break;
         }
     }
 
@@ -972,22 +971,22 @@ JoyButton::JoyExtraAccelerationCurve JoyDPad::getButtonsExtraAccelerationCurve()
     JoyButton::JoyExtraAccelerationCurve result = JoyButton::LinearAccelCurve;
 
     QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    QHashIterator<int, JoyDPadButton *> iter(temphash);
-    while (iter.hasNext())
+    auto iter = temphash.cbegin();
+
+    if (iter == temphash.cend())
+        return result;
+
+    JoyDPadButton *button = iter.value();
+    result = button->getExtraAccelerationCurve();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
+        if (temp != result)
         {
-            JoyDPadButton *button = iter.next().value();
-            result = button->getExtraAccelerationCurve();
-        } else
-        {
-            JoyDPadButton *button = iter.next().value();
-            JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
-            if (temp != result)
-            {
-                result = JoyButton::LinearAccelCurve;
-                iter.toBack();
-            }
+            result = JoyButton::LinearAccelCurve;
+            break;
         }
     }
 

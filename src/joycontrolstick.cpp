@@ -1875,24 +1875,23 @@ bool JoyControlStick::hasSameButtonsMouseMode()
 
     JoyButton::JoyMouseMovementMode initialMode = JoyButton::MouseCursor;
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    initialMode = button->getMouseMode();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            initialMode = button->getMouseMode();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
+        button = iter.value();
+        JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
 
-            if (temp != initialMode)
-            {
-                result = false;
-                iter.toBack();
-            }
+        if (temp != initialMode)
+        {
+            result = false;
+            break;
         }
     }
 
@@ -1903,24 +1902,23 @@ JoyButton::JoyMouseMovementMode JoyControlStick::getButtonsPresetMouseMode()
 {
     JoyButton::JoyMouseMovementMode resultMode = JoyButton::MouseCursor;
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return resultMode;
+
+    JoyControlStickButton *button = iter.value();
+    resultMode = button->getMouseMode();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            resultMode = button->getMouseMode();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
+        button = iter.value();
+        JoyButton::JoyMouseMovementMode temp = button->getMouseMode();
 
-            if (temp != resultMode)
-            {
-                resultMode = JoyButton::MouseCursor;
-                iter.toBack();
-            }
+        if (temp != resultMode)
+        {
+            resultMode = JoyButton::MouseCursor;
+            break;
         }
     }
 
@@ -1944,24 +1942,23 @@ bool JoyControlStick::hasSameButtonsMouseCurve()
 
     JoyButton::JoyMouseCurve initialCurve = JoyButton::LinearCurve;
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    initialCurve = button->getMouseCurve();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            initialCurve = button->getMouseCurve();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+        button = iter.value();
+        JoyButton::JoyMouseCurve temp = button->getMouseCurve();
 
-            if (temp != initialCurve)
-            {
-                result = false;
-                iter.toBack();
-            }
+        if (temp != initialCurve)
+        {
+            result = false;
+            break;
         }
     }
 
@@ -1972,24 +1969,23 @@ JoyButton::JoyMouseCurve JoyControlStick::getButtonsPresetMouseCurve()
 {
     JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return resultCurve;
+
+    JoyControlStickButton *button = iter.value();
+    resultCurve = button->getMouseCurve();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            resultCurve = button->getMouseCurve();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            JoyButton::JoyMouseCurve temp = button->getMouseCurve();
+        button = iter.value();
+        JoyButton::JoyMouseCurve temp = button->getMouseCurve();
 
-            if (temp != resultCurve)
-            {
-                resultCurve = JoyButton::LinearCurve;
-                iter.toBack();
-            }
+        if (temp != resultCurve)
+        {
+            resultCurve = JoyButton::LinearCurve;
+            break;
         }
     }
 
@@ -2023,25 +2019,23 @@ int JoyControlStick::getButtonsPresetSpringWidth()
     int presetSpringWidth = 0;
 
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return presetSpringWidth;
+
+    JoyControlStickButton *button = iter.value();
+    presetSpringWidth = button->getSpringWidth();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            presetSpringWidth = button->getSpringWidth();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
+        button = iter.value();
+        int temp = button->getSpringWidth();
 
-            int temp = button->getSpringWidth();
-
-            if (temp != presetSpringWidth)
-            {
-                presetSpringWidth = 0;
-                iter.toBack();
-            }
+        if (temp != presetSpringWidth)
+        {
+            presetSpringWidth = 0;
+            break;
         }
     }
 
@@ -2053,24 +2047,23 @@ int JoyControlStick::getButtonsPresetSpringHeight()
     int presetSpringHeight = 0;
 
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return presetSpringHeight;
+
+    JoyControlStickButton *button = iter.value();
+    presetSpringHeight = button->getSpringHeight();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            presetSpringHeight = button->getSpringHeight();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            int temp = button->getSpringHeight();
+        button = iter.value();
+        int temp = button->getSpringHeight();
 
-            if (temp != presetSpringHeight)
-            {
-                presetSpringHeight = 0;
-                iter.toBack();
-            }
+        if (temp != presetSpringHeight)
+        {
+            presetSpringHeight = 0;
+            break;
         }
     }
 
@@ -2093,24 +2086,23 @@ double JoyControlStick::getButtonsPresetSensitivity()
     double presetSensitivity = 1.0;
 
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return presetSensitivity;
+
+    JoyControlStickButton *button = iter.value();
+    presetSensitivity = button->getSensitivity();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            presetSensitivity = button->getSensitivity();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            double temp = button->getSensitivity();
+        button = iter.value();
+        double temp = button->getSensitivity();
 
-            if (!qFuzzyCompare(temp, presetSensitivity))
-            {
-                presetSensitivity = 1.0;
-                iter.toBack();
-            }
+        if (!qFuzzyCompare(temp, presetSensitivity))
+        {
+            presetSensitivity = 1.0;
+            break;
         }
     }
 
@@ -2636,24 +2628,23 @@ bool JoyControlStick::isRelativeSpring()
     bool relative = false;
 
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return relative;
+
+    JoyControlStickButton *button = iter.value();
+    relative = button->isRelativeSpring();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            relative = button->isRelativeSpring();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            bool temp = button->isRelativeSpring();
+        button = iter.value();
+        bool temp = button->isRelativeSpring();
 
-            if (temp != relative)
-            {
-                relative = false;
-                iter.toBack();
-            }
+        if (temp != relative)
+        {
+            relative = false;
+            break;
         }
     }
 
@@ -2757,24 +2748,23 @@ double JoyControlStick::getButtonsEasingDuration()
 {
     double result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(temphash);
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    result = button->getEasingDuration();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
-        {
-            JoyControlStickButton *button = iter.next().value();
-            result = button->getEasingDuration();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            double temp = button->getEasingDuration();
+        button = iter.value();
+        double temp = button->getEasingDuration();
 
-            if (!qFuzzyCompare(temp, result))
-            {
-                result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
-                iter.toBack();
-            }
+        if (!qFuzzyCompare(temp, result))
+        {
+            result = GlobalVariables::JoyButton::DEFAULTEASINGDURATION;
+            break;
         }
     }
 
@@ -2860,30 +2850,27 @@ void JoyControlStick::setButtonsExtraAccelerationMultiplier(double value)
 double JoyControlStick::getButtonsExtraAccelerationMultiplier()
 {
     double result = GlobalVariables::JoyButton::DEFAULTEXTRACCELVALUE;
+    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
+    auto iter = temphash.cbegin();
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(getApplicableButtons());
+    if (iter == temphash.cend())
+        return result;
 
-    while (iter.hasNext())
+    JoyControlStickButton *button = iter.value();
+    if (button != nullptr)
+        result = button->getExtraAccelerationMultiplier();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        if (button != nullptr)
         {
-            JoyControlStickButton *button = iter.next().value();
+            double temp = button->getExtraAccelerationMultiplier();
 
-            if (button != nullptr)
-                result = button->getExtraAccelerationMultiplier();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-
-            if (button != nullptr)
+            if (!qFuzzyCompare(temp, result))
             {
-                double temp = button->getExtraAccelerationMultiplier();
-
-                if (!qFuzzyCompare(temp, result))
-                {
-                    result = GlobalVariables::JoyButton::DEFAULTEXTRACCELVALUE;
-                    iter.toBack();
-                }
+                result = GlobalVariables::JoyButton::DEFAULTEXTRACCELVALUE;
+                break;
             }
         }
     }
@@ -2907,29 +2894,27 @@ void JoyControlStick::setButtonsStartAccelerationMultiplier(double value)
 double JoyControlStick::getButtonsStartAccelerationMultiplier()
 {
     double result = GlobalVariables::JoyButton::DEFAULTSTARTACCELMULTIPLIER;
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(getApplicableButtons());
+    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
+    auto iter = temphash.cbegin();
 
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    if (button != nullptr)
+        result = button->getStartAccelMultiplier();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        if (button != nullptr)
         {
-            JoyControlStickButton *button = iter.next().value();
+            double temp = button->getStartAccelMultiplier();
 
-            if (button != nullptr)
-                result = button->getStartAccelMultiplier();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-
-            if (button != nullptr)
+            if (!qFuzzyCompare(temp, result))
             {
-                double temp = button->getStartAccelMultiplier();
-
-                if (!qFuzzyCompare(temp, result))
-                {
-                    result = GlobalVariables::JoyButton::DEFAULTSTARTACCELMULTIPLIER;
-                    iter.toBack();
-                }
+                result = GlobalVariables::JoyButton::DEFAULTSTARTACCELMULTIPLIER;
+                break;
             }
         }
     }
@@ -2953,30 +2938,27 @@ void JoyControlStick::setButtonsMinAccelerationThreshold(double value)
 double JoyControlStick::getButtonsMinAccelerationThreshold()
 {
     double result = GlobalVariables::JoyButton::DEFAULTMINACCELTHRESHOLD;
+    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
+    auto iter = temphash.cbegin();
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(getApplicableButtons());
+    if (iter == temphash.cend())
+        return result;
 
-    while (iter.hasNext())
+    JoyControlStickButton *button = iter.value();
+    if (button != nullptr)
+        result = button->getMinAccelThreshold();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        if (button != nullptr)
         {
-            JoyControlStickButton *button = iter.next().value();
+            double temp = button->getMinAccelThreshold();
 
-            if (button != nullptr)
-                result = button->getMinAccelThreshold();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-
-            if (button != nullptr)
+            if (!qFuzzyCompare(temp, result))
             {
-                double temp = button->getMinAccelThreshold();
-
-                if (!qFuzzyCompare(temp, result))
-                {
-                    result = GlobalVariables::JoyButton::DEFAULTMINACCELTHRESHOLD;
-                    iter.toBack();
-                }
+                result = GlobalVariables::JoyButton::DEFAULTMINACCELTHRESHOLD;
+                break;
             }
         }
     }
@@ -3000,29 +2982,27 @@ void JoyControlStick::setButtonsMaxAccelerationThreshold(double value)
 double JoyControlStick::getButtonsMaxAccelerationThreshold()
 {
     double result = GlobalVariables::JoyButton::DEFAULTMAXACCELTHRESHOLD;
+    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
+    auto iter = temphash.cbegin();
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(getApplicableButtons());
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    if (button != nullptr)
+        result = button->getMaxAccelThreshold();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        if (button != nullptr)
         {
-            JoyControlStickButton *button = iter.next().value();
+            double temp = button->getMaxAccelThreshold();
 
-            if (button != nullptr)
-                result = button->getMaxAccelThreshold();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-
-            if (button != nullptr)
+            if (!qFuzzyCompare(temp, result))
             {
-                double temp = button->getMaxAccelThreshold();
-
-                if (!qFuzzyCompare(temp, result))
-                {
-                    result = GlobalVariables::JoyButton::DEFAULTMAXACCELTHRESHOLD;
-                    iter.toBack();
-                }
+                result = GlobalVariables::JoyButton::DEFAULTMAXACCELTHRESHOLD;
+                break;
             }
         }
     }
@@ -3046,27 +3026,26 @@ void JoyControlStick::setButtonsAccelerationExtraDuration(double value)
 double JoyControlStick::getButtonsAccelerationEasingDuration()
 {
     double result = GlobalVariables::JoyButton::DEFAULTACCELEASINGDURATION;
+    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
+    auto iter = temphash.cbegin();
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(getApplicableButtons());
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    if (button != nullptr)
+        result = button->getAccelExtraDuration();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        if (button != nullptr)
         {
-            JoyControlStickButton *button = iter.next().value();
-
-            if (button != nullptr)
-                result = button->getAccelExtraDuration();
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            if (button != nullptr)
+            double temp = button->getAccelExtraDuration();
+            if (!qFuzzyCompare(temp, result))
             {
-                double temp = button->getAccelExtraDuration();
-                if (!qFuzzyCompare(temp, result))
-                {
-                    result = GlobalVariables::JoyButton::DEFAULTACCELEASINGDURATION;
-                    iter.toBack();
-                }
+                result = GlobalVariables::JoyButton::DEFAULTACCELEASINGDURATION;
+                break;
             }
         }
     }
@@ -3090,28 +3069,26 @@ void JoyControlStick::setButtonsSpringDeadCircleMultiplier(int value)
 int JoyControlStick::getButtonsSpringDeadCircleMultiplier()
 {
     int result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
+    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
+    auto iter = temphash.cbegin();
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(getApplicableButtons());
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    if (button != nullptr)
+        result = button->getSpringDeadCircleMultiplier();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        if (button != nullptr)
         {
-            JoyControlStickButton *button = iter.next().value();
-            if (button != nullptr)
+            int temp = button->getSpringDeadCircleMultiplier();
+            if (temp != result)
             {
-                result = button->getSpringDeadCircleMultiplier();
-            }
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            if (button != nullptr)
-            {
-                int temp = button->getSpringDeadCircleMultiplier();
-                if (temp != result)
-                {
-                    result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
-                    iter.toBack();
-                }
+                result = GlobalVariables::JoyButton::DEFAULTSPRINGRELEASERADIUS;
+                break;
             }
         }
     }
@@ -3827,28 +3804,26 @@ void JoyControlStick::setButtonsExtraAccelCurve(JoyButton::JoyExtraAccelerationC
 JoyButton::JoyExtraAccelerationCurve JoyControlStick::getButtonsExtraAccelerationCurve()
 {
     JoyButton::JoyExtraAccelerationCurve result = JoyButton::LinearAccelCurve;
+    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
+    auto iter = temphash.cbegin();
 
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(getApplicableButtons());
-    while (iter.hasNext())
+    if (iter == temphash.cend())
+        return result;
+
+    JoyControlStickButton *button = iter.value();
+    if (button != nullptr)
+        result = button->getExtraAccelerationCurve();
+
+    while (++iter != temphash.cend())
     {
-        if (!iter.hasPrevious())
+        button = iter.value();
+        if (button != nullptr)
         {
-            JoyControlStickButton *button = iter.next().value();
-            if (button != nullptr)
+            JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
+            if (temp != result)
             {
-                result = button->getExtraAccelerationCurve();
-            }
-        } else
-        {
-            JoyControlStickButton *button = iter.next().value();
-            if (button != nullptr)
-            {
-                JoyButton::JoyExtraAccelerationCurve temp = button->getExtraAccelerationCurve();
-                if (temp != result)
-                {
-                    result = JoyButton::LinearAccelCurve;
-                    iter.toBack();
-                }
+                result = JoyButton::LinearAccelCurve;
+                break;
             }
         }
     }
