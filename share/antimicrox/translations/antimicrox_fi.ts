@@ -4120,10 +4120,6 @@ values used by the virtual mouse.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Insert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="119"/>
         <source>AutoProfile (disabled in Wayland)</source>
         <translation type="unfinished"></translation>
@@ -5151,10 +5147,6 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="164"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unload currently enabled profile(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
