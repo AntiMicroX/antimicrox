@@ -659,9 +659,8 @@ void JoyButton::activateMiniSlots(JoyButtonSlot *slot, JoyButtonSlot *mix)
     int tempcode = slot->getSlotCode();
     JoyButtonSlot::JoySlotInputAction mode = slot->getSlotMode();
 
-    switch (mode)
+    if (mode == JoyButtonSlot::JoyKeyboard)
     {
-    case JoyButtonSlot::JoyKeyboard: {
         sendKeybEvent(slot, true);
 
         getActiveSlotsLocal().append(slot);
@@ -679,9 +678,6 @@ void JoyButton::activateMiniSlots(JoyButtonSlot *slot, JoyButtonSlot *mix)
 
             lastActiveKey = nullptr;
         }
-
-        break;
-    }
     }
 }
 
@@ -962,6 +958,8 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot *slot, int &i, bool &delaySeq
 
         break;
     }
+    default:
+        break;
     }
 }
 
