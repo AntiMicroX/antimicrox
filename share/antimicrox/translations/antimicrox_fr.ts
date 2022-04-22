@@ -267,12 +267,12 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="40"/>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="137"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="51"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenêtre&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="69"/>
@@ -290,7 +290,7 @@ in the form.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="25"/>
         <source>Pro&amp;file:</source>
-        <translation>Pro&amp;fil:</translation>
+        <translation>Pro&amp;fil&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
