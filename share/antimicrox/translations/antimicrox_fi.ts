@@ -361,13 +361,9 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
         <translation>Tekijänoikeus: 2013 - 2022</translation>
     </message>
     <message>
-        <source>Copyright: 2013 - 2020</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
         <source>Program Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjelman versio %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
@@ -377,17 +373,17 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjelma koottu %1 ajassa %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="67"/>
         <source>Built Against SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rakennettu SDL:ää vasten %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="70"/>
         <source>Running With SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajossa SDL:llä %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="72"/>
@@ -481,10 +477,6 @@ kaikkien muiden profiilivaihtoehtojen sijasta.</translation>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="184"/>
         <source>Set as Default for Controller</source>
         <translation>Aseta vakiolliseksi peliohjaimelle</translation>
-    </message>
-    <message>
-        <source>Devices:</source>
-        <translation>Laitteet:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="103"/>
@@ -1194,7 +1186,7 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1642"/>
         <source>Insert a pause that occurs in between key presses.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta taukomääre joka toteutetaan nappien painallusten välissä.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1646"/>
@@ -4128,10 +4120,6 @@ values used by the virtual mouse.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>! restart is needed after choice of combination</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Insert</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5166,15 +5154,7 @@ mouse position set by a non-relative spring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Launch program with the configuration file selected as the default for selected controllers. Defaults to all controllers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unload currently enabled profile(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Launch program as a daemon. Use only on Linux.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5267,10 +5247,6 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="119"/>
         <source>Joystick %1:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VendorID:            %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
