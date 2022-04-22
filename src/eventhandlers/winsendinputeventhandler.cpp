@@ -170,11 +170,10 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
             {
                 INPUT tempBuffer[tempList.size()] = {0};
 
-                QListIterator<unsigned int> tempiter(tempList);
                 unsigned int j = 0;
-                while (tempiter.hasNext())
+                for (auto iter = tempList.cbegin(); iter != tempList.cend(); ++iter, ++j)
                 {
-                    unsigned int tempcode = tempiter.next();
+                    unsigned int tempcode = *iter;
                     unsigned int scancode = WinExtras::scancodeFromVirtualKey(tempcode);
                     int extended = (scancode & WinExtras::EXTENDED_FLAG) != 0;
                     int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
@@ -186,18 +185,16 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
 
                     tempBuffer[j].ki.wVk = tempcode;
                     tempBuffer[j].ki.dwFlags = tempflags;
-                    j++;
                 }
 
                 SendInput(j, tempBuffer, sizeof(INPUT));
 
-                tempiter.toBack();
                 j = 0;
                 memset(tempBuffer, 0, sizeof(tempBuffer));
                 // INPUT tempBuffer2[tempList.size()] = {0};
-                while (tempiter.hasPrevious())
+                for (auto iter = tempList.crbegin(); iter != tempList.crend(); ++iter, ++j)
                 {
-                    unsigned int tempcode = tempiter.previous();
+                    unsigned int tempcode = *iter;
                     unsigned int scancode = WinExtras::scancodeFromVirtualKey(tempcode);
                     int extended = (scancode & WinExtras::EXTENDED_FLAG) != 0;
                     int tempflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
@@ -209,7 +206,6 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
 
                     tempBuffer[j].ki.wVk = tempcode;
                     tempBuffer[j].ki.dwFlags = tempflags | KEYEVENTF_KEYUP;
-                    j++;
                 }
 
                 SendInput(j, tempBuffer, sizeof(INPUT));

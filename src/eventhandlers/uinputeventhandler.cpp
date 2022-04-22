@@ -574,13 +574,10 @@ void UInputEventHandler::sendTextEntryEvent(QString maintext)
 
             if (tempList.size() > 0)
             {
-                QListIterator<unsigned int> tempiter(tempList);
-                tempiter.toBack();
-
-                while (tempiter.hasPrevious())
+                for (auto iter = tempList.crbegin(); iter != tempList.crend(); ++iter)
                 {
-                    unsigned int currentcode = tempiter.previous();
-                    bool sync = !tempiter.hasPrevious() ? true : false;
+                    unsigned int currentcode = *iter;
+                    bool sync = std::next(iter) == tempList.crend();
                     write_uinput_event(keyboardFileHandler, EV_KEY, currentcode, 0, sync);
                 }
             }
