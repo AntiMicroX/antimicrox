@@ -5150,10 +5150,6 @@ mouse position set by a non-relative spring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>filename</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../../src/main.cpp" line="201"/>
         <source>Your original settings (previously stored in %1) have been copied to
 %2
