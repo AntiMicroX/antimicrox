@@ -128,11 +128,10 @@ void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *j
 
 void AppLaunchHelper::changeSpringModeScreen()
 {
-    QDesktopWidget deskWid;
     int springScreen =
         settings->value("Mouse/SpringScreen", GlobalVariables::AntimicroSettings::defaultSpringScreen).toInt();
 
-    if (springScreen >= deskWid.screenCount())
+    if (springScreen >= QGuiApplication::screens().count())
     {
         springScreen = -1;
         settings->setValue("Mouse/SpringScreen", GlobalVariables::AntimicroSettings::defaultSpringScreen);

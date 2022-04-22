@@ -1811,9 +1811,7 @@ void MainSettingsDialog::fillSpringScreenPresets()
     ui->springScreenComboBox->clear();
     ui->springScreenComboBox->addItem(tr("Default"), QVariant(GlobalVariables::AntimicroSettings::defaultSpringScreen));
 
-    QDesktopWidget deskWid;
-
-    for (int i = 0; i < deskWid.screenCount(); i++)
+    for (int i = 0; i < QGuiApplication::screens().count(); i++)
     {
         ui->springScreenComboBox->addItem(QString(":%1").arg(i), QVariant(i));
     }
