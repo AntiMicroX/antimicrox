@@ -214,8 +214,7 @@ void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring, PadderCom
         PadderCommon::mouseHelperObj.mouseTimer.stop();
         BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-        if ((fullSpring->screen >= -1) &&
-            (fullSpring->screen >= PadderCommon::mouseHelperObj.getDesktopWidget()->screenCount()))
+        if ((fullSpring->screen >= -1) && (fullSpring->screen >= QGuiApplication::screens().count()))
         {
             fullSpring->screen = -1;
         }
@@ -310,8 +309,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
         int currentMouseX = 0;
         int currentMouseY = 0;
 
-        if ((fullSpring->screen >= -1) &&
-            (fullSpring->screen >= PadderCommon::mouseHelperObj.getDesktopWidget()->screenCount()))
+        if ((fullSpring->screen >= -1) && (fullSpring->screen >= QGuiApplication::screens().count()))
         {
             fullSpring->screen = -1;
         }
