@@ -20,6 +20,12 @@ jobs:
             fail-fast: false
             matrix:
                 include:
+                    - name: Ubuntu 22-04 GCC
+                      image: ubuntu-22.04
+                      cc: gcc
+                      cxx: g++
+                      build-type: Debug
+                      experimental: false
                     - name: Ubuntu 20-04 GCC
                       image: ubuntu-20.04
                       cc: gcc
