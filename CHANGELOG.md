@@ -1,6 +1,25 @@
 # Changelog
 
-## [3.2.2](https://github.com/AntiMicroX/antimicrox/tree/3.2.1) (2022-02-13)
+## [3.2.3](https://github.com/AntiMicroX/antimicrox/tree/3.2.3) (2022-03-24)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.2...3.2.3)
+
+**Fixed bugs:**
+
+- Fixed bug: auto profile not saved when exe path is not defined [\#252](https://github.com/AntiMicroX/antimicrox/issues/252)
+
+**Notable changes:**
+
+- Added missing license for SDL_GameControllerDB
+- Many updates in translations:
+  - Added Finnish translation by [heidiwenger](https://github.com/heidiwenger)
+  - Added Norwegian Bokmål translation bu [comradekingu](https://github.com/comradekingu)
+  - Updated German, French, Italian and Polish translations
+  - update translation files
+- Always show battery level in joystick status window (even when unknown)
+- Multiple refactors and cleanups removing deprecated code (kudos to [mmmaisel](https://github.com/mmmaisel)).
+
+## [3.2.2](https://github.com/AntiMicroX/antimicrox/tree/3.2.2) (2022-02-24)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.1...3.2.2)
 
