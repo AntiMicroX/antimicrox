@@ -2682,7 +2682,7 @@ odwołującymi się do stref przekątnych analogu.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation>Left Shoulder</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="177"/>
