@@ -162,7 +162,7 @@ class JoyButton : public QObject
 
     virtual bool isPartRealAxis();
     virtual bool isModifierButton();
-    virtual bool isDefault();
+    bool isDefault();
 
     virtual int getRealJoyNumber() const;
 
@@ -172,25 +172,25 @@ class JoyButton : public QObject
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
-    virtual void initializeDistanceValues();
+    void initializeDistanceValues();
     virtual void setTurboMode(TurboMode mode);
-    virtual void setDefaultButtonName(QString tempname);
-    virtual void copyLastMouseDistanceFromDeadZone(
+    void setDefaultButtonName(QString tempname);
+    void copyLastMouseDistanceFromDeadZone(
         JoyButton *srcButton); // Don't use direct assignment but copying from a current button.
-    virtual void copyLastAccelerationDistance(JoyButton *srcButton);
+    void copyLastAccelerationDistance(JoyButton *srcButton);
     virtual void setVDPad(VDPad *vdpad);
     virtual void setChangeSetCondition(SetChangeCondition condition, bool passive = false, bool updateActiveString = true);
 
     virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
-    virtual QString getSlotsSummary(); // JoyButtonSlots class
-    virtual QString getSlotsString();  // JoyButtonSlots class
+    QString getSlotsSummary();
+    QString getSlotsString();
     virtual QString getActiveZoneSummary();
     virtual QString getCalculatedActiveZoneSummary();
-    virtual QString getName(bool forceFullFormat = false, bool displayNames = false);
+    QString getName(bool forceFullFormat = false, bool displayNames = false);
     virtual QString getXmlName(); // JoyButtonXml class
-    virtual QString getDefaultButtonName();
+    QString getDefaultButtonName();
 
-    virtual QList<JoyButtonSlot *> getActiveZoneList();
+    QList<JoyButtonSlot *> getActiveZoneList();
 
     SetChangeCondition getChangeSetCondition();
 
@@ -366,10 +366,10 @@ class JoyButton : public QObject
 
     virtual void reset();
     virtual void reset(int index);
-    virtual void resetProperties();
-    virtual void clearSlotsEventReset(bool clearSignalEmit = true); // JoyButtonEvents class
-    virtual void eventReset();                                      // JoyButtonEvents class
-    virtual void mouseEvent();                                      // JoyButtonEvents class
+    void resetProperties();
+    void clearSlotsEventReset(bool clearSignalEmit = true);
+    void eventReset();
+    void mouseEvent();
 
     static void establishMouseTimerConnections();
 
