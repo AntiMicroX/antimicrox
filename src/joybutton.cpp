@@ -3731,9 +3731,7 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QLi
 void JoyButton::distanceForMovingAx(double &finalAx, mouseCursorInfo infoAx)
 {
     if (!qFuzzyIsNull(infoAx.code))
-    {
-        finalAx = (infoAx.code < 0) ? qMin(infoAx.code, finalAx) : qMax(infoAx.code, finalAx);
-    }
+        finalAx += infoAx.code;
 }
 
 void JoyButton::adjustAxForCursor(QList<double> *mouseHistoryList, double &adjustedAx, double &cursorRemainder,
