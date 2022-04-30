@@ -216,8 +216,6 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     void performButtonPress(JoyControlStickButton *eventbutton, JoyControlStickButton *&activebutton, bool ignoresets);
     void performButtonRelease(JoyControlStickButton *&eventbutton, bool ignoresets);
 
-    void refreshButtons();
-    void deleteButtons();
     void resetButtons();
 
     double calculateXDistanceFromDeadZone(bool interpolate = false); // JoyControlStickAxes class

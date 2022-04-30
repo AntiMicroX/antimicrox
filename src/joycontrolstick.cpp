@@ -906,44 +906,6 @@ void JoyControlStick::setDiagonalRange(int value)
 }
 
 /**
- * @brief Delete old stick direction buttons and create new stick direction
- *     buttons.
- */
-void JoyControlStick::refreshButtons()
-{
-    deleteButtons();
-    populateButtons();
-}
-
-/**
- * @brief Delete stick direction buttons and stick modifier button.
- *
- * (Not used by destructor because parents delete children automatically)
- */
-void JoyControlStick::deleteButtons()
-{
-    QHashIterator<JoyStickDirections, JoyControlStickButton *> iter(buttons);
-    while (iter.hasNext())
-    {
-        JoyButton *button = iter.next().value();
-
-        if (button != nullptr)
-        {
-            button->deleteLater();
-            button = nullptr;
-        }
-    }
-
-    buttons.clear();
-
-    if (modifierButton != nullptr)
-    {
-        delete modifierButton;
-        modifierButton = nullptr;
-    }
-}
-
-/**
  * @brief Take a XML stream and set the stick and direction button properties
  *     according to the values contained within the stream.
  * @param QXmlStreamReader instance that will be used to read property values.
