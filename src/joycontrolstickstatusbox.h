@@ -47,7 +47,7 @@ class JoyControlStickStatusBox : public QWidget
     void drawFourWayDiagonalBox();
 
   private:
-    JoyControlStick *stick;
+    JoyControlStick *m_stick;
 };
 
 #endif // JOYCONTROLSTICKSTATUSBOX_H
