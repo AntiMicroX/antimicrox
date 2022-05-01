@@ -56,16 +56,16 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     void queueJoyEvent(bool ignoresets); // JoyControlStickEvent class
     void activatePendingEvent();         // JoyControlStickEvent class
     void clearPendingEvent();            // JoyControlStickEvent class
-    void setCalibrationFlag(bool flag);
-    void setCalibrationSummary(QString text);
-
-    QString getCalibrationSummary();
 
     bool inDeadZone();
     bool hasSlotsAssigned();
     bool isRelativeSpring();
     bool hasPendingEvent(); // JoyControlStickEvent class
-    bool wasCalibrated();
+
+    bool isCalibrated() const;
+    void resetCalibration();
+    void getCalibration(double *offsetX, double *gainX, double *offsetY, double *gainY) const;
+    void setCalibration(double offsetX, double gainX, double offsetY, double gainY);
 
     int getDeadZone();
     int getDiagonalRange();
@@ -278,9 +278,6 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     bool isActive;
     bool safezone;
     bool pendingStickEvent;
-    bool calibrated;
-
-    QString calibrationSummary;
 
     QPointer<JoyAxis> axisX;
     QPointer<JoyAxis> axisY;

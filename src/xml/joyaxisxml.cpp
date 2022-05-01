@@ -81,9 +81,6 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("maxZone", QString::number(m_joyAxis->getMaxZoneValue()));
     }
 
-    xml->writeTextElement("center_value", QString::number(m_joyAxis->getAxisCenterCal()));
-    xml->writeTextElement("min_value", QString::number(m_joyAxis->getAxisMinCal()));
-    xml->writeTextElement("max_value", QString::number(m_joyAxis->getAxisMaxCal()));
     xml->writeStartElement("throttle");
 
     switch (m_joyAxis->getThrottle())
@@ -142,33 +139,6 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config max zone is: " << tempchoice;
 
         m_joyAxis->setMaxZoneValue(tempchoice);
-    } else if ((xml->name() == "center_value") && xml->isStartElement())
-    {
-        found = true;
-        QString temptext = xml->readElementText();
-        int tempchoice = temptext.toInt();
-
-        qDebug() << "From xml config center value is: " << tempchoice;
-
-        m_joyAxis->setAxisCenterCal(tempchoice);
-    } else if ((xml->name() == "min_value") && xml->isStartElement())
-    {
-        found = true;
-        QString temptext = xml->readElementText();
-        int tempchoice = temptext.toInt();
-
-        qDebug() << "From xml config min value is: " << tempchoice;
-
-        m_joyAxis->setAxisMinCal(tempchoice);
-    } else if ((xml->name() == "max_value") && xml->isStartElement())
-    {
-        found = true;
-        QString temptext = xml->readElementText();
-        int tempchoice = temptext.toInt();
-
-        qDebug() << "From xml config max value is: " << tempchoice;
-
-        m_joyAxis->setAxisMaxCal(tempchoice);
     } else if ((xml->name() == "throttle") && xml->isStartElement())
     {
         found = true;

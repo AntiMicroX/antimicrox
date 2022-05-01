@@ -64,8 +64,6 @@ Calibration::Calibration(InputDevice *joystick, QWidget *parent)
 
     QPointer<JoyControlStick> controlstick = currentJoystick->getActiveSetJoystick()->getJoyStick(0);
     this->stick = controlstick.data();
-    calibrated = this->stick->wasCalibrated();
-    ui->Information->setText(stick->getCalibrationSummary());
 
     ui->resetBtn->setEnabled(calibrated);
     ui->saveBtn->setEnabled(false);
@@ -152,14 +150,6 @@ void Calibration::restoreCalValues()
     x_es_val.clear();
     y_es_val.clear();
 
-    joyAxisX->setAxisCenterCal(center_calibrated_x);
-    joyAxisY->setAxisCenterCal(center_calibrated_y);
-
-    joyAxisX->setAxisMinCal(GlobalVariables::JoyAxis::AXISMIN);
-    joyAxisY->setAxisMinCal(GlobalVariables::JoyAxis::AXISMIN);
-    joyAxisX->setAxisMaxCal(GlobalVariables::JoyAxis::AXISMAX);
-    joyAxisY->setAxisMaxCal(GlobalVariables::JoyAxis::AXISMAX);
-
     joyAxisX->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
     joyAxisY->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
 
@@ -169,8 +159,6 @@ void Calibration::restoreCalValues()
     stick->setDeadZone(GlobalVariables::JoyAxis::AXISDEADZONE);
     stick->setMaxZone(GlobalVariables::JoyAxis::AXISMAXZONE);
 
-    stick->setCalibrationFlag(false);
-    stick->setCalibrationSummary(QString());
     ui->Information->clear();
 
     calibrated = false;
@@ -234,7 +222,7 @@ void Calibration::startCalibration()
 {
     bool confirmed = true;
 
-    if (stick->wasCalibrated())
+    if (false)
     {
         QMessageBox msgBox;
         msgBox.setText(tr("Calibration was saved for the preset. Do you really want to reset settings?"));
@@ -286,7 +274,6 @@ void Calibration::startCalibration()
         x_es_val.clear();
         y_es_val.clear();
 
-        stick->setCalibrationFlag(false);
         calibrated = false;
 
         ui->steps->setText(tr("Place the joystick in the center position.\n\nIt's the part, where often you don't have to "
@@ -458,29 +445,6 @@ void Calibration::saveSettings()
 {
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
     {
-        joyAxisX->setAxisCenterCal(center_calibrated_x);
-        joyAxisY->setAxisCenterCal(center_calibrated_y);
-
-        joyAxisX->setDeadZone(deadzone_calibrated_x);
-        joyAxisY->setDeadZone(deadzone_calibrated_y);
-
-        stick->setDeadZone(deadzone_calibrated_x);
-
-        joyAxisX->setAxisMinCal(min_axis_val_x);
-        joyAxisY->setAxisMinCal(min_axis_val_y);
-
-        joyAxisX->setAxisMaxCal(max_axis_val_x);
-        joyAxisY->setAxisMaxCal(max_axis_val_y);
-
-        joyAxisX->setMaxZoneValue(max_axis_val_x);
-        joyAxisY->setMaxZoneValue(max_axis_val_y);
-
-        stick->setMaxZone(max_axis_val_x);
-        calibrated = true;
-
-        stick->setCalibrationFlag(true);
-        stick->setCalibrationSummary(this->text);
-
         ui->resetBtn->setEnabled(true);
         ui->saveBtn->setEnabled(false);
 
@@ -650,21 +614,6 @@ void Calibration::createAxesConnection()
         currentJoystick->getActiveSetJoystick()->getJoyStick(ui->axesBox->currentIndex());
     this->stick = controlstick.data();
 
-    center_calibrated_x = controlstick->getAxisX()->getAxisCenterCal();
-    center_calibrated_y = controlstick->getAxisY()->getAxisCenterCal();
-
-    deadzone_calibrated_x = controlstick->getAxisX()->getDeadZone();
-    deadzone_calibrated_y = controlstick->getAxisY()->getDeadZone();
-
-    min_axis_val_x = controlstick->getAxisX()->getAxisMinCal();
-    min_axis_val_y = controlstick->getAxisY()->getAxisMinCal();
-
-    max_axis_val_x = controlstick->getAxisX()->getAxisMaxCal();
-    max_axis_val_y = controlstick->getAxisY()->getAxisMaxCal();
-
-    calibrated = controlstick->wasCalibrated();
-    text = controlstick->getCalibrationSummary();
-
     if (calibrated)
         ui->resetBtn->setEnabled(true);
     else
@@ -691,9 +640,6 @@ void Calibration::setProgressBars(JoyControlStick *controlstick)
 {
     joyAxisX = controlstick->getAxisX();
     joyAxisY = controlstick->getAxisY();
-
-    calibrated = controlstick->wasCalibrated();
-    ui->Information->setText(controlstick->getCalibrationSummary());
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
     {
@@ -751,9 +697,6 @@ void Calibration::setProgressBars(int setJoyNr, int stickNr)
 
     joyAxisX = controlstick->getAxisX();
     joyAxisY = controlstick->getAxisY();
-
-    calibrated = controlstick->wasCalibrated();
-    ui->Information->setText(controlstick->getCalibrationSummary());
 
     if ((joyAxisX != nullptr) && (joyAxisY != nullptr))
     {

@@ -112,14 +112,10 @@ class JoyAxis : public QObject
 
     double getButtonsEasingDuration();
 
-    void setAxisMinCal(int value);
-    int getAxisMinCal();
-
-    void setAxisMaxCal(int value);
-    int getAxisMaxCal();
-
-    void setAxisCenterCal(int value);
-    int getAxisCenterCal();
+    bool isCalibrated() const;
+    void resetCalibration();
+    void getCalibration(double *offset, double *gain) const;
+    void setCalibration(double offset, double gain);
 
     virtual QString getAxisName();
     virtual int getDefaultDeadZone();
@@ -173,9 +169,6 @@ class JoyAxis : public QObject
     int currentThrottledValue;
     int currentThrottledDeadValue;
     int m_index;
-    int axis_center_cal;
-    int axis_min_cal;
-    int axis_max_cal;
     int lastKnownThottledValue;
     int lastKnownRawValue;
     int pendingValue;
@@ -219,6 +212,10 @@ class JoyAxis : public QObject
     JoyControlStick *m_stick;
 
     SetJoystick *m_parentSet;
+
+    bool m_calibrated;
+    double m_offset;
+    double m_gain;
 
     void resetPrivateVars();
 };

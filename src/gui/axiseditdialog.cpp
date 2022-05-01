@@ -335,7 +335,7 @@ void AxisEditDialog::updateDeadZoneSlider(QString value)
 {
     int temp = value.toInt();
 
-    if ((temp >= m_axis->getAxisMinCal()) && (temp <= m_axis->getAxisMaxCal()))
+    if ((temp >= GlobalVariables::JoyAxis::AXISMIN) && (temp <= GlobalVariables::JoyAxis::AXISMAX))
     {
         ui->horizontalSlider->setValue(temp);
     }
@@ -345,7 +345,7 @@ void AxisEditDialog::updateMaxZoneSlider(QString value)
 {
     int temp = value.toInt();
 
-    if ((temp >= m_axis->getAxisMinCal()) && (temp <= m_axis->getAxisMaxCal()))
+    if ((temp >= GlobalVariables::JoyAxis::AXISMIN) && (temp <= GlobalVariables::JoyAxis::AXISMAX))
     {
         ui->horizontalSlider_2->setValue(temp);
     }
