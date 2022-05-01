@@ -137,6 +137,8 @@ class InputDevice : public QObject
     QHash<int, SetJoystick *> &getJoystick_sets();
     SDL_Joystick *getJoyHandle() const;
 
+    void applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
+
   protected:
     void enableSetConnections(SetJoystick *setstick);
 

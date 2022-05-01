@@ -1611,3 +1611,23 @@ QList<int> &InputDevice::getAxesstatesLocal() { return axesstates; }
 QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
 
 SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
+
+/**
+ * @brief Applies calibration to the specified stick in all sets
+ *  See JoyControlStick::setCalibration
+ * @param[in] index Stick index
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] gainX Gain value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] gainY Gain value for Y axis
+ */
+void InputDevice::applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY)
+{
+    for (auto iter = joystick_sets.begin(); iter != joystick_sets.end(); ++iter)
+    {
+        SetJoystick *set = iter.value();
+        JoyControlStick *stick = set->getSticks().value(index);
+        if (stick != nullptr)
+            stick->setCalibration(offsetX, gainX, offsetY, gainY);
+    }
+}
