@@ -57,11 +57,6 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
     withoutQuickSetDialog = false;
     m_isNumKeypad = isNumKeypad;
 
-    if (m_isNumKeypad)
-    {
-        setMinimumSize(844, 480);
-    }
-
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Choose your keyboard key"));
     update();
@@ -75,7 +70,6 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
     currentset->release();
     joystick->resetButtonDownCount();
 
-    setMinimumHeight(460);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowModality(Qt::WindowModal);
 
@@ -120,11 +114,6 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, InputDevice *joystick, boo
     withoutQuickSetDialog = true;
     m_isNumKeypad = isNumKeypad;
 
-    if (m_isNumKeypad)
-    {
-        setMinimumSize(844, 480);
-    }
-
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Choose your keyboard key"));
     update();
@@ -138,7 +127,6 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, InputDevice *joystick, boo
     currentset->release();
     joystick->resetButtonDownCount();
 
-    setMinimumHeight(460);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowModality(Qt::WindowModal);
 
