@@ -207,6 +207,7 @@ set(antimicrox_SOURCES
         src/sdleventreader.cpp
         src/setjoystick.cpp
         src/simplekeygrabberbutton.cpp
+        src/statisticsestimator.cpp
         src/stickpushbuttongroup.cpp
         src/uihelpers/advancebuttondialoghelper.cpp
         src/uihelpers/buttoneditdialoghelper.cpp
@@ -319,6 +320,7 @@ set(antimicrox_HEADERS
         src/sdleventreader.h
         src/setjoystick.h
         src/simplekeygrabberbutton.h
+        src/statisticsestimator.h
         src/stickpushbuttongroup.h
         src/uihelpers/advancebuttondialoghelper.h
         src/uihelpers/buttoneditdialoghelper.h
