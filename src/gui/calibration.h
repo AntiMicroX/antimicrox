@@ -1,5 +1,6 @@
 /* antimicrox Gamepad to KB+M event mapper
- * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail.com>
+ * Copyright (C) 2022 Max Maisel <max.maisel@posteo.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,15 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
-#ifndef CALIBRATION_H
-#define CALIBRATION_H
+#include "pt1filter.h"
+#include "statisticsestimator.h"
 
-#include "joycontrolstickeditdialog.h"
-
-#include <SDL2/SDL_joystick.h>
-
-#include <QProgressBar>
+#include <QDateTime>
+#include <QDialog>
+#include <QElapsedTimer>
 
 class JoyControlStick;
 class InputDevice;
@@ -31,69 +31,70 @@ namespace Ui {
 class Calibration;
 }
 
-class Calibration : public QWidget
+class Calibration : public QDialog
 {
     Q_OBJECT
 
   public:
+    enum CalibrationType
+    {
+        CAL_NONE,
+        CAL_STICK,
+
+        CAL_TYPE_MASK = 0x0000FFFF,
+        CAL_INDEX_MASK = 0xFFFF0000,
+        CAL_INDEX_POS = 16
+    };
+
     explicit Calibration(InputDevice *joystick, QWidget *parent = 0);
     ~Calibration();
 
-    int chooseMinMax(QString min_max_sign, QList<int> ax_values);
-    void setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y);
-
   protected:
-    void setProgressBars(int setJoyNr, int stickNr);
-    void setProgressBars(JoyControlStick *controlstick);
-    void updateAxesBox();
-    void restoreCalValues();
-    bool enoughProb(int x_count, int y_count, QString character);
-    int calibratedDeadZone(int center, int deadzone);
+    void resetCalibrationValues();
+    bool askConfirmation(QString message, bool confirmed);
+    void showStickCalibrationValues(bool offsetXvalid, double offsetX, bool gainXvalid, double gainX, bool offsetYvalid,
+                                    double offsetY, bool gainYvalid, double gainY);
+    void hideCalibrationData();
+    void selectTypeIndex(unsigned int type_index);
+    static void stickRegression(double *offset, double *gain, double xoffset, double xmin, double xmax);
 
   private:
-    static int fakeMapFunc(const int &x);
-    static void summarizeValues(int &numbFromList, const int &mappednumb);
-    static void getMinVal(int &numbFromList, const int &mappednumb);
-    static void getMaxVal(int &numbFromList, const int &mappednumb);
+    Ui::Calibration *m_ui;
+    CalibrationType m_type;
+    unsigned int m_index;
+    bool m_calibrated;
+    bool m_changed;
+    JoyControlStick *m_stick;
+    InputDevice *m_joystick;
 
-    Ui::Calibration *ui;
-    JoyControlStick *stick;
-    InputDevice *currentJoystick;
-    JoyControlStickEditDialogHelper helper;
-    JoyAxis *joyAxisX;
-    JoyAxis *joyAxisY;
-    QProgressBar *axisBarX;
-    QProgressBar *axisBarY;
-    QMultiHash<QString, int> x_es_val;
-    QMultiHash<QString, int> y_es_val;
-    int center_calibrated_x;
-    int center_calibrated_y;
-    int max_axis_val_x;
-    int min_axis_val_x;
-    int max_axis_val_y;
-    int min_axis_val_y;
-    int deadzone_calibrated_x;
-    int deadzone_calibrated_y;
-    int sumX;
-    int sumY;
-    bool calibrated;
-    QString text;
+    StatisticsEstimator m_offset[2];
+    StatisticsEstimator m_min[2];
+    StatisticsEstimator m_max[2];
+    PT1Filter m_filter[2];
+    double m_last_slope[2];
+    QDateTime m_end_time;
+    QElapsedTimer m_rate_timer;
+    int m_sample_count;
+    int m_phase;
+
+    static const int CAL_MIN_SAMPLES;
+    static const double CAL_ACCURACY_SQ;
+    static const double STICK_CAL_TAU;
+    static const int STICK_RATE_SAMPLES;
+    static const int CAL_TIMEOUT;
 
   public slots:
     void saveSettings();
-    void checkX(int value);
-    void checkY(int value);
-    void createAxesConnection();
-    void startCalibration();
-    void startSecondStep();
-    void startLastStep();
+    void startStickOffsetCalibration();
+    void startStickGainCalibration();
 
   protected slots:
-    void resetSettings(bool silentReset, bool clicked = false);
+    void closeEvent(QCloseEvent *event) override;
+    void resetSettings();
+    void deviceSelectionChanged(int index);
+    void onStickOffsetData(int x, int y);
+    void onStickGainData(int x, int y);
 
   signals:
-    void deadZoneChanged(int value);
     void propertyUpdated();
 };
-
-#endif // CALIBRATION_H
