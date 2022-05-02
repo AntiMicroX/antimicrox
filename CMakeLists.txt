@@ -203,6 +203,7 @@ set(antimicrox_SOURCES
         src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.cpp
         src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.cpp
         src/mousehelper.cpp
+        src/pt1filter.cpp
         src/qtkeymapperbase.cpp
         src/sdleventreader.cpp
         src/setjoystick.cpp
@@ -316,6 +317,7 @@ set(antimicrox_HEADERS
         src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
         src/mousedialog/uihelpers/mousedpadsettingsdialoghelper.h
         src/mousehelper.h
+        src/pt1filter.h
         src/qtkeymapperbase.h
         src/sdleventreader.h
         src/setjoystick.h
