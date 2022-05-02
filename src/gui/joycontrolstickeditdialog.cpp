@@ -45,6 +45,9 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, boo
     this->keypadUnlocked = keypadUnlocked;
     setAttribute(Qt::WA_DeleteOnClose);
 
+    auto min_width = ui->xCoordinateLabel->fontMetrics().boundingRect(QString("X.XXXXXXXXX")).width();
+    ui->xCoordinateLabel->setMinimumWidth(min_width);
+
     this->stick = stick;
     getHelperLocal().moveToThread(stick->thread());
 
