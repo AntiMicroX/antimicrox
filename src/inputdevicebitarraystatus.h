@@ -35,6 +35,7 @@ class InputDeviceBitArrayStatus : public QObject
     void changeAxesStatus(int axisIndex, bool value);
     void changeButtonStatus(int buttonIndex, bool value);
     void changeHatStatus(int hatIndex, bool value);
+    void changeSensorStatus(int sensorIndex, bool value);
 
     QBitArray generateFinalBitArray();
     void clearStatusValues();
@@ -45,6 +46,7 @@ class InputDeviceBitArrayStatus : public QObject
     QList<bool> axesStatus;
     QList<bool> hatButtonStatus;
     QBitArray buttonStatus;
+    QBitArray m_sensor_status;
 };
 
 #endif // INPUTDEVICESTATUSEVENT_H

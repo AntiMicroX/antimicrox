@@ -70,6 +70,9 @@ InputDeviceBitArrayStatus::InputDeviceBitArrayStatus(InputDevice *device, bool r
             getButtonStatusLocal().setBit(i, button->getButtonState());
         }
     }
+
+    m_sensor_status.resize(SENSOR_COUNT);
+    m_sensor_status.fill(0);
 }
 
 void InputDeviceBitArrayStatus::changeAxesStatus(int axisIndex, bool value)
@@ -96,10 +99,18 @@ void InputDeviceBitArrayStatus::changeHatStatus(int hatIndex, bool value)
     }
 }
 
+void InputDeviceBitArrayStatus::changeSensorStatus(int sensorIndex, bool value)
+{
+    if ((sensorIndex >= 0) && (sensorIndex <= m_sensor_status.size()))
+    {
+        m_sensor_status.setBit(sensorIndex, value);
+    }
+}
+
 QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
 {
     int totalArraySize = 0;
-    totalArraySize = axesStatus.size() + hatButtonStatus.size() + getButtonStatusLocal().size();
+    totalArraySize = axesStatus.size() + hatButtonStatus.size() + getButtonStatusLocal().size() + m_sensor_status.size();
     QBitArray aggregateBitArray(totalArraySize, false);
     int currentBit = 0;
 
@@ -121,6 +132,12 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
         currentBit++;
     }
 
+    for (int i = 0; i < SENSOR_COUNT; i++)
+    {
+        aggregateBitArray.setBit(currentBit, m_sensor_status.at(i));
+        currentBit++;
+    }
+
     return aggregateBitArray;
 }
 
@@ -133,6 +150,7 @@ void InputDeviceBitArrayStatus::clearStatusValues()
         hatButtonStatus.replace(i, false);
 
     getButtonStatusLocal().fill(false);
+    m_sensor_status.fill(false);
 }
 
 QBitArray &InputDeviceBitArrayStatus::getButtonStatusLocal() { return buttonStatus; }

@@ -125,9 +125,10 @@ class InputDevice : public QObject
     void activatePossiblePendingEvents();
     void activatePossibleControlStickEvents(); // InputDeviceStick class
     void activatePossibleAxisEvents();         // InputDeviceAxis class
-    void activatePossibleDPadEvents();         // InputDeviceHat class
-    void activatePossibleVDPadEvents();        // InputDeviceVDPad class
-    void activatePossibleButtonEvents();       // InputDeviceButton class
+    void activatePossibleSensorEvents();
+    void activatePossibleDPadEvents();   // InputDeviceHat class
+    void activatePossibleVDPadEvents();  // InputDeviceVDPad class
+    void activatePossibleButtonEvents(); // InputDeviceButton class
     void convertToUniqueMappSett(QSettings *sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett);
 
     // bool isEmptyGUID(QString tempGUID);

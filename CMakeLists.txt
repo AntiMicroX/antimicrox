@@ -187,6 +187,7 @@ set(antimicrox_SOURCES
         src/joycontrolstickpushbutton.cpp
         src/joycontrolstickstatusbox.cpp
         src/joydpad.cpp
+        src/joysensor.cpp
         src/joystick.cpp
         src/keyboard/virtualkeyboardmousewidget.cpp
         src/keyboard/virtualkeypushbutton.cpp
@@ -301,6 +302,7 @@ set(antimicrox_HEADERS
         src/joycontrolstickpushbutton.h
         src/joycontrolstickstatusbox.h
         src/joydpad.h
+        src/joysensor.h
         src/joysensortype.h
         src/joystick.h
         src/keyboard/virtualkeyboardmousewidget.h

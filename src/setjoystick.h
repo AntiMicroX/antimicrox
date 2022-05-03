@@ -20,12 +20,14 @@
 #define SETJOYSTICK_H
 
 #include "joyaxis.h"
+#include "joysensortype.h"
 #include "xml/setjoystickxml.h"
 
 class InputDevice;
 class JoyButton;
 class JoyDPad;
 class JoyControlStick;
+class JoySensor;
 class VDPad;
 
 class SetJoystick : public SetJoystickXml
@@ -41,6 +43,7 @@ class SetJoystick : public SetJoystickXml
     JoyButton *getJoyButton(int index) const;
     JoyDPad *getJoyDPad(int index) const;
     JoyControlStick *getJoyStick(int index) const;
+    JoySensor *getSensor(JoySensorType type) const;
     VDPad *getVDPad(int index) const;
 
     int getNumberButtons() const;

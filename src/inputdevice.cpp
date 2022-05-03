@@ -25,6 +25,7 @@
 #include "joybuttontypes/joydpadbutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
+#include "joysensor.h"
 #include "vdpad.h"
 
 #include <typeinfo>
@@ -1354,6 +1355,8 @@ void InputDevice::activatePossibleAxisEvents()
         }
     }
 }
+
+void InputDevice::activatePossibleSensorEvents() {}
 
 void InputDevice::activatePossibleDPadEvents()
 {

@@ -65,6 +65,8 @@ VDPad *SetJoystick::getVDPad(int index) const { return getVdpads().value(index);
 
 JoyControlStick *SetJoystick::getJoyStick(int index) const { return getSticks().value(index); }
 
+JoySensor *SetJoystick::getSensor(JoySensorType type) const { return nullptr; }
+
 void SetJoystick::refreshButtons()
 {
     deleteButtons();
