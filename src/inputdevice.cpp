@@ -1224,7 +1224,9 @@ QString InputDevice::getDescription()
     full_desc = full_desc + "  " + QObject::tr("Game Controller: %1").arg(gameControllerStatus) + "\n  " +
                 QObject::tr("# of Axes:       %1").arg(getNumberRawAxes()) + "\n  " +
                 QObject::tr("# of Buttons:    %1").arg(getNumberRawButtons()) + "\n  " +
-                QObject::tr("# of Hats:       %1").arg(getNumberHats()) + "\n";
+                QObject::tr("# of Hats:       %1").arg(getNumberHats()) + "\n  " +
+                QObject::tr("Accelerometer:   %1").arg(hasRawSensor(ACCELEROMETER)) + "\n  " +
+                QObject::tr("Gyroscope:       %1").arg(hasRawSensor(GYROSCOPE)) + "\n";
     return full_desc;
 }
 

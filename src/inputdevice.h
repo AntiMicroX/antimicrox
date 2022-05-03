@@ -19,6 +19,7 @@
 #ifndef INPUTDEVICE_H
 #define INPUTDEVICE_H
 
+#include "joysensortype.h"
 #include "setjoystick.h"
 
 #include <SDL2/SDL_joystick.h>
@@ -29,6 +30,9 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class QSettings;
 
+/**
+ * @brief Represents a hardware input device, e.g a joystick or controller.
+ */
 class InputDevice : public QObject
 {
     Q_OBJECT
@@ -91,6 +95,8 @@ class InputDevice : public QObject
     virtual int getNumberRawButtons() = 0;
     virtual int getNumberRawAxes() = 0;
     virtual int getNumberRawHats() = 0;
+    virtual double getRawSensorRate(JoySensorType type) = 0;
+    virtual bool hasRawSensor(JoySensorType type) = 0;
 
     int getDeviceKeyPressTime(); // unsigned
 

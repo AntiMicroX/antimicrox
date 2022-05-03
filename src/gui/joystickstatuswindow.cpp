@@ -96,6 +96,15 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     ui->joystickButtonsLabel->setText(QString::number(joystick->getNumberRawButtons()));
     ui->joystickHatsLabel->setText(QString::number(joystick->getNumberRawHats()));
 
+    if (joystick->hasRawSensor(ACCELEROMETER) && joystick->hasRawSensor(GYROSCOPE))
+        ui->joystickSensorsLabel->setText(tr("Accelerometer + Gyroscope"));
+    else if (joystick->hasRawSensor(ACCELEROMETER))
+        ui->joystickSensorsLabel->setText(tr("Accelerometer"));
+    else if (joystick->hasRawSensor(GYROSCOPE))
+        ui->joystickSensorsLabel->setText(tr("Gyroscope"));
+    else
+        ui->joystickSensorsLabel->setText(tr("None"));
+
     joystick->getActiveSetJoystick()->setIgnoreEventState(true);
     joystick->getActiveSetJoystick()->release();
     joystick->resetButtonDownCount();

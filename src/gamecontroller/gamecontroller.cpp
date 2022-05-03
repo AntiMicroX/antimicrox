@@ -172,6 +172,39 @@ int GameController::getNumberRawAxes()
     return SDL_CONTROLLER_AXIS_MAX;
 }
 
+/**
+ * @brief Queries the data rate of the given sensor from SDL.
+ * @returns Data rate in events per second or zero if data rate is unavailable.
+ */
+double GameController::getRawSensorRate(JoySensorType type)
+{
+    double rate = 0;
+#if SDL_VERSION_ATLEAST(2, 0, 16)
+    if (type == ACCELEROMETER)
+        rate = SDL_GameControllerGetSensorDataRate(controller, SDL_SENSOR_ACCEL);
+    else if (type == GYROSCOPE)
+        rate = SDL_GameControllerGetSensorDataRate(controller, SDL_SENSOR_GYRO);
+#endif
+    if (qFuzzyIsNull(rate))
+        WARN() << "Sensor rate is zero. Some calculations may be inaccurate!";
+    return rate;
+}
+
+/**
+ * @brief Queries if the hardware has the given sensor type.
+ * @returns True if the sensor is present, false otherwise.
+ */
+bool GameController::hasRawSensor(JoySensorType type)
+{
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+    if (type == ACCELEROMETER)
+        return SDL_GameControllerHasSensor(controller, SDL_SENSOR_ACCEL);
+    else if (type == GYROSCOPE)
+        return SDL_GameControllerHasSensor(controller, SDL_SENSOR_GYRO);
+#endif
+    return false;
+}
+
 int GameController::getNumberRawHats() { return 0; }
 
 void GameController::setCounterUniques(int counter) { counterUniques = counter; }

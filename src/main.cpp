@@ -25,6 +25,7 @@
 #include "inputdaemon.h"
 #include "inputdevice.h"
 #include "joybuttonslot.h"
+#include "joysensortype.h"
 #include "localantimicroserver.h"
 #include "mainwindow.h"
 #include "setjoystick.h"
@@ -237,6 +238,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<QThread *>();
     qRegisterMetaType<SDL_JoystickID>("SDL_JoystickID");
     qRegisterMetaType<JoyButtonSlot::JoySlotInputAction>("JoyButtonSlot::JoySlotInputAction");
+    qRegisterMetaType<JoySensorType>();
 
 #if defined(WITH_X11)
 
