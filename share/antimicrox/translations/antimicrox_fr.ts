@@ -1553,7 +1553,7 @@ lorsque que ce bouton est utilisé.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="539"/>
         <source>Index %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Index %1</translation>
     </message>
     <message>
         <source>[NO KEY]</source>
@@ -1576,17 +1576,17 @@ lorsque que ce bouton est utilisé.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="136"/>
         <source>Sticks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sticks&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser les options</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="196"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="203"/>
@@ -1598,12 +1598,12 @@ lorsque que ce bouton est utilisé.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="46"/>
         <location filename="../../../src/gui/calibration.cpp" line="439"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibration</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="114"/>
         <source>Do you really want to reset settings of current axis?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment réinitialiser les options de cet axe ?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="240"/>
