@@ -34,13 +34,23 @@ class JoySensor : public QObject
     Q_OBJECT
 
   public:
-    explicit JoySensor(QObject *parent);
+    explicit JoySensor(JoySensorType type, int originset, SetJoystick *parent_set, QObject *parent);
     virtual ~JoySensor();
 
     void queuePendingEvent(float *values, bool ignoresets = false);
+
+    JoySensorType getType() const;
 
     bool inDeadZone(float *values) const;
 
     static double radToDeg(double value);
     static double degToRad(double value);
+
+    bool isDefault() const;
+
+  protected:
+    JoySensorType m_type;
+    int m_originset;
+
+    SetJoystick *m_parent_set;
 };

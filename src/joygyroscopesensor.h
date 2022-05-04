@@ -19,12 +19,14 @@
 
 #include "joysensor.h"
 
+class SetJoystick;
+
 /**
  * @brief Represents a gyroscope sensor.
  */
 class JoyGyroscopeSensor : public JoySensor
 {
   public:
-    explicit JoyGyroscopeSensor(QObject *parent);
+    explicit JoyGyroscopeSensor(int originset, SetJoystick *parent_set, QObject *parent);
     virtual ~JoyGyroscopeSensor();
 };

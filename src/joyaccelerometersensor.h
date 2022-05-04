@@ -19,12 +19,14 @@
 
 #include "joysensor.h"
 
+class SetJoystick;
+
 /**
  * @brief Represents an accelerometer sensor.
  */
 class JoyAccelerometerSensor : public JoySensor
 {
   public:
-    explicit JoyAccelerometerSensor(QObject *parent);
+    explicit JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent);
     virtual ~JoyAccelerometerSensor();
 };

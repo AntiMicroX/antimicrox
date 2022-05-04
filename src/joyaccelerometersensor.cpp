@@ -17,8 +17,8 @@
 
 #include "joyaccelerometersensor.h"
 
-JoyAccelerometerSensor::JoyAccelerometerSensor(QObject *parent)
-    : JoySensor(parent)
+JoyAccelerometerSensor::JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent)
+    : JoySensor(ACCELEROMETER, originset, parent_set, parent)
 {
 }
 

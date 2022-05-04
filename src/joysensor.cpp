@@ -21,14 +21,22 @@
 
 #include <cmath>
 
-JoySensor::JoySensor(QObject *parent)
+JoySensor::JoySensor(JoySensorType type, int originset, SetJoystick *parent_set, QObject *parent)
     : QObject(parent)
+    , m_type(type)
+    , m_originset(originset)
+    , m_parent_set(parent_set)
 {
 }
 
 JoySensor::~JoySensor() {}
 
 void JoySensor::queuePendingEvent(float *values, bool ignoresets) {}
+
+/**
+ * @brief Returns the sensor type
+ */
+JoySensorType JoySensor::getType() const { return m_type; }
 
 bool JoySensor::inDeadZone(float *values) const { return false; }
 
@@ -41,3 +49,5 @@ double JoySensor::radToDeg(double value) { return value * 180 / M_PI; }
  * @brief Utility function which converts a given value from degree to radians.
  */
 double JoySensor::degToRad(double value) { return value * M_PI / 180; }
+
+bool JoySensor::isDefault() const { return false; }
