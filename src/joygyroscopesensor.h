@@ -29,4 +29,9 @@ class JoyGyroscopeSensor : public JoySensor
   public:
     explicit JoyGyroscopeSensor(int originset, SetJoystick *parent_set, QObject *parent);
     virtual ~JoyGyroscopeSensor();
+
+    virtual float getXCoordinate() const override;
+    virtual float getYCoordinate() const override;
+    virtual float getZCoordinate() const override;
+    virtual QString sensorTypeName() const override;
 };

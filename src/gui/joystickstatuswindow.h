@@ -22,12 +22,17 @@
 #include <QDialog>
 
 class InputDevice;
+class QProgressBar;
 class QWidget;
 
 namespace Ui {
 class JoystickStatusWindow;
 }
 
+/**
+ * @brief The joystick "Properties" window.
+ *  Shows various raw values to the user.
+ */
 class JoystickStatusWindow : public QDialog
 {
     Q_OBJECT
@@ -42,10 +47,14 @@ class JoystickStatusWindow : public QDialog
     Ui::JoystickStatusWindow *ui;
 
     InputDevice *joystick;
+    QProgressBar *m_accel_axes[3];
+    QProgressBar *m_gyro_axes[3];
 
   private slots:
     void restoreButtonStates(int code);
     void obliterate();
+    void updateAccelerometerValues(float valueX, float valueY, float valueZ);
+    void updateGyroscopeValues(float valueX, float valueY, float valueZ);
 };
 
 #endif // JOYSTICKSTATUSWINDOW_H

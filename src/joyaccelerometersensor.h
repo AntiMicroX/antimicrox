@@ -29,4 +29,9 @@ class JoyAccelerometerSensor : public JoySensor
   public:
     explicit JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent);
     virtual ~JoyAccelerometerSensor();
+
+    virtual float getXCoordinate() const override;
+    virtual float getYCoordinate() const override;
+    virtual float getZCoordinate() const override;
+    virtual QString sensorTypeName() const override;
 };

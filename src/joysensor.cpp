@@ -24,6 +24,7 @@
 JoySensor::JoySensor(JoySensorType type, int originset, SetJoystick *parent_set, QObject *parent)
     : QObject(parent)
     , m_type(type)
+    , m_pending_event(false)
     , m_originset(originset)
     , m_parent_set(parent_set)
 {
@@ -31,7 +32,60 @@ JoySensor::JoySensor(JoySensorType type, int originset, SetJoystick *parent_set,
 
 JoySensor::~JoySensor() {}
 
-void JoySensor::queuePendingEvent(float *values, bool ignoresets) {}
+/**
+ * @brief Main sensor mapping function.
+ *  When activated, it generates a "moved" QT event which updates various parts of the UI.
+ *  XXX: will do more in the future
+ */
+void JoySensor::joyEvent(float *values, bool ignoresets)
+{
+    m_current_value[0] = values[0];
+    m_current_value[1] = values[1];
+    m_current_value[2] = values[2];
+
+    emit moved(m_current_value[0], m_current_value[1], m_current_value[2]);
+}
+
+/**
+ * @brief Queues next movement event from InputDaemon
+ */
+void JoySensor::queuePendingEvent(float *values, bool ignoresets)
+{
+    m_pending_event = true;
+    m_pending_value[0] = values[0];
+    m_pending_value[1] = values[1];
+    m_pending_value[2] = values[2];
+    m_pending_ignore_sets = ignoresets;
+}
+
+/**
+ * @brief Activates previously queued movement event
+ *  This is called by InputDevice.
+ */
+void JoySensor::activatePendingEvent()
+{
+    if (!m_pending_event)
+        return;
+
+    joyEvent(m_pending_value, m_pending_ignore_sets);
+
+    clearPendingEvent();
+}
+
+/**
+ * @brief Checks if an event is queued
+ * @returns True if an event is queued, false otherwise.
+ */
+bool JoySensor::hasPendingEvent() const { return m_pending_event; }
+
+/**
+ * @brief Clears a previously queued event
+ */
+void JoySensor::clearPendingEvent()
+{
+    m_pending_event = false;
+    m_pending_ignore_sets = false;
+}
 
 /**
  * @brief Returns the sensor type

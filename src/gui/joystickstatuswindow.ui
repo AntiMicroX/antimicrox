@@ -484,6 +484,13 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
          </layout>
         </widget>
        </item>
+       <item>
+        <widget class="QGroupBox" name="sensorsGroupBox">
+         <property name="title">
+          <string>Sensors</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
     </layout>
