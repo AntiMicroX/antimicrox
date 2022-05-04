@@ -18,14 +18,15 @@
 #include "joysensorfactory.h"
 #include "joyaccelerometersensor.h"
 #include "joygyroscopesensor.h"
+#include "setjoystick.h"
 
 namespace JoySensorFactory {
-JoySensor *build(JoySensorType type, QObject *parent)
+JoySensor *build(JoySensorType type, double rate, int originset, SetJoystick *parent_set, QObject *parent)
 {
     if (type == ACCELEROMETER)
-        return new JoyAccelerometerSensor(parent);
+        return new JoyAccelerometerSensor(rate, originset, parent_set, parent);
     else if (type == GYROSCOPE)
-        return new JoyGyroscopeSensor(parent);
+        return new JoyGyroscopeSensor(originset, parent_set, parent);
     else
         return nullptr;
 }

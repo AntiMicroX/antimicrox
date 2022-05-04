@@ -23,5 +23,5 @@ class JoySensor;
 class SetJoystick;
 
 namespace JoySensorFactory {
-JoySensor *build(JoySensorType type, QObject *parent);
+JoySensor *build(JoySensorType type, double rate, int originset, SetJoystick *parent_set, QObject *parent);
 }

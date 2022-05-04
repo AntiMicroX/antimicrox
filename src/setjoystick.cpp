@@ -24,6 +24,8 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
+#include "joysensor.h"
+#include "joysensorfactory.h"
 #include "vdpad.h"
 
 #include <QDebug>
@@ -65,7 +67,7 @@ VDPad *SetJoystick::getVDPad(int index) const { return getVdpads().value(index);
 
 JoyControlStick *SetJoystick::getJoyStick(int index) const { return getSticks().value(index); }
 
-JoySensor *SetJoystick::getSensor(JoySensorType type) const { return nullptr; }
+JoySensor *SetJoystick::getSensor(JoySensorType type) const { return m_sensors.value(type); }
 
 void SetJoystick::refreshButtons()
 {
@@ -108,6 +110,25 @@ void SetJoystick::refreshHats()
         JoyDPad *dpad = new JoyDPad(i, m_index, this, this);
         hats.insert(i, dpad);
         enableHatConnections(dpad);
+    }
+}
+
+/**
+ * @brief Setup sensor objects for all available hardware sensors.
+ */
+void SetJoystick::refreshSensors()
+{
+    deleteSensors();
+
+    for (size_t i = 0; i < SENSOR_COUNT; ++i)
+    {
+        JoySensorType type = static_cast<JoySensorType>(i);
+
+        if (!getInputDevice()->hasRawSensor(type))
+            continue;
+
+        JoySensor *sensor = JoySensorFactory::build(type, getInputDevice()->getRawSensorRate(type), m_index, this, this);
+        m_sensors.insert(type, sensor);
     }
 }
 
@@ -201,6 +222,20 @@ void SetJoystick::deleteHats()
     hats.clear();
 }
 
+/**
+ * @brief Destroy all sensor objects in this set
+ */
+void SetJoystick::deleteSensors()
+{
+    for (const auto &sensor : m_sensors)
+    {
+        if (sensor != nullptr)
+            sensor->deleteLater();
+    }
+
+    m_sensors.clear();
+}
+
 int SetJoystick::getNumberButtons() const { return getButtons().count(); }
 
 int SetJoystick::getNumberAxes() const { return axes.count(); }
@@ -209,13 +244,25 @@ int SetJoystick::getNumberHats() const { return getHats().count(); }
 
 int SetJoystick::getNumberSticks() const { return getSticks().size(); }
 
+/**
+ * @brief Checks if this set has a sensor
+ * @returns True if sensor type is present, false otherwise.
+ */
+bool SetJoystick::hasSensor(JoySensorType type) const { return m_sensors.contains(type); }
+
 int SetJoystick::getNumberVDPads() const { return getVdpads().size(); }
 
+/**
+ * @brief Re-enumerates inputs from the associated device and
+ *  resets all mappings in this set.
+ */
 void SetJoystick::reset()
 {
     deleteSticks();
+    deleteSensors();
     deleteVDpads();
     refreshAxes();
+    refreshSensors();
     refreshButtons();
     refreshHats();
     m_name = QString();
@@ -290,6 +337,10 @@ void SetJoystick::release()
     }
 }
 
+/**
+ * @brief Check if this set has any mapped event.
+ * @returns True if any event is mapped to a keyboard or mouse event, false otherwise.
+ */
 bool SetJoystick::isSetEmpty()
 {
     bool result = true;
@@ -330,6 +381,15 @@ bool SetJoystick::isSetEmpty()
         JoyControlStick *stick = iter4.next().value();
 
         if (!stick->isDefault())
+            result = false;
+    }
+
+    for (const auto &sensor : m_sensors)
+    {
+        if (!result)
+            break;
+
+        if (!sensor->isDefault())
             result = false;
     }
 
@@ -950,5 +1010,11 @@ QHash<int, JoyButton *> const &SetJoystick::getButtons() const { return m_button
 QHash<int, JoyDPad *> const &SetJoystick::getHats() const { return hats; }
 
 QHash<int, JoyControlStick *> const &SetJoystick::getSticks() const { return sticks; }
+
+/**
+ * @brief Get all sensor objects in this set.
+ * @returns Sensors in this set
+ */
+QHash<JoySensorType, JoySensor *> const &SetJoystick::getSensors() const { return m_sensors; }
 
 QHash<int, VDPad *> const &SetJoystick::getVdpads() const { return vdpads; }

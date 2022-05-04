@@ -30,6 +30,11 @@ class JoyControlStick;
 class JoySensor;
 class VDPad;
 
+/**
+ * @brief A set of mapped events which can by switched by a controller event.
+ *  Contains controller input objects like axes or buttons and their mappings,
+ *  and forwards some QT GUI events.
+ */
 class SetJoystick : public SetJoystickXml
 {
     Q_OBJECT
@@ -50,11 +55,13 @@ class SetJoystick : public SetJoystickXml
     int getNumberAxes() const;
     int getNumberHats() const;
     int getNumberSticks() const;
+    bool hasSensor(JoySensorType type) const;
     int getNumberVDPads() const;
 
     QHash<int, JoyButton *> const &getButtons() const;
     QHash<int, JoyDPad *> const &getHats() const;
     QHash<int, JoyControlStick *> const &getSticks() const;
+    QHash<JoySensorType, JoySensor *> const &getSensors() const;
     QHash<int, VDPad *> const &getVdpads() const;
     QHash<int, JoyAxis *> *getAxes();
 
@@ -63,6 +70,7 @@ class SetJoystick : public SetJoystickXml
     virtual void refreshButtons(); // SetButton class
     virtual void refreshAxes();    // SetAxis class
     virtual void refreshHats();    // SetHat class
+    virtual void refreshSensors();
     void release();
     void addControlStick(int index, JoyControlStick *stick); // SetStick class
     void removeControlStick(int index);                      // SetStick class
@@ -90,7 +98,8 @@ class SetJoystick : public SetJoystickXml
     void deleteAxes();    // SetAxis class
     void deleteHats();    // SetHat class
     void deleteSticks();  // SetStick class
-    void deleteVDpads();  // SetVDPad class
+    void deleteSensors();
+    void deleteVDpads(); // SetVDPad class
 
     void enableButtonConnections(JoyButton *button); // SetButton class
     void enableAxisConnections(JoyAxis *axis);       // SetAxis class
@@ -168,6 +177,7 @@ class SetJoystick : public SetJoystickXml
     QHash<int, JoyAxis *> axes;
     QHash<int, JoyDPad *> hats;
     QHash<int, JoyControlStick *> sticks;
+    QHash<JoySensorType, JoySensor *> m_sensors;
     QHash<int, VDPad *> vdpads;
 
     QList<JoyButton *> lastClickedButtons;

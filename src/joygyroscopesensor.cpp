@@ -17,8 +17,8 @@
 
 #include "joygyroscopesensor.h"
 
-JoyGyroscopeSensor::JoyGyroscopeSensor(QObject *parent)
-    : JoySensor(parent)
+JoyGyroscopeSensor::JoyGyroscopeSensor(int originset, SetJoystick *parent_set, QObject *parent)
+    : JoySensor(GYROSCOPE, originset, parent_set, parent)
 {
 }
 
