@@ -37,9 +37,17 @@ class JoySensor : public QObject
     explicit JoySensor(JoySensorType type, int originset, SetJoystick *parent_set, QObject *parent);
     virtual ~JoySensor();
 
+    void joyEvent(float *values, bool ignoresets = false);
     void queuePendingEvent(float *values, bool ignoresets = false);
+    void activatePendingEvent();
+    bool hasPendingEvent() const;
+    void clearPendingEvent();
 
     JoySensorType getType() const;
+    virtual float getXCoordinate() const = 0;
+    virtual float getYCoordinate() const = 0;
+    virtual float getZCoordinate() const = 0;
+    virtual QString sensorTypeName() const = 0;
 
     bool inDeadZone(float *values) const;
 
@@ -48,8 +56,16 @@ class JoySensor : public QObject
 
     bool isDefault() const;
 
+  signals:
+    void moved(float xaxis, float yaxis, float zaxis);
+
   protected:
     JoySensorType m_type;
+
+    float m_current_value[3];
+    float m_pending_value[3];
+    bool m_pending_event;
+    bool m_pending_ignore_sets;
     int m_originset;
 
     SetJoystick *m_parent_set;

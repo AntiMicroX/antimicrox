@@ -23,3 +23,27 @@ JoyAccelerometerSensor::JoyAccelerometerSensor(double rate, int originset, SetJo
 }
 
 JoyAccelerometerSensor::~JoyAccelerometerSensor() {}
+
+/**
+ * @brief Get the value for the corresponding X axis.
+ * @return X axis value in m/s^2
+ */
+float JoyAccelerometerSensor::getXCoordinate() const { return m_current_value[0]; }
+
+/**
+ * @brief Get the value for the corresponding Y axis.
+ * @return Y axis value in m/s^2
+ */
+float JoyAccelerometerSensor::getYCoordinate() const { return m_current_value[1]; }
+
+/**
+ * @brief Get the value for the corresponding Z axis.
+ * @return Z axis value in m/s^2
+ */
+float JoyAccelerometerSensor::getZCoordinate() const { return m_current_value[2]; }
+
+/**
+ * @brief Get the translated sensor type name
+ * @returns Translated sensor type name
+ */
+QString JoyAccelerometerSensor::sensorTypeName() const { return tr("Accelerometer"); }

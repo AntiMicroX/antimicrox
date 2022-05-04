@@ -210,6 +210,15 @@ class JoyControlStick
     static const int DEFAULTSTICKDELAY;
 };
 
+class JoySensor
+{
+  public:
+    static const double ACCEL_MIN;
+    static const double ACCEL_MAX;
+    static const double GYRO_MIN;
+    static const double GYRO_MAX;
+};
+
 class JoyButtonSlot
 {
   public:

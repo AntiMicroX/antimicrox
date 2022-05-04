@@ -328,6 +328,14 @@ void SetJoystick::release()
         dpad->eventReset();
     }
 
+    for (auto iter = m_sensors.begin(); iter != m_sensors.end(); ++iter)
+    {
+        float values[3] = {0};
+        JoySensor *sensor = iter.value();
+        sensor->clearPendingEvent();
+        sensor->joyEvent(values, true);
+    }
+
     QHashIterator<int, JoyButton *> iterButtons(getButtons());
 
     while (iterButtons.hasNext())

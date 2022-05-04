@@ -1356,7 +1356,19 @@ void InputDevice::activatePossibleAxisEvents()
     }
 }
 
-void InputDevice::activatePossibleSensorEvents() {}
+void InputDevice::activatePossibleSensorEvents()
+{
+    SetJoystick *currentSet = getActiveSetJoystick();
+    JoySensor *sensor = nullptr;
+
+    for (size_t i = 0; i < SENSOR_COUNT; ++i)
+    {
+        JoySensorType type = static_cast<JoySensorType>(i);
+        sensor = currentSet->getSensor(type);
+        if ((sensor != nullptr) && sensor->hasPendingEvent())
+            sensor->activatePendingEvent();
+    }
+}
 
 void InputDevice::activatePossibleDPadEvents()
 {
