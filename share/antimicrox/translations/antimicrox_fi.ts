@@ -1735,7 +1735,7 @@ kun tätä painiketta käytetään.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="240"/>
         <source>Calibration was saved for the preset. Do you really want to reset settings?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibraatio tallennettiin vakiolle. Haluatko varmasti nollata asetukset?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="292"/>
