@@ -1742,42 +1742,48 @@ kun tätä painiketta käytetään.</translation>
         <source>Place the joystick in the center position.
 
 It&apos;s the part, where often you don&apos;t have to move. Just skip it in such situation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta sauvaohjain keskiasentoon.
+
+Se on kohta jota ei useinkaan tarvitse kohdastaan muuttaa. Sivuuta tuossa tapauksessa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="294"/>
         <source>Calibrating center</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibroidaan keskikohta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="295"/>
         <source>Start second step</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita toinen askel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="318"/>
         <source>
 
 Center X: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+Keski-X: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="319"/>
         <source>
 Center Y: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Keski-Y: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="342"/>
         <source>
 Place the joystick in the top-left corner many times</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Aseta sauvaohjain vasempaan yläkulmaan monta kertaa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="343"/>
         <location filename="../../../src/gui/calibration.cpp" line="392"/>
         <source>Calibrating position</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibroidaan asento</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="366"/>
@@ -1785,84 +1791,96 @@ Place the joystick in the top-left corner many times</source>
         <source>
 
 X: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+X: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="367"/>
         <location filename="../../../src/gui/calibration.cpp" line="414"/>
         <source>
 Y: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Y: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="391"/>
         <source>
 Place the joystick in the bottom-right corner</source>
-        <translation type="unfinished"></translation>
+        <translation>
+Aseta sauvaohjain oikeaan alakulmaan</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="393"/>
         <source>Start final step</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita viimeinen vaihe</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="425"/>
         <source>
 
 range X: %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+liikkuma-ala X: %1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="426"/>
         <source>
 range Y: %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>
+liikkuma-ala Y: %1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="427"/>
         <source>
 
 deadzone X: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+
+kuollut alue X: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="428"/>
         <source>
 deadzone Y: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>
+kuollut alue Y: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="437"/>
         <source>
 ---Calibration done!---
 </source>
-        <translation type="unfinished"></translation>
+        <translation>
+---Kalibrointi tehty!---
+</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="489"/>
         <source>Calibration values have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibroinnin arvot tallennettu</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="508"/>
         <location filename="../../../src/gui/calibration.cpp" line="513"/>
         <source>Dead zone calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuolleen alueen kalibrointi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="509"/>
         <source>You have to move axes to the top-left corner at least five times.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinun täytyy liikuttaa akselilla vasempaan yläkulmaan ainakin viisi kertaa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="514"/>
         <source>You have to move axes to the bottom-right corner at least five times.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinun täytyy liikuttaa akselilla oikeaan alakulmaan ainakin viisi kertaa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="617"/>
         <source>Do you want to save calibration of current axis?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko tallentaa akseleiden nykyisen kalibraation?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="706"/>
@@ -1870,7 +1888,7 @@ deadzone Y: %1</source>
         <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <location filename="../../../src/gui/calibration.cpp" line="767"/>
         <source>Axis %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Akseli %1</translation>
     </message>
 </context>
 <context>
@@ -1878,64 +1896,64 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaapatut ikkuna-asetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedot ikkunasta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>Luokka:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="55"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>TekstiTunnus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimike:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Polku:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="105"/>
         <source>Match By Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Täsmää asetusten kanssa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="120"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Luokka</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="127"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimike</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="136"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Polku</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="147"/>
         <source>Full Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Täydellinen polku</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="152"/>
         <source>File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostonimi</translation>
     </message>
 </context>
 <context>
@@ -1943,67 +1961,67 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="51"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (tavanomainen)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="53"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="54"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso + pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="55"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuolet</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="56"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Näppäimet: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="57"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Numeronäppäimistö</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="64"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Vakiollinen</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="66"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Kahdeksansuuntainen</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="68"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4-suuntainen kuten pääilmansuunnat</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="70"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4-suuntainen viistosuunnissa</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="75"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiriasetukset</translation>
     </message>
 </context>
 <context>
@@ -2011,57 +2029,57 @@ deadzone Y: %1</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="27"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vakiot:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="46"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (tavanomainen)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="51"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakatasossa)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="56"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen pystysuunnassa)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="61"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakatasossa + pystysuunnassa)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="66"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuolet</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="71"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Näppäimet: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Numeronäppäimistö</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="81"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dpadi-tila:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="106"/>
@@ -2077,68 +2095,79 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tavanomainen: 8-suuntainen dpadi jossa kaksisuuntapainikkeet ovat aktiivisena 
+dpadin viistosuunta alueilla.
+
+Kahdeksansuunta: 8-alueinen dpad jossa jokaiselle suunnalle on oma painikkeensa. 
+Vain yksi nappi on kerrallaan aktiivinen. 
+Kätevä roguemaisissa, vuoropohjaisissa peleissä.
+
+4 -pääilmansuunta: 4 -alueen dpadi jossa alueet 
+vastaavat pääilmansuuntamallissa. Kätevä valikoissa.
+
+4-suuntainen viistosuunnissa: 4 -alueen dpadi jokaisen 
+alueen vastatessa viistosuuntaisesti.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="121"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tavanomainen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="126"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Kahdeksansuunta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="131"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4-suuntainen kuten pääilmansuunnat</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="136"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4-suuntainen viistosuunnissa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dpadin viive:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="207"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kulunut aika ennen kuin suunnan muutos astuu voimaan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="213"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="255"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nimi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="265"/>
         <source>Specify the name of a dpad.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä dpadin nimi.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="274"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="454"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="464"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -2146,27 +2175,27 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="14"/>
         <source>Default Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Vakioprofiili</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="23"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Profiili:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="38"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Selaa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.cpp" line="58"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa asetusnäkymä</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.cpp" line="85"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Profiilin tiedostopolku on epäkelpo.</translation>
     </message>
 </context>
 <context>
@@ -2174,29 +2203,29 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="20"/>
         <source>Extra Profile Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisäasetukset profiiliin</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="45"/>
         <source>Key Press Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Painikkeen alhaallapitoaika:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="70"/>
         <source>0.00 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>0.00 ms</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="84"/>
         <source>Profile Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Profiilin nimi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="34"/>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="40"/>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="56"/>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>s</translation>
     </message>
 </context>
 <context>
@@ -2204,7 +2233,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="57"/>
         <source>Game Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Peliohjain</translation>
     </message>
 </context>
 <context>
@@ -2214,7 +2243,7 @@ to a diagonal zone.</source>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="51"/>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="57"/>
         <source>DPad</source>
-        <translation type="unfinished"></translation>
+        <translation>DPadi</translation>
     </message>
 </context>
 <context>
@@ -2222,7 +2251,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Peliohjainmääritykset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
@@ -2232,112 +2261,112 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Takaisin</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Start-aloita</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation type="unfinished"></translation>
+        <translation>Opas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasen olkapäänappi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikea olkapäänappi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasemman sauvan painallus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikean sauvan painallus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasemman sauvan X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasemman sauvan Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="202"/>
         <source>Right Stick X</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikean sauvan X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="207"/>
         <source>Right Stick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikean sauvan Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasen liipaisin</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikea liipaisin</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation type="unfinished"></translation>
+        <translation>DPadi ylös</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation type="unfinished"></translation>
+        <translation>DPadi vasen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation type="unfinished"></translation>
+        <translation>DPadi alas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation type="unfinished"></translation>
+        <translation>DPadi oikea</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
         <source>Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritys</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="256"/>
