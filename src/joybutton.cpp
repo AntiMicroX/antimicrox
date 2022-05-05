@@ -168,6 +168,10 @@ void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
     }
 }
 
+/**
+ * @brief Activates mapped slots and generates QT events
+ *  which highlight pressed controller buttons.
+ */
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
     if (Logger::isDebugEnabled())
@@ -3476,7 +3480,7 @@ bool JoyButton::isDefault()
     value = value && (setSelectionCondition == DEFAULTSETCONDITION);
     value = value && (getAssignedSlots()->isEmpty());
     value = value && (mouseMode == DEFAULTMOUSEMODE);
-    value = value && (mouseCurve == DEFAULTMOUSECURVE);
+    value = value && (mouseCurve == getDefaultMouseCurve());
     value = value && (springWidth == GlobalVariables::JoyButton::DEFAULTSPRINGWIDTH);
     value = value && (springHeight == GlobalVariables::JoyButton::DEFAULTSPRINGHEIGHT);
     value = value && qFuzzyCompare(sensitivity, GlobalVariables::JoyButton::DEFAULTSENSITIVITY);
@@ -3498,6 +3502,13 @@ bool JoyButton::isDefault()
 
     return value;
 }
+
+/**
+ * @brief Returns the default mouse curve for this JoyButton type.
+ *  Can be overwritten by subclasses.
+ * @returns Default mouse curve
+ */
+JoyButton::JoyMouseCurve JoyButton::getDefaultMouseCurve() const { return DEFAULTMOUSECURVE; }
 
 void JoyButton::setIgnoreEventState(bool ignore) { ignoreEvents = ignore; }
 
@@ -3728,6 +3739,11 @@ void JoyButton::moveMouseCursor(int &movedX, int &movedY, int &movedElapsed, QLi
     cursorYSpeeds->clear();
 }
 
+/**
+ * @brief Combines mouse movement distances from multiple mouse mappings.
+ * @param[in,out] finalAx Combined mouse distance from previous iteration. Updated by this function.
+ * @param[in] infoAx Next mouse event to join into finalAx.
+ */
 void JoyButton::distanceForMovingAx(double &finalAx, mouseCursorInfo infoAx)
 {
     if (!qFuzzyIsNull(infoAx.code))
@@ -4335,7 +4351,7 @@ void JoyButton::resetAllProperties()
     wheelSpeedX = GlobalVariables::JoyButton::DEFAULTWHEELX;
     wheelSpeedY = GlobalVariables::JoyButton::DEFAULTWHEELY;
     mouseMode = DEFAULTMOUSEMODE;
-    mouseCurve = DEFAULTMOUSECURVE;
+    mouseCurve = getDefaultMouseCurve();
     springWidth = GlobalVariables::JoyButton::DEFAULTSPRINGWIDTH;
     springHeight = GlobalVariables::JoyButton::DEFAULTSPRINGHEIGHT;
     sensitivity = GlobalVariables::JoyButton::DEFAULTSENSITIVITY;
