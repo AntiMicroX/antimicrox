@@ -53,12 +53,17 @@ class JoySensor : public QObject
 
     JoySensorType getType() const;
     JoySensorDirection getCurrentDirection() const;
+    double getDeadZone() const;
+    double getDiagonalRange() const;
+    double getMaxZone() const;
     virtual float getXCoordinate() const = 0;
     virtual float getYCoordinate() const = 0;
     virtual float getZCoordinate() const = 0;
     virtual QString sensorTypeName() const = 0;
 
     bool inDeadZone(float *values) const;
+    double calculatePitch() const;
+    double calculateRoll() const;
     double calculateDirectionalDistance(JoySensorDirection direction) const;
 
     static double radToDeg(double value);
@@ -85,6 +90,9 @@ class JoySensor : public QObject
     virtual void populateButtons() = 0;
 
     JoySensorType m_type;
+    double m_dead_zone;
+    double m_diagonal_range;
+    double m_max_zone;
 
     float m_current_value[3];
     float m_pending_value[3];
