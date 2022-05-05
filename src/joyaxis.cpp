@@ -41,9 +41,6 @@ JoyAxis::JoyAxis(int index, int originset, SetJoystick *parentSet, QObject *pare
     m_stick = nullptr;
     lastKnownThottledValue = 0;
     lastKnownRawValue = 0;
-    axis_max_cal = -1;
-    axis_min_cal = -1;
-    axis_center_cal = -1;
     currentRawValue = 0;
     m_originset = originset;
     m_parentSet = parentSet;
@@ -58,12 +55,14 @@ JoyAxis::~JoyAxis() { resetPrivateVars(); }
 
 void JoyAxis::queuePendingEvent(int value, bool ignoresets, bool updateLastValues)
 {
-    pendingEvent = false;
-    pendingValue = 0;
-    pendingIgnoreSets = false;
+    if (m_calibrated)
+        value = value * m_gain + m_offset;
 
     if (m_stick != nullptr)
     {
+        pendingEvent = false;
+        pendingValue = 0;
+        pendingIgnoreSets = false;
         stickPassEvent(value, ignoresets, updateLastValues);
     } else
     {
@@ -274,13 +273,13 @@ int JoyAxis::calculateThrottledValue(int value)
     case -1:
         // *log << ". It's a negative throttle.";
 
-        temp = (value + getAxisMinCal()) / 2;
+        temp = (value + GlobalVariables::JoyAxis::AXISMIN) / 2;
         break;
 
     case 1:
         // *log << ". It's a positive throttle.";
 
-        temp = (value + getAxisMaxCal()) / 2;
+        temp = (value + GlobalVariables::JoyAxis::AXISMAX) / 2;
         break;
 
     case 2:
@@ -347,9 +346,9 @@ void JoyAxis::setMaxZoneValue(int value)
 {
     value = abs(value);
 
-    if (value >= getAxisMaxCal())
+    if (value >= GlobalVariables::JoyAxis::AXISMAX)
     {
-        maxZoneValue = getAxisMaxCal();
+        maxZoneValue = GlobalVariables::JoyAxis::AXISMAX;
         emit propertyUpdated();
     } else
     {
@@ -423,6 +422,7 @@ void JoyAxis::resetPrivateVars()
     currentThrottledValue = calculateThrottledValue(currentRawValue);
     axisName.clear();
 
+    m_calibrated = false;
     pendingEvent = false;
     pendingValue = currentRawValue;
     pendingIgnoreSets = false;
@@ -444,7 +444,7 @@ void JoyAxis::adjustRange()
 {
     if (throttle == static_cast<int>(JoyAxis::NegativeThrottle))
     {
-        currentThrottledDeadValue = getAxisMaxCal();
+        currentThrottledDeadValue = GlobalVariables::JoyAxis::AXISMAX;
     } else if ((throttle == static_cast<int>(JoyAxis::NormalThrottle)) ||
                (throttle == static_cast<int>(JoyAxis::PositiveHalfThrottle)) ||
                (throttle == static_cast<int>(JoyAxis::NegativeHalfThrottle)))
@@ -452,7 +452,7 @@ void JoyAxis::adjustRange()
         currentThrottledDeadValue = 0;
     } else if (throttle == static_cast<int>(JoyAxis::PositiveThrottle))
     {
-        currentThrottledDeadValue = getAxisMinCal();
+        currentThrottledDeadValue = GlobalVariables::JoyAxis::AXISMIN;
     }
 
     currentThrottledValue = calculateThrottledValue(currentRawValue);
@@ -558,25 +558,7 @@ bool JoyAxis::isDefault()
  */
 void JoyAxis::setCurrentRawValue(int value)
 {
-    // QScopedPointer<LogHelper> log(new DEBUG());
-    if ((value >= getAxisMinCal()) && (value <= getAxisMaxCal()))
-    {
-        // *log << "Raw value is less than " << getAxisMaxCal() << " and greather than " << getAxisMinCal();
-
-        currentRawValue = value;
-    } else if (value > getAxisMaxCal())
-    {
-        // *log << "Raw value is greather than " << getAxisMaxCal();
-
-        currentRawValue = getAxisMaxCal();
-    } else if (value < getAxisMinCal())
-    {
-        // *log << "Raw value is less than " << getAxisMinCal();
-
-        currentRawValue = getAxisMinCal();
-    }
-
-    // *log << " (" << currentRawValue << ")";
+    currentRawValue = qBound(GlobalVariables::JoyAxis::AXISMIN, value, GlobalVariables::JoyAxis::AXISMAX);
 }
 
 void JoyAxis::setButtonsMouseMode(JoyButton::JoyMouseMovementMode mode)
@@ -862,10 +844,10 @@ int JoyAxis::getProperReleaseValue()
         value = 0;
     } else if (throttle == static_cast<int>(NegativeThrottle))
     {
-        value = getAxisMaxCal();
+        value = GlobalVariables::JoyAxis::AXISMAX;
     } else if (throttle == static_cast<int>(PositiveThrottle))
     {
-        value = getAxisMinCal();
+        value = GlobalVariables::JoyAxis::AXISMIN;
     } else if (throttle == static_cast<int>(PositiveHalfThrottle))
     {
         value = 0;
@@ -910,14 +892,35 @@ void JoyAxis::eventReset()
     paxisbutton->eventReset();
 }
 
-void JoyAxis::setAxisMinCal(int value) { axis_min_cal = value; }
+/**
+ * @brief Check if the axis is calibrated
+ * @returns True if the axis is calibrated, false otherwise.
+ */
+bool JoyAxis::isCalibrated() const { return m_calibrated; }
 
-int JoyAxis::getAxisMinCal() { return ((axis_min_cal != -1) ? axis_min_cal : GlobalVariables::JoyAxis::AXISMIN); }
+/**
+ * @brief Resets the axis calibration back to uncalibrated state.
+ */
+void JoyAxis::resetCalibration() { m_calibrated = false; }
 
-void JoyAxis::setAxisMaxCal(int value) { axis_max_cal = value; }
+/**
+ * @brief Reads the axis calibration values
+ * @param[out] offset Offset value "a"
+ * @param[out] gain Gain value "b"
+ */
+void JoyAxis::getCalibration(double *offset, double *gain) const
+{
+    *offset = m_offset;
+    *gain = m_gain;
+}
 
-int JoyAxis::getAxisMaxCal() { return ((axis_max_cal != -1) ? axis_max_cal : GlobalVariables::JoyAxis::AXISMAX); }
-
-void JoyAxis::setAxisCenterCal(int value) { axis_center_cal = value; }
-
-int JoyAxis::getAxisCenterCal() { return ((axis_center_cal != -1) ? axis_center_cal : 0); }
+/**
+ * @brief Sets the axis calibration values and sets the calibration flag.
+ *  Calibrated value is calculated by the formula "a+b*x".
+ */
+void JoyAxis::setCalibration(double offset, double gain)
+{
+    m_calibrated = true;
+    m_offset = offset;
+    m_gain = gain;
+}

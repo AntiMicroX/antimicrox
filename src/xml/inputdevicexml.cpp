@@ -307,6 +307,23 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
 
                     xml->readNextStartElement();
                 }
+            } else if ((xml->name() == "calibration") && xml->isStartElement())
+            {
+                xml->readNextStartElement();
+                while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "calibration")))
+                {
+                    if ((xml->name() == "stick"))
+                    {
+                        int index = xml->attributes().value("index").toString().toInt();
+                        double offsetX = xml->attributes().value("offsetx").toString().toDouble();
+                        double gainX = xml->attributes().value("gainx").toString().toDouble();
+                        double offsetY = xml->attributes().value("offsety").toString().toDouble();
+                        double gainY = xml->attributes().value("gainy").toString().toDouble();
+                        m_inputDevice->applyStickCalibration(index, offsetX, gainX, offsetY, gainY);
+                    }
+                    xml->skipCurrentElement();
+                    xml->readNextStartElement();
+                }
             } else if ((xml->name() == "keyPressTime") && xml->isStartElement())
             {
                 int tempchoice = xml->readElementText().toInt();
@@ -632,6 +649,26 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
     if ((m_inputDevice->getDeviceKeyPressTime() > 0) &&
         (m_inputDevice->getDeviceKeyPressTime() != GlobalVariables::InputDevice::DEFAULTKEYPRESSTIME))
         xml->writeTextElement("keyPressTime", QString::number(m_inputDevice->getDeviceKeyPressTime()));
+
+    xml->writeStartElement("calibration"); // <calibration>
+    QHash<int, JoyControlStick *> sticks = m_inputDevice->getActiveSetJoystick()->getSticks();
+    for (auto iter = sticks.cbegin(); iter != sticks.cend(); ++iter)
+    {
+        double offsetX, gainX, offsetY, gainY;
+        if (!iter.value()->isCalibrated())
+            continue;
+
+        iter.value()->getCalibration(&offsetX, &gainX, &offsetY, &gainY);
+        xml->writeStartElement("stick");
+        xml->writeAttribute("index", QString::number(iter.key()));
+        xml->writeAttribute("offsetx", QString::number(offsetX));
+        xml->writeAttribute("gainx", QString::number(gainX));
+        xml->writeAttribute("offsety", QString::number(offsetY));
+        xml->writeAttribute("gainy", QString::number(gainY));
+        xml->writeEndElement();
+    }
+
+    xml->writeEndElement(); // </calibration>
 
     xml->writeStartElement("sets");
 
