@@ -31,7 +31,6 @@ installed on your system in order to build this program:
 - `itstool` (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 - `gettext`
 
-
 <details>
   <summary>Fedora dependencies</summary>
 
@@ -114,7 +113,7 @@ translation files from source.
 Default: Not defined. You can define build type.  
 Debug builds are compiled with enabled debug flags, disabled optimizations and better printing stack trace in case of crash.
 
-    -DTRANS_KEEP_OBSOLETE
+    -DTRANS_REMOVE_OBSOLETE
 
 Default: OFF. Do not specify -noobsolete option when calling lupdate
 command for qm files. -noobsolete is a method for getting rid of obsolete text entries
