@@ -34,6 +34,8 @@ MouseSettingsDialog::MouseSettingsDialog(QWidget *parent)
     , ui(new Ui::MouseSettingsDialog)
 {
     ui->setupUi(this);
+    ui->horizontalSpinBox->setMaximum(GlobalVariables::JoyButton::MAXMOUSESPEED);
+    ui->verticalSpinBox->setMaximum(GlobalVariables::JoyButton::MAXMOUSESPEED);
     setAttribute(Qt::WA_DeleteOnClose);
 
     JoyButtonMouseHelper *mouseHelper = JoyButton::getMouseHelper();

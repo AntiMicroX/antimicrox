@@ -67,6 +67,7 @@ class JoyButton
     static const int DEFAULTTURBOINTERVAL;
     static const int DEFAULTMOUSESPEEDX;
     static const int DEFAULTMOUSESPEEDY;
+    static const int MAXMOUSESPEED;
     static const int DEFAULTSETSELECTION;
     static const int DEFAULTSPRINGWIDTH;
     static const int DEFAULTSPRINGHEIGHT;

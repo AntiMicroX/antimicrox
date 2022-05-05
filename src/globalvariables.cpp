@@ -36,6 +36,7 @@ const int GlobalVariables::JoyButton::DEFAULTTURBOINTERVAL = 0;
 const bool GlobalVariables::JoyButton::DEFAULTUSETURBO = false;
 const int GlobalVariables::JoyButton::DEFAULTMOUSESPEEDX = 50;
 const int GlobalVariables::JoyButton::DEFAULTMOUSESPEEDY = 50;
+const int GlobalVariables::JoyButton::MAXMOUSESPEED = 300;
 const int GlobalVariables::JoyButton::DEFAULTSETSELECTION = -1;
 const int GlobalVariables::JoyButton::DEFAULTSPRINGWIDTH = 0;
 const int GlobalVariables::JoyButton::DEFAULTSPRINGHEIGHT = 0;
