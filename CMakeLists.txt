@@ -193,7 +193,9 @@ set(antimicrox_SOURCES
         src/joydpad.cpp
         src/joygyroscopesensor.cpp
         src/joysensor.cpp
+        src/joysensorbuttonpushbutton.cpp
         src/joysensorfactory.cpp
+        src/joysensorpushbutton.cpp
         src/joystick.cpp
         src/keyboard/virtualkeyboardmousewidget.cpp
         src/keyboard/virtualkeypushbutton.cpp
@@ -213,6 +215,7 @@ set(antimicrox_SOURCES
         src/pt1filter.cpp
         src/qtkeymapperbase.cpp
         src/sdleventreader.cpp
+        src/sensorpushbuttongroup.cpp
         src/setjoystick.cpp
         src/simplekeygrabberbutton.cpp
         src/statisticsestimator.cpp
@@ -314,8 +317,10 @@ set(antimicrox_HEADERS
         src/joydpad.h
         src/joygyroscopesensor.h
         src/joysensor.h
+        src/joysensorbuttonpushbutton.h
         src/joysensordirection.h
         src/joysensorfactory.h
+        src/joysensorpushbutton.h
         src/joysensortype.h
         src/joystick.h
         src/keyboard/virtualkeyboardmousewidget.h
@@ -336,6 +341,7 @@ set(antimicrox_HEADERS
         src/pt1filter.h
         src/qtkeymapperbase.h
         src/sdleventreader.h
+        src/sensorpushbuttongroup.h
         src/setjoystick.h
         src/simplekeygrabberbutton.h
         src/statisticsestimator.h

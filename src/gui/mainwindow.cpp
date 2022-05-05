@@ -36,6 +36,7 @@
 #include "joycontrolstickbuttonpushbutton.h"
 #include "joycontrolstickpushbutton.h"
 #include "joydpadbuttonwidget.h"
+#include "joysensorpushbutton.h"
 #include "joystick.h"
 #include "joystickstatuswindow.h"
 #include "joytabwidget.h"
@@ -844,6 +845,13 @@ void MainWindow::enableFlashActions()
             JoyControlStickPushButton *stickWidget = iter3.next();
             stickWidget->enableFlashes();
             stickWidget->tryFlash();
+        }
+
+        QList<JoySensorPushButton *> sensors = ui->tabWidget->widget(i)->findChildren<JoySensorPushButton *>();
+        for (const auto &sensorWidget : sensors)
+        {
+            sensorWidget->enableFlashes();
+            sensorWidget->tryFlash();
         }
 
         QList<JoyDPadButtonWidget *> list4 = ui->tabWidget->widget(i)->findChildren<JoyDPadButtonWidget *>();

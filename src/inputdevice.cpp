@@ -568,6 +568,12 @@ int InputDevice::getNumberHats() { return getActiveSetJoystick()->getNumberHats(
 
 int InputDevice::getNumberSticks() { return getActiveSetJoystick()->getNumberSticks(); }
 
+/**
+ * @brief Checks if this input device has a sensor of given type
+ * @returns True if sensor is present, false otherwise
+ */
+bool InputDevice::hasSensor(JoySensorType type) { return getActiveSetJoystick()->hasSensor(type); }
+
 int InputDevice::getNumberVDPads() { return getActiveSetJoystick()->getNumberVDPads(); }
 
 SetJoystick *InputDevice::getSetJoystick(int index) { return getJoystick_sets().value(index); }
@@ -1226,8 +1232,8 @@ QString InputDevice::getDescription()
                 QObject::tr("# of Axes:       %1").arg(getNumberRawAxes()) + "\n  " +
                 QObject::tr("# of Buttons:    %1").arg(getNumberRawButtons()) + "\n  " +
                 QObject::tr("# of Hats:       %1").arg(getNumberHats()) + "\n  " +
-                QObject::tr("Accelerometer:   %1").arg(hasRawSensor(ACCELEROMETER)) + "\n  " +
-                QObject::tr("Gyroscope:       %1").arg(hasRawSensor(GYROSCOPE)) + "\n";
+                QObject::tr("Accelerometer:   %1").arg(hasSensor(ACCELEROMETER)) + "\n  " +
+                QObject::tr("Gyroscope:       %1").arg(hasSensor(GYROSCOPE)) + "\n";
     return full_desc;
 }
 

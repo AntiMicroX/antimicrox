@@ -130,11 +130,13 @@ class JoyTabWidget : public QWidget
     void checkForUnsavedProfile(int newindex = -1);
 
     void checkStickDisplay();
+    void checkSensorDisplay();
     void checkDPadButtonDisplay();
     void checkAxisButtonDisplay();
     void checkButtonDisplay();
 
     void checkStickEmptyDisplay();
+    void checkSensorEmptyDisplay();
     void checkDPadButtonEmptyDisplay();
     void checkAxisButtonEmptyDisplay();
     void checkButtonEmptyDisplay();
