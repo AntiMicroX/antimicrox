@@ -146,7 +146,29 @@ JoySensorType JoySensor::getType() const { return m_type; }
  */
 JoySensorDirection JoySensor::getCurrentDirection() const { return m_current_direction; }
 
+/**
+ * @brief Get the assigned dead zone value
+ * @return Assigned dead zone value in degree or degree/s
+ */
+double JoySensor::getDeadZone() const { return radToDeg(m_dead_zone); }
+
+/**
+ * @brief Get the assigned diagonal range value
+ * @return Assigned diagonal range in degree or degree/s
+ */
+double JoySensor::getDiagonalRange() const { return radToDeg(m_diagonal_range); }
+
+/**
+ * @brief Get the assigned max zone value
+ * @return Assigned max zone value in degree or degree/s
+ */
+double JoySensor::getMaxZone() const { return radToDeg(m_max_zone); }
+
 bool JoySensor::inDeadZone(float *values) const { return false; }
+
+double JoySensor::calculatePitch() const { return false; }
+
+double JoySensor::calculateRoll() const { return false; }
 
 double JoySensor::calculateDirectionalDistance(JoySensorDirection direction) const { return 0; }
 
