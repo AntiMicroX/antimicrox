@@ -88,11 +88,37 @@ void JoySensor::clearPendingEvent()
 }
 
 /**
+ * @brief Get the name of this sensor
+ * @returns Sensor name
+ */
+QString JoySensor::getPartialName(bool forceFullFormat, bool displayNames) const
+{
+    QString label = QString();
+
+    if (!m_sensor_name.isEmpty() && displayNames)
+    {
+        if (forceFullFormat)
+        {
+            label.append(sensorTypeName()).append(" ");
+        }
+
+        label.append(m_sensor_name);
+    } else
+    {
+        label.append(sensorTypeName()).append(" ");
+    }
+
+    return label;
+}
+
+/**
  * @brief Returns the sensor type
  */
 JoySensorType JoySensor::getType() const { return m_type; }
 
 bool JoySensor::inDeadZone(float *values) const { return false; }
+
+double JoySensor::calculateDirectionalDistance(JoySensorDirection direction) const { return 0; }
 
 /**
  * @brief Utility function which converts a given value from radians to degree.
@@ -105,3 +131,16 @@ double JoySensor::radToDeg(double value) { return value * 180 / M_PI; }
 double JoySensor::degToRad(double value) { return value * M_PI / 180; }
 
 bool JoySensor::isDefault() const { return false; }
+
+/**
+ * @brief Sets the name of this sensor
+ * @param[in] tempName New sensor name
+ */
+void JoySensor::setSensorName(QString tempName)
+{
+    if ((tempName.length() <= 20) && (tempName != m_sensor_name))
+    {
+        m_sensor_name = tempName;
+        emit sensorNameChanged();
+    }
+}

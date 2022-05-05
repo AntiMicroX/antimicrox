@@ -19,6 +19,7 @@
 
 #include <QObject>
 
+#include "joysensordirection.h"
 #include "joysensortype.h"
 
 class SetJoystick;
@@ -43,6 +44,8 @@ class JoySensor : public QObject
     bool hasPendingEvent() const;
     void clearPendingEvent();
 
+    QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
+
     JoySensorType getType() const;
     virtual float getXCoordinate() const = 0;
     virtual float getYCoordinate() const = 0;
@@ -50,6 +53,7 @@ class JoySensor : public QObject
     virtual QString sensorTypeName() const = 0;
 
     bool inDeadZone(float *values) const;
+    double calculateDirectionalDistance(JoySensorDirection direction) const;
 
     static double radToDeg(double value);
     static double degToRad(double value);
@@ -58,6 +62,10 @@ class JoySensor : public QObject
 
   signals:
     void moved(float xaxis, float yaxis, float zaxis);
+    void sensorNameChanged();
+
+  public slots:
+    void setSensorName(QString tempName);
 
   protected:
     JoySensorType m_type;
@@ -67,6 +75,8 @@ class JoySensor : public QObject
     bool m_pending_event;
     bool m_pending_ignore_sets;
     int m_originset;
+
+    QString m_sensor_name;
 
     SetJoystick *m_parent_set;
 };

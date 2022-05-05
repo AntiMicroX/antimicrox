@@ -177,11 +177,14 @@ set(antimicrox_SOURCES
         src/joybuttonmousehelper.cpp
         src/joybuttonslot.cpp
         src/joybuttonstatusbox.cpp
+        src/joybuttontypes/joyaccelerometerbutton.cpp
         src/joybuttontypes/joyaxisbutton.cpp
         src/joybuttontypes/joycontrolstickbutton.cpp
         src/joybuttontypes/joycontrolstickmodifierbutton.cpp
         src/joybuttontypes/joydpadbutton.cpp
         src/joybuttontypes/joygradientbutton.cpp
+        src/joybuttontypes/joygyroscopebutton.cpp
+        src/joybuttontypes/joysensorbutton.cpp
         src/joycontrolstick.cpp
         src/joycontrolstickbuttonpushbutton.cpp
         src/joycontrolstickcontextmenu.cpp
@@ -295,11 +298,14 @@ set(antimicrox_HEADERS
         src/joybuttonmousehelper.h
         src/joybuttonslot.h
         src/joybuttonstatusbox.h
+        src/joybuttontypes/joyaccelerometerbutton.h
         src/joybuttontypes/joyaxisbutton.h
         src/joybuttontypes/joycontrolstickbutton.h
         src/joybuttontypes/joycontrolstickmodifierbutton.h
         src/joybuttontypes/joydpadbutton.h
         src/joybuttontypes/joygradientbutton.h
+        src/joybuttontypes/joygyroscopebutton.h
+        src/joybuttontypes/joysensorbutton.h
         src/joycontrolstick.h
         src/joycontrolstickbuttonpushbutton.h
         src/joycontrolstickcontextmenu.h
@@ -308,6 +314,7 @@ set(antimicrox_HEADERS
         src/joydpad.h
         src/joygyroscopesensor.h
         src/joysensor.h
+        src/joysensordirection.h
         src/joysensorfactory.h
         src/joysensortype.h
         src/joystick.h
