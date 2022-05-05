@@ -1156,32 +1156,32 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1609"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
-        <translation>Viivyttää aikaa jolloin euraava osio aktivoidaan määritetyssä ajassa. Osiot jotka aktivoidaan ennen viivettä pysyvät aktiivisena sen jälkeen kun viiveaika on ohitettu.</translation>
+        <translation>Viivyttää hetkeä jolloin seuraava määrityslokero aktivoidaan määritetyn ajan mukaan. Määrityslokerot jotka aktivoidaan ennen viivettä pysyvät aktiivisena sen jälkeen kun viiveaika on ohitettu.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1616"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Etäisyyden toiminto määrittää että määrityslokerot jälkeenpäin toimitetaan vain silloin kun akselilla liikutaan ohi tietyn etäisyyden määritetyn kuolleen alueen jälkeen.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1622"/>
         <source>Execute program when slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suorita ohjelma kun määritelokero aktivoituu.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1626"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta painikkeen alhaallapito. Määrityslokerot toimituksen jälkeen ajetaan vain mikäli painiketta pidetään alhaalla yli määritetyn ajanjakson.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1631"/>
         <source>Chose a profile to load when this slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse ladattava profiili tämän määrityslokeron aktivoituessa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1635"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiren muokkaustoiminto muokkaa kaikkia hiiren nopeusasetuksia määritetyn prosenttiluvun mukaisesti kun toimintoa käsitellään. Tämä voi olla hyödyllinen hidastamaan hiirtä samalla kun tähtäät tarkasti.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1642"/>
@@ -1191,22 +1191,22 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1646"/>
         <source>Specify the time that keys past this slot should be held down.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä aika jonka jälkeen painikkeet alaspainatetaan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1651"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta napin vapauttamisen toiminto. Määrityslokerot ajetaan toiminnon jälkeen vain silloin kun nappi päästetään ylös jos nappia pidettiin alhaalla ohi määritetyn aikaikkunan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1657"/>
         <source>Change to selected set once slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda valittuun kokoelmaan kun määritelokero aktivoituu.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1661"/>
         <source>Full string will be typed when a slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Täydellinen sarja kirjoitetaan määritelokeron aktivoituessa.</translation>
     </message>
 </context>
 <context>
@@ -1214,40 +1214,40 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvan/padin määritykset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="41"/>
         <source>Sticks</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvat</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation type="unfinished"></translation>
+        <translation>Dpadit</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Huomautus: tämä ikkuna on tarkoitettu taaksepäin yhteensopivuuden saavuttamiseksi profiilien kanssa jotka ovat tehdyt ennen antimicron julkaisua 2.0. Julkaisun 2.0 jälkeen, Peliohjainkartoitus -ikkunaa suositellaan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="358"/>
         <source>%1 (Joystick %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Sauvaohjain %2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="124"/>
         <source>Stick 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauva 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="134"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="256"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="425"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Kytketty</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="175"/>
@@ -1257,54 +1257,54 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="535"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="545"/>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittele</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="186"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="308"/>
         <source>X Axis:</source>
-        <translation type="unfinished"></translation>
+        <translation>X-akseli:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="204"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="326"/>
         <source>Y Axis:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y-akseli:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="246"/>
         <source>Stick 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauva 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
         <source>Number of Physical DPads: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fyysisten Dpadien lukumäärä: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="402"/>
         <source>Virtual DPad 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Virtuaali-Dpadi 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="463"/>
         <source>Down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Alas:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="477"/>
         <source>Left:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasen:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="491"/>
         <source>Right:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikea:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="498"/>
         <source>Up:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ylös:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="65"/>
@@ -1312,7 +1312,7 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="68"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="69"/>
         <source>Axis %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Akseli %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="412"/>
@@ -1320,7 +1320,7 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="414"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="415"/>
         <source>Axis %1 -</source>
-        <translation type="unfinished"></translation>
+        <translation>Akseli %1 -</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="421"/>
@@ -1328,7 +1328,7 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="423"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="424"/>
         <source>Axis %1 +</source>
-        <translation type="unfinished"></translation>
+        <translation>Akseli %1 +</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="434"/>
@@ -1336,27 +1336,27 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="436"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="437"/>
         <source>Button %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Painike %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
         <source>Move stick 1 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Liikuta sauvaa 1 pitkin X-akselia</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="796"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Liikuta sauvaa 1 pitkin Y-akselia</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="830"/>
         <source>Move stick 2 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Liikuta sauvaa 2 pitkin X-akselia</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="846"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Liikuta sauvaa 2 pitkin Y-akselia</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="885"/>
@@ -1364,7 +1364,7 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="1007"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="1070"/>
         <source>Press a button or move an axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Paina nappia tai liikuta akselilla</translation>
     </message>
 </context>
 <context>
@@ -1375,179 +1375,181 @@ kaikkien vakiollisten profiilivaihtoehtojen sijaan.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Akseli</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="52"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vakiot:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="595"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (vaakataso)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="596"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="87"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="597"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="92"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="598"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="599"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuolet: ylös | alas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="102"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="600"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuolet: vasen | oikea</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="107"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="601"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>Näppäimet: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="112"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="602"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Näppäimet: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="603"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>Numeronäppäimistö: NP_8 | NP_2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="122"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="604"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>Numeronäppäimistö: NP_4 | NP_6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="127"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="605"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="614"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="182"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="295"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta arvo jota käytetään rajana akselilla. Kätevä jos kyseessä on
+kulunut analoginen ohjain.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="202"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuollut alue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="209"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="273"/>
         <source>Set the value of the dead zone for an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta akselille kuolleen alueen arvo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="327"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Enimmäisalue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="338"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[EI NAPPIA]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="345"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaasuasetus joka määrittää miten
+ennakoida pito tai vapautus akselilla.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="359"/>
         <source>Negative Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Negatiivinen puolikaasutus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="364"/>
         <source>Negative Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Negatiivinen kaasutus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="369"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Tavanomainen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="374"/>
         <source>Positive Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Positiivinen kaasutus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="379"/>
         <source>Positive Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>Positiivinen puolikaasutus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="429"/>
         <source>Current Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nykyinen arvo:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="475"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="485"/>
         <source>Specify the name of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä akselille nimi.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="494"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="566"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="579"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="612"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiren vasen nappi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="613"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiren oikea nappi</translation>
     </message>
 </context>
 <context>
@@ -1555,85 +1557,86 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="44"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Tehdäksesi uuden määritteen, paina mitä tahansa näppäimistön näppäintä tai napsauta painiketta Näppäimistön tai Hiiren välilehdessä</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="70"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kannatin</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="96"/>
         <source>Enables a key press or release to only occur when a controller button is pressed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kytkee päälle näppäinpainalluksen tai sen irtipäästön tapahtumaan vain silloin kun ohjaimen nappia painetaan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="99"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>Kytke</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="124"/>
         <source>Enables rapid key presses and releases. Turbo controller.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kytkee päälle pikapainallukset ja irtipäästöt. Turbo-ohjain.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="160"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation>Viimeisin näppäimistön/hiiren painike:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="167"/>
         <source>Slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrityslokerot</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="197"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni&amp;mi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="207"/>
         <source>Specify the name of a button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä painikkeelle nimi.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="224"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Toiminto:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="234"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä toiminto joka pelaamisen aikana suoritetaan
+kun tätä painiketta käytetään.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="261"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Edistyneemmät</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="66"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="129"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="552"/>
         <source>Choose your keyboard key</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse näppäimistösi painike</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="371"/>
         <source>No button</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei painiketta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="380"/>
@@ -1641,47 +1644,47 @@ this button is being used.</source>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="440"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="520"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>Viimeinen painike</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="381"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtaaksesi asetuksia viimeisimmälle painikkeelle, tulee olla vähintään yksi toimitus näppäimistöltä peliohjaimelle</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtaaksesi asetuksia turbon viimeisimmälle painikkeelle, tulee olla vähintään yksi toimitus näppäimistöltä peliohjaimelle</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="433"/>
         <source>No choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei valintaa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="434"/>
         <source>Before you open window with advanced settings, you have to choice a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Ennen kuin avaat ikkunan edistyneempien asetusten suhteen, tulee sinun valita painike</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="441"/>
         <source>To open advanced dialog, it&apos;s needed to map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Avataksesi edistyneempien toimintojen ruudun, tulee kartoittaa ainakin yksi painike näppäimistöltä peliohjaimelle</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="521"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrityslokeroita ei saatu tälle napille tyhjennettyä, koska sille ei ollut yhtäkään määritystä asetettuna näppäimistöltä tai peliohjaimelta. Kartoita vähintään yksi painike näppäimistöltä peliohjaimelle</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="531"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation>Viimeinen peliohjainappi on asetettu</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="539"/>
         <source>Index %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hakemisto %1</translation>
     </message>
 </context>
 <context>
@@ -1689,45 +1692,45 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaavake</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="74"/>
         <location filename="../../../src/gui/calibration.cpp" line="438"/>
         <source>Start calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita kalibrointi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="136"/>
         <source>Sticks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvat:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nollaa asetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="196"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Peru</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="203"/>
         <location filename="../../../src/gui/calibration.cpp" line="489"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallenna</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="46"/>
         <location filename="../../../src/gui/calibration.cpp" line="439"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibrointi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="114"/>
         <source>Do you really want to reset settings of current axis?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko aivan varmasti nollata kyseisen akselin asetukset?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="240"/>
