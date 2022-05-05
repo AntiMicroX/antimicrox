@@ -380,7 +380,7 @@ void JoyButtonXml::writeConfig(QXmlStreamWriter *xml)
             xml->writeTextElement("mousespringheight", QString::number(m_joyButton->getSpringHeight()));
         }
 
-        if (m_joyButton->getMouseCurve() != JoyButton::DEFAULTMOUSECURVE)
+        if (m_joyButton->getMouseCurve() != m_joyButton->getDefaultMouseCurve())
         {
             switch (m_joyButton->getMouseCurve())
             {

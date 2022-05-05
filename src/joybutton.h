@@ -38,6 +38,11 @@ class QXmlStreamWriter;
 // class QThread;
 class QThreadPool;
 
+/**
+ * @brief Represents a button mapping in a SetJoystick
+ *  Contains multiple JoyButtonSlots which do the actual mapping.
+ *  Also has various static methods for mouse cursor movement.
+ */
 class JoyButton : public QObject
 {
     Q_OBJECT
@@ -162,7 +167,9 @@ class JoyButton : public QObject
 
     virtual bool isPartRealAxis();
     virtual bool isModifierButton();
-    virtual bool isDefault();
+    bool isDefault();
+
+    virtual JoyMouseCurve getDefaultMouseCurve() const;
 
     virtual int getRealJoyNumber() const;
 
