@@ -232,9 +232,6 @@ Speed:</string>
                   <property name="minimum">
                    <number>1</number>
                   </property>
-                  <property name="maximum">
-                   <number>300</number>
-                  </property>
                   <property name="value">
                    <number>1</number>
                   </property>
@@ -279,9 +276,6 @@ Speed:</string>
                   </property>
                   <property name="minimum">
                    <number>1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>300</number>
                   </property>
                   <property name="value">
                    <number>1</number>
