@@ -18,6 +18,9 @@
 #define _USE_MATH_DEFINES
 
 #include "joysensor.h"
+#include "inputdevice.h"
+#include "joybuttontypes/joysensorbutton.h"
+#include "xml/joybuttonxml.h"
 
 #include <cmath>
 
@@ -88,6 +91,24 @@ void JoySensor::clearPendingEvent()
 }
 
 /**
+ * @brief Check if any direction is mapped to a keyboard or mouse event
+ * @returns True if a mapping exists, false otherwise
+ */
+bool JoySensor::hasSlotsAssigned() const
+{
+    for (auto iter = m_buttons.cbegin(); iter != m_buttons.cend(); ++iter)
+    {
+        JoyButton *button = iter.value();
+        if (button != nullptr)
+        {
+            if (button->getAssignedSlots()->count() > 0)
+                return true;
+        }
+    }
+    return false;
+}
+
+/**
  * @brief Get the name of this sensor
  * @returns Sensor name
  */
@@ -112,9 +133,19 @@ QString JoySensor::getPartialName(bool forceFullFormat, bool displayNames) const
 }
 
 /**
+ * @brief Returns the sensor name
+ */
+QString JoySensor::getSensorName() const { return m_sensor_name; }
+
+/**
  * @brief Returns the sensor type
  */
 JoySensorType JoySensor::getType() const { return m_type; }
+
+/**
+ * @brief Returns the current sensor direction
+ */
+JoySensorDirection JoySensor::getCurrentDirection() const { return m_current_direction; }
 
 bool JoySensor::inDeadZone(float *values) const { return false; }
 
@@ -130,6 +161,12 @@ double JoySensor::radToDeg(double value) { return value * 180 / M_PI; }
  */
 double JoySensor::degToRad(double value) { return value * M_PI / 180; }
 
+/**
+ * @brief Returns a QHash which maps the SensorDirection to
+ *  the corresponding JoySensorButton.
+ */
+QHash<JoySensorDirection, JoySensorButton *> *JoySensor::getButtons() { return &m_buttons; }
+
 bool JoySensor::isDefault() const { return false; }
 
 /**
@@ -144,3 +181,14 @@ void JoySensor::setSensorName(QString tempName)
         emit sensorNameChanged();
     }
 }
+
+void JoySensor::establishPropertyUpdatedConnection()
+{
+    connect(this, &JoySensor::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
+}
+
+/**
+ * @brief Get pointer to the set that a sensor belongs to.
+ * @return Pointer to the set that a sensor belongs to.
+ */
+SetJoystick *JoySensor::getParentSet() const { return m_parent_set; }

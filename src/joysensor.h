@@ -17,12 +17,14 @@
 
 #pragma once
 
+#include <QHash>
 #include <QObject>
 
 #include "joysensordirection.h"
 #include "joysensortype.h"
 
 class SetJoystick;
+class JoySensorButton;
 
 /**
  * @brief Represents one sensor in a SetJoystick and its connections to
@@ -44,9 +46,13 @@ class JoySensor : public QObject
     bool hasPendingEvent() const;
     void clearPendingEvent();
 
+    bool hasSlotsAssigned() const;
+
     QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
+    QString getSensorName() const;
 
     JoySensorType getType() const;
+    JoySensorDirection getCurrentDirection() const;
     virtual float getXCoordinate() const = 0;
     virtual float getYCoordinate() const = 0;
     virtual float getZCoordinate() const = 0;
@@ -58,16 +64,26 @@ class JoySensor : public QObject
     static double radToDeg(double value);
     static double degToRad(double value);
 
+    QHash<JoySensorDirection, JoySensorButton *> *getButtons();
+
     bool isDefault() const;
+
+    SetJoystick *getParentSet() const;
 
   signals:
     void moved(float xaxis, float yaxis, float zaxis);
+    void active(float xaxis, float yaxis, float zaxis);
+    void released(float xaxis, float yaxis, float zaxis);
     void sensorNameChanged();
+    void propertyUpdated();
 
   public slots:
     void setSensorName(QString tempName);
+    void establishPropertyUpdatedConnection();
 
   protected:
+    virtual void populateButtons() = 0;
+
     JoySensorType m_type;
 
     float m_current_value[3];
@@ -78,5 +94,7 @@ class JoySensor : public QObject
 
     QString m_sensor_name;
 
+    JoySensorDirection m_current_direction;
     SetJoystick *m_parent_set;
+    QHash<JoySensorDirection, JoySensorButton *> m_buttons;
 };

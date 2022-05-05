@@ -2463,6 +2463,10 @@ void JoyButton::setChangeSetCondition(SetChangeCondition condition, bool passive
 
 JoyButton::SetChangeCondition JoyButton::getChangeSetCondition() { return setSelectionCondition; }
 
+/**
+ * @brief Checks if this button is currently active
+ * @returns True if the button is pressed, false otherwise
+ */
 bool JoyButton::getButtonState() { return isButtonPressed; }
 
 int JoyButton::getOriginSet() { return m_originset; }

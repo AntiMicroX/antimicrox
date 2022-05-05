@@ -34,4 +34,7 @@ class JoyGyroscopeSensor : public JoySensor
     virtual float getYCoordinate() const override;
     virtual float getZCoordinate() const override;
     virtual QString sensorTypeName() const override;
+
+  protected:
+    virtual void populateButtons();
 };

@@ -45,6 +45,7 @@ class InputDevice : public QObject
     virtual int getNumberAxes();
     virtual int getNumberHats();
     virtual int getNumberSticks();
+    virtual bool hasSensor(JoySensorType type);
     virtual int getNumberVDPads();
 
     int getJoyNumber();

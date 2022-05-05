@@ -16,10 +16,12 @@
  */
 
 #include "joygyroscopesensor.h"
+#include "joybuttontypes/joygyroscopebutton.h"
 
 JoyGyroscopeSensor::JoyGyroscopeSensor(int originset, SetJoystick *parent_set, QObject *parent)
     : JoySensor(GYROSCOPE, originset, parent_set, parent)
 {
+    populateButtons();
 }
 
 JoyGyroscopeSensor::~JoyGyroscopeSensor() {}
@@ -47,3 +49,28 @@ float JoyGyroscopeSensor::getZCoordinate() const { return radToDeg(m_current_val
  * @returns Translated sensor type name
  */
 QString JoyGyroscopeSensor::sensorTypeName() const { return tr("Gyroscope"); }
+
+/**
+ * @brief Initializes the JoySensorButton objects for this sensor.
+ */
+void JoyGyroscopeSensor::populateButtons()
+{
+    JoySensorButton *button = nullptr;
+    button = new JoyGyroscopeButton(this, SENSOR_LEFT, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_LEFT, button);
+
+    button = new JoyGyroscopeButton(this, SENSOR_RIGHT, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_RIGHT, button);
+
+    button = new JoyGyroscopeButton(this, SENSOR_UP, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_UP, button);
+
+    button = new JoyGyroscopeButton(this, SENSOR_DOWN, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_DOWN, button);
+
+    button = new JoyGyroscopeButton(this, SENSOR_FWD, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_FWD, button);
+
+    button = new JoyGyroscopeButton(this, SENSOR_BWD, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_BWD, button);
+}

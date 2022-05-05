@@ -16,10 +16,12 @@
  */
 
 #include "joyaccelerometersensor.h"
+#include "joybuttontypes/joyaccelerometerbutton.h"
 
 JoyAccelerometerSensor::JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent)
     : JoySensor(ACCELEROMETER, originset, parent_set, parent)
 {
+    populateButtons();
 }
 
 JoyAccelerometerSensor::~JoyAccelerometerSensor() {}
@@ -47,3 +49,25 @@ float JoyAccelerometerSensor::getZCoordinate() const { return m_current_value[2]
  * @returns Translated sensor type name
  */
 QString JoyAccelerometerSensor::sensorTypeName() const { return tr("Accelerometer"); }
+
+/**
+ * @brief Initializes the JoySensorButton objects for this sensor.
+ */
+void JoyAccelerometerSensor::populateButtons()
+{
+    JoySensorButton *button = nullptr;
+    button = new JoyAccelerometerButton(this, SENSOR_LEFT, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_LEFT, button);
+
+    button = new JoyAccelerometerButton(this, SENSOR_RIGHT, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_RIGHT, button);
+
+    button = new JoyAccelerometerButton(this, SENSOR_UP, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_UP, button);
+
+    button = new JoyAccelerometerButton(this, SENSOR_DOWN, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_DOWN, button);
+
+    button = new JoyAccelerometerButton(this, SENSOR_BWD, m_originset, getParentSet(), this);
+    m_buttons.insert(SENSOR_BWD, button);
+}

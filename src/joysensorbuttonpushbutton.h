@@ -14,27 +14,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #pragma once
 
-#include "joysensor.h"
+#include "flashbuttonwidget.h"
 
-class SetJoystick;
+class JoySensorButton;
+class QWidget;
 
 /**
- * @brief Represents an accelerometer sensor.
+ * @brief A direction button in the SensorPushButtonGroup
  */
-class JoyAccelerometerSensor : public JoySensor
+class JoySensorButtonPushButton : public FlashButtonWidget
 {
-  public:
-    explicit JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent);
-    virtual ~JoyAccelerometerSensor();
+    Q_OBJECT
+    Q_PROPERTY(bool isflashing READ isButtonFlashing)
 
-    virtual float getXCoordinate() const override;
-    virtual float getYCoordinate() const override;
-    virtual float getZCoordinate() const override;
-    virtual QString sensorTypeName() const override;
+  public:
+    explicit JoySensorButtonPushButton(JoySensorButton *button, bool displayNames, QWidget *parent = nullptr);
+
+    JoySensorButton *getButton();
+    void tryFlash();
 
   protected:
-    virtual void populateButtons() override;
+    virtual QString generateLabel() override;
+
+  public slots:
+    void disableFlashes() override;
+    void enableFlashes() override;
+
+  private slots:
+    void showContextMenu(const QPoint &point);
+
+  private:
+    JoySensorButton *m_button;
 };
