@@ -165,11 +165,113 @@ double JoySensor::getDiagonalRange() const { return radToDeg(m_diagonal_range); 
  */
 double JoySensor::getMaxZone() const { return radToDeg(m_max_zone); }
 
-bool JoySensor::inDeadZone(float *values) const { return false; }
+/**
+ * @brief Checks if the sensor vector is currently in the dead zone
+ * @returns True if it is in the dead zone, false otherwise
+ */
+bool JoySensor::inDeadZone(float *values) const { return calculateDistance(values[0], values[1], values[2]) < m_dead_zone; }
 
-double JoySensor::calculatePitch() const { return false; }
+/**
+ * @brief Get current radial distance of the sensor past the assigned
+ *   dead zone.
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::getDistanceFromDeadZone() const
+{
+    return getDistanceFromDeadZone(m_current_value[0], m_current_value[1], m_current_value[2]);
+}
 
-double JoySensor::calculateRoll() const { return false; }
+/**
+ * @brief Get radial distance of the sensor past the assigned dead zone
+ *   based on the passed X, Y and Z axes values associated with the sensor.
+ * @param X axis value
+ * @param Y axis value
+ * @param Z axis value
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::getDistanceFromDeadZone(double x, double y, double z) const
+{
+    double distance = calculateDistance(x, y, z);
+    return qBound(0.0, distance - m_dead_zone, m_max_zone);
+}
+
+/**
+ * @brief Get the vector length of the sensor
+ * @return Vector length
+ */
+double JoySensor::calculateDistance() const
+{
+    return calculateDistance(m_current_value[0], m_current_value[1], m_current_value[2]);
+}
+
+/**
+ * @brief Get the vector length of the sensor based on the passed
+ *  X, Y and Z axes values associated with the sensor.
+ * @return Vector length
+ */
+double JoySensor::calculateDistance(double x, double y, double z) const { return sqrt(x * x + y * y + z * z); }
+
+/**
+ * @brief Calculate the pitch angle (in degrees) corresponding to the current
+ *   position of controller.
+ * @return Pitch (in degrees)
+ */
+double JoySensor::calculatePitch() const
+{
+    return calculatePitch(m_current_value[0], m_current_value[1], m_current_value[2]);
+}
+
+/**
+ * @brief Calculate the pitch angle (in degrees) corresponding to the current
+ *   passed X, Y and Z axes values associated with the sensor.
+ *   position of controller.
+ *   See https://www.nxp.com/files-static/sensors/doc/app_note/AN3461.pdf
+ *   for a description of the used algorithm.
+ * @param X axis value
+ * @param Y axis value
+ * @param Z axis value
+ * @return Pitch (in degrees)
+ */
+double JoySensor::calculatePitch(double x, double y, double z) const
+{
+    double rad = calculateDistance(x, y, z);
+    double pitch = -atan2(z / rad, y / rad) - M_PI / 2;
+    if (pitch < -M_PI)
+        pitch += 2 * M_PI;
+    return pitch;
+}
+
+/**
+ * @brief Calculate the roll angle (in degrees) corresponding to the current
+ *   position of controller.
+ * @return Roll (in degrees)
+ */
+double JoySensor::calculateRoll() const { return calculateRoll(m_current_value[0], m_current_value[1], m_current_value[2]); }
+
+/**
+ * @brief Calculate the roll angle (in degrees) corresponding to the current
+ *   passed X, Y and Z axes values associated with the sensor.
+ *   position of controller.
+ *   See https://www.nxp.com/files-static/sensors/doc/app_note/AN3461.pdf
+ *   for a description of the used algorithm.
+ * @param X axis value
+ * @param Y axis value
+ * @param Z axis value
+ * @return Roll (in degrees)
+ */
+double JoySensor::calculateRoll(double x, double y, double z) const
+{
+    double rad = calculateDistance(x, y, z);
+
+    double xp, yp, zp;
+    xp = x / rad;
+    yp = y / rad;
+    zp = z / rad;
+    double roll = atan2(sqrt(yp * yp + zp * zp), -xp) - M_PI / 2;
+    if (roll < -M_PI)
+        roll += 2 * M_PI;
+    return roll;
+}
 
 double JoySensor::calculateDirectionalDistance(JoySensorDirection direction) const { return 0; }
 
