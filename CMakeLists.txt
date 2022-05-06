@@ -155,6 +155,7 @@ set(antimicrox_SOURCES
         src/gui/joybuttonwidget.cpp
         src/gui/joycontrolstickeditdialog.cpp
         src/gui/joydpadbuttonwidget.cpp
+        src/gui/joysensoreditdialog.cpp
         src/gui/joystickstatuswindow.cpp
         src/gui/joytabwidget.cpp
         src/gui/joytabwidgetcontainer.cpp
@@ -280,6 +281,7 @@ set(antimicrox_HEADERS
         src/gui/joybuttonwidget.h
         src/gui/joycontrolstickeditdialog.h
         src/gui/joydpadbuttonwidget.h
+        src/gui/joysensoreditdialog.h
         src/gui/joystickstatuswindow.h
         src/gui/joytabwidget.h
         src/gui/joytabwidgetcontainer.h
@@ -393,6 +395,7 @@ set(antimicrox_FORMS
         src/gui/extraprofilesettingsdialog.ui
         src/gui/gamecontrollermappingdialog.ui
         src/gui/joycontrolstickeditdialog.ui
+        src/gui/joysensoreditdialog.ui
         src/gui/joystickstatuswindow.ui
         src/gui/mainsettingsdialog.ui
         src/gui/mainwindow.ui
