@@ -190,6 +190,9 @@ const double GlobalVariables::JoySensor::ACCEL_MIN = -90.0;
 const double GlobalVariables::JoySensor::ACCEL_MAX = 90.0;
 const double GlobalVariables::JoySensor::GYRO_MIN = -360.0;
 const double GlobalVariables::JoySensor::GYRO_MAX = 360.0;
+const double GlobalVariables::JoySensor::DEFAULTDEADZONE = 20;
+const int GlobalVariables::JoySensor::DEFAULTDIAGONALRANGE = 45;
+const unsigned int GlobalVariables::JoySensor::DEFAULTSENSORDELAY = 0;
 
 // ---- JoyButtonSlot ---- //
 

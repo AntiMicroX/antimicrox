@@ -35,6 +35,9 @@ class JoyAccelerometerSensor : public JoySensor
     virtual float getZCoordinate() const override;
     virtual QString sensorTypeName() const override;
 
+  public slots:
+    virtual void reset() override;
+
   protected:
     virtual void populateButtons() override;
 };

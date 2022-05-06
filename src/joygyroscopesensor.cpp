@@ -16,11 +16,13 @@
  */
 
 #include "joygyroscopesensor.h"
+#include "globalvariables.h"
 #include "joybuttontypes/joygyroscopebutton.h"
 
 JoyGyroscopeSensor::JoyGyroscopeSensor(int originset, SetJoystick *parent_set, QObject *parent)
     : JoySensor(GYROSCOPE, originset, parent_set, parent)
 {
+    reset();
     populateButtons();
 }
 
@@ -49,6 +51,15 @@ float JoyGyroscopeSensor::getZCoordinate() const { return radToDeg(m_current_val
  * @returns Translated sensor type name
  */
 QString JoyGyroscopeSensor::sensorTypeName() const { return tr("Gyroscope"); }
+
+/**
+ * @brief Resets internal variables back to default
+ */
+void JoyGyroscopeSensor::reset()
+{
+    JoySensor::reset();
+    m_max_zone = degToRad(GlobalVariables::JoySensor::GYRO_MAX);
+}
 
 /**
  * @brief Initializes the JoySensorButton objects for this sensor.
