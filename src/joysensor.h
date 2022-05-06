@@ -56,6 +56,7 @@ class JoySensor : public QObject
     double getDeadZone() const;
     double getDiagonalRange() const;
     double getMaxZone() const;
+    unsigned int getSensorDelay() const;
     virtual float getXCoordinate() const = 0;
     virtual float getYCoordinate() const = 0;
     virtual float getZCoordinate() const = 0;
@@ -85,20 +86,31 @@ class JoySensor : public QObject
     void moved(float xaxis, float yaxis, float zaxis);
     void active(float xaxis, float yaxis, float zaxis);
     void released(float xaxis, float yaxis, float zaxis);
+    void deadZoneChanged(double value);
+    void diagonalRangeChanged(double value);
+    void maxZoneChanged(double value);
+    void sensorDelayChanged(int value);
     void sensorNameChanged();
     void propertyUpdated();
 
   public slots:
+    virtual void reset();
+    void setDeadZone(double value);
+    void setMaxZone(double value);
+    void setDiagonalRange(double value);
+    void setSensorDelay(unsigned int value);
     void setSensorName(QString tempName);
     void establishPropertyUpdatedConnection();
 
   protected:
+    void resetButtons();
     virtual void populateButtons() = 0;
 
     JoySensorType m_type;
     double m_dead_zone;
     double m_diagonal_range;
     double m_max_zone;
+    unsigned int m_sensor_delay;
 
     float m_current_value[3];
     float m_pending_value[3];

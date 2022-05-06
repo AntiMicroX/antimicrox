@@ -16,11 +16,13 @@
  */
 
 #include "joyaccelerometersensor.h"
+#include "globalvariables.h"
 #include "joybuttontypes/joyaccelerometerbutton.h"
 
 JoyAccelerometerSensor::JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent)
     : JoySensor(ACCELEROMETER, originset, parent_set, parent)
 {
+    reset();
     populateButtons();
 }
 
@@ -49,6 +51,15 @@ float JoyAccelerometerSensor::getZCoordinate() const { return m_current_value[2]
  * @returns Translated sensor type name
  */
 QString JoyAccelerometerSensor::sensorTypeName() const { return tr("Accelerometer"); }
+
+/**
+ * @brief Resets internal variables back to default
+ */
+void JoyAccelerometerSensor::reset()
+{
+    JoySensor::reset();
+    m_max_zone = degToRad(GlobalVariables::JoySensor::ACCEL_MAX);
+}
 
 /**
  * @brief Initializes the JoySensorButton objects for this sensor.

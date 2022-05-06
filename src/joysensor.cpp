@@ -31,6 +31,7 @@ JoySensor::JoySensor(JoySensorType type, int originset, SetJoystick *parent_set,
     , m_originset(originset)
     , m_parent_set(parent_set)
 {
+    reset();
 }
 
 JoySensor::~JoySensor() {}
@@ -166,6 +167,12 @@ double JoySensor::getDiagonalRange() const { return radToDeg(m_diagonal_range); 
 double JoySensor::getMaxZone() const { return radToDeg(m_max_zone); }
 
 /**
+ * @brief Get the assigned input delay
+ * @returns Input delay in ms
+ */
+unsigned int JoySensor::getSensorDelay() const { return m_sensor_delay; }
+
+/**
  * @brief Checks if the sensor vector is currently in the dead zone
  * @returns True if it is in the dead zone, false otherwise
  */
@@ -294,6 +301,86 @@ QHash<JoySensorDirection, JoySensorButton *> *JoySensor::getButtons() { return &
 bool JoySensor::isDefault() const { return false; }
 
 /**
+ * @brief Resets internal variables back to default
+ */
+void JoySensor::reset()
+{
+    m_dead_zone = degToRad(GlobalVariables::JoySensor::DEFAULTDEADZONE);
+    m_diagonal_range = degToRad(GlobalVariables::JoySensor::DEFAULTDIAGONALRANGE);
+    m_pending_event = false;
+
+    m_current_direction = JoySensorDirection::SENSOR_CENTERED;
+    m_sensor_name.clear();
+    m_sensor_delay = GlobalVariables::JoySensor::DEFAULTSENSORDELAY;
+
+    resetButtons();
+}
+
+/**
+ * @brief Sets the dead zone of the sensor to the given value
+ * @param[in] value New sensor dead zone
+ */
+void JoySensor::setDeadZone(double value)
+{
+    value = abs(degToRad(value));
+    if (!qFuzzyCompare(value, m_dead_zone) && (value <= m_max_zone))
+    {
+        m_dead_zone = value;
+        emit deadZoneChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
+ * @brief Sets the maximum zone of the sensor to the given value
+ * @param[in] value New sensor maximum zone
+ */
+void JoySensor::setMaxZone(double value)
+{
+    value = abs(degToRad(value));
+    if (!qFuzzyCompare(value, m_max_zone) && (value > m_dead_zone))
+    {
+        m_max_zone = value;
+        emit maxZoneChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
+ * @brief Set the diagonal range value for a sensor.
+ * @param Value between 1 - 90.
+ */
+void JoySensor::setDiagonalRange(double value)
+{
+    if (value < 1)
+        value = 1;
+    else if (value > 90)
+        value = 90;
+
+    value = degToRad(value);
+    if (!qFuzzyCompare(value, m_diagonal_range))
+    {
+        m_diagonal_range = value;
+        emit diagonalRangeChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
+ * @brief Sets the sensor input delaqy to the given value
+ * @param[in] value New sensor input delay in ms
+ */
+void JoySensor::setSensorDelay(unsigned int value)
+{
+    if (((value >= 10) && (value <= 1000)) || (value == 0))
+    {
+        m_sensor_delay = value;
+        emit sensorDelayChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
  * @brief Sets the name of this sensor
  * @param[in] tempName New sensor name
  */
@@ -316,3 +403,17 @@ void JoySensor::establishPropertyUpdatedConnection()
  * @return Pointer to the set that a sensor belongs to.
  */
 SetJoystick *JoySensor::getParentSet() const { return m_parent_set; }
+
+/**
+ * @brief Reset all the properties of the sensor direction buttons.
+ */
+void JoySensor::resetButtons()
+{
+    for (auto iter = m_buttons.cbegin(); iter != m_buttons.cend(); ++iter)
+    {
+        JoyButton *button = iter.value();
+
+        if (button != nullptr)
+            button->reset();
+    }
+}
