@@ -27,6 +27,7 @@
 JoySensor::JoySensor(JoySensorType type, int originset, SetJoystick *parent_set, QObject *parent)
     : QObject(parent)
     , m_type(type)
+    , m_calibrated(false)
     , m_pending_event(false)
     , m_originset(originset)
     , m_parent_set(parent_set)
@@ -55,10 +56,14 @@ void JoySensor::joyEvent(float *values, bool ignoresets)
  */
 void JoySensor::queuePendingEvent(float *values, bool ignoresets)
 {
-    m_pending_event = true;
     m_pending_value[0] = values[0];
     m_pending_value[1] = values[1];
     m_pending_value[2] = values[2];
+
+    if (m_calibrated)
+        applyCalibration();
+
+    m_pending_event = true;
     m_pending_ignore_sets = ignoresets;
 }
 
@@ -290,6 +295,17 @@ double JoySensor::radToDeg(double value) { return value * 180 / M_PI; }
  * @brief Utility function which converts a given value from degree to radians.
  */
 double JoySensor::degToRad(double value) { return value * M_PI / 180; }
+
+/**
+ * @brief Check if the sensor is calibrated
+ * @returns True if it is calibrated, false otherwise.
+ */
+bool JoySensor::isCalibrated() const { return m_calibrated; }
+
+/**
+ * @brief Resets the calibration of the sensor back to uncalibrated state.
+ */
+void JoySensor::resetCalibration() { m_calibrated = false; }
 
 /**
  * @brief Returns a QHash which maps the SensorDirection to

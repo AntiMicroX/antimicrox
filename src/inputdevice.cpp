@@ -1646,11 +1646,27 @@ SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
  */
 void InputDevice::applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY)
 {
-    for (auto iter = joystick_sets.begin(); iter != joystick_sets.end(); ++iter)
+    for (auto &set : joystick_sets)
     {
-        SetJoystick *set = iter.value();
         JoyControlStick *stick = set->getSticks().value(index);
         if (stick != nullptr)
             stick->setCalibration(offsetX, gainX, offsetY, gainY);
+    }
+}
+
+/**
+ * @brief Applies calibration to the specified gyroscope in all sets
+ *  See JoySensor::setCalibration
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] offsetZ Offset value for Z axis
+ */
+void InputDevice::applyGyroscopeCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    for (auto &set : joystick_sets)
+    {
+        JoySensor *gyroscope = set->getSensor(GYROSCOPE);
+        if (gyroscope != nullptr)
+            gyroscope->setCalibration(offsetX, offsetY, offsetZ);
     }
 }
