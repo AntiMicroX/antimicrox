@@ -11,7 +11,7 @@ if(UPDATE_TRANSLATIONS)
     if(TRANS_REMOVE_OBSOLETE)
         message("getting rid of old text entries: \"lupdate -noobsolete\" ON")
         QT5_CREATE_TRANSLATION(antimicrox_QMFILES ${antimicrox_BASE_SOURCES}
-                ${antimicrox_BASE_FORMS} ${antimicrox_TRANSLATIONS} OPTIONS -Inobsolete)
+                ${antimicrox_BASE_FORMS} ${antimicrox_TRANSLATIONS} OPTIONS -no-obsolete)
     else()
         QT5_CREATE_TRANSLATION(antimicrox_QMFILES ${antimicrox_BASE_SOURCES}
                 ${antimicrox_BASE_FORMS} ${antimicrox_TRANSLATIONS})
@@ -21,7 +21,7 @@ else()
 endif(UPDATE_TRANSLATIONS)
 
 
-add_custom_target(updateqm DEPENDS ${antimicrox_QMFILES})
+add_custom_target(updateqm DEPENDS ${antimicrox_QMFILES} COMMENT "Update translation files based on source and ui files")
 install(FILES ${antimicrox_QMFILES} DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/antimicrox/translations")
 
 set_directory_properties(PROPERTIES CLEAN_NO_CUSTOM true)
