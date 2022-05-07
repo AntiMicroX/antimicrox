@@ -1102,19 +1102,11 @@ void MainWindow::openCalibration()
 
             if (device != nullptr)
             {
-                JoyControlStick *joystick = device->getActiveSetJoystick()->getJoyStick(0);
-                if (joystick != nullptr)
-                {
-                    QPointer<Calibration> calibration = new Calibration(device);
-                    calibration.data()->show();
+                QPointer<Calibration> calibration = new Calibration(device);
+                calibration.data()->show();
 
-                    if (calibration.isNull())
-                        calibration.clear();
-                } else
-                {
-                    QMessageBox::information(this, tr("Calibration is not available."),
-                                             tr("Selected device doesn't have any joystick to calibrate."));
-                }
+                if (calibration.isNull())
+                    calibration.clear();
             }
         }
     }

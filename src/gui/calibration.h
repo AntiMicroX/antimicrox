@@ -25,6 +25,7 @@
 #include <QElapsedTimer>
 
 class JoyControlStick;
+class JoySensor;
 class InputDevice;
 
 namespace Ui {
@@ -40,18 +41,21 @@ class Calibration : public QDialog
     {
         CAL_NONE,
         CAL_STICK,
+        CAL_GYROSCOPE,
 
         CAL_TYPE_MASK = 0x0000FFFF,
         CAL_INDEX_MASK = 0xFFFF0000,
         CAL_INDEX_POS = 16
     };
 
-    explicit Calibration(InputDevice *joystick, QWidget *parent = 0);
+    explicit Calibration(InputDevice *joystick, QDialog *parent = 0);
     ~Calibration();
 
   protected:
     void resetCalibrationValues();
     bool askConfirmation(QString message, bool confirmed);
+    void showGyroscopeCalibrationValues(bool offsetXvalid, double offsetX, bool offsetYvalid, double offsetY,
+                                        bool offsetZvalid, double offsetZ);
     void showStickCalibrationValues(bool offsetXvalid, double offsetX, bool gainXvalid, double gainX, bool offsetYvalid,
                                     double offsetY, bool gainYvalid, double gainY);
     void hideCalibrationData();
@@ -65,9 +69,10 @@ class Calibration : public QDialog
     bool m_calibrated;
     bool m_changed;
     JoyControlStick *m_stick;
+    JoySensor *m_sensor;
     InputDevice *m_joystick;
 
-    StatisticsEstimator m_offset[2];
+    StatisticsEstimator m_offset[3];
     StatisticsEstimator m_min[2];
     StatisticsEstimator m_max[2];
     PT1Filter m_filter[2];
@@ -85,6 +90,8 @@ class Calibration : public QDialog
 
   public slots:
     void saveSettings();
+    void startGyroscopeCalibration();
+    void startGyroscopeOffsetCalibration();
     void startStickOffsetCalibration();
     void startStickGainCalibration();
 
@@ -92,6 +99,7 @@ class Calibration : public QDialog
     void closeEvent(QCloseEvent *event) override;
     void resetSettings();
     void deviceSelectionChanged(int index);
+    void onGyroscopeData(float x, float y, float z);
     void onStickOffsetData(int x, int y);
     void onStickGainData(int x, int y);
 
