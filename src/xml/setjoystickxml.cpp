@@ -26,6 +26,7 @@
 #include "joybutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
+#include "joysensor.h"
 #include "vdpad.h"
 
 #include "setjoystick.h"
@@ -42,6 +43,10 @@ SetJoystickXml::SetJoystickXml(SetJoystick *setJoystick, QObject *parent)
 {
 }
 
+/**
+ * @brief Deserializes the given XML stream into a SetJoystick object
+ * @param[in] xml The XML stream to read from
+ */
 void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && (xml->name() == "set"))
@@ -97,6 +102,15 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
                 {
                     xml->skipCurrentElement();
                 }
+            } else if ((xml->name() == "sensor") && xml->isStartElement())
+            {
+                int type = xml->attributes().value("type").toString().toInt();
+                JoySensor *sensor = m_setJoystick->getSensor(static_cast<JoySensorType>(type));
+
+                if (sensor != nullptr)
+                    sensor->readConfig(xml);
+                else
+                    xml->skipCurrentElement();
             } else if ((xml->name() == "vdpad") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
@@ -123,6 +137,10 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
     }
 }
 
+/**
+ * @brief Serializes a SetJoystick object into the the given XML stream
+ * @param[in,out] xml The XML stream to write to
+ */
 void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
 {
     if (!m_setJoystick->isSetEmpty())
@@ -137,6 +155,10 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         QListIterator<JoyControlStick *> i(sticksList);
         while (i.hasNext())
             i.next()->writeConfig(xml);
+
+        auto sensors = m_setJoystick->getSensors();
+        for (const auto &sensor : sensors)
+            sensor->writeConfig(xml);
 
         QList<VDPad *> vdpadsList = m_setJoystick->getVdpads().values();
         QListIterator<VDPad *> vdpad(vdpadsList);

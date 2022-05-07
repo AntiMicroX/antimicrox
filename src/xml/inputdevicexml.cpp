@@ -18,7 +18,9 @@
 #include "inputdevicexml.h"
 #include "inputdevice.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
+#include "joybuttontypes/joysensorbutton.h"
 #include "joycontrolstick.h"
+#include "joysensor.h"
 #include "vdpad.h"
 
 #include "common.h"
@@ -34,6 +36,10 @@ InputDeviceXml::InputDeviceXml(InputDevice *inputDevice, QObject *parent)
 {
 }
 
+/**
+ * @brief Deserializes the given XML stream into an InputDevice object
+ * @param[in] xml The XML stream to read from
+ */
 void InputDeviceXml::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && (xml->name() == m_inputDevice->getXmlName()))
@@ -237,6 +243,14 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
                         {
                             m_inputDevice->setStickButtonName(index, buttonIndex, temp);
                         }
+                    } else if ((xml->name() == "sensorbuttonname") && xml->isStartElement())
+                    {
+                        int type = xml->attributes().value("type").toString().toInt();
+                        int direction = xml->attributes().value("button").toString().toInt();
+                        QString temp = xml->readElementText();
+                        if (!temp.isEmpty())
+                            m_inputDevice->setSensorButtonName(static_cast<JoySensorType>(type),
+                                                               static_cast<JoySensorDirection>(direction), temp);
                     } else if ((xml->name() == "dpadbuttonname") && xml->isStartElement())
                     {
                         int index = xml->attributes().value("index").toString().toInt();
@@ -279,6 +293,12 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
                         {
                             m_inputDevice->setStickName(index, temp);
                         }
+                    } else if ((xml->name() == "sensorname") && xml->isStartElement())
+                    {
+                        int type = xml->attributes().value("type").toString().toInt();
+                        QString temp = xml->readElementText();
+                        if (!temp.isEmpty())
+                            m_inputDevice->setSensorName(static_cast<JoySensorType>(type), temp);
                     } else if ((xml->name() == "dpadname") && xml->isStartElement())
                     {
                         int index = xml->attributes().value("index").toString().toInt();
@@ -320,6 +340,12 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
                         double offsetY = xml->attributes().value("offsety").toString().toDouble();
                         double gainY = xml->attributes().value("gainy").toString().toDouble();
                         m_inputDevice->applyStickCalibration(index, offsetX, gainX, offsetY, gainY);
+                    } else if ((xml->name() == "gyroscope"))
+                    {
+                        double x0 = xml->attributes().value("offsetx").toString().toDouble();
+                        double y0 = xml->attributes().value("offsety").toString().toDouble();
+                        double z0 = xml->attributes().value("offsetz").toString().toDouble();
+                        m_inputDevice->applyGyroscopeCalibration(x0, y0, z0);
                     }
                     xml->skipCurrentElement();
                     xml->readNextStartElement();
@@ -348,6 +374,10 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
     }
 }
 
+/**
+ * @brief Serializes an InputDevice object into the the given XML stream
+ * @param[in,out] xml The XML stream to write to
+ */
 void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
 {
     xml->writeStartElement(m_inputDevice->getXmlName());
@@ -569,6 +599,38 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
             }
         }
 
+        // write sensors
+        auto sensors = m_inputDevice->getActiveSetJoystick()->getSensors();
+        for (const auto &sensor : sensors)
+        {
+            if (sensor != nullptr)
+            {
+                if (!sensor->getSensorName().isEmpty())
+                {
+                    xml->writeStartElement("sensorname");
+                    xml->writeAttribute("type", QString::number(sensor->getType()));
+                    xml->writeCharacters(sensor->getSensorName());
+                    xml->writeEndElement();
+                }
+
+                // write button of each sensor
+                auto buttons = sensor->getButtons();
+                for (auto iter = buttons->cbegin(); iter != buttons->cend(); ++iter)
+                {
+                    JoySensorButton *button = iter.value();
+
+                    if (button && !button->getButtonName().isEmpty())
+                    {
+                        xml->writeStartElement("sensorbuttonname");
+                        xml->writeAttribute("type", QString::number(sensor->getType()));
+                        xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
+                        xml->writeCharacters(button->getButtonName());
+                        xml->writeEndElement();
+                    }
+                }
+            }
+        }
+
         // write Hats
         QListIterator<JoyDPad *> currJoyDPad(m_inputDevice->getActiveSetJoystick()->getHats().values());
 
@@ -668,6 +730,17 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
         xml->writeEndElement();
     }
 
+    JoySensor *gyroscope = m_inputDevice->getActiveSetJoystick()->getSensor(GYROSCOPE);
+    if (gyroscope != nullptr && gyroscope->isCalibrated())
+    {
+        double offsetX, offsetY, offsetZ;
+        gyroscope->getCalibration(&offsetX, &offsetY, &offsetZ);
+        xml->writeStartElement("gyroscope");
+        xml->writeAttribute("offsetx", QString::number(offsetX));
+        xml->writeAttribute("offsety", QString::number(offsetY));
+        xml->writeAttribute("offsetz", QString::number(offsetZ));
+        xml->writeEndElement();
+    }
     xml->writeEndElement(); // </calibration>
 
     xml->writeStartElement("sets");

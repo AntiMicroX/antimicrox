@@ -72,6 +72,11 @@ QString JoySensorButton::getPartialName(bool forceFullFormat, bool displayNames)
 }
 
 /**
+ * @brief Get the XML tag name of this button type
+ */
+QString JoySensorButton::getXmlName() { return GlobalVariables::JoySensorButton::xmlName; }
+
+/**
  * @brief Get the distance that an element is away from its assigned dead zone
  * @return Distance away from dead zone
  */

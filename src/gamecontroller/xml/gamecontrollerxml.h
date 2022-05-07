@@ -27,6 +27,11 @@ class QXmlStreamWriter;
 class JoyAxisButton;
 class JoyAxis;
 
+/**
+ * @brief GameController XML serialization/deserialization helper class
+ *  Reads data from the supplied GameController object and writes it to XML or
+ *  reads data from an QXmlStreamReader and writes it to the GameController object.
+ */
 class GameControllerXml : public InputDeviceXml
 {
     Q_OBJECT
@@ -48,6 +53,7 @@ class GameControllerXml : public InputDeviceXml
     void writeXmlForAxes(SetJoystick *tempSet, QXmlStreamWriter *xml);                    // GameControllerXml class
     void writeXmlAxBtn(JoyAxis *axis, JoyAxisButton *naxisbutton, QXmlStreamWriter *xml); // GameControllerXml class
     void writeXmlForSticks(SetJoystick *tempSet, QXmlStreamWriter *xml);                  // GameControllerXml class
+    void writeXmlForSensors(SetJoystick *tempSet, QXmlStreamWriter *xml);                 // GameControllerXml class
     void writeXmlForVDpad(QXmlStreamWriter *xml);                                         // GameControllerXml class
     void readXmlNamesShort(QString name, QXmlStreamReader *xml);                          // GameControllerXml class
     void readXmlNamesMiddle(QString name, QXmlStreamReader *xml);                         // GameControllerXml class

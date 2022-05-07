@@ -216,6 +216,10 @@ const QString GlobalVariables::JoyControlStickButton::xmlName = "stickbutton";
 
 const QString GlobalVariables::JoyControlStickModifierButton::xmlName = "stickmodifierbutton";
 
+// ---- JoySensorButton ---- //
+
+const QString GlobalVariables::JoySensorButton::xmlName = "sensorbutton";
+
 // ---- JoyDPadButton ---- //
 
 const QString GlobalVariables::JoyDPadButton::xmlName = "dpadbutton";

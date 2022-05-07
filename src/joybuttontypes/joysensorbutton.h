@@ -36,6 +36,7 @@ class JoySensorButton : public JoyGradientButton
 
     virtual int getRealJoyNumber() const override;
     virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const override;
+    virtual QString getXmlName() override;
 
     virtual double getDistanceFromDeadZone() override;
     virtual double getMouseDistanceFromDeadZone() override;

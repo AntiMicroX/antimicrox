@@ -25,6 +25,14 @@ class QXmlStreamWriter;
 class InputDevice;
 class AntiMicroSettings;
 
+/**
+ * @brief Generic InputDevice XML serialization/deserialization helper class
+ *  Reads data from the supplied InputDevice object and writes it to XML or
+ *  reads data from an QXmlStreamReader and writes it to the InputDevice object.
+ *
+ *  After serializing or deserializing the device data, it reads/writes
+ *  all SetJoysticks.
+ */
 class InputDeviceXml : public QObject
 {
     Q_OBJECT

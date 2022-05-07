@@ -35,6 +35,9 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 
+/**
+ * @brief Main XML config writer class
+ */
 XMLConfigReader::XMLConfigReader(QObject *parent)
     : QObject(parent)
 {
@@ -67,6 +70,9 @@ XMLConfigReader::~XMLConfigReader()
 
 void XMLConfigReader::setJoystick(InputDevice *joystick) { m_joystick = joystick; }
 
+/**
+ * @brief Sets the filename of the to be read XML file
+ */
 void XMLConfigReader::setFileName(QString filename)
 {
     QFile *temp = new QFile(filename);
@@ -81,6 +87,10 @@ void XMLConfigReader::setFileName(QString filename)
     }
 }
 
+/**
+ * @brief Read input device config from the current XML file into the InputDevice object
+ * @param[in,out] joystick InputDevice into which the config is read
+ */
 void XMLConfigReader::configJoystick(InputDevice *joystick)
 {
     m_joystick = joystick;
