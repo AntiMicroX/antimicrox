@@ -76,6 +76,11 @@ class JoySensor : public QObject
     static double radToDeg(double value);
     static double degToRad(double value);
 
+    bool isCalibrated() const;
+    void resetCalibration();
+    virtual void getCalibration(double *offsetX, double *offsetY, double *offsetZ) const = 0;
+    virtual void setCalibration(double offsetX, double offsetY, double offsetZ) = 0;
+
     QHash<JoySensorDirection, JoySensorButton *> *getButtons();
     JoySensorButton *getDirectionButton(JoySensorDirection direction);
 
@@ -106,6 +111,7 @@ class JoySensor : public QObject
   protected:
     void resetButtons();
     virtual void populateButtons() = 0;
+    virtual void applyCalibration() = 0;
 
     JoySensorType m_type;
     double m_dead_zone;
@@ -115,6 +121,8 @@ class JoySensor : public QObject
 
     float m_current_value[3];
     float m_pending_value[3];
+    bool m_calibrated;
+    double m_calibration_value[3];
     bool m_pending_event;
     bool m_pending_ignore_sets;
     int m_originset;

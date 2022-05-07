@@ -53,6 +53,33 @@ float JoyGyroscopeSensor::getZCoordinate() const { return radToDeg(m_current_val
 QString JoyGyroscopeSensor::sensorTypeName() const { return tr("Gyroscope"); }
 
 /**
+ * @brief Reads the calibration values of the sensor
+ * @param[out] offsetX Offset value for X axis
+ * @param[out] offsetY Offset value for Y axis
+ * @param[out] offsetZ Offset value for Z axis
+ */
+void JoyGyroscopeSensor::getCalibration(double *offsetX, double *offsetY, double *offsetZ) const
+{
+    *offsetX = m_calibration_value[0];
+    *offsetY = m_calibration_value[1];
+    *offsetZ = m_calibration_value[2];
+}
+
+/**
+ * @brief Sets the sensor calibration values and sets the calibration flag.
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] offsetZ Offset value for Z axis
+ */
+void JoyGyroscopeSensor::setCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    m_calibration_value[0] = offsetX;
+    m_calibration_value[1] = offsetY;
+    m_calibration_value[2] = offsetZ;
+    m_calibrated = true;
+}
+
+/**
  * @brief Resets internal variables back to default
  */
 void JoyGyroscopeSensor::reset()
@@ -84,4 +111,14 @@ void JoyGyroscopeSensor::populateButtons()
 
     button = new JoyGyroscopeButton(this, SENSOR_BWD, m_originset, getParentSet(), this);
     m_buttons.insert(SENSOR_BWD, button);
+}
+
+/**
+ * @brief Applies calibration to queued input values
+ */
+void JoyGyroscopeSensor::applyCalibration()
+{
+    m_pending_value[0] -= m_calibration_value[0];
+    m_pending_value[1] -= m_calibration_value[1];
+    m_pending_value[2] -= m_calibration_value[2];
 }

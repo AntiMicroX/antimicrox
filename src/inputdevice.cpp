@@ -1654,3 +1654,21 @@ void InputDevice::applyStickCalibration(int index, double offsetX, double gainX,
             stick->setCalibration(offsetX, gainX, offsetY, gainY);
     }
 }
+
+/**
+ * @brief Applies calibration to the specified gyroscope in all sets
+ *  See JoySensor::setCalibration
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] offsetZ Offset value for Z axis
+ */
+void InputDevice::applyGyroscopeCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    for (auto iter = joystick_sets.begin(); iter != joystick_sets.end(); ++iter)
+    {
+        SetJoystick *set = iter.value();
+        JoySensor *gyroscope = set->getSensor(GYROSCOPE);
+        if (gyroscope != nullptr)
+            gyroscope->setCalibration(offsetX, offsetY, offsetZ);
+    }
+}

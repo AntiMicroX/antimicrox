@@ -53,6 +53,21 @@ float JoyAccelerometerSensor::getZCoordinate() const { return m_current_value[2]
 QString JoyAccelerometerSensor::sensorTypeName() const { return tr("Accelerometer"); }
 
 /**
+ * @brief Reads the calibration values of the sensor
+ */
+void JoyAccelerometerSensor::getCalibration(double *offsetX, double *offsetY, double *offsetZ) const
+{
+    // XXX: this is a no-op for accelerometer
+}
+
+/**
+ * @brief Sets the sensor calibration values and sets the calibration flag.
+ */
+void JoyAccelerometerSensor::setCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    // XXX: this is a no-op for accelerometer
+}
+/**
  * @brief Resets internal variables back to default
  */
 void JoyAccelerometerSensor::reset()
@@ -81,4 +96,12 @@ void JoyAccelerometerSensor::populateButtons()
 
     button = new JoyAccelerometerButton(this, SENSOR_BWD, m_originset, getParentSet(), this);
     m_buttons.insert(SENSOR_BWD, button);
+}
+
+/**
+ * @brief Applies calibration to queued input values
+ */
+void JoyAccelerometerSensor::applyCalibration()
+{
+    // XXX: This is a no-op for accelerometer
 }
