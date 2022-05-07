@@ -35,6 +35,9 @@ JoySensor::JoySensor(JoySensorType type, int originset, SetJoystick *parent_set,
     , m_parent_set(parent_set)
 {
     reset();
+
+    m_delay_timer.setSingleShot(true);
+    connect(&m_delay_timer, &QTimer::timeout, this, &JoySensor::delayTimerExpired);
 }
 
 JoySensor::~JoySensor() {}
@@ -671,6 +674,12 @@ void JoySensor::writeConfig(QXmlStreamWriter *xml) const
  * @return Pointer to the set that a sensor belongs to.
  */
 SetJoystick *JoySensor::getParentSet() const { return m_parent_set; }
+
+/**
+ * @brief Slot called when m_delay_timer has timed out. The method will
+ *     call createDeskEvent.
+ */
+void JoySensor::delayTimerExpired() {}
 
 /**
  * @brief Reset all the properties of the sensor direction buttons.

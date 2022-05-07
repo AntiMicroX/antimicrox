@@ -19,6 +19,7 @@
 
 #include <QHash>
 #include <QObject>
+#include <QTimer>
 
 #include "joysensordirection.h"
 #include "joysensortype.h"
@@ -118,6 +119,9 @@ class JoySensor : public QObject
     void setSensorName(QString tempName);
     void establishPropertyUpdatedConnection();
 
+  private slots:
+    void delayTimerExpired();
+
   protected:
     void resetButtons();
     virtual void populateButtons() = 0;
@@ -138,6 +142,7 @@ class JoySensor : public QObject
     int m_originset;
 
     QString m_sensor_name;
+    QTimer m_delay_timer;
 
     JoySensorDirection m_current_direction;
     SetJoystick *m_parent_set;
