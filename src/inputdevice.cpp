@@ -23,6 +23,7 @@
 #include "globalvariables.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joydpadbutton.h"
+#include "joybuttontypes/joysensorbutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
 #include "joysensor.h"
@@ -829,6 +830,33 @@ void InputDevice::setStickButtonName(int stickIndex, int buttonIndex, QString te
     }
 }
 
+/**
+ * @brief Sets the name of a mapped sensor button in all sets
+ *  Used during XML loading.
+ * @param type The sensor type which has the to be renamed button
+ * @param direction The direction of the to be renamed button
+ * @param tempName The new name
+ */
+void InputDevice::setSensorButtonName(JoySensorType type, JoySensorDirection direction, QString tempName)
+{
+    auto sets = getJoystick_sets();
+    for (auto iter = sets.begin(); iter != sets.end(); ++iter)
+    {
+        SetJoystick *tempSet = iter.value();
+        disconnect(tempSet, &SetJoystick::setStickButtonNameChange, this, &InputDevice::updateSetStickButtonNames);
+        JoySensor *sensor = tempSet->getSensor(type);
+
+        if (sensor != nullptr)
+        {
+            JoySensorButton *button = sensor->getDirectionButton(direction);
+
+            if (button != nullptr)
+                button->setButtonName(tempName);
+        }
+
+        connect(tempSet, &SetJoystick::setSensorButtonNameChange, this, &InputDevice::updateSetSensorButtonNames);
+    }
+}
 void InputDevice::setDPadButtonName(int dpadIndex, int buttonIndex, QString tempName)
 {
     QHashIterator<int, SetJoystick *> iter(getJoystick_sets());
@@ -907,6 +935,28 @@ void InputDevice::setStickName(int stickIndex, QString tempName)
     }
 }
 
+/**
+ * @brief Sets the name of a sensor in all sets
+ *  Used during XML loading.
+ * @param type The sensor type to be renamed
+ * @param tempName The new name
+ */
+void InputDevice::setSensorName(JoySensorType type, QString tempName)
+{
+    auto sets = getJoystick_sets();
+    for (auto iter = sets.begin(); iter != sets.end(); ++iter)
+    {
+        SetJoystick *tempSet = iter.value();
+        disconnect(tempSet, &SetJoystick::setSensorNameChange, this, &InputDevice::updateSetSensorNames);
+        JoySensor *sensor = tempSet->getSensor(type);
+
+        if (sensor != nullptr)
+            sensor->setSensorName(tempName);
+
+        connect(tempSet, &SetJoystick::setSensorNameChange, this, &InputDevice::updateSetSensorNames);
+    }
+}
+
 void InputDevice::setDPadName(int dpadIndex, QString tempName)
 {
     QHashIterator<int, SetJoystick *> iter(getJoystick_sets());
@@ -980,6 +1030,24 @@ void InputDevice::updateSetStickButtonNames(int stickIndex, int buttonIndex)
     }
 }
 
+/**
+ * @brief Rename mapped sensor button in all sets to the name in the active set
+ * @param type The sensor type which has the to be renamed button
+ * @param direction The direction of the to be renamed button
+ */
+void InputDevice::updateSetSensorButtonNames(JoySensorType type, JoySensorDirection direction)
+{
+    JoySensor *sensor = getActiveSetJoystick()->getSensor(type);
+
+    if (sensor != nullptr)
+    {
+        JoySensorButton *button = sensor->getDirectionButton(direction);
+
+        if (button != nullptr)
+            setSensorButtonName(type, direction, button->getButtonName());
+    }
+}
+
 void InputDevice::updateSetDPadButtonNames(int dpadIndex, int buttonIndex)
 {
     JoyDPad *dpad = getActiveSetJoystick()->getJoyDPad(dpadIndex);
@@ -1020,6 +1088,18 @@ void InputDevice::updateSetStickNames(int stickIndex)
 
     if (stick != nullptr)
         setStickName(stickIndex, stick->getStickName());
+}
+
+/**
+ * @brief Rename sensor in all sets to the name in the current set
+ * @param type The sensor to rename
+ */
+void InputDevice::updateSetSensorNames(JoySensorType type)
+{
+    JoySensor *sensor = getActiveSetJoystick()->getSensor(type);
+
+    if (sensor != nullptr)
+        setSensorName(type, sensor->getSensorName());
 }
 
 void InputDevice::updateSetDPadNames(int dpadIndex)
