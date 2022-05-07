@@ -18,6 +18,7 @@
 #include "joysensorpushbutton.h"
 
 #include "joysensor.h"
+#include "joysensorcontextmenu.h"
 
 #include <QDebug>
 
@@ -78,7 +79,16 @@ void JoySensorPushButton::enableFlashes()
     connect(m_sensor, &JoySensor::released, this, &JoySensorPushButton::unflash, Qt::QueuedConnection);
 }
 
-void JoySensorPushButton::showContextMenu(const QPoint &point) {}
+/**
+ * @brief Shows sensor context menu
+ */
+void JoySensorPushButton::showContextMenu(const QPoint &point)
+{
+    QPoint globalPos = mapToGlobal(point);
+    JoySensorContextMenu *contextMenu = new JoySensorContextMenu(m_sensor, this);
+    contextMenu->buildMenu();
+    contextMenu->popup(globalPos);
+}
 
 /**
  * @brief Highlights the button when sensor is not centered
