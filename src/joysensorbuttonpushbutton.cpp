@@ -96,7 +96,16 @@ QString JoySensorButtonPushButton::generateLabel()
     return temp;
 }
 
-void JoySensorButtonPushButton::showContextMenu(const QPoint &point) {}
+/**
+ * @brief Shows sensor context menu
+ */
+void JoySensorButtonPushButton::showContextMenu(const QPoint &point)
+{
+    QPoint globalPos = mapToGlobal(point);
+    JoyButtonContextMenu *contextMenu = new JoyButtonContextMenu(m_button, this);
+    contextMenu->buildMenu();
+    contextMenu->popup(globalPos);
+}
 
 /**
  * @brief Highlights the button when mapped button is active

@@ -195,6 +195,7 @@ set(antimicrox_SOURCES
         src/joygyroscopesensor.cpp
         src/joysensor.cpp
         src/joysensorbuttonpushbutton.cpp
+        src/joysensorcontextmenu.cpp
         src/joysensorfactory.cpp
         src/joysensorpreset.cpp
         src/joysensorpushbutton.cpp
@@ -324,6 +325,7 @@ set(antimicrox_HEADERS
         src/joygyroscopesensor.h
         src/joysensor.h
         src/joysensorbuttonpushbutton.h
+        src/joysensorcontextmenu.h
         src/joysensordirection.h
         src/joysensorfactory.h
         src/joysensorpreset.h

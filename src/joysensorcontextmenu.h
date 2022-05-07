@@ -1,6 +1,5 @@
 /* antimicrox Gamepad to KB+M event mapper
- * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
- * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2022 Max Maisel <max.maisel@posteo.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,41 +14,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
-#ifndef JOYCONTROLSTICKCONTEXTMENU_H
-#define JOYCONTROLSTICKCONTEXTMENU_H
-
-#include "uihelpers/joycontrolstickcontextmenuhelper.h"
+#include "joysensorpreset.h"
 
 #include <QMenu>
 
-class JoyControlStick;
+class JoySensor;
 class QWidget;
 
 /**
- * @brief The control stick context menu widget used by StickPushButtonGroup
+ * @brief The control stick context menu widget used by SensorPushButtonGroup
  */
-class JoyControlStickContextMenu : public QMenu
+class JoySensorContextMenu : public QMenu
 {
     Q_OBJECT
 
   public:
-    explicit JoyControlStickContextMenu(JoyControlStick *stick, QWidget *parent = nullptr);
+    explicit JoySensorContextMenu(JoySensor *sensor, QWidget *parent = nullptr);
     void buildMenu();
 
-  protected:
-    int getPresetIndex();
-
   private slots:
-    void setStickPreset(QAction *action);
-    void setStickMode(QAction *action);
     void openMouseSettingsDialog();
 
   private:
-    JoyControlStickContextMenuHelper &getHelperLocal();
-
-    JoyControlStick *stick;
-    JoyControlStickContextMenuHelper helper;
+    JoySensor *m_sensor;
+    JoySensorPreset m_preset;
 };
-
-#endif // JOYCONTROLSTICKCONTEXTMENU_H
