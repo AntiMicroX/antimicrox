@@ -23,6 +23,10 @@
 
 class JoyButtonSlot;
 
+/**
+ * @brief Some helper methods which run in the IO thread and are called
+ *   from the GUI thread.
+ */
 class JoyControlStickEditDialogHelper : public QObject
 {
     Q_OBJECT

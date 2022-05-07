@@ -1,6 +1,5 @@
 /* antimicrox Gamepad to KB+M event mapper
- * Copyright (C) 2015 Travis Nickles <nickles.travis@gmail.com>
- * Copyright (C) 2020 Jagoda Górska <juliagoda.pl@protonmail>
+ * Copyright (C) 2022 Max Maisel <max.maisel@posteo.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,35 +14,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
-#ifndef JOYCONTROLSTICKCONTEXTMENUHELPER_H
-#define JOYCONTROLSTICKCONTEXTMENUHELPER_H
+#include "joysensordirection.h"
 
-#include "joycontrolstick.h"
+#include <QHash>
+#include <QObject>
 
 class JoyButtonSlot;
+class JoySensor;
 
 /**
  * @brief Some helper methods which run in the IO thread and are called
  *   from the GUI thread.
  */
-class JoyControlStickContextMenuHelper : public QObject
+class JoySensorIoThreadHelper : public QObject
 {
     Q_OBJECT
 
   public:
-    explicit JoyControlStickContextMenuHelper(JoyControlStick *stick, QObject *parent = nullptr);
-    void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> *tempSlots);
+    explicit JoySensorIoThreadHelper(JoySensor *sensor, QObject *parent = nullptr);
+    void setPendingSlots(QHash<JoySensorDirection, JoyButtonSlot *> *tempSlots);
     void clearPendingSlots();
-    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> const &getPendingSlots();
 
   public slots:
     void setFromPendingSlots();
     void clearButtonsSlotsEventReset();
 
   private:
-    JoyControlStick *stick;
-    QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> pendingSlots;
+    JoySensor *m_sensor;
+    QHash<JoySensorDirection, JoyButtonSlot *> m_pending_slots;
 };
-
-#endif // JOYCONTROLSTICKCONTEXTMENUHELPER_H

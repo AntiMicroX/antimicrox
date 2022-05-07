@@ -77,6 +77,7 @@ class JoySensor : public QObject
     static double degToRad(double value);
 
     QHash<JoySensorDirection, JoySensorButton *> *getButtons();
+    JoySensorButton *getDirectionButton(JoySensorDirection direction);
 
     bool isDefault() const;
 

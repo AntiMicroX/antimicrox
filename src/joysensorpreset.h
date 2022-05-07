@@ -16,43 +16,37 @@
  */
 #pragma once
 
-#include "joysensorpreset.h"
-
-#include <QDialog>
-
-class JoySensor;
-class QWidget;
-
-namespace Ui {
-class JoySensorEditDialog;
-}
+#include "uihelpers/joysensoriothreadhelper.h"
 
 /**
- * @brief The configuration dialog for a JoySensor itself
+ * @brief Defines presets for a sensor
  */
-class JoySensorEditDialog : public QDialog
+class JoySensorPreset : public QObject
 {
     Q_OBJECT
 
   public:
-    explicit JoySensorEditDialog(JoySensor *sensor, QWidget *parent = nullptr);
-    ~JoySensorEditDialog();
+    enum Preset
+    {
+        PRESET_NONE,
+        PRESET_MOUSE,
+        PRESET_MOUSE_INV_H,
+        PRESET_MOUSE_INV_V,
+        PRESET_MOUSE_INV_HV,
+        PRESET_ARROWS,
+        PRESET_WASD,
+        PRESET_NUMPAD
+    };
+
+    explicit JoySensorPreset(JoySensor *sensor, QObject *parent = nullptr);
+
+    QList<Preset> getAvailablePresets();
+    Preset currentPreset();
+    QString getPresetName(Preset);
+    void setSensorPreset(Preset);
+    JoySensorIoThreadHelper &getHelper();
 
   private:
-    Ui::JoySensorEditDialog *m_ui;
-    bool m_keypad_unlocked;
-
     JoySensor *m_sensor;
-    JoySensorPreset m_preset;
-
-  private slots:
-    void implementPresets(int index);
-
-    void openMouseSettingsDialog();
-    void enableMouseSettingButton();
-    void updateSensorStats(float x, float y, float z);
-    void updateWindowTitleSensorName();
-    void updateSensorDelaySpinBox(int value);
-    void updateSensorDelaySlider(double value);
-    void setSensorDelay(double value);
+    JoySensorIoThreadHelper m_helper;
 };

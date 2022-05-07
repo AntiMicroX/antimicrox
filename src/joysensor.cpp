@@ -297,6 +297,15 @@ double JoySensor::degToRad(double value) { return value * M_PI / 180; }
  */
 QHash<JoySensorDirection, JoySensorButton *> *JoySensor::getButtons() { return &m_buttons; }
 
+/**
+ * @brief Get a pointer to the sensor direction button for the desired
+ *     direction.
+ * @param Value of the direction of the sensor.
+ * @return Pointer to the sensor direction button for the sensor
+ *     direction.
+ */
+JoySensorButton *JoySensor::getDirectionButton(JoySensorDirection direction) { return m_buttons.value(direction); }
+
 bool JoySensor::isDefault() const { return false; }
 
 /**
