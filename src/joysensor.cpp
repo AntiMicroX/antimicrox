@@ -209,6 +209,102 @@ double JoySensor::getDistanceFromDeadZone(double x, double y, double z) const
 }
 
 /**
+ * @brief Get current X distance of the sensor past the assigned
+ *   dead zone.
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::calculateXDistanceFromDeadZone() const
+{
+    return calculateXDistanceFromDeadZone(m_current_value[0], m_current_value[1], m_current_value[2]);
+}
+
+/**
+ * @brief Get current X distance of the sensor past the assigned
+ *   dead zone based on the passed X, Y and Z axes values associated
+ *   with the sensor. The algorithm checks if an axis parallel line
+ *   through the current sensor position intersects with the dead zone
+ *   sphere and subtracts the line segment within the sphere from the
+ *   distance. The resulting value is not normalized because there is no
+ *   practical maximum value for a sensor as you can always move it a bit faster.
+ * @param X axis value
+ * @param Y axis value
+ * @param Z axis value
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::calculateXDistanceFromDeadZone(double x, double y, double z) const
+{
+    double discriminant = m_dead_zone * m_dead_zone - y * y - z * z;
+    if (discriminant <= 0)
+        return std::min(abs(x), m_max_zone);
+    else
+        return std::min(abs(x) - sqrt(discriminant), m_max_zone);
+}
+
+/**
+ * @brief Get current Y distance of the sensor past the assigned
+ *   dead zone.
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::calculateYDistanceFromDeadZone() const
+{
+    return calculateYDistanceFromDeadZone(m_current_value[0], m_current_value[1], m_current_value[2]);
+}
+
+/**
+ * @brief Get current Y distance of the sensor past the assigned
+ *   dead zone based on the passed X, Y and Z axes values associated
+ *   with the sensor. The algorithm checks if an axis parallel line
+ *   through the current sensor position intersects with the dead zone
+ *   sphere and subtracts the line segment within the sphere from the
+ *   distance. The resulting value is not normalized because there is no
+ *   practical maximum value for a sensor as you can always move it a bit faster.
+ * @param X axis value
+ * @param Y axis value
+ * @param Z axis value
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::calculateYDistanceFromDeadZone(double x, double y, double z) const
+{
+    double discriminant = m_dead_zone * m_dead_zone - x * x - z * z;
+    if (discriminant <= 0)
+        return std::min(abs(y), m_max_zone);
+    else
+        return std::min(abs(y) - sqrt(discriminant), m_max_zone);
+}
+
+/**
+ * @brief Get current Z distance of the sensor past the assigned
+ *   dead zone.
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::calculateZDistanceFromDeadZone() const
+{
+    return calculateZDistanceFromDeadZone(m_current_value[0], m_current_value[1], m_current_value[2]);
+}
+
+/**
+ * @brief Get current Z distance of the sensor past the assigned
+ *   dead zone based on the passed X, Y and Z axes values associated
+ *   with the sensor. The algorithm checks if an axis parallel line
+ *   through the current sensor position intersects with the dead zone
+ *   sphere and subtracts the line segment within the sphere from the
+ *   distance. The resulting value is not normalized because there is no
+ *   practical maximum value for a sensor as you can always move it a bit faster.
+ * @param X axis value
+ * @param Y axis value
+ * @param Z axis value
+ * @return Distance between 0 and max zone in radiants.
+ */
+double JoySensor::calculateZDistanceFromDeadZone(double x, double y, double z) const
+{
+    double discriminant = m_dead_zone * m_dead_zone - x * x - y * y;
+    if (discriminant <= 0)
+        return std::min(abs(z), m_max_zone);
+    else
+        return std::min(abs(z) - sqrt(discriminant), m_max_zone);
+}
+
+/**
  * @brief Get the vector length of the sensor
  * @return Vector length
  */
@@ -286,7 +382,39 @@ double JoySensor::calculateRoll(double x, double y, double z) const
     return roll;
 }
 
-double JoySensor::calculateDirectionalDistance(JoySensorDirection direction) const { return 0; }
+/**
+ * @brief Used to calculate the distance value that should be used by
+ *   the JoyButton in the given direction.
+ * @param direction
+ * @return Distance factor that should be used by JoySensorButton
+ */
+double JoySensor::calculateDirectionalDistance(JoySensorDirection direction) const
+{
+    double finalDistance = 0.0;
+
+    switch (direction)
+    {
+    case JoySensorDirection::SENSOR_LEFT:
+    case JoySensorDirection::SENSOR_RIGHT:
+        // Yaw
+        finalDistance = calculateZDistanceFromDeadZone();
+        break;
+    case JoySensorDirection::SENSOR_UP:
+    case JoySensorDirection::SENSOR_DOWN:
+        // Pitch
+        finalDistance = calculateXDistanceFromDeadZone();
+        break;
+    case JoySensorDirection::SENSOR_FWD:
+    case JoySensorDirection::SENSOR_BWD:
+        // Roll
+        finalDistance = calculateYDistanceFromDeadZone();
+        break;
+    default:
+        break;
+    }
+
+    return finalDistance;
+}
 
 /**
  * @brief Utility function which converts a given value from radians to degree.
