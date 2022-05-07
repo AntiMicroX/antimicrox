@@ -22,6 +22,7 @@
 #include "globalvariables.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
+#include "joysensor.h"
 
 #include <QCloseEvent>
 #include <QDebug>
@@ -34,7 +35,7 @@ const double Calibration::STICK_CAL_TAU = 0.045;
 const int Calibration::STICK_RATE_SAMPLES = 100;
 const int Calibration::CAL_TIMEOUT = 30;
 
-Calibration::Calibration(InputDevice *joystick, QWidget *parent)
+Calibration::Calibration(InputDevice *joystick, QDialog *parent)
     : QDialog(parent)
     , m_ui(new Ui::Calibration)
     , m_type(CAL_NONE)
@@ -59,6 +60,12 @@ Calibration::Calibration(InputDevice *joystick, QWidget *parent)
     for (auto iter = dropdown_sticks.cbegin(); iter != dropdown_sticks.cend(); ++iter)
     {
         m_ui->deviceComboBox->addItem(iter.key(), QVariant(int(iter.value())));
+        ++device_count;
+    }
+
+    if (m_joystick->getActiveSetJoystick()->hasSensor(GYROSCOPE))
+    {
+        m_ui->deviceComboBox->addItem(tr("Gyroscope"), QVariant(int(CAL_GYROSCOPE)));
         ++device_count;
     }
 
@@ -125,6 +132,26 @@ void Calibration::resetSettings()
     default:
         break;
     }
+}
+
+/**
+ * @brief Shows the gyroscope offset calibration values to the user.
+ */
+void Calibration::showGyroscopeCalibrationValues(bool offsetXvalid, double offsetX, bool offsetYvalid, double offsetY,
+                                                 bool offsetZvalid, double offsetZ)
+{
+    QPalette paletteBlack = m_ui->offsetXValue->palette();
+    paletteBlack.setColor(m_ui->offsetXValue->foregroundRole(), Qt::black);
+    QPalette paletteRed = m_ui->offsetXValue->palette();
+    paletteRed.setColor(m_ui->offsetXValue->foregroundRole(), Qt::red);
+
+    m_ui->offsetXValue->setPalette(offsetXvalid ? paletteBlack : paletteRed);
+    m_ui->offsetYValue->setPalette(offsetYvalid ? paletteBlack : paletteRed);
+    m_ui->offsetZValue->setPalette(offsetZvalid ? paletteBlack : paletteRed);
+
+    m_ui->offsetXValue->setText(QString::number(JoySensor::radToDeg(offsetX)));
+    m_ui->offsetYValue->setText(QString::number(JoySensor::radToDeg(offsetY)));
+    m_ui->offsetZValue->setText(QString::number(JoySensor::radToDeg(offsetZ)));
 }
 
 /**
@@ -228,6 +255,45 @@ void Calibration::selectTypeIndex(unsigned int type_index)
         connect(m_ui->startBtn, &QPushButton::clicked, this, &Calibration::startStickOffsetCalibration);
         m_ui->startBtn->setEnabled(true);
         m_ui->resetBtn->setEnabled(true);
+    } else if (m_type == CAL_GYROSCOPE)
+    {
+        m_ui->statusStack->setCurrentIndex(0);
+        m_sensor = m_joystick->getActiveSetJoystick()->getSensor(GYROSCOPE);
+        m_calibrated = m_sensor->isCalibrated();
+
+        if (m_calibrated)
+        {
+            double offsetX, offsetY, offsetZ;
+            m_sensor->getCalibration(&offsetX, &offsetY, &offsetZ);
+            showGyroscopeCalibrationValues(true, offsetX, true, offsetY, true, offsetZ);
+        } else
+        {
+            showGyroscopeCalibrationValues(false, 0.0, false, 0.0, false, 0.0);
+        }
+
+        m_ui->steps->setText(tr("Gyroscope calibration corrects the sensor offset. "
+                                "This prevents cursor movement while the controller is at rest."));
+
+        m_ui->xAxisLabel->setVisible(true);
+        m_ui->yAxisLabel->setVisible(true);
+        m_ui->zAxisLabel->setVisible(true);
+        m_ui->offsetXLabel->setVisible(true);
+        m_ui->offsetYLabel->setVisible(true);
+        m_ui->offsetZLabel->setVisible(true);
+        m_ui->offsetXValue->setVisible(true);
+        m_ui->offsetYValue->setVisible(true);
+        m_ui->offsetZValue->setVisible(true);
+
+        m_ui->resetBtn->setEnabled(m_calibrated);
+        m_ui->saveBtn->setEnabled(false);
+
+        m_ui->sensorStatusBoxWidget->setFocus();
+        m_ui->sensorStatusBoxWidget->setSensor(m_sensor);
+        m_ui->sensorStatusBoxWidget->update();
+
+        connect(m_ui->startBtn, &QPushButton::clicked, this, &Calibration::startGyroscopeCalibration);
+        m_ui->startBtn->setEnabled(true);
+        m_ui->resetBtn->setEnabled(true);
     }
 }
 
@@ -271,6 +337,15 @@ void Calibration::resetCalibrationValues()
         m_ui->resetBtn->setEnabled(false);
         m_ui->stickStatusBoxWidget->update();
         showStickCalibrationValues(false, 0, false, 0, false, 0, false, 0);
+    } else if (m_type == CAL_GYROSCOPE && m_sensor != nullptr)
+    {
+        m_sensor->resetCalibration();
+        m_calibrated = false;
+
+        m_ui->saveBtn->setEnabled(false);
+        m_ui->resetBtn->setEnabled(false);
+        m_ui->sensorStatusBoxWidget->update();
+        showGyroscopeCalibrationValues(false, 0, false, 0, false, 0);
     }
     update();
 }
@@ -320,6 +395,45 @@ void Calibration::deviceSelectionChanged(int index)
         m_ui->deviceComboBox->blockSignals(true);
         m_ui->deviceComboBox->setCurrentIndex(index);
         m_ui->deviceComboBox->blockSignals(false);
+    }
+}
+
+/**
+ * @brief Gyroscope data event handler. Performs gyroscope offset estimation
+ *  and stops itself if the value was found or the process timed out.
+ *
+ * The gyroscope is only offset calibrated since gain calibration would require
+ * an accurate turntable to apply a known rotation rate on all axes.
+ * The offset is determined by calculating the mean output value at rest.
+ */
+void Calibration::onGyroscopeData(float x, float y, float z)
+{
+    m_offset[0].process(x);
+    m_offset[1].process(y);
+    m_offset[2].process(z);
+
+    bool xvalid = m_offset[0].calculateRelativeErrorSq() < CAL_ACCURACY_SQ && m_offset[0].getCount() > CAL_MIN_SAMPLES;
+    bool yvalid = m_offset[1].calculateRelativeErrorSq() < CAL_ACCURACY_SQ && m_offset[1].getCount() > CAL_MIN_SAMPLES;
+    bool zvalid = m_offset[2].calculateRelativeErrorSq() < CAL_ACCURACY_SQ && m_offset[2].getCount() > CAL_MIN_SAMPLES;
+
+    showGyroscopeCalibrationValues(xvalid, m_offset[0].getMean(), yvalid, m_offset[1].getMean(), zvalid,
+                                   m_offset[2].getMean());
+
+    // Abort when end time is reached to avoid infinite loop
+    // in case of noisy sensors.
+
+    if ((xvalid && yvalid && zvalid) || (QDateTime::currentDateTime() > m_end_time))
+    {
+        m_changed = true;
+        disconnect(m_sensor, &JoySensor::moved, this, &Calibration::onGyroscopeData);
+        disconnect(m_ui->startBtn, &QPushButton::clicked, this, nullptr);
+        connect(m_ui->startBtn, &QPushButton::clicked, this, &Calibration::startGyroscopeCalibration);
+        m_ui->steps->setText(tr("Calibration completed."));
+        m_ui->startBtn->setText(tr("Start calibration"));
+        m_ui->startBtn->setEnabled(true);
+        m_ui->saveBtn->setEnabled(true);
+        m_ui->deviceComboBox->setEnabled(true);
+        update();
     }
 }
 
@@ -464,6 +578,9 @@ void Calibration::saveSettings()
 
         m_joystick->applyStickCalibration(m_index, offsetX, gainX, offsetY, gainY);
         showStickCalibrationValues(true, offsetX, true, gainX, true, offsetY, true, gainY);
+    } else if (m_type == CAL_GYROSCOPE)
+    {
+        m_joystick->applyGyroscopeCalibration(m_offset[0].getMean(), m_offset[1].getMean(), m_offset[2].getMean());
     }
     m_changed = false;
     m_calibrated = true;
@@ -473,6 +590,54 @@ void Calibration::saveSettings()
 
 /**
  * @brief Shows user instructions for gyroscope calibration and initializes estimators.
+ */
+void Calibration::startGyroscopeCalibration()
+{
+    if (m_sensor == nullptr)
+        return;
+
+    if (askConfirmation(tr("Calibration was saved for the preset. Do you really want to reset settings?"), !m_calibrated))
+    {
+        m_offset[0].reset();
+        m_offset[1].reset();
+        m_offset[2].reset();
+
+        m_sensor->resetCalibration();
+        m_calibrated = false;
+
+        m_ui->steps->setText(tr("Place the controller at rest, e.g. put it on the desk, "
+                                "and press continue."));
+        setWindowTitle(tr("Calibrating gyroscope"));
+        m_ui->startBtn->setText(tr("Continue calibration"));
+        update();
+
+        m_ui->resetBtn->setEnabled(false);
+        m_ui->deviceComboBox->setEnabled(false);
+        disconnect(m_ui->startBtn, &QPushButton::clicked, this, nullptr);
+        connect(m_ui->startBtn, &QPushButton::clicked, this, &Calibration::startGyroscopeOffsetCalibration);
+    }
+}
+
+/**
+ * @brief Show calibration message to the user and enable gyroscope data event handler.
+ */
+void Calibration::startGyroscopeOffsetCalibration()
+{
+    if (m_sensor != nullptr)
+    {
+        m_end_time = QDateTime::currentDateTime().addSecs(CAL_TIMEOUT);
+        m_ui->steps->setText(tr("Collecting gyroscope data...\nThis can take up to %1 seconds.").arg(CAL_TIMEOUT));
+        connect(m_sensor, &JoySensor::moved, this, &Calibration::onGyroscopeData);
+        update();
+
+        m_ui->startBtn->setEnabled(false);
+        disconnect(m_ui->startBtn, &QPushButton::clicked, this, nullptr);
+    }
+}
+
+/**
+ * @brief Shows user instructions for stick offset calibration, initializes estimators
+ *  and connects stick data event handlers.
  */
 void Calibration::startStickOffsetCalibration()
 {
