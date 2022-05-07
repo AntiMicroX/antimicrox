@@ -38,6 +38,7 @@ JoySensorEditDialog::JoySensorEditDialog(JoySensor *sensor, QWidget *parent)
     : QDialog(parent, Qt::Window)
     , m_ui(new Ui::JoySensorEditDialog)
     , m_sensor(sensor)
+    , m_preset(sensor)
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -45,6 +46,19 @@ JoySensorEditDialog::JoySensorEditDialog(JoySensor *sensor, QWidget *parent)
     auto min_width = m_ui->xCoordinateValue->fontMetrics().boundingRect(QString("X.XXXXXXXXXXX")).width();
     m_ui->xCoordinateValue->setMinimumWidth(min_width);
     m_ui->xCoordinateValue->setAlignment(Qt::AlignLeft);
+
+    int index = 0;
+    int current_preset_index = 0;
+    JoySensorPreset::Preset current_preset = m_preset.currentPreset();
+
+    QList<JoySensorPreset::Preset> presets = m_preset.getAvailablePresets();
+    for (auto iter = presets.cbegin(); iter != presets.cend(); ++iter, ++index)
+    {
+        m_ui->presetsComboBox->insertItem(index, m_preset.getPresetName(*iter), *iter);
+        if (*iter == current_preset)
+            current_preset_index = index;
+    }
+    m_ui->presetsComboBox->setCurrentIndex(current_preset_index);
 
     PadderCommon::inputDaemonMutex.lock();
 
@@ -142,7 +156,23 @@ JoySensorEditDialog::JoySensorEditDialog(JoySensor *sensor, QWidget *parent)
 
 JoySensorEditDialog::~JoySensorEditDialog() { delete m_ui; }
 
-void JoySensorEditDialog::implementPresets(int index) {}
+/**
+ * @brief Preset combo box event handler. Applies selected preset to underlying sensor.
+ */
+void JoySensorEditDialog::implementPresets(int index)
+{
+    auto preset = static_cast<JoySensorPreset::Preset>(m_ui->presetsComboBox->itemData(index).toInt());
+    m_preset.setSensorPreset(preset);
+
+    m_ui->deadZoneSlider->setValue(m_sensor->getDeadZone());
+    m_ui->deadZoneSpinBox->setValue(m_sensor->getDeadZone());
+
+    m_ui->maxZoneSlider->setValue(m_sensor->getMaxZone());
+    m_ui->maxZoneSpinBox->setValue(m_sensor->getMaxZone());
+
+    m_ui->diagonalRangeSlider->setValue(m_sensor->getDiagonalRange());
+    m_ui->diagonalRangeSpinBox->setValue(m_sensor->getDiagonalRange());
+}
 
 /**
  * @brief Opens sensor mouse settings dialog
