@@ -25,6 +25,8 @@
 
 class SetJoystick;
 class JoySensorButton;
+class QXmlStreamReader;
+class QXmlStreamWriter;
 
 /**
  * @brief Represents one sensor in a SetJoystick and its connections to
@@ -85,6 +87,8 @@ class JoySensor : public QObject
     JoySensorButton *getDirectionButton(JoySensorDirection direction);
 
     bool isDefault() const;
+    void readConfig(QXmlStreamReader *xml);
+    void writeConfig(QXmlStreamWriter *xml) const;
 
     SetJoystick *getParentSet() const;
 

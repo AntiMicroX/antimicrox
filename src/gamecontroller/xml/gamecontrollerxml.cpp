@@ -25,7 +25,9 @@
 #include "gamecontroller/gamecontrollerdpad.h"
 #include "gamecontroller/gamecontrollerset.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
+#include "joybuttontypes/joysensorbutton.h"
 #include "joycontrolstick.h"
+#include "joysensor.h"
 
 #include <cmath>
 
@@ -39,6 +41,10 @@ GameControllerXml::GameControllerXml(GameController *gameController, QObject *pa
     m_gameController = gameController;
 }
 
+/**
+ * @brief Reads the XML tree from a "joystick" tag
+ * @param xml XML stream at a "joystick" tag
+ */
 void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
 {
     int index = 0;
@@ -141,6 +147,13 @@ void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
                         {
                             m_gameController->setStickButtonName(index, buttonIndex, temp);
                         }
+                    } else if ((xml->name() == "sensorbuttonname") && xml->isStartElement())
+                    {
+                        assignVariables(xml, index, buttonIndex, temp, false);
+
+                        if ((index >= 0) && !temp.isEmpty())
+                            m_gameController->setSensorButtonName(static_cast<JoySensorType>(index),
+                                                                  static_cast<JoySensorDirection>(buttonIndex), temp);
                     } else if ((xml->name() == "dpadbuttonname") && xml->isStartElement())
                     {
                         assignVariables(xml, index, buttonIndex, temp, false);
@@ -234,6 +247,12 @@ void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
                         {
                             m_gameController->setStickName(index, temp);
                         }
+                    } else if ((xml->name() == "sensorname") && xml->isStartElement())
+                    {
+                        assignVariablesShort(xml, index, temp);
+
+                        if ((index >= 0) && !temp.isEmpty())
+                            m_gameController->setSensorName(static_cast<JoySensorType>(index), temp);
                     } else if ((xml->name() == "dpadname") && xml->isStartElement())
                     {
                         readJoystickConfigXmlLong(hatButtons, dpadNameExists, vdpadNameExists, xml);
@@ -273,6 +292,10 @@ void GameControllerXml::readJoystickConfig(QXmlStreamReader *xml)
     }
 }
 
+/**
+ * @brief Deserializes the given XML stream into a GameController object
+ * @param[in] xml The XML stream to read from
+ */
 void GameControllerXml::readConfig(QXmlStreamReader *xml)
 {
     if (xml->isStartElement() && (xml->name() == m_gameController->getXmlName()))
@@ -321,6 +344,9 @@ void GameControllerXml::readConfig(QXmlStreamReader *xml)
                     } else if ((xml->name() == "controlstickbuttonname") && xml->isStartElement())
                     {
                         readXmlNamesMiddle("controlstickbuttonname", xml);
+                    } else if ((xml->name() == "sensorbuttonname") && xml->isStartElement())
+                    {
+                        readXmlNamesMiddle("sensorbuttonname", xml);
                     } else if ((xml->name() == "dpadbuttonname") && xml->isStartElement())
                     {
                         readXmlNamesMiddle("dpadbuttonname", xml);
@@ -330,6 +356,9 @@ void GameControllerXml::readConfig(QXmlStreamReader *xml)
                     } else if ((xml->name() == "controlstickname") && xml->isStartElement())
                     {
                         readXmlNamesShort("controlstickname", xml);
+                    } else if ((xml->name() == "sensorname") && xml->isStartElement())
+                    {
+                        readXmlNamesShort("sensorname", xml);
                     } else if ((xml->name() == "dpadname") && xml->isStartElement())
                     {
                         readXmlNamesShort("dpadname", xml);
@@ -371,6 +400,10 @@ void GameControllerXml::readConfig(QXmlStreamReader *xml)
     }
 }
 
+/**
+ * @brief Serializes a GameController object into the the given XML stream
+ * @param[in,out] xml The XML stream to write to
+ */
 void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
 {
     xml->writeStartElement(m_gameController->getXmlName());
@@ -396,6 +429,7 @@ void GameControllerXml::writeConfig(QXmlStreamWriter *xml)
     writeXmlForButtons(tempSet, xml);
     writeXmlForAxes(tempSet, xml);
     writeXmlForSticks(tempSet, xml);
+    writeXmlForSensors(tempSet, xml);
     writeXmlForVDpad(xml);
 
     xml->writeEndElement(); // </names>
@@ -503,6 +537,45 @@ void GameControllerXml::writeXmlForSticks(SetJoystick *tempSet, QXmlStreamWriter
                 {
                     xml->writeStartElement("controlstickbuttonname");
                     xml->writeAttribute("index", QString::number(currStick.value()->getRealJoyIndex()));
+                    xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
+                    xml->writeCharacters(button->getButtonName());
+                    xml->writeEndElement();
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Writes all sensor button mappings in the current set to XML
+ * @param[in] tempSet To be deserialized SetJoystick
+ * @param[in,out] xml XML stream to which is written
+ */
+void GameControllerXml::writeXmlForSensors(SetJoystick *tempSet, QXmlStreamWriter *xml)
+{
+    auto sensors = tempSet->getSensors();
+    for (auto iter = sensors.cbegin(); iter != sensors.cend(); ++iter)
+    {
+        JoySensor *sensor = iter.value();
+        if (sensor != nullptr)
+        {
+            if (!sensor->getSensorName().isEmpty())
+            {
+                xml->writeStartElement("sensorname");
+                xml->writeAttribute("type", QString::number(sensor->getType()));
+                xml->writeCharacters(sensor->getSensorName());
+                xml->writeEndElement();
+            }
+
+            auto buttons = sensor->getButtons();
+            for (auto iter2 = buttons->cbegin(); iter2 != buttons->cend(); ++iter2)
+            {
+                JoySensorButton *button = iter2.value();
+
+                if ((button != nullptr) && !button->getButtonName().isEmpty())
+                {
+                    xml->writeStartElement("sensorbuttonname");
+                    xml->writeAttribute("type", QString::number(sensor->getType()));
                     xml->writeAttribute("button", QString::number(button->getRealJoyNumber()));
                     xml->writeCharacters(button->getButtonName());
                     xml->writeEndElement();
@@ -649,6 +722,13 @@ void GameControllerXml::readJoystickConfigXmlLong(QList<SDL_GameControllerButton
     }
 }
 
+/**
+ * @brief Reads index, buttonIndex and tag content from xml into C++ variables
+ * @param[in] xml XML stream at a button element
+ * @param[out] index Value of the "index" XML attribute
+ * @param[out] buttonIndex Value of the "button" XML attribute
+ * @param[out] temp Content of the XML element
+ */
 inline void GameControllerXml::assignVariables(QXmlStreamReader *xml, int &index, int &buttonIndex, QString &temp,
                                                bool buttonDecreased)
 {

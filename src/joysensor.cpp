@@ -22,6 +22,8 @@
 #include "joybuttontypes/joysensorbutton.h"
 #include "xml/joybuttonxml.h"
 
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 #include <cmath>
 
 JoySensor::JoySensor(JoySensorType type, int originset, SetJoystick *parent_set, QObject *parent)
@@ -323,7 +325,31 @@ QHash<JoySensorDirection, JoySensorButton *> *JoySensor::getButtons() { return &
  */
 JoySensorButton *JoySensor::getDirectionButton(JoySensorDirection direction) { return m_buttons.value(direction); }
 
-bool JoySensor::isDefault() const { return false; }
+/**
+ * @brief Checks if all sensor settings and button mappings are the their default values.
+ *  This is used during XML serialization to skip unnecessary objects.
+ * @returns True if everything is at the default, false otherwise.
+ */
+bool JoySensor::isDefault() const
+{
+    bool value = true;
+    value = value && qFuzzyCompare(getDeadZone(), GlobalVariables::JoySensor::DEFAULTDEADZONE);
+    if (m_type == ACCELEROMETER)
+        value = value && qFuzzyCompare(getMaxZone(), GlobalVariables::JoySensor::ACCEL_MAX);
+    else
+        value = value && qFuzzyCompare(getMaxZone(), GlobalVariables::JoySensor::GYRO_MAX);
+
+    value = value && qFuzzyCompare(getDiagonalRange(), GlobalVariables::JoySensor::DEFAULTDIAGONALRANGE);
+    value = value && (m_sensor_delay == GlobalVariables::JoySensor::DEFAULTSENSORDELAY);
+
+    for (auto iter = m_buttons.cbegin(); iter != m_buttons.cend(); ++iter)
+    {
+        JoySensorButton *button = iter.value();
+        value = value && (button->isDefault());
+    }
+
+    return value;
+}
 
 /**
  * @brief Resets internal variables back to default
@@ -421,6 +447,100 @@ void JoySensor::setSensorName(QString tempName)
 void JoySensor::establishPropertyUpdatedConnection()
 {
     connect(this, &JoySensor::propertyUpdated, getParentSet()->getInputDevice(), &InputDevice::profileEdited);
+}
+
+/**
+ * @brief Take a XML stream and set the sensor and direction button properties
+ *     according to the values contained within the stream.
+ * @param QXmlStreamReader instance that will be used to read property values.
+ */
+void JoySensor::readConfig(QXmlStreamReader *xml)
+{
+    if (xml->isStartElement() && (xml->name() == "sensor"))
+    {
+        xml->readNextStartElement();
+
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "sensor")))
+        {
+            if ((xml->name() == "deadZone") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                float tempchoice = temptext.toFloat();
+                setDeadZone(tempchoice);
+            } else if ((xml->name() == "maxZone") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                float tempchoice = temptext.toFloat();
+                setMaxZone(tempchoice);
+            } else if ((xml->name() == "diagonalRange") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setDiagonalRange(tempchoice);
+            } else if ((xml->name() == GlobalVariables::JoySensorButton::xmlName) && xml->isStartElement())
+            {
+                int index = xml->attributes().value("index").toString().toInt();
+                JoySensorButton *button = m_buttons.value(static_cast<JoySensorDirection>(index));
+                QPointer<JoyButtonXml> joyButtonXml = new JoyButtonXml(button);
+
+                if (button != nullptr)
+                    joyButtonXml->readConfig(xml);
+                else
+                    xml->skipCurrentElement();
+
+                if (!joyButtonXml.isNull())
+                    delete joyButtonXml;
+            } else if ((xml->name() == "sensorDelay") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setSensorDelay(tempchoice);
+            } else
+            {
+                xml->skipCurrentElement();
+            }
+
+            xml->readNextStartElement();
+        }
+    }
+}
+
+/**
+ * @brief Write the status of the properties of a sensor and direction buttons
+ *     to an XML stream.
+ * @param QXmlStreamWriter instance that will be used to write a profile.
+ */
+void JoySensor::writeConfig(QXmlStreamWriter *xml) const
+{
+    if (!isDefault())
+    {
+        xml->writeStartElement("sensor");
+        xml->writeAttribute("type", QString::number(m_type));
+
+        if (!qFuzzyCompare(getDeadZone(), GlobalVariables::JoySensor::DEFAULTDEADZONE))
+            xml->writeTextElement("deadZone", QString::number(getDeadZone()));
+
+        if (!qFuzzyCompare(getMaxZone(), (m_type == ACCELEROMETER ? GlobalVariables::JoySensor::ACCEL_MAX
+                                                                  : GlobalVariables::JoySensor::GYRO_MAX)))
+            xml->writeTextElement("maxZone", QString::number(getMaxZone()));
+
+        if (!qFuzzyCompare(getDiagonalRange(), GlobalVariables::JoySensor::DEFAULTDIAGONALRANGE))
+            xml->writeTextElement("diagonalRange", QString::number(getDiagonalRange()));
+
+        if (m_sensor_delay > GlobalVariables::JoySensor::DEFAULTSENSORDELAY)
+            xml->writeTextElement("sensorDelay", QString::number(m_sensor_delay));
+
+        for (auto iter = m_buttons.cbegin(); iter != m_buttons.cend(); ++iter)
+        {
+            JoySensorButton *button = iter.value();
+            JoyButtonXml *joyButtonXml = new JoyButtonXml(button);
+            joyButtonXml->writeConfig(xml);
+            delete joyButtonXml;
+            joyButtonXml = nullptr;
+        }
+
+        xml->writeEndElement();
+    }
 }
 
 /**

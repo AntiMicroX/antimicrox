@@ -255,6 +255,12 @@ class JoyControlStickModifierButton
     static const QString xmlName;
 };
 
+class JoySensorButton
+{
+  public:
+    static const QString xmlName;
+};
+
 class JoyDPadButton
 {
   public:

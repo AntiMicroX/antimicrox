@@ -23,6 +23,7 @@
 #include "gamecontrollertrigger.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
+#include "joysensor.h"
 #include "xml/joyaxisxml.h"
 #include "xml/joybuttonxml.h"
 #include "xml/joydpadxml.h"
@@ -189,6 +190,9 @@ void GameControllerSet::readJoystickConfig(QXmlStreamReader *xml, QHash<int, SDL
             } else if ((xml->name() == "stick") && xml->isStartElement())
             {
                 getElemFromXml("stick", xml);
+            } else if ((xml->name() == "sensor") && xml->isStartElement())
+            {
+                getElemFromXml("sensor", xml);
             } else if ((xml->name() == "vdpad") && xml->isStartElement())
             {
                 readConfDpad(xml, hatButtons, vdpadExists, dpadExists);
@@ -228,6 +232,9 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
             } else if ((xml->name() == "stick") && xml->isStartElement())
             {
                 getElemFromXml("stick", xml);
+            } else if ((xml->name() == "sensor") && xml->isStartElement())
+            {
+                getElemFromXml("sensor", xml);
             } else if ((xml->name() == "dpad") && xml->isStartElement())
             {
                 getElemFromXml("dpad", xml);
@@ -310,6 +317,11 @@ void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
         {
             xml->skipCurrentElement();
         }
+    } else if (elemName == "sensor")
+    {
+        int type = xml->attributes().value("type").toString().toInt();
+        JoySensor *sensor = getSensor(static_cast<JoySensorType>(type));
+        readConf(sensor, xml);
     }
 }
 

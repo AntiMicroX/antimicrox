@@ -28,6 +28,9 @@ class QXmlStreamReader;
 class InputDeviceXml;
 class QFile;
 
+/**
+ * @brief Main XML config reader class
+ */
 class XMLConfigReader : public QObject
 {
     Q_OBJECT

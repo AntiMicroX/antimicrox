@@ -26,6 +26,11 @@ class JoyButtonXml;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
+/**
+ * @brief SetJoystick XML serialization/deserialization helper class
+ *  Reads data from the supplied SetJoystick object and writes it to XML or
+ *  reads data from an QXmlStreamReader and writes it to the SetJoystick object.
+ */
 class SetJoystickXml : public QObject
 {
     Q_OBJECT
