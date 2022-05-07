@@ -20,6 +20,7 @@
 #define SETJOYSTICK_H
 
 #include "joyaxis.h"
+#include "joysensordirection.h"
 #include "joysensortype.h"
 #include "xml/setjoystickxml.h"
 
@@ -127,11 +128,13 @@ class SetJoystick : public SetJoystickXml
     void setButtonNameChange(int index);                            // SetButton class
     void setAxisButtonNameChange(int axisIndex, int buttonIndex);   // SetAxis class
     void setStickButtonNameChange(int stickIndex, int buttonIndex); // SetStick class
+    void setSensorButtonNameChange(JoySensorType type, JoySensorDirection direction);
     void setDPadButtonNameChange(int dpadIndex, int buttonIndex);   // SetHat class
     void setVDPadButtonNameChange(int vdpadIndex, int buttonIndex); // SetVDPad class
 
     void setAxisNameChange(int axisIndex);   // SetAxis class
     void setStickNameChange(int stickIndex); // SetStick class
+    void setSensorNameChange(JoySensorType type);
     void setDPadNameChange(int dpadIndex);   // SetHat class
     void setVDPadNameChange(int vdpadIndex); // SetVDPad class
     void propertyUpdated();
