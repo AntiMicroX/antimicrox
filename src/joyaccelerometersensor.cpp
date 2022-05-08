@@ -23,11 +23,17 @@
 
 #include <cmath>
 
+const double JoyAccelerometerSensor::SHOCK_DETECT_THRESHOLD = 20.0;
+const double JoyAccelerometerSensor::SHOCK_SUPPRESS_FACTOR = 0.5;
+const double JoyAccelerometerSensor::SHOCK_TAU = 0.05;
+
 JoyAccelerometerSensor::JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent)
     : JoySensor(ACCELEROMETER, originset, parent_set, parent)
+    , m_shock_filter(SHOCK_TAU, rate)
 {
     reset();
     populateButtons();
+    m_rate = qFuzzyIsNull(rate) ? PT1Filter::FALLBACK_RATE : rate;
 }
 
 JoyAccelerometerSensor::~JoyAccelerometerSensor() {}
@@ -78,6 +84,9 @@ void JoyAccelerometerSensor::reset()
 {
     JoySensor::reset();
     m_max_zone = degToRad(GlobalVariables::JoySensor::ACCEL_MAX);
+
+    m_shock_filter.reset();
+    m_shock_suppress_count = 0;
 }
 
 /**
@@ -126,10 +135,25 @@ void JoyAccelerometerSensor::applyCalibration()
  * There are two cases here because the spherical layers overlap if the diagonal
  * angle is larger then 45 degree.
  *
+ * Perform shock detection by taking the first order lag filtered absolute sum of
+ * all axes from "joyEvent" and apply a threshold. Discard some samples after
+ * the shock is over to avoid spurious pitch/roll events.
+ *
  * @returns JoySensorDirection bitfield for the current direction zone.
  */
 JoySensorDirection JoyAccelerometerSensor::calculateSensorDirection()
 {
+    double abs_sum = abs(m_current_value[0]) + abs(m_current_value[1]) + abs(m_current_value[2]);
+    if (m_shock_filter.process(abs_sum) > SHOCK_DETECT_THRESHOLD)
+    {
+        m_shock_suppress_count = m_rate * SHOCK_SUPPRESS_FACTOR;
+        return SENSOR_BWD;
+    } else if (m_shock_suppress_count != 0)
+    {
+        --m_shock_suppress_count;
+        return SENSOR_CENTERED;
+    }
+
     double pitch = calculatePitch();
     double roll = calculateRoll();
     double pitch_abs = abs(pitch);
