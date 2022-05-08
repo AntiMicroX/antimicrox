@@ -23,6 +23,7 @@
 
 #include "joysensordirection.h"
 #include "joysensortype.h"
+#include "pt1filter.h"
 
 class SetJoystick;
 class JoySensorButton;
@@ -140,8 +141,8 @@ class JoySensor : public QObject
     double m_calibration_value[3];
     bool m_pending_event;
     bool m_pending_ignore_sets;
-    int m_originset;
 
+    int m_originset;
     QString m_sensor_name;
     QTimer m_delay_timer;
 

@@ -42,7 +42,15 @@ class JoyAccelerometerSensor : public JoySensor
     virtual void reset() override;
 
   protected:
+    static const double SHOCK_DETECT_THRESHOLD;
+    static const double SHOCK_SUPPRESS_FACTOR;
+    static const double SHOCK_TAU;
+
     virtual void populateButtons() override;
     virtual JoySensorDirection calculateSensorDirection() override;
     virtual void applyCalibration() override;
+
+    double m_rate;
+    PT1Filter m_shock_filter;
+    size_t m_shock_suppress_count;
 };
