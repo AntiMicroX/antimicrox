@@ -21,7 +21,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Список изменений</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
@@ -186,7 +186,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="355"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Про Разработку</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="369"/>
@@ -243,7 +243,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="59"/>
         <source>Running With SDL %1</source>
-        <translation>Запускается на SDL %1 </translation>
+        <translation>Запускается на SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="61"/>
@@ -253,7 +253,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="73"/>
         <source>Using Event Handler: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Использует Event Handler: %1</translation>
     </message>
 </context>
 <context>
@@ -266,7 +266,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="25"/>
         <source>Pro&amp;file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Про&amp;филь:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="40"/>
@@ -277,7 +277,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="51"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Окно:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="69"/>
@@ -290,27 +290,27 @@ in the form.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
         <source>Detect Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически определить настройки окна</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Класс:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
         <source>T&amp;itle:  </source>
-        <translation type="unfinished"></translation>
+        <translation>З&amp;аголовок:  </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="113"/>
         <source>set partial title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">установить частичный заголовок</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="124"/>
         <source>Application:    </source>
-        <translation type="unfinished"></translation>
+        <translation>Приложение:    </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="149"/>
@@ -320,7 +320,7 @@ in the form.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="163"/>
         <source>De&amp;vices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ус&amp;тройства:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="179"/>
@@ -358,7 +358,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
         <source>Programs (*.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>Программы (*.exe)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
@@ -368,43 +368,44 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Main Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Главный профиль</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="222"/>
         <source>Already selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Уже выбран</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="227"/>
         <source>Chosen Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбранный профиль</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="228"/>
         <source>The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбранное будет использоваться
+вместо всех настроек по умолчанию.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="251"/>
         <source>Please select a window by using the mouse. Press Escape if you want to cancel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберите окно при помощи мыши. Нажмите Escape для отмены.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="252"/>
         <source>Capture Application Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Захватить окно приложения</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="320"/>
         <source>Could not obtain information for the selected window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получилось получить информацию о выбранном окне.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="321"/>
         <source>Application Capture Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получилось выполнить захват приложения</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="418"/>
@@ -414,7 +415,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="426"/>
         <source>No window matching property was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не найдено подходящих настроек для окна</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="440"/>
@@ -424,12 +425,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="446"/>
         <source>File is not an .exe file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не является исполняемым (.exe) файлом.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="454"/>
         <source>No window matching property was selected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не выбрано подходящих настроек для окна.</translation>
     </message>
 </context>
 <context>
@@ -463,7 +464,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="200"/>
         <source>Blank or KB/M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Оставьте пустым или выберите KB/M</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="225"/>
@@ -534,12 +535,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="334"/>
         <source>Join</source>
-        <translation type="unfinished"></translation>
+        <translation>Присоединить</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="351"/>
         <source>Split</source>
-        <translation type="unfinished"></translation>
+        <translation>Разделить</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="315"/>
@@ -564,7 +565,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="569"/>
         <source>&amp;Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Модификатор скорости курсора:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="624"/>
@@ -601,7 +602,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="220"/>
         <source>Execute</source>
-        <translation type="unfinished"></translation>
+        <translation>Выполнить</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="230"/>
@@ -611,17 +612,17 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="255"/>
         <source>Set Change</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Установить изменения</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="260"/>
         <source>Text Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Текстовое значение</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="402"/>
         <source>Placeholder</source>
-        <translation type="unfinished">Заполнитель</translation>
+        <translation type="unfinished">Плейсхолдер</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="509"/>
@@ -647,17 +648,17 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="756"/>
         <source>Executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>Исполняемый файл:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="766"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="777"/>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="820"/>
@@ -669,27 +670,27 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="887"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="897"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Обычный: Нажимать и отпускать клавишу в выбранном темпе.&lt;/p&gt;&lt;p&gt;Градиент: Изменять задержки нажатий и отпускания клавиш в зависимости от того, насколько далеко нажата ось. Темп изменяться не будет.&lt;/p&gt;&lt;p&gt;Пульс: Изменять темп нажатий и отпусканий клавиш. Задержки изменяться не будут.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="901"/>
         <source>Normal</source>
-        <translation type="unfinished">Нормально</translation>
+        <translation>Обычный</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="906"/>
         <source>Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Градиент</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="911"/>
         <source>Pulse</source>
-        <translation type="unfinished"></translation>
+        <translation>Пульс</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="965"/>
@@ -856,110 +857,110 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не проверенные слоты</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <source>To delete slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>Чтобы удалить слоты, вам нужно выбрать как минимум один</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>To insert slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>Чтобы вставить слоты, нужно выбрать как минимум один</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выбран неизвестный слот</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Click on chosen slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите на выбранные слоты перед их присоедением</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="538"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="640"/>
         <source>Not enough slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Недостаточно слотов</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="539"/>
         <source>It&apos;s impossible to join slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно присоединить слоты. Выберите как минимум ещё один.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="542"/>
         <source>Not selected slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Ни один слот не выбран</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="543"/>
         <source>It&apos;s impossible to join slots. Select at least two slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно присоединить слоты. Выберите как минимум два слота</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="546"/>
         <source>Only keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Только слоты клавиатуры</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="547"/>
         <source>It&apos;s only possible to join simple and mix keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Возможно присоединить только простые и комплексные слоты</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="641"/>
         <source>It&apos;s impossible to split slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно разделить слоты. Добавьте как минимум один другой слот.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Not selected slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Не выбран слот</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Select your slot before splitting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите слот перед разделением.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Too many mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Слишком много комплексных слотов</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Select one mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите один комплексный слот.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>Only mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Только комплексные слоты</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>It&apos;s only possible to split mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Разделить можно только комплексные слоты.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1039"/>
         <source>Empty execution path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пустой путь к исполняемому файлу</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1040"/>
         <source>Line for execution file path is empty. Fill the first line before you are going to add a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы не выбрали ни одного пути к исполняемым файлам. Заполните хотя бы один перед добавлением слота.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1042"/>
         <source>File doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не существует</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
@@ -3768,7 +3769,7 @@ precise.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="925"/>
         <source>Disable Enhance Pointer Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Выключить улучшенную точность курсора</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="935"/>
@@ -3961,7 +3962,9 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>Также, пользователи Windows, которые хотят установить низкие значения
+могут включить настройку &quot;Выключить улучшенную точность курсора&quot;
+если вы не выключили эту настройку в самом Windows.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="754"/>
@@ -3976,22 +3979,22 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1868"/>
         <source>Save Log File As</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить журнал приложения как</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1868"/>
         <source>Log Files (*.log)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл журнала приложения (*.log)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1893"/>
         <source>Do you really want to reset setting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы точно хотите сбросить эту настройку до значения по умолчанию?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1917"/>
         <source>Would you like to reset mappings too?</source>
-        <translation type="unfinished"></translation>
+        <translation>Хотите ли вы также сбросить назначенные клавиши?</translation>
     </message>
 </context>
 <context>
@@ -3999,7 +4002,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="23"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
@@ -4010,7 +4013,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="167"/>
         <source>If events are not seen by a game, please click here to run this application as Administrator.</source>
-        <translation type="unfinished"></translation>
+        <translation>Если нажатия не распознаются игрой, нажмите сюда, чтобы перезапустить приложение с правами Администратора.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
@@ -4030,7 +4033,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="236"/>
         <source>He&amp;lp</source>
-        <translation type="unfinished"></translation>
+        <translation>Пом&amp;ощь</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="255"/>
@@ -4079,102 +4082,102 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="306"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>О проекте &amp;Qt</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="309"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="318"/>
         <source>&amp;Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Настройки геймпадов</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="321"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="330"/>
         <source>&amp;Key Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Проверка клавиш</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="333"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="350"/>
         <source>&amp;GitHub Page</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Страница на GitHub</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="353"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="362"/>
         <source>&amp;Game Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Клавиши Геймпадов</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="365"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="374"/>
         <source>S&amp;ettings</source>
-        <translation type="unfinished"></translation>
+        <translation>Н&amp;астройки</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="377"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="386"/>
         <source>&amp;Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Назначение Стиков Геймпада</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="389"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="398"/>
         <source>&amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Вики</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="401"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="410"/>
         <source>&amp;Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Сообщить о проблеме</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="413"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="422"/>
         <source>&amp;Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Калибровка</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="425"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="338"/>
@@ -4211,7 +4214,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1404"/>
         <source>Run as Administrator?</source>
-        <translation type="unfinished"></translation>
+        <translation>Запустить от имени Администратора?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1405"/>
@@ -4223,28 +4226,29 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1429"/>
         <source>Failed to elevate program</source>
-        <translation type="unfinished"></translation>
+        <translation>Не поулучилось получить права Администратора</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1430"/>
         <source>Failed to restart this program as the Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получилось перезапустить программу с правами Администратора</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1703"/>
         <source>%1 battery</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 заряд батареи</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1705"/>
         <source>Battery level is less than %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Заряд батареи меньше чем %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1707"/>
         <source>Device number: %1
 Device name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Номер устройства: %1
+Имя устройства: %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1732"/>
@@ -4254,7 +4258,7 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1855"/>
         <source>Reading old profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Чтение старого профиля</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1856"/>
@@ -4269,12 +4273,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1083"/>
         <source>Calibration couldn&apos;t be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Не получилось открыть окно калибровки</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1084"/>
         <source>You must connect at least one controller to open the window</source>
-        <translation type="unfinished"></translation>
+        <translation>Необходимо подключить хотя бы одно устройство, чтобы открыть это окно</translation>
     </message>
 </context>
 <context>
