@@ -193,6 +193,8 @@ class InputDevice : public QObject
                                         int mode); // InputDeviceAxisBtn class
     void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset,
                                          int mode); // InputDeviceStick class
+    void changeSetSensorButtonAssociation(JoySensorDirection direction, JoySensorType type, int originset, int newset,
+                                          int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset,
                                         int mode); // InputDeviceHat class
     void changeSetVDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset,
@@ -224,6 +226,8 @@ class InputDevice : public QObject
     virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);     // InputDeviceHat class
     virtual void stickButtonDownEvent(int setindex, int stickindex, int buttonindex); // InputDeviceStick class
     virtual void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);   // InputDeviceStick class
+    virtual void sensorButtonDownEvent(int setindex, JoySensorType type, JoySensorDirection direction);
+    virtual void sensorButtonUpEvent(int setindex, JoySensorType type, JoySensorDirection direction);
 
     void updateSetButtonNames(int index);                            // InputDeviceButton class
     void updateSetAxisButtonNames(int axisIndex, int buttonIndex);   // InputDeviceAxis class

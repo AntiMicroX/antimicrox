@@ -22,6 +22,7 @@
 #include "inputdevice.h"
 #include "joybutton.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
+#include "joybuttontypes/joysensorbutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
 #include "joysensor.h"
@@ -129,6 +130,7 @@ void SetJoystick::refreshSensors()
 
         JoySensor *sensor = JoySensorFactory::build(type, getInputDevice()->getRawSensorRate(type), m_index, this, this);
         m_sensors.insert(type, sensor);
+        enableSensorConnections(sensor);
     }
 }
 
@@ -286,6 +288,16 @@ void SetJoystick::propogateSetStickButtonAssociation(int button, int stick, int 
 {
     if (newset != m_index)
         emit setAssignmentStickChanged(button, stick, m_index, newset, mode);
+}
+
+/**
+ * @brief Forwards set change slot mapping event to InputDevice
+ */
+void SetJoystick::propagateSetSensorButtonAssociation(JoySensorDirection direction, JoySensorType sensor, int newset,
+                                                      int mode)
+{
+    if (newset != m_index)
+        emit setAssignmentSensorChanged(direction, sensor, m_index, newset, mode);
 }
 
 void SetJoystick::propogateSetDPadButtonAssociation(int button, int dpad, int newset, int mode)
@@ -594,6 +606,32 @@ void SetJoystick::propogateSetStickButtonRelease(int button)
     }
 }
 
+void SetJoystick::propagateSetSensorButtonClick(int button)
+{
+    JoySensorButton *sensorButton = qobject_cast<JoySensorButton *>(sender());
+
+    if (sensorButton != nullptr)
+    {
+        JoySensor *sensor = sensorButton->getSensor();
+
+        if (sensor && !sensorButton->getIgnoreEventState())
+            emit setSensorButtonClick(m_index, sensor->getType(), static_cast<JoySensorDirection>(button));
+    }
+}
+
+void SetJoystick::propagateSetSensorButtonRelease(int button)
+{
+    JoySensorButton *sensorButton = qobject_cast<JoySensorButton *>(sender());
+
+    if (sensorButton != nullptr)
+    {
+        JoySensor *sensor = sensorButton->getSensor();
+
+        if (!sensorButton->getIgnoreEventState())
+            emit setSensorButtonRelease(m_index, sensor->getType(), static_cast<JoySensorDirection>(button));
+    }
+}
+
 void SetJoystick::propogateSetDPadButtonClick(int button)
 {
     JoyDPadButton *dpadButton = qobject_cast<JoyDPadButton *>(sender());
@@ -648,6 +686,17 @@ void SetJoystick::propogateSetStickButtonNameChange()
     connect(button, &JoyControlStickButton::buttonNameChanged, this, &SetJoystick::propogateSetStickButtonNameChange);
 }
 
+/**
+ * @brief Propagate button rename event to InputDevice
+ */
+void SetJoystick::propagateSetSensorButtonNameChange()
+{
+    JoySensorButton *button = qobject_cast<JoySensorButton *>(sender());
+    disconnect(button, &JoySensorButton::buttonNameChanged, this, &SetJoystick::propagateSetSensorButtonNameChange);
+    emit setSensorButtonNameChange(button->getSensor()->getType(), static_cast<JoySensorDirection>(button->getJoyNumber()));
+    connect(button, &JoySensorButton::buttonNameChanged, this, &SetJoystick::propagateSetSensorButtonNameChange);
+}
+
 void SetJoystick::propogateSetDPadButtonNameChange()
 {
     JoyDPadButton *button = qobject_cast<JoyDPadButton *>(sender());
@@ -678,6 +727,14 @@ void SetJoystick::propogateSetStickNameChange()
     disconnect(stick, &JoyControlStick::stickNameChanged, this, &SetJoystick::propogateSetStickNameChange);
     emit setStickNameChange(stick->getIndex());
     connect(stick, &JoyControlStick::stickNameChanged, this, &SetJoystick::propogateSetStickNameChange);
+}
+
+void SetJoystick::propagateSetSensorNameChange()
+{
+    JoySensor *sensor = qobject_cast<JoySensor *>(sender());
+    disconnect(sensor, &JoySensor::sensorNameChanged, this, &SetJoystick::propagateSetSensorNameChange);
+    emit setSensorNameChange(sensor->getType());
+    connect(sensor, &JoySensor::sensorNameChanged, this, &SetJoystick::propagateSetSensorNameChange);
 }
 
 void SetJoystick::propogateSetDPadNameChange()
@@ -847,6 +904,27 @@ void SetJoystick::enableHatConnections(JoyDPad *dpad)
         connect(button, &JoyDPadButton::released, this, &SetJoystick::propogateSetDPadButtonRelease, Qt::QueuedConnection);
         connect(button, &JoyDPadButton::released, m_device, &InputDevice::dpadButtonReleaseEvent, Qt::QueuedConnection);
         connect(button, &JoyDPadButton::buttonNameChanged, this, &SetJoystick::propogateSetDPadButtonNameChange);
+    }
+}
+
+/**
+ * @brief Establishes connections for event propagation between JoySensor and InputDevice
+ */
+void SetJoystick::enableSensorConnections(JoySensor *sensor)
+{
+    connect(sensor, &JoySensor::sensorNameChanged, this, &SetJoystick::propagateSetSensorNameChange);
+
+    auto buttons = sensor->getButtons();
+    for (auto iter = buttons->cbegin(); iter != buttons->cend(); ++iter)
+    {
+        connect(iter.value(), &JoySensorButton::setChangeActivated, this, &SetJoystick::propogateSetChange);
+        connect(iter.value(), &JoySensorButton::setAssignmentChanged, this,
+                &SetJoystick::propagateSetSensorButtonAssociation);
+        connect(iter.value(), &JoySensorButton::clicked, this, &SetJoystick::propagateSetSensorButtonClick,
+                Qt::QueuedConnection);
+        connect(iter.value(), &JoySensorButton::released, this, &SetJoystick::propagateSetSensorButtonRelease,
+                Qt::QueuedConnection);
+        connect(iter.value(), &JoySensorButton::buttonNameChanged, this, &SetJoystick::propagateSetSensorButtonNameChange);
     }
 }
 
