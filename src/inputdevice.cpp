@@ -618,6 +618,20 @@ void InputDevice::changeSetStickButtonAssociation(int button_index, int stick_in
     button->setChangeSetCondition(tempmode, true);
 }
 
+/**
+ * @brief Creates reverse set change button mapping for toggle and while-hold set
+ *  change mappings.
+ */
+void InputDevice::changeSetSensorButtonAssociation(JoySensorDirection direction, JoySensorType type, int originset,
+                                                   int newset, int mode)
+{
+    JoySensorButton *button = getJoystick_sets().value(newset)->getSensor(type)->getDirectionButton(direction);
+
+    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
+    button->setChangeSetSelection(originset);
+    button->setChangeSetCondition(tempmode, true);
+}
+
 void InputDevice::changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset, int mode)
 {
     JoyDPadButton *button = getJoystick_sets().value(newset)->getJoyDPad(dpad_index)->getJoyButton(button_index);
@@ -762,6 +776,20 @@ void InputDevice::stickButtonUpEvent(int setindex, int stickindex, int buttonind
     Q_UNUSED(stickindex);
 
     buttonUpEvent(setindex, buttonindex);
+}
+
+void InputDevice::sensorButtonDownEvent(int setindex, JoySensorType type, JoySensorDirection direction)
+{
+    Q_UNUSED(type);
+
+    buttonDownEvent(setindex, direction);
+}
+
+void InputDevice::sensorButtonUpEvent(int setindex, JoySensorType type, JoySensorDirection direction)
+{
+    Q_UNUSED(type);
+
+    buttonUpEvent(setindex, direction);
 }
 
 void InputDevice::setButtonName(int index, QString tempName)
@@ -1124,6 +1152,9 @@ void InputDevice::resetButtonDownCount()
     emit released(joyNumber);
 }
 
+/**
+ * @brief Establishes necessary connections for set change slots
+ */
 void InputDevice::enableSetConnections(SetJoystick *setstick)
 {
     connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::resetButtonDownCount);
@@ -1135,6 +1166,7 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
     connect(setstick, &SetJoystick::setAssignmentDPadChanged, this, &InputDevice::changeSetDPadButtonAssociation);
     connect(setstick, &SetJoystick::setAssignmentVDPadChanged, this, &InputDevice::changeSetVDPadButtonAssociation);
     connect(setstick, &SetJoystick::setAssignmentStickChanged, this, &InputDevice::changeSetStickButtonAssociation);
+    connect(setstick, &SetJoystick::setAssignmentSensorChanged, this, &InputDevice::changeSetSensorButtonAssociation);
     connect(setstick, &SetJoystick::setAssignmentAxisThrottleChanged, this, &InputDevice::propogateSetAxisThrottleChange);
 
     connect(setstick, &SetJoystick::setButtonClick, this, &InputDevice::buttonDownEvent);
@@ -1151,15 +1183,19 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
 
     connect(setstick, &SetJoystick::setStickButtonClick, this, &InputDevice::stickButtonDownEvent);
     connect(setstick, &SetJoystick::setStickButtonRelease, this, &InputDevice::stickButtonUpEvent);
+    connect(setstick, &SetJoystick::setSensorButtonClick, this, &InputDevice::sensorButtonDownEvent);
+    connect(setstick, &SetJoystick::setSensorButtonRelease, this, &InputDevice::sensorButtonUpEvent);
 
     connect(setstick, &SetJoystick::setButtonNameChange, this, &InputDevice::updateSetButtonNames);
     connect(setstick, &SetJoystick::setAxisButtonNameChange, this, &InputDevice::updateSetAxisButtonNames);
     connect(setstick, &SetJoystick::setStickButtonNameChange, this, &InputDevice::updateSetStickButtonNames);
+    connect(setstick, &SetJoystick::setSensorButtonNameChange, this, &InputDevice::updateSetSensorButtonNames);
     connect(setstick, &SetJoystick::setDPadButtonNameChange, this, &InputDevice::updateSetDPadButtonNames);
     connect(setstick, &SetJoystick::setVDPadButtonNameChange, this, &InputDevice::updateSetVDPadButtonNames);
 
     connect(setstick, &SetJoystick::setAxisNameChange, this, &InputDevice::updateSetAxisNames);
     connect(setstick, &SetJoystick::setStickNameChange, this, &InputDevice::updateSetStickNames);
+    connect(setstick, &SetJoystick::setSensorNameChange, this, &InputDevice::updateSetSensorNames);
     connect(setstick, &SetJoystick::setDPadNameChange, this, &InputDevice::updateSetDPadNames);
     connect(setstick, &SetJoystick::setVDPadNameChange, this, &InputDevice::updateSetVDPadNames);
 }
