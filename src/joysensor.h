@@ -125,6 +125,7 @@ class JoySensor : public QObject
   protected:
     void resetButtons();
     virtual void populateButtons() = 0;
+    virtual JoySensorDirection calculateSensorDirection() = 0;
     virtual void applyCalibration() = 0;
 
     JoySensorType m_type;

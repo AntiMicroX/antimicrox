@@ -43,5 +43,6 @@ class JoyAccelerometerSensor : public JoySensor
 
   protected:
     virtual void populateButtons() override;
+    virtual JoySensorDirection calculateSensorDirection() override;
     virtual void applyCalibration() override;
 };
