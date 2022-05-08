@@ -2295,17 +2295,17 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="256"/>
         <source>SDL 2 Game Controller Mapping String</source>
-        <translation type="unfinished"></translation>
+        <translation>SDL 2 peliohjaimen kartoituslanka</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="307"/>
         <source>Last Axis Event:</source>
-        <translation type="unfinished"></translation>
+        <translation>Viimeinen akselitapahtuma:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="321"/>
         <source>Current Axis Detection Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nykyinen akselihavainnoinnin kuollut alue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
@@ -2345,19 +2345,21 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Peliohjainkartoitus (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="447"/>
         <source>Discard Controller Mapping?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hylätäänkö ohjainkartoitus?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="448"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hylkää kartoitus tälle ohjaimelle?
+
+Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkistät kaikki sauvaohjaimet.</translation>
     </message>
 </context>
 <context>
@@ -2380,32 +2382,32 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="81"/>
         <source>LS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>VO napsautus</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="82"/>
         <source>RS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>OO Napsautus</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="83"/>
         <source>L Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>V olkapääpainike</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="84"/>
         <source>R Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>O olkapää</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="87"/>
         <source>L Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>V liipaisin</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="88"/>
         <source>R Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>O liipaisin</translation>
     </message>
 </context>
 <context>
@@ -2415,7 +2417,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="97"/>
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="101"/>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Liipaisin</translation>
     </message>
 </context>
 <context>
@@ -2435,22 +2437,22 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="78"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Painike</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="66"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>Negatiivi</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="70"/>
         <source>Positive</source>
-        <translation type="unfinished"></translation>
+        <translation>Positiivinen</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="74"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuntematon</translation>
     </message>
 </context>
 <context>
@@ -2463,7 +2465,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="76"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="86"/>
@@ -2473,7 +2475,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="96"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="106"/>
@@ -2533,24 +2535,24 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybutton.cpp" line="244"/>
         <source>Processing turbo for #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Käsitellään turbo kohteille #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="251"/>
         <source>Finishing turbo for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Viimeistellään turbo painikkeelle #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="305"/>
         <source>Distance change for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Etäisyyden muutos painikkeelle #%1 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="1603"/>
         <location filename="../../../src/joybutton.cpp" line="1609"/>
         <location filename="../../../src/joybutton.cpp" line="1614"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Painike</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="1652"/>
@@ -2564,17 +2566,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybutton.cpp" line="1704"/>
         <source>[Set %1 1W]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Aseta %1 1W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="1709"/>
         <source>[Set %1 2W]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Aseta %1 2W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="1716"/>
         <source>[Set %1 WH]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Aseta %1 WH]</translation>
     </message>
 </context>
 <context>
@@ -2582,7 +2584,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="42"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>Kytke</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="47"/>
@@ -2592,12 +2594,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="54"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyhjää</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="60"/>
         <source>Set Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta valintanappi</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="61"/>
@@ -2622,7 +2624,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="87"/>
         <source>Set %1 WH</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta %1 WH</translation>
     </message>
 </context>
 <context>
@@ -2631,42 +2633,42 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttonslot.cpp" line="166"/>
         <location filename="../../../src/joybuttonslot.cpp" line="218"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="171"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ylös</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="175"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alas</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="179"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasen</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="183"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikea</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="223"/>
         <source>LB</source>
-        <translation type="unfinished"></translation>
+        <translation>LB</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="226"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="229"/>
         <source>RB</source>
-        <translation type="unfinished"></translation>
+        <translation>RB</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="247"/>
@@ -2711,22 +2713,22 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="337"/>
         <source>Load %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataa %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="344"/>
         <source>Set Change %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta muutos %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="357"/>
         <source>[Text] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[Teksti] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="370"/>
         <source>[Exec] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[Aja] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="392"/>
@@ -2742,7 +2744,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joycontrolstick.cpp" line="804"/>
         <location filename="../../../src/joycontrolstick.cpp" line="809"/>
         <source>Stick</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauva</translation>
     </message>
 </context>
 <context>
@@ -2752,35 +2754,35 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="81"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ylös</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikea</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="69"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alas</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="77"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="81"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasen</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="98"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="106"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="112"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Painike</translation>
     </message>
 </context>
 <context>
@@ -2793,17 +2795,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="57"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="66"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="75"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso + pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="84"/>
@@ -2828,12 +2830,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="124"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tavanomainen</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="132"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Kahdeksansuuntainen</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="141"/>
@@ -2861,7 +2863,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="146"/>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="133"/>
@@ -2875,22 +2877,22 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="120"/>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="107"/>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etäisyys:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="198"/>
         <source>Bearing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Merkitys:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>% turva-alue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="260"/>
@@ -2905,17 +2907,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="284"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="289"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen pystysuuntainen)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="294"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakataso + pystysuuntainen)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="299"/>
@@ -2940,7 +2942,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="326"/>
         <source>Stick Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvan toimintatapa:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="339"/>
@@ -2956,17 +2958,28 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tavanomainen: 8-suuntainen sauva jossa kaksisuuntapainikkeet ovat aktiivisena
+kun sauva on viistosuunta-alueilla.
+
+Kahdeksansuunta: 8-alueinen sauva jossa jokaiselle suunnalle on oma painikkeensa.
+Vain yksi nappi on kerrallaan aktiivinen.
+Kätevä roguemaisissa, vuoropohjaisissa peleissä.
+
+4 -pääilmansuunta: 4 -alueen sauva jossa alueet
+vastaavat pääilmansuuntamallissa. Kätevä valikoissa.
+
+4-suuntainen viistosuunnissa: 4 -alueen sauva jokaisen
+alueen vastatessa viistosuuntaisesti.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="354"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tavanomainen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="359"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>Kahdeksansuuntainen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="364"/>
@@ -2987,7 +3000,7 @@ to a diagonal zone of the stick.</source>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="411"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="436"/>
         <source>Dead zone value to use for an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuolleen alueen arvo käytettäväksi analogiselle sauvaohjaimelle.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="456"/>
@@ -2998,29 +3011,29 @@ to a diagonal zone of the stick.</source>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="463"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="488"/>
         <source>Value when an analog stick is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arvo kun analogisauvaa katsotaan liikutetuksi 100%.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="508"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished"></translation>
+        <translation>Viistottainen kantama:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="515"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tontti (astekulman mukaan) jonka jokainen viistottainen alue varaa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="551"/>
         <source>Square Stick:</source>
-        <translation type="unfinished"></translation>
+        <translation>Neliösauva:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="558"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="586"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosenttimääre muokata neliösauvan koordinaatteja jotka rajaantuvat ympyrämuodossa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="589"/>
@@ -3030,7 +3043,7 @@ to a diagonal zone of the stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="612"/>
         <source>Stick Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvan viive:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="619"/>
@@ -3046,7 +3059,7 @@ to a diagonal zone of the stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="682"/>
         <source>Modifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Muovain:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="689"/>
@@ -3055,12 +3068,16 @@ to a diagonal zone of the stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Muokkauspainike joka on aktiivinen itse sauvan ollessa aktiivinen.
+
+Tämä painike on kätevä määrittääkseen alueita
+muovausnäppäimillä joita voidaan käyttää määräämään kävely/juoksu
+toiminto analogiseen sauvaan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="696"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>TyöntöNappi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="731"/>
@@ -3071,7 +3088,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="741"/>
         <source>Specify the name of an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä analogisauvalle nimi.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="750"/>
@@ -3096,7 +3113,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="61"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Muovain</translation>
     </message>
 </context>
 <context>
@@ -3116,35 +3133,35 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="51"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="67"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ylös</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="47"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="51"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="59"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Oikea</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="59"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="71"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alas</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="63"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="67"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="71"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasen</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="90"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="98"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="104"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Painike</translation>
     </message>
 </context>
 <context>
@@ -3157,19 +3174,19 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1102"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2350"/>
         <source>&lt;New&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Uusi&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="101"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1556"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="103"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1557"/>
         <source>Remove configuration from recent list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista asetelma viimeksikäytettyjen luettelosta.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="108"/>
@@ -3181,7 +3198,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="110"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1560"/>
         <source>Load configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataa asetustiedosto.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="116"/>
@@ -3193,89 +3210,89 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="118"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1563"/>
         <source>Save changes to configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallenna muutokset asetustiedostoon.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="123"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1565"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallenna nimellä</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="125"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1566"/>
         <source>Save changes to a new configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallenna muutokset uuteen asetustiedostoon.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="314"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1568"/>
         <source>Sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrityskokoomat</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="316"/>
         <source>Copy from Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Jäljennä määrityskokoomasta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="317"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="325"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1569"/>
         <source>Set 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="329"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1570"/>
         <source>Set 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="333"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1571"/>
         <source>Set 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 3</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="337"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1572"/>
         <source>Set 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="341"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1573"/>
         <source>Set 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 5</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="345"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1574"/>
         <source>Set 6</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="349"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1575"/>
         <source>Set 7</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 7</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="353"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1576"/>
         <source>Set 8</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokooma 8</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="419"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1582"/>
         <source>Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvan/padin määritys</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
