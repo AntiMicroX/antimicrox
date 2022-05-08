@@ -15,9 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define _USE_MATH_DEFINES
+
 #include "joygyroscopesensor.h"
 #include "globalvariables.h"
 #include "joybuttontypes/joygyroscopebutton.h"
+
+#include <cmath>
 
 JoyGyroscopeSensor::JoyGyroscopeSensor(int originset, SetJoystick *parent_set, QObject *parent)
     : JoySensor(GYROSCOPE, originset, parent_set, parent)
@@ -121,4 +125,137 @@ void JoyGyroscopeSensor::applyCalibration()
     m_pending_value[0] -= m_calibration_value[0];
     m_pending_value[1] -= m_calibration_value[1];
     m_pending_value[2] -= m_calibration_value[2];
+}
+
+/**
+ * @brief Find the direction zone of the current sensor position.
+ *
+ * First, the sensor axis values are normalized so they are on the unit sphere.
+ * Then, the unit sphere is divided into direction zones with the following algorithm:
+ *   - Mark a spherical layer around the X axis at +/- the diagonal zone angle
+ *     divided by two (called "range" in the code)
+ *     Then generate two more spherical layers by rotating the
+ *     first layer around the Y and Z axes.
+ * Check if a point is within each layer by comparing the absolute value
+ * of each coordinate against the "range".
+ * If a point is in only one layer, it is in the diagonal zone between two axes.
+ * If a point is in two layers, it is in the orthogonal zone of one axis.
+ * If a point is in three or zero zones, it is diagonal to all three axes.
+ * There are two cases here because the spherical layers overlap if the diagonal
+ * angle is larger then 45 degree.
+ *
+ * @returns JoySensorDirection bitfield for the current direction zone.
+ */
+JoySensorDirection JoyGyroscopeSensor::calculateSensorDirection()
+{
+    double distance = calculateDistance();
+    if (distance < m_dead_zone)
+        return SENSOR_CENTERED;
+
+    double range = sin(M_PI / 4 - m_diagonal_range / 2);
+    double normPitch = m_current_value[0] / distance;
+    double normRoll = m_current_value[1] / distance;
+    double normYaw = m_current_value[2] / distance;
+
+    bool inPitch = abs(normPitch) < range;
+    bool inRoll = abs(normRoll) < range;
+    bool inYaw = abs(normYaw) < range;
+
+    if (inPitch && !inRoll && !inYaw)
+    {
+        if (normRoll > 0)
+        {
+            if (normYaw > 0)
+                return SENSOR_RIGHT_FWD;
+            else
+                return SENSOR_LEFT_FWD;
+        } else
+        {
+            if (normYaw > 0)
+                return SENSOR_RIGHT_BWD;
+            else
+                return SENSOR_LEFT_BWD;
+        }
+    } else if (!inPitch && inRoll && !inYaw)
+    {
+        if (normPitch > 0)
+        {
+            if (normYaw > 0)
+                return SENSOR_RIGHT_UP;
+            else
+                return SENSOR_LEFT_UP;
+        } else
+        {
+            if (normYaw > 0)
+                return SENSOR_RIGHT_DOWN;
+            else
+                return SENSOR_LEFT_DOWN;
+        }
+    } else if (!inPitch && !inRoll && inYaw)
+    {
+        if (normPitch > 0)
+        {
+            if (normRoll > 0)
+                return SENSOR_UP_FWD;
+            else
+                return SENSOR_UP_BWD;
+        } else
+        {
+            if (normRoll > 0)
+                return SENSOR_DOWN_FWD;
+            else
+                return SENSOR_DOWN_BWD;
+        }
+    } else if (inPitch && inRoll && !inYaw)
+    {
+        if (normYaw > 0)
+            return SENSOR_RIGHT;
+        else
+            return SENSOR_LEFT;
+    } else if (inPitch && !inRoll && inYaw)
+    {
+        if (normRoll > 0)
+            return SENSOR_FWD;
+        else
+            return SENSOR_BWD;
+    } else if (!inPitch && inRoll && inYaw)
+    {
+        if (normPitch > 0)
+            return SENSOR_UP;
+        else
+            return SENSOR_DOWN;
+    } else // in all or in none
+    {
+        if (normPitch > 0)
+        {
+            if (normRoll > 0)
+            {
+                if (normYaw > 0)
+                    return SENSOR_RIGHT_UP_FWD;
+                else
+                    return SENSOR_LEFT_UP_FWD;
+            } else
+            {
+                if (normYaw > 0)
+                    return SENSOR_RIGHT_UP_BWD;
+                else
+                    return SENSOR_LEFT_UP_BWD;
+            }
+        } else
+        {
+            if (normRoll > 0)
+            {
+                if (normYaw > 0)
+                    return SENSOR_RIGHT_DOWN_FWD;
+                else
+                    return SENSOR_LEFT_DOWN_FWD;
+            } else
+            {
+                if (normYaw > 0)
+                    return SENSOR_RIGHT_DOWN_BWD;
+                else
+                    return SENSOR_LEFT_DOWN_BWD;
+            }
+        }
+    }
 }

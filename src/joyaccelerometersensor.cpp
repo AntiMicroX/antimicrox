@@ -15,9 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define _USE_MATH_DEFINES
+
 #include "joyaccelerometersensor.h"
 #include "globalvariables.h"
 #include "joybuttontypes/joyaccelerometerbutton.h"
+
+#include <cmath>
 
 JoyAccelerometerSensor::JoyAccelerometerSensor(double rate, int originset, SetJoystick *parent_set, QObject *parent)
     : JoySensor(ACCELEROMETER, originset, parent_set, parent)
@@ -104,4 +108,65 @@ void JoyAccelerometerSensor::populateButtons()
 void JoyAccelerometerSensor::applyCalibration()
 {
     // XXX: This is a no-op for accelerometer
+}
+
+/**
+ * @brief Find the direction zone of the current sensor position.
+ *
+ * First, the pitch and roll angles on the unit sphere are calculated.
+ * Then, the unit sphere is divided into direction zones with the following algorithm:
+ *   - Mark a spherical layer around the X axis at +/- the diagonal zone angle
+ *     divided by two (called "range" in the code)
+ *   - Generate another spherical layers by rotating the first layer around the Y axis.
+ *     A third layer is not necessary because there are only two degrees of freedom.
+ * Check if a point is within each layer by comparing the absolute values
+ * of pitch and roll angles against the "range".
+ * If a point is in only one layer, it is in the orthogonal zone of one axis.
+ * If a point is in both or no zones, it is diagonal to both axes.
+ * There are two cases here because the spherical layers overlap if the diagonal
+ * angle is larger then 45 degree.
+ *
+ * @returns JoySensorDirection bitfield for the current direction zone.
+ */
+JoySensorDirection JoyAccelerometerSensor::calculateSensorDirection()
+{
+    double pitch = calculatePitch();
+    double roll = calculateRoll();
+    double pitch_abs = abs(pitch);
+    double roll_abs = abs(roll);
+    if (pitch_abs * pitch_abs + roll_abs * roll_abs < m_dead_zone * m_dead_zone)
+        return SENSOR_CENTERED;
+
+    double range = M_PI / 4 - m_diagonal_range / 2;
+    bool inPitch = pitch_abs < range;
+    bool inRoll = roll_abs < range;
+
+    if (inPitch && !inRoll)
+    {
+        if (roll > 0)
+            return SENSOR_LEFT;
+        else
+            return SENSOR_RIGHT;
+    } else if (!inPitch && inRoll)
+    {
+        if (pitch > 0)
+            return SENSOR_UP;
+        else
+            return SENSOR_DOWN;
+    } else // in both or in none
+    {
+        if (pitch > 0)
+        {
+            if (roll > 0)
+                return SENSOR_LEFT_UP;
+            else
+                return SENSOR_RIGHT_UP;
+        } else
+        {
+            if (roll > 0)
+                return SENSOR_LEFT_DOWN;
+            else
+                return SENSOR_RIGHT_DOWN;
+        }
+    }
 }
