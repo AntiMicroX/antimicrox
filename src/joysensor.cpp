@@ -45,13 +45,72 @@ JoySensor::~JoySensor() {}
 /**
  * @brief Main sensor mapping function.
  *  When activated, it generates a "moved" QT event which updates various parts of the UI.
- *  XXX: will do more in the future
+ *  Furthermore, it controls the sensor delay timer and calculates the current sensor
+ *  direction and generates "active" and "released" QT events which enable/disable
+ *  button highlights in the GUI.
+ *  Finally, it calls createDeskEvent if the active/released button state has changed.
  */
 void JoySensor::joyEvent(float *values, bool ignoresets)
 {
     m_current_value[0] = values[0];
     m_current_value[1] = values[1];
     m_current_value[2] = values[2];
+
+    JoySensorDirection pending_direction = calculateSensorDirection();
+
+    if (pending_direction != SENSOR_CENTERED && !m_active)
+    {
+        m_active = true;
+        emit active(m_current_value[0], m_current_value[1], m_current_value[2]);
+
+        if (ignoresets || (m_sensor_delay == 0))
+        {
+            if (m_delay_timer.isActive())
+                m_delay_timer.stop();
+            createDeskEvent(pending_direction, ignoresets);
+        } else
+        {
+            if (!m_delay_timer.isActive())
+                m_delay_timer.start(m_sensor_delay);
+        }
+    } else if (pending_direction == SENSOR_CENTERED && m_active)
+    {
+        m_active = false;
+        emit released(m_current_value[0], m_current_value[1], m_current_value[2]);
+
+        if (ignoresets || (m_sensor_delay == 0))
+        {
+            if (m_delay_timer.isActive())
+                m_delay_timer.stop();
+            createDeskEvent(pending_direction, ignoresets);
+        } else
+        {
+            if (!m_delay_timer.isActive())
+                m_delay_timer.start(m_sensor_delay);
+        }
+    } else if (m_active)
+    {
+        if (ignoresets || (m_sensor_delay == 0))
+        {
+            if (m_delay_timer.isActive())
+                m_delay_timer.stop();
+
+            createDeskEvent(pending_direction, ignoresets);
+        } else
+        {
+            if (m_current_direction != pending_direction)
+            {
+                if (!m_delay_timer.isActive())
+                    m_delay_timer.start(m_sensor_delay);
+            } else
+            {
+                if (m_delay_timer.isActive())
+                    m_delay_timer.stop();
+
+                createDeskEvent(pending_direction, ignoresets);
+            }
+        }
+    }
 
     emit moved(m_current_value[0], m_current_value[1], m_current_value[2]);
 }
@@ -522,6 +581,10 @@ bool JoySensor::isDefault() const
  */
 void JoySensor::reset()
 {
+    m_active = false;
+    for (size_t i = 0; i < ACTIVE_BUTTON_COUNT; ++i)
+        m_active_button[i] = nullptr;
+
     m_dead_zone = degToRad(GlobalVariables::JoySensor::DEFAULTDEADZONE);
     m_diagonal_range = degToRad(GlobalVariables::JoySensor::DEFAULTDIAGONALRANGE);
     m_pending_event = false;
@@ -719,7 +782,7 @@ SetJoystick *JoySensor::getParentSet() const { return m_parent_set; }
  * @brief Slot called when m_delay_timer has timed out. The method will
  *     call createDeskEvent.
  */
-void JoySensor::delayTimerExpired() {}
+void JoySensor::delayTimerExpired() { createDeskEvent(calculateSensorDirection()); }
 
 /**
  * @brief Reset all the properties of the sensor direction buttons.
@@ -732,5 +795,62 @@ void JoySensor::resetButtons()
 
         if (button != nullptr)
             button->reset();
+    }
+}
+
+/**
+ * @brief Set buttons for current sensor direction zone.
+ *
+ * @param Pointer to an array of three JoySensorButton pointers in which
+ *   the results are stored.
+ */
+void JoySensor::determineSensorEvent(JoySensorButton **eventbutton) const
+{
+    if (m_current_direction & SENSOR_LEFT)
+        eventbutton[0] = m_buttons.value(SENSOR_LEFT);
+    else if (m_current_direction & SENSOR_RIGHT)
+        eventbutton[0] = m_buttons.value(SENSOR_RIGHT);
+
+    if (m_current_direction & SENSOR_UP)
+        eventbutton[1] = m_buttons.value(SENSOR_UP);
+    else if (m_current_direction & SENSOR_DOWN)
+        eventbutton[1] = m_buttons.value(SENSOR_DOWN);
+
+    if (m_current_direction & SENSOR_FWD)
+        eventbutton[2] = m_buttons.value(SENSOR_FWD);
+    else if (m_current_direction & SENSOR_BWD)
+        eventbutton[2] = m_buttons.value(SENSOR_BWD);
+}
+
+/**
+ * @brief Find the position of the three sensor axes, deactivate no longer used
+ *   sensor direction button and then activate direction buttons for new
+ *   direction.
+ * @param Should set changing operations be ignored. Necessary in the middle
+ *   of a set change.
+ */
+void JoySensor::createDeskEvent(JoySensorDirection direction, bool ignoresets)
+{
+    m_current_direction = direction;
+    JoySensorButton *eventbutton[ACTIVE_BUTTON_COUNT] = {nullptr};
+    determineSensorEvent(eventbutton);
+
+    for (size_t i = 0; i < ACTIVE_BUTTON_COUNT; ++i)
+    {
+        if (m_active_button[i] != nullptr && m_active_button[i] != eventbutton[i])
+        {
+            m_active_button[i]->joyEvent(false, ignoresets);
+            m_active_button[i] = nullptr;
+        }
+
+        if (eventbutton[i] != nullptr && m_active_button[i] == nullptr)
+        {
+            m_active_button[i] = eventbutton[i];
+            m_active_button[i]->joyEvent(true, ignoresets);
+        } else if (eventbutton[i] == nullptr && m_active_button[i] != nullptr)
+        {
+            m_active_button[i]->joyEvent(false, ignoresets);
+            m_active_button[i] = nullptr;
+        }
     }
 }

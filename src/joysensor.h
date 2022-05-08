@@ -129,12 +129,18 @@ class JoySensor : public QObject
     virtual void populateButtons() = 0;
     virtual JoySensorDirection calculateSensorDirection() = 0;
     virtual void applyCalibration() = 0;
+    void determineSensorEvent(JoySensorButton **eventbutton) const;
+    void createDeskEvent(JoySensorDirection direction, bool ignoresets = false);
 
     JoySensorType m_type;
     double m_dead_zone;
     double m_diagonal_range;
     double m_max_zone;
     unsigned int m_sensor_delay;
+
+    bool m_active;
+    static const size_t ACTIVE_BUTTON_COUNT = 3;
+    JoySensorButton *m_active_button[ACTIVE_BUTTON_COUNT];
 
     float m_current_value[3];
     float m_pending_value[3];
