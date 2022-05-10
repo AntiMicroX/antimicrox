@@ -965,7 +965,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет такого локального файла, который можно было бы запустить. Проверьте файл на своей системе</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
@@ -996,73 +996,73 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1547"/>
         <source>Choose Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите исполняемый файл</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1603"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>Слоты после Цикла будут выполнены на следующем нажатии кнопки. Несколько циклов могут быть использованы для создания разделов в последовательности.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1609"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Задерживает выполнение слота на выбранное время. Слоты, выполняемые до задержки, будут активны во время задержки.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1616"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Дистанция позволяет выполнять слот после неё только при определённом расстоянии оси от изначальной мёртвой зоны.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1626"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Действие удержания. Слоты после этого действия будут выполнены только если кнопка будет нажата в течении выбранного времени.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1631"/>
         <source>Chose a profile to load when this slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите профиль, который нужно загрузить, когда будет активирован этот слот.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1635"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>Мод мыши будет модифицировать все настройки скорости мыши во время действия слота. Может быть полезно для замедления мыши при использовании прицела.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1646"/>
         <source>Specify the time that keys past this slot should be held down.</source>
-        <translation type="unfinished"></translation>
+        <translation>Определите время, которое нужно удерживать кнопки, нажатые следующими слотами.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1651"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Действие отпускания. Слоты после этого действия будут выполнены только когда нажатие будет закончено, если оно продолжалось не менее указанного времени.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1657"/>
         <source>Change to selected set once slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить выбранный набор при выполнении слота.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1661"/>
         <source>Full string will be typed when a slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Строка будет напечатана при активации слота.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1622"/>
         <source>Execute program when slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа будет включена при активации слота.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="727"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1492"/>
         <source>Choose Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите профиль</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1492"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлы конфигурации (*.amgp *.xml)</translation>
     </message>
 </context>
 <context>
