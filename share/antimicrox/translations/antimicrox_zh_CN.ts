@@ -75,7 +75,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">版权：2013 - 2022 {2013 ?}</translation>
+        <translation>版权：2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
@@ -380,7 +380,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="227"/>
         <source>Chosen Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>选择配置</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="228"/>
@@ -613,12 +613,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="334"/>
         <source>Join</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">混合</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="351"/>
         <source>Split</source>
-        <translation type="unfinished"></translation>
+        <translation>拆分</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="402"/>
@@ -863,12 +863,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <source>To delete slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>至少要选择一个插槽才能删除</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>To insert slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>至少要选择一个插槽才能插入</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
@@ -891,17 +891,17 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="539"/>
         <source>It&apos;s impossible to join slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="542"/>
         <source>Not selected slots</source>
-        <translation type="unfinished"></translation>
+        <translation>没有选择插槽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="543"/>
         <source>It&apos;s impossible to join slots. Select at least two slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>无法混合插槽，至少需要选择两个插槽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="546"/>
@@ -911,7 +911,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="547"/>
         <source>It&apos;s only possible to join simple and mix keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>只能混合普通键盘插槽和混合键盘插槽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="641"/>
@@ -921,22 +921,22 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Not selected slot</source>
-        <translation type="unfinished"></translation>
+        <translation>没有选择插槽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Select your slot before splitting.</source>
-        <translation type="unfinished"></translation>
+        <translation>在拆分插槽前请先选择一个插槽。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Too many mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>混合插槽过多</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Select one mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择一个混合插槽。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
@@ -1484,7 +1484,7 @@ this button is being used.</source>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="118"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="540"/>
         <source>Choose your keyboard key</source>
-        <translation type="unfinished"></translation>
+        <translation>选择要映射按键</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="359"/>
@@ -1517,7 +1517,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="422"/>
         <source>Before you open window with advanced settings, you have to choice a key</source>
-        <translation type="unfinished"></translation>
+        <translation>请先绑定一个按键再进入高级选项</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="429"/>
@@ -1532,7 +1532,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="519"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation>最后一个已设置的按键为</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="527"/>
@@ -1610,7 +1610,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="237"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>重置设置</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="270"/>
@@ -1620,7 +1620,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="47"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>校准</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
@@ -3200,7 +3200,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="721"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要重置所有按键设置吗？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1611"/>
@@ -3332,7 +3332,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="217"/>
         <source>Battery:</source>
-        <translation type="unfinished"></translation>
+        <translation>电量：</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="230"/>
@@ -3733,7 +3733,7 @@ option is enabled.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="125"/>
         <source>Pro&amp;file Directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>配置文件路径：</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="824"/>
@@ -4007,12 +4007,12 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1893"/>
         <source>Do you really want to reset setting?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要重置设置吗？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1917"/>
         <source>Would you like to reset mappings too?</source>
-        <translation type="unfinished"></translation>
+        <translation>是否需要重置按键映射？</translation>
     </message>
 </context>
 <context>
@@ -4052,7 +4052,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="236"/>
         <source>He&amp;lp</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">帮助</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="255"/>
@@ -4101,7 +4101,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="306"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>关于&amp;Qt</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="309"/>
@@ -4111,7 +4111,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="318"/>
         <source>&amp;Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">属性</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="321"/>
@@ -4121,7 +4121,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="330"/>
         <source>&amp;Key Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>按键检查器</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="333"/>
@@ -4151,7 +4151,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="374"/>
         <source>S&amp;ettings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="377"/>
@@ -4181,7 +4181,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="410"/>
         <source>&amp;Issues</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="413"/>
@@ -4191,7 +4191,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="422"/>
         <source>&amp;Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>校准...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="425"/>
@@ -4240,12 +4240,12 @@ Some games run as Administrator which will cause events generated by antimicro t
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1703"/>
         <source>%1 battery</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 电量</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1705"/>
         <source>Battery level is less than %1</source>
-        <translation type="unfinished"></translation>
+        <translation>电池电量已低于 %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1707"/>
@@ -4261,7 +4261,7 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1855"/>
         <source>Reading old profile</source>
-        <translation type="unfinished"></translation>
+        <translation>读取旧的配置文件</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1856"/>
@@ -4276,12 +4276,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1083"/>
         <source>Calibration couldn&apos;t be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>无法进行校准</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1084"/>
         <source>You must connect at least one controller to open the window</source>
-        <translation type="unfinished"></translation>
+        <translation>至少要连接一个控制器才能使用校准功能</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1404"/>
@@ -6271,7 +6271,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="802"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[无按键]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="906"/>
@@ -6288,7 +6288,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="988"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>其他按键</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1002"/>
@@ -6663,7 +6663,7 @@ LK</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="91"/>
         <source>filename</source>
-        <translation type="unfinished"></translation>
+        <translation>文件名</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="93"/>
