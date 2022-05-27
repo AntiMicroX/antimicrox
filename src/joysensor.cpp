@@ -102,6 +102,41 @@ void JoySensor::clearPendingEvent()
 }
 
 /**
+ * @brief Copy slots from all sensor buttons and properties from a sensor
+ *     onto another.
+ * @param JoySensor object to be modified.
+ */
+void JoySensor::copyAssignments(JoySensor *dest_sensor)
+{
+    dest_sensor->reset();
+    dest_sensor->m_dead_zone = m_dead_zone;
+    dest_sensor->m_max_zone = m_max_zone;
+    dest_sensor->m_diagonal_range = m_diagonal_range;
+    dest_sensor->m_sensor_name = m_sensor_name;
+    dest_sensor->m_sensor_delay = m_sensor_delay;
+
+    dest_sensor->m_calibrated = m_calibrated;
+    dest_sensor->m_calibration_value[0] = m_calibration_value[0];
+    dest_sensor->m_calibration_value[1] = m_calibration_value[1];
+    dest_sensor->m_calibration_value[2] = m_calibration_value[2];
+
+    auto dest_buttons = dest_sensor->getButtons();
+    for (auto iter = dest_buttons->begin(); iter != dest_buttons->end(); ++iter)
+    {
+        JoySensorButton *dest_button = iter.value();
+        if (dest_button != nullptr)
+        {
+            JoySensorButton *source_button = m_buttons.value(dest_button->getDirection());
+            if (source_button != nullptr)
+                source_button->copyAssignments(dest_button);
+        }
+    }
+
+    if (!dest_sensor->isDefault())
+        emit propertyUpdated();
+}
+
+/**
  * @brief Check if any direction is mapped to a keyboard or mouse event
  * @returns True if a mapping exists, false otherwise
  */

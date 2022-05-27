@@ -150,3 +150,8 @@ JoyButton::JoyMouseCurve JoySensorButton::getDefaultMouseCurve() const { return 
  * @returns JoySensor
  */
 JoySensor *JoySensorButton::getSensor() const { return m_sensor; }
+
+/**
+ * @brief returns the direction of this button.
+ */
+JoySensorDirection JoySensorButton::getDirection() const { return static_cast<JoySensorDirection>(m_index); }

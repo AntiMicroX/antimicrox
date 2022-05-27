@@ -975,6 +975,16 @@ void SetJoystick::copyAssignments(SetJoystick *destSet)
             sourceStick->copyAssignments(destStick);
     }
 
+    for (auto iter = m_sensors.cbegin(); iter != m_sensors.cend(); ++iter)
+    {
+        JoySensorType type = iter.key();
+        JoySensor *sourceSensor = iter.value();
+        JoySensor *destSensor = destSet->getSensor(type);
+
+        if (sourceSensor && destSensor)
+            sourceSensor->copyAssignments(destSensor);
+    }
+
     for (int i = 0; i < m_device->getNumberHats(); i++)
     {
         JoyDPad *sourceDPad = getHats().value(i);

@@ -48,6 +48,7 @@ class JoySensorButton : public JoyGradientButton
 
     JoySensor *getSensor() const;
     virtual QString getDirectionName() const = 0;
+    JoySensorDirection getDirection() const;
 
   signals:
     void setAssignmentChanged(JoySensorDirection direction, JoySensorType type, int associated_set, int mode);
