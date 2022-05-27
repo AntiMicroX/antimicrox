@@ -50,6 +50,7 @@ class JoySensor : public QObject
     bool hasPendingEvent() const;
     void clearPendingEvent();
 
+    void copyAssignments(JoySensor *dest_sensor);
     bool hasSlotsAssigned() const;
 
     QString getPartialName(bool forceFullFormat = false, bool displayNames = false) const;
