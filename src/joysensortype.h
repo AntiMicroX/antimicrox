@@ -18,12 +18,17 @@
 #pragma once
 
 #include <QMetaType>
+#include <SDL2/SDL.h>
 
 enum JoySensorType
 {
     ACCELEROMETER,
     GYROSCOPE,
+#if SDL_VERSION_ATLEAST(2, 0, 14)
     SENSOR_COUNT
+#else
+    SENSOR_COUNT = 0
+#endif
 };
 
 Q_DECLARE_METATYPE(JoySensorType)
