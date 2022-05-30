@@ -15,32 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "joysensorfactory.h"
+#include "joyaccelerometersensor.h"
+#include "joygyroscopesensor.h"
 
-#include <QObject>
-
-#include "joysensortype.h"
-
-class SetJoystick;
-
-/**
- * @brief Represents one sensor in a SetJoystick and its connections to
- *  other parts of the application.
- *  Receives hardware input events from InputDaemon, processes them and
- *  generates GUI as well as Mouse+Keyboard events.
- */
-class JoySensor : public QObject
+namespace JoySensorFactory {
+JoySensor *build(JoySensorType type, QObject *parent)
 {
-    Q_OBJECT
-
-  public:
-    explicit JoySensor(QObject *parent);
-    virtual ~JoySensor();
-
-    void queuePendingEvent(float *values, bool ignoresets = false);
-
-    bool inDeadZone(float *values) const;
-
-    static double radToDeg(double value);
-    static double degToRad(double value);
-};
+    if (type == ACCELEROMETER)
+        return new JoyAccelerometerSensor(parent);
+    else if (type == GYROSCOPE)
+        return new JoyGyroscopeSensor(parent);
+    else
+        return nullptr;
+}
+} // namespace JoySensorFactory

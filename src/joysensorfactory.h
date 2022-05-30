@@ -17,30 +17,11 @@
 
 #pragma once
 
-#include <QObject>
-
 #include "joysensortype.h"
 
+class JoySensor;
 class SetJoystick;
 
-/**
- * @brief Represents one sensor in a SetJoystick and its connections to
- *  other parts of the application.
- *  Receives hardware input events from InputDaemon, processes them and
- *  generates GUI as well as Mouse+Keyboard events.
- */
-class JoySensor : public QObject
-{
-    Q_OBJECT
-
-  public:
-    explicit JoySensor(QObject *parent);
-    virtual ~JoySensor();
-
-    void queuePendingEvent(float *values, bool ignoresets = false);
-
-    bool inDeadZone(float *values) const;
-
-    static double radToDeg(double value);
-    static double degToRad(double value);
-};
+namespace JoySensorFactory {
+JoySensor *build(JoySensorType type, QObject *parent);
+}

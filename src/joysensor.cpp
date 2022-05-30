@@ -15,7 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define _USE_MATH_DEFINES
+
 #include "joysensor.h"
+
+#include <cmath>
 
 JoySensor::JoySensor(QObject *parent)
     : QObject(parent)
@@ -27,3 +31,13 @@ JoySensor::~JoySensor() {}
 void JoySensor::queuePendingEvent(float *values, bool ignoresets) {}
 
 bool JoySensor::inDeadZone(float *values) const { return false; }
+
+/**
+ * @brief Utility function which converts a given value from radians to degree.
+ */
+double JoySensor::radToDeg(double value) { return value * 180 / M_PI; }
+
+/**
+ * @brief Utility function which converts a given value from degree to radians.
+ */
+double JoySensor::degToRad(double value) { return value * M_PI / 180; }

@@ -169,6 +169,7 @@ set(antimicrox_SOURCES
         src/inputdaemon.cpp
         src/inputdevice.cpp
         src/inputdevicebitarraystatus.cpp
+        src/joyaccelerometersensor.cpp
         src/joyaxis.cpp
         src/joyaxiscontextmenu.cpp
         src/joybutton.cpp
@@ -187,7 +188,9 @@ set(antimicrox_SOURCES
         src/joycontrolstickpushbutton.cpp
         src/joycontrolstickstatusbox.cpp
         src/joydpad.cpp
+        src/joygyroscopesensor.cpp
         src/joysensor.cpp
+        src/joysensorfactory.cpp
         src/joystick.cpp
         src/keyboard/virtualkeyboardmousewidget.cpp
         src/keyboard/virtualkeypushbutton.cpp
@@ -284,6 +287,7 @@ set(antimicrox_HEADERS
         src/inputdaemon.h
         src/inputdevice.h
         src/inputdevicebitarraystatus.h
+        src/joyaccelerometersensor.h
         src/joyaxis.h
         src/joyaxiscontextmenu.h
         src/joybutton.h
@@ -302,7 +306,9 @@ set(antimicrox_HEADERS
         src/joycontrolstickpushbutton.h
         src/joycontrolstickstatusbox.h
         src/joydpad.h
+        src/joygyroscopesensor.h
         src/joysensor.h
+        src/joysensorfactory.h
         src/joysensortype.h
         src/joystick.h
         src/keyboard/virtualkeyboardmousewidget.h
