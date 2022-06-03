@@ -3298,55 +3298,55 @@ toiminto analogiseen sauvaan.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1581"/>
         <source>Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjaimen kartoitus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="436"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1583"/>
         <source>Quick Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Pika-asettelu</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="444"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1586"/>
         <source>Names</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimet</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="446"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1587"/>
         <source>Toggle button name displaying.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kytke napin nimi näkymään.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="452"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1589"/>
         <source>Pref</source>
-        <translation type="unfinished"></translation>
+        <translation>Aset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="454"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1590"/>
         <source>Change global profile settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Muuta yleismaailmallisia profiiliasetuksia.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="458"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1584"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1592"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Nollaa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="460"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1593"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Palauta asetusmuutokset alkutekijöihinsä. Uudelleenlataa asetustiedosto.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="524"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa asetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="524"/>
@@ -3365,12 +3365,12 @@ toiminto analogiseen sauvaan.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="800"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="812"/>
         <source>Config File (*.%1.amgp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetustiedosto (*.%1.amgp)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="721"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko aivan varmasti nollata pelisauvan nappien asetukset?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1521"/>
@@ -3382,7 +3382,7 @@ toiminto analogiseen sauvaan.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1611"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1672"/>
         <source>Save Profile Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennetaanko profiilimuutokset?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1614"/>
