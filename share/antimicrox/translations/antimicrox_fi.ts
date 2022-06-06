@@ -3926,7 +3926,7 @@ Asetukset eivät tule voimaan ennenkuin joko virkistät kaikki peliohjainsauvat 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="680"/>
         <source>简体中文</source>
-        <translation>Mandariini kiina</translation>
+        <translation>Yksinkertaistettu kiina</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="685"/>
