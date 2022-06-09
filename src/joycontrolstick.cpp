@@ -271,16 +271,23 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         performButtonRelease(activeButton3, ignoresets);
     }
 
-    if (safezone)
+    // Activate modifier button before activating directional buttons.
+    // Value from the new stick event will be used to determine
+    // distance events.
+    // Release modifier button after releasing directional buttons.
+    double distance = getAbsoluteRawDistance();
+    if (m_modifier_zone_inverted)
     {
-        // Activate modifier button before activating directional buttons.
-        // Value from the new stick event will be used to determine
-        // distance events.
-        modifierButton->joyEvent(true, ignoresets);
+        if (safezone && distance < m_modifier_zone)
+            modifierButton->joyEvent(true, ignoresets);
+        else
+            modifierButton->joyEvent(false, ignoresets);
     } else
     {
-        // Release modifier button after releasing directional buttons.
-        modifierButton->joyEvent(false, ignoresets);
+        if (safezone && distance > m_modifier_zone)
+            modifierButton->joyEvent(true, ignoresets);
+        else
+            modifierButton->joyEvent(false, ignoresets);
     }
 
     /*
