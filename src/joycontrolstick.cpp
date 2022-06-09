@@ -828,9 +828,9 @@ int JoyControlStick::getCurrentlyAssignedSet() { return originset; }
 
 void JoyControlStick::reset()
 {
-    deadZone = 8000;
+    deadZone = GlobalVariables::JoyControlStick::DEFAULTDEADZONE;
     maxZone = GlobalVariables::JoyAxis::AXISMAXZONE;
-    diagonalRange = 45;
+    diagonalRange = GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE;
     isActive = false;
     pendingStickEvent = false;
 
