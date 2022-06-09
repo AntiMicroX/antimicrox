@@ -107,17 +107,20 @@ void JoyControlStickStatusBox::drawEightWayBox()
     QPainter painter(&pix);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    // Draw box outline
+    // Draw outline circle
     QPen penny;
     penny.setColor(Qt::black);
-    penny.setWidth(1);
+    penny.setWidth(0);
+    painter.setPen(penny);
     painter.setBrush(Qt::NoBrush);
-    painter.drawRect(0, 0, side - 1, side - 1);
 
     painter.save();
     painter.scale(side / static_cast<double>(GlobalVariables::JoyAxis::AXISMAX * 2.0),
                   side / static_cast<double>(GlobalVariables::JoyAxis::AXISMAX * 2.0));
     painter.translate(GlobalVariables::JoyAxis::AXISMAX, GlobalVariables::JoyAxis::AXISMAX);
+
+    painter.drawEllipse(-GlobalVariables::JoyAxis::AXISMAX, -GlobalVariables::JoyAxis::AXISMAX,
+                        GlobalVariables::JoyAxis::AXISMAX * 2, GlobalVariables::JoyAxis::AXISMAX * 2);
 
     // Draw diagonal zones
     if (m_stick != nullptr)
@@ -257,17 +260,20 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
     QPainter painter(&pix);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    // Draw box outline
+    // Draw outline circle
     QPen penny;
     penny.setColor(Qt::black);
-    penny.setWidth(1);
+    penny.setWidth(0);
+    painter.setPen(penny);
     painter.setBrush(Qt::NoBrush);
-    painter.drawRect(0, 0, side - 1, side - 1);
 
     painter.save();
     painter.scale(side / static_cast<double>(GlobalVariables::JoyAxis::AXISMAX * 2.0),
                   side / static_cast<double>(GlobalVariables::JoyAxis::AXISMAX * 2.0));
     painter.translate(GlobalVariables::JoyAxis::AXISMAX, GlobalVariables::JoyAxis::AXISMAX);
+
+    painter.drawEllipse(-GlobalVariables::JoyAxis::AXISMAX, -GlobalVariables::JoyAxis::AXISMAX,
+                        GlobalVariables::JoyAxis::AXISMAX * 2, GlobalVariables::JoyAxis::AXISMAX * 2);
 
     // Draw diagonal zones
     if (m_stick != nullptr)
@@ -403,17 +409,20 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
     QPainter painter(&pix);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    // Draw box outline
+    // Draw outline circle
     QPen penny;
     penny.setColor(Qt::black);
-    penny.setWidth(1);
+    penny.setWidth(0);
+    painter.setPen(penny);
     painter.setBrush(Qt::NoBrush);
-    painter.drawRect(0, 0, side - 1, side - 1);
 
     painter.save();
     painter.scale(side / static_cast<double>(GlobalVariables::JoyAxis::AXISMAX * 2.0),
                   side / static_cast<double>(GlobalVariables::JoyAxis::AXISMAX * 2.0));
     painter.translate(GlobalVariables::JoyAxis::AXISMAX, GlobalVariables::JoyAxis::AXISMAX);
+
+    painter.drawEllipse(-GlobalVariables::JoyAxis::AXISMAX, -GlobalVariables::JoyAxis::AXISMAX,
+                        GlobalVariables::JoyAxis::AXISMAX * 2, GlobalVariables::JoyAxis::AXISMAX * 2);
 
     // Draw diagonal zones
     if (m_stick != nullptr)
