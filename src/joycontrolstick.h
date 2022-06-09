@@ -72,6 +72,8 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     int getIndex();
     int getRealJoyIndex();
     int getMaxZone();
+    int getModifierZone() const;
+    bool getModifierZoneInverted() const;
     int getCurrentlyAssignedSet();
     int getXCoordinate();
     int getYCoordinate();
@@ -243,6 +245,7 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     void deadZoneChanged(int value);
     void diagonalRangeChanged(int value);
     void maxZoneChanged(int value);
+    void modifierZoneChanged(int value);
     void circleAdjustChange(double circle);
     void stickDelayChanged(int value);
     void stickNameChanged();
@@ -253,6 +256,8 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     void reset();
     void setDeadZone(int value);
     void setMaxZone(int value);
+    void setModifierZone(int value);
+    void setModifierZoneInverted(bool value);
     void setDiagonalRange(int value);
     void setStickName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);

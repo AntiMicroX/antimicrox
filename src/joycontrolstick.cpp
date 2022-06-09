@@ -824,6 +824,17 @@ QString JoyControlStick::getDefaultStickName() { return defaultStickName; }
 
 int JoyControlStick::getMaxZone() { return maxZone; }
 
+/**
+ * @brief Returns the modifier zone of the stick
+ */
+int JoyControlStick::getModifierZone() const { return m_modifier_zone; }
+
+/**
+ * @brief Checks if the modifier zone of this stick is inverted
+ * @returns True if the modifier zone is inverted, false otherwise
+ */
+bool JoyControlStick::getModifierZoneInverted() const { return m_modifier_zone_inverted; }
+
 int JoyControlStick::getCurrentlyAssignedSet() { return originset; }
 
 void JoyControlStick::reset()
@@ -869,6 +880,36 @@ void JoyControlStick::setMaxZone(int value)
     {
         maxZone = value;
         emit maxZoneChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
+ * @brief Sets the modifier zone of the stick to the given value
+ * @param[in] value New stick modifier zone
+ */
+void JoyControlStick::setModifierZone(int value)
+{
+    value = std::min(abs(value), GlobalVariables::JoyAxis::AXISMAX);
+
+    if ((value != m_modifier_zone) && (value < maxZone) && (value > deadZone))
+    {
+        m_modifier_zone = value;
+        emit modifierZoneChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
+ * @brief Inverts the direction of the modifier zone of the stick.
+ * @param[in] value True if the zone should be inverted, false otherwise.
+ */
+void JoyControlStick::setModifierZoneInverted(bool value)
+{
+    if (value != m_modifier_zone_inverted)
+    {
+        m_modifier_zone_inverted = value;
+        emit modifierZoneChanged(m_modifier_zone);
         emit propertyUpdated();
     }
 }

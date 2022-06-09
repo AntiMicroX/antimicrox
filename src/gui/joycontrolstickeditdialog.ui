@@ -525,6 +525,13 @@ functionality to an analog stick.</string>
            </property>
           </widget>
          </item>
+         <item row="16" column="0">
+          <widget class="QLabel" name="modifierZoneLabel">
+           <property name="text">
+            <string>Modifier Zone:</string>
+           </property>
+          </widget>
+         </item>
          <item row="12" column="2">
           <widget class="QDoubleSpinBox" name="stickDelayDoubleSpinBox">
            <property name="toolTip">
@@ -617,6 +624,35 @@ functionality to an analog stick.</string>
            </property>
           </widget>
          </item>
+         <item row="16" column="1">
+          <widget class="QSlider" name="modifierZoneSlider">
+           <property name="toolTip">
+            <string>Threshold at which the modifier button gets activated.
+
+This button is useful for assigning zones with
+modifier keys that can be used to assign walk/run
+functionality to an analog stick.</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>32737</number>
+           </property>
+           <property name="singleStep">
+            <number>100</number>
+           </property>
+           <property name="pageStep">
+            <number>1000</number>
+           </property>
+           <property name="value">
+            <number>6000</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
          <item row="6" column="2">
           <widget class="QSpinBox" name="maxZoneSpinBox">
            <property name="toolTip">
@@ -664,6 +700,26 @@ functionality to an analog stick.</string>
            </property>
           </widget>
          </item>
+         <item row="16" column="2">
+          <widget class="QSpinBox" name="modifierZoneSpinBox">
+           <property name="toolTip">
+            <string>Threshold at which the modifier button gets activated.
+
+This button is useful for assigning zones with
+modifier keys that can be used to assign walk/run
+functionality to an analog stick.</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>32737</number>
+           </property>
+           <property name="value">
+            <number>6000</number>
+           </property>
+          </widget>
+         </item>
          <item row="10" column="1">
           <widget class="QSlider" name="squareStickSlider">
            <property name="toolTip">
@@ -705,6 +761,20 @@ functionality to an analog stick.</string>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="1">
+          <widget class="QCheckBox" name="modifierZoneInvertedCheckBox">
+           <property name="toolTip">
+            <string>Defines if the modifier buttons gets activated when the stick is inside or outside the threshold value.
+
+This button is useful for assigning zones with
+modifier keys that can be used to assign walk/run
+functionality to an analog stick.</string>
+           </property>
+           <property name="text">
+            <string>Invert Modifier Zone</string>
            </property>
           </widget>
          </item>
