@@ -830,6 +830,8 @@ void JoyControlStick::reset()
 {
     deadZone = GlobalVariables::JoyControlStick::DEFAULTDEADZONE;
     maxZone = GlobalVariables::JoyAxis::AXISMAXZONE;
+    m_modifier_zone = GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONE;
+    m_modifier_zone_inverted = GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONEINVERTED;
     diagonalRange = GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE;
     isActive = false;
     pendingStickEvent = false;
@@ -1816,6 +1818,8 @@ bool JoyControlStick::isDefault()
     bool value = true;
     value = value && (deadZone == GlobalVariables::JoyControlStick::DEFAULTDEADZONE);
     value = value && (maxZone == GlobalVariables::JoyControlStick::DEFAULTMAXZONE);
+    value = value && (m_modifier_zone == GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONE);
+    value = value && (m_modifier_zone_inverted == GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONEINVERTED);
     value = value && (diagonalRange == GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE);
     value = value && (currentMode == DEFAULTMODE);
     value = value && qFuzzyCompare(circle, GlobalVariables::JoyControlStick::DEFAULTCIRCLE);
@@ -2638,6 +2642,8 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
     destStick->reset();
     destStick->deadZone = deadZone;
     destStick->maxZone = maxZone;
+    destStick->m_modifier_zone = m_modifier_zone;
+    destStick->m_modifier_zone_inverted = m_modifier_zone_inverted;
     destStick->diagonalRange = diagonalRange;
     destStick->currentDirection = currentDirection;
     destStick->currentMode = currentMode;

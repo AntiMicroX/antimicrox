@@ -268,6 +268,8 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
   private:
     int originset;
     int deadZone;
+    int m_modifier_zone;
+    bool m_modifier_zone_inverted;
     int diagonalRange;
     int maxZone;
     int index;

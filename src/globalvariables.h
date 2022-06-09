@@ -203,6 +203,8 @@ class JoyControlStick
     // Define default values for stick properties.
     static const int DEFAULTDEADZONE;
     static const int DEFAULTMAXZONE;
+    static const int DEFAULTMODIFIERZONE;
+    static const bool DEFAULTMODIFIERZONEINVERTED;
     static const int DEFAULTDIAGONALRANGE;
     static const double DEFAULTCIRCLE;
     static const int DEFAULTSTICKDELAY;
