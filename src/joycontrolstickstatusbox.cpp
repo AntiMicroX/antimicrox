@@ -30,6 +30,7 @@
 #include <QList>
 #include <QPaintEvent>
 #include <QPainter>
+#include <QPainterPath>
 #include <QSizePolicy>
 
 JoyControlStickStatusBox::JoyControlStickStatusBox(QWidget *parent)
@@ -53,6 +54,7 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
         disconnect(stick, SIGNAL(moved(int, int)), this, nullptr);
         disconnect(stick, SIGNAL(diagonalRangeChanged(int)), this, nullptr);
         disconnect(stick, SIGNAL(maxZoneChanged(int)), this, nullptr);
+        disconnect(stick, SIGNAL(modifierZoneChanged(int)), this, nullptr);
         disconnect(stick, SIGNAL(joyModeChanged()), this, nullptr);
         disconnect(stick, SIGNAL(circleAdjustChange(double)), this, nullptr);
     }
@@ -62,6 +64,7 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
     connect(stick, SIGNAL(moved(int, int)), this, SLOT(update()));
     connect(stick, SIGNAL(diagonalRangeChanged(int)), this, SLOT(update()));
     connect(stick, SIGNAL(maxZoneChanged(int)), this, SLOT(update()));
+    connect(stick, SIGNAL(modifierZoneChanged(int)), this, SLOT(update()));
     connect(stick, SIGNAL(joyModeChanged()), this, SLOT(update()));
     connect(stick, SIGNAL(circleAdjustChange(double)), this, SLOT(update()));
 
@@ -145,11 +148,32 @@ void JoyControlStickStatusBox::drawEightWayBox()
         painter.drawPie(-GlobalVariables::JoyAxis::AXISMAX, -GlobalVariables::JoyAxis::AXISMAX,
                         GlobalVariables::JoyAxis::AXISMAX * 2, GlobalVariables::JoyAxis::AXISMAX * 2,
                         static_cast<int>(anglesList.value(8)) * 16, diagonalRange * 16);
+
+        // Draw modifier zone circle
+        int modifierZone = m_stick->getModifierZone();
+        int maxZone = m_stick->getMaxZone();
+        penny.setWidth(0);
+        penny.setColor(Qt::blue);
+        painter.setOpacity(0.5);
+        painter.setPen(penny);
+        painter.setBrush(QBrush(Qt::yellow));
+
+        if (m_stick->getModifierZoneInverted())
+        {
+            painter.drawEllipse(-modifierZone, -modifierZone, modifierZone * 2, modifierZone * 2);
+        } else
+        {
+            QPainterPath modifierZonePath;
+            modifierZonePath.addEllipse(QPoint(0, 0), maxZone, maxZone);
+            modifierZonePath.addEllipse(QPoint(0, 0), modifierZone, modifierZone);
+            painter.drawPath(modifierZonePath);
+        }
     }
 
     // Draw deadzone circle
     penny.setWidth(0);
     penny.setColor(Qt::blue);
+    painter.setOpacity(1);
     painter.setPen(penny);
     painter.setBrush(QBrush(Qt::red));
     int deadZone = m_stick != nullptr ? m_stick->getDeadZone() : 0;
@@ -275,9 +299,9 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
     painter.drawEllipse(-GlobalVariables::JoyAxis::AXISMAX, -GlobalVariables::JoyAxis::AXISMAX,
                         GlobalVariables::JoyAxis::AXISMAX * 2, GlobalVariables::JoyAxis::AXISMAX * 2);
 
-    // Draw diagonal zones
     if (m_stick != nullptr)
     {
+        // Draw diagonal zones
         QList<int> anglesList = m_stick->getFourWayCardinalZoneAngles();
         penny.setWidth(0);
         penny.setColor(Qt::black);
@@ -293,6 +317,26 @@ void JoyControlStickStatusBox::drawFourWayCardinalBox()
                         anglesList.value(3) * 16, 90 * 16);
 
         painter.setOpacity(1.0);
+
+        // Draw modifier zone circle
+        int modifierZone = m_stick->getModifierZone();
+        int maxZone = m_stick->getMaxZone();
+        penny.setWidth(0);
+        penny.setColor(Qt::blue);
+        painter.setOpacity(0.5);
+        painter.setPen(penny);
+        painter.setBrush(QBrush(Qt::yellow));
+
+        if (m_stick->getModifierZoneInverted())
+        {
+            painter.drawEllipse(-modifierZone, -modifierZone, modifierZone * 2, modifierZone * 2);
+        } else
+        {
+            QPainterPath modifierZonePath;
+            modifierZonePath.addEllipse(QPoint(0, 0), maxZone, maxZone);
+            modifierZonePath.addEllipse(QPoint(0, 0), modifierZone, modifierZone);
+            painter.drawPath(modifierZonePath);
+        }
     }
 
     // Draw deadzone circle
@@ -424,9 +468,9 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
     painter.drawEllipse(-GlobalVariables::JoyAxis::AXISMAX, -GlobalVariables::JoyAxis::AXISMAX,
                         GlobalVariables::JoyAxis::AXISMAX * 2, GlobalVariables::JoyAxis::AXISMAX * 2);
 
-    // Draw diagonal zones
     if (m_stick != nullptr)
     {
+        // Draw diagonal zones
         QList<int> anglesList = m_stick->getFourWayDiagonalZoneAngles();
         penny.setWidth(0);
         penny.setColor(Qt::black);
@@ -442,6 +486,26 @@ void JoyControlStickStatusBox::drawFourWayDiagonalBox()
                         anglesList.value(3) * 16, 90 * 16);
 
         painter.setOpacity(1.0);
+
+        // Draw modifier zone circle
+        int modifierZone = m_stick->getModifierZone();
+        int maxZone = m_stick->getMaxZone();
+        penny.setWidth(0);
+        penny.setColor(Qt::blue);
+        painter.setOpacity(0.5);
+        painter.setPen(penny);
+        painter.setBrush(QBrush(Qt::yellow));
+
+        if (m_stick->getModifierZoneInverted())
+        {
+            painter.drawEllipse(-modifierZone, -modifierZone, modifierZone * 2, modifierZone * 2);
+        } else
+        {
+            QPainterPath modifierZonePath;
+            modifierZonePath.addEllipse(QPoint(0, 0), maxZone, maxZone);
+            modifierZonePath.addEllipse(QPoint(0, 0), modifierZone, modifierZone);
+            painter.drawPath(modifierZonePath);
+        }
     }
 
     // Draw deadzone circle
