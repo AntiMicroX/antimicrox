@@ -554,7 +554,7 @@ de toutes les options de profils.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="368"/>
         <source>Clear all currently assigned slots.</source>
-        <translation>Supprime tous les emplacements assignés.</translation>
+        <translation>Nettoie tous les emplacements assignés.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="454"/>
@@ -1015,12 +1015,12 @@ de toutes les options de profils.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1616"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les emplacements qui suivent un emplacement Distance seront exécutés que lorsque l&apos;axe est déplacé une certaine plage au-delà de la zone morte désignée.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1626"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;emplacement qui suit un emplacement Action sera exécuté si le bouton est maintenu au-delà de l&apos;intervalle spécifié.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1631"/>
@@ -1531,12 +1531,12 @@ lorsque que ce bouton est utilisé.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="509"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Les emplacements pour les boutons n’ont pas pu être nettoyés, car il n’y avait pas de bouton défini du clavier pour le contrôleur. Mettez en correspondance au moins un bouton du clavier avec le contrôleur.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="519"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation>Comme dernier bouton du contrôleur à avoir été défini</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="527"/>
@@ -1549,7 +1549,7 @@ lorsque que ce bouton est utilisé.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Formulaire</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="70"/>
@@ -1883,7 +1883,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Retard DPad&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
@@ -1925,7 +1925,22 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard :
+DPad à 8 régions avec deux boutons de direction
+actifs lorsque le DPad se trouve dans une région diagonale.
+
+8 Voies :
+DPad à 8 régions, chaque direction ayant son propre
+bouton dédié. Un seul bouton est actif à la fois.
+Utile pour les jeux de type rougelike.
+
+4 Voies cardinales :
+DPad à 4 régions, les régions correspondant aux aux
+directions cardinales du DPad. Utile pour les menus.
+
+4 Voies diagonales :
+DPad à 4 régions, chaque région correspondant à
+une zone diagonale.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="126"/>
@@ -2443,7 +2458,7 @@ S&apos;il est éliminé, le contrôleur redeviendra un joystick une fois tous le
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="54"/>
         <source>Clear</source>
-        <translation>Effacer</translation>
+        <translation>Nettoyer</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="60"/>
@@ -2797,7 +2812,22 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard :
+DPad à 8 régions avec deux boutons de direction
+actifs lorsque le DPad se trouve dans une région diagonale.
+
+8 Voies :
+DPad à 8 régions, chaque direction ayant son propre
+bouton dédié. Un seul bouton est actif à la fois.
+Utile pour les jeux de type rougelike.
+
+4 Voies cardinales :
+DPad à 4 régions, les régions correspondant aux aux
+directions cardinales du DPad. Utile pour les menus.
+
+4 Voies diagonales :
+DPad à 4 régions, chaque région correspondant à
+une zone diagonale.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="364"/>
@@ -2871,7 +2901,11 @@ to a diagonal zone of the stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Touche qui sera active lorsque le stick le sera.
+
+Cette touche est utile pour assigner des zones avec
+touches de modification qui peuvent être utilisées pour
+attribuer une fonctionnalité marcher/courir à un stick analogique.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="696"/>
@@ -2902,7 +2936,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="198"/>
         <source>Bearing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Angle&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
@@ -3232,7 +3266,9 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2201"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucune touche n&apos;a été assignée. Veuillez utiliser
+la Configuration Rapide pour assigner des touches aux boutons
+ou désactiver le masquage des boutons vides.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2372"/>
@@ -3473,7 +3509,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="205"/>
         <source>Gamepad Poll Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taux d&apos;interrogation du contrôleur&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="212"/>
@@ -3483,7 +3519,13 @@ events from gamepads. Defaults to 10 ms.
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
 before using AntiMicroX unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>Changez le taux d&apos;interrogation que le programme utilise pour
+découvrir de nouveaux événements provenant des contrôleurs.
+Par défaut à 10 ms.
+
+Réduire cette valeur peut avoir pour effet d&apos;augmenter la
+charge processeur, donc testez ce paramètre avant d&apos;utiliser
+AntiMicroX sans surveillance.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="226"/>
