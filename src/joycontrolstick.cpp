@@ -998,6 +998,16 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 this->setMaxZone(tempchoice);
+            } else if ((xml->name() == "modifierZone") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setModifierZone(tempchoice);
+            } else if ((xml->name() == "modifierZoneInverted") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setModifierZoneInverted(tempchoice);
             } else if ((xml->name() == "diagonalRange") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
@@ -1072,6 +1082,12 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 
         if (maxZone != GlobalVariables::JoyControlStick::DEFAULTMAXZONE)
             xml->writeTextElement("maxZone", QString::number(maxZone));
+
+        if (m_modifier_zone != GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONE)
+            xml->writeTextElement("modifierZone", QString::number(m_modifier_zone));
+
+        if (m_modifier_zone_inverted != GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONEINVERTED)
+            xml->writeTextElement("modifierZoneInverted", QString::number(m_modifier_zone_inverted));
 
         if ((currentMode == StandardMode || currentMode == EightWayMode) &&
             (diagonalRange != GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE))
