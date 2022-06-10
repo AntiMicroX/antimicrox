@@ -72,6 +72,8 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     int getIndex();
     int getRealJoyIndex();
     int getMaxZone();
+    int getModifierZone() const;
+    bool getModifierZoneInverted() const;
     int getCurrentlyAssignedSet();
     int getXCoordinate();
     int getYCoordinate();
@@ -237,13 +239,14 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     void clearPendingAxisEvents(); // JoyControlStickEvent class
 
   signals:
-    void moved(int xaxis, int yaxis);       // JoyControlStickAxes class
-    void active(int xaxis, int yaxis);      // JoyControlStickAxes class
-    void released(int axis, int yaxis);     // JoyControlStickAxes class
-    void deadZoneChanged(int value);        // JoyControlStickAxes class
-    void diagonalRangeChanged(int value);   // JoyControlStickAxes class
-    void maxZoneChanged(int value);         // JoyControlStickAxes class
-    void circleAdjustChange(double circle); // JoyControlStickAxes class
+    void moved(int xaxis, int yaxis);
+    void active(int xaxis, int yaxis);
+    void released(int axis, int yaxis);
+    void deadZoneChanged(int value);
+    void diagonalRangeChanged(int value);
+    void maxZoneChanged(int value);
+    void modifierZoneChanged(int value);
+    void circleAdjustChange(double circle);
     void stickDelayChanged(int value);
     void stickNameChanged();
     void joyModeChanged();
@@ -251,9 +254,11 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
 
   public slots:
     void reset();
-    void setDeadZone(int value);      // JoyControlStickAxes class
-    void setMaxZone(int value);       // JoyControlStickAxes class
-    void setDiagonalRange(int value); // JoyControlStickAxes class
+    void setDeadZone(int value);
+    void setMaxZone(int value);
+    void setModifierZone(int value);
+    void setModifierZoneInverted(bool value);
+    void setDiagonalRange(int value);
     void setStickName(QString tempName);
     void setButtonsSpringRelativeStatus(bool value);
     void setCircleAdjust(double circle); // JoyControlStickAxes class
@@ -268,6 +273,8 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
   private:
     int originset;
     int deadZone;
+    int m_modifier_zone;
+    bool m_modifier_zone_inverted;
     int diagonalRange;
     int maxZone;
     int index;

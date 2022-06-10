@@ -271,16 +271,23 @@ void JoyControlStick::createDeskEvent(bool ignoresets)
         performButtonRelease(activeButton3, ignoresets);
     }
 
-    if (safezone)
+    // Activate modifier button before activating directional buttons.
+    // Value from the new stick event will be used to determine
+    // distance events.
+    // Release modifier button after releasing directional buttons.
+    double distance = getAbsoluteRawDistance();
+    if (m_modifier_zone_inverted)
     {
-        // Activate modifier button before activating directional buttons.
-        // Value from the new stick event will be used to determine
-        // distance events.
-        modifierButton->joyEvent(true, ignoresets);
+        if (safezone && distance < m_modifier_zone)
+            modifierButton->joyEvent(true, ignoresets);
+        else
+            modifierButton->joyEvent(false, ignoresets);
     } else
     {
-        // Release modifier button after releasing directional buttons.
-        modifierButton->joyEvent(false, ignoresets);
+        if (safezone && distance > m_modifier_zone)
+            modifierButton->joyEvent(true, ignoresets);
+        else
+            modifierButton->joyEvent(false, ignoresets);
     }
 
     /*
@@ -824,13 +831,26 @@ QString JoyControlStick::getDefaultStickName() { return defaultStickName; }
 
 int JoyControlStick::getMaxZone() { return maxZone; }
 
+/**
+ * @brief Returns the modifier zone of the stick
+ */
+int JoyControlStick::getModifierZone() const { return m_modifier_zone; }
+
+/**
+ * @brief Checks if the modifier zone of this stick is inverted
+ * @returns True if the modifier zone is inverted, false otherwise
+ */
+bool JoyControlStick::getModifierZoneInverted() const { return m_modifier_zone_inverted; }
+
 int JoyControlStick::getCurrentlyAssignedSet() { return originset; }
 
 void JoyControlStick::reset()
 {
-    deadZone = 8000;
+    deadZone = GlobalVariables::JoyControlStick::DEFAULTDEADZONE;
     maxZone = GlobalVariables::JoyAxis::AXISMAXZONE;
-    diagonalRange = 45;
+    m_modifier_zone = GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONE;
+    m_modifier_zone_inverted = GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONEINVERTED;
+    diagonalRange = GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE;
     isActive = false;
     pendingStickEvent = false;
 
@@ -867,6 +887,36 @@ void JoyControlStick::setMaxZone(int value)
     {
         maxZone = value;
         emit maxZoneChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
+ * @brief Sets the modifier zone of the stick to the given value
+ * @param[in] value New stick modifier zone
+ */
+void JoyControlStick::setModifierZone(int value)
+{
+    value = std::min(abs(value), GlobalVariables::JoyAxis::AXISMAX);
+
+    if ((value != m_modifier_zone) && (value < maxZone) && (value > deadZone))
+    {
+        m_modifier_zone = value;
+        emit modifierZoneChanged(value);
+        emit propertyUpdated();
+    }
+}
+
+/**
+ * @brief Inverts the direction of the modifier zone of the stick.
+ * @param[in] value True if the zone should be inverted, false otherwise.
+ */
+void JoyControlStick::setModifierZoneInverted(bool value)
+{
+    if (value != m_modifier_zone_inverted)
+    {
+        m_modifier_zone_inverted = value;
+        emit modifierZoneChanged(m_modifier_zone);
         emit propertyUpdated();
     }
 }
@@ -955,6 +1005,16 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 this->setMaxZone(tempchoice);
+            } else if ((xml->name() == "modifierZone") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setModifierZone(tempchoice);
+            } else if ((xml->name() == "modifierZoneInverted") && xml->isStartElement())
+            {
+                QString temptext = xml->readElementText();
+                int tempchoice = temptext.toInt();
+                setModifierZoneInverted(tempchoice);
             } else if ((xml->name() == "diagonalRange") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
@@ -1029,6 +1089,12 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 
         if (maxZone != GlobalVariables::JoyControlStick::DEFAULTMAXZONE)
             xml->writeTextElement("maxZone", QString::number(maxZone));
+
+        if (m_modifier_zone != GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONE)
+            xml->writeTextElement("modifierZone", QString::number(m_modifier_zone));
+
+        if (m_modifier_zone_inverted != GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONEINVERTED)
+            xml->writeTextElement("modifierZoneInverted", QString::number(m_modifier_zone_inverted));
 
         if ((currentMode == StandardMode || currentMode == EightWayMode) &&
             (diagonalRange != GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE))
@@ -1816,6 +1882,8 @@ bool JoyControlStick::isDefault()
     bool value = true;
     value = value && (deadZone == GlobalVariables::JoyControlStick::DEFAULTDEADZONE);
     value = value && (maxZone == GlobalVariables::JoyControlStick::DEFAULTMAXZONE);
+    value = value && (m_modifier_zone == GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONE);
+    value = value && (m_modifier_zone_inverted == GlobalVariables::JoyControlStick::DEFAULTMODIFIERZONEINVERTED);
     value = value && (diagonalRange == GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE);
     value = value && (currentMode == DEFAULTMODE);
     value = value && qFuzzyCompare(circle, GlobalVariables::JoyControlStick::DEFAULTCIRCLE);
@@ -2638,6 +2706,8 @@ void JoyControlStick::copyAssignments(JoyControlStick *destStick)
     destStick->reset();
     destStick->deadZone = deadZone;
     destStick->maxZone = maxZone;
+    destStick->m_modifier_zone = m_modifier_zone;
+    destStick->m_modifier_zone_inverted = m_modifier_zone_inverted;
     destStick->diagonalRange = diagonalRange;
     destStick->currentDirection = currentDirection;
     destStick->currentMode = currentMode;
