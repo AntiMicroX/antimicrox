@@ -198,7 +198,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Prawa autorskie: 2013 - 2022 {2013 ?}</translation>
+        <translation>Prawa autorskie: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
@@ -389,7 +389,7 @@ zamiast domyślnej opcji.</translation>
         <source>The selection will be used instead
 of the all default profile option.</source>
         <translation>Wybór zostanie użyty zamiast
-wszystkie opcje profilu domyślnego.</translation>
+wszystkich opcje profilu domyślnego.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="251"/>
@@ -463,7 +463,7 @@ wszystkie opcje profilu domyślnego.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="86"/>
         <source>Set Selector</source>
-        <translation>Wybiesz selektor</translation>
+        <translation>Wybierz selektor</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="200"/>
