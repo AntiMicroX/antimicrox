@@ -94,6 +94,9 @@ class InputDeviceCalibration
     void setGyroscopeCalibration(double offsetX, double offsetY, double offsetZ);
     void applyCalibrations() const;
 
+    void readConfig(QXmlStreamReader *xml);
+    void writeConfig(QXmlStreamWriter *xml) const;
+
   private:
     void setCalibration(QString id, CalibrationData new_calibration);
     QHash<QString, QList<CalibrationData>> m_data;
