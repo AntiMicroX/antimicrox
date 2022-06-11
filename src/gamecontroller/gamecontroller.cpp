@@ -69,19 +69,19 @@ QString GameController::getSDLName()
     return temp;
 }
 
-QString GameController::getXmlName() { return GlobalVariables::GameController::xmlName; }
+QString GameController::getXmlName() const { return GlobalVariables::GameController::xmlName; }
 
-QString GameController::getGUIDString() { return getRawGUIDString(); }
+QString GameController::getGUIDString() const { return getRawGUIDString(); }
 
-QString GameController::getVendorString() { return getRawVendorString(); }
+QString GameController::getVendorString() const { return getRawVendorString(); }
 
-QString GameController::getProductIDString() { return getRawProductIDString(); }
+QString GameController::getProductIDString() const { return getRawProductIDString(); }
 
-QString GameController::getUniqueIDString() { return getRawUniqueIDString(); }
+QString GameController::getUniqueIDString() const { return getRawUniqueIDString(); }
 
-QString GameController::getProductVersion() { return getRawProductVersion(); }
+QString GameController::getProductVersion() const { return getRawProductVersion(); }
 
-QString GameController::getRawGUIDString()
+QString GameController::getRawGUIDString() const
 {
     QString temp = QString();
 
@@ -101,7 +101,7 @@ QString GameController::getRawGUIDString()
     return temp;
 }
 
-QString GameController::getRawVendorString()
+QString GameController::getRawVendorString() const
 {
     QString temp = QString();
 
@@ -117,7 +117,7 @@ QString GameController::getRawVendorString()
     return temp;
 }
 
-QString GameController::getRawProductIDString()
+QString GameController::getRawProductIDString() const
 {
     QString temp = QString();
 
@@ -133,7 +133,7 @@ QString GameController::getRawProductIDString()
     return temp;
 }
 
-QString GameController::getRawProductVersion()
+QString GameController::getRawProductVersion() const
 {
     QString temp = QString();
 
@@ -149,7 +149,7 @@ QString GameController::getRawProductVersion()
     return temp;
 }
 
-QString GameController::getRawUniqueIDString()
+QString GameController::getRawUniqueIDString() const
 {
     return (getRawGUIDString() + getRawVendorString() + getRawProductIDString());
 }

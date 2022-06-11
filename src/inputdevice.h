@@ -52,22 +52,22 @@ class InputDevice : public QObject
     bool isActive();
     int getButtonDownCount();
 
-    virtual QString getXmlName() = 0;
+    virtual QString getXmlName() const = 0;
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
     virtual QString getDescription();
 
     // GUID only available on SDL 2.
-    virtual QString getGUIDString() = 0;
-    virtual QString getUniqueIDString() = 0;
-    virtual QString getVendorString() = 0;
-    virtual QString getProductIDString() = 0;
-    virtual QString getProductVersion() = 0;
-    virtual QString getRawGUIDString();
-    virtual QString getRawVendorString();
-    virtual QString getRawProductIDString();
-    virtual QString getRawProductVersion();
-    virtual QString getRawUniqueIDString();
+    virtual QString getGUIDString() const = 0;
+    virtual QString getUniqueIDString() const = 0;
+    virtual QString getVendorString() const = 0;
+    virtual QString getProductIDString() const = 0;
+    virtual QString getProductVersion() const = 0;
+    virtual QString getRawGUIDString() const;
+    virtual QString getRawVendorString() const;
+    virtual QString getRawProductIDString() const;
+    virtual QString getRawProductVersion() const;
+    virtual QString getRawUniqueIDString() const;
     virtual void setCounterUniques(int counter) = 0;
 
     virtual QString getStringIdentifier();
