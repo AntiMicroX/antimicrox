@@ -92,6 +92,7 @@ class InputDeviceCalibration
     void setStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
     void setAccelerometerCalibration(double orientationX, double orientationY, double orientationZ);
     void setGyroscopeCalibration(double offsetX, double offsetY, double offsetZ);
+    void applyCalibrations() const;
 
   private:
     void setCalibration(QString id, CalibrationData new_calibration);

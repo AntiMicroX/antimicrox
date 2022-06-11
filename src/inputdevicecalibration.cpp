@@ -105,6 +105,31 @@ void InputDeviceCalibration::setGyroscopeCalibration(double offsetX, double offs
 }
 
 /**
+ * @brief Applies all applicable stored calibration values to the individual
+ *   input elements of the parent controller
+ */
+void InputDeviceCalibration::applyCalibrations() const
+{
+    QString id = m_device->getUniqueIDString();
+    for (const auto &calibration : m_data[id])
+    {
+        if (calibration.type == CALIBRATION_DATA_STICK)
+        {
+            const StickCalibrationData &data = calibration.stick;
+            m_device->applyStickCalibration(data.index, data.offsetX, data.gainX, data.offsetY, data.gainY);
+        } else if (calibration.type == CALIBRATION_DATA_ACCELEROMETER)
+        {
+            const AccelerometerCalibrationData &data = calibration.accelerometer;
+            m_device->applyAccelerometerCalibration(data.orientationX, data.orientationY, data.orientationZ);
+        } else if (calibration.type == CALIBRATION_DATA_GYROSCOPE)
+        {
+            const GyroscopeCalibrationData &data = calibration.gyroscope;
+            m_device->applyGyroscopeCalibration(data.offsetX, data.offsetY, data.offsetZ);
+        }
+    }
+}
+
+/**
  * @brief Updated the given CalibrationData structure of the controller with
  *   the given ID in the calibration storage backend.
  * @param[in] id ID of the device to which the calibration data belongs to
