@@ -77,6 +77,19 @@ QString GameController::getVendorString() const { return getRawVendorString(); }
 
 QString GameController::getProductIDString() const { return getRawProductIDString(); }
 
+QString GameController::getSerialString() const
+{
+    QString temp = QString();
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+    if (controller != nullptr)
+    {
+        const char *serial = SDL_GameControllerGetSerial(controller);
+        temp = QString(serial).remove(QRegExp("[^A-Za-z0-9]"));
+    }
+#endif
+    return temp;
+}
+
 QString GameController::getUniqueIDString() const { return getRawUniqueIDString(); }
 
 QString GameController::getProductVersion() const { return getRawProductVersion(); }
@@ -151,7 +164,7 @@ QString GameController::getRawProductVersion() const
 
 QString GameController::getRawUniqueIDString() const
 {
-    return (getRawGUIDString() + getRawVendorString() + getRawProductIDString());
+    return (getRawGUIDString() + getRawVendorString() + getRawProductIDString() + getSerialString());
 }
 
 void GameController::closeSDLDevice()

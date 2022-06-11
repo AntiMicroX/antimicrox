@@ -1338,6 +1338,7 @@ QString InputDevice::getDescription()
                         QObject::tr("GUID:             %1").arg(getGUIDString()) + "\n  " +
                         QObject::tr("VendorID:         %1").arg(getVendorString()) + "\n  " +
                         QObject::tr("ProductID:        %1").arg(getProductIDString()) + "\n  " +
+                        QObject::tr("Serial:           %1").arg(getSerialString()) + "\n  " +
                         QObject::tr("Product Version:  %1").arg(getProductVersion()) + "\n  " +
                         QObject::tr("Name:             %1").arg(getSDLName()) + "\n";
     QString gameControllerStatus = isGameController() ? QObject::tr("Yes") : QObject::tr("No");
