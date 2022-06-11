@@ -1,5 +1,32 @@
 # Changelog
 
+## [3.2.4](https://github.com/AntiMicroX/antimicrox/tree/3.2.4) (2022-06-11)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.3...3.2.4)
+
+**Implemented enhancements:**
+
+- Implement modifier button threshold zone [\#310](https://github.com/AntiMicroX/antimicrox/issues/310) (by [mmmaisel](https://github.com/mmmaisel)) - This allows mapping the analog range of a stick to walk/run in game without dedicated spring button.
+
+**Fixed bugs:**
+
+- Fix mouse calculations for multiple mice [\#435](https://github.com/AntiMicroX/antimicrox/pull/435) (by [mmmaisel](https://github.com/mmmaisel))
+- Fix flickering JoyControlStickEditDialog layout [\#440](https://github.com/AntiMicroX/antimicrox/pull/440) (by [mmmaisel](https://github.com/mmmaisel))
+- Implement proper offset and gain stick calibration [\#441](https://github.com/AntiMicroX/antimicrox/pull/441) (by [mmmaisel](https://github.com/mmmaisel))
+
+**Notable changes:**
+
+- Increase minimum size of ButtonEditDialog [\#439](https://github.com/AntiMicroX/antimicrox/pull/439) (by [mmmaisel](https://github.com/mmmaisel))
+- Fixes in translation utulities
+  - Rename flag TRANS_KEEP_OBSOLETE to TRANS_REMOVE_OBSOLETE to improve readability
+  - Fix wrong argument for utility deleting obsolete translations [\#445](https://github.com/AntiMicroX/antimicrox/pull/445)
+- Update translations:
+  - Russian
+  - Finnish
+  - French
+  - Chinese
+  - Portuguese
+
 ## [3.2.3](https://github.com/AntiMicroX/antimicrox/tree/3.2.3) (2022-03-24)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.2...3.2.3)
