@@ -38,6 +38,7 @@ class Joystick : public InputDevice
     virtual QString getUniqueIDString() const override;
     virtual QString getVendorString() const override;
     virtual QString getProductIDString() const override;
+    virtual QString getSerialString() const override;
     virtual QString getProductVersion() const override;
 
     virtual void closeSDLDevice() override;

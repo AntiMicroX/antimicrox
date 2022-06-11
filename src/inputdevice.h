@@ -61,6 +61,7 @@ class InputDevice : public QObject
     virtual QString getGUIDString() const = 0;
     virtual QString getUniqueIDString() const = 0;
     virtual QString getVendorString() const = 0;
+    virtual QString getSerialString() const = 0;
     virtual QString getProductIDString() const = 0;
     virtual QString getProductVersion() const = 0;
     virtual QString getRawGUIDString() const;

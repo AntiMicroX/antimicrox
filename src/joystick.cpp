@@ -105,6 +105,23 @@ QString Joystick::getProductIDString() const
     return temp;
 }
 
+QString Joystick::getSerialString() const
+{
+    QString temp = QString();
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+    if (controller != nullptr)
+    {
+        SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
+        if (joyhandle != nullptr)
+        {
+            const char *serial = SDL_JoystickGetSerial(joyhandle);
+            temp = QString(serial).remove(QRegExp("[^A-Za-z0-9]"));
+        }
+    }
+#endif
+    return temp;
+}
+
 QString Joystick::getProductVersion() const
 {
     QString temp = QString();
@@ -123,7 +140,7 @@ QString Joystick::getProductVersion() const
 
 QString Joystick::getUniqueIDString() const
 {
-    return (getGUIDString() + getVendorString() + getProductIDString());
+    return (getGUIDString() + getVendorString() + getProductIDString()) + getSerialString();
 }
 
 void Joystick::closeSDLDevice()
