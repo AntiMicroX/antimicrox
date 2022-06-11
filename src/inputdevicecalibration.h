@@ -77,6 +77,8 @@ struct CalibrationData
         AccelerometerCalibrationData accelerometer;
         GyroscopeCalibrationData gyroscope;
     };
+
+    bool referencesSameInput(const CalibrationData &rhs) const;
 };
 
 /**
@@ -87,7 +89,12 @@ class InputDeviceCalibration
   public:
     explicit InputDeviceCalibration(InputDevice *device);
 
+    void setStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
+    void setAccelerometerCalibration(double orientationX, double orientationY, double orientationZ);
+    void setGyroscopeCalibration(double offsetX, double offsetY, double offsetZ);
+
   private:
+    void setCalibration(QString id, CalibrationData new_calibration);
     QHash<QString, QList<CalibrationData>> m_data;
 
     InputDevice *m_device;

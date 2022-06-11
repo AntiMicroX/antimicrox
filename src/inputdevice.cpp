@@ -1768,6 +1768,7 @@ InputDeviceCalibration *InputDevice::getCalibrationBackend() { return &m_calibra
  */
 void InputDevice::updateStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY)
 {
+    m_calibrations.setStickCalibration(index, offsetX, gainX, offsetY, gainY);
     applyStickCalibration(index, offsetX, gainX, offsetY, gainY);
 }
 
@@ -1799,6 +1800,7 @@ void InputDevice::applyStickCalibration(int index, double offsetX, double gainX,
  */
 void InputDevice::updateAccelerometerCalibration(double offsetX, double offsetY, double offsetZ)
 {
+    m_calibrations.setAccelerometerCalibration(offsetX, offsetY, offsetZ);
     applyAccelerometerCalibration(offsetX, offsetY, offsetZ);
 }
 
@@ -1829,6 +1831,7 @@ void InputDevice::applyAccelerometerCalibration(double offsetX, double offsetY, 
  */
 void InputDevice::updateGyroscopeCalibration(double offsetX, double offsetY, double offsetZ)
 {
+    m_calibrations.setGyroscopeCalibration(offsetX, offsetY, offsetZ);
     applyGyroscopeCalibration(offsetX, offsetY, offsetZ);
 }
 
