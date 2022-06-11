@@ -1751,6 +1751,21 @@ QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
 SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
 
 /**
+ * @brief Updates stored calibration for this controller and applies
+ *   calibration to the specified stick in all sets
+ *   See JoyControlStick::setCalibration
+ * @param[in] index Stick index
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] gainX Gain value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] gainY Gain value for Y axis
+ */
+void InputDevice::updateStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY)
+{
+    applyStickCalibration(index, offsetX, gainX, offsetY, gainY);
+}
+
+/**
  * @brief Applies calibration to the specified stick in all sets
  *  See JoyControlStick::setCalibration
  * @param[in] index Stick index
@@ -1776,6 +1791,18 @@ void InputDevice::applyStickCalibration(int index, double offsetX, double gainX,
  * @param[in] offsetY Offset angle around the Y axis
  * @param[in] offsetZ Offset angle around the Z axis
  */
+void InputDevice::updateAccelerometerCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    applyAccelerometerCalibration(offsetX, offsetY, offsetZ);
+}
+
+/**
+ * @brief Applies calibration to the specified accelerometer in all sets
+ *  See JoySensor::setCalibration
+ * @param[in] offsetX Offset angle around the X axis
+ * @param[in] offsetY Offset angle around the Y axis
+ * @param[in] offsetZ Offset angle around the Z axis
+ */
 void InputDevice::applyAccelerometerCalibration(double offsetX, double offsetY, double offsetZ)
 {
     for (auto &set : joystick_sets)
@@ -1784,6 +1811,19 @@ void InputDevice::applyAccelerometerCalibration(double offsetX, double offsetY, 
         if (accelerometer != nullptr)
             accelerometer->setCalibration(offsetX, offsetY, offsetZ);
     }
+}
+
+/**
+ * @brief Updates stored calibration for this controller and applies
+ *   calibration to the specified gyroscope in all sets
+ *   See JoySensor::setCalibration
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] offsetZ Offset value for Z axis
+ */
+void InputDevice::updateGyroscopeCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    applyGyroscopeCalibration(offsetX, offsetY, offsetZ);
 }
 
 /**
