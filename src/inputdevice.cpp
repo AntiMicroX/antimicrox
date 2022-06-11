@@ -1682,15 +1682,15 @@ bool InputDevice::isRelevantUniqueID(QString tempUniqueID)
     return result;
 }
 
-QString InputDevice::getRawGUIDString() { return getGUIDString(); }
+QString InputDevice::getRawGUIDString() const { return getGUIDString(); }
 
-QString InputDevice::getRawVendorString() { return getVendorString(); }
+QString InputDevice::getRawVendorString() const { return getVendorString(); }
 
-QString InputDevice::getRawProductIDString() { return getProductIDString(); }
+QString InputDevice::getRawProductIDString() const { return getProductIDString(); }
 
-QString InputDevice::getRawProductVersion() { return getProductVersion(); }
+QString InputDevice::getRawProductVersion() const { return getProductVersion(); }
 
-QString InputDevice::getRawUniqueIDString() { return getUniqueIDString(); }
+QString InputDevice::getRawUniqueIDString() const { return getUniqueIDString(); }
 
 void InputDevice::haltServices() { emit requestWait(); }
 
