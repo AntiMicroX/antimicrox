@@ -70,7 +70,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Copyright: 2013 - 2016 {2013 ?} {2013 ?} {2022?}</translation>
+        <translation>Copyright: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
@@ -261,12 +261,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="14"/>
         <source>Auto Profile Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Diálogo de perfil automático</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="25"/>
         <source>Pro&amp;file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Per&amp;fil:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="40"/>
@@ -285,27 +285,29 @@ p, li { white-space: pre-wrap; }
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione Janela.
+Clique na janela do aplicativo certo e o caminho do arquivo do aplicativo será preenchido
+na forma.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
         <source>Detect Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Detectar Propriedades da Janela</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Classe:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
         <source>T&amp;itle:  </source>
-        <translation type="unfinished"></translation>
+        <translation>T&amp;itulo:  </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="113"/>
         <source>set partial title</source>
-        <translation type="unfinished"></translation>
+        <translation>inserir titulo parcial</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="124"/>
@@ -320,29 +322,31 @@ in the form.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="163"/>
         <source>De&amp;vices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Di&amp;spositivos:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="179"/>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione esse perfil para ser carregado por padrão pelo
+dispositivo especifico. A seleção vai ser usada ao invés
+de todas as opções de perfil padrão.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="184"/>
         <source>Set as Default for Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir como Padrão para o Controle</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="223"/>
         <source>A different profile is already selected as the default for this device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um perfil diferente já está selecionado para esse dispositivo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="103"/>
         <source>Current (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Atual (%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="157"/>
@@ -368,23 +372,24 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Main Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Perfil Principal</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="222"/>
         <source>Already selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Já Selecionado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="227"/>
         <source>Chosen Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Perfil Escolhido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="228"/>
         <source>The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>A seleção vai ser usada ao invés
+de todas as opções de perfil padrão.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="251"/>
@@ -394,17 +399,17 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="252"/>
         <source>Capture Application Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Capturar Janela de Aplicativo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="320"/>
         <source>Could not obtain information for the selected window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível obter informação para a janela selecionada.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="321"/>
         <source>Application Capture Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Captura de Aplicativo falhou</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="418"/>
@@ -414,12 +419,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="426"/>
         <source>No window matching property was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhuma janela com propriedades compatíveis foi especificada.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="440"/>
         <source>Program path is invalid or not executable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho do programa é inválido ou não executável.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="446"/>
@@ -429,7 +434,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="454"/>
         <source>No window matching property was selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhuma janela com propriedades compatíveis foi selecionada.</translation>
     </message>
 </context>
 <context>
@@ -534,12 +539,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="334"/>
         <source>Join</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="351"/>
         <source>Split</source>
-        <translation type="unfinished"></translation>
+        <translation>Dividir</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="315"/>
@@ -564,7 +569,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="569"/>
         <source>&amp;Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Mod. Vel. Mouse:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="624"/>
@@ -647,7 +652,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="756"/>
         <source>Executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>Executável:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="766"/>
@@ -657,7 +662,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="777"/>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="820"/>
@@ -840,7 +845,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="140"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[SIN TECLA]</translation>
+        <translation>[SEM TECLA]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="302"/>
@@ -856,115 +861,115 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaços não marcados</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <source>To delete slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>Para apagar espaços, você precisa selecionar ao menos um</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>To insert slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>Para inserir espaços, você precisa selecionar ao menos um</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaço atual desconhecido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Click on chosen slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique nos espaços selecionados antes de entrar neles</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="538"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="640"/>
         <source>Not enough slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaços insuficientes</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="539"/>
         <source>It&apos;s impossible to join slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>É impossível entrar nos espaços. Adicione pelo menos um novo espaço.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="542"/>
         <source>Not selected slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Não há espaços selecionados</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="543"/>
         <source>It&apos;s impossible to join slots. Select at least two slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>É impossível juntar os espaços. Selecione pelo menos dois espaços antes de junta-los</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="546"/>
         <source>Only keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente espaços de teclado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="547"/>
         <source>It&apos;s only possible to join simple and mix keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Só é possível juntar espaços de teclado simples e mistos</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="641"/>
         <source>It&apos;s impossible to split slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>É impossível dividir os espaços. Adicione pelo menos um outro espaço.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Not selected slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaço não selecionado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Select your slot before splitting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione um espaço antes de dividir.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Too many mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>São muitos espaços mistos</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Select one mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione um espaço para mistura.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>Only mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente misturar espaços</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>It&apos;s only possible to split mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Só é possível dividir espaços mistos.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1039"/>
         <source>Empty execution path</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaço de execução vazio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1040"/>
         <source>Line for execution file path is empty. Fill the first line before you are going to add a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Linha de caminho de execução está vazia. Preencha a primeira linha antes de adicionar a um espaço.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1042"/>
         <source>File doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo não existe</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum arquivo executável foi encontrado localmente. Verifique o arquivo no seu sistema</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
@@ -1085,7 +1090,7 @@ Distancia acción especifica que las ranuras después sólo se ejecutan cuando u
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>Obs: Essa janela é feita para trabalhar com compatibilidade com perfis feitos antes da versão 2.0 do Antimicro. Desde a versão 2.0, o uso da janela de mapeamento de controle é o método recomendado.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1192,7 +1197,7 @@ Distancia acción especifica que las ranuras después sólo se ejecutan cuando u
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="436"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="437"/>
         <source>Button %1</source>
-        <translation>Botón %1</translation>
+        <translation>Botão %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
@@ -1228,43 +1233,43 @@ Distancia acción especifica que las ranuras después sólo se ejecutan cuando u
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation>Ejes</translation>
+        <translation>Eixo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="595"/>
         <source>Mouse (Horizontal)</source>
-        <translation>Ratón (Horizontal)</translation>
+        <translation>Mouse (Horizontal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="596"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Ratón (Horizontal Invertido)</translation>
+        <translation>Mouse (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="87"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="597"/>
         <source>Mouse (Vertical)</source>
-        <translation>Ratón (Vertical)</translation>
+        <translation>Mouse (Vertical)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="92"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="598"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Ratón (Vertical Invertido)</translation>
+        <translation>Mouse (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="599"/>
         <source>Arrows: Up | Down</source>
-        <translation>Direccionales: Arriba | Abajo</translation>
+        <translation>Direcionais: Cima | Baixo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="102"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="600"/>
         <source>Arrows: Left | Right</source>
-        <translation>Direccionales: Izquierda | Derecha</translation>
+        <translation>Direcionais: Esquerda | Direita</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="107"/>
@@ -1282,20 +1287,20 @@ Distancia acción especifica que las ranuras después sólo se ejecutan cuando u
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="603"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation>Teclado Num: 8 | 2</translation>
+        <translation>Teclado Numérico: 8 | 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="122"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="604"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation>Teclado Num: 4 | 6</translation>
+        <translation>Teclado Numérico: 4 | 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="127"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="605"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="614"/>
         <source>None</source>
-        <translation>Nada</translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="182"/>
@@ -1344,18 +1349,18 @@ palancas analógicas desgastadas.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="202"/>
         <source>Dead Zone:</source>
-        <translation>Zona Muerta:</translation>
+        <translation>Zona morta:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="327"/>
         <source>Max Zone:</source>
-        <translation>Zona Maxima:</translation>
+        <translation>Zona Limite:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="338"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
-        <translation>[SIN TECLA]</translation>
+        <translation>[SEM TECLA]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="345"/>
@@ -1397,12 +1402,12 @@ interpretar un eje de retención o liberación.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="612"/>
         <source>Left Mouse Button</source>
-        <translation>Botón Izquierdo del Ratón</translation>
+        <translation>Botão esquerdo do Mouse</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="613"/>
         <source>Right Mouse Button</source>
-        <translation>Botón Derecho del Ratón</translation>
+        <translation>Botão direito do Mouse</translation>
     </message>
 </context>
 <context>
@@ -1410,7 +1415,7 @@ interpretar un eje de retención o liberación.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation>Dialogo</translation>
+        <translation>Janela</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="44"/>
@@ -1435,7 +1440,7 @@ interpretar un eje de retención o liberación.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="124"/>
         <source>Enables rapid key presses and releases. Turbo controller.</source>
-        <translation>Permite a las pulsaciones de teclas rápidas y liberaciones. Controlador Turbo.</translation>
+        <translation>Habilita que um botão seja pressionado rapidamente. Controle Turbo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="127"/>
@@ -1445,51 +1450,51 @@ interpretar un eje de retención o liberación.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="160"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ultimo botão do Mouse/Teclado:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="167"/>
         <source>Slots</source>
-        <translation>Ranuras</translation>
+        <translation>Espaços</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="197"/>
         <source>Na&amp;me:</source>
-        <translation>No&amp;mbre:</translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="207"/>
         <source>Specify the name of a button.</source>
-        <translation>Especifique el nombre de un botón.</translation>
+        <translation>Especifique o nome do botão.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="224"/>
         <source>Action:</source>
-        <translation>Acción:</translation>
+        <translation>Ação:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="234"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation>Especificar la acción que se llevará a cabo en juego, mientras
-se está utilizando este botón.</translation>
+        <translation>Especifique a ação que deverá acontecer no jogo quando
+este botão for pressionado.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="261"/>
         <source>Advanced</source>
-        <translation>Avanzado</translation>
+        <translation>Avançado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="61"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="118"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="540"/>
         <source>Choose your keyboard key</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o botão do teclado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="359"/>
         <source>No button</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum botão</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="368"/>
@@ -1497,32 +1502,32 @@ se está utilizando este botón.</translation>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="428"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="508"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>Ultimo botão</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="369"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Para modificar as configurações do ultimo botão, ele precisa pelo menos estar associado com um controle a um botão do teclado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="379"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Para modificar as configurações de turbo do ultimo botão, ele precisa pelo menos estar associado com um controle a um botão do teclado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="421"/>
         <source>No choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhuma escolha</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="422"/>
         <source>Before you open window with advanced settings, you have to choice a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Antes de abrir a janela de configurações avançadas, você precisa escolher uma tecla</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="429"/>
         <source>To open advanced dialog, it&apos;s needed to map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Antes de abrir a janela de configurações avançadas, você precisa associar um botão do controle a uma tecla</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="509"/>

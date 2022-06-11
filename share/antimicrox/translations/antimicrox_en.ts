@@ -213,7 +213,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Copyright: 2013 - 2022 {2013 ?}</translation>
+        <translation>Copyright: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="196"/>
