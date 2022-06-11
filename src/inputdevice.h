@@ -19,6 +19,7 @@
 #ifndef INPUTDEVICE_H
 #define INPUTDEVICE_H
 
+#include "inputdevicecalibration.h"
 #include "joysensordirection.h"
 #include "joysensortype.h"
 #include "setjoystick.h"
@@ -149,6 +150,7 @@ class InputDevice : public QObject
     QHash<int, SetJoystick *> &getJoystick_sets();
     SDL_Joystick *getJoyHandle() const;
 
+    InputDeviceCalibration *getCalibrationBackend();
     void updateStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
     void applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
     void updateAccelerometerCalibration(double offsetX, double offsetY, double offsetZ);
@@ -165,6 +167,7 @@ class InputDevice : public QObject
     int rawAxisDeadZone;
     int keyPressTime; // unsigned
     QString profileName;
+    InputDeviceCalibration m_calibrations;
 
   signals:
     void setChangeActivated(int index);

@@ -170,6 +170,7 @@ set(antimicrox_SOURCES
         src/inputdaemon.cpp
         src/inputdevice.cpp
         src/inputdevicebitarraystatus.cpp
+        src/inputdevicecalibration.cpp
         src/joyaccelerometersensor.cpp
         src/joyaxis.cpp
         src/joyaxiscontextmenu.cpp
@@ -300,6 +301,7 @@ set(antimicrox_HEADERS
         src/inputdaemon.h
         src/inputdevice.h
         src/inputdevicebitarraystatus.h
+        src/inputdevicecalibration.h
         src/joyaccelerometersensor.h
         src/joyaxis.h
         src/joyaxiscontextmenu.h

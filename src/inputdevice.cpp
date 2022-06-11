@@ -37,6 +37,7 @@
 
 InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent)
     : QObject(parent)
+    , m_calibrations(this)
 {
     buttonDownCount = 0;
     joyNumber = deviceIndex;
@@ -1749,6 +1750,11 @@ QList<int> &InputDevice::getAxesstatesLocal() { return axesstates; }
 QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
 
 SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
+
+/**
+ * @brief Returns a pointer to the internal calibration storage backend.
+ */
+InputDeviceCalibration *InputDevice::getCalibrationBackend() { return &m_calibrations; }
 
 /**
  * @brief Updates stored calibration for this controller and applies
