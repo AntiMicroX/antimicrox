@@ -77,35 +77,9 @@ JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObje
 JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent)
     : QObject(parent)
     , extraData()
+    , mix_slots(nullptr)
 {
-    this->deviceCode = slot->getSlotCode();
-    this->m_mode = slot->getSlotMode();
-    this->qkeyaliasCode = slot->getSlotCodeAlias();
-    this->m_distance = slot->getDistance();
-    this->previousDistance = slot->getPreviousDistance();
-    this->easingActive = slot->isEasingActive();
-    easingTime = QElapsedTimer();
-    if (slot->getEasingTime()->isValid())
-        easingTime.start();
-    this->extraData = slot->getExtraData();
-
-    /*
-     * if (slot->getMixSlots() != nullptr)
-    {
-        secureMixSlotsInit();
-
-        for(auto minislot : *slot->getMixSlots())
-        {
-            this->mix_slots->append(new JoyButtonSlot(minislot->getSlotCode(), minislot->getSlotCodeAlias(),
-    minislot->getSlotMode()));
-        }
-    }*/
-
-    if (slot->getMixSlots() != nullptr)
-        this->mix_slots = slot->getMixSlots();
-
-    if (!slot->getTextData().isNull() && (slot->getTextData() != ""))
-        this->m_textData = slot->getTextData();
+    copyAssignments(*slot);
 }
 
 JoyButtonSlot::JoyButtonSlot(QString text, JoySlotInputAction mode, QObject *parent)
@@ -437,6 +411,39 @@ void JoyButtonSlot::setExtraData(QVariant data) { this->extraData = data; }
 
 QVariant JoyButtonSlot::getExtraData() const { return extraData; }
 
+/**
+ * @brief Deep-copies member variables from another JoyButtonSlot object
+ *   into this object.
+ * @param[in] slot Slot from which data gets copied
+ */
+void JoyButtonSlot::copyAssignments(const JoyButtonSlot &slot)
+{
+    deviceCode = slot.deviceCode;
+    qkeyaliasCode = slot.qkeyaliasCode;
+    m_mode = slot.m_mode;
+
+    if (slot.mix_slots != nullptr)
+    {
+        mix_slots = new QList<JoyButtonSlot *>();
+        for (const auto minislot : *slot.mix_slots)
+            mix_slots->append(
+                new JoyButtonSlot(minislot->getSlotCode(), minislot->getSlotCodeAlias(), minislot->getSlotMode()));
+    }
+
+    m_distance = slot.m_distance;
+    previousDistance = slot.previousDistance;
+
+    easingTime = QElapsedTimer();
+    if (slot.easingTime.isValid())
+        easingTime.start();
+    easingActive = slot.easingActive;
+
+    if (!slot.getTextData().isNull() && (slot.getTextData() != ""))
+        m_textData = slot.getTextData();
+
+    extraData = slot.extraData;
+}
+
 void JoyButtonSlot::secureMixSlotsInit()
 {
     if (mix_slots == nullptr)
@@ -509,22 +516,6 @@ bool JoyButtonSlot::isValidSlot()
 
 JoyButtonSlot &JoyButtonSlot::operator=(JoyButtonSlot *slot)
 {
-    this->deviceCode = slot->getSlotCode();
-    this->m_mode = slot->getSlotMode();
-    this->qkeyaliasCode = slot->getSlotCodeAlias();
-    this->m_distance = slot->getDistance();
-    this->previousDistance = slot->getPreviousDistance();
-    this->easingActive = slot->isEasingActive();
-    easingTime = QElapsedTimer();
-    if (slot->getEasingTime()->isValid())
-        easingTime.start();
-    this->extraData = slot->getExtraData();
-
-    if (slot->getMixSlots() != nullptr)
-        this->mix_slots = slot->getMixSlots();
-
-    if (!slot->getTextData().isNull() ^ (slot->getTextData() != ""))
-        this->m_textData = slot->getTextData();
-
+    copyAssignments(*slot);
     return *this;
 }

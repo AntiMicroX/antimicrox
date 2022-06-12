@@ -134,6 +134,7 @@ class JoyButtonSlot : public QObject
     JoyButtonSlot &operator=(JoyButtonSlot *slot);
 
   private:
+    void copyAssignments(const JoyButtonSlot &rhs);
     void secureMixSlotsInit();
 
     int deviceCode;
