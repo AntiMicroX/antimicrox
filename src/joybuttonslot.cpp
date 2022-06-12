@@ -149,13 +149,13 @@ void JoyButtonSlot::setSlotCode(int code, int alias)
     }
 }
 
-int JoyButtonSlot::getSlotCodeAlias() { return qkeyaliasCode; }
+int JoyButtonSlot::getSlotCodeAlias() const { return qkeyaliasCode; }
 
-int JoyButtonSlot::getSlotCode() { return deviceCode; }
+int JoyButtonSlot::getSlotCode() const { return deviceCode; }
 
 void JoyButtonSlot::setSlotMode(JoySlotInputAction selectedMode) { m_mode = selectedMode; }
 
-JoyButtonSlot::JoySlotInputAction JoyButtonSlot::getSlotMode() { return m_mode; }
+JoyButtonSlot::JoySlotInputAction JoyButtonSlot::getSlotMode() const { return m_mode; }
 
 QString JoyButtonSlot::movementString()
 {
@@ -402,7 +402,7 @@ QString JoyButtonSlot::getSlotString()
 
 void JoyButtonSlot::setPreviousDistance(double distance) { previousDistance = distance; }
 
-double JoyButtonSlot::getPreviousDistance() { return previousDistance; }
+double JoyButtonSlot::getPreviousDistance() const { return previousDistance; }
 
 double JoyButtonSlot::getDistance() const { return m_distance; }
 
@@ -418,7 +418,7 @@ bool JoyButtonSlot::isModifierKey()
     return modifier;
 }
 
-bool JoyButtonSlot::isEasingActive() { return easingActive; }
+bool JoyButtonSlot::isEasingActive() const { return easingActive; }
 
 void JoyButtonSlot::setEasingStatus(bool isActive) { easingActive = isActive; }
 
@@ -426,7 +426,7 @@ QElapsedTimer *JoyButtonSlot::getEasingTime() { return &easingTime; }
 
 void JoyButtonSlot::setTextData(QString textData) { m_textData = textData; }
 
-QString JoyButtonSlot::getTextData()
+QString JoyButtonSlot::getTextData() const
 {
     if (m_textData.isNull() || m_textData.isEmpty())
         return "";
@@ -435,7 +435,7 @@ QString JoyButtonSlot::getTextData()
 
 void JoyButtonSlot::setExtraData(QVariant data) { this->extraData = data; }
 
-QVariant JoyButtonSlot::getExtraData() { return extraData; }
+QVariant JoyButtonSlot::getExtraData() const { return extraData; }
 
 void JoyButtonSlot::secureMixSlotsInit()
 {
