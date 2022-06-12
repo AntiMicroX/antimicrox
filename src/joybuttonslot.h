@@ -88,9 +88,9 @@ class JoyButtonSlot : public QObject
     ~JoyButtonSlot();
 
     void setSlotCode(int code);
-    int getSlotCode();
+    int getSlotCode() const;
     void setSlotMode(JoySlotInputAction selectedMode);
-    JoySlotInputAction getSlotMode();
+    JoySlotInputAction getSlotMode() const;
     QString movementString();
     void setMouseSpeed(int value);
     void setDistance(double distance);
@@ -100,21 +100,21 @@ class JoyButtonSlot : public QObject
     QString getXmlName();
     QString getSlotString();
     void setSlotCode(int code, int alias);
-    int getSlotCodeAlias();
+    int getSlotCodeAlias() const;
     void setPreviousDistance(double distance);
-    double getPreviousDistance();
+    double getPreviousDistance() const;
     double getDistance() const;
     bool isModifierKey();
 
-    bool isEasingActive();
+    bool isEasingActive() const;
     void setEasingStatus(bool isActive);
     QElapsedTimer *getEasingTime();
 
     void setTextData(QString textData);
-    QString getTextData();
+    QString getTextData() const;
 
     void setExtraData(QVariant data);
-    QVariant getExtraData();
+    QVariant getExtraData() const;
 
     void setMixSlots(QList<JoyButtonSlot *> *slots);
     QList<JoyButtonSlot *> *getMixSlots();
@@ -134,6 +134,7 @@ class JoyButtonSlot : public QObject
     JoyButtonSlot &operator=(JoyButtonSlot *slot);
 
   private:
+    void copyAssignments(const JoyButtonSlot &rhs);
     void secureMixSlotsInit();
 
     int deviceCode;
