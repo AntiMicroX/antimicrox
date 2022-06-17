@@ -117,7 +117,7 @@ jobs:
                   install: >-
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
-                      mingw-w64-x86_64-SDL2
+                      mingw-w64-x86_64-SDL2-2.0.22
                       mingw-w64-x86_64-nsis
                       mingw-w64-x86_64-openssl
                   msystem: mingw64
