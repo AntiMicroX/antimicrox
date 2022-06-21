@@ -292,7 +292,7 @@ in the form.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
         <source>Detect Window Properties</source>
-        <translation type="unfinished">Определить настройки окна</translation>
+        <translation>Определить свойства окна</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
@@ -419,7 +419,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="426"/>
         <source>No window matching property was specified.</source>
-        <translation type="unfinished">Не найдено подходящих настроек для окна</translation>
+        <translation>Не выбраны условия поиска окна.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="440"/>
@@ -434,7 +434,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="454"/>
         <source>No window matching property was selected.</source>
-        <translation type="unfinished">Не выбрано подходящих настроек для окна.</translation>
+        <translation>Не отмечены условия поиска окна.</translation>
     </message>
 </context>
 <context>
