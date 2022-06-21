@@ -351,7 +351,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="157"/>
         <source>Open Config</source>
-        <translation type="unfinished">Открыть настройки</translation>
+        <translation>Загрузить конфигурацию</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
@@ -458,7 +458,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation type="unfinished">Турбо</translation>
+        <translation>Турбо</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="86"/>
