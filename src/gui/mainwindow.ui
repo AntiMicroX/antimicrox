@@ -209,7 +209,7 @@ QStackedWidget#stackedWidget{
      <x>0</x>
      <y>0</y>
      <width>650</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQuit">
@@ -225,7 +225,6 @@ QStackedWidget#stackedWidget{
     </property>
     <addaction name="actionProperties"/>
     <addaction name="actionKeyValue"/>
-    <addaction name="actionGameController_Mapping"/>
     <addaction name="actionCalibration"/>
     <addaction name="actionStick_Pad_Assign"/>
     <addaction name="actionOptions"/>
@@ -351,18 +350,6 @@ QStackedWidget#stackedWidget{
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
-   </property>
-  </action>
-  <action name="actionGameController_Mapping">
-   <property name="icon">
-    <iconset theme="map_controller" resource="../resources.qrc">
-     <normaloff>:/images/actions/map_controller.png</normaloff>:/images/actions/map_controller.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Game Controller Mapping</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+M</string>
    </property>
   </action>
   <action name="actionOptions">
