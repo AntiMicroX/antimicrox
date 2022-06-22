@@ -81,9 +81,14 @@ jobs:
                   install: >-
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
-                      mingw-w64-x86_64-SDL2-2.0.22-2
                   msystem: mingw64
                   release: false
+            
+            - name: Install sdl2
+              run: |
+                curl -o SDL2-2.0.20-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
+                pacman -U SDL2-2.0.20-1-any.pkg.tar.zst
+
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
