@@ -4,14 +4,7 @@ concurrency:
     group: build-${{ github.head_ref }}
     cancel-in-progress: true
 
-on:
-    push:
-        branches:
-            - master
-    pull_request:
-        branches:
-            - master
-    workflow_dispatch:
+on: [push]
 
 jobs:
     # Build job for Ubuntu
