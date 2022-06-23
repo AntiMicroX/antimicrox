@@ -80,7 +80,7 @@ jobs:
             - name: Install sdl2
               run: |
                 curl -L -o mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
-                pacman -U mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
+                pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
 
 
             - name: Install Qt
