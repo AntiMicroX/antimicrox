@@ -117,11 +117,16 @@ jobs:
                   install: >-
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
-                      mingw-w64-x86_64-SDL2
                       mingw-w64-x86_64-nsis
                       mingw-w64-x86_64-openssl
                   msystem: mingw64
                   release: false
+            # mingw-w64-x86_64-SDL2 not installed above because of: https://github.com/AntiMicroX/antimicrox/issues/465
+            # SDL2 version for release locked
+            - name: Install sdl2
+              run: |
+                curl -L -o mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
+                pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
