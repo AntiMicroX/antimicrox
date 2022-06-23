@@ -154,7 +154,7 @@ Status of package `anitmicrox`:
 And `antimicro` (in cases when it contains AntiMicroX)  
 [![Debian 12 package](https://repology.org/badge/version-for-repo/debian_12/antimicro.svg)](https://repology.org/project/antimicro/versions)  
 [![Debian Stable package](https://repology.org/badge/version-for-repo/debian_stable/antimicro.svg)](https://repology.org/project/antimicro/versions)  
-[![Ubuntu 21.04 package](https://repology.org/badge/version-for-repo/ubuntu_21_04/antimicro.svg)](https://repology.org/project/antimicro/versions)
+[![Ubuntu 22.04 package](https://repology.org/badge/version-for-repo/ubuntu_22_04/antimicro.svg)](https://repology.org/project/antimicro/versions)
 
 ## Command Line
 
