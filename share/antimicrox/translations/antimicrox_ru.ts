@@ -1263,13 +1263,13 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="186"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="308"/>
         <source>X Axis:</source>
-        <translation type="unfinished">Ось X:</translation>
+        <translation>Ось X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="204"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="326"/>
         <source>Y Axis:</source>
-        <translation type="unfinished">Ось Y:</translation>
+        <translation>Ось Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="246"/>
@@ -1279,32 +1279,32 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
         <source>Number of Physical DPads: %1</source>
-        <translation type="unfinished">Количество физических крестовин: %1</translation>
+        <translation>Количество физических крестовин: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="402"/>
         <source>Virtual DPad 1</source>
-        <translation type="unfinished">Виртуальная Крестовина 1</translation>
+        <translation>Виртуальная крестовина 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="498"/>
         <source>Up:</source>
-        <translation type="unfinished">Вверх:</translation>
+        <translation>Вверх:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="463"/>
         <source>Down:</source>
-        <translation type="unfinished">Вниз:</translation>
+        <translation>Вниз:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="477"/>
         <source>Left:</source>
-        <translation type="unfinished">Влево:</translation>
+        <translation>Влево:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="491"/>
         <source>Right:</source>
-        <translation type="unfinished">Вправо:</translation>
+        <translation>Вправо:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="65"/>
@@ -1312,7 +1312,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="68"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="69"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Ось %1</translation>
+        <translation>Ось %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="412"/>
@@ -1320,7 +1320,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="414"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="415"/>
         <source>Axis %1 -</source>
-        <translation type="unfinished">Ось %1 -</translation>
+        <translation>Ось %1 -</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="421"/>
@@ -1328,7 +1328,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="423"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="424"/>
         <source>Axis %1 +</source>
-        <translation type="unfinished">Ось %1 +</translation>
+        <translation>Ось %1 +</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="434"/>
@@ -1336,7 +1336,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="436"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="437"/>
         <source>Button %1</source>
-        <translation type="unfinished">Кнопка %1</translation>
+        <translation>Кнопка %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
@@ -1372,7 +1372,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation type="unfinished">Ось</translation>
+        <translation>Ось</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
@@ -1402,37 +1402,37 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="599"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished">Стрелки: Вверх | Вниз</translation>
+        <translation>Стрелки: Вверх | Вниз</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="102"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="600"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished">Стрелки: Влево | Вправо</translation>
+        <translation>Стрелки: Влево | Вправо</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="107"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="601"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished">Клавиши: W | S</translation>
+        <translation>Клавиши: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="112"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="602"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished">Клавиши: A | D</translation>
+        <translation>Клавиши: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="603"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished">NumPad: 8 | 2</translation>
+        <translation>NumPad: 8 | 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="122"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="604"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished">NumPad: 4 | 6</translation>
+        <translation>NumPad: 4 | 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="127"/>
@@ -1539,12 +1539,12 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="612"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Левая кнопка мыши</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="613"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Правая кнопка мыши</translation>
     </message>
 </context>
 <context>
@@ -1557,7 +1557,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="44"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation type="unfinished">&lt;center&gt;Чтобы назначить новое действие нажмите на соответствующую кнопку во вкладках &quot;Клавиатура&quot; или &quot;Мышь&quot;&lt;/center&gt;</translation>
+        <translation>Чтобы назначить новое действие, нажмите на соответствующую кнопку во вкладках &quot;Клавиатура&quot; или &quot;Мышь&quot;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="70"/>
@@ -1582,12 +1582,12 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation type="unfinished">Турбо</translation>
+        <translation>Турбо</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="160"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation>Последняя клавиша/кнопка мыши:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="167"/>
@@ -1613,7 +1613,8 @@ interpret an axis hold or release.</source>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="234"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished">Укажите какое действие будет производится при нажатии данной кнопки.</translation>
+        <translation>Укажите действие, которое будет исполняться
+при нажатии данной кнопки.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="261"/>
@@ -1625,7 +1626,7 @@ this button is being used.</source>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="118"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="540"/>
         <source>Choose your keyboard key</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите клавишу</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="359"/>
@@ -1638,7 +1639,7 @@ this button is being used.</source>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="428"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="508"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>Последняя кнопка</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="369"/>
@@ -1678,7 +1679,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="527"/>
         <source>Index %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Индекс %1</translation>
     </message>
 </context>
 <context>
@@ -1701,7 +1702,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="112"/>
         <source>Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Z</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="119"/>
@@ -1730,43 +1731,43 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.ui" line="168"/>
         <location filename="../../../src/gui/calibration.ui" line="175"/>
         <source>offset</source>
-        <translation type="unfinished"></translation>
+        <translation>смещение</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="161"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="247"/>
         <location filename="../../../src/gui/calibration.cpp" line="446"/>
         <source>Start calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Откалибровать</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="277"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="237"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить настройки</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="270"/>
         <source>Save</source>
-        <translation type="unfinished">Сохранить</translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="47"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Калибровка</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
         <source>Selected device doesn&apos;t have any inputs to calibrate.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбранное устройство нет имеет органов, нуждающихся в калибровке.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="95"/>
@@ -1777,12 +1778,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="112"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы точно хотите сбросить калибровку для этого устройства?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="387"/>
         <source>Offset calibration completed. Click &quot;Continue calibration&quot; to continue with gain calibration.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Калибровка смещения завершена. Нажмите &quot;Продолжить калибровку&quot; для калибровки усиления.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="494"/>
@@ -1798,7 +1799,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="498"/>
         <source>Continue calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Продолжить калибровку</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
@@ -1817,17 +1818,17 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Свойства захваченного окна</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация об окне</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>Класс:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="55"/>
@@ -1839,12 +1840,12 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="105"/>
@@ -1854,27 +1855,27 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="120"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Класс</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="127"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="136"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="147"/>
         <source>Full Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Полный путь</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="152"/>
         <source>File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя файла</translation>
     </message>
 </context>
 <context>
@@ -2246,12 +2247,12 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation type="unfinished">Левый Триггер</translation>
+        <translation>Левый курок</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation type="unfinished">Правый Триггер</translation>
+        <translation>Правый курок</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
@@ -2388,12 +2389,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="87"/>
         <source>L Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Л Курок</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="88"/>
         <source>R Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>П Курок</translation>
     </message>
 </context>
 <context>
@@ -2403,7 +2404,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="97"/>
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="101"/>
         <source>Trigger</source>
-        <translation type="unfinished">Триггер</translation>
+        <translation>Курок</translation>
     </message>
 </context>
 <context>
