@@ -53,4 +53,5 @@ class JoyAccelerometerSensor : public JoySensor
     double m_rate;
     PT1Filter m_shock_filter;
     size_t m_shock_suppress_count;
+    double m_calibration_matrix[3][3];
 };

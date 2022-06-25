@@ -1769,6 +1769,23 @@ void InputDevice::applyStickCalibration(int index, double offsetX, double gainX,
 }
 
 /**
+ * @brief Applies calibration to the specified accelerometer in all sets
+ *  See JoySensor::setCalibration
+ * @param[in] offsetX Offset angle around the X axis
+ * @param[in] offsetY Offset angle around the Y axis
+ * @param[in] offsetZ Offset angle around the Z axis
+ */
+void InputDevice::applyAccelerometerCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    for (auto &set : joystick_sets)
+    {
+        JoySensor *accelerometer = set->getSensor(ACCELEROMETER);
+        if (accelerometer != nullptr)
+            accelerometer->setCalibration(offsetX, offsetY, offsetZ);
+    }
+}
+
+/**
  * @brief Applies calibration to the specified gyroscope in all sets
  *  See JoySensor::setCalibration
  * @param[in] offsetX Offset value for X axis

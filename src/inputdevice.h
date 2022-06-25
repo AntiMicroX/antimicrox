@@ -149,6 +149,7 @@ class InputDevice : public QObject
     SDL_Joystick *getJoyHandle() const;
 
     void applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
+    void applyAccelerometerCalibration(double offsetX, double offsetY, double offsetZ);
     void applyGyroscopeCalibration(double offsetX, double offsetY, double offsetZ);
 
   protected:

@@ -64,19 +64,49 @@ QString JoyAccelerometerSensor::sensorTypeName() const { return tr("Acceleromete
 
 /**
  * @brief Reads the calibration values of the sensor
+ * @param[out] offsetX Offset angle around the X axis
+ * @param[out] offsetY Offset angle around the Y axis
+ * @param[out] offsetZ Offset angle around the Z axis
  */
 void JoyAccelerometerSensor::getCalibration(double *offsetX, double *offsetY, double *offsetZ) const
 {
-    // XXX: this is a no-op for accelerometer
+    *offsetX = m_calibration_value[0];
+    *offsetY = m_calibration_value[1];
+    *offsetZ = m_calibration_value[2];
 }
 
 /**
  * @brief Sets the sensor calibration values and sets the calibration flag.
+ * @param[in] offsetX Offset angle around the X axis
+ * @param[in] offsetY Offset angle around the Y axis
+ * @param[in] offsetZ Offset angle around the Z axis
+ *
+ * This stores the orientation vector to store the calibration data later and
+ * calculates the neutral position rotation matrix from the orientation
+ * vector.
  */
 void JoyAccelerometerSensor::setCalibration(double offsetX, double offsetY, double offsetZ)
 {
-    // XXX: this is a no-op for accelerometer
+    m_calibration_value[0] = offsetX;
+    m_calibration_value[1] = offsetY;
+    m_calibration_value[2] = offsetZ;
+
+    double rad = sqrt(offsetX * offsetX + offsetY * offsetY + offsetZ * offsetZ);
+    double syz = sqrt(offsetY * offsetY + offsetZ * offsetZ);
+
+    m_calibration_matrix[0][0] = syz / rad;
+    m_calibration_matrix[0][1] = -offsetX * offsetY / syz / rad;
+    m_calibration_matrix[0][2] = -offsetX * offsetZ / syz / rad;
+    m_calibration_matrix[1][0] = 0;
+    m_calibration_matrix[1][1] = -offsetZ / syz;
+    m_calibration_matrix[1][2] = offsetY / syz;
+    m_calibration_matrix[2][0] = -offsetX / rad;
+    m_calibration_matrix[2][1] = -offsetY / rad;
+    m_calibration_matrix[2][2] = -offsetZ / rad;
+
+    m_calibrated = true;
 }
+
 /**
  * @brief Resets internal variables back to default
  */
@@ -109,14 +139,6 @@ void JoyAccelerometerSensor::populateButtons()
 
     button = new JoyAccelerometerButton(this, SENSOR_BWD, m_originset, getParentSet(), this);
     m_buttons.insert(SENSOR_BWD, button);
-}
-
-/**
- * @brief Applies calibration to queued input values
- */
-void JoyAccelerometerSensor::applyCalibration()
-{
-    // XXX: This is a no-op for accelerometer
 }
 
 /**
@@ -193,4 +215,21 @@ JoySensorDirection JoyAccelerometerSensor::calculateSensorDirection()
                 return SENSOR_RIGHT_DOWN;
         }
     }
+}
+
+/**
+ * @brief Applies calibration to queued input values
+ *
+ * This rotates the sensor coordinate system with the precalculated neutral
+ * position rotation matrix.
+ */
+void JoyAccelerometerSensor::applyCalibration()
+{
+    double x = m_pending_value[0];
+    double y = m_pending_value[1];
+    double z = m_pending_value[2];
+
+    m_pending_value[0] = m_calibration_matrix[0][0] * x + m_calibration_matrix[0][1] * y + m_calibration_matrix[0][2] * z;
+    m_pending_value[1] = m_calibration_matrix[1][0] * x + m_calibration_matrix[1][1] * y + m_calibration_matrix[1][2] * z;
+    m_pending_value[2] = m_calibration_matrix[2][0] * x + m_calibration_matrix[2][1] * y + m_calibration_matrix[2][2] * z;
 }
