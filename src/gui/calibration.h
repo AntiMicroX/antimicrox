@@ -41,6 +41,7 @@ class Calibration : public QDialog
     {
         CAL_NONE,
         CAL_STICK,
+        CAL_ACCELEROMETER,
         CAL_GYROSCOPE,
 
         CAL_TYPE_MASK = 0x0000FFFF,
@@ -54,8 +55,8 @@ class Calibration : public QDialog
   protected:
     void resetCalibrationValues();
     bool askConfirmation(QString message, bool confirmed);
-    void showGyroscopeCalibrationValues(bool offsetXvalid, double offsetX, bool offsetYvalid, double offsetY,
-                                        bool offsetZvalid, double offsetZ);
+    void showSensorCalibrationValues(bool offsetXvalid, double offsetX, bool offsetYvalid, double offsetY, bool offsetZvalid,
+                                     double offsetZ);
     void showStickCalibrationValues(bool offsetXvalid, double offsetX, bool gainXvalid, double gainX, bool offsetYvalid,
                                     double offsetY, bool gainYvalid, double gainY);
     void hideCalibrationData();
@@ -90,6 +91,8 @@ class Calibration : public QDialog
 
   public slots:
     void saveSettings();
+    void startAccelerometerCalibration();
+    void startAccelerometerAngleCalibration();
     void startGyroscopeCalibration();
     void startGyroscopeOffsetCalibration();
     void startStickOffsetCalibration();
@@ -99,7 +102,7 @@ class Calibration : public QDialog
     void closeEvent(QCloseEvent *event) override;
     void resetSettings();
     void deviceSelectionChanged(int index);
-    void onGyroscopeData(float x, float y, float z);
+    void onSensorOffsetData(float x, float y, float z);
     void onStickOffsetData(int x, int y);
     void onStickGainData(int x, int y);
 
