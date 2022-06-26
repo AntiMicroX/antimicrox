@@ -23,8 +23,10 @@
 #include "globalvariables.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joydpadbutton.h"
+#include "joybuttontypes/joysensorbutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
+#include "joysensor.h"
 #include "vdpad.h"
 
 #include <typeinfo>
@@ -567,6 +569,12 @@ int InputDevice::getNumberHats() { return getActiveSetJoystick()->getNumberHats(
 
 int InputDevice::getNumberSticks() { return getActiveSetJoystick()->getNumberSticks(); }
 
+/**
+ * @brief Checks if this input device has a sensor of given type
+ * @returns True if sensor is present, false otherwise
+ */
+bool InputDevice::hasSensor(JoySensorType type) { return getActiveSetJoystick()->hasSensor(type); }
+
 int InputDevice::getNumberVDPads() { return getActiveSetJoystick()->getNumberVDPads(); }
 
 SetJoystick *InputDevice::getSetJoystick(int index) { return getJoystick_sets().value(index); }
@@ -604,6 +612,20 @@ void InputDevice::changeSetStickButtonAssociation(int button_index, int stick_in
                                         .value(newset)
                                         ->getJoyStick(stick_index)
                                         ->getDirectionButton(static_cast<JoyControlStick::JoyStickDirections>(button_index));
+
+    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
+    button->setChangeSetSelection(originset);
+    button->setChangeSetCondition(tempmode, true);
+}
+
+/**
+ * @brief Creates reverse set change button mapping for toggle and while-hold set
+ *  change mappings.
+ */
+void InputDevice::changeSetSensorButtonAssociation(JoySensorDirection direction, JoySensorType type, int originset,
+                                                   int newset, int mode)
+{
+    JoySensorButton *button = getJoystick_sets().value(newset)->getSensor(type)->getDirectionButton(direction);
 
     JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
     button->setChangeSetSelection(originset);
@@ -756,6 +778,20 @@ void InputDevice::stickButtonUpEvent(int setindex, int stickindex, int buttonind
     buttonUpEvent(setindex, buttonindex);
 }
 
+void InputDevice::sensorButtonDownEvent(int setindex, JoySensorType type, JoySensorDirection direction)
+{
+    Q_UNUSED(type);
+
+    buttonDownEvent(setindex, direction);
+}
+
+void InputDevice::sensorButtonUpEvent(int setindex, JoySensorType type, JoySensorDirection direction)
+{
+    Q_UNUSED(type);
+
+    buttonUpEvent(setindex, direction);
+}
+
 void InputDevice::setButtonName(int index, QString tempName)
 {
     QHashIterator<int, SetJoystick *> iter(getJoystick_sets());
@@ -822,6 +858,32 @@ void InputDevice::setStickButtonName(int stickIndex, int buttonIndex, QString te
     }
 }
 
+/**
+ * @brief Sets the name of a mapped sensor button in all sets
+ *  Used during XML loading.
+ * @param type The sensor type which has the to be renamed button
+ * @param direction The direction of the to be renamed button
+ * @param tempName The new name
+ */
+void InputDevice::setSensorButtonName(JoySensorType type, JoySensorDirection direction, QString tempName)
+{
+    auto sets = getJoystick_sets();
+    for (auto &tempSet : sets)
+    {
+        disconnect(tempSet, &SetJoystick::setStickButtonNameChange, this, &InputDevice::updateSetStickButtonNames);
+        JoySensor *sensor = tempSet->getSensor(type);
+
+        if (sensor != nullptr)
+        {
+            JoySensorButton *button = sensor->getDirectionButton(direction);
+
+            if (button != nullptr)
+                button->setButtonName(tempName);
+        }
+
+        connect(tempSet, &SetJoystick::setSensorButtonNameChange, this, &InputDevice::updateSetSensorButtonNames);
+    }
+}
 void InputDevice::setDPadButtonName(int dpadIndex, int buttonIndex, QString tempName)
 {
     QHashIterator<int, SetJoystick *> iter(getJoystick_sets());
@@ -900,6 +962,27 @@ void InputDevice::setStickName(int stickIndex, QString tempName)
     }
 }
 
+/**
+ * @brief Sets the name of a sensor in all sets
+ *  Used during XML loading.
+ * @param type The sensor type to be renamed
+ * @param tempName The new name
+ */
+void InputDevice::setSensorName(JoySensorType type, QString tempName)
+{
+    auto sets = getJoystick_sets();
+    for (auto &tempSet : sets)
+    {
+        disconnect(tempSet, &SetJoystick::setSensorNameChange, this, &InputDevice::updateSetSensorNames);
+        JoySensor *sensor = tempSet->getSensor(type);
+
+        if (sensor != nullptr)
+            sensor->setSensorName(tempName);
+
+        connect(tempSet, &SetJoystick::setSensorNameChange, this, &InputDevice::updateSetSensorNames);
+    }
+}
+
 void InputDevice::setDPadName(int dpadIndex, QString tempName)
 {
     QHashIterator<int, SetJoystick *> iter(getJoystick_sets());
@@ -973,6 +1056,24 @@ void InputDevice::updateSetStickButtonNames(int stickIndex, int buttonIndex)
     }
 }
 
+/**
+ * @brief Rename mapped sensor button in all sets to the name in the active set
+ * @param type The sensor type which has the to be renamed button
+ * @param direction The direction of the to be renamed button
+ */
+void InputDevice::updateSetSensorButtonNames(JoySensorType type, JoySensorDirection direction)
+{
+    JoySensor *sensor = getActiveSetJoystick()->getSensor(type);
+
+    if (sensor != nullptr)
+    {
+        JoySensorButton *button = sensor->getDirectionButton(direction);
+
+        if (button != nullptr)
+            setSensorButtonName(type, direction, button->getButtonName());
+    }
+}
+
 void InputDevice::updateSetDPadButtonNames(int dpadIndex, int buttonIndex)
 {
     JoyDPad *dpad = getActiveSetJoystick()->getJoyDPad(dpadIndex);
@@ -1015,6 +1116,18 @@ void InputDevice::updateSetStickNames(int stickIndex)
         setStickName(stickIndex, stick->getStickName());
 }
 
+/**
+ * @brief Rename sensor in all sets to the name in the current set
+ * @param type The sensor to rename
+ */
+void InputDevice::updateSetSensorNames(JoySensorType type)
+{
+    JoySensor *sensor = getActiveSetJoystick()->getSensor(type);
+
+    if (sensor != nullptr)
+        setSensorName(type, sensor->getSensorName());
+}
+
 void InputDevice::updateSetDPadNames(int dpadIndex)
 {
     JoyDPad *dpad = getActiveSetJoystick()->getJoyDPad(dpadIndex);
@@ -1037,6 +1150,9 @@ void InputDevice::resetButtonDownCount()
     emit released(joyNumber);
 }
 
+/**
+ * @brief Establishes necessary connections for set change slots
+ */
 void InputDevice::enableSetConnections(SetJoystick *setstick)
 {
     connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::resetButtonDownCount);
@@ -1048,6 +1164,7 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
     connect(setstick, &SetJoystick::setAssignmentDPadChanged, this, &InputDevice::changeSetDPadButtonAssociation);
     connect(setstick, &SetJoystick::setAssignmentVDPadChanged, this, &InputDevice::changeSetVDPadButtonAssociation);
     connect(setstick, &SetJoystick::setAssignmentStickChanged, this, &InputDevice::changeSetStickButtonAssociation);
+    connect(setstick, &SetJoystick::setAssignmentSensorChanged, this, &InputDevice::changeSetSensorButtonAssociation);
     connect(setstick, &SetJoystick::setAssignmentAxisThrottleChanged, this, &InputDevice::propogateSetAxisThrottleChange);
 
     connect(setstick, &SetJoystick::setButtonClick, this, &InputDevice::buttonDownEvent);
@@ -1064,15 +1181,19 @@ void InputDevice::enableSetConnections(SetJoystick *setstick)
 
     connect(setstick, &SetJoystick::setStickButtonClick, this, &InputDevice::stickButtonDownEvent);
     connect(setstick, &SetJoystick::setStickButtonRelease, this, &InputDevice::stickButtonUpEvent);
+    connect(setstick, &SetJoystick::setSensorButtonClick, this, &InputDevice::sensorButtonDownEvent);
+    connect(setstick, &SetJoystick::setSensorButtonRelease, this, &InputDevice::sensorButtonUpEvent);
 
     connect(setstick, &SetJoystick::setButtonNameChange, this, &InputDevice::updateSetButtonNames);
     connect(setstick, &SetJoystick::setAxisButtonNameChange, this, &InputDevice::updateSetAxisButtonNames);
     connect(setstick, &SetJoystick::setStickButtonNameChange, this, &InputDevice::updateSetStickButtonNames);
+    connect(setstick, &SetJoystick::setSensorButtonNameChange, this, &InputDevice::updateSetSensorButtonNames);
     connect(setstick, &SetJoystick::setDPadButtonNameChange, this, &InputDevice::updateSetDPadButtonNames);
     connect(setstick, &SetJoystick::setVDPadButtonNameChange, this, &InputDevice::updateSetVDPadButtonNames);
 
     connect(setstick, &SetJoystick::setAxisNameChange, this, &InputDevice::updateSetAxisNames);
     connect(setstick, &SetJoystick::setStickNameChange, this, &InputDevice::updateSetStickNames);
+    connect(setstick, &SetJoystick::setSensorNameChange, this, &InputDevice::updateSetSensorNames);
     connect(setstick, &SetJoystick::setDPadNameChange, this, &InputDevice::updateSetDPadNames);
     connect(setstick, &SetJoystick::setVDPadNameChange, this, &InputDevice::updateSetVDPadNames);
 }
@@ -1224,7 +1345,9 @@ QString InputDevice::getDescription()
     full_desc = full_desc + "  " + QObject::tr("Game Controller: %1").arg(gameControllerStatus) + "\n  " +
                 QObject::tr("# of Axes:       %1").arg(getNumberRawAxes()) + "\n  " +
                 QObject::tr("# of Buttons:    %1").arg(getNumberRawButtons()) + "\n  " +
-                QObject::tr("# of Hats:       %1").arg(getNumberHats()) + "\n";
+                QObject::tr("# of Hats:       %1").arg(getNumberHats()) + "\n  " +
+                QObject::tr("Accelerometer:   %1").arg(hasSensor(ACCELEROMETER)) + "\n  " +
+                QObject::tr("Gyroscope:       %1").arg(hasSensor(GYROSCOPE)) + "\n";
     return full_desc;
 }
 
@@ -1350,6 +1473,20 @@ void InputDevice::activatePossibleAxisEvents()
         {
             tempAxis->activatePendingEvent();
         }
+    }
+}
+
+void InputDevice::activatePossibleSensorEvents()
+{
+    SetJoystick *currentSet = getActiveSetJoystick();
+    JoySensor *sensor = nullptr;
+
+    for (size_t i = 0; i < SENSOR_COUNT; ++i)
+    {
+        JoySensorType type = static_cast<JoySensorType>(i);
+        sensor = currentSet->getSensor(type);
+        if ((sensor != nullptr) && sensor->hasPendingEvent())
+            sensor->activatePendingEvent();
     }
 }
 
@@ -1623,11 +1760,44 @@ SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
  */
 void InputDevice::applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY)
 {
-    for (auto iter = joystick_sets.begin(); iter != joystick_sets.end(); ++iter)
+    for (auto &set : joystick_sets)
     {
-        SetJoystick *set = iter.value();
         JoyControlStick *stick = set->getSticks().value(index);
         if (stick != nullptr)
             stick->setCalibration(offsetX, gainX, offsetY, gainY);
+    }
+}
+
+/**
+ * @brief Applies calibration to the specified accelerometer in all sets
+ *  See JoySensor::setCalibration
+ * @param[in] offsetX Offset angle around the X axis
+ * @param[in] offsetY Offset angle around the Y axis
+ * @param[in] offsetZ Offset angle around the Z axis
+ */
+void InputDevice::applyAccelerometerCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    for (auto &set : joystick_sets)
+    {
+        JoySensor *accelerometer = set->getSensor(ACCELEROMETER);
+        if (accelerometer != nullptr)
+            accelerometer->setCalibration(offsetX, offsetY, offsetZ);
+    }
+}
+
+/**
+ * @brief Applies calibration to the specified gyroscope in all sets
+ *  See JoySensor::setCalibration
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] offsetZ Offset value for Z axis
+ */
+void InputDevice::applyGyroscopeCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    for (auto &set : joystick_sets)
+    {
+        JoySensor *gyroscope = set->getSensor(GYROSCOPE);
+        if (gyroscope != nullptr)
+            gyroscope->setCalibration(offsetX, offsetY, offsetZ);
     }
 }

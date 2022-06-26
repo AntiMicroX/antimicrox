@@ -59,6 +59,8 @@ class GameController : public InputDevice
     virtual int getNumberRawButtons() override;
     virtual int getNumberRawAxes() override;
     virtual int getNumberRawHats() override;
+    virtual double getRawSensorRate(JoySensorType type) override;
+    virtual bool hasRawSensor(JoySensorType type) override;
     void setCounterUniques(int counter) override;
 
     QString getBindStringForAxis(int index, bool trueIndex = true);

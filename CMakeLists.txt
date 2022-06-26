@@ -155,6 +155,7 @@ set(antimicrox_SOURCES
         src/gui/joybuttonwidget.cpp
         src/gui/joycontrolstickeditdialog.cpp
         src/gui/joydpadbuttonwidget.cpp
+        src/gui/joysensoreditdialog.cpp
         src/gui/joystickstatuswindow.cpp
         src/gui/joytabwidget.cpp
         src/gui/joytabwidgetcontainer.cpp
@@ -169,6 +170,7 @@ set(antimicrox_SOURCES
         src/inputdaemon.cpp
         src/inputdevice.cpp
         src/inputdevicebitarraystatus.cpp
+        src/joyaccelerometersensor.cpp
         src/joyaxis.cpp
         src/joyaxiscontextmenu.cpp
         src/joybutton.cpp
@@ -176,17 +178,28 @@ set(antimicrox_SOURCES
         src/joybuttonmousehelper.cpp
         src/joybuttonslot.cpp
         src/joybuttonstatusbox.cpp
+        src/joybuttontypes/joyaccelerometerbutton.cpp
         src/joybuttontypes/joyaxisbutton.cpp
         src/joybuttontypes/joycontrolstickbutton.cpp
         src/joybuttontypes/joycontrolstickmodifierbutton.cpp
         src/joybuttontypes/joydpadbutton.cpp
         src/joybuttontypes/joygradientbutton.cpp
+        src/joybuttontypes/joygyroscopebutton.cpp
+        src/joybuttontypes/joysensorbutton.cpp
         src/joycontrolstick.cpp
         src/joycontrolstickbuttonpushbutton.cpp
         src/joycontrolstickcontextmenu.cpp
         src/joycontrolstickpushbutton.cpp
         src/joycontrolstickstatusbox.cpp
         src/joydpad.cpp
+        src/joygyroscopesensor.cpp
+        src/joysensor.cpp
+        src/joysensorbuttonpushbutton.cpp
+        src/joysensorcontextmenu.cpp
+        src/joysensorfactory.cpp
+        src/joysensorpreset.cpp
+        src/joysensorpushbutton.cpp
+        src/joysensorstatusbox.cpp
         src/joystick.cpp
         src/keyboard/virtualkeyboardmousewidget.cpp
         src/keyboard/virtualkeypushbutton.cpp
@@ -197,6 +210,7 @@ set(antimicrox_SOURCES
         src/mousedialog/mousebuttonsettingsdialog.cpp
         src/mousedialog/mousecontrolsticksettingsdialog.cpp
         src/mousedialog/mousedpadsettingsdialog.cpp
+        src/mousedialog/mousesensorsettingsdialog.cpp
         src/mousedialog/springmoderegionpreview.cpp
         src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.cpp
         src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.cpp
@@ -206,6 +220,7 @@ set(antimicrox_SOURCES
         src/pt1filter.cpp
         src/qtkeymapperbase.cpp
         src/sdleventreader.cpp
+        src/sensorpushbuttongroup.cpp
         src/setjoystick.cpp
         src/simplekeygrabberbutton.cpp
         src/statisticsestimator.cpp
@@ -218,6 +233,7 @@ set(antimicrox_SOURCES
         src/uihelpers/joyaxiscontextmenuhelper.cpp
         src/uihelpers/joycontrolstickcontextmenuhelper.cpp
         src/uihelpers/joycontrolstickeditdialoghelper.cpp
+        src/uihelpers/joysensoriothreadhelper.cpp
         src/uihelpers/joytabwidgethelper.cpp
         src/vdpad.cpp
         src/xml/inputdevicexml.cpp
@@ -269,6 +285,7 @@ set(antimicrox_HEADERS
         src/gui/joybuttonwidget.h
         src/gui/joycontrolstickeditdialog.h
         src/gui/joydpadbuttonwidget.h
+        src/gui/joysensoreditdialog.h
         src/gui/joystickstatuswindow.h
         src/gui/joytabwidget.h
         src/gui/joytabwidgetcontainer.h
@@ -283,6 +300,7 @@ set(antimicrox_HEADERS
         src/inputdaemon.h
         src/inputdevice.h
         src/inputdevicebitarraystatus.h
+        src/joyaccelerometersensor.h
         src/joyaxis.h
         src/joyaxiscontextmenu.h
         src/joybutton.h
@@ -290,17 +308,30 @@ set(antimicrox_HEADERS
         src/joybuttonmousehelper.h
         src/joybuttonslot.h
         src/joybuttonstatusbox.h
+        src/joybuttontypes/joyaccelerometerbutton.h
         src/joybuttontypes/joyaxisbutton.h
         src/joybuttontypes/joycontrolstickbutton.h
         src/joybuttontypes/joycontrolstickmodifierbutton.h
         src/joybuttontypes/joydpadbutton.h
         src/joybuttontypes/joygradientbutton.h
+        src/joybuttontypes/joygyroscopebutton.h
+        src/joybuttontypes/joysensorbutton.h
         src/joycontrolstick.h
         src/joycontrolstickbuttonpushbutton.h
         src/joycontrolstickcontextmenu.h
         src/joycontrolstickpushbutton.h
         src/joycontrolstickstatusbox.h
         src/joydpad.h
+        src/joygyroscopesensor.h
+        src/joysensor.h
+        src/joysensorbuttonpushbutton.h
+        src/joysensorcontextmenu.h
+        src/joysensordirection.h
+        src/joysensorfactory.h
+        src/joysensorpreset.h
+        src/joysensorpushbutton.h
+        src/joysensorstatusbox.h
+        src/joysensortype.h
         src/joystick.h
         src/keyboard/virtualkeyboardmousewidget.h
         src/keyboard/virtualkeypushbutton.h
@@ -312,6 +343,7 @@ set(antimicrox_HEADERS
         src/mousedialog/mousecontrolsticksettingsdialog.h
         src/mousedialog/mousedpadsettingsdialog.h
         src/mousedialog/springmoderegionpreview.h
+        src/mousedialog/mousesensorsettingsdialog.h
         src/mousedialog/uihelpers/mouseaxissettingsdialoghelper.h
         src/mousedialog/uihelpers/mousebuttonsettingsdialoghelper.h
         src/mousedialog/uihelpers/mousecontrolsticksettingsdialoghelper.h
@@ -320,6 +352,7 @@ set(antimicrox_HEADERS
         src/pt1filter.h
         src/qtkeymapperbase.h
         src/sdleventreader.h
+        src/sensorpushbuttongroup.h
         src/setjoystick.h
         src/simplekeygrabberbutton.h
         src/statisticsestimator.h
@@ -332,6 +365,7 @@ set(antimicrox_HEADERS
         src/uihelpers/joyaxiscontextmenuhelper.h
         src/uihelpers/joycontrolstickcontextmenuhelper.h
         src/uihelpers/joycontrolstickeditdialoghelper.h
+        src/uihelpers/joysensoriothreadhelper.h
         src/uihelpers/joytabwidgethelper.h
         src/vdpad.h
         src/xml/inputdevicexml.h
@@ -369,6 +403,7 @@ set(antimicrox_FORMS
         src/gui/extraprofilesettingsdialog.ui
         src/gui/gamecontrollermappingdialog.ui
         src/gui/joycontrolstickeditdialog.ui
+        src/gui/joysensoreditdialog.ui
         src/gui/joystickstatuswindow.ui
         src/gui/mainsettingsdialog.ui
         src/gui/mainwindow.ui

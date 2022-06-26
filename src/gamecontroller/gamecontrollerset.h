@@ -26,6 +26,9 @@
 class QXmlStreamReader;
 class InputDevice;
 
+/**
+ * @brief A SetJoystick specialized for gamepads
+ */
 class GameControllerSet : public SetJoystick
 {
     Q_OBJECT

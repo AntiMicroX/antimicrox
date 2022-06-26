@@ -186,6 +186,33 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
          </layout>
         </item>
         <item>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Sensors:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="joystickSensorsLabel">
+            <property name="text">
+             <string>%1</string>
+            </property>
+            <property name="indent">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
          <layout class="QVBoxLayout" name="batteryVerticalLayout">
           <property name="leftMargin">
            <number>0</number>
@@ -455,6 +482,13 @@ JoyButtonStatusBox[isflashing=&quot;true&quot;] {
            <number>14</number>
           </property>
          </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="sensorsGroupBox">
+         <property name="title">
+          <string>Sensors</string>
+         </property>
         </widget>
        </item>
       </layout>

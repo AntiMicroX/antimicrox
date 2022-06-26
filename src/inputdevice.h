@@ -19,6 +19,8 @@
 #ifndef INPUTDEVICE_H
 #define INPUTDEVICE_H
 
+#include "joysensordirection.h"
+#include "joysensortype.h"
 #include "setjoystick.h"
 
 #include <SDL2/SDL_joystick.h>
@@ -29,6 +31,9 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class QSettings;
 
+/**
+ * @brief Represents a hardware input device, e.g a joystick or controller.
+ */
 class InputDevice : public QObject
 {
     Q_OBJECT
@@ -41,6 +46,7 @@ class InputDevice : public QObject
     virtual int getNumberAxes();
     virtual int getNumberHats();
     virtual int getNumberSticks();
+    virtual bool hasSensor(JoySensorType type);
     virtual int getNumberVDPads();
 
     int getJoyNumber();
@@ -80,17 +86,21 @@ class InputDevice : public QObject
     void setButtonName(int index, QString tempName);                            // InputDeviceXml class
     void setAxisButtonName(int axisIndex, int buttonIndex, QString tempName);   // InputDeviceXml class
     void setStickButtonName(int stickIndex, int buttonIndex, QString tempName); // InputDeviceXml class
+    void setSensorButtonName(JoySensorType type, JoySensorDirection direction, QString tempName);
     void setDPadButtonName(int dpadIndex, int buttonIndex, QString tempName);   // InputDeviceXml class
     void setVDPadButtonName(int vdpadIndex, int buttonIndex, QString tempName); // InputDeviceXml class
 
     void setAxisName(int axisIndex, QString tempName);   // InputDeviceAxis class
     void setStickName(int stickIndex, QString tempName); // InputDeviceStick class
+    void setSensorName(JoySensorType type, QString tempName);
     void setDPadName(int dpadIndex, QString tempName);   // InputDeviceHat class
     void setVDPadName(int vdpadIndex, QString tempName); // InputDeviceVDPad class
 
     virtual int getNumberRawButtons() = 0;
     virtual int getNumberRawAxes() = 0;
     virtual int getNumberRawHats() = 0;
+    virtual double getRawSensorRate(JoySensorType type) = 0;
+    virtual bool hasRawSensor(JoySensorType type) = 0;
 
     int getDeviceKeyPressTime(); // unsigned
 
@@ -119,9 +129,10 @@ class InputDevice : public QObject
     void activatePossiblePendingEvents();
     void activatePossibleControlStickEvents(); // InputDeviceStick class
     void activatePossibleAxisEvents();         // InputDeviceAxis class
-    void activatePossibleDPadEvents();         // InputDeviceHat class
-    void activatePossibleVDPadEvents();        // InputDeviceVDPad class
-    void activatePossibleButtonEvents();       // InputDeviceButton class
+    void activatePossibleSensorEvents();
+    void activatePossibleDPadEvents();   // InputDeviceHat class
+    void activatePossibleVDPadEvents();  // InputDeviceVDPad class
+    void activatePossibleButtonEvents(); // InputDeviceButton class
     void convertToUniqueMappSett(QSettings *sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett);
 
     // bool isEmptyGUID(QString tempGUID);
@@ -138,6 +149,8 @@ class InputDevice : public QObject
     SDL_Joystick *getJoyHandle() const;
 
     void applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
+    void applyAccelerometerCalibration(double offsetX, double offsetY, double offsetZ);
+    void applyGyroscopeCalibration(double offsetX, double offsetY, double offsetZ);
 
   protected:
     void enableSetConnections(SetJoystick *setstick);
@@ -181,6 +194,8 @@ class InputDevice : public QObject
                                         int mode); // InputDeviceAxisBtn class
     void changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset,
                                          int mode); // InputDeviceStick class
+    void changeSetSensorButtonAssociation(JoySensorDirection direction, JoySensorType type, int originset, int newset,
+                                          int mode);
     void changeSetDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset,
                                         int mode); // InputDeviceHat class
     void changeSetVDPadButtonAssociation(int button_index, int dpad_index, int originset, int newset,
@@ -212,15 +227,19 @@ class InputDevice : public QObject
     virtual void dpadButtonUpEvent(int setindex, int dpadindex, int buttonindex);     // InputDeviceHat class
     virtual void stickButtonDownEvent(int setindex, int stickindex, int buttonindex); // InputDeviceStick class
     virtual void stickButtonUpEvent(int setindex, int stickindex, int buttonindex);   // InputDeviceStick class
+    virtual void sensorButtonDownEvent(int setindex, JoySensorType type, JoySensorDirection direction);
+    virtual void sensorButtonUpEvent(int setindex, JoySensorType type, JoySensorDirection direction);
 
     void updateSetButtonNames(int index);                            // InputDeviceButton class
     void updateSetAxisButtonNames(int axisIndex, int buttonIndex);   // InputDeviceAxis class
     void updateSetStickButtonNames(int stickIndex, int buttonIndex); // InputDeviceStick class
+    void updateSetSensorButtonNames(JoySensorType type, JoySensorDirection direction);
     void updateSetDPadButtonNames(int dpadIndex, int buttonIndex);   // InputDeviceHat class
     void updateSetVDPadButtonNames(int vdpadIndex, int buttonIndex); // InputDeviceVDPad class
 
     void updateSetAxisNames(int axisIndex);   // InputDeviceAxis class
     void updateSetStickNames(int stickIndex); // InputDeviceStick class
+    void updateSetSensorNames(JoySensorType type);
     void updateSetDPadNames(int dpadIndex);   // InputDeviceHat class
     void updateSetVDPadNames(int vdpadIndex); // InputDeviceVDPad class
 

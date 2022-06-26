@@ -23,6 +23,7 @@
 #include "globalvariables.h"
 #include "inputdevicebitarraystatus.h"
 #include "joydpad.h"
+#include "joysensor.h"
 #include "joystick.h"
 #include "logger.h"
 #include "sdleventreader.h"
@@ -190,6 +191,18 @@ void InputDaemon::refreshJoysticks()
             {
                 SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
                 SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(sdlStick);
+
+    #if SDL_VERSION_ATLEAST(2, 0, 14)
+                if (SDL_GameControllerHasSensor(controller, SDL_SENSOR_GYRO))
+                {
+                    SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE);
+                }
+
+                if (SDL_GameControllerHasSensor(controller, SDL_SENSOR_ACCEL))
+                {
+                    SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_ACCEL, SDL_TRUE);
+                }
+    #endif
 
                 // Check if device has already been grabbed.
                 if (!m_joysticks->contains(tempJoystickID))
@@ -698,6 +711,10 @@ InputDaemon::createOrGrabBitStatusEntry(QHash<InputDevice *, InputDeviceBitArray
     return bitArrayStatus;
 }
 
+/**
+ * @brief Fetches events from SDL event queue, filters them and
+ *  updates InputDeviceBitArrayStatus.
+ */
 void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {
     SDL_Event event;
@@ -805,6 +822,37 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
             break;
         }
 
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+        case SDL_CONTROLLERSENSORUPDATE: {
+            InputDevice *joy = trackcontrollers.value(event.caxis.which);
+
+            if (joy != nullptr)
+            {
+                SetJoystick *set = joy->getActiveSetJoystick();
+                JoySensorType sensor_type;
+                if (event.csensor.sensor == SDL_SENSOR_ACCEL)
+                    sensor_type = ACCELEROMETER;
+                else if (event.csensor.sensor == SDL_SENSOR_GYRO)
+                    sensor_type = GYROSCOPE;
+                JoySensor *sensor = set->getSensor(sensor_type);
+
+                if (sensor != nullptr)
+                {
+                    InputDeviceBitArrayStatus *temp = createOrGrabBitStatusEntry(&releaseEventsGenerated, joy, false);
+                    temp->changeSensorStatus(sensor_type, event.csensor.sensor == 0);
+
+                    InputDeviceBitArrayStatus *pending = createOrGrabBitStatusEntry(&pendingEventValues, joy);
+                    pending->changeSensorStatus(sensor_type, !sensor->inDeadZone(event.csensor.data));
+                    sdlEventQueue->append(event);
+                }
+            } else
+            {
+                sdlEventQueue->append(event);
+            }
+            break;
+        }
+#endif
+
         case SDL_CONTROLLERBUTTONDOWN:
         case SDL_CONTROLLERBUTTONUP: {
             InputDevice *joy = trackcontrollers.value(event.cbutton.which);
@@ -842,6 +890,9 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
     }
 }
 
+/**
+ * @brief Postprocesses fetched raw events.
+ */
 void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 {
     QHashIterator<InputDevice *, InputDeviceBitArrayStatus *> genIter(getReleaseEventsGeneratedLocal());
@@ -940,6 +991,12 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
 
                             break;
                         }
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+                        case SDL_CONTROLLERSENSORUPDATE: {
+                            tempQueue.enqueue(event);
+                            break;
+                        }
+#endif
                         case SDL_CONTROLLERBUTTONDOWN:
                         case SDL_CONTROLLERBUTTONUP: {
                             tempQueue.enqueue(event);
@@ -981,6 +1038,10 @@ QBitArray InputDaemon::createUnplugEventBitArray(InputDevice *device)
     return unplugBitArray;
 }
 
+/**
+ * @brief Dispatches postprocessed SDL events to the input objects like
+ *  JoyAxis or JoyButton and activates them at the end.
+ */
 void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
 {
     QMap<QString, int> uniques = QMap<QString, int>();
@@ -1090,6 +1151,34 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             break;
         }
 
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+        case SDL_CONTROLLERSENSORUPDATE: {
+            InputDevice *joy = trackcontrollers.value(event.csensor.which);
+
+            if (joy != nullptr)
+            {
+                SetJoystick *set = joy->getActiveSetJoystick();
+                JoySensor *sensor;
+                if (event.csensor.sensor == SDL_SENSOR_ACCEL)
+                    sensor = set->getSensor(ACCELEROMETER);
+                else if (event.csensor.sensor == SDL_SENSOR_GYRO)
+                    sensor = set->getSensor(GYROSCOPE);
+                else
+                    Q_ASSERT(false);
+
+                if (sensor != nullptr)
+                {
+                    sensor->queuePendingEvent(event.csensor.data);
+
+                    if (!activeDevices.contains(event.csensor.which))
+                        activeDevices.insert(event.csensor.which, joy);
+                }
+            }
+
+            break;
+        }
+#endif
+
         case SDL_CONTROLLERBUTTONDOWN:
         case SDL_CONTROLLERBUTTONUP: {
             InputDevice *joy = trackcontrollers.value(event.cbutton.which);
@@ -1150,6 +1239,7 @@ void InputDaemon::secondInputPass(QQueue<SDL_Event> *sdlEventQueue)
             InputDevice *tempDevice = activeDevIter.next().value();
             tempDevice->activatePossibleControlStickEvents();
             tempDevice->activatePossibleAxisEvents();
+            tempDevice->activatePossibleSensorEvents();
             tempDevice->activatePossibleDPadEvents();
             tempDevice->activatePossibleVDPadEvents();
             tempDevice->activatePossibleButtonEvents();

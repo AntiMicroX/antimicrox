@@ -67,6 +67,7 @@ class JoyButton
     static const int DEFAULTTURBOINTERVAL;
     static const int DEFAULTMOUSESPEEDX;
     static const int DEFAULTMOUSESPEEDY;
+    static const int MAXMOUSESPEED;
     static const int DEFAULTSETSELECTION;
     static const int DEFAULTSPRINGWIDTH;
     static const int DEFAULTSPRINGHEIGHT;
@@ -210,6 +211,18 @@ class JoyControlStick
     static const int DEFAULTSTICKDELAY;
 };
 
+class JoySensor
+{
+  public:
+    static const double ACCEL_MIN;
+    static const double ACCEL_MAX;
+    static const double GYRO_MIN;
+    static const double GYRO_MAX;
+    static const double DEFAULTDEADZONE;
+    static const int DEFAULTDIAGONALRANGE;
+    static const unsigned int DEFAULTSENSORDELAY;
+};
+
 class JoyButtonSlot
 {
   public:
@@ -237,6 +250,12 @@ class JoyControlStickButton
 };
 
 class JoyControlStickModifierButton
+{
+  public:
+    static const QString xmlName;
+};
+
+class JoySensorButton
 {
   public:
     static const QString xmlName;

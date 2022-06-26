@@ -30,11 +30,14 @@
 #include "joyaxiswidget.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joydpadbutton.h"
+#include "joybuttontypes/joysensorbutton.h"
 #include "joybuttonwidget.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
+#include "joysensor.h"
 #include "joystick.h"
 #include "quicksetdialog.h"
+#include "sensorpushbuttongroup.h"
 #include "setnamesdialog.h"
 #include "stickpushbuttongroup.h"
 #include "vdpad.h"
@@ -1766,6 +1769,18 @@ void JoyTabWidget::checkStickDisplay()
     }
 }
 
+void JoyTabWidget::checkSensorDisplay()
+{
+    JoySensorButton *button = qobject_cast<JoySensorButton *>(sender());
+    JoySensor *sensor = button->getSensor();
+    if ((sensor != nullptr) && sensor->hasSlotsAssigned())
+    {
+        SetJoystick *currentSet = m_joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
 void JoyTabWidget::checkDPadButtonDisplay()
 {
     JoyDPadButton *button = qobject_cast<JoyDPadButton *>(sender()); // static_cast
@@ -1808,6 +1823,18 @@ void JoyTabWidget::checkStickEmptyDisplay()
     // JoyControlStickButton *button = static_cast<JoyControlStickButton*>(sender());
     // JoyControlStick *stick = button->getStick();
     if ((stick != nullptr) && !stick->hasSlotsAssigned())
+    {
+        SetJoystick *currentSet = m_joystick->getActiveSetJoystick();
+        removeSetButtons(currentSet);
+        fillSetButtons(currentSet);
+    }
+}
+
+void JoyTabWidget::checkSensorEmptyDisplay()
+{
+    SensorPushButtonGroup *group = qobject_cast<SensorPushButtonGroup *>(sender());
+    JoySensor *sensor = group->getSensor();
+    if ((sensor != nullptr) && !sensor->hasSlotsAssigned())
     {
         SetJoystick *currentSet = m_joystick->getActiveSetJoystick();
         removeSetButtons(currentSet);
@@ -1978,6 +2005,75 @@ void JoyTabWidget::fillSetButtons(SetJoystick *set)
     }
 
     column = 0;
+
+    QGridLayout *sensorGrid = nullptr;
+    QGroupBox *sensorGroup = nullptr;
+    int sensorGridColumn = 0;
+    int sensorGridRow = 0;
+
+    for (size_t i = 0; i < SENSOR_COUNT; ++i)
+    {
+        JoySensorType type = static_cast<JoySensorType>(i);
+        if (!m_joystick->hasSensor(type))
+            continue;
+
+        JoySensor *sensor = currentSet->getSensor(type);
+        sensor->establishPropertyUpdatedConnection();
+        QHash<JoySensorDirection, JoySensorButton *> *sensorButtons = sensor->getButtons();
+
+        if (!hideEmptyButtons || sensor->hasSlotsAssigned())
+        {
+            if (sensorGroup == nullptr)
+                sensorGroup = new QGroupBox(tr("Sensors"), this);
+
+            if (sensorGrid == nullptr)
+            {
+                sensorGrid = new QGridLayout();
+                sensorGridColumn = 0;
+                sensorGridRow = 0;
+            }
+
+            QWidget *groupContainer = new QWidget(sensorGroup);
+            SensorPushButtonGroup *sensorButtonGroup =
+                new SensorPushButtonGroup(sensor, isKeypadUnlocked(), displayingNames, groupContainer);
+            if (hideEmptyButtons)
+            {
+                connect(sensorButtonGroup, &SensorPushButtonGroup::buttonSlotChanged, this,
+                        &JoyTabWidget::checkSensorEmptyDisplay);
+            }
+
+            connect(namesPushButton, &QPushButton::clicked, sensorButtonGroup, &SensorPushButtonGroup::toggleNameDisplay);
+
+            if (sensorGridColumn > 1)
+            {
+                sensorGridColumn = 0;
+                sensorGridRow++;
+            }
+
+            groupContainer->setLayout(sensorButtonGroup);
+            sensorGrid->addWidget(groupContainer, sensorGridRow, sensorGridColumn);
+            sensorGridColumn++;
+        } else
+        {
+            for (auto iter = sensorButtons->cbegin(); iter != sensorButtons->cend(); ++iter)
+            {
+                JoySensorButton *button = iter.value();
+                button->establishPropertyUpdatedConnections();
+                connect(button, &JoySensorButton::slotsChanged, this, &JoyTabWidget::checkSensorDisplay);
+            }
+        }
+    }
+
+    if (sensorGroup != nullptr)
+    {
+        QSpacerItem *tempspacer = new QSpacerItem(10, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        QVBoxLayout *tempvbox = new QVBoxLayout;
+        tempvbox->addLayout(sensorGrid);
+        tempvbox->addItem(tempspacer);
+        sensorGroup->setLayout(tempvbox);
+        current_layout->addWidget(sensorGroup, row, column, 1, 2, Qt::AlignTop);
+        row++;
+    }
 
     QGridLayout *hatGrid = nullptr;
     QGroupBox *hatGroup = nullptr;

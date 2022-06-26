@@ -31,6 +31,11 @@ class GameController;
 class SDLEventReader;
 class QThread;
 
+/**
+ * @brief Fetches hardware events from SDL and dispatch them to
+ *  input objects like JoyAxis or JoyButton.
+ *  Runs in a separate thread.
+ */
 class InputDaemon : public QObject
 {
     Q_OBJECT

@@ -26,6 +26,9 @@
 class JoyControlStick;
 class QWidget;
 
+/**
+ * @brief The control stick context menu widget used by StickPushButtonGroup
+ */
 class JoyControlStickContextMenu : public QMenu
 {
     Q_OBJECT

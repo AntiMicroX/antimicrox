@@ -36,6 +36,7 @@
 #include "joycontrolstickbuttonpushbutton.h"
 #include "joycontrolstickpushbutton.h"
 #include "joydpadbuttonwidget.h"
+#include "joysensorpushbutton.h"
 #include "joystick.h"
 #include "joystickstatuswindow.h"
 #include "joytabwidget.h"
@@ -846,6 +847,13 @@ void MainWindow::enableFlashActions()
             stickWidget->tryFlash();
         }
 
+        QList<JoySensorPushButton *> sensors = ui->tabWidget->widget(i)->findChildren<JoySensorPushButton *>();
+        for (const auto &sensorWidget : sensors)
+        {
+            sensorWidget->enableFlashes();
+            sensorWidget->tryFlash();
+        }
+
         QList<JoyDPadButtonWidget *> list4 = ui->tabWidget->widget(i)->findChildren<JoyDPadButtonWidget *>();
         QListIterator<JoyDPadButtonWidget *> iter4(list4);
         while (iter4.hasNext())
@@ -1093,19 +1101,11 @@ void MainWindow::openCalibration()
 
             if (device != nullptr)
             {
-                JoyControlStick *joystick = device->getActiveSetJoystick()->getJoyStick(0);
-                if (joystick != nullptr)
-                {
-                    QPointer<Calibration> calibration = new Calibration(device);
-                    calibration.data()->show();
+                QPointer<Calibration> calibration = new Calibration(device);
+                calibration.data()->show();
 
-                    if (calibration.isNull())
-                        calibration.clear();
-                } else
-                {
-                    QMessageBox::information(this, tr("Calibration is not available."),
-                                             tr("Selected device doesn't have any joystick to calibrate."));
-                }
+                if (calibration.isNull())
+                    calibration.clear();
             }
         }
     }

@@ -149,6 +149,10 @@ int Joystick::getNumberRawHats()
     return numhats;
 }
 
+double Joystick::getRawSensorRate(JoySensorType _) { return 0; }
+
+bool Joystick::hasRawSensor(JoySensorType _) { return false; }
+
 void Joystick::setCounterUniques(int counter) { counterUniques = counter; }
 
 SDL_JoystickID Joystick::getSDLJoystickID() { return joystickID; }

@@ -56,6 +56,10 @@ XMLConfigWriter::~XMLConfigWriter()
     }
 }
 
+/**
+ * @brief Write input device config from the current object into XML file
+ * @param[in] joystickXml InputDeviceXml which gets serialized
+ */
 void XMLConfigWriter::write(InputDeviceXml *joystickXml)
 {
     writerError = false;
@@ -81,6 +85,9 @@ void XMLConfigWriter::write(InputDeviceXml *joystickXml)
         configFile->close();
 }
 
+/**
+ * @brief Sets the filename of the to be written XML file
+ */
 void XMLConfigWriter::setFileName(QString filename)
 {
     QFile *temp = new QFile(filename);

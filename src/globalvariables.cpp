@@ -36,6 +36,7 @@ const int GlobalVariables::JoyButton::DEFAULTTURBOINTERVAL = 0;
 const bool GlobalVariables::JoyButton::DEFAULTUSETURBO = false;
 const int GlobalVariables::JoyButton::DEFAULTMOUSESPEEDX = 50;
 const int GlobalVariables::JoyButton::DEFAULTMOUSESPEEDY = 50;
+const int GlobalVariables::JoyButton::MAXMOUSESPEED = 300;
 const int GlobalVariables::JoyButton::DEFAULTSETSELECTION = -1;
 const int GlobalVariables::JoyButton::DEFAULTSPRINGWIDTH = 0;
 const int GlobalVariables::JoyButton::DEFAULTSPRINGHEIGHT = 0;
@@ -183,6 +184,16 @@ const int GlobalVariables::JoyControlStick::DEFAULTDIAGONALRANGE = 45;
 const double GlobalVariables::JoyControlStick::DEFAULTCIRCLE = 0.0;
 const int GlobalVariables::JoyControlStick::DEFAULTSTICKDELAY = 0;
 
+// ---- JoySensor ---- //
+
+const double GlobalVariables::JoySensor::ACCEL_MIN = -90.0;
+const double GlobalVariables::JoySensor::ACCEL_MAX = 90.0;
+const double GlobalVariables::JoySensor::GYRO_MIN = -360.0;
+const double GlobalVariables::JoySensor::GYRO_MAX = 360.0;
+const double GlobalVariables::JoySensor::DEFAULTDEADZONE = 20;
+const int GlobalVariables::JoySensor::DEFAULTDIAGONALRANGE = 45;
+const unsigned int GlobalVariables::JoySensor::DEFAULTSENSORDELAY = 0;
+
 // ---- JoyButtonSlot ---- //
 
 const int GlobalVariables::JoyButtonSlot::JOYSPEED = 20;
@@ -204,6 +215,10 @@ const QString GlobalVariables::JoyControlStickButton::xmlName = "stickbutton";
 // ---- JoyControlStickModifierButton ---- //
 
 const QString GlobalVariables::JoyControlStickModifierButton::xmlName = "stickmodifierbutton";
+
+// ---- JoySensorButton ---- //
+
+const QString GlobalVariables::JoySensorButton::xmlName = "sensorbutton";
 
 // ---- JoyDPadButton ---- //
 
