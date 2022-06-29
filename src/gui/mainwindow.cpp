@@ -1723,7 +1723,7 @@ void MainWindow::networkManagerFinished(QNetworkReply *reply)
         return;
     }
     QJsonDocument json = QJsonDocument::fromJson(reply->readAll());
-    QString latest_version = json["tag_name"].toString();
+    QString latest_version = json["tag_name"].toString().split("-")[0]; // remove notes from versions like 3.2.1-debug
     DEBUG() << "Latest version: " << latest_version << " Installed version: " << PadderCommon::programVersion;
     if (latest_version != PadderCommon::programVersion && latest_version.length())
     {
