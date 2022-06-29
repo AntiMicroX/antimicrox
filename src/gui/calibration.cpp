@@ -601,14 +601,14 @@ void Calibration::saveSettings()
         stickRegression(&offsetX, &gainX, m_offset[0].getMean(), m_min[0].getMean(), m_max[0].getMean());
         stickRegression(&offsetY, &gainY, m_offset[1].getMean(), m_min[1].getMean(), m_max[1].getMean());
 
-        m_joystick->applyStickCalibration(m_index, offsetX, gainX, offsetY, gainY);
+        m_joystick->updateStickCalibration(m_index, offsetX, gainX, offsetY, gainY);
         showStickCalibrationValues(true, offsetX, true, gainX, true, offsetY, true, gainY);
     } else if (m_type == CAL_ACCELEROMETER)
     {
-        m_joystick->applyAccelerometerCalibration(m_offset[0].getMean(), m_offset[1].getMean(), m_offset[2].getMean());
+        m_joystick->updateAccelerometerCalibration(m_offset[0].getMean(), m_offset[1].getMean(), m_offset[2].getMean());
     } else if (m_type == CAL_GYROSCOPE)
     {
-        m_joystick->applyGyroscopeCalibration(m_offset[0].getMean(), m_offset[1].getMean(), m_offset[2].getMean());
+        m_joystick->updateGyroscopeCalibration(m_offset[0].getMean(), m_offset[1].getMean(), m_offset[2].getMean());
     }
     m_changed = false;
     m_calibrated = true;

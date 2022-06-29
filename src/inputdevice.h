@@ -19,6 +19,7 @@
 #ifndef INPUTDEVICE_H
 #define INPUTDEVICE_H
 
+#include "inputdevicecalibration.h"
 #include "joysensordirection.h"
 #include "joysensortype.h"
 #include "setjoystick.h"
@@ -58,22 +59,23 @@ class InputDevice : public QObject
     bool isActive();
     int getButtonDownCount();
 
-    virtual QString getXmlName() = 0;
+    virtual QString getXmlName() const = 0;
     virtual QString getName() = 0;
     virtual QString getSDLName() = 0;
     virtual QString getDescription();
 
     // GUID only available on SDL 2.
-    virtual QString getGUIDString() = 0;
-    virtual QString getUniqueIDString() = 0;
-    virtual QString getVendorString() = 0;
-    virtual QString getProductIDString() = 0;
-    virtual QString getProductVersion() = 0;
-    virtual QString getRawGUIDString();
-    virtual QString getRawVendorString();
-    virtual QString getRawProductIDString();
-    virtual QString getRawProductVersion();
-    virtual QString getRawUniqueIDString();
+    virtual QString getGUIDString() const = 0;
+    virtual QString getUniqueIDString() const = 0;
+    virtual QString getVendorString() const = 0;
+    virtual QString getSerialString() const = 0;
+    virtual QString getProductIDString() const = 0;
+    virtual QString getProductVersion() const = 0;
+    virtual QString getRawGUIDString() const;
+    virtual QString getRawVendorString() const;
+    virtual QString getRawProductIDString() const;
+    virtual QString getRawProductVersion() const;
+    virtual QString getRawUniqueIDString() const;
     virtual void setCounterUniques(int counter) = 0;
 
     virtual QString getStringIdentifier();
@@ -148,8 +150,12 @@ class InputDevice : public QObject
     QHash<int, SetJoystick *> &getJoystick_sets();
     SDL_Joystick *getJoyHandle() const;
 
+    InputDeviceCalibration *getCalibrationBackend();
+    void updateStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
     void applyStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);
+    void updateAccelerometerCalibration(double offsetX, double offsetY, double offsetZ);
     void applyAccelerometerCalibration(double offsetX, double offsetY, double offsetZ);
+    void updateGyroscopeCalibration(double offsetX, double offsetY, double offsetZ);
     void applyGyroscopeCalibration(double offsetX, double offsetY, double offsetZ);
 
   protected:
@@ -161,6 +167,7 @@ class InputDevice : public QObject
     int rawAxisDeadZone;
     int keyPressTime; // unsigned
     QString profileName;
+    InputDeviceCalibration m_calibrations;
 
   signals:
     void setChangeActivated(int index);

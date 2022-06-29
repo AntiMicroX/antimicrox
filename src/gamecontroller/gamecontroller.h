@@ -38,19 +38,20 @@ class GameController : public InputDevice
 
     virtual QString getName() override;
     virtual QString getSDLName() override;
-    virtual QString getXmlName() override;
+    virtual QString getXmlName() const override;
 
     // GUID available on SDL 2.
-    virtual QString getGUIDString() override;
-    virtual QString getVendorString() override;
-    virtual QString getProductIDString() override;
-    virtual QString getUniqueIDString() override;
-    virtual QString getProductVersion() override;
-    virtual QString getRawGUIDString() override;
-    virtual QString getRawUniqueIDString() override;
-    virtual QString getRawVendorString() override;
-    virtual QString getRawProductIDString() override;
-    virtual QString getRawProductVersion() override;
+    virtual QString getGUIDString() const override;
+    virtual QString getVendorString() const override;
+    virtual QString getProductIDString() const override;
+    virtual QString getSerialString() const override;
+    virtual QString getUniqueIDString() const override;
+    virtual QString getRawGUIDString() const override;
+    virtual QString getProductVersion() const override;
+    virtual QString getRawUniqueIDString() const override;
+    virtual QString getRawVendorString() const override;
+    virtual QString getRawProductIDString() const override;
+    virtual QString getRawProductVersion() const override;
 
     virtual bool isGameController() override;
     virtual void closeSDLDevice() override;

@@ -37,6 +37,7 @@
 
 InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent)
     : QObject(parent)
+    , m_calibrations(this)
 {
     buttonDownCount = 0;
     joyNumber = deviceIndex;
@@ -1338,6 +1339,7 @@ QString InputDevice::getDescription()
                         QObject::tr("GUID:             %1").arg(getGUIDString()) + "\n  " +
                         QObject::tr("VendorID:         %1").arg(getVendorString()) + "\n  " +
                         QObject::tr("ProductID:        %1").arg(getProductIDString()) + "\n  " +
+                        QObject::tr("Serial:           %1").arg(getSerialString()) + "\n  " +
                         QObject::tr("Product Version:  %1").arg(getProductVersion()) + "\n  " +
                         QObject::tr("Name:             %1").arg(getSDLName()) + "\n";
     QString gameControllerStatus = isGameController() ? QObject::tr("Yes") : QObject::tr("No");
@@ -1682,15 +1684,15 @@ bool InputDevice::isRelevantUniqueID(QString tempUniqueID)
     return result;
 }
 
-QString InputDevice::getRawGUIDString() { return getGUIDString(); }
+QString InputDevice::getRawGUIDString() const { return getGUIDString(); }
 
-QString InputDevice::getRawVendorString() { return getVendorString(); }
+QString InputDevice::getRawVendorString() const { return getVendorString(); }
 
-QString InputDevice::getRawProductIDString() { return getProductIDString(); }
+QString InputDevice::getRawProductIDString() const { return getProductIDString(); }
 
-QString InputDevice::getRawProductVersion() { return getProductVersion(); }
+QString InputDevice::getRawProductVersion() const { return getProductVersion(); }
 
-QString InputDevice::getRawUniqueIDString() { return getUniqueIDString(); }
+QString InputDevice::getRawUniqueIDString() const { return getUniqueIDString(); }
 
 void InputDevice::haltServices() { emit requestWait(); }
 
@@ -1750,6 +1752,27 @@ QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
 SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
 
 /**
+ * @brief Returns a pointer to the internal calibration storage backend.
+ */
+InputDeviceCalibration *InputDevice::getCalibrationBackend() { return &m_calibrations; }
+
+/**
+ * @brief Updates stored calibration for this controller and applies
+ *   calibration to the specified stick in all sets
+ *   See JoyControlStick::setCalibration
+ * @param[in] index Stick index
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] gainX Gain value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] gainY Gain value for Y axis
+ */
+void InputDevice::updateStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY)
+{
+    m_calibrations.setStickCalibration(index, offsetX, gainX, offsetY, gainY);
+    applyStickCalibration(index, offsetX, gainX, offsetY, gainY);
+}
+
+/**
  * @brief Applies calibration to the specified stick in all sets
  *  See JoyControlStick::setCalibration
  * @param[in] index Stick index
@@ -1775,6 +1798,19 @@ void InputDevice::applyStickCalibration(int index, double offsetX, double gainX,
  * @param[in] offsetY Offset angle around the Y axis
  * @param[in] offsetZ Offset angle around the Z axis
  */
+void InputDevice::updateAccelerometerCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    m_calibrations.setAccelerometerCalibration(offsetX, offsetY, offsetZ);
+    applyAccelerometerCalibration(offsetX, offsetY, offsetZ);
+}
+
+/**
+ * @brief Applies calibration to the specified accelerometer in all sets
+ *  See JoySensor::setCalibration
+ * @param[in] offsetX Offset angle around the X axis
+ * @param[in] offsetY Offset angle around the Y axis
+ * @param[in] offsetZ Offset angle around the Z axis
+ */
 void InputDevice::applyAccelerometerCalibration(double offsetX, double offsetY, double offsetZ)
 {
     for (auto &set : joystick_sets)
@@ -1783,6 +1819,20 @@ void InputDevice::applyAccelerometerCalibration(double offsetX, double offsetY, 
         if (accelerometer != nullptr)
             accelerometer->setCalibration(offsetX, offsetY, offsetZ);
     }
+}
+
+/**
+ * @brief Updates stored calibration for this controller and applies
+ *   calibration to the specified gyroscope in all sets
+ *   See JoySensor::setCalibration
+ * @param[in] offsetX Offset value for X axis
+ * @param[in] offsetY Offset value for Y axis
+ * @param[in] offsetZ Offset value for Z axis
+ */
+void InputDevice::updateGyroscopeCalibration(double offsetX, double offsetY, double offsetZ)
+{
+    m_calibrations.setGyroscopeCalibration(offsetX, offsetY, offsetZ);
+    applyGyroscopeCalibration(offsetX, offsetY, offsetZ);
 }
 
 /**

@@ -44,7 +44,7 @@ Joystick::Joystick(SDL_Joystick *joyhandle, int deviceIndex, AntiMicroSettings *
     INFO() << "Created new Joystick:\n" << getDescription();
 }
 
-QString Joystick::getXmlName() { return GlobalVariables::Joystick::xmlName; }
+QString Joystick::getXmlName() const { return GlobalVariables::Joystick::xmlName; }
 
 QString Joystick::getName() { return QString(tr("Joystick")).append(" ").append(QString::number(getRealJoyNumber())); }
 
@@ -60,7 +60,7 @@ QString Joystick::getSDLName()
     return temp;
 }
 
-QString Joystick::getGUIDString()
+QString Joystick::getGUIDString() const
 {
     QString temp = QString();
 
@@ -73,7 +73,7 @@ QString Joystick::getGUIDString()
     return temp;
 }
 
-QString Joystick::getVendorString()
+QString Joystick::getVendorString() const
 {
     QString temp = QString();
 
@@ -89,7 +89,7 @@ QString Joystick::getVendorString()
     return temp;
 }
 
-QString Joystick::getProductIDString()
+QString Joystick::getProductIDString() const
 {
     QString temp = QString();
 
@@ -105,7 +105,24 @@ QString Joystick::getProductIDString()
     return temp;
 }
 
-QString Joystick::getProductVersion()
+QString Joystick::getSerialString() const
+{
+    QString temp = QString();
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+    if (controller != nullptr)
+    {
+        SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
+        if (joyhandle != nullptr)
+        {
+            const char *serial = SDL_JoystickGetSerial(joyhandle);
+            temp = QString(serial).remove(QRegExp("[^A-Za-z0-9]"));
+        }
+    }
+#endif
+    return temp;
+}
+
+QString Joystick::getProductVersion() const
 {
     QString temp = QString();
 
@@ -121,7 +138,10 @@ QString Joystick::getProductVersion()
     return temp;
 }
 
-QString Joystick::getUniqueIDString() { return (getGUIDString() + getVendorString() + getProductIDString()); }
+QString Joystick::getUniqueIDString() const
+{
+    return (getGUIDString() + getVendorString() + getProductIDString()) + getSerialString();
+}
 
 void Joystick::closeSDLDevice()
 {
