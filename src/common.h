@@ -163,7 +163,7 @@ const QString sdlVersionUsed = ([] {
 
 const QString sdlVersionCompiled = ([] {
     SDL_version compver;
-    SDL_GetVersion(&compver);
+    SDL_VERSION(&compver);
     return QString("%1.%2.%3").arg(compver.major).arg(compver.minor).arg(compver.patch);
 })();
 
