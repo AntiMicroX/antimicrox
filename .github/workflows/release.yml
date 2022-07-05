@@ -36,11 +36,25 @@ jobs:
         runs-on: ubuntu-18.04
 
         steps:
-            - uses: actions/checkout@v2
 
             - name: Install Dependencies
               run: |
-                  sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default libsdl2-2.0-0 zsync
+                  sudo apt-get update
+                  sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default zsync
+
+            #Replace original library with the newer one
+            - name: Build and install newer SDL2
+              run: |
+                git clone https://github.com/libsdl-org/SDL.git -b release-2.0.20
+                cd SDL
+                mkdir build
+                cd build
+                cmake ..
+                cmake --build .
+                sudo cmake --install .
+                sudo cp /usr/local/lib/libSDL2-2.0.so.0 /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0
+
+            - uses: actions/checkout@v2
 
             - name: Prepare files needed to create AppImage
               run: |
