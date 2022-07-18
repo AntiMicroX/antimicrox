@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-amgp">
-    <comment>AntiMicroX profile</comment>
+    <comment>AntiMicroX profile file</comment>
+    <comment xml:lang="pl">Plik z profilem AntimMicroX</comment>
     <sub-class-of type="application/xml"/>
     <glob pattern="*.amgp"/>
   </mime-type>

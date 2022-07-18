@@ -668,7 +668,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="863"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1085"/>
         <source>Enabled</source>
-        <translation>Включити</translation>
+        <translation>Увімкнути</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="887"/>
