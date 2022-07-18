@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.2.5](https://github.com/AntiMicroX/antimicrox/tree/3.2.5) (2022-07-18)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.4...3.2.5)
+
+Test release containing changes implementing motion sensor support.
+
+**Implemented enhancements:**
+
+- Implement motion sensor support. [\#416](https://github.com/AntiMicroX/antimicrox/pull/416) (by [mmmaisel](https://github.com/mmmaisel))
+- Allow storing calibration for multiple controllers in a profile [\#460](https://github.com/AntiMicroX/antimicrox/pull/460) (by [mmmaisel](https://github.com/mmmaisel))
+
+**Fixed bugs:**
+
+- Crash on close after copying set. [\#454](https://github.com/AntiMicroX/antimicrox/issues/454) (by [mmmaisel](https://github.com/mmmaisel))
+
+**Notable changes:**
+
+- Remove unused "Game Controller Mapping" button.
+
 ## [3.2.4](https://github.com/AntiMicroX/antimicrox/tree/3.2.4) (2022-06-11)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.3...3.2.4)
