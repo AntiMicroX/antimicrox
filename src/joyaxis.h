@@ -31,6 +31,10 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class JoyAxis;
 
+/**
+ * @brief Represents single axis of of joystick (or other input)
+ *
+ */
 class JoyAxis : public QObject
 {
     Q_OBJECT

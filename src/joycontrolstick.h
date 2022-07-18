@@ -30,6 +30,10 @@ class JoyControlStickModifierButton;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 
+/**
+ * @brief Represents stick of a joystick
+ *
+ */
 class JoyControlStick : public QObject, public JoyStickDirectionsType
 {
     Q_OBJECT
