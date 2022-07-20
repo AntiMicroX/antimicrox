@@ -557,7 +557,8 @@ void MainSettingsDialog::saveNewSettings()
     {
         saveAutoProfileSettings();
     }
-
+#else
+    saveAutoProfileSettings();
 #endif
 
     settings->getLock()->lock();
