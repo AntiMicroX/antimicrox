@@ -1,6 +1,6 @@
 name: "\U0001F680 Feature Request"
 description: Suggest an idea for this project
-labels: ["enchancement"]
+labels: ["enhancement"]
 body:
   - type: checkboxes
     attributes:
