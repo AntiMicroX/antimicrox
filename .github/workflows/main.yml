@@ -56,7 +56,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 
             - name: Configure CMake
-              run: cmake -GNinja -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B ${{ github.workspace }}/build
+              run: cmake -GNinja -DCHECK_FOR_UPDATES=ON -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B ${{ github.workspace }}/build
               env:
                   CXX: ${{ matrix.cxx }}
                   CC: ${{ matrix.cc }}
