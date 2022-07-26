@@ -170,20 +170,36 @@ void AutoProfileWatcher::runAppCheck()
 
         if (!appLocation.isEmpty() && getAppProfileAssignments().contains(appLocation))
         {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+            auto templist = getAppProfileAssignments().value(appLocation);
+            QSet<AutoProfileInfo *> tempSet(templist.begin(), templist.end());
+#else
             QSet<AutoProfileInfo *> tempSet;
             tempSet = getAppProfileAssignments().value(appLocation).toSet();
+#endif
             fullSet.unite(tempSet);
         } else if (!baseAppFileName.isEmpty() && getAppProfileAssignments().contains(baseAppFileName))
         {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+            auto templist = getAppProfileAssignments().value(baseAppFileName);
+            QSet<AutoProfileInfo *> tempSet(templist.begin(), templist.end());
+#else
             QSet<AutoProfileInfo *> tempSet;
             tempSet = getAppProfileAssignments().value(baseAppFileName).toSet();
+#endif
             fullSet.unite(tempSet);
         }
 
         if (!nowWindowClass.isEmpty() && getWindowClassProfileAssignments().contains(nowWindowClass))
         {
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+            auto templist = getWindowClassProfileAssignments().value(nowWindowClass);
+            QSet<AutoProfileInfo *> tempSet(templist.begin(), templist.end());
+#else
             QSet<AutoProfileInfo *> tempSet;
             tempSet = getWindowClassProfileAssignments().value(nowWindowClass).toSet();
+#endif
             fullSet.unite(tempSet);
         }
 
@@ -219,7 +235,11 @@ void AutoProfileWatcher::runAppCheck()
 
                         QSet<AutoProfileInfo *> tempSet;
                         QList<AutoProfileInfo *> list = iter.value();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+                        tempSet = QSet<AutoProfileInfo *>(list.begin(), list.end());
+#else
                         tempSet = list.toSet();
+#endif
                         fullSet = fullSet.unite(tempSet);
 
                     } else
@@ -235,8 +255,13 @@ void AutoProfileWatcher::runAppCheck()
                     {
                         qDebug() << "WINDOW: \"" << nowWindowName << "\" is equal to hash key: \"" << iter.key() << "\"";
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+                        auto templist = getWindowNameProfileAssignments().value(nowWindowName);
+                        QSet<AutoProfileInfo *> tempSet(templist.begin(), templist.end());
+#else
                         QSet<AutoProfileInfo *> tempSet;
                         tempSet = getWindowNameProfileAssignments().value(nowWindowName).toSet();
+#endif
                         fullSet = fullSet.unite(tempSet);
 
                     } else
@@ -509,7 +534,11 @@ void AutoProfileWatcher::clearProfileAssignments()
     while (iterDelete.hasNext())
     {
         QList<AutoProfileInfo *> templist = iterDelete.next();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+        terminateProfiles.unite(QSet<AutoProfileInfo *>(templist.begin(), templist.end()));
+#else
         terminateProfiles.unite(templist.toSet());
+#endif
     }
 
     appProfileAssignments.clear();
@@ -519,7 +548,11 @@ void AutoProfileWatcher::clearProfileAssignments()
     while (iterClassDelete.hasNext())
     {
         QList<AutoProfileInfo *> templist = iterClassDelete.next();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+        terminateProfiles.unite(QSet<AutoProfileInfo *>(templist.begin(), templist.end()));
+#else
         terminateProfiles.unite(templist.toSet());
+#endif
     }
 
     windowClassProfileAssignments.clear();
@@ -529,7 +562,11 @@ void AutoProfileWatcher::clearProfileAssignments()
     while (iterNameDelete.hasNext())
     {
         QList<AutoProfileInfo *> templist = iterNameDelete.next();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+        terminateProfiles.unite(QSet<AutoProfileInfo *>(templist.begin(), templist.end()));
+#else
         terminateProfiles.unite(templist.toSet());
+#endif
     }
 
     windowNameProfileAssignments.clear();
