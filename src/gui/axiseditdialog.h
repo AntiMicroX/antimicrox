@@ -63,8 +63,8 @@ class AxisEditDialog : public QDialog
     void updateMaxZoneBox(int value);
     void updateThrottleUi(int index);
     void updateJoyValue(int value);
-    void updateDeadZoneSlider(QString value);
-    void updateMaxZoneSlider(QString value);
+    void updateDeadZoneSlider(int value);
+    void updateMaxZoneSlider(int value);
     void openAdvancedPDialog();
     void openAdvancedNDialog();
 

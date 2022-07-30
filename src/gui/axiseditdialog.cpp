@@ -59,11 +59,11 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *pare
     if (actAsTrigger)
         buildTriggerPresetsMenu();
 
-    ui->horizontalSlider->setValue(axis->getDeadZone());
-    ui->lineEdit->setText(QString::number(axis->getDeadZone()));
+    ui->deadZoneSlider->setValue(axis->getDeadZone());
+    ui->deadZoneSpinBox->setValue(axis->getDeadZone());
 
-    ui->horizontalSlider_2->setValue(axis->getMaxZoneValue());
-    ui->lineEdit_2->setText(QString::number(axis->getMaxZoneValue()));
+    ui->maxZoneSlider->setValue(axis->getMaxZoneValue());
+    ui->maxZoneSpinBox->setValue(axis->getMaxZoneValue());
 
     JoyAxisButton *nButton = axis->getNAxisButton();
 
@@ -91,14 +91,14 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *pare
         (currentThrottle == static_cast<int>(JoyAxis::NegativeHalfThrottle)))
     {
         int tempindex = (currentThrottle == static_cast<int>(JoyAxis::NegativeHalfThrottle)) ? 0 : 1;
-        ui->comboBox_2->setCurrentIndex(tempindex);
+        ui->throttleComboBox->setCurrentIndex(tempindex);
         ui->nPushButton->setEnabled(true);
         ui->pPushButton->setEnabled(false);
     } else if ((currentThrottle == static_cast<int>(JoyAxis::PositiveThrottle)) ||
                (currentThrottle == static_cast<int>(JoyAxis::PositiveHalfThrottle)))
     {
         int tempindex = (currentThrottle == static_cast<int>(JoyAxis::PositiveThrottle)) ? 3 : 4;
-        ui->comboBox_2->setCurrentIndex(tempindex);
+        ui->throttleComboBox->setCurrentIndex(tempindex);
         ui->pPushButton->setEnabled(true);
         ui->nPushButton->setEnabled(false);
     }
@@ -120,29 +120,31 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *pare
     connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
             &AxisEditDialog::implementPresets);
 
-    connect(ui->horizontalSlider, &QSlider::valueChanged, this, &AxisEditDialog::updateDeadZoneBox);
-    connect(ui->horizontalSlider, &QSlider::valueChanged, this,
+    connect(ui->deadZoneSlider, &QSlider::valueChanged, this, &AxisEditDialog::updateDeadZoneBox);
+    connect(ui->deadZoneSlider, &QSlider::valueChanged, this,
             [this, axis](int deadzone) { ui->axisstatusBox->setDeadZone(axis, deadzone); });
 
-    connect(ui->horizontalSlider, &QSlider::valueChanged, axis, &JoyAxis::setDeadZone);
+    connect(ui->deadZoneSlider, &QSlider::valueChanged, axis, &JoyAxis::setDeadZone);
 
-    connect(ui->horizontalSlider_2, &QSlider::valueChanged, this, &AxisEditDialog::updateMaxZoneBox);
-    connect(ui->horizontalSlider_2, &QSlider::valueChanged, this,
+    connect(ui->maxZoneSlider, &QSlider::valueChanged, this, &AxisEditDialog::updateMaxZoneBox);
+    connect(ui->maxZoneSlider, &QSlider::valueChanged, this,
             [this, axis](int deadzone) { ui->axisstatusBox->setMaxZone(axis, deadzone); });
 
-    connect(ui->horizontalSlider_2, &QSlider::valueChanged, axis, &JoyAxis::setMaxZoneValue);
+    connect(ui->maxZoneSlider, &QSlider::valueChanged, axis, &JoyAxis::setMaxZoneValue);
 
-    connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+    connect(ui->throttleComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
             &AxisEditDialog::updateThrottleUi);
-    connect(ui->comboBox_2, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+    connect(ui->throttleComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
             &AxisEditDialog::presetForThrottleChange);
 
     connect(axis, &JoyAxis::moved, this, [this, axis](int value) { ui->axisstatusBox->setValue(axis, value); });
 
     connect(axis, &JoyAxis::moved, this, &AxisEditDialog::updateJoyValue);
 
-    connect(ui->lineEdit, &QLineEdit::textEdited, this, &AxisEditDialog::updateDeadZoneSlider);
-    connect(ui->lineEdit_2, &QLineEdit::textEdited, this, &AxisEditDialog::updateMaxZoneSlider);
+    connect(ui->deadZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &AxisEditDialog::updateDeadZoneSlider);
+    connect(ui->maxZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this,
+            &AxisEditDialog::updateMaxZoneSlider);
 
     connect(ui->nPushButton, &QPushButton::clicked, this, &AxisEditDialog::openAdvancedNDialog);
     connect(ui->pPushButton, &QPushButton::clicked, this, &AxisEditDialog::openAdvancedPDialog);
@@ -298,9 +300,9 @@ void AxisEditDialog::implementAxisPresets(int index)
     PadderCommon::unlockInputDevices();
 }
 
-void AxisEditDialog::updateDeadZoneBox(int value) { ui->lineEdit->setText(QString::number(value)); }
+void AxisEditDialog::updateDeadZoneBox(int value) { ui->deadZoneSpinBox->setValue(value); }
 
-void AxisEditDialog::updateMaxZoneBox(int value) { ui->lineEdit_2->setText(QString::number(value)); }
+void AxisEditDialog::updateMaxZoneBox(int value) { ui->maxZoneSpinBox->setValue(value); }
 
 void AxisEditDialog::updateThrottleUi(int index)
 {
@@ -331,23 +333,19 @@ void AxisEditDialog::updateThrottleUi(int index)
 
 void AxisEditDialog::updateJoyValue(int value) { ui->joyValueLabel->setText(QString::number(value)); }
 
-void AxisEditDialog::updateDeadZoneSlider(QString value)
+void AxisEditDialog::updateDeadZoneSlider(int value)
 {
-    int temp = value.toInt();
-
-    if ((temp >= GlobalVariables::JoyAxis::AXISMIN) && (temp <= GlobalVariables::JoyAxis::AXISMAX))
+    if ((value >= GlobalVariables::JoyAxis::AXISMIN) && (value <= GlobalVariables::JoyAxis::AXISMAX))
     {
-        ui->horizontalSlider->setValue(temp);
+        ui->deadZoneSlider->setValue(value);
     }
 }
 
-void AxisEditDialog::updateMaxZoneSlider(QString value)
+void AxisEditDialog::updateMaxZoneSlider(int value)
 {
-    int temp = value.toInt();
-
-    if ((temp >= GlobalVariables::JoyAxis::AXISMIN) && (temp <= GlobalVariables::JoyAxis::AXISMAX))
+    if ((value >= GlobalVariables::JoyAxis::AXISMIN) && (value <= GlobalVariables::JoyAxis::AXISMAX))
     {
-        ui->horizontalSlider_2->setValue(temp);
+        ui->maxZoneSlider->setValue(value);
     }
 }
 
