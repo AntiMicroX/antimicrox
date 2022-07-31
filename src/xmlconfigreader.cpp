@@ -24,10 +24,10 @@
 #include "joystick.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
+#include "xml/inputdevicexml.h"
 
 #include "common.h"
 #include "gamecontroller/gamecontroller.h"
-#include "gamecontroller/xml/gamecontrollerxml.h"
 
 #include <QDebug>
 #include <QDir>

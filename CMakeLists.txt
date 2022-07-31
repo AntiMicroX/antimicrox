@@ -134,9 +134,7 @@ set(antimicrox_SOURCES
         src/gamecontroller/gamecontrollerset.cpp
         src/gamecontroller/gamecontrollertrigger.cpp
         src/gamecontroller/gamecontrollertriggerbutton.cpp
-        src/gamecontroller/xml/gamecontrollerdpadxml.cpp
         src/gamecontroller/xml/gamecontrollertriggerxml.cpp
-        src/gamecontroller/xml/gamecontrollerxml.cpp
         src/gamecontrollerexample.cpp
         src/globalvariables.cpp
         src/gui/aboutdialog.cpp
