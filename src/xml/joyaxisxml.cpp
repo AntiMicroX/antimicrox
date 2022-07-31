@@ -16,6 +16,7 @@
  */
 
 #include "joyaxisxml.h"
+#include "haptictriggerps5.h"
 #include "inputdevice.h"
 #include "joyaxis.h"
 #include "joybuttontypes/joyaxisbutton.h"
@@ -108,6 +109,12 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeEndElement();
 
+    if (m_joyAxis->hasHapticTrigger())
+    {
+        HapticTriggerPs5 *haptic = m_joyAxis->getHapticTrigger();
+        xml->writeTextElement("hapticTrigger", HapticTriggerPs5::to_string(haptic->get_mode()));
+    }
+
     if (!currentlyDefault)
     {
         joyButtonXmlNAxis->writeConfig(xml);
@@ -173,6 +180,10 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 
         m_joyAxis->setCurrentRawValue(m_joyAxis->getCurrentThrottledDeadValue());
         m_joyAxis->updateCurrentThrottledValue(m_joyAxis->calculateThrottledValue(m_joyAxis->getCurrentRawValue()));
+    } else if ((xml->name() == "hapticTrigger") && xml->isStartElement())
+    {
+        found = true;
+        m_joyAxis->setHapticTriggerMode(HapticTriggerPs5::from_string(xml->readElementText()));
     }
 
     return found;

@@ -288,3 +288,44 @@ void HapticTriggerPs5::to_message(TriggerEffectMsgPs5 &effect) const
         effect.vibration.build(m_start, m_end, m_strength, m_frequency);
     }
 }
+
+/**
+ * @brief Converts a HapticTriggerModePs5 from string representation.
+ */
+HapticTriggerModePs5 HapticTriggerPs5::from_string(const QString &name)
+{
+    HapticTriggerModePs5 mode = HAPTIC_TRIGGER_NONE;
+    if (name == "None")
+    {
+        mode = HAPTIC_TRIGGER_NONE;
+    } else if (name == "Click")
+    {
+        mode = HAPTIC_TRIGGER_CLICK;
+    } else if (name == "Rigid")
+    {
+        mode = HAPTIC_TRIGGER_RIGID;
+    } else if (name == "Vibration")
+    {
+        mode = HAPTIC_TRIGGER_VIBRATION;
+    }
+    return mode;
+}
+
+/**
+ * @brief Returns string representation of a HapticTriggerModePs5 object.
+ */
+QString HapticTriggerPs5::to_string(HapticTriggerModePs5 mode)
+{
+    switch (mode)
+    {
+    case HAPTIC_TRIGGER_NONE:
+        return "None";
+    case HAPTIC_TRIGGER_CLICK:
+        return "Click";
+    case HAPTIC_TRIGGER_RIGID:
+        return "Rigid";
+    case HAPTIC_TRIGGER_VIBRATION:
+        return "Vibration";
+    }
+    return "None";
+}

@@ -41,6 +41,8 @@ class HapticTriggerPs5 : QObject
     bool set_effect(int strength, int start, int end, int frequency = 0);
 
     static void send(SDL_GameController *controller, const HapticTriggerPs5 &left, const HapticTriggerPs5 &right);
+    static HapticTriggerModePs5 from_string(const QString &mode);
+    static QString to_string(HapticTriggerModePs5 mode);
 
   private:
     enum
