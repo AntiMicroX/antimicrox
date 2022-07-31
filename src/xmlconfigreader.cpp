@@ -22,9 +22,9 @@
 #include "globalvariables.h"
 #include "inputdevice.h"
 #include "joystick.h"
+#include "xml/inputdevicexml.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
-#include "xml/inputdevicexml.h"
 
 #include "common.h"
 #include "gamecontroller/gamecontroller.h"
