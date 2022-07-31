@@ -36,9 +36,28 @@ GameControllerSet::GameControllerSet(InputDevice *device, int index, QObject *pa
     : SetJoystick(device, index, false, parent)
 {
     resetSticks();
+    applyHapticTrigger();
 }
 
 void GameControllerSet::reset() { resetSticks(); }
+
+/**
+ * @brief Applies haptic feedback to the triggers of the controller.
+ *
+ * This fetches the current haptic feedback effects from all triggers of the
+ * controller, builds a low level message and sends the message to the controller.
+ */
+void GameControllerSet::applyHapticTrigger()
+{
+    GameController *controller = qobject_cast<GameController *>(getInputDevice());
+    HapticTriggerPs5 *left_effect = getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT)->getHapticTrigger();
+    HapticTriggerPs5 *right_effect = getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT)->getHapticTrigger();
+
+    if (left_effect == nullptr || right_effect == nullptr)
+        return;
+
+    HapticTriggerPs5::send(controller->getController(), *left_effect, *right_effect);
+}
 
 void GameControllerSet::resetSticks()
 {
@@ -223,6 +242,7 @@ void GameControllerSet::refreshAxes()
             GameControllerTrigger *trigger = new GameControllerTrigger(i, getIndex(), this, this);
             getAxes()->insert(i, trigger);
             enableAxisConnections(trigger);
+            connect(trigger, &JoyAxis::hapticTriggerChanged, this, &GameControllerSet::applyHapticTrigger);
         } else
         {
             JoyAxis *axis = new JoyAxis(i, getIndex(), this, this);

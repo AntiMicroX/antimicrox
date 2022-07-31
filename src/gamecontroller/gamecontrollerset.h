@@ -45,6 +45,7 @@ class GameControllerSet : public SetJoystick
 
   public slots:
     virtual void reset();
+    void applyHapticTrigger();
 
   private:
     void getElemFromXml(QString elemName, QXmlStreamReader *xml);

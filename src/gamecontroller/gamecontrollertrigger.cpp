@@ -141,9 +141,38 @@ JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 bool GameControllerTrigger::hasHapticTrigger() const { return m_haptic_trigger != 0; }
 
 /**
+ * @brief Recalculates haptic trigger effect positions, e.g. after dead zone change,
+ *   and returns the current HapticTriggerPs5 object.
  * @returns Pointer to HapticTriggerPs5 object of this trigger.
  */
-HapticTriggerPs5 *GameControllerTrigger::getHapticTrigger() const { return m_haptic_trigger; }
+HapticTriggerPs5 *GameControllerTrigger::getHapticTrigger() const
+{
+    if (m_haptic_trigger == nullptr)
+        return nullptr;
+
+    int start, end;
+    switch (m_haptic_trigger->get_mode())
+    {
+    case HAPTIC_TRIGGER_NONE:
+        m_haptic_trigger->set_effect(0, 0, 0);
+        break;
+    case HAPTIC_TRIGGER_CLICK:
+        start = double(deadZone) * 192 / GlobalVariables::JoyAxis::AXISMAX;
+        end = start + 65;
+        m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::STRENGTH, start, end);
+        break;
+    case HAPTIC_TRIGGER_RIGID:
+        m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::STRENGTH, 0,
+                                     GlobalVariables::HapticTriggerPs5::RANGE);
+        break;
+    case HAPTIC_TRIGGER_VIBRATION:
+        start = double(deadZone) * 192 / GlobalVariables::JoyAxis::AXISMAX;
+        m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::VIBRATIONSTRENGTH, start,
+                                     GlobalVariables::HapticTriggerPs5::RANGE, GlobalVariables::HapticTriggerPs5::FREQUENCY);
+        break;
+    }
+    return m_haptic_trigger;
+}
 
 /**
  * @brief Changes the haptic feedback effect mode.

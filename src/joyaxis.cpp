@@ -353,8 +353,13 @@ void JoyAxis::createDeskEvent(bool ignoresets)
 
 void JoyAxis::setDeadZone(int value)
 {
-    deadZone = abs(value);
+    value = abs(value);
+    if (deadZone == value)
+        return;
+
+    deadZone = value;
     emit propertyUpdated();
+    emit hapticTriggerChanged();
 }
 
 int JoyAxis::getDeadZone() { return deadZone; }
