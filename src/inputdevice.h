@@ -149,6 +149,7 @@ class InputDevice : public QObject
 
     QHash<int, SetJoystick *> &getJoystick_sets();
     SDL_Joystick *getJoyHandle() const;
+    virtual SDL_GameControllerType getControllerType() const;
 
     InputDeviceCalibration *getCalibrationBackend();
     void updateStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);

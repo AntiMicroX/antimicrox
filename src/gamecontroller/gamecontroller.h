@@ -81,6 +81,7 @@ class GameController : public InputDevice
     QHash<int, int> const &getDpadvalues();
 
     SDL_GameController *getController() const;
+    virtual SDL_GameControllerType getControllerType() const override;
 
     void fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes,
                         QList<SDL_GameControllerButtonBind> &hatButtons);
@@ -98,6 +99,7 @@ class GameController : public InputDevice
 
     SDL_JoystickID joystickID;
     SDL_GameController *controller;
+    SDL_GameControllerType m_type;
 };
 
 #endif // GAMECONTROLLER_H
