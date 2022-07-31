@@ -46,10 +46,10 @@ GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoysti
     paxisbutton = new GameControllerTriggerButton(this, 1, originset, parentSet, this);
     reset(index);
 
+#if SDL_VERSION_ATLEAST(2, 0, 16)
     if (parentSet->getInputDevice()->getControllerType() == SDL_GameControllerType::SDL_CONTROLLER_TYPE_PS5)
-    {
         m_haptic_trigger = new HapticTriggerPs5(this);
-    }
+#endif
 }
 
 void GameControllerTrigger::reset(int index)

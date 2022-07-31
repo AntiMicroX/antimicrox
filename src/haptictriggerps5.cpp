@@ -16,6 +16,8 @@
  */
 #include "haptictriggerps5.h"
 
+#include <SDL2/SDL.h>
+
 #pragma pack(push, 1)
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -255,6 +257,7 @@ bool HapticTriggerPs5::set_effect(int strength, int start, int end, int frequenc
  */
 void HapticTriggerPs5::send(SDL_GameController *controller, const HapticTriggerPs5 &left, const HapticTriggerPs5 &right)
 {
+#if SDL_VERSION_ATLEAST(2, 0, 16)
     EffectMessagePs5 message;
     message.enable_bits |= EFFECT_LEFT_EN | EFFECT_RIGHT_EN;
 
@@ -262,6 +265,7 @@ void HapticTriggerPs5::send(SDL_GameController *controller, const HapticTriggerP
     right.to_message(message.right_trigger_effect);
 
     SDL_GameControllerSendEffect(controller, &message, sizeof(EffectMessagePs5));
+#endif
 }
 
 /**

@@ -99,7 +99,7 @@ class GameController : public InputDevice
 
     SDL_JoystickID joystickID;
     SDL_GameController *controller;
-    SDL_GameControllerType m_type;
+    SDL_GameControllerType m_controller_type;
 };
 
 #endif // GAMECONTROLLER_H
