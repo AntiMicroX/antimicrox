@@ -22,6 +22,9 @@
 
 #include "gamecontrollertriggerbutton.h"
 #include "globalvariables.h"
+#include "haptictriggerps5.h"
+#include "inputdevice.h"
+#include "setjoystick.h"
 #include "xml/joyaxisxml.h"
 
 #include <SDL2/SDL_gamecontroller.h>
@@ -35,12 +38,18 @@ const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTL
 
 GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent)
     : JoyAxis(index, originset, parentSet, parent)
+    , m_haptic_trigger(0)
 {
     naxisbutton->deleteLater();
     naxisbutton = new GameControllerTriggerButton(this, 0, originset, parentSet, this);
     paxisbutton->deleteLater();
     paxisbutton = new GameControllerTriggerButton(this, 1, originset, parentSet, this);
     reset(index);
+
+    if (parentSet->getInputDevice()->getControllerType() == SDL_GameControllerType::SDL_CONTROLLER_TYPE_PS5)
+    {
+        m_haptic_trigger = new HapticTriggerPs5(this);
+    }
 }
 
 void GameControllerTrigger::reset(int index)
