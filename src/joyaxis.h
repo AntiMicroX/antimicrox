@@ -22,8 +22,10 @@
 #include <QList>
 #include <QObject>
 
+#include "haptictriggermodeps5.h"
 #include "joybuttontypes/joyaxisbutton.h"
 
+class HapticTriggerPs5;
 class JoyControlStick;
 class SetJoystick;
 class JoyAxisButton;
@@ -153,6 +155,10 @@ class JoyAxis : public QObject
     static const ThrottleTypes DEFAULTTHROTTLE;
     int calculateThrottledValue(int value);
 
+    virtual bool hasHapticTrigger() const;
+    virtual HapticTriggerPs5 *getHapticTrigger() const;
+    virtual void setHapticTriggerMode(HapticTriggerModePs5);
+
   protected:
     void createDeskEvent(bool ignoresets = false); // JoyAxisEvent class
     void adjustRange();
@@ -195,6 +201,7 @@ class JoyAxis : public QObject
     void throttleChanged();
     void axisNameChanged();
     void propertyUpdated();
+    void hapticTriggerChanged();
 
   public slots:
     virtual void reset();

@@ -21,6 +21,7 @@
 #include "gamecontroller.h"
 #include "gamecontrollerdpad.h"
 #include "gamecontrollertrigger.h"
+#include "haptictriggerps5.h"
 #include "inputdevice.h"
 #include "joycontrolstick.h"
 #include "joysensor.h"

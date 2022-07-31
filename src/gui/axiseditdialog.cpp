@@ -24,6 +24,7 @@
 #include "buttoneditdialog.h"
 #include "common.h"
 #include "event.h"
+#include "haptictriggerps5.h"
 #include "inputdevice.h"
 #include "joyaxis.h"
 #include "joycontrolstick.h"
@@ -58,6 +59,16 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *pare
 
     if (actAsTrigger)
         buildTriggerPresetsMenu();
+
+    if (axis->hasHapticTrigger())
+    {
+        buildHapticTriggerMenu();
+        selectHapticTrigger();
+    } else
+    {
+        ui->hapticTriggerLabel->setVisible(false);
+        ui->hapticTriggerComboBox->setVisible(false);
+    }
 
     ui->deadZoneSlider->setValue(axis->getDeadZone());
     ui->deadZoneSpinBox->setValue(axis->getDeadZone());
@@ -154,6 +165,9 @@ AxisEditDialog::AxisEditDialog(JoyAxis *axis, bool keypadUnlocked, QWidget *pare
 
     connect(axis, &JoyAxis::axisNameChanged, this, &AxisEditDialog::updateWindowTitleAxisName);
     connect(this, &AxisEditDialog::finished, this, &AxisEditDialog::checkFinalSettings);
+
+    connect(ui->hapticTriggerComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
+            &AxisEditDialog::implementHapticTrigger);
 }
 
 // for tests
@@ -492,6 +506,31 @@ void AxisEditDialog::selectTriggerPreset()
     }
 }
 
+/**
+ * @brief Converts HapticTriggerMode from the current axis to combo box
+ *   index and selects to element.
+ */
+void AxisEditDialog::selectHapticTrigger()
+{
+    HapticTriggerModePs5 mode = m_axis->getHapticTrigger()->get_mode();
+
+    switch (mode)
+    {
+    case HAPTIC_TRIGGER_NONE:
+        ui->hapticTriggerComboBox->setCurrentIndex(HAPTIC_TRIGGER_NONE_INDEX);
+        return;
+    case HAPTIC_TRIGGER_CLICK:
+        ui->hapticTriggerComboBox->setCurrentIndex(HAPTIC_TRIGGER_CLICK_INDEX);
+        return;
+    case HAPTIC_TRIGGER_RIGID:
+        ui->hapticTriggerComboBox->setCurrentIndex(HAPTIC_TRIGGER_RIGID_INDEX);
+        return;
+    case HAPTIC_TRIGGER_VIBRATION:
+        ui->hapticTriggerComboBox->setCurrentIndex(HAPTIC_TRIGGER_VIBRATION_INDEX);
+        return;
+    }
+}
+
 void AxisEditDialog::implementTriggerPresets(int index)
 {
     JoyButtonSlot *pbuttonslot = nullptr;
@@ -612,6 +651,15 @@ void AxisEditDialog::buildTriggerPresetsMenu()
     ui->presetsComboBox->addItem(tr("None"));
 }
 
+void AxisEditDialog::buildHapticTriggerMenu()
+{
+    ui->hapticTriggerComboBox->clear();
+    ui->hapticTriggerComboBox->addItem(tr("None"));
+    ui->hapticTriggerComboBox->addItem(tr("Click"));
+    ui->hapticTriggerComboBox->addItem(tr("Rigid"));
+    ui->hapticTriggerComboBox->addItem(tr("Vibration"));
+}
+
 void AxisEditDialog::presetForThrottleChange(int index)
 {
     Q_UNUSED(index);
@@ -640,4 +688,29 @@ void AxisEditDialog::presetForThrottleChange(int index)
 
     connect(ui->presetsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
             &AxisEditDialog::implementPresets);
+}
+
+/**
+ * @brief Converts the haptic trigger combo box index to a
+ *   HapticTriggerMode and applies it to the current axis.
+ */
+void AxisEditDialog::implementHapticTrigger(int index)
+{
+    HapticTriggerModePs5 mode;
+    switch (static_cast<HapticTriggerIndex>(index))
+    {
+    case HAPTIC_TRIGGER_NONE_INDEX:
+        mode = HAPTIC_TRIGGER_NONE;
+        break;
+    case HAPTIC_TRIGGER_CLICK_INDEX:
+        mode = HAPTIC_TRIGGER_CLICK;
+        break;
+    case HAPTIC_TRIGGER_RIGID_INDEX:
+        mode = HAPTIC_TRIGGER_RIGID;
+        break;
+    case HAPTIC_TRIGGER_VIBRATION_INDEX:
+        mode = HAPTIC_TRIGGER_VIBRATION;
+        break;
+    }
+    m_axis->setHapticTriggerMode(mode);
 }

@@ -133,3 +133,27 @@ JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 {
     return static_cast<ThrottleTypes>(this->DEFAULTTHROTTLE);
 }
+
+/**
+ * @brief Checks if the trigger supports haptic feedback.
+ * @returns True if the trigger supports haptic feedback, false otherwise.
+ */
+bool GameControllerTrigger::hasHapticTrigger() const { return m_haptic_trigger != 0; }
+
+/**
+ * @returns Pointer to HapticTriggerPs5 object of this trigger.
+ */
+HapticTriggerPs5 *GameControllerTrigger::getHapticTrigger() const { return m_haptic_trigger; }
+
+/**
+ * @brief Changes the haptic feedback effect mode.
+ * @param[in] mode New haptic feedback effect mode.
+ */
+void GameControllerTrigger::setHapticTriggerMode(HapticTriggerModePs5 mode)
+{
+    if (m_haptic_trigger == 0)
+        return;
+
+    if (m_haptic_trigger->set_effect_mode(mode))
+        emit hapticTriggerChanged();
+}
