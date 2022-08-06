@@ -3581,12 +3581,7 @@ void JoyButton::setActionName(QString tempName)
     }
 }
 
-QString JoyButton::getActionName()
-{
-    qDebug() << "Action name is: " << actionName;
-
-    return actionName;
-}
+QString JoyButton::getActionName() { return actionName; }
 
 void JoyButton::setButtonName(QString tempName)
 {

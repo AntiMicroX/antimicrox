@@ -22,8 +22,8 @@
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joycontrolstickmodifierbutton.h"
 #include "joycontrolstick.h"
+#include "logger.h"
 
-#include <QDebug>
 #include <QMenu>
 #include <QWidget>
 
@@ -100,19 +100,16 @@ QString JoyControlStickButtonPushButton::generateLabel()
     {
         if (!button->getActionName().isEmpty() && ifDisplayNames())
         {
-            qDebug() << "Action name was not empty";
-
             temp = button->getActionName().replace("&", "&&");
+
+            DEBUG() << "Name of action for pushed stick button: " << temp << " (Action name was not empty)";
 
         } else
         {
-            qDebug() << "Action name was empty";
-
             temp = button->getCalculatedActiveZoneSummary().replace("&", "&&");
+            DEBUG() << "Name of action for pushed stick button: " << temp << " (Action name was empty)";
         }
     }
-
-    qDebug() << "Here is name of action for pushed stick button: " << temp;
 
     return temp;
 }
