@@ -14,5 +14,11 @@ src/CHANGELOG.md
 
 
 # IDE- related files
-.vscode
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/qt5.natvis.json
+!.vscode/snippets.md
 
