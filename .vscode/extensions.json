@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "cschlosser.doxdocgen",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools",
+        "visualstudioexptteam.vscodeintellicode",
+        "tonka3000.qtvsctools",
+        "twxs.cmake",
+        "xaver.clang-format",
+    ]
+}
