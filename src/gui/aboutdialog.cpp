@@ -73,6 +73,9 @@ void AboutDialog::fillInfoTextBrowser()
         finalInfoText.append(tr("Using Event Handler: %1").arg(handler->getName()));
     }
 
+    finalInfoText.append(QString("Host OS: %1 Version: %2 Architecture: %3")
+                             .arg(QSysInfo::productType(), QSysInfo::productVersion(), QSysInfo::currentCpuArchitecture()));
+
     ui->infoTextBrowser->setText(finalInfoText.join("\n"));
 
     // Read Changelog text from resource and put text in text box.
