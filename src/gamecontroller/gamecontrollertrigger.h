@@ -21,6 +21,7 @@
 
 #include "joyaxis.h"
 
+class HapticTriggerPs5;
 class QXmlStreamReader;
 class QXmlStreamWriter;
 class SetJoystick;
@@ -41,12 +42,18 @@ class GameControllerTrigger : public JoyAxis
 
     static const ThrottleTypes DEFAULTTHROTTLE;
 
+    virtual bool hasHapticTrigger() const override;
+    virtual HapticTriggerPs5 *getHapticTrigger() const override;
+    virtual void setHapticTriggerMode(HapticTriggerModePs5 mode) override;
+
   public slots:
     virtual void reset();
     virtual void reset(int index);
 
   protected:
     void correctJoystickThrottle();
+
+    HapticTriggerPs5 *m_haptic_trigger;
 };
 
 #endif // GAMECONTROLLERTRIGGER_H

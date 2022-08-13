@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
-    <height>369</height>
+    <width>682</width>
+    <height>503</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -137,12 +137,12 @@
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
+      <enum>QSizePolicy::MinimumExpanding</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>20</height>
+       <height>32</height>
       </size>
      </property>
     </spacer>
@@ -150,49 +150,40 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <property name="topMargin">
-      <number>10</number>
+      <number>0</number>
      </property>
      <property name="bottomMargin">
-      <number>10</number>
+      <number>0</number>
      </property>
-     <property name="horizontalSpacing">
-      <number>10</number>
+     <property name="spacing">
+      <number>4</number>
      </property>
      <item row="1" column="2">
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QSpinBox" name="maxZoneSpinBox">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="maximumSize">
+       <property name="minimumSize">
         <size>
-         <width>100</width>
-         <height>16777215</height>
+         <width>32</width>
+         <height>0</height>
         </size>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="acceptDrops">
-        <bool>false</bool>
        </property>
        <property name="toolTip">
         <string>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</string>
        </property>
-       <property name="inputMask">
-        <string notr="true"/>
+       <property name="minimum">
+        <number>1</number>
        </property>
-       <property name="text">
-        <string/>
+       <property name="maximum">
+        <number>32737</number>
        </property>
-       <property name="maxLength">
-        <number>5</number>
-       </property>
-       <property name="readOnly">
-        <bool>false</bool>
+       <property name="value">
+        <number>32000</number>
        </property>
       </widget>
      </item>
@@ -204,7 +195,13 @@ worn out analog stick.</string>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QSlider" name="horizontalSlider">
+      <widget class="QSlider" name="deadZoneSlider">
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Set the value of the dead zone for an axis.</string>
        </property>
@@ -247,50 +244,35 @@ worn out analog stick.</string>
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLineEdit" name="lineEdit">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
+      <widget class="QSpinBox" name="deadZoneSpinBox">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="maximumSize">
+       <property name="minimumSize">
         <size>
-         <width>100</width>
-         <height>16777215</height>
+         <width>32</width>
+         <height>0</height>
         </size>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="acceptDrops">
-        <bool>false</bool>
        </property>
        <property name="toolTip">
         <string>Set the value of the dead zone for an axis.</string>
        </property>
-       <property name="inputMask">
-        <string notr="true"/>
+       <property name="minimum">
+        <number>1</number>
        </property>
-       <property name="text">
-        <string/>
+       <property name="maximum">
+        <number>32737</number>
        </property>
-       <property name="maxLength">
-        <number>5</number>
-       </property>
-       <property name="frame">
-        <bool>true</bool>
-       </property>
-       <property name="readOnly">
-        <bool>false</bool>
+       <property name="value">
+        <number>5000</number>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QSlider" name="horizontalSlider_2">
+      <widget class="QSlider" name="maxZoneSlider">
        <property name="toolTip">
         <string>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</string>
@@ -331,16 +313,63 @@ worn out analog stick.</string>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QPushButton" name="nPushButton">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::MinimumExpanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>32</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,2,1">
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="text">
         <string>[NO KEY]</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QComboBox" name="comboBox_2">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="nPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>[NO KEY]</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="throttleComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>350</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</string>
@@ -381,14 +410,33 @@ interpret an axis hold or release.</string>
        </item>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pPushButton">
+     <item row="1" column="0">
+      <widget class="QLabel" name="hapticTriggerLabel">
        <property name="text">
-        <string>[NO KEY]</string>
+        <string>Haptic Trigger:</string>
        </property>
       </widget>
      </item>
+     <item row="1" column="2">
+      <widget class="QComboBox" name="hapticTriggerComboBox"/>
+     </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::MinimumExpanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>32</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <widget class="AxisValueBox" name="axisstatusBox" native="true">
@@ -457,12 +505,12 @@ interpret an axis hold or release.</string>
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
+      <enum>QSizePolicy::MinimumExpanding</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>20</height>
+       <height>32</height>
       </size>
      </property>
     </spacer>
@@ -495,8 +543,7 @@ interpret an axis hold or release.</string>
      </property>
      <property name="icon">
       <iconset theme="input-mouse">
-       <normaloff/>
-      </iconset>
+       <normaloff>.</normaloff>.</iconset>
      </property>
     </widget>
    </item>

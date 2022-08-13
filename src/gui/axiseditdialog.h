@@ -41,11 +41,23 @@ class AxisEditDialog : public QDialog
   protected:
     void selectAxisCurrentPreset();
     void selectTriggerPreset();
+    void selectHapticTrigger();
 
     void buildTriggerPresetsMenu();
     void buildAxisPresetsMenu();
+    void buildHapticTriggerMenu();
 
   private:
+    /**
+     * @brief Haptic trigger combo box indices.
+     */
+    enum HapticTriggerIndex
+    {
+        HAPTIC_TRIGGER_NONE_INDEX,
+        HAPTIC_TRIGGER_CLICK_INDEX,
+        HAPTIC_TRIGGER_RIGID_INDEX,
+        HAPTIC_TRIGGER_VIBRATION_INDEX
+    };
     Ui::AxisEditDialog *ui;
 
     JoyAxis *m_axis;
@@ -58,13 +70,14 @@ class AxisEditDialog : public QDialog
     void implementTriggerPresets(int index);
     void implementPresets(int index);
     void presetForThrottleChange(int index);
+    void implementHapticTrigger(int index);
 
     void updateDeadZoneBox(int value);
     void updateMaxZoneBox(int value);
     void updateThrottleUi(int index);
     void updateJoyValue(int value);
-    void updateDeadZoneSlider(QString value);
-    void updateMaxZoneSlider(QString value);
+    void updateDeadZoneSlider(int value);
+    void updateMaxZoneSlider(int value);
     void openAdvancedPDialog();
     void openAdvancedNDialog();
 

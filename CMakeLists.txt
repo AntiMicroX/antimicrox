@@ -164,6 +164,7 @@ set(antimicrox_SOURCES
         src/gui/setaxisthrottledialog.cpp
         src/gui/setnamesdialog.cpp
         src/gui/slotitemlistwidget.cpp
+        src/haptictriggerps5.cpp
         src/inputdaemon.cpp
         src/inputdevice.cpp
         src/inputdevicebitarraystatus.cpp
@@ -295,6 +296,8 @@ set(antimicrox_HEADERS
         src/gui/setaxisthrottledialog.h
         src/gui/setnamesdialog.h
         src/gui/slotitemlistwidget.h
+        src/haptictriggerps5.h
+        src/haptictriggermodeps5.h
         src/inputdaemon.h
         src/inputdevice.h
         src/inputdevicebitarraystatus.h

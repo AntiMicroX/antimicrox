@@ -295,6 +295,23 @@ int JoyAxis::calculateThrottledValue(int value)
     return temp;
 }
 
+/**
+ * @brief Checks if the axis supports haptic trigger feedback.
+ * @returns True if the axis supports haptic trigger feedback, false otherwise.
+ */
+bool JoyAxis::hasHapticTrigger() const { return false; }
+
+/**
+ * @brief Always returns nullptr for JoyAxis base objects.
+ */
+HapticTriggerPs5 *JoyAxis::getHapticTrigger() const { return nullptr; }
+
+/**
+ * @brief Changes the haptic trigger effect mode.
+ * @param[in] mode New haptic trigger effect mode.
+ */
+void JoyAxis::setHapticTriggerMode(HapticTriggerModePs5) {}
+
 void JoyAxis::setIndex(int index) { m_index = index; }
 
 int JoyAxis::getIndex() { return m_index; }
@@ -336,8 +353,13 @@ void JoyAxis::createDeskEvent(bool ignoresets)
 
 void JoyAxis::setDeadZone(int value)
 {
-    deadZone = abs(value);
+    value = abs(value);
+    if (deadZone == value)
+        return;
+
+    deadZone = value;
     emit propertyUpdated();
+    emit hapticTriggerChanged();
 }
 
 int JoyAxis::getDeadZone() { return deadZone; }

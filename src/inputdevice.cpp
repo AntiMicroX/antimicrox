@@ -1752,6 +1752,12 @@ QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
 SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
 
 /**
+ * @brief Returns the current controller model.
+ *   For non gamecontroller devices it always returns UNKNOWN.
+ */
+SDL_GameControllerType InputDevice::getControllerType() const { return SDL_CONTROLLER_TYPE_UNKNOWN; }
+
+/**
  * @brief Returns a pointer to the internal calibration storage backend.
  */
 InputDeviceCalibration *InputDevice::getCalibrationBackend() { return &m_calibrations; }

@@ -123,6 +123,15 @@ class JoyAxis
     static const QString xmlName;
 };
 
+class HapticTriggerPs5
+{
+  public:
+    static const int STRENGTH;
+    static const int VIBRATIONSTRENGTH;
+    static const int RANGE;
+    static const int FREQUENCY;
+};
+
 #ifdef WITH_X11
 
 class X11Extras

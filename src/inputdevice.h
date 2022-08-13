@@ -32,6 +32,13 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class QSettings;
 
+#if not SDL_VERSION_ATLEAST(2, 0, 16)
+enum SDL_GameControllerType
+{
+    SDL_CONTROLLER_TYPE_UNKNOWN = 0
+};
+#endif
+
 /**
  * @brief Represents a hardware input device, e.g a joystick or controller.
  */
@@ -149,6 +156,7 @@ class InputDevice : public QObject
 
     QHash<int, SetJoystick *> &getJoystick_sets();
     SDL_Joystick *getJoyHandle() const;
+    virtual SDL_GameControllerType getControllerType() const;
 
     InputDeviceCalibration *getCalibrationBackend();
     void updateStickCalibration(int index, double offsetX, double gainX, double offsetY, double gainY);

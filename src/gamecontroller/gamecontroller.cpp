@@ -42,6 +42,11 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex, 
 
     SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
     joystickID = SDL_JoystickInstanceID(joyhandle);
+#if SDL_VERSION_ATLEAST(2, 0, 16)
+    m_controller_type = SDL_GameControllerGetType(controller);
+#else
+    m_controller_type = SDL_CONTROLLER_TYPE_UNKNOWN;
+#endif
 
     for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
@@ -402,3 +407,8 @@ QHash<int, int> const &GameController::getAxisvalues() { return axisvalues; }
 QHash<int, int> const &GameController::getDpadvalues() { return dpadvalues; }
 
 SDL_GameController *GameController::getController() const { return controller; }
+
+/**
+ * @brief Returns the current controller model.
+ */
+SDL_GameControllerType GameController::getControllerType() const { return m_controller_type; }

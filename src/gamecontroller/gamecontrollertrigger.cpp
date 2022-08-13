@@ -22,6 +22,9 @@
 
 #include "gamecontrollertriggerbutton.h"
 #include "globalvariables.h"
+#include "haptictriggerps5.h"
+#include "inputdevice.h"
+#include "setjoystick.h"
 #include "xml/joyaxisxml.h"
 
 #include <SDL2/SDL_gamecontroller.h>
@@ -35,12 +38,18 @@ const GameControllerTrigger::ThrottleTypes GameControllerTrigger::DEFAULTTHROTTL
 
 GameControllerTrigger::GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent)
     : JoyAxis(index, originset, parentSet, parent)
+    , m_haptic_trigger(0)
 {
     naxisbutton->deleteLater();
     naxisbutton = new GameControllerTriggerButton(this, 0, originset, parentSet, this);
     paxisbutton->deleteLater();
     paxisbutton = new GameControllerTriggerButton(this, 1, originset, parentSet, this);
     reset(index);
+
+#if SDL_VERSION_ATLEAST(2, 0, 16)
+    if (parentSet->getInputDevice()->getControllerType() == SDL_GameControllerType::SDL_CONTROLLER_TYPE_PS5)
+        m_haptic_trigger = new HapticTriggerPs5(this);
+#endif
 }
 
 void GameControllerTrigger::reset(int index)
@@ -123,4 +132,57 @@ int GameControllerTrigger::getDefaultMaxZone() { return GlobalVariables::GameCon
 JoyAxis::ThrottleTypes GameControllerTrigger::getDefaultThrottle()
 {
     return static_cast<ThrottleTypes>(this->DEFAULTTHROTTLE);
+}
+
+/**
+ * @brief Checks if the trigger supports haptic feedback.
+ * @returns True if the trigger supports haptic feedback, false otherwise.
+ */
+bool GameControllerTrigger::hasHapticTrigger() const { return m_haptic_trigger != 0; }
+
+/**
+ * @brief Recalculates haptic trigger effect positions, e.g. after dead zone change,
+ *   and returns the current HapticTriggerPs5 object.
+ * @returns Pointer to HapticTriggerPs5 object of this trigger.
+ */
+HapticTriggerPs5 *GameControllerTrigger::getHapticTrigger() const
+{
+    if (m_haptic_trigger == nullptr)
+        return nullptr;
+
+    int start, end;
+    switch (m_haptic_trigger->get_mode())
+    {
+    case HAPTIC_TRIGGER_NONE:
+        m_haptic_trigger->set_effect(0, 0, 0);
+        break;
+    case HAPTIC_TRIGGER_CLICK:
+        start = double(deadZone) * 192 / GlobalVariables::JoyAxis::AXISMAX;
+        end = start + 65;
+        m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::STRENGTH, start, end);
+        break;
+    case HAPTIC_TRIGGER_RIGID:
+        m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::STRENGTH, 0,
+                                     GlobalVariables::HapticTriggerPs5::RANGE);
+        break;
+    case HAPTIC_TRIGGER_VIBRATION:
+        start = double(deadZone) * 192 / GlobalVariables::JoyAxis::AXISMAX;
+        m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::VIBRATIONSTRENGTH, start,
+                                     GlobalVariables::HapticTriggerPs5::RANGE, GlobalVariables::HapticTriggerPs5::FREQUENCY);
+        break;
+    }
+    return m_haptic_trigger;
+}
+
+/**
+ * @brief Changes the haptic feedback effect mode.
+ * @param[in] mode New haptic feedback effect mode.
+ */
+void GameControllerTrigger::setHapticTriggerMode(HapticTriggerModePs5 mode)
+{
+    if (m_haptic_trigger == 0)
+        return;
+
+    if (m_haptic_trigger->set_effect_mode(mode))
+        emit hapticTriggerChanged();
 }
