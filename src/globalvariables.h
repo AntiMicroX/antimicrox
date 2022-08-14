@@ -126,7 +126,8 @@ class JoyAxis
 class HapticTriggerPs5
 {
   public:
-    static const int STRENGTH;
+    static const int CLICKSTRENGTH;
+    static const int RIGIDSTRENGTH;
     static const int VIBRATIONSTRENGTH;
     static const int RANGE;
     static const int FREQUENCY;

@@ -98,8 +98,12 @@ struct EffectClickPs5
     /**
      * @brief Builds a click effect message.
      * @param[in] start Start point of the effect. Value between 2 and 7.
+     *   2 is the middle of the trigger range, 7 the end.
+     *   This defines the position where the resistance starts.
      * @param[in] end End point of the effect.
      *   Value between 2 and 8 which must be at least grater then start by two.
+     *   2 is the middle of the trigger range, 8 the end.
+     *   This defines the position where the trigger "clicks".
      * @param[in] strength Strength of the feedback force. Value between 0 and 7.
      */
     inline void build(int start, int end, int strength)
@@ -132,6 +136,7 @@ struct EffectVibrationPs5
     /**
      * @brief Builds a vibration effect message.
      * @param[in] start Start point of the effect. Value between 0 and 10.
+     *   0 is the beginning of the trigger range, 10 the end.
      * @param[in] end End point of the effect.
      *   Value between 2 and 10 which must be at least grater then start by two.
      * @param[in] strength Strength of the feedback force. Value between 0 and 7.
