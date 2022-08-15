@@ -23,5 +23,9 @@
     "cmake.debugConfig": {
         "visualizerFile": "${workspaceFolder}/.vscode/qt5.natvis.xml",
         "showDisplayString": true,
+        "args": [
+            "--log-level",
+            "verbose"
+        ],
     },
 }
