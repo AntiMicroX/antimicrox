@@ -3067,13 +3067,14 @@ void JoyButton::removeAssignedSlot(int index)
 
 void JoyButton::clearSlotsEventReset(bool clearSignalEmit)
 {
-    QWriteLocker tempAssignLocker(&assignmentsLock);
-
+    assignmentsLock.lockForWrite();
     resetSlotsProp();
     stopTimers(false);
     releaseActiveSlots();
     clearAssignedSlots(clearSignalEmit);
     clearQueues();
+    assignmentsLock.unlock();
+    buildActiveZoneSummaryString();
     DEBUG() << "all current slots and previous slots ale cleared";
 }
 
