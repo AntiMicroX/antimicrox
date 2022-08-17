@@ -8,10 +8,7 @@
 6. [Testing Under Linux](#testing-under-linux)  
 7. [AntiMicroX Profiles](#antimicrox-profiles)
 8. [Support](#support)  
-9. [Bugs](#bugs)  
-10. [Shoutout](#shoutout)  
-11. [Credits](#credits)  
-12. [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+9. [Contributing](#contributing)  
 
 ## Description
 
@@ -153,7 +150,7 @@ Status of package `anitmicrox`:
 
 And `antimicro` (in cases when it contains AntiMicroX)  
 [![Debian 12 package](https://repology.org/badge/version-for-repo/debian_12/antimicro.svg)](https://repology.org/project/antimicro/versions)  
-[![Debian Stable package](https://repology.org/badge/version-for-repo/debian_stable/antimicro.svg)](https://repology.org/project/antimicro/versions)  
+[![Debian Unstable package](https://repology.org/badge/version-for-repo/debian_unstable/antimicro.svg)](https://repology.org/project/antimicro/versions)  
 [![Ubuntu 22.04 package](https://repology.org/badge/version-for-repo/ubuntu_22_04/antimicro.svg)](https://repology.org/project/antimicro/versions)
 
 ## Command Line
@@ -198,28 +195,11 @@ a question or share a suggestion, you can do that on the antimicrox page or on t
 
 In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicrox/issues).
 
-## Bugs
+## Contributing
 
-Application's bugs will be fixed. There are created tests for detecting bugs. Of course, I'm open to proposals or questions from users. 
-
-## Shoutout
-
-A big, original inspiration for this program was the program QJoyPad.
-
-## Credits
-
-### Contributors
-
-Full list is available [here](https://github.com/AntiMicroX/antimicrox/graphs/contributors)
-
-### Package Maintainers
-
-| **Distro**   | **Maintainer**                        | **Package**                                                                                         |
-| :----------- | :------------------------------------ | :-------------------------------------------------------------------------------------------------- |
-| Arch Linux   | frealgagu                             | [antimicrox](https://aur.archlinux.org/packages/antimicrox/) <sup>AUR</sup>                         |
-| Arch Linux   | FabioLolix                            | [antimicrox-git](https://aur.archlinux.org/packages/antimicrox-git) <sup>AUR</sup>                  |
-| Fedora Linux | [gombosg](https://github.com/gombosg) | antimicrox                                                                                          |
-| Flatpak      | [gombosg](https://github.com/gombosg) | [io.github.antimicrox.antimicrox](https://flathub.org/apps/details/io.github.antimicrox.antimicrox) |
+Any contributions into codebase are welcome.  
+Before coding checking our simple [coding guideline](https://github.com/AntiMicroX/antimicrox/wiki/Coding-guidelines) is recommended.  
+If you are not sure about a way of fixing/implementing something you can just create draft Pull Request showing your attempt.
 
 ### Translation
 
