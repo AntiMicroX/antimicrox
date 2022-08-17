@@ -13,17 +13,11 @@
      atypical gamepads to generic ones like xbox360).
     </p>
     <p>
-    It allows mapping of gamepads/joystick buttons to:
-    </p>
     Features:
+    </p>
     <ul>
-      <li>Mapping of gamepads/joystick buttons to:
-        <ul>
-          <li>keyboard buttons</li>
-          <li>mouse buttons and moves</li>
-          <li>scripts and executables</li>
-          <li>macros consisting of elements mentioned above</li>
-        </ul>
+      <li>
+        Mapping of gamepads/joystick buttons to: ⌨️keyboard buttons, 🖱️mouse buttons and moves, scripts, executables and macros consisting of elements mentioned here
       </li>
       <li>Assigning multiple switchable sets of mappings to gamepad.</li>
       <li>Auto profiles - assign profile to active application window.</li>
@@ -33,6 +27,7 @@
     </p>
   </description>
   <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
+  <url type="bugtracker">https://github.com/AntiMicroX/antimicrox/issues</url>
   <launchable type="desktop-id">io.github.antimicrox.antimicrox.desktop</launchable>
   <releases>
     <release version="3.2.5" date="2022-07-18" />
@@ -60,6 +55,7 @@
   </releases>
   <provides>
     <binary>antimicrox</binary>
+    <mediatype>application/x-amgp</mediatype>
   </provides>
   <screenshots>
     <screenshot type="default">
@@ -98,9 +94,6 @@
   <categories>
     <category>Utility</category>
   </categories>
-  <mimetypes>
-    <mimetype>application/x-amgp</mimetype>
-  </mimetypes>
   <content_rating type="oars-1.0">
     <content_attribute id="language-profanity">none</content_attribute>
     <content_attribute id="language-humor">none</content_attribute>
