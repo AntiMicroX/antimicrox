@@ -110,8 +110,7 @@ QString WinSendInputEventHandler::getName() { return QString("SendInput"); }
 
 QString WinSendInputEventHandler::getIdentifier() { return QString("sendinput"); }
 
-void WinSendInputEventHandler::sendMouseSpringEvent(unsigned int xDis, unsigned int yDis, unsigned int width,
-                                                    unsigned int height)
+void WinSendInputEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int height)
 {
     if (width > 0 && height > 0)
     {

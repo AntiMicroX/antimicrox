@@ -274,16 +274,6 @@ void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int
     }
 }
 
-void UInputEventHandler::sendMouseSpringEvent(int xDis, int yDis)
-{
-    if ((xDis >= -1.0) && (xDis <= 1.0) && (yDis >= -1.0) && (yDis <= 1.0))
-    {
-        int fx = ceil(32767 * xDis);
-        int fy = ceil(32767 * yDis);
-        sendMouseAbsEvent(fx, fy, -1);
-    }
-}
-
 int UInputEventHandler::openUInputHandle()
 {
     int filehandle = -1;
