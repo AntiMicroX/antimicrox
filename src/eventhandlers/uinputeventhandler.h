@@ -43,7 +43,6 @@ class UInputEventHandler : public BaseEventHandler
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen) override;
 
     virtual void sendMouseSpringEvent(int xDis, int yDis, int width, int height) override;
-    virtual void sendMouseSpringEvent(int xDis, int yDis) override;
 
     virtual QString getName() override;
     virtual QString getIdentifier() override;

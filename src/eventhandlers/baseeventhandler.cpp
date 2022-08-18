@@ -65,15 +65,4 @@ void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int h
     Q_UNUSED(height);
 }
 
-/**
- * @brief Do nothing by default. Useful for child classes to define behavior.
- * @param Displacement of X coordinate
- * @param Displacement of Y coordinate
- */
-void BaseEventHandler::sendMouseSpringEvent(int xDis, int yDis)
-{
-    Q_UNUSED(xDis);
-    Q_UNUSED(yDis);
-}
-
 void BaseEventHandler::sendTextEntryEvent(QString maintext) { Q_UNUSED(maintext); }

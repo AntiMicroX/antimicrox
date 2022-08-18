@@ -179,6 +179,4 @@ void XTestEventHandler::sendMouseSpringEvent(int xDis, int yDis, int width, int 
     Q_UNUSED(height);
 }
 
-void XTestEventHandler::sendMouseSpringEvent(int, int) {}
-
 void XTestEventHandler::printPostMessages() {}

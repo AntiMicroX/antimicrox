@@ -25,7 +25,7 @@ class JoyButtonSlot;
 
 /**
  * @brief Base class for input event handlers
- * 
+ *
  * It manages mouse movements and keyboard strokes
  *
  */
@@ -46,7 +46,6 @@ class BaseEventHandler : public QObject
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
 
     virtual void sendMouseSpringEvent(int xDis, int yDis, int width, int height);
-    virtual void sendMouseSpringEvent(int xDis, int yDis);
 
     virtual void sendTextEntryEvent(QString maintext);
 
