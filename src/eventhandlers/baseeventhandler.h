@@ -23,6 +23,12 @@
 
 class JoyButtonSlot;
 
+/**
+ * @brief Base class for input event handlers
+ * 
+ * It manages mouse movements and keyboard strokes
+ *
+ */
 class BaseEventHandler : public QObject
 {
     Q_OBJECT

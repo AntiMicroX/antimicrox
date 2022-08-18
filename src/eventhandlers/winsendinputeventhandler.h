@@ -24,6 +24,12 @@
 
 #include <joybuttonslot.h>
 
+/**
+ * @brief Input event handler class for Windows
+ *
+ * It utilizes SendInput functions
+ *
+ */
 class WinSendInputEventHandler : public BaseEventHandler
 {
     Q_OBJECT

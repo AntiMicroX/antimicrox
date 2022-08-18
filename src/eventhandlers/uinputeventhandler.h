@@ -21,6 +21,12 @@
 
 #include "baseeventhandler.h"
 
+/**
+ * @brief Input event handler class using uinput files
+ *
+ * Proper udev rule may be needed for usage
+ *
+ */
 class UInputEventHandler : public BaseEventHandler
 {
     Q_OBJECT
