@@ -146,7 +146,7 @@ List of required dependencies and build instructions can be found [here](./BUILD
 ### Packages status
 
 Status of package `anitmicrox`:  
-[![Packaging status](https://repology.org/badge/vertical-allrepos/antimicrox.svg)](https://repology.org/project/antimicrox/versions)
+[![Packaging status](https://repology.org/badge/vertical-allrepos/antimicrox.svg?columns=3&minversion=3.1)](https://repology.org/project/antimicrox/versions)
 
 And `antimicro` (in cases when it contains AntiMicroX)  
 [![Debian 12 package](https://repology.org/badge/version-for-repo/debian_12/antimicro.svg)](https://repology.org/project/antimicro/versions)  
