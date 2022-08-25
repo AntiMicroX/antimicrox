@@ -73,6 +73,11 @@ void AboutDialog::fillInfoTextBrowser()
         finalInfoText.append(tr("Using Event Handler: %1").arg(handler->getName()));
     }
 
+#ifdef Q_OS_LINUX
+    QString detected_xdg_session = qgetenv("XDG_SESSION_TYPE");
+    finalInfoText.append(QString("Compositor type: %1").arg(detected_xdg_session));
+#endif
+
     finalInfoText.append(QString("Host OS: %1 Version: %2 Architecture: %3")
                              .arg(QSysInfo::productType(), QSysInfo::productVersion(), QSysInfo::currentCpuArchitecture()));
 
