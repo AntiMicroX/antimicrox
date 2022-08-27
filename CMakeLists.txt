@@ -763,7 +763,11 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CPACK_PACKAGE_VERSION_PATCH "${CPACK_PACKAGE_VERSION_PATCH}-dbg")
 endif()
 
-set(CPACK_PACKAGE_FILE_NAME "antimicrox-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX_MINOR_VERSION}.${ANTIMICROX_PATCH_VERSION}-${CMAKE_HOST_SYSTEM_PROCESSOR}")
+set(CPACK_PACKAGE_FILE_NAME "antimicrox-${ANTIMICROX_MAJOR_VERSION}.${ANTIMICROX_MINOR_VERSION}.${ANTIMICROX_PATCH_VERSION}")
+if(WIN32 AND PORTABLE_WIN)
+    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-Windows")
+endif()
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR}")
 
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "AntiMicroX")
 
@@ -794,28 +798,32 @@ It is a new fork of discontinued AntiMicro.")
 endif()
 
 if(WIN32 AND NOT UNIX)
-    # We set NSIS as generator for Windows
-    set(CPACK_GENERATOR NSIS)
+    if(NOT PORTABLE_WIN)
+        # We set NSIS as generator for Windows
+        set(CPACK_GENERATOR NSIS)
 
-    # There is a bug in NSI that does not handle full UNIX paths properly.
-    # Make sure there is at least one set of four backlashes.
-    set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/src/images\\\\antimicrox.ico")
-    set(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
-    set(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
-    set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\antimicrox.exe")
+        # There is a bug in NSI that does not handle full UNIX paths properly.
+        # Make sure there is at least one set of four backlashes.
+        set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/src/images\\\\antimicrox.ico")
+        set(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
+        set(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
+        set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\antimicrox.exe")
 
-    set(CPACK_NSIS_DISPLAY_NAME "AntiMicroX")
-    set(CPACK_NSIS_PACKAGE_NAME "AntiMicroX")
-    set(CPACK_NSIS_HELP_LINK "http:\\\\\\\\github.com/AntiMicroX/antimicrox/wiki")
-    set(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\github.com/AntiMicroX/antimicrox")
-    set(CPACK_NSIS_MODIFY_PATH ON)
+        set(CPACK_NSIS_DISPLAY_NAME "AntiMicroX")
+        set(CPACK_NSIS_PACKAGE_NAME "AntiMicroX")
+        set(CPACK_NSIS_HELP_LINK "http:\\\\\\\\github.com/AntiMicroX/antimicrox/wiki")
+        set(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\github.com/AntiMicroX/antimicrox")
+        set(CPACK_NSIS_MODIFY_PATH ON)
+    else()
+        set(CPACK_GENERATOR ZIP)
+    endif()
 endif()
 
 set(CPACK_PACKAGE_EXECUTABLES "antimicrox;AntiMicroX")
 set(CPACK_CREATE_DESKTOP_LINKS "antimicrox")
 include(CPack)
 
-if(WIN32 AND NOT UNIX)
+if(WIN32 AND NOT UNIX AND NOT PORTABLE_WIN)
 configure_file(
     ${PROJECT_SOURCE_DIR}/cmake/modules/NSIS.definitions.nsh.in
     ${CMAKE_CURRENT_BINARY_DIR}/assets/nsis/NSIS.definitions.nsh
