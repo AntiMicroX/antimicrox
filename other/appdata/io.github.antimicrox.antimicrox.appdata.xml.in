@@ -94,6 +94,11 @@
   <categories>
     <category>Utility</category>
   </categories>
+  <recommends>
+    <control>gamepad</control>
+    <display_length compare="lt">xlarge</display_length>
+    <display_length compare="gt">xsmall</display_length>
+  </recommends>
   <content_rating type="oars-1.0">
     <content_attribute id="language-profanity">none</content_attribute>
     <content_attribute id="language-humor">none</content_attribute>
