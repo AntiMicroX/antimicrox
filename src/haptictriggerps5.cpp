@@ -281,19 +281,22 @@ void HapticTriggerPs5::send(SDL_GameController *controller, const HapticTriggerP
  */
 void HapticTriggerPs5::to_message(TriggerEffectMsgPs5 &effect) const
 {
-    effect.mode = m_mode;
     switch (m_mode)
     {
     case HAPTIC_TRIGGER_NONE:
+        effect.mode = EFFECT_MODE_NONE;
         effect.none.build();
         return;
     case HAPTIC_TRIGGER_CLICK:
+        effect.mode = EFFECT_MODE_CLICK;
         effect.click.build(m_start, m_end, m_strength);
         return;
     case HAPTIC_TRIGGER_RIGID:
+        effect.mode = EFFECT_MODE_RIGID;
         effect.rigid.build(m_strength);
         return;
     case HAPTIC_TRIGGER_VIBRATION:
+        effect.mode = EFFECT_MODE_VIBRATION;
         effect.vibration.build(m_start, m_end, m_strength, m_frequency);
     }
 }

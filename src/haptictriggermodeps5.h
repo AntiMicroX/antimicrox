@@ -17,14 +17,12 @@
 #pragma once
 
 /**
- * @brief Enum of the supported haptic trigger effect modes of the
- *   PS5 controller.
- *   See https://gist.github.com/Nielk1/6d54cc2c00d2201ccb8c2720ad7538db
+ * @brief Enum of the supported haptic trigger effect for a PS5 controller.
  */
 enum HapticTriggerModePs5
 {
-    HAPTIC_TRIGGER_NONE = 0x05,
-    HAPTIC_TRIGGER_CLICK = 0x25,
-    HAPTIC_TRIGGER_RIGID = 0x21,
-    HAPTIC_TRIGGER_VIBRATION = 0x26
+    HAPTIC_TRIGGER_NONE,
+    HAPTIC_TRIGGER_CLICK,
+    HAPTIC_TRIGGER_RIGID,
+    HAPTIC_TRIGGER_VIBRATION
 };
