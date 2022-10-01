@@ -81,6 +81,30 @@ struct EffectRigidPs5
         force_zones = u32tole(force_zones);
         _padding = 0;
     }
+
+    /**
+     * @brief Builds a rigid gradient effect message.
+     *   This effect starts with a strength of zero and slowly increases
+     *   its strength until it reaches its given maximum strength at the end.
+     * @param[in] strength Strength of the feedback force at the end.
+     *   Value between 0 and 7.
+     */
+    inline void build_gradient(int strength)
+    {
+        active_zones = u16tole(0x03FE);
+        force_zones = 0;
+        double grad = 0.0;
+
+        for (int i = 3; i < 30; i += 3)
+        {
+            int x = static_cast<int>((strength + 0.1) * grad);
+            force_zones |= x << i;
+            grad += 0.125;
+        }
+
+        force_zones = u32tole(force_zones);
+        _padding = 0;
+    }
 };
 
 /**
@@ -295,9 +319,14 @@ void HapticTriggerPs5::to_message(TriggerEffectMsgPs5 &effect) const
         effect.mode = EFFECT_MODE_RIGID;
         effect.rigid.build(m_strength);
         return;
+    case HAPTIC_TRIGGER_RIGID_GRADIENT:
+        effect.mode = EFFECT_MODE_RIGID;
+        effect.rigid.build_gradient(m_strength);
+        return;
     case HAPTIC_TRIGGER_VIBRATION:
         effect.mode = EFFECT_MODE_VIBRATION;
         effect.vibration.build(m_start, m_end, m_strength, m_frequency);
+        return;
     }
 }
 
@@ -316,6 +345,9 @@ HapticTriggerModePs5 HapticTriggerPs5::from_string(const QString &name)
     } else if (name == "Rigid")
     {
         mode = HAPTIC_TRIGGER_RIGID;
+    } else if (name == "RigidGradient")
+    {
+        mode = HAPTIC_TRIGGER_RIGID_GRADIENT;
     } else if (name == "Vibration")
     {
         mode = HAPTIC_TRIGGER_VIBRATION;
@@ -336,6 +368,8 @@ QString HapticTriggerPs5::to_string(HapticTriggerModePs5 mode)
         return "Click";
     case HAPTIC_TRIGGER_RIGID:
         return "Rigid";
+    case HAPTIC_TRIGGER_RIGID_GRADIENT:
+        return "RigidGradient";
     case HAPTIC_TRIGGER_VIBRATION:
         return "Vibration";
     }

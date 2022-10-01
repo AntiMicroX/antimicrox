@@ -165,6 +165,10 @@ HapticTriggerPs5 *GameControllerTrigger::getHapticTrigger() const
         m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::RIGIDSTRENGTH, 0,
                                      GlobalVariables::HapticTriggerPs5::RANGE);
         break;
+    case HAPTIC_TRIGGER_RIGID_GRADIENT:
+        m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::RIGIDGRADIENTSTRENGTH, 0,
+                                     GlobalVariables::HapticTriggerPs5::RANGE);
+        break;
     case HAPTIC_TRIGGER_VIBRATION:
         start = 200 * deadZone / GlobalVariables::JoyAxis::AXISMAX;
         m_haptic_trigger->set_effect(GlobalVariables::HapticTriggerPs5::VIBRATIONSTRENGTH, start,

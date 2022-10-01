@@ -56,6 +56,7 @@ class AxisEditDialog : public QDialog
         HAPTIC_TRIGGER_NONE_INDEX,
         HAPTIC_TRIGGER_CLICK_INDEX,
         HAPTIC_TRIGGER_RIGID_INDEX,
+        HAPTIC_TRIGGER_RIGID_GRADIENT_INDEX,
         HAPTIC_TRIGGER_VIBRATION_INDEX
     };
     Ui::AxisEditDialog *ui;

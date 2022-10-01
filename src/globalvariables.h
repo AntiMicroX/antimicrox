@@ -128,6 +128,7 @@ class HapticTriggerPs5
   public:
     static const int CLICKSTRENGTH;
     static const int RIGIDSTRENGTH;
+    static const int RIGIDGRADIENTSTRENGTH;
     static const int VIBRATIONSTRENGTH;
     static const int RANGE;
     static const int FREQUENCY;

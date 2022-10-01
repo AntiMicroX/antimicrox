@@ -525,6 +525,9 @@ void AxisEditDialog::selectHapticTrigger()
     case HAPTIC_TRIGGER_RIGID:
         ui->hapticTriggerComboBox->setCurrentIndex(HAPTIC_TRIGGER_RIGID_INDEX);
         return;
+    case HAPTIC_TRIGGER_RIGID_GRADIENT:
+        ui->hapticTriggerComboBox->setCurrentIndex(HAPTIC_TRIGGER_RIGID_GRADIENT_INDEX);
+        return;
     case HAPTIC_TRIGGER_VIBRATION:
         ui->hapticTriggerComboBox->setCurrentIndex(HAPTIC_TRIGGER_VIBRATION_INDEX);
         return;
@@ -657,6 +660,7 @@ void AxisEditDialog::buildHapticTriggerMenu()
     ui->hapticTriggerComboBox->addItem(tr("None"));
     ui->hapticTriggerComboBox->addItem(tr("Click"));
     ui->hapticTriggerComboBox->addItem(tr("Rigid"));
+    ui->hapticTriggerComboBox->addItem(tr("Rigid Gradient"));
     ui->hapticTriggerComboBox->addItem(tr("Vibration"));
 }
 
@@ -707,6 +711,9 @@ void AxisEditDialog::implementHapticTrigger(int index)
         break;
     case HAPTIC_TRIGGER_RIGID_INDEX:
         mode = HAPTIC_TRIGGER_RIGID;
+        break;
+    case HAPTIC_TRIGGER_RIGID_GRADIENT_INDEX:
+        mode = HAPTIC_TRIGGER_RIGID_GRADIENT;
         break;
     case HAPTIC_TRIGGER_VIBRATION_INDEX:
         mode = HAPTIC_TRIGGER_VIBRATION;
