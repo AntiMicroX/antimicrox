@@ -117,9 +117,9 @@ const float GlobalVariables::JoyAxis::JOYSPEED = 20.0;
 
 const QString GlobalVariables::JoyAxis::xmlName = "axis";
 
-const int GlobalVariables::HapticTriggerPs5::CLICKSTRENGTH = 7;
-const int GlobalVariables::HapticTriggerPs5::RIGIDSTRENGTH = 4;
-const int GlobalVariables::HapticTriggerPs5::VIBRATIONSTRENGTH = 7;
+const int GlobalVariables::HapticTriggerPs5::CLICKSTRENGTH = 256;
+const int GlobalVariables::HapticTriggerPs5::RIGIDSTRENGTH = 128;
+const int GlobalVariables::HapticTriggerPs5::VIBRATIONSTRENGTH = 64;
 const int GlobalVariables::HapticTriggerPs5::RANGE = 320;
 const int GlobalVariables::HapticTriggerPs5::FREQUENCY = 32;
 
