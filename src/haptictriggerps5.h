@@ -57,6 +57,20 @@ class HapticTriggerPs5 : QObject
         MICROPHONE_LIGHT_SOLID = 0x01,
         MICROPHONE_LIGHT_PULSE = 0x02
     };
+
+    /**
+     * @brief Enum of the supported low level haptic trigger effect modes of
+     *   the PS5 controller.
+     *   See https://gist.github.com/Nielk1/6d54cc2c00d2201ccb8c2720ad7538db
+     */
+    enum
+    {
+        EFFECT_MODE_NONE = 0x05,
+        EFFECT_MODE_CLICK = 0x25,
+        EFFECT_MODE_RIGID = 0x21,
+        EFFECT_MODE_VIBRATION = 0x26
+    };
+
     HapticTriggerModePs5 m_mode;
     int m_strength;
     int m_start;
