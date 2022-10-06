@@ -362,9 +362,9 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
  
 --- 
  
-2016년 5월 24일 현재 이 프로젝트는 https://github.com/AntiMicro/antimicro 로 이동했습니다.  
+2016년 5월 24일 현재 이 프로젝트는 https://github.com/AntiMicro/antimicro 로 이동했습니다. 
 또한 Travis가 다른 관심사와 우선 순위를 갖고 있기 때문에 프로젝트 관리가 Travis(Ryochan7)에서 AntiMicro 조직으로 넘어갔습니다. 
-다음으로, 프로젝트는 antimicroX 프로젝트의 juliagoda에 의해 2018년부터 계속되었습니다.  
+다음으로, 프로젝트는 antimicroX 프로젝트의 juliagoda에 의해 2018년부터 계속되었습니다. 
 이후 프로젝트는 다시 https://github.com/AntiMicroX/antimicrox 로 이동되었으며 pktiuk에서 만든 AntiMicroX 조직에서 유지 관리를 계속하고 있습니다.</translation>
     </message>
     <message>
@@ -4895,8 +4895,7 @@ Quadratic Extreme: 95% 축 이동에 도달하면 마우스 속도를
  
 멱함수: 더 많은 사용자 정의 곡선 옵션을 허용합니다. 
  
-2차 완화: 2차 곡선을 사용하여 일정 기간 동안 축 높이 끝이 
-점차 가속됩니다. 
+2차 완화: 2차 곡선을 사용하여 일정 기간 동안 축 높이 끝이 점차 가속됩니다. 
  
 Easing Cubic: 축 하이 엔드는 3차 곡선을 사용하여 일정 기간 
 동안 점진적으로 가속됩니다.</translation>
@@ -5120,9 +5119,9 @@ Original configs are stored in
 %2
 You can migrate manually by renaming old directory and renaming file to antimicrox_settings.ini.</source>
         <translation>설정 마이그레이션에 문제가 발생했습니다. 
-원본 구성은 다음 위치에 저장합니다  
+원본 구성은 다음 위치에 저장합니다 
 %1 
- 그러나 그것들의 새 위치는 다음과 같습니다:  
+ 그러나 그것들의 새 위치는 다음과 같습니다: 
 %2 
 이전 디렉토리의 이름을 바꾸고 파일의 이름을 antimicrox_settings.ini로 변경하여 수동으로 마이그레이션 할 수 있습니다.</translation>
     </message>
