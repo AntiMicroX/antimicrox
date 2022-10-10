@@ -554,7 +554,7 @@ QString X11Extras::getWindowClass(Window window)
         qDebug() << nitems;
 
         char *null_char = strchr(reinterpret_cast<char *>(prop), '\0');
-        if (((reinterpret_cast<char *>(prop)) + nitems - 1) > null_char)
+        if ((null_char != nullptr) && (((reinterpret_cast<char *>(prop)) + nitems - 1) > null_char))
         {
             *(null_char) = ' ';
         }
@@ -654,7 +654,6 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
             checkFeedback(temp, num_feedbacks, feedback_id);
 
             XFree(feedbacks);
-            feedbacks = temp = nullptr;
 
             if (feedback_id <= -1)
             {
@@ -750,7 +749,6 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
             }
 
             XFree(feedbacks);
-            feedbacks = temp = nullptr;
             XCloseDevice(display, device);
         }
 

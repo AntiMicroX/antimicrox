@@ -600,11 +600,17 @@ void InputDevice::changeSetAxisButtonAssociation(int button_index, int axis_inde
     } else if (button_index == 1)
     {
         button = getJoystick_sets().value(newset)->getJoyAxis(axis_index)->getPAxisButton();
+    } else
+    {
+        WARN() << "Invalid button_index value: " << button_index;
+        return;
     }
-
-    JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
-    button->setChangeSetSelection(originset);
-    button->setChangeSetCondition(tempmode, true);
+    if (button != nullptr)
+    {
+        JoyButton::SetChangeCondition tempmode = static_cast<JoyButton::SetChangeCondition>(mode);
+        button->setChangeSetSelection(originset);
+        button->setChangeSetCondition(tempmode, true);
+    }
 }
 
 void InputDevice::changeSetStickButtonAssociation(int button_index, int stick_index, int originset, int newset, int mode)

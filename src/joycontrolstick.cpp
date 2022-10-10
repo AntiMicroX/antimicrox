@@ -1985,7 +1985,6 @@ bool JoyControlStick::hasSameButtonsMouseCurve()
 {
     bool result = true;
 
-    JoyButton::JoyMouseCurve initialCurve = JoyButton::LinearCurve;
     QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
     auto iter = temphash.cbegin();
 
@@ -1993,7 +1992,7 @@ bool JoyControlStick::hasSameButtonsMouseCurve()
         return result;
 
     JoyControlStickButton *button = iter.value();
-    initialCurve = button->getMouseCurve();
+    JoyButton::JoyMouseCurve initialCurve = button->getMouseCurve();
 
     while (++iter != temphash.cend())
     {

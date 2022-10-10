@@ -194,7 +194,7 @@ void UInputEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
     {
         if (code <= 3)
         {
-            unsigned int tempcode = BTN_LEFT;
+            unsigned int tempcode;
             switch (code)
             {
             case 3: {

@@ -1140,7 +1140,7 @@ void JoyButton::mouseEvent()
 
                             // Determine the multiplier to use for the current maximum mouse speed
                             // based on how much time has passed.
-                            double elapsedDiff = 1.0;
+                            double elapsedDiff;
                             if ((easingDuration > 0.0) && ((easingElapsed * .001) < easingDuration))
                             {
                                 elapsedDiff = ((easingElapsed * .001) / easingDuration);
@@ -1291,7 +1291,7 @@ void JoyButton::mouseEvent()
                         }
 
                         double tempAccel = currentAccelMultiTemp;
-                        double elapsedDiff = 1.0;
+                        double elapsedDiff;
 
                         if ((elapsedDuration > 0.0) && ((elapsedElapsed * 0.001) < elapsedDuration))
                         {
@@ -1305,7 +1305,6 @@ void JoyButton::mouseEvent()
                             updateOldAccelMulti = currentAccelMulti;
                         } else
                         {
-                            elapsedDiff = 1.0;
                             currentAccelMulti = 0.0;
                             updateOldAccelMulti = 0.0;
                             accelTravel = 0.0;
@@ -3801,8 +3800,6 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved, int sp
 
         for (int i = (springXSpeeds->length() - 1); (i >= 0) && !complete; i--)
         {
-            double tempx = -2.0;
-            double tempy = -2.0;
             double tempSpringDeadX = 0.0;
             double tempSpringDeadY = 0.0;
 
@@ -3812,8 +3809,8 @@ void JoyButton::moveSpringMouse(int &movedX, int &movedY, bool &hasMoved, int sp
             infoX = springXSpeeds->takeLast();
             infoY = springYSpeeds->takeLast();
 
-            tempx = infoX.displacementX;
-            tempy = infoY.displacementY;
+            double tempx = infoX.displacementX;
+            double tempy = infoY.displacementY;
             tempSpringDeadX = infoX.springDeadX;
             tempSpringDeadY = infoY.springDeadY;
 
