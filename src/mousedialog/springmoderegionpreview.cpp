@@ -85,7 +85,7 @@ int SpringModeRegionPreview::adjustSpringSizeWidth(int width)
 
 int SpringModeRegionPreview::adjustSpringSizeHeight(int height)
 {
-    int tempheight = size().height();
+    int tempheight;
 
     if (height >= 2)
     {

@@ -126,7 +126,6 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
                 tempStringData = QString();
                 extraStringData = QString();
                 slotMixString = QString();
-                firstTimePlus = true;
 
                 xml->readNextStartElement();
             }

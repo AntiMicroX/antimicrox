@@ -892,7 +892,7 @@ void AdvanceButtonDialog::updateSetSelection()
 {
     PadderCommon::inputDaemonMutex.lock();
 
-    int chosen_set = -1;
+    int chosen_set;
     JoyButton::SetChangeCondition set_selection_condition = JoyButton::SetChangeDisabled;
 
     if (ui->setSelectionComboBox->currentIndex() > 0)
