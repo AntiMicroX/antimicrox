@@ -83,9 +83,6 @@ class GameController : public InputDevice
     SDL_GameController *getController() const;
     virtual SDL_GameControllerType getControllerType() const override;
 
-    void fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes,
-                        QList<SDL_GameControllerButtonBind> &hatButtons);
-
   protected slots:
     virtual void axisActivatedEvent(int setindex, int axisindex, int value) override;
     virtual void buttonClickEvent(int buttonindex) override;

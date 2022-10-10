@@ -227,49 +227,6 @@ int GameController::getNumberRawHats() { return 0; }
 
 void GameController::setCounterUniques(int counter) { counterUniques = counter; }
 
-void GameController::fillContainers(QHash<int, SDL_GameControllerButton> &buttons, QHash<int, SDL_GameControllerAxis> &axes,
-                                    QList<SDL_GameControllerButtonBind> &hatButtons)
-{
-    for (int i = 0; i < SDL_JoystickNumHats(getJoyHandle()); i++)
-    {
-        SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
-        SDL_GameControllerButtonBind bound = SDL_GameControllerGetBindForButton(this->controller, currentButton);
-
-        qDebug() << "Hat " << (i + 1);
-
-        if (bound.bindType == SDL_CONTROLLER_BINDTYPE_HAT)
-        {
-            hatButtons.append(bound);
-        }
-    }
-
-    for (int i = 0; i < SDL_JoystickNumButtons(getJoyHandle()); i++)
-    {
-        qDebug() << "Button " << (i + 1);
-
-        SDL_GameControllerButton currentButton = static_cast<SDL_GameControllerButton>(i);
-        SDL_GameControllerButtonBind bound = SDL_GameControllerGetBindForButton(this->controller, currentButton);
-
-        if (bound.bindType == SDL_CONTROLLER_BINDTYPE_BUTTON)
-        {
-            buttons.insert(bound.value.button, currentButton);
-        }
-    }
-
-    for (int i = 0; i < SDL_JoystickNumAxes(getJoyHandle()); i++)
-    {
-        qDebug() << "Axis " << (i + 1);
-
-        SDL_GameControllerAxis currentAxis = static_cast<SDL_GameControllerAxis>(i);
-        SDL_GameControllerButtonBind bound = SDL_GameControllerGetBindForAxis(this->controller, currentAxis);
-
-        if (bound.bindType == SDL_CONTROLLER_BINDTYPE_AXIS)
-        {
-            axes.insert(bound.value.axis, currentAxis);
-        }
-    }
-}
-
 QString GameController::getBindStringForAxis(int index, bool)
 {
     QString temp = QString();
