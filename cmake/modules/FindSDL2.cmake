@@ -313,16 +313,15 @@ endif()
 
 include(FindPackageHandleStandardArgs)
 
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(SDL2
-                                  REQUIRED_VARS SDL2_LIBRARY SDL2_INCLUDE_DIR
-                                  VERSION_VAR SDL2_VERSION_STRING)
+set(SDL2_REQUIRED_VARS SDL2_LIBRARY SDL2_INCLUDE_DIR)
 
 if(SDL2MAIN_LIBRARY)
-  FIND_PACKAGE_HANDLE_STANDARD_ARGS(SDL2main
-                                    REQUIRED_VARS SDL2MAIN_LIBRARY SDL2_INCLUDE_DIR
-                                    VERSION_VAR SDL2_VERSION_STRING)
+  list(APPEND SDL2_REQUIRED_VARS SDL2MAIN_LIBRARY SDL2_INCLUDE_DIR)
 endif()
 
+find_package_handle_standard_args(SDL2
+                                  REQUIRED_VARS ${SDL2_REQUIRED_VARS}
+                                  VERSION_VAR SDL2_VERSION_STRING)
 
 mark_as_advanced(SDL2_PATH
                  SDL2_NO_DEFAULT_PATH
