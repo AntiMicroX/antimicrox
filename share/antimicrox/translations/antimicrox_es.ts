@@ -1599,17 +1599,17 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="70"/>
         <source>Input to calibrate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Entra para calibrar:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="93"/>
         <source>Steps</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasos</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="112"/>
         <source>Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Z</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="119"/>
@@ -1619,7 +1619,7 @@ se utiliza este botón.</translation>
         <location filename="../../../src/gui/calibration.ui" line="196"/>
         <location filename="../../../src/gui/calibration.ui" line="210"/>
         <source>TextLabel</source>
-        <translation type="unfinished">Etiqueta de texto</translation>
+        <translation>Etiqueta de texto</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="126"/>
