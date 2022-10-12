@@ -20,7 +20,7 @@ This program is written in C++ using the [Qt](https://www.qt.io/)
 framework. A C++ compiler and a proper C++ build environment will need to be installed on your system prior to building this program. Under Debian and Debian-based distributions like Ubuntu, the easiest way to get a base build environment set up is to install the meta-package **build-essential**. The following packages are required to be
 installed on your system in order to build this program:
 
-- `g++` from `gcc`
+- `g++` from `gcc` (or clang compiler)
 - `cmake`
 - `extra-cmake-modules`
 - `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux) (Qt5 support)
@@ -34,17 +34,30 @@ installed on your system in order to build this program:
 <details>
   <summary>Fedora dependencies</summary>
 
-    One-liner for installing above dependencies:
+One-liner for installing above dependencies:
 
-        sudo dnf install git make cmake gcc cmake extra-cmake-modules qt5-qttools-devel SDL2-devel libXi-devel libXtst-devel libX11-devel itstool gettext-devel;
+```bash
+sudo dnf install git make cmake gcc cmake extra-cmake-modules qt5-qttools-devel SDL2-devel libXi-devel libXtst-devel libX11-devel itstool gettext-devel;
+```
+
+</details>
+
+<details>
+  <summary>Ubuntu/Debian dependencies</summary>
+
+One-liner for installing above dependencies:  
+
+```bash
+sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+```
 
 </details>
 
 <details>
   <summary>Windows dependencies</summary>
-    In case of Windows you need QT, SDL2 libraries, cmake and compiler (mingw for example).
+In case of Windows you need QT, SDL2 libraries, cmake and compiler (mingw for example).
 
-    For setting up your environment you may use `msys2`.
+For setting up your environment you may use `msys2`.
 
 </details>
 
@@ -54,6 +67,12 @@ This way of building is useful for testing purposes.
 
 In order to build this program, open a terminal and cd into the antimicrox
 directory. Enter the following commands in order to:
+
+Clone repository
+
+```bash
+git clone https://github.com/AntiMicroX/antimicrox.git
+```
 
 Build the program:
 
