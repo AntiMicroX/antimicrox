@@ -1624,26 +1624,26 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="126"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>Eje X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="140"/>
         <location filename="../../../src/gui/calibration.ui" line="189"/>
         <location filename="../../../src/gui/calibration.ui" line="203"/>
         <source>gain</source>
-        <translation type="unfinished"></translation>
+        <translation>ganancia</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="154"/>
         <location filename="../../../src/gui/calibration.ui" line="168"/>
         <location filename="../../../src/gui/calibration.ui" line="175"/>
         <source>offset</source>
-        <translation type="unfinished"></translation>
+        <translation>impresión offset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="161"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Eje y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="247"/>
@@ -1654,7 +1654,7 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="277"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="237"/>
@@ -1674,45 +1674,47 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
         <source>Selected device doesn&apos;t have any inputs to calibrate.</source>
-        <translation type="unfinished"></translation>
+        <translation>El dispositivo seleccionado no tiene entradas para calibrar.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="95"/>
         <location filename="../../../src/gui/calibration.cpp" line="313"/>
         <source>Calibration was not saved for the preset. Do you really want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>La calibración no se ha guardado para el preajuste. ¿Realmente desea continuar?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="112"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Realmente desea restablecer la calibración del dispositivo actual?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="387"/>
         <source>Offset calibration completed. Click &quot;Continue calibration&quot; to continue with gain calibration.</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibración de compensación completada. Haga clic en &quot;Continuar calibración&quot; para continuar con la calibración de ganancia.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="494"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ahora mueve la palanca varias veces al máximo en diferentes direcciones y vuelve al centro.
+Esto puede llevar hasta %1 segundos.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="497"/>
         <source>Calibrating stick</source>
-        <translation type="unfinished"></translation>
+        <translation>Varilla de calibración</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="498"/>
         <source>Continue calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Continuar con la calibración</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ahora mueve la palanca en círculos completos durante varias veces.
+Esto puede llevar hasta %1 segundos.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="482"/>
@@ -3442,32 +3444,32 @@ teclas a botons o desactive ocultar botones vacíos.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="57"/>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Vacio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="62"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Bajo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="67"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="73"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>Completo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="83"/>
         <source>Wired</source>
-        <translation type="unfinished"></translation>
+        <translation>Cable</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="88"/>
         <source>Different: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Diferente: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="114"/>
@@ -3682,12 +3684,12 @@ cuando se lance el programa inicialmente.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="336"/>
         <source>Show low battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar notificación de batería baja</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
         <source>Show empty battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar notificación sin batería</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="366"/>
@@ -4767,24 +4769,23 @@ Easing Quadratic: Axis high end is gradually accelerated over a period of time u
 
 Easing Cubic: Axis high end is gradually accelerated over
 a period of time using a Cubic curve.</source>
-        <translation>Mejorada: curva de tres niveles que hace que el ratón se mueva
+        <translation>Mejorado: Curva de tres niveles que hace que el ratón se mueva
 lento en el extremo inferior de un eje y rápido en el extremo superior.
 
-Lineal: el ratón se mueve proporcionalmente al eje.
+Lineal: El ratón se mueve proporcionalmente al eje.
 
-Cuadrática: el ratón acelera lentamente en el extremo inferior.
+Cuadrático: El ratón acelera lentamente en el extremo inferior.
 
-Cúbica: el ratón acelera más lentamente que la cuadrática.
+Cúbico: El ratón acelera más lento que el cuadrático.
 
-Cuadrática extrema: aumenta la velocidad del ratón 1,5 veces una vez
-se haya alcanzado el 95 % del recorrido del eje.
+Extremo cuadrático: Aumenta la velocidad del ratón 1,5 veces una vez
+Se ha alcanzado el 95% de desplazamiento por eje.
 
-Función potencial: permite una opción de curva más personalizada.
+Función de potencia: Permite una opción de curva más personalizada.
 
-Cuadrática relajada: el extremo superior del eje se acelera gradualmente
-durante un periodo de tiempo mediante una curva cuadrática.
+Facilitar cuadrática: El extremo superior del eje se acelera gradualmente durante un período de tiempo utilizando una curva cuadrática.
 
-Cúbica relajada: el extremo superior del eje se acelera gradualmente
+Facilitar Cubic: Axis high-end se acelera gradualmente sobre
 un período de tiempo utilizando una curva cúbica.</translation>
     </message>
     <message>
@@ -4937,12 +4938,12 @@ completa de la pantalla.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="154"/>
         <source>Vol+</source>
-        <translation>Vol+</translation>
+        <translation>Subir el volumen</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="155"/>
         <source>Vol-</source>
-        <translation>Vol-</translation>
+        <translation>Bajar el volumen</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="156"/>
@@ -5046,7 +5047,7 @@ Puede migrar manualmente cambiando el nombre del directorio antiguo y cambiando 
     <message>
         <location filename="../../../src/inputdevice.cpp" line="1216"/>
         <source>UniqueID:         %1</source>
-        <translation>UniqueID:         %1</translation>
+        <translation>ID único:         %1</translation>
     </message>
     <message>
         <location filename="../../../src/inputdevice.cpp" line="1217"/>
@@ -5056,12 +5057,12 @@ Puede migrar manualmente cambiando el nombre del directorio antiguo y cambiando 
     <message>
         <location filename="../../../src/inputdevice.cpp" line="1218"/>
         <source>VendorID:         %1</source>
-        <translation>VendorID:         %1</translation>
+        <translation>Identificación del proveedor:         %1</translation>
     </message>
     <message>
         <location filename="../../../src/inputdevice.cpp" line="1219"/>
         <source>ProductID:        %1</source>
-        <translation>ProductID:        %1</translation>
+        <translation>Identificación del producto:        %1</translation>
     </message>
     <message>
         <location filename="../../../src/inputdevice.cpp" line="1220"/>
@@ -6495,7 +6496,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1043"/>
         <source>Calc</source>
-        <translation>Calc</translation>
+        <translation>Calcular</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1048"/>
