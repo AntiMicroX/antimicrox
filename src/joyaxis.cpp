@@ -183,13 +183,13 @@ bool JoyAxis::inDeadZone(int value)
 
     if (abs(temp) <= deadZone)
     {
-        qDebug() << "Value of throttle is in (less than) dead zone: " << abs(temp) << " <= " << deadZone;
+        // qDebug() << "Value of throttle is in (less than) dead zone: " << abs(temp) << " <= " << deadZone;
 
         result = true;
 
     } else
     {
-        qDebug() << "Value of throttle is not in (greater than) dead zone: " << abs(temp) << " > " << deadZone;
+        // qDebug() << "Value of throttle is not in (greater than) dead zone: " << abs(temp) << " > " << deadZone;
     }
 
     return result;

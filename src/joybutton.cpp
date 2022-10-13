@@ -118,6 +118,7 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     m_index = index;
     m_originset = originset;
     quitEvent = true;
+    VERBOSE() << "Created button with ID: " << m_index << " For set: " << originset << " Name: " << getName();
 }
 
 JoyButton::~JoyButton()
@@ -175,7 +176,8 @@ void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
     if (Logger::isDebugEnabled())
-        DEBUG() << "Processing joyEvent for: " << getName();
+        DEBUG() << "Processing JoyButton::joyEvent for: " << getName() << " SDL index: " << m_index
+                << " className: " << metaObject()->className();
 
     if ((m_vdpad != nullptr) && !pendingEvent)
     {

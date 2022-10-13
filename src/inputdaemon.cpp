@@ -721,6 +721,38 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
 
     while (SDL_PollEvent(&event) > 0)
     {
+        if (Logger::isDebugEnabled())
+        {
+            const QMap<Uint32, QString> STRING_MAP = {
+                {SDL_JOYBUTTONDOWN, "SDL_JOYBUTTONDOWN"},
+                {SDL_JOYBUTTONUP, "SDL_JOYBUTTONUP"},
+                {SDL_JOYAXISMOTION, "SDL_JOYAXISMOTION"},
+                {SDL_JOYHATMOTION, "SDL_JOYHATMOTION"},
+                {SDL_CONTROLLERAXISMOTION, "SDL_CONTROLLERAXISMOTION"},
+                {SDL_CONTROLLERBUTTONDOWN, "SDL_CONTROLLERBUTTONDOWN"},
+                {SDL_CONTROLLERBUTTONUP, "SDL_CONTROLLERBUTTONUP"},
+                {SDL_JOYDEVICEREMOVED, "SDL_JOYDEVICEREMOVED"},
+                {SDL_JOYDEVICEADDED, "SDL_JOYDEVICEADDED"},
+                {SDL_CONTROLLERDEVICEREMOVED, "SDL_CONTROLLERDEVICEREMOVED"},
+                {SDL_CONTROLLERDEVICEADDED, "SDL_CONTROLLERDEVICEADDED"},
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+                {SDL_CONTROLLERSENSORUPDATE, "SDL_CONTROLLERSENSORUPDATE"},
+                {SDL_CONTROLLERTOUCHPADDOWN, "SDL_CONTROLLERTOUCHPADDOWN"},
+                {SDL_CONTROLLERTOUCHPADMOTION, "SDL_CONTROLLERTOUCHPADMOTION"},
+                {SDL_CONTROLLERTOUCHPADUP, "SDL_CONTROLLERTOUCHPADUP"}
+#endif
+            };
+
+            QString type;
+            if (STRING_MAP.contains(event.type))
+                type = STRING_MAP[event.type];
+            else
+                type = QString().number(event.type);
+            DEBUG() << "Processing event: " << type << " From joystick with instance id: " << (int)event.jbutton.which
+                    << " Got button with id: " << (int)event.jbutton.button << " is one of the GameControllers: "
+                    << (trackcontrollers.contains(event.jbutton.which) ? "true" : "false") << " is one of the joysticks:"
+                    << (getTrackjoysticksLocal().contains(event.jbutton.which) ? "true" : "false");
+        }
         switch (event.type)
         {
         case SDL_JOYBUTTONDOWN:
@@ -904,11 +936,9 @@ void InputDaemon::modifyUnplugEvents(QQueue<SDL_Event> *sdlEventQueue)
         InputDeviceBitArrayStatus *generatedTemp = genIter.value();
         QBitArray tempBitArray = generatedTemp->generateFinalBitArray();
 
-        qDebug() << "ARRAY: " << tempBitArray;
-
         int bitArraySize = tempBitArray.size();
 
-        qDebug() << "ARRAY SIZE: " << bitArraySize;
+        qDebug() << "Raw array: " << tempBitArray << " array size: " << bitArraySize;
 
         if ((bitArraySize > 0) && (tempBitArray.count(true) == device->getNumberAxes()))
         {
