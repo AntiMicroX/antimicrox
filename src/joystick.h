@@ -25,6 +25,12 @@
 
 class AntiMicroSettings;
 
+/**
+ * @brief General input device (which is not a typical gamepad like steering wheels, flight sticks etc.)
+ *
+ * @details This is broad category of devices. (Includes Gamepads described by GameController and all of the other devices)
+ * Devices in this category trigger events SDL_JOY... (like SDL_JOYBUTTONUP)
+ */
 class Joystick : public InputDevice
 {
     Q_OBJECT

@@ -40,7 +40,12 @@ enum SDL_GameControllerType
 #endif
 
 /**
- * @brief Represents a hardware input device, e.g a joystick or controller.
+ * @brief Abstract class representing a hardware input device, e.g a joystick or controller.
+ *
+ * @details Two concrete implementations are Joystick and class GameController
+ * difference between two of them are described in listed sources
+ * @see https://discourse.libsdl.org/t/difference-between-joysticks-and-game-controllers/24028/2
+ * @see https://stackoverflow.com/a/50026410/11747535
  */
 class InputDevice : public QObject
 {

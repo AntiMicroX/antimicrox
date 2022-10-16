@@ -26,8 +26,21 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class AntiMicroSettings;
 
-// holds information about gamecontrollers
+/**
+ * @brief Represents a typical gamepad (like PS4 or Xbox gamepad)
+ *
+ * @details It represents typical gamepads with two analog sticks, one dpad, two shoulder buttons on each side (one of them
+possibly a trigger axis and not just a button), 4 buttons on the right and some buttons in the middle of the pad.
 
+SDL2 maps the axis and buttons of devices it knows (and XInput Devices on Windows) to standardized button/axis names based on
+xbox360/xinput controllers. It often uses SDL bindings to figure out how gamepad should look like. Every device in this
+category releases events SDL_CONTROLLER... (like SDL_CONTROLLERBUTTONUP)
+
+Each SDL Gamecontroller device can also be used as a bit more general-purposed Joystick device.
+ *
+ * @see https://wiki.libsdl.org/CategoryGameController
+ * @see https://wiki.libsdl.org/SDL_IsGameController
+ */
 class GameController : public InputDevice
 {
     Q_OBJECT

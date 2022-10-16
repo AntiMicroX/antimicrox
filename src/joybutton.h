@@ -39,7 +39,7 @@ class QXmlStreamWriter;
 class QThreadPool;
 
 /**
- * @brief Represents a button mapping in a SetJoystick
+ * @brief Represents a single joystick button being part of a SetJoystick
  *  Contains multiple JoyButtonSlots which do the actual mapping.
  *  Also has various static methods for mouse cursor movement.
  */
