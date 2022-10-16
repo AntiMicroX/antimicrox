@@ -150,8 +150,13 @@ void Logger::logMessage(const QString &message, const Logger::LogLevel level, co
 
         if (extendedLogs)
         {
+            static int filename_offset = -1;
+            if (filename_offset < 0)
+            {
+                filename_offset = filename.lastIndexOf("/src/");
+            }
             if (lineno != 0)
-                *outputStream << " (file " << filename.mid(7) << ":" << lineno << ")";
+                *outputStream << " (file " << filename.mid(filename_offset) << ":" << lineno << ")";
         }
 
         *outputStream << "\n";
