@@ -839,6 +839,6 @@ if(BUILD_DOCS)
             VERBATIM )
 
     else (DOXYGEN_FOUND)
-      message("Doxygen need to be installed to generate the doxygen documentation")
+      message(WARNING "Doxygen need to be installed to generate the doxygen documentation")
     endif (DOXYGEN_FOUND)
 endif(BUILD_DOCS)
