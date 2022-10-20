@@ -161,7 +161,7 @@ jobs:
               run: cmake --build '${{ github.workspace }}'/build --target package --parallel 8
 
             - name: Configure CMake (portable)
-              run: cmake -DPORTABLE_WIN=ON -B '${{ github.workspace }}'/build
+              run: cmake -DCMAKE_BUILD_TYPE=Release -DCHECK_FOR_UPDATES=ON -DANTIMICROX_PKG_VERSION="GitHub Portable Windows Release" -DPORTABLE_WIN=ON -B '${{ github.workspace }}'/build
               env:
                   CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
 
