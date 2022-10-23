@@ -255,19 +255,21 @@ void AddEditAutoProfileDialog::showCaptureHelpWindow()
         box->show();
 
         UnixCaptureWindowUtility *util = new UnixCaptureWindowUtility();
-        QThread *thread = new QThread; // QTHREAD(this)
-        util->moveToThread(thread);
+        QThread *capture_window_thr = new QThread; // QTHREAD(this)
+        capture_window_thr->setObjectName("capture_window_thr");
 
-        connect(thread, &QThread::started, util, &UnixCaptureWindowUtility::attemptWindowCapture);
-        connect(util, &UnixCaptureWindowUtility::captureFinished, thread, &QThread::quit);
+        util->moveToThread(capture_window_thr);
+
+        connect(capture_window_thr, &QThread::started, util, &UnixCaptureWindowUtility::attemptWindowCapture);
+        connect(util, &UnixCaptureWindowUtility::captureFinished, capture_window_thr, &QThread::quit);
         connect(util, &UnixCaptureWindowUtility::captureFinished, box, &QMessageBox::hide);
         connect(
             util, &UnixCaptureWindowUtility::captureFinished, this, [this, util]() { checkForGrabbedWindow(util); },
             Qt::QueuedConnection);
 
-        connect(thread, &QThread::finished, box, &QMessageBox::deleteLater);
-        connect(util, &UnixCaptureWindowUtility::destroyed, thread, &QThread::deleteLater);
-        thread->start();
+        connect(capture_window_thr, &QThread::finished, box, &QMessageBox::deleteLater);
+        connect(util, &UnixCaptureWindowUtility::destroyed, capture_window_thr, &QThread::deleteLater);
+        capture_window_thr->start();
     }
 
     #endif

@@ -42,6 +42,7 @@ Logger::Logger(QTextStream *stream, LogLevel output_lvl, QObject *parent)
     // needed to allow sending LogLevel using signals and slots
     qRegisterMetaType<Logger::LogLevel>("Logger::LogLevel");
     loggingThread = new QThread(this);
+    loggingThread->setObjectName("loggingThread");
     outputStream = stream;
     outputLevel = output_lvl;
 

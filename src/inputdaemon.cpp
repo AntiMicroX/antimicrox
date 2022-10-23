@@ -56,6 +56,7 @@ InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMic
     if (m_graphical)
     {
         sdlWorkerThread = new QThread;
+        sdlWorkerThread->setObjectName("sdlWorkerThread");
         eventWorker->moveToThread(sdlWorkerThread);
 
         connect(sdlWorkerThread, &QThread::started, eventWorker, &SDLEventReader::performWork);
