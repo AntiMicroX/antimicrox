@@ -63,9 +63,6 @@ XMLConfigReader::~XMLConfigReader()
         delete xml;
         xml = nullptr;
     }
-
-    if (!m_joystickXml.isNull())
-        delete m_joystickXml;
 }
 
 void XMLConfigReader::setJoystick(InputDevice *joystick) { m_joystick = joystick; }
@@ -148,9 +145,9 @@ bool XMLConfigReader::read()
         {
             if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
             {
-                m_joystickXml = new InputDeviceXml(m_joystick);
-                m_joystickXml->readConfig(xml);
-                // if (!m_joystickXml.isNull()) delete m_joystickXml;
+                InputDeviceXml *joystick_xml = new InputDeviceXml(m_joystick);
+                joystick_xml->readConfig(xml);
+                joystick_xml->deleteLater();
             } else
             {
                 // If none of the above, skip the element
