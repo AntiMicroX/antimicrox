@@ -34,6 +34,9 @@ InputDeviceXml::InputDeviceXml(InputDevice *inputDevice, QObject *parent)
     : QObject(parent)
     , m_inputDevice(inputDevice)
 {
+    QThread *thread = m_inputDevice->thread();
+    this->moveToThread(thread);
+    connect(this, &InputDeviceXml::readConfigSig, this, &InputDeviceXml::readConfig);
 }
 
 /**
@@ -42,6 +45,12 @@ InputDeviceXml::InputDeviceXml(InputDevice *inputDevice, QObject *parent)
  */
 void InputDeviceXml::readConfig(QXmlStreamReader *xml)
 {
+    // reading of config should be handled in inputEventThread
+    if (this->thread() != QThread::currentThread())
+    {
+        emit readConfigSig(xml);
+        return;
+    }
     if (xml->isStartElement() && (xml->name() == m_inputDevice->getXmlName()))
     {
         m_inputDevice->transferReset();

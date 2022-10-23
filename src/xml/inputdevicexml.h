@@ -41,8 +41,11 @@ class InputDeviceXml : public QObject
 
   public slots:
 
-    virtual void readConfig(QXmlStreamReader *xml);  // InputDeviceXml class
-    virtual void writeConfig(QXmlStreamWriter *xml); // InputDeviceXml class
+    void readConfig(QXmlStreamReader *xml);  // InputDeviceXml class
+    void writeConfig(QXmlStreamWriter *xml); // InputDeviceXml class
+
+  signals:
+    void readConfigSig(QXmlStreamReader *xml);
 
   private:
     InputDevice *m_inputDevice;
