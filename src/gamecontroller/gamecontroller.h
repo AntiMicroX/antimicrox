@@ -70,6 +70,9 @@ class GameController : public InputDevice
     virtual void closeSDLDevice() override;
     virtual SDL_JoystickID getSDLJoystickID() override;
 
+    virtual int getNumberRawButtons() override;
+    virtual int getNumberRawAxes() override;
+    virtual int getNumberRawHats() override;
     virtual double getRawSensorRate(JoySensorType type) override;
     virtual bool hasRawSensor(JoySensorType type) override;
     void setCounterUniques(int counter) override;

@@ -151,6 +151,24 @@ void Joystick::closeSDLDevice()
     }
 }
 
+int Joystick::getNumberRawButtons()
+{
+    int numbuttons = SDL_JoystickNumButtons(m_joyhandle);
+    return numbuttons;
+}
+
+int Joystick::getNumberRawAxes()
+{
+    int numaxes = SDL_JoystickNumAxes(m_joyhandle);
+    return numaxes;
+}
+
+int Joystick::getNumberRawHats()
+{
+    int numhats = SDL_JoystickNumHats(m_joyhandle);
+    return numhats;
+}
+
 double Joystick::getRawSensorRate(JoySensorType _) { return 0; }
 
 bool Joystick::hasRawSensor(JoySensorType _) { return false; }

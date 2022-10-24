@@ -181,6 +181,15 @@ void GameController::closeSDLDevice()
     }
 }
 
+int GameController::getNumberRawButtons() { return SDL_CONTROLLER_BUTTON_MAX; }
+
+int GameController::getNumberRawAxes()
+{
+    qDebug() << "Controller has " << SDL_CONTROLLER_AXIS_MAX << " raw axes";
+
+    return SDL_CONTROLLER_AXIS_MAX;
+}
+
 /**
  * @brief Queries the data rate of the given sensor from SDL.
  * @returns Data rate in events per second or zero if data rate is unavailable.
@@ -213,6 +222,8 @@ bool GameController::hasRawSensor(JoySensorType type)
 #endif
     return false;
 }
+
+int GameController::getNumberRawHats() { return 0; }
 
 void GameController::setCounterUniques(int counter) { counterUniques = counter; }
 
