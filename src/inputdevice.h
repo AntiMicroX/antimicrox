@@ -110,9 +110,9 @@ class InputDevice : public QObject
     void setDPadName(int dpadIndex, QString tempName);   // InputDeviceHat class
     void setVDPadName(int vdpadIndex, QString tempName); // InputDeviceVDPad class
 
-    virtual int getNumberRawButtons();
-    virtual int getNumberRawAxes();
-    virtual int getNumberRawHats();
+    virtual int getNumberRawButtons() = 0;
+    virtual int getNumberRawAxes() = 0;
+    virtual int getNumberRawHats() = 0;
     virtual double getRawSensorRate(JoySensorType type) = 0;
     virtual bool hasRawSensor(JoySensorType type) = 0;
 

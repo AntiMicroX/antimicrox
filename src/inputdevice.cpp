@@ -1359,12 +1359,6 @@ QString InputDevice::getDescription()
     return full_desc;
 }
 
-int InputDevice::getNumberRawAxes() { return SDL_JoystickNumAxes(m_joyhandle); }
-
-int InputDevice::getNumberRawButtons() { return SDL_JoystickNumButtons(m_joyhandle); }
-
-int InputDevice::getNumberRawHats() { return SDL_JoystickNumHats(m_joyhandle); }
-
 QString InputDevice::getSDLPlatform()
 {
     QString temp = SDL_GetPlatform();
