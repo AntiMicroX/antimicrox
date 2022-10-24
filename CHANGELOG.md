@@ -1,8 +1,13 @@
 # Changelog
+## [3.3.1](https://github.com/AntiMicroX/antimicrox/tree/3.3.1) (2022-10-24)
 
-## [3.3](https://github.com/AntiMicroX/antimicrox/tree/3.3) (2022-10-24)
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.3.0...3.3.1)
 
-[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.5...3.3)
+Hotfix release reverting PR [\#555](https://github.com/AntiMicroX/antimicrox/pull/555) which can cause segfaults.
+
+## [3.3.0](https://github.com/AntiMicroX/antimicrox/tree/3.3.0) (2022-10-24)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.5...3.3.0)
 
 
 **Implemented enhancements:**
