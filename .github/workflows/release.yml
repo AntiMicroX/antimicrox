@@ -6,8 +6,16 @@ on:
 jobs:
     # Build .deb files for debian-based systems.
     build_deb:
-        name: Build Debian package
-        runs-on: ubuntu-latest
+        strategy:
+          fail-fast: false
+          matrix: 
+            include:
+              - name: Ubuntu 22-04
+                image: ubuntu-22.04
+              - name: Ubuntu 20-04
+                image: ubuntu-20.04
+        name: Build deb package ${{ matrix.name }}
+        runs-on: ${{ matrix.image }}
 
         steps:
             - uses: actions/checkout@v2
@@ -21,6 +29,13 @@ jobs:
             - name: Create Deb package
               id: create_deb
               run: cmake --build ${{ github.workspace }}/build --parallel 8 --target package
+
+            - name: Rename deb files
+              id: rename_debs
+              run: |
+                FILE=`find ${{ github.workspace }}/build/*.deb`
+                NEWFILE=`echo $FILE | sed 's/x86_64/${{ matrix.image }}-x86_64/'`
+                mv $FILE $NEWFILE
 
             # Upload generated files to release
             - name: Upload binaries to release
