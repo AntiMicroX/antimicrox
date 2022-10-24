@@ -1,5 +1,36 @@
 # Changelog
 
+## [3.3](https://github.com/AntiMicroX/antimicrox/tree/3.3) (2022-10-24)
+
+[Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.5...3.3)
+
+
+**Implemented enhancements:**
+
+- Add support for DualSense trigger haptic feedback [\#503](https://github.com/AntiMicroX/antimicrox/pull/503) (by [mmmaisel](https://github.com/mmmaisel))
+- Add Portable Windows build [\#523](https://github.com/AntiMicroX/antimicrox/pull/523) (by [AntumDeluge](https://github.com/AntumDeluge))
+
+**Fixed bugs:**
+
+- Broken auto profile saving for Windows  [\#492](https://github.com/AntiMicroX/antimicrox/pull/492)
+- Selection "None" Preset does not change button labels [\#513](https://github.com/AntiMicroX/antimicrox/pull/513)
+- Broken spring mouse Event on Windows [\#518](https://github.com/AntiMicroX/antimicrox/pull/518)
+- Multiple problems caused by invalid thread handling [\#573](https://github.com/AntiMicroX/antimicrox/pull/573)
+  - Saving PS4 Controller setup stops set toggle from working
+  - Saving Breaks Set Switching
+  - Saving config breaks turbo
+  - Warnings `QObject: Cannot create children for a parent that is in a different thread`
+
+**Notable changes:**
+
+- Fix some code warnings  [\#497](https://github.com/AntiMicroX/antimicrox/pull/497) [\#558](https://github.com/AntiMicroX/antimicrox/pull/558) [\#559](https://github.com/AntiMicroX/antimicrox/pull/559) (by [pktiuk](https://github.com/pktiuk) and [Stefan-TU](https://github.com/Stefan-TU))
+- Remove some unused code [\#504](https://github.com/AntiMicroX/antimicrox/pull/504) (by [mmmaisel](https://github.com/mmmaisel))
+- Limit number of logged events
+- Include Visual Studio Code config files
+- Some refactors and docs updates
+- Update SDL mappings database
+- Update translations: Korean, Ukrainian, Spanish
+
 ## [3.2.5](https://github.com/AntiMicroX/antimicrox/tree/3.2.5) (2022-07-18)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.2.4...3.2.5)
