@@ -69,7 +69,7 @@ void JoyTabWidgetContainer::unflash(InputDevice *joystick)
         JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
         if ((tab != nullptr) && (tab->getJoystick() == joystick))
         {
-            tabBar()->setTabTextColor(i, Qt::black);
+            tabBar()->setTabTextColor(i, QApplication::palette().color(QPalette::Text));
             found = true;
         }
     }
@@ -84,7 +84,7 @@ void JoyTabWidgetContainer::unflashTab(JoyTabWidget *tabWidget)
         JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
         if (tab == tabWidget)
         {
-            tabBar()->setTabTextColor(i, Qt::black);
+            tabBar()->setTabTextColor(i, QApplication::palette().color(QPalette::Text));
         }
     }
 }
@@ -96,7 +96,7 @@ void JoyTabWidgetContainer::unflashAll()
         JoyTabWidget *tab = qobject_cast<JoyTabWidget *>(widget(i)); // static_cast
         if (tab != nullptr)
         {
-            tabBar()->setTabTextColor(i, Qt::black);
+            tabBar()->setTabTextColor(i, QApplication::palette().color(QPalette::Text));
         }
     }
 }
