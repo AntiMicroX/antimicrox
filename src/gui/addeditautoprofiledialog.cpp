@@ -502,14 +502,17 @@ void AddEditAutoProfileDialog::checkDefaultCheckbox(const QString &text)
 void AddEditAutoProfileDialog::openWinAppProfileDialog()
 {
     WinAppProfileTimerDialog *dialog = new WinAppProfileTimerDialog(this);
-    connect(dialog, SIGNAL(accepted()), this, SLOT(captureWindowsApplicationPath()));
+    connect(dialog, &WinAppProfileTimerDialog::accepted, this, &AddEditAutoProfileDialog::captureWindowsApplicationPath);
     dialog->show();
 }
 
+void AddEditAutoProfileDialog::callWindowPropAssignment() { windowPropAssignment(m_capture_window_info_dialog); }
+
 void AddEditAutoProfileDialog::captureWindowsApplicationPath()
 {
-    CapturedWindowInfoDialog *dialog = new CapturedWindowInfoDialog(this);
-    connect(dialog, SIGNAL(accepted()), this, SLOT(windowPropAssignment()));
-    dialog->show();
+    m_capture_window_info_dialog = new CapturedWindowInfoDialog(this);
+    connect(m_capture_window_info_dialog, &CapturedWindowInfoDialog::accepted, this,
+            &AddEditAutoProfileDialog::callWindowPropAssignment);
+    m_capture_window_info_dialog->show();
 }
 #endif
