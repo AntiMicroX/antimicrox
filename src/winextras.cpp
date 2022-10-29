@@ -14,7 +14,7 @@
 #include "winextras.h"
 #include <shlobj.h>
 
-typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD, LPTSTR, PDWORD);
+typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD, LPWSTR, PDWORD);
 // Check if QueryFullProcessImageNameW function exists in kernel32.dll.
 // Function does not exist in Windows XP.
 static MYPROC pQueryFullProcessImageNameW =
@@ -269,24 +269,26 @@ QString WinExtras::getForegroundWindowExePath()
 
     if (windowProcess != NULL)
     {
-        TCHAR filename[MAX_PATH];
-        memset(filename, 0, sizeof(filename));
+        WCHAR filename[MAX_PATH];
+        TCHAR filename_xp[MAX_PATH];
         // qDebug() << QString::number(sizeof(filename)/sizeof(TCHAR));
         if (pQueryFullProcessImageNameW)
         {
             // Windows Vista and later
+            memset(filename, 0, sizeof(filename));
             DWORD pathLength = MAX_PATH * sizeof(TCHAR);
-            pQueryFullProcessImageNameW(windowProcess, 0, filename, &pathLength);
-            // qDebug() << pathLength;
+            BOOL succeded = pQueryFullProcessImageNameW(windowProcess, 0, filename, &pathLength);
+            if (!succeded)
+                qWarning() << "pQueryFullProcessImageNameW returned: " << succeded;
+            exePath = QString::fromWCharArray(filename);
         } else
         {
             // Windows XP
-            GetModuleFileNameEx(windowProcess, NULL, filename, MAX_PATH * sizeof(TCHAR));
-            // qDebug() << pathLength;
+            memset(filename_xp, 0, sizeof(filename_xp));
+            GetModuleFileNameEx(windowProcess, NULL, filename_xp, MAX_PATH * sizeof(TCHAR));
+            exePath = QString(filename_xp);
         }
 
-        exePath = QString(filename);
-        // qDebug() << QString::fromWCharArray(filename);
         CloseHandle(windowProcess);
     }
 
