@@ -21,6 +21,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QDirIterator>
 #include <QLibraryInfo>
 #include <QReadWriteLock>
 #ifdef Q_OS_WIN
@@ -148,13 +149,7 @@ void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QSt
 void lockInputDevices() { sdlWaitMutex.lock(); }
 
 void unlockInputDevices() { sdlWaitMutex.unlock(); }
-/**
- * @brief Universal method for loading icons
- *
- * @param name - name of used icon
- * @param fallback_location - location of icon loaded when icon described by name not found
- * @return QIcon
- */
+
 QIcon loadIcon(const QString &name, const QString &fallback_location)
 {
     qDebug() << " Application theme has icon named: " << name << " " << QIcon::hasThemeIcon(name);
@@ -162,6 +157,36 @@ QIcon loadIcon(const QString &name, const QString &fallback_location)
     if (!f.exists())
     {
         qWarning() << "file " << fallback_location << " does not exist!";
+    }
+    return QIcon::fromTheme(name, QIcon(fallback_location));
+}
+
+QIcon loadIcon(QString name)
+{
+    bool has_icon = QIcon::hasThemeIcon(name);
+    qDebug() << " Application theme has icon named: " << name << " " << has_icon;
+    if (has_icon)
+        return QIcon::fromTheme(name);
+
+    QDirIterator it(":images/", QDirIterator::Subdirectories);
+    QString fallback_location = "";
+    // search also for variants with underscore like document_save.png for document-save
+    QRegExp regex = QRegExp(".*" + name.replace(QChar('-'), "[_-]") + "\\.(svg|png)");
+    while (it.hasNext())
+    {
+        QString value = it.next();
+        if (value.contains(regex))
+        {
+            fallback_location = value;
+            qDebug() << "Found fallback icon: " << value << " for name: " << name << "and regex: " << regex;
+            break;
+        }
+    }
+
+    QFileInfo f(fallback_location);
+    if (!f.exists())
+    {
+        qWarning() << "file: " << fallback_location << " does not exist!";
     }
     return QIcon::fromTheme(name, QIcon(fallback_location));
 }

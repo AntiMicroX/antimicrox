@@ -19,6 +19,7 @@
 #ifndef JOYTABWIDGET_H
 #define JOYTABWIDGET_H
 
+#include <QLabel>
 #include <QWidget>
 
 #include "uihelpers/joytabwidgethelper.h"
@@ -116,6 +117,7 @@ class JoyTabWidget : public QWidget
     void showKeyDelayDialog();
     void showSetNamesDialog(); // JoyTabWidgetSets class
     void toggleNames();
+    void updateBatteryIcon();
 
     void changeSetOne();   // JoyTabWidgetSets class
     void changeSetTwo();   // JoyTabWidgetSets class
@@ -151,6 +153,7 @@ class JoyTabWidget : public QWidget
   private:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *configHorizontalLayout;
+    QLabel *batteryIcon;
     QPushButton *removeButton;
     QPushButton *loadButton;
     QPushButton *saveButton;

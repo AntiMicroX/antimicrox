@@ -181,7 +181,24 @@ void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QSt
 void lockInputDevices();
 void unlockInputDevices();
 
+/**
+ * @brief Universal method for loading icons if current theme does not have this icon, then look for replacement in resources
+ *
+ * @param name - name of used icon like "document-open" according to spec
+ * https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+ * @return QIcon
+ */
+QIcon loadIcon(QString name);
+
+/**
+ * @brief Universal method for loading icons
+ *
+ * @param name - name of used icon
+ * @param fallback_location - location of icon loaded when icon described by name not found
+ * @return QIcon
+ */
 QIcon loadIcon(const QString &name, const QString &fallback_location);
+
 /*!
  * \brief Returns the "human-readable" name of the given profile.
  */
