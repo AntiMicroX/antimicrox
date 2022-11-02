@@ -98,6 +98,14 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     configBox->setObjectName(QString::fromUtf8("configBox"));
     configBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     configHorizontalLayout->addWidget(configBox);
+
+    batteryIcon = new QLabel("", this);
+    batteryIcon->setToolTip(tr("Battery level of controller"));
+    batteryIcon->setObjectName(QString::fromUtf8("battIcon"));
+    batteryIcon->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    configHorizontalLayout->addWidget(batteryIcon);
+    updateBatteryIcon();
+
     spacer1 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     configHorizontalLayout->addItem(spacer1);
 
@@ -2568,4 +2576,60 @@ void JoyTabWidget::convToUniqueIDControllerGroupSett(QSettings *sett, QString gu
         sett->setValue(uniqueControllerSett, sett->value(guidControllerSett));
         sett->remove(guidControllerSett);
     }
+}
+
+void JoyTabWidget::updateBatteryIcon()
+{
+    static QTimer *battery_updater = nullptr;
+    if (!battery_updater)
+    {
+        battery_updater = new QTimer(this);
+        connect(battery_updater, &QTimer::timeout, this, &JoyTabWidget::updateBatteryIcon);
+        battery_updater->start(5000);
+    }
+
+    static SDL_JoystickPowerLevel old_power_level = SDL_JOYSTICK_POWER_UNKNOWN;
+    SDL_JoystickPowerLevel power_level = SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle());
+    if (old_power_level == power_level)
+    {
+        return;
+    }
+    switch (power_level)
+    {
+    case SDL_JOYSTICK_POWER_EMPTY:
+        batteryIcon->setVisible(true);
+        batteryIcon->setPixmap(PadderCommon::loadIcon("battery-empty").pixmap(QSize(20, 20)));
+        break;
+
+    case SDL_JOYSTICK_POWER_LOW:
+        batteryIcon->setVisible(true);
+        batteryIcon->setPixmap(PadderCommon::loadIcon("battery-low").pixmap(QSize(20, 20)));
+        break;
+
+    case SDL_JOYSTICK_POWER_MEDIUM:
+        batteryIcon->setVisible(true);
+        batteryIcon->setPixmap(PadderCommon::loadIcon("battery-good").pixmap(QSize(20, 20)));
+        break;
+
+    case SDL_JOYSTICK_POWER_FULL:
+    case SDL_JOYSTICK_POWER_MAX:
+        batteryIcon->setVisible(true);
+        batteryIcon->setPixmap(PadderCommon::loadIcon("battery-full").pixmap(QSize(20, 20)));
+        break;
+
+    case SDL_JOYSTICK_POWER_UNKNOWN:
+        batteryIcon->setVisible(false);
+        break;
+
+    case SDL_JOYSTICK_POWER_WIRED:
+        batteryIcon->setVisible(true);
+        batteryIcon->setPixmap(PadderCommon::loadIcon("battery-good-charging").pixmap(QSize(20, 20)));
+        break;
+
+    default:
+        batteryIcon->setVisible(false);
+        WARN() << "Unknown battery level:" << power_level << " for joystick: " << m_joystick->getName();
+        break;
+    }
+    old_power_level = power_level;
 }

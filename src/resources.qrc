@@ -42,6 +42,12 @@
         <file>images/actions/view_refresh.png</file>
         <file>images/actions/view_restore.png</file>
 
+        <file>images/actions/battery-empty.png</file>
+        <file>images/actions/battery-full.png</file>
+        <file>images/actions/battery-good-charging.png</file>
+        <file>images/actions/battery-good.png</file>
+        <file>images/actions/battery-low.png</file>
+
         <file>images/battery-low-level.png</file>
         <file>images/actions/join_slots.png</file>
         <file>images/actions/split_slot.png</file>
