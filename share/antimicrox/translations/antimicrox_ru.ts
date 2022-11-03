@@ -1504,7 +1504,8 @@ worn out analog stick.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="345"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation type="unfinished">Настройки тяги определяют как программа будет расценивать удерживание или отпускание оси.</translation>
+        <translation>Настройки тяги определяют как программа будет
+расценивать удерживание или отпускание оси.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="364"/>
