@@ -27,7 +27,7 @@ constexpr u16 u16tole(u16 x)
 {
 #if __BYTE_ORDER == __LITTLE_ENDIAN
     return x;
-#elif __BYTE_ORDER == _BIG_ENDIAN
+#elif __BYTE_ORDER == __BIG_ENDIAN
     return ((x << 8) & 0xFF00) | ((x >> 8) & 0x00FF);
 #else
     #error "Target machine has unknown endianness!"
@@ -38,7 +38,7 @@ constexpr u32 u32tole(u32 x)
 {
 #if __BYTE_ORDER == __LITTLE_ENDIAN
     return x;
-#elif __BYTE_ORDER == _BIG_ENDIAN
+#elif __BYTE_ORDER == __BIG_ENDIAN
     return ((x << 24) & 0xFF000000) | ((x << 8) & 0x00FF0000) | ((x >> 8) & 0x0000FF00) | ((x >> 24) & 0x000000FF);
 #else
     #error "Target machine has unknown endianness!"
