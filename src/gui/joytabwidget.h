@@ -220,8 +220,8 @@ class JoyTabWidget : public QWidget
     bool displayingNames;
     static bool changedNotSaved;
     AntiMicroSettings *m_settings;
-    int comboBoxIndex;
-    bool hideEmptyButtons;
+    int comboBoxIndex = 0;
+    bool hideEmptyButtons = false;
     QString oldProfileName;
 
     JoyTabWidgetHelper tabHelper;
