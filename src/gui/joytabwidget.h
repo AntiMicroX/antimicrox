@@ -22,6 +22,8 @@
 #include <QLabel>
 #include <QWidget>
 
+#include <SDL_joystick.h>
+
 #include "uihelpers/joytabwidgethelper.h"
 
 class InputDevice;
@@ -223,6 +225,9 @@ class JoyTabWidget : public QWidget
     QString oldProfileName;
 
     JoyTabWidgetHelper tabHelper;
+
+    SDL_JoystickPowerLevel m_old_power_level = SDL_JOYSTICK_POWER_UNKNOWN;
+    QTimer *m_battery_updater;
 };
 
 #endif // JOYTABWIDGET_H
