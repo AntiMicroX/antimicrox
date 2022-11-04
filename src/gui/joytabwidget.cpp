@@ -104,7 +104,9 @@ JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, Q
     batteryIcon->setObjectName(QString::fromUtf8("battIcon"));
     batteryIcon->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     configHorizontalLayout->addWidget(batteryIcon);
-    updateBatteryIcon();
+    m_battery_updater = new QTimer(this);
+    connect(m_battery_updater, &QTimer::timeout, this, &JoyTabWidget::updateBatteryIcon);
+    m_battery_updater->start(5000);
 
     spacer1 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Fixed);
     configHorizontalLayout->addItem(spacer1);
@@ -2580,17 +2582,8 @@ void JoyTabWidget::convToUniqueIDControllerGroupSett(QSettings *sett, QString gu
 
 void JoyTabWidget::updateBatteryIcon()
 {
-    static QTimer *battery_updater = nullptr;
-    if (!battery_updater)
-    {
-        battery_updater = new QTimer(this);
-        connect(battery_updater, &QTimer::timeout, this, &JoyTabWidget::updateBatteryIcon);
-        battery_updater->start(5000);
-    }
-
-    static SDL_JoystickPowerLevel old_power_level = SDL_JOYSTICK_POWER_UNKNOWN;
     SDL_JoystickPowerLevel power_level = SDL_JoystickCurrentPowerLevel(m_joystick->getJoyHandle());
-    if (old_power_level == power_level)
+    if (m_old_power_level == power_level)
     {
         return;
     }
@@ -2631,5 +2624,5 @@ void JoyTabWidget::updateBatteryIcon()
         WARN() << "Unknown battery level:" << power_level << " for joystick: " << m_joystick->getName();
         break;
     }
-    old_power_level = power_level;
+    m_old_power_level = power_level;
 }
