@@ -72,14 +72,10 @@ bool JoyTabWidget::changedNotSaved = false;
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent)
     : QWidget(parent)
     , tabHelper(joystick)
+    , m_joystick(joystick)
+    , m_settings(settings)
 {
-    m_joystick = joystick;
-    m_settings = settings;
-
     tabHelper.moveToThread(joystick->thread());
-
-    comboBoxIndex = 0;
-    hideEmptyButtons = false;
 
     verticalLayout = new QVBoxLayout(this);
     verticalLayout->setContentsMargins(4, 4, 4, 4);
