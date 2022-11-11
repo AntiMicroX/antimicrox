@@ -267,10 +267,13 @@ void SDLEventReader::loadSdlMappingsFromDatabase()
             qWarning() << "Loading game controller mappings from database: " << database_file << " failed";
         else
             DEBUG() << "Loaded " << result << " game controller mappings from database";
-    } else
+    }
+#ifndef QT_DEBUG
+    else
     {
         qWarning() << "File with game controller mappings " << database_file << " does not exist";
     }
+#endif
 }
 
 QMap<SDL_JoystickID, InputDevice *> *SDLEventReader::getJoysticks() const { return joysticks; }
