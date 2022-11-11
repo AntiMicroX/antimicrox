@@ -464,7 +464,7 @@ void AdvanceButtonDialog::insertSlot()
                     blankButton->refreshButtonLabel();
 
                     QMetaObject::invokeMethod(&helper, "insertAssignedSlot", Qt::BlockingQueuedConnection, Q_ARG(int, 0),
-                                              Q_ARG(uint, 0), Q_ARG(int, current));
+                                              Q_ARG(int, 0), Q_ARG(int, current));
 
                     updateSlotsScrollArea(0);
                 }
