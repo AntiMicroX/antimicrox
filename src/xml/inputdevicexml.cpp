@@ -25,6 +25,7 @@
 
 #include "common.h"
 #include "globalvariables.h"
+#include "logger.h"
 
 #include <QDebug>
 #include <QXmlStreamReader>
@@ -45,10 +46,18 @@ InputDeviceXml::InputDeviceXml(InputDevice *inputDevice, QObject *parent)
  */
 void InputDeviceXml::readConfig(QXmlStreamReader *xml)
 {
+    m_mutex_read_config.try_lock();
     // reading of config should be handled in inputEventThread
     if (this->thread() != QThread::currentThread())
     {
         emit readConfigSig(xml);
+        DEBUG() << "Redirecting readConfig call to antoher Thread, waiting on mutex here.";
+        bool opened = m_mutex_read_config.tryLock(1000);
+        if (opened)
+            DEBUG() << "readConfig mutex opened";
+        else
+            WARN() << "Could not open mutex_read_config";
+        m_mutex_read_config.unlock();
         return;
     }
     if (xml->isStartElement() && (xml->name() == m_inputDevice->getXmlName()))
@@ -362,6 +371,7 @@ void InputDeviceXml::readConfig(QXmlStreamReader *xml)
 
         m_inputDevice->reInitButtons();
     }
+    m_mutex_read_config.unlock();
 }
 
 /**

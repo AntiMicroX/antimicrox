@@ -18,6 +18,7 @@
 #ifndef INPUTDEVICEXML_H
 #define INPUTDEVICEXML_H
 
+#include <QMutex>
 #include <QObject>
 
 class QXmlStreamReader;
@@ -49,6 +50,9 @@ class InputDeviceXml : public QObject
 
   private:
     InputDevice *m_inputDevice;
+
+    // ensures that readConfig returns when reading is finished even for reading in different thread
+    QMutex m_mutex_read_config;
 };
 
 #endif // INPUTDEVICEXML_H
