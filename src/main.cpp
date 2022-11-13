@@ -38,6 +38,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
+#include <QDirIterator>
 #include <QException>
 #include <QLibraryInfo>
 #include <QLocalSocket>
@@ -387,7 +388,18 @@ int main(int argc, char *argv[])
     localServer->startLocalServer();
 
 #if defined(Q_OS_WIN)
-    qApp->setStyle("fusion");
+    QFile f(":/qdarkstyle/dark/darkstyle.qss");
+
+    if (!f.exists())
+    {
+        qWarning() << "Unable to set stylesheet, file not found";
+    } else
+    {
+        f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&f);
+        qApp->setStyleSheet(ts.readAll());
+        qInfo() << "Style set";
+    }
 #endif
 
     antimicrox.setQuitOnLastWindowClosed(false);

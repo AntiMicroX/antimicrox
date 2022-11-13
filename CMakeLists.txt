@@ -480,6 +480,8 @@ elseif(WIN32)
     LIST(APPEND antimicrox_FORMS
         src/gui/winappprofiletimerdialog.ui    
     )
+    LIST(APPEND antimicrox_RESOURCES 
+        other/darkstyle/darkstyle.qrc)
 endif(UNIX)
 
 ###############################
