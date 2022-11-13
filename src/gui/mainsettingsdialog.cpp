@@ -170,8 +170,11 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     {
         ui->traySingleProfileListCheckBox->setChecked(true);
     }
-
+#ifdef Q_OS_LINUX
+    bool minimizeToTaskBar = settings->value("MinimizeToTaskbar", true).toBool();
+#else
     bool minimizeToTaskBar = settings->value("MinimizeToTaskbar", false).toBool();
+#endif
     if (minimizeToTaskBar)
     {
         ui->minimizeTaskbarCheckBox->setChecked(true);
