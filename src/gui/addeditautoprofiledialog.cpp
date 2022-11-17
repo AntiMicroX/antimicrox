@@ -466,14 +466,6 @@ bool AddEditAutoProfileDialog::getDefaultInfo() const { return defaultInfo; }
 
 QList<QString> const &AddEditAutoProfileDialog::getReservedUniques() { return reservedUniques; }
 
-void AddEditAutoProfileDialog::on_setPartialCheckBox_stateChanged(int arg1)
-{
-    if (arg1 == 0)
-        ui->winNameLineEdit->setEnabled(false);
-    else
-        ui->winNameLineEdit->setEnabled(true);
-}
-
 void AddEditAutoProfileDialog::checkDefaultCheckbox(const QString &text)
 {
     if (text == "all")
