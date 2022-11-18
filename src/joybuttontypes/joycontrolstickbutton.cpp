@@ -47,7 +47,7 @@ QString JoyControlStickButton::getDirectionName() const
 {
     QString label = QString();
 
-    switch (m_index)
+    switch (m_index_sdl)
     {
     case 1:
         label.append(tr("Up"));
@@ -141,11 +141,11 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(m_index, this->stick->getIndex(), setSelection, condition);
+            emit setAssignmentChanged(m_index_sdl, this->stick->getIndex(), setSelection, condition);
         } else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(m_index, this->stick->getIndex(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index_sdl, this->stick->getIndex(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
@@ -166,11 +166,11 @@ void JoyControlStickButton::setChangeSetCondition(SetChangeCondition condition, 
     }
 }
 
-int JoyControlStickButton::getRealJoyNumber() const { return m_index; }
+int JoyControlStickButton::getRealJoyNumber() const { return m_index_sdl; }
 
 JoyStickDirectionsType::JoyStickDirections JoyControlStickButton::getDirection() const
 {
-    return static_cast<JoyStickDirectionsType::JoyStickDirections>(m_index);
+    return static_cast<JoyStickDirectionsType::JoyStickDirections>(m_index_sdl);
 }
 
 /**
@@ -249,18 +249,18 @@ double JoyControlStickButton::getCurrentSpringDeadCircle()
 {
     double result = (springDeadCircleMultiplier * 0.01);
 
-    if ((m_index == static_cast<int>(JoyControlStick::StickLeft)) ||
-        (m_index == static_cast<int>(JoyControlStick::StickRight)))
+    if ((m_index_sdl == static_cast<int>(JoyControlStick::StickLeft)) ||
+        (m_index_sdl == static_cast<int>(JoyControlStick::StickRight)))
     {
         result = stick->getSpringDeadCircleX() * (springDeadCircleMultiplier * 0.01);
-    } else if ((m_index == static_cast<int>(JoyControlStick::StickUp)) ||
-               (m_index == static_cast<int>(JoyControlStick::StickDown)))
+    } else if ((m_index_sdl == static_cast<int>(JoyControlStick::StickUp)) ||
+               (m_index_sdl == static_cast<int>(JoyControlStick::StickDown)))
     {
         result = stick->getSpringDeadCircleY() * (springDeadCircleMultiplier * 0.01);
-    } else if ((m_index == static_cast<int>(JoyControlStick::StickRightUp)) ||
-               (m_index == static_cast<int>(JoyControlStick::StickRightDown)) ||
-               (m_index == static_cast<int>(JoyControlStick::StickLeftDown)) ||
-               (m_index == static_cast<int>(JoyControlStick::StickLeftUp)))
+    } else if ((m_index_sdl == static_cast<int>(JoyControlStick::StickRightUp)) ||
+               (m_index_sdl == static_cast<int>(JoyControlStick::StickRightDown)) ||
+               (m_index_sdl == static_cast<int>(JoyControlStick::StickLeftDown)) ||
+               (m_index_sdl == static_cast<int>(JoyControlStick::StickLeftUp)))
     {
         result = 0.0;
     }

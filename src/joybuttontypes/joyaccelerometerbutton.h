@@ -26,7 +26,8 @@ class JoyAccelerometerButton : public JoySensorButton
     Q_OBJECT
 
   public:
-    explicit JoyAccelerometerButton(JoySensor *sensor, int index, int originset, SetJoystick *parentSet, QObject *parent);
+    explicit JoyAccelerometerButton(JoySensor *sensor, int sdl_button_index, int originset, SetJoystick *parentSet,
+                                    QObject *parent);
 
     virtual QString getDirectionName() const override;
 };

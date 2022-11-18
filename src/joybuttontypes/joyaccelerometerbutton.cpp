@@ -18,9 +18,9 @@
 #include "joyaccelerometerbutton.h"
 #include "joysensordirection.h"
 
-JoyAccelerometerButton::JoyAccelerometerButton(JoySensor *sensor, int index, int originset, SetJoystick *parentSet,
-                                               QObject *parent)
-    : JoySensorButton(sensor, index, originset, parentSet, parent)
+JoyAccelerometerButton::JoyAccelerometerButton(JoySensor *sensor, int sdl_button_index, int originset,
+                                               SetJoystick *parentSet, QObject *parent)
+    : JoySensorButton(sensor, sdl_button_index, originset, parentSet, parent)
 {
 }
 
@@ -32,7 +32,7 @@ QString JoyAccelerometerButton::getDirectionName() const
 {
     QString label = QString();
 
-    switch (m_index)
+    switch (m_index_sdl)
     {
     case JoySensorDirection::SENSOR_UP:
         label.append(tr("Up"));

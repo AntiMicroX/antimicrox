@@ -31,7 +31,7 @@ QString JoyGyroscopeButton::getDirectionName() const
 {
     QString label = QString();
 
-    switch (m_index)
+    switch (m_index_sdl)
     {
     case JoySensorDirection::SENSOR_UP:
         label.append(tr("Pitch Up"));
