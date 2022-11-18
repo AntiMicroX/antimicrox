@@ -77,7 +77,7 @@ QString JoyDPadButton::getDirectionName() const
 
 QString JoyDPadButton::getXmlName() { return GlobalVariables::JoyDPadButton::xmlName; }
 
-int JoyDPadButton::getRealJoyNumber() const { return m_index; }
+int JoyDPadButton::getRealJoyNumber() const { return m_index_sdl; }
 
 QString JoyDPadButton::getPartialName(bool forceFullFormat, bool displayNames) const
 {
@@ -126,11 +126,11 @@ void JoyDPadButton::setChangeSetCondition(SetChangeCondition condition, bool pas
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(m_index, m_dpad->getJoyNumber(), setSelection, condition);
+            emit setAssignmentChanged(m_index_sdl, m_dpad->getJoyNumber(), setSelection, condition);
         } else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(m_index, m_dpad->getJoyNumber(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index_sdl, m_dpad->getJoyNumber(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;

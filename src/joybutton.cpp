@@ -73,7 +73,7 @@ QList<JoyButton *> JoyButton::pendingMouseButtons;
 
 // IT CAN BE HERE
 // LOOK FOR JoyCycle and put JoyMix next to the slots types
-JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent)
+JoyButton::JoyButton(int sdl_button_index, int originset, SetJoystick *parentSet, QObject *parent)
     : QObject(parent)
 {
     m_vdpad = nullptr;
@@ -115,10 +115,10 @@ JoyButton::JoyButton(int index, int originset, SetJoystick *parentSet, QObject *
     // Make sure to call before calling reset
     resetAllProperties();
 
-    m_index = index;
+    m_index_sdl = sdl_button_index;
     m_originset = originset;
     quitEvent = true;
-    VERBOSE() << "Created button with ID: " << m_index << " For set: " << originset << " Name: " << getName();
+    VERBOSE() << "Created button with ID: " << m_index_sdl << " For set: " << originset << " Name: " << getName();
 }
 
 JoyButton::~JoyButton()
@@ -158,9 +158,9 @@ void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
         isButtonPressed = pressed;
 
         if (isButtonPressed)
-            emit clicked(m_index);
+            emit clicked(m_index_sdl);
         else
-            emit released(m_index);
+            emit released(m_index_sdl);
 
         if (!ignoresets)
             m_vdpad->queueJoyEvent(ignoresets);
@@ -176,7 +176,7 @@ void JoyButton::vdpadPassEvent(bool pressed, bool ignoresets)
 void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
     if (Logger::isDebugEnabled())
-        DEBUG() << "Processing JoyButton::joyEvent for: " << getName() << " SDL index: " << m_index
+        DEBUG() << "Processing JoyButton::joyEvent for: " << getName() << " SDL index: " << m_index_sdl
                 << " className: " << metaObject()->className();
 
     if ((m_vdpad != nullptr) && !pendingEvent)
@@ -186,21 +186,21 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
     {
         isButtonPressed = pressed;
         if (isButtonPressed)
-            emit clicked(m_index);
+            emit clicked(m_index_sdl);
         else
-            emit released(m_index);
+            emit released(m_index_sdl);
     } else
     {
         if (pressed != isDown)
         {
             if (pressed)
             {
-                emit clicked(m_index);
+                emit clicked(m_index_sdl);
                 if (updateInitAccelValues)
                     oldAccelMulti = updateOldAccelMulti = accelTravel = 0.0;
             } else
             {
-                emit released(m_index);
+                emit released(m_index_sdl);
             }
 
             bool activePress = pressed;
@@ -352,18 +352,18 @@ void JoyButton::startSequenceOfPressActive(bool isTurbo, QString debugText)
 }
 
 /**
- * @brief Get 0 indexed number of button
+ * @brief Get 0 indexed number of SDL button index
  * @return 0 indexed button index number
  */
-int JoyButton::getJoyNumber() { return m_index; }
+int JoyButton::getJoyNumber() { return m_index_sdl; }
 
 /**
  * @brief Get a 1 indexed number of button
  * @return 1 indexed button index number
  */
-int JoyButton::getRealJoyNumber() const { return m_index + 1; }
+int JoyButton::getRealJoyNumber() const { return m_index_sdl + 1; }
 
-void JoyButton::setJoyNumber(int index) { m_index = index; }
+void JoyButton::setJoyNumber(int index) { m_index_sdl = index; }
 
 void JoyButton::setToggle(bool toggle)
 {
@@ -403,7 +403,7 @@ void JoyButton::resetPrivVars()
 void JoyButton::reset(int index)
 {
     JoyButton::reset();
-    m_index = index;
+    m_index_sdl = index;
 }
 
 bool JoyButton::getToggleState() { return m_toggle; }
@@ -980,7 +980,7 @@ void JoyButton::slotSetChange()
         // Ensure that a change to the current set is not attempted.
         if (setChangeIndex != m_originset)
         {
-            emit released(m_index);
+            emit released(m_index_sdl);
             emit setChangeActivated(setChangeIndex);
         }
     }
@@ -2437,11 +2437,11 @@ void JoyButton::setChangeSetCondition(SetChangeCondition condition, bool passive
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(m_index, setSelection, condition);
+            emit setAssignmentChanged(m_index_sdl, setSelection, condition);
         } else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(m_index, setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index_sdl, setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;
@@ -2591,7 +2591,7 @@ void JoyButton::restartAllForSetChange()
     isButtonPressedQueue.clear();
     ignoreSetQueue.clear();
 
-    emit released(m_index);
+    emit released(m_index_sdl);
     emit setChangeActivated(setSelection);
 }
 

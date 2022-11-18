@@ -25,8 +25,8 @@
 
 #include <QDebug>
 
-JoyGradientButton::JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent)
-    : JoyButton(index, originset, parentSet, parent)
+JoyGradientButton::JoyGradientButton(int sdl_button_index, int originset, SetJoystick *parentSet, QObject *parent)
+    : JoyButton(sdl_button_index, originset, parentSet, parent)
 {
 }
 

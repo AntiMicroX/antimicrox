@@ -40,7 +40,7 @@ JoySensorButton::JoySensorButton(JoySensor *sensor, int index, int originset, Se
  * @brief Get a 0 indexed number of button
  * @return 0 indexed button index number
  */
-int JoySensorButton::getRealJoyNumber() const { return m_index; }
+int JoySensorButton::getRealJoyNumber() const { return m_index_sdl; }
 
 /**
  * @brief Get the name of the button.
@@ -82,7 +82,7 @@ QString JoySensorButton::getXmlName() { return GlobalVariables::JoySensorButton:
  */
 double JoySensorButton::getDistanceFromDeadZone()
 {
-    return m_sensor->calculateDirectionalDistance(static_cast<JoySensorDirection>(m_index));
+    return m_sensor->calculateDirectionalDistance(static_cast<JoySensorDirection>(m_index_sdl));
 }
 
 /**
@@ -91,7 +91,7 @@ double JoySensorButton::getDistanceFromDeadZone()
  */
 double JoySensorButton::getMouseDistanceFromDeadZone()
 {
-    return m_sensor->calculateDirectionalDistance(static_cast<JoySensorDirection>(m_index));
+    return m_sensor->calculateDirectionalDistance(static_cast<JoySensorDirection>(m_index_sdl));
 }
 
 void JoySensorButton::setChangeSetCondition(SetChangeCondition condition, bool passive, bool updateActiveString)
@@ -104,12 +104,12 @@ void JoySensorButton::setChangeSetCondition(SetChangeCondition condition, bool p
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(static_cast<JoySensorDirection>(m_index), m_sensor->getType(), setSelection,
+            emit setAssignmentChanged(static_cast<JoySensorDirection>(m_index_sdl), m_sensor->getType(), setSelection,
                                       condition);
         } else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(static_cast<JoySensorDirection>(m_index), m_sensor->getType(), setSelection,
+            emit setAssignmentChanged(static_cast<JoySensorDirection>(m_index_sdl), m_sensor->getType(), setSelection,
                                       SetChangeDisabled);
         }
 
@@ -154,4 +154,4 @@ JoySensor *JoySensorButton::getSensor() const { return m_sensor; }
 /**
  * @brief returns the direction of this button.
  */
-JoySensorDirection JoySensorButton::getDirection() const { return static_cast<JoySensorDirection>(m_index); }
+JoySensorDirection JoySensorButton::getDirection() const { return static_cast<JoySensorDirection>(m_index_sdl); }

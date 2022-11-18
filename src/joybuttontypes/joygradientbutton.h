@@ -28,7 +28,7 @@ class JoyGradientButton : public JoyButton
     Q_OBJECT
 
   public:
-    explicit JoyGradientButton(int index, int originset, SetJoystick *parentSet, QObject *parent);
+    explicit JoyGradientButton(int sdl_button_index, int originset, SetJoystick *parentSet, QObject *parent);
 
     using JoyButton::getPartialName;
     using JoyButton::setChangeSetCondition;

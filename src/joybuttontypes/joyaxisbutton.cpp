@@ -60,7 +60,7 @@ QString JoyAxisButton::getPartialName(bool forceFullFormat, bool displayNames) c
     {
         QString buttontype = QString();
 
-        switch (m_index)
+        switch (m_index_sdl)
         {
         case 0:
             buttontype = tr("Negative");
@@ -92,11 +92,11 @@ void JoyAxisButton::setChangeSetCondition(SetChangeCondition condition, bool pas
         if ((condition == SetChangeWhileHeld) || (condition == SetChangeTwoWay))
         {
             // Set new condition
-            emit setAssignmentChanged(m_index, m_axis->getIndex(), setSelection, condition);
+            emit setAssignmentChanged(m_index_sdl, m_axis->getIndex(), setSelection, condition);
         } else if ((setSelectionCondition == SetChangeWhileHeld) || (setSelectionCondition == SetChangeTwoWay))
         {
             // Remove old condition
-            emit setAssignmentChanged(m_index, m_axis->getIndex(), setSelection, SetChangeDisabled);
+            emit setAssignmentChanged(m_index_sdl, m_axis->getIndex(), setSelection, SetChangeDisabled);
         }
 
         setSelectionCondition = condition;

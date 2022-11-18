@@ -48,7 +48,7 @@ class JoyButton : public QObject
     Q_OBJECT
 
   public:
-    explicit JoyButton(int index, int originset, SetJoystick *parentSet, QObject *parent);
+    explicit JoyButton(int sdl_button_index, int originset, SetJoystick *parentSet, QObject *parent);
     ~JoyButton();
 
     enum SetChangeCondition
@@ -300,7 +300,7 @@ class JoyButton : public QObject
     static JoyButtonSlot *lastActiveKey; // JoyButtonSlots class
     static JoyButtonMouseHelper mouseHelper;
 
-    int m_index; // Used to denote the SDL index of the actual joypad button
+    int m_index_sdl; // Used to denote the SDL index of the actual joypad button
     int turboInterval;
     int wheelSpeedX;
     int wheelSpeedY;
