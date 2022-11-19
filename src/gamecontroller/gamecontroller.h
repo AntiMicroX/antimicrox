@@ -110,6 +110,8 @@ class GameController : public InputDevice
     SDL_JoystickID joystickID;
     SDL_GameController *controller;
     SDL_GameControllerType m_controller_type;
+
+    void enableSensors();
 };
 
 #endif // GAMECONTROLLER_H

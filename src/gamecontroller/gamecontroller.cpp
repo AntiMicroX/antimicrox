@@ -48,6 +48,7 @@ GameController::GameController(SDL_GameController *controller, int deviceIndex, 
     m_controller_type = SDL_CONTROLLER_TYPE_UNKNOWN;
 #endif
 
+    enableSensors();
     for (int i = 0; i < GlobalVariables::InputDevice::NUMBER_JOYSETS; i++)
     {
         GameControllerSet *controllerset = new GameControllerSet(this, i, this);
@@ -286,6 +287,21 @@ SDL_GameControllerButtonBind GameController::getBindForButton(int index)
 void GameController::buttonClickEvent(int) {}
 
 void GameController::buttonReleaseEvent(int) {}
+
+void GameController::enableSensors()
+{
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+    if (SDL_GameControllerHasSensor(controller, SDL_SENSOR_GYRO))
+    {
+        SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE);
+    }
+
+    if (SDL_GameControllerHasSensor(controller, SDL_SENSOR_ACCEL))
+    {
+        SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_ACCEL, SDL_TRUE);
+    }
+#endif
+}
 
 void GameController::axisActivatedEvent(int, int, int) {}
 

@@ -193,25 +193,11 @@ void InputDaemon::refreshJoysticks()
                 SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
                 SDL_JoystickID tempJoystickID = SDL_JoystickInstanceID(sdlStick);
 
-    #if SDL_VERSION_ATLEAST(2, 0, 14)
-                if (SDL_GameControllerHasSensor(controller, SDL_SENSOR_GYRO))
-                {
-                    SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE);
-                }
-
-                if (SDL_GameControllerHasSensor(controller, SDL_SENSOR_ACCEL))
-                {
-                    SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_ACCEL, SDL_TRUE);
-                }
-    #endif
-
                 // Check if device has already been grabbed.
                 if (!m_joysticks->contains(tempJoystickID))
                 {
                     QString guidText = getJoyInfo(SDL_JoystickGetGUID(sdlStick));
-
                     QString vendor = getJoyInfo(SDL_GameControllerGetVendor(controller));
-
                     QString productID = getJoyInfo(SDL_GameControllerGetProduct(controller));
 
                     if (uniques.contains(guidText))
