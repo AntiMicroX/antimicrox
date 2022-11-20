@@ -1,4 +1,25 @@
 # Changelog
+## [3.3.2](https://github.com/AntiMicroX/antimicrox/tree/3.3.2) (2022-11-21)
+
+**Implemented enhancements:**
+
+- Use proper theme-based color for tab text [\#583](https://github.com/AntiMicroX/antimicrox/pull/583)
+- Show joystick battery level in tab [\#596](https://github.com/AntiMicroX/antimicrox/pull/596)
+
+**Fixed bugs:**
+
+- Fix broken obtaining path of active window by auto profile [\#592](https://github.com/AntiMicroX/antimicrox/pull/592)
+- Fix auto profile fialog does not populating title and application fields
+- Fix misspeled __BIG_ENDIAN constant [\#609](https://github.com/AntiMicroX/antimicrox/pull/599)
+- Fix advanced settings dialog freezes when pressing join on Linux [\#609](https://github.com/AntiMicroX/antimicrox/pull/609)
+- Remove disabling Auto-profile title box [\#619](https://github.com/AntiMicroX/antimicrox/pull/619)
+
+**Notable changes:**
+
+- don't minimize to taskbar by default on Linux [\#611](https://github.com/AntiMicroX/antimicrox/pull/611)
+
+**Full Changelog**: https://github.com/AntiMicroX/antimicrox/compare/3.3.1...3.3.2
+
 ## [3.3.1](https://github.com/AntiMicroX/antimicrox/tree/3.3.1) (2022-10-24)
 
 [Full Changelog](https://github.com/AntiMicroX/antimicrox/compare/3.3.0...3.3.1)
