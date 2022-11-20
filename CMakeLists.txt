@@ -176,11 +176,11 @@ set(antimicrox_SOURCES
         src/joyaccelerometersensor.cpp
         src/joyaxis.cpp
         src/joyaxiscontextmenu.cpp
-        src/joybutton.cpp
         src/joybuttoncontextmenu.cpp
         src/joybuttonmousehelper.cpp
         src/joybuttonslot.cpp
         src/joybuttonstatusbox.cpp
+        src/joybuttontypes/joybutton.cpp
         src/joybuttontypes/joyaccelerometerbutton.cpp
         src/joybuttontypes/joyaxisbutton.cpp
         src/joybuttontypes/joycontrolstickbutton.cpp
@@ -309,11 +309,11 @@ set(antimicrox_HEADERS
         src/joyaccelerometersensor.h
         src/joyaxis.h
         src/joyaxiscontextmenu.h
-        src/joybutton.h
         src/joybuttoncontextmenu.h
         src/joybuttonmousehelper.h
         src/joybuttonslot.h
         src/joybuttonstatusbox.h
+        src/joybuttontypes/joybutton.h
         src/joybuttontypes/joyaccelerometerbutton.h
         src/joybuttontypes/joyaxisbutton.h
         src/joybuttontypes/joycontrolstickbutton.h

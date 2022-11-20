@@ -31,7 +31,7 @@
 #include "event.h"
 #include "eventhandlerfactory.h"
 #include "globalvariables.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "logger.h"
 
 #if defined(Q_OS_UNIX)

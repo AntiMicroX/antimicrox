@@ -21,7 +21,7 @@
 #include "antimicrosettings.h"
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 #include <QDesktopWidget>

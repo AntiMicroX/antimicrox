@@ -16,8 +16,8 @@
  */
 
 #include "joybuttonxml.h"
-#include "joybutton.h"
 #include "joybuttonslotxml.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 #include <QXmlStreamReader>

@@ -19,8 +19,8 @@
 #include "joytabwidgethelper.h"
 
 #include "inputdevice.h"
-#include "joybutton.h"
 #include "joybuttonslot.h"
+#include "joybuttontypes/joybutton.h"
 #include "logger.h"
 #include "xml/inputdevicexml.h"
 #include "xmlconfigreader.h"

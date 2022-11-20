@@ -19,7 +19,7 @@
 #include "inputdevicebitarraystatus.h"
 
 #include "inputdevice.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "joydpad.h"
 #include "joystick.h"
 #include "setjoystick.h"

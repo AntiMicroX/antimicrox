@@ -18,7 +18,7 @@
 
 #include "joybuttonstatusbox.h"
 
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 #include <QStyle>
