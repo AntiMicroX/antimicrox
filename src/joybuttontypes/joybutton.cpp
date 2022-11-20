@@ -118,7 +118,7 @@ JoyButton::JoyButton(int sdl_button_index, int originset, SetJoystick *parentSet
     m_index_sdl = sdl_button_index;
     m_originset = originset;
     quitEvent = true;
-    VERBOSE() << "Created button with ID: " << m_index_sdl << " For set: " << originset << " Name: " << getName();
+    DEBUG() << "Created button with ID: " << m_index_sdl << " For set: " << originset << " Name: " << getName();
 }
 
 JoyButton::~JoyButton()
