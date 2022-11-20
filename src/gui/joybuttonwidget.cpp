@@ -18,8 +18,8 @@
 
 #include "joybuttonwidget.h"
 
-#include "joybutton.h"
 #include "joybuttoncontextmenu.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 #include <QMenu>

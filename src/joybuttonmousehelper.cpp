@@ -19,7 +19,7 @@
 #include "joybuttonmousehelper.h"
 
 #include "globalvariables.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 #include <QList>

@@ -21,7 +21,7 @@
 
 #include "advancebuttondialog.h"
 #include "inputdevice.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "keyboard/virtualkeyboardmousewidget.h"
 #include "quicksetdialog.h"
 

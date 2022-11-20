@@ -19,7 +19,7 @@
 #include "gamecontrollerdpad.h"
 
 #include "globalvariables.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "setjoystick.h"
 #include "xml/joydpadxml.h"
 

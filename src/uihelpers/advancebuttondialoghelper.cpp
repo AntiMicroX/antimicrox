@@ -18,7 +18,7 @@
 
 #include "advancebuttondialoghelper.h"
 
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 

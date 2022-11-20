@@ -19,7 +19,7 @@
 #ifndef JOYCONTROLSTICK_H
 #define JOYCONTROLSTICK_H
 
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "joycontrolstickdirectionstype.h"
 
 #include <QPointer>

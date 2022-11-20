@@ -19,7 +19,7 @@
 #ifndef MOUSESETTINGSDIALOG_H
 #define MOUSESETTINGSDIALOG_H
 
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDialog>
 

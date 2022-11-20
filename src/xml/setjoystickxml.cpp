@@ -23,7 +23,7 @@
 #include <memory>
 
 #include "joyaxis.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "joycontrolstick.h"
 #include "joydpad.h"
 #include "joysensor.h"

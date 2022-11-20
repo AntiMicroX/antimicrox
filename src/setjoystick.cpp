@@ -20,7 +20,7 @@
 
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "joybuttontypes/joycontrolstickbutton.h"
 #include "joybuttontypes/joysensorbutton.h"
 #include "joycontrolstick.h"

@@ -21,7 +21,7 @@
 #include "common.h"
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QActionGroup>
 #include <QDebug>

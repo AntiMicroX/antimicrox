@@ -22,7 +22,7 @@
 #include "event.h"
 #include "globalvariables.h"
 #include "inputdevice.h"
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 #include "joytabwidget.h"
 #include "simplekeygrabberbutton.h"
 //#include "logger.h"

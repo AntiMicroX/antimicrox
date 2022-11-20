@@ -18,8 +18,8 @@
 
 #include "mousebuttonsettingsdialoghelper.h"
 
-#include "joybutton.h"
 #include "joybuttonslot.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 

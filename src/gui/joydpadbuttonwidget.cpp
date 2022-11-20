@@ -18,7 +18,7 @@
 
 #include "joydpadbuttonwidget.h"
 
-#include "joybutton.h"
+#include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
 #include <QWidget>
