@@ -32,6 +32,11 @@ namespace Ui {
 class Calibration;
 }
 
+/**
+ * @brief Opens calibration window used for calibration
+ *
+ * @details Class used for calibration of joysticks, gyroscopes etc.
+ */
 class Calibration : public QDialog
 {
     Q_OBJECT
