@@ -9,7 +9,7 @@
 **Fixed bugs:**
 
 - Fix broken obtaining path of active window by auto profile [\#592](https://github.com/AntiMicroX/antimicrox/pull/592)
-- Fix auto profile fialog does not populating title and application fields
+- Fix auto profile dialog does not populate title and application fields
 - Fix misspeled __BIG_ENDIAN constant [\#609](https://github.com/AntiMicroX/antimicrox/pull/599)
 - Fix advanced settings dialog freezes when pressing join on Linux [\#609](https://github.com/AntiMicroX/antimicrox/pull/609)
 - Remove disabling Auto-profile title box [\#619](https://github.com/AntiMicroX/antimicrox/pull/619)
