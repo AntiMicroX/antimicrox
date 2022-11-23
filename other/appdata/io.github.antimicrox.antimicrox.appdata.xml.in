@@ -89,13 +89,16 @@
   <url type="homepage">https://github.com/AntiMicroX/antimicrox/</url>
   <keywords>
     <keyword>game</keyword>
+    <keyword>gamepad</keyword>
     <keyword>controller</keyword>
     <keyword>joystick</keyword>
     <keyword>keyboard</keyword>
     <keyword>mouse</keyword>
+    <keyword>mapping</keyword>
   </keywords>
   <categories>
     <category>Utility</category>
+    <category>Qt</category>
   </categories>
   <recommends>
     <control>gamepad</control>
