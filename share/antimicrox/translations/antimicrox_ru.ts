@@ -348,12 +348,29 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;pktiuk&quot; (с августа 2020 г.) Я просто хочу убедиться, что это очень полезное программное обеспечение не будет заброшено, я решил продолжить поддержку этого проекта и сделать его максимально доступным.
+
+&quot;juliagoda&quot; (с марта 2018 г. по 2020 г.) Желая играть только в свои любимые старые игры, которые не поддерживают геймпады, я нашел этот проект (который сопоставляет клавиши клавиатуры и кнопки мыши с подключенными геймпадами в Linux) как самый правильный и последний. Но из-за плохого выбора такого приложения в Интернете и из-за того, что оно не скомпилировалось должным образом, я решил спасти проект. Однако, как только я закончил свою работу (достаточно, чтобы наслаждаться играми), я подумал о том, чтобы поделиться этим кодом с другими. Разумеется, вся информация о прошлых программистах будет сохранена.
+
+&quot;Ryochan7&quot; (с 30 декабря 2012 года по 2017 год), в свободное время я работаю над AntiMicro. То, что изначально начиналось как форк QJoyPad и способ научиться правильному программированию, управляемому событиями, превратилось в нечто гораздо большее, чем я изначально планировал. Хотя я провел много времени, изучая новые методы, узнавая больше о области эмуляции KB+M и проводя пятничные вечера, стуча головой о клавиатуру, в целом это был забавный и обогащающий опыт.
+
+Необходимость в этой программе возникла после того, как я использовал аналогичные программы на Windows, чтобы играть в несколько игр, которые не обеспечивали встроенную поддержку контроллера. Хотя некоторые альтернативы существовали в Linux, не было ничего, что, по моему мнению, было бы достаточно хорошим с точки зрения функциональности или внутриигрового управления, чтобы действительно наслаждаться играми, в которые я хотел играть, используя эмуляцию KB+M. QJoyPad был основной программой, которую я использовал в прошлом, хотя она сильно устарела и не предоставляла некоторых базовых функций, которые я считал необходимыми. Проект был заброшен, поскольку он не обновлялся несколько лет, поэтому я решил создать свой собственный.
+
+С тех пор я пытался выяснить, что другие программы делают правильно, а затем улучшить это. Я также обнаружил несколько изящных приемов и узнал больше о том, как встроенные элементы управления геймпада реализованы в некоторых играх, чем я когда-либо хотел знать. Хотя определенно есть области, в которых эта программа может быть улучшена, я считаю, что эта программа предлагает наилучшие возможности управления в игре для старых и некоторых новых игр, которые не поддерживают встроенный контроллер.
+
+Разработка этой программы для меня больше не является приоритетной. В основном это связано с тем, что Steam Controller довольно хорошо справляется с задачей игры на ПК по сравнению с использованием контроллера Xbox 360. Однако, похоже, что этой программе еще есть смысл существовать некоторое время.
+
+---
+
+С 24 мая 2016 года этот проект переехал на https://github.com/AntiMicro/antimicro.
+Кроме того, управление проектом перешло от Travis (Ryochan7) к организации AntiMicro из-за того, что у Travis были другие интересы и приоритеты.
+Далее, начиная с 2018 года проект продолжил juliagoda под названием antimicroX.
+Позже проект снова был перенесен на https://github.com/AntiMicroX/antimicrox, а его обслуживание продолжается организацией AntiMicroX, созданная pktiuk.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished"></translation>
+        <translation>Авторские права: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="196"/>
@@ -507,7 +524,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Please use the main default profile selection.</source>
-        <translation type="unfinished">Пожалуйста, используйте основной профиль по умолчанию.</translation>
+        <translation>Пожалуйста, используйте основной профиль по умолчанию.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
@@ -608,7 +625,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="200"/>
         <source>Blank or KB/M</source>
-        <translation type="unfinished">Оставьте пустым или выберите KB/M</translation>
+        <translation>Оставить пустым или выбрать KB/M</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="225"/>
@@ -618,12 +635,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="240"/>
         <source>Pause</source>
-        <translation type="unfinished">Пауза</translation>
+        <translation>Пауза</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="205"/>
         <source>Cycle</source>
-        <translation type="unfinished">Цикл</translation>
+        <translation>Цикл</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="215"/>
@@ -638,17 +655,17 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="318"/>
         <source>Delete</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="371"/>
         <source>Clear All</source>
-        <translation type="unfinished">Очистить Все</translation>
+        <translation>Очистить всё</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="457"/>
         <source>Time:</source>
-        <translation type="unfinished">Время:</translation>
+        <translation>Время:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="470"/>
@@ -684,7 +701,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="351"/>
         <source>Split</source>
-        <translation type="unfinished">Разделить</translation>
+        <translation>Разделить</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="315"/>
@@ -731,17 +748,17 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="235"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished">Скорость Мыши</translation>
+        <translation>Скорость мыши</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="245"/>
         <source>Press Time</source>
-        <translation type="unfinished">Время Нажатия</translation>
+        <translation>Время нажатия</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="210"/>
         <source>Delay</source>
-        <translation type="unfinished">Задержка</translation>
+        <translation>Задержка</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="220"/>
