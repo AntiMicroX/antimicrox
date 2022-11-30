@@ -60,6 +60,8 @@ class ButtonEditDialog : public QDialog
     virtual void keyPressEvent(QKeyEvent *event);
 
   private:
+    void setupVirtualKeyboardMouseTabWidget();
+
     ButtonEditDialogHelper helper;
     Ui::ButtonEditDialog *ui;
     ButtonEditDialogHelper &getHelperLocal();
