@@ -75,32 +75,15 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
 
     ignoreRelease = false;
 
-    PadderCommon::inputDaemonMutex.lock();
-
-    ui->virtualKeyMouseTabWidget->hide();
-    ui->virtualKeyMouseTabWidget->deleteLater();
-    ui->virtualKeyMouseTabWidget =
-        new VirtualKeyboardMouseWidget(joystick, &helper, m_isNumKeypad, currentQuickDialog, nullptr, this);
-    ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
-
-    PadderCommon::inputDaemonMutex.unlock();
+    setupVirtualKeyboardMouseTabWidget();
 
     connect(qApp, &QApplication::focusChanged, this, &ButtonEditDialog::checkForKeyboardWidgetFocus);
-
-    connect(ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::selectionCleared, this,
-            &ButtonEditDialog::refreshSlotSummaryLabel);
-
     connect(this, &ButtonEditDialog::keyGrabbed, this, &ButtonEditDialog::processSlotAssignment);
     connect(this, &ButtonEditDialog::selectionCleared, this, &ButtonEditDialog::clearButtonSlots);
 
     connect(ui->toggleCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeToggleSetting);
     connect(ui->turboCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeTurboSetting);
     connect(ui->advancedPushButton, &QPushButton::clicked, this, &ButtonEditDialog::openAdvancedDialog);
-    connect(this, &ButtonEditDialog::advancedDialogOpened, ui->virtualKeyMouseTabWidget,
-            &VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnections);
-    connect(this, &ButtonEditDialog::advancedDialogOpened, ui->virtualKeyMouseTabWidget,
-            &VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections);
-
     refreshForLastBtn();
 }
 
@@ -131,33 +114,15 @@ ButtonEditDialog::ButtonEditDialog(JoyButton *button, InputDevice *joystick, boo
     setWindowModality(Qt::WindowModal);
 
     ignoreRelease = false;
-
-    PadderCommon::inputDaemonMutex.lock();
-
-    ui->virtualKeyMouseTabWidget->hide();
-    ui->virtualKeyMouseTabWidget->deleteLater();
-    ui->virtualKeyMouseTabWidget =
-        new VirtualKeyboardMouseWidget(joystick, &helper, m_isNumKeypad, currentQuickDialog, button, this);
-    ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
-
-    PadderCommon::inputDaemonMutex.unlock();
+    setupVirtualKeyboardMouseTabWidget();
 
     connect(qApp, &QApplication::focusChanged, this, &ButtonEditDialog::checkForKeyboardWidgetFocus);
-
-    connect(ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::selectionCleared, this,
-            &ButtonEditDialog::refreshSlotSummaryLabel);
-
     connect(this, &ButtonEditDialog::keyGrabbed, this, &ButtonEditDialog::processSlotAssignment);
     connect(this, &ButtonEditDialog::selectionCleared, this,
             &ButtonEditDialog::clearButtonSlots); //  used to clear button sets
-
     connect(ui->toggleCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeToggleSetting);
     connect(ui->turboCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeTurboSetting);
     connect(ui->advancedPushButton, &QPushButton::clicked, this, &ButtonEditDialog::openAdvancedDialog);
-    connect(this, &ButtonEditDialog::advancedDialogOpened, ui->virtualKeyMouseTabWidget,
-            &VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnections);
-    connect(this, &ButtonEditDialog::advancedDialogOpened, ui->virtualKeyMouseTabWidget,
-            &VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections);
 
     refreshForLastBtn();
 }
@@ -216,6 +181,27 @@ void ButtonEditDialog::keyPressEvent(QKeyEvent *event)
 
     if (!ignore)
         QDialog::keyPressEvent(event);
+}
+
+void ButtonEditDialog::setupVirtualKeyboardMouseTabWidget()
+{
+
+    PadderCommon::inputDaemonMutex.lock();
+
+    ui->virtualKeyMouseTabWidget->hide();
+    ui->virtualKeyMouseTabWidget->deleteLater();
+    ui->virtualKeyMouseTabWidget =
+        new VirtualKeyboardMouseWidget(joystick, &helper, m_isNumKeypad, currentQuickDialog, lastJoyButton, this);
+    ui->verticalLayout->insertWidget(1, ui->virtualKeyMouseTabWidget);
+
+    PadderCommon::inputDaemonMutex.unlock();
+
+    connect(ui->virtualKeyMouseTabWidget, &VirtualKeyboardMouseWidget::selectionCleared, this,
+            &ButtonEditDialog::refreshSlotSummaryLabel);
+    connect(this, &ButtonEditDialog::advancedDialogOpened, ui->virtualKeyMouseTabWidget,
+            &VirtualKeyboardMouseWidget::establishVirtualKeyboardAdvancedSignalConnections);
+    connect(this, &ButtonEditDialog::advancedDialogOpened, ui->virtualKeyMouseTabWidget,
+            &VirtualKeyboardMouseWidget::establishVirtualMouseAdvancedSignalConnections);
 }
 
 void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
