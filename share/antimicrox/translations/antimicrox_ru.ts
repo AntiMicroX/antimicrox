@@ -1003,7 +1003,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="140"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[ПУСТО]</translation>
+        <translation>[НЕ ЗАДАНО]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="302"/>
@@ -1138,22 +1138,22 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1383"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1422"/>
         <source>Select Set %1</source>
-        <translation type="unfinished">Установить Набор %1</translation>
+        <translation>Установить набор %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1392"/>
         <source>One Way</source>
-        <translation type="unfinished">Односторонним</translation>
+        <translation>Односторонний</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1393"/>
         <source>Two Way</source>
-        <translation type="unfinished">Двусторонним</translation>
+        <translation>Двусторонний</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1394"/>
         <source>While Held</source>
-        <translation type="unfinished">Пока Нажато</translation>
+        <translation type="unfinished">Пока нажато</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1547"/>
@@ -1232,7 +1232,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation type="unfinished">Настройки Стиков / Крестовин</translation>
+        <translation type="unfinished">Настройки стиков / крестовин</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="41"/>
@@ -1247,7 +1247,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Примечание: Это окно предназначено для обратной совместимости с профилями, созданными до версии antimicro 2.0. Начиная с версии 2.0, предпочтительнее использовать окно Сопоставление игровых контроллеров.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1464,7 +1464,8 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="295"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Установите значение, которое будет использоваться в качестве предельного значения для оси.
+Пригодится для изношенного аналогового стика.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="359"/>
@@ -1500,12 +1501,12 @@ worn out analog stick.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="52"/>
         <source>Presets:</source>
-        <translation type="unfinished">Пресет:</translation>
+        <translation>Предустановки:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="202"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished">Мертвая Зона:</translation>
+        <translation>Мертвая зона:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="327"/>
@@ -1516,7 +1517,7 @@ worn out analog stick.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="338"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="387"/>
         <source>[NO KEY]</source>
-        <translation>[ПУСТО]</translation>
+        <translation>[НЕ ЗАДАНО]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="345"/>
@@ -1650,7 +1651,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="359"/>
         <source>No button</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Без кнопки</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="368"/>
@@ -1673,12 +1674,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="421"/>
         <source>No choice</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Без выбора</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="422"/>
         <source>Before you open window with advanced settings, you have to choice a key</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Прежде чем открыть окно с расширенными настройками, необходимо выбрать клавишу</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="429"/>
@@ -1688,12 +1689,12 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="509"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Слоты для кнопок не могут быть очищены, потому что не было задано ни одной кнопки с клавиатуры под геймпад. Установите хотя бы одну кнопку с клавиатуры под геймпад</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="519"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Поскольку последняя кнопка геймпада была установлена</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="527"/>
@@ -2181,7 +2182,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation type="unfinished">Настройка Игрового Контроллера</translation>
+        <translation type="unfinished">Сопоставление игрового контроллера</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
@@ -2216,7 +2217,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Старт</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
@@ -2226,42 +2227,42 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation type="unfinished">Левый Бампер</translation>
+        <translation>Левый бампер</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation type="unfinished">Правый Бампер</translation>
+        <translation>Правый бампер</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation type="unfinished">Кнопка Левого Стика</translation>
+        <translation>Кнопка левого стика</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation type="unfinished">Кнопка Правого Стика</translation>
+        <translation>Кнопка правого стика</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation type="unfinished">Ось X Левого Стика</translation>
+        <translation>Ось X левого стика</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation type="unfinished">Ось Y Левого Стика</translation>
+        <translation>Ось Y левого стика</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="202"/>
         <source>Right Stick X</source>
-        <translation type="unfinished">Ось X Правого Стика</translation>
+        <translation>Ось X правого стика</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="207"/>
         <source>Right Stick Y</source>
-        <translation type="unfinished">Ось Y Правого Стика</translation>
+        <translation>Ось Y правого стика</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
@@ -2276,22 +2277,22 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation type="unfinished">Крестовина Вверх</translation>
+        <translation>Крестовина вверх</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation type="unfinished">Крестовина Влево</translation>
+        <translation>Крестовина влево</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation type="unfinished">Крестовина Вниз</translation>
+        <translation>Крестовина вниз</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation type="unfinished">Крестовина Вправо</translation>
+        <translation>Крестовина вправо</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
@@ -2306,12 +2307,12 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="307"/>
         <source>Last Axis Event:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Последнее событие оси:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="321"/>
         <source>Current Axis Detection Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Обнаружение мертвой зоны текущей оси:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
@@ -2351,21 +2352,21 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сопоставление игровых контроллеров (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="447"/>
         <source>Discard Controller Mapping?</source>
-        <translation type="unfinished">Сбросить настройки контроллера?</translation>
+        <translation type="unfinished">Сбросить сопоставление контроллера?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="448"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation type="unfinished">Сбросить настройки для этого контроллера?
+        <translation type="unfinished">Сбросить сопоставление для этого контроллера?
 
-Если сбросить настройки, контроллер вернется к своему изначальному состоянию после обновления всех геймпадов.</translation>
+Если сбросить сопоставление, контроллер вернется к своему изначальному состоянию после обновления всех геймпадов.</translation>
     </message>
 </context>
 <context>
@@ -2567,7 +2568,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybutton.cpp" line="2021"/>
         <location filename="../../../src/joybutton.cpp" line="4365"/>
         <source>[NO KEY]</source>
-        <translation>[ПУСТО]</translation>
+        <translation>[НЕ ЗАДАНО]</translation>
     </message>
     <message>
         <location filename="../../../src/joybutton.cpp" line="1704"/>
@@ -2740,7 +2741,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttonslot.cpp" line="392"/>
         <location filename="../../../src/joybuttonslot.cpp" line="395"/>
         <source>[NO KEY]</source>
-        <translation>[ПУСТО]</translation>
+        <translation>[НЕ ЗАДАНО]</translation>
     </message>
 </context>
 <context>
@@ -3289,7 +3290,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1581"/>
         <source>Controller Mapping</source>
-        <translation type="unfinished">Настройка Контроллера</translation>
+        <translation type="unfinished">Сопоставление контроллера</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="436"/>
@@ -3342,19 +3343,19 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="524"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлы конфигурации (*.amgp *.xml)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="632"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="800"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="812"/>
         <source>Config File (*.%1.amgp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл конфигурации (*.%1.amgp)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="721"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы действительно хотите сбросить настройки кнопок для джойстика?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1611"/>
@@ -3389,7 +3390,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2201"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
-        <translation type="unfinished">&lt;center&gt;Не было назначено ни одной кнопки. Воспользуйтесь &quot;Быстрой Настройкой&quot; &lt;br&gt;для назначения кнопок или отключите сокрытие пустых кнопок.&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;Не было назначено ни одной кнопки. Воспользуйтесь &quot;Быстрой настройкой&quot; &lt;br&gt;для назначения кнопок или отключите сокрытие пустых кнопок.&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2372"/>
@@ -3590,7 +3591,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="73"/>
         <source>Controller Mappings</source>
-        <translation type="unfinished">Настройки Контроллера</translation>
+        <translation type="unfinished">Сопоставление контроллера</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="78"/>
@@ -4049,7 +4050,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="559"/>
         <source>Mapping String</source>
-        <translation type="unfinished">Строка Настроек</translation>
+        <translation type="unfinished">Строка сопоставлений</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="564"/>
@@ -5961,7 +5962,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="327"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[ПУСТО]</translation>
+        <translation>[НЕ ЗАДАНО]</translation>
     </message>
 </context>
 <context>
@@ -6416,7 +6417,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="802"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[ПУСТО]</translation>
+        <translation>[НЕ ЗАДАНО]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="906"/>
@@ -6633,7 +6634,7 @@ LK</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="53"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[ПУСТО]</translation>
+        <translation>[НЕ ЗАДАНО]</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="317"/>
