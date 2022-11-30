@@ -79,7 +79,8 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
 
     connect(qApp, &QApplication::focusChanged, this, &ButtonEditDialog::checkForKeyboardWidgetFocus);
     connect(this, &ButtonEditDialog::keyGrabbed, this, &ButtonEditDialog::processSlotAssignment);
-    connect(this, &ButtonEditDialog::selectionCleared, this, &ButtonEditDialog::clearButtonSlots);
+    connect(this, &ButtonEditDialog::selectionCleared, this,
+            &ButtonEditDialog::clearButtonSlots); //  used to clear button sets
 
     connect(ui->toggleCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeToggleSetting);
     connect(ui->turboCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeTurboSetting);
@@ -88,42 +89,14 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
 }
 
 ButtonEditDialog::ButtonEditDialog(JoyButton *button, InputDevice *joystick, bool isNumKeypad, QWidget *parent)
-    : QDialog(parent, Qt::Window)
-    , helper()
-    , ui(new Ui::ButtonEditDialog)
+    : ButtonEditDialog(joystick, isNumKeypad, parent)
 {
-    ui->setupUi(this);
 
     withoutQuickSetDialog = true;
-    m_isNumKeypad = isNumKeypad;
 
-    setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(tr("Choose your keyboard key"));
-    update();
-
-    instance = this;
     lastJoyButton = button;
-    this->joystick = joystick;
-    currentQuickDialog = nullptr;
 
-    SetJoystick *currentset = joystick->getActiveSetJoystick();
-    currentset->release();
-    joystick->resetButtonDownCount();
-
-    setAttribute(Qt::WA_DeleteOnClose);
-    setWindowModality(Qt::WindowModal);
-
-    ignoreRelease = false;
     setupVirtualKeyboardMouseTabWidget();
-
-    connect(qApp, &QApplication::focusChanged, this, &ButtonEditDialog::checkForKeyboardWidgetFocus);
-    connect(this, &ButtonEditDialog::keyGrabbed, this, &ButtonEditDialog::processSlotAssignment);
-    connect(this, &ButtonEditDialog::selectionCleared, this,
-            &ButtonEditDialog::clearButtonSlots); //  used to clear button sets
-    connect(ui->toggleCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeToggleSetting);
-    connect(ui->turboCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeTurboSetting);
-    connect(ui->advancedPushButton, &QPushButton::clicked, this, &ButtonEditDialog::openAdvancedDialog);
-
     refreshForLastBtn();
 }
 
