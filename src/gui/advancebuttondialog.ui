@@ -318,7 +318,8 @@
                 <string>Delete</string>
                </property>
                <property name="icon">
-                <iconset theme="list-remove"/>
+                <iconset theme="list-remove">
+                 <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
              </item>
@@ -334,7 +335,7 @@
                 <string>Join</string>
                </property>
                <property name="icon">
-                <iconset theme="join_slots" resource="resources.qrc">
+                <iconset theme="join_slots" resource="../resources.qrc">
                  <normaloff>:/images/actions/join_slots.png</normaloff>:/images/actions/join_slots.png</iconset>
                </property>
               </widget>
@@ -351,7 +352,7 @@
                 <string>Split</string>
                </property>
                <property name="icon">
-                <iconset theme="split_slot" resource="resources.qrc">
+                <iconset theme="split_slot" resource="../resources.qrc">
                  <normaloff>:/images/actions/split_slot.png</normaloff>:/images/actions/split_slot.png</iconset>
                </property>
               </widget>
@@ -1269,7 +1270,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections>
   <connection>
