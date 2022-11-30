@@ -56,6 +56,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
 
     withoutQuickSetDialog = false;
     m_isNumKeypad = isNumKeypad;
+    ui->attachNumKeypadCheckbox->setChecked(isNumKeypad);
 
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Choose your keyboard key"));
@@ -84,6 +85,7 @@ ButtonEditDialog::ButtonEditDialog(InputDevice *joystick, bool isNumKeypad, QWid
 
     connect(ui->toggleCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeToggleSetting);
     connect(ui->turboCheckBox, &QCheckBox::clicked, this, &ButtonEditDialog::changeTurboSetting);
+    connect(ui->attachNumKeypadCheckbox, &QCheckBox::clicked, this, &ButtonEditDialog::changeNumKeypadSetting);
     connect(ui->advancedPushButton, &QPushButton::clicked, this, &ButtonEditDialog::openAdvancedDialog);
     refreshForLastBtn();
 }
@@ -336,6 +338,14 @@ void ButtonEditDialog::changeTurboSetting()
         QMessageBox::information(
             this, tr("Last button"),
             tr("To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad"));
+}
+
+void ButtonEditDialog::changeNumKeypadSetting()
+{
+    m_isNumKeypad = ui->attachNumKeypadCheckbox->isChecked();
+    setupVirtualKeyboardMouseTabWidget();
+    refreshForLastBtn();
+    joystick->getSettings()->setValue("AttachNumKeypad", m_isNumKeypad ? "1" : "0");
 }
 
 void ButtonEditDialog::openAdvancedDialog()

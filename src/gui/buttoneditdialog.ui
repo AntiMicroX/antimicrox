@@ -129,6 +129,32 @@
         </widget>
        </item>
        <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="attachNumKeypadCheckbox">
+         <property name="toolTip">
+          <string>Remember, it won't work if you don't have such keypad connected to computer or if it's not embedded like in desktop PCs</string>
+         </property>
+         <property name="text">
+          <string>Attach the numeric keypad</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="horizontalSpacer_9">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -261,7 +287,7 @@ this button is being used.</string>
         <string>Advanced</string>
        </property>
        <property name="icon">
-        <iconset theme="games_config_options" resource="resources.qrc">
+        <iconset theme="games_config_options">
          <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
