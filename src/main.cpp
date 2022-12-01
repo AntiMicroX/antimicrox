@@ -560,10 +560,11 @@ int main(int argc, char *argv[])
 #endif
         delete appLogger;
         return EXIT_FAILURE;
-    } else
-    {
-        qInfo() << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName());
     }
+    qInfo() << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName());
+#ifdef Q_OS_WIN
+    log_system_config(); // workaround for missing windows logs
+#endif
 
     PadderCommon::mouseHelperObj.initDeskWid();
     QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings);
