@@ -16,12 +16,12 @@ jobs:
     test:
         # The type of runner that the job will run on
         name: Check Code Formatting
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
         steps:
             - uses: actions/checkout@v3
             - name: Download tools
               run: |
-                  sudo apt-get update && sudo apt-get install clang-format-10
+                  sudo apt-get update && sudo apt-get install clang-format-14
                   echo "Clang-format version"
                   clang-format --version
                   wget https://raw.githubusercontent.com/Sarcasm/run-clang-format/master/run-clang-format.py
