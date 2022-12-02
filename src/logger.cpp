@@ -183,7 +183,7 @@ void Logger::setCurrentLogFile(QString filename)
     }
     instance->outFileStream.setDevice(&instance->outputFile);
 #if defined(Q_OS_WIN)
-    instance->outFileStream.setCodec("UTF-16"); // to properly print special characters in files
+    instance->outFileStream.setCodec("UTF-8"); // to properly print special characters in files
 #endif
     instance->setCurrentStream(&instance->outFileStream);
 }
