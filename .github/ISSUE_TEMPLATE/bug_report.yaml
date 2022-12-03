@@ -7,7 +7,7 @@ body:
     label: Is there an existing issue for this?
     description: Please search to see if an issue already exists for the bug you encountered.
     options:
-    - label: I have searched the existing issues
+    - label: I searched the existing issues and did not find anything similar.
       required: true
 - type: textarea
   attributes:
@@ -36,12 +36,15 @@ body:
   attributes:
     label: Environment
     description: |
-      examples:
-        - **OS**: Ubuntu 20.04
-        - **AntiMicroX version**: 3.1.7 (you can get your version from command "antimicrox -v" or by going to "Help->About->info")
-    value: |
-        - OS:
-        - AntiMicroX version:
+      Copy and paste text from Info window (Help->About->Info)
+    placeholder: |
+      Program Version 3.3.2
+      Built Against SDL 2.24.0
+      Running With SDL 2.24.0
+      Using Qt 5.15.7
+      Using Event Handler: XTest
+      Compositor type: x11
+      Host OS: Windows Version: 10 Architecture: x86_64 
     render: markdown
   validations:
     required: false
