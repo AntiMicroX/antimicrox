@@ -1549,10 +1549,10 @@ void MainWindow::autoprofileLoad(AutoProfileInfo *info)
 {
     if (info != nullptr)
     {
-        qDebug() << QObject::tr("Auto-switching to profile \"%1\".").arg(info->getProfileLocation());
+        qDebug() << QString("Auto-switching to profile \"%1\".").arg(info->getProfileLocation());
     } else
     {
-        qCritical() << QObject::tr("Auto-switching to nullptr profile!");
+        qCritical() << QString("Auto-switching to nullptr profile!");
     }
 #if defined(WITH_X11) || defined(Q_OS_WIN)
     #if defined(WITH_X11)

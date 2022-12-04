@@ -117,7 +117,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>X (m/s^2):</string>
+            <string notr="true">X (m/s^2):</string>
            </property>
           </widget>
          </item>
@@ -221,7 +221,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Z (m/s^2):</string>
+            <string notr="true">Z (m/s^2):</string>
            </property>
           </widget>
          </item>
@@ -253,7 +253,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Y (m/s^2):</string>
+            <string notr="true">Y (m/s^2):</string>
            </property>
           </widget>
          </item>
