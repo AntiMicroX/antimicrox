@@ -560,37 +560,37 @@ of the all default profile option.</source>
         <translation>애플리케이션 창 캡쳐</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="320"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="322"/>
         <source>Could not obtain information for the selected window.</source>
         <translation>선택한 창에 대한 정보를 얻을 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="321"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="323"/>
         <source>Application Capture Failed</source>
         <translation>응용 프로그램 캡처 실패</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="418"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="408"/>
         <source>Profile file path is invalid.</source>
         <translation>프로파일 파일 경로가 잘못되었습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="426"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="416"/>
         <source>No window matching property was specified.</source>
         <translation>창 일치 속성이 지정되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="440"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="430"/>
         <source>Program path is invalid or not executable.</source>
         <translation>프로그램 경로가 잘못되었거나 실행할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="446"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="436"/>
         <source>File is not an .exe file.</source>
         <translation>파일이 .exe 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="454"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="444"/>
         <source>No window matching property was selected.</source>
         <translation>창 일치 속성이 선택되지 않았습니다.</translation>
     </message>
@@ -659,22 +659,22 @@ of the all default profile option.</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="371"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="372"/>
         <source>Clear All</source>
         <translation>모두 지우기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="457"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="458"/>
         <source>Time:</source>
         <translation>시간:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="470"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="471"/>
         <source>0.01s</source>
         <translation>0.01 초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="542"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="543"/>
         <source>0s</source>
         <translation>0 초</translation>
     </message>
@@ -700,39 +700,39 @@ of the all default profile option.</source>
         <translation>슬롯을 삭제합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="368"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="369"/>
         <source>Clear all currently assigned slots.</source>
         <translation>현재 할당된 모든 슬롯을 지웁니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="454"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="455"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
         <translation>삽입된 일시 중지 또는 유지 슬롯의 지속 시간을 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="485"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="486"/>
         <source>0m</source>
         <translation>0 분</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="569"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="570"/>
         <source>&amp;Mouse Speed Mod:</source>
         <translation>마우스 속도 모드(&amp;M):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="624"/>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="643"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="625"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="644"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
         <translation>일련의 동작이 실행될 축 사각지대를 지나는 범위를 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="627"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="628"/>
         <source>Distance: </source>
         <translation>거리: </translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="588"/>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="646"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="589"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="647"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -772,231 +772,231 @@ of the all default profile option.</source>
         <translation>텍스트 입력</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="334"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="335"/>
         <source>Join</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="351"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="352"/>
         <source>Split</source>
         <translation>분할</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="402"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="403"/>
         <source>Placeholder</source>
         <translation>자리표시자</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="509"/>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="533"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="510"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="534"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="585"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="586"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
         <translation>마우스 속도가 수정되는 비율을 설정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="682"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="683"/>
         <source>Auto Reset Cycle After</source>
         <translation>다음 후 자동 재설정 주기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="714"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="715"/>
         <source>seconds</source>
         <translation>초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="756"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="757"/>
         <source>Executable:</source>
         <translation>실행 파일:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="766"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="767"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="777"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="778"/>
         <source>Arguments:</source>
         <translation>인수:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="820"/>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="863"/>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1085"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="821"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="864"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1086"/>
         <source>Enabled</source>
         <translation>활성화됨</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="887"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="888"/>
         <source>Mode:</source>
         <translation>모드:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="897"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="898"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;보통: 선택한 비율만큼 버튼을 반복적으로 눌렀다 떼세요.&lt;/p&gt;&lt;p&gt;경사도: 축이 이동한 거리에 따라 버튼 누름 및 버튼 해제 지연을 수정합니다. 속도는 동일하게 유지됩니다.&lt;/p&gt;&lt;p&gt;펄스: 초당 버튼을 눌렀다 떼는 횟수를 수정합니다. 버튼 지연은 동일하게 유지됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="901"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="902"/>
         <source>Normal</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="906"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="907"/>
         <source>Gradient</source>
         <translation>경사도</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="911"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="912"/>
         <source>Pulse</source>
         <translation>펄스</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="965"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="966"/>
         <source>Delay:</source>
         <translation>지연:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="990"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="991"/>
         <source>0.10s</source>
         <translation>0.10 초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1060"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1061"/>
         <source>Rate:</source>
         <translation>속도:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1067"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1068"/>
         <source>10.0/s</source>
         <translation>10.0/초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1099"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1100"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1372"/>
         <source>Disabled</source>
         <translation>비활성화됨</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1104"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1105"/>
         <source>Select Set 1 One Way</source>
         <translation>설정 1 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1109"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1110"/>
         <source>Select Set 1 Two Way</source>
         <translation>설정 1 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1114"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1115"/>
         <source>Select Set 1 While Held</source>
         <translation>누른 상태에서 설정 1 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1119"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1120"/>
         <source>Select Set 2 One Way</source>
         <translation>설정 2 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1124"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1125"/>
         <source>Select Set 2 Two Way</source>
         <translation>설정 2 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1129"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1130"/>
         <source>Select Set 2 While Held</source>
         <translation>누른 상태에서 설정 2 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1134"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1135"/>
         <source>Select Set 3 One Way</source>
         <translation>설정 3 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1139"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1140"/>
         <source>Select Set 3 Two Way</source>
         <translation>설정 3 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1144"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1145"/>
         <source>Select Set 3 While Held</source>
         <translation>누른 상태에서 설정 3 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1149"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1150"/>
         <source>Select Set 4 One Way</source>
         <translation>설정 4 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1154"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1155"/>
         <source>Select Set 4 Two Way</source>
         <translation>설정 4 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1159"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1160"/>
         <source>Select Set 4 While Held</source>
         <translation>누른 상태에서 설정 4 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1164"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1165"/>
         <source>Select Set 5 One Way</source>
         <translation>설정 5 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1169"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1170"/>
         <source>Select Set 5 Two Way</source>
         <translation>설정 5 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1174"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1175"/>
         <source>Select Set 5 While Held</source>
         <translation>누른 상태에서 설정 5 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1179"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1180"/>
         <source>Select Set 6 One Way</source>
         <translation>설정 6 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1184"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1185"/>
         <source>Select Set 6 Two Way</source>
         <translation>설정 6 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1189"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1190"/>
         <source>Select Set 6 While Held</source>
         <translation>누른 상태에서 설정 6 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1194"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1195"/>
         <source>Select Set 7 One Way</source>
         <translation>설정 7 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1199"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1200"/>
         <source>Select Set 7 Two Way</source>
         <translation>설정 7 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1204"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1205"/>
         <source>Select Set 7 While Held</source>
         <translation>누른 상태에서 설정 7 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1209"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1210"/>
         <source>Select Set 8 One Way</source>
         <translation>설정 8 한 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1214"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1215"/>
         <source>Select Set 8 Two Way</source>
         <translation>설정 8 두 방향 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="1219"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="1220"/>
         <source>Select Set 8 While Held</source>
         <translation>누른 상태에서 설정 8 선택</translation>
     </message>
@@ -1216,7 +1216,7 @@ of the all default profile option.</source>
         <translation>슬롯이 활성화되면 프로그램을 실행합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.ui" line="727"/>
+        <location filename="../../../src/gui/advancebuttondialog.ui" line="728"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1492"/>
         <source>Choose Profile</source>
         <translation>프로파일 선택</translation>
@@ -1394,107 +1394,113 @@ of the all default profile option.</source>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="595"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="635"/>
         <source>Mouse (Horizontal)</source>
         <translation>마우스 (수평)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="596"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="636"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>마우스 (반전된 수평)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="87"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="597"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="637"/>
         <source>Mouse (Vertical)</source>
         <translation>마우스 (수직)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="92"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="598"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="638"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>마우스 (반전된 수직)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="599"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="639"/>
         <source>Arrows: Up | Down</source>
         <translation>화살표: 위쪽 | 아래쪽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="102"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="600"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="640"/>
         <source>Arrows: Left | Right</source>
         <translation>화살표: 왼쪽 | 오른쪽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="107"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="601"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="641"/>
         <source>Keys: W | S</source>
         <translation>키: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="112"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="602"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="642"/>
         <source>Keys: A | D</source>
         <translation>키: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="603"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="643"/>
         <source>NumPad: KP_8 | KP_2</source>
         <translation>숫자 키패드: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="122"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="604"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="644"/>
         <source>NumPad: KP_4 | KP_6</source>
         <translation>숫자 키패드: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="127"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="605"/>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="614"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="645"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="654"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="660"/>
         <source>None</source>
         <translation>없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="182"/>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="295"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="176"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="277"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
         <translation>축의 한계로 사용할 값을 설정합니다. 마모된 아날로그 스틱에 
 유용합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="359"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="388"/>
         <source>Negative Half Throttle</source>
         <translation>음의 하프 스로틀</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="379"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="408"/>
         <source>Positive Half Throttle</source>
         <translation>양의 하프 스로틀</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="475"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="416"/>
+        <source>Haptic Trigger:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="523"/>
         <source>Name:</source>
         <translation>이름:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="485"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="533"/>
         <source>Specify the name of an axis.</source>
         <translation>축의 이름을 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="494"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="542"/>
         <source>Mouse Settings</source>
         <translation>마우스 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="209"/>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="273"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="206"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="261"/>
         <source>Set the value of the dead zone for an axis.</source>
         <translation>축의 데드존 값을 설정합니다.</translation>
     </message>
@@ -1504,67 +1510,87 @@ worn out analog stick.</source>
         <translation>사전 설정:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="202"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="193"/>
         <source>Dead Zone:</source>
         <translation>데드 존:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="327"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="309"/>
         <source>Max Zone:</source>
         <translation>최대 구역:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="338"/>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="387"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="342"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="355"/>
         <source>[NO KEY]</source>
         <translation>[키 할당 없음]</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="345"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="374"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
         <translation>축 고정 또는 해제를 해석하는 방법의 동작을 결정하는 
 스로틀 설정입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="364"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="393"/>
         <source>Negative Throttle</source>
         <translation>음의 스로틀</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="369"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="398"/>
         <source>Normal</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="374"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="403"/>
         <source>Positive Throttle</source>
         <translation>양의 스로틀</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.ui" line="429"/>
+        <location filename="../../../src/gui/axiseditdialog.ui" line="477"/>
         <source>Current Value:</source>
         <translation>현재 값:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="566"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="606"/>
         <source>Set</source>
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="579"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="619"/>
         <source>Set %1</source>
         <translation>설정 %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="612"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="652"/>
         <source>Left Mouse Button</source>
         <translation>왼쪽 마우스 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/axiseditdialog.cpp" line="613"/>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="653"/>
         <source>Right Mouse Button</source>
         <translation>오른쪽 마우스 버튼</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="661"/>
+        <source>Click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
+        <source>Rigid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
+        <source>Rigid Gradient</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
+        <source>Vibration</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1605,99 +1631,108 @@ interpret an axis hold or release.</source>
         <translation>터보</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.ui" line="160"/>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
+        <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
+        <translation type="unfinished">이러한 키패드가 컴퓨터에 연결되어 있지 않거나 데스크탑 PC와 같이 내장되어 있지 않으면 작동하지 않는다는 것 기억</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
+        <source>Attach the numeric keypad</source>
+        <translation type="unfinished">숫자 키패드 부착</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
         <source>Last keyboard/mouse button:</source>
         <translation>마지막 키보드/마우스 버튼:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.ui" line="167"/>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="193"/>
         <source>Slots</source>
         <translation>슬롯</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.ui" line="197"/>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="223"/>
         <source>Na&amp;me:</source>
         <translation>이름(&amp;M):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.ui" line="207"/>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="233"/>
         <source>Specify the name of a button.</source>
         <translation>버튼의 이름을 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.ui" line="224"/>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="250"/>
         <source>Action:</source>
         <translation>동작:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.ui" line="234"/>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="260"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
         <translation>이 버튼을 사용하는 동안 게임에서 수행할 
 동작을 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.ui" line="261"/>
+        <location filename="../../../src/gui/buttoneditdialog.ui" line="287"/>
         <source>Advanced</source>
         <translation>고급</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="61"/>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="118"/>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="540"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="62"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="509"/>
         <source>Choose your keyboard key</source>
         <translation>키보드 키 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="359"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="320"/>
         <source>No button</source>
         <translation>버튼 없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="368"/>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="378"/>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="428"/>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="508"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="329"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="339"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="397"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="477"/>
         <source>Last button</source>
         <translation>마지막 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="369"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="330"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
         <translation>마지막 버튼의 설정을 변경하려면 키보드에서 게임패드로의 할당이 하나 이상 있어야 함</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="379"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="340"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
         <translation>마지막 버튼의 터보 설정을 변경하려면 키보드에서 게임패드로 최소한 하나의 할당이어야 함</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="421"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="390"/>
         <source>No choice</source>
         <translation>선택 없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="422"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
         <source>Before you open window with advanced settings, you have to choice a key</source>
         <translation>고급 설정으로 창을 열기 전에 키 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="429"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="398"/>
         <source>To open advanced dialog, it&apos;s needed to map at least one button from keyboard to gamepad</source>
         <translation>고급 대화 상자를 열려면 키보드에서 게임 패드로 하나 이상의 버튼을 매핑</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="509"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="478"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
         <translation>게임패드용 키보드에서 설정한 버튼이 없기 때문에 버튼용 슬롯을 지울 수 없습니다. 키보드에서 게임패드로 하나 이상의 버튼을 매핑</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="519"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="488"/>
         <source>As last gamepad button has been set</source>
         <translation>마지막 게임 패드 버튼 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/buttoneditdialog.cpp" line="527"/>
+        <location filename="../../../src/gui/buttoneditdialog.cpp" line="496"/>
         <source>Index %1</source>
         <translation>색인 %1</translation>
     </message>
@@ -1710,127 +1745,190 @@ this button is being used.</source>
         <translation>양식</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="70"/>
+        <location filename="../../../src/gui/calibration.ui" line="71"/>
         <source>Input to calibrate:</source>
         <translation>보정할 입력:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="93"/>
+        <location filename="../../../src/gui/calibration.ui" line="94"/>
         <source>Steps</source>
         <translation>단계</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="112"/>
+        <location filename="../../../src/gui/calibration.ui" line="113"/>
         <source>Z</source>
         <translation>Z</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="119"/>
-        <location filename="../../../src/gui/calibration.ui" line="133"/>
-        <location filename="../../../src/gui/calibration.ui" line="147"/>
-        <location filename="../../../src/gui/calibration.ui" line="182"/>
-        <location filename="../../../src/gui/calibration.ui" line="196"/>
-        <location filename="../../../src/gui/calibration.ui" line="210"/>
+        <location filename="../../../src/gui/calibration.ui" line="120"/>
+        <location filename="../../../src/gui/calibration.ui" line="134"/>
+        <location filename="../../../src/gui/calibration.ui" line="148"/>
+        <location filename="../../../src/gui/calibration.ui" line="183"/>
+        <location filename="../../../src/gui/calibration.ui" line="197"/>
+        <location filename="../../../src/gui/calibration.ui" line="211"/>
         <source>TextLabel</source>
         <translation>텍스트레이블</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="126"/>
+        <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="140"/>
-        <location filename="../../../src/gui/calibration.ui" line="189"/>
-        <location filename="../../../src/gui/calibration.ui" line="203"/>
+        <location filename="../../../src/gui/calibration.ui" line="141"/>
+        <location filename="../../../src/gui/calibration.ui" line="190"/>
+        <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
         <translation>이점</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="154"/>
-        <location filename="../../../src/gui/calibration.ui" line="168"/>
-        <location filename="../../../src/gui/calibration.ui" line="175"/>
+        <location filename="../../../src/gui/calibration.ui" line="155"/>
+        <location filename="../../../src/gui/calibration.ui" line="169"/>
+        <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
         <translation>오프셋</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="161"/>
+        <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="247"/>
-        <location filename="../../../src/gui/calibration.cpp" line="446"/>
+        <location filename="../../../src/gui/calibration.ui" line="248"/>
+        <location filename="../../../src/gui/calibration.cpp" line="457"/>
+        <location filename="../../../src/gui/calibration.cpp" line="585"/>
         <source>Start calibration</source>
         <translation>보정 시작</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="277"/>
+        <location filename="../../../src/gui/calibration.ui" line="278"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="237"/>
+        <location filename="../../../src/gui/calibration.ui" line="238"/>
         <source>Reset settings</source>
         <translation>설정 재설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.ui" line="270"/>
+        <location filename="../../../src/gui/calibration.ui" line="271"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="47"/>
+        <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
         <translation>보정</translation>
     </message>
     <message>
+        <location filename="../../../src/gui/calibration.cpp" line="68"/>
+        <source>Gyroscope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
+        <source>Accelerometer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="87"/>
         <source>Selected device doesn&apos;t have any inputs to calibrate.</source>
         <translation>선택한 장치에 보정할 입력이 없습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="95"/>
-        <location filename="../../../src/gui/calibration.cpp" line="313"/>
+        <location filename="../../../src/gui/calibration.cpp" line="108"/>
+        <location filename="../../../src/gui/calibration.cpp" line="405"/>
         <source>Calibration was not saved for the preset. Do you really want to continue?</source>
         <translation>사전 설정에 대한 보정이 저장되지 않았습니다. 계속하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="112"/>
+        <location filename="../../../src/gui/calibration.cpp" line="125"/>
         <source>Do you really want to reset calibration of current device?</source>
         <translation>현재 장치의 보정을 재설정하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="387"/>
+        <location filename="../../../src/gui/calibration.cpp" line="277"/>
+        <source>Accelerometer calibration sets the neutral controller orientation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="282"/>
+        <source>Gyroscope calibration corrects the sensor offset. This prevents cursor movement while the controller is at rest.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="456"/>
+        <source>Calibration completed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="526"/>
         <source>Offset calibration completed. Click &quot;Continue calibration&quot; to continue with gain calibration.</source>
         <translation>오프셋 보정이 완료되었습니다. 이점 보정을 계속하려면 &quot;보정 계속하기&quot;를 클릭하세요.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="494"/>
+        <location filename="../../../src/gui/calibration.cpp" line="636"/>
+        <source>Hold the controller in the desired neutral position and press continue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="637"/>
+        <source>Calibrating accelerometer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="656"/>
+        <source>Collecting accelerometer data...
+Please hold the controller still.
+This can take up to %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="683"/>
+        <source>Place the controller at rest, e.g. put it on the desk, and press continue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="685"/>
+        <source>Calibrating gyroscope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="704"/>
+        <source>Collecting gyroscope data...
+This can take up to %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/calibration.cpp" line="734"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
         <translation>이제 스틱을 다른 방향으로 최대로 여러 번 움직였다가 다시 중앙으로 이동합니다. 
 최대 %1 초가 소요될 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="497"/>
+        <location filename="../../../src/gui/calibration.cpp" line="737"/>
         <source>Calibrating stick</source>
         <translation>스틱 보정 중</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="498"/>
+        <location filename="../../../src/gui/calibration.cpp" line="638"/>
+        <location filename="../../../src/gui/calibration.cpp" line="686"/>
+        <location filename="../../../src/gui/calibration.cpp" line="738"/>
         <source>Continue calibration</source>
         <translation>보정 계속하기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="526"/>
+        <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
         <translation>이제 스틱을 여러 번 원을 그리며 움직입니다. 
 최대 %1 초가 소요될 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/calibration.cpp" line="482"/>
+        <location filename="../../../src/gui/calibration.cpp" line="627"/>
+        <location filename="../../../src/gui/calibration.cpp" line="674"/>
+        <location filename="../../../src/gui/calibration.cpp" line="722"/>
         <source>Calibration was saved for the preset. Do you really want to reset settings?</source>
         <translation>사전 설정에 대한 보정이 저장되었습니다. 설정을 재설정하겠습니까?</translation>
     </message>
@@ -2175,7 +2273,7 @@ D-패드입니다.</translation>
 <context>
     <name>GameController</name>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="57"/>
+        <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="63"/>
         <source>Game Controller</source>
         <translation>게임 컨트롤러</translation>
     </message>
@@ -2385,47 +2483,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>GameControllerSet</name>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="78"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
         <translation>뒤로 가기</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="79"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
         <source>Guide</source>
         <translation>안내</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="80"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
         <source>Start</source>
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="81"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="102"/>
         <source>LS Click</source>
         <translation>왼쪽 스틱 클릭</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="82"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="103"/>
         <source>RS Click</source>
         <translation>오른쪽 스틱 클릭</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="83"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="104"/>
         <source>L Shoulder</source>
         <translation>왼쪽 어깨 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="84"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="105"/>
         <source>R Shoulder</source>
         <translation>오른쪽 어깨 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="87"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="108"/>
         <source>L Trigger</source>
         <translation>왼쪽 트리거 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="88"/>
+        <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="109"/>
         <source>R Trigger</source>
         <translation>오른쪽 트리거 버튼</translation>
     </message>
@@ -2433,19 +2531,55 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>GameControllerTrigger</name>
     <message>
-        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="89"/>
-        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="97"/>
-        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="101"/>
+        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="98"/>
+        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="106"/>
+        <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="110"/>
         <source>Trigger</source>
         <translation>트리거 버튼</translation>
     </message>
 </context>
 <context>
+    <name>JoyAccelerometerButton</name>
+    <message>
+        <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="38"/>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="42"/>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="46"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="50"/>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
+        <source>Shock</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>JoyAccelerometerSensor</name>
+    <message>
+        <location filename="../../../src/joyaccelerometersensor.cpp" line="63"/>
+        <source>Accelerometer</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>JoyAxis</name>
     <message>
-        <location filename="../../../src/joyaxis.cpp" line="726"/>
-        <location filename="../../../src/joyaxis.cpp" line="734"/>
-        <location filename="../../../src/joyaxis.cpp" line="740"/>
+        <location filename="../../../src/joyaxis.cpp" line="748"/>
+        <location filename="../../../src/joyaxis.cpp" line="756"/>
+        <location filename="../../../src/joyaxis.cpp" line="762"/>
         <source>Axis</source>
         <translation>축</translation>
     </message>
@@ -2553,48 +2687,48 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButton</name>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="244"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="250"/>
         <source>Processing turbo for #%1 - %2</source>
         <translation>#%1에 대한 터보 처리 중 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="251"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="257"/>
         <source>Finishing turbo for button #%1 - %2</source>
         <translation>버튼 #%1에 대한 터보 종료 중 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="305"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="311"/>
         <source>Distance change for button #%1 - %2</source>
         <translation>버튼 #%1의 거리 변경 - %2</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1603"/>
-        <location filename="../../../src/joybutton.cpp" line="1609"/>
-        <location filename="../../../src/joybutton.cpp" line="1614"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1608"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1614"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1619"/>
         <source>Button</source>
         <translation>버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1652"/>
-        <location filename="../../../src/joybutton.cpp" line="1784"/>
-        <location filename="../../../src/joybutton.cpp" line="2008"/>
-        <location filename="../../../src/joybutton.cpp" line="2021"/>
-        <location filename="../../../src/joybutton.cpp" line="4365"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1657"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1789"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="2013"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="2026"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="4380"/>
         <source>[NO KEY]</source>
         <translation>[키 할당 없음]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1704"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1709"/>
         <source>[Set %1 1W]</source>
         <translation>[설정 %1 1W]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1709"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1714"/>
         <source>[Set %1 2W]</source>
         <translation>[설정 %1 2W]</translation>
     </message>
     <message>
-        <location filename="../../../src/joybutton.cpp" line="1716"/>
+        <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1721"/>
         <source>[Set %1 WH]</source>
         <translation>[설정 %1 WH]</translation>
     </message>
@@ -2650,109 +2784,109 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyButtonSlot</name>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="166"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="218"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="140"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="192"/>
         <source>Mouse</source>
         <translation>마우스</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="171"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="145"/>
         <source>Up</source>
         <translation>위쪽</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="175"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="149"/>
         <source>Down</source>
         <translation>아래쪽</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="179"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="153"/>
         <source>Left</source>
         <translation>왼쪽</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="183"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="157"/>
         <source>Right</source>
         <translation>오른쪽</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="223"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="197"/>
         <source>LB</source>
         <translation>왼쪽 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="226"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="200"/>
         <source>MB</source>
         <translation>가운데 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="229"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="203"/>
         <source>RB</source>
         <translation>오른쪽 버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="247"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="221"/>
         <source>Pause</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="261"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="235"/>
         <source>Hold</source>
         <translation>유지</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="271"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
         <source>Cycle</source>
         <translation>주기</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="275"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="249"/>
         <source>Distance</source>
         <translation>거리</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="286"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="260"/>
         <source>Release</source>
         <translation>개정</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="297"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="271"/>
         <source>Mouse Mod</source>
         <translation>마우스 모드</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="307"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="281"/>
         <source>Press Time</source>
         <translation>누르는 시간</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="322"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="296"/>
         <source>Delay</source>
         <translation>지연</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="337"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="311"/>
         <source>Load %1</source>
         <translation>불러오기 %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="344"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="318"/>
         <source>Set Change %1</source>
         <translation>설정 변경 %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="357"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="331"/>
         <source>[Text] %1</source>
         <translation>[텍스트] %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="370"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="344"/>
         <source>[Exec] %1</source>
         <translation>[실행] %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="392"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="395"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="366"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="369"/>
         <source>[NO KEY]</source>
         <translation>[키 할당 없음]</translation>
     </message>
@@ -2760,9 +2894,9 @@ If discarded, the controller will be reverted to a joystick once you refresh all
 <context>
     <name>JoyControlStick</name>
     <message>
-        <location filename="../../../src/joycontrolstick.cpp" line="798"/>
-        <location filename="../../../src/joycontrolstick.cpp" line="804"/>
-        <location filename="../../../src/joycontrolstick.cpp" line="809"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="805"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="811"/>
+        <location filename="../../../src/joycontrolstick.cpp" line="816"/>
         <source>Stick</source>
         <translation>스틱</translation>
     </message>
@@ -2881,81 +3015,81 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <translation>대화상자</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="146"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
         <source>X:</source>
         <translation>X:</translation>
     </message>
     <message>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="107"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="120"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="133"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="159"/>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="172"/>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="224"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="120"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
         <source>Y:</source>
         <translation>Y:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="107"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="172"/>
         <source>Distance:</source>
         <translation>거리:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="260"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="274"/>
         <source>Presets:</source>
         <translation>사전 설정:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="279"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="293"/>
         <source>Mouse (Normal)</source>
         <translation>마우스 (보통)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="284"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="298"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>마우스 (반전된 수평)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="289"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="303"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>마우스 (반전된 수직)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="294"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="308"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>마우스 (반전된 수평 + 수직)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="299"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="313"/>
         <source>Arrows</source>
         <translation>화살표</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="304"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="318"/>
         <source>Keys: W | A | S | D</source>
         <translation>키: W | A | S | D</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="309"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="323"/>
         <source>NumPad</source>
         <translation>숫자 키패드</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="314"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="328"/>
         <source>None</source>
         <translation>없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="326"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="336"/>
         <source>Stick Mode:</source>
         <translation>스틱 모드:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="339"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="349"/>
         <source>Standard: 8 region stick with two direction buttons active
 when the stick is in a diagonal region.
 
@@ -2982,72 +3116,77 @@ to a diagonal zone of the stick.</source>
 각 영역이 있는 4개의 영역 스틱입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="364"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
         <source>4 Way Cardinal</source>
         <translation>4 방향 기본</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="369"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="379"/>
         <source>4 Way Diagonal</source>
         <translation>4 방향 대각선</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="411"/>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="436"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
+        <source>Modifier Zone:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="681"/>
         <source>Dead zone value to use for an analog stick.</source>
         <translation>아날로그 스틱에 사용할 데드존 값입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="463"/>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="488"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="605"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="659"/>
         <source>Value when an analog stick is considered moved 100%.</source>
         <translation>아날로그 스틱이 100% 움직인 것으로 간주될 때의 값입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="515"/>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="417"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="754"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
         <translation>각 대각선 영역이 차지하는 면적 (도)입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="551"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="467"/>
         <source>Square Stick:</source>
         <translation>정사각형 스틱:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="558"/>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="586"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
         <translation>값을 원으로 제한하기 위해 정사각형 스틱 좌표를 수정하는 백분율</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="589"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="612"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
         <source>Stick Delay:</source>
         <translation>스틱 지연:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="619"/>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="653"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="433"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="538"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
         <translation>방향 변경이 적용되기 전에 경과된 시간입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="659"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="544"/>
         <source> s</source>
         <translation> 초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="682"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="410"/>
         <source>Modifier:</source>
         <translation>수정 키:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="689"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="517"/>
         <source>Edit button that is active while the stick is active.
 
 This button is useful for assigning zones with
@@ -3060,68 +3199,92 @@ functionality to an analog stick.</source>
 할당하는 데 유용합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="696"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
         <source>PushButton</source>
         <translation>누름버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="731"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="630"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="706"/>
+        <source>Threshold at which the modifier button gets activated.
+
+This button is useful for assigning zones with
+modifier keys that can be used to assign walk/run
+functionality to an analog stick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="770"/>
+        <source>Defines if the modifier buttons gets activated when the stick is inside or outside the threshold value.
+
+This button is useful for assigning zones with
+modifier keys that can be used to assign walk/run
+functionality to an analog stick.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="777"/>
+        <source>Invert Modifier Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
         <source>Na&amp;me:</source>
         <oldsource>Name:</oldsource>
         <translation>이름(&amp;M):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="741"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="827"/>
         <source>Specify the name of an analog stick.</source>
         <translation>아날로그 스틱의 이름을 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="750"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="836"/>
         <source>Mouse Settings</source>
         <translation>마우스 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="354"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="364"/>
         <source>Standard</source>
         <translation>표준</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="198"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="146"/>
         <source>Bearing:</source>
         <translation>베어링:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="198"/>
         <source>% Safe Zone:</source>
         <translation>% 안전 지역:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="359"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="369"/>
         <source>Eight Way</source>
         <translation>여덟 방향</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="404"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="503"/>
         <source>Dead Zone:</source>
         <translation>데드 존:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="456"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="510"/>
         <source>Max Zone:</source>
         <translation>최대 지역:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="508"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="474"/>
         <source>Diagonal Range:</source>
         <translation>대각선 범위:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="587"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="598"/>
         <source>Set</source>
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="600"/>
+        <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="611"/>
         <source>Set %1</source>
         <translation>설정 %1</translation>
     </message>
@@ -3185,274 +3348,519 @@ functionality to an analog stick.</source>
     </message>
 </context>
 <context>
+    <name>JoyGyroscopeButton</name>
+    <message>
+        <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="37"/>
+        <source>Pitch Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="41"/>
+        <source>Pitch Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
+        <source>Yaw Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="49"/>
+        <source>Yaw Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="53"/>
+        <source>Roll Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="57"/>
+        <source>Roll Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>JoyGyroscopeSensor</name>
+    <message>
+        <location filename="../../../src/joygyroscopesensor.cpp" line="57"/>
+        <source>Gyroscope</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>JoySensorButton</name>
+    <message>
+        <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="58"/>
+        <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="63"/>
+        <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="67"/>
+        <source>Button</source>
+        <translation type="unfinished">버튼</translation>
+    </message>
+</context>
+<context>
+    <name>JoySensorContextMenu</name>
+    <message>
+        <location filename="../../../src/joysensorcontextmenu.cpp" line="63"/>
+        <source>Mouse Settings</source>
+        <translation type="unfinished">마우스 설정</translation>
+    </message>
+</context>
+<context>
+    <name>JoySensorEditDialog</name>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
+        <source>Dialog</source>
+        <translation type="unfinished">대화상자</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="133"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="146"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="159"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="185"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
+        <source>0</source>
+        <translation type="unfinished">0</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
+        <source>Acceleration (m/s^2):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
+        <source>Pitch (°):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
+        <source>Roll (°):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
+        <source>% Safe Zone:</source>
+        <translation type="unfinished">% 안전 지역:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
+        <source>Presets:</source>
+        <translation type="unfinished">사전 설정:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
+        <source>Dead Zone:</source>
+        <translation type="unfinished">데드 존:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="394"/>
+        <source>Dead zone value to use for an analog sensor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
+        <source>Max Zone:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="449"/>
+        <source>Value when an analog sensor is considered moved 100%.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
+        <source>Diagonal Range:</source>
+        <translation type="unfinished">대각선 범위:</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="495"/>
+        <source>The area (in degrees) that each diagonal region occupies.</source>
+        <translation type="unfinished">각 대각선 영역이 차지하는 면적 (도)입니다.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
+        <source>Sensor Delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="556"/>
+        <source>Time lapsed before a direction change is taken into effect.</source>
+        <translation type="unfinished">방향 변경이 적용되기 전에 경과된 시간입니다.</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
+        <source> s</source>
+        <translation type="unfinished"> 초</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
+        <source>Na&amp;me:</source>
+        <translation type="unfinished">이름(&amp;M):</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="616"/>
+        <source>Specify the name of an analog sensor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
+        <source>Mouse Settings</source>
+        <translation type="unfinished">마우스 설정</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
+        <source>Roll (°/s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.cpp" line="79"/>
+        <source>Pitch (°/s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.cpp" line="80"/>
+        <source>Yaw (°/s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
+        <source>Set</source>
+        <translation type="unfinished">설정</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
+        <source>Set %1</source>
+        <translation type="unfinished">설정 %1</translation>
+    </message>
+</context>
+<context>
+    <name>JoySensorPreset</name>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="218"/>
+        <source>None</source>
+        <translation type="unfinished">없음</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="221"/>
+        <source>Mouse (Normal)</source>
+        <translation type="unfinished">마우스 (보통)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="224"/>
+        <source>Mouse (Inverted Horizontal)</source>
+        <translation type="unfinished">마우스 (반전된 수평)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="227"/>
+        <source>Mouse (Inverted Vertical)</source>
+        <translation type="unfinished">마우스 (반전된 수직)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="230"/>
+        <source>Mouse (Inverted Horizontal + Vertical)</source>
+        <translation type="unfinished">마우스 (반전된 수평 + 수직)</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="233"/>
+        <source>Arrows</source>
+        <translation type="unfinished">화살표</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="236"/>
+        <source>Keys: W | A | S | D</source>
+        <translation type="unfinished">키: W | A | S | D</translation>
+    </message>
+    <message>
+        <location filename="../../../src/joysensorpreset.cpp" line="239"/>
+        <source>NumPad</source>
+        <translation type="unfinished">숫자 키패드</translation>
+    </message>
+</context>
+<context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="86"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="772"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="919"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="957"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1102"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2350"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="85"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="781"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="928"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="966"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1111"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2452"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;새로운&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="101"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1556"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="99"/>
+        <source>Battery level of controller</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="110"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1565"/>
         <source>Remove</source>
         <translation>제거</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="103"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1557"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="112"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1566"/>
         <source>Remove configuration from recent list.</source>
         <translation>최근 목록에서 구성을 제거합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="108"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1559"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="117"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1568"/>
         <source>Load</source>
         <translation>불러오기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="110"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1560"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="119"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1569"/>
         <source>Load configuration file.</source>
         <translation>구성 파일을 불러옵니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="116"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1562"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="125"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1571"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="118"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1563"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="127"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1572"/>
         <source>Save changes to configuration file.</source>
         <translation>구성 파일에 변경 사항을 저장합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="123"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1565"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="132"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1574"/>
         <source>Save As</source>
         <translation>다른 이름으로 저장</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="125"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1566"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="134"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1575"/>
         <source>Save changes to a new configuration file.</source>
         <translation>새로운 구성 파일에 변경 사항을 저장합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="314"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1568"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="323"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1577"/>
         <source>Sets</source>
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="316"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="325"/>
         <source>Copy from Set</source>
         <translation>설정에서 복사</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="317"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="326"/>
         <source>Settings</source>
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="325"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1569"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="334"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1578"/>
         <source>Set 1</source>
         <translation>설정 1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="329"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1570"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="338"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1579"/>
         <source>Set 2</source>
         <translation>설정 2</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="333"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1571"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="342"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1580"/>
         <source>Set 3</source>
         <translation>설정 3</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="337"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1572"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="346"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1581"/>
         <source>Set 4</source>
         <translation>설정 4</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="341"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1573"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="350"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1582"/>
         <source>Set 5</source>
         <translation>설정 5</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="345"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1574"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="354"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1583"/>
         <source>Set 6</source>
         <translation>설정 6</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="349"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1575"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="358"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1584"/>
         <source>Set 7</source>
         <translation>설정 7</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="353"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1576"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="362"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1585"/>
         <source>Set 8</source>
         <translation>설정 8</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="419"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1582"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="428"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1591"/>
         <source>Stick/Pad Assign</source>
         <translation>스틱/패드 할당</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1581"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="436"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1590"/>
         <source>Controller Mapping</source>
         <translation>컨트롤러 매핑</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="436"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1583"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="445"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1592"/>
         <source>Quick Set</source>
         <translation>빠른 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="444"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1586"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="453"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1595"/>
         <source>Names</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="446"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1587"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="455"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1596"/>
         <source>Toggle button name displaying.</source>
         <translation>전환 버튼 이름 표시합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="452"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1589"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="461"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1598"/>
         <source>Pref</source>
         <translation>기본 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="454"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1590"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="463"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1599"/>
         <source>Change global profile settings.</source>
         <translation>전역 프로파일 설정을 변경합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="458"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1584"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1592"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="467"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1593"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1601"/>
         <source>Reset</source>
         <translation>재설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="460"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1593"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="469"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1602"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>구성 변경 사항을 되돌립니다. 구성 파일을 다시 불러옵니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="524"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="533"/>
         <source>Open Config</source>
         <translation>구성 열기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="524"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="533"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>구성 파일 (*.amgp *.xml)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="632"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="800"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="812"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="641"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="809"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="821"/>
         <source>Config File (*.%1.amgp)</source>
         <translation>구성 파일 (*.%1.amgp)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="721"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="730"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
         <translation>조이스틱의 버튼 설정을 재설정하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1611"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1672"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1620"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1681"/>
         <source>Save Profile Changes?</source>
         <translation>프로파일 변경 사항을 저장하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1614"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1676"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1623"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1685"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>새로운 프로파일에 대한 변경 사항이 저장되지 않았습니다. 현재 프로파일을 저장하거나 삭제하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1618"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1680"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1627"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1689"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>프로파일 &quot;%1&quot;에 대한 변경 사항이 저장되지 않았습니다. 현재 프로파일에 대한 변경 사항을 저장하거나 취소하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1927"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1960"/>
         <source>Sticks</source>
         <translation>스틱</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1996"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2048"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2033"/>
+        <source>Sensors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2098"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2150"/>
         <source>DPads</source>
         <translation>D-패드</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2201"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2303"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>버튼이 할당되지 않았습니다. 빠른 설정을 사용하여 버튼에 키를 할당하거나 
 빈 버튼 숨기기를 비활성화하세요.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2372"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2396"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2474"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2498"/>
         <source>Set %1: %2</source>
         <translation>설정 %1: %2</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2375"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2399"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2477"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2501"/>
         <source>Set %1</source>
         <translation>설정 %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2407"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2509"/>
         <source>Copy Set Assignments</source>
         <translation>설정 할당 복사</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2408"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2510"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>%1에서 할당 및 장치 속성을 복사하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="631"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="799"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="811"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="640"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="808"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="820"/>
         <source>Save Config</source>
         <translation>구성 저장</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1521"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1527"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1530"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1536"/>
         <source>Set</source>
         <translation>설정</translation>
     </message>
@@ -3488,8 +3896,9 @@ to buttons or disable hiding empty buttons.</source>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="125"/>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="152"/>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="179"/>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="257"/>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="293"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="206"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="284"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="320"/>
         <source>%1</source>
         <translation>%1</translation>
     </message>
@@ -3514,93 +3923,123 @@ to buttons or disable hiding empty buttons.</source>
         <translation>모자 스위치:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="217"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="199"/>
+        <source>Sensors:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="244"/>
         <source>Battery:</source>
         <translation>배터리:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="230"/>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="78"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="257"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="79"/>
         <source>Unknown</source>
         <translation>알 수 없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="250"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="277"/>
         <source>GUID:</source>
         <translation>GUID:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="286"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="313"/>
         <source>Game Controller:</source>
         <translation>게임 컨트롤러:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="316"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="343"/>
         <source>Axes</source>
         <translation>축</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="379"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="406"/>
         <source>Buttons</source>
         <translation>버튼</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.ui" line="442"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="469"/>
         <source>Hats</source>
         <translation>모자 스위치</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="49"/>
+        <location filename="../../../src/gui/joystickstatuswindow.ui" line="490"/>
+        <source>Sensors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="50"/>
         <source>%1 (#%2) Properties</source>
         <translation>%1 (#%2) 속성</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="57"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="58"/>
         <source>Empty</source>
         <translation>비어 있음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="62"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="63"/>
         <source>Low</source>
         <translation>낮음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="67"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="68"/>
         <source>Medium</source>
         <translation>중간</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="73"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="74"/>
         <source>Full</source>
         <translation>가득</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="83"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="84"/>
         <source>Wired</source>
         <translation>유선</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="88"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="89"/>
         <source>Different: %1</source>
         <translation>차이: %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="114"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="101"/>
+        <source>Accelerometer + Gyroscope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="103"/>
+        <source>Accelerometer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="105"/>
+        <source>Gyroscope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="107"/>
+        <source>None</source>
+        <translation type="unfinished">없음</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="124"/>
         <source>Axis %1</source>
         <translation>축 %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="167"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="177"/>
         <source>Hat %1</source>
         <translation>모자 스위치 %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="218"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="291"/>
         <source>No</source>
         <translation>없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="221"/>
+        <location filename="../../../src/gui/joystickstatuswindow.cpp" line="294"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
@@ -4126,7 +4565,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="635"/>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1812"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1816"/>
         <source>Default</source>
         <translation>기본값</translation>
     </message>
@@ -4148,7 +4587,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="745"/>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1093"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1097"/>
         <source>All</source>
         <translation>모두</translation>
     </message>
@@ -4184,7 +4623,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <translation>자동프로파일 (Wayland에서 비활성화됨)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="262"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="265"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
@@ -4193,32 +4632,32 @@ the option in Windows.</source>
 선택해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="754"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="758"/>
         <source>Select Default Profile Directory</source>
         <translation>기본 프로파일 디렉토리 선택</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1500"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1504"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>프로파일을 삭제하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1868"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1872"/>
         <source>Save Log File As</source>
         <translation>다른 이름으로 로그 파일 저장</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1868"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1872"/>
         <source>Log Files (*.log)</source>
         <translation>로그 파일 (*.log)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1893"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1897"/>
         <source>Do you really want to reset setting?</source>
         <translation>설정을 재설정하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1917"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1921"/>
         <source>Would you like to reset mappings too?</source>
         <translation>매핑도 재설정하겠습니까?</translation>
     </message>
@@ -4258,188 +4697,168 @@ the option in Windows.</source>
         <translation>옵션(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="236"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="235"/>
         <source>He&amp;lp</source>
         <translation>도움말(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="255"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="434"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="254"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="436"/>
         <source>&amp;Quit</source>
         <translation>종료(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="258"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="257"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="270"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="449"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="269"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="451"/>
         <source>&amp;Update Joysticks</source>
         <translation>조이스틱 업데이트(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="273"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="272"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="282"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="439"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="281"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="441"/>
         <source>&amp;Hide</source>
         <translation>숨기기(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="285"/>
-        <location filename="../../../src/gui/mainwindow.ui" line="341"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="284"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="340"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="294"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="293"/>
         <source>&amp;About</source>
         <translation>정보(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="297"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="296"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="306"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="305"/>
         <source>About &amp;Qt</source>
         <translation>Qt 정보(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="309"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="308"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="318"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="317"/>
         <source>&amp;Properties</source>
         <translation>속성(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="321"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="320"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="330"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="329"/>
         <source>&amp;Key Checker</source>
         <translation>키 검사기(&amp;K)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="333"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="332"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="350"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="349"/>
         <source>&amp;GitHub Page</source>
         <translation>깃허브 페이지(&amp;G)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="353"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="352"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="362"/>
-        <source>&amp;Game Controller Mapping</source>
-        <translation>게임 컨트롤러 매핑(&amp;G)</translation>
-    </message>
-    <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="365"/>
-        <source>Ctrl+M</source>
-        <translation>Ctrl+M</translation>
-    </message>
-    <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="374"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="361"/>
         <source>S&amp;ettings</source>
         <translation>설정(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="377"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="364"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="386"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="373"/>
         <source>&amp;Stick/Pad Assign</source>
         <translation>스틱/패드 할당(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="389"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="376"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="398"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="385"/>
         <source>&amp;Wiki</source>
         <translation>위키(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="401"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="388"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="410"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="397"/>
         <source>&amp;Issues</source>
         <translation>문제(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="413"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="400"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="422"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="409"/>
         <source>&amp;Calibration</source>
         <translation>보정(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="425"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="412"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.ui" line="338"/>
+        <location filename="../../../src/gui/mainwindow.ui" line="337"/>
         <source>Home Page</source>
         <translation>홈페이지</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="335"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="381"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="480"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1451"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1498"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1516"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1529"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="337"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="383"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="482"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1452"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1499"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1517"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1530"/>
         <source>(%1)</source>
         <translation>(%1)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="583"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="587"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="585"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="589"/>
         <source>Open File</source>
         <translation>파일 열기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1106"/>
-        <source>Calibration is not available.</source>
-        <translation>보정을 사용할 수 없습니다.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1107"/>
-        <source>Selected device doesn&apos;t have any joystick to calibrate.</source>
-        <translation>선택한 장치에 보정할 조이스틱이 없습니다.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1405"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1406"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4448,64 +4867,64 @@ Some games run as Administrator which will cause events generated by antimicro t
 일부 게임은 관리자로 실행되므로 antimicro가 관리자로도 실행되지 않는 한 antimicro에서 생성된 이벤트가 해당 게임에서 사용되지 않습니다. 이는 윈도우즈 비스타 이상에서 UAC (사용자 계정 컨트롤) 옵션으로 인한 권한 문제 때문입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1703"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1704"/>
         <source>%1 battery</source>
         <translation>%1 배터리</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1705"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1706"/>
         <source>Battery level is less than %1</source>
         <translation>배터리 잔량이 %1 미만</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1707"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1708"/>
         <source>Device number: %1
 Device name: %2</source>
         <translation>장치 번호: %1 
 장치 이름: %2</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1732"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1734"/>
         <source>Update to %1 available</source>
         <translation>%1(으)로 업데이트할 수 있음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1855"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1857"/>
         <source>Reading old profile</source>
         <translation>이전 프로파일 읽기</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1856"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1858"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
         <translation>이 프로파일은 컨트롤러의 GUID 번호를 사용합니다. 동일한 게임 컨트롤러에서 사용하기 위해 이 파일에서 GUID 번호를 UniqueID로 변경하겠습니까? 이러한 오래된 파일은 버전 2.25 이후로 antimicrox에서 로드할 수 없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="444"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="446"/>
         <source>&amp;Restore</source>
         <translation>복원(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1083"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1092"/>
         <source>Calibration couldn&apos;t be opened</source>
         <translation>보정을 열 수 없음</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1084"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1093"/>
         <source>You must connect at least one controller to open the window</source>
         <translation>창을 열려면 하나 이상의 컨트롤러를 연결</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1404"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1405"/>
         <source>Run as Administrator?</source>
         <translation>관리자로 실행하겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1429"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1430"/>
         <source>Failed to elevate program</source>
         <translation>프로그램 승격 실패</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1430"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1431"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>이 프로그램을 관리자로 다시 시작하지 못 함</translation>
     </message>
@@ -4563,6 +4982,19 @@ Device name: %2</source>
     </message>
 </context>
 <context>
+    <name>MouseSensorSettingsDialog</name>
+    <message>
+        <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="113"/>
+        <source>Mouse Settings</source>
+        <translation type="unfinished">마우스 설정</translation>
+    </message>
+    <message>
+        <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
+        <source>Set %1</source>
+        <translation type="unfinished">설정 %1</translation>
+    </message>
+</context>
+<context>
     <name>MouseSettingsDialog</name>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="17"/>
@@ -4570,12 +5002,12 @@ Device name: %2</source>
         <translation>마우스 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="27"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="28"/>
         <source>Mouse Mode:</source>
         <translation>마우스 모드:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="34"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="35"/>
         <source>Cursor mode is used to move the mouse cursor
 around the screen relative to its current position
 depending on how much you move an axis
@@ -4598,80 +5030,80 @@ axis is moved back to the dead zone.</source>
 화면 중앙으로 돌아갑니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="52"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="53"/>
         <source>Cursor</source>
         <translation>커서</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="57"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="58"/>
         <source>Spring</source>
         <translation>스프링</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="75"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="76"/>
         <source>Acceleration:</source>
         <translation>가속:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="108"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="109"/>
         <source>Enhanced Precision</source>
         <translation>향상된 정밀도</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="113"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="732"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="728"/>
         <source>Linear</source>
         <translation>선형</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="118"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="119"/>
         <source>Quadratic</source>
         <translation>2차</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="123"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="124"/>
         <source>Cubic</source>
         <translation>3차</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="128"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="129"/>
         <source>Quadratic Extreme</source>
         <translation>2차 극단</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="133"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="134"/>
         <source>Power Function</source>
         <translation>멱함수</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="138"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="139"/>
         <source>Easing Quadratic</source>
         <translation>완화 2차</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="143"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="144"/>
         <source>Easing Cubic</source>
         <translation>완화 3차</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="175"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="177"/>
         <source>Mouse Speed Settings</source>
         <translation>마우스 속도 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="190"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="192"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
         <translation>수평 및 수직 속도 상자를 동시에 
 변경할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="194"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="196"/>
         <source>Change Together</source>
         <translation>함께 변경</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="520"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="516"/>
         <source>Options for adding more acceleration to the mouse
 movement beyond what the acceleration curve would
 produce. Acceleration is added based on how quickly an axis is
@@ -4686,56 +5118,56 @@ using typical gamepad analog sticks.</source>
 해결하는 데 도움을 주기 위한 것입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="528"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="524"/>
         <source>Delta Acceleration</source>
         <translation>델타 가속</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="547"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="543"/>
         <source>&amp;Multiplier:</source>
         <translation>승수(&amp;M):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="620"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="616"/>
         <source>Mi&amp;n
 Threshold:</source>
         <translation>최소 
 한계점(&amp;N):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="248"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="296"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
         <translation>1 = 20 픽섹/초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="322"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
         <source>Wheel Hori.
 Speed:</source>
         <translation>휠 수평. 
 속도:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="333"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="329"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
         <translation>시뮬레이션된 초당 노치 수에 따라 수평 마우스 휠 이동에 
 사용되는 속도를 설정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="385"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="381"/>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
         <translation>초당 시뮬레이션된 노치 수에 따라 수직 마우스 휠 이동에 
 사용되는 속도를 설정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="414"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="410"/>
         <source>Sensitivit&amp;y:</source>
         <translation>민감도(&amp;Y):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="427"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="423"/>
         <source>For Power Function acceleration curve. Specifies
 the factor to use for curve sensitivity. When the value
 is above 1.0, the mouse movement will be accelerated
@@ -4746,124 +5178,124 @@ faster at the low end of an axis.</source>
 가속됩니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="456"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="452"/>
         <source>Easing Duration:</source>
         <translation>완화 기간:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="474"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="699"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="695"/>
         <source> s</source>
         <translation> 초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="557"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="553"/>
         <source>Highest value to accelerate mouse movement by</source>
         <translation>마우스 움직임을 가속화하는 가장 높은 값</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="560"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
         <source>x</source>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="580"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="576"/>
         <source>Start %:</source>
         <translation>시작 %:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="590"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="586"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
         <translation>가속은 기본 승수의 이 백분율에서 시작</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="631"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="627"/>
         <source>Minimum amount of axis travel required for acceleration to begin</source>
         <translation>가속을 시작하는 데 필요한 최소 축 이동량</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="651"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="647"/>
         <source>Max
 Threshold:</source>
         <translation>최대 
 한계점:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="662"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="658"/>
         <source>Maximum axis travel before acceleration has reached the multiplier value</source>
         <translation>가속이 승수 값에 도달하기 전의 최대 축 이동</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="684"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="680"/>
         <source>E&amp;xtra Duration:</source>
         <translation>추가 기간(&amp;X):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="719"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="715"/>
         <source>Curve:</source>
         <translation>곡선:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="737"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="733"/>
         <source>Ease Out Sine</source>
         <translation>Ease Out Sine</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="742"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="738"/>
         <source>Ease Out Quad</source>
         <translation>Ease Out Quad</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="747"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="743"/>
         <source>Ease Out Cubic</source>
         <translation>Ease Out Cubic</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="835"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="831"/>
         <source>Release Radius:</source>
         <translation>개정 반경:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="868"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="864"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
         <translation>스프링 영역이 비상대 스프링으로 설정된 마우스 위치를 
 기준으로 하도록 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="872"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="868"/>
         <source>Relative</source>
         <translation>비교</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="895"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="891"/>
         <source>Mouse Status</source>
         <translation>마우스 상태</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="903"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
         <source>X:</source>
         <translation>X:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="910"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="928"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
         <translation>0 (0 픽셀/초)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="921"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
         <source>Y:</source>
         <translation>Y:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="358"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="401"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="354"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="397"/>
         <source>1 = 1 notch(es)/s</source>
         <translation>1 = 1 노치/초</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="82"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="83"/>
         <source>Enhanced: Three tier curve that makes the mouse move
 slow on the low end of an axis and fast on the high end.
 
@@ -4902,28 +5334,28 @@ Easing Cubic: 축 하이 엔드는 3차 곡선을 사용하여 일정 기간
 동안 점진적으로 가속됩니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="219"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="221"/>
         <source>Hori&amp;zontal
 Speed:</source>
         <translation>수평 
 속도(&amp;Z):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="267"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="266"/>
         <source>&amp;Vertical
 Speed:</source>
         <translation>수직 
 속도(&amp;V):</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="374"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
         <source>Wheel Vert.
 Speed:</source>
         <translation>휠 수직. 
 속도:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="469"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="465"/>
         <source>Specifies the amount of time (in seconds) that will
 be required before the mouse is fully accelerated
 after reaching the high end of an axis.</source>
@@ -4932,15 +5364,15 @@ after reaching the high end of an axis.</source>
 시간 (초)을 지정합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="593"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="634"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="665"/>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="851"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="589"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="630"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="661"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="847"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="694"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="690"/>
         <source>Extend the time that extra acceleration is applied. Axis travel
 will be taken into account. A slower flick will decrease the
 actual time that extra acceleration will be applied.</source>
@@ -4949,17 +5381,17 @@ actual time that extra acceleration will be applied.</source>
 적용되는 실제 시간을 줄입니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="767"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="763"/>
         <source>Spring Settings</source>
         <translation>스프링 설정</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="777"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="773"/>
         <source>Spring Width:</source>
         <translation>스프링 폭:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="790"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="786"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
@@ -4968,12 +5400,12 @@ of your screen.</source>
 폭을 사용합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="806"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="802"/>
         <source>Spring Height:</source>
         <translation>스프링 높이:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mousesettingsdialog.ui" line="819"/>
+        <location filename="../../../src/gui/mousesettingsdialog.ui" line="815"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
@@ -4982,8 +5414,8 @@ of your screen.</source>
 전체 높이를 사용합니다.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../src/gui/mousesettingsdialog.cpp" line="189"/>
-        <location filename="../../../src/gui/mousesettingsdialog.cpp" line="197"/>
+        <location filename="../../../src/gui/mousesettingsdialog.cpp" line="191"/>
+        <location filename="../../../src/gui/mousesettingsdialog.cpp" line="199"/>
         <source>%n notch(es)/s</source>
         <translation>
             <numerusform>%n 노치/초</numerusform>
@@ -5103,7 +5535,7 @@ of your screen.</source>
         <translation>검색</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="198"/>
+        <location filename="../../../src/main.cpp" line="200"/>
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
@@ -5112,7 +5544,7 @@ of your screen.</source>
  원하는 경우 원래 디렉토리를 삭제하거나 그대로 둘 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="202"/>
+        <location filename="../../../src/main.cpp" line="204"/>
         <source>Some problem with settings migration occurred.
 Original configs are stored in 
 %1
@@ -5127,7 +5559,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
 이전 디렉토리의 이름을 바꾸고 파일의 이름을 antimicrox_settings.ini로 변경하여 수동으로 마이그레이션 할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="606"/>
+        <location filename="../../../src/main.cpp" line="619"/>
         <source>Quitting Program</source>
         <translation>프로그램 종료 중</translation>
     </message>
@@ -5152,82 +5584,17 @@ You can migrate manually by renaming old directory and renaming file to antimicr
         <translation>조이스틱 %1:</translation>
     </message>
     <message>
-        <location filename="../../../src/inputdevice.cpp" line="1215"/>
-        <source>Index:            %1</source>
-        <translation>색인:            %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1216"/>
-        <source>UniqueID:         %1</source>
-        <translation>UniqueID:         %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1217"/>
-        <source>GUID:             %1</source>
-        <translation>GUID:             %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1218"/>
-        <source>VendorID:         %1</source>
-        <translation>VendorID:         %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1219"/>
-        <source>ProductID:        %1</source>
-        <translation>ProductID:        %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1220"/>
-        <source>Product Version:  %1</source>
-        <translation>제품 버전:  %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1221"/>
-        <source>Name:             %1</source>
-        <translation>이름:             %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1222"/>
-        <source>Yes</source>
-        <translation>예</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1222"/>
-        <source>No</source>
-        <translation>아니오</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1224"/>
-        <source>Game Controller: %1</source>
-        <translation>게임 컨트롤러: %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1225"/>
-        <source># of Axes:       %1</source>
-        <translation># 축 수:       %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1226"/>
-        <source># of Buttons:    %1</source>
-        <translation># 버튼 수:    %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/inputdevice.cpp" line="1227"/>
-        <source># of Hats:       %1</source>
-        <translation># 모자 스위치 수:       %1</translation>
-    </message>
-    <message>
-        <location filename="../../../src/main.cpp" line="501"/>
+        <location filename="../../../src/main.cpp" line="512"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation>이벤트 생성을 위해 대체 옵션 %1을(를) 사용하려고 합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="527"/>
+        <location filename="../../../src/main.cpp" line="538"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation>이벤트 생성기를 열지 못했습니다. 종료합니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="554"/>
+        <location filename="../../../src/main.cpp" line="564"/>
         <source>Using %1 as the event generator.</source>
         <translation>%1을(를) 이벤트 생성기로 사용합니다.</translation>
     </message>
@@ -5240,11 +5607,6 @@ You can migrate manually by renaming old directory and renaming file to antimicr
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="954"/>
         <source>There isn&apos;t a last button pressed from gamepad in data. Did you set at least one button from gamepad for keyboard?</source>
         <translation>데이터에 게임패드에서 마지막으로 누른 버튼이 없습니다. 게임 패드에서 키보드용 버튼을 하나 이상 설정했나요?</translation>
-    </message>
-    <message>
-        <location filename="../../../src/autoprofilewatcher.cpp" line="165"/>
-        <source>Active window changed to: Title = &quot;%1&quot;, Class = &quot;%2&quot;, Program = &quot;%3&quot; or &quot;%4&quot;.</source>
-        <translation>활성 창이 다음으로 변경: 제목 = &quot;%1&quot;, 등급 = &quot;%2&quot;, 프로그램 = &quot;%3&quot; 또는 &quot;%4&quot;입니다.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="225"/>
@@ -5303,22 +5665,12 @@ You can migrate manually by renaming old directory and renaming file to antimicr
         <translation>지정된 로그 파일이 없습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1551"/>
-        <source>Auto-switching to profile &quot;%1&quot;.</source>
-        <translation>프로파일 &quot;%1&quot;로 자동 전환합니다.</translation>
-    </message>
-    <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1554"/>
-        <source>Auto-switching to nullptr profile!</source>
-        <translation>nullptr 프로파일로 자동 전환합니다!</translation>
-    </message>
-    <message>
-        <location filename="../../../src/x11extras.cpp" line="713"/>
+        <location filename="../../../src/x11extras.cpp" line="712"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
         <translation>xinput 버전은 2.0 이상이어야 합니다. 마우스 가속 변경이 발생하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="496"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="486"/>
         <source>Unable to open uinput files, this may cause problems with generating events.
 To check possible solutions please visit: </source>
         <translation>uinput 파일을 열 수 없습니다. 이벤트 생성에 문제가 발생할 수 있습니다. 
@@ -5364,12 +5716,12 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>SetJoystick</name>
     <message>
-        <location filename="../../../src/setjoystick.cpp" line="864"/>
+        <location filename="../../../src/setjoystick.cpp" line="1021"/>
         <source>Set %1: %2</source>
         <translation>설정 %1: %2</translation>
     </message>
     <message>
-        <location filename="../../../src/setjoystick.cpp" line="866"/>
+        <location filename="../../../src/setjoystick.cpp" line="1023"/>
         <source>Set %1</source>
         <translation>설정 %1</translation>
     </message>
@@ -5446,7 +5798,7 @@ Would you like to distribute this throttle change to all sets?</source>
 <context>
     <name>UInputEventHandler</name>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="313"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="303"/>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
@@ -5455,14 +5807,14 @@ uinput 모듈이 불러왔는지 확인하세요.
 lsmod | grep uinput</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="323"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="313"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
         <translation>uinput 장치 파일을 열 수 없음 
 장치에 쓰기 권한이 있는지 확인</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="508"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="498"/>
         <source>Using uinput device file %1</source>
         <translation>uinput 장치 파일 %1 사용 중</translation>
     </message>
@@ -6751,7 +7103,7 @@ LK</translation>
         <translation>[키 할당 없음]</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="317"/>
+        <location filename="../../../src/winextras.cpp" line="319"/>
         <source>AntiMicro Profile</source>
         <translation>AntiMicro 프로파일</translation>
     </message>
@@ -6809,12 +7161,12 @@ LK</translation>
         <translation>xinput 버전은 2.0 이상이어야 합니다. 마우스 가속 변경이 발생하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="661"/>
+        <location filename="../../../src/x11extras.cpp" line="660"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
         <translation>가상 포인터에 대한 PtrFeedbackClass를 찾을 수 없습니다. id=%1인 장치의 경우 마우스 가속이 변경되지 않음</translation>
     </message>
     <message>
-        <location filename="../../../src/x11extras.cpp" line="668"/>
+        <location filename="../../../src/x11extras.cpp" line="667"/>
         <source>Changing mouse acceleration for device with id=%1</source>
         <translation>ID=%1인 장치의 마우스 가속 변경</translation>
     </message>
@@ -6822,7 +7174,7 @@ LK</translation>
 <context>
     <name>XMLConfigReader</name>
     <message>
-        <location filename="../../../src/xmlconfigreader.cpp" line="131"/>
+        <location filename="../../../src/xmlconfigreader.cpp" line="138"/>
         <source>Could not write updated profile XML to file %1.</source>
         <translation>업데이트된 프로파일 XML을 파일 %1에 쓸 수 없습니다.</translation>
     </message>
@@ -6830,7 +7182,7 @@ LK</translation>
 <context>
     <name>XMLConfigWriter</name>
     <message>
-        <location filename="../../../src/xmlconfigwriter.cpp" line="70"/>
+        <location filename="../../../src/xmlconfigwriter.cpp" line="74"/>
         <source>Could not write to profile at %1.</source>
         <translation>%1의 프로파일에 쓸 수 없습니다.</translation>
     </message>
