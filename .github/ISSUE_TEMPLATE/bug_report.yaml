@@ -37,6 +37,7 @@ body:
     label: Environment
     description: |
       Copy and paste text from Info window (Help->About->Info)
+      ❗Without this information issue will be instantly closed.❗
     placeholder: |
       Program Version 3.3.2
       Built Against SDL 2.24.0
