@@ -162,8 +162,8 @@ void AutoProfileWatcher::runAppCheck()
 #endif
         currentAppWindowTitle = nowWindowName;
 
-        qInfo() << QObject::tr("Active window changed to: Title = \"%1\", "
-                               "Class = \"%2\", Program = \"%3\" or \"%4\".")
+        qInfo() << QString("Active window changed to: Title = \"%1\", "
+                           "Class = \"%2\", Program = \"%3\" or \"%4\".")
                        .arg(nowWindowName, nowWindowClass, appLocation, baseAppFileName);
 
         QSet<AutoProfileInfo *> fullSet;

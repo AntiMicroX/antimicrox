@@ -1340,22 +1340,22 @@ int InputDevice::getButtonDownCount() { return buttonDownCount; }
 
 QString InputDevice::getDescription()
 {
-    QString full_desc = QObject::tr("Index:            %1").arg(getRealJoyNumber()) + "\n  " +
-                        QObject::tr("UniqueID:         %1").arg(getUniqueIDString()) + "\n  " +
-                        QObject::tr("GUID:             %1").arg(getGUIDString()) + "\n  " +
-                        QObject::tr("VendorID:         %1").arg(getVendorString()) + "\n  " +
-                        QObject::tr("ProductID:        %1").arg(getProductIDString()) + "\n  " +
-                        QObject::tr("Serial:           %1").arg(getSerialString()) + "\n  " +
-                        QObject::tr("Product Version:  %1").arg(getProductVersion()) + "\n  " +
-                        QObject::tr("Name:             %1").arg(getSDLName()) + "\n";
-    QString gameControllerStatus = isGameController() ? QObject::tr("Yes") : QObject::tr("No");
+    QString full_desc = QString("Index:            %1").arg(getRealJoyNumber()) + "\n  " +
+                        QString("UniqueID:         %1").arg(getUniqueIDString()) + "\n  " +
+                        QString("GUID:             %1").arg(getGUIDString()) + "\n  " +
+                        QString("VendorID:         %1").arg(getVendorString()) + "\n  " +
+                        QString("ProductID:        %1").arg(getProductIDString()) + "\n  " +
+                        QString("Serial:           %1").arg(getSerialString()) + "\n  " +
+                        QString("Product Version:  %1").arg(getProductVersion()) + "\n  " +
+                        QString("Name:             %1").arg(getSDLName()) + "\n";
+    QString gameControllerStatus = isGameController() ? QString("Yes") : QString("No");
 
-    full_desc = full_desc + "  " + QObject::tr("Game Controller: %1").arg(gameControllerStatus) + "\n  " +
-                QObject::tr("# of Axes:       %1").arg(getNumberRawAxes()) + "\n  " +
-                QObject::tr("# of Buttons:    %1").arg(getNumberRawButtons()) + "\n  " +
-                QObject::tr("# of Hats:       %1").arg(getNumberHats()) + "\n  " +
-                QObject::tr("Accelerometer:   %1").arg(hasSensor(ACCELEROMETER)) + "\n  " +
-                QObject::tr("Gyroscope:       %1").arg(hasSensor(GYROSCOPE)) + "\n";
+    full_desc = full_desc + "  " + QString("Game Controller: %1").arg(gameControllerStatus) + "\n  " +
+                QString("# of Axes:       %1").arg(getNumberRawAxes()) + "\n  " +
+                QString("# of Buttons:    %1").arg(getNumberRawButtons()) + "\n  " +
+                QString("# of Hats:       %1").arg(getNumberHats()) + "\n  " +
+                QString("Accelerometer:   %1").arg(hasSensor(ACCELEROMETER)) + "\n  " +
+                QString("Gyroscope:       %1").arg(hasSensor(GYROSCOPE)) + "\n";
     return full_desc;
 }
 
