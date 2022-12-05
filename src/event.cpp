@@ -111,7 +111,8 @@ QString detectedScriptExt(QString file)
         QTextStream in(&inputFile);
         firstLine = in.readLine();
         inputFile.close();
-    }
+    } else
+        WARN() << "Could not open file: " << file;
 
     /*
      * shell scripts work, but I am not sure about other extensions
