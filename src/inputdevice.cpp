@@ -1712,7 +1712,7 @@ void InputDevice::convertToUniqueMappSett(QSettings *sett, QString gUIDmappGroup
     }
 }
 
-QHash<int, SetJoystick *> &InputDevice::getJoystick_sets() { return joystick_sets; }
+QMap<int, SetJoystick *> &InputDevice::getJoystick_sets() { return joystick_sets; }
 
 QHash<int, JoyAxis::ThrottleTypes> &InputDevice::getCali() { return cali; }
 
