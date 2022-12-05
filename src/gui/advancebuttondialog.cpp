@@ -1373,11 +1373,11 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     int currentIndex = 1;
 
     QHash<int, SetJoystick *>::iterator set;
-    int originset = 0;
 
     for (set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin();
          set != m_button->getParentSet()->getInputDevice()->getJoystick_sets().end(); ++set)
     {
+        int originset = set.key();
         if (m_button->getOriginSet() != originset)
         {
             QString selectedSetText = QString(tr("Select Set %1").arg(originset + 1));
@@ -1409,14 +1409,14 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
 void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
 {
     ui->slotSetChangeComboBox->clear();
-    int currentIndex = 0;
+    int current_box_index = 0;
 
     QHash<int, SetJoystick *>::iterator set;
-    int originset = 0;
 
     for (set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin();
          set != m_button->getParentSet()->getInputDevice()->getJoystick_sets().end(); ++set)
     {
+        int originset = set.key();
         if (m_button->getOriginSet() != originset)
         {
             QString selectedSetSlotText = QString(tr("Select Set %1").arg(originset + 1));
@@ -1428,8 +1428,8 @@ void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
                 selectedSetSlotText.append(setName).append("]").append(" ");
             }
 
-            ui->slotSetChangeComboBox->insertItem(currentIndex, selectedSetSlotText, QVariant(originset));
-            currentIndex++;
+            ui->slotSetChangeComboBox->insertItem(current_box_index, selectedSetSlotText, QVariant(originset));
+            current_box_index++;
         }
 
         originset++;
