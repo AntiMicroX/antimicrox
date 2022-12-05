@@ -8,3 +8,9 @@ Check source of signal
         qInfo() << "objName ::" << obj->metaObject()->className() << endl
                 << "method ::" << obj->metaObject()->method(senderSignalIndex()).methodSignature();
 ```
+
+To make antimicrox crash when warrning happens use command:
+
+`QT_FATAL_WARNINGS=1 ./build/bin/antimicrox`
+
+(Useful when used with debugger)
