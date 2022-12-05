@@ -159,7 +159,7 @@ class InputDevice : public QObject
     void rawAxisEvent(int index, int value); // InputDeviceAxis class
     bool elementsHaveNames();
 
-    QHash<int, SetJoystick *> &getJoystick_sets();
+    QMap<int, SetJoystick *> &getJoystick_sets();
     SDL_Joystick *getJoyHandle() const;
     virtual SDL_GameControllerType getControllerType() const;
 
@@ -269,7 +269,7 @@ class InputDevice : public QObject
     QList<int> &getDpadstatesLocal();
 
     SDL_Joystick *m_joyhandle;
-    QHash<int, SetJoystick *> joystick_sets;
+    QMap<int, SetJoystick *> joystick_sets;
     QHash<int, JoyAxis::ThrottleTypes> cali;
     AntiMicroSettings *m_settings;
     int active_set;
