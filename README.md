@@ -148,11 +148,6 @@ List of required dependencies and build instructions can be found [here](./BUILD
 Status of package `anitmicrox`:  
 [![Packaging status](https://repology.org/badge/vertical-allrepos/antimicrox.svg?columns=3&minversion=3.1)](https://repology.org/project/antimicrox/versions)
 
-And `antimicro` (in cases when it contains AntiMicroX)  
-[![Debian 12 package](https://repology.org/badge/version-for-repo/debian_12/antimicro.svg)](https://repology.org/project/antimicro/versions)  
-[![Debian Unstable package](https://repology.org/badge/version-for-repo/debian_unstable/antimicro.svg)](https://repology.org/project/antimicro/versions)  
-[![Ubuntu 22.04 package](https://repology.org/badge/version-for-repo/ubuntu_22_04/antimicro.svg)](https://repology.org/project/antimicro/versions)
-
 ## Command Line
 
 Run `antimicrox --help` or read `man antimicrox` for command-line parameters.
