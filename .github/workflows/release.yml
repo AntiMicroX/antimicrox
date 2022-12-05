@@ -60,7 +60,7 @@ jobs:
             #Replace original library with the newer one
             - name: Build and install newer SDL2
               run: |
-                git clone https://github.com/libsdl-org/SDL.git -b release-2.0.20
+                git clone https://github.com/libsdl-org/SDL.git -b release-2.24.2
                 cd SDL
                 mkdir build
                 cd build
