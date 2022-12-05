@@ -143,10 +143,9 @@ void AdvanceStickAssignmentDialog::checkForAxisAssignmentSticks(QWidget *comboBo
     {
         if (xAxisComboBox->currentIndex() != yAxisComboBox->currentIndex())
         {
-            QHash<int, SetJoystick *>::iterator set;
             int originset = 0;
 
-            for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+            for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
             {
                 SetJoystick *currentset = set.value();
                 JoyAxis *axis1 = currentset->getJoyAxis(xAxisComboBox->currentIndex() - 1);
@@ -192,10 +191,9 @@ void AdvanceStickAssignmentDialog::changeStateVDPadWidgets(bool enabledVDPads)
     ui->vdpadLeftPushButton->setEnabled(enabledVDPads);
     ui->vdpadRightPushButton->setEnabled(enabledVDPads);
 
-    QHash<int, SetJoystick *>::iterator set;
     int originset = 0;
 
-    for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+    for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
     {
         SetJoystick *currentset = set.value();
 
@@ -259,9 +257,7 @@ void AdvanceStickAssignmentDialog::changeStateStickTwoWidgets(bool enabled)
 
         if (joystick->getActiveSetJoystick()->getJoyStick(1) != nullptr)
         {
-            QHash<int, SetJoystick *>::iterator set;
-
-            for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+            for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
             {
                 set.value()->removeControlStick(1);
             }
@@ -463,9 +459,8 @@ void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
 
             if ((axis > 0) && (button >= 0))
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -484,9 +479,8 @@ void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
                 }
             } else if (button > 0)
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -501,9 +495,8 @@ void AdvanceStickAssignmentDialog::changeVDPadUpButton(int index)
         }
     } else
     {
-        QHash<int, SetJoystick *>::iterator set;
 
-        for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+        for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
         {
             SetJoystick *currentset = set.value();
             VDPad *vdpad = currentset->getVDPad(0);
@@ -541,9 +534,8 @@ void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
 
             if ((axis > 0) && (button >= 0))
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -562,9 +554,8 @@ void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
                 }
             } else if (button > 0)
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -579,9 +570,8 @@ void AdvanceStickAssignmentDialog::changeVDPadDownButton(int index)
         }
     } else
     {
-        QHash<int, SetJoystick *>::iterator set;
 
-        for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+        for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
         {
             SetJoystick *currentset = set.value();
             VDPad *vdpad = currentset->getVDPad(0);
@@ -619,9 +609,8 @@ void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
 
             if ((axis > 0) && (button >= 0))
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -640,9 +629,8 @@ void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
                 }
             } else if (button > 0)
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -657,9 +645,8 @@ void AdvanceStickAssignmentDialog::changeVDPadLeftButton(int index)
         }
     } else
     {
-        QHash<int, SetJoystick *>::iterator set;
 
-        for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+        for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
         {
             SetJoystick *currentset = set.value();
             VDPad *vdpad = currentset->getVDPad(0);
@@ -697,9 +684,8 @@ void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
 
             if ((axis > 0) && (button >= 0))
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -718,9 +704,8 @@ void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
                 }
             } else if (button > 0)
             {
-                QHash<int, SetJoystick *>::iterator set;
 
-                for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+                for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
                 {
                     SetJoystick *currentset = set.value();
                     VDPad *vdpad = currentset->getVDPad(0);
@@ -735,9 +720,8 @@ void AdvanceStickAssignmentDialog::changeVDPadRightButton(int index)
         }
     } else
     {
-        QHash<int, SetJoystick *>::iterator set;
 
-        for (set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
+        for (auto set = joystick->getJoystick_sets().begin(); set != joystick->getJoystick_sets().end(); ++set)
         {
             SetJoystick *currentset = set.value();
             VDPad *vdpad = currentset->getVDPad(0);

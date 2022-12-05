@@ -1372,9 +1372,7 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
     ui->setSelectionComboBox->insertItem(0, tr("Disabled"));
     int currentIndex = 1;
 
-    QHash<int, SetJoystick *>::iterator set;
-
-    for (set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin();
+    for (auto set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin();
          set != m_button->getParentSet()->getInputDevice()->getJoystick_sets().end(); ++set)
     {
         int originset = set.key();
@@ -1411,9 +1409,7 @@ void AdvanceButtonDialog::populateSlotSetSelectionComboBox()
     ui->slotSetChangeComboBox->clear();
     int current_box_index = 0;
 
-    QHash<int, SetJoystick *>::iterator set;
-
-    for (set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin();
+    for (auto set = m_button->getParentSet()->getInputDevice()->getJoystick_sets().begin();
          set != m_button->getParentSet()->getInputDevice()->getJoystick_sets().end(); ++set)
     {
         int originset = set.key();

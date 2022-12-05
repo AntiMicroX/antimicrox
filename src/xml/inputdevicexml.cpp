@@ -716,16 +716,12 @@ void InputDeviceXml::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeStartElement("sets");
 
-    QHash<int, SetJoystick *>::const_iterator i = m_inputDevice->getJoystick_sets().constBegin();
-
-    while (i != m_inputDevice->getJoystick_sets().constEnd())
+    for (const auto &joyset : m_inputDevice->getJoystick_sets())
     {
-        if (!i.value()->isSetEmpty())
-            i.value()->writeConfig(xml);
+        if (!joyset->isSetEmpty())
+            joyset->writeConfig(xml);
         else
             qDebug() << "Set is empty";
-
-        ++i;
     }
 
     xml->writeEndElement();
