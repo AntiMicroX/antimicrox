@@ -1134,16 +1134,16 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
     QString controlEntryProfileName = QString("Controller%1ProfileName%2").arg(m_joystick->getStringIdentifier());
 
     bool finished = false;
-    for (int i = 1; !finished; i++)
+    for (int configFileNum = 1; !finished; configFileNum++)
     {
         QString tempfilepath = QString();
 
         if (!m_joystick->getStringIdentifier().isEmpty())
         {
             convToUniqueIDControllerGroupSett(
-                m_settings, QString("Controller%1ConfigFile%2").arg(m_joystick->getGUIDString()).arg(i),
-                QString("Controller%1ConfigFile%2").arg(m_joystick->getUniqueIDString()).arg(i));
-            tempfilepath = m_settings->value(controlEntryString.arg(i), "").toString();
+                m_settings, QString("Controller%1ConfigFile%2").arg(m_joystick->getGUIDString()).arg(configFileNum),
+                QString("Controller%1ConfigFile%2").arg(m_joystick->getUniqueIDString()).arg(configFileNum));
+            tempfilepath = m_settings->value(controlEntryString.arg(configFileNum), "").toString();
         }
 
         if (!tempfilepath.isEmpty())
@@ -1153,9 +1153,9 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
             if (fileInfo.exists() && (configBox->findData(fileInfo.absoluteFilePath()) == -1))
             {
                 convToUniqueIDControllerGroupSett(
-                    m_settings, QString("Controller%1ProfileName%2").arg(m_joystick->getGUIDString()).arg(i),
-                    QString("Controller%1ProfileName%2").arg(m_joystick->getUniqueIDString()).arg(i));
-                QString profileName = m_settings->value(controlEntryProfileName.arg(i), "").toString();
+                    m_settings, QString("Controller%1ProfileName%2").arg(m_joystick->getGUIDString()).arg(configFileNum),
+                    QString("Controller%1ProfileName%2").arg(m_joystick->getUniqueIDString()).arg(configFileNum));
+                QString profileName = m_settings->value(controlEntryProfileName.arg(configFileNum), "").toString();
                 profileName = !profileName.isEmpty() ? profileName : PadderCommon::getProfileName(fileInfo);
                 configBox->addItem(profileName, fileInfo.absoluteFilePath());
             }
@@ -1164,7 +1164,7 @@ void JoyTabWidget::loadSettings(bool forceRefresh)
             finished = true;
         }
 
-        if ((numberRecentProfiles > 0) && (i == numberRecentProfiles))
+        if ((numberRecentProfiles > 0) && (configFileNum == numberRecentProfiles))
         {
             finished = true;
         }
