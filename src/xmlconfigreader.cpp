@@ -104,8 +104,10 @@ bool XMLConfigReader::read()
 
         if (!configFile->isOpen())
         {
-            configFile->open(QFile::ReadOnly | QFile::Text);
-            xml->setDevice(configFile);
+            if (configFile->open(QFile::ReadOnly | QFile::Text))
+                xml->setDevice(configFile);
+            else
+                WARN() << "Could not open file: " << configFile->fileName();
         }
 
         xml->readNextStartElement();

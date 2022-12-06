@@ -1878,7 +1878,8 @@ void MainWindow::convertGUIDtoUniqueID(InputDevice *currentDevice, QString contr
         {
             QTextStream out(&newData);
             out << dataText;
-        }
+        } else
+            WARN() << "Could not open file: " << newData.fileName();
 
         newData.close();
 
