@@ -42,7 +42,13 @@ class BaseEventHandler : public QObject
 
     virtual void sendKeyboardEvent(JoyButtonSlot *slot, bool pressed) = 0;
     virtual void sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed) = 0;
+    /**
+     * @brief Move cursor to selected relative location (deltax delaty)
+     */
     virtual void sendMouseEvent(int xDis, int yDis) = 0;
+    /**
+     * @brief Move cursor to selected absolute location (x, y) on selected display
+     */
     virtual void sendMouseAbsEvent(int xDis, int yDis, int screen);
 
     virtual void sendMouseSpringEvent(int xDis, int yDis, int width, int height);

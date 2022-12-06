@@ -25,6 +25,10 @@
  * @brief Input event handler class using uinput files
  *
  * Proper udev rule may be needed for usage
+ * General info
+ * https://kernel.org/doc/html/v5.15/input/uinput.html
+ * Event types
+ * https://www.kernel.org/doc/html/v5.15/input/event-codes.html
  *
  */
 class UInputEventHandler : public BaseEventHandler
@@ -65,6 +69,15 @@ class UInputEventHandler : public BaseEventHandler
     void createUInputMouseDevice(int filehandle);
     void createUInputSpringMouseDevice(int filehandle);
     void closeUInputDevice(int filehandle);
+    /**
+     * @brief Write uinput event to selected file uinput file
+     *
+     * @param filehandle - C-style linux file handle obtained by open()
+     * @param type type of event described in input-event-codes.h (for example EV_ABS )
+     * @param code Additional code like ABS_X for type EV_ABS
+     * @param value
+     * @param syn synchronize after event (emit additional event used for separation of events EV_SYN)
+     */
     void write_uinput_event(int filehandle, int type, int code, int value, bool syn = true);
 
   private slots:
