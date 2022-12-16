@@ -31,37 +31,22 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent)
     , extraData()
 {
     deviceCode = 0;
+    qkeyaliasCode = 0;
     m_mode = JoyKeyboard;
     m_distance = 0.0;
     previousDistance = 0.0;
-    qkeyaliasCode = 0;
     easingActive = false;
     mix_slots = nullptr;
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, JoySlotInputAction mode, QObject *parent)
-    : QObject(parent)
-    , extraData()
+    : JoyButtonSlot(code, 0, mode, parent)
 {
-    deviceCode = 0;
-    qkeyaliasCode = 0;
-
-    if (code > 0)
-        deviceCode = code;
-
-    m_mode = mode;
-    m_distance = 0.0;
-    easingActive = false;
-    mix_slots = nullptr;
 }
 
 JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObject *parent)
-    : QObject(parent)
-    , extraData()
+    : JoyButtonSlot(parent)
 {
-    deviceCode = 0;
-    qkeyaliasCode = 0;
-
     if (code > 0)
         deviceCode = code;
 
@@ -69,9 +54,6 @@ JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObje
         qkeyaliasCode = alias;
 
     m_mode = mode;
-    m_distance = 0.0;
-    easingActive = false;
-    mix_slots = nullptr;
 }
 
 JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent)
