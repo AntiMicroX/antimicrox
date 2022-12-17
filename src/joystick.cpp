@@ -77,9 +77,9 @@ QString Joystick::getVendorString() const
 {
     QString temp = QString();
 
-    if (controller != nullptr)
+    if (m_joyhandle != nullptr)
     {
-        Uint16 tempVendor = SDL_GameControllerGetVendor(controller);
+        Uint16 tempVendor = SDL_JoystickGetVendor(m_joyhandle);
         char buffer[50];
         sprintf(buffer, "%u", tempVendor);
 
@@ -93,9 +93,9 @@ QString Joystick::getProductIDString() const
 {
     QString temp = QString();
 
-    if (controller != nullptr)
+    if (m_joyhandle != nullptr)
     {
-        Uint16 tempProduct = SDL_GameControllerGetProduct(controller);
+        Uint16 tempProduct = SDL_JoystickGetProduct(m_joyhandle);
         char buffer[50];
         sprintf(buffer, "%u", tempProduct);
 
@@ -109,16 +109,13 @@ QString Joystick::getSerialString() const
 {
     QString temp = QString();
 #if SDL_VERSION_ATLEAST(2, 0, 14)
-    if (controller != nullptr)
+    if (m_joyhandle != nullptr)
     {
-        SDL_Joystick *joyhandle = SDL_GameControllerGetJoystick(controller);
-        if (joyhandle != nullptr)
-        {
-            const char *serial = SDL_JoystickGetSerial(joyhandle);
-            temp = QString(serial).remove(QRegExp("[^A-Za-z0-9]"));
-        }
+        const char *serial = SDL_JoystickGetSerial(m_joyhandle);
+        temp = QString(serial).remove(QRegExp("[^A-Za-z0-9]"));
     }
 #endif
+
     return temp;
 }
 
@@ -126,9 +123,9 @@ QString Joystick::getProductVersion() const
 {
     QString temp = QString();
 
-    if (controller != nullptr)
+    if (m_joyhandle != nullptr)
     {
-        Uint16 tempProductVersion = SDL_GameControllerGetProductVersion(controller);
+        Uint16 tempProductVersion = SDL_JoystickGetProductVersion(m_joyhandle);
         char buffer[50];
         sprintf(buffer, "%u", tempProductVersion);
 
