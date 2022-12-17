@@ -38,11 +38,22 @@ endif(UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
 
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND MSVC_TOOLSET_VERSION GREATER_EQUAL 140)
+    # MSVC tools v140 and later support c++11 ootb and has no flag to enable it.
+    set(COMPILER_SUPPORTS_CXX11 1)
+    set(COMPILER_IS_MSVC 1)
+else()
+    CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+endif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND MSVC_TOOLSET_VERSION GREATER_EQUAL 140)
 
 
-if(COMPILER_SUPPORTS_CXX11)
-    message("Build type: ${CMAKE_BUILD_TYPE}")
+if(NOT COMPILER_SUPPORTS_CXX11)
+    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif(NOT COMPILER_SUPPORTS_CXX11)
+
+message("Build type: ${CMAKE_BUILD_TYPE}")
+
+if(NOT COMPILER_IS_MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g -O0 -fno-omit-frame-pointer")
     if(UNIX AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
@@ -50,8 +61,13 @@ if(COMPILER_SUPPORTS_CXX11)
     endif(UNIX AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++11")
 else()
-    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /analyze- /D_CRT_SECURE_NO_WARNINGS")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /W3 /GS /Od /sdl /RTC1 /Gd /Oy-")
+    if(MSVC_TOOLSET_VERSION GREATER_EQUAL 141)
+        # VS2017 (toolset v141) and later can set /permissive- to disable non-standard conforming behavior
+        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /permissive-")
+    endif(MSVC_TOOLSET_VERSION GREATER_EQUAL 141)
+endif(NOT COMPILER_IS_MSVC)
 
 # The version number.
 set(ANTIMICROX_MAJOR_VERSION 3)

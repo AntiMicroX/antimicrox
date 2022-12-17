@@ -5,6 +5,7 @@ Most of these packages are already built and available on [Release Page](https:/
 - [Building AntiMicroX](#building-antimicrox)
   - [Build Dependencies](#build-dependencies)
   - [Basic building](#basic-building)
+    - [MSVC building tips](#msvc-building-tips)
     - [Build Options for CMake](#build-options-for-cmake)
     - [Universal Options](#universal-options)
     - [Linux Options](#linux-options)
@@ -57,7 +58,7 @@ sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools l
   <summary>Windows dependencies</summary>
 In case of Windows you need QT, SDL2 libraries, cmake and compiler (mingw for example).
 
-For setting up your environment you may use `msys2`.
+For setting up your environment you may use `msys2`. Alternatively, you may use `MSVC`.
 
 </details>
 
@@ -88,6 +89,16 @@ Run built binaries
 ```
 ./bin/antimicrox
 ```
+
+#### MSVC building tips
+
+Recent versions of Visual Studio (2017+) have support for cmake projects. Under Visual Studio 2022, building AntiMicroX is quite straight forward.
+- Ensure you have compatable versions of [Qt](https://www.qt.io/download) (5.9 works as of writing,) and [SDL2-devel](https://github.com/libsdl-org/SDL/releases/) installed.
+- Open antimicrox as a local folder in VS22. It should pick up the `CMakeLists.txt` and offer an option to open the CMake settings editor. If it doesn't, right click on `CMakeLists.txt` in the solution explorer and select `CMake settings for antimicrox`.
+- In the `Command arguments` section, add an argument to tell CMake where to find your Qt; E.g.: `"-DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2017_64\lib\cmake"`. As of writing, Qt's msvc2017 works properly through vs22.
+- Under the `Cmake variables and cache` section, click the link labeled `Save and generate cmake cache to load variables.
+- If the CMake generation fails due to SDL2, find the variables named `SDL2_PATH`, `SDL2_INCLUDE_DIR`, and `SDL2_DLL_LOCATION_DIR` in the list view, and set them properly. You may also need to move the headers in the SDL2 include dir inside a folder named `SDL2` to match their include paths on other systems.
+- At this point you should be able to save your changes to regenerate the cmake cache, which will then allow you to build `antimicrox.exe` through Visual Studio.
 
 A recommended way of installation is building package typical for for your system (or building universal one like an AppImage).
 
