@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QVarLengthArray>
 #include <cmath>
 #include <qt_windows.h>
 
@@ -165,9 +166,11 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
 
             tempList.append(temp.virtualkey);
 
-            if (tempList.size() > 0)
+            int inputCount = tempList.size();
+
+            if (inputCount > 0)
             {
-                INPUT tempBuffer[tempList.size()] = {0};
+                QVarLengthArray<INPUT> tempBuffer(inputCount);
 
                 unsigned int j = 0;
                 for (auto iter = tempList.cbegin(); iter != tempList.cend(); ++iter, ++j)
@@ -186,10 +189,10 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
                     tempBuffer[j].ki.dwFlags = tempflags;
                 }
 
-                SendInput(j, tempBuffer, sizeof(INPUT));
+                SendInput(j, tempBuffer.data(), sizeof(INPUT));
 
                 j = 0;
-                memset(tempBuffer, 0, sizeof(tempBuffer));
+                memset(tempBuffer.data(), 0, sizeof(INPUT) * inputCount);
                 // INPUT tempBuffer2[tempList.size()] = {0};
                 for (auto iter = tempList.crbegin(); iter != tempList.crend(); ++iter, ++j)
                 {
@@ -207,7 +210,7 @@ void WinSendInputEventHandler::sendTextEntryEvent(QString maintext)
                     tempBuffer[j].ki.dwFlags = tempflags | KEYEVENTF_KEYUP;
                 }
 
-                SendInput(j, tempBuffer, sizeof(INPUT));
+                SendInput(j, tempBuffer.data(), sizeof(INPUT));
             }
         }
     }
