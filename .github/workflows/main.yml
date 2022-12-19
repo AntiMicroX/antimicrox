@@ -66,16 +66,35 @@ jobs:
 
     # Build job for Windows
     build-windows:
-        name: Windows Server 2019 MinGW Debug
-        runs-on: windows-2019
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - name: Windows Server 2019 MinGW
+                      image: windows-2019
+                      shell: msys2 {0}
+                      build-type: Debug
+                      qt-arch: "win64_mingw81"
+                      experimental: false
+                    - name: Windows Server 2019 MSVC
+                      image: windows-2019
+                      shell: cmd
+                      cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
+                      build-type: Debug
+                      qt-arch: "win64_msvc2019_64"
+                      experimental: false
+        name: ${{ matrix.name }} ${{ matrix.build-type }}
+        runs-on: ${{ matrix.image }}
+        continue-on-error: ${{ matrix.experimental }}
         defaults:
             run:
-                shell: msys2 {0}
+                shell:  ${{ matrix.shell }}
 
         steps:
             - uses: actions/checkout@v3
 
-            - name: Install Dependencies
+            - name: Install Dependencies (msys2)
+              if: startsWith(matrix.shell, 'msys2')
               uses: msys2/setup-msys2@v2
               with:
                   install: >-
@@ -84,11 +103,26 @@ jobs:
                   msystem: mingw64
                   release: false
             #mingw-w64-x86_64-SDL2 not installed above because of: https://github.com/AntiMicroX/antimicrox/issues/465
-            - name: Install sdl2
+            - name: Install sdl2 (mingw-w64)
+              if: startsWith(matrix.shell, 'msys2')
               run: |
                 curl -L -o mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
                 pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.0.20-1-any.pkg.tar.zst
-
+            
+            - name: Install sdl2 (msvc)
+              if: startsWith(matrix.shell, 'cmd')
+              run: |
+                curl -L -o SDL2-devel-2.0.20-VC.zip https://github.com/libsdl-org/SDL/releases/download/release-2.0.20/SDL2-devel-2.0.20-VC.zip
+                unzip SDL2-devel-2.0.20-VC.zip
+                mv "${{ github.workspace }}/SDL2-2.0.20" "${{ github.workspace }}/sdl2"
+                mklink /J "${{ github.workspace }}\sdl2\SDL2" "${{ github.workspace }}\sdl2\include"
+              
+            - name: Install MSVC
+              if: startsWith(matrix.shell, 'cmd')
+              uses: TheMrMilchmann/setup-msvc-dev@v2
+              with:
+                arch: x64
+                toolset: 14.1
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
@@ -96,14 +130,15 @@ jobs:
                   version: "5.15.2"
                   host: "windows"
                   target: "desktop"
-                  arch: "win64_mingw81"
+                  arch: ${{ matrix.qt-arch }}
                   dir: "${{ github.workspace }}/qt/"
                   install-deps: "true"
-
+              
             - name: Configure CMake
-              run: cmake -DCMAKE_BUILD_TYPE=Debug -B '${{ github.workspace }}'/build
+              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
               env:
                   CMAKE_PREFIX_PATH: ${{ env.Qt5_Dir }}
-
+                  WORKSPACE_DIR: ${{ github.workspace }}
+              
             - name: Build
-              run: cmake --build '${{ github.workspace }}'/build --parallel 8
+              run: cmake --build "${{ github.workspace }}/build" --parallel 8
