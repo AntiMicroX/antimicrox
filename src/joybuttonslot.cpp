@@ -58,8 +58,8 @@ JoyButtonSlot::JoyButtonSlot(int code, int alias, JoySlotInputAction mode, QObje
 
 JoyButtonSlot::JoyButtonSlot(JoyButtonSlot *slot, QObject *parent)
     : QObject(parent)
-    , extraData()
     , mix_slots(nullptr)
+    , extraData()
 {
     copyAssignments(*slot);
 }
