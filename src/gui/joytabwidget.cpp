@@ -71,9 +71,9 @@ bool JoyTabWidget::changedNotSaved = false;
 
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent)
     : QWidget(parent)
-    , tabHelper(joystick)
     , m_joystick(joystick)
     , m_settings(settings)
+    , tabHelper(joystick)
 {
     tabHelper.moveToThread(joystick->thread());
 
