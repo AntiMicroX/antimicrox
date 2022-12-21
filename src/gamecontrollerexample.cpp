@@ -61,7 +61,7 @@ static ButtonImagePlacement buttonLocations[] = {
 GameControllerExample::GameControllerExample(QWidget *parent)
     : QWidget(parent)
 {
-    controllerimage = QImage(":/images/controllermap.png");
+    controllerimage = QImage(":/images/controllermap.svg");
     buttonimage = QImage(":/images/button.png");
     axisimage = QImage(":/images/axis.png");
 
@@ -78,7 +78,8 @@ void GameControllerExample::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
     QPainter paint(this);
-    paint.drawImage(controllerimage.rect(), controllerimage);
+    // 300x186 is hardcoded size of original image
+    paint.drawImage(QRect(0, 0, 300, 186), controllerimage);
     ButtonImagePlacement current = buttonLocations[currentIndex];
 
     paint.setOpacity(0.85);

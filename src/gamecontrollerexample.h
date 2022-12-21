@@ -24,6 +24,12 @@
 
 class QPaintEvent;
 
+/**
+ * @brief Widget representing image of reference Xbox controller
+ *
+ * It can also mark selected buttons
+ *
+ */
 class GameControllerExample : public QWidget
 {
     Q_OBJECT

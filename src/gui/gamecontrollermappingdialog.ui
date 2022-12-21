@@ -117,14 +117,14 @@
          <attribute name="verticalHeaderCascadingSectionResizes">
           <bool>false</bool>
          </attribute>
+         <attribute name="verticalHeaderMinimumSectionSize">
+          <number>20</number>
+         </attribute>
          <attribute name="verticalHeaderDefaultSectionSize">
           <number>30</number>
          </attribute>
          <attribute name="verticalHeaderHighlightSections">
           <bool>true</bool>
-         </attribute>
-         <attribute name="verticalHeaderMinimumSectionSize">
-          <number>20</number>
          </attribute>
          <attribute name="verticalHeaderShowSortIndicator" stdset="0">
           <bool>false</bool>
@@ -289,7 +289,7 @@
        <property name="spacing">
         <number>20</number>
        </property>
-       <item alignment="Qt::AlignHCenter">
+       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
         <widget class="GameControllerExample" name="gameControllerDisplayWidget" native="true">
          <property name="minimumSize">
           <size>
@@ -366,10 +366,13 @@
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>40</height>
+             <height>130</height>
             </size>
            </property>
           </spacer>
