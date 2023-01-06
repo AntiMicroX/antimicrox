@@ -26,12 +26,12 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Créditos</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
@@ -186,7 +186,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="355"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre o desenvolvimento</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="369"/>
@@ -218,7 +218,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="196"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licença</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
@@ -4001,7 +4001,8 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum Joystick foi encontrado.
+ Conecte um joystick e escolha a opção &quot;Atualizar controles&quot; no menu principal</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="167"/>
@@ -4043,7 +4044,7 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.ui" line="270"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="449"/>
         <source>&amp;Update Joysticks</source>
-        <translation type="unfinished"></translation>
+        <translation>At&amp;ualizar controles</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="273"/>
