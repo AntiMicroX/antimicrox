@@ -6,12 +6,12 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
@@ -21,7 +21,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Registro de alterações</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
