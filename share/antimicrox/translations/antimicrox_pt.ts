@@ -285,8 +285,8 @@ p, li { white-space: pre-wrap; }
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation>Selecione Janela.
-Clique na janela do aplicativo certo e o caminho do arquivo do aplicativo será preenchido
+        <translation>Selecione Janela. Clique na janela da aplicação certa e
+o caminho do ficheiro da aplicação será preenchido
 na forma.</translation>
     </message>
     <message>
@@ -429,7 +429,7 @@ de todas as opções de perfil padrão.</translation>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="436"/>
         <source>File is not an .exe file.</source>
-        <translation>El Archivo no es un .exe.</translation>
+        <translation>O ficheiro não é um ficheiro .exe.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="444"/>
@@ -498,17 +498,17 @@ de todas as opções de perfil padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="318"/>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>Apagar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="372"/>
         <source>Clear All</source>
-        <translation>Limpiar todo</translation>
+        <translation>Limpar todo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="458"/>
         <source>Time:</source>
-        <translation>Tiempo:</translation>
+        <translation>Tempo:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="471"/>
@@ -569,7 +569,7 @@ de todas as opções de perfil padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="570"/>
         <source>&amp;Mouse Speed Mod:</source>
-        <translation type="unfinished">&amp;Mod. Vel. Mouse:</translation>
+        <translation>&amp;Mod. Vel. Rato:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="625"/>
@@ -964,12 +964,12 @@ de todas as opções de perfil padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1042"/>
         <source>File doesn&apos;t exist</source>
-        <translation>Arquivo não existe</translation>
+        <translation>Ficheiro não existe</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation>Nenhum arquivo executável foi encontrado localmente. Verifique o arquivo no seu sistema</translation>
+        <translation>Nenhum ficheiro executável foi encontrado localmente. Verifique o ficheiro no seu sistema</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
@@ -1067,7 +1067,7 @@ Distancia acción especifica que las ranuras después sólo se ejecutan cuando u
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1492"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation>Archivos de Config (*.amgp *.xml)</translation>
+        <translation>Ficheiros de Config (*.amgp *.xml)</translation>
     </message>
 </context>
 <context>
@@ -1239,25 +1239,25 @@ Distancia acción especifica que las ranuras después sólo se ejecutan cuando u
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="635"/>
         <source>Mouse (Horizontal)</source>
-        <translation>Mouse (Horizontal)</translation>
+        <translation>Rato (Horizontal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="636"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation>Mouse (Horizontal Invertido)</translation>
+        <translation>Rato (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="87"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="637"/>
         <source>Mouse (Vertical)</source>
-        <translation>Mouse (Vertical)</translation>
+        <translation>Rato (Vertical)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="92"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="638"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation>Mouse (Vertical Invertido)</translation>
+        <translation>Rato (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
@@ -1408,12 +1408,12 @@ interpretar un eje de retención o liberación.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="652"/>
         <source>Left Mouse Button</source>
-        <translation>Botão esquerdo do Mouse</translation>
+        <translation>Botão esquerdo do Rato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="653"/>
         <source>Right Mouse Button</source>
-        <translation>Botão direito do Mouse</translation>
+        <translation>Botão direito do Rato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="661"/>
@@ -1486,7 +1486,7 @@ interpretar un eje de retención o liberación.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
         <source>Last keyboard/mouse button:</source>
-        <translation>Ultimo botão do Mouse/Teclado:</translation>
+        <translation>Ultimo botão do Rato/Teclado:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="193"/>
@@ -4040,7 +4040,7 @@ first launches.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="310"/>
         <source>Associate .amgp files with AntiMicroX in Windows Explorer.</source>
-        <translation>Asociar archivos .amgp con AntiMicroX en Windows Explorer.</translation>
+        <translation>Associar ficheiros .amgp ao AntiMicroX no Windows Explorer.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="313"/>
@@ -4679,7 +4679,7 @@ Por favor conecte un Mando y elija la opción &quot;Actualizar Mandos&quot; en e
         <location filename="../../../src/gui/mainwindow.cpp" line="585"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="589"/>
         <source>Open File</source>
-        <translation>Abrir Archivo</translation>
+        <translation>Abrir Ficheiro</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1406"/>
@@ -5572,13 +5572,13 @@ lsmod | grep uinput</source>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="313"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
-        <translation>No se pudo abrir archivo de dispositivo uinput
-Por favor, compruebe que tiene permiso para escribir en el dispositivo</translation>
+        <translation>Não foi possível abrir o ficheiro de aparelho uinput
+Por favor, verifique se tem a permissão para escrever nesse aparelho</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="498"/>
         <source>Using uinput device file %1</source>
-        <translation>El uso de archivos del dispositivo uinput %1</translation>
+        <translation>A usar o ficheiro de aparelho uinput %1</translation>
     </message>
 </context>
 <context>
