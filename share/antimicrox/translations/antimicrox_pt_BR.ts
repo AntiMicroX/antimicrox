@@ -16,7 +16,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informações</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
@@ -4022,12 +4022,12 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="224"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Opções</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="236"/>
         <source>He&amp;lp</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;juda</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="255"/>
@@ -4076,7 +4076,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="306"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre o &amp;Qt</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="309"/>
