@@ -121,6 +121,11 @@ void UInputEventHandler::initDevice(int &device, QString name, bool &result)
     {
         if (name == "springMouseFileHandler")
         {
+            QString detected_xdg_session = qgetenv("XDG_SESSION_TYPE");
+            if (detected_xdg_session == "x11")
+                qWarning()
+                    << "uinput event handle may not work properly with absolute mouse events (like spring mouse) for X11";
+            // https://stackoverflow.com/questions/5190921/simulating-absolute-mouse-movements-in-linux-using-uinput
             setSpringMouseEvents(device);
             createUInputSpringMouseDevice(device);
         } else if (name == "mouseFileHandler")
@@ -364,10 +369,6 @@ void UInputEventHandler::setSpringMouseEvents(int filehandle)
     ioctl(filehandle, UI_SET_ABSBIT, ABS_X);
     ioctl(filehandle, UI_SET_ABSBIT, ABS_Y);
     ioctl(filehandle, UI_SET_KEYBIT, BTN_TOUCH);
-
-    // BTN_TOOL_PEN is required for the mouse to be seen as an
-    // absolute mouse as opposed to a relative mouse.
-    ioctl(filehandle, UI_SET_KEYBIT, BTN_TOOL_PEN);
 }
 
 void UInputEventHandler::populateKeyCodes(int filehandle)
