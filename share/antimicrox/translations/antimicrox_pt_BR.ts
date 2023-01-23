@@ -213,7 +213,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="196"/>
@@ -4001,8 +4001,8 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
-        <translation>Nenhum Joystick foi encontrado.
- Conecte um joystick e escolha a opção &quot;Atualizar controles&quot; no menu principal</translation>
+        <translation>Nenhum controle foi encontrado.
+ Conecte um controle e escolha a opção &quot;Atualizar controles&quot; no menu principal</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="167"/>
@@ -4033,12 +4033,12 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.ui" line="255"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="434"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sair</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="258"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="270"/>
@@ -4049,7 +4049,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="273"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="282"/>
@@ -4101,7 +4101,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="333"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="350"/>
@@ -4111,7 +4111,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="353"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="362"/>
@@ -4151,7 +4151,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="401"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="410"/>
@@ -4171,7 +4171,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="425"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="338"/>
