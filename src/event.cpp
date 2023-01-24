@@ -121,7 +121,7 @@ QString detectedScriptExt(QString file)
      * need to find another way
      */
 
-    if (fileinfo.completeSuffix() == "sh" || firstLine.contains("bin/bash"))
+    if (firstLine.contains("bin/bash"))
         return "/bin/sh";
     else if (fileinfo.completeSuffix() == "py" && firstLine.contains("python3"))
         return "python3";
