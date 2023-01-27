@@ -1242,7 +1242,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation>D-패드</translation>
+        <translation>십자 패드</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
@@ -1297,12 +1297,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
         <source>Number of Physical DPads: %1</source>
-        <translation>물리적 D-패드 수: %1</translation>
+        <translation>물리적 십자 패드 수: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="402"/>
         <source>Virtual DPad 1</source>
-        <translation>가상 D-패드 1</translation>
+        <translation>가상 십자 패드 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="498"/>
@@ -2124,7 +2124,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation>D-패드 모드:</translation>
+        <translation>십자 패드 모드:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="255"/>
@@ -2144,7 +2144,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation>D-패드 지연:</translation>
+        <translation>십자 패드 지연:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
@@ -2160,7 +2160,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="265"/>
         <source>Specify the name of a dpad.</source>
-        <translation>D-패드의 이름을 지정합니다.</translation>
+        <translation>십자 패드의 이름을 지정합니다.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="274"/>
@@ -2186,18 +2186,18 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation>표준: D-패드가 대각선 영역에 있을 때 2개의 방향 버튼이
-활성화된 8 영역 D-패드입니다. 
+        <translation>표준: 십자 패드가 대각선 영역에 있을 때 2개의 방향 버튼이
+활성화된 8 영역 십자 패드입니다. 
  
 여덟 방향: 각 방향에 고유한 전용 버튼이 있는 8개 영역 
-D-패드입니다. 한 번에 하나의 버튼만 활성화됩니다. 
+십자 패드입니다. 한 번에 하나의 버튼만 활성화됩니다. 
 로그라이크 게임에 유용합니다. 
  
-4 Way Cardinal: 4 영역 D-패드는 D-패드의 기본 방향에 
+4 방향 기본: 4 영역 십자 패드는 십자 패드의 기본 방향에 
 해당하는 영역을 포함합니다. 메뉴에 유용합니다. 
  
-4 Way Diagonal: 각 영역이 대각선 영역에 해당하는 4개 영역 
-D-패드입니다.</translation>
+4 방향 대각선: 각 영역이 대각선 영역에 해당하는 4개 영역 
+십자 패드입니다.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="126"/>
@@ -2288,7 +2288,7 @@ D-패드입니다.</translation>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="51"/>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="57"/>
         <source>DPad</source>
-        <translation>D-패드</translation>
+        <translation>십자 패드</translation>
     </message>
 </context>
 <context>
@@ -2391,22 +2391,22 @@ D-패드입니다.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation>D-패드 위쪽</translation>
+        <translation>십자 패드 위쪽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation>D-패드 왼쪽</translation>
+        <translation>십자 패드 왼쪽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation>D-패드 아래쪽</translation>
+        <translation>십자 패드 아래쪽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation>D-패드 오른쪽</translation>
+        <translation>십자 패드 오른쪽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
@@ -3112,10 +3112,10 @@ to a diagonal zone of the stick.</source>
 전용 버튼이 있습니다. 한 번에 하나의 버튼만 
 활성화됩니다. 로그라이크 게임에 유용합니다. 
  
-4 Way Cardinal: 4 영역 스틱은 스틱의 기본 방향에 
+4 방향 기본: 4 영역 스틱은 스틱의 기본 방향에 
 해당하는 영역을 포함합니다. 메뉴에 유용합니다. 
  
-4 Way Diagonal: 스틱의 대각선 영역에 해당하는 
+4 방향 대각선: 스틱의 대각선 영역에 해당하는 
 각 영역이 있는 4개의 영역 스틱입니다.</translation>
     </message>
     <message>
@@ -3317,7 +3317,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joydpad.cpp" line="95"/>
         <location filename="../../../src/joydpad.cpp" line="100"/>
         <source>DPad</source>
-        <translation>D-패드</translation>
+        <translation>십자 패드</translation>
     </message>
 </context>
 <context>
@@ -3831,7 +3831,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2098"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2150"/>
         <source>DPads</source>
-        <translation>D-패드</translation>
+        <translation>십자 패드</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2303"/>
@@ -6504,7 +6504,7 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation>가상D-패드</translation>
+        <translation>가상 십자 패드</translation>
     </message>
 </context>
 <context>
