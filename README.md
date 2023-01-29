@@ -186,15 +186,9 @@ for yourself, [here](https://github.com/AntiMicroX/antimicrox-profiles) is the f
 a question or share a suggestion, you can do that on the antimicrox page or on the
 [antimicrox-profiles](https://github.com/AntiMicroX/antimicrox-profiles) page.
 
-## Support
-
-In order to obtain support, you can post an issue [here](https://github.com/AntiMicroX/antimicrox/issues).
-
 ## Contributing
 
-Any contributions into codebase are welcome.  
-Before coding checking our simple [coding guideline](https://github.com/AntiMicroX/antimicrox/wiki/Coding-guidelines) is recommended.  
-If you are not sure about a way of fixing/implementing something you can just create draft Pull Request showing your attempt.
+Any contributions into codebase are welcome. You can find contribution guide [here](./CONTRIBUTING.md).
 
 ### Translation
 
