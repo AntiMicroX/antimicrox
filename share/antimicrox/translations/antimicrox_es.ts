@@ -1367,7 +1367,7 @@ palancas analógicas desgastadas.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="416"/>
         <source>Haptic Trigger:</source>
-        <translation type="unfinished"></translation>
+        <translation>Disparador háptico:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="523"/>
@@ -1461,22 +1461,22 @@ interpretar la retención o liberación de un eje.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="661"/>
         <source>Click</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulse</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
         <source>Rigid</source>
-        <translation type="unfinished"></translation>
+        <translation>Rígido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
         <source>Rigid Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Degradado rígido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
         <source>Vibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Vibración</translation>
     </message>
 </context>
 <context>
@@ -1519,12 +1519,12 @@ interpretar la retención o liberación de un eje.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished">Recuerde que no funcionará si no tiene ese tipo de teclado conectado a su ordenaor o no está incluído como en el teclado de los PCs</translation>
+        <translation>Recuerda que no funcionará si no tienes el teclado conectado al ordenador o si no está integrado como en los ordenadores de sobremesa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished">Conectar al teclado numérico</translation>
+        <translation>Colocar el teclado numérico</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
@@ -1709,12 +1709,12 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Giroscopio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Acelerómetro</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="87"/>
@@ -1735,17 +1735,17 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
         <source>Accelerometer calibration sets the neutral controller orientation.</source>
-        <translation type="unfinished"></translation>
+        <translation>La calibración del acelerómetro establece una orientación neutra del mando.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="282"/>
         <source>Gyroscope calibration corrects the sensor offset. This prevents cursor movement while the controller is at rest.</source>
-        <translation type="unfinished"></translation>
+        <translation>La calibración del giroscopio corrige el desplazamiento del sensor. Esto evita el movimiento del cursor mientras el mando está en reposo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="456"/>
         <source>Calibration completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibración completada.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
@@ -1755,35 +1755,38 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="636"/>
         <source>Hold the controller in the desired neutral position and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantenga el mando en una posición neutra deseada y pulse continuar.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="637"/>
         <source>Calibrating accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrando el acelerómetro</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="656"/>
         <source>Collecting accelerometer data...
 Please hold the controller still.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Recogiendo datos del acelerómetro...
+Por favor, mantenga el mando quieto.
+Esto puede tardar hasta %1 segundos.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="683"/>
         <source>Place the controller at rest, e.g. put it on the desk, and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Coloque el mando en reposo, por ejemplo, sobre el escritorio, y pulse continuar.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="685"/>
         <source>Calibrating gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrando el giroscopio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="704"/>
         <source>Collecting gyroscope data...
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Recopilando datos del giroscopio...
+Esto puede tardar hasta %1 segundos.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
@@ -2429,27 +2432,27 @@ Si lo descarta, el controlador volverá a comportarse como un mando una vez actu
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="38"/>
         <source>Up</source>
-        <translation type="unfinished">Arriba</translation>
+        <translation>Subir</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="42"/>
         <source>Down</source>
-        <translation type="unfinished">Abajo</translation>
+        <translation>Bajar</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="46"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>A la izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="50"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>A la derecha</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
         <source>Shock</source>
-        <translation type="unfinished"></translation>
+        <translation>Golpe</translation>
     </message>
 </context>
 <context>
@@ -2457,7 +2460,7 @@ Si lo descarta, el controlador volverá a comportarse como un mando una vez actu
     <message>
         <location filename="../../../src/joyaccelerometersensor.cpp" line="63"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Acelerómetro</translation>
     </message>
 </context>
 <context>
@@ -3014,7 +3017,7 @@ a una zona diagonal.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>Modifier Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificador de Zona:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
@@ -3097,7 +3100,11 @@ funcionalidad andar/correr a una palanca analógica.</translation>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Umbral a partir del cual se activa el botón del modificador.
+
+Este botón es útil para asignar zonas con
+teclas modificadoras que se pueden utilizar para asignar la funcionalidad de caminar/correr
+a un stick analógico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="770"/>
@@ -3106,12 +3113,16 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define si los botones modificadores se activan cuando el stick está dentro o fuera del valor umbral.
+
+Este botón es útil para asignar zonas con
+teclas modificadoras que se pueden utilizar para asignar
+a un stick analógico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="777"/>
         <source>Invert Modifier Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertir la zona modificadora</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
@@ -3238,32 +3249,32 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="37"/>
         <source>Pitch Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="41"/>
         <source>Pitch Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Disminuir</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
         <source>Yaw Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Giro a la izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="49"/>
         <source>Yaw Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Giro a la derecha</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="53"/>
         <source>Roll Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Giré a la izquierda</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="57"/>
         <source>Roll Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Giré a la izquierda</translation>
     </message>
 </context>
 <context>
@@ -3271,7 +3282,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joygyroscopesensor.cpp" line="57"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Giroscopio</translation>
     </message>
 </context>
 <context>
@@ -3281,7 +3292,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="63"/>
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="67"/>
         <source>Button</source>
-        <translation type="unfinished">Botón</translation>
+        <translation>Pulsador</translation>
     </message>
 </context>
 <context>
@@ -3289,7 +3300,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorcontextmenu.cpp" line="63"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes del ratón</translation>
     </message>
 </context>
 <context>
@@ -3297,7 +3308,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Diálogo</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3308,121 +3319,121 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
         <source>Acceleration (m/s^2):</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceleración (m/s^2):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
         <source>Pitch (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclinación (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
         <source>Roll (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>Balanceo (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished">% Zona segura:</translation>
+        <translation>% de la zona segura:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
         <source>Presets:</source>
-        <translation type="unfinished">Preajustes:</translation>
+        <translation>Preajustes:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished">Zona muerta:</translation>
+        <translation>Zona muerta:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="394"/>
         <source>Dead zone value to use for an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor de la zona muerta a utilizar para un sensor analógico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Zona máxima:</translation>
+        <translation>Zona máxima:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="449"/>
         <source>Value when an analog sensor is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor cuando un sensor analógico se considera movido hasta el 100%.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished">Rango diagonal:</translation>
+        <translation>Rango en diagonal:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="495"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished">El área (en grados) que ocupa cada región diagonal.</translation>
+        <translation>El área (en grados) que ocupa cada región en diagonal.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
         <source>Sensor Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Retraso del sensor:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="556"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished">Tiempo transcurrido antes de que un cambio de dirección tenga efecto.</translation>
+        <translation>Tiempo transcurrido antes de que se haga efectivo un cambio de dirección.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished">No&amp;mbre:</translation>
+        <translation>Na&amp;me:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="616"/>
         <source>Specify the name of an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique el nombre de un sensor analógico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración del ratón</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
         <source>Roll (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Balanceo (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="79"/>
         <source>Pitch (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclinación (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="80"/>
         <source>Yaw (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Viraje (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Fijar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fijar %1</translation>
     </message>
 </context>
 <context>
@@ -3430,42 +3441,42 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="218"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Ratón (normal)</translation>
+        <translation>Ratón (normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished">Ratón (horizontal invertido)</translation>
+        <translation>Ratón (horizontal invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="227"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished">Ratón (vertical invertido)</translation>
+        <translation>Ratón (vertical invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="230"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished">Ratón (horizontal+vertical invertido)</translation>
+        <translation>Ratón (horizontal+vertical invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="233"/>
         <source>Arrows</source>
-        <translation type="unfinished">Flechas</translation>
+        <translation>Flechas</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="236"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Teclas: W | A | S | D</translation>
+        <translation>Teclas: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
         <source>NumPad</source>
-        <translation type="unfinished">Teclado numérico</translation>
+        <translation>Teclado numérico</translation>
     </message>
 </context>
 <context>
@@ -3483,7 +3494,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="99"/>
         <source>Battery level of controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Nivel de batería del mando</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="110"/>
@@ -3700,7 +3711,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2033"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensores</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2098"/>
@@ -3811,7 +3822,7 @@ teclas a botons o desactive ocultar botones vacíos.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="199"/>
         <source>Sensors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensores:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="244"/>
@@ -3852,7 +3863,7 @@ teclas a botons o desactive ocultar botones vacíos.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="490"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensores</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="50"/>
@@ -3892,22 +3903,22 @@ teclas a botons o desactive ocultar botones vacíos.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="101"/>
         <source>Accelerometer + Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Acelerómetro y giroscopio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="103"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Acelerómetro</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="105"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Giroscopio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="107"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="124"/>
@@ -4872,12 +4883,12 @@ Nombre de dispositivo: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="113"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración del ratón</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer %1</translation>
     </message>
 </context>
 <context>

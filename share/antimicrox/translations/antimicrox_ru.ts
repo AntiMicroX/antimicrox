@@ -1859,7 +1859,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="456"/>
         <source>Calibration completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Калибровка завершена.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
@@ -1869,7 +1869,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="636"/>
         <source>Hold the controller in the desired neutral position and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удерживайте контроллер в нужном нейтральном положении и нажмите «Продолжить».</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="637"/>
