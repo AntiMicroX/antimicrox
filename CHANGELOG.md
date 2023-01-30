@@ -1,4 +1,26 @@
 # Changelog
+
+## [3.3.3](https://github.com/AntiMicroX/antimicrox/tree/3.3.3) (2023-01-30)
+
+**Implemented enhancements:**
+
+- Add checkbox enabling numeric keypad in ButtonEditDialog [\#168](https://github.com/AntiMicroX/antimicrox/issues/168)
+- Add MSVC cmake support. [\#667](https://github.com/AntiMicroX/antimicrox/pull/667) (by [nitz](https://github.com/nitz))
+- Update translations: Spanish, Korean, Russian
+- Add translations: Rusyn, Portugese(Brazil)
+
+**Fixed bugs:**
+
+- Name mismatch in set selector list [\#655](https://github.com/AntiMicroX/antimicrox/issues/655)
+- Fix broken loading recently used profile for Windows 11 [\#632](https://github.com/AntiMicroX/antimicrox/issues/632) (by [nitz](https://github.com/nitz))
+- Shebang ignored in execute bind [\#699](https://github.com/AntiMicroX/antimicrox/issues/699)
+- Mouse spring mode not working in wayland session [\#521](https://github.com/AntiMicroX/antimicrox/issues/521)
+
+**Notable changes:**
+
+- Some code refactors and docs updates
+- Logs improvements
+
 ## [3.3.2](https://github.com/AntiMicroX/antimicrox/tree/3.3.2) (2022-11-21)
 
 **Implemented enhancements:**
