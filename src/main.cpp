@@ -221,6 +221,33 @@ void importLegacySettingsIfExist()
     }
 }
 
+void apply_custom_dark_theme()
+{
+    qApp->setStyle("fusion");
+    QPalette p;
+
+    p.setColor(QPalette::Window, QColor(53, 53, 53));
+    p.setColor(QPalette::WindowText, Qt::white);
+    p.setColor(QPalette::Base, QColor(55, 55, 55));
+    p.setColor(QPalette::AlternateBase, QColor(53, 53, 53));
+    p.setColor(QPalette::ToolTipBase, QColor(25, 25, 25));
+    p.setColor(QPalette::ToolTipText, Qt::white);
+    p.setColor(QPalette::Text, Qt::white);
+    p.setColor(QPalette::Button, QColor(53, 53, 53));
+    p.setColor(QPalette::ButtonText, Qt::white);
+    p.setColor(QPalette::BrightText, Qt::red);
+    p.setColor(QPalette::Link, QColor(42, 130, 218));
+    p.setColor(QPalette::Highlight, QColor(42, 130, 218));
+    p.setColor(QPalette::HighlightedText, QColor(35, 35, 35));
+    p.setColor(QPalette::Active, QPalette::Button, QColor(53, 53, 53));
+    p.setColor(QPalette::Disabled, QPalette::ButtonText, Qt::darkGray);
+    p.setColor(QPalette::Disabled, QPalette::WindowText, Qt::darkGray);
+    p.setColor(QPalette::Disabled, QPalette::Text, Qt::darkGray);
+    p.setColor(QPalette::Disabled, QPalette::Light, QColor(53, 53, 53));
+
+    qApp->setPalette(p);
+}
+
 int main(int argc, char *argv[])
 {
     qInstallMessageHandler(Logger::loggerMessageHandler);
@@ -376,7 +403,7 @@ int main(int argc, char *argv[])
     localServer->startLocalServer();
 
 #if defined(Q_OS_WIN)
-    qApp->setStyle("fusion");
+    apply_custom_dark_theme();
 #endif
 
     antimicrox.setQuitOnLastWindowClosed(false);
