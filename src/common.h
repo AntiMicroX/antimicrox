@@ -208,6 +208,8 @@ inline QString getProfileName(QFileInfo &profile)
 
     return retVal;
 }
+
+void log_system_config();
 } // namespace PadderCommon
 
 Q_DECLARE_METATYPE(QThread *)

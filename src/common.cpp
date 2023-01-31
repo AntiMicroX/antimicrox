@@ -191,6 +191,24 @@ QIcon loadIcon(QString name)
     return QIcon::fromTheme(name, QIcon(fallback_location));
 }
 
+void log_system_config()
+{
+    VERBOSE() << "AntiMicroX version: " << PadderCommon::programVersion
+#ifdef ANTIMICROX_PKG_VERSION
+              << " Package: " << ANTIMICROX_PKG_VERSION
+#endif
+#ifdef QT_DEBUG
+              << " Type: Debug"
+#else
+              << " Type: Release"
+#endif
+        ;
+    VERBOSE() << "SDL version: " << PadderCommon::sdlVersionUsed << " (Compiled with: " << PadderCommon::sdlVersionCompiled
+              << ")";
+    VERBOSE() << QString("Host OS: %1 Version: %2 Architecture: %3")
+                     .arg(QSysInfo::productType(), QSysInfo::productVersion(), QSysInfo::currentCpuArchitecture());
+}
+
 QWaitCondition waitThisOut;
 QMutex sdlWaitMutex;
 QMutex inputDaemonMutex;
