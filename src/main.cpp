@@ -221,24 +221,6 @@ void importLegacySettingsIfExist()
     }
 }
 
-void log_system_config()
-{
-    VERBOSE() << "AntiMicroX version: " << PadderCommon::programVersion
-#ifdef ANTIMICROX_PKG_VERSION
-              << " Package: " << ANTIMICROX_PKG_VERSION
-#endif
-#ifdef QT_DEBUG
-              << " Type: Debug"
-#else
-              << " Type: Release"
-#endif
-        ;
-    VERBOSE() << "SDL version: " << PadderCommon::sdlVersionUsed << " (Compiled with: " << PadderCommon::sdlVersionCompiled
-              << ")";
-    VERBOSE() << QString("Host OS: %1 Version: %2 Architecture: %3")
-                     .arg(QSysInfo::productType(), QSysInfo::productVersion(), QSysInfo::currentCpuArchitecture());
-}
-
 int main(int argc, char *argv[])
 {
     qInstallMessageHandler(Logger::loggerMessageHandler);
@@ -301,7 +283,7 @@ int main(int argc, char *argv[])
     // In the future, there might be a reason to actually send
     // messages to the QLocalServer.
     QLocalSocket socket;
-    log_system_config();
+    PadderCommon::log_system_config();
 
     if ((socket.serverName() == QString()))
     {
@@ -563,7 +545,7 @@ int main(int argc, char *argv[])
     }
     qInfo() << QObject::tr("Using %1 as the event generator.").arg(factory->handler()->getName());
 #ifdef Q_OS_WIN
-    log_system_config(); // workaround for missing windows logs
+    PadderCommon::log_system_config(); // workaround for missing windows logs
 #endif
 
     PadderCommon::mouseHelperObj.initDeskWid();
