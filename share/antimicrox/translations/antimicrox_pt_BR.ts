@@ -4017,7 +4017,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
         <source>&amp;App</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aplicativo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="224"/>
@@ -4055,13 +4055,13 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.ui" line="282"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="439"/>
         <source>&amp;Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;cultar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="285"/>
         <location filename="../../../src/gui/mainwindow.ui" line="341"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="294"/>
@@ -4071,7 +4071,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="297"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="306"/>
@@ -4081,7 +4081,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="309"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="318"/>
@@ -4091,12 +4091,12 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="321"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="330"/>
         <source>&amp;Key Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificador de &amp;teclas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="333"/>
@@ -4121,7 +4121,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="365"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="374"/>
@@ -4131,7 +4131,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="377"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="386"/>
@@ -4141,12 +4141,12 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="389"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="398"/>
         <source>&amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wiki</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="401"/>
@@ -4161,7 +4161,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="413"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="422"/>
@@ -4193,17 +4193,17 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.cpp" line="583"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="587"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir arquivo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1106"/>
         <source>Calibration is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation>A calibração não está disponível.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1107"/>
         <source>Selected device doesn&apos;t have any joystick to calibrate.</source>
-        <translation type="unfinished"></translation>
+        <translation>O dispositivo selecionado não tem nenhum controle para calibrar.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1405"/>
