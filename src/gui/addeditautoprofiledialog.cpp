@@ -390,70 +390,69 @@ void AddEditAutoProfileDialog::checkForDefaultStatus()
 }
 
 /**
- * @brief Validate the form that is contained in this window
+ * @throw std::runtime_error
  */
-void AddEditAutoProfileDialog::accept()
+void AddEditAutoProfileDialog::check_profile_file()
 {
-    bool validForm = true;
-    bool propertyFound = false;
-    QString errorString = QString();
-
     if (ui->profileLineEdit->text().length() > 0)
     {
         QFileInfo profileFileName(ui->profileLineEdit->text());
 
         if (!profileFileName.exists())
         {
-            validForm = false;
-            errorString = tr("Profile file path is invalid.");
+            throw std::runtime_error(tr("Profile file path is invalid.").toStdString());
         }
     }
+}
 
-    if (validForm && (ui->applicationLineEdit->text().isEmpty() && ui->winClassLineEdit->text().isEmpty() &&
-                      ui->winNameLineEdit->text().isEmpty()))
-    {
-        validForm = false;
-        errorString = tr("No window matching property was specified.");
-    } else
-    {
-        propertyFound = true;
-    }
-
-    if (validForm && !ui->applicationLineEdit->text().isEmpty())
+/**
+ * @throw std::runtime_error
+ */
+void AddEditAutoProfileDialog::check_executable_file()
+{
+    if (!ui->applicationLineEdit->text().isEmpty())
     {
         QString exeFileName = ui->applicationLineEdit->text();
         QFileInfo info(exeFileName);
 
         if (info.isAbsolute() && (!info.exists() || !info.isExecutable()))
         {
-            validForm = false;
-            errorString = tr("Program path is invalid or not executable.");
+            throw std::runtime_error(tr("Program path is invalid or not executable.").toStdString());
         }
 #ifdef Q_OS_WIN
         else if (!info.isAbsolute() && (info.fileName() != exeFileName || info.suffix() != "exe"))
         {
-            validForm = false;
-            errorString = tr("File is not an .exe file.");
+            throw std::runtime_error(tr("File is not an .exe file.").toStdString());
         }
 #endif
     }
+}
 
-    if (validForm && !propertyFound && !ui->asDefaultCheckBox->isChecked())
+/**
+ * @brief Validate the form that is contained in this window
+ */
+void AddEditAutoProfileDialog::accept()
+{
+    QString errorString = QString();
+    try
     {
-        validForm = false;
-        errorString = tr("No window matching property was selected.");
-    }
+        check_profile_file();
 
-    if (validForm)
-    {
-        QDialog::accept();
-    } else
+        bool is_window_specified = !(ui->applicationLineEdit->text().isEmpty() && ui->winClassLineEdit->text().isEmpty() &&
+                                     ui->winNameLineEdit->text().isEmpty());
+        if (!is_window_specified && !ui->asDefaultCheckBox->isChecked())
+            throw std::runtime_error(tr("No window matching property was specified.").toStdString());
+        check_executable_file();
+
+    } catch (const std::runtime_error &e)
     {
         QMessageBox msgBox;
-        msgBox.setText(errorString);
+        msgBox.setText(e.what());
         msgBox.setStandardButtons(QMessageBox::Close);
         msgBox.exec();
     }
+
+    QDialog::accept();
 }
 
 QList<InputDevice *> *AddEditAutoProfileDialog::getDevices() const { return devices; }

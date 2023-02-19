@@ -97,6 +97,9 @@ class AddEditAutoProfileDialog : public QDialog
 #ifdef Q_OS_WIN
     CapturedWindowInfoDialog *m_capture_window_info_dialog;
 #endif
+
+    void check_profile_file();
+    void check_executable_file();
 };
 
 #endif // ADDEDITAUTOPROFILEDIALOG_H
