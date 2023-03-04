@@ -2565,7 +2565,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
         <source>Shock</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удар</translation>
     </message>
 </context>
 <context>
@@ -3104,7 +3104,18 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Стандартный: 8-позиционный стик, с двумя активными
+кнопками в диагональных направлениях.
+
+Независимый: 8-позиционный стик, в котором каждое
+направление имеет отдельную кнопку. Одномоментно
+может быть активна лишь одна кнопка. Полезно в рогаликах.
+
+4-ходовой прямой: 4-х позиционный стик, соответствующий
+сторонам света. Полезно в меню.
+
+4-ходовой диагональный: 4-х позиционный стик,
+перемещающийся по диагоналям.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
@@ -3361,22 +3372,22 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
         <source>Yaw Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклон влево</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="49"/>
         <source>Yaw Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклон вправо</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="53"/>
         <source>Roll Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Перекат влево</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="57"/>
         <source>Roll Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Перекат вправо</translation>
     </message>
 </context>
 <context>
@@ -3384,7 +3395,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joygyroscopesensor.cpp" line="57"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Гироскоп</translation>
     </message>
 </context>
 <context>
@@ -3484,7 +3495,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
         <source>Sensor Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Задержка датчика:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
@@ -3525,12 +3536,12 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="80"/>
         <source>Yaw (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Угол отклонения (°/с)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Установить</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
@@ -5412,7 +5423,7 @@ of your screen.</source>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="41"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Нажмите клавишу на клавиатуре, чтобы увидеть, как эта клавиша определяется этим приложением. В окне будет показано собственное значение клавиши, исходное значение, заданное Qt (если применимо), и пользовательское значение, используемое AntiMicroX.&lt;/p&gt;&lt;p&gt;Значение клавиши AntiMicroX и значение клавиши Qt обычно совпадают. AntiMicroX старается использовать значения ключей, определенные в Qt, когда это возможно. Посмотрите на странице &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; список значений, определенных Qt. Если вы обнаружите, что какой-либо ключ не поддерживается данной программой, пожалуйста, сообщите о проблеме на страницу AntiMicroX &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt;, чтобы программа могла быть отредактирована для его прямой поддержки. Как и сейчас, к неизвестным значениям добавляется пользовательский префикс, поэтому их все еще можно использовать; основная проблема заключается в том, что профиль больше не будет переносимым.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Нажмите клавишу на клавиатуре, чтобы увидеть, как эта клавиша определяется этим приложением. В окне будет показано нативное значение клавиши, возвращаемое Qt значение (если применимо), и пользовательское значение, используемое AntiMicroX.&lt;/p&gt;&lt;p&gt;Значения AntiMicroX и Qt обычно совпадают. AntiMicroX старается использовать значения клавиш, определенные в Qt, когда это возможно. Посмотрите на странице &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; список значений, определенных Qt. Если вы обнаружите, что какая-либо клавиша не поддерживается данной программой, пожалуйста, сообщите о проблеме на &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub-страничке&lt;/span&gt;&lt;/a&gt; AntiMicroX, чтобы программа могла быть отредактирована для её поддержки. Однако, даже сейчас к неизвестным значениям добавляется специальный префикс, поэтому их всё ещё можно использовать; основная проблема заключается в том, что профиль не будет переносимым.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="99"/>
@@ -6890,7 +6901,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1008"/>
         <source>Browser Back</source>
-        <translation>Browser Back</translation>
+        <translation>Браузер назад</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1013"/>
@@ -6900,12 +6911,12 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1018"/>
         <source>Browser Forward</source>
-        <translation>Browser Forward</translation>
+        <translation>Браузер вперёд</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1023"/>
         <source>Browser Home</source>
-        <translation>Browser Home</translation>
+        <translation>Браузер домой</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1028"/>
@@ -6920,7 +6931,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1038"/>
         <source>Browser Stop</source>
-        <translation>Browser Stop</translation>
+        <translation>Браузер стоп</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1043"/>
