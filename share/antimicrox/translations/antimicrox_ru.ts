@@ -443,7 +443,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation>Выберите окно. Кликните на окно желаемого приложения,
+        <translation>Выбор окна. Кликните на окно желаемого приложения,
 и путь до исполняемого файла этого приложения
 автоматически подставится в форму.</translation>
     </message>
@@ -606,7 +606,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="71"/>
         <source>Assignments</source>
-        <translation type="unfinished">Назначения</translation>
+        <translation>Назначения</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="76"/>
@@ -692,7 +692,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="295"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1599"/>
         <source>Insert a new blank slot.</source>
-        <translation type="unfinished">Вставить новый пустой слот.</translation>
+        <translation>Вставить новый пустой слот.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="335"/>
@@ -2051,17 +2051,17 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="66"/>
         <source>Eight Way</source>
-        <translation type="unfinished">8-ми сторонний</translation>
+        <translation>Независимый</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="68"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished">4-х сторонний основной</translation>
+        <translation>4-ходовой основной</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="70"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished">4-х сторонний диагональный</translation>
+        <translation>4-ходовой диагональный</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="75"/>
@@ -2134,12 +2134,12 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="131"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished">4-х сторонний основной</translation>
+        <translation>4-ходовой основной</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="136"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished">4-х сторонний диагональный</translation>
+        <translation>4-ходовой диагональный</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
@@ -2186,22 +2186,23 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation type="unfinished">Стандарт: 8-позиционная крестовина с двумя кнопками направления,
-активными, когда крестовина находится в диагональной области.
+        <translation>Стандартный: 8-позиционный стик, где диагональным
+направлениям соответствуют две активные кнопки.
 
-Восьмиступенчатая панель: 8-позиционная крестовина. Всегда активна только одна кнопка вовремя.
-Полезно для игр, похожих на &quot;рогалики&quot;.
+Независимый: 8-позиционный стик, в котором каждое
+направление имеет отдельную кнопку. Одномоментно
+может быть активна лишь одна кнопка. Полезно в рогаликах.
 
-4 стороны светы: 4-позиционная крестовина, где каждая кнопка соответствует
-стороне света крестовины. Полезно для меню.
+4-ходовой прямой: 4-х позиционный стик, соответствующий
+сторонам света. Полезно в меню.
 
-4-полосная диагональ: 4-позиционная крестовина, каждая область соответствует
-диагональной зоне.</translation>
+4-ходовой диагональный: 4-х позиционный стик,
+перемещающийся по диагоналям.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="126"/>
         <source>Eight Way</source>
-        <translation type="unfinished">8-ми сторонний</translation>
+        <translation>Независимый</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="454"/>
@@ -2991,17 +2992,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="132"/>
         <source>Eight Way</source>
-        <translation type="unfinished">8-ми сторонний</translation>
+        <translation>Независимый</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="141"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished">4-х сторонний основной</translation>
+        <translation>4-ходовой основной</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="150"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished">4-х сторонний диагональный</translation>
+        <translation>4-ходовой диагональный</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="161"/>
@@ -3104,8 +3105,8 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished">Стандартный: 8-позиционный стик, с двумя активными
-кнопками в диагональных направлениях.
+        <translation>Стандартный: 8-позиционный стик, где диагональным
+направлениям соответствуют две активные кнопки.
 
 Независимый: 8-позиционный стик, в котором каждое
 направление имеет отдельную кнопку. Одномоментно
@@ -3120,12 +3121,12 @@ to a diagonal zone of the stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished">4-х сторонний основной</translation>
+        <translation>4-ходовой основной</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="379"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished">4-х сторонний диагональный</translation>
+        <translation>4-ходовой диагональный</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
@@ -3271,7 +3272,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="369"/>
         <source>Eight Way</source>
-        <translation type="unfinished">8-ми сторонний</translation>
+        <translation>Независимый</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="503"/>
@@ -5040,12 +5041,12 @@ axis is moved back to the dead zone.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="76"/>
         <source>Acceleration:</source>
-        <translation type="unfinished">Усиление:</translation>
+        <translation>Ускорение:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="109"/>
         <source>Enhanced Precision</source>
-        <translation type="unfinished">Улучшенная Точность</translation>
+        <translation>Повышенная точность</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
