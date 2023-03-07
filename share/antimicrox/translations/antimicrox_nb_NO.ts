@@ -63,7 +63,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - Polish&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>dette er en pistol</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="211"/>
@@ -181,7 +181,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>IKKE BRUK DETTE SOM EN ULOVLIG TYRANT</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="355"/>
@@ -208,7 +208,21 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;pktiuk&quot; (siden august 2020) Jeg vil bare sikre at denne svært nyttige programvaren ikke blir forlatt, jeg bestemte meg for å fortsette å gi støtte til dette prosjektet og gjøre det så lett tilgjengelig som mulig.
+
+&quot;juliagoda&quot; (siden mars 2018 til 2020) Jeg ønsket bare å spille mine favorittspill som ikke støtter gamepads, og fant dette prosjektet (som kartlegger tastaturtaster og museknapper til tilkoblede gamepads på Linux) som mest riktig og nylig. Men på grunn av dårlige valg av en slik applikasjon på internett og siden den ikke kompilerte riktig, bestemte jeg meg for å redde prosjektet. Men når jeg var ferdig med arbeidet (nok til å like å spille spill) tenkte jeg å dele denne koden med andre. Selvfølgelig vil all informasjon om tidligere programmerere bli holdt.
+
+&quot;Ryochan7&quot; (siden 30. desember 2012 til 2017) har jeg jobbet med AntiMicro på fritiden. Det som opprinnelig startet som en gaffel av QJoyPad og en måte å lære skikkelig hendelsesdrevet programmering på, har blitt til noe mye større enn jeg opprinnelig hadde tenkt. Selv om jeg har brukt mye tid på å lære nye teknikker, finne ut mer om domenet til KB+M-emulering og tilbringe fredagskvelder med å slå hodet mot tastaturet, har det totalt sett vært en morsom og berikende opplevelse.
+
+Behovet for dette programmet kom fra at jeg brukte lignende programmer på Windows for å spille flere spill som ikke ga innebygd kontrollerstøtte. Selv om det fantes noen alternativer på Linux, var det egentlig ikke noe jeg følte var godt nok med tanke på funksjonalitet eller kontroller i spillet for å virkelig nyte spill jeg ønsket å spille med ved hjelp av KB+M-emulering. QJoyPad var hovedprogrammet jeg hadde brukt tidligere, selv om det hadde blitt mye eldre og det ikke ga noen grunnleggende funksjonalitet som jeg trodde var avgjørende. Prosjektet var dødt da det ikke hadde blitt oppdatert på flere år, så jeg bestemte meg for å lage mitt eget.
+
+Siden den gang har jeg prøvd å finne ut hva de andre programmene gjør riktig og deretter forbedre det. Jeg har også oppdaget noen fine triks underveis, og jeg har lært mer om hvordan native gamepad-kontroller er implementert i noen spill enn jeg noen gang egentlig ønsket å vite. Selv om det definitivt er områder hvor dette programmet kan forbedres, finner jeg ut at dette programmet tilbyr den beste kontrollopplevelsen i spillet for å spille eldre, og noen nyere, spill som ikke gir støtte for innebygd kontroller.
+
+Utvikling av dette programmet er ikke like høyt prioritert for meg lenger. Dette skyldes hovedsakelig at Steam-kontrolleren fungerer ganske bra for oppgaven med å spille PC-spill sammenlignet med å bruke en Xbox 360-kontroller. Det ser imidlertid ut til at det fortsatt er en grunn til at dette programmet skal eksistere en stund.
+
+---
+
+Fra og med 24. mai 2016 har dette prosjektet flyttet til https://github.com/AntiMicro/</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
@@ -285,12 +299,14 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg Vindu. Klikk på den aktuelle applikasjonen
+vinduet og programfilbanen vil bli fylt ut
+i skjemaet.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
         <source>Detect Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Finn vinduets egenskaper</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
@@ -300,17 +316,17 @@ in the form.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
         <source>T&amp;itle:  </source>
-        <translation type="unfinished"></translation>
+        <translation>Tittel:  </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="113"/>
         <source>set partial title</source>
-        <translation type="unfinished"></translation>
+        <translation>angi deltittel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="124"/>
         <source>Application:    </source>
-        <translation type="unfinished"></translation>
+        <translation>Applikasjon:    </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="149"/>
@@ -327,33 +343,35 @@ in the form.</source>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg denne profilen som standard lastet for
+den angitte enheten. Utvalget vil bli brukt i stedet
+av alle standardprofilalternativet.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="184"/>
         <source>Set as Default for Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Sett som standard for kontroller</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="223"/>
         <source>A different profile is already selected as the default for this device.</source>
-        <translation type="unfinished"></translation>
+        <translation>En annen profil er allerede valgt som standard for denne enheten.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="103"/>
         <source>Current (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gjeldende (%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="157"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne Config</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="168"/>
         <source>Select Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg Program</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
@@ -363,7 +381,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Please use the main default profile selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst bruk hovedstandardprofilvalget.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
@@ -384,7 +402,8 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="228"/>
         <source>The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utvalget vil bli brukt i stedet
+av alle standardprofilalternativet.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="251"/>
