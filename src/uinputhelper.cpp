@@ -124,7 +124,7 @@ void UInputHelper::populateX11SymVk(QHash<QString, int> &knownAliasesX11SymVK)
     knownAliasesX11SymVK.insert("period", KEY_DOT);
     knownAliasesX11SymVK.insert("slash", KEY_SLASH);
     knownAliasesX11SymVK.insert("Control_L", KEY_LEFTCTRL);
-    knownAliasesX11SymVK.insert("Super_L", KEY_MENU);
+    knownAliasesX11SymVK.insert("Super_L", KEY_LEFTMETA);
     knownAliasesX11SymVK.insert("Alt_L", KEY_LEFTALT);
     knownAliasesX11SymVK.insert("space", KEY_SPACE);
     knownAliasesX11SymVK.insert("Alt_R", KEY_RIGHTALT);
