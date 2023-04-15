@@ -48,7 +48,7 @@ jobs:
     build-appimage:
         # Version of ubuntu building this appimage, it shouldn't be the latest verion of ubuntu to avoid breaking compatibility with older systems
         name: Build AppImage package
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
 
         steps:
 
