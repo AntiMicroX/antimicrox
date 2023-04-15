@@ -26,18 +26,18 @@ jobs:
                       cxx: g++
                       build-type: Debug
                       experimental: false
+                    - name: Ubuntu 22-04 Clang
+                      image: ubuntu-22.04
+                      cc: clang
+                      cxx: clang++
+                      build-type: Debug
+                      experimental: true
                     - name: Ubuntu 20-04 GCC  (for AppImage comp)
                       image: ubuntu-20.04
                       cc: gcc
                       cxx: g++
                       build-type: Debug
                       experimental: false
-                    - name: Ubuntu 20-04 Clang
-                      image: ubuntu-20.04
-                      cc: clang
-                      cxx: clang++
-                      build-type: Debug
-                      experimental: true
 
         name: ${{ matrix.name }} ${{ matrix.build-type }}
         runs-on: ${{ matrix.image }}
