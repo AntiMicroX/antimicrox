@@ -158,7 +158,7 @@ jobs:
                 pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.26.5-1-any.pkg.tar.zst
 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v2
+              uses: jurplel/install-qt-action@v3
               with:
                   version: "5.15.2"
                   host: "windows"
