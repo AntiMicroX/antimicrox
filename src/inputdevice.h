@@ -32,7 +32,7 @@ class QXmlStreamReader;
 class QXmlStreamWriter;
 class QSettings;
 
-#if not SDL_VERSION_ATLEAST(2, 0, 16)
+#if not SDL_VERSION_ATLEAST(2, 0, 12)
 enum SDL_GameControllerType
 {
     SDL_CONTROLLER_TYPE_UNKNOWN = 0
