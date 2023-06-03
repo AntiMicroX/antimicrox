@@ -1,5 +1,26 @@
 # Changelog
 
+
+## [3.3.4](https://github.com/AntiMicroX/antimicrox/tree/3.3.4) (2023-05-03)
+
+**Implemented enhancements:**
+
+- Update translations: Portugese(Brazil), Russian, Norwegian Bokmal
+- Add translations: Swedish
+
+**Fixed bugs:**
+
+- Fix and refactor adding default autoprofile  [\#727](https://github.com/AntiMicroX/antimicrox/issues/727)
+- Fix GUI does not recognize super + action [\#749](https://github.com/AntiMicroX/antimicrox/issues/749)
+- Fix /dev/uinput static device node access [pull 781](https://github.com/AntiMicroX/antimicrox/pull/781) (by [lnussel](https://github.com/lnussel))
+- Fix building for SDL version between 2.0.12 and 2.0.16 [\#788](https://github.com/AntiMicroX/antimicrox/issues/788)
+
+
+**Notable changes:**
+
+- Build AppImage package on Ubuntu 20.04
+- Bump SDL version for AppImage and Windows from 2.0.20 to 2.26.5
+
 ## [3.3.3](https://github.com/AntiMicroX/antimicrox/tree/3.3.3) (2023-01-30)
 
 **Implemented enhancements:**
