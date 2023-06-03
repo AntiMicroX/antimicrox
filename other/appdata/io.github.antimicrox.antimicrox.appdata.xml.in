@@ -30,6 +30,7 @@
   <url type="bugtracker">https://github.com/AntiMicroX/antimicrox/issues</url>
   <launchable type="desktop-id">io.github.antimicrox.antimicrox.desktop</launchable>
   <releases>
+    <release version="3.3.4" date="2023-06-03" />
     <release version="3.3.3" date="2023-01-30" />
     <release version="3.3.2" date="2022-11-21" />
     <release version="3.3.1" date="2022-10-24" />
