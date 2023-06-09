@@ -49,7 +49,7 @@ sudo dnf install git make cmake gcc cmake extra-cmake-modules qt5-qttools-devel 
 One-liner for installing above dependencies:  
 
 ```bash
-sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 ```
 
 </details>
