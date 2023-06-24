@@ -1689,7 +1689,7 @@ se utiliza este botón.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="278"/>
         <source>Close</source>
-        <translation>Cerca</translation>
+        <translation>Cerrar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="238"/>
