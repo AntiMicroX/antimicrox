@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [3.3.4](https://github.com/AntiMicroX/antimicrox/tree/3.3.4) (2023-05-03)
+## [3.3.4](https://github.com/AntiMicroX/antimicrox/tree/3.3.4) (2023-06-03)
 
 **Implemented enhancements:**
 
