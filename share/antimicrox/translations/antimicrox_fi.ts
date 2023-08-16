@@ -208,7 +208,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -221,10 +221,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kun me puhumme vapaista ohjelmistoista , viittaamme todellakin vapauteen, emme rahaan. Yleislupamme ovat suunniteltu varmistamaan, että sinulla on vapaus jaella kopioita vapaista ohjelmista (sekä myös laskuttaa niistä rahaa jos haluat), että voit saada haltuusi lähdekoodin tai se toimitetaan sinulle näin halutessasi, että voit muuttaa ohjelmiston rakennetta tai käyttää sen osia uusia vapaita ohjelmia vasten, ja että tiedostat tämän olevan mahdollista ja luvallista.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Suojellaksemme oikeuksiasi, meidän tuleekin estää muita eväämästä sinulta näitä oikeuksia tai että joudut vaatimuksen eteen luopuaksesi niistä. Täten, sinulla onkin joitakin velvollisuuksia jos jakelet ohjelmistosi kopioita tai muokkaat niitä: velvollisuus kunnioittaa muiden ihmisten vapauksia.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Esimerkiksi, jos jaat kopioita jostakin tälläisestä ohjelmistosta, oli se sitten ilmainen tai maksullinen, vastaanottajan tulee nauttia samoista vapauksista kuin sinäkin teit. Sinun tulee varmistaa, että hekin saavat ohjelman lähdekoodin, ja että osoitat heille nämä samat ehdot jotta he voivat tietää oikeutensa.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kehittäjät jotka käyttävät  GNU-yleislupaa, GNU GP, turvaavat oikeuksiasi kahden askeleen kautta:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kehittäjät jotka käyttävät GNU-yleislupaa, GNU GP, turvaavat oikeuksiasi kahden askeleen kautta:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;(1) valtuuttavat ohjelmiston tekijänoikeuden, ja (2) tarjoavat sinulle tämän lupalisenssin joka antaa sinulle laillisen luvan kopioida, jakaa ja/tai muokata sitä.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kehittäjien ja haltijoiden suojelemiseksi, GPL selventää selkeästi,että mitään takuuta tälle vapaalle ohjelmistolle ei tule. Molempien, käyttäjien ja tekijöiden hyväksi, GPL vaatii että muunnellut versiot pitää merkitä nimenomaan muokatuiksi, jotta heidän ongelmiansa ei liitetä virheellisesti tekijän aiempiin julkaisuihin.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jotkut laitteet ovat suunnitellut eväämään käyttäjän mahdollisuuden asentaa tai ajaa muokattuja versioita laitteen sisällä olevasta ohjelmistosta, vaikkakin valmistaja voikin niin tehdä. Tälläinen käytös on lähtökohtaisesti sopimaton malli suojata käyttäjän vapautta muokata ohjelmistoa. Moista järjestelmällistä hyväksikäyttöä ilmenee usein yksilöiden käyttämissä loppukäyttäjälaitteissa joissa sellainen on vähiten hyväksyttävää. Tämän takia, olemme suunnitelleet  tämän GPL:n version estämään moista käytäntöä noille laitteille. Mikäli moisia ongelmia nousee oleellisesti muissa käyttökohdissa, olemme valmiita laajentamaan tätä provisiota noihin käyttökohteisiin tulevaisuuden GPL-versioissa, aina sen mukaan, miten tarpeelliseksi nähdään jotta käyttäjän vapaudet tulevat suojelluiksi.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jotkut laitteet ovat suunnitellut eväämään käyttäjän mahdollisuuden asentaa tai ajaa muokattuja versioita laitteen sisällä olevasta ohjelmistosta, vaikkakin valmistaja voikin niin tehdä. Tälläinen käytös on lähtökohtaisesti sopimaton malli suojata käyttäjän vapautta muokata ohjelmistoa. Moista järjestelmällistä hyväksikäyttöä ilmenee usein yksilöiden käyttämissä loppukäyttäjälaitteissa joissa sellainen on vähiten hyväksyttävää. Tämän takia, olemme suunnitelleet tämän GPL:n version estämään moista käytäntöä noille laitteille. Mikäli moisia ongelmia nousee oleellisesti muissa käyttökohdissa, olemme valmiita laajentamaan tätä provisiota noihin käyttökohteisiin tulevaisuuden GPL-versioissa, aina sen mukaan, miten tarpeelliseksi nähdään jotta käyttäjän vapaudet tulevat suojelluiksi.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Lopulta, jokaista ohjelmaa uhkaillaan jatkuvasti ohjelmapatenttien tiimoilla. Maiden ei tulisi hyväksyä sellaisia patentteja jotka rajoittavat ohjelmistojen kehitystä ja käyttöä yleisissä tietokoneissa, mutta ne jotka tälläistä harjoittavat. koetamme välttää erityisvaaran joita patentit liitettynä vapaisiin ohjelmistoihin tuovat, ja tekisi tälläisestä ohjelmistosta siis omisteisen. Tämän estämiseksi, GPL varmistaa että näitä patenttaja ei voida langettaa ohjelman ei-vapaaksi saattamiseksi.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Tarkat käyttöehdot jäljentämiseen, jakeluun ja muokkaamiseen ovat seuraavassa.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;KÄYTTÖEHDOT&lt;/span&gt;&lt;/p&gt;
@@ -236,12 +236,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt; &amp;quot;katetut teokset&amp;quot; tarkoittaa joko muokkaamatonta ohjelmistoa tai teosta joka perustuu tuohon teokseen.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt; &amp;quot;propagointi&amp;quot; teoksen kohdalla tarkoittaa että että ilman lupaa pienikin muokaus tekisi sinusta suoraan tai epäsuorasti laillisesti vastuullisen kyseessä olevan tekijänoikeuslain kautta, paitsi että voit vain ajaa tuon ohjelman tietokoneessa tai muokataksesi yksityisen kopion. Propagaatio kattaa kopioinnin, jakelun (ilman tai kera muunnosten) tehden sen vapaaksi tarjolle kansalaisille ja joissakin maissa muihin käyttötarkoituksiin.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt; &amp;quot;välitys&amp;quot; teoksen kohdalla tarkoittaa mitä tahansa propagointia joka mahdollistaa muut osapuolet tekemään tai vastaanottamaan kopioita. Pelkkä kanssakäyminen käyttäjän kanssa tietokoneverkon kautta ei ole sellaista toimintaa.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Interktiiviset käyttöliittymäruudut &amp;quot;Lainopilliset huomautukset&amp;quot; siihen asti että nämä sisältävät käyttökelpoisen ja vankasti näkyvän ominaisuuden joka (1) näyttää tarkoituksenmukaisen tekijänoikeusilmoitteen, ja (2) kertoo käyttäjälle että takuuta teoksen piirissä ei ole (paitsi jos takuu annetaan), että luvitetut voivat  välittää teosta tämän lisenssin alla, ja kuinka tarkastella tämän lienssin kopiota. Jos käyttöliittymä näyttää käyttäjäkomentoluettelon tai asetuksia, kuten asetusvalikko, tarkoituksenmukainen kohde täyttää nämä ehdot.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Interktiiviset käyttöliittymäruudut &amp;quot;Lainopilliset huomautukset&amp;quot; siihen asti että nämä sisältävät käyttökelpoisen ja vankasti näkyvän ominaisuuden joka (1) näyttää tarkoituksenmukaisen tekijänoikeusilmoitteen, ja (2) kertoo käyttäjälle että takuuta teoksen piirissä ei ole (paitsi jos takuu annetaan), että luvitetut voivat välittää teosta tämän lisenssin alla, ja kuinka tarkastella tämän lienssin kopiota. Jos käyttöliittymä näyttää käyttäjäkomentoluettelon tai asetuksia, kuten asetusvalikko, tarkoituksenmukainen kohde täyttää nämä ehdot.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;1. Lähdekoodi.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Itse &amp;quot;lähdekoodi &amp;quot; teoksen suhteen tarkoittaa suositeltavaa teoksen muotoa tehdä siihen muokkauksia.&amp;quot;Objektikoodi&amp;quot; tarkoittaa mitä tahansa ei-lähdellistä teoksen muotoa.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Yleinen &amp;quot;vakiokäyttöliittymä&amp;quot; tarkoittaa käyttöliittymää joka on joko virallinen standardi jonka määrittää jokin tunnustettu standardin määrittävä taho, tai, jos kyseessä on käyttöliittymä jonka määrittää jokin tietty ohjelmointikieli, ja joka on yleisesti käytetty kehittäjien keskuudessa jotka työskentelevät tuon kielen kautta.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;itse &amp;quot;järjestelmäkirjastot&amp;quot; ajettavasta teoksesta sisältävät kaiken muun, paitsi itse teoksen kokonaisuutenaan, joka on (a) sisällytetty perinteiseen paketointimuotoon, pääkomponentiin, mutta joka ei ole osa tuota pääkomponenttia, ja (b) palvelee ainoastaan teoksen käyttöä tuon pääkomponentin kanssa, tai  vakioliittymän täytäntöönpanemiseen joka on tarjolla julkisesti kaikille lähdekoodin muodossa. Kohteen &amp;quot;pääkomponentti&amp;quot;, tässä yhteydessä tarkoittaa erittäin tärkeän lähtökohtaista osasta (ydin, ikkunointijärjestelmä, ja niin edelleen) liittyen kyseessä olevaan käyttöjärjestelmään (mikäli sellainen on) jossa ajettava teos toimii, tai kokooja jota käytetään tuottamaan teos valmiiksi, tai objektikooditulkki jota käytetään sen ajamiseen.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kohde &amp;quot;vastaava lähde&amp;quot; objektikoodityötä varten tarkoittaa kaikkea lähdekoodia joka tarvitaan muodostaa, asentaa ja (ajttavan tiedoston toimintaan)  ajaa tuo objektikoodi ja muokata teosta, mukaan lukien skriptit joiden kautta noita toimia hallitaan. Tämä ei kuitenkaan sisällä teoksen järjestelmäkirjastoja, taikka yleistarkoituksellisia työkaluja, saati yleisesti tarjolla olevia vapaita ohjelmia joita käytetään muokkaamattomana joita käyteään noihin toimintoihin, mutta jotka eivät ole osa teosta. Esimerkiksi, vastaava lähde sisältää käyttöliittymää kuvaustiedostot, tiedostot jotka liittyvät kuvailutiedostoihin teoksen suhteen, ja lähdekoodi jaettujen kirjastojen suhteen sekä dynaamisesti linkatut aliohjelmat joita teos on suunniteltu vaatimaan, kuten intiimidatan hallinta noiden aliohjelmien ja teoksen osasten välillä.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;itse &amp;quot;järjestelmäkirjastot&amp;quot; ajettavasta teoksesta sisältävät kaiken muun, paitsi itse teoksen kokonaisuutenaan, joka on (a) sisällytetty perinteiseen paketointimuotoon, pääkomponentiin, mutta joka ei ole osa tuota pääkomponenttia, ja (b) palvelee ainoastaan teoksen käyttöä tuon pääkomponentin kanssa, tai vakioliittymän täytäntöönpanemiseen joka on tarjolla julkisesti kaikille lähdekoodin muodossa. Kohteen &amp;quot;pääkomponentti&amp;quot;, tässä yhteydessä tarkoittaa erittäin tärkeän lähtökohtaista osasta (ydin, ikkunointijärjestelmä, ja niin edelleen) liittyen kyseessä olevaan käyttöjärjestelmään (mikäli sellainen on) jossa ajettava teos toimii, tai kokooja jota käytetään tuottamaan teos valmiiksi, tai objektikooditulkki jota käytetään sen ajamiseen.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kohde &amp;quot;vastaava lähde&amp;quot; objektikoodityötä varten tarkoittaa kaikkea lähdekoodia joka tarvitaan muodostaa, asentaa ja (ajttavan tiedoston toimintaan) ajaa tuo objektikoodi ja muokata teosta, mukaan lukien skriptit joiden kautta noita toimia hallitaan. Tämä ei kuitenkaan sisällä teoksen järjestelmäkirjastoja, taikka yleistarkoituksellisia työkaluja, saati yleisesti tarjolla olevia vapaita ohjelmia joita käytetään muokkaamattomana joita käyteään noihin toimintoihin, mutta jotka eivät ole osa teosta. Esimerkiksi, vastaava lähde sisältää käyttöliittymää kuvaustiedostot, tiedostot jotka liittyvät kuvailutiedostoihin teoksen suhteen, ja lähdekoodi jaettujen kirjastojen suhteen sekä dynaamisesti linkatut aliohjelmat joita teos on suunniteltu vaatimaan, kuten intiimidatan hallinta noiden aliohjelmien ja teoksen osasten välillä.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Vastaavan lähteen ei tarvitse siältää mitään mitä käyttäjät voivat uudelleentuoda automaattisesti muista vastaavan lähteen osista.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Vastaava lähde teokselle lähdekoodimuodossa on tuota samaa teosta.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;2. Peruslupaa.&lt;/span&gt;&lt;/p&gt;
@@ -257,7 +257,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;5. Muokatun lähdekoodin versioiden välitys.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Voit välittää teoksen joka vain perustuu lähtöteokseen, tai muokkauksiin jotka tekevät ohjelmasi, lähdekoodin muodossa kohdan 4 ehtojen mukaisesti, ottaen huomioon että myös nämä ehdot täyttyvät:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;a) Teoksen tulee sisältää selonteko muutoksien tekemisestä päiväyksineen.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) Teoksen tulee sisältää selonteko että teos on julkaistu tämän lisenssin alaisena ja lisäksi minkä tahansa ehdon kanssa jotka ovat määritelty osiossa 7. Tämä vaatimus muokkaa vaatimusta osiossa 4  jossa  &amp;quot;pyydetään pitämään mukana kaikki ilmoitteet&amp;quot;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) Teoksen tulee sisältää selonteko että teos on julkaistu tämän lisenssin alaisena ja lisäksi minkä tahansa ehdon kanssa jotka ovat määritelty osiossa 7. Tämä vaatimus muokkaa vaatimusta osiossa 4 jossa &amp;quot;pyydetään pitämään mukana kaikki ilmoitteet&amp;quot;.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) Sinun tulee luvittaa koko teos, kokonaisuudessaan, tämän lupalisenssin alaiseksi jokaiselle joka saa siitä jäljenteen. Tämä lisenssi sitte pätee, osion 7 lisäehtojen kanssa koko teokseen ja sen osii, huolimatta siiitä kuinka teos toimitetaan tai on pakattu. Tämä lisenssi ei anna lupaa luvittaa tätä teosta millään muulla tavalla, but ei tee teosta epäkelvoksi mikäli olet saanut sen erillisenä.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) Mikäli teoksessa on interaktiivia käyttöliittymiä, jokaiselle pitää sisällyttää asianmukaiset lailliset tiedonannot; kuitenkin, mikäli ohjelmassa on interaktiivisia käyttöliittymiä joista ei ilmene nämä lailliset selonteot, teoksesi ei tarvitse sitä toteuttaa.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kokoelma katettuja teoksia kera muiden itsenäisten teosten jotka eivät luonnostaan ole niiden jatkeita, ja joita ei yhdistetä teokseen isomman teoksen muodossa esim. säilömismedian sisällä &amp;quot;kokonaisuus&amp;quot; jos kokoelma ja sen tulokseksi muodostuvaa tekijänoikeutta ei käytetä rajoittamaan käyttöä tai laillisia oikeuksia kokoelman käyttäjien suhteen yli mitä yksilölliset teokset myöntävät. Katetun teoksen sisällyttäminen kokonaisuudessa ei johda tämän lisenssin pätemiseen muissa kokonaisuuden osissa.&lt;/span&gt;&lt;/p&gt;
@@ -265,63 +265,63 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Voit välittää katetun teoksen objektikoodimuodossa jotka esitetään kohdissa 4 ja 5, ottaen huomioon, että olet myös toimittanut konelukuisen vertaislähteen jotka ovat tämän lisenssin alaisia yhdessäkin näistä tavoista:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;a) Välitä objektikoodi fyysisen tuotteen sisällä tai paketoinnissa (mukaanlukien fyysinen jakelumedia), jonka kanssa vertaislähde laitettuna fyysiselle medialle.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) Välitä objektikoodi fyysisen tuotteen sisällä tai sen paketoinnissa (mukaanlukien fyysinen jakelumedia), jonka kanssa kirjoitettu tarjous vähintään kolmeksi vuodeksi voimassa olevaksi ja voimassa olevaksi niin kauan kuin tarjoat varaosia tai asiakastukea tuolle tuotemallille, antaaksesi kaikille jotka omaavat objektikoodin joko (1) vertaislähteen kopion kaikelle ohjelmistolle tuotteessa jota lisenssi kattaa, kestävälle fyysiselle medialle joka on suunniteltu vaihtamaan ja jakamaan ohjelmistotietoja, hinnalla joka ei olisi enempää kuin mikä kattaa kulut (2) käyttölupa ja avaimet kopioida vertaislähde verkkopalvelimelta ilman veloitusta.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) Välittää yksilöllisiä kopioita objektikoodista kirjaillun tarjouksen kera vertaiskoodin suhteen. Tämä vaihtoehto sallitaan vain ajoittain ja ei-kaupallisesti, ja vain jos olet ottanut vastaan objektikoodin tämänlaisen tarjouksen ohessa joka täsmää  osion 6b kanssa.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) Välitä objektikoodi tarjoamalla lupa käyttää sitä määrätystä paikasta (ilmaiseksi tai veloituksella ), ja tarjoa vertainen käyttömahdollisuus vertaislähteeseen samaan tapaan ilman lisäveloitusta. Sinun ei tarvitse vaatia vastaanottajan kopioida vertaislähdetä objektikoodin kanssa. Mikäli paikka josta objektikoodi kopioidaan on verkkopalvelin, vertainen lähde voi olla eri palvelimellakin (jota sinä tai kolmas osapuoli ylläpitää)  joka tukee vertaisia kopiointikeinoja, ottaen huomioon että tarjoat selkeät ohjeet mitä tehdä ja mitä löytää mistäkin vertaiskoodin suhteen. Huolimatta mitä palvelinkulut tuolle koodille ovat, sinulla säilyy silti velvollisuus varmistaa että kaikki lisenssin kohdat täyttyvät.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) Välittää yksilöllisiä kopioita objektikoodista kirjaillun tarjouksen kera vertaiskoodin suhteen. Tämä vaihtoehto sallitaan vain ajoittain ja ei-kaupallisesti, ja vain jos olet ottanut vastaan objektikoodin tämänlaisen tarjouksen ohessa joka täsmää osion 6b kanssa.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) Välitä objektikoodi tarjoamalla lupa käyttää sitä määrätystä paikasta (ilmaiseksi tai veloituksella ), ja tarjoa vertainen käyttömahdollisuus vertaislähteeseen samaan tapaan ilman lisäveloitusta. Sinun ei tarvitse vaatia vastaanottajan kopioida vertaislähdetä objektikoodin kanssa. Mikäli paikka josta objektikoodi kopioidaan on verkkopalvelin, vertainen lähde voi olla eri palvelimellakin (jota sinä tai kolmas osapuoli ylläpitää) joka tukee vertaisia kopiointikeinoja, ottaen huomioon että tarjoat selkeät ohjeet mitä tehdä ja mitä löytää mistäkin vertaiskoodin suhteen. Huolimatta mitä palvelinkulut tuolle koodille ovat, sinulla säilyy silti velvollisuus varmistaa että kaikki lisenssin kohdat täyttyvät.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;e) Välittää objektikoodi käyttäen vertaisverkkoa ja siirtää sen kautta, kertoen muille vertaisverkkolaisille missä objektikoodi ja vertaislähde teokseen ovat tarjolla ladattavaksi kuten kohdassa 6d kerrotaan.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Eriteltävä osio objektikoodista, minkä lähdekoodi uupuu vastaavasta vertaislähteestä mutta järjestelmäkirjastona.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt; &amp;quot;Käyttäjätuote&amp;quot; on joko (1)  &amp;quot;kuluttajatuote&amp;quot;, joka tarkoittaa mitä tahansa tartuttavaa henkilökohtaista omaisuutta joka on yleisesti käytetty henkilökohtaiseen käyttöön, perhekäyttöön tai kotitalouskäyttöön; tai (2) mitä tahansa joka on suunniteltu tai myyty yhtiölle. Määritettäessä mikäli tuote on kuluttajatuote, epäröinnin edessä asia voidaan ratkaista kattavuuden mukaisesti. Tietty tuote jonka ottaa vastaan tietty käyttäjä&amp;quot;normaalisti käytettynä&amp;quot; viittaa tyypilliseen tai perinteiseen tuon tuotteen käyttöön, huolimatta kyseisen käyttäjän statuksesta tai tavasta jonka kautta käyttäjä käyttää, tai odottaa käyttävän tuotetta. Tuote on kuluttajatuote huolimatta siitä onko tuotteella mahdollista kaupallista, teollista tai ei-kuluttaja tyypin käyttökohtia ollenkaan, ellei tuotteella ole selvästi muuta kuin selkeästi vain tiettyä käyttökohtaa.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt; &amp;quot;Käyttäjätuote&amp;quot; on joko (1) &amp;quot;kuluttajatuote&amp;quot;, joka tarkoittaa mitä tahansa tartuttavaa henkilökohtaista omaisuutta joka on yleisesti käytetty henkilökohtaiseen käyttöön, perhekäyttöön tai kotitalouskäyttöön; tai (2) mitä tahansa joka on suunniteltu tai myyty yhtiölle. Määritettäessä mikäli tuote on kuluttajatuote, epäröinnin edessä asia voidaan ratkaista kattavuuden mukaisesti. Tietty tuote jonka ottaa vastaan tietty käyttäjä&amp;quot;normaalisti käytettynä&amp;quot; viittaa tyypilliseen tai perinteiseen tuon tuotteen käyttöön, huolimatta kyseisen käyttäjän statuksesta tai tavasta jonka kautta käyttäjä käyttää, tai odottaa käyttävän tuotetta. Tuote on kuluttajatuote huolimatta siitä onko tuotteella mahdollista kaupallista, teollista tai ei-kuluttaja tyypin käyttökohtia ollenkaan, ellei tuotteella ole selvästi muuta kuin selkeästi vain tiettyä käyttökohtaa.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;Asennustiedot&amp;quot; käyttäjätuotteella tarkoittaa mitä tahansa menetelmiä, käytäntöjä, isännöintiavaimia, tai muita informaatiota vaativia asioita jotka vaaditaan asennusta ja ajoa varten. Tietojen tulee aina riittää käytön jatkumiselle. Objektikoodi, vertaislähde jne.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Mikäli välität objektikooditeoksen tässä käsitellyin ehdoin, ne sisältäen tai kanssa, tai tarkemmin käyttötarkoituksen mukaan, kuluttajatuotteessa, ja välitys tapahtuu osana transaktiota jossa omistusoikeus ja kuluttajatuotteen käyttö siirretään vastaanottajalle toistaiseksi tai määrätyksi ajaksi (huolimatta miten transaktio luonnehditaan), vertaislähde välitettynä tämän osion ehtojen alla tulee laittaa mukaan asennusohjeeseen. Tämä vaatimus ei päde jos sinä tai mikään kolmas osapuoli ei omaa mahdollisuutta asentaa muokattua objektikoodia kuluttajatuotteen suhteen (esimerkiksi kun teos on asennettu ROM eli vain luku muodossa).&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Vaatimus toimittaa asennustietoja ei sisällä vaatimusta jatkaa alati tukipalvelua, takuuta, tai päivityksiä teokselle jota on muokattu tai se on asennettu vastaanottajan toimesta, tai kuluttajatuotten suhteen jota on muokattu tai se on asennettu. Pääsy verkkoon voi olla evättynä kun muokkaus itsessään materisesti ja muodollisesti vaikuttaa verkon toimintaan tai rikkoo sääntöjä ja protokollia kommunikaatiolle kautta verkoston.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Vastaava lähde  Source toimitettuna ja asennustiedot tarjottuna, täsmäten tämän osion kanssa, tuotteiden tulee olla muodossa joka on julkisesti dokumentoitu(kera implementaation myös tarjolla kansalle julkisesti lähdekoodin muodossa), ja mikään erikoissalasana ei saa olla vaatimuksena, taikka avainta jonka kautta voisi vasta purkaa paketin luettavaksi ja kopioitavaksi.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Vastaava lähde Source toimitettuna ja asennustiedot tarjottuna, täsmäten tämän osion kanssa, tuotteiden tulee olla muodossa joka on julkisesti dokumentoitu(kera implementaation myös tarjolla kansalle julkisesti lähdekoodin muodossa), ja mikään erikoissalasana ei saa olla vaatimuksena, taikka avainta jonka kautta voisi vasta purkaa paketin luettavaksi ja kopioitavaksi.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;7. Lisäkäyttöehdot.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;Lisäluvallisuudet&amp;quot; ovat ehtoja jotka täydentävät tämän lisenssin ehtoja tehden poikkeuksia yhdestä tai kahdesta sen määrityksistä. Lisäluvat jotka soveltuvat koko ohjelmaan tulee käsitellä kuin jos ne olisivat sisällytetty tähän lisenssiin, siihen asti että ne ovat päteviä voimassa olevan lain kanssa. Mikäli lisälupia käytetään vain osaassa ohjelmaa, tuo osa voidaan käyttää erillisenä noiden lupien alaisena, mutta koko ohjelma säilyy tämän lisenssin alaisuudessa.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) Limiting the use for publicity purposes of names of licensors or authors of the material; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;All other non-permissive additional terms are considered &amp;quot;further restrictions&amp;quot; within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;8. Termination.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;9. Acceptance Not Required for Having Copies.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;10. Automatic Licensing of Downstream Recipients.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;An &amp;quot;entity transaction&amp;quot; is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party&apos;s predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;11. Patents.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A &amp;quot;contributor&amp;quot; is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor&apos;s &amp;quot;contributor version&amp;quot;.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A contributor&apos;s &amp;quot;essential patent claims&amp;quot; are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, &amp;quot;control&amp;quot; includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor&apos;s essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;In the following three paragraphs, a &amp;quot;patent license&amp;quot; is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To &amp;quot;grant&amp;quot; such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. &amp;quot;Knowingly relying&amp;quot; means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient&apos;s use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A patent license is &amp;quot;discriminatory&amp;quot; if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;12. No Surrender of Others&apos; Freedom.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;13. Use with the GNU Affero General Public License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;14. Revised Versions of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License &amp;quot;or any later version&amp;quot; applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy&apos;s public statement of acceptance of a version permanently authorizes you to choose that version for the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;15. Disclaimer of Warranty.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;16. Limitation of Liability.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kun lähetät katetun teoksen kopion, voit halutessasi poistaa kaikki lisäluvat kyseisestä kopiosta tai sen mistä tahansa osasta. (Lisäluvat voidaan kirjoittaa siten, että ne on poistettava tietyissä tapauksissa, kun teosta muutetaan.) Voit sijoittaa lisälupia aineistoon, jonka olet lisännyt katettuun teokseen ja jolle sinulla on tai voit antaa asianmukaisen tekijänoikeusluvan.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Estämättä, mitä tämän lisenssin muissa määräyksissä määrätään, voit (aineiston tekijänoikeuksien haltijoiden luvalla) täydentää tämän lisenssin ehtoja aineistolla, jonka lisäät katettuun teokseen:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;a) takuusta luopuminen tai vastuun rajoittaminen tämän lisenssin 15 ja 16 kohdan ehdoista poiketen.; tai&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) Vaatimus siitä, että tietyt kohtuulliset oikeudelliset merkinnät tai tekijämerkinnät säilytetään kyseisessä aineistossa tai sitä sisältävissä teoksissa olevissa asianmukaisissa oikeudellisissa merkinnöissä.; tai&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) kielletään kyseisen aineiston alkuperän virheellinen ilmoittaminen tai vaaditaan, että tällaisen aineiston muutetut versiot merkitään kohtuullisella tavalla alkuperäisestä versiosta poikkeaviksi.; tai&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) Lisenssinantajien tai aineiston tekijöiden nimien käytön rajoittaminen julkisuustarkoituksiin.; tai&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;e) kieltäytyminen myöntämästä tavaramerkkilainsäädännön mukaisia oikeuksia joidenkin toiminimien, tavaramerkkien tai palvelumerkkien käyttöön; tai&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;f) Vaaditaan, että jokainen, joka luovuttaa aineistoa (tai sen muunnettuja versioita) vastaanottajalle vastuuvelvollisuutta koskevien sopimusperusteisten olettamusten mukaisesti, korvaa aineiston lisenssinantajille ja tekijöille kaiken vastuun, jonka nämä sopimusperusteiset olettamukset suoraan aiheuttavat kyseisille lisenssinantajille ja tekijöille.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kaikki muut lisäehdot, jotka eivät ole sallittuja, katsotaan kohdassa 10 tarkoitetuiksi lisärajoituksiksi. Jos vastaanottamassasi ohjelmassa tai sen osassa on ilmoitus siitä, että sitä koskee tämä Lisenssi, sekä ehto, joka on lisärajoitus, voit poistaa kyseisen ehdon. Jos lisenssiasiakirja sisältää lisärajoituksen, mutta sallii jälleenlisensoinnin tai luovuttamisen tämän lisenssin nojalla, voit lisätä katettuun teokseen aineistoa, jota koskevat kyseisen lisenssiasiakirjan ehdot, edellyttäen, että lisärajoitus ei säily tällaisessa jälleenlisensoinnissa tai luovuttamisessa.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jos lisäät ehtoja katettuun teokseen tämän jakson mukaisesti, sinun on sijoitettava asianomaisiin lähdetiedostoihin ilmoitus kyseisiin tiedostoihin sovellettavista lisäehdoista tai ilmoitus siitä, mistä sovellettavat ehdot löytyvät..&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Sallivat tai ei-sallivat lisäehdot voidaan ilmoittaa erillisenä kirjallisena lisenssinä tai ilmoittaa poikkeuksina; edellä mainittuja vaatimuksia sovelletaan kummallakin tavalla.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;8. Mitätöinti.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Et saa levittää tai muokata teosta, jollei tässä lisenssissä nimenomaisesti toisin määrätä. Kaikki muut yritykset levittää tai muuttaa sitä ovat mitättömiä ja lopettavat automaattisesti tämän Lisenssin mukaiset oikeutenne (mukaan lukien kaikki kohdan 11 kolmannen kappaleen nojalla myönnetyt patenttilisenssit).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jos kuitenkin lopetat kaiken lisenssirikkuruuden, tietyn tekijänoikeuden haltijan myöntämä lisenssi palautetaan (a) väliaikaisesti, ellei tekijänoikeuden haltija nimenomaisesti ja lopullisesti irtisano lisenssiäsi, ja (b) pysyvästi, jos tekijänoikeuden haltija ei ilmoita sinulle rikkomuksesta jollakin kohtuullisella tavalla ennen kuin 60 päivää on kulunut tämän lisenssin lopettamisesta..&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Lisäksi tietyn tekijänoikeuden haltijan myöntämä lisenssi palautetaan pysyvästi, jos tekijänoikeuden haltija ilmoittaa sinulle rikkomuksesta jollakin kohtuullisella tavalla, jos tämä on ensimmäinen kerta, kun olet saanut ilmoituksen tämän lisenssin rikkomisesta (minkä tahansa teoksen osalta) kyseiseltä tekijänoikeuden haltijalta, ja jos korjaat rikkomuksen ennen kuin 30 päivää on kulunut ilmoituksen vastaanottamisesta.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Tämän jakson mukaisten oikeuksiesi lakkauttaminen ei lakkauta niiden osapuolten lisenssejä, jotka ovat saaneet sinulta kopioita tai oikeuksia tämän lisenssin nojalla. Jos oikeutesi on lakkautettu eikä sitä ole palautettu pysyvästi, et ole oikeutettu saamaan uusia lisenssejä samaan aineistoon kohdan 10 mukaisesti.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;9. Kopioiden ottaminen ei edellytä hyväksyntää.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Sinun ei tarvitse hyväksyä tätä lisenssiä saadaksesi tai käyttääksesi kopiota ohjelmasta. Myöskään lisenssin piiriin kuuluvan teoksen sivutoiminen levittäminen, joka tapahtuu pelkästään sen seurauksena, että kopion vastaanottamiseen käytetään vertaisverkkosiirtoa, ei edellytä hyväksyntää. Mikään muu kuin tämä lisenssi ei kuitenkaan anna sinulle lupaa levittää tai muuttaa mitään ohjelman kattamaa teosta. Nämä toimet rikkovat tekijänoikeuksia, jos et hyväksy tätä lisenssiä. Siksi muokkaamalla tai levittämällä katettua teosta osoitat hyväksyväsi tämän lisenssin.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;10. Automaattinen lisensointi lähteestä alaspäin toimiville tahoille.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Aina kun välität suojatun teoksen, vastaanottaja saa automaattisesti alkuperäisiltä lisenssinantajilta luvan käyttää, muokata ja levittää kyseistä teosta tämän lisenssin mukaisesti. Et ole vastuussa siitä, että kolmannet osapuolet noudattavat tätä lisenssiä.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;yhteisöliiketoimi&amp;quot; on liiketoimi, jossa siirretään määräysvalta organisaatiossa tai olennaisilta osin sen koko omaisuudessa, tai jossa organisaatio jaetaan tai organisaatioita sulautetaan. Jos soveltamisalaan kuuluvan teoksen levittäminen on seurausta yhteisöliiketoimesta, jokainen liiketoimen osapuoli, joka saa teoksen kopion, saa myös kaikki teosta koskevat lisenssit, jotka edeltäjällä oli tai saattoi antaa edellisen kappaleen nojalla, sekä oikeuden saada teoksen vastaava lähde haltuunsa edeltäjältä, jos edeltäjällä on se tai hän voi kohtuullisin ponnistuksin saada sen.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Et saa asettaa muita rajoituksia tämän Lisenssin nojalla myönnettyjen tai vahvistettujen oikeuksien käytölle. Et saa esimerkiksi määrätä lisenssimaksua, rojalteja tai muita maksuja tämän lisenssin nojalla myönnettyjen oikeuksien käyttämisestä, etkä saa käynnistää oikeudenkäyntiä (mukaan lukien risti- tai vastakanne oikeudenkäynnissä), jossa väitetään, että mitä tahansa patenttivaatimusta on loukattu valmistamalla, käyttämällä, myymällä, tarjoamalla myyntiin tai maahantuonnilla ohjelmaa tai sen osaa.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;11. Patentit.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;luovuttaja&amp;quot; on tekijänoikeuden haltija, joka sallii ohjelman tai sellaisen teoksen, johon ohjelma perustuu, käytön tämän lisenssin nojalla. Näin lisensoitua teosta kutsutaan tekijänsä &amp;quot;tekijäversioksi&amp;quot;;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Osallistujan &amp;quot;olennaiset patenttivaatimukset&amp;quot; koskevat kaikkia patenttivaatimuksia, jotka ovat osallistujan omistuksessa tai määräysvallassa, riippumatta siitä, onko ne jo hankittu vai hankitaanko ne myöhemmin, ja joita loukattaisiin jollakin tämän lisenssin sallimalla tavalla, kun osallistujaversiota valmistetaan, käytetään tai myydään, mutta jotka eivät sisällä patenttivaatimuksia, joita loukattaisiin ainoastaan osallistujaversion lisämuutosten seurauksena. Tässä määritelmässä &amp;quot;määräysvalta&amp;quot; sisältää oikeuden myöntää patentin alilisenssejä tämän lisenssin vaatimusten mukaisella tavalla.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Kukin luovuttaja myöntää sinulle ei-yksinomaisen, maailmanlaajuisen, rojaltivapaan patenttilisenssin luovuttajan keskeisten patenttivaatimusten mukaisesti, jotta voit valmistaa, käyttää, myydä, tarjota myyntiin, tuoda maahan ja muutoin käyttää, muokata ja levittää luovuttajaversionsa sisältöä..&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Seuraavissa kolmessa kohdassa &amp;quot;patenttilisenssillä&amp;quot; tarkoitetaan mitä tahansa nimenomaista sopimusta tai sitoumusta, miten tahansa sitä kutsutaankin, olla panematta patenttia täytäntöön (kuten nimenomaista lupaa käyttää patenttia tai sitoumusta olla haastamatta patentinloukkausta oikeuteen). Tällaisen patenttilisenssin &amp;quot;myöntäminen&amp;quot; osapuolelle tarkoittaa, että tehdään tällainen sopimus tai sitoumus olla panematta patenttia täytäntöön osapuolta vastaan.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jos välität suojatun teoksen tietoisesti luottaen patenttilisenssiin ja teoksen vastaava lähde ei ole kenen tahansa kopioitavissa maksutta ja tämän lisenssin ehtojen mukaisesti julkisesti saatavilla olevan verkkopalvelimen tai muun helposti saatavilla olevan keinon kautta, sinun on joko (1) saatettava vastaava lähde saataville, tai (2) järjestettävä, että menetät patenttilisenssistä saatavan edun kyseisen teoksen osalta, tai (3) järjestettävä tämän lisenssin vaatimusten mukaisesti patenttilisenssin ulottaminen myöhempiin vastaanottajiin. &amp;quot;tietoisesti luottaen&amp;quot; tarkoittaa, että sinulla on tosiasiallinen tieto siitä, että ilman patenttilisenssiä katetun teoksen välittäminen jossakin maassa tai katetun teoksen käyttäminen vastaanottajasi toimesta jossakin maassa loukkaisi yhtä tai useampaa kyseisessä maassa olevaa tunnistettavaa patenttia, jonka sinulla on syytä uskoa olevan voimassa.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jos yhden ainoan liiketoimen tai järjestelyn nojalla tai sen yhteydessä välität tai levität suojatun teoksen tai levität sitä välittämällä ja myönnät joillekin suojatun teoksen vastaanottajille patenttilisenssin, joka oikeuttaa heidät käyttämään, levittämään, muuttamaan tai välittämään suojatun teoksen tiettyä kappaletta, myöntämäsi patenttilisenssi laajenee automaattisesti koskemaan kaikkia suojatun teoksen ja siihen perustuvien teosten vastaanottajia.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Patenttilisenssi on &amp;quot;syrjivä&amp;quot;, jos se ei sisälly kattavuuteensa, kieltää yhden tai useamman tässä lisenssissä erityisesti myönnetyn oikeuden käyttämisen tai asettaa sen ehdoksi, että yhtä tai useampaa oikeutta ei käytetä. Et saa välittää katettua teosta, jos olet osapuolena kolmannen osapuolen kanssa tehdyssä järjestelyssä, joka harjoittaa ohjelmistojen jakelua ja jonka mukaan maksat kolmannelle osapuolelle maksun, joka perustuu teoksen välitystoimintasi laajuuteen, ja jonka mukaan kolmas osapuoli myöntää, mille tahansa osapuolelle, joka saisi katetun teoksen sinulta, syrjivän patenttilisenssin a) toimittamiesi suojatun teoksen kopioiden (tai näistä kopioista tehtyjen kopioiden) osalta tai b) ensisijaisesti tiettyjä suojatun teoksen sisältäviä tuotteita tai koosteita varten ja niiden yhteydessä, paitsi jos olet tehnyt kyseisen järjestelyn tai kyseinen patenttilisenssi on myönnetty ennen 28.3.2007.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Mitään tässä lisenssissä ei saa tulkita siten, että se sulkee pois tai rajoittaa mitään implisiittistä lisenssiä tai muita loukkausta koskevia puolustautumiskeinoja, jotka voivat muutoin olla käytettävissäsi sovellettavan patenttilainsäädännön nojalla.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;12. Muiden vapauksia ei voi alistaa.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jos sinulle asetetaan ehtoja (tuomioistuimen päätöksellä, sopimuksella tai muulla tavoin), jotka ovat ristiriidassa tämän lisenssin ehtojen kanssa, ne eivät vapauta sinua sen ehdoista. Jos et voi välittää teosta siten, että täytät samanaikaisesti tämän lisenssin mukaiset velvollisuutesi ja kaikki muut asiaankuuluvat velvollisuutesi, et saa välittää teosta lainkaan. Jos esimerkiksi suostut ehtoihin, jotka velvoittavat sinut keräämään rojaltin ohjelman edelleen välittämisestä niiltä, joille välität ohjelman, ainoa tapa, jolla voisit täyttää sekä nämä ehdot että tämän lisenssin vaatimukset, olisi pidättäytyä kokonaan ohjelman välittämisestä.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;13. Käyttö GNU Affero General Public -luvituksen alla&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Tämän lisenssin muista määräyksistä huolimatta sinulla on lupa linkittää tai yhdistää mikä tahansa lisenssin piiriin kuuluva teos GNU Affero General Public License -lisenssin version 3 alaisen teoksen kanssa yhdeksi yhdistetyksi teokseksi ja välittää tuloksena syntynyt teos. Tämän lisenssin ehtoja sovelletaan edelleen siihen osaan, joka on katettu teos, mutta GNU Affero General Public License -lisenssin kohdan 13 erityisvaatimukset, jotka koskevat vuorovaikutusta verkon kautta, koskevat yhdistelmää sellaisenaan.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;14. Tämän lisenssin uudistetut versiot.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Free Software Foundation -säätiö saattaa julkaista ajoittain tarkistettuja ja/tai uusia versioita GNU General Public License -lisenssistä. Tällaiset uudet versiot ovat hengeltään samankaltaisia kuin nykyinen versio, mutta voivat poiketa yksityiskohdiltaan uusien ongelmien tai huolenaiheiden käsittelemiseksi.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jokaiselle versiolle annetaan oma versionumeronsa. Jos ohjelmassa ilmoitetaan, että siihen sovelletaan tiettyä GNU General Public License -lisenssin &amp;quot;tai jonkin myöhemmän version&amp;quot; numeroitua versiota, sinulla on mahdollisuus noudattaa joko kyseisen numeroidun version tai jonkin myöhemmän Free Software Foundationin julkaiseman version ehtoja. Jos ohjelmassa ei mainita GNU General Public License -lisenssin versionumeroa, voit valita minkä tahansa Free Software Foundationin koskaan julkaiseman version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jos ohjelmassa määritetään, että välittäjä voi päättää, mitä GNU General Public License -lisenssin tulevia versioita voidaan käyttää, kyseisen välittäjän julkinen lausunto version hyväksymisestä valtuuttaa sinut pysyvästi valitsemaan kyseisen version ohjelmaa varten.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Myöhemmät lisenssiversiot voivat antaa sinulle lisää tai erilaisia oikeuksia. Kenellekään tekijälle tai tekijänoikeuksien haltijalle ei kuitenkaan aseteta lisävelvoitteita sen seurauksena, että valitset myöhemmän version noudattamisen.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;15. Takuun vastuuvapauslauseke.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;OHJELMALLE EI MYÖNNETÄ TAKUUTA SOVELLETTAVAN LAIN SALLIMISSA RAJOISSA. Jollei toisin ole kirjallisesti ilmoitettu, TEKIJÄNOIKEUDEN OMISTAJAT JA/TAI MUUT OSAPUOLET TARJOAVAT OHJELMAN &quot;sellaisena kuin se on&quot; ilman minkäänlaista takuuta, joko nimenomaista tai epäsuoraa, mukaan lukien, mutta ei rajoitetusti, epäsuorat takuut kaupallisesta kelpaavuudesta ja soveltuvuudesta tiettyyn käyttötarkoitukseen. KOKO RISKI OHJELMAN LAADUSTA JA SUORITUSKYVYSTÄ ON SINULLA. JOS OHJELMA OSOITTAUTUU VIALLISEKSI, SINÄ VASTAAT KAIKISTA TARVITTAVISTA HUOLTO-, KORJAUS- TAI KORJAUSKUSTANNUKSISTA.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;16. Vastuun rajoittaminen.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;TEKIJÄNOIKEUDEN HALTIJA TAI MUU OSAPUOLI, JOKA MUUTTAA JA/TAI LUOVUTTAA OHJELMAA EDELLÄ SALLITULLA TAVALLA, EI OLE MISSÄÄN TAPAUKSESSA VASTUUSSA SINULLE VAHINGOISTA, MUKAAN LUKIEN YLEISET, ERITYISET, SATUNNAISET TAI VÄLILLISET VAHINGOT, JOTKA JOHTUVAT OHJELMAN KÄYTÖSTÄ TAI KYVYTTÖMYYDESTÄ KÄYTTÄÄ OHJELMAA (MUKAAN LUKIEN, MUTTA EI RAJOITTUEN, TIETOJEN MENETTÄMINEN TAI TIETOJEN MUUTTUMINEN EPÄTARKOIKSI TAI SINUN TAI KOLMANSIEN OSAPUOLTEN KÄRSIMÄT MENETYKSET TAI OHJELMAN TOIMIMATTOMUUS YHDESSÄ MUIDEN OHJELMIEN KANSSA), PAITSI JOS TEKIJÄNOIKEUDEN HALTIJAAN TAI MUUHUN OSAPUOLEEN ON ILMOITETTU TÄLLAISTEN VAHINKOJEN MAHDOLLISUUDESTA, PAITSI JOS SITÄ ON VAADITTU SOVELLETTAVASSA LAISSA TAI SIITÄ ON SOVITTU KIRJALLISESTI.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;17. Osioiden 15 ja 16 tukinta.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Jos edellä mainituille takuusta luopumiselle ja vastuun rajoittamiselle ei voida antaa paikallista oikeusvaikutusta niiden ehtojen mukaisesti, muutoksenhakutuomioistuinten on sovellettava paikallista lakia, joka lähimpänä vastaa ehdotonta luopumista kaikesta siviilioikeudellisesta vastuusta ohjelmaan liittyen, paitsi jos takuu tai vastuunottovelvollisuus liitetään ohjelman kopioon maksua vastaan.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
@@ -353,7 +353,24 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;pktiuk&quot; (elokuu 2020) haluan vain varmistaa, että tätä erittäin hyödyllistä ohjelmistoa ei hylätä, päätin jatkaa tämän hankeen tukemista ja tehdä siitä mahdollisimman laajasti saatavan.
+
+&quot;juliagoda&quot; (maaliskuusta 2018 vuoteen 2020) halusin vain pelata vanhoja suosikkipelejäni, jotka eivät tukeneet gamepadeja, joten löysin tämän projektin (joka kartoittaa näppäimistön näppäimet ja hiiren painikkeet liitetyille gamepadeille Linuxissa) kaikkein asianmukaisimmin ja ajanmukaisimmin. Mutta koska tällaisille sovelluksille on huonoja vaihtoehtoja internetissä ja koska se ei jatkunut asianmukaisesti, päätin pelastaa projektin. Kuitenkin, kun sain työni valmiiksi (ainakin tarpeeksi nauttiakseni pelien pelaamisesta sillä), ajattelin jakaa tämän ohjelmakoodin muiden kanssa. Tietenkin kaikki tiedot aiemmista ohjelmoijista pidetään yllä.
+
+&quot;Ryochan7&quot; (30. joulukuuta 2012 alkaen vuoteen 2017 asti), olen työskennellyt AntiMicron parissa vapaa-ajallani. Se, mikä alun perin alkoi QJoyPadin haarana ja tapana oppia kunnollista tapahtumapohjaista ohjelmointia, on muuttunut joksikin paljon suuremmaksi kuin alun perin ajattelin. Vaikka olen käyttänyt paljon aikaa uusien tekniikoiden oppimiseen, KB+M-emuloinnin alaan perehtymiseen ja perjantai-iltojen viettämiseen hakkaamalla päätäni näppäimistöön, se on ollut kaikenkaikkiaan hauska ja rikastuttava kokemus.
+
+Tarve tälle ohjelmalle tuli siitä, että käytin vastaavia ohjelmia Windowsissa pelatakseni useita pelejä, joissa ei ollut natiivia ohjaintukea. Vaikka Linuxissa oli joitain vaihtoehtoja, ei ollut oikeastaan mitään sellaista, joka olisi ollut mielestäni tarpeeksi hyvä toiminnallisuuden kannalta.
+
+Siitä lähtien olen yrittänyt selvittää, mitä muut ohjelmat tekevät oikein, ja parantanut sitä. Olen myös keksinyt matkan varrella joitakin hienoja temppuja ja oppinut enemmän siitä, miten natiivit gamepad-ohjaimet on toteutettu joissakin peleissä, kuin olen koskaan halunnutkaan tietää. Vaikka tässä ohjelmassa on varmasti alueita, joilla sitä voisi parantaa, minusta tämä ohjelma tarjoaa parhaan ohjauskokemuksen pelissä pelatessa vanhempia ja joitakin uudempia pelejä, jotka eivät tarjoa natiivia ohjaintukea.
+
+Tämän ohjelman kehittäminen ei ole enää prioriteetti minulle. Tämä johtuu pääasiassa siitä, että Steam-ohjain toimii melko hyvin PC-pelien pelaamiseen verrattuna Xbox 360 -ohjaimen käyttöön. Näyttää kuitenkin siltä, että tämän ohjelman olemassaololle on vielä jonkin aikaa hyvä syy.
+
+---
+
+24. toukokuuta 2016 alkaen tämä hanke on siirretty osoitteeseen https://github.com/AntiMicro/antimicro. 
+Lisäksi projektin hallinta on siirtynyt Travisilta (Ryochan7) AntiMicro-organisaatiolle, koska Travisilla on muita kiinnostuksen kohteita ja prioriteetteja.
+Seuraavana projektia on vuodesta 2018 lähtien jatkanut juliagoda antimicroX-projektissa. 
+Myöhemmin projekti on jälleen kerran siirretty osoitteeseen https://github.com/AntiMicroX/antimicrox ja sen ylläpitoa jatkaa pktiukin luoma AntiMicroX-organisaatio.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
@@ -1512,7 +1529,7 @@ ennakoida pito tai vapautus akselilla.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="416"/>
         <source>Haptic Trigger:</source>
-        <translation type="unfinished"></translation>
+        <translation>Haptinen laukaisin:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="477"/>
@@ -1557,22 +1574,22 @@ ennakoida pito tai vapautus akselilla.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="661"/>
         <source>Click</source>
-        <translation type="unfinished"></translation>
+        <translation>Napsautus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
         <source>Rigid</source>
-        <translation type="unfinished"></translation>
+        <translation>Jäykkä</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
         <source>Rigid Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Jäykkyyden kaltevuus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
         <source>Vibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Värinä</translation>
     </message>
 </context>
 <context>
@@ -1615,12 +1632,12 @@ ennakoida pito tai vapautus akselilla.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished">Muistathan, että tämä ei tule toimimaan ellei sinulla ole vastaavaa numeronäppäimistöä tietokoneessasi tai mikäli sitä ei ole sulautettuna vakiollisesti kuten työpöytätietokoneissa</translation>
+        <translation>Muistathan, että tämä ei toimi ellei sinulla ole tälläistä numeronäppäimistöä liitettynä tietokoneeseesi tai mikäli sellaista ei ole muun näppäimistön osana kuten työpöytä PC:iden tavanomaisissa näppäimistöissä yleensä on</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished">Liitä numeronäppäimistö</translation>
+        <translation>Liitä numeronäppäimistö</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
@@ -1729,17 +1746,17 @@ kun tätä painiketta käytetään.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="71"/>
         <source>Input to calibrate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syöte kalibrointiin:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="94"/>
         <source>Steps</source>
-        <translation type="unfinished"></translation>
+        <translation>Askeleet</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="113"/>
         <source>Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Z</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="120"/>
@@ -1749,31 +1766,31 @@ kun tätä painiketta käytetään.</translation>
         <location filename="../../../src/gui/calibration.ui" line="197"/>
         <location filename="../../../src/gui/calibration.ui" line="211"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TekstiTunnus</translation>
+        <translation>TekstiTunnus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="141"/>
         <location filename="../../../src/gui/calibration.ui" line="190"/>
         <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
-        <translation type="unfinished"></translation>
+        <translation>vaikutus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="155"/>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation type="unfinished"></translation>
+        <translation>poikkeama</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="248"/>
@@ -1785,7 +1802,7 @@ kun tätä painiketta käytetään.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="278"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="238"/>
@@ -1805,105 +1822,110 @@ kun tätä painiketta käytetään.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyroskooppi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihtyvyysmittari</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="87"/>
         <source>Selected device doesn&apos;t have any inputs to calibrate.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitulla laitteella ei ole yhtäkään syöttötapaa joka kalibroida.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="108"/>
         <location filename="../../../src/gui/calibration.cpp" line="405"/>
         <source>Calibration was not saved for the preset. Do you really want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibrointia ei tallennettu oletukseksi. Haluatko todella jatkaa?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="125"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko todella nollata nykyisen laitteen kalibroinnin?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
         <source>Accelerometer calibration sets the neutral controller orientation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihtyvyysanturin kalibrointi määrittää ohjaimen neutraalin suunnan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="282"/>
         <source>Gyroscope calibration corrects the sensor offset. This prevents cursor movement while the controller is at rest.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyroskoopin kalibrointi korjaa anturin poikkeaman. Tämä estää osoittimen liikkeen ohjaimen ollessa levossa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="456"/>
         <source>Calibration completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibrointi valmis.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
         <source>Offset calibration completed. Click &quot;Continue calibration&quot; to continue with gain calibration.</source>
-        <translation type="unfinished"></translation>
+        <translation>Poikkeaman kalibrointi suoritettu. Napsauta &quot;jatka kalibrointia&quot; jatkaaksesi vastekalibrointiin.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="636"/>
         <source>Hold the controller in the desired neutral position and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pidä ohjain halutussa neutraaliasennossa ja paina jatka.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="637"/>
         <source>Calibrating accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihtyvyysmittarin kalibrointi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="656"/>
         <source>Collecting accelerometer data...
 Please hold the controller still.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihtyvyysmittarin tietojen kerääminen...
+Pidä ohjain paikallaan.
+Tämä voi kestää jopa %1 sekuntia.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="683"/>
         <source>Place the controller at rest, e.g. put it on the desk, and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Laita ohjain lepoon, esimerkiksi pöydälle, ja paina jatka.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="685"/>
         <source>Calibrating gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibroidaan gyroskooppi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="704"/>
         <source>Collecting gyroscope data...
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kerätään gyroskoopista tietoja...
+Tämä voi kestää jopa %1 sekuntia.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrä ohjainsauva nyt useita kertoja sen maksimiulottumaan eri suuntiin- ja anna palautua takaisin keskelle.
+Tämä voi kestää jopa %1 sekuntia.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="737"/>
         <source>Calibrating stick</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibroidaan ohjainsauvaa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="638"/>
         <location filename="../../../src/gui/calibration.cpp" line="686"/>
         <location filename="../../../src/gui/calibration.cpp" line="738"/>
         <source>Continue calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Jatka kalibrointia</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liikuta nyt ohjainsauvaa useita kertoja ympyrää sen ulottuvuusreunoilla.
+Tämä voi kestää jopa %1 sekuntia.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="627"/>
@@ -2278,7 +2300,7 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox käyttää SDL 2:n tarjoamaa &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; -rajapintaa soveltaakseen erilaisia gamepadeja yhtenäisesti toimivan vakiollisuuden piirissä. Jotta voit tehdä painikkeen määrityksen, korosta alla olevan painikerivin vastaavaa painikeriviä koskeva kartoitussolu. Voit sitten painaa painiketta tai siirtää akselia gamepadilla, solu päivittyy käytettävän fyysisen painikkeen tai akselin kanssa.&lt;/p&gt;&lt;p&gt;antimicrox käyttää määrittelemääsi kartoitusta tallentaakseen kartoitusmerkkijonon, joka ladataan SDL:ään.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
@@ -2408,37 +2430,37 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
         <source>5000</source>
-        <translation type="unfinished">0.10s {5000?}</translation>
+        <translation>5000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="334"/>
         <source>10000</source>
-        <translation type="unfinished">0.10s {10000?}</translation>
+        <translation>10000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="339"/>
         <source>15000</source>
-        <translation type="unfinished">0.10s {15000?}</translation>
+        <translation>15000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="344"/>
         <source>20000</source>
-        <translation type="unfinished">0.10s {20000?}</translation>
+        <translation>20000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="349"/>
         <source>25000</source>
-        <translation type="unfinished">0.10s {25000?}</translation>
+        <translation>25000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="354"/>
         <source>30000</source>
-        <translation type="unfinished">0.10s {30000?}</translation>
+        <translation>30000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="359"/>
         <source>32000</source>
-        <translation type="unfinished">0.10s {32000?}</translation>
+        <translation>32000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
@@ -2465,17 +2487,17 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
-        <translation type="unfinished">Takaisin</translation>
+        <translation>Takaisin</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
         <source>Guide</source>
-        <translation type="unfinished">Opas</translation>
+        <translation>Opas</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
         <source>Start</source>
-        <translation type="unfinished">Start-aloita</translation>
+        <translation>Aloita</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="102"/>
@@ -2523,27 +2545,27 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="38"/>
         <source>Up</source>
-        <translation type="unfinished">Ylös</translation>
+        <translation>Ylös</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="42"/>
         <source>Down</source>
-        <translation type="unfinished">Alas</translation>
+        <translation>Alas</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="46"/>
         <source>Left</source>
-        <translation type="unfinished">Vasen</translation>
+        <translation>Vasen</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="50"/>
         <source>Right</source>
-        <translation type="unfinished">Oikea</translation>
+        <translation>Oikea</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
         <source>Shock</source>
-        <translation type="unfinished"></translation>
+        <translation>Isku</translation>
     </message>
 </context>
 <context>
@@ -2551,7 +2573,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joyaccelerometersensor.cpp" line="63"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihtyvyysmittari</translation>
     </message>
 </context>
 <context>
@@ -2561,7 +2583,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
         <location filename="../../../src/joyaxis.cpp" line="756"/>
         <location filename="../../../src/joyaxis.cpp" line="762"/>
         <source>Axis</source>
-        <translation type="unfinished">Akseli</translation>
+        <translation>Akseli</translation>
     </message>
 </context>
 <context>
@@ -2594,7 +2616,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="66"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished">Hiiri (vaakataso)</translation>
+        <translation>Hiiri (vaakataso)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="76"/>
@@ -2604,7 +2626,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="86"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished">Hiiri (pystysuunta)</translation>
+        <translation>Hiiri (pystysuunta)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="96"/>
@@ -2614,54 +2636,54 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="106"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished">Nuolet: ylös | alas</translation>
+        <translation>Nuolet: ylös | alas</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="116"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished">Nuolet: vasen | oikea</translation>
+        <translation>Nuolet: vasen | oikea</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="126"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished">Näppäimet: W | S</translation>
+        <translation>Näppäimet: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="136"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished">Näppäimet: A | D</translation>
+        <translation>Näppäimet: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="146"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished">Numeronäppäimistö: NP_8 | NP_2</translation>
+        <translation>Numeronäppäimistö: NP_8 | NP_2</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="156"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished">Numeronäppäimistö: NP_4 | NP_6</translation>
+        <translation>Numeronäppäimistö: NP_4 | NP_6</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="165"/>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="393"/>
         <source>None</source>
-        <translation type="unfinished">Ei mitään</translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="176"/>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="404"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="373"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished">Hiiren vasen nappi</translation>
+        <translation>Hiiren vasen nappi</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="383"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished">Hiiren oikea nappi</translation>
+        <translation>Hiiren oikea nappi</translation>
     </message>
 </context>
 <context>
@@ -2695,7 +2717,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="2026"/>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="4380"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[EI NAPPIA]</translation>
+        <translation>[EI NAPPIA]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1709"/>
@@ -2723,7 +2745,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="47"/>
         <source>Turbo</source>
-        <translation type="unfinished">Turbo</translation>
+        <translation>Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="54"/>
@@ -2738,22 +2760,22 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="61"/>
         <source>Disabled</source>
-        <translation type="unfinished">Pois päältä</translation>
+        <translation>Pois päältä</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="74"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="85"/>
         <source>Set %1 1W</source>
-        <translation type="unfinished">Aseta %1 1W</translation>
+        <translation>Aseta %1 1W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="86"/>
         <source>Set %1 2W</source>
-        <translation type="unfinished">Aseta %1 2W</translation>
+        <translation>Aseta %1 2W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="87"/>
@@ -2807,42 +2829,42 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="221"/>
         <source>Pause</source>
-        <translation type="unfinished">Tauko</translation>
+        <translation>Tauko</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="235"/>
         <source>Hold</source>
-        <translation type="unfinished">Pidättele</translation>
+        <translation>Pidä pohjassa</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="245"/>
         <source>Cycle</source>
-        <translation type="unfinished">Kierrätä</translation>
+        <translation>Kierrätä</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="249"/>
         <source>Distance</source>
-        <translation type="unfinished">Etäisyys</translation>
+        <translation>Etäisyys</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="260"/>
         <source>Release</source>
-        <translation type="unfinished">Irtipäästö</translation>
+        <translation>Irtipäästö</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="271"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished">Hiirimuokkain</translation>
+        <translation>Hiiren muovaus</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="281"/>
         <source>Press Time</source>
-        <translation type="unfinished">Painalluksen aika</translation>
+        <translation>Painalluksen aika</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="296"/>
         <source>Delay</source>
-        <translation type="unfinished">Viive</translation>
+        <translation>Viive</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="311"/>
@@ -2868,7 +2890,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
         <location filename="../../../src/joybuttonslot.cpp" line="366"/>
         <location filename="../../../src/joybuttonslot.cpp" line="369"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[EI NAPPIA]</translation>
+        <translation>[EI NAPPIA]</translation>
     </message>
 </context>
 <context>
@@ -2924,7 +2946,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="48"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Hiiri (tavanomainen)</translation>
+        <translation>Hiiri (tavanomainen)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="57"/>
@@ -2944,22 +2966,22 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="84"/>
         <source>Arrows</source>
-        <translation type="unfinished">Nuolet</translation>
+        <translation>Nuolet</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="93"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Näppäimet: W | A | S | D</translation>
+        <translation>Näppäimet: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="102"/>
         <source>NumPad</source>
-        <translation type="unfinished">Numeronäppäimistö</translation>
+        <translation>Numeronäppäimistö</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="111"/>
         <source>None</source>
-        <translation type="unfinished">Ei mitään</translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="124"/>
@@ -2974,17 +2996,17 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="141"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished">4-suuntainen kuten pääilmansuunnat</translation>
+        <translation>4-suuntainen pääilmansuunnissa</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="150"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished">4-suuntainen viistosuunnissa</translation>
+        <translation>4-suuntainen viistosuunnissa</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="161"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
 </context>
 <context>
@@ -2992,7 +3014,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Ilmoite</translation>
+        <translation>Ilmoite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
@@ -3006,7 +3028,7 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="159"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="224"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
@@ -3031,12 +3053,12 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="274"/>
         <source>Presets:</source>
-        <translation type="unfinished">Vakiot:</translation>
+        <translation>Vakiot:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="293"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Hiiri (tavanomainen)</translation>
+        <translation>Hiiri (tavanomainen)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="298"/>
@@ -3056,12 +3078,12 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="313"/>
         <source>Arrows</source>
-        <translation type="unfinished">Nuolet</translation>
+        <translation>Nuolet</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="318"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Näppäimet: W | A | S | D</translation>
+        <translation>Näppäimet: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="323"/>
@@ -3133,7 +3155,7 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>Modifier Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>Muunnosalue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
@@ -3226,7 +3248,11 @@ toiminto analogiseen sauvaan.</translation>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kynnysarvo, jolla muokkauspainike aktivoituu.
+
+Tämä painike on hyödyllinen määritettäessä vyöhykkeitä, joissa on
+muokkausavaimia, joita voidaan käyttää kävelyn/juoksun määrittelyyn
+analogiselle ohjaimelle.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="770"/>
@@ -3235,12 +3261,16 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää, aktivoituvatko muovainpainikkeet, kun ohjainsauva on kynnysarvon sisällä taikka ulkopuolella.
+
+Tämä painike on hyödyllinen määritettäessä vyöhykkeitä
+modifiointinäppäimille, joita voidaan käyttää kävely/juoksu -toiminnon määrittämiseen
+analogiselle tikulle.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="777"/>
         <source>Invert Modifier Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>Käännä muovainalue päinvastaiseksi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
@@ -3332,32 +3362,32 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="37"/>
         <source>Pitch Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Nosta ylös</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="41"/>
         <source>Pitch Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Laske alas</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
         <source>Yaw Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrä vasemmalle</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="49"/>
         <source>Yaw Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrä oikealle</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="53"/>
         <source>Roll Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Vieritä vasemmalle</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="57"/>
         <source>Roll Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Pyöritä oikealle</translation>
     </message>
 </context>
 <context>
@@ -3365,7 +3395,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joygyroscopesensor.cpp" line="57"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyroskooppi</translation>
     </message>
 </context>
 <context>
@@ -3407,17 +3437,17 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
         <source>Acceleration (m/s^2):</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihtyvyys (m/s^2):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
         <source>Pitch (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>Korkeus (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
         <source>Roll (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>Vieritys (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
@@ -3438,7 +3468,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="394"/>
         <source>Dead zone value to use for an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuolleen alueen arvo analogiselle anturille.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
@@ -3449,7 +3479,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="449"/>
         <source>Value when an analog sensor is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arvo kun analogianturin katsotaan liikkuneen 100%.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
@@ -3465,7 +3495,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
         <source>Sensor Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anturin viive:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
@@ -3486,7 +3516,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="616"/>
         <source>Specify the name of an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määritä analogiselle anturille nimi.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
@@ -3496,17 +3526,17 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
         <source>Roll (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vieritä (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="79"/>
         <source>Pitch (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nosta (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="80"/>
         <source>Yaw (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrä (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
@@ -3534,12 +3564,12 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (vaakatasossa käänteinen)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="227"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (pystysuunnassa käänteinen)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="230"/>
