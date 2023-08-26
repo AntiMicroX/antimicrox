@@ -60,7 +60,7 @@ jobs:
             #Replace original library with the newer one
             - name: Build and install newer SDL2
               run: |
-                git clone https://github.com/libsdl-org/SDL.git -b release-2.26.5
+                git clone https://github.com/libsdl-org/SDL.git -b release-2.28.2
                 cd SDL
                 mkdir build
                 cd build
@@ -154,8 +154,8 @@ jobs:
             # SDL2 version for release locked
             - name: Install sdl2
               run: |
-                curl -L -o mingw-w64-x86_64-SDL2-2.28.0-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.28.0-1-any.pkg.tar.zst
-                pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.28.0-1-any.pkg.tar.zst
+                curl -L -o mingw-w64-x86_64-SDL2-2.28.2-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.28.2-1-any.pkg.tar.zst
+                pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.28.2-1-any.pkg.tar.zst
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
