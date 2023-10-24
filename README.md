@@ -145,7 +145,7 @@ List of required dependencies and build instructions can be found [here](./BUILD
 
 ### Packages status
 
-Status of package `anitmicrox`:  
+Status of package `antimicrox`:  
 [![Packaging status](https://repology.org/badge/vertical-allrepos/antimicrox.svg?columns=3&minversion=3.1)](https://repology.org/project/antimicrox/versions)
 
 ## Command Line
