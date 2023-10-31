@@ -4034,19 +4034,23 @@ fermeture au lieu de quitter le programme.</translation>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
-        <translation type="unfinished"></translation>
+        <translation>Affiche les profils récents de tous les contrôleurs
+sous la forme d&apos;une liste unique dans le menu de la
+barre des tâches. Par défaut, les sous-menus sont utilisés.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="252"/>
         <source>Single Profile List in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liste de profils unique dans la barre de tâches</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="259"/>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser le programme dans la barre des tâches.
+Par défaut, le programme se réduit dans la
+barre des tâches si elle est disponible.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="264"/>
@@ -4059,7 +4063,10 @@ tray if available.</source>
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
 to bring up the edit dialog for gamepad buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cette option a pour effet de masquer tous les boutons
+auxquels aucune assignations n&apos;ont été attribués.
+La fenêtre de dialogue de Configuration Rapide devra être utilisée
+pour faire apparaître la boîte de dialogue d&apos;édition des boutons de manettes.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="277"/>
@@ -4071,7 +4078,9 @@ to bring up the edit dialog for gamepad buttons.</source>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvre le dernier profil connu qui a été
+ouvert lors de la session précédente
+au lancement du programme.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="289"/>
@@ -4082,7 +4091,8 @@ previous session.</source>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="299"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
-        <translation type="unfinished"></translation>
+        <translation>N&apos;afficher que l&apos;icône de la barre d&apos;état système
+au premier lancement du programme.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="303"/>
@@ -4102,22 +4112,22 @@ first launches.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="323"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished"></translation>
+        <translation>N&apos;oubliez pas que cela ne fonctionnera pas si s&apos;il n&apos;y a pas de clavier intégré ou si aucun clavier n&apos;est connecté à l&apos;ordinateur</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="329"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>Brancher un pavé numérique</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="336"/>
         <source>Show low battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher une notification de batterie faible</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
         <source>Show empty battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher la notification de batterie vide</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="366"/>
@@ -4128,7 +4138,8 @@ first launches.</source>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="372"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les touches actives seront pressées de manière répétée
+lorsque cette option est activée.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="376"/>
@@ -4140,13 +4151,15 @@ option is enabled.</source>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="395"/>
         <source>Specifies how much time should elapse before key repeating
 begins.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifie le délai avant que la répétition des touches
+ne commence.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="460"/>
         <source>Specifies how many times key presses will be performed
 per seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifie le nombre de pressions de touche effectuées
+par seconde.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="605"/>
@@ -4216,7 +4229,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="982"/>
         <source>Weight Modi&amp;fier:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Modi&amp;ficateur de poids :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1262"/>
@@ -4226,7 +4239,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1281"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note Unspecified log file allows printing logs in console output&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note Un fichier journal non spécifié permet d&apos;imprimer les logs dans la sortie de la console&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1318"/>
@@ -4256,7 +4269,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1352"/>
         <source>Verbose</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbeux</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1357"/>
@@ -4294,7 +4307,10 @@ per seconds.</source>
 while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within AntiMicroX to be more
 precise.</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactivez le paramètre Windows &quot;Améliorer la précision du pointeur&quot;
+lorsque AntiMicroX est en cours d&apos;exécution. La désactivation de cette option
+permettra à la souris de se déplacer avec plus de précision
+au sein d&apos;AntiMicroX.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="925"/>
@@ -4319,7 +4335,12 @@ editing this setting as it will cause the program to use
 more CPU power. Setting this value too low can cause
 system instability. Please test the setting before using
 it unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le taux de rafraîchissement est le temps qui s&apos;écoule entre
+les événements de la souris. Soyez prudent lorsque vous
+modifiez ce paramètre, car le programme utilisera
+davantage de CPU. Une valeur trop basse peut
+entraîner une instabilité du système. Vérifier ce réglage
+avant de l&apos;utiliser sans surveillance.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1036"/>
