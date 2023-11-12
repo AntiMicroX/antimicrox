@@ -192,16 +192,16 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         QWheelEvent *wheelEve = static_cast<QWheelEvent *>(event);
         QString text = QString(tr("Mouse")).append(" ");
 
-        if ((wheelEve->orientation() == Qt::Vertical) && (wheelEve->delta() >= 120))
+        if ((wheelEve->angleDelta().y() >= 120))
         {
             controlcode = 4;
-        } else if ((wheelEve->orientation() == Qt::Vertical) && (wheelEve->delta() <= -120))
+        } else if ((wheelEve->angleDelta().y() <= -120))
         {
             controlcode = 5;
-        } else if ((wheelEve->orientation() == Qt::Horizontal) && (wheelEve->delta() >= 120))
+        } else if ((wheelEve->angleDelta().x() >= 120))
         {
             controlcode = 6;
-        } else if ((wheelEve->orientation() == Qt::Horizontal) && (wheelEve->delta() <= -120))
+        } else if ((wheelEve->angleDelta().x() <= -120))
         {
             controlcode = 7;
         }
