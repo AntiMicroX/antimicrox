@@ -24,6 +24,7 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QProcess>
+#include <QScreen>
 #include <QStringList>
 #include <QVariant>
 #include <cmath>
@@ -71,7 +72,7 @@ void fakeAbsMouseCoordinates(double springX, double springY, int width, int heig
     int destMidWidth = 0;
     int destMidHeight = 0;
 
-    QRect deskRect = PadderCommon::mouseHelperObj.getDesktopWidget()->screenGeometry(screen);
+    QRect deskRect = QGuiApplication::screens().at(screen)->geometry();
 
     screenWidth = deskRect.width();
     screenHeight = deskRect.height();
@@ -315,7 +316,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             fullSpring->screen = -1;
         }
 
-        QRect deskRect = PadderCommon::mouseHelperObj.getDesktopWidget()->screenGeometry(fullSpring->screen);
+        QRect deskRect = QGuiApplication::screens().at(fullSpring->screen)->geometry();
 
         width = deskRect.width();
         height = deskRect.height();
