@@ -88,7 +88,11 @@ QStringList arguments(const int &argc, char **argv)
 QStringList parseArgumentsString(QString tempString)
 {
     bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    QStringList tempList = tempString.split(QRegExp("\""), Qt::SkipEmptyParts);
+#else
     QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
+#endif
     QStringList finalList = QStringList();
     QStringListIterator iter(tempList);
 
@@ -99,8 +103,11 @@ QStringList parseArgumentsString(QString tempString)
         if (inside)
             finalList.append(temp);
         else
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+            finalList.append(temp.split(QRegExp("\\s+"), Qt::SkipEmptyParts));
+#else
             finalList.append(temp.split(QRegExp("\\s+"), QString::SkipEmptyParts));
-
+#endif
         inside = !inside;
     }
 
@@ -120,7 +127,7 @@ void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QSt
     // Remove old Qt translation strings
     qApp->removeTranslator(appTranslator);
 
-    // Load new Qt translation strings
+// Load new Qt translation strings
 #if defined(Q_OS_UNIX)
     translator->load(QString("qt_").append(language), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 #elif defined(Q_OS_WIN)
@@ -134,7 +141,7 @@ void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QSt
 
     qApp->installTranslator(appTranslator);
 
-    // Load application specific translation strings
+// Load application specific translation strings
 #if defined(Q_OS_UNIX)
     translator->load("antimicrox_" + language,
                      QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
