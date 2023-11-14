@@ -39,7 +39,6 @@
 #include <QApplication>
 #include <QComboBox>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QDir>
 #include <QFileDialog>
 #include <QLabel>

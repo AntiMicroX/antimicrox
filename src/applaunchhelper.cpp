@@ -24,7 +24,6 @@
 #include "joybuttontypes/joybutton.h"
 
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QMapIterator>
 #include <QThread>
 

@@ -548,7 +548,6 @@ int main(int argc, char *argv[])
     PadderCommon::log_system_config(); // workaround for missing windows logs
 #endif
 
-    PadderCommon::mouseHelperObj.initDeskWid();
     QPointer<InputDaemon> joypad_worker = new InputDaemon(joysticks, &settings);
     inputEventThread = new QThread();
     inputEventThread->setObjectName("inputEventThread");
@@ -570,8 +569,6 @@ int main(int argc, char *argv[])
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, &mainAppHelper, &AppLaunchHelper::revertMouseThread);
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::deleteLater);
-    QObject::connect(&antimicrox, &QApplication::aboutToQuit, &PadderCommon::mouseHelperObj, &MouseHelper::deleteDeskWid,
-                     Qt::DirectConnection);
 
     QObject::connect(localServer, &LocalAntiMicroServer::showHiddenWindow, mainWindow, &MainWindow::show);
     QObject::connect(localServer, &LocalAntiMicroServer::clientdisconnect, mainWindow,

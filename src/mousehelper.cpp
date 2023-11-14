@@ -19,7 +19,6 @@
 #include "mousehelper.h"
 
 #include <QDebug>
-#include <QDesktopWidget>
 
 MouseHelper::MouseHelper(QObject *parent)
     : QObject(parent)
@@ -35,20 +34,3 @@ MouseHelper::MouseHelper(QObject *parent)
 }
 
 void MouseHelper::resetSpringMouseMoving() { springMouseMoving = false; }
-
-void MouseHelper::initDeskWid()
-{
-    if (deskWid == nullptr)
-        deskWid = new QDesktopWidget;
-}
-
-void MouseHelper::deleteDeskWid()
-{
-    if (deskWid != nullptr)
-    {
-        delete deskWid;
-        deskWid = nullptr;
-    }
-}
-
-QDesktopWidget *MouseHelper::getDesktopWidget() const { return deskWid; }

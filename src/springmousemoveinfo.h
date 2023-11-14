@@ -33,7 +33,7 @@ typedef struct _springModeInfo
     // Should the cursor not move around the center
     // of the screen.
     bool relative;
-    int screen;
+    int screen; //-1 for default screen
     double springDeadX;
     double springDeadY;
 
