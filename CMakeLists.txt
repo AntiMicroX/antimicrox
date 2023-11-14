@@ -18,8 +18,6 @@
 
 
 cmake_minimum_required(VERSION 3.12)
-set(QT_REQUIRED_VERSION 5.8)
-set(SDL_REQUIRED_VERSION 2.0.6)
 project(antimicrox)
 
 if(POLICY CMP0071)
@@ -520,8 +518,10 @@ endif(UNIX)
 # PACKAGES
 ###############################
 
-find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
+set(QT_REQUIRED_VERSION 5.8)
 find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
+message("Found QT: ${Qt5Core_VERSION_STRING}")
+find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
@@ -533,6 +533,7 @@ QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
 add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+set(SDL_REQUIRED_VERSION 2.0.6)
 find_package(SDL2 REQUIRED)
 
 if(WITH_X11)
