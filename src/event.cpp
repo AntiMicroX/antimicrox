@@ -20,7 +20,6 @@
 #include <QApplication>
 #include <QCursor>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QProcess>
