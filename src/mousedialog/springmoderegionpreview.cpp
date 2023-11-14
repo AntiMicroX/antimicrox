@@ -20,9 +20,9 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QPaintEvent>
 #include <QPainter>
+#include <QScreen>
 
 SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget *parent)
     :
@@ -43,8 +43,9 @@ SpringModeRegionPreview::SpringModeRegionPreview(int width, int height, QWidget 
 
     if ((tempwidth >= 2) && (tempheight >= 2))
     {
-        int cw = (qApp->desktop()->width() / 2) - (tempwidth / 2);
-        int ch = (qApp->desktop()->height() / 2) - (tempheight / 2);
+        // TODO create a simple class representing display fopr calculating cursor locations
+        int cw = (QGuiApplication::primaryScreen()->virtualGeometry().width() / 2) - (tempwidth / 2);
+        int ch = (QGuiApplication::primaryScreen()->virtualGeometry().height() / 2) - (tempheight / 2);
 
         setGeometry(cw, ch, tempwidth, tempheight);
         show();
@@ -108,8 +109,8 @@ void SpringModeRegionPreview::setSpringWidth(int width)
 
     if ((tempwidth >= 2) && (height >= 2))
     {
-        int cw = (qApp->desktop()->width() / 2) - (tempwidth / 2);
-        int ch = (qApp->desktop()->height() / 2) - (height / 2);
+        int cw = (QGuiApplication::primaryScreen()->virtualGeometry().width() / 2) - (tempwidth / 2);
+        int ch = (QGuiApplication::primaryScreen()->virtualGeometry().height() / 2) - (height / 2);
 
         setGeometry(cw, ch, tempwidth, height);
         if (!isVisible())
@@ -133,8 +134,8 @@ void SpringModeRegionPreview::setSpringHeight(int height)
 
     if ((width >= 2) && (tempheight >= 2))
     {
-        int cw = (qApp->desktop()->width() / 2) - (width / 2);
-        int ch = (qApp->desktop()->height() / 2) - (tempheight / 2);
+        int cw = (QGuiApplication::primaryScreen()->virtualGeometry().width() / 2) - (width / 2);
+        int ch = (QGuiApplication::primaryScreen()->virtualGeometry().height() / 2) - (tempheight / 2);
 
         setGeometry(cw, ch, width, tempheight);
         if (!isVisible())
@@ -153,8 +154,8 @@ void SpringModeRegionPreview::setSpringSize(int width, int height)
     int tempwidth = adjustSpringSizeWidth(width);
     int tempheight = adjustSpringSizeHeight(height);
 
-    int cw = (qApp->desktop()->width() / 2) - (tempwidth / 2);
-    int ch = (qApp->desktop()->height() / 2) - (height / 2);
+    int cw = (QGuiApplication::primaryScreen()->virtualGeometry().width() / 2) - (tempwidth / 2);
+    int ch = (QGuiApplication::primaryScreen()->virtualGeometry().height() / 2) - (height / 2);
 
     resize(tempwidth, tempheight);
     move(cw, ch);
