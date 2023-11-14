@@ -316,7 +316,8 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
             fullSpring->screen = -1;
         }
 
-        QRect deskRect = QGuiApplication::screens().at(fullSpring->screen)->geometry();
+        QRect deskRect = fullSpring->screen == -1 ? QGuiApplication::primaryScreen()->geometry()
+                                                  : QGuiApplication::screens().at(fullSpring->screen)->geometry();
 
         width = deskRect.width();
         height = deskRect.height();
