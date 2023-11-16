@@ -19,6 +19,7 @@
 #ifndef JOYBUTTONCONTEXTMENU_H
 #define JOYBUTTONCONTEXTMENU_H
 
+#include <QActionGroup>
 #include <QMenu>
 
 class JoyButton;

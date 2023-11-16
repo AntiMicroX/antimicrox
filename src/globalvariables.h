@@ -21,6 +21,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QRegExp>
 
 namespace GlobalVariables {
 class JoyButton

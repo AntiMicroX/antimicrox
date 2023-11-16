@@ -30,6 +30,7 @@
 #include <cmath>
 
 #include <QDebug>
+#include <QRegExp>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
