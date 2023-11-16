@@ -63,7 +63,6 @@
 #include <QScrollArea>
 #include <QSpacerItem>
 #include <QStackedWidget>
-#include <QStringListIterator>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -991,11 +990,10 @@ void JoyTabWidget::saveSettings()
 
     // Remove current settings for a controller
     QStringList tempkeys = m_settings->allKeys();
-    QStringListIterator iter(tempkeys);
 
-    while (iter.hasNext())
+    for (auto &&tempstring : tempkeys)
     {
-        QString tempstring = iter.next();
+        // QString tempstring = iter.next();
         if (!identifier.isEmpty() && tempstring.startsWith(controlEntryPrefix))
         {
             m_settings->remove(tempstring);
