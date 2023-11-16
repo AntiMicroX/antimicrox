@@ -24,6 +24,7 @@
 #include "joyaxis.h"
 #include "mousedialog/mouseaxissettingsdialog.h"
 
+#include <QActionGroup>
 #include <QDebug>
 #include <QWidget>
 

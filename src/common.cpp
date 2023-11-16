@@ -24,6 +24,7 @@
 #include <QDirIterator>
 #include <QLibraryInfo>
 #include <QReadWriteLock>
+#include <QRegExp>
 #ifdef Q_OS_WIN
     #include <QStandardPaths>
 #endif

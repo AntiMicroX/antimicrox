@@ -21,6 +21,7 @@
 
 #include "uihelpers/dpadcontextmenuhelper.h"
 
+#include <QActionGroup>
 #include <QMenu>
 
 class JoyDPad;

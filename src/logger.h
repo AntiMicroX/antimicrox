@@ -23,6 +23,7 @@
 #include <QFile>
 #include <QMutex>
 #include <QObject>
+#include <QStringRef>
 #include <QTextStream>
 #include <QThread>
 
