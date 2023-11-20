@@ -381,7 +381,7 @@ int main(int argc, char *argv[])
 
     antimicrox.setQuitOnLastWindowClosed(false);
 
-    QStringList appDirsLocations = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    QStringList appDirsLocations = QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation);
     appDirsLocations.append(QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation));
     QStringList themePathsTries = QStringList();
 
