@@ -6,7 +6,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>về</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
