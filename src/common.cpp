@@ -220,7 +220,6 @@ void log_system_config()
 QWaitCondition waitThisOut;
 QMutex sdlWaitMutex;
 QMutex inputDaemonMutex;
-QReadWriteLock editingLock;
 bool editingBindings = false;
 MouseHelper mouseHelperObj;
 } // namespace PadderCommon
