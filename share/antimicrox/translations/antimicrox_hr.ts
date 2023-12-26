@@ -6,32 +6,32 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzija</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacije</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dnevnik promjena</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Zasluge</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
@@ -186,7 +186,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="355"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>O izradi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="369"/>
@@ -213,12 +213,12 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Copyright: 2013 - 2022 {2013 ?}</translation>
+        <translation>Autorska prava: 2013 - 2022 {2013 ?}</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="196"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licenca</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
