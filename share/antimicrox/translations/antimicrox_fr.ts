@@ -2175,7 +2175,7 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntimicroX utilise le &lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt; &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;/a&gt;fourni par SDL 2 afin d&apos;abstraire diverses manettes de jeu pour s&apos;adapter à un standard unifié. Pour effectuer une assignation de bouton, veuillez sélectionner la case correspondante au bouton approprié, puis appuyez sur un bouton ou déplacez un axe sur votre manette et la case se mettra à jour avec le bouton ou l&apos;axe qui sera utilisé.&lt;/p&gt;&lt;p&gt;AntimicroX utilisera l&apos;assignation que vous avez spécifié pour enregistrer une chaîne d&apos;assignation qui sera chargée dans SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
@@ -4357,7 +4357,9 @@ avant de l&apos;utiliser sans surveillance.</translation>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utilisez l&apos;écran spécifié pour le mode ressort. Sous Linux, la
+valeur par défaut est l&apos;écran principal. Sous Windows, la valeur
+par défaut est d&apos;utiliser tous les écrans disponibles.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1094"/>
@@ -4387,7 +4389,10 @@ is to use all available screens.</source>
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
 values used by the virtual mouse.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si les valeurs d&apos;accélération de la souris virtuelle ont été
+modifiées par un processus différent, par exemple lors
+de la fermeture d&apos;un ancien jeu, il vous faudra peut-être
+réinitialiser les valeurs d&apos;accélération de la souris virtuelle.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1212"/>
@@ -4506,14 +4511,16 @@ Les paramètres ne prennent effet que lors de la prochaine réactualisation des 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="120"/>
         <source>AutoProfile (disabled in Wayland)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Profil auto (désactivé dans Wayland)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="265"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>De plus, les utilisateurs Windows souhaitant utiliser une valeur basse
+doivent également cocher la case «Désactiver l&apos;amélioration de la
+précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windows.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="758"/>
@@ -4563,7 +4570,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualiser le bouton</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
@@ -4751,7 +4758,9 @@ the option in Windows.</source>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Êtes-vous sûr de vouloir exécuter ce programme en tant qu&apos;administrateur ?
+
+Certains jeux s&apos;exécutent en tant qu&apos;administrateur, ce qui empêchera les événements générés par Antimicro d&apos;être utilisés par ces jeux, à moins qu&apos;Antimicro ne soit également exécuté en tant qu&apos;administrateur. Cela est dû à des problèmes d&apos;autorisation causés par le contrôle de compte d&apos;utilisateur (UAC) dans Windows Vista et versions ultérieures.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1430"/>
@@ -4783,7 +4792,7 @@ Nom du périphérique&#xa0;: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1734"/>
         <source>Update to %1 available</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise à jour vers %1 disponible</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1857"/>
@@ -4793,7 +4802,7 @@ Nom du périphérique&#xa0;: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1858"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce profil utilise les numéros GUID des contrôleurs. Souhaitez-vous remplacer les numéros GUID par UniqueID dans ce fichier pour les utiliser avec des manettes identiques ? Ce genre d&apos;ancien fichier ne peut pas être chargé dans AntimicroX depuis la version 2.25</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="446"/>
