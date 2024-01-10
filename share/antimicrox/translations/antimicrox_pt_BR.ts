@@ -63,7 +63,34 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - Polish&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Originalmente desenvolvido por Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Em seguida mantido pelo grupo AntiMicro group em https://github.com/AntiMicro.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Depois por juliagoda em https://github.com/juliagoda.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Agora mantido em https://github.com/AntiMicroX/antimicrox.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;Colaboradores:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://github.com/AntiMicroX/antimicrox/graphs/contributors&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Tradutores:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;VaGNaroK &amp;lt;vagnarokalkimist@gmail.com&amp;gt; - Português Brasileiro&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;zzpxyx - Chinês&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Belleguic Terence &amp;lt;hizo@free.fr&amp;gt; - Francês&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt;&quot;&gt;Leonard Koenig &amp;lt;leonard.r.koenig@googlemail.com&amp;gt; - Alemão&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;phob - Alemão&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;tou omiya - Japonês&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Dmitriy Koshel &amp;lt;form.eater@gmail.com&amp;gt; - Russo&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jay Alexander Fleming &amp;lt;tito.nehru.naser@gmail.com&amp;gt; - Sérvia&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;burunduk - Ucraniano&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Flavio HR &amp;lt;flavio.hrx@gmail.com&amp;gt; - Espanhol&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italiano&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - Polonês&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="211"/>
@@ -683,18 +710,18 @@ de perfil completamente padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="627"/>
         <source>Distance: </source>
-        <translation type="unfinished"></translation>
+        <translation>Distância: </translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="588"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="646"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="235"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificação de mouse</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="245"/>
@@ -704,32 +731,32 @@ de perfil completamente padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="210"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Atraso</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="220"/>
         <source>Execute</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="230"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="255"/>
         <source>Set Change</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir mudança</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="260"/>
         <source>Text Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto de entrada</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="334"/>
         <source>Join</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrar</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="351"/>
@@ -739,18 +766,18 @@ de perfil completamente padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="402"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcador de posição</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="509"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="533"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="585"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define a porcentagem que as velocidades do mouse serão modificadas por.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="682"/>
@@ -760,34 +787,34 @@ de perfil completamente padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="714"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>segundos</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="756"/>
         <source>Executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>Executável:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="766"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="777"/>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="820"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="863"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1085"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Permitido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="887"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="897"/>
@@ -797,43 +824,43 @@ de perfil completamente padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="901"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="906"/>
         <source>Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Gradiente</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="911"/>
         <source>Pulse</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulso</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="965"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Atraso:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="990"/>
         <source>0.10s</source>
-        <translation type="unfinished"></translation>
+        <translation>0.10s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1060"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaliar:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1067"/>
         <source>10.0/s</source>
-        <translation type="unfinished"></translation>
+        <translation>10.0/s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1099"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1372"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1104"/>
@@ -963,18 +990,18 @@ de perfil completamente padrão.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="302"/>
         <source>sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>seg.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="303"/>
         <source>/sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>/seg.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Não há espaços checados</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
@@ -990,7 +1017,7 @@ de perfil completamente padrão.</translation>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaço atual desconhecido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
