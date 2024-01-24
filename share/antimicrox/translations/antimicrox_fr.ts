@@ -496,7 +496,7 @@ de toutes les options de profils.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="200"/>
         <source>Blank or KB/M</source>
-        <translation>Vide ou Clav/Sou</translation>
+        <translation>Vide ou Clavier/Souris</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="225"/>
@@ -2200,7 +2200,7 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation>Retour</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
@@ -2362,7 +2362,7 @@ S&apos;il est éliminé, le contrôleur redeviendra un joystick une fois tous le
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
-        <translation>Retour</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
@@ -4944,7 +4944,7 @@ est déplacé vers la zone morte.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="728"/>
         <source>Linear</source>
-        <translation>Linéair</translation>
+        <translation>Linéaire</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="119"/>
@@ -4959,22 +4959,22 @@ est déplacé vers la zone morte.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="129"/>
         <source>Quadratic Extreme</source>
-        <translation>Quadratique Extreme</translation>
+        <translation>Quadratique Extrême</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="134"/>
         <source>Power Function</source>
-        <translation>Fonction Énergie</translation>
+        <translation>Fonction Avancée</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="139"/>
         <source>Easing Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>Assouplissement quadratique</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="144"/>
         <source>Easing Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>Assouplissement cubique</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="177"/>
@@ -5001,7 +5001,13 @@ produce. Acceleration is added based on how quickly an axis is
 moved in one gamepad poll. This is meant to help work around
 some of the issues of the very limited input range available
 using typical gamepad analog sticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>Options permettant d&apos;ajouter de l&apos;accélération au
+mouvement de la souris (d&apos;avantage que ce que la courbe
+d&apos;accélération produirait). L&apos;accélération est ajoutée
+en fonction de la vitesse à laquelle un axe est déplacé
+en une mesure de manette. Cela permet de contourner
+certains problèmes liés à la plage d&apos;entrée très limitée
+disponible avec les sticks analogiques usuels des manettes.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="524"/>
@@ -5017,7 +5023,8 @@ using typical gamepad analog sticks.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="616"/>
         <source>Mi&amp;n
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seuil
+Mi&amp;n :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
@@ -5036,13 +5043,15 @@ Vitesse :</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="329"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définir la vitesse utilisée pour le défilement horizontal de
+la molette de souris selon le nombre de crans simulés par seconde.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="381"/>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définir la vitesse utilisée pour le défilement vertical de
+la molette de souris selon le nombre de crans simulés par seconde.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="410"/>
@@ -5055,12 +5064,15 @@ according to number of simulated notches per second.</source>
 the factor to use for curve sensitivity. When the value
 is above 1.0, the mouse movement will be accelerated
 faster at the low end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour la courbe d&apos;accélération &quot;Fonction Avancée&quot;.
+Spécifie le facteur à utiliser pour la sensibilité de la courbe.
+Quand la valeur dépasse 1.0, le mouvement de la souris sera
+accéléré plus rapidement à l&apos;extrémité inférieure de l&apos;axe.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="452"/>
         <source>Easing Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Durée d’assouplissement :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
@@ -5071,7 +5083,7 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="553"/>
         <source>Highest value to accelerate mouse movement by</source>
-        <translation type="unfinished"></translation>
+        <translation>Valeur la plus élevée d&apos;accélération du mouvement de la souris</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
@@ -5086,28 +5098,29 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="586"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;accélération commence à ce pourcentage du multiplicateur de base</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="627"/>
         <source>Minimum amount of axis travel required for acceleration to begin</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacement minimum de l&apos;axe pour commencer l&apos;accélération</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="647"/>
         <source>Max
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seuil
+Max :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="658"/>
         <source>Maximum axis travel before acceleration has reached the multiplier value</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacement maximum de l&apos;axe pour atteindre la valeur du multiplicateur</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="680"/>
         <source>E&amp;xtra Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Durée s&amp;upplémentaire :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="715"/>
@@ -5132,23 +5145,24 @@ Threshold:</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="831"/>
         <source>Release Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rayon de relâchement :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="864"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifie que la zone du ressort sera relative à la position
+de la souris définie par un ressort non relatif.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="868"/>
         <source>Relative</source>
-        <translation type="unfinished"></translation>
+        <translation>Relatif</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="891"/>
         <source>Mouse Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Statut de la souris</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
@@ -5159,7 +5173,7 @@ mouse position set by a non-relative spring.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (0 pps)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
@@ -5192,19 +5206,39 @@ Easing Quadratic: Axis high end is gradually accelerated over a period of time u
 
 Easing Cubic: Axis high end is gradually accelerated over
 a period of time using a Cubic curve.</source>
-        <translation type="unfinished"></translation>
+        <translation>Amélioré : Courbe à trois niveaux qui permet à la souris de se déplacer lentement
+sur l&apos;extrémité inférieure d&apos;un axe et rapidement sur l&apos;extrémité supérieure.
+
+Linéaire : La souris se déplace proportionnellement à l&apos;axe.
+
+Quadratique : La souris accélère lentement sur l&apos;extrémité inférieure.
+
+Cubique : La souris accélère plus lentement que &quot;Quadratique&quot;.
+
+Quadratique Extrême : Augmente la vitesse de la souris de 1,5 fois dès
+que l&apos;axe atteint 95 %.
+
+Fonction Avancée : Permet une option de courbe personnalisée.
+
+Assouplissement quadratique : l&apos;extrémité supérieure de l&apos;axe est
+progressivement accélérée sur une période à l&apos;aide d&apos;une courbe quadratique.
+
+Assouplissement cubique : l&apos;extrémité supérieure de l&apos;axe est
+progressivement accélérée sur une période à l&apos;aide d&apos;une courbe cubique.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="221"/>
         <source>Hori&amp;zontal
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse
+Hori&amp;zontale :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="266"/>
         <source>&amp;Vertical
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse
+&amp;Verticale :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
@@ -5218,7 +5252,9 @@ Vitesse :</translation>
         <source>Specifies the amount of time (in seconds) that will
 be required before the mouse is fully accelerated
 after reaching the high end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Défini le temps nécessaire (en secondes) pour
+accélérer complètement la souris une fois
+l&apos;extrémité supérieure d&apos;un axe atteinte.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="589"/>
@@ -5233,7 +5269,9 @@ after reaching the high end of an axis.</source>
         <source>Extend the time that extra acceleration is applied. Axis travel
 will be taken into account. A slower flick will decrease the
 actual time that extra acceleration will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prolonger la durée d&apos;application de l&apos;accélération supplémentaire.
+Le déplacement de l&apos;axe sera pris en compte. Une impulsion plus lente
+diminuera le temps réel d&apos;application de l&apos;accélération supplémentaire.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="763"/>
@@ -5293,7 +5331,7 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="99"/>
         <source>Event Handler:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestionnaire d&apos;événements :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="112"/>
@@ -5395,7 +5433,9 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vos paramètres d&apos;origine (précédemment stockés dans %1) ont été copiés dans
+%2
+ Vous pouvez maintenant, si vous le souhaitez, supprimer le dossier d&apos;origine ou le laisser tel quel.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="204"/>
@@ -5405,12 +5445,17 @@ Original configs are stored in
  but their new location is: 
 %2
 You can migrate manually by renaming old directory and renaming file to antimicrox_settings.ini.</source>
-        <translation type="unfinished"></translation>
+        <translation>Un problème est survenu lors de la migration des paramètres.
+Les configurations originales sont stockées dans 
+%1
+ mais leur nouvel emplacement est : 
+%2
+Vous pouvez manuellement migrer en renommant l&apos;ancien dossier et en renommant le fichier en &quot;antimicrox_settings.ini&quot;.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="619"/>
         <source>Quitting Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermeture du programme</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="109"/>
@@ -6665,7 +6710,7 @@ NUM</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="533"/>
         <source>Wheel Up</source>
         <comment>Mouse</comment>
-        <translation>Molette bas</translation>
+        <translation>Molette haut</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="537"/>
