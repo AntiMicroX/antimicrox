@@ -1117,7 +1117,7 @@ de toutes les options de profils.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation>Remarque&#xa0;: Cette fenêtre est destinée à assurer une rétrocompatibilité avec les profils créés avant Antimicro 2.0. Depuis la version 2.0, l&apos;utilisation de la fenêtre &quot;Cartographie de contrôleur de jeu&quot; est préférable.</translation>
+        <translation>Remarque : Cette fenêtre est destinée à assurer une rétrocompatibilité avec les profils créés avant Antimicro 2.0. Depuis la version 2.0, l&apos;utilisation de la fenêtre &quot;Mappage du contrôleur&quot; est préférable.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1508,7 +1508,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished">Connectez le clavier numérique</translation>
+        <translation>Ajouter le clavier numérique</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
@@ -2170,7 +2170,7 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation>Cartographie de contrôleur de jeu</translation>
+        <translation>Mappage du contrôleur de jeu</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
@@ -2215,12 +2215,12 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation>Latéral gauche</translation>
+        <translation>Gâchette haute gauche</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation>Latéral droit</translation>
+        <translation>Gâchette haute droite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
@@ -2255,42 +2255,42 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation>Gachette gauche</translation>
+        <translation>Gâchette gauche</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation>Gachette droite</translation>
+        <translation>Gâchette droite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation>DPad Haut</translation>
+        <translation>Flèche Haut</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation>DPad Gauche</translation>
+        <translation>Flèche Gauche</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation>DPad Bas</translation>
+        <translation>Flèche Bas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation>DPad Droit</translation>
+        <translation>Flèche Droite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
         <source>Mapping</source>
-        <translation>Cartographie</translation>
+        <translation>Mappage</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="256"/>
         <source>SDL 2 Game Controller Mapping String</source>
-        <translation>Chaîne de mappage du contrôleur de jeu SDL 2</translation>
+        <translation>Chaîne de mappage de contrôleur SDL 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="307"/>
@@ -2340,7 +2340,7 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation>Cartographie du contrôleur de jeu (%1) (#%2)</translation>
+        <translation>Mappage du contrôleur (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="447"/>
@@ -2352,9 +2352,9 @@ une zone diagonale.</translation>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation>Eliminer la cartographie pour ce contrôleur ?
+        <translation>Annuler les changements de mappage de ce contrôleur ?
 
-S&apos;il est éliminé, le contrôleur redeviendra un joystick une fois tous les joysticks mis à jour.</translation>
+S&apos;il est annulé, le contrôleur redeviendra un joystick une fois tous les joysticks mis à jour.</translation>
     </message>
 </context>
 <context>
@@ -3363,7 +3363,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished">Valleur de diagonale :</translation>
+        <translation type="unfinished">Valeur de diagonale :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
@@ -3610,7 +3610,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
         <location filename="../../../src/gui/joytabwidget.cpp" line="436"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1590"/>
         <source>Controller Mapping</source>
-        <translation>Cartographie du contrôleur</translation>
+        <translation>Mappage du contrôleur</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="445"/>
@@ -3949,7 +3949,7 @@ ou désactiver le masquage des boutons vides.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="73"/>
         <source>Controller Mappings</source>
-        <translation>Cartographies de contrôleur</translation>
+        <translation>Mappage des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="78"/>
@@ -4441,7 +4441,7 @@ Les paramètres ne prennent effet que lors de la prochaine réactualisation des 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="559"/>
         <source>Mapping String</source>
-        <translation>Chaîne de cartographie</translation>
+        <translation>Chaîne de mappage</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="564"/>
@@ -4550,7 +4550,7 @@ précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windo
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1921"/>
         <source>Would you like to reset mappings too?</source>
-        <translation>Voulez-vous également réinitialiser les cartographies&#xa0;?</translation>
+        <translation>Voulez-vous également réinitialiser les mappages ?</translation>
     </message>
 </context>
 <context>
