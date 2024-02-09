@@ -5383,7 +5383,9 @@ auf Ihrem Bildschirm nutzen.</translation>
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deine ursprünglichen Einstellungen (zuvor in %1 gespeichert) wurden kopiert nach
+%2
+ Wenn du willst, kannst du das ursprüngliche Verzeichnis löschen oder es so lassen, wie es ist.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="204"/>
