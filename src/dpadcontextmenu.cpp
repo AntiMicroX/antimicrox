@@ -24,6 +24,7 @@
 #include "joydpad.h"
 #include "mousedialog/mousedpadsettingsdialog.h"
 
+#include <QActionGroup>
 #include <QDebug>
 #include <QHash>
 
