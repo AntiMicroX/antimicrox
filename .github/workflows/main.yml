@@ -100,15 +100,15 @@ jobs:
             - name: Install sdl2 (mingw-w64)
               if: startsWith(matrix.shell, 'msys2')
               run: |
-                curl -L -o mingw-w64-x86_64-SDL2-2.28.5-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.28.5-1-any.pkg.tar.zst
-                pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.28.5-1-any.pkg.tar.zst
+                curl -L -o mingw-w64-x86_64-SDL2-2.30.0-1-any.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.30.0-1-any.pkg.tar.zst
+                pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.30.0-1-any.pkg.tar.zst
             
             - name: Install sdl2 (msvc)
               if: startsWith(matrix.shell, 'cmd')
               run: |
-                curl -L -o SDL2-devel-2.28.5-VC.zip https://github.com/libsdl-org/SDL/releases/download/release-2.28.5/SDL2-devel-2.28.5-VC.zip
-                unzip SDL2-devel-2.28.5-VC.zip
-                mv "${{ github.workspace }}/SDL2-2.28.5" "${{ github.workspace }}/sdl2"
+                curl -L -o SDL2-devel-2.30.0-VC.zip https://github.com/libsdl-org/SDL/releases/download/release-2.30.0/SDL2-devel-2.30.0-VC.zip
+                unzip SDL2-devel-2.30.0-VC.zip
+                mv "${{ github.workspace }}/SDL2-2.30.0" "${{ github.workspace }}/sdl2"
                 mklink /J "${{ github.workspace }}\sdl2\SDL2" "${{ github.workspace }}\sdl2\include"
               
             - name: Install MSVC
