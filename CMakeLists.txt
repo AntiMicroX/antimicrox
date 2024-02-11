@@ -534,9 +534,11 @@ endif(UNIX)
 set(QT_REQUIRED_VERSION 6.0)
 project(YourProjectName)
 
-find_package(Qt6 COMPONENTS Core Widgets Gui Network LinguistTools Concurrent REQUIRED)
+find_package(Qt6
+    COMPONENTS Core Widgets Gui Network LinguistTools Concurrent Core5Compat
+    REQUIRED)
 
-message("Found QT: ${Qt6Core_VERSION_STRING}")
+message("Found QT: ${Qt6_VERSION}")
 
 # Replace QT5_WRAP_UI with QT_WRAP_UI
 qt_wrap_ui(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
@@ -562,6 +564,8 @@ LIST(APPEND QT_LIBS Qt6::Gui)
 LIST(APPEND QT_LIBS Qt6::Widgets)
 LIST(APPEND QT_LIBS Qt6::Concurrent)
 LIST(APPEND QT_LIBS Qt6::Network)
+LIST(APPEND QT_LIBS Qt6::Core5Compat)
+
 
 if(UNIX)
     if(WITH_X11)
