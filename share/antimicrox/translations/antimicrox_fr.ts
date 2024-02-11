@@ -496,7 +496,7 @@ de toutes les options de profils.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="200"/>
         <source>Blank or KB/M</source>
-        <translation>Vide ou Clav/Sou</translation>
+        <translation>Vide ou Clavier/Souris</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="225"/>
@@ -1117,7 +1117,7 @@ de toutes les options de profils.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation>Remarque&#xa0;: Cette fenêtre est destinée à assurer une rétrocompatibilité avec les profils créés avant Antimicro 2.0. Depuis la version 2.0, l&apos;utilisation de la fenêtre &quot;Cartographie de contrôleur de jeu&quot; est préférable.</translation>
+        <translation>Remarque&#x202f;: Cette fenêtre est destinée à assurer une rétrocompatibilité avec les profils créés avant Antimicro 2.0. Depuis la version 2.0, l&apos;utilisation de la fenêtre &quot;Mappage du contrôleur&quot; est préférable.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1508,7 +1508,7 @@ de maintien ou de relâchement d&apos;un axe.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished">Connectez le clavier numérique</translation>
+        <translation>Ajouter le clavier numérique</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
@@ -2170,12 +2170,12 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation>Cartographie de contrôleur de jeu</translation>
+        <translation>Mappage du contrôleur de jeu</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntimicroX utilise le &lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt; &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;/a&gt;fourni par SDL 2 afin d&apos;abstraire diverses manettes de jeu pour s&apos;adapter à un standard unifié. Pour effectuer une assignation de bouton, veuillez sélectionner la case correspondante au bouton approprié, puis appuyez sur un bouton ou déplacez un axe sur votre manette et la case se mettra à jour avec le bouton ou l&apos;axe qui sera utilisé.&lt;/p&gt;&lt;p&gt;AntimicroX utilisera l&apos;assignation que vous avez spécifié pour enregistrer une chaîne d&apos;assignation qui sera chargée dans SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
@@ -2200,7 +2200,7 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation>Retour</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
@@ -2215,12 +2215,12 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation>Latéral gauche</translation>
+        <translation>Gâchette haute gauche</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation>Latéral droit</translation>
+        <translation>Gâchette haute droite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
@@ -2255,42 +2255,42 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation>Gachette gauche</translation>
+        <translation>Gâchette gauche</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation>Gachette droite</translation>
+        <translation>Gâchette droite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation>DPad Haut</translation>
+        <translation>Flèche Haut</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation>DPad Gauche</translation>
+        <translation>Flèche Gauche</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation>DPad Bas</translation>
+        <translation>Flèche Bas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation>DPad Droit</translation>
+        <translation>Flèche Droite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
         <source>Mapping</source>
-        <translation>Cartographie</translation>
+        <translation>Mappage</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="256"/>
         <source>SDL 2 Game Controller Mapping String</source>
-        <translation>Chaîne de mappage du contrôleur de jeu SDL 2</translation>
+        <translation>Chaîne de mappage de contrôleur SDL 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="307"/>
@@ -2340,7 +2340,7 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation>Cartographie du contrôleur de jeu (%1) (#%2)</translation>
+        <translation>Mappage du contrôleur (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="447"/>
@@ -2352,9 +2352,9 @@ une zone diagonale.</translation>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation>Eliminer la cartographie pour ce contrôleur ?
+        <translation>Annuler les changements de mappage de ce contrôleur&#x202f;?
 
-S&apos;il est éliminé, le contrôleur redeviendra un joystick une fois tous les joysticks mis à jour.</translation>
+S&apos;il est annulé, le contrôleur redeviendra un joystick une fois tous les joysticks mis à jour.</translation>
     </message>
 </context>
 <context>
@@ -2362,7 +2362,7 @@ S&apos;il est éliminé, le contrôleur redeviendra un joystick une fois tous le
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
-        <translation>Retour</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
@@ -3363,7 +3363,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished">Valleur de diagonale :</translation>
+        <translation type="unfinished">Valeur de diagonale&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
@@ -3610,7 +3610,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
         <location filename="../../../src/gui/joytabwidget.cpp" line="436"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1590"/>
         <source>Controller Mapping</source>
-        <translation>Cartographie du contrôleur</translation>
+        <translation>Mappage du contrôleur</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="445"/>
@@ -3949,7 +3949,7 @@ ou désactiver le masquage des boutons vides.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="73"/>
         <source>Controller Mappings</source>
-        <translation>Cartographies de contrôleur</translation>
+        <translation>Mappage des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="78"/>
@@ -4357,7 +4357,9 @@ avant de l&apos;utiliser sans surveillance.</translation>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utilisez l&apos;écran spécifié pour le mode ressort. Sous Linux, la
+valeur par défaut est l&apos;écran principal. Sous Windows, la valeur
+par défaut est d&apos;utiliser tous les écrans disponibles.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1094"/>
@@ -4387,7 +4389,10 @@ is to use all available screens.</source>
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
 values used by the virtual mouse.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si les valeurs d&apos;accélération de la souris virtuelle ont été
+modifiées par un processus différent, par exemple lors
+de la fermeture d&apos;un ancien jeu, il vous faudra peut-être
+réinitialiser les valeurs d&apos;accélération de la souris virtuelle.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1212"/>
@@ -4436,7 +4441,7 @@ Les paramètres ne prennent effet que lors de la prochaine réactualisation des 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="559"/>
         <source>Mapping String</source>
-        <translation>Chaîne de cartographie</translation>
+        <translation>Chaîne de mappage</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="564"/>
@@ -4506,14 +4511,16 @@ Les paramètres ne prennent effet que lors de la prochaine réactualisation des 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="120"/>
         <source>AutoProfile (disabled in Wayland)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Profil auto (désactivé dans Wayland)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="265"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>De plus, les utilisateurs Windows souhaitant utiliser une valeur basse
+doivent également cocher la case «Désactiver l&apos;amélioration de la
+précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windows.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="758"/>
@@ -4543,7 +4550,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1921"/>
         <source>Would you like to reset mappings too?</source>
-        <translation>Voulez-vous également réinitialiser les cartographies&#xa0;?</translation>
+        <translation>Voulez-vous également réinitialiser les mappages&#x202f;?</translation>
     </message>
 </context>
 <context>
@@ -4563,7 +4570,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualiser le bouton</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
@@ -4751,7 +4758,9 @@ the option in Windows.</source>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Êtes-vous sûr de vouloir exécuter ce programme en tant qu&apos;administrateur&#x202f;?
+
+Certains jeux s&apos;exécutent en tant qu&apos;administrateur, ce qui empêchera les événements générés par Antimicro d&apos;être utilisés par ces jeux, à moins qu&apos;Antimicro ne soit également exécuté en tant qu&apos;administrateur. Cela est dû à des problèmes d&apos;autorisation causés par le contrôle de compte d&apos;utilisateur (UAC) dans Windows Vista et versions ultérieures.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1430"/>
@@ -4783,7 +4792,7 @@ Nom du périphérique&#xa0;: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1734"/>
         <source>Update to %1 available</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise à jour vers %1 disponible</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1857"/>
@@ -4793,7 +4802,7 @@ Nom du périphérique&#xa0;: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1858"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce profil utilise les numéros GUID des contrôleurs. Souhaitez-vous remplacer les numéros GUID par UniqueID dans ce fichier pour les utiliser avec des manettes identiques&#x202f;? Ce genre d&apos;ancien fichier ne peut pas être chargé dans AntimicroX depuis la version 2.25</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="446"/>
@@ -4935,7 +4944,7 @@ est déplacé vers la zone morte.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="728"/>
         <source>Linear</source>
-        <translation>Linéair</translation>
+        <translation>Linéaire</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="119"/>
@@ -4950,22 +4959,22 @@ est déplacé vers la zone morte.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="129"/>
         <source>Quadratic Extreme</source>
-        <translation>Quadratique Extreme</translation>
+        <translation>Quadratique Extrême</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="134"/>
         <source>Power Function</source>
-        <translation>Fonction Énergie</translation>
+        <translation>Fonction Avancée</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="139"/>
         <source>Easing Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>Assouplissement quadratique</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="144"/>
         <source>Easing Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>Assouplissement cubique</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="177"/>
@@ -4992,7 +5001,13 @@ produce. Acceleration is added based on how quickly an axis is
 moved in one gamepad poll. This is meant to help work around
 some of the issues of the very limited input range available
 using typical gamepad analog sticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>Options permettant d&apos;ajouter de l&apos;accélération au
+mouvement de la souris (d&apos;avantage que ce que la courbe
+d&apos;accélération produirait). L&apos;accélération est ajoutée
+en fonction de la vitesse à laquelle un axe est déplacé
+en une mesure de manette. Cela permet de contourner
+certains problèmes liés à la plage d&apos;entrée très limitée
+disponible avec les sticks analogiques usuels des manettes.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="524"/>
@@ -5008,7 +5023,8 @@ using typical gamepad analog sticks.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="616"/>
         <source>Mi&amp;n
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seuil
+Mi&amp;n&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
@@ -5027,13 +5043,15 @@ Vitesse :</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="329"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définir la vitesse utilisée pour le défilement horizontal de
+la molette de souris selon le nombre de crans simulés par seconde.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="381"/>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définir la vitesse utilisée pour le défilement vertical de
+la molette de souris selon le nombre de crans simulés par seconde.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="410"/>
@@ -5046,12 +5064,15 @@ according to number of simulated notches per second.</source>
 the factor to use for curve sensitivity. When the value
 is above 1.0, the mouse movement will be accelerated
 faster at the low end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour la courbe d&apos;accélération &quot;Fonction Avancée&quot;.
+Spécifie le facteur à utiliser pour la sensibilité de la courbe.
+Quand la valeur dépasse 1.0, le mouvement de la souris sera
+accéléré plus rapidement à l&apos;extrémité inférieure de l&apos;axe.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="452"/>
         <source>Easing Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Durée d’assouplissement&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
@@ -5062,7 +5083,7 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="553"/>
         <source>Highest value to accelerate mouse movement by</source>
-        <translation type="unfinished"></translation>
+        <translation>Valeur la plus élevée d&apos;accélération du mouvement de la souris</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
@@ -5077,28 +5098,29 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="586"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;accélération commence à ce pourcentage du multiplicateur de base</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="627"/>
         <source>Minimum amount of axis travel required for acceleration to begin</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacement minimum de l&apos;axe pour commencer l&apos;accélération</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="647"/>
         <source>Max
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seuil
+Max&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="658"/>
         <source>Maximum axis travel before acceleration has reached the multiplier value</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacement maximum de l&apos;axe pour atteindre la valeur du multiplicateur</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="680"/>
         <source>E&amp;xtra Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Durée s&amp;upplémentaire&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="715"/>
@@ -5123,23 +5145,24 @@ Threshold:</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="831"/>
         <source>Release Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rayon de relâchement&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="864"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifie que la zone du ressort sera relative à la position
+de la souris définie par un ressort non relatif.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="868"/>
         <source>Relative</source>
-        <translation type="unfinished"></translation>
+        <translation>Relatif</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="891"/>
         <source>Mouse Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Statut de la souris</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
@@ -5150,7 +5173,7 @@ mouse position set by a non-relative spring.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (0 pps)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
@@ -5183,19 +5206,39 @@ Easing Quadratic: Axis high end is gradually accelerated over a period of time u
 
 Easing Cubic: Axis high end is gradually accelerated over
 a period of time using a Cubic curve.</source>
-        <translation type="unfinished"></translation>
+        <translation>Amélioré&#x202f;: Courbe à trois niveaux qui permet à la souris de se déplacer lentement
+sur l&apos;extrémité inférieure d&apos;un axe et rapidement sur l&apos;extrémité supérieure.
+
+Linéaire&#x202f;: La souris se déplace proportionnellement à l&apos;axe.
+
+Quadratique&#x202f;: La souris accélère lentement sur l&apos;extrémité inférieure.
+
+Cubique&#x202f;: La souris accélère plus lentement que &quot;Quadratique&quot;.
+
+Quadratique Extrême&#x202f;: Augmente la vitesse de la souris de 1,5 fois dès
+que l&apos;axe atteint 95 %.
+
+Fonction Avancée&#x202f;: Permet une option de courbe personnalisée.
+
+Assouplissement quadratique&#x202f;: l&apos;extrémité supérieure de l&apos;axe est
+progressivement accélérée sur une période à l&apos;aide d&apos;une courbe quadratique.
+
+Assouplissement cubique&#x202f;: l&apos;extrémité supérieure de l&apos;axe est
+progressivement accélérée sur une période à l&apos;aide d&apos;une courbe cubique.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="221"/>
         <source>Hori&amp;zontal
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse
+Hori&amp;zontale&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="266"/>
         <source>&amp;Vertical
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse
+&amp;Verticale&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
@@ -5209,7 +5252,9 @@ Vitesse :</translation>
         <source>Specifies the amount of time (in seconds) that will
 be required before the mouse is fully accelerated
 after reaching the high end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>Défini le temps nécessaire (en secondes) pour
+accélérer complètement la souris une fois
+l&apos;extrémité supérieure d&apos;un axe atteinte.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="589"/>
@@ -5224,7 +5269,9 @@ after reaching the high end of an axis.</source>
         <source>Extend the time that extra acceleration is applied. Axis travel
 will be taken into account. A slower flick will decrease the
 actual time that extra acceleration will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prolonger la durée d&apos;application de l&apos;accélération supplémentaire.
+Le déplacement de l&apos;axe sera pris en compte. Une impulsion plus lente
+diminuera le temps réel d&apos;application de l&apos;accélération supplémentaire.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="763"/>
@@ -5284,7 +5331,7 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="99"/>
         <source>Event Handler:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestionnaire d&apos;événements&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="112"/>
@@ -5386,7 +5433,9 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vos paramètres d&apos;origine (précédemment stockés dans %1) ont été copiés dans
+%2
+ Vous pouvez maintenant, si vous le souhaitez, supprimer le dossier d&apos;origine ou le laisser tel quel.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="204"/>
@@ -5396,32 +5445,37 @@ Original configs are stored in
  but their new location is: 
 %2
 You can migrate manually by renaming old directory and renaming file to antimicrox_settings.ini.</source>
-        <translation type="unfinished"></translation>
+        <translation>Un problème est survenu lors de la migration des paramètres.
+Les configurations originales sont stockées dans 
+%1
+ mais leur nouvel emplacement est&#x202f;: 
+%2
+Vous pouvez manuellement migrer en renommant l&apos;ancien dossier et en renommant le fichier en &quot;antimicrox_settings.ini&quot;.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="619"/>
         <source>Quitting Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermeture du programme</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="109"/>
         <source># of joysticks found: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nbre de joysticks trouvés&#x202f;: %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>List Joysticks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des joysticks&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="112"/>
         <source>---------------</source>
-        <translation type="unfinished"></translation>
+        <translation>---------------</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="119"/>
         <source>Joystick %1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick %1&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="512"/>
@@ -6656,7 +6710,7 @@ NUM</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="533"/>
         <source>Wheel Up</source>
         <comment>Mouse</comment>
-        <translation>Molette bas</translation>
+        <translation>Molette haut</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="537"/>
