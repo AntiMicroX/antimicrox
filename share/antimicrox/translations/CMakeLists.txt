@@ -17,7 +17,7 @@ if(UPDATE_TRANSLATIONS)
                 ${antimicrox_BASE_FORMS} ${antimicrox_TRANSLATIONS})
     endif(TRANS_REMOVE_OBSOLETE)
 else()
-    QT5_ADD_TRANSLATION(antimicrox_QMFILES ${antimicrox_TRANSLATIONS})
+    QT_ADD_TRANSLATION(antimicrox_QMFILES ${antimicrox_TRANSLATIONS})
 endif(UPDATE_TRANSLATIONS)
 
 
