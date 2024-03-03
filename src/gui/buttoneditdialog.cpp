@@ -264,8 +264,8 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         }
 
     #else
-        int finalvirtual = 0;
-        int checkalias = 0;
+        finalvirtual = 0;
+        checkalias = 0;
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());

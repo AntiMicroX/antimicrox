@@ -328,7 +328,6 @@ void AddEditAutoProfileDialog::checkForGrabbedWindow(UnixCaptureWindowUtility *u
 
         util->deleteLater();
     }
-
     #endif
 }
 #endif
@@ -339,32 +338,29 @@ void AddEditAutoProfileDialog::windowPropAssignment(CapturedWindowInfoDialog *di
     disconnect(ui->winClassLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
     disconnect(ui->winNameLineEdit, &QLineEdit::textChanged, this, &AddEditAutoProfileDialog::checkForDefaultStatus);
 
+    ui->applicationLineEdit->clear();
+    ui->winClassLineEdit->clear();
+    ui->winNameLineEdit->clear();
+
+#ifdef WITH_X11
     if (dialog->useFullWindowPath() && dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowPath)
     {
         ui->applicationLineEdit->setText(dialog->getWindowPath());
     } else if (!dialog->useFullWindowPath() && dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowPath)
     {
         ui->applicationLineEdit->setText(QFileInfo(dialog->getWindowPath()).fileName());
-    } else
-    {
-        ui->applicationLineEdit->clear();
     }
 
     if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowClass)
     {
         ui->winClassLineEdit->setText(dialog->getWindowClass());
-    } else
-    {
-        ui->winClassLineEdit->clear();
     }
 
     if (dialog->getSelectedOptions() & CapturedWindowInfoDialog::WindowName)
     {
         ui->winNameLineEdit->setText(dialog->getWindowName());
-    } else
-    {
-        ui->winNameLineEdit->clear();
     }
+#endif
 
     checkForDefaultStatus();
 
