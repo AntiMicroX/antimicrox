@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.4.0](https://github.com/AntiMicroX/antimicrox/tree/3.4.0) (2024-03-10)
+
+**Fixed bugs:**
+
+- Fix attaching window to a pinned launcher in Linux [pull 886](https://github.com/AntiMicroX/antimicrox/pull/886) (by [mmmaisel](https://github.com/mmmaisel))
+- Fixing builds with X11=OFF [pull 927](https://github.com/AntiMicroX/antimicrox/pull/927) (by [sjoblomj](https://github.com/sjoblomj))
+
+**Notable changes:**
+
+- Bump SDL version to 2.30.1
+- Updated translations
+- New translations: Croatian, Turkish, Persian, Vietnamese
+- Fix a lot of deprecation warnings and other code changes required to migrate to QT6 [\#446](https://github.com/AntiMicroX/antimicrox/issues/446)
 
 ## [3.3.4](https://github.com/AntiMicroX/antimicrox/tree/3.3.4) (2023-06-03)
 
