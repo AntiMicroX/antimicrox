@@ -370,12 +370,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Main Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>主配置文件</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="222"/>
         <source>Already selected</source>
-        <translation type="unfinished"></translation>
+        <translation>已经选择的</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="227"/>
@@ -858,7 +858,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation>未选择插槽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
@@ -874,19 +874,19 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation>当前插槽未知</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Click on chosen slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>加入选中插槽前点击它</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="538"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="640"/>
         <source>Not enough slots</source>
-        <translation type="unfinished"></translation>
+        <translation>没有足够的插槽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="539"/>
@@ -916,12 +916,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="641"/>
         <source>It&apos;s impossible to split slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>不可分割插槽，请至少添加一个其他插槽。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Not selected slot</source>
-        <translation>没有选择插槽</translation>
+        <translation>未选择插槽</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
@@ -961,12 +961,12 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1042"/>
         <source>File doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>文件不存在</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation type="unfinished"></translation>
+        <translation>没有本地文件可以运行，请检查文件系统</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
@@ -1413,7 +1413,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="661"/>
         <source>Click</source>
-        <translation type="unfinished"></translation>
+        <translation>点击</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
@@ -1428,7 +1428,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
         <source>Vibration</source>
-        <translation type="unfinished"></translation>
+        <translation>震动</translation>
     </message>
 </context>
 <context>
