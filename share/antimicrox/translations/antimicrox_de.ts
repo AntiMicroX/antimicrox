@@ -193,7 +193,24 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;pktiuk&quot; (seit August 2020) Ich möchte sichergehen, dass diese nützliche Software nicht aufgegeben wird und habe mich entschlossen dieses Projekt weiter zu unterstützen und es so zugänglich wie möglich zu machen.
+
+&quot;juliagoda&quot; (seit März 2018 bis 2020) Da ich nur meine alten Lieblingsspiele spielen wollte, die keine Gamepads unterstützen, fand ich dieses Projekt (welches die Tastatur- und Maustasten auf verbundene Gamepads in Linux zuweist) als am besten geeignet und aktuellsten. Aber wegen der geringen Auswahl an solchen Anwendungen im Internet und weil es nicht richtig kompiliert wurde, habe ich beschlossen, das Projekt zu retten. Sobald ich jedoch meine Arbeit beendet hatte (genug, um das Spielen zu genießen), dachte ich darüber nach, diesen Code mit anderen zu teilen. Selbstverständlich werden alle Angaben über frühere Programmierer beihalten.
+
+&quot;Ryochan7&quot; (seit 30. Dezember 2012 bis 2017), ich habe in meiner Freizeit an AntiMicro gearbeitet. Was ursprünglich als Fork von QJoyPad und als Möglichkeit, die richtige ereignisgesteuerte Programmierung zu lernen, begann, hat sich zu etwas viel Größerem entwickelt, als ich ursprünglich vorhatte. Obwohl ich viel Zeit damit verbracht habe neue Techniken zu lernen, mehr über das Feld der KB+M-Emulation herauszufinden und Freitagabende damit zu verbringen, meinen Kopf auf die Tastatur zu hauen, war es insgesamt eine spaßige und bereichernde Erfahrung.
+
+Die Notwendigkeit für dieses Programm ergab sich daraus, dass ich ähnliche Programme unter Windows verwendete, um verschiedene Spiele zu spielen, die keine native Controller-Unterstützung boten. Obwohl es für Linux einige Alternativen gab, gab es nicht wirklich etwas, das meiner Meinung nach in Bezug auf die Funktionalität oder die Steuerung im Spiel gut genug war, um die Spiele, die ich mit der KB+M-Emulation spielen wollte, wirklich zu genießen. QJoyPad war das Programm, das ich in der Vergangenheit hauptsächlich verwendet hatte, obwohl es in die Jahre gekommen war und einige grundlegende Funktionen, die ich für wichtig hielt, nicht bieten konnte. Das Projekt war stillgelegt, da es seit mehreren Jahren nicht mehr aktualisiert worden war, und so beschloss ich, mein eigenes zu entwickeln.
+
+Seitdem habe ich versucht herauszufinden was die anderen Programme richtig machen und es dann zu verbessern. Dabei habe ich auch einige nützliche Tricks entdeckt und ich habe mehr darüber gelernt, wie die native Gamepad-Steuerung in einigen Spielen implementiert ist, als ich jemals wirklich wissen wollte. Obwohl es durchaus Bereiche gibt, in denen dieses Programm verbessert werden könnte, finde ich, dass dieses Programm das beste Steuerungserlebnis im Spiel bietet, um ältere und auch manche neuere Spiele zu spielen, die keine native Controller-Unterstützung bieten.
+
+Die Entwicklung dieses Programms hat für mich keine so hohe Priorität mehr. Das liegt vor allem daran, dass der Steam Controller für die Aufgabe, PC-Spiele zu spielen, im Vergleich zu einem Xbox 360-Controller ziemlich gut funktioniert. Es sieht jedoch so aus, als gäbe es für dieses Programm noch einen Grund für eine Weile zu bestehen.
+
+---
+
+Seit dem 24. Mai 2016 ist dieses Projekt auf https://github.com/AntiMicro/antimicro umgezogen. 
+Zusätzlich ist die Projektleitung von Travis (Ryochan7) an die AntiMicro Organisation übergegangen, da Travis andere Interessen und Prioritäten hat.
+Danach wurde das Projekt seit 2018 von juliagoda im antimicroX Projekt weitergeführt. 
+Später wurde das Projekt noch einmal auf https://github.com/AntiMicroX/antimicrox verschoben und seine Instandhaltung wird von der von pktiuk gegründeten Organisation AntiMicroX fortgesetzt.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
@@ -1422,12 +1439,12 @@ oder Loslassen einer Achse interpretiert wird.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
         <source>Rigid</source>
-        <translation type="unfinished"></translation>
+        <translation>Fest</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
         <source>Rigid Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Festigkeitsverlauf</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
@@ -1620,14 +1637,14 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.ui" line="190"/>
         <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuwachs</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="155"/>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgleich</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
@@ -3041,7 +3058,7 @@ functionality to an analog stick.</source>
 
 Diese Taste ist nützlich für die Zuweisung von Zonen 
 mit Modifikationstasten, die verwendet werden können,
- um einem analogen Stick Geh-/Lauf-Funktionalität zuzuweisen.</translation>
+ um einem analogen Stick Geh-/Sprint-Funktionalität zuzuweisen.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
@@ -3056,7 +3073,11 @@ mit Modifikationstasten, die verwendet werden können,
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Grenzwert bei dem der Modifikator-Button aktiviert wird.
+
+Diese Taste ist nützlich für die Zuweisung von Zonen 
+mit Modifikationstasten, die verwendet werden können,
+ um einem analogen Stick Geh-/Sprint-Funktionalität zuzuweisen.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="770"/>
@@ -3065,7 +3086,11 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Legt fest, ob die Modifikatortasten aktiviert werden, wenn der Stick innerhalb oder außerhalb des Grenzwertes liegt.
+
+Diese Taste ist nützlich für die Zuweisung von Zonen
+mit Modifikationstasten, die verwendet werden können,
+um einem analogen Stick Geh-/Sprint-Funktionalität zuzuweisen.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="777"/>
@@ -3197,32 +3222,32 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="37"/>
         <source>Pitch Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Pitch Hoch</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="41"/>
         <source>Pitch Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Pitch Runter</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
         <source>Yaw Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Yaw Links</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="49"/>
         <source>Yaw Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Yaw Rechts</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="53"/>
         <source>Roll Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Roll Linksrum</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="57"/>
         <source>Roll Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Roll Rechtsrum</translation>
     </message>
 </context>
 <context>
@@ -3277,12 +3302,12 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
         <source>Pitch (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>Pitch (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
         <source>Roll (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>Roll (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
@@ -3341,7 +3366,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
@@ -3361,7 +3386,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
         <source>Roll (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Roll (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="79"/>
@@ -3371,17 +3396,17 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="80"/>
         <source>Yaw (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Yaw (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4521,7 +4546,7 @@ aktivieren, wenn die Option nicht in Windows deaktiviert ist.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Update Taste</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
@@ -4704,7 +4729,9 @@ aktivieren, wenn die Option nicht in Windows deaktiviert ist.</translation>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sich sicher, dass Sie das Programm als Administrator ausführen wollen?
+
+Einige Spiele starten als Administrator, was dazu führt, dass von antimicro ausgelöste Ereignisse von diesen Spielen nicht berücksichtigt werden, außer antimicro wird auch als Administrator ausgeführt. Dies liegt an Berechtigungsproblemen, die durch die Optionen der Benutzerkontensteuerung (User Account Control, UAC) in Windows Vista und höher verursacht werden.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1704"/>
@@ -4831,7 +4858,7 @@ Name des Geräts: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -5395,7 +5422,12 @@ Original configs are stored in
  but their new location is: 
 %2
 You can migrate manually by renaming old directory and renaming file to antimicrox_settings.ini.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist ein Problem bei der Migration der Einstellungen aufgetreten.
+Originale Konfigurationen sind gespeichert in 
+%1
+aber ihr neuer Speicherort ist: 
+%2
+Sie können manuell migrieren, indem Sie das alte Verzeichnis umbenennen und die Datei in antimicrox_settings.ini umbenennen.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="619"/>
@@ -5450,7 +5482,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="207"/>
         <source>Unknown log level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekanntes Log-Level </translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="225"/>
@@ -7099,7 +7131,7 @@ LOCK</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="88"/>
         <source>Enable logging. Levels (from the least strict): warn,info,verbose,debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiviere Logging. Levels (von am wenigsten streng): warn,info,verbose,debug</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="89"/>
