@@ -37,27 +37,27 @@ include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND MSVC_TOOLSET_VERSION GREATER_EQUAL 140)
-    # MSVC tools v140 and later support c++11 ootb and has no flag to enable it.
+    # MSVC tools v140 and later support c++17 ootb and has no flag to enable it.
     set(COMPILER_SUPPORTS_CXX11 1)
     set(COMPILER_IS_MSVC 1)
 else()
-    CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+    CHECK_CXX_COMPILER_FLAG("-std=c++17" COMPILER_SUPPORTS_CXX17)
 endif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND MSVC_TOOLSET_VERSION GREATER_EQUAL 140)
 
 
-if(NOT COMPILER_SUPPORTS_CXX11)
-    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif(NOT COMPILER_SUPPORTS_CXX11)
+if(NOT COMPILER_SUPPORTS_CXX17)
+    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++17 support. Please use a different C++ compiler.")
+endif(NOT COMPILER_SUPPORTS_CXX17)
 
 message("Build type: ${CMAKE_BUILD_TYPE}")
 
 if(NOT COMPILER_IS_MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g -O0 -fno-omit-frame-pointer")
     if(UNIX AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -rdynamic")
     endif(UNIX AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++11")
+    #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -std=c++17")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /analyze- /D_CRT_SECURE_NO_WARNINGS")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /W3 /GS /Od /sdl /wd4996 /RTC1 /Gd /Oy-")
@@ -518,18 +518,33 @@ endif(UNIX)
 # PACKAGES
 ###############################
 
-set(QT_REQUIRED_VERSION 5.8)
-find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
-message("Found QT: ${Qt5Core_VERSION_STRING}")
-find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
-set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
+# set(QT_REQUIRED_VERSION 5.8)
+# find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
+# message("Found QT: ${Qt5Core_VERSION_STRING}")
+# find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
+# find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
+# find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
+# find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
+# find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
+# set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
 
-QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
-QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+# QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+# QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+
+set(QT_REQUIRED_VERSION 6.0)
+project(YourProjectName)
+
+find_package(Qt6
+    COMPONENTS Core Widgets Gui Network LinguistTools Concurrent Core5Compat
+    REQUIRED)
+
+message("Found QT: ${Qt6_VERSION}")
+
+# Replace QT5_WRAP_UI with QT_WRAP_UI
+qt_wrap_ui(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+qt_add_resources(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+
+
 add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -544,11 +559,13 @@ endif(WITH_X11)
 # LINKER LIBRARIES
 ###############################
 
-LIST(APPEND QT_LIBS Qt5::Core)
-LIST(APPEND QT_LIBS Qt5::Gui)
-LIST(APPEND QT_LIBS Qt5::Widgets)
-LIST(APPEND QT_LIBS Qt5::Concurrent)
-LIST(APPEND QT_LIBS Qt5::Network)
+LIST(APPEND QT_LIBS Qt6::Core)
+LIST(APPEND QT_LIBS Qt6::Gui)
+LIST(APPEND QT_LIBS Qt6::Widgets)
+LIST(APPEND QT_LIBS Qt6::Concurrent)
+LIST(APPEND QT_LIBS Qt6::Network)
+LIST(APPEND QT_LIBS Qt6::Core5Compat)
+
 
 if(UNIX)
     if(WITH_X11)

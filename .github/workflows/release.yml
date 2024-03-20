@@ -21,7 +21,7 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Install Dependencies
-              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qt6-base-dev qt6-tools-dev-tools qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
 
             - name: Configure CMake
               run: cmake -DCPACK_GENERATOR="DEB" -DCMAKE_BUILD_TYPE=Release -DCHECK_FOR_UPDATES=ON -DANTIMICROX_PKG_VERSION="GitHub Release" -B ${{ github.workspace }}/build
@@ -55,7 +55,7 @@ jobs:
             - name: Install Dependencies
               run: |
                   sudo apt-get update
-                  sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default zsync
+                  sudo apt-get install extra-cmake-modules qt6-base-dev qt6-tools-dev-tools qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext qt5-default zsync
 
             #Replace original library with the newer one
             - name: Build and install newer SDL2
@@ -160,7 +160,7 @@ jobs:
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
-                  version: "5.15.2"
+                  version: "6"
                   host: "windows"
                   target: "desktop"
                   arch: "win64_mingw81"
