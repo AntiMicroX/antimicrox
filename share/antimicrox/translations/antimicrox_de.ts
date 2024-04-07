@@ -7091,7 +7091,7 @@ LOCK</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="73"/>
         <source>Launch program with the configuration file selected as the default for selected controllers, or change active profile of running app. Defaults to all controllers</source>
-        <translation type="unfinished"></translation>
+        <translation>Starte das Programm mit der Konfigurationsdatei, die als Standard für die ausgewählten Kontroller ausgewählt wurde, oder ändere das aktive Profil der laufenden App. Standardmäßig für alle Kontroller</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="76"/>
