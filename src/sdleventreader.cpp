@@ -29,7 +29,6 @@
 #include <QDebug>
 #include <QMapIterator>
 #include <QSettings>
-#include <QStringListIterator>
 #include <QVariant>
 
 SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMicroSettings *settings, QObject *parent)
@@ -77,11 +76,9 @@ void SDLEventReader::initSDL()
     settings->getLock()->lock();
     settings->beginGroup("Mappings");
     QStringList mappings = settings->allKeys();
-    QStringListIterator iter(mappings);
 
-    while (iter.hasNext())
+    for (auto &&tempstring : mappings)
     {
-        QString tempstring = iter.next();
         QString mappingSetting = settings->value(tempstring, QString()).toString();
 
         if (!mappingSetting.isEmpty())
