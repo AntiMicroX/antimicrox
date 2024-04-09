@@ -24,7 +24,8 @@
 #include <QDirIterator>
 #include <QLibraryInfo>
 #include <QReadWriteLock>
-#include <QRegExp>
+#include <QRegularExpression>
+
 #ifdef Q_OS_WIN
     #include <QStandardPaths>
 #endif
@@ -90,9 +91,9 @@ QStringList parseArgumentsString(QString tempString)
 {
     bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    QStringList tempList = tempString.split(QRegExp("\""), Qt::SkipEmptyParts);
+    QStringList tempList = tempString.split(QRegularExpression("\""), Qt::SkipEmptyParts);
 #else
-    QStringList tempList = tempString.split(QRegExp("\""), QString::SkipEmptyParts);
+    QStringList tempList = tempString.split(QRegularExpression("\""), QString::SkipEmptyParts);
 #endif
     QStringList finalList = QStringList();
     QStringListIterator iter(tempList);
@@ -105,9 +106,9 @@ QStringList parseArgumentsString(QString tempString)
             finalList.append(temp);
         else
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-            finalList.append(temp.split(QRegExp("\\s+"), Qt::SkipEmptyParts));
+            finalList.append(temp.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts));
 #else
-            finalList.append(temp.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+            finalList.append(temp.split(QRegularExpression("\\s+"), QString::SkipEmptyParts));
 #endif
         inside = !inside;
     }
@@ -179,7 +180,7 @@ QIcon loadIcon(QString name)
     QDirIterator it(":images/", QDirIterator::Subdirectories);
     QString fallback_location = "";
     // search also for variants with underscore like document_save.png for document-save
-    QRegExp regex = QRegExp(".*" + name.replace(QChar('-'), "[_-]") + "\\.(svg|png)");
+    QRegularExpression regex = QRegularExpression(".*" + name.replace(QChar('-'), "[_-]") + "\\.(svg|png)");
     while (it.hasNext())
     {
         QString value = it.next();

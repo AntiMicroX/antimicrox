@@ -21,7 +21,7 @@
 
 #include <QList>
 #include <QObject>
-#include <QRegExp>
+#include <QRegularExpression>
 
 namespace GlobalVariables {
 class JoyButton
@@ -107,8 +107,8 @@ class InputDevice
     static const int DEFAULTKEYREPEATDELAY;
     static const int DEFAULTKEYREPEATRATE;
 
-    // static QRegExp emptyGUID;
-    static QRegExp emptyUniqueID;
+    // static QRegularExpression emptyGUID;
+    static QRegularExpression emptyUniqueID;
 };
 
 class JoyAxis
