@@ -25,6 +25,7 @@
 #include "joycontrolstick.h"
 #include "mousedialog/mousecontrolsticksettingsdialog.h"
 
+#include <QActionGroup>
 #include <QDebug>
 #include <QList>
 #include <QWidget>

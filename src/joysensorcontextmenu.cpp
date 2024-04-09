@@ -23,6 +23,7 @@
 #include "joysensor.h"
 #include "mousedialog/mousesensorsettingsdialog.h"
 
+#include <QActionGroup>
 #include <QDebug>
 #include <QList>
 #include <QWidget>
