@@ -112,7 +112,7 @@ QString Joystick::getSerialString() const
     if (m_joyhandle != nullptr)
     {
         const char *serial = SDL_JoystickGetSerial(m_joyhandle);
-        temp = QString(serial).remove(QRegExp("[^A-Za-z0-9]"));
+        temp = QString(serial).remove(QRegularExpression("[^A-Za-z0-9]"));
     }
 #endif
 

@@ -30,7 +30,7 @@
 #include <cmath>
 
 #include <QDebug>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
@@ -91,7 +91,7 @@ QString GameController::getSerialString() const
     if (controller != nullptr)
     {
         const char *serial = SDL_GameControllerGetSerial(controller);
-        temp = QString(serial).remove(QRegExp("[^A-Za-z0-9]"));
+        temp = QString(serial).remove(QRegularExpression("[^A-Za-z0-9]"));
     }
 #endif
     return temp;
