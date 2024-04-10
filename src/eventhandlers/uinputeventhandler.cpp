@@ -26,7 +26,6 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QStringList>
-#include <QStringListIterator>
 #include <QTimer>
 
 #include <antkeymapper.h>
@@ -289,17 +288,14 @@ int UInputEventHandler::openUInputHandle()
     locations.append("/dev/misc/uinput");
 
     QString possibleLocation;
-    QStringListIterator iter(locations);
 
-    while (iter.hasNext())
+    for (auto &&temp : locations)
     {
-        QString temp = iter.next();
         QFileInfo tempFileInfo(temp);
-
         if (tempFileInfo.exists())
         {
             possibleLocation = temp;
-            iter.toBack();
+            break;
         }
     }
 
