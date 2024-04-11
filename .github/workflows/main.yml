@@ -135,4 +135,4 @@ jobs:
                   WORKSPACE_DIR: ${{ github.workspace }}
               
             - name: Build
-              run: cmake --build "${{ github.workspace }}/build" --parallel 8
+              run: cmake --build "${{ github.workspace }}/build" --parallel 8 --verbose
