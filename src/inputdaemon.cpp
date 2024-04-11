@@ -853,7 +853,12 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                     sensor_type = ACCELEROMETER;
                 else if (event.csensor.sensor == SDL_SENSOR_GYRO)
                     sensor_type = GYROSCOPE;
-                JoySensor *sensor = set->getSensor(sensor_type);
+                else
+                    qWarning() << "Unknown sensor type: " << event.csensor.sensor;
+
+                JoySensor *sensor = nullptr;
+                if (sensor_type == ACCELEROMETER || sensor_type == GYROSCOPE)
+                    sensor = set->getSensor(sensor_type);
 
                 if (sensor != nullptr)
                 {
