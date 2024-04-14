@@ -103,7 +103,7 @@ QString XMLConfigMigration::version0006Migration()
 
     while (!reader->atEnd())
     {
-        if ((reader->name() == "slot") && reader->isStartElement())
+        if ((reader->name() == u"slot") && reader->isStartElement())
         {
             int slotcode = 0;
             QString slotmode = QString();
@@ -111,13 +111,13 @@ QString XMLConfigMigration::version0006Migration()
             reader->readNext();
 
             // Grab current slot code and slot mode
-            while (!reader->atEnd() && (!reader->isEndElement() && (reader->name() != "slot")))
+            while (!reader->atEnd() && (!reader->isEndElement() && (reader->name() != u"slot")))
             {
-                if ((reader->name() == "code") && reader->isStartElement())
+                if ((reader->name() == u"code") && reader->isStartElement())
                 {
                     QString tempcode = reader->readElementText();
                     slotcode = tempcode.toInt();
-                } else if ((reader->name() == "mode") && reader->isStartElement())
+                } else if ((reader->name() == u"mode") && reader->isStartElement())
                 {
                     slotmode = reader->readElementText();
                 } else
