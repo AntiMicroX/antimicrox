@@ -44,9 +44,9 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
     if (!result && timeoutWrite > 0)
         xmlLock.tryLockForWrite(timeoutWrite);
 
-    qDebug() << "START OF READ CONFIG NAME: " << xml->name();
+    qDebug() << "START OF READ CONFIG NAME: " << xml->name().toString();
 
-    if (xml->isStartElement() && (xml->name() == "slot"))
+    if (xml->isStartElement() && (xml->name().toString() == "slot"))
     {
         QString profile = QString();
         QString tempStringData = QString();
@@ -54,10 +54,10 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 
         xml->readNextStartElement();
 
-        qDebug() << "NEXT TO THE START TAG NAME: " << xml->name();
+        qDebug() << "NEXT TO THE START TAG NAME: " << xml->name().toString();
 
         // so it must be JoyMix
-        if (!xml->atEnd() && (!xml->isEndElement() && (xml->name() == "slots")))
+        if (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() == "slots")))
         {
             qDebug() << "Detected mix slots";
 
@@ -68,27 +68,27 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 
             int i = 0;
 
-            while (xml->name() == "slot")
+            while (xml->name().toString() == "slot")
             {
                 qDebug() << "Found mini slot in xml file";
 
                 xml->readNextStartElement(); // skip to minislot within slots list
 
-                qDebug() << "Now xml name after read next is: " << xml->name();
+                qDebug() << "Now xml name after read next is: " << xml->name().toString();
 
                 // we don't want to add empty slot to minislots
                 // skip again and check name of next tag
-                if (xml->name() == "slot")
+                if (xml->name().toString() == "slot")
                     xml->readNextStartElement();
 
                 // if reached the end of mini slots, read next elem, that should be mode JoyMix and break loop
-                if (xml->name() == "slots")
+                if (xml->name().toString() == "slots")
                 {
                     xml->readNextStartElement();
                     break;
                 }
 
-                qDebug() << "And now xml name after read next is: " << xml->name();
+                qDebug() << "And now xml name after read next is: " << xml->name().toString();
 
                 JoyButtonSlot *minislot = new JoyButtonSlot();
 
@@ -108,13 +108,14 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
                 qDebug() << "Added mini slot string and mode and code: " << minislot->getSlotString() << " and "
                          << minislot->getSlotMode() << " and " << minislot->getSlotCode();
 
-                qDebug() << "After readEachSlot for JoyMix now should be \"slot\" again or \"mode\": " << xml->name();
+                qDebug() << "After readEachSlot for JoyMix now should be \"slot\" again or \"mode\": "
+                         << xml->name().toString();
                 qDebug() << "It it start element? :" << (xml->isStartElement() ? "yes" : "no");
             }
 
             i = 0;
 
-            if (xml->name() == "mode" && xml->readElementText() == "mix")
+            if (xml->name().toString() == "mode" && xml->readElementText() == "mix")
             {
                 qDebug() << "slot text data for joy mix is: " << slotMixString;
 
@@ -148,9 +149,9 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
 void JoyButtonSlotXml::readEachSlot(QXmlStreamReader *xml, JoyButtonSlot *joyBtnSlot, QString &profile,
                                     QString &tempStringData, QString &extraStringData)
 {
-    while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "slot")))
+    while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != "slot")))
     {
-        if ((xml->name() == "code") && xml->isStartElement())
+        if ((xml->name().toString() == "code") && xml->isStartElement())
         {
             QString temptext = xml->readElementText();
             bool ok = false;
@@ -158,23 +159,23 @@ void JoyButtonSlotXml::readEachSlot(QXmlStreamReader *xml, JoyButtonSlot *joyBtn
 
             if (ok)
                 joyBtnSlot->setSlotCode(tempchoice);
-        } else if ((xml->name() == "profile") && xml->isStartElement())
+        } else if ((xml->name().toString() == "profile") && xml->isStartElement())
         {
             QString temptext = xml->readElementText();
             profile = temptext;
-        } else if ((xml->name() == "text") && xml->isStartElement())
+        } else if ((xml->name().toString() == "text") && xml->isStartElement())
         {
             QString temptext = xml->readElementText();
             tempStringData = temptext;
-        } else if ((xml->name() == "path") && xml->isStartElement())
+        } else if ((xml->name().toString() == "path") && xml->isStartElement())
         {
             QString temptext = xml->readElementText();
             tempStringData = temptext;
-        } else if ((xml->name() == "arguments") && xml->isStartElement())
+        } else if ((xml->name().toString() == "arguments") && xml->isStartElement())
         {
             QString temptext = xml->readElementText();
             extraStringData = temptext;
-        } else if ((xml->name() == "mode") && xml->isStartElement())
+        } else if ((xml->name().toString() == "mode") && xml->isStartElement())
         {
             QString temptext = xml->readElementText();
 

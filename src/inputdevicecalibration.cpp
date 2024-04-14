@@ -135,17 +135,17 @@ void InputDeviceCalibration::applyCalibrations() const
  */
 void InputDeviceCalibration::readConfig(QXmlStreamReader *xml)
 {
-    while (xml->isStartElement() && (xml->name() == "calibration"))
+    while (xml->isStartElement() && (xml->name().toString() == "calibration"))
     {
         QString id = xml->attributes().value("device").toString();
         if (id.isEmpty())
             id = m_device->getUniqueIDString();
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "calibration")))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != "calibration")))
         {
             CalibrationData calibration;
-            if ((xml->name() == "stick"))
+            if ((xml->name().toString() == "stick"))
             {
                 calibration.type = CALIBRATION_DATA_STICK;
                 calibration.stick.index = xml->attributes().value("index").toString().toInt();
@@ -154,14 +154,14 @@ void InputDeviceCalibration::readConfig(QXmlStreamReader *xml)
                 calibration.stick.offsetY = xml->attributes().value("offsety").toString().toDouble();
                 calibration.stick.gainY = xml->attributes().value("gainy").toString().toDouble();
                 setCalibration(id, calibration);
-            } else if ((xml->name() == "accelerometer"))
+            } else if ((xml->name().toString() == "accelerometer"))
             {
                 calibration.type = CALIBRATION_DATA_ACCELEROMETER;
                 calibration.accelerometer.orientationX = xml->attributes().value("orientationx").toString().toDouble();
                 calibration.accelerometer.orientationY = xml->attributes().value("orientationy").toString().toDouble();
                 calibration.accelerometer.orientationZ = xml->attributes().value("orientationz").toString().toDouble();
                 setCalibration(id, calibration);
-            } else if ((xml->name() == "gyroscope"))
+            } else if ((xml->name().toString() == "gyroscope"))
             {
                 calibration.type = CALIBRATION_DATA_GYROSCOPE;
                 calibration.gyroscope.offsetX = xml->attributes().value("offsetx").toString().toDouble();
