@@ -181,14 +181,14 @@ void QtUInputKeyMapper::populateCharKeyInformation()
 {
     virtkeyToCharKeyInfo.clear();
 
-    int unicodeTempValue = 0;
+    char16_t unicodeTempValue = 0;
     int listIndex = 0;
     charKeyInformation charKeyInfo;
     charKeyInfo.modifiers = Qt::NoModifier;
     charKeyInfo.virtualkey = 0;
 
     // Map 0-9 keys
-    for (int i = QChar('1').unicode(); i <= QChar('9').unicode(); i++)
+    for (char16_t i = QChar('1').unicode(); i <= QChar('9').unicode(); i++)
         addVirtualKeyToHash(KEY_1 + i, i, charKeyInfo);
 
     addVirtualKeyToHash(KEY_0, QChar('0'), charKeyInfo);
@@ -264,7 +264,7 @@ void QtUInputKeyMapper::populateCharKeyInformation()
 
     while (tempIter.hasNext())
     {
-        addVirtualKeyToHash(KEY_1 + listIndex, tempIter.next(), charKeyInfo);
+        addVirtualKeyToHash(KEY_1 + listIndex, QChar(tempIter.next()), charKeyInfo);
         listIndex++;
     }
 
