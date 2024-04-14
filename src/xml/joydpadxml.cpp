@@ -22,10 +22,10 @@ JoyDPadXml<T>::JoyDPadXml(T *joydpad, QObject *parent)
 
 template <class T> void JoyDPadXml<T>::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && (xml->name() == m_joydpad->getXmlName()))
+    if (xml->isStartElement() && (xml->name().toString() == m_joydpad->getXmlName()))
     {
         xml->readNextStartElement();
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != m_joydpad->getXmlName())))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != m_joydpad->getXmlName())))
         {
             bool found = readMainConfig(xml);
             if (!found)
@@ -77,7 +77,7 @@ template <class T> bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
 {
     bool found = false;
 
-    if ((xml->name() == "dpadbutton") && xml->isStartElement())
+    if ((xml->name().toString() == "dpadbutton") && xml->isStartElement())
     {
         found = true;
         int index_local = xml->attributes().value("index").toString().toInt();
@@ -91,7 +91,7 @@ template <class T> bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
         {
             xml->skipCurrentElement();
         }
-    } else if ((xml->name() == "mode") && xml->isStartElement())
+    } else if ((xml->name().toString() == "mode") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -106,7 +106,7 @@ template <class T> bool JoyDPadXml<T>::readMainConfig(QXmlStreamReader *xml)
         {
             m_joydpad->setJoyMode(JoyDPad::FourWayDiagonal);
         }
-    } else if ((xml->name() == "dpadDelay") && xml->isStartElement())
+    } else if ((xml->name().toString() == "dpadDelay") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();

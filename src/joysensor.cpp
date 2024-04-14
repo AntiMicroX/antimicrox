@@ -681,28 +681,28 @@ void JoySensor::establishPropertyUpdatedConnection()
  */
 void JoySensor::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && (xml->name() == "sensor"))
+    if (xml->isStartElement() && (xml->name().toString() == "sensor"))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "sensor")))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != "sensor")))
         {
-            if ((xml->name() == "deadZone") && xml->isStartElement())
+            if ((xml->name().toString() == "deadZone") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 float tempchoice = temptext.toFloat();
                 setDeadZone(tempchoice);
-            } else if ((xml->name() == "maxZone") && xml->isStartElement())
+            } else if ((xml->name().toString() == "maxZone") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 float tempchoice = temptext.toFloat();
                 setMaxZone(tempchoice);
-            } else if ((xml->name() == "diagonalRange") && xml->isStartElement())
+            } else if ((xml->name().toString() == "diagonalRange") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 setDiagonalRange(tempchoice);
-            } else if ((xml->name() == GlobalVariables::JoySensorButton::xmlName) && xml->isStartElement())
+            } else if ((xml->name().toString() == GlobalVariables::JoySensorButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoySensorButton *button = m_buttons.value(static_cast<JoySensorDirection>(index));
@@ -715,7 +715,7 @@ void JoySensor::readConfig(QXmlStreamReader *xml)
 
                 if (!joyButtonXml.isNull())
                     delete joyButtonXml;
-            } else if ((xml->name() == "sensorDelay") && xml->isStartElement())
+            } else if ((xml->name().toString() == "sensorDelay") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();

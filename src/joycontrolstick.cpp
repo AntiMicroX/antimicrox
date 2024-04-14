@@ -989,38 +989,38 @@ void JoyControlStick::setDiagonalRange(int value)
  */
 void JoyControlStick::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && (xml->name() == "stick"))
+    if (xml->isStartElement() && (xml->name().toString() == "stick"))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "stick")))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != "stick")))
         {
-            if ((xml->name() == "deadZone") && xml->isStartElement())
+            if ((xml->name().toString() == "deadZone") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 this->setDeadZone(tempchoice);
-            } else if ((xml->name() == "maxZone") && xml->isStartElement())
+            } else if ((xml->name().toString() == "maxZone") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 this->setMaxZone(tempchoice);
-            } else if ((xml->name() == "modifierZone") && xml->isStartElement())
+            } else if ((xml->name().toString() == "modifierZone") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 setModifierZone(tempchoice);
-            } else if ((xml->name() == "modifierZoneInverted") && xml->isStartElement())
+            } else if ((xml->name().toString() == "modifierZoneInverted") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 setModifierZoneInverted(tempchoice);
-            } else if ((xml->name() == "diagonalRange") && xml->isStartElement())
+            } else if ((xml->name().toString() == "diagonalRange") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();
                 this->setDiagonalRange(tempchoice);
-            } else if ((xml->name() == "mode") && xml->isStartElement())
+            } else if ((xml->name().toString() == "mode") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
 
@@ -1034,13 +1034,13 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
                 {
                     this->setJoyMode(FourWayDiagonal);
                 }
-            } else if ((xml->name() == "squareStick") && xml->isStartElement())
+            } else if ((xml->name().toString() == "squareStick") && xml->isStartElement())
             {
                 int tempchoice = xml->readElementText().toInt();
 
                 if ((tempchoice > 0) && (tempchoice <= 100))
                     this->setCircleAdjust(tempchoice / 100.0);
-            } else if ((xml->name() == GlobalVariables::JoyControlStickButton::xmlName) && xml->isStartElement())
+            } else if ((xml->name().toString() == GlobalVariables::JoyControlStickButton::xmlName) && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = buttons.value(static_cast<JoyStickDirections>(index));
@@ -1053,11 +1053,12 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
 
                 if (!joyButtonXml.isNull())
                     delete joyButtonXml;
-            } else if ((xml->name() == GlobalVariables::JoyControlStickModifierButton::xmlName) && xml->isStartElement())
+            } else if ((xml->name().toString() == GlobalVariables::JoyControlStickModifierButton::xmlName) &&
+                       xml->isStartElement())
             {
                 JoyButtonXml *joyButtonXml = new JoyButtonXml(modifierButton);
                 joyButtonXml->readConfig(xml);
-            } else if ((xml->name() == "stickDelay") && xml->isStartElement())
+            } else if ((xml->name().toString() == "stickDelay") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
                 int tempchoice = temptext.toInt();

@@ -115,7 +115,7 @@ bool XMLConfigReader::read()
         if (!deviceTypes.contains(xml->name().toString()))
         {
             xml->raiseError("Root node is not a joystick or controller");
-        } else if (xml->name() == GlobalVariables::Joystick::xmlName)
+        } else if (xml->name().toString() == GlobalVariables::Joystick::xmlName)
         {
             XMLConfigMigration migration(xml);
 

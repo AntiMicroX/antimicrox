@@ -122,28 +122,28 @@ template <typename T> void readConf(T *x, QXmlStreamReader *xml)
 
 void GameControllerSet::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && (xml->name() == "set"))
+    if (xml->isStartElement() && (xml->name().toString() == "set"))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && xml->name() != "set"))
+        while (!xml->atEnd() && (!xml->isEndElement() && xml->name().toString() != "set"))
         {
-            if ((xml->name() == "button") && xml->isStartElement())
+            if ((xml->name().toString() == "button") && xml->isStartElement())
             {
                 getElemFromXml("button", xml);
-            } else if ((xml->name() == "trigger") && xml->isStartElement())
+            } else if ((xml->name().toString() == "trigger") && xml->isStartElement())
             {
                 getElemFromXml("trigger", xml);
-            } else if ((xml->name() == "stick") && xml->isStartElement())
+            } else if ((xml->name().toString() == "stick") && xml->isStartElement())
             {
                 getElemFromXml("stick", xml);
-            } else if ((xml->name() == "sensor") && xml->isStartElement())
+            } else if ((xml->name().toString() == "sensor") && xml->isStartElement())
             {
                 getElemFromXml("sensor", xml);
-            } else if ((xml->name() == "dpad") && xml->isStartElement())
+            } else if ((xml->name().toString() == "dpad") && xml->isStartElement())
             {
                 getElemFromXml("dpad", xml);
-            } else if ((xml->name() == "name") && xml->isStartElement())
+            } else if ((xml->name().toString() == "name") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
 

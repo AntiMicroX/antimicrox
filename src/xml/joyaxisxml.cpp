@@ -44,15 +44,15 @@ JoyAxisXml::~JoyAxisXml()
 
 void JoyAxisXml::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && (xml->name() == m_joyAxis->getXmlName()))
+    if (xml->isStartElement() && (xml->name().toString() == m_joyAxis->getXmlName()))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != m_joyAxis->getXmlName())))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != m_joyAxis->getXmlName())))
         {
             bool found = readMainConfig(xml);
 
-            if (!found && (xml->name() == m_joyAxis->getNAxisButton()->getXmlName()) && xml->isStartElement())
+            if (!found && (xml->name().toString() == m_joyAxis->getNAxisButton()->getXmlName()) && xml->isStartElement())
             {
                 found = true;
                 readButtonConfig(xml);
@@ -128,7 +128,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 {
     bool found = false;
 
-    if ((xml->name() == "deadZone") && xml->isStartElement())
+    if ((xml->name().toString() == "deadZone") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -137,7 +137,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config dead zone is: " << tempchoice;
 
         m_joyAxis->setDeadZone(tempchoice);
-    } else if ((xml->name() == "maxZone") && xml->isStartElement())
+    } else if ((xml->name().toString() == "maxZone") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -146,7 +146,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
         qDebug() << "From xml config max zone is: " << tempchoice;
 
         m_joyAxis->setMaxZoneValue(tempchoice);
-    } else if ((xml->name() == "throttle") && xml->isStartElement())
+    } else if ((xml->name().toString() == "throttle") && xml->isStartElement())
     {
         found = true;
         QString temptext = xml->readElementText();
@@ -180,7 +180,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 
         m_joyAxis->setCurrentRawValue(m_joyAxis->getCurrentThrottledDeadValue());
         m_joyAxis->updateCurrentThrottledValue(m_joyAxis->calculateThrottledValue(m_joyAxis->getCurrentRawValue()));
-    } else if ((xml->name() == "hapticTrigger") && xml->isStartElement())
+    } else if ((xml->name().toString() == "hapticTrigger") && xml->isStartElement())
     {
         found = true;
         m_joyAxis->setHapticTriggerMode(HapticTriggerPs5::from_string(xml->readElementText()));

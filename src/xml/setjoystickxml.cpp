@@ -49,13 +49,13 @@ SetJoystickXml::SetJoystickXml(SetJoystick *setJoystick, QObject *parent)
  */
 void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && (xml->name() == "set"))
+    if (xml->isStartElement() && (xml->name().toString() == "set"))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name() != "set")))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != "set")))
         {
-            if ((xml->name() == "button") && xml->isStartElement())
+            if ((xml->name().toString() == "button") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyButton *button = m_setJoystick->getJoyButton(index - 1);
@@ -65,7 +65,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
                     joyButtonXml->readConfig(xml);
                 else
                     xml->skipCurrentElement();
-            } else if ((xml->name() == "axis") && xml->isStartElement())
+            } else if ((xml->name().toString() == "axis") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyAxis *axis = m_setJoystick->getJoyAxis(index - 1);
@@ -75,7 +75,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
                     joyAxisXml->readConfig(xml);
                 else
                     xml->skipCurrentElement();
-            } else if ((xml->name() == "dpad") && xml->isStartElement())
+            } else if ((xml->name().toString() == "dpad") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyDPad *dpad = m_setJoystick->getJoyDPad(index - 1);
@@ -85,7 +85,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
                     joydpadXml->readConfig(xml);
                 else
                     xml->skipCurrentElement();
-            } else if ((xml->name() == "stick") && xml->isStartElement())
+            } else if ((xml->name().toString() == "stick") && xml->isStartElement())
             {
                 int stickIndex = xml->attributes().value("index").toString().toInt();
 
@@ -102,7 +102,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
                 {
                     xml->skipCurrentElement();
                 }
-            } else if ((xml->name() == "sensor") && xml->isStartElement())
+            } else if ((xml->name().toString() == "sensor") && xml->isStartElement())
             {
                 int type = xml->attributes().value("type").toString().toInt();
                 JoySensor *sensor = m_setJoystick->getSensor(static_cast<JoySensorType>(type));
@@ -111,7 +111,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
                     sensor->readConfig(xml);
                 else
                     xml->skipCurrentElement();
-            } else if ((xml->name() == "vdpad") && xml->isStartElement())
+            } else if ((xml->name().toString() == "vdpad") && xml->isStartElement())
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 VDPad *vdpad = m_setJoystick->getVDPad(index - 1);
@@ -121,7 +121,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
                     joydpadXml->readConfig(xml);
                 else
                     xml->skipCurrentElement();
-            } else if ((xml->name() == "name") && xml->isStartElement())
+            } else if ((xml->name().toString() == "name") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
 
