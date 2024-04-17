@@ -516,27 +516,30 @@ if(UNIX)
 endif(UNIX)
 
 ###############################
-# PACKAGES
+# REQUIRED PACKAGES
 ###############################
 
+#QT
 set(QT_REQUIRED_VERSION 5.8)
-find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
-message("Found QT: ${Qt5Core_VERSION_STRING}")
-find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5Network ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5LinguistTools ${QT_REQUIRED_VERSION} REQUIRED)
-find_package(Qt5Concurrent ${QT_REQUIRED_VERSION} REQUIRED)
 set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
+
+find_package(QT NAMES Qt5 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
+message("Found QT: ${QT_VERSION}")
+
+find_package(Qt5 ${QT_REQUIRED_VERSION} 
+        COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
+        REQUIRED)
 
 QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
 QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
 add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# SDL
 set(SDL_REQUIRED_VERSION 2.0.6)
 find_package(SDL2 REQUIRED)
 
+# Others
 if(WITH_X11)
     find_package(X11 REQUIRED)
 endif(WITH_X11)
@@ -545,11 +548,11 @@ endif(WITH_X11)
 # LINKER LIBRARIES
 ###############################
 
-LIST(APPEND QT_LIBS Qt5::Core)
-LIST(APPEND QT_LIBS Qt5::Gui)
-LIST(APPEND QT_LIBS Qt5::Widgets)
-LIST(APPEND QT_LIBS Qt5::Concurrent)
-LIST(APPEND QT_LIBS Qt5::Network)
+LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Core)
+LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Gui)
+LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Widgets)
+LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Concurrent)
+LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Network)
 
 if(UNIX)
     if(WITH_X11)
@@ -693,11 +696,11 @@ if(WIN32)
     find_path(PTHREAD_DLL_DIR "libwinpthread-1.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
     find_path(LIBCPP_DLL_DIR "libstdc++-6.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
     list(APPEND DLL_FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Core.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Gui.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Concurrent.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Network.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt5Widgets.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Core.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Gui.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Concurrent.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Network.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Widgets.dll"
         "${CMAKE_CURRENT_BINARY_DIR}/bin/libEGL.dll"
         "${SDL2_DLL_LOCATION_DIR}/SDL2.dll"
         "${GCC_DLL}/libgcc_s_seh-1.dll"
@@ -718,7 +721,7 @@ if(WIN32)
     install(FILES ${DLL_FILES} TYPE BIN )
 
     # Required platform plugin
-    get_target_property(QtCore_LOCATION Qt5::Core LOCATION)
+    get_target_property(QtCore_LOCATION Qt${QT_VERSION_MAJOR}::Core LOCATION)
     get_filename_component(QT_DLL_DIR ${QtCore_LOCATION} PATH)
     install(FILES
         ${QT_DLL_DIR}/../plugins/platforms/qwindows.dll
