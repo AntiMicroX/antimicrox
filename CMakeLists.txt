@@ -85,6 +85,7 @@ if(WIN32)
     option(PORTABLE_WIN "Compile app for portability" OFF)
 endif(WIN32)
 
+option(USE_QT6_BY_DEFAULT "Use Qt6 if available (if not available fallback to QT5)" OFF)
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 option(TRANS_REMOVE_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
@@ -523,15 +524,37 @@ endif(UNIX)
 set(QT_REQUIRED_VERSION 5.8)
 set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
 
-find_package(QT NAMES Qt5 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
-message("Found QT: ${QT_VERSION}")
+if(USE_QT6_BY_DEFAULT)
+    find_package(Qt6 COMPONENTS Core)
+    if(NOT Qt6_FOUND)
+        message("QT6 not found. Falling back to QT5.")
+    endif()
+else()
+    find_package(Qt5 COMPONENTS Core)
+    if(NOT Qt5_FOUND)
+        message("QT5 not found. Falling back to QT6.")
+    endif()
+endif()
 
-find_package(Qt5 ${QT_REQUIRED_VERSION} 
+if (Qt6_FOUND OR NOT Qt5_FOUND)
+    find_package(Qt6 ${QT_REQUIRED_VERSION} 
         COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
         REQUIRED)
+    find_package(QT NAMES Qt6 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
 
-QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
-QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+    QT_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+    QT_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+else()
+    find_package(Qt5 ${QT_REQUIRED_VERSION} 
+        COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
+        REQUIRED)
+    find_package(QT NAMES Qt5 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
+
+    QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+    QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+endif()
+message("Found QT: ${QT_VERSION}")
+
 add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
