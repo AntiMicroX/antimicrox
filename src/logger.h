@@ -23,7 +23,6 @@
 #include <QFile>
 #include <QMutex>
 #include <QObject>
-#include <QStringRef>
 #include <QTextStream>
 #include <QThread>
 
@@ -167,12 +166,6 @@ class LogHelper : public QObject
             message = message + s;
         return *this;
     };
-    LogHelper &operator<<(const QStringRef &s)
-    {
-        if (log_level != Logger::LogLevel::LOG_NONE)
-            message = message + s;
-        return *this;
-    };
     template <typename Message> LogHelper &operator<<(Message ch)
     {
         if (log_level != Logger::LogLevel::LOG_NONE)
@@ -241,12 +234,6 @@ class StreamPrinter : public QObject
     {
         m_stream << s;
         m_message << s.toStdString();
-        return *this;
-    };
-    StreamPrinter &operator<<(const QStringRef &s)
-    {
-        m_stream << s;
-        m_message << s.toString().toStdString();
         return *this;
     };
 };
