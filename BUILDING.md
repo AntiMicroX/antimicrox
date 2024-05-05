@@ -24,7 +24,9 @@ installed on your system in order to build this program:
 - `g++` from `gcc` (or clang compiler)
 - `cmake`
 - `extra-cmake-modules`
-- `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux) (Qt5 support)
+- QT libraries:
+  - For QT5: `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux)
+  - For QT6: `qt6-base-dev`, `qt6-tools-dev-tools` `libqt6core5compat6-dev`
 - `libsdl2-dev` (`sdl2` on distros based on Arch Linux) (SDL2)
 - `libxi-dev` (`libxi` on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
 - `libxtst-dev` (`libxtst` on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
@@ -50,6 +52,12 @@ One-liner for installing above dependencies:
 
 ```bash
 sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+```
+
+QT6 Variant:
+
+```bash
+sudo apt install g++ cmake extra-cmake-modules qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 ```
 
 </details>
