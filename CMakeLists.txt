@@ -36,23 +36,13 @@ endif(UNIX AND NOT APPLE AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND MSVC_TOOLSET_VERSION GREATER_EQUAL 140)
-    # MSVC tools v140 and later support c++11 ootb and has no flag to enable it.
-    set(COMPILER_SUPPORTS_CXX11 1)
-    set(COMPILER_IS_MSVC 1)
-else()
-    CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-endif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND MSVC_TOOLSET_VERSION GREATER_EQUAL 140)
-
-
-if(NOT COMPILER_SUPPORTS_CXX11)
-    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif(NOT COMPILER_SUPPORTS_CXX11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 message("Build type: ${CMAKE_BUILD_TYPE}")
 
 if(NOT COMPILER_IS_MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wcast-align -Wunreachable-code -g -O0 -fno-omit-frame-pointer")
     # ADDITIONAL DEBUG FLAGS
     # set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused  -Wswitch-enum")
