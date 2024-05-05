@@ -20,24 +20,34 @@ jobs:
             fail-fast: false
             matrix:
                 include:
-                    - name: Ubuntu 22-04 GCC
+                    - name: Ubuntu 22-04 GCC QT5
                       image: ubuntu-22.04
                       cc: gcc
                       cxx: g++
                       build-type: Debug
                       experimental: false
-                    - name: Ubuntu 22-04 Clang
+                      qt-packages: "qttools5-dev qttools5-dev-tools"
+                    - name: Ubuntu 22-04 GCC QT6
+                      image: ubuntu-22.04
+                      cc: gcc
+                      cxx: g++
+                      build-type: Debug
+                      experimental: false
+                      qt-packages: "qt6-base-dev qt6-tools-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-l10n-tools linguist-qt6"
+                    - name: Ubuntu 22-04 Clang QT5
                       image: ubuntu-22.04
                       cc: clang
                       cxx: clang++
                       build-type: Debug
                       experimental: true
+                      qt-packages: "qttools5-dev qttools5-dev-tools"
                     - name: Ubuntu 20-04 GCC  (for AppImage comp)
                       image: ubuntu-20.04
                       cc: gcc
                       cxx: g++
                       build-type: Debug
                       experimental: false
+                      qt-packages: "qttools5-dev qttools5-dev-tools"
 
         name: ${{ matrix.name }} ${{ matrix.build-type }}
         runs-on: ${{ matrix.image }}
@@ -47,7 +57,7 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Install Dependencies
-              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+              run: sudo apt-get update && sudo apt-get install extra-cmake-modules libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build ${{ matrix.qt-packages }}
 
             - name: Configure CMake
               run: cmake -GNinja -DCHECK_FOR_UPDATES=ON -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B ${{ github.workspace }}/build
@@ -64,14 +74,24 @@ jobs:
             fail-fast: false
             matrix:
                 include:
-                    - name: Windows Server 2019 MinGW
+                    - name: Windows Server 2019 MinGW QT5
                       image: windows-2019
+                      qt-version: "5.15.2"
                       shell: msys2 {0}
                       build-type: Debug
                       qt-arch: "win64_mingw81"
                       experimental: false
-                    - name: Windows Server 2019 MSVC
+                    - name: Windows Server 2019 MSVC QT5
                       image: windows-2019
+                      qt-version: "5.15.2"
+                      shell: cmd
+                      cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
+                      build-type: Debug
+                      qt-arch: "win64_msvc2019_64"
+                      experimental: false
+                    - name: Windows Server 2019 MSVC QT6
+                      image: windows-2019
+                      qt-version: "6.0"
                       shell: cmd
                       cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
                       build-type: Debug
@@ -121,7 +141,7 @@ jobs:
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
-                  version: "5.15.2"
+                  version: ${{ matrix.qt-version }}
                   host: "windows"
                   target: "desktop"
                   arch: ${{ matrix.qt-arch }}
