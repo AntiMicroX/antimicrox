@@ -41,6 +41,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 message("Build type: ${CMAKE_BUILD_TYPE}")
 
+if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND MSVC_TOOLSET_VERSION GREATER_EQUAL 141)
+    set(COMPILER_IS_MSVC TRUE)
+endif()
+
 if(NOT COMPILER_IS_MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wcast-align -Wunreachable-code -g -O0 -fno-omit-frame-pointer")
@@ -51,11 +55,7 @@ if(NOT COMPILER_IS_MSVC)
     endif(UNIX AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /analyze- /D_CRT_SECURE_NO_WARNINGS")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /W3 /GS /Od /sdl /wd4996 /RTC1 /Gd /Oy-")
-    if(MSVC_TOOLSET_VERSION GREATER_EQUAL 141)
-        # VS2017 (toolset v141) and later can set /permissive- to disable non-standard conforming behavior
-        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /permissive-")
-    endif(MSVC_TOOLSET_VERSION GREATER_EQUAL 141)
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /W3 /GS /Od /sdl /wd4996 /RTC1 /Gd /Oy-  /permissive-")
 endif(NOT COMPILER_IS_MSVC)
 
 # The version number.
