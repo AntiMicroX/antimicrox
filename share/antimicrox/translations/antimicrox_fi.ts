@@ -3088,12 +3088,12 @@ Mikäli toteutat hylkäyksen, palautetaan peliohjain sauvaohjaimeksi kun virkist
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="323"/>
         <source>NumPad</source>
-        <translation type="unfinished">Numeronäppäimistö</translation>
+        <translation>Numeronäppäimistö</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="328"/>
         <source>None</source>
-        <translation type="unfinished">Ei mitään</translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="336"/>
@@ -3140,17 +3140,17 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished">4-suuntainen kuten pääilmansuunnat</translation>
+        <translation>4-suuntainen - pääilmansuunnat</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="379"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished">4-suuntainen viistosuunnissa</translation>
+        <translation>4-suuntainen viistosuunnat</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="503"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished">Kuollut alue:</translation>
+        <translation>Kuollut alue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
@@ -3166,7 +3166,7 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="510"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Enimmäisalue:</translation>
+        <translation>Enimmäisalue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="605"/>
@@ -3199,7 +3199,7 @@ alueen vastatessa viistosuuntaisesti.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
@@ -3210,12 +3210,12 @@ alueen vastatessa viistosuuntaisesti.</translation>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="433"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="538"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished">Kulunut aika ennen kuin suunnan muutos astuu voimaan.</translation>
+        <translation>Aika kunnes suunnanmuutos astuu voimaan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="544"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="410"/>
@@ -3276,7 +3276,7 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
         <source>Na&amp;me:</source>
         <oldsource>Name:</oldsource>
-        <translation type="unfinished">Ni&amp;mi:</translation>
+        <translation>Ni&amp;mi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="827"/>
@@ -3286,17 +3286,17 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="836"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="598"/>
         <source>Set</source>
-        <translation type="unfinished">Aseta</translation>
+        <translation>Aseta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="611"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -3316,7 +3316,7 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/joydpad.cpp" line="95"/>
         <location filename="../../../src/joydpad.cpp" line="100"/>
         <source>DPad</source>
-        <translation type="unfinished">DPadi</translation>
+        <translation>DPadi</translation>
     </message>
 </context>
 <context>
@@ -3405,7 +3405,7 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="63"/>
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="67"/>
         <source>Button</source>
-        <translation type="unfinished">Painike</translation>
+        <translation>Painike</translation>
     </message>
 </context>
 <context>
@@ -3413,7 +3413,7 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/joysensorcontextmenu.cpp" line="63"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
 </context>
 <context>
@@ -3421,7 +3421,7 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Ilmoite</translation>
+        <translation>Ilmoite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3432,7 +3432,7 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
@@ -3452,17 +3452,17 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished">% turva-alue:</translation>
+        <translation>% turva-alue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
         <source>Presets:</source>
-        <translation type="unfinished">Vakiot:</translation>
+        <translation>Vakiot:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished">Kuollut alue:</translation>
+        <translation>Kuollut alue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
@@ -3473,7 +3473,7 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Enimmäisalue:</translation>
+        <translation>Enimmäisalue:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
@@ -3484,13 +3484,13 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished">Viistottainen kantama:</translation>
+        <translation>Viistottaiskantama:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="495"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished">Tontti (astekulman mukaan) jonka jokainen viistottainen alue varaa.</translation>
+        <translation>Alue (astekulman mukaan) jonka jokainen viistottainen alue varaa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
@@ -3501,17 +3501,17 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="556"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished">Kulunut aika ennen kuin suunnan muutos astuu voimaan.</translation>
+        <translation>Kulunut aika ennen kuin suunnan muutos astuu voimaan.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished">Ni&amp;mi:</translation>
+        <translation>Ni&amp;mi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="616"/>
@@ -3521,7 +3521,7 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
@@ -3541,12 +3541,12 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
         <source>Set</source>
-        <translation type="unfinished">Aseta</translation>
+        <translation>Aseta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -3554,12 +3554,12 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="218"/>
         <source>None</source>
-        <translation type="unfinished">Ei mitään</translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Hiiri (tavanomainen)</translation>
+        <translation>Hiiri (tavanomainen)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
@@ -3574,22 +3574,22 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="230"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiri (käänteinen vaakatasossa + pystysuunnassa)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="233"/>
         <source>Arrows</source>
-        <translation type="unfinished">Nuolet</translation>
+        <translation>Nuolet</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="236"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Näppäimet: W | A | S | D</translation>
+        <translation>Näppäimet: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
         <source>NumPad</source>
-        <translation type="unfinished">Numeronäppäimistö</translation>
+        <translation>Numeronäppäimistö</translation>
     </message>
 </context>
 <context>
@@ -3607,7 +3607,7 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="99"/>
         <source>Battery level of controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Peliohjaimen paristovarauksen taso</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="110"/>
@@ -3625,7 +3625,7 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="117"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1568"/>
         <source>Load</source>
-        <translation type="unfinished">Lataa</translation>
+        <translation>Lataa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="119"/>
@@ -3637,7 +3637,7 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="125"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1571"/>
         <source>Save</source>
-        <translation type="unfinished">Tallenna</translation>
+        <translation>Tallenna</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="127"/>
@@ -3784,7 +3784,7 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="533"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished">Asetustiedostot (*.amgp *.xml)</translation>
+        <translation>Asetustiedostot (*.amgp *.xml)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="640"/>
@@ -3809,7 +3809,7 @@ analogiselle tikulle.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1530"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1536"/>
         <source>Set</source>
-        <translation type="unfinished">Aseta</translation>
+        <translation>Aseta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1620"/>
@@ -3832,18 +3832,18 @@ analogiselle tikulle.</translation>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1960"/>
         <source>Sticks</source>
-        <translation type="unfinished">Sauvat</translation>
+        <translation>Tattiohjaimet</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2033"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>Anturit</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2098"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2150"/>
         <source>DPads</source>
-        <translation type="unfinished">Dpadit</translation>
+        <translation>D-padit</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2303"/>
@@ -3862,7 +3862,7 @@ nappeihin tai piilottaaksesi tyhjät painikkeet.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2477"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2501"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2509"/>
@@ -3898,7 +3898,7 @@ nappeihin tai piilottaaksesi tyhjät painikkeet.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="64"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation>Nimi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="71"/>
@@ -3935,7 +3935,7 @@ nappeihin tai piilottaaksesi tyhjät painikkeet.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="199"/>
         <source>Sensors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anturit:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="244"/>
@@ -3976,7 +3976,7 @@ nappeihin tai piilottaaksesi tyhjät painikkeet.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="490"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>Anturit</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="50"/>
@@ -3986,57 +3986,57 @@ nappeihin tai piilottaaksesi tyhjät painikkeet.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="58"/>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyhjä</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="63"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Matala</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="68"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Keskitaso</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="74"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>Täysi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="84"/>
         <source>Wired</source>
-        <translation type="unfinished"></translation>
+        <translation>Langallinen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="89"/>
         <source>Different: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erilainen: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="101"/>
         <source>Accelerometer + Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihdytysmittari + gyroskooppi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="103"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihdytysmittari</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="105"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyroskooppi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="107"/>
         <source>None</source>
-        <translation type="unfinished">Ei mitään</translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="124"/>
         <source>Axis %1</source>
-        <translation type="unfinished">Akseli %1</translation>
+        <translation>Akseli %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="177"/>
@@ -4246,12 +4246,12 @@ käynnistyy ensi kerran.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="336"/>
         <source>Show low battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä alhaisen paristovarauksen ilmoite</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
         <source>Show empty battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä ilmoite tyhjistä paristoista</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="366"/>
@@ -4274,7 +4274,7 @@ asetuksen ollessa kytkettynä.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="385"/>
         <source>Delay:</source>
-        <translation type="unfinished">Viive:</translation>
+        <translation>Viive:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="395"/>
@@ -4291,7 +4291,7 @@ aloitetaan.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="450"/>
         <source>Rate:</source>
-        <translation type="unfinished">Vauhtivaste:</translation>
+        <translation>Vauhtivaste:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="460"/>
@@ -4339,7 +4339,7 @@ Asetukset eivät tule voimaan ennenkuin joko virkistät kaikki peliohjainsauvat 
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="585"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="896"/>
         <source>Delete</source>
-        <translation type="unfinished">Poista</translation>
+        <translation>Poista</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="605"/>
@@ -4442,12 +4442,12 @@ Asetukset eivät tule voimaan ennenkuin joko virkistät kaikki peliohjainsauvat 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="819"/>
         <source>Class</source>
-        <translation type="unfinished">Luokka</translation>
+        <translation>Luokka</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="824"/>
         <source>Title</source>
-        <translation type="unfinished">Nimike</translation>
+        <translation>Nimike</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="829"/>
@@ -4544,7 +4544,7 @@ käyttää kaikkia käytettävissä olevia näyttöjä.</translation>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1138"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1169"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1131"/>
@@ -4580,7 +4580,7 @@ joita virtuaalihiiri käyttää.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1281"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note Unspecified log file allows printing logs in console output&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Huom. Määrittämätön lokitiedosto sallii kirjaukset päätteen tuotoksiin&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1318"/>
@@ -4590,7 +4590,7 @@ joita virtuaalihiiri käyttää.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1332"/>
         <source>None</source>
-        <translation type="unfinished">Ei mitään</translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1337"/>
@@ -4605,12 +4605,12 @@ joita virtuaalihiiri käyttää.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1347"/>
         <source>Info</source>
-        <translation type="unfinished">Tietopaketti</translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1352"/>
         <source>Verbose</source>
-        <translation type="unfinished"></translation>
+        <translation>Sanallisesti</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1357"/>
@@ -4630,7 +4630,7 @@ joita virtuaalihiiri käyttää.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="120"/>
         <source>AutoProfile (disabled in Wayland)</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaattiprofiili (poiskytketty Wayland-käytössä)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="265"/>
@@ -4677,7 +4677,7 @@ tuota vaihtoehtoa Windowsissa.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="23"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished">AntiMicroX</translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
@@ -4694,7 +4694,7 @@ Kytke sellainen kiinni jonka jälkeen valitse &quot;Päivitä sauvaohjaimet&quot
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivityspainike</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
@@ -4892,7 +4892,9 @@ Kytke sellainen kiinni jonka jälkeen valitse &quot;Päivitä sauvaohjaimet&quot
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oletko varma, että haluat suorittaa tämän ohjelman järjestelmänvalvojana?
+
+Joidenkin pelien tapauksessa järjestelmänvalvojan oikeuksilla ajaminen estää AntiMicrossa luotujen asetusten käytön kyseisissä peleissä, ellei myös itse AntiMicroa suoriteta järjestelmänvalvojan oikeuksin. Tämä johtuu Windowsin (Vista ja uudemmat) käyttöoikeusongelmista, User Account Control (UAC).</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1430"/>
@@ -4924,7 +4926,7 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1734"/>
         <source>Update to %1 available</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivitys kohteelle %1 saatavilla</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1857"/>
@@ -4934,7 +4936,7 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1858"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä profiili käyttää ohjaimen GUID-numeroita (valmistajatunniste). Haluatko vaihtaa nämä GUID-numerot UniqueID-muotoon (yksilöllinen tunniste) tämän tiedoston kohdalla? Täten voit käyttää samaa mallia yhtenevien peliohjainten kanssa. Näin vanhaa tiedostoa ei voida ladata AntiMicro:ssa version 2.25 jälkeen.</translation>
     </message>
 </context>
 <context>
@@ -4947,7 +4949,7 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="272"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -4960,7 +4962,7 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="255"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -4968,12 +4970,12 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="283"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="296"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -4981,12 +4983,12 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="267"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="280"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -4994,12 +4996,12 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="113"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -5007,7 +5009,7 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="17"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="28"/>
@@ -5026,22 +5028,31 @@ from the center of the screen depending on how
 much you move an axis. The mouse cursor will
 be returned to the center of the screen when the
 axis is moved back to the dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kohdistintilaa käytetään hiiren kohdistimen siirtämiseen
+näytöllä suhteessa sen nykyiseen sijaintiin
+riippuen siitä, kuinka paljon sitä akselilla liikutat
+tai nappia painettaessa.
+
+Spring-tilaa käytetään hiiren kohdistimen siirtämiseen
+näytön keskeltä riippuen siitä, miten
+paljon akselilla liikutaan. Hiiren kohdistin
+palaa näytön keskelle, kun
+akselialueella siirrytään takaisin kuolleelle alueelle.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="53"/>
         <source>Cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Kohdistin</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="58"/>
         <source>Spring</source>
-        <translation type="unfinished">Ponnahdus</translation>
+        <translation>Ponnahdus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="76"/>
         <source>Acceleration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiihdytys:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="83"/>
@@ -5063,100 +5074,122 @@ Easing Quadratic: Axis high end is gradually accelerated over a period of time u
 
 Easing Cubic: Axis high end is gradually accelerated over
 a period of time using a Cubic curve.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Parannettu: kolmiportainen käyrä, joka saa hiiren liikkumaan
+hitaasti akselin alapäässä ja nopeasti yläpäässä.
+
+Suoraviivainen: hiiri liikkuu suhteessa akseliin.
+
+Neliömallinen: Hiiri kiihtyy hitaasti alapäässä.
+
+Kuutiomallinen: Hiiri kiihtyy hitaammin kuin neliömallissa.
+
+Neliömalli tehostettuna: nostaa hiiren nopeutta 1,5 kertaiseksi kun
+95% akselimatkasta on tehty.
+
+Tehotoiminto: mahdollistaa mukautetun käyrävaihtoehdon.
+
+Rauhallinen neliömallinen: kiihtyy akselin yläpäätä kohti vähitellen käyttäen neliökäyrämallia.
+
+Keveä kuutiomalli: kiihtyy vähitellen akselin yläpäätä kohti
+käyttäen kuutiokäyrämallia.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="109"/>
         <source>Enhanced Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Parannettu tarkkuus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="728"/>
         <source>Linear</source>
-        <translation type="unfinished"></translation>
+        <translation>Suoraviivainen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="119"/>
         <source>Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>Neliömallinen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="124"/>
         <source>Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuutiomallinen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="129"/>
         <source>Quadratic Extreme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tehostettu neliömallinen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="134"/>
         <source>Power Function</source>
-        <translation type="unfinished"></translation>
+        <translation>Tehotoiminto</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="139"/>
         <source>Easing Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>Rauhallinen neliömalli</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="144"/>
         <source>Easing Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>Rauhallinen kuutiomallinen</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="177"/>
         <source>Mouse Speed Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiren nopeusasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="192"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ota käyttöön nopeuden samanaikainen muuttaminen
+vaaka- ja pystysuorassa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="196"/>
         <source>Change Together</source>
-        <translation type="unfinished"></translation>
+        <translation>Muuta yhdessä</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="221"/>
         <source>Hori&amp;zontal
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaaka&amp;taso
+Nopeus:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished"></translation>
+        <translation>1 = 20 pikseliä / sek</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="266"/>
         <source>&amp;Vertical
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pystysuunta
+Nopeus:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
         <source>Wheel Hori.
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiirirulla vaakat.
+Nopeus:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="329"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta haluttu nopeus hiiren liikkeelle vaakatasossa
+simuloitujen pykälien määrän mukaan / sekunnissa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="354"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="397"/>
         <source>1 = 1 notch(es)/s</source>
-        <translation type="unfinished"></translation>
+        <translation>1 = 1 pykälä(ä)/s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
@@ -5247,7 +5280,7 @@ using typical gamepad analog sticks.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="661"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="847"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="616"/>
@@ -5356,7 +5389,7 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
@@ -5367,7 +5400,7 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message numerus="yes">
         <location filename="../../../src/gui/mousesettingsdialog.cpp" line="191"/>
@@ -5406,7 +5439,7 @@ mouse position set by a non-relative spring.</source>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="142"/>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="165"/>
         <source>0x00000000</source>
-        <translation type="unfinished"></translation>
+        <translation>0x00000000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="135"/>
@@ -5459,7 +5492,7 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="158"/>
         <source>Pause</source>
-        <translation type="unfinished">Tauko</translation>
+        <translation>Tauko</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="159"/>
@@ -5551,7 +5584,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="953"/>
         <source>Last button</source>
-        <translation type="unfinished">Viimeinen painike</translation>
+        <translation>Viimeinen painike</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="954"/>
@@ -5631,7 +5664,7 @@ To check possible solutions please visit: </source>
     <message>
         <location filename="../../../src/gui/quicksetdialog.ui" line="14"/>
         <source>Quick Set</source>
-        <translation type="unfinished">Pika-asettelu</translation>
+        <translation>Pika-asettelu</translation>
     </message>
     <message>
         <location filename="../../../src/gui/quicksetdialog.ui" line="23"/>
@@ -5665,12 +5698,12 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1021"/>
         <source>Set %1: %2</source>
-        <translation type="unfinished">Aseta %1: %2</translation>
+        <translation>Aseta %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1023"/>
         <source>Set %1</source>
-        <translation type="unfinished">Aseta %1</translation>
+        <translation>Aseta %1</translation>
     </message>
 </context>
 <context>
@@ -5683,42 +5716,42 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="60"/>
         <source>Set 1</source>
-        <translation type="unfinished">Kokooma 1</translation>
+        <translation>Asetelma 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="65"/>
         <source>Set 2</source>
-        <translation type="unfinished">Kokooma 2</translation>
+        <translation>Asetelma 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="70"/>
         <source>Set 3</source>
-        <translation type="unfinished">Kokooma 3</translation>
+        <translation>Asetelma 3</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="75"/>
         <source>Set 4</source>
-        <translation type="unfinished">Kokooma 4</translation>
+        <translation>Asetelma 4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="80"/>
         <source>Set 5</source>
-        <translation type="unfinished">Kokooma 5</translation>
+        <translation>Asetelma 5</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="85"/>
         <source>Set 6</source>
-        <translation type="unfinished">Kokooma 6</translation>
+        <translation>Asetelma 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="90"/>
         <source>Set 7</source>
-        <translation type="unfinished">Kokooma 7</translation>
+        <translation>Asetelma 7</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="95"/>
         <source>Set 8</source>
-        <translation type="unfinished">Kokooma 8</translation>
+        <translation>Asetelma 8</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="100"/>
@@ -5731,7 +5764,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/simplekeygrabberbutton.cpp" line="193"/>
         <source>Mouse</source>
-        <translation type="unfinished">Hiiri</translation>
+        <translation>Hiiri</translation>
     </message>
 </context>
 <context>
@@ -5858,7 +5891,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="191"/>
         <source>s</source>
-        <translation type="unfinished">s</translation>
+        <translation>s</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="192"/>
@@ -6028,52 +6061,52 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="227"/>
         <source>1</source>
-        <translation type="unfinished">0.10s {1?}</translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="228"/>
         <source>2</source>
-        <translation type="unfinished">0.10s {2?}</translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="229"/>
         <source>3</source>
-        <translation type="unfinished">0.10s {3?}</translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="230"/>
         <source>4</source>
-        <translation type="unfinished">0.10s {4?}</translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="231"/>
         <source>5</source>
-        <translation type="unfinished">0.10s {5?}</translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="232"/>
         <source>6</source>
-        <translation type="unfinished">0.10s {6?}</translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="233"/>
         <source>7</source>
-        <translation type="unfinished">0.10s {7?}</translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="234"/>
         <source>8</source>
-        <translation type="unfinished">0.10s {8?}</translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="235"/>
         <source>9</source>
-        <translation type="unfinished">0.10s {9?}</translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="236"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="237"/>
@@ -6197,22 +6230,22 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
         <source>Up</source>
-        <translation type="unfinished">Ylös</translation>
+        <translation>Ylös</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="262"/>
         <source>Left</source>
-        <translation type="unfinished">Vasen</translation>
+        <translation>Vasen</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="263"/>
         <source>Down</source>
-        <translation type="unfinished">Alas</translation>
+        <translation>Alas</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="264"/>
         <source>Right</source>
-        <translation type="unfinished">Oikea</translation>
+        <translation>Oikea</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="265"/>
@@ -6327,7 +6360,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="292"/>
         <source>Pause</source>
-        <translation type="unfinished">Tauko</translation>
+        <translation>Tauko</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="295"/>
@@ -6372,7 +6405,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="327"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[EI NAPPIA]</translation>
+        <translation>[EI NAPPIA]</translation>
     </message>
 </context>
 <context>
@@ -6380,54 +6413,54 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished">Kaapatut ikkuna-asetukset</translation>
+        <translation>Kaapatut ikkuna-asetukset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation type="unfinished">Tiedot ikkunasta</translation>
+        <translation>Tietoja ikkunasta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished">Luokka:</translation>
+        <translation>Luokka:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="55"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TekstiTunnus</translation>
+        <translation>TekstiTunnus</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished">Nimike:</translation>
+        <translation>Nimike:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished">Polku:</translation>
+        <translation>Polku:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="106"/>
         <source>Match By Properties</source>
-        <translation type="unfinished">Täsmää asetusten kanssa</translation>
+        <translation>Täsmää asetusten kanssa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="121"/>
         <source>Class</source>
-        <translation type="unfinished">Luokka</translation>
+        <translation>Luokka</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="128"/>
         <source>Title</source>
-        <translation type="unfinished">Nimike</translation>
+        <translation>Nimike</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="135"/>
         <source>Path</source>
-        <translation type="unfinished">Polku</translation>
+        <translation>Polku</translation>
     </message>
 </context>
 <context>
@@ -6594,52 +6627,52 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
         <source>1</source>
-        <translation type="unfinished">0.10s {1?}</translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="156"/>
         <source>2</source>
-        <translation type="unfinished">0.10s {2?}</translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="157"/>
         <source>3</source>
-        <translation type="unfinished">0.10s {3?}</translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
         <source>4</source>
-        <translation type="unfinished">0.10s {4?}</translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="159"/>
         <source>5</source>
-        <translation type="unfinished">0.10s {5?}</translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="160"/>
         <source>6</source>
-        <translation type="unfinished">0.10s {6?}</translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="161"/>
         <source>7</source>
-        <translation type="unfinished">0.10s {7?}</translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="162"/>
         <source>8</source>
-        <translation type="unfinished">0.10s {8?}</translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="163"/>
         <source>9</source>
-        <translation type="unfinished">0.10s {9?}</translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="164"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
@@ -6691,22 +6724,22 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="178"/>
         <source>Up</source>
-        <translation type="unfinished">Ylös</translation>
+        <translation>Ylös</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="179"/>
         <source>Down</source>
-        <translation type="unfinished">Alas</translation>
+        <translation>Alas</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="180"/>
         <source>Left</source>
-        <translation type="unfinished">Vasen</translation>
+        <translation>Vasen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="181"/>
         <source>Right</source>
-        <translation type="unfinished">Oikea</translation>
+        <translation>Oikea</translation>
     </message>
 </context>
 <context>
@@ -6721,19 +6754,19 @@ LK</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="72"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="98"/>
         <source>Mouse</source>
-        <translation type="unfinished">Hiiri</translation>
+        <translation>Hiiri</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="500"/>
         <source>Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Vasen</translation>
+        <translation>Vasen</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="512"/>
         <source>Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Ylös</translation>
+        <translation>Ylös</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="520"/>
@@ -6781,13 +6814,13 @@ LK</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="554"/>
         <source>Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Alas</translation>
+        <translation>Alas</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="571"/>
         <source>Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Oikea</translation>
+        <translation>Oikea</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="584"/>
@@ -6816,7 +6849,7 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="609"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Hiiriasetukset</translation>
+        <translation>Hiiriasetukset</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="728"/>
@@ -6826,19 +6859,19 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="802"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[EI NAPPIA]</translation>
+        <translation>[EI NAPPIA]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="906"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="926"/>
         <source>Last button</source>
-        <translation type="unfinished">Viimeinen painike</translation>
+        <translation>Viimeinen painike</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="907"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="927"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished">Määrityslokeroita ei saatu tälle napille tyhjennettyä, koska sille ei ollut yhtäkään määritystä asetettuna näppäimistöltä tai peliohjaimelta. Kartoita vähintään yksi painike näppäimistöltä peliohjaimelle</translation>
+        <translation>Tälle painikkeelle ei saatu tyhjennettyä lokeroita, koska yhtäkään määritystä näppäimistöstä peliohjaimeen ei ole. Kartoita vähintään yksi painike näppäimistöltä peliohjaimelle</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="988"/>
@@ -7035,7 +7068,7 @@ LK</source>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="86"/>
         <source>Cancel</source>
-        <translation type="unfinished">Peru</translation>
+        <translation>Peru</translation>
     </message>
 </context>
 <context>
@@ -7043,7 +7076,7 @@ LK</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="53"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[EI NAPPIA]</translation>
+        <translation>[EI NAPPIA]</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="319"/>
