@@ -23,6 +23,10 @@
 #include <QMetaObject>
 #include <QTime>
 
+// only for QT 6
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QStringConverter>
+#endif
 #include <chrono>
 #include <thread>
 
@@ -183,7 +187,11 @@ void Logger::setCurrentLogFile(QString filename)
     }
     instance->outFileStream.setDevice(&instance->outputFile);
 #if defined(Q_OS_WIN)
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    instance->outFileStream.setEncoding(QStringConverter::Utf8);
+    #else
     instance->outFileStream.setCodec("UTF-8"); // to properly print special characters in files
+    #endif
 #endif
     instance->setCurrentStream(&instance->outFileStream);
 }
