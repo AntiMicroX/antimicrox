@@ -139,24 +139,12 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 #ifdef Q_OS_WIN
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+    QFile tempFile(RUNATSTARTUPLOCATION);
+    if (tempFile.exists())
     {
-        // Handle Windows Vista and later
-        QFile tempFile(RUNATSTARTUPLOCATION);
-        if (tempFile.exists())
-        {
-            ui->launchAtWinStartupCheckBox->setChecked(true);
-        }
-    } else
-    {
-        // Handle Windows XP
-        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
-        QString autoRunEntry = autoRunReg.value("antimicrox", "").toString();
-        if (!autoRunEntry.isEmpty())
-        {
-            ui->launchAtWinStartupCheckBox->setChecked(true);
-        }
+        ui->launchAtWinStartupCheckBox->setChecked(true);
     }
+
 #else
     ui->launchAtWinStartupCheckBox->setVisible(false);
 
@@ -566,36 +554,18 @@ void MainSettingsDialog::saveNewSettings()
     settings->getLock()->lock();
 
 #ifdef Q_OS_WIN
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-    {
-        // Handle Windows Vista and later
-        QFile tempFile(RUNATSTARTUPLOCATION);
+    QFile tempFile(RUNATSTARTUPLOCATION);
 
-        if (ui->launchAtWinStartupCheckBox->isChecked() && !tempFile.exists())
-        {
-            if (tempFile.open(QFile::WriteOnly))
-            {
-                QFile currentAppLocation(qApp->applicationFilePath());
-                currentAppLocation.link(QFileInfo(tempFile).absoluteFilePath());
-            }
-        } else if (tempFile.exists() && QFileInfo(tempFile).isWritable())
-        {
-            tempFile.remove();
-        }
-    } else
+    if (ui->launchAtWinStartupCheckBox->isChecked() && !tempFile.exists())
     {
-        // Handle Windows XP
-        QSettings autoRunReg(RUNATSTARTUPREGKEY, QSettings::NativeFormat);
-        QString autoRunEntry = autoRunReg.value("antimicrox", "").toString();
-
-        if (ui->launchAtWinStartupCheckBox->isChecked())
+        if (tempFile.open(QFile::WriteOnly))
         {
-            QString nativeFilePath = QDir::toNativeSeparators(qApp->applicationFilePath());
-            autoRunReg.setValue("antimicrox", nativeFilePath);
-        } else if (!autoRunEntry.isEmpty())
-        {
-            autoRunReg.remove("antimicrox");
+            QFile currentAppLocation(qApp->applicationFilePath());
+            currentAppLocation.link(QFileInfo(tempFile).absoluteFilePath());
         }
+    } else if (tempFile.exists() && QFileInfo(tempFile).isWritable())
+    {
+        tempFile.remove();
     }
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
