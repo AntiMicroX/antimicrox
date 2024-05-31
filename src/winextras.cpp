@@ -20,16 +20,6 @@ typedef DWORD(WINAPI *MYPROC)(HANDLE, DWORD, LPWSTR, PDWORD);
 static MYPROC pQueryFullProcessImageNameW =
     (MYPROC)GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "QueryFullProcessImageNameW");
 
-/*static bool isWindowsVistaOrHigher()
-{
-    OSVERSIONINFO osvi;
-    memset(&osvi, 0, sizeof(osvi));
-    osvi.dwOSVersionInfoSize = sizeof(osvi);
-    GetVersionEx(&osvi);
-    return (osvi.dwPlatformId == VER_PLATFORM_WIN32_NT && osvi.dwMajorVersion >= 6);
-}
-*/
-
 const unsigned int WinExtras::EXTENDED_FLAG = 0x100;
 int WinExtras::originalMouseAccel = 0;
 
@@ -270,8 +260,6 @@ QString WinExtras::getForegroundWindowExePath()
     if (windowProcess != NULL)
     {
         WCHAR filename[MAX_PATH];
-        TCHAR filename_xp[MAX_PATH];
-        // qDebug() << QString::number(sizeof(filename)/sizeof(TCHAR));
         if (pQueryFullProcessImageNameW)
         {
             // Windows Vista and later
@@ -283,12 +271,8 @@ QString WinExtras::getForegroundWindowExePath()
             exePath = QString::fromWCharArray(filename);
         } else
         {
-            // Windows XP
-            memset(filename_xp, 0, sizeof(filename_xp));
-            GetModuleFileNameEx(windowProcess, NULL, filename_xp, MAX_PATH * sizeof(TCHAR));
-            exePath = QString(filename_xp);
+            qWarning() << "Windows XP is not supported";
         }
-
         CloseHandle(windowProcess);
     }
 

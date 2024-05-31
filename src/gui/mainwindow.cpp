@@ -191,11 +191,8 @@ MainWindow::MainWindow(QMap<SDL_JoystickID, InputDevice *> *joysticks, CommandLi
     {
         if (!WinExtras::IsRunningAsAdmin())
         {
-            if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-            {
-                QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
-                ui->uacPushButton->setIcon(uacIcon);
-            }
+            QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
+            ui->uacPushButton->setIcon(uacIcon);
             connect(ui->uacPushButton, SIGNAL(clicked()), this, SLOT(restartAsElevated()));
         } else
         {
@@ -1411,11 +1408,8 @@ void MainWindow::restartAsElevated()
                    "This is due to permission problems caused by User Account "
                    "Control (UAC) options in Windows Vista and later."));
 
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-    {
-        QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
-        msg.button(QMessageBox::Yes)->setIcon(uacIcon);
-    }
+    QIcon uacIcon = QApplication::style()->standardIcon(QStyle::SP_VistaShield);
+    msg.button(QMessageBox::Yes)->setIcon(uacIcon);
 
     int result = msg.exec();
     if (result == QMessageBox::Yes)
