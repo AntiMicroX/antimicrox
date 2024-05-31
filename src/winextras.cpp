@@ -330,6 +330,14 @@ void WinExtras::removeFileAssociationFromRegistry()
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
 }
 
+// This functions works only with QT6 and newer C++
+const wchar_t *convertCharArrayToLPCWSTR(const char *charArray)
+{
+    wchar_t *wString = new wchar_t[1024];
+    MultiByteToWideChar(CP_ACP, 0, charArray, -1, wString, 1024);
+    return wString;
+}
+
 /**
  * @brief Attempt to elevate process using runas
  * @return Execution status
@@ -344,8 +352,13 @@ bool WinExtras::elevateAntiMicro()
     char *tempfile = ba.data();
     tempverb[5] = '\0';
     tempfile[antiProgramLocation.length()] = '\0';
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    sei.lpVerb = convertCharArrayToLPCWSTR(tempverb);
+    sei.lpFile = convertCharArrayToLPCWSTR(tempfile);
+#else
     sei.lpVerb = tempverb;
     sei.lpFile = tempfile;
+#endif
     sei.hwnd = NULL;
     sei.nShow = SW_NORMAL;
     BOOL result = ShellExecuteEx(&sei);
