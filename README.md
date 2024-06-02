@@ -8,7 +8,6 @@
 6. [Testing Under Linux](#testing-under-linux)  
 7. [AntiMicroX Profiles](#antimicrox-profiles)
 8. [Support](#support)  
-9. [Contributing](#contributing)  
 
 ## Description
 
@@ -186,9 +185,14 @@ for yourself, [here](https://github.com/AntiMicroX/antimicrox-profiles) is the f
 a question or share a suggestion, you can do that on the antimicrox page or on the
 [antimicrox-profiles](https://github.com/AntiMicroX/antimicrox-profiles) page.
 
-## Contributing
+## Support
 
-Any contributions into codebase are welcome. You can find contribution guide [here](./CONTRIBUTING.md).
+There are several ways to get help with AntiMicroX. The easiest way is to upvote (with 👍) issues you thing are the most important ones. It is also possible to fund some issues using [Polar](https://polar.sh) platform to attract contributors.
+
+### Contributing
+
+Any contributions into codebase are welcome. You can find contribution guide [here](./CONTRIBUTING.md).  
+Some issues are may have bounties which are meant to attract contributors.
 
 ### Translation
 
