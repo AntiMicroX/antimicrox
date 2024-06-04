@@ -86,7 +86,7 @@ jobs:
                       qt-version: "6.5"
                       shell: msys2 {0}
                       build-type: Debug
-                      qt-arch: "win64_mingw81"
+                      qt-arch: "win64_mingw"
                       experimental: false
                     - name: Windows Server 2019 MSVC QT5
                       image: windows-2019
