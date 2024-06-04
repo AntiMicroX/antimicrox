@@ -1656,7 +1656,7 @@ lorsque que ce bouton est utilisé.</translation>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation type="unfinished">décalage</translation>
+        <translation>décalage</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
@@ -1719,7 +1719,7 @@ lorsque que ce bouton est utilisé.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
         <source>Accelerometer calibration sets the neutral controller orientation.</source>
-        <translation type="unfinished">L&apos;étalonnage de l&apos;accéléromètre définit l&apos;orientation neutre du contrôleur.</translation>
+        <translation>L&apos;étalonnage de l&apos;accéléromètre définit l&apos;orientation neutre du contrôleur.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="282"/>
@@ -1828,7 +1828,7 @@ Cela peut prendre jusqu&apos;à %1 secondes.</translation>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished">Étiquette de texte</translation>
+        <translation>Étiquette de texte</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
