@@ -13,11 +13,11 @@
         "complex": "cpp",
         "cmath": "cpp"
     },
-    "editor.formatOnPaste": true,
-    "editor.formatOnType": true,
-    "editor.formatOnSave": true,
     "[c]": {
-        "editor.defaultFormatter": "xaver.clang-format"
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnPaste": true,
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
     },
     "qttools.injectNatvisFile": false,
     "cmake.debugConfig": {
