@@ -83,7 +83,7 @@ jobs:
                       experimental: false
                     - name: Windows Server 2019 MinGW QT6
                       image: windows-2019
-                      qt-version: "6.5"
+                      qt-version: "6.6"
                       shell: msys2 {0}
                       build-type: Debug
                       qt-arch: "win64_mingw"
@@ -98,7 +98,7 @@ jobs:
                       experimental: false
                     - name: Windows Server 2019 MSVC QT6
                       image: windows-2019
-                      qt-version: "6.5"
+                      qt-version: "6.6"
                       shell: cmd
                       cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
                       build-type: Debug
