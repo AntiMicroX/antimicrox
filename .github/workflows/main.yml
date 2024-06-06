@@ -74,21 +74,21 @@ jobs:
             fail-fast: false
             matrix:
                 include:
-                    - name: Windows Server 2019 MinGW QT5
+                    - name: WinServer2019 MinGW QT5
                       image: windows-2019
                       qt-version: "5.15.2"
                       shell: msys2 {0}
                       build-type: Debug
                       qt-arch: "win64_mingw81"
                       experimental: false
-                    - name: Windows Server 2019 MinGW QT6
+                    - name: WinServer2019 MinGW QT6
                       image: windows-2019
                       qt-version: "6.6"
                       shell: msys2 {0}
                       build-type: Debug
                       qt-arch: "win64_mingw"
                       experimental: false
-                    - name: Windows Server 2019 MSVC QT5
+                    - name: WinServer2019 MSVC QT5
                       image: windows-2019
                       qt-version: "5.15.2"
                       shell: cmd
@@ -96,7 +96,7 @@ jobs:
                       build-type: Debug
                       qt-arch: "win64_msvc2019_64"
                       experimental: false
-                    - name: Windows Server 2019 MSVC QT6
+                    - name: WinServer2019 MSVC QT6
                       image: windows-2019
                       qt-version: "6.6"
                       shell: cmd
