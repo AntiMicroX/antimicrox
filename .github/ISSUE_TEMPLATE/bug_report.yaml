@@ -48,7 +48,7 @@ body:
       Host OS: Windows Version: 10 Architecture: x86_64 
     render: markdown
   validations:
-    required: false
+    required: true
 - type: textarea
   attributes:
     label: Anything else?
