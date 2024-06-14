@@ -5195,7 +5195,8 @@ simuloitujen pykälien määrän mukaan / sekunnissa.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
         <source>Wheel Vert.
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiiren rulla / pysty.
+Nopeus:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="381"/>
