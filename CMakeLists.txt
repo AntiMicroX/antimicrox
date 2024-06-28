@@ -511,7 +511,7 @@ endif(UNIX)
 ###############################
 
 #QT
-set(QT_REQUIRED_VERSION 5.8)
+set(QT_REQUIRED_VERSION 5.10)
 set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
 
 if(USE_QT6_BY_DEFAULT)
