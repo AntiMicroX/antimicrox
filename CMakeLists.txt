@@ -527,7 +527,7 @@ else()
 endif()
 
 if (Qt6_FOUND OR NOT Qt5_FOUND)
-    find_package(Qt6 ${QT_REQUIRED_VERSION} 
+    find_package(Qt6
         COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
         REQUIRED)
     find_package(QT NAMES Qt6 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
