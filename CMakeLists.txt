@@ -526,18 +526,15 @@ else()
     endif()
 endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
-message("🍏Found QT: ${QT_VERSION}")
-find_package(Qt${QT_VERSION_MAJOR}
-             COMPONENTS Gui
-                        Network
-             REQUIRED)
-
-message("Found Gui and network")
 if (Qt6_FOUND OR NOT Qt5_FOUND)
-    message("Searching rof remaining QT6 libraries")
+    message("Searching for remaining QT6 libraries")
+    
     find_package(Qt6
-        COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
+        COMPONENTS Core Network LinguistTools Concurrent
+        REQUIRED)
+    message("Searching for GUI and Widgets libraries")
+    find_package(Qt6
+        COMPONENTS Widgets Gui
         REQUIRED)
     message("Libraries found")
     find_package(QT NAMES Qt6 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
