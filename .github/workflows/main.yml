@@ -83,26 +83,10 @@ jobs:
                       experimental: false
                     - name: WinServer2019 MinGW QT6
                       image: windows-2019
-                      qt-version: "6.7"
+                      qt-version: "6.4.2"
                       shell: msys2 {0}
                       build-type: Debug
                       qt-arch: "win64_mingw"
-                      experimental: false
-                    - name: WinServer2019 MSVC QT5
-                      image: windows-2019
-                      qt-version: "5.15.2"
-                      shell: cmd
-                      cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
-                      build-type: Debug
-                      qt-arch: "win64_msvc2019_64"
-                      experimental: false
-                    - name: WinServer2019 MSVC QT6
-                      image: windows-2019
-                      qt-version: "6.7"
-                      shell: cmd
-                      cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
-                      build-type: Debug
-                      qt-arch: "win64_msvc2019_64"
                       experimental: false
         name: ${{ matrix.name }} ${{ matrix.build-type }}
         runs-on: ${{ matrix.image }}
@@ -148,11 +132,13 @@ jobs:
             - name: Install Qt
               uses: jurplel/install-qt-action@v3
               with:
+                  aqtversion: ==2.1.*
                   version: ${{ matrix.qt-version }}
-                  host: "windows"
+                  # host: "windows"
                   target: "desktop"
                   arch: ${{ matrix.qt-arch }}
-                  dir: "${{ github.workspace }}/qt/"
+                  dir: "${{ github.workspace }}"
+                  tools: "tools_mingw90"
                   install-deps: "true"
               
             - name: Configure CMake
