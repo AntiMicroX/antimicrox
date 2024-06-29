@@ -526,6 +526,14 @@ else()
     endif()
 endif()
 
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
+message("🍏Found QT: ${QT_VERSION}")
+find_package(Qt${QT_VERSION_MAJOR}
+             COMPONENTS Gui
+                        Network
+             REQUIRED)
+
+message("Found Gui and network")
 if (Qt6_FOUND OR NOT Qt5_FOUND)
     message("Searching rof remaining QT6 libraries")
     find_package(Qt6
