@@ -156,6 +156,8 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
     connect(this, &GameControllerMappingDialog::finished, this, &GameControllerMappingDialog::enableButtonEvents);
 
     PadderCommon::unlockInputDevices();
+    qInfo() << "Opened GameControllerMappingDialog for mapping device: " << device->getSDLName() << " (#"
+            << device->getRealJoyNumber() << ")";
 }
 
 GameControllerMappingDialog::~GameControllerMappingDialog() { delete ui; }
@@ -317,6 +319,8 @@ void GameControllerMappingDialog::dpadAssign(int dpad, int buttonindex)
 
 void GameControllerMappingDialog::saveChanges()
 {
+    qInfo() << "Saving changes for GameControllerMappingDialog for device: " << device->getSDLName() << " (#"
+            << device->getRealJoyNumber() << ")";
     QString mappingString = generateSDLMappingString();
 
     settings->getLock()->lock();
