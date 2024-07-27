@@ -180,41 +180,32 @@ JoySensorDirection JoyAccelerometerSensor::calculateSensorDirection()
     double roll = calculateRoll();
     double pitch_abs = abs(pitch);
     double roll_abs = abs(roll);
-    if (pitch_abs * pitch_abs + roll_abs * roll_abs < m_dead_zone * m_dead_zone)
-        return SENSOR_CENTERED;
 
     double range = M_PI / 4 - m_diagonal_range / 2;
-    bool inPitch = pitch_abs < range;
+    bool inPitch = pitch_abs < m_dead_zone;
     bool inRoll = roll_abs < range;
 
-    if (inPitch && !inRoll)
+    if (!inPitch)
     {
-        if (roll > 0)
-            return SENSOR_LEFT;
-        else
-            return SENSOR_RIGHT;
-    } else if (!inPitch && inRoll)
-    {
-        if (pitch > 0)
-            return SENSOR_UP;
-        else
-            return SENSOR_DOWN;
-    } else // in both or in none
-    {
-        if (pitch > 0)
+        if (!inRoll)
         {
             if (roll > 0)
-                return SENSOR_LEFT_UP;
-            else
-                return SENSOR_RIGHT_UP;
+            {
+                return pitch > 0 ? SENSOR_LEFT_UP : SENSOR_LEFT_DOWN;
+            } else
+            {
+                return pitch > 0 ? SENSOR_RIGHT_UP : SENSOR_RIGHT_DOWN;
+            }
         } else
         {
-            if (roll > 0)
-                return SENSOR_LEFT_DOWN;
-            else
-                return SENSOR_RIGHT_DOWN;
+            return pitch > 0 ? SENSOR_UP : SENSOR_DOWN;
         }
+    } else if (!inRoll)
+    {
+        return roll > 0 ? SENSOR_LEFT : SENSOR_RIGHT;
     }
+
+    return SENSOR_CENTERED;
 }
 
 /**
