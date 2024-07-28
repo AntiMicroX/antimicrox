@@ -527,9 +527,16 @@ else()
 endif()
 
 if (Qt6_FOUND OR NOT Qt5_FOUND)
-    find_package(Qt6 ${QT_REQUIRED_VERSION} 
-        COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
+    message("Searching for remaining QT6 libraries")
+    
+    find_package(Qt6
+        COMPONENTS Core Network LinguistTools Concurrent
         REQUIRED)
+    message("Searching for GUI and Widgets libraries")
+    find_package(Qt6
+        COMPONENTS Widgets Gui
+        REQUIRED)
+    message("Libraries found")
     find_package(QT NAMES Qt6 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
 
     QT_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
