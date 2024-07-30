@@ -1284,7 +1284,7 @@ void AdvanceButtonDialog::checkCycleResetWidgetStatus(bool enabled)
 
 void AdvanceButtonDialog::setButtonCycleResetInterval(double value)
 {
-    int milliseconds = (value * 1000) + (fmod(value, 1.0) * 1000);
+    int milliseconds = value * 1000;
     m_button->setCycleResetTime(milliseconds);
 }
 
