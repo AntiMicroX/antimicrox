@@ -185,6 +185,11 @@ JoySensorDirection JoyAccelerometerSensor::calculateSensorDirection()
     bool inPitch = pitch_abs < m_dead_zone;
     bool inRoll = roll_abs < range;
 
+    if (isnan(roll))
+    {
+        return SENSOR_CENTERED;
+    }
+
     if (!inPitch)
     {
         if (!inRoll)
