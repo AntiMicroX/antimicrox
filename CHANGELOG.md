@@ -1,5 +1,31 @@
 # Changelog
 
+## [3.4.1](https://github.com/AntiMicroX/antimicrox/tree/3.4.1) (2024-08-10)
+
+**Fixed bugs:**
+
+- Fix issues with accelerometer stability [pull 1011](https://github.com/AntiMicroX/antimicrox/pull/1011) (by [pepper-jelly](https://github.com/pepper-jelly))
+-  Issue with float value for "Auto Reset Cycle After" [\#1002](https://github.com/AntiMicroX/antimicrox/issues/1002) (by [pepper-jelly](https://github.com/pepper-jelly))
+-  Accelerometer triggers when switching sets [\#991](https://github.com/AntiMicroX/antimicrox/issues/991) (by [pepper-jelly](https://github.com/pepper-jelly))
+
+**Notable changes:**
+
+- Link AntimicroX repository with issue hunting platform: [Polar.sh](https://polar.sh/)
+- Bump SDL version to 2.30.6
+- Refactor outdated pieces of code [pull 948](https://github.com/AntiMicroX/antimicrox/pull/948) [pull 950](https://github.com/AntiMicroX/antimicrox/pull/950)
+- Update more universal QT libraries detection [pull 957](https://github.com/AntiMicroX/antimicrox/pull/957)
+- Allow easy building with QT6 and ensure compatability [pull 919](https://github.com/AntiMicroX/antimicrox/pull/919), [pull 972](https://github.com/AntiMicroX/antimicrox/pull/972)
+- Drop Windows XP support [pull 980](https://github.com/AntiMicroX/antimicrox/pull/980)
+- Bump minimal QT version requirement to 5.10 [\#996](https://github.com/AntiMicroX/antimicrox/issues/996)
+
+
+**Implemented enhancements:**
+
+- Updated translations: Chinese, Portugese, German, French and Finnish
+- Added Catalan language
+
+And a lot of minor fixes and cleanups linked with QT6 and not only.
+
 ## [3.4.0](https://github.com/AntiMicroX/antimicrox/tree/3.4.0) (2024-03-10)
 
 **Fixed bugs:**
