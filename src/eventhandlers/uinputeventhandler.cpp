@@ -233,13 +233,13 @@ void UInputEventHandler::sendMouseButtonEvent(JoyButtonSlot *slot, bool pressed)
         {
             if (pressed)
             {
-                write_uinput_event(mouseFileHandler, EV_REL, REL_HWHEEL, 1);
+                write_uinput_event(mouseFileHandler, EV_REL, REL_HWHEEL, -1);
             }
         } else if (code == 7)
         {
             if (pressed)
             {
-                write_uinput_event(mouseFileHandler, EV_REL, REL_HWHEEL, -1);
+                write_uinput_event(mouseFileHandler, EV_REL, REL_HWHEEL, 1);
             }
         } else if (code == 8)
         {
