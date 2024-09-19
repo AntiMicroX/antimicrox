@@ -24,8 +24,8 @@ if(POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
-
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules" "D:/a/antimicrox/antimicrox/Qt/6.4.2/mingw_64/lib/cmake")
+set(Qt6GuiTools_DIR "D:/a/antimicrox/antimicrox/Qt/6.4.2/mingw_64/lib/cmake/Qt6GuiTools")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
@@ -527,9 +527,16 @@ else()
 endif()
 
 if (Qt6_FOUND OR NOT Qt5_FOUND)
-    find_package(Qt6 ${QT_REQUIRED_VERSION} 
-        COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
+    message("Searching for remaining QT6 libraries")
+    
+    find_package(Qt6
+        COMPONENTS Core Network LinguistTools Concurrent
         REQUIRED)
+    message("Searching for GUI and Widgets libraries")
+    find_package(Qt6
+        COMPONENTS Widgets Gui
+        REQUIRED)
+    message("Libraries found")
     find_package(QT NAMES Qt6 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
 
     QT_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
