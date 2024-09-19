@@ -25,7 +25,7 @@ if(POLICY CMP0071)
 endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules" "D:/a/antimicrox/antimicrox/Qt/6.4.2/mingw_64/lib/cmake")
-
+set(Qt6GuiTools_DIR "D:/a/antimicrox/antimicrox/Qt/6.4.2/mingw_64/lib/cmake/Qt6GuiTools")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
