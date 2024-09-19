@@ -142,7 +142,9 @@ jobs:
                   install-deps: "true"
               
             - name: Configure CMake
-              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
+              run: |
+                find D:/a/antimicrox/antimicrox/Qt/6.4.2/ -iname '*Qt6GuiTools*'
+                cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
               env:
                   CMAKE_PREFIX_PATH: ${{ env.Qt5_Dir }}
                   WORKSPACE_DIR: ${{ github.workspace }}
