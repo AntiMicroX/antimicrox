@@ -717,7 +717,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="455"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation type="unfinished">Определяет продолжительность для слотов Пауза и Удерживание.</translation>
+        <translation>Укажите продолжительность для вставленной паузы или удержания</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="486"/>
@@ -795,7 +795,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="586"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation type="unfinished">Определяет в процентах на сколько должна быть изменена скорость мыши.</translation>
+        <translation>Определяет в процентах, насколько должна быть изменена скорость мыши.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="683"/>
@@ -5067,7 +5067,7 @@ axis is moved back to the dead zone.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="129"/>
         <source>Quadratic Extreme</source>
-        <translation type="unfinished">Экстримально Кубическое</translation>
+        <translation>Вершина параболы</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="134"/>
@@ -5077,12 +5077,12 @@ axis is moved back to the dead zone.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="139"/>
         <source>Easing Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>Ослабевающее квадратичное</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="144"/>
         <source>Easing Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>Ослабевающее кубическое</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="177"/>
@@ -5173,7 +5173,7 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="452"/>
         <source>Easing Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Длительность Замедления:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
@@ -5231,17 +5231,17 @@ Threshold:</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="733"/>
         <source>Ease Out Sine</source>
-        <translation type="unfinished"></translation>
+        <translation>Синусоида Замедления</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="738"/>
         <source>Ease Out Quad</source>
-        <translation type="unfinished"></translation>
+        <translation>Квадрат Замедления</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="743"/>
         <source>Ease Out Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Куб Замедления</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="831"/>
