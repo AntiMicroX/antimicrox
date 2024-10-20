@@ -25,8 +25,8 @@ installed on your system in order to build this program:
 - `cmake`
 - `extra-cmake-modules`
 - QT libraries:
-  - For QT5: `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux)
   - For QT6: `qt6-base-dev`, `qt6-tools-dev-tools` `libqt6core5compat6-dev`
+  - For QT5: `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux)
 - `libsdl2-dev` (`sdl2` on distros based on Arch Linux) (SDL2)
 - `libxi-dev` (`libxi` on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
 - `libxtst-dev` (`libxtst` on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
@@ -40,7 +40,7 @@ installed on your system in order to build this program:
 One-liner for installing above dependencies:
 
 ```bash
-sudo dnf install git make cmake gcc cmake extra-cmake-modules qt5-qttools-devel SDL2-devel libXi-devel libXtst-devel libX11-devel itstool gettext-devel;
+sudo dnf install git make cmake gcc cmake extra-cmake-modules qt6-qttools-devel SDL2-devel libXi-devel libXtst-devel libX11-devel itstool gettext-devel;
 ```
 
 </details>
@@ -51,13 +51,13 @@ sudo dnf install git make cmake gcc cmake extra-cmake-modules qt5-qttools-devel 
 One-liner for installing above dependencies:  
 
 ```bash
-sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+sudo apt install g++ cmake extra-cmake-modules qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 ```
 
-QT6 Variant:
+QT5 Variant:
 
 ```bash
-sudo apt install g++ cmake extra-cmake-modules qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 ```
 
 </details>
