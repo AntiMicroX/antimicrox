@@ -99,37 +99,28 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         }
 #elif defined(WITH_X11)
 
-        if (QApplication::platformName() == QStringLiteral("xcb"))
-        {
-            finalvirtual = X11KeyCodeToX11KeySym(tempcode); // Obtain group 1 X11 keysym. Removes effects from modifiers.
+        finalvirtual = X11KeyCodeToX11KeySym(tempcode); // Obtain group 1 X11 keysym. Removes effects from modifiers.
 
     #ifdef WITH_UINPUT
-
-            if (handler->getIdentifier() == "uinput")
-            {
-                QtKeyMapperBase *x11KeyMapper =
-                    AntKeyMapper::getInstance()->getNativeKeyMapper(); // Find Qt Key corresponding to X11 KeySym.
-                checkalias = x11KeyMapper->returnQtKey(finalvirtual);
-                finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(
-                    checkalias); // Find corresponding Linux input key for the Qt key.
-            }
-
+        if (handler->getIdentifier() == "uinput")
+        {
+            QtKeyMapperBase *x11KeyMapper =
+                AntKeyMapper::getInstance()->getNativeKeyMapper(); // Find Qt Key corresponding to X11 KeySym.
+            checkalias = x11KeyMapper->returnQtKey(finalvirtual);
+            finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(
+                checkalias); // Find corresponding Linux input key for the Qt key.
+        } else
     #endif
 
     #ifdef WITH_XTEST
-
             if (handler->getIdentifier() == "xtest")
-                checkalias =
-                    AntKeyMapper::getInstance()->returnQtKey(finalvirtual); // Check for alias against group 1 keysym.
-
+            checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual); // Check for alias against group 1 keysym.
+        else
     #endif
-        } else
-        {
-            // Not running on xcb platform.
+        { // Not using any known handler.
             finalvirtual = tempcode;
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
-
 #else
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
