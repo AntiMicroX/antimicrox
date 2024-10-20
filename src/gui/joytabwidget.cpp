@@ -1234,6 +1234,7 @@ QString JoyTabWidget::getCurrentConfigName() { return configBox->currentText(); 
 
 QString JoyTabWidget::getConfigName(int index) { return configBox->itemText(index); }
 
+// Switch widget to currently selected Set
 void JoyTabWidget::changeCurrentSet(int index)
 {
     int currentPage = stackedWidget_2->currentIndex();
@@ -1277,7 +1278,6 @@ void JoyTabWidget::changeCurrentSet(int index)
         oldSetButton->style()->polish(oldSetButton);
     }
 
-    m_joystick->setActiveSetNumber(index);
     stackedWidget_2->setCurrentIndex(index);
 
     switch (index)
@@ -1318,21 +1318,53 @@ void JoyTabWidget::changeCurrentSet(int index)
     }
 }
 
-void JoyTabWidget::changeSetOne() { changeCurrentSet(0); }
+void JoyTabWidget::changeSetOne()
+{
+    m_joystick->setActiveSetNumber(0);
+    changeCurrentSet(0);
+}
 
-void JoyTabWidget::changeSetTwo() { changeCurrentSet(1); }
+void JoyTabWidget::changeSetTwo()
+{
+    m_joystick->setActiveSetNumber(1);
+    changeCurrentSet(1);
+}
 
-void JoyTabWidget::changeSetThree() { changeCurrentSet(2); }
+void JoyTabWidget::changeSetThree()
+{
+    m_joystick->setActiveSetNumber(2);
+    changeCurrentSet(2);
+}
 
-void JoyTabWidget::changeSetFour() { changeCurrentSet(3); }
+void JoyTabWidget::changeSetFour()
+{
+    m_joystick->setActiveSetNumber(3);
+    changeCurrentSet(3);
+}
 
-void JoyTabWidget::changeSetFive() { changeCurrentSet(4); }
+void JoyTabWidget::changeSetFive()
+{
+    m_joystick->setActiveSetNumber(4);
+    changeCurrentSet(4);
+}
 
-void JoyTabWidget::changeSetSix() { changeCurrentSet(5); }
+void JoyTabWidget::changeSetSix()
+{
+    m_joystick->setActiveSetNumber(5);
+    changeCurrentSet(5);
+}
 
-void JoyTabWidget::changeSetSeven() { changeCurrentSet(6); }
+void JoyTabWidget::changeSetSeven()
+{
+    m_joystick->setActiveSetNumber(6);
+    changeCurrentSet(6);
+}
 
-void JoyTabWidget::changeSetEight() { changeCurrentSet(7); }
+void JoyTabWidget::changeSetEight()
+{
+    m_joystick->setActiveSetNumber(7);
+    changeCurrentSet(7);
+}
 
 void JoyTabWidget::showStickAssignmentDialog()
 {
