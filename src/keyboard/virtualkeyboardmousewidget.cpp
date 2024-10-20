@@ -703,7 +703,7 @@ VirtualKeyPushButton *VirtualKeyboardMouseWidget::createNewKey(QString xcodestri
             width = 32;
         else
             width = 41;
-    } else if ((xcodestring.startsWith("F") && (xcodestring.count() > 1)) || (xcodestring == "Print") ||
+    } else if ((xcodestring.startsWith("F") && (xcodestring.length() > 1)) || (xcodestring == "Print") ||
                (xcodestring == "Escape") || (xcodestring == "Pause") || (xcodestring == "Delete"))
     {
         if (!m_isNumKeypad)
