@@ -158,7 +158,7 @@ jobs:
                 pacman --noconfirm -U mingw-w64-x86_64-SDL2-2.30.6-1-any.pkg.tar.zst
 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v3
+              uses: jurplel/install-qt-action@v4
               with:
                   version: "5.15.2"
                   host: "windows"
@@ -170,7 +170,7 @@ jobs:
             - name: Configure CMake
               run: cmake -DCMAKE_BUILD_TYPE=Release -DCHECK_FOR_UPDATES=ON -DANTIMICROX_PKG_VERSION="GitHub Windows Release" -B '${{ github.workspace }}'/build
               env:
-                  CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
+                  CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}/lib/cmake"
 
             - name: Build Installer
               run: cmake --build '${{ github.workspace }}'/build --target package --parallel 8
@@ -178,7 +178,7 @@ jobs:
             - name: Configure CMake (portable)
               run: cmake -DCMAKE_BUILD_TYPE=Release -DCHECK_FOR_UPDATES=ON -DANTIMICROX_PKG_VERSION="GitHub Portable Windows Release" -DPORTABLE_WIN=ON -B '${{ github.workspace }}'/build
               env:
-                  CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
+                  CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}/lib/cmake"
 
             - name: Build ZIP Package
               run: cmake --build '${{ github.workspace }}'/build --target package --parallel 8
