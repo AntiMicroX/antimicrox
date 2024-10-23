@@ -82,7 +82,7 @@ jobs:
 
             # Upload result to build artifacts
             - name: Upload Results
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                   name: report
                   path: infer-out/report.txt
