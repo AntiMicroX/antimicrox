@@ -146,7 +146,7 @@ jobs:
                 find D:/a/antimicrox/antimicrox/Qt/6.4.2/ -iname '*Qt6GuiTools*'
                 cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
               env:
-                  CMAKE_PREFIX_PATH: ${{ env.Qt5_Dir }}
+                  CMAKE_PREFIX_PATH: ${{ env.Qt6_Dir }}/lib/cmake/Qt6GuiTools
                   WORKSPACE_DIR: ${{ github.workspace }}
               
             - name: Build
