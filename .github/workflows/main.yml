@@ -146,7 +146,7 @@ jobs:
                 toolset: 14.1
 
             - name: Install Qt
-              uses: jurplel/install-qt-action@v3
+              uses: jurplel/install-qt-action@v4
               with:
                   version: ${{ matrix.qt-version }}
                   host: "windows"
@@ -158,7 +158,7 @@ jobs:
             - name: Configure CMake
               run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
               env:
-                  CMAKE_PREFIX_PATH: ${{ env.Qt5_Dir }}
+                  CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}/lib/cmake"
                   WORKSPACE_DIR: ${{ github.workspace }}
               
             - name: Build
