@@ -714,12 +714,18 @@ if(WIN32)
         "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Concurrent.dll"
         "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Network.dll"
         "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Widgets.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/libEGL.dll"
         "${SDL2_DLL_LOCATION_DIR}/SDL2.dll"
         "${GCC_DLL}/libgcc_s_seh-1.dll"
         "${PTHREAD_DLL_DIR}/libwinpthread-1.dll"
         "${LIBCPP_DLL_DIR}/libstdc++-6.dll"
         )
+
+    if(QT_VERSION_MAJOR EQUAL 5)
+        list(APPEND DLL_FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/bin/libEGL.dll"
+            )
+    endif(QT_VERSION_MAJOR EQUAL 5)
+    
 
     if(CHECK_FOR_UPDATES)
         message("Searching for SSL DLL-s.")
