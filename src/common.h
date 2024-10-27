@@ -60,24 +60,6 @@ static QString findWinDefaultConfigPath()
     return temp;
 }
 
-static QString findWinConfigPath(QString configFileName)
-{
-    QString temp;
-    QFileInfo localConfigInfo(findWinLocalConfigPath().append("/").append(configFileName));
-    QFileInfo systemConfigInfo(findWinSystemConfigPath().append("/").append(configFileName));
-    if (localConfigInfo.exists() && localConfigInfo.isWritable())
-    {
-        temp = localConfigInfo.absoluteFilePath();
-    } else if (systemConfigInfo.exists() && systemConfigInfo.isWritable())
-    {
-        temp = systemConfigInfo.absoluteFilePath();
-    } else
-    {
-        temp = findWinDefaultConfigPath().append("/").append(configFileName);
-    }
-
-    return temp;
-}
 #endif
 
 namespace PadderCommon {
