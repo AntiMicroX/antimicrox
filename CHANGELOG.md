@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.5.0](https://github.com/AntiMicroX/antimicrox/tree/3.5.0-rc) (2024-10-31)
+
+**Fixed bugs:**
+
+- Horizontal mouse wheel is too fast when set on stick [\#1024](https://github.com/AntiMicroX/antimicrox/issues/1024) (by [sk2449](https://github.com/sk2449))
+- Fix binding labels for Wheel Left/Right buttons [pull 1038](https://github.com/AntiMicroX/antimicrox/pull/1038) (by [sk2449](https://github.com/sk2449))
+- Set change sometimes returns to wrong set [\#1050](https://github.com/AntiMicroX/antimicrox/issues/1050)
+- Wrong Keyboard Input on Assignment (Wayland) [\#300](https://github.com/AntiMicroX/antimicrox/issues/300)
+
+**Notable changes:**
+
+- Update translation for Finnish, Dutch, Russian
+- New translation: Indonesian
+- Fixed Builds for QT6 on Windows
+- Switched to QT6 on Windows Release Build
+
 ## [3.4.1](https://github.com/AntiMicroX/antimicrox/tree/3.4.1) (2024-08-10)
 
 **Fixed bugs:**
