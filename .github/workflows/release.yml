@@ -39,7 +39,7 @@ jobs:
 
             # Upload generated files to release
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v2.0
+              uses: AButler/upload-release-assets@v3.0
               with:
                   files: ${{ github.workspace }}/build/*.deb
                   repo-token: ${{ github.token }}
@@ -101,7 +101,7 @@ jobs:
 
             # Upload generated files to release
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v2.0
+              uses: AButler/upload-release-assets@v3.0
               with:
                   files: ./build/AntiMicroX*.AppImage;./build/AntiMicroX*.zsync
                   repo-token: ${{ github.token }}
@@ -125,7 +125,7 @@ jobs:
 
             # Upload generated files to release
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v2.0
+              uses: AButler/upload-release-assets@v3.0
               with:
                   files: ./build/AntiMicroX*.AppImage
                   repo-token: ${{ github.token }}
@@ -184,7 +184,7 @@ jobs:
               run: cmake --build '${{ github.workspace }}'/build --target package --parallel 8
 
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v2.0
+              uses: AButler/upload-release-assets@v3.0
               with:
                   files: build/antimicrox*.exe;build/antimicrox*.zip
                   repo-token: ${{ github.token }}
