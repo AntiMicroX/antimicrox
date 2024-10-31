@@ -54,7 +54,7 @@ jobs:
         continue-on-error: ${{ matrix.experimental }}
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
             - name: Install Dependencies
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build ${{ matrix.qt-packages }}
@@ -112,7 +112,7 @@ jobs:
                 shell:  ${{ matrix.shell }}
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
             - name: Install Dependencies (msys2)
               if: startsWith(matrix.shell, 'msys2')
