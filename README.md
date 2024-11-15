@@ -1,24 +1,27 @@
 # <img src="./src/images/antimicrox.png" alt="Icon" width="60"/> AntiMicroX
 
-1. [Description](#description)  
-2. [License](#license)  
-4.  [windows](#Windows (soon))
-5.  [Flatpak](#Flatpak)
-6.  [AppImage](#AppImage)
-7.  [Debian/Ubuntu](#Debian/Ubuntu-based distributions:)
-8.  [Fedora](#Fedora)
-9.  [openSUSE](#openSUSE)
-10. [Arch Linux](#Arch Linux or Arch Linux based distributions:)
-11. [From Sources](#Building Yourself)
-12.[Wiki](#wiki)
-13.[Command Line](#command-line) 
-14.[Testing Under Linux](#testing-under-linux)  
-15.[AntiMicroX Profiles](#antimicrox-profiles)
-16.[Support](#support)  
-17.[Bugs](#bugs)  
-18.[Shoutout](#shoutout)  
-19.[Credits](#credits)  
-20.[Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+------------
+#### [Description](#description)
+#### [License](#license)
+#### [Installation](#installation)
+#####[windows](#Windows (soon)
+##### [Flatpak](#Flatpak)
+##### [AppImage](#AppImage)
+##### [Debian/Ubuntu](#Debian/Ubuntu-based distributions:)
+##### [Fedora](#Fedora)
+##### [openSUSE](#openSUSE)
+##### [Arch Linux](#Arch Linux or Arch Linux based distributions:)
+##### [From Sources](#Building Yourself)
+#### [Wiki](#wiki)
+#### [Command Line](#command-line)
+#### [Testing Under Linux](#testing-under-linux)
+#### [AntiMicroX Profiles](#antimicrox-profiles)
+#### [Support](#support)
+#### [Bugs](#bugs)
+#### [Shoutout](#shoutout)
+##### [Credits](#credits)
+##### [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+------------
 
 ## Description
 
@@ -69,12 +72,16 @@ Disclaimer: Theme may depend on your system configuration.
   </tr>
 </table>
 
+------------
+
 ## License
 
 This program is licensed under the GPL v.3. Please read the LICENSE text document
 included with the source code if you would like to read the terms of the license.
 The license can also be found online at
 http://www.gnu.org/licenses/gpl.txt
+
+------------
 
 ## Installation
 
@@ -174,9 +181,13 @@ Run `antimicrox --help` or read `man antimicrox` for command-line parameters.
   fo file <code>~/.bashrc</code>
 </details>
 
+------------
+
 ## Wiki
 
 [Look here](https://github.com/AntiMicroX/antimicrox/wiki)
+
+------------
 
 ## Testing Under Linux
 
@@ -189,12 +200,16 @@ testing with older programs that use joydev won't be as helpful since some
 devices behave a bit differently between the two systems. Another method also exists, 
 which can be found [here](https://github.com/juliagoda/SDL_JoystickButtonNames).
 
+------------
+
 ## AntiMicroX Profiles
 
 If you would like to send the profile you are using for your application or find something 
 for yourself, [here](https://github.com/AntiMicroX/antimicrox-profiles) is the forked repository. If you want to report a bug, ask 
 a question or share a suggestion, you can do that on the antimicrox page or on the
 [antimicrox-profiles](https://github.com/AntiMicroX/antimicrox-profiles) page.
+
+------------
 
 ## Support
 
