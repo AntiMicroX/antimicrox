@@ -1,15 +1,13 @@
 # <img src="./src/images/antimicrox.png" alt="Icon" width="60"/> AntiMicroX
-
-------------
 - [Description](#description)
 - [License](#license)
 - [Installation](#installation)
-	-  [windows](#Windows (soon))
-	-  [Flatpak](#Flatpak)
-	-  [AppImage](#AppImage)
+	-  [windows](#windows)
+	-  [Flatpak](#flatpak)
+	-  [AppImage](#appimage)
 	-  [Debian_Ubuntu](#debianubuntu-based-distributions)
-	-  [Fedora](#Fedora)
-	-  [openSUSE](#openSUSE)
+	-  [Fedora](#fedora)
+	-  [openSUSE](#opensuse)
 	-  [Arch_Linux](#arch-linux-or-arch-linux-based-distributions)
 	-  [From_Sources](#building-yourself)
 -  [Wiki](#wiki)
@@ -17,12 +15,9 @@
 -  [Testing Under Linux](#testing-under-linux)
 -  [AntiMicroX Profiles](#antimicrox-profiles)
 -  [Support](#support)
--  [Bugs](#bugs)
--  [Shoutout](#shoutout)
-	- [Credits](#credits)
-	-  [Participation in the translation of AntiMicroX](#participation-in-the-translation-of-antimicrox)
+	-  [contributing](#contributing)
+	-  [translation](#translation)
 ------------
-
 ## Description
 
 AntiMicroX is a graphical program used to map gamepad keys to keyboard, mouse, scripts and macros. You can use this program to control any desktop application with a gamepad on Linux🐧 and Windows 🪟.  
