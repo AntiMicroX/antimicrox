@@ -345,7 +345,6 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
 {
     if (controller != nullptr)
     {
-        qDebug() << "Controller has " << controller->getNumberButtons() << " buttons";
 
         for (int i = 0; i < controller->getNumberButtons(); i++)
         {
@@ -364,8 +363,6 @@ void GameControllerMappingDialog::populateGameControllerBindings(GameController 
                 item->setData(Qt::UserRole, tempvariant);
             }
         }
-
-        qDebug() << "Controller has " << controller->getNumberAxes() << " axes";
 
         for (int i = 0; i < controller->getNumberAxes(); i++)
         {
