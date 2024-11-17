@@ -14,14 +14,170 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="186"/>
+        <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Originally developed by Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Next maintained by the AntiMicro group at &lt;/span&gt;&lt;a href=&quot;https://github.com/AntiMicro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/AntiMicro&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Then by juliagoda at &lt;/span&gt;&lt;a href=&quot;https://github.com/juliagoda&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/juliagoda&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Now maintained at &lt;/span&gt;&lt;a href=&quot;https://github.com/AntiMicroX/antimicrox&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/AntiMicroX/antimicrox&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt; by &lt;/span&gt;&lt;a href=&quot;https://github.com/pktiuk&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;pktiuk&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can see full list of contributors &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/aboutdialog.ui" line="170"/>
         <source>Info</source>
         <translation>Infos</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="341"/>
+        <location filename="../../../src/gui/aboutdialog.ui" line="195"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Version 3, 29 June 2007&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;http://fsf.org/&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Preamble&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Developers that use the GNU GPL protect your rights with two steps:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;(1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;For the developers&apos; and authors&apos; protection, the GPL clearly explains that there is no warranty for this free software. For both users&apos; and authors&apos; sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users&apos; freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The precise terms and conditions for copying, distribution and modification follow.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;0. Definitions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;This License&amp;quot; refers to version 3 of the GNU General Public License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;Copyright&amp;quot; also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;The Program&amp;quot; refers to any copyrightable work licensed under this License. Each licensee is addressed as &amp;quot;you&amp;quot;. &amp;quot;Licensees&amp;quot; and &amp;quot;recipients&amp;quot; may be individuals or organizations.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To &amp;quot;modify&amp;quot; a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a &amp;quot;modified version&amp;quot; of the earlier work or a work &amp;quot;based on&amp;quot; the earlier work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;covered work&amp;quot; means either the unmodified Program or a work based on the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To &amp;quot;propagate&amp;quot; a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To &amp;quot;convey&amp;quot; a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;An interactive user interface displays &amp;quot;Appropriate Legal Notices&amp;quot; to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;1. Source Code.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The &amp;quot;source code&amp;quot; for a work means the preferred form of the work for making modifications to it. &amp;quot;Object code&amp;quot; means any non-source form of a work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;Standard Interface&amp;quot; means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The &amp;quot;System Libraries&amp;quot; of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A &amp;quot;Major Component&amp;quot;, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The &amp;quot;Corresponding Source&amp;quot; for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work&apos;s System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The Corresponding Source for a work in source code form is that same work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;2. Basic Permissions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;3. Protecting Users&apos; Legal Rights From Anti-Circumvention Law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work&apos;s users, your or third parties&apos; legal rights to forbid circumvention of technological measures.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;4. Conveying Verbatim Copies.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may convey verbatim copies of the Program&apos;s source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;5. Conveying Modified Source Versions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;a) The work must carry prominent notices stating that you modified it, and giving a relevant date.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to &amp;quot;keep intact all notices&amp;quot;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an &amp;quot;aggregate&amp;quot; if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation&apos;s users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;6. Conveying Non-Source Forms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;User Product&amp;quot; is either (1) a &amp;quot;consumer product&amp;quot;, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, &amp;quot;normally used&amp;quot; refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;Installation Information&amp;quot; for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;7. Additional Terms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;Additional permissions&amp;quot; are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;d) Limiting the use for publicity purposes of names of licensors or authors of the material; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;All other non-permissive additional terms are considered &amp;quot;further restrictions&amp;quot; within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;8. Termination.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;9. Acceptance Not Required for Having Copies.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;10. Automatic Licensing of Downstream Recipients.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;An &amp;quot;entity transaction&amp;quot; is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party&apos;s predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;11. Patents.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;contributor&amp;quot; is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor&apos;s &amp;quot;contributor version&amp;quot;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A contributor&apos;s &amp;quot;essential patent claims&amp;quot; are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, &amp;quot;control&amp;quot; includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor&apos;s essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;In the following three paragraphs, a &amp;quot;patent license&amp;quot; is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To &amp;quot;grant&amp;quot; such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. &amp;quot;Knowingly relying&amp;quot; means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient&apos;s use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A patent license is &amp;quot;discriminatory&amp;quot; if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;12. No Surrender of Others&apos; Freedom.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;13. Use with the GNU Affero General Public License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;14. Revised Versions of this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License &amp;quot;or any later version&amp;quot; applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy&apos;s public statement of acceptance of a version permanently authorizes you to choose that version for the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;15. Disclaimer of Warranty.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;16. Limitation of Liability.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/aboutdialog.ui" line="325"/>
         <source>Changelog</source>
         <translation>Journal des modifications</translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/aboutdialog.ui" line="353"/>
+        <source>&quot;pktiuk&quot; (since August 2020) I just want to ensure, that this very useful piece of software will not be abandoned, I decided to continue providing support for this project and make it as widely accessible as possible.
+
+&quot;juliagoda&quot; (since March, 2018 until 2020) Wanting only to play my favourite old games that din&apos;t support gamepads, I found this project (which map keyboard keys and mouse buttons to connected gamepads on Linux) as most proper and recent. But because of poor choices of such application on the internet and since it didn&apos;t compile properly, I decided to rescue the project. However, once I finished my work (enough to enjoy playing games) I thought about sharing this code with others. Of course all information about past programmers will be held.
+
+&quot;Ryochan7&quot; (since December 30, 2012 until 2017), I have been working on AntiMicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
+
+The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
+
+Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
+
+Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.
+
+---
+
+As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. 
+Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
+As next, project has been continued since 2018 by juliagoda on antimicroX project. 
+Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
@@ -34,7 +190,6 @@
         <translation>AntiMicroX</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -63,7 +218,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WAZAAAAA - wazaaaaa00&amp;lt;@&amp;gt;gmail&amp;lt;.&amp;gt;com - Italian&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;juliagoda &amp;lt;juliagoda.pl@protonmail.com&amp;gt; - Polish&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -94,157 +249,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="211"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Version 3, 29 June 2007&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;http://fsf.org/&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Preamble&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Developers that use the GNU GPL protect your rights with two steps:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;(1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;For the developers&apos; and authors&apos; protection, the GPL clearly explains that there is no warranty for this free software. For both users&apos; and authors&apos; sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users&apos; freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The precise terms and conditions for copying, distribution and modification follow.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;0. Definitions.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;This License&amp;quot; refers to version 3 of the GNU General Public License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;Copyright&amp;quot; also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;The Program&amp;quot; refers to any copyrightable work licensed under this License. Each licensee is addressed as &amp;quot;you&amp;quot;. &amp;quot;Licensees&amp;quot; and &amp;quot;recipients&amp;quot; may be individuals or organizations.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;To &amp;quot;modify&amp;quot; a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a &amp;quot;modified version&amp;quot; of the earlier work or a work &amp;quot;based on&amp;quot; the earlier work.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A &amp;quot;covered work&amp;quot; means either the unmodified Program or a work based on the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;To &amp;quot;propagate&amp;quot; a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;To &amp;quot;convey&amp;quot; a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;An interactive user interface displays &amp;quot;Appropriate Legal Notices&amp;quot; to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;1. Source Code.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The &amp;quot;source code&amp;quot; for a work means the preferred form of the work for making modifications to it. &amp;quot;Object code&amp;quot; means any non-source form of a work.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A &amp;quot;Standard Interface&amp;quot; means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The &amp;quot;System Libraries&amp;quot; of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A &amp;quot;Major Component&amp;quot;, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The &amp;quot;Corresponding Source&amp;quot; for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work&apos;s System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The Corresponding Source for a work in source code form is that same work.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;2. Basic Permissions.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;3. Protecting Users&apos; Legal Rights From Anti-Circumvention Law.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work&apos;s users, your or third parties&apos; legal rights to forbid circumvention of technological measures.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;4. Conveying Verbatim Copies.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may convey verbatim copies of the Program&apos;s source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;5. Conveying Modified Source Versions.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;a) The work must carry prominent notices stating that you modified it, and giving a relevant date.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to &amp;quot;keep intact all notices&amp;quot;.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an &amp;quot;aggregate&amp;quot; if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation&apos;s users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;6. Conveying Non-Source Forms.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A &amp;quot;User Product&amp;quot; is either (1) a &amp;quot;consumer product&amp;quot;, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, &amp;quot;normally used&amp;quot; refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;Installation Information&amp;quot; for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;7. Additional Terms.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;&amp;quot;Additional permissions&amp;quot; are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;d) Limiting the use for publicity purposes of names of licensors or authors of the material; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;All other non-permissive additional terms are considered &amp;quot;further restrictions&amp;quot; within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;8. Termination.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;9. Acceptance Not Required for Having Copies.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;10. Automatic Licensing of Downstream Recipients.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;An &amp;quot;entity transaction&amp;quot; is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party&apos;s predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;11. Patents.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A &amp;quot;contributor&amp;quot; is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor&apos;s &amp;quot;contributor version&amp;quot;.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A contributor&apos;s &amp;quot;essential patent claims&amp;quot; are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, &amp;quot;control&amp;quot; includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor&apos;s essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;In the following three paragraphs, a &amp;quot;patent license&amp;quot; is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To &amp;quot;grant&amp;quot; such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. &amp;quot;Knowingly relying&amp;quot; means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient&apos;s use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;A patent license is &amp;quot;discriminatory&amp;quot; if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;12. No Surrender of Others&apos; Freedom.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;13. Use with the GNU Affero General Public License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;14. Revised Versions of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License &amp;quot;or any later version&amp;quot; applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy&apos;s public statement of acceptance of a version permanently authorizes you to choose that version for the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;15. Disclaimer of Warranty.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;16. Limitation of Liability.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="355"/>
+        <location filename="../../../src/gui/aboutdialog.ui" line="339"/>
         <source>About Development</source>
         <translation>À propos du développement</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="369"/>
-        <source>&quot;pktiuk&quot; (since August 2020) I just want to ensure, that this very useful piece of software will not be abandoned, I decided to conticue providing support for this project and make it as widely accessible as possible.
-
-&quot;juliagoda&quot; (since March, 2018 until 2020) Wanting only to play my favourite old games that din&apos;t support gamepads, I found this project (which map keyboard keys and mouse buttons to connected gamepads on Linux) as most proper and recent. But because of poor choices of such application on the internet and since it didn&apos;t compile properly, I decided to rescue the project. However, once I finished my work (enough to enjoy playing games) I thought about sharing this code with others. Of course all information about past programmers will be held.
-
-&quot;Ryochan7&quot; (since December 30, 2012 until 2017), I have been working on AntiMicro in my spare time. What originally started as a fork of QJoyPad and a way to learn proper event-driven programming has turned into something much bigger than I originally intended. Although I have spent a lot of time learning new techniques, finding out more about the domain of KB+M emulation, and spending Friday nights bashing my head against my keyboard, it has been a fun and enriching experience overall.
-
-The need for this program came from me using similar programs on Windows to play several games that did not provide native controller support. Although some alternatives existed on Linux, there wasn&apos;t really anything that I felt was good enough in terms of functionality or in-game controls in order to really enjoy games that I wanted to play with using KB+M emulation. QJoyPad was the main program that I had used in the past although it had aged a lot and it didn&apos;t provide some basic functionality that I thought was essential. The project was dead as it had not been updated in several years so I decided to make my own.
-
-Since then, I have tried to find out what the other programs do right and then improve upon it. I have also discovered some neat tricks along the way and I have learned more about how native gamepad controls are implemented in some games than I ever really wanted to know. Although there are definitely areas where this program could improve, I find that this program offers the best in-game control experience for playing older, and some newer, games that do not provide native controller support.
-
-Development of this program is not as high of a priority for me anymore. This is mainly due to the fact that the Steam Controller works pretty well for the task of playing PC games compared to using an Xbox 360 controller. However, it does look like there is still a reason for this program to exist for a while.
-
----
-
-As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antimicro. 
-Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
-As next, project has been continued since 2018 by juliagoda on antimicroX project. 
-Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="399"/>
+        <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
         <translation>Copyright&#xa0;: 2013 - 2022</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/aboutdialog.ui" line="196"/>
+        <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
         <source>License</source>
         <translation>Licence</translation>
     </message>
@@ -440,29 +455,28 @@ de toutes les options de profils.</translation>
         <translation>Capture d&apos;application échouée</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="408"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="399"/>
         <source>Profile file path is invalid.</source>
         <translation>Le chemin vers le profil est invalide.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="416"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="440"/>
         <source>No window matching property was specified.</source>
         <translation>Aucune propriété de correspondance de fenêtres n&apos;a été spécifié.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="430"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="416"/>
         <source>Program path is invalid or not executable.</source>
         <translation>Le chemin du programme est invalide ou non exécutable.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="436"/>
+        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="421"/>
         <source>File is not an .exe file.</source>
         <translation>Le fichier n&apos;est pas un fichier .exe.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="444"/>
         <source>No window matching property was selected.</source>
-        <translation>Aucune propriété de correspondance de fenêtres n&apos;a été sélectionnée.</translation>
+        <translation type="vanished">Aucune propriété de correspondance de fenêtres n&apos;a été sélectionnée.</translation>
     </message>
 </context>
 <context>
@@ -549,7 +563,7 @@ de toutes les options de profils.</translation>
         <translation>0s</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1642"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1638"/>
         <source>Insert a pause that occurs in between key presses.</source>
         <translation>Insère une pause de la durée indiquée entre la pression des touches.</translation>
     </message>
@@ -560,7 +574,7 @@ de toutes les options de profils.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="295"/>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1599"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1595"/>
         <source>Insert a new blank slot.</source>
         <translation>Insère un nouvel emplacement vide.</translation>
     </message>
@@ -1005,94 +1019,94 @@ de toutes les options de profils.</translation>
         <translation>Configuration %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1383"/>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1422"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1381"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1418"/>
         <source>Select Set %1</source>
         <translation>Sélectionner la configuration %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1392"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1390"/>
         <source>One Way</source>
         <translation>Unidirectionnel</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1393"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1391"/>
         <source>Two Way</source>
         <translation>Bidirectionnel</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1394"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1392"/>
         <source>While Held</source>
         <translation>Quand maintenu</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1547"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1543"/>
         <source>Choose Executable</source>
         <translation>Choisir l&apos;exécutable</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1603"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1599"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
         <translation>L&apos;emplacement qui suit un emplacement Cycle sera exécuté au prochain appui de la touche. Plusieurs cycles peuvent être ajoutés afin de créer des séparations dans une séquence.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1609"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1605"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
         <translation>Retarde par le temps spécifié le moment où l&apos;emplacement suivant sera activé. L&apos;emplacement activé précédant l&apos;emplacement de retard sera actif même une fois la durée de retard passée.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1616"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1612"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
         <translation>Les emplacements qui suivent un emplacement Distance seront exécutés que lorsque l&apos;axe est déplacé une certaine plage au-delà de la zone morte désignée.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1626"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1622"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
         <translation>L&apos;emplacement qui suit un emplacement Action sera exécuté si le bouton est maintenu au-delà de l&apos;intervalle spécifié.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1631"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1627"/>
         <source>Chose a profile to load when this slot is activated.</source>
         <translation>Choisir un profil à charger quand cet emplacement est activé.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1635"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1631"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
         <translation>Cette action applique le pourcentage spécifié aux paramètres de vitesse de souris tant que l&apos;emplacement est exécuté. Utile en cas d&apos;un besoin momentané d&apos;une sensibilité réduite.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1646"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1642"/>
         <source>Specify the time that keys past this slot should be held down.</source>
         <translation>Spécifie le temps de maintien de la touche située à l&apos;emplacement suivant.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1651"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1647"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
         <translation>Insère une action de relâchement. L&apos;emplacement suivant sera exécuté après le relâchement du bouton si le temps de maintien de celui-ci dépasse l&apos;intervalle défini.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1657"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1653"/>
         <source>Change to selected set once slot is activated.</source>
         <translation>Basculer vers la configuration spécifiée quand l&apos;emplacement est activé.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1661"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1657"/>
         <source>Full string will be typed when a slot is activated.</source>
         <translation>La chaîne de caractères sera tapée quand l&apos;emplacement est activé.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1622"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1618"/>
         <source>Execute program when slot is activated.</source>
         <translation>Exécute le programme quand l&apos;emplacement est activé.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="728"/>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1492"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1488"/>
         <source>Choose Profile</source>
         <translation>Choisir le profil</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1492"/>
+        <location filename="../../../src/gui/advancebuttondialog.cpp" line="1488"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>Fichiers de configuration (*.amgp *.xml)</translation>
     </message>
@@ -1203,54 +1217,54 @@ de toutes les options de profils.</translation>
         <translation>Axe %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="412"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="413"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="414"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="415"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="408"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="409"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="410"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="411"/>
         <source>Axis %1 -</source>
         <translation>Axe %1 -</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="421"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="422"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="423"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="424"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="417"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="418"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="419"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="420"/>
         <source>Axis %1 +</source>
         <translation>Axe %1 +</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="434"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="435"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="436"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="437"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="430"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="431"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="432"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="433"/>
         <source>Button %1</source>
         <translation>Bouton %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="764"/>
         <source>Move stick 1 along the X axis</source>
         <translation>Déplacer le stick 1 selon l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="796"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
         <source>Move stick 1 along the Y axis</source>
         <translation>Déplacer le stick 1 selon l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="830"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="814"/>
         <source>Move stick 2 along the X axis</source>
         <translation>Déplacer le stick 2 selon l&apos;axe X</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="846"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="830"/>
         <source>Move stick 2 along the Y axis</source>
         <translation>Déplacer le stick 1 selon l&apos;axe Y</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="885"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="946"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="1007"/>
-        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="1070"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="869"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="930"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="991"/>
+        <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="1054"/>
         <source>Press a button or move an axis</source>
         <translation>Presser un bouton ou bouger un axe</translation>
     </message>
@@ -1874,67 +1888,67 @@ Cela peut prendre jusqu&apos;à %1 secondes.</translation>
 <context>
     <name>DPadContextMenu</name>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="51"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
         <source>Mouse (Normal)</source>
         <translation>Souris (Normal)</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="53"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Souris (Horizontal Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="53"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="54"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Souris (Vertical Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="54"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="55"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>Souris (Vertical et Horizontal Inversés)</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="55"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="56"/>
         <source>Arrows</source>
         <translation>Flèches</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="56"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="57"/>
         <source>Keys: W | A | S | D</source>
         <translation>Touches&#xa0;: W | A | S | D</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="57"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
         <source>NumPad</source>
         <translation>Pavé numérique</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="59"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="64"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="65"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="66"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="67"/>
         <source>Eight Way</source>
         <translation>8 Voies</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="68"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="69"/>
         <source>4 Way Cardinal</source>
         <translation>4 Voies cardinales</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="70"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="71"/>
         <source>4 Way Diagonal</source>
         <translation>4 Voies diagonales</translation>
     </message>
     <message>
-        <location filename="../../../src/dpadcontextmenu.cpp" line="75"/>
+        <location filename="../../../src/dpadcontextmenu.cpp" line="76"/>
         <source>Mouse Settings</source>
         <translation>Configurations de la Souris</translation>
     </message>
@@ -2343,12 +2357,12 @@ une zone diagonale.</translation>
         <translation>Mappage du contrôleur (%1) (#%2)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="447"/>
+        <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="448"/>
         <source>Discard Controller Mapping?</source>
         <translation>Désactivé la cartographie de contrôleur de jeu ?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="448"/>
+        <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="449"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
@@ -2489,74 +2503,74 @@ S&apos;il est annulé, le contrôleur redeviendra un joystick une fois tous les 
 <context>
     <name>JoyAxisContextMenu</name>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="66"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="67"/>
         <source>Mouse (Horizontal)</source>
         <translation>Souris (Horizontal)</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="76"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="77"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Souris (Horizontal Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="86"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="87"/>
         <source>Mouse (Vertical)</source>
         <translation>Souris (Vertical)</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="96"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="97"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Souris (Vertical Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="106"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="107"/>
         <source>Arrows: Up | Down</source>
         <translation>Flèches&#xa0;: Haut | Bas</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="116"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="117"/>
         <source>Arrows: Left | Right</source>
         <translation>Flèches&#xa0;: Gauche | Droite</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="126"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="127"/>
         <source>Keys: W | S</source>
         <translation>Touches&#xa0;: W | S</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="136"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="137"/>
         <source>Keys: A | D</source>
         <translation>Touches&#xa0;: A | D</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="146"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="147"/>
         <source>NumPad: KP_8 | KP_2</source>
         <translation>Pavé Numérique&#xa0;: PN_8 | PN_2</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="156"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="157"/>
         <source>NumPad: KP_4 | KP_6</source>
         <translation>Pavé Numérique&#xa0;: PN_4 | PN_6</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="165"/>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="393"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="166"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="394"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="176"/>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="404"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="177"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="405"/>
         <source>Mouse Settings</source>
         <translation>Configurations de la Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="373"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="374"/>
         <source>Left Mouse Button</source>
         <translation>Bouton gauche de la souris</translation>
     </message>
     <message>
-        <location filename="../../../src/joyaxiscontextmenu.cpp" line="383"/>
+        <location filename="../../../src/joyaxiscontextmenu.cpp" line="384"/>
         <source>Right Mouse Button</source>
         <translation>Bouton droit de la souris</translation>
     </message>
@@ -2661,109 +2675,109 @@ S&apos;il est annulé, le contrôleur redeviendra un joystick une fois tous les 
 <context>
     <name>JoyButtonSlot</name>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="140"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="192"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="122"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="174"/>
         <source>Mouse</source>
         <translation>Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="145"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="127"/>
         <source>Up</source>
         <translation>Haut</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="149"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="131"/>
         <source>Down</source>
         <translation>Bas</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="153"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="135"/>
         <source>Left</source>
         <translation>Gauche</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="157"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="139"/>
         <source>Right</source>
         <translation>Droite</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="197"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="179"/>
         <source>LB</source>
         <translation>BG</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="200"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="182"/>
         <source>MB</source>
         <translation>BC</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="203"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="185"/>
         <source>RB</source>
         <translation>BD</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="221"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="203"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="235"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="217"/>
         <source>Hold</source>
         <translation>Maintenir</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="245"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="227"/>
         <source>Cycle</source>
         <translation>Cycle</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="249"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="231"/>
         <source>Distance</source>
         <translation>Distance</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="260"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="242"/>
         <source>Release</source>
         <translation>Relâchement</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="271"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="253"/>
         <source>Mouse Mod</source>
         <translation>Mode de la Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="281"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="263"/>
         <source>Press Time</source>
         <translation>Durée d&apos;appui</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="296"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="278"/>
         <source>Delay</source>
         <translation>Retard</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="311"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="293"/>
         <source>Load %1</source>
         <translation>Charger %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="318"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="300"/>
         <source>Set Change %1</source>
         <translation>Sélection configuration %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="331"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="313"/>
         <source>[Text] %1</source>
         <translation>[Texte] %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="344"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="326"/>
         <source>[Exec] %1</source>
         <translation>[Éxec] %1</translation>
     </message>
     <message>
-        <location filename="../../../src/joybuttonslot.cpp" line="366"/>
-        <location filename="../../../src/joybuttonslot.cpp" line="369"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="348"/>
+        <location filename="../../../src/joybuttonslot.cpp" line="351"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
@@ -2819,67 +2833,67 @@ S&apos;il est annulé, le contrôleur redeviendra un joystick une fois tous les 
 <context>
     <name>JoyControlStickContextMenu</name>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="48"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="49"/>
         <source>Mouse (Normal)</source>
         <translation>Souris (Normal)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="57"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="58"/>
         <source>Mouse (Inverted Horizontal)</source>
         <translation>Souris (Horizontal Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="66"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="67"/>
         <source>Mouse (Inverted Vertical)</source>
         <translation>Souris (Vertical Inversé)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="75"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="76"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
         <translation>Souris (Vertical et Horizontal Inversés)</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="84"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="85"/>
         <source>Arrows</source>
         <translation>Flèches</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="93"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="94"/>
         <source>Keys: W | A | S | D</source>
         <translation>Touches&#xa0;: W | A | S | D</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="102"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="103"/>
         <source>NumPad</source>
         <translation>Pavé Numérique</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="111"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="112"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="124"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="125"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="132"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="133"/>
         <source>Eight Way</source>
         <translation>8 Voies</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="141"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="142"/>
         <source>4 Way Cardinal</source>
         <translation>4 Voies cardinales</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="150"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="151"/>
         <source>4 Way Diagonal</source>
         <translation>4 Voies diagonales</translation>
     </message>
     <message>
-        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="161"/>
+        <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="162"/>
         <source>Mouse Settings</source>
         <translation>Configurations de la Souris</translation>
     </message>
@@ -3290,7 +3304,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
 <context>
     <name>JoySensorContextMenu</name>
     <message>
-        <location filename="../../../src/joysensorcontextmenu.cpp" line="63"/>
+        <location filename="../../../src/joysensorcontextmenu.cpp" line="64"/>
         <source>Mouse Settings</source>
         <translation type="unfinished">Configurations de la Souris</translation>
     </message>
@@ -3474,245 +3488,245 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
 <context>
     <name>JoyTabWidget</name>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="85"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="781"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="928"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="966"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1111"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2452"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="84"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="780"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="927"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="965"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1109"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2482"/>
         <source>&lt;New&gt;</source>
         <translation>&lt;Nouveau&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="99"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="98"/>
         <source>Battery level of controller</source>
         <translation>Niveau de batterie du contrôleur</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="110"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1565"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="109"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1595"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="112"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1566"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="111"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1596"/>
         <source>Remove configuration from recent list.</source>
         <translation>Supprimer la configuration depuis la liste des recents.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="117"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1568"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="116"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1598"/>
         <source>Load</source>
         <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="119"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1569"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="118"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1599"/>
         <source>Load configuration file.</source>
         <translation>Charger un fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="125"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1571"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="124"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1601"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="127"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1572"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="126"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1602"/>
         <source>Save changes to configuration file.</source>
         <translation>Enregistrer les modifications dans le fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="132"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1574"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="131"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1604"/>
         <source>Save As</source>
         <translation>Enregistrer Sous</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="134"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1575"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="133"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1605"/>
         <source>Save changes to a new configuration file.</source>
         <translation>Enregistrer les modifications dans un nouveau fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="323"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1577"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="322"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1607"/>
         <source>Sets</source>
         <translation>Configurations</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="325"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="324"/>
         <source>Copy from Set</source>
         <translation>Copier depuis la configuration</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="326"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="325"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="334"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1578"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="333"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1608"/>
         <source>Set 1</source>
         <translation>Configuration 1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="338"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1579"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="337"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1609"/>
         <source>Set 2</source>
         <translation>Configuration 2</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="342"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1580"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="341"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1610"/>
         <source>Set 3</source>
         <translation>Configuration 3</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="346"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1581"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="345"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1611"/>
         <source>Set 4</source>
         <translation>Configuration 4</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="350"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1582"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="349"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1612"/>
         <source>Set 5</source>
         <translation>Configuration 5</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="354"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1583"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="353"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1613"/>
         <source>Set 6</source>
         <translation>Configuration 6</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="358"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1584"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="357"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1614"/>
         <source>Set 7</source>
         <translation>Configuration 7</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="362"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1585"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="361"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1615"/>
         <source>Set 8</source>
         <translation>Configuration 8</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="428"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1591"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1621"/>
         <source>Stick/Pad Assign</source>
         <translation>Assignation du Stick/Pad</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="436"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1590"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="435"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1620"/>
         <source>Controller Mapping</source>
         <translation>Mappage du contrôleur</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="445"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1592"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="444"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1622"/>
         <source>Quick Set</source>
         <translation>Configuration Rapide</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="453"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1595"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="452"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1625"/>
         <source>Names</source>
         <translation>Noms</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="455"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1596"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="454"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1626"/>
         <source>Toggle button name displaying.</source>
         <translation>Alterner nom du bouton d&apos;affichage.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="461"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1598"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="460"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1628"/>
         <source>Pref</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="463"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1599"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="462"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1629"/>
         <source>Change global profile settings.</source>
         <translation>Changer les paramètres globaux du profil.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="467"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1593"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1601"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="466"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1623"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1631"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="469"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1602"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="468"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1632"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
         <translation>Annuler les changements de configuration. Recharger le fichier de configuration.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="533"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="532"/>
         <source>Open Config</source>
         <translation>Charger un fichier de configuration</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="533"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="532"/>
         <source>Config Files (*.amgp *.xml)</source>
         <translation>Fichiers de profil (*.amgp *.xml)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="641"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="809"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="821"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="640"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="808"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="820"/>
         <source>Config File (*.%1.amgp)</source>
         <translation>Fichier de profil (*.%1.amgp)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="730"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="729"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
         <translation>Voulez-vous vraiment réinitialiser les paramètres des boutons du joystick ?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1620"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1681"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1650"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1711"/>
         <source>Save Profile Changes?</source>
         <translation>Enregistrer les modifications du profil ?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1623"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1685"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1653"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1715"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
         <translation>Les modifications apportées au nouveau profil n&apos;ont pas été enregistrées. Souhaitez-vous enregistrer ou annuler les modifications du profil actuel ?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1627"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1689"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1657"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1719"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
         <translation>Les modifications apportées au profil &quot;%1&quot; n&apos;ont pas été enregistrées. Souhaitez-vous enregistrer ou annuler les modifications du profil actuel ?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1960"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1990"/>
         <source>Sticks</source>
         <translation>Joysticks</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2033"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2063"/>
         <source>Sensors</source>
         <translation>Capteurs</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2098"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2150"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2128"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2180"/>
         <source>DPads</source>
         <translation>DPads</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2303"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2333"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
         <translation>Aucune touche n&apos;a été assignée. Veuillez utiliser
@@ -3720,37 +3734,37 @@ la Configuration Rapide pour assigner des touches aux boutons
 ou désactiver le masquage des boutons vides.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2474"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2498"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2504"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2528"/>
         <source>Set %1: %2</source>
         <translation>Configuration %1&#xa0;: %2</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2477"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2501"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2507"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2531"/>
         <source>Set %1</source>
         <translation>Configuration %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2509"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2539"/>
         <source>Copy Set Assignments</source>
         <translation>Copier la configuration d&apos;assignations</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="2510"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="2540"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
         <translation>Êtes-vous sûr de vouloir copier les assignations et les propriétés du périphérique depuis %1&#xa0;?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="640"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="808"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="820"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="639"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="807"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="819"/>
         <source>Save Config</source>
         <translation>Enregistrer le fichier de configuration</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1530"/>
-        <location filename="../../../src/gui/joytabwidget.cpp" line="1536"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1560"/>
+        <location filename="../../../src/gui/joytabwidget.cpp" line="1566"/>
         <source>Set</source>
         <translation>Configuration</translation>
     </message>
@@ -3942,57 +3956,62 @@ ou désactiver le masquage des boutons vides.</translation>
         <translation>Modifier les paramètres</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="68"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="70"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="73"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="75"/>
         <source>Controller Mappings</source>
         <translation>Mappage des contrôleurs</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="78"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="80"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="83"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="85"/>
         <source>Auto Profile</source>
         <translation>Profil automatique</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="88"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="90"/>
         <source>Mouse</source>
         <translation>Souris</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="93"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="95"/>
         <source>Advanced</source>
         <translation>Avancé</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="135"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="106"/>
+        <source>Auto Profile functionality is incompatible with Wayland session &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;more info&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="155"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the default directory that the program should use in file dialogs when loading a profile or saving a new profile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Défini l&apos;emplacement par défaut que le programme utilisera pour les dialogue de chargement ou d&apos;enregistrement de profils.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="162"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="182"/>
         <source>Recent Profile Count:</source>
         <translation>Nombre de profils récents&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="169"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="189"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of profiles that can be placed in recent profile list. 0 will result in the program not enforcing a limit on the number of profiles displayed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nombre de profils pouvant être placés dans la liste des profils récents. &quot;0&quot; aura pour effet de ne pas appliquer de limite au nombre de profils affichés.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="205"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="225"/>
         <source>Gamepad Poll Rate:</source>
         <translation>Taux d&apos;interrogation du contrôleur&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="212"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="232"/>
         <source>Change the poll rate that the program uses to discover new
 events from gamepads. Defaults to 10 ms.
 
@@ -4008,29 +4027,29 @@ charge processeur, donc testez ce paramètre avant d&apos;utiliser
 AntiMicroX sans surveillance.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="226"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="246"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
         <translation>Masquer la fenêtre principale lors du clic sur le bouton de
 fermeture au lieu de quitter le programme.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="230"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="250"/>
         <source>Close To Tray</source>
         <translation>Fermer dans la zone de notifications</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="237"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="257"/>
         <source>Have Windows start AntiMicroX at system startup.</source>
         <translation>Demandez à Windows de lancer AntiMicroX au démarrage du système.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="240"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="260"/>
         <source>Launch At Windows Startup</source>
         <translation>Lancer au démarrage de Windows</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="247"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="267"/>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
@@ -4039,12 +4058,12 @@ sous la forme d&apos;une liste unique dans le menu de la
 barre des tâches. Par défaut, les sous-menus sont utilisés.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="252"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="272"/>
         <source>Single Profile List in Tray</source>
         <translation type="unfinished">Liste de profils unique dans la barre de tâches</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="259"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="279"/>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
@@ -4053,12 +4072,12 @@ Par défaut, le programme se réduit dans la
 barre des tâches si elle est disponible.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="264"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="284"/>
         <source>Minimize to Taskbar</source>
         <translation>Réduire dans la zone de notifications</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="271"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="291"/>
         <source>This option will cause the program to hide all
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
@@ -4069,12 +4088,12 @@ La fenêtre de dialogue de Configuration Rapide devra être utilisée
 pour faire apparaître la boîte de dialogue d&apos;édition des boutons de manettes.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="277"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="297"/>
         <source>Hide Empty Buttons</source>
         <translation>Masquer les boutons vides</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="284"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="304"/>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
@@ -4083,226 +4102,237 @@ ouvert lors de la session précédente
 au lancement du programme.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="289"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="309"/>
         <source>Auto Load Last Opened Profile</source>
         <translation>Charger automatiquement le dernier profil ouvert</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="299"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="319"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
         <translation>N&apos;afficher que l&apos;icône de la barre d&apos;état système
 au premier lancement du programme.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="303"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="323"/>
         <source>Launch in Tray</source>
         <translation>Lancer dans la zone de notifications</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="310"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="330"/>
         <source>Associate .amgp files with AntiMicroX in Windows Explorer.</source>
         <translation>Associez les fichiers .amgp à AntiMicroX dans l&apos;Explorateur Windows.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="313"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="333"/>
         <source>Associate Profiles</source>
         <translation>Associer les profils</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="323"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
         <translation>N&apos;oubliez pas que cela ne fonctionnera pas si s&apos;il n&apos;y a pas de clavier intégré ou si aucun clavier n&apos;est connecté à l&apos;ordinateur</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="329"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="349"/>
         <source>Attach the numeric keypad</source>
         <translation>Brancher un pavé numérique</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="336"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="356"/>
         <source>Show low battery notification</source>
         <translation>Afficher une notification de batterie faible</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="363"/>
         <source>Show empty battery notification</source>
         <translation>Afficher la notification de batterie vide</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="366"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="386"/>
         <source>Key Repeat</source>
         <translation>Répétition de la touche</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="372"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="392"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
         <translation>Les touches actives seront pressées de manière répétée
 lorsque cette option est activée.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="376"/>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="947"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="396"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="987"/>
         <source>Enable</source>
         <translation>Activer</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="395"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="415"/>
         <source>Specifies how much time should elapse before key repeating
 begins.</source>
         <translation>Spécifie le délai avant que la répétition des touches
 ne commence.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="460"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="480"/>
         <source>Specifies how many times key presses will be performed
 per seconds.</source>
         <translation>Spécifie le nombre de pressions de touche effectuées
 par seconde.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="605"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="623"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntimicroX a été traduit dans de nombreuses langues différentes par les contributeurs. Par défaut, le programme choisira la langue appropriée en fonction des paramètres régionaux de votre système. Cependant, vous pouvez toutefois changer celle-ci dans la liste ci-dessous pour qu&apos;AntimicroX charge une langue différente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="640"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="658"/>
         <source>Português do Brasil</source>
         <translation>Português do Brasil</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="650"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="668"/>
         <source>Français</source>
         <translation>Français</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="655"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="673"/>
         <source>Deutsch</source>
         <translation>Deutsch</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="660"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="678"/>
         <source>Italiano</source>
         <translation>Italiano</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="665"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="683"/>
         <source>日本語</source>
         <translation>日本語</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="670"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="688"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="675"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="693"/>
         <source>српски / srpski</source>
         <translation>српски / srpski</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="680"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="698"/>
         <source>简体中文</source>
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="685"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="703"/>
         <source>Español</source>
         <translation>Español</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="690"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="708"/>
         <source>українська</source>
         <translation>українська</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="695"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="713"/>
         <source>Polski</source>
         <translation>Polski</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="956"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
+        <source>You can help with translating AntiMicroX. Just click here: &lt;a
+                          href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="742"/>
+        <source>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>
         <source>History Si&amp;ze:</source>
         <translation>Taille d&apos;historiq&amp;ue&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="982"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1022"/>
         <source>Weight Modi&amp;fier:</source>
         <translation type="unfinished">Modi&amp;ficateur de poids :</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1262"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1302"/>
         <source>Log File:</source>
         <translation>Fichier journal&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1281"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1321"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note Unspecified log file allows printing logs in console output&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note Un fichier journal non spécifié permet d&apos;imprimer les logs dans la sortie de la console&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1318"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1358"/>
         <source>Log Level:</source>
         <translation>Niveau du journal&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1332"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1372"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1337"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1377"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1342"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1382"/>
         <source>Warning</source>
         <translation>Avertissement</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1347"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1387"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1352"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1392"/>
         <source>Verbose</source>
         <translation>Verbeux</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1357"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1397"/>
         <source>Debug</source>
         <translation>Debug</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1414"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1453"/>
         <source>Note: To see the change of log level in console output (not in log file), application restart is required</source>
         <translation>Note&#xa0;: Pour voir le changement de niveau du journal dans la sortie console (pas dans le fichier journal), le redémarrage de l&apos;application est nécessaire</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1468"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1507"/>
         <source>Reset</source>
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="819"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="861"/>
         <source>Class</source>
         <translation>Classe</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="824"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="866"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="829"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="871"/>
         <source>Program</source>
         <translation>Programme</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="919"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="959"/>
         <source>Disable the &quot;Enhanced Pointer Precision&quot; Windows setting
 while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within AntiMicroX to be more
@@ -4313,22 +4343,22 @@ permettra à la souris de se déplacer avec plus de précision
 au sein d&apos;AntiMicroX.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="925"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="965"/>
         <source>Disable Enhance Pointer Precision</source>
         <translation>Désactiver l&apos;amélioration de la précision du pointeur</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="935"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="975"/>
         <source>Smoothing</source>
         <translation>Lissage</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1015"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1055"/>
         <source>Refresh Rate:</source>
         <translation>Taux de rafraîchissement&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1022"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1062"/>
         <source>The refresh rate is the amount of time that will elapse
 in between mouse events. Please be cautious when
 editing this setting as it will cause the program to use
@@ -4343,17 +4373,17 @@ entraîner une instabilité du système. Vérifier ce réglage
 avant de l&apos;utiliser sans surveillance.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1036"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1076"/>
         <source>Spring</source>
         <translation>Ressort</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1050"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1090"/>
         <source>Screen:</source>
         <translation>Écran&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1060"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1100"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
@@ -4362,29 +4392,29 @@ valeur par défaut est l&apos;écran principal. Sous Windows, la valeur
 par défaut est d&apos;utiliser tous les écrans disponibles.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1094"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1134"/>
         <source>Accel Numerator:</source>
         <translation>Numérateur d&apos;accélération&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1107"/>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1138"/>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1169"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1147"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1178"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1209"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1131"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1171"/>
         <source>Accel Denominator:</source>
         <translation>Dénominateur d&apos;accélération&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1162"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1202"/>
         <source>Accel Threshold:</source>
         <translation>Seuil d&apos;accélération&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1206"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1246"/>
         <source>If the acceleration values for the virtual mouse have been
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
@@ -4395,37 +4425,37 @@ de la fermeture d&apos;un ancien jeu, il vous faudra peut-être
 réinitialiser les valeurs d&apos;accélération de la souris virtuelle.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1212"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="1252"/>
         <source>Reset Acceleration</source>
         <translation>Réinitialiser l&apos;accélération</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="385"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="405"/>
         <source>Delay:</source>
         <translation>Intervalle&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="125"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="145"/>
         <source>Pro&amp;file Directory:</source>
         <translation>Emp&amp;lacement du profil&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="427"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="447"/>
         <source> ms</source>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="450"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="470"/>
         <source>Rate:</source>
         <translation>Taux&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="486"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="506"/>
         <source> times/s</source>
         <translation> fois/s</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="517"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="537"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
@@ -4434,77 +4464,77 @@ Settings will not take affect until you either refresh all joysticks or unplug t
 Les paramètres ne prennent effet que lors de la prochaine réactualisation des joysticks ou en débranchant la manette spécifique.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="554"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="574"/>
         <source>GUID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="559"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="579"/>
         <source>Mapping String</source>
         <translation>Chaîne de mappage</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="564"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="584"/>
         <source>Disable?</source>
         <translation>Désactiver ?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="585"/>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="896"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="604"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="937"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="635"/>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1816"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="653"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1786"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="645"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="663"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="712"/>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="804"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="754"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="846"/>
         <source>Active</source>
         <translation>Actif</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="737"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="779"/>
         <source>Devices:</source>
         <translation>Périphériques&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="745"/>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1097"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="787"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1067"/>
         <source>All</source>
         <translation>Tout</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="809"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="851"/>
         <source>Device</source>
         <translation>Périphérique</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="814"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="856"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="834"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="876"/>
         <source>Default?</source>
         <translation>Défaut&#xa0;?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="574"/>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="868"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="594"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="910"/>
         <source>Add</source>
         <translation>Ajouter</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.ui" line="882"/>
+        <location filename="../../../src/gui/mainsettingsdialog.ui" line="923"/>
         <source>Edit</source>
         <translation>Éditer</translation>
     </message>
@@ -4514,7 +4544,7 @@ Les paramètres ne prennent effet que lors de la prochaine réactualisation des 
         <translation type="unfinished">Profil auto (désactivé dans Wayland)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="265"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="253"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
@@ -4523,32 +4553,32 @@ doivent également cocher la case «Désactiver l&apos;amélioration de la
 précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windows.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="758"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="728"/>
         <source>Select Default Profile Directory</source>
         <translation>Sélectionner l&apos;emplacement par défaut du profil</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1504"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1474"/>
         <source>Are you sure you want to delete the profile?</source>
         <translation>Êtes-vous sûr de vouloir supprimer le profil&#xa0;?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1872"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1842"/>
         <source>Save Log File As</source>
         <translation>Enregistrer le fichier journal sous</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1872"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1842"/>
         <source>Log Files (*.log)</source>
         <translation>Fichiers journaux (*.log)</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1897"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1867"/>
         <source>Do you really want to reset setting?</source>
         <translation>Voulez-vous vraiment réinitialiser les paramètres ?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1921"/>
+        <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1891"/>
         <source>Would you like to reset mappings too?</source>
         <translation>Voulez-vous également réinitialiser les mappages&#x202f;?</translation>
     </message>
@@ -4594,7 +4624,7 @@ précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windo
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="254"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="436"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="433"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
@@ -4605,7 +4635,7 @@ précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windo
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="269"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="451"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="448"/>
         <source>&amp;Update Joysticks</source>
         <translation>&amp;Mettre à jour les manettes</translation>
     </message>
@@ -4616,7 +4646,7 @@ précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windo
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="281"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="441"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="438"/>
         <source>&amp;Hide</source>
         <translation>&amp;Masquer</translation>
     </message>
@@ -4732,29 +4762,29 @@ précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windo
         <translation>Page d&apos;accueil</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="337"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="383"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="482"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1452"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1499"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1517"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1530"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="334"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="380"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="479"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1446"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1493"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1511"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1524"/>
         <source>(%1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="585"/>
-        <location filename="../../../src/gui/mainwindow.cpp" line="589"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="582"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="586"/>
         <source>Open File</source>
         <translation>Ouvrir fichier</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1405"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1402"/>
         <source>Run as Administrator?</source>
         <translation>Exécuter en tant qu&apos;administrateur&#xa0;?</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1406"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1403"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
@@ -4763,59 +4793,59 @@ Some games run as Administrator which will cause events generated by antimicro t
 Certains jeux s&apos;exécutent en tant qu&apos;administrateur, ce qui empêchera les événements générés par Antimicro d&apos;être utilisés par ces jeux, à moins qu&apos;Antimicro ne soit également exécuté en tant qu&apos;administrateur. Cela est dû à des problèmes d&apos;autorisation causés par le contrôle de compte d&apos;utilisateur (UAC) dans Windows Vista et versions ultérieures.</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1430"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1424"/>
         <source>Failed to elevate program</source>
         <translation>Échec de l&apos;élévation du programme</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1431"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1425"/>
         <source>Failed to restart this program as the Administrator</source>
         <translation>Impossible de redémarrer ce programme en tant qu&apos;administrateur</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1704"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1698"/>
         <source>%1 battery</source>
         <translation>%1 de batterie</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1706"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1700"/>
         <source>Battery level is less than %1</source>
         <translation>Le niveau de batterie est inférieur à %1</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1708"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1702"/>
         <source>Device number: %1
 Device name: %2</source>
         <translation>Numéro de périphérique&#xa0;: %1
 Nom du périphérique&#xa0;: %2</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1734"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1728"/>
         <source>Update to %1 available</source>
         <translation>Mise à jour vers %1 disponible</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1857"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1851"/>
         <source>Reading old profile</source>
         <translation>Lecture de l’ancien profil</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1858"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1852"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
         <translation>Ce profil utilise les numéros GUID des contrôleurs. Souhaitez-vous remplacer les numéros GUID par UniqueID dans ce fichier pour les utiliser avec des manettes identiques&#x202f;? Ce genre d&apos;ancien fichier ne peut pas être chargé dans AntimicroX depuis la version 2.25</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="446"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="443"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurer</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1092"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1089"/>
         <source>Calibration couldn&apos;t be opened</source>
         <translation>L&apos;étalonnage n&apos;a pas pu être ouvert</translation>
     </message>
     <message>
-        <location filename="../../../src/gui/mainwindow.cpp" line="1093"/>
+        <location filename="../../../src/gui/mainwindow.cpp" line="1090"/>
         <source>You must connect at least one controller to open the window</source>
         <translation>Vous devez connecter au moins un contrôleur pour ouvrir la fenêtre</translation>
     </message>
@@ -5359,77 +5389,77 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../../src/winextras.cpp" line="151"/>
+        <location filename="../../../src/winextras.cpp" line="141"/>
         <source>Super</source>
         <translation>Super</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="152"/>
+        <location filename="../../../src/winextras.cpp" line="142"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="153"/>
+        <location filename="../../../src/winextras.cpp" line="143"/>
         <source>Mute</source>
         <translation>Sourdine</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="154"/>
+        <location filename="../../../src/winextras.cpp" line="144"/>
         <source>Vol+</source>
         <translation>Vol+</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="155"/>
+        <location filename="../../../src/winextras.cpp" line="145"/>
         <source>Vol-</source>
         <translation>Vol-</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="156"/>
+        <location filename="../../../src/winextras.cpp" line="146"/>
         <source>Play/Pause</source>
         <translation>Lecture/Pause</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="157"/>
+        <location filename="../../../src/winextras.cpp" line="147"/>
         <source>Play</source>
         <translation>Lecture</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="158"/>
+        <location filename="../../../src/winextras.cpp" line="148"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="159"/>
+        <location filename="../../../src/winextras.cpp" line="149"/>
         <source>Prev</source>
         <translation>Précédent</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="160"/>
+        <location filename="../../../src/winextras.cpp" line="150"/>
         <source>Next</source>
         <translation>Suivant</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="161"/>
+        <location filename="../../../src/winextras.cpp" line="151"/>
         <source>Mail</source>
         <translation>Courriel</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="162"/>
+        <location filename="../../../src/winextras.cpp" line="152"/>
         <source>Home</source>
         <translation>Accueil</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="163"/>
+        <location filename="../../../src/winextras.cpp" line="153"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="164"/>
+        <location filename="../../../src/winextras.cpp" line="154"/>
         <source>Search</source>
         <translation>Recherche</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="200"/>
+        <location filename="../../../src/main.cpp" line="205"/>
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
@@ -5438,7 +5468,7 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
  Vous pouvez maintenant, si vous le souhaitez, supprimer le dossier d&apos;origine ou le laisser tel quel.</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="204"/>
+        <location filename="../../../src/main.cpp" line="209"/>
         <source>Some problem with settings migration occurred.
 Original configs are stored in 
 %1
@@ -5453,42 +5483,42 @@ Les configurations originales sont stockées dans
 Vous pouvez manuellement migrer en renommant l&apos;ancien dossier et en renommant le fichier en &quot;antimicrox_settings.ini&quot;.</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="619"/>
+        <location filename="../../../src/main.cpp" line="603"/>
         <source>Quitting Program</source>
         <translation>Fermeture du programme</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="109"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="108"/>
         <source># of joysticks found: %1</source>
         <translation>Nbre de joysticks trouvés&#x202f;: %1</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="111"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="110"/>
         <source>List Joysticks:</source>
         <translation>Liste des joysticks&#x202f;:</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="112"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>---------------</source>
         <translation>---------------</translation>
     </message>
     <message>
-        <location filename="../../../src/applaunchhelper.cpp" line="119"/>
+        <location filename="../../../src/applaunchhelper.cpp" line="118"/>
         <source>Joystick %1:</source>
         <translation>Joystick %1&#x202f;:</translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="512"/>
+        <location filename="../../../src/main.cpp" line="499"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="538"/>
+        <location filename="../../../src/main.cpp" line="525"/>
         <source>Failed to open event generator. Exiting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/main.cpp" line="564"/>
+        <location filename="../../../src/main.cpp" line="551"/>
         <source>Using %1 as the event generator.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5564,7 +5594,7 @@ Vous pouvez manuellement migrer en renommant l&apos;ancien dossier et en renomma
         <translation type="unfinished">La version de xinput doit être au moins 2.0. Aucun changement d&apos;accélération de la souris ne sera effectué.</translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="486"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="483"/>
         <source>Unable to open uinput files, this may cause problems with generating events.
 To check possible solutions please visit: </source>
         <translation type="unfinished"></translation>
@@ -5676,7 +5706,7 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
 <context>
     <name>SimpleKeyGrabberButton</name>
     <message>
-        <location filename="../../../src/simplekeygrabberbutton.cpp" line="193"/>
+        <location filename="../../../src/simplekeygrabberbutton.cpp" line="184"/>
         <source>Mouse</source>
         <translation>Souris</translation>
     </message>
@@ -5692,20 +5722,20 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
 <context>
     <name>UInputEventHandler</name>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="303"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="304"/>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="313"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="314"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="498"/>
+        <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="495"/>
         <source>Using uinput device file %1</source>
         <translation>Utilisation du fichier de périphérique uinput %1</translation>
     </message>
@@ -6989,12 +7019,12 @@ NUM</translation>
 <context>
     <name>WinExtras</name>
     <message>
-        <location filename="../../../src/winextras.cpp" line="53"/>
+        <location filename="../../../src/winextras.cpp" line="43"/>
         <source>[NO KEY]</source>
         <translation>[AUCUNE TOUCHE]</translation>
     </message>
     <message>
-        <location filename="../../../src/winextras.cpp" line="319"/>
+        <location filename="../../../src/winextras.cpp" line="303"/>
         <source>AntiMicro Profile</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7065,7 +7095,7 @@ NUM</translation>
 <context>
     <name>XMLConfigReader</name>
     <message>
-        <location filename="../../../src/xmlconfigreader.cpp" line="138"/>
+        <location filename="../../../src/xmlconfigreader.cpp" line="140"/>
         <source>Could not write updated profile XML to file %1.</source>
         <translation>Impossible de mettre à jour le profil XML du fichier %1.</translation>
     </message>
