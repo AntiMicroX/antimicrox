@@ -19,6 +19,12 @@
         "editor.formatOnType": true,
         "editor.formatOnSave": true,
     },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnPaste": true,
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+    },
     "qttools.injectNatvisFile": false,
     "cmake.debugConfig": {
         "visualizerFile": "${workspaceFolder}/.vscode/qt5.natvis.xml",
