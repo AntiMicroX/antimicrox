@@ -1320,8 +1320,10 @@ QString InputDevice::getDescription()
     QString gameControllerStatus = isGameController() ? QString("Yes") : QString("No");
 
     full_desc = full_desc + "  " + QString("Game Controller: %1").arg(gameControllerStatus) + "\n  " +
-                QString("# of Axes:       %1").arg(getNumberRawAxes()) + "\n  " +
-                QString("# of Buttons:    %1").arg(getNumberRawButtons()) + "\n  " +
+                QString("# of RawAxes:    %1").arg(getNumberRawAxes()) + "\n  " +
+                QString("# of Axes:       %1").arg(getNumberAxes()) + "\n  " +
+                QString("# of RawButtons: %1").arg(getNumberRawButtons()) + "\n  " +
+                QString("# of Buttons:    %1").arg(getNumberButtons()) + "\n  " +
                 QString("# of Hats:       %1").arg(getNumberHats()) + "\n  " +
                 QString("Accelerometer:   %1").arg(hasSensor(ACCELEROMETER)) + "\n  " +
                 QString("Gyroscope:       %1").arg(hasSensor(GYROSCOPE)) + "\n";
