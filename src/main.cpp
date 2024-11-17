@@ -174,9 +174,13 @@ static void deleteInputDevices(QMap<SDL_JoystickID, InputDevice *> *joysticks)
  */
 void importLegacySettingsIfExist()
 {
-    qDebug() << "Importing settings";
     const QFileInfo config(PadderCommon::configFilePath());
     const bool configExists = config.exists() && config.isFile();
+    if (configExists)
+    {
+        DEBUG() << "Found settings file: " << PadderCommon::configFilePath();
+        return;
+    }
     // 'antimicroX'
     const QFileInfo legacyConfig(PadderCommon::configLegacyFilePath());
     const bool legacyConfigExists = legacyConfig.exists() && legacyConfig.isFile();
@@ -195,7 +199,7 @@ void importLegacySettingsIfExist()
 #endif
         QDir(PadderCommon::configPath()).mkpath(PadderCommon::configPath());
         const bool copySuccess = QFile::copy(fileToCopy.canonicalFilePath(), PadderCommon::configFilePath());
-        qDebug() << "Legacy settings found";
+        DEBUG() << "Legacy settings found";
         const QString successMessage =
             QObject::tr("Your original settings (previously stored in %1) have been copied to\n%2\n If you want you can "
                         "delete the original directory or leave it as it is.")
@@ -209,12 +213,12 @@ void importLegacySettingsIfExist()
         QMessageBox msgBox;
         if (copySuccess)
         {
-            qDebug() << "Legacy settings copied";
+            DEBUG() << "Legacy settings copied";
             msgBox.setText(successMessage);
         } else
         {
-            qWarning() << "Problem with importing settings from: " << fileToCopy.canonicalFilePath()
-                       << " to: " << PadderCommon::configFilePath();
+            WARN() << "Problem with importing settings from: " << fileToCopy.canonicalFilePath()
+                   << " to: " << PadderCommon::configFilePath();
             msgBox.setText(errorMessage);
         }
         msgBox.exec();
@@ -230,7 +234,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(PadderCommon::programVersion);
 
     QTextStream outstream(stdout);
-    Logger *appLogger = Logger::createInstance(&outstream, Logger::LogLevel::LOG_WARNING);
+    Logger *appLogger = Logger::createInstance(&outstream, Logger::LogLevel::LOG_DEBUG);
 
     qRegisterMetaType<JoyButtonSlot *>();
     qRegisterMetaType<SetJoystick *>();
