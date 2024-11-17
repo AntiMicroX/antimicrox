@@ -3,14 +3,14 @@
  <class>MainSettingsDialog</class>
  <widget class="QDialog" name="MainSettingsDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::WindowModality::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>718</width>
-    <height>664</height>
+    <height>684</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -49,13 +49,13 @@
         </size>
        </property>
        <property name="flow">
-        <enum>QListView::TopToBottom</enum>
+        <enum>QListView::Flow::TopToBottom</enum>
        </property>
        <property name="isWrapping" stdset="0">
         <bool>false</bool>
        </property>
        <property name="resizeMode">
-        <enum>QListView::Fixed</enum>
+        <enum>QListView::ResizeMode::Fixed</enum>
        </property>
        <property name="wordWrap">
         <bool>false</bool>
@@ -104,7 +104,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -181,10 +181,10 @@
          <item>
           <spacer name="verticalSpacer_4">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
+            <enum>QSizePolicy::Policy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -347,10 +347,10 @@ first launches.</string>
          <item>
           <spacer name="verticalSpacer">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
+            <enum>QSizePolicy::Policy::Minimum</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -411,10 +411,10 @@ begins.</string>
                  <number>660</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="tickPosition">
-                 <enum>QSlider::NoTicks</enum>
+                 <enum>QSlider::TickPosition::NoTicks</enum>
                 </property>
                </widget>
               </item>
@@ -470,10 +470,10 @@ per seconds.</string>
                  <number>25</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="tickPosition">
-                 <enum>QSlider::NoTicks</enum>
+                 <enum>QSlider::TickPosition::NoTicks</enum>
                 </property>
                </widget>
               </item>
@@ -529,7 +529,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <item>
           <widget class="QTableWidget" name="controllerMappingsTableWidget">
            <property name="selectionMode">
-            <enum>QAbstractItemView::SingleSelection</enum>
+            <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -574,8 +574,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Add</string>
              </property>
              <property name="icon">
-              <iconset theme="list-add">
-               <normaloff>.</normaloff>.</iconset>
+              <iconset theme="list-add"/>
              </property>
             </widget>
            </item>
@@ -585,8 +584,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="list-remove">
-               <normaloff>.</normaloff>.</iconset>
+              <iconset theme="list-remove"/>
              </property>
             </widget>
            </item>
@@ -612,10 +610,10 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <item>
           <spacer name="verticalSpacer_6">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
+            <enum>QSizePolicy::Policy::Minimum</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -704,7 +702,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
                           href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</string>
            </property>
            <property name="textFormat">
-            <enum>Qt::RichText</enum>
+            <enum>Qt::TextFormat::RichText</enum>
            </property>
            <property name="openExternalLinks">
             <bool>true</bool>
@@ -718,6 +716,16 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <property name="topMargin">
           <number>4</number>
          </property>
+         <item>
+          <widget class="QLabel" name="autoProfileDescription">
+           <property name="text">
+            <string>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
@@ -735,7 +743,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
              <item>
               <spacer name="horizontalSpacer_2">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -768,10 +776,10 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <item>
           <spacer name="verticalSpacer_2">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
+            <enum>QSizePolicy::Policy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -787,10 +795,10 @@ Settings will not take affect until you either refresh all joysticks or unplug t
             <bool>false</bool>
            </property>
            <property name="selectionMode">
-            <enum>QAbstractItemView::SingleSelection</enum>
+            <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
            </property>
            <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
+            <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
            </property>
            <property name="columnCount">
             <number>8</number>
@@ -858,10 +866,10 @@ Settings will not take affect until you either refresh all joysticks or unplug t
          <item>
           <spacer name="verticalSpacer_3">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
+            <enum>QSizePolicy::Policy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -882,8 +890,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Add</string>
              </property>
              <property name="icon">
-              <iconset theme="list-add">
-               <normaloff>.</normaloff>.</iconset>
+              <iconset theme="list-add"/>
              </property>
             </widget>
            </item>
@@ -910,8 +917,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
               <string>Delete</string>
              </property>
              <property name="icon">
-              <iconset theme="list-remove">
-               <normaloff>.</normaloff>.</iconset>
+              <iconset theme="list-remove"/>
              </property>
             </widget>
            </item>
@@ -1085,10 +1091,10 @@ is to use all available screens.</string>
          <item>
           <widget class="QFrame" name="extraInfoFrame">
            <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+            <enum>QFrame::Shape::StyledPanel</enum>
            </property>
            <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
+            <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
@@ -1125,7 +1131,7 @@ is to use all available screens.</string>
               <item>
                <spacer name="horizontalSpacer_3">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1156,7 +1162,7 @@ is to use all available screens.</string>
               <item>
                <spacer name="horizontalSpacer_4">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1187,7 +1193,7 @@ is to use all available screens.</string>
               <item>
                <spacer name="horizontalSpacer_5">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1204,7 +1210,7 @@ is to use all available screens.</string>
               <item>
                <spacer name="horizontalSpacer">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1235,7 +1241,7 @@ values used by the virtual mouse.</string>
          <item>
           <spacer name="verticalSpacer_5">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -1252,10 +1258,10 @@ values used by the virtual mouse.</string>
          <item>
           <spacer name="verticalSpacer_11">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
+            <enum>QSizePolicy::Policy::Minimum</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -1268,7 +1274,7 @@ values used by the virtual mouse.</string>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_17">
            <property name="sizeConstraint">
-            <enum>QLayout::SetMinimumSize</enum>
+            <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
            </property>
            <item>
             <widget class="QLabel" name="label_9">
@@ -1305,10 +1311,10 @@ values used by the virtual mouse.</string>
          <item>
           <spacer name="verticalSpacer_10">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
+            <enum>QSizePolicy::Policy::Minimum</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -1321,12 +1327,12 @@ values used by the virtual mouse.</string>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_18">
            <property name="sizeConstraint">
-            <enum>QLayout::SetMinimumSize</enum>
+            <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
            </property>
            <item>
             <widget class="QLabel" name="label_10">
              <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
              </property>
              <property name="text">
               <string>Log Level:</string>
@@ -1376,7 +1382,7 @@ values used by the virtual mouse.</string>
            <item>
             <spacer name="horizontalSpacer_6">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1391,10 +1397,10 @@ values used by the virtual mouse.</string>
          <item>
           <spacer name="verticalSpacer_9">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
+            <enum>QSizePolicy::Policy::Minimum</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -1407,7 +1413,7 @@ values used by the virtual mouse.</string>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_11">
            <property name="sizeConstraint">
-            <enum>QLayout::SetMinimumSize</enum>
+            <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
            </property>
            <item>
             <widget class="QLabel" name="logLevelNoteLabel">
@@ -1419,7 +1425,6 @@ values used by the virtual mouse.</string>
              </property>
              <property name="font">
               <font>
-               <weight>50</weight>
                <italic>true</italic>
                <bold>false</bold>
               </font>
@@ -1431,7 +1436,7 @@ values used by the virtual mouse.</string>
               <bool>true</bool>
              </property>
              <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -1446,7 +1451,7 @@ values used by the virtual mouse.</string>
          <item>
           <spacer name="verticalSpacer_8">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -1486,10 +1491,10 @@ values used by the virtual mouse.</string>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="standardButtons">
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
        </property>
       </widget>
      </item>
