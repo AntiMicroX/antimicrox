@@ -112,6 +112,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
         populateAutoProfiles();
         fillAllAutoProfilesTable();
         fillGUIDComboBox();
+        ui->autoProfileDisabledInfo->hide();
     } else
     {
         delete ui->categoriesListWidget->item(3);

@@ -35,65 +35,85 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QListWidget" name="categoriesListWidget">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>180</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="flow">
-        <enum>QListView::Flow::TopToBottom</enum>
-       </property>
-       <property name="isWrapping" stdset="0">
-        <bool>false</bool>
-       </property>
-       <property name="resizeMode">
-        <enum>QListView::ResizeMode::Fixed</enum>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="currentRow">
-        <number>-1</number>
-       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_17">
        <item>
-        <property name="text">
-         <string>General</string>
-        </property>
+        <widget class="QListWidget" name="categoriesListWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>180</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="flow">
+          <enum>QListView::Flow::TopToBottom</enum>
+         </property>
+         <property name="isWrapping" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="resizeMode">
+          <enum>QListView::ResizeMode::Fixed</enum>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="currentRow">
+          <number>-1</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>General</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Controller Mappings</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Language</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Auto Profile</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Mouse</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Advanced</string>
+          </property>
+         </item>
+        </widget>
        </item>
        <item>
-        <property name="text">
-         <string>Controller Mappings</string>
-        </property>
+        <widget class="QLabel" name="autoProfileDisabledInfo">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Auto Profile functionality is incompatible with Wayland session &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;more info&lt;/a&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
-       <item>
-        <property name="text">
-         <string>Language</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Auto Profile</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Mouse</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Advanced</string>
-        </property>
-       </item>
-      </widget>
+      </layout>
      </item>
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
@@ -104,7 +124,7 @@
         </sizepolicy>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="General">
         <layout class="QVBoxLayout" name="verticalLayout_3">
