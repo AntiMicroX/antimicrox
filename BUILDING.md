@@ -25,7 +25,7 @@ installed on your system in order to build this program:
 - `cmake`
 - `extra-cmake-modules`
 - QT libraries:
-  - For QT6: `qt6-base-dev`, `qt6-tools-dev-tools` `libqt6core5compat6-dev`
+  - For QT6: `qt6-base-dev`, `qt6-tools-dev-tools` `libqt6core5compat6-dev` `qt6-tools-dev`
   - For QT5: `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux)
 - `libsdl2-dev` (`sdl2` on distros based on Arch Linux) (SDL2)
 - `libxi-dev` (`libxi` on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
@@ -51,7 +51,7 @@ sudo dnf install git make cmake gcc cmake extra-cmake-modules qt6-qttools-devel 
 One-liner for installing above dependencies:  
 
 ```bash
-sudo apt install g++ cmake extra-cmake-modules qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+sudo apt install g++ cmake extra-cmake-modules qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-tools-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 ```
 
 QT5 Variant:
