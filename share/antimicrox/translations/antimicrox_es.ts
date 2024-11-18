@@ -4016,7 +4016,7 @@ teclas a botons o desactive ocultar botones vacíos.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="106"/>
         <source>Auto Profile functionality is incompatible with Wayland session &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;more info&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>La funcionalidad de perfil automático es incompatible con la sesión de Wayland &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt; más información &lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="145"/>
@@ -4276,12 +4276,13 @@ las pulsaciones de tecla.</translation>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
         <source>You can help with translating AntiMicroX. Just click here: &lt;a
                           href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Puedes ayudar a traducir AntiMicroX. Haz clic aquí: &lt;a
+                          href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;enlace&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="742"/>
         <source>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</source>
-        <translation type="unfinished"></translation>
+        <translation>La funcionalidad de perfil automático le permite cambiar automáticamente el perfil activo en función de la ventana de la aplicación activa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>
