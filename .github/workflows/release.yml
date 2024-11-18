@@ -22,8 +22,13 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Install Dependencies
+            - name: Install Dependencies with QT5
+              if: matrix.image != 'ubuntu-24.04'
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+
+            - name: Install Dependencies with QT6
+              if: matrix.image == 'ubuntu-24.04'
+              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-tools-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
 
             - name: Configure CMake
               run: cmake -DCPACK_GENERATOR="DEB" -DCMAKE_BUILD_TYPE=Release -DCHECK_FOR_UPDATES=ON -DANTIMICROX_PKG_VERSION="GitHub deb Release" -B ${{ github.workspace }}/build
