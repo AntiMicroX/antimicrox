@@ -35,8 +35,6 @@
 #include <QTime>
 #include <QTimer>
 
-#define USE_NEW_REFRESH
-
 InputDaemon::InputDaemon(QMap<SDL_JoystickID, InputDevice *> *joysticks, AntiMicroSettings *settings, bool graphical,
                          QObject *parent)
     : QObject(parent)
@@ -180,7 +178,6 @@ void InputDaemon::refreshJoysticks()
 
     for (int i = 0; i < SDL_NumJoysticks(); i++)
     {
-#ifdef USE_NEW_REFRESH
         int index = i;
 
         // Check if device is considered a Game Controller at the start.
@@ -251,38 +248,6 @@ void InputDaemon::refreshJoysticks()
             if (joystick != nullptr)
                 emit deviceAdded(joystick);
         }
-
-#else
-        SDL_Joystick *joystick = SDL_JoystickOpen(i);
-        if (joystick != nullptr)
-        {
-            QString temp = QString();
-            SDL_JoystickGUID tempGUID = SDL_JoystickGetGUID(joystick);
-            char guidString[65] = {'0'};
-            SDL_JoystickGetGUIDString(tempGUID, guidString, sizeof(guidString));
-            temp = QString(guidString);
-
-            bool disableGameController = m_settings->value(QString("%1Disable").arg(temp), false).toBool();
-
-            if (SDL_IsGameController(i) && !disableGameController)
-            {
-                SDL_GameController *controller = SDL_GameControllerOpen(i);
-                GameController *damncontroller = new GameController(controller, i, m_settings, this);
-                connect(damncontroller, &GameController::requestWait, eventWorker, &SDLEventReader::haltServices);
-                SDL_Joystick *sdlStick = SDL_GameControllerGetJoystick(controller);
-                SDL_JoystickID joystickID = SDL_JoystickInstanceID(sdlStick);
-                m_joysticks->insert(joystickID, damncontroller);
-                trackcontrollers.insert(joystickID, damncontroller);
-            } else
-            {
-                Joystick *curJoystick = new Joystick(joystick, i, m_settings, this);
-                connect(curJoystick, &Joystick::requestWait, eventWorker, &SDLEventReader::haltServices);
-                SDL_JoystickID joystickID = SDL_JoystickInstanceID(joystick);
-                m_joysticks->insert(joystickID, curJoystick);
-                trackjoysticks.insert(joystickID, curJoystick);
-            }
-        }
-#endif
     }
 
     m_settings->endGroup();
