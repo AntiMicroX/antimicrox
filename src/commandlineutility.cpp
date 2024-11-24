@@ -100,9 +100,8 @@ void CommandLineUtility::parseArguments(const QApplication &parsed_app)
                                              "only if you have sdl "
                                              "library. You can check your controller index, name or "
                                              "even GUID.")},
-        // {"next",
-        //     QCoreApplication::translate("main", "Advance profile loading set
-        //     options")},
+        {"next", QCoreApplication::translate("main", "Load multiple profiles for different controllers. This option is "
+                                                     "meant to be used with profile-controller and profile options.")},
 
     });
 
