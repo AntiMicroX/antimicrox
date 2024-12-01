@@ -419,6 +419,9 @@ int main(int argc, char *argv[])
     QTranslator qtTranslator;
 
 #if defined(Q_OS_UNIX)
+    // Ensure that the Wayland appId matches the .desktop file name
+    QGuiApplication::setDesktopFileName("io.github.antimicrox.antimicrox");
+
     installSignalHandlers();
 
     QString transPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
