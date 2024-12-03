@@ -6,12 +6,12 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>பற்றி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
@@ -155,7 +155,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="325"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்றபதிவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="353"/>
@@ -177,32 +177,49 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;பி.கே.டி.யுக்&quot; (ஆகச்ட் 2020 முதல்) நான் உறுதிப்படுத்த விரும்புகிறேன், இந்த மிகவும் பயனுள்ள மென்பொருள் கைவிடப்படாது என்பதை உறுதிப்படுத்த விரும்புகிறேன், இந்த திட்டத்திற்கு தொடர்ந்து ஆதரவை வழங்கவும், முடிந்தவரை பரவலாக அணுகவும் முடிவு செய்தேன்.
+
+ &quot;சூலியாகோடா&quot; (மார்ச், 2018 முதல் 2020 வரை) கேம்பேடுகளை ஆதரிக்காத எனக்கு பிடித்த பழைய விளையாட்டுகளை மட்டுமே விளையாட விரும்புவதால், இந்த திட்டத்தை (விசைப்பலகை விசைகள் மற்றும் சுட்டி பொத்தான்களை லினக்சில் இணைக்கப்பட்ட கேம்பேடுகளுக்கு வரைபடமாக்குகிறது) மிகவும் சரியான மற்றும் சமீபத்தியதாகக் கண்டேன். ஆனால் இணையத்தில் இதுபோன்ற பயன்பாட்டின் மோசமான தேர்வுகள் மற்றும் அது சரியாக தொகுக்கப்படாததால், திட்டத்தை மீட்க முடிவு செய்தேன். இருப்பினும், நான் எனது வேலையை முடித்தவுடன் (விளையாடுவதை ரசிக்க போதுமானது) இந்த குறியீட்டை மற்றவர்களுடன் பகிர்வது பற்றி நினைத்தேன். கடந்தகால புரோகிராமர்களைப் பற்றிய அனைத்து தகவல்களும் நடத்தப்படும்.
+
+ &quot;ரியோச்சன் 7&quot; (டிசம்பர் 30, 2012 முதல் 2017 வரை), எனது ஓய்வு நேரத்தில் ஆண்டிமிக்ரோவில் வேலை செய்கிறேன். முதலில் க்சாய்பாட்டின் ஒரு முட்கரண்டி மற்றும் சரியான நிகழ்வு-உந்துதல் நிரலாக்கத்தைக் கற்றுக்கொள்வதற்கான ஒரு வழி நான் முதலில் நினைத்ததை விட மிகப் பெரிய ஒன்றாக மாறியுள்ளது. நான் புதிய நுட்பங்களைக் கற்றுக்கொள்வதற்கும், KB+M எமுலேசனின் களத்தைப் பற்றி மேலும் அறிந்துகொள்வதற்கும், வெள்ளிக்கிழமை இரவுகளை எனது விசைப்பலகைக்கு எதிராக என் தலையைத் துடைப்பதற்கும் நான் நிறைய நேரம் செலவிட்டிருந்தாலும், இது ஒட்டுமொத்தமாக ஒரு வேடிக்கையான மற்றும் வளமான அனுபவமாக இருந்தது.
+
+ இந்த நிரலின் தேவை என்னிடமிருந்து வந்தது, சாளரங்களில் இதேபோன்ற நிரல்களைப் பயன்படுத்தி சொந்த கட்டுப்பாட்டு ஆதரவை வழங்காத பல விளையாட்டுகளை விளையாடுகிறது. லினக்சில் சில மாற்று வழிகள் இருந்தபோதிலும், கேபி+எம் எமுலேசனைப் பயன்படுத்துவதன் மூலம் நான் விளையாட விரும்பும் விளையாட்டுகளை உண்மையில் அனுபவிப்பதற்காக செயல்பாடு அல்லது விளையாட்டு கட்டுப்பாடுகள் ஆகியவற்றின் அடிப்படையில் நான் போதுமானதாக இல்லை என்று நான் உணர்ந்த எதுவும் இல்லை. கடந்த காலங்களில் நான் பயன்படுத்திய முக்கிய திட்டமாக க்சாய்பாட் இருந்தது, அது நிறைய வயதாகிவிட்டாலும், அது தேவை என்று நான் நினைத்த சில அடிப்படை செயல்பாடுகளை வழங்கவில்லை. பல ஆண்டுகளில் புதுப்பிக்கப்படாததால் இந்த திட்டம் இறந்துவிட்டது, எனவே நான் சொந்தமாக உருவாக்க முடிவு செய்தேன்.
+
+ அப்போதிருந்து, மற்ற நிரல்கள் சரியாக என்ன செய்கின்றன என்பதைக் கண்டுபிடித்து அதை மேம்படுத்த முயற்சித்தேன். வழியில் சில தூய்மையான தந்திரங்களையும் நான் கண்டுபிடித்தேன், நான் உண்மையிலேயே தெரிந்து கொள்ள விரும்பியதை விட சில விளையாட்டுகளில் கேம்பேட் கட்டுப்பாடுகள் எவ்வாறு செயல்படுத்தப்படுகின்றன என்பதைப் பற்றி மேலும் கற்றுக்கொண்டேன். இந்த நிரல் மேம்படுத்தக்கூடிய பகுதிகள் நிச்சயமாக இருந்தாலும், இந்த நிரல் பழைய விளையாடுவதற்கான சிறந்த விளையாட்டு கட்டுப்பாட்டு அனுபவத்தையும், சொந்த கட்டுப்பாட்டு ஆதரவை வழங்காத சில புதிய, விளையாட்டுகளையும் வழங்குகிறது என்பதை நான் காண்கிறேன்.
+
+ இந்த திட்டத்தின் வளர்ச்சி இனி எனக்கு முன்னுரிமை இல்லை. எக்ச்பாக்ச் 360 கட்டுப்படுத்தியைப் பயன்படுத்துவதை ஒப்பிடும்போது, பிசி கேம்களை விளையாடும் பணிக்கு நீராவி கட்டுப்படுத்தி மிகவும் சிறப்பாக செயல்படுவதால் இது முக்கியமாக உள்ளது. இருப்பினும், இந்த திட்டம் சிறிது நேரம் இருக்க இன்னும் ஒரு காரணம் இருப்பது போல் தெரிகிறது.
+
+ ---
+
+ மே 24, 2016 நிலவரப்படி, இந்த திட்டம் https://github.com/antimicro/antimicro க்கு மாற்றப்பட்டுள்ளது.
+ கூடுதலாக, டிராவிச் பிற நலன்களையும் முன்னுரிமைகளையும் கொண்டிருப்பதால் டிராவிசிலிருந்து (ரியோச்சன் 7) ஆண்டிமிக்ரோ அமைப்புக்கு திட்ட மேலாண்மை கடந்துவிட்டது.
+ அடுத்ததாக, ஆண்டிமிக்ராக்ச் திட்டத்தில் சூலியாகோடா 2018 முதல் திட்டம் தொடர்கிறது.
+ பின்னர் திட்டம் மீண்டும் ஒரு முறை https://github.com/antimicrox/antimicrox க்கு நகர்த்தப்பட்டுள்ளது, மேலும் அதன் பராமரிப்பு பி.கே.டி.யுக் உருவாக்கிய அமைப்பு ஆண்டிமிக்ராக்சால் தொடர்கிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>வரவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆண்டிமிக்ராக்ச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="339"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>வளர்ச்சி பற்றி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Copyright: 2013 - 2022 {2013 ?}</translation>
+        <translation>பதிப்புரிமை: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>உரிமம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
@@ -237,7 +254,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="73"/>
         <source>Using Event Handler: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு கையாளுபவரைப் பயன்படுத்துதல்: %1</translation>
     </message>
 </context>
 <context>
@@ -245,23 +262,23 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="14"/>
         <source>Auto Profile Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>வாகன சுயவிவர உரையாடல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="25"/>
         <source>Pro&amp;file:</source>
-        <translation type="unfinished"></translation>
+        <translation>சார்பு &amp; கோப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="40"/>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="137"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="51"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளரம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="69"/>
@@ -269,146 +286,151 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளரத்தைத் தேர்ந்தெடுக்கவும். பொருத்தமான பயன்பாட்டைக் சொடுக்கு செய்க
+ சாளரம் மற்றும் பயன்பாட்டு கோப்பு பாதை மக்கள் தொகை கொண்டதாக இருக்கும்
+ வடிவத்தில்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
         <source>Detect Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளர பண்புகளைக் கண்டறியவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; வகுப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
         <source>T&amp;itle:  </source>
-        <translation type="unfinished"></translation>
+        <translation>T &amp; ite:  </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="113"/>
         <source>set partial title</source>
-        <translation type="unfinished"></translation>
+        <translation>பகுதி தலைப்பை அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="124"/>
         <source>Application:    </source>
-        <translation type="unfinished"></translation>
+        <translation>பயன்பாடு:    </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="149"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="163"/>
         <source>De&amp;vices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Of &amp; vices:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="179"/>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>இயல்புநிலையாக ஏற்றப்பட்ட இந்த சுயவிவரத்தைத் தேர்ந்தெடுக்கவும்
+ குறிப்பிட்ட சாதனம். அதற்கு பதிலாக தேர்வு பயன்படுத்தப்படும்
+ அனைத்து இயல்புநிலை சுயவிவர விருப்பத்திலும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="184"/>
         <source>Set as Default for Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்படுத்திக்கு இயல்புநிலையாக அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="223"/>
         <source>A different profile is already selected as the default for this device.</source>
-        <translation type="unfinished"></translation>
+        <translation>இந்த சாதனத்தின் இயல்புநிலையாக வேறு சுயவிவரம் ஏற்கனவே தேர்ந்தெடுக்கப்பட்டுள்ளது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="103"/>
         <source>Current (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>நடப்பு (%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="157"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>திறந்த கட்டமைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="168"/>
         <source>Select Program</source>
-        <translation type="unfinished"></translation>
+        <translation>நிரலைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
         <source>Programs (*.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>நிரல்கள் (*.exe)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Please use the main default profile selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>முக்கிய இயல்புநிலை சுயவிவரத் தேர்வைப் பயன்படுத்தவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Main Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>முக்கிய சுயவிவரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="222"/>
         <source>Already selected</source>
-        <translation type="unfinished"></translation>
+        <translation>ஏற்கனவே தேர்ந்தெடுக்கப்பட்டது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="227"/>
         <source>Chosen Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கப்பட்ட சுயவிவரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="228"/>
         <source>The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>அதற்கு பதிலாக தேர்வு பயன்படுத்தப்படும்
+ அனைத்து இயல்புநிலை சுயவிவர விருப்பத்திலும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="251"/>
         <source>Please select a window by using the mouse. Press Escape if you want to cancel.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டியைப் பயன்படுத்தி ஒரு சாளரத்தைத் தேர்ந்தெடுக்கவும். நீங்கள் ரத்து செய்ய விரும்பினால் எச்கேப் அழுத்தவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="252"/>
         <source>Capture Application Window</source>
-        <translation type="unfinished"></translation>
+        <translation>பயன்பாட்டு சாளரத்தைப் பிடிக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="322"/>
         <source>Could not obtain information for the selected window.</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கப்பட்ட சாளரத்திற்கான தகவல்களைப் பெற முடியவில்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="323"/>
         <source>Application Capture Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>பயன்பாட்டு பிடிப்பு தோல்வியடைந்தது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="399"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவர கோப்பு பாதை தவறானது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="440"/>
         <source>No window matching property was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளர பொருந்தக்கூடிய சொத்து எதுவும் குறிப்பிடப்படவில்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="416"/>
         <source>Program path is invalid or not executable.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிரல் பாதை தவறானது அல்லது இயங்கக்கூடியது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="421"/>
         <source>File is not an .exe file.</source>
-        <translation type="unfinished"></translation>
+        <translation>கோப்பு ஒரு .exe கோப்பு அல்ல.</translation>
     </message>
     <message>
         <source>No window matching property was selected.</source>
@@ -421,630 +443,630 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="29"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1260"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>மேம்பட்ட</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="71"/>
         <source>Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>பணிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="76"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்று</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>டர்போ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="86"/>
         <source>Set Selector</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்வாளரை அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="200"/>
         <source>Blank or KB/M</source>
-        <translation type="unfinished"></translation>
+        <translation>வெற்று அல்லது kb/m</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="225"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>பிடி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="240"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>இடைநிறுத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="205"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>சுழற்சி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="215"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>தூரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="298"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>செருகவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="318"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>நீக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="372"/>
         <source>Clear All</source>
-        <translation type="unfinished"></translation>
+        <translation>அனைத்தையும் அழிக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="458"/>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>நேரம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="471"/>
         <source>0.01s</source>
-        <translation type="unfinished"></translation>
+        <translation>0.01 கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="543"/>
         <source>0s</source>
-        <translation type="unfinished"></translation>
+        <translation>0 கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1638"/>
         <source>Insert a pause that occurs in between key presses.</source>
-        <translation type="unfinished"></translation>
+        <translation>முக்கிய அச்சகங்களுக்கு இடையில் ஏற்படும் இடைநிறுத்தத்தை செருகவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="250"/>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>வெளியீடு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="295"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1595"/>
         <source>Insert a new blank slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>புதிய வெற்று ச்லாட்டை செருகவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="315"/>
         <source>Delete a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு ச்லாட்டை நீக்கு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="369"/>
         <source>Clear all currently assigned slots.</source>
-        <translation type="unfinished"></translation>
+        <translation>தற்போது ஒதுக்கப்பட்ட அனைத்து இடங்களையும் அழிக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="455"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>செருகப்பட்ட இடைநிறுத்தத்தின் காலத்தைக் குறிப்பிடவும் அல்லது ச்லாட்டைப் பிடிக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="486"/>
         <source>0m</source>
-        <translation type="unfinished"></translation>
+        <translation>0 மீ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="570"/>
         <source>&amp;Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; மவுச் ச்பீட் மோட்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="625"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="644"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
-        <translation type="unfinished"></translation>
+        <translation>செயல்களின் வரிசை செயல்படும் ஒரு அச்சு இறந்த மண்டலத்தை கடந்த வரம்பைக் குறிப்பிடவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="628"/>
         <source>Distance: </source>
-        <translation type="unfinished"></translation>
+        <translation>தூரம்: </translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="589"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="647"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="235"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>மவுச் மோட்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="245"/>
         <source>Press Time</source>
-        <translation type="unfinished"></translation>
+        <translation>நேரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="210"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>சுணக்கம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="220"/>
         <source>Execute</source>
-        <translation type="unfinished"></translation>
+        <translation>செயல்படுத்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="230"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>சுமை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="255"/>
         <source>Set Change</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்றத்தை அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="260"/>
         <source>Text Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>உரை நுழைவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="335"/>
         <source>Join</source>
-        <translation type="unfinished"></translation>
+        <translation>சேர</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="352"/>
         <source>Split</source>
-        <translation type="unfinished"></translation>
+        <translation>பிளவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="403"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>இடம் வைத்திருப்பவர்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="510"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="534"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="586"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி விரைவு மாற்றப்படும் சதவீதத்தை அமைக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="683"/>
         <source>Auto Reset Cycle After</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆட்டோ மீட்டமைப்பு சுழற்சி பிறகு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="715"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>நொடிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="757"/>
         <source>Executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>இயங்கக்கூடியது:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="767"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="778"/>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>வாதங்கள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="821"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="864"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1086"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>இயக்கப்பட்டது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="888"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>பயன்முறை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="898"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; இயல்பானது: தேர்ந்தெடுக்கப்பட்ட வீதத்தால் மீண்டும் மீண்டும் ஒரு பொத்தானை அழுத்தி விடுவிக்கவும். நகர்த்தப்பட்டது. விகிதம் அப்படியே இருக்கும். &lt;/P&gt; &lt;p&gt; துடிப்பு: ஒரு பொத்தானை எத்தனை முறை அழுத்தி நொடிக்கு வெளியிடப்படுகிறது என்பதை மாற்றவும். பொத்தான் நேரந்தவறுகை அப்படியே இருக்கும். &lt;/P&gt; &lt;/body&gt; &lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="902"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>சாதாரண</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="907"/>
         <source>Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>சரிவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="912"/>
         <source>Pulse</source>
-        <translation type="unfinished"></translation>
+        <translation>நாடி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="966"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>தாமதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="991"/>
         <source>0.10s</source>
-        <translation type="unfinished"></translation>
+        <translation>0.10 கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1061"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>விகிதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1068"/>
         <source>10.0/s</source>
-        <translation type="unfinished"></translation>
+        <translation>10.0/வி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1100"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1372"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>முடக்கப்பட்டது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1105"/>
         <source>Select Set 1 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 1 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1110"/>
         <source>Select Set 1 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 1 இரண்டு வழியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1115"/>
         <source>Select Set 1 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது செட் 1 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1120"/>
         <source>Select Set 2 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 2 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1125"/>
         <source>Select Set 2 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 2 இரண்டு வழியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1130"/>
         <source>Select Set 2 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது செட் 2 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1135"/>
         <source>Select Set 3 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 3 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1140"/>
         <source>Select Set 3 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 3 இரண்டு வழியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1145"/>
         <source>Select Set 3 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது செட் 3 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1150"/>
         <source>Select Set 4 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 4 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1155"/>
         <source>Select Set 4 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 4 இரண்டு வழியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1160"/>
         <source>Select Set 4 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது செட் 4 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1165"/>
         <source>Select Set 5 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>5 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1170"/>
         <source>Select Set 5 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 5 ஐ இரண்டு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1175"/>
         <source>Select Set 5 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது 5 செட் 5 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1180"/>
         <source>Select Set 6 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 6 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1185"/>
         <source>Select Set 6 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 6 இரண்டு வழியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1190"/>
         <source>Select Set 6 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது செட் 6 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1195"/>
         <source>Select Set 7 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 7 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1200"/>
         <source>Select Set 7 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 7 இரண்டு வழியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1205"/>
         <source>Select Set 7 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது 7 செட் 7 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1210"/>
         <source>Select Set 8 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 8 ஐ ஒரு வழி என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1215"/>
         <source>Select Set 8 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 8 இரண்டு வழியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1220"/>
         <source>Select Set 8 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>வைத்திருக்கும் போது செட் 8 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="140"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[சாவி இல்லை]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="302"/>
         <source>sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>நொடி.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="303"/>
         <source>/sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>/நொடி.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation>ச்லாட்டுகளை சரிபார்க்கவில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <source>To delete slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>இடங்களை நீக்க, நீங்கள் குறைந்தது ஒன்றைத் தேர்ந்தெடுக்க வேண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>To insert slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>இடங்களைச் செருக, நீங்கள் குறைந்தது ஒன்றைத் தேர்ந்தெடுக்க வேண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation>தெரியாத தற்போதைய ச்லாட்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Click on chosen slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கப்பட்ட இடங்கள் அவற்றில் சேருவதற்கு முன் சொடுக்கு செய்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="538"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="640"/>
         <source>Not enough slots</source>
-        <translation type="unfinished"></translation>
+        <translation>போதுமான இடங்கள் இல்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="539"/>
         <source>It&apos;s impossible to join slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>ச்லாட்டுகளில் சேர இயலாது. குறைந்தது ஒரு ச்லாட்டில் சேர்க்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="542"/>
         <source>Not selected slots</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கப்பட்ட இடங்கள் இல்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="543"/>
         <source>It&apos;s impossible to join slots. Select at least two slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>ச்லாட்டுகளில் சேர இயலாது. அவற்றில் சேருவதற்கு முன்பு குறைந்தது இரண்டு இடங்களைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="546"/>
         <source>Only keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைப்பலகை இடங்கள் மட்டுமே</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="547"/>
         <source>It&apos;s only possible to join simple and mix keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>எளிமையாக சேரவும், விசைப்பலகை இடங்களை கலக்கவும் மட்டுமே சாத்தியமாகும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="641"/>
         <source>It&apos;s impossible to split slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>இடங்களைப் பிரிப்பது சாத்தியமில்லை. குறைந்தது ஒரு ச்லாட்டில் சேர்க்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Not selected slot</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கப்பட்ட ச்லாட்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Select your slot before splitting.</source>
-        <translation type="unfinished"></translation>
+        <translation>பிரிப்பதற்கு முன் உங்கள் ச்லாட்டைத் தேர்ந்தெடுக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Too many mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>பல கலவை இடங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Select one mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு கலவை ச்லாட்டைத் தேர்ந்தெடுக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>Only mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>இடங்களை மட்டுமே கலக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>It&apos;s only possible to split mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>கலவை ச்லாட்டைப் பிரிக்க மட்டுமே முடியும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1039"/>
         <source>Empty execution path</source>
-        <translation type="unfinished"></translation>
+        <translation>வெற்று சாவுஒறுப்பு பாதை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1040"/>
         <source>Line for execution file path is empty. Fill the first line before you are going to add a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>சாவுஒறுப்பு கோப்பு பாதை காலியாக உள்ளது. நீங்கள் ஒரு ச்லாட் சேர்க்கப் போகும் முன் முதல் வரியை நிரப்பவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1042"/>
         <source>File doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>கோப்பு இல்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation type="unfinished"></translation>
+        <translation>உள்நாட்டில் அத்தகைய கோப்பு எதுவும் இல்லை, அதை செயல்படுத்த முடியும். உங்கள் கணினியில் கோப்பை சரிபார்க்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1418"/>
         <source>Select Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1390"/>
         <source>One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு வழி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1391"/>
         <source>Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>இரண்டு வழி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1392"/>
         <source>While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>நடைபெறும் போது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1543"/>
         <source>Choose Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>இயங்கக்கூடியதைத் தேர்வுசெய்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1599"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுழற்சி செயலைக் கடந்த இடங்கள் அடுத்த பொத்தானை அழுத்தியில் செயல்படுத்தப்படும். ஒரு வரிசையில் பகிர்வுகளை உருவாக்க பல சுழற்சிகளைச் சேர்க்கலாம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1605"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>அடுத்த ச்லாட் குறிப்பிட்ட நேரத்தால் செயல்படுத்தப்படும் நேரத்தை தாமதப்படுத்துகிறது. தாமத நேரம் கடந்துவிட்ட பிறகு தாமதத்திற்கு முன் செயல்படுத்தப்படும் இடங்கள் செயலில் இருக்கும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1612"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>நியமிக்கப்பட்ட இறந்த மண்டலத்தை கடந்த ஒரு குறிப்பிட்ட வரம்பை ஒரு அச்சு நகர்த்தும்போது மட்டுமே இடங்கள் பின்னர் செயல்படுத்தப்படும் என்று தூர நடவடிக்கை குறிப்பிடுகிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1622"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு பிடி நடவடிக்கை செருகவும். குறிப்பிட்ட இடைவெளியைக் கடந்த பொத்தானை வைத்திருந்தால் மட்டுமே செயலுக்குப் பிறகு இடங்கள் செயல்படுத்தப்படும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1627"/>
         <source>Chose a profile to load when this slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>இந்த ச்லாட் செயல்படுத்தப்படும் போது ஏற்ற சுயவிவரத்தைத் தேர்வுசெய்க.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1631"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>மவுச் மோட் நடவடிக்கை அனைத்து சுட்டி வேக அமைப்புகளையும் ஒரு குறிப்பிட்ட சதவீதத்தால் மாற்றும், அதே நேரத்தில் நடவடிக்கை செயலாக்கப்படுகிறது. ச்னிப்பிங் செய்யும் போது சுட்டியை மெதுவாக்க இது பயனுள்ளதாக இருக்கும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1642"/>
         <source>Specify the time that keys past this slot should be held down.</source>
-        <translation type="unfinished"></translation>
+        <translation>இந்த ச்லாட்டைக் கடந்த விசைகள் கீழே வைக்கப்பட வேண்டிய நேரத்தைக் குறிப்பிடவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1647"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>வெளியீட்டு செயலைச் செருகவும். குறிப்பிட்ட இடைவெளியைக் கடந்து பொத்தானை வெளியிட்டால் மட்டுமே செயலுக்குப் பிறகு ச்லாட்டுகள் செயல்படுத்தப்படும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1653"/>
         <source>Change to selected set once slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>ச்லாட் செயல்படுத்தப்பட்டதும் தேர்ந்தெடுக்கப்பட்ட தொகுப்பிற்கு மாற்றவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1657"/>
         <source>Full string will be typed when a slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு ச்லாட் செயல்படுத்தப்படும்போது முழு சரம் தட்டச்சு செய்யப்படும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1618"/>
         <source>Execute program when slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>ச்லாட் செயல்படுத்தப்படும் போது நிரலை இயக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="728"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1488"/>
         <source>Choose Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவரத்தைத் தேர்வுசெய்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1488"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டமைப்பு கோப்புகள் ( *.amgp *.xml)</translation>
     </message>
 </context>
 <context>
@@ -1052,40 +1074,40 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி/திண்டு ஒதுக்கீடு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="41"/>
         <source>Sticks</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation type="unfinished"></translation>
+        <translation>Dpads</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>குறிப்பு: இந்த சாளரம் ஆண்டிமிக்ரோ 2.0 க்கு முன் செய்யப்பட்ட சுயவிவரங்களுடன் பின்னோக்கி பொருந்தக்கூடிய தன்மைக்காக உள்ளது. பதிப்பு 2.0 என்பதால், கேம் கன்ட்ரோலர் மேப்பிங் சாளரத்தின் பயன்பாடு விரும்பப்படுகிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="358"/>
         <source>%1 (Joystick %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (சாய்ச்டிக் %2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="124"/>
         <source>Stick 1</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="134"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="256"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="425"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>இயக்கப்பட்டது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="175"/>
@@ -1095,54 +1117,54 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="535"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="545"/>
         <source>Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒதுக்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="186"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="308"/>
         <source>X Axis:</source>
-        <translation type="unfinished"></translation>
+        <translation>ஃச் அச்சு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="204"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="326"/>
         <source>Y Axis:</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒய் அச்சு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="246"/>
         <source>Stick 2</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
         <source>Number of Physical DPads: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>உடல் DPAD களின் எண்ணிக்கை: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="402"/>
         <source>Virtual DPad 1</source>
-        <translation type="unfinished"></translation>
+        <translation>மெய்நிகர் டிபிஏடி 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="498"/>
         <source>Up:</source>
-        <translation type="unfinished"></translation>
+        <translation>மேலே:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="463"/>
         <source>Down:</source>
-        <translation type="unfinished"></translation>
+        <translation>கீழே:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="477"/>
         <source>Left:</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="491"/>
         <source>Right:</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="65"/>
@@ -1150,7 +1172,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="68"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="69"/>
         <source>Axis %1</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சு %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="408"/>
@@ -1158,7 +1180,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="410"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="411"/>
         <source>Axis %1 -</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சு %1 -</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="417"/>
@@ -1166,7 +1188,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="419"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="420"/>
         <source>Axis %1 +</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சு %1 +</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="430"/>
@@ -1174,27 +1196,27 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="432"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="433"/>
         <source>Button %1</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான் %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="764"/>
         <source>Move stick 1 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>ஃச் அச்சில் குச்சி 1 ஐ நகர்த்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒய் அச்சுடன் குச்சி 1 ஐ நகர்த்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="814"/>
         <source>Move stick 2 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>ஃச் அச்சில் குச்சி 2 ஐ நகர்த்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="830"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒய் அச்சுடன் குச்சி 2 ஐ நகர்த்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="869"/>
@@ -1202,7 +1224,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="991"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="1054"/>
         <source>Press a button or move an axis</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு பொத்தானை அழுத்தவும் அல்லது ஒரு அச்சை நகர்த்தவும்</translation>
     </message>
 </context>
 <context>
@@ -1210,67 +1232,67 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="635"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="636"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="87"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="637"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="92"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="638"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="639"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்: மேலே | கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="102"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="640"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்: இடது | சரி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="107"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="641"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: W | கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="112"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="642"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: அ | டி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="643"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>NUMPAD: KP_8 | Kp_2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="122"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="644"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>NUMPAD: KP_4 | Kp_6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="127"/>
@@ -1278,137 +1300,139 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="654"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="660"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="176"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="277"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>பயன்படுத்த வேண்டிய மதிப்பை ஒரு அச்சுக்கான வரம்பாக அமைக்கவும். ஒரு பயனுள்ளதாக இருக்கும்
+ அனலாக் ச்டிக் தேய்ந்து போகிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="388"/>
         <source>Negative Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>எதிர்மறை அரை த்ரோட்டில்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="408"/>
         <source>Positive Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>நேர்மறை அரை த்ரோட்டில்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="416"/>
         <source>Haptic Trigger:</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆப்டிக் தூண்டுதல்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="523"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>பெயர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="533"/>
         <source>Specify the name of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு அச்சின் பெயரைக் குறிப்பிடவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="542"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="206"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="261"/>
         <source>Set the value of the dead zone for an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு அச்சுக்கு இறந்த மண்டலத்தின் மதிப்பை அமைக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="52"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>முன்னமைவுகள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="193"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>டெட் மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="309"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>அதிகபட்ச மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="342"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="355"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[சாவி இல்லை]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="374"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation type="unfinished"></translation>
+        <translation>எப்படி செய்வது என்ற நடத்தையை தீர்மானிக்கும் த்ரோட்டில் அமைப்பு
+ ஒரு அச்சு பிடிப்பு அல்லது வெளியீட்டை விளக்குங்கள்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="393"/>
         <source>Negative Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>எதிர்மறை தூண்டுதல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="398"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>சாதாரண</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="403"/>
         <source>Positive Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>நேர்மறை த்ரோட்டில்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="477"/>
         <source>Current Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>தற்போதைய மதிப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="606"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>கணம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="619"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="652"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது சுட்டி பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="653"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது சுட்டி பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="661"/>
         <source>Click</source>
-        <translation type="unfinished"></translation>
+        <translation>சொடுக்கு செய்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
         <source>Rigid</source>
-        <translation type="unfinished"></translation>
+        <translation>உறுதியானது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
         <source>Rigid Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>உறுதியான சாய்வு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
         <source>Vibration</source>
-        <translation type="unfinished"></translation>
+        <translation>அதிர்வு</translation>
     </message>
 </context>
 <context>
@@ -1416,94 +1440,95 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>உரையாடல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="44"/>
         <source>To make a new assignment, press any keyboard key or click a button in the Keyboard or Mouse tab</source>
-        <translation type="unfinished"></translation>
+        <translation>புதிய வேலையை உருவாக்க, எந்த விசைப்பலகை விசையையும் அழுத்தவும் அல்லது விசைப்பலகை அல்லது சுட்டி தாவலில் ஒரு பொத்தானைக் சொடுக்கு செய்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="70"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>இடம் வைத்திருப்பவர்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="99"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்று</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="96"/>
         <source>Enables a key press or release to only occur when a controller button is pressed.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு கட்டுப்படுத்தி பொத்தானை அழுத்தும்போது மட்டுமே நிகழும் ஒரு விசை அழுத்தத்தை அல்லது வெளியீட்டை இயக்குகிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="124"/>
         <source>Enables rapid key presses and releases. Turbo controller.</source>
-        <translation type="unfinished"></translation>
+        <translation>விரைவான விசை அச்சகங்கள் மற்றும் வெளியீடுகளை செயல்படுத்துகிறது. டர்போ கன்ட்ரோலர்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>டர்போ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished">Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</translation>
+        <translation>உங்களிடம் இதுபோன்ற விசைப்பலகையை கணினியுடன் இணைக்கவில்லை அல்லது டெச்க்டாப் பிசிக்களில் பதிக்கப்படவில்லை என்றால் அது வேலை செய்யாது என்பதை நினைவில் கொள்ளுங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished">Attach the numeric keypad</translation>
+        <translation>எண் விசைப்பலகையை இணைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி விசைப்பலகை/சுட்டி பொத்தான்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="193"/>
         <source>Slots</source>
-        <translation type="unfinished"></translation>
+        <translation>இடங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="223"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished"></translation>
+        <translation>என்ன &amp;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="233"/>
         <source>Specify the name of a button.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு பொத்தானின் பெயரைக் குறிப்பிடவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="250"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>செயல்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="260"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாட்டில் செய்யப்படும் செயலைக் குறிப்பிடவும்
+ இந்த பொத்தான் பயன்படுத்தப்படுகிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="287"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>மேம்பட்ட</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="62"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="509"/>
         <source>Choose your keyboard key</source>
-        <translation type="unfinished"></translation>
+        <translation>உங்கள் விசைப்பலகை விசையைத் தேர்வுசெய்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="320"/>
         <source>No button</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான் இல்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="329"/>
@@ -1511,47 +1536,47 @@ this button is being used.</source>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="397"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="477"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="330"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி பொத்தானுக்கான அமைப்புகளை மாற்ற, இது விசைப்பலகையிலிருந்து கேம்பேடிற்கு குறைந்தபட்சம் ஒரு வேலையாக இருக்க வேண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="340"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி பொத்தானுக்கு டர்போவின் அமைப்புகளை மாற்ற, இது விசைப்பலகையிலிருந்து கேம்பேடிற்கு குறைந்தபட்சம் ஒரு வேலையாக இருக்க வேண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="390"/>
         <source>No choice</source>
-        <translation type="unfinished"></translation>
+        <translation>வேறு வழியில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
         <source>Before you open window with advanced settings, you have to choice a key</source>
-        <translation type="unfinished"></translation>
+        <translation>மேம்பட்ட அமைப்புகளுடன் சாளரத்தைத் திறப்பதற்கு முன், நீங்கள் ஒரு விசையை தேர்வு செய்ய வேண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="398"/>
         <source>To open advanced dialog, it&apos;s needed to map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>மேம்பட்ட உரையாடலைத் திறக்க, விசைப்பலகையிலிருந்து கேம்பேடிற்கு குறைந்தது ஒரு பொத்தானையாவது வரைபடமாக்க வேண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="478"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>கேம்பேடிற்கான விசைப்பலகையிலிருந்து எந்த தொகுப்பு பொத்தானும் இல்லாததால், பொத்தானை அழிக்க முடியவில்லை. விசைப்பலகையிலிருந்து கேம்பேடிற்கு குறைந்தது ஒரு பொத்தானை வரைபடமாக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="488"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி கேம்பேட் பொத்தான் அமைக்கப்பட்டுள்ளது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="496"/>
         <source>Index %1</source>
-        <translation type="unfinished"></translation>
+        <translation>குறியீட்டு %1</translation>
     </message>
 </context>
 <context>
@@ -1559,22 +1584,22 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>வடிவம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="71"/>
         <source>Input to calibrate:</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவீடு செய்வதற்கான உள்ளீடு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="94"/>
         <source>Steps</source>
-        <translation type="unfinished"></translation>
+        <translation>படிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="113"/>
         <source>Z</source>
-        <translation type="unfinished"></translation>
+        <translation>சட்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="120"/>
@@ -1584,168 +1609,173 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.ui" line="197"/>
         <location filename="../../../src/gui/calibration.ui" line="211"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>டெக்ச்ட்லேபிள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>ஃச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="141"/>
         <location filename="../../../src/gui/calibration.ui" line="190"/>
         <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
-        <translation type="unfinished"></translation>
+        <translation>பெருக்கம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="155"/>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation type="unfinished"></translation>
+        <translation>ஈடுசெய்யும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>ஒய்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="248"/>
         <location filename="../../../src/gui/calibration.cpp" line="457"/>
         <location filename="../../../src/gui/calibration.cpp" line="585"/>
         <source>Start calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவுத்திருத்தத்தைத் தொடங்குங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="278"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>மூடு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="238"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>அமைப்புகளை மீட்டமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="271"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>சேமி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவுத்திருத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>கைரோச்கோப்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கமானி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="87"/>
         <source>Selected device doesn&apos;t have any inputs to calibrate.</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கப்பட்ட சாதனத்தில் அளவீடு செய்ய எந்த உள்ளீடுகளும் இல்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="108"/>
         <location filename="../../../src/gui/calibration.cpp" line="405"/>
         <source>Calibration was not saved for the preset. Do you really want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>முன்னமைவுக்கு அளவுத்திருத்தம் சேமிக்கப்படவில்லை. நீங்கள் உண்மையில் தொடர விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="125"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished"></translation>
+        <translation>தற்போதைய சாதனத்தின் அளவுத்திருத்தத்தை மீட்டமைக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
         <source>Accelerometer calibration sets the neutral controller orientation.</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கமானி அளவுத்திருத்தம் நடுநிலை கட்டுப்படுத்தி நோக்குநிலையை அமைக்கிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="282"/>
         <source>Gyroscope calibration corrects the sensor offset. This prevents cursor movement while the controller is at rest.</source>
-        <translation type="unfinished"></translation>
+        <translation>கைரோச்கோப் அளவுத்திருத்தம் சென்சார் ஆஃப்செட்டை சரிசெய்கிறது. கட்டுப்படுத்தி ஓய்வில் இருக்கும்போது இது கர்சர் இயக்கத்தைத் தடுக்கிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="456"/>
         <source>Calibration completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவுத்திருத்தம் முடிந்தது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
         <source>Offset calibration completed. Click &quot;Continue calibration&quot; to continue with gain calibration.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆஃப்செட் அளவுத்திருத்தம் முடிந்தது. ஆதாய அளவுத்திருத்தத்தைத் தொடர &quot;அளவுத்திருத்தத்தைத் தொடரவும்&quot; என்பதைக் சொடுக்கு செய்க.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="636"/>
         <source>Hold the controller in the desired neutral position and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>விரும்பிய நடுநிலை நிலையில் கட்டுப்படுத்தியை பிடித்து தொடரவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="637"/>
         <source>Calibrating accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவீடு செய்யும் முடுக்கமானி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="656"/>
         <source>Collecting accelerometer data...
 Please hold the controller still.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கமானி தரவைச் சேகரித்தல் ...
+ தயவுசெய்து கட்டுப்படுத்தியை இன்னும் வைத்திருங்கள்.
+ இது %1 வினாடிகள் வரை ஆகலாம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="683"/>
         <source>Place the controller at rest, e.g. put it on the desk, and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்படுத்தியை ஓய்வில் வைக்கவும், எ.கா. அதை மேசையில் வைத்து, தொடரவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="685"/>
         <source>Calibrating gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவீடு செய்யும் கைரோச்கோப்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="704"/>
         <source>Collecting gyroscope data...
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>கைரோச்கோப் தரவை சேகரித்தல் ...
+ இது %1 வினாடிகள் வரை ஆகலாம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>இப்போது குச்சியை பல முறை வெவ்வேறு திசையில் அதிகபட்சமாக நகர்த்தவும், மையத்திற்கு திரும்பவும்.
+ இது %1 வினாடிகள் வரை ஆகலாம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="737"/>
         <source>Calibrating stick</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவீடு செய்யும் குச்சி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="638"/>
         <location filename="../../../src/gui/calibration.cpp" line="686"/>
         <location filename="../../../src/gui/calibration.cpp" line="738"/>
         <source>Continue calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவுத்திருத்தத்தைத் தொடரவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>இப்போது குச்சியை முழு வட்டங்களில் பல முறை நகர்த்தவும்.
+ இது %1 வினாடிகள் வரை ஆகலாம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="627"/>
         <location filename="../../../src/gui/calibration.cpp" line="674"/>
         <location filename="../../../src/gui/calibration.cpp" line="722"/>
         <source>Calibration was saved for the preset. Do you really want to reset settings?</source>
-        <translation type="unfinished"></translation>
+        <translation>முன்னமைவுக்கு அளவுத்திருத்தம் சேமிக்கப்பட்டது. அமைப்புகளை மீட்டமைக்க விரும்புகிறீர்களா?</translation>
     </message>
 </context>
 <context>
@@ -1753,64 +1783,64 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>கைப்பற்றப்பட்ட சாளர பண்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளரம் பற்றிய செய்தி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>வகுப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="55"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>டெக்ச்ட்லேபிள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>தலைப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>பாதை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="105"/>
         <source>Match By Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>பண்புகள் மூலம் பொருந்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="120"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>வகுப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="127"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>தலைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="136"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>பாதை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="147"/>
         <source>Full Path</source>
-        <translation type="unfinished"></translation>
+        <translation>முழு பாதை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="152"/>
         <source>File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>கோப்பு பெயர்</translation>
     </message>
 </context>
 <context>
@@ -1818,67 +1848,67 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (சாதாரண)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="53"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="54"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="55"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட + செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="56"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="57"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: W | A | கள் | டி</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>எண்பலகை</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="59"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="65"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>தரநிலை</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="67"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>எட்டு வழி</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="69"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வே கார்டினல்</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="71"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வழி மூலைவிட்ட</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="76"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
 </context>
 <context>
@@ -1886,103 +1916,103 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>உரையாடல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="27"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>முன்னமைவுகள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="46"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (சாதாரண)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="51"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="56"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="61"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட + செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="66"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="71"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: W | A | கள் | டி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>எண்பலகை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="81"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>DPAD பயன்முறை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="255"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; பெயர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="131"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வே கார்டினல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="136"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வழி மூலைவிட்ட</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>DPAD தாமதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="207"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு திசை மாற்றம் நடைமுறைக்கு வருவதற்கு முன்பு நேரம் கடந்துவிட்டது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="213"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="265"/>
         <source>Specify the name of a dpad.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு DPAD இன் பெயரைக் குறிப்பிடவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="274"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="121"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>தரநிலை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="106"/>
@@ -1998,22 +2028,33 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>தரநிலை: இரண்டு திசை பொத்தான்கள் செயலில் 8 பிராந்திய DPAD
+ DPAD ஒரு மூலைவிட்ட பகுதியில் இருக்கும்போது.
+
+ எட்டு வழி: ஒவ்வொரு திசையும் கொண்ட 8 பிராந்திய DPAD
+ சொந்த அர்ப்பணிப்பு பொத்தான். ஒரே ஒரு பொத்தான் மட்டுமே செயலில் உள்ளது
+ நேரத்தில். கடுமையான விளையாட்டுகளுக்கு பயனுள்ளதாக இருக்கும்.
+
+ 4 வழி கார்டினல்: 4 பிராந்திய DPAD உடன் தொடர்புடைய பகுதிகள்
+ DPAD இன் கார்டினல் திசைகள். மெனுக்களுக்கு பயனுள்ளதாக இருக்கும்.
+
+ 4 வழி மூலைவிட்டம்: ஒவ்வொரு பிராந்தியத்துடனும் 4 பிராந்திய DPAD உடன் தொடர்புடையது
+ ஒரு மூலைவிட்ட மண்டலத்திற்கு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="126"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>எட்டு வழி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="454"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>கணம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="464"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -2021,27 +2062,27 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="14"/>
         <source>Default Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>இயல்புநிலை சுயவிவரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="23"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவரம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="38"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.cpp" line="58"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>திறந்த கட்டமைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.cpp" line="85"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவர கோப்பு பாதை தவறானது.</translation>
     </message>
 </context>
 <context>
@@ -2049,29 +2090,29 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="20"/>
         <source>Extra Profile Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>கூடுதல் சுயவிவர அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="45"/>
         <source>Key Press Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>முக்கிய செய்தித் தாள் நேரம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="70"/>
         <source>0.00 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>0.00 எம்.எச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="84"/>
         <source>Profile Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவர பெயர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="34"/>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="40"/>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="56"/>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>கள்</translation>
     </message>
 </context>
 <context>
@@ -2079,7 +2120,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gamecontroller/gamecontroller.cpp" line="63"/>
         <source>Game Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாட்டு கட்டுப்படுத்தி</translation>
     </message>
 </context>
 <context>
@@ -2089,7 +2130,7 @@ to a diagonal zone.</source>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="51"/>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="57"/>
         <source>DPad</source>
-        <translation type="unfinished"></translation>
+        <translation>DPAD</translation>
     </message>
 </context>
 <context>
@@ -2097,189 +2138,191 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாட்டு கட்டுப்படுத்தி மேப்பிங்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; ஆன்டிமிக்ராக்ச் &lt;a href = &quot;https://wiki.libsdl.org/categorygamecontroller&quot;&gt; &lt;span சூல் தண்டு = &quot;text-decoration: Underline; வண்ணம்:# 0057AE; &quot;&gt; விளையாட்டு கட்டுப்பாட்டாளர் பநிஇ &lt;/span&gt; &lt;/a&gt; ஒரு ஒருங்கிணைந்த தரத்திற்கு ஏற்றவாறு பல்வேறு கேம்பேடுகளை சுருக்கிக் கொள்வதற்காக SDL 2 வழங்கியது. ஒரு பொத்தானை ஒதுக்குவதற்கு, கீழே உள்ள பொருத்தமான பொத்தானை வரிசைக்கு மேப்பிங் கலத்தை முன்னிலைப்படுத்தவும். நீங்கள் ஒரு பொத்தானை அழுத்தலாம் அல்லது உங்கள் கேம்பேடில் ஒரு அச்சை நகர்த்தலாம், மேலும் பயன்படுத்தப்படும் இயற்பியல் பொத்தானை அல்லது அச்சுடன் செல் புதுப்பிக்கப்படும். SDL இல் ஏற்றப்படும். &lt;/p&gt; &lt;/body&gt; &lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>ஃச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒய்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>பின்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>தொடங்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation type="unfinished"></translation>
+        <translation>வழிகாட்டி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது தோள்பட்டை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது தோள்பட்டை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது குச்சி சொடுக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது குச்சி சொடுக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது குச்சி ஃச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது குச்சி ஒய்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="202"/>
         <source>Right Stick X</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது குச்சி ஃச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="207"/>
         <source>Right Stick Y</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது குச்சி ஒய்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது தூண்டுதல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>சரியான தூண்டுதல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Dpad மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation type="unfinished"></translation>
+        <translation>DPAD இடது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Dpad கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation type="unfinished"></translation>
+        <translation>DPAD சரியானது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
         <source>Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>கோர்ப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="256"/>
         <source>SDL 2 Game Controller Mapping String</source>
-        <translation type="unfinished"></translation>
+        <translation>எச்.டி.எல் 2 கேம் கன்ட்ரோலர் மேப்பிங் சரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="307"/>
         <source>Last Axis Event:</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி அச்சு நிகழ்வு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="321"/>
         <source>Current Axis Detection Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>தற்போதைய அச்சு கண்டறிதல் இறந்த மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
         <source>5000</source>
-        <translation type="unfinished"></translation>
+        <translation>5000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="334"/>
         <source>10000</source>
-        <translation type="unfinished"></translation>
+        <translation>10000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="339"/>
         <source>15000</source>
-        <translation type="unfinished"></translation>
+        <translation>15000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="344"/>
         <source>20000</source>
-        <translation type="unfinished"></translation>
+        <translation>20000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="349"/>
         <source>25000</source>
-        <translation type="unfinished"></translation>
+        <translation>25000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="354"/>
         <source>30000</source>
-        <translation type="unfinished"></translation>
+        <translation>30000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="359"/>
         <source>32000</source>
-        <translation type="unfinished"></translation>
+        <translation>32000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாட்டு கட்டுப்படுத்தி மேப்பிங் (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="448"/>
         <source>Discard Controller Mapping?</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்படுத்தி மேப்பிங்கை நிராகரிக்கவா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="449"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>இந்த கட்டுப்படுத்திக்கு மேப்பிங்கை நிராகரிக்கவா?
+
+ நிராகரிக்கப்பட்டால், நீங்கள் அனைத்து சாய்ச்டிக்சையும் புதுப்பித்தவுடன் கட்டுப்படுத்தி சாய்ச்டிக் ஆக மாற்றப்படும்.</translation>
     </message>
 </context>
 <context>
@@ -2287,47 +2330,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>பின்</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
         <source>Guide</source>
-        <translation type="unfinished"></translation>
+        <translation>வழிகாட்டி</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>தொடங்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="102"/>
         <source>LS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>Ls சொடுக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="103"/>
         <source>RS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>RS சொடுக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="104"/>
         <source>L Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>எல் தோள்பட்டை</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="105"/>
         <source>R Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆர் தோள்பட்டை</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="108"/>
         <source>L Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>எல் தூண்டுதல்</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="109"/>
         <source>R Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>R தூண்டுதல்</translation>
     </message>
 </context>
 <context>
@@ -2337,7 +2380,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="106"/>
         <location filename="../../../src/gamecontroller/gamecontrollertrigger.cpp" line="110"/>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>தூண்டுதல்</translation>
     </message>
 </context>
 <context>
@@ -2345,27 +2388,27 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="38"/>
         <source>Up</source>
-        <translation type="unfinished">Up</translation>
+        <translation>மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="42"/>
         <source>Down</source>
-        <translation type="unfinished">Down</translation>
+        <translation>கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="46"/>
         <source>Left</source>
-        <translation type="unfinished">Left</translation>
+        <translation>இடது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="50"/>
         <source>Right</source>
-        <translation type="unfinished">Right</translation>
+        <translation>வலது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
         <source>Shock</source>
-        <translation type="unfinished"></translation>
+        <translation>அதிர்ச்சி</translation>
     </message>
 </context>
 <context>
@@ -2373,7 +2416,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joyaccelerometersensor.cpp" line="63"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கமானி</translation>
     </message>
 </context>
 <context>
@@ -2383,7 +2426,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joyaxis.cpp" line="756"/>
         <location filename="../../../src/joyaxis.cpp" line="762"/>
         <source>Axis</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சு</translation>
     </message>
 </context>
 <context>
@@ -2391,24 +2434,24 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="66"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>எதிர்மம்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="70"/>
         <source>Positive</source>
-        <translation type="unfinished"></translation>
+        <translation>நேரமம்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="74"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>தெரியவில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="47"/>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="78"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான்</translation>
     </message>
 </context>
 <context>
@@ -2416,74 +2459,74 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="67"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="77"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="87"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="97"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="107"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்: மேலே | கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="117"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்: இடது | சரி</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="127"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: W | கள்</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="137"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: அ | டி</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="147"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>NUMPAD: KP_8 | Kp_2</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="157"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>NUMPAD: KP_4 | Kp_6</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="166"/>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="394"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="177"/>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="405"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="374"/>
         <source>Left Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது சுட்டி பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="384"/>
         <source>Right Mouse Button</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது சுட்டி பொத்தான்</translation>
     </message>
 </context>
 <context>
@@ -2491,24 +2534,24 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="250"/>
         <source>Processing turbo for #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation># %1 - %2 க்கு டர்போவை செயலாக்குகிறது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="257"/>
         <source>Finishing turbo for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான் # %1 - %2 க்கான டர்போவை முடித்தல்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="311"/>
         <source>Distance change for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான் # %1 - %2 க்கான தூர மாற்றம்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1608"/>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1614"/>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1619"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1657"/>
@@ -2517,22 +2560,22 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="2026"/>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="4380"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[சாவி இல்லை]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1709"/>
         <source>[Set %1 1W]</source>
-        <translation type="unfinished"></translation>
+        <translation>[ %1 1W ஐ அமைக்கவும்]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1714"/>
         <source>[Set %1 2W]</source>
-        <translation type="unfinished"></translation>
+        <translation>[ %1 2W ஐ அமைக்கவும்]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1721"/>
         <source>[Set %1 WH]</source>
-        <translation type="unfinished"></translation>
+        <translation>[ %1 WH ஐ அமைக்கவும்]</translation>
     </message>
 </context>
 <context>
@@ -2540,47 +2583,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="42"/>
         <source>Toggle</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்று</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="47"/>
         <source>Turbo</source>
-        <translation type="unfinished"></translation>
+        <translation>டர்போ</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="54"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>தெளிவான</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="60"/>
         <source>Set Select</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="61"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>முடக்கப்பட்டது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="74"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="85"/>
         <source>Set %1 1W</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 1W ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="86"/>
         <source>Set %1 2W</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 2W ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="87"/>
         <source>Set %1 WH</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Wh</translation>
     </message>
 </context>
 <context>
@@ -2589,108 +2632,108 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttonslot.cpp" line="122"/>
         <location filename="../../../src/joybuttonslot.cpp" line="174"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="127"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="131"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="135"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="139"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="179"/>
         <source>LB</source>
-        <translation type="unfinished"></translation>
+        <translation>எல்.பி.</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="182"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>எம்பி</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="185"/>
         <source>RB</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆர்.பி.</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="203"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>இடைநிறுத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="217"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>பிடி</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="227"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>சுழற்சி</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="231"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>தூரம்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="242"/>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>வெளியீடு</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="253"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>மவுச் மோட்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="263"/>
         <source>Press Time</source>
-        <translation type="unfinished"></translation>
+        <translation>நேரம்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="278"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>சுணக்கம்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="293"/>
         <source>Load %1</source>
-        <translation type="unfinished"></translation>
+        <translation>சுமை %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="300"/>
         <source>Set Change %1</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்றம் %1 ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="313"/>
         <source>[Text] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[உரை] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="326"/>
         <source>[Exec] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[நிர்வாகி] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="348"/>
         <location filename="../../../src/joybuttonslot.cpp" line="351"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[சாவி இல்லை]</translation>
     </message>
 </context>
 <context>
@@ -2700,7 +2743,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joycontrolstick.cpp" line="811"/>
         <location filename="../../../src/joycontrolstick.cpp" line="816"/>
         <source>Stick</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி</translation>
     </message>
 </context>
 <context>
@@ -2710,35 +2753,35 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="81"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="69"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="77"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="81"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="98"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="106"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="112"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான்</translation>
     </message>
 </context>
 <context>
@@ -2746,67 +2789,67 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="49"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (சாதாரண)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="58"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="67"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="76"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட + செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="85"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="94"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: W | A | கள் | டி</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="103"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>எண்பலகை</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="112"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="125"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>தரநிலை</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="133"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>எட்டு வழி</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="142"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வே கார்டினல்</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="151"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வழி மூலைவிட்ட</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="162"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
 </context>
 <context>
@@ -2814,12 +2857,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>உரையாடல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="107"/>
@@ -2828,67 +2871,67 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="159"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="224"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒய்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="172"/>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>தூரம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="274"/>
         <source>Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>முன்னமைவுகள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="293"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (சாதாரண)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="298"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="303"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="308"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட + செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="313"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>அம்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="318"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைகள்: W | A | கள் | டி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="323"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>எண்பலகை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="328"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="336"/>
         <source>Stick Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி பயன்முறை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="349"/>
@@ -2904,77 +2947,88 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>தரநிலை: இரண்டு திசை பொத்தான்கள் செயலில் 8 பிராந்திய குச்சி
+ குச்சி ஒரு மூலைவிட்ட பகுதியில் இருக்கும்போது.
+
+ எட்டு வழி: ஒவ்வொரு திசையிலும் 8 பிராந்தியமானது ஒட்டிக்கொள்கிறது
+ சொந்த அர்ப்பணிப்பு பொத்தான். ஒரே ஒரு பொத்தான் மட்டுமே செயலில் உள்ளது
+ நேரத்தில். கடுமையான விளையாட்டுகளுக்கு பயனுள்ளதாக இருக்கும்.
+
+ 4 வழி கார்டினல்: 4 பிராந்தியமானது தொடர்புடைய பகுதிகளுடன் ஒட்டிக்கொள்கிறது
+ குச்சியின் கார்டினல் திசைகள். மெனுக்களுக்கு பயனுள்ளதாக இருக்கும்.
+
+ 4 வழி மூலைவிட்டம்: ஒவ்வொரு பிராந்தியத்துடனும் 4 பகுதி ஒட்டிக்கொள்கிறது
+ குச்சியின் மூலைவிட்ட மண்டலத்திற்கு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வே கார்டினல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="379"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4 வழி மூலைவிட்ட</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>Modifier Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்றியமைக்கும் மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="681"/>
         <source>Dead zone value to use for an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>அனலாக் குச்சிக்கு பயன்படுத்த இறந்த மண்டல மதிப்பு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="605"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="659"/>
         <source>Value when an analog stick is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு அனலாக் குச்சி 100%நகர்த்தப்படும் போது மதிப்பு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="417"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="754"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒவ்வொரு மூலைவிட்ட பகுதியும் ஆக்கிரமிக்கும் பகுதி (டிகிரிகளில்).</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="467"/>
         <source>Square Stick:</source>
-        <translation type="unfinished"></translation>
+        <translation>சதுர குச்சி:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு வட்டத்திற்கு மதிப்புகளை கட்டுப்படுத்த ஒரு சதுர குச்சி ஒருங்கிணைப்புகளை மாற்றுவதற்கான விழுக்காடு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
         <source>Stick Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி தாமதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="433"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="538"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு திசை மாற்றம் நடைமுறைக்கு வருவதற்கு முன்பு நேரம் கடந்துவிட்டது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="544"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="410"/>
         <source>Modifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்றியமைப்பாளர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="517"/>
@@ -2983,12 +3037,16 @@ to a diagonal zone of the stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி செயலில் இருக்கும்போது செயலில் இருக்கும் பொத்தானைத் திருத்து.
+
+ இந்த பொத்தான் மண்டலங்களை ஒதுக்க பயனுள்ளதாக இருக்கும்
+ நடை/ரன் ஒதுக்க பயன்படுத்தக்கூடிய மாற்றியமைக்கும் விசைகள்
+ அனலாக் குச்சிக்கு செயல்பாடு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>புச்பட்டன்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="630"/>
@@ -2998,7 +3056,11 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்றியமைக்கும் பொத்தானை செயல்படுத்தும் வாசல்.
+
+ இந்த பொத்தான் மண்டலங்களை ஒதுக்க பயனுள்ளதாக இருக்கும்
+ நடை/ரன் ஒதுக்க பயன்படுத்தக்கூடிய மாற்றியமைக்கும் விசைகள்
+ அனலாக் குச்சிக்கு செயல்பாடு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="770"/>
@@ -3007,73 +3069,77 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>வாசல் மதிப்புக்குள் அல்லது வெளியே குச்சி இருக்கும்போது மாற்றியமைக்கும் பொத்தான்கள் செயல்படுத்தப்பட்டால் வரையறுக்கிறது.
+
+ இந்த பொத்தான் மண்டலங்களை ஒதுக்க பயனுள்ளதாக இருக்கும்
+ நடை/ரன் ஒதுக்க பயன்படுத்தக்கூடிய மாற்றியமைக்கும் விசைகள்
+ அனலாக் குச்சிக்கு செயல்பாடு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="777"/>
         <source>Invert Modifier Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>தலைகீழ் மாற்றியமைக்கும் மண்டலம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
         <source>Na&amp;me:</source>
         <oldsource>Name:</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>என்ன &amp;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="827"/>
         <source>Specify the name of an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>அனலாக் குச்சியின் பெயரைக் குறிப்பிடவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="836"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="364"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>தரநிலை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="146"/>
         <source>Bearing:</source>
-        <translation type="unfinished"></translation>
+        <translation>தாங்கி:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="198"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>% பாதுகாப்பான மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="369"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>எட்டு வழி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="503"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>டெட் மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="510"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>அதிகபட்ச மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="474"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished"></translation>
+        <translation>மூலைவிட்ட வரம்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="598"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>கணம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="611"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -3083,7 +3149,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="61"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்றியமைப்பாளர்</translation>
     </message>
 </context>
 <context>
@@ -3093,7 +3159,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joydpad.cpp" line="95"/>
         <location filename="../../../src/joydpad.cpp" line="100"/>
         <source>DPad</source>
-        <translation type="unfinished"></translation>
+        <translation>DPAD</translation>
     </message>
 </context>
 <context>
@@ -3103,35 +3169,35 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="51"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="67"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="59"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="71"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="63"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="67"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="71"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="47"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="51"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="59"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="90"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="98"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="104"/>
         <source>Button</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான்</translation>
     </message>
 </context>
 <context>
@@ -3139,32 +3205,32 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="37"/>
         <source>Pitch Up</source>
-        <translation type="unfinished"></translation>
+        <translation>பிட்ச் அப்</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="41"/>
         <source>Pitch Down</source>
-        <translation type="unfinished"></translation>
+        <translation>கீழே சுருதி</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
         <source>Yaw Left</source>
-        <translation type="unfinished"></translation>
+        <translation>யவ் இடது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="49"/>
         <source>Yaw Right</source>
-        <translation type="unfinished"></translation>
+        <translation>திருப்பம் சரி</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="53"/>
         <source>Roll Left</source>
-        <translation type="unfinished"></translation>
+        <translation>ரோல் இடது</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="57"/>
         <source>Roll Right</source>
-        <translation type="unfinished"></translation>
+        <translation>வலதுபுறம் உருட்டவும்</translation>
     </message>
 </context>
 <context>
@@ -3172,7 +3238,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joygyroscopesensor.cpp" line="57"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>கைரோச்கோப்</translation>
     </message>
 </context>
 <context>
@@ -3182,7 +3248,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="63"/>
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="67"/>
         <source>Button</source>
-        <translation type="unfinished">Button</translation>
+        <translation>பொத்தான்</translation>
     </message>
 </context>
 <context>
@@ -3190,7 +3256,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorcontextmenu.cpp" line="64"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Mouse Settings</translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
 </context>
 <context>
@@ -3198,7 +3264,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>உரையாடல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3209,121 +3275,121 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
         <source>Acceleration (m/s^2):</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கம் (எம்/எச்^2):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
         <source>Pitch (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>சுருதி (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
         <source>Roll (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>ரோல் (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished">% Safe Zone:</translation>
+        <translation>% பாதுகாப்பான மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
         <source>Presets:</source>
-        <translation type="unfinished">Presets:</translation>
+        <translation>முன்னமைவுகள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished">Dead Zone:</translation>
+        <translation>டெட் மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="394"/>
         <source>Dead zone value to use for an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>அனலாக் சென்சாருக்கு பயன்படுத்த இறந்த மண்டல மதிப்பு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Max Zone:</translation>
+        <translation>அதிகபட்ச மண்டலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="449"/>
         <source>Value when an analog sensor is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு அனலாக் சென்சார் 100%நகர்த்தப்படும் போது மதிப்பு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished">Diagonal Range:</translation>
+        <translation>மூலைவிட்ட வரம்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="495"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished">The area (in degrees) that each diagonal region occupies.</translation>
+        <translation>ஒவ்வொரு மூலைவிட்ட பகுதியும் ஆக்கிரமிக்கும் பகுதி (டிகிரிகளில்).</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
         <source>Sensor Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>சென்சார் தாமதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="556"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished">Time lapsed before a direction change is taken into effect.</translation>
+        <translation>ஒரு திசை மாற்றம் நடைமுறைக்கு வருவதற்கு முன்பு நேரம் கடந்துவிட்டது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished">Na&amp;me:</translation>
+        <translation>என்ன &amp;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="616"/>
         <source>Specify the name of an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>அனலாக் சென்சாரின் பெயரைக் குறிப்பிடவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Mouse Settings</translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
         <source>Roll (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>(°/s) உருட்டவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="79"/>
         <source>Pitch (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>சுருதி (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="80"/>
         <source>Yaw (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>திருப்பம் (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
         <source>Set</source>
-        <translation type="unfinished">Set</translation>
+        <translation>கணம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -3331,42 +3397,42 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="218"/>
         <source>None</source>
-        <translation type="unfinished">None</translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Mouse (Normal)</translation>
+        <translation>சுட்டி (சாதாரண)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished">Mouse (Inverted Horizontal)</translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="227"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished">Mouse (Inverted Vertical)</translation>
+        <translation>சுட்டி (தலைகீழ் செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="230"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished">Mouse (Inverted Horizontal + Vertical)</translation>
+        <translation>சுட்டி (தலைகீழ் கிடைமட்ட + செங்குத்து)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="233"/>
         <source>Arrows</source>
-        <translation type="unfinished">Arrows</translation>
+        <translation>அம்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="236"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Keys: W | A | S | D</translation>
+        <translation>விசைகள்: W | A | கள் | டி</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
         <source>NumPad</source>
-        <translation type="unfinished">NumPad</translation>
+        <translation>எண்பலகை</translation>
     </message>
 </context>
 <context>
@@ -3379,276 +3445,277 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1109"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2482"/>
         <source>&lt;New&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;புதிய&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="98"/>
         <source>Battery level of controller</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்படுத்தியின் பேட்டரி நிலை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="109"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1595"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>அகற்று</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="111"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1596"/>
         <source>Remove configuration from recent list.</source>
-        <translation type="unfinished"></translation>
+        <translation>அண்மைக் கால பட்டியலிலிருந்து உள்ளமைவை அகற்று.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="116"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1598"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>சுமை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="118"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1599"/>
         <source>Load configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>உள்ளமைவு கோப்பை ஏற்றவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="124"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1601"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>சேமி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="126"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1602"/>
         <source>Save changes to configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>உள்ளமைவு கோப்பில் மாற்றங்களைச் சேமிக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="131"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1604"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>என சேமி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="133"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1605"/>
         <source>Save changes to a new configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>புதிய உள்ளமைவு கோப்பில் மாற்றங்களைச் சேமிக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="322"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1607"/>
         <source>Sets</source>
-        <translation type="unfinished"></translation>
+        <translation>செட்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="324"/>
         <source>Copy from Set</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுப்பிலிருந்து நகலெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="325"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="333"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1608"/>
         <source>Set 1</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="337"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1609"/>
         <source>Set 2</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="341"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1610"/>
         <source>Set 3</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 3</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="345"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1611"/>
         <source>Set 4</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="349"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1612"/>
         <source>Set 5</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 5</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="353"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1613"/>
         <source>Set 6</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="357"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1614"/>
         <source>Set 7</source>
-        <translation type="unfinished"></translation>
+        <translation>7 செட் 7</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="361"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1615"/>
         <source>Set 8</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 8</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1621"/>
         <source>Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சி/திண்டு ஒதுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="435"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1620"/>
         <source>Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்படுத்தி மேப்பிங்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="444"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1622"/>
         <source>Quick Set</source>
-        <translation type="unfinished"></translation>
+        <translation>விரைவான தொகுப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="452"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1625"/>
         <source>Names</source>
-        <translation type="unfinished"></translation>
+        <translation>பெயர்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="454"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1626"/>
         <source>Toggle button name displaying.</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான் பெயர் காண்பிக்கும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="460"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1628"/>
         <source>Pref</source>
-        <translation type="unfinished"></translation>
+        <translation>Pref</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="462"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1629"/>
         <source>Change global profile settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>உலகளாவிய சுயவிவர அமைப்புகளை மாற்றவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="466"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1623"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1631"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>மீட்டமை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="468"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1632"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>உள்ளமைவுக்கு மாற்றங்களை மாற்றவும். உள்ளமைவு கோப்பை மீண்டும் ஏற்றவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="532"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>திறந்த கட்டமைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="532"/>
         <source>Config Files (*.amgp *.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டமைப்பு கோப்புகள் ( *.amgp *.xml)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="640"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="808"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="820"/>
         <source>Config File (*.%1.amgp)</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டமைப்பு கோப்பு (*.%1.AMGP)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="729"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
-        <translation type="unfinished"></translation>
+        <translation>சாய்ச்டிக் பொத்தான்கள் அமைப்புகளை மீட்டமைக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1650"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1711"/>
         <source>Save Profile Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவர மாற்றங்களைச் சேமிக்கவா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1653"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1715"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>புதிய சுயவிவரத்தில் மாற்றங்கள் சேமிக்கப்படவில்லை. தற்போதைய சுயவிவரத்தை சேமிக்க அல்லது நிராகரிக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1657"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1719"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; சுயவிவரத்தில் மாற்றங்கள் சேமிக்கப்படவில்லை. தற்போதைய சுயவிவரத்தில் மாற்றங்களைச் சேமிக்க அல்லது நிராகரிக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1990"/>
         <source>Sticks</source>
-        <translation type="unfinished"></translation>
+        <translation>குச்சிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2063"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>சென்சார்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2128"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2180"/>
         <source>DPads</source>
-        <translation type="unfinished"></translation>
+        <translation>Dpads</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2333"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான்கள் எதுவும் ஒதுக்கப்படவில்லை. விசைகளை ஒதுக்க விரைவான தொகுப்பைப் பயன்படுத்தவும்
+ பொத்தான்கள் அல்லது வெற்று பொத்தான்களை மறைக்க முடக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2504"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2528"/>
         <source>Set %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: %2 ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2507"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2531"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2539"/>
         <source>Copy Set Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுப்பு பணிகளை நகலெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2540"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 இலிருந்து பணிகள் மற்றும் சாதன பண்புகளை நகலெடுக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="639"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="807"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="819"/>
         <source>Save Config</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டமைப்பைச் சேமிக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1560"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1566"/>
         <source>Set</source>
-        <translation type="unfinished"></translation>
+        <translation>கணம்</translation>
     </message>
 </context>
 <context>
@@ -3656,7 +3723,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation type="unfinished"></translation>
+        <translation>இயக்குப்பிடி</translation>
     </message>
 </context>
 <context>
@@ -3664,17 +3731,17 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="23"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>பண்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="50"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>விவரங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="64"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>பெயர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="71"/>
@@ -3686,148 +3753,148 @@ to buttons or disable hiding empty buttons.</source>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="284"/>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="320"/>
         <source>%1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="91"/>
         <source>Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>எண்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="118"/>
         <source>Axes:</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சுகள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="145"/>
         <source>Buttons:</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான்கள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="172"/>
         <source>Hats:</source>
-        <translation type="unfinished"></translation>
+        <translation>தொப்பிகள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="199"/>
         <source>Sensors:</source>
-        <translation type="unfinished"></translation>
+        <translation>சென்சார்கள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="244"/>
         <source>Battery:</source>
-        <translation type="unfinished"></translation>
+        <translation>குழந்தை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="257"/>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="79"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>தெரியவில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="277"/>
         <source>GUID:</source>
-        <translation type="unfinished"></translation>
+        <translation>வழிகாட்டுதல்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="313"/>
         <source>Game Controller:</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாட்டு கட்டுப்படுத்தி:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="343"/>
         <source>Axes</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சுகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="406"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="469"/>
         <source>Hats</source>
-        <translation type="unfinished"></translation>
+        <translation>தொப்பிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="490"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>சென்சார்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="50"/>
         <source>%1 (#%2) Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (#%2) பண்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="58"/>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>காலி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="63"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>குறைந்த</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="68"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>சராசரி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="74"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>முழு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="84"/>
         <source>Wired</source>
-        <translation type="unfinished"></translation>
+        <translation>கம்பி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="89"/>
         <source>Different: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>வேறு: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="101"/>
         <source>Accelerometer + Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கமானி + கைரோச்கோப்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="103"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கமானி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="105"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>கைரோச்கோப்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="107"/>
         <source>None</source>
-        <translation type="unfinished">None</translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="124"/>
         <source>Axis %1</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சு %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="177"/>
         <source>Hat %1</source>
-        <translation type="unfinished"></translation>
+        <translation>தொப்பி %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="291"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>இல்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="294"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆம்</translation>
     </message>
 </context>
 <context>
@@ -3835,62 +3902,62 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="29"/>
         <source>Edit Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>அமைப்புகளைத் திருத்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="70"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>பொது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="75"/>
         <source>Controller Mappings</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்படுத்தி மேப்பிங்ச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="80"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>மொழி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="85"/>
         <source>Auto Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>வாகன சுயவிவரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="90"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="95"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>மேம்பட்ட</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="106"/>
         <source>Auto Profile functionality is incompatible with Wayland session &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;more info&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆட்டோ சுயவிவர செயல்பாடு வேலண்ட் அமர்வுடன் பொருந்தாது &lt;a href = &quot;https://github.com/antimicrox/antimicrox/issues/303&quot;&gt; மேலும் செய்தி &lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="155"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the default directory that the program should use in file dialogs when loading a profile or saving a new profile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; சுயவிவரத்தை ஏற்றும்போது அல்லது புதிய சுயவிவரத்தைச் சேமிக்கும்போது நிரல் கோப்பு உரையாடல்களில் பயன்படுத்த வேண்டிய இயல்புநிலை கோப்பகத்தைக் குறிப்பிடவும். &lt;/p&gt; &lt;/body&gt; &lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="182"/>
         <source>Recent Profile Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>அண்மைக் கால சுயவிவர எண்ணிக்கை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="189"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of profiles that can be placed in recent profile list. 0 will result in the program not enforcing a limit on the number of profiles displayed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; அண்மைக் கால சுயவிவர பட்டியலில் வைக்கக்கூடிய சுயவிவரங்களின் எண்ணிக்கை. 0 காண்பிக்கப்படும் சுயவிவரங்களின் எண்ணிக்கையில் ஒரு வரம்பை அமல்படுத்தாது. &lt;/P&gt; &lt;/body&gt; &lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="225"/>
         <source>Gamepad Poll Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>கேம்பேட் வாக்கெடுப்பு விகிதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="232"/>
@@ -3900,52 +3967,62 @@ events from gamepads. Defaults to 10 ms.
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
 before using AntiMicroX unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>புதியதைக் கண்டறிய நிரல் பயன்படுத்தும் வாக்கெடுப்பு விகிதத்தை மாற்றவும்
+ கேம்பேடுகளிலிருந்து நிகழ்வுகள். இயல்புநிலை 10 எம்.எச்.
+
+ வாக்கெடுப்பு விகித மதிப்பைக் குறைப்பது பயன்பாட்டை ஏற்படுத்தக்கூடும்
+ மேலும் சிபியு சக்தியைப் பயன்படுத்தவும், எனவே நீங்கள் பயன்படுத்தும் அமைப்பை சோதிக்கவும்
+ ஆண்டிமிக்ராக்சைப் பயன்படுத்துவதற்கு முன் கவனிக்கப்படாமல்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="246"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
-        <translation type="unfinished"></translation>
+        <translation>முதன்மையான சாளரத்தை மறைக்க முதன்மையான சாளரம் மூடு பொத்தானை மறைக்கவும்
+ நிரலில் இருந்து வெளியேறுவதற்கு பதிலாக சொடுக்கு செய்யப்பட்டது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="250"/>
         <source>Close To Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>தட்டுக்கு அருகில்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="257"/>
         <source>Have Windows start AntiMicroX at system startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>கணினி தொடக்கத்தில் சாளரங்கள் தொடக்க ஆண்டிமிக்ராக்சை வைத்திருங்கள்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="260"/>
         <source>Launch At Windows Startup</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளரங்கள் தொடக்கத்தில் தொடங்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="267"/>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
-        <translation type="unfinished"></translation>
+        <translation>அனைத்து கட்டுப்படுத்திகளுக்கும் அண்மைக் கால சுயவிவரங்களைக் காண்பி
+ தட்டு பட்டியலில் ஒற்றை பட்டியலாக. இயல்புநிலை
+ துணை மெனசைப் பயன்படுத்த.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="272"/>
         <source>Single Profile List in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>தட்டில் ஒற்றை சுயவிவர பட்டியல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="279"/>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிரல் பணிப்பட்டிக்கு குறைக்க வேண்டும்.
+ இயல்பாக, நிரல் கணினியைக் குறைக்கிறது
+ கிடைத்தால் தட்டு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="284"/>
         <source>Minimize to Taskbar</source>
-        <translation type="unfinished"></translation>
+        <translation>பணிப்பட்டியைக் குறைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="291"/>
@@ -3953,250 +4030,260 @@ tray if available.</source>
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
 to bring up the edit dialog for gamepad buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>இந்த விருப்பம் நிரல் அனைத்தையும் மறைக்க வைக்கும்
+ அவர்களுக்கு எந்த இடங்களும் இல்லாத பொத்தான்கள்.
+ விரைவான தொகுப்பு உரையாடல் சாளரம் பயன்படுத்தப்பட வேண்டும்
+ கேம்பேட் பொத்தான்களுக்கான திருத்து உரையாடலைக் கொண்டு வர.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="297"/>
         <source>Hide Empty Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>வெற்று பொத்தான்களை மறைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="304"/>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிரல் தொடங்கப்படும் போது, கடைசியாக திறக்கவும்
+ அறியப்பட்ட சுயவிவரம்
+ முந்தைய அமர்வு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="309"/>
         <source>Auto Load Last Opened Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆட்டோ சுமை கடைசியாக திறக்கப்பட்ட சுயவிவரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="319"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிரல் போது கணினி தட்டு ஐகானை மட்டும் காட்டுங்கள்
+ முதல் துவக்கங்கள்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="323"/>
         <source>Launch in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>தட்டில் ஏவுதல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="330"/>
         <source>Associate .amgp files with AntiMicroX in Windows Explorer.</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளரங்கள் எக்ச்ப்ளோரரில் ஆண்டிமிக்ராக்சுடன் .amgp கோப்புகளை இணைக்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="333"/>
         <source>Associate Profiles</source>
-        <translation type="unfinished"></translation>
+        <translation>இணை சுயவிவரங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished"></translation>
+        <translation>உங்களிடம் இதுபோன்ற விசைப்பலகையை கணினியுடன் இணைக்கவில்லை அல்லது டெச்க்டாப் பிசிக்களில் பதிக்கப்படவில்லை என்றால் அது வேலை செய்யாது என்பதை நினைவில் கொள்ளுங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="349"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>எண் விசைப்பலகையை இணைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="386"/>
         <source>Key Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>விசை மீண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="392"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>இது போது செயலில் உள்ள விசைகள் மீண்டும் மீண்டும் அழுத்தப்படும்
+ விருப்பம் இயக்கப்பட்டது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="396"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="987"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>இயக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="415"/>
         <source>Specifies how much time should elapse before key repeating
 begins.</source>
-        <translation type="unfinished"></translation>
+        <translation>விசை மீண்டும் மீண்டும் முன் எவ்வளவு நேரம் கழிக்க வேண்டும் என்பதைக் குறிப்பிடுகிறது
+ தொடங்குகிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="480"/>
         <source>Specifies how many times key presses will be performed
 per seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>முக்கிய அச்சகங்கள் எத்தனை முறை செய்யப்படும் என்பதைக் குறிப்பிடுகிறது
+ ஒரு நொடிக்கு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="623"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; ஆன்டிமிக்ராக்ச் பங்களிப்பாளர்களால் பல்வேறு மொழிகளில் மொழிபெயர்க்கப்பட்டுள்ளது. இயல்பாக, நிரல் உங்கள் கணினியின் இருப்பிட அமைப்பின் அடிப்படையில் பொருத்தமான மொழிபெயர்ப்பைத் தேர்ந்தெடுக்கும். இருப்பினும், கீழேயுள்ள பட்டியலிலிருந்து நீங்கள் தேர்ந்தெடுக்கும் மொழியைப் பொறுத்து ஆண்டிமிக்ராக்ச் சுமையை வேறுபட்ட மொழிபெயர்ப்பை உருவாக்கலாம். &lt;/P&gt; &lt;/body&gt; &lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="658"/>
         <source>Português do Brasil</source>
-        <translation type="unfinished"></translation>
+        <translation>பிரேசிலிலிருந்து போர்த்துகீசியம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="668"/>
         <source>Français</source>
-        <translation type="unfinished"></translation>
+        <translation>பிரஞ்சு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="673"/>
         <source>Deutsch</source>
-        <translation type="unfinished"></translation>
+        <translation>டாய்ச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="678"/>
         <source>Italiano</source>
-        <translation type="unfinished"></translation>
+        <translation>இத்தாலியன்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="683"/>
         <source>日本語</source>
-        <translation type="unfinished"></translation>
+        <translation>சப்பானியர்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="688"/>
         <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation>ரச்ய</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="693"/>
         <source>српски / srpski</source>
-        <translation type="unfinished"></translation>
+        <translation>செர்பிய / செர்பிய</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="698"/>
         <source>简体中文</source>
-        <translation type="unfinished"></translation>
+        <translation>எளிமைப்படுத்தப்பட்ட சீன</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="703"/>
         <source>Español</source>
-        <translation type="unfinished"></translation>
+        <translation>எச்பானோல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="708"/>
         <source>українська</source>
-        <translation type="unfinished"></translation>
+        <translation>உக்ரேனிய</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="713"/>
         <source>Polski</source>
-        <translation type="unfinished"></translation>
+        <translation>மெருகூட்டல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
         <source>You can help with translating AntiMicroX. Just click here: &lt;a
                           href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆண்டிமிக்ராக்சை மொழிபெயர்க்க நீங்கள் உதவலாம். இங்கே சொடுக்கு செய்க: &lt;அ
+ href = &quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt; இணைப்பு &lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="742"/>
         <source>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</source>
-        <translation type="unfinished"></translation>
+        <translation>செயலில் உள்ள பயன்பாட்டு சாளரத்தின் அடிப்படையில் செயலில் உள்ள சுயவிவரத்தை தானாக மாற்ற ஆட்டோ சுயவிவர செயல்பாடு உங்களை அனுமதிக்கிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>
         <source>History Si&amp;ze:</source>
-        <translation type="unfinished"></translation>
+        <translation>வரலாற்று அளவு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1022"/>
         <source>Weight Modi&amp;fier:</source>
-        <translation type="unfinished"></translation>
+        <translation>எடை மாற்றியமைப்பாளர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1302"/>
         <source>Log File:</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவு கோப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1321"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note Unspecified log file allows printing logs in console output&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; &lt;span சூல் தண்டு = &quot;font-style: italic;&quot; html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1358"/>
         <source>Log Level:</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவு நிலை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1372"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1377"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>பிழை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1382"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>எச்சரிக்கை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1387"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>தகவல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1392"/>
         <source>Verbose</source>
-        <translation type="unfinished"></translation>
+        <translation>வாய்மொழி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1397"/>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>பிழைத்திருத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1453"/>
         <source>Note: To see the change of log level in console output (not in log file), application restart is required</source>
-        <translation type="unfinished"></translation>
+        <translation>குறிப்பு: கன்சோல் வெளியீட்டில் பதிவு மட்டத்தின் மாற்றத்தைக் காண (பதிவு கோப்பில் இல்லை), பயன்பாட்டு மறுதொடக்கம் தேவை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1507"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>மீட்டமை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="861"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>வகுப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="145"/>
         <source>Pro&amp;file Directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>புரோ &amp; கோப்பு அடைவு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="356"/>
         <source>Show low battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>குறைந்த பேட்டரி அறிவிப்பைக் காட்டு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="363"/>
         <source>Show empty battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>வெற்று பேட்டரி அறிவிப்பைக் காட்டு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="866"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>தலைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="871"/>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>திட்டம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="959"/>
@@ -4204,22 +4291,25 @@ per seconds.</source>
 while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within AntiMicroX to be more
 precise.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;மேம்படுத்தப்பட்ட சுட்டிக்காட்டி துல்லியம்&quot; சாளர அமைப்பை முடக்கு
+ ஆண்டிமிக்ராக்ச் இயங்குகிறது. &quot;மேம்பட்ட சுட்டிக்காட்டி துல்லியத்தை&quot; முடக்குதல்
+ ஆண்டிமிக்ராக்சுக்குள் சுட்டி இயக்கம் அதிகமாக இருக்க அனுமதிக்கும்
+ துல்லியமான.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="965"/>
         <source>Disable Enhance Pointer Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டிக்காட்டி துல்லியத்தை மேம்படுத்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="975"/>
         <source>Smoothing</source>
-        <translation type="unfinished"></translation>
+        <translation>மென்மையான</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1055"/>
         <source>Refresh Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>வீதத்தை புதுப்பிக்கவும்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1062"/>
@@ -4229,46 +4319,53 @@ editing this setting as it will cause the program to use
 more CPU power. Setting this value too low can cause
 system instability. Please test the setting before using
 it unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>புதுப்பிப்பு வீதம் என்பது காலத்தின் அளவு
+ சுட்டி நிகழ்வுகளுக்கு இடையில். எப்போது எச்சரிக்கையாக இருங்கள்
+ இந்த அமைப்பைத் திருத்துவது நிரல் பயன்படுத்த வழிவகுக்கும்
+ மேலும் சிபியு ஆற்றல். இந்த மதிப்பை மிகக் குறைவாக அமைப்பது ஏற்படலாம்
+ கணினி உறுதியற்ற தன்மை. பயன்படுத்துவதற்கு முன் அமைப்பை சோதிக்கவும்
+ அது கவனிக்கப்படவில்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1076"/>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>வேனில்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1090"/>
         <source>Screen:</source>
-        <translation type="unfinished"></translation>
+        <translation>திரை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1100"/>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation type="unfinished"></translation>
+        <translation>வசந்த பயன்முறைக்கு குறிப்பிட்ட திரையைப் பயன்படுத்தவும். லினக்சில், தி
+ இயல்புநிலை முதன்மைத் திரையைப் பயன்படுத்துவதாகும். சாளரங்களில், இயல்புநிலை
+ கிடைக்கக்கூடிய அனைத்து திரைகளையும் பயன்படுத்த வேண்டும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1134"/>
         <source>Accel Numerator:</source>
-        <translation type="unfinished"></translation>
+        <translation>முடி எண்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1147"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1178"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1209"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1171"/>
         <source>Accel Denominator:</source>
-        <translation type="unfinished"></translation>
+        <translation>முடி வகுப்பான்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1202"/>
         <source>Accel Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>முடி வாசல்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1246"/>
@@ -4276,156 +4373,163 @@ is to use all available screens.</source>
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
 values used by the virtual mouse.</source>
-        <translation type="unfinished"></translation>
+        <translation>மெய்நிகர் சுட்டிக்கான முடுக்கம் மதிப்புகள் இருந்தால்
+ வேறுபட்ட செயல்முறையால் மாற்றப்பட்டது, குறிப்பாக வெளியேறும்போது
+ ஒரு பழைய விளையாட்டு, நீங்கள் முடுக்கம் மீட்டமைக்க விரும்பலாம்
+ மெய்நிகர் சுட்டியால் பயன்படுத்தப்படும் மதிப்புகள்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1252"/>
         <source>Reset Acceleration</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கம் மீட்டமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="405"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>தாமதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="447"/>
         <source> ms</source>
-        <translation type="unfinished"></translation>
+        <translation> எம்.எச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="470"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>விகிதம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="506"/>
         <source> times/s</source>
-        <translation type="unfinished"></translation>
+        <translation> நேரங்கள்/கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="537"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
-        <translation type="unfinished"></translation>
+        <translation>சேமிக்கப்பட்ட தனிப்பயன் வரைபடங்களின் பட்டியல் கீழே. வரைபடங்களை நீக்க பின்வரும் அட்டவணையைப் பயன்படுத்தலாம் அல்லது மேப்பிங்சை தற்காலிகமாக முடக்கலாம். எச்.டி.எல் உடன் சேர்க்கப்பட்டுள்ள வரைபடங்களையும் நீங்கள் முடக்கலாம்; பொருத்தமான சாய்ச்டிக் வழிகாட்டலுடன் புதிய வரிசையைச் செருகவும், முடக்கவும்.
+
+ நீங்கள் அனைத்து சாய்ச்டிக்சையும் புதுப்பிக்கும் வரை அல்லது அந்த குறிப்பிட்ட சாய்ச்டிக் அவிழ்க்கும் வரை அமைப்புகள் பாதிக்கப்படாது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="574"/>
         <source>GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>வழிகாட்டுதல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="579"/>
         <source>Mapping String</source>
-        <translation type="unfinished"></translation>
+        <translation>மேப்பிங் சரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="584"/>
         <source>Disable?</source>
-        <translation type="unfinished"></translation>
+        <translation>முடக்கவா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="604"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="937"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>நீக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="653"/>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1786"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>இயல்புநிலை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="663"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆங்கிலம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="754"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="846"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>செயலில்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="779"/>
         <source>Devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>சாதனங்கள்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="787"/>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1067"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>அனைத்தும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="851"/>
         <source>Device</source>
-        <translation type="unfinished"></translation>
+        <translation>சாதனம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="856"/>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவரம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="876"/>
         <source>Default?</source>
-        <translation type="unfinished"></translation>
+        <translation>இயல்புநிலை?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="594"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="910"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>கூட்டு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="923"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="120"/>
         <source>AutoProfile (disabled in Wayland)</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆட்டோபிரோஃபைல் (வேலண்டில் முடக்கப்பட்டுள்ளது)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="253"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>மேலும், குறைந்த மதிப்பைப் பயன்படுத்த விரும்பும் சாளரங்கள் பயனர்களும் சரிபார்க்க வேண்டும்
+ நீங்கள் முடக்கவில்லை என்றால் &quot;சுட்டிக்காட்டி துல்லியத்தை மேம்படுத்துதல்&quot; தேர்வுப்பெட்டியை முடக்கு
+ சாளரங்களில் விருப்பம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="728"/>
         <source>Select Default Profile Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>இயல்புநிலை சுயவிவர கோப்பகத்தைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1474"/>
         <source>Are you sure you want to delete the profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவரத்தை நீக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1842"/>
         <source>Save Log File As</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவு கோப்பை சேமிக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1842"/>
         <source>Log Files (*.log)</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவு கோப்புகள் (*.லாக்)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1867"/>
         <source>Do you really want to reset setting?</source>
-        <translation type="unfinished"></translation>
+        <translation>அமைப்பை மீட்டமைக்க விரும்புகிறீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1891"/>
         <source>Would you like to reset mappings too?</source>
-        <translation type="unfinished"></translation>
+        <translation>மேப்பிங்கையும் மீட்டமைக்க விரும்புகிறீர்களா?</translation>
     </message>
 </context>
 <context>
@@ -4433,177 +4537,178 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="23"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆண்டிமிக்ராக்ச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
         <source>No Joysticks have been found.
  Please plug in a joystick and then choose the &quot;Update Joysticks&quot; option in the main menu</source>
-        <translation type="unfinished"></translation>
+        <translation>சாய்ச்டிக்ச் எதுவும் கண்டுபிடிக்கப்படவில்லை.
+ தயவுசெய்து ஒரு சாய்ச்டிக் செருகவும், பின்னர் முதன்மையான பட்டியலில் &quot;புதுப்பிப்பு சாய்ச்டிக்ச்&quot; விருப்பத்தைத் தேர்வுசெய்க</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="167"/>
         <source>If events are not seen by a game, please click here to run this application as Administrator.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வுகள் ஒரு விளையாட்டால் காணப்படாவிட்டால், இந்த பயன்பாட்டை நிர்வாகியாக இயக்க இங்கே சொடுக்கு செய்க.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>புதுப்பிப்பு பொத்தானை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
         <source>&amp;App</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; பயன்பாடு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="224"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; விருப்பங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="235"/>
         <source>He&amp;lp</source>
-        <translation type="unfinished"></translation>
+        <translation>அவர் &amp; எல்பி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="254"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="433"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;வெளியேறு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="257"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+q</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="269"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="448"/>
         <source>&amp;Update Joysticks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; சாய்ச்டிக்சைப் புதுப்பிக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="272"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+u</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="281"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="438"/>
         <source>&amp;Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; மறை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="284"/>
         <location filename="../../../src/gui/mainwindow.ui" line="340"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+h</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="293"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;பற்றி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="296"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+a</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="305"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>பற்றி &amp; கியுடி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="308"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+t</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="317"/>
         <source>&amp;Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; பண்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="320"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="329"/>
         <source>&amp;Key Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; முக்கிய செக்கர்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="332"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+k</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="349"/>
         <source>&amp;GitHub Page</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; அறிவிலிமையம் பக்கம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="352"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+g</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="361"/>
         <source>S&amp;ettings</source>
-        <translation type="unfinished"></translation>
+        <translation>எச் &amp; எட்டிங்ச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="364"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="373"/>
         <source>&amp;Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; ச்டிக்/திண்டு ஒதுக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="376"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+x</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="385"/>
         <source>&amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; விக்கி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="388"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+w</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="397"/>
         <source>&amp;Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; சிக்கல்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="400"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+i</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="409"/>
         <source>&amp;Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; அளவுத்திருத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="412"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+c</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="337"/>
         <source>Home Page</source>
-        <translation type="unfinished"></translation>
+        <translation>முகப்பு பக்கம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="334"/>
@@ -4614,81 +4719,84 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.cpp" line="1511"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="1524"/>
         <source>(%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="582"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="586"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>கோப்பை திற</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1403"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+        <translation>இந்த திட்டத்தை நிர்வாகியாக இயக்க விரும்புகிறீர்கள் என்பதில் உறுதியாக இருக்கிறீர்களா?
+
+ சில விளையாட்டுகள் நிர்வாகியாக இயங்குகின்றன, இது ஆன்டிமிக்ரோவால் உருவாக்கப்பட்ட நிகழ்வுகளை அந்த விளையாட்டுகளால் பயன்படுத்தக்கூடாது, ஆன்டிமிக்ரோவும் நிர்வாகியாக இயக்கப்படாவிட்டால். இது சாளரங்கள் விச்டா மற்றும் அதற்குப் பிறகு பயனர் கணக்கு கட்டுப்பாடு (யுஏசி) விருப்பங்களால் ஏற்படும் இசைவு சிக்கல்கள் காரணமாகும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1698"/>
         <source>%1 battery</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 பேட்டரி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1700"/>
         <source>Battery level is less than %1</source>
-        <translation type="unfinished"></translation>
+        <translation>பேட்டரி நிலை %1 க்கும் குறைவாக உள்ளது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1702"/>
         <source>Device number: %1
 Device name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>சாதன எண்: %1
+ சாதனத்தின் பெயர்: %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1728"/>
         <source>Update to %1 available</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 க்கு புதுப்பிக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1851"/>
         <source>Reading old profile</source>
-        <translation type="unfinished"></translation>
+        <translation>பழைய சுயவிவரத்தைப் படித்தல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1852"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
-        <translation type="unfinished"></translation>
+        <translation>இந்த சுயவிவரம் கட்டுப்படுத்திகளின் வழிகாட்டுதல் எண்களைப் பயன்படுத்துகிறது. ஒரே மாதிரியான கேம்கண்ட்ரோலர்களில் பயன்படுத்த இந்த கோப்பில் KIDE எண்களை தனித்துவமான II க்கு மாற்ற விரும்புகிறீர்களா? பதிப்பு 2.25 முதல் இத்தகைய பழைய கோப்பை ஆண்டிமிக்ராக்சில் ஏற்ற முடியாது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="443"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; மீட்டமை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1089"/>
         <source>Calibration couldn&apos;t be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>அளவுத்திருத்தத்தை திறக்க முடியவில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1090"/>
         <source>You must connect at least one controller to open the window</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளரத்தைத் திறக்க குறைந்தபட்சம் ஒரு கட்டுப்படுத்தியையாவது இணைக்க வேண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1402"/>
         <source>Run as Administrator?</source>
-        <translation type="unfinished"></translation>
+        <translation>நிர்வாகியாக இயக்கவா?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1424"/>
         <source>Failed to elevate program</source>
-        <translation type="unfinished"></translation>
+        <translation>திட்டத்தை உயர்த்துவதில் தோல்வி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1425"/>
         <source>Failed to restart this program as the Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>நிர்வாகியாக இந்த திட்டத்தை மறுதொடக்கம் செய்யத் தவறிவிட்டது</translation>
     </message>
 </context>
 <context>
@@ -4696,12 +4804,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="259"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள் - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="272"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -4709,12 +4817,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="250"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள் - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="255"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -4722,12 +4830,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="283"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="296"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -4735,12 +4843,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="267"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="280"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -4748,12 +4856,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="113"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Mouse Settings</translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -4761,12 +4869,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="17"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="28"/>
         <source>Mouse Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி பயன்முறை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="35"/>
@@ -4780,79 +4888,89 @@ from the center of the screen depending on how
 much you move an axis. The mouse cursor will
 be returned to the center of the screen when the
 axis is moved back to the dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>மவுச் கர்சரை நகர்த்த கர்சர் பயன்முறை பயன்படுத்தப்படுகிறது
+ அதன் தற்போதைய நிலையுடன் தொடர்புடைய திரையைச் சுற்றி
+ நீங்கள் ஒரு அச்சை எவ்வளவு நகர்த்துகிறீர்கள் என்பதைப் பொறுத்து
+ அல்லது ஒரு பொத்தானை அழுத்தினால்.
+
+ மவுச் கர்சரை நகர்த்த ச்பிரிங் பயன்முறை பயன்படுத்தப்படுகிறது
+ எப்படி என்பதைப் பொறுத்து திரையின் மையத்திலிருந்து
+ நீங்கள் ஒரு அச்சை நகர்த்துகிறீர்கள். மவுச் கர்சர் வில்
+ திரையின் மையத்திற்கு திரும்ப வேண்டும்
+ அச்சு மீண்டும் இறந்த மண்டலத்திற்கு நகர்த்தப்படுகிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="53"/>
         <source>Cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>கர்சர்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="58"/>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>வேனில்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="76"/>
         <source>Acceleration:</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="109"/>
         <source>Enhanced Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>மேம்பட்ட துல்லியம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="728"/>
         <source>Linear</source>
-        <translation type="unfinished"></translation>
+        <translation>நேரியல்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="119"/>
         <source>Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>இருபடி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="124"/>
         <source>Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>கன</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="129"/>
         <source>Quadratic Extreme</source>
-        <translation type="unfinished"></translation>
+        <translation>இருபடி எக்ச்ட்ரீம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="134"/>
         <source>Power Function</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆற்றல் செயல்பாடு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="139"/>
         <source>Easing Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>எளிதாக்கும் இருபடி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="144"/>
         <source>Easing Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>க்யூபிக் எளிதாக்குகிறது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="177"/>
         <source>Mouse Speed Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி வேக அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="192"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
-        <translation type="unfinished"></translation>
+        <translation>கிடைமட்ட மற்றும் செங்குத்து வேகத்தை மாற்றவும்
+ ஒரே நேரத்தில் பெட்டிகள்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="196"/>
         <source>Change Together</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒன்றாக மாற்றவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="516"/>
@@ -4862,52 +4980,61 @@ produce. Acceleration is added based on how quickly an axis is
 moved in one gamepad poll. This is meant to help work around
 some of the issues of the very limited input range available
 using typical gamepad analog sticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டிக்கு அதிக முடுக்கம் சேர்ப்பதற்கான விருப்பங்கள்
+ முடுக்கம் வளைவுக்கு அப்பாற்பட்ட இயக்கம்
+ விளைவாக்கம். ஒரு அச்சு எவ்வளவு விரைவாக உள்ளது என்பதை அடிப்படையாகக் கொண்டு முடுக்கம் சேர்க்கப்படுகிறது
+ ஒரு கேம்பேட் வாக்கெடுப்பில் நகர்த்தப்பட்டது. இது வேலை செய்ய உதவும்
+ கிடைக்கக்கூடிய மிகக் குறைந்த உள்ளீட்டு வரம்பின் சில சிக்கல்கள்
+ வழக்கமான கேம்பேட் அனலாக் குச்சிகளைப் பயன்படுத்துதல்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="524"/>
         <source>Delta Acceleration</source>
-        <translation type="unfinished"></translation>
+        <translation>டெல்டா முடுக்கம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="543"/>
         <source>&amp;Multiplier:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; பெருக்கி:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="616"/>
         <source>Mi&amp;n
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>மி &amp; என்
+ வாசல்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished"></translation>
+        <translation>1 = 20 பிபிஎச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
         <source>Wheel Hori.
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>வீல் ஓரி.
+ வேகம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="329"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>கிடைமட்ட சுட்டி சக்கர இயக்கத்திற்கு பயன்படுத்தப்படும் வேகத்தை அமைக்கவும்
+ நொடிக்கு உருவகப்படுத்தப்பட்ட குறிப்புகளின் எண்ணிக்கையின்படி.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="381"/>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>செங்குத்து சுட்டி சக்கர இயக்கத்திற்கு பயன்படுத்தப்படும் வேகத்தை அமைக்கவும்
+ நொடிக்கு உருவகப்படுத்தப்பட்ட குறிப்புகளின் எண்ணிக்கையின்படி.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="410"/>
         <source>Sensitivit&amp;y:</source>
-        <translation type="unfinished"></translation>
+        <translation>உணர்திறன் &amp; y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="423"/>
@@ -4915,122 +5042,127 @@ according to number of simulated notches per second.</source>
 the factor to use for curve sensitivity. When the value
 is above 1.0, the mouse movement will be accelerated
 faster at the low end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆற்றல் செயல்பாடு முடுக்கம் வளைவுக்கு. குறிப்பிடுகிறது
+ வளைவு உணர்திறனுக்குப் பயன்படுத்த வேண்டிய காரணி. மதிப்பு போது
+ 1.0 க்கு மேல், சுட்டி இயக்கம் துரிதப்படுத்தப்படும்
+ ஒரு அச்சின் குறைந்த முடிவில் வேகமாக.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="452"/>
         <source>Easing Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>எளிதான காலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="695"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="553"/>
         <source>Highest value to accelerate mouse movement by</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி இயக்கத்தை விரைவுபடுத்த அதிக மதிப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>ஃச்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="576"/>
         <source>Start %:</source>
-        <translation type="unfinished"></translation>
+        <translation>தொடக்க %:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="586"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
-        <translation type="unfinished"></translation>
+        <translation>அடிப்படை பெருக்கத்தின் இந்த சதவீதத்தில் முடுக்கம் தொடங்குகிறது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="627"/>
         <source>Minimum amount of axis travel required for acceleration to begin</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கம் தொடங்குவதற்கு தேவையான அச்சு பயணத்தின் குறைந்தபட்ச அளவு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="647"/>
         <source>Max
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>அதிகபட்சம்
+ வாசல்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="658"/>
         <source>Maximum axis travel before acceleration has reached the multiplier value</source>
-        <translation type="unfinished"></translation>
+        <translation>முடுக்கம் முன் அதிகபட்ச அச்சு பயணம் பெருக்கி மதிப்பை எட்டியுள்ளது</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="680"/>
         <source>E&amp;xtra Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>மின் &amp; xtra காலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="715"/>
         <source>Curve:</source>
-        <translation type="unfinished"></translation>
+        <translation>வளைவு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="733"/>
         <source>Ease Out Sine</source>
-        <translation type="unfinished"></translation>
+        <translation>சைனை எளிதாக்குங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="738"/>
         <source>Ease Out Quad</source>
-        <translation type="unfinished"></translation>
+        <translation>குவாட்டை எளிதாக்குங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="743"/>
         <source>Ease Out Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>க்யூபியை எளிதாக்குங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="831"/>
         <source>Release Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>வெளியீட்டு ஆரம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="864"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
-        <translation type="unfinished"></translation>
+        <translation>வசந்த பகுதி தொடர்புடையதாக இருக்கும் என்று குறிப்பிடுகிறது
+ உறவினர் அல்லாத வசந்தத்தால் அமைக்கப்பட்ட சுட்டி நிலை.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="868"/>
         <source>Relative</source>
-        <translation type="unfinished"></translation>
+        <translation>உறவினர்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="891"/>
         <source>Mouse Status</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி நிலை</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation type="unfinished"></translation>
+        <translation>0 (0 பிபிஎச்)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒய்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="354"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="397"/>
         <source>1 = 1 notch(es)/s</source>
-        <translation type="unfinished"></translation>
+        <translation>1 = 1 உச்சநிலை (எச்)/கள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="83"/>
@@ -5052,32 +5184,54 @@ Easing Quadratic: Axis high end is gradually accelerated over a period of time u
 
 Easing Cubic: Axis high end is gradually accelerated over
 a period of time using a Cubic curve.</source>
-        <translation type="unfinished"></translation>
+        <translation>மேம்படுத்தப்பட்டது: சுட்டியை நகர்த்தும் மூன்று அடுக்கு வளைவு
+ ஒரு அச்சின் குறைந்த முடிவில் மெதுவாக மற்றும் உயர் இறுதியில் வேகமாக.
+
+ நேரியல்: சுட்டி விகிதத்தில் அச்சுக்கு நகர்கிறது.
+
+ இருபடி: சுட்டி குறைந்த முடிவில் மெதுவாக துரிதப்படுத்துகிறது.
+
+ க்யூபிக்: சுட்டியை விட மெதுவாக மவுச் துரிதப்படுத்துகிறது.
+
+ இருபடி எக்ச்ட்ரீம்: சுட்டி வேகத்தை ஒரு முறை 1.5 முறை உயர்த்துகிறது
+ 95% அச்சு பயணம் எட்டப்பட்டுள்ளது.
+
+ ஆற்றல் செயல்பாடு: மேலும் தனிப்பயன் வளைவு விருப்பத்தை அனுமதிக்கிறது.
+
+ இருபடி: அச்சு உயர் இறுதியில் ஒரு இருபடி வளைவைப் பயன்படுத்தி ஒரு குறிப்பிட்ட காலப்பகுதியில் படிப்படியாக துரிதப்படுத்தப்படுகிறது.
+
+ க்யூபிக் எளிதாக்குதல்: அச்சு உயர் இறுதியில் படிப்படியாக துரிதப்படுத்தப்படுகிறது
+ ஒரு கன வளைவைப் பயன்படுத்தும் காலம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="221"/>
         <source>Hori&amp;zontal
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>ஓரி &amp; சோன்டல்
+ வேகம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="266"/>
         <source>&amp;Vertical
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp; செங்குத்து
+ வேகம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
         <source>Wheel Vert.
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>சக்கர வெர்ட்.
+ வேகம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="465"/>
         <source>Specifies the amount of time (in seconds) that will
 be required before the mouse is fully accelerated
 after reaching the high end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>நேரத்தின் அளவைக் குறிப்பிடுகிறது (நொடிகளில்)
+ சுட்டி முழுமையாக துரிதப்படுத்தப்படுவதற்கு முன்பு தேவை
+ ஒரு அச்சின் உயர் இறுதியில் அடைந்த பிறகு.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="589"/>
@@ -5085,51 +5239,57 @@ after reaching the high end of an axis.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="661"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="847"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="690"/>
         <source>Extend the time that extra acceleration is applied. Axis travel
 will be taken into account. A slower flick will decrease the
 actual time that extra acceleration will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>கூடுதல் முடுக்கம் பயன்படுத்தப்படும் நேரத்தை நீட்டிக்கவும். அச்சு பயணம்
+ கணக்கில் எடுத்துக்கொள்ளப்படும். ஒரு மெதுவான படம் குறையும்
+ கூடுதல் முடுக்கம் பயன்படுத்தப்படும் உண்மையான நேரம்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="763"/>
         <source>Spring Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>வசந்த அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="773"/>
         <source>Spring Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>வசந்த அகலம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="786"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>கர்சர் என்ற பிராந்தியத்தின் அகலத்தை மாற்றுகிறது
+ வசந்த பயன்முறையில் நகர முடியும். 0 முழு அகலத்தையும் பயன்படுத்தும்
+ உங்கள் திரையின்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="802"/>
         <source>Spring Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>வசந்த உயரம்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="815"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>கர்சர் என்ற பிராந்தியத்தின் உயரத்தை மாற்றுகிறது
+ வசந்த பயன்முறையில் நகர முடியும். 0 முழு உயரத்தையும் பயன்படுத்தும்
+ உங்கள் திரையின்.</translation>
     </message>
     <message numerus="yes">
         <location filename="../../../src/gui/mousesettingsdialog.cpp" line="191"/>
         <location filename="../../../src/gui/mousesettingsdialog.cpp" line="199"/>
         <source>%n notch(es)/s</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n நாட்ச் (es)/s</numerusform>
+            <numerusform>%n நாட்ச் (es)/s</numerusform>
         </translation>
     </message>
 </context>
@@ -5138,39 +5298,39 @@ of your screen.</source>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="26"/>
         <source>Key Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>விசை செக்கர்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="41"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; இந்த பயன்பாட்டின் மூலம் விசை எவ்வாறு கண்டறியப்படுகிறது என்பதைக் காண உங்கள் விசைப்பலகையில் ஒரு விசையை அழுத்தவும். சாளரம் கணினி சொந்த விசை மதிப்பைக் காண்பிக்கும், கியுடி ஆல் வழங்கப்பட்ட அசல் மதிப்பு (பொருந்தினால்), மற்றும் ஆண்டிமிக்ராக்சால் பயன்படுத்தப்படும் தனிப்பயன் மதிப்பு. &lt;/P&gt; &lt;p&gt; ஆண்டிமிக்ராக்ச் விசை மதிப்பு மற்றும் கியுடி விசை மதிப்பு பொதுவாக ஒரே மாதிரியாக இருக்கும் . ஆன்டிமிக்ரோக்ச் முடிந்தவரை கியுடி இல் வரையறுக்கப்பட்ட முக்கிய மதிப்புகளைப் பயன்படுத்த முயற்சிக்கிறது. &lt;A href = &quot;http://doc.qt.io/qt-5/qt.html#key-enum&quot;&gt; &lt;span சூல் தண்டு = &quot;text-degoration: Underline; color:#0057ae;&quot;&gt; http :/ இந்த திட்டத்தால் ஒரு விசை சொந்தமாக ஆதரிக்கப்படவில்லை என்பதை நீங்கள் கண்டறிந்தால், தயவுசெய்து சிக்கலை ஆண்டிமிக்ராக்சின் &lt;a href = &quot;https://github.com/antimicrox/antimicrox/&quot; நிறம்:#0057ae; &quot;&gt; அறிவிலிமையம் பக்கம் &lt;/span&gt; &lt;/a&gt;, இதனால் நிரலை நேரடியாக ஆதரிக்க திருத்த முடியும். அது போலவே, தனிப்பயன் முன்னொட்டு அறியப்படாத மதிப்புகளில் சேர்க்கப்படுகிறது, எனவே அவை இன்னும் பயன்படுத்தப்படலாம்; முக்கிய சிக்கல் என்னவென்றால், சுயவிவரம் இனி சிறியதாக இருக்காது. &lt;/p&gt; &lt;/body&gt; &lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="99"/>
         <source>Event Handler:</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு கையாளுபவர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="112"/>
         <source>Native Key Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>சொந்த முக்கிய மதிப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="119"/>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="142"/>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="165"/>
         <source>0x00000000</source>
-        <translation type="unfinished"></translation>
+        <translation>0x00000000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="135"/>
         <source>Qt Key Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>கியுடி முக்கிய மதிப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="158"/>
         <source>antimicro Key Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆண்டிமிக்ரோ முக்கிய மதிப்பு:</translation>
     </message>
 </context>
 <context>
@@ -5178,79 +5338,81 @@ of your screen.</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="141"/>
         <source>Super</source>
-        <translation type="unfinished"></translation>
+        <translation>சூப்பர்</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="142"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>பட்டியல்</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="143"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>முடக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="144"/>
         <source>Vol+</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுதி+</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="145"/>
         <source>Vol-</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுதி</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="146"/>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாடு/இடைநிறுத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="147"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாடுங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="148"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>இடைநிறுத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="149"/>
         <source>Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>முந்தைய</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="150"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>அடுத்தது</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="151"/>
         <source>Mail</source>
-        <translation type="unfinished"></translation>
+        <translation>அஞ்சல்</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="152"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>வீடு</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="153"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>ஊடகம்</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="154"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>தேடல்</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="205"/>
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>உங்கள் அசல் அமைப்புகள் (முன்பு %1 இல் சேமிக்கப்பட்டன) நகலெடுக்கப்பட்டுள்ளன
+ %2
+ நீங்கள் விரும்பினால் அசல் கோப்பகத்தை நீக்கலாம் அல்லது அப்படியே விட்டுவிடலாம்.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="209"/>
@@ -5260,124 +5422,130 @@ Original configs are stored in
  but their new location is: 
 %2
 You can migrate manually by renaming old directory and renaming file to antimicrox_settings.ini.</source>
-        <translation type="unfinished"></translation>
+        <translation>அமைப்புகள் இடம்பெயர்வதில் சில சிக்கல் ஏற்பட்டது.
+ அசல் உள்ளமைவுகள் சேமிக்கப்படுகின்றன
+ %1
+ ஆனால் அவர்களின் புதிய இடம்:
+ %2
+ பழைய கோப்பகத்தை மறுபெயரிட்டு கோப்பை ஆண்டிமிக்ராக்ச்_செட்டிங்ச்.இனிக்கு மறுபெயரிடுவதன் மூலம் நீங்கள் கைமுறையாக இடம்பெயரலாம்.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="603"/>
         <source>Quitting Program</source>
-        <translation type="unfinished"></translation>
+        <translation>நிரல் நிரல்</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="108"/>
         <source># of joysticks found: %1</source>
-        <translation type="unfinished"></translation>
+        <translation># சாய்ச்டிக்ச் காணப்படுகிறது: %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="110"/>
         <source>List Joysticks:</source>
-        <translation type="unfinished"></translation>
+        <translation>பட்டியல் சாய்ச்டிக்ச்:</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>---------------</source>
-        <translation type="unfinished"></translation>
+        <translation>----------------</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="118"/>
         <source>Joystick %1:</source>
-        <translation type="unfinished"></translation>
+        <translation>சாய்ச்டிக் %1:</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="499"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு தலைமுறைக்கு குறைவடையும் விருப்பத்தை %1 ஐப் பயன்படுத்த முயற்சிக்கிறது.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="525"/>
         <source>Failed to open event generator. Exiting.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு செனரேட்டரைத் திறக்கத் தவறிவிட்டது. வெளியேறுதல்.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="551"/>
         <source>Using %1 as the event generator.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு செனரேட்டராக %1 ஐப் பயன்படுத்துதல்.</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="953"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="954"/>
         <source>There isn&apos;t a last button pressed from gamepad in data. Did you set at least one button from gamepad for keyboard?</source>
-        <translation type="unfinished"></translation>
+        <translation>தரவுகளில் கேம்பேடில் இருந்து கடைசி பொத்தானை அழுத்தவில்லை. விசைப்பலகைக்காக கேம்பேடில் இருந்து குறைந்தது ஒரு பொத்தானையாவது அமைத்தீர்களா?</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="225"/>
         <source>Specified contradicting flags: --show and --hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>குறிப்பிடப்பட்ட முரண்பாடான கொடிகள்: -சோ மற்றும் -மறைக்கப்பட்டவை</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="235"/>
         <source>Profile location %1 is not an XML file.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவர இருப்பிடம் %1 ஒரு எக்ச்எம்எல் கோப்பு அல்ல.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="246"/>
         <source>Profile location %1 does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>சுயவிவர இடம் %1 இல்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="273"/>
         <location filename="../../../src/commandlineutility.cpp" line="312"/>
         <source>Controller identifier is not a valid value.</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்பாட்டு அடையாளங்காட்டி சரியான மதிப்பு அல்ல.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="342"/>
         <source>An invalid set number &apos;%1&apos; was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>தவறான தொகுப்பு எண் &apos;%1&apos; குறிப்பிடப்பட்டது.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="364"/>
         <source>Controller identifier &apos;%s&apos;&apos; is not a valid value.</source>
-        <translation type="unfinished"></translation>
+        <translation>கட்டுப்பாட்டு அடையாளங்காட்டி &apos;%s&apos; &apos;என்பது சரியான மதிப்பு அல்ல.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="369"/>
         <source>No set number was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுப்பு எண் எதுவும் குறிப்பிடப்படவில்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="180"/>
         <source>An invalid event generator was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>தவறான நிகழ்வு செனரேட்டர் குறிப்பிடப்பட்டது.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="186"/>
         <source>No event generator string was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு செனரேட்டர் சரம் எதுவும் குறிப்பிடப்படவில்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="207"/>
         <source>Unknown log level: </source>
-        <translation type="unfinished"></translation>
+        <translation>அறியப்படாத பதிவு நிலை: </translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="218"/>
         <source>No log file specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவு கோப்பு குறிப்பிடப்படவில்லை.</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="712"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished"></translation>
+        <translation>XINPUT பதிப்பு குறைந்தது 2.0 ஆக இருக்க வேண்டும். சுட்டி முடுக்கம் மாற்றங்கள் எதுவும் ஏற்படாது.</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="483"/>
         <source>Unable to open uinput files, this may cause problems with generating events.
 To check possible solutions please visit: </source>
-        <translation type="unfinished"></translation>
+        <translation>உள்ளீட்டு கோப்பைத் திறக்க முடியாமல், இது நிகழ்வுகளை உருவாக்குவதில் சிக்கல்களை ஏற்படுத்தக்கூடும்.
+ சாத்தியமான தீர்வுகளை சரிபார்க்க தயவுசெய்து பார்வையிடவும்: </translation>
     </message>
 </context>
 <context>
@@ -5385,18 +5553,18 @@ To check possible solutions please visit: </source>
     <message>
         <location filename="../../../src/gui/quicksetdialog.ui" line="14"/>
         <source>Quick Set</source>
-        <translation type="unfinished"></translation>
+        <translation>விரைவான தொகுப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/quicksetdialog.ui" line="23"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt; &lt;head/&gt; &lt;body&gt; &lt;p&gt; தயவுசெய்து ஒரு பொத்தானை அழுத்தவும் அல்லது %1 இல் ஒரு அச்சை நகர்த்தவும் (&lt;span சூல் தண்டு = &quot;font-Weight: 600;&quot;&gt; %2 &lt;/span&gt;). &lt;br/&gt; ஒரு உரையாடல் சாளரம் பின்னர் தோன்றும் &lt;br/&gt; ஒரு வேலையை செய்ய உங்களை அனுமதிக்கும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/quicksetdialog.cpp" line="48"/>
         <location filename="../../../src/gui/quicksetdialog.cpp" line="88"/>
         <source>Quick Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>விரைவான தொகுப்பு %1</translation>
     </message>
 </context>
 <context>
@@ -5404,14 +5572,16 @@ To check possible solutions please visit: </source>
     <message>
         <location filename="../../../src/gui/setaxisthrottledialog.ui" line="14"/>
         <source>Throttle Change</source>
-        <translation type="unfinished"></translation>
+        <translation>த்ரோட்டில் மாற்றம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setaxisthrottledialog.ui" line="20"/>
         <source>The throttle setting for Axis %1 has been changed.
 
 Would you like to distribute this throttle change to all sets?</source>
-        <translation type="unfinished"></translation>
+        <translation>அச்சு %1 க்கான த்ரோட்டில் அமைப்பு மாற்றப்பட்டுள்ளது.
+
+ இந்த தூண்டுதல் மாற்றத்தை எல்லா தொகுப்புகளுக்கும் விநியோகிக்க விரும்புகிறீர்களா?</translation>
     </message>
 </context>
 <context>
@@ -5419,12 +5589,12 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1021"/>
         <source>Set %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1: %2 ஐ அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1023"/>
         <source>Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ஐ அமைக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -5432,52 +5602,52 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="14"/>
         <source>Set Name Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>பெயர் அமைப்புகளை அமைக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="60"/>
         <source>Set 1</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="65"/>
         <source>Set 2</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="70"/>
         <source>Set 3</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 3</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="75"/>
         <source>Set 4</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="80"/>
         <source>Set 5</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 5</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="85"/>
         <source>Set 6</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="90"/>
         <source>Set 7</source>
-        <translation type="unfinished"></translation>
+        <translation>7 செட் 7</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="95"/>
         <source>Set 8</source>
-        <translation type="unfinished"></translation>
+        <translation>செட் 8</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="100"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>பெயர்</translation>
     </message>
 </context>
 <context>
@@ -5485,7 +5655,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/simplekeygrabberbutton.cpp" line="184"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி</translation>
     </message>
 </context>
 <context>
@@ -5493,7 +5663,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/mousedialog/springmoderegionpreview.cpp" line="42"/>
         <source>Spring Mode Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>வசந்த பயன்முறை முன்னோட்டம்</translation>
     </message>
 </context>
 <context>
@@ -5503,18 +5673,21 @@ Would you like to distribute this throttle change to all sets?</source>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
-        <translation type="unfinished"></translation>
+        <translation>செல்லுபடியாகும் UINPUT சாதனக் கோப்பைக் கண்டுபிடிக்க முடியவில்லை.
+ உங்களிடம் UInput தொகுதி ஏற்றப்பட்டதா என்பதைச் சரிபார்க்கவும்.
+ LSMOD | grep uinput</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="314"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
-        <translation type="unfinished"></translation>
+        <translation>UINPUT சாதன கோப்பைத் திறக்க முடியவில்லை
+ சாதனத்திற்கு எழுத உங்களுக்கு இசைவு உள்ளதா என்பதை சரிபார்க்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="495"/>
         <source>Using uinput device file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UINPUT சாதன கோப்பு %1 ஐப் பயன்படுத்துதல்</translation>
     </message>
 </context>
 <context>
@@ -5522,611 +5695,611 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="173"/>
         <source>a</source>
-        <translation type="unfinished"></translation>
+        <translation>a</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="174"/>
         <source>b</source>
-        <translation type="unfinished"></translation>
+        <translation>b</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="175"/>
         <source>c</source>
-        <translation type="unfinished"></translation>
+        <translation>c</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="176"/>
         <source>d</source>
-        <translation type="unfinished"></translation>
+        <translation>டி</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="177"/>
         <source>e</source>
-        <translation type="unfinished"></translation>
+        <translation>இ</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="178"/>
         <source>f</source>
-        <translation type="unfinished"></translation>
+        <translation>f</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="179"/>
         <source>g</source>
-        <translation type="unfinished"></translation>
+        <translation>g</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="180"/>
         <source>h</source>
-        <translation type="unfinished"></translation>
+        <translation>ம</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="181"/>
         <source>i</source>
-        <translation type="unfinished"></translation>
+        <translation>i</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="182"/>
         <source>j</source>
-        <translation type="unfinished"></translation>
+        <translation>செ</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="183"/>
         <source>k</source>
-        <translation type="unfinished"></translation>
+        <translation>கே</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="184"/>
         <source>l</source>
-        <translation type="unfinished"></translation>
+        <translation>எல்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="185"/>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>மீ</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="186"/>
         <source>n</source>
-        <translation type="unfinished"></translation>
+        <translation>n</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="187"/>
         <source>o</source>
-        <translation type="unfinished"></translation>
+        <translation>ஓ</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="188"/>
         <source>p</source>
-        <translation type="unfinished"></translation>
+        <translation>ப</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="189"/>
         <source>q</source>
-        <translation type="unfinished"></translation>
+        <translation>கே</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="190"/>
         <source>r</source>
-        <translation type="unfinished"></translation>
+        <translation>r</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="191"/>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>கள்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="192"/>
         <source>t</source>
-        <translation type="unfinished"></translation>
+        <translation>டி</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="193"/>
         <source>u</source>
-        <translation type="unfinished"></translation>
+        <translation>உ</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="194"/>
         <source>v</source>
-        <translation type="unfinished"></translation>
+        <translation>v</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="195"/>
         <source>w</source>
-        <translation type="unfinished"></translation>
+        <translation>w</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="196"/>
         <source>x</source>
-        <translation type="unfinished"></translation>
+        <translation>ஃச்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="197"/>
         <source>y</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒய்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="198"/>
         <source>z</source>
-        <translation type="unfinished"></translation>
+        <translation>சட்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="200"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>தப்பி</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="201"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="202"/>
         <source>F2</source>
-        <translation type="unfinished"></translation>
+        <translation>வகை</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="203"/>
         <source>F3</source>
-        <translation type="unfinished"></translation>
+        <translation>Fz</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="204"/>
         <source>F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Fg</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="205"/>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="206"/>
         <source>F6</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="207"/>
         <source>F7</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="208"/>
         <source>F8</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="209"/>
         <source>F9</source>
-        <translation type="unfinished"></translation>
+        <translation>ஃபக்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="210"/>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 10</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="211"/>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 11</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="212"/>
         <source>F12</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 12</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="213"/>
         <source>F13</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 13</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="214"/>
         <source>F14</source>
-        <translation type="unfinished"></translation>
+        <translation>Φ14</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="215"/>
         <source>F15</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 15</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="216"/>
         <source>F16</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 16</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="217"/>
         <source>F17</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 17</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="218"/>
         <source>F18</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 18</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="219"/>
         <source>F19</source>
-        <translation type="unfinished"></translation>
+        <translation>ப 19</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="220"/>
         <source>F20</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 20</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="221"/>
         <source>F21</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 21</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="222"/>
         <source>F22</source>
-        <translation type="unfinished"></translation>
+        <translation>நிறைவு</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="223"/>
         <source>F23</source>
-        <translation type="unfinished"></translation>
+        <translation>இணைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="224"/>
         <source>F24</source>
-        <translation type="unfinished"></translation>
+        <translation>F24</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="226"/>
         <source>`</source>
-        <translation type="unfinished"></translation>
+        <translation>`</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="227"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="228"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="229"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="230"/>
         <source>4</source>
-        <translation type="unfinished"></translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="231"/>
         <source>5</source>
-        <translation type="unfinished"></translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="232"/>
         <source>6</source>
-        <translation type="unfinished"></translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="233"/>
         <source>7</source>
-        <translation type="unfinished"></translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="234"/>
         <source>8</source>
-        <translation type="unfinished"></translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="235"/>
         <source>9</source>
-        <translation type="unfinished"></translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="236"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="237"/>
         <location filename="../../../src/uinputhelper.cpp" line="276"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="238"/>
         <source>=</source>
-        <translation type="unfinished"></translation>
+        <translation>=</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="239"/>
         <source>BackSpace</source>
-        <translation type="unfinished"></translation>
+        <translation>பேக்ச்பேச்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="240"/>
         <source>Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>தாவல்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="241"/>
         <source>[</source>
-        <translation type="unfinished"></translation>
+        <translation>[[</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="242"/>
         <source>]</source>
-        <translation type="unfinished"></translation>
+        <translation>]]</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="243"/>
         <source>\</source>
-        <translation type="unfinished"></translation>
+        <translation>\</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="244"/>
         <source>CapsLock</source>
-        <translation type="unfinished"></translation>
+        <translation>கேப்ளாக்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="245"/>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="246"/>
         <source>&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;பக்தான்&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="247"/>
         <source>Enter</source>
-        <translation type="unfinished"></translation>
+        <translation>உள்ளிடவும்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="248"/>
         <source>Shift_L</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift_l</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="249"/>
         <source>,</source>
-        <translation type="unfinished"></translation>
+        <translation>,</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="250"/>
         <location filename="../../../src/uinputhelper.cpp" line="293"/>
         <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>.</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="251"/>
         <location filename="../../../src/uinputhelper.cpp" line="274"/>
         <source>/</source>
-        <translation type="unfinished"></translation>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="252"/>
         <source>Ctrl_L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl_l</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="253"/>
         <location filename="../../../src/uinputhelper.cpp" line="294"/>
         <source>Super_L</source>
-        <translation type="unfinished"></translation>
+        <translation>சூப்பர்_எல்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="254"/>
         <source>Alt_L</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt_l</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="255"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation>இடைவெளி</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="256"/>
         <source>Alt_R</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt_r</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="257"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>பட்டியல்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="258"/>
         <source>Ctrl_R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl_r</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="259"/>
         <source>Shift_R</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift_r</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="262"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="263"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="264"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="265"/>
         <source>PrtSc</source>
-        <translation type="unfinished"></translation>
+        <translation>பி.ஆர்.டி.எச்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="266"/>
         <source>Ins</source>
-        <translation type="unfinished"></translation>
+        <translation>சொரு</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="267"/>
         <source>Del</source>
-        <translation type="unfinished"></translation>
+        <translation>Of</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="268"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>வீடு</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="269"/>
         <source>End</source>
-        <translation type="unfinished"></translation>
+        <translation>முடிவு</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="270"/>
         <source>PgUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Pgup</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="271"/>
         <source>PgDn</source>
-        <translation type="unfinished"></translation>
+        <translation>பிசிடிஎன்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="273"/>
         <source>NumLock</source>
-        <translation type="unfinished"></translation>
+        <translation>நம்ப்லாக்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="275"/>
         <source>*</source>
-        <translation type="unfinished"></translation>
+        <translation>*</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="277"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="278"/>
         <source>KP_Enter</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_enter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="280"/>
         <source>KP_1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="281"/>
         <source>KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="282"/>
         <source>KP_3</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="283"/>
         <source>KP_4</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="284"/>
         <source>KP_5</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="285"/>
         <source>KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="286"/>
         <source>KP_7</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="287"/>
         <source>KP_8</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="288"/>
         <source>KP_9</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="289"/>
         <source>KP_0</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="291"/>
         <source>SCLK</source>
-        <translation type="unfinished"></translation>
+        <translation>Sclk</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="292"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>இடைநிறுத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="295"/>
         <source>Super_R</source>
-        <translation type="unfinished"></translation>
+        <translation>சூப்பர்_ஆர்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="296"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>முடக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="297"/>
         <source>VolDn</source>
-        <translation type="unfinished"></translation>
+        <translation>வன்முறை</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="298"/>
         <source>VolUp</source>
-        <translation type="unfinished"></translation>
+        <translation>வோலூப்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="299"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>விளையாடுங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="300"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>நிறுத்து</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="301"/>
         <source>Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>முந்தைய</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="302"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>அடுத்தது</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="327"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[சாவி இல்லை]</translation>
     </message>
 </context>
 <context>
@@ -6134,54 +6307,54 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>கைப்பற்றப்பட்ட சாளர பண்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation type="unfinished"></translation>
+        <translation>சாளரம் பற்றிய செய்தி</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>வகுப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="55"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>டெக்ச்ட்லேபிள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>தலைப்பு:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>பாதை:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="106"/>
         <source>Match By Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>பண்புகள் மூலம் பொருந்தவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="121"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>வகுப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="128"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>தலைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="135"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>பாதை</translation>
     </message>
 </context>
 <context>
@@ -6191,7 +6364,7 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Vdpad</translation>
     </message>
 </context>
 <context>
@@ -6199,268 +6372,269 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="125"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation>இடைவெளி</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="126"/>
         <source>Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>தாவல்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="127"/>
         <source>Shift (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>(எல்) மாற்றத்தை மாற்றுதல்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="128"/>
         <source>Shift (R)</source>
-        <translation type="unfinished"></translation>
+        <translation>மாற்ற (ஆர்)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="129"/>
         <source>Ctrl (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>சி.டி.ஆர்.எல் (எல்)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="130"/>
         <source>Ctrl (R)</source>
-        <translation type="unfinished"></translation>
+        <translation>சி.டி.ஆர்.எல் (ஆர்)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="131"/>
         <source>Alt (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>அனைத்து (எல்)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="132"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="134"/>
         <source>Alt (R)</source>
-        <translation type="unfinished"></translation>
+        <translation>அனைத்து (கள்)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="133"/>
         <source>Alt Gr</source>
-        <translation type="unfinished"></translation>
+        <translation>எல்லாம்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
         <source>`</source>
-        <translation type="unfinished"></translation>
+        <translation>`</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="136"/>
         <source>~</source>
-        <translation type="unfinished"></translation>
+        <translation>~</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="137"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="168"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="138"/>
         <source>=</source>
-        <translation type="unfinished"></translation>
+        <translation>=</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="139"/>
         <source>[</source>
-        <translation type="unfinished"></translation>
+        <translation>[[</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="140"/>
         <source>]</source>
-        <translation type="unfinished"></translation>
+        <translation>]]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="141"/>
         <source>\</source>
-        <translation type="unfinished"></translation>
+        <translation>\</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="142"/>
         <source>Caps</source>
-        <translation type="unfinished"></translation>
+        <translation>தொப்பிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="143"/>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="144"/>
         <source>&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;பக்தான்&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="145"/>
         <source>,</source>
-        <translation type="unfinished"></translation>
+        <translation>,</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="146"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="171"/>
         <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>.</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="147"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="166"/>
         <source>/</source>
-        <translation type="unfinished"></translation>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="148"/>
         <source>ESC</source>
-        <translation type="unfinished"></translation>
+        <translation>தப்பி</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="149"/>
         <source>PRTSC</source>
-        <translation type="unfinished"></translation>
+        <translation>பி.ஆர்.டி.எச்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="150"/>
         <source>SCLK</source>
-        <translation type="unfinished"></translation>
+        <translation>Sclk</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="151"/>
         <source>INS</source>
-        <translation type="unfinished"></translation>
+        <translation>சொரு</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="152"/>
         <source>PGUP</source>
-        <translation type="unfinished"></translation>
+        <translation>Pgup</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="153"/>
         <source>DEL</source>
-        <translation type="unfinished"></translation>
+        <translation>Of</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="154"/>
         <source>PGDN</source>
-        <translation type="unfinished"></translation>
+        <translation>பிசிடிஎன்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="156"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="157"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
         <source>4</source>
-        <translation type="unfinished"></translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="159"/>
         <source>5</source>
-        <translation type="unfinished"></translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="160"/>
         <source>6</source>
-        <translation type="unfinished"></translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="161"/>
         <source>7</source>
-        <translation type="unfinished"></translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="162"/>
         <source>8</source>
-        <translation type="unfinished"></translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="163"/>
         <source>9</source>
-        <translation type="unfinished"></translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="164"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
         <source>NUM
 LK</source>
-        <translation type="unfinished"></translation>
+        <translation>NUM
+LK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="167"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="173"/>
         <source>*</source>
-        <translation type="unfinished"></translation>
+        <translation>*</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="169"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="170"/>
         <source>Enter</source>
-        <translation type="unfinished"></translation>
+        <translation>உள்ளிடவும்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="172"/>
         <source>Del</source>
-        <translation type="unfinished"></translation>
+        <translation>Of</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="174"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="175"/>
         <source>:</source>
-        <translation type="unfinished"></translation>
+        <translation>:</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>
         <source>Super (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>சூப்பர் (எல்)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="177"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>பட்டியல்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="178"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="179"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="180"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>இடது</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="181"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>வலது</translation>
     </message>
 </context>
 <context>
@@ -6469,290 +6643,290 @@ LK</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="71"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="97"/>
         <source>Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>விசைப்பலகை</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="72"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="98"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="609"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி அமைப்புகள்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="500"/>
         <source>Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>இடது</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="512"/>
         <source>Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="520"/>
         <source>Left Button</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>இடது பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="523"/>
         <source>Middle Button</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>நடுத்தர பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="526"/>
         <source>Right Button</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>வலது பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="533"/>
         <source>Wheel Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>சக்கரம் மேலே</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="537"/>
         <source>Wheel Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>சக்கரம் இடது</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="541"/>
         <source>Wheel Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>சக்கர வலது</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="545"/>
         <source>Wheel Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>சக்கரம் கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="554"/>
         <source>Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="571"/>
         <source>Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>வலது</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="584"/>
         <source>Button 4</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான் 4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="586"/>
         <source>Mouse 8</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="593"/>
         <source>Button 5</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>பொத்தான் 5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="595"/>
         <source>Mouse 9</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>சுட்டி 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="728"/>
         <source>NONE</source>
-        <translation type="unfinished"></translation>
+        <translation>எதுவுமில்லை</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="802"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[சாவி இல்லை]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="906"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="926"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>கடைசி பொத்தான்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="907"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="927"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>கேம்பேடிற்கான விசைப்பலகையிலிருந்து எந்த தொகுப்பு பொத்தானும் இல்லாததால், பொத்தானை அழிக்க முடியவில்லை. விசைப்பலகையிலிருந்து கேம்பேடிற்கு குறைந்தது ஒரு பொத்தானை வரைபடமாக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="988"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>மற்றவர்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1002"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>பயன்பாடுகள்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1008"/>
         <source>Browser Back</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவி மீண்டும்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1013"/>
         <source>Browser Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவி பிடித்தவை</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1018"/>
         <source>Browser Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவி முன்னோக்கி</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1023"/>
         <source>Browser Home</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவி வீடு</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1028"/>
         <source>Browser Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவி புதுப்பிப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1033"/>
         <source>Browser Search</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவி தேடல்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1038"/>
         <source>Browser Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>உலாவி நிறுத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1043"/>
         <source>Calc</source>
-        <translation type="unfinished"></translation>
+        <translation>கல்க்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1048"/>
         <source>Email</source>
-        <translation type="unfinished"></translation>
+        <translation>மின்னஞ்சல்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1053"/>
         <source>F13</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 13</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1054"/>
         <source>F14</source>
-        <translation type="unfinished"></translation>
+        <translation>Φ14</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1055"/>
         <source>F15</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 15</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1056"/>
         <source>F16</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 16</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1057"/>
         <source>F17</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 17</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1058"/>
         <source>F18</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 18</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1059"/>
         <source>F19</source>
-        <translation type="unfinished"></translation>
+        <translation>ப 19</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1060"/>
         <source>F20</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 20</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1061"/>
         <source>F21</source>
-        <translation type="unfinished"></translation>
+        <translation>எஃப் 21</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1062"/>
         <source>F22</source>
-        <translation type="unfinished"></translation>
+        <translation>நிறைவு</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1063"/>
         <source>F23</source>
-        <translation type="unfinished"></translation>
+        <translation>இணைப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1064"/>
         <source>F24</source>
-        <translation type="unfinished"></translation>
+        <translation>F24</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1066"/>
         <source>Media</source>
-        <translation type="unfinished"></translation>
+        <translation>ஊடகம்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1071"/>
         <source>Media Next</source>
-        <translation type="unfinished"></translation>
+        <translation>மீடியா அடுத்து</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1076"/>
         <source>Media Play</source>
-        <translation type="unfinished"></translation>
+        <translation>ஊடக நாடகம்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1081"/>
         <source>Media Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>முந்தைய ஊடகங்கள்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1086"/>
         <source>Media Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>ஊடக நிறுத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1091"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>தேடல்</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1096"/>
         <source>Volume Down</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுதி கீழே</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1101"/>
         <source>Volume Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுதி முடக்கு</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1106"/>
         <source>Volume Up</source>
-        <translation type="unfinished"></translation>
+        <translation>தொகுதி</translation>
     </message>
 </context>
 <context>
@@ -6760,7 +6934,7 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualmousepushbutton.cpp" line="54"/>
         <source>INVALID</source>
-        <translation type="unfinished"></translation>
+        <translation>செல்லுபடியாகாத</translation>
     </message>
 </context>
 <context>
@@ -6769,27 +6943,27 @@ LK</source>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="14"/>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="79"/>
         <source>Capture Application</source>
-        <translation type="unfinished"></translation>
+        <translation>பயன்பாட்டைப் பிடிக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="23"/>
         <source>After pressing the &quot;Capture Application&quot; button, please select the application window that you want to have a profile associated with. The active application will be captured after the selected number of seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;பிடிப்பு பயன்பாட்டைப் பிடிக்கவும்&quot; பொத்தானை அழுத்திய பிறகு, தயவுசெய்து நீங்கள் ஒரு சுயவிவரத்தை வைத்திருக்க விரும்பும் பயன்பாட்டு சாளரத்தைத் தேர்ந்தெடுக்கவும். தேர்ந்தெடுக்கப்பட்ட எண்ணிக்கையிலான விநாடிகளுக்குப் பிறகு செயலில் உள்ள பயன்பாடு கைப்பற்றப்படும்.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="38"/>
         <source>Timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>டைமர்:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="55"/>
         <source>Seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>நொடிகள்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="86"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>ரத்துசெய்</translation>
     </message>
 </context>
 <context>
@@ -6797,12 +6971,12 @@ LK</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="43"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[சாவி இல்லை]</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="303"/>
         <source>AntiMicro Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>ஆண்டிமிக்ரோ சுயவிவரம்</translation>
     </message>
 </context>
 <context>
@@ -6810,62 +6984,62 @@ LK</source>
     <message>
         <location filename="../../../src/x11extras.cpp" line="159"/>
         <source>ESC</source>
-        <translation type="unfinished"></translation>
+        <translation>தப்பி</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="160"/>
         <source>Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>தாவல்</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="161"/>
         <source>Space</source>
-        <translation type="unfinished"></translation>
+        <translation>இடைவெளி</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="162"/>
         <source>DEL</source>
-        <translation type="unfinished"></translation>
+        <translation>Of</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="163"/>
         <source>Return</source>
-        <translation type="unfinished"></translation>
+        <translation>திரும்ப</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="164"/>
         <source>KP_Enter</source>
-        <translation type="unfinished"></translation>
+        <translation>Kp_enter</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="165"/>
         <source>Backspace</source>
-        <translation type="unfinished"></translation>
+        <translation>பேக்ச்பேச்</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="166"/>
         <source>Alt Gr</source>
-        <translation type="unfinished"></translation>
+        <translation>எல்லாம்</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="622"/>
         <source>xinput extension was not found. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished"></translation>
+        <translation>XINPUT நீட்டிப்பு காணப்படவில்லை. சுட்டி முடுக்கம் மாற்றங்கள் எதுவும் ஏற்படாது.</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="629"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished"></translation>
+        <translation>XINPUT பதிப்பு குறைந்தது 2.0 ஆக இருக்க வேண்டும். சுட்டி முடுக்கம் மாற்றங்கள் எதுவும் ஏற்படாது.</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="660"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
-        <translation type="unfinished"></translation>
+        <translation>மெய்நிகர் சுட்டிக்காட்டிக்கு ptrfeedbackclass காணப்படவில்லை. ஐடி =%1 உடன் சாதனத்திற்கு சுட்டி முடுக்கம் எதுவும் ஏற்படாது</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="667"/>
         <source>Changing mouse acceleration for device with id=%1</source>
-        <translation type="unfinished"></translation>
+        <translation>ஐடி =%1 உடன் சாதனத்திற்கான சுட்டி முடுக்கம் மாற்றுதல்</translation>
     </message>
 </context>
 <context>
@@ -6873,7 +7047,7 @@ LK</source>
     <message>
         <location filename="../../../src/xmlconfigreader.cpp" line="140"/>
         <source>Could not write updated profile XML to file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>புதுப்பிக்கப்பட்ட சுயவிவர எக்ச்எம்எல் %1 ஐ எழுத முடியவில்லை.</translation>
     </message>
 </context>
 <context>
@@ -6881,7 +7055,7 @@ LK</source>
     <message>
         <location filename="../../../src/xmlconfigwriter.cpp" line="74"/>
         <source>Could not write to profile at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 இல் சுயவிவரத்திற்கு எழுத முடியவில்லை.</translation>
     </message>
 </context>
 <context>
@@ -6889,7 +7063,7 @@ LK</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="57"/>
         <source>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</source>
-        <translation type="unfinished">Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</translation>
+        <translation>விசைப்பலகை பொத்தான்கள் மற்றும் சுட்டி கட்டுப்பாடுகளை ஒரு கேம்பேடிற்கு வரைபடப்படுத்தப் பயன்படுத்தப்படும் வரைகலை நிரல். கேம்பேட் உதவி இல்லாத விளையாட்டுகளை விளையாடுவதற்கு பயனுள்ளதாக இருக்கும்.</translation>
     </message>
 </context>
 <context>
@@ -6897,97 +7071,97 @@ LK</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="65"/>
         <source>Launch program in system tray only.</source>
-        <translation type="unfinished"></translation>
+        <translation>கணினி தட்டில் மட்டுமே நிரலைத் தொடங்கவும்.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="67"/>
         <source>Launch program with the tray menu disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>தட்டு பட்டியல் முடக்கப்பட்ட நிரலைத் தொடங்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="69"/>
         <source>Launch program without the main window displayed</source>
-        <translation type="unfinished"></translation>
+        <translation>முதன்மையான சாளரம் காட்டப்படாமல் நிரலைத் தொடங்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="70"/>
         <source>Show app window when hidden. (Used for unhiding window of already running app instance).</source>
-        <translation type="unfinished"></translation>
+        <translation>மறைக்கும்போது பயன்பாட்டு சாளரத்தைக் காட்டு. (ஏற்கனவே இயங்கும் பயன்பாட்டு நிகழ்வின் சாளரத்தை மறைக்கப் பயன்படுகிறது).</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="73"/>
         <source>Launch program with the configuration file selected as the default for selected controllers, or change active profile of running app. Defaults to all controllers</source>
-        <translation type="unfinished"></translation>
+        <translation>தேர்ந்தெடுக்கப்பட்ட கட்டுப்படுத்திகளுக்கான இயல்புநிலையாக தேர்ந்தெடுக்கப்பட்ட உள்ளமைவு கோப்புடன் நிரலைத் தொடங்கவும் அல்லது பயன்பாட்டின் இயங்கும் செயலில் சுயவிவரத்தை மாற்றவும். அனைத்து கட்டுப்படுத்திகளுக்கும் இயல்புநிலை</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="76"/>
         <source>location</source>
-        <translation type="unfinished"></translation>
+        <translation>இடம்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="78"/>
         <source>Apply configuration file to a specific controller. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு குறிப்பிட்ட கட்டுப்படுத்திக்கு உள்ளமைவு கோப்பைப் பயன்படுத்துங்கள். மதிப்பு ஒரு கட்டுப்படுத்தி குறியீடு, பெயர் அல்லது வழிகாட்டலாக இருக்கலாம்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="80"/>
         <source>value</source>
-        <translation type="unfinished"></translation>
+        <translation>மதிப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="81"/>
         <source>Unload currently enabled profile(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>தற்போது இயக்கப்பட்ட சுயவிவரம் (களை) இறக்கவும்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="82"/>
         <source>value(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>மதிப்பு (கள்)</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="84"/>
         <source>Start joysticks on a specific set. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>ஒரு குறிப்பிட்ட தொகுப்பில் சாய்ச்டிக்சைத் தொடங்கவும். மதிப்பு ஒரு கட்டுப்படுத்தி குறியீடு, பெயர் அல்லது வழிகாட்டலாக இருக்கலாம்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="86"/>
         <source>number value</source>
-        <translation type="unfinished"></translation>
+        <translation>எண் மதிப்பு</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="88"/>
         <source>Enable logging. Levels (from the least strict): warn,info,verbose,debug</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவை இயக்கவும். நிலைகள் (மிகக் குறைவான கண்டிப்பானவை): எச்சரிக்கை, செய்தி, வாய்மொழி, பிழைத்திருத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="89"/>
         <source>log-type</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவு வகை</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="90"/>
         <source>Choose a file for logs writing</source>
-        <translation type="unfinished"></translation>
+        <translation>பதிவுகள் எழுதுவதற்கு ஒரு கோப்பைத் தேர்வுசெய்க</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="91"/>
         <source>filename</source>
-        <translation type="unfinished"></translation>
+        <translation>கோப்புப்பெயர்</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="93"/>
         <source>Choose between using XTest support and uinput support for event generation. Use only if you have enabled xtest and uinput options on Linux or vmulti on Windows. Default: xtest.</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு தலைமுறைக்கு XTEST உதவி மற்றும் UINPUT ஆதரவைப் பயன்படுத்துவதற்கு இடையே தேர்வு செய்யவும். சாளரங்களில் லினக்ச் அல்லது வி.எம்.எல்.டி.ஐ.யில் எக்ச்டெச்ட் மற்றும் யுஎன்யூட் விருப்பங்களை இயக்கியிருந்தால் மட்டுமே பயன்படுத்தவும். இயல்புநிலை: XTEST.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="97"/>
         <source>event-generation-type</source>
-        <translation type="unfinished"></translation>
+        <translation>நிகழ்வு-தலைமுறை வகை</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="99"/>
         <source>Print information about joysticks detected by SDL. Use only if you have sdl library. You can check your controller index, name or even GUID.</source>
-        <translation type="unfinished"></translation>
+        <translation>எச்.டி.எல் கண்டறியப்பட்ட சாய்ச்டிக்ச் பற்றிய தகவல்களை அச்சிடுக. உங்களிடம் எச்.டி.எல் நூலகம் இருந்தால் மட்டுமே பயன்படுத்தவும். உங்கள் கட்டுப்பாட்டு குறியீடு, பெயர் அல்லது வழிகாட்டுதலைக் கூட நீங்கள் சரிபார்க்கலாம்.</translation>
     </message>
 </context>
 </TS>
