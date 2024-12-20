@@ -6,7 +6,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroXについて</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
@@ -155,7 +155,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="325"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>更新履歴</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="353"/>
@@ -182,7 +182,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>クレジット</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
@@ -192,12 +192,12 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="339"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>開発について</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
@@ -237,7 +237,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="73"/>
         <source>Using Event Handler: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>イベントハンドラーを使用中: %1</translation>
     </message>
 </context>
 <context>
@@ -245,18 +245,18 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="14"/>
         <source>Auto Profile Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>自動プロファイルダイアログ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="25"/>
         <source>Pro&amp;file:</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイル(&amp;):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="40"/>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="137"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>参照</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="51"/>
@@ -269,27 +269,29 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウを選択してください。
+適切なアプリケーションウィンドウをクリックすると、
+アプリケーションのファイルパスがフォームに入力されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
         <source>Detect Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウのプロパティを検出</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>クラス(&amp;):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
         <source>T&amp;itle:  </source>
-        <translation type="unfinished"></translation>
+        <translation>タイトル(&amp;):  </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="113"/>
         <source>set partial title</source>
-        <translation type="unfinished"></translation>
+        <translation>タイトルの一部を設定する</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="124"/>
@@ -299,116 +301,118 @@ in the form.</source>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="149"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>選択</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="163"/>
         <source>De&amp;vices:</source>
-        <translation type="unfinished"></translation>
+        <translation>デバイス(&amp;):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="179"/>
         <source>Select this profile to be the default loaded for
 the specified device. The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>指定されたデバイスのために、
+このプロファイルをデフォルトとして読み込むように選択してください。
+この選択は、すべてのデフォルトプロファイルオプションの代わりに使用されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="184"/>
         <source>Set as Default for Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルトのコントローラーとして設定</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="223"/>
         <source>A different profile is already selected as the default for this device.</source>
-        <translation type="unfinished"></translation>
+        <translation>このデバイスには、すでに別のプロファイルがデフォルトとして選択されています。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="103"/>
         <source>Current (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>現在(%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="157"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>設定を開く</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="168"/>
         <source>Select Program</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムを選択</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="166"/>
         <source>Programs (*.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラム (*.exe)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Please use the main default profile selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>メインのデフォルトプロファイル選択を使用してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="217"/>
         <source>Main Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>メインプロファイル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="222"/>
         <source>Already selected</source>
-        <translation type="unfinished"></translation>
+        <translation>選択済み</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="227"/>
         <source>Chosen Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>選択されたプロファイル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="228"/>
         <source>The selection will be used instead
 of the all default profile option.</source>
-        <translation type="unfinished"></translation>
+        <translation>この選択は、すべてのデフォルトプロファイルオプションの代わりに使用されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="251"/>
         <source>Please select a window by using the mouse. Press Escape if you want to cancel.</source>
-        <translation type="unfinished"></translation>
+        <translation>マウスを使ってウィンドウを選択してください。キャンセルしたい場合は、Escキーを押してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="252"/>
         <source>Capture Application Window</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーションウィンドウをキャプチャ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="322"/>
         <source>Could not obtain information for the selected window.</source>
-        <translation type="unfinished"></translation>
+        <translation>選択したウィンドウの情報を取得できませんでした。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="323"/>
         <source>Application Capture Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーションのキャプチャに失敗しました</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="399"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルのパスが無効です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="440"/>
         <source>No window matching property was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>指定されたプロパティに一致するウィンドウがありません。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="416"/>
         <source>Program path is invalid or not executable.</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムのパスは無効であるか実行可能ではありません。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.cpp" line="421"/>
         <source>File is not an .exe file.</source>
-        <translation type="unfinished"></translation>
+        <translation>.exeファイルではありません。</translation>
     </message>
 </context>
 <context>
@@ -417,7 +421,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="29"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1260"/>
         <source>Advanced</source>
-        <translation>詳細設定</translation>
+        <translation>詳細</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="71"/>
@@ -437,37 +441,37 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="86"/>
         <source>Set Selector</source>
-        <translation type="unfinished"></translation>
+        <translation>セレクタを設定</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="200"/>
         <source>Blank or KB/M</source>
-        <translation type="unfinished"></translation>
+        <translation>空白またはキーボード/マウス</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="225"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>保持</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="240"/>
         <source>Pause</source>
-        <translation type="unfinished">Pause</translation>
+        <translation>一時停止</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="205"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>サイクル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="215"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>距離</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="298"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>挿入</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="318"/>
@@ -477,38 +481,38 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="372"/>
         <source>Clear All</source>
-        <translation type="unfinished"></translation>
+        <translation>全てクリア</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="458"/>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>時間:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="471"/>
         <source>0.01s</source>
-        <translation>0.01 秒</translation>
+        <translation>0.01秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="543"/>
         <source>0s</source>
-        <translation>0 秒</translation>
+        <translation>0秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1638"/>
         <source>Insert a pause that occurs in between key presses.</source>
-        <translation type="unfinished"></translation>
+        <translation>キー入力の間にポーズを挿入してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="250"/>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>放す</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="295"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1595"/>
         <source>Insert a new blank slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>新しい空白のスロットを挿入します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="315"/>
@@ -1771,7 +1775,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation>タイトル:  </translation>
+        <translation>タイトル:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="81"/>
@@ -3534,7 +3538,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="462"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1629"/>
         <source>Change global profile settings.</source>
-        <translation></translation>
+        <translation>グローバルプロファイル設定を変更</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="466"/>
@@ -6152,7 +6156,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="62"/>
         <source>Title:</source>
-        <translation>タイトル:  </translation>
+        <translation>タイトル:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="81"/>
@@ -6983,7 +6987,7 @@ LK</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="99"/>
         <source>Print information about joysticks detected by SDL. Use only if you have sdl library. You can check your controller index, name or even GUID.</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLで検出されたジョイスティックの情報を表示します。SDLライブラリがある場合のみ使用します。コントローラのインデックスや名前、GUIDを確認することができます。</translation>
     </message>
 </context>
 </TS>
