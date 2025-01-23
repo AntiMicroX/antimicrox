@@ -20,7 +20,7 @@ Closes #...
 
     - You have a descriptive, semantic commit messages with a short title (first line). E.g. `fix(calibration): fix calibration dialog buttons`
 
-    - Provide a description of your changes, wih screenshots if possible
+    - Provide a description of your changes, with screenshots if possible
 
     - Put closes #XXXX in your comment to auto-close the issue that your PR fixes (if such).
     
