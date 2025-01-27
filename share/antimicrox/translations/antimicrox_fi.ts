@@ -607,7 +607,7 @@ kaavassa.</translation>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation>&amp;Luokka</translation>
+        <translation>&amp;Luokka:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
