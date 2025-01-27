@@ -61,7 +61,7 @@ endif(NOT COMPILER_IS_MSVC)
 # The version number.
 set(ANTIMICROX_MAJOR_VERSION 3)
 set(ANTIMICROX_MINOR_VERSION 5)
-set(ANTIMICROX_PATCH_VERSION 0)
+set(ANTIMICROX_PATCH_VERSION 1)
 
 if(UNIX)
     option(WITH_X11 "Compile with support for X11." ON)

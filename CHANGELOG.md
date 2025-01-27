@@ -1,6 +1,29 @@
 # Changelog
 
-## [3.5.0](https://github.com/AntiMicroX/antimicrox/tree/3.5.0-rc) (2024-10-31)
+## [3.5.1](https://github.com/AntiMicroX/antimicrox/tree/3.5.1) (2025-01-27)
+
+**Fixed bugs:**
+
+- Fix appId on Wayland [pull 1100](https://github.com/AntiMicroX/antimicrox/pull/1100)
+- Wrong install dependencies on a Debian build with QT6 [\#1104](https://github.com/AntiMicroX/antimicrox/issues/1104)
+
+**Notable changes:**
+
+- New translation: Tamil
+- Update translation for: Spanish, French, Japanese, Finnish, 
+- Create deb release dor Ubuntu 24.04
+- Update Windows and Linux SDL mappings
+- Add "game" category to desktop file [pull 1085](https://github.com/AntiMicroX/antimicrox/pull/1085) (by [Fr-Dae](https://github.com/Fr-Dae))
+- Cleanup in logs
+- Add proper note informing about lack of Wayland support for Auto Profiles
+- Cleanup in dependencies
+- Fix some typos and update docs (by [zturtleman](https://github.com/zturtleman) )
+
+**Implemented enhancements:**
+
+- Reenabled `--next` option [\#189](https://github.com/AntiMicroX/antimicrox/issues/189)
+
+## [3.5.0](https://github.com/AntiMicroX/antimicrox/tree/3.5.0) (2024-10-31)
 
 **Fixed bugs:**
 
