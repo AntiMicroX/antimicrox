@@ -21,7 +21,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
         <source>Credits</source>
-        <translation>Tunnustuksellisuudet</translation>
+        <translation>Ansiot</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
