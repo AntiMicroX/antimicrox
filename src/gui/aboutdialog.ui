@@ -380,7 +380,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
    <item>
     <widget class="QLabel" name="copyrightLabel">
      <property name="text">
-      <string>Copyright: 2013 - 2022</string>
+      <string>Copyright: 2013 - 2025</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
