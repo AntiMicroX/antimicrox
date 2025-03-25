@@ -1470,7 +1470,7 @@ de perfil completamente padrão.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="419"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="420"/>
         <source>Axis %1 +</source>
-        <translation type="unfinished"></translation>
+        <translation>Eixo %1 +</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="430"/>
@@ -1478,7 +1478,7 @@ de perfil completamente padrão.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="432"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="433"/>
         <source>Button %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Botão %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="764"/>
@@ -1514,55 +1514,55 @@ de perfil completamente padrão.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="32"/>
         <source>Axis</source>
-        <translation type="unfinished"></translation>
+        <translation>Eixo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="635"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (Horizontal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="636"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (Horizontal Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="87"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="637"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (Vertical)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="92"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="638"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (Vertical Invertido)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="639"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Setas: Cima | Baixo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="102"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="640"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Setas: Esquerda | Direita</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="107"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="641"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclas: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="112"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="642"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclas: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
@@ -1609,7 +1609,7 @@ worn out analog stick.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="523"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="533"/>
@@ -1619,7 +1619,7 @@ worn out analog stick.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="542"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do Mouse</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="206"/>
@@ -1646,7 +1646,7 @@ worn out analog stick.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="342"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="355"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished"></translation>
+        <translation>[SEM TECLA]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="374"/>
