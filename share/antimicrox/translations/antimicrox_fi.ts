@@ -5104,7 +5104,7 @@ Laitenimi: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1852"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
-        <translation>Tämä profiili käyttää ohjaimen GUID-numeroita (valmistajatunniste). Haluatko vaihtaa nämä GUID-numerot UniqueID-muotoon (yksilöllinen tunniste) tämän tiedoston kohdalla? Täten voit käyttää samaa mallia yhtenevien peliohjainten kanssa. Näin vanhaa tiedostoa ei voida ladata AntiMicro:ssa version 2.25 jälkeen.</translation>
+        <translation>Tämä profiili käyttää ohjaimien GUID-numeroita. Haluatko muuttaa GUID-numerot UniqueID:ksi tässä tiedostossa käytettäviksi identtisissä gamecontrollersissA? Tällaista vanhaa tiedostoa ei voi ladata antimicroxissa version 2.25 jälkeen</translation>
     </message>
 </context>
 <context>
@@ -5242,7 +5242,7 @@ Easing Quadratic: Axis high end is gradually accelerated over a period of time u
 
 Easing Cubic: Axis high end is gradually accelerated over
 a period of time using a Cubic curve.</source>
-        <translation type="unfinished">Parannettu: kolmiportainen käyrä, joka saa hiiren liikkumaan
+        <translation>Parannettu: kolmiportainen käyrä, joka saa hiiren liikkumaan
 hitaasti akselin alapäässä ja nopeasti yläpäässä.
 
 Suoraviivainen: hiiri liikkuu suhteessa akseliin.
@@ -5252,7 +5252,7 @@ Neliömallinen: Hiiri kiihtyy hitaasti alapäässä.
 Kuutiomallinen: Hiiri kiihtyy hitaammin kuin neliömallissa.
 
 Neliömalli tehostettuna: nostaa hiiren nopeutta 1,5 kertaiseksi kun
-95% akselimatkasta on tehty.
+95 % akselimatkasta on tehty.
 
 Tehotoiminto: mahdollistaa mukautetun käyrävaihtoehdon.
 
@@ -5401,7 +5401,7 @@ after reaching the high end of an axis.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="695"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="516"/>
@@ -6587,7 +6587,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation>Tietoja ikkunasta</translation>
+        <translation>Tiedot ikkunasta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="43"/>
