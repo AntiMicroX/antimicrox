@@ -6,7 +6,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation>Tentang</translation>
+        <translation>Tentang AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
@@ -177,12 +177,29 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;pktiuk&quot; (sejak Agustus 2020) Saya hanya ingin memastikan bahwa program ini tidak akan dibiarkan terbengkalai, saya memustuskan untuk terus mendukung proyek ini dan membuatnya tersedia bagi sebanyak mungkin orang.
+
+&quot;juliagoda&quot; (sejak Maret 2018 hingga 2020) Karena ingin memainkan game lama kesukaan saya yang tidak mendukung kontroller, saya menemukan proyek ini (dimana tombol keyboard dan tetikus dapat dihubungkan ke kontroller) sebagai program yang terbaru dan terbaik. Namun karena keputusan-keputusan buruk di internet dan kegagalan dalam mengcompilenya, saya memutuskan untuk menyelamatkan proyek ini. Namun, setelah saya menyelesaikan pekerjaan saya (cukup untuk menikmati memainkan game) saya terpikir untuk membagikan kode ini kepada orang lain. Tentu saja informasi tetang programer-programer sebelumnya akan ditahan.
+
+&quot;Ryochan7&quot; (sejak 30 Desember 2012 hingga 2017), Saya telah mengerjakan AntiMicro di waktu luang saya. Apa yang diawali sebagai cabang dari OJoyPad dan sebuah cara untuk mempelajari pemrograman berbahis peristiwa dengan benar telah berkembang jauh lebih besar dari yang saya maksudkan di awal. Meskipun saya telah menghabiskan banyak waktu mempelajari teknik-teknik baru, mencari tahu tentang emulasi KB+M, dan membentukan kepala saya ke keyboard pada banyak jumat malam, ini tetap adalah pengalaman yang menyenangkan berharga.
+
+Kebutuhan untuk program ini datang dari penggunaan saya akan program serupa di Windows untuk memainkan game yang tidak mendukung penggunaan kontroller. Meskipun terdapat beberapa alternatif di Linux, tidak ada satupun yang saya rasa cukup bagus fungsinya untuk dapat sungguh-sungguh menikmati game-game yang ingin saya mainkan dengan emulasi KB+M. OJoyPad adalah program utama yang saya gunakan dahulunya meskipun sudah cukup tua, dan ia tidak menyediakan beberapa fitur dasar yang rasa harus ada. Proyek itu sudah mati karena tidak ada pembaharuan selama beberapa tahun, karena itu saya memutuskan untuk membangun satu sendiri.
+
+Sejak saat itu, saya berusaha mencari tahu hal-hal yang dilakukan program-program lain dengan baik dan meningkatkannya lagi. Saya juga menemukan beberapa trik di sepanjang perjalan dan belajar lebih dari yang saya ingin tahu tentang bagaimana dukungan akan kontroller diimplementasikan  ke dalam beberapa game. Meskipun ada beberapa bagian di dalam program ini yang dapat diperbaiki, saya mendapati bahwa program ini menawarkan fitur dan pengalaman terbaik untuk memainkan game-game lama, dan beberapa game baru, yang tidak mendukung penggunaan kontroller.
+
+Perkembangan program ini bukanlah prioritas saya lagi. Hal ini dikarenakan Steam Controller bekerja cukup baik untuk memainkan game-game PC dibandingkan dengan kontroller Xbox 360. Akan tetapi, kelihatannya program ini masih memiliki alasan untuk hidup lebih lama lagi.
+
+---
+
+Sejak 24 Mei 2016, proyek ini telah dipindahkan ke https://github.com/AntiMicro/antimicro. 
+Terlebih lagi, manajemen proyek ini telah diserahkan dari Travis (Ryochan7) kepada organisasi AntiMicro dikarenakan kepentingan dan prioritas Travis yang lain.
+Selanjutnya, proyek ini telah dilanjutkan sejak 2018 oleh juliagoda dari proyek antimicroX.
+Proyek selanjutnya sekali lagi telah dipindahkan ke https://github.com/AntiMicroX/antimicrox dan terus dipelihara oleh organisasi AntiMicroX yang didirikan oleh pktiuk.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Kredit</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
@@ -250,12 +267,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="339"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Tentang Perkembangan</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Copyright: 2013 - 2022 {2013 ?}</translation>
+        <translation>Hak cipta: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
