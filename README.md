@@ -193,7 +193,7 @@ a question or share a suggestion, you can do that on the antimicrox page or on t
 
 ## Support
 
-There are several ways to get help with AntiMicroX. The easiest way is to upvote (with 👍) issues you thing are the most important ones. It is also possible to fund some issues using [Polar](https://polar.sh) platform to attract contributors.
+There are several ways to get help with AntiMicroX. The easiest way is to upvote (with 👍) issues you thing are the most important ones.
 
 ### Contributing
 
