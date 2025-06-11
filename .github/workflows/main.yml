@@ -159,7 +159,7 @@ jobs:
                   install-deps: "true"
               
             - name: Configure CMake
-              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
+              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}\build" ${{ matrix.cmake-args }}
               env:
                   CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}/lib/cmake"
                   WORKSPACE_DIR: ${{ github.workspace }}
