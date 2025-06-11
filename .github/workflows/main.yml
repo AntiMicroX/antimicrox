@@ -163,7 +163,7 @@ jobs:
             - name: Configure CMake
               run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B ".\build" ${{ matrix.cmake-args }}
               env:
-                  CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}\\lib\\cmake"
+                  CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}"
                   WORKSPACE_DIR: ${{ github.workspace }}
               
             - name: Build
