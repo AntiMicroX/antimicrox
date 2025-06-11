@@ -74,15 +74,23 @@ jobs:
             fail-fast: false
             matrix:
                 include:
+                    - name: WinServer2022 MinGW QT5 MSYS Makefiles
+                      image: windows-2022
+                      qt-version: "5.15.2"
+                      shell: msys2 {0}
+                      cmake-args: -G "MSYS Makefiles"
+                      build-type: Debug
+                      qt-arch: "win64_mingw81"
+                      experimental: false
                     - name: WinServer2022 MinGW QT5
                       image: windows-2022
                       qt-version: "5.15.2"
                       shell: msys2 {0}
-                      cmake-args: -G Ninja
+                      cmake-args: -G "MinGW Makefiles"
                       build-type: Debug
                       qt-arch: "win64_mingw81"
                       experimental: false
-                    - name: WinServer2022 MinGW QT6
+                    - name: WinServer2022 MinGW QT6 Unix
                       image: windows-2022
                       qt-version: "6.7"
                       shell: msys2 {0}
