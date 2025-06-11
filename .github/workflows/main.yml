@@ -86,7 +86,7 @@ jobs:
                       image: windows-2022
                       qt-version: "6.7"
                       shell: msys2 {0}
-                      cmake-args: -G Ninja
+                      cmake-args: -G Make
                       build-type: Debug
                       qt-arch: "win64_mingw"
                       experimental: false
@@ -159,7 +159,7 @@ jobs:
                   install-deps: "true"
               
             - name: Configure CMake
-              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}\build" ${{ matrix.cmake-args }}
+              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B ".\build" ${{ matrix.cmake-args }}
               env:
                   CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}/lib/cmake"
                   WORKSPACE_DIR: ${{ github.workspace }}
