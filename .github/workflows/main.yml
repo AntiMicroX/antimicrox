@@ -86,7 +86,7 @@ jobs:
                       image: windows-2022
                       qt-version: "6.7"
                       shell: msys2 {0}
-                      cmake-args: -G Make
+                      cmake-args: -G "Unix Makefiles"
                       build-type: Debug
                       qt-arch: "win64_mingw"
                       experimental: false
@@ -121,6 +121,7 @@ jobs:
               uses: msys2/setup-msys2@v2
               with:
                   install: >-
+                      mingw-w64-gcc
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
                       cmake
