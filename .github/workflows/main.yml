@@ -157,7 +157,7 @@ jobs:
                   host: "windows"
                   target: "desktop"
                   arch: ${{ matrix.qt-arch }}
-                  dir: "${{ github.workspace }}/qt/"
+                  dir: "${{ github.workspace }}"
                   install-deps: "true"
               
             - name: Configure CMake
