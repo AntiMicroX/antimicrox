@@ -122,6 +122,7 @@ jobs:
               with:
                   install: >-
                       gcc
+                      make
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
                       cmake
