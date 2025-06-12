@@ -123,7 +123,7 @@ jobs:
                   install: >-
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
-                      cmake
+                      mingw-w64-x86_64-cmake
                   msystem: mingw64
                   release: false
             #mingw-w64-x86_64-SDL2 not installed above because of: https://github.com/AntiMicroX/antimicrox/issues/465
