@@ -74,33 +74,35 @@ jobs:
             fail-fast: false
             matrix:
                 include:
-                    - name: WinServer2019 MinGW QT5
-                      image: windows-2019
+                    - name: WinServer2022 MinGW QT5
+                      image: windows-2022
                       qt-version: "5.15.2"
                       shell: msys2 {0}
+                      cmake-args: -G Ninja
                       build-type: Debug
                       qt-arch: "win64_mingw81"
                       experimental: false
-                    - name: WinServer2019 MinGW QT6
-                      image: windows-2019
+                    - name: WinServer2022 MinGW QT6
+                      image: windows-2022
                       qt-version: "6.7"
                       shell: msys2 {0}
+                      cmake-args: -G Ninja
                       build-type: Debug
                       qt-arch: "win64_mingw"
                       experimental: false
-                    - name: WinServer2019 MSVC QT5
-                      image: windows-2019
+                    - name: WinServer2022 MSVC QT5
+                      image: windows-2022
                       qt-version: "5.15.2"
                       shell: cmd
-                      cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
+                      cmake-args: -G "Visual Studio 17 2022" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
                       build-type: Debug
                       qt-arch: "win64_msvc2019_64"
                       experimental: false
-                    - name: WinServer2019 MSVC QT6
-                      image: windows-2019
+                    - name: WinServer2022 MSVC QT6
+                      image: windows-2022
                       qt-version: "6.7"
                       shell: cmd
-                      cmake-args: -G "Visual Studio 16 2019" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
+                      cmake-args: -G "Visual Studio 17 2022" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
                       build-type: Debug
                       qt-arch: "win64_msvc2019_64"
                       experimental: false
@@ -121,6 +123,7 @@ jobs:
                   install: >-
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
+                      mingw-w64-x86_64-cmake
                   msystem: mingw64
                   release: false
             #mingw-w64-x86_64-SDL2 not installed above because of: https://github.com/AntiMicroX/antimicrox/issues/465
@@ -143,7 +146,7 @@ jobs:
               uses: TheMrMilchmann/setup-msvc-dev@v3
               with:
                 arch: x64
-                toolset: 14.1
+                toolset: 14
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v4
