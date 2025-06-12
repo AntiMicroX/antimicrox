@@ -78,15 +78,15 @@ jobs:
                       image: windows-2022
                       qt-version: "5.15.2"
                       shell: msys2 {0}
-                      cmake-args: -G "Unix Makefiles"
+                      cmake-args: -G Ninja
                       build-type: Debug
                       qt-arch: "win64_mingw81"
                       experimental: false
-                    - name: WinServer2022 MinGW QT6 Unix
+                    - name: WinServer2022 MinGW QT6
                       image: windows-2022
                       qt-version: "6.7"
                       shell: msys2 {0}
-                      cmake-args: -G "Unix Makefiles"
+                      cmake-args: -G Ninja
                       build-type: Debug
                       qt-arch: "win64_mingw"
                       experimental: false
@@ -121,8 +121,6 @@ jobs:
               uses: msys2/setup-msys2@v2
               with:
                   install: >-
-                      gcc
-                      make
                       mingw-w64-x86_64-toolchain
                       mingw-w64-x86_64-ninja
                       mingw-w64-x86_64-cmake
@@ -157,13 +155,13 @@ jobs:
                   host: "windows"
                   target: "desktop"
                   arch: ${{ matrix.qt-arch }}
-                  dir: "${{ github.workspace }}"
+                  dir: "${{ github.workspace }}/qt/"
                   install-deps: "true"
               
             - name: Configure CMake
-              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B ".\build" ${{ matrix.cmake-args }}
+              run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
               env:
-                  CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}"
+                  CMAKE_PREFIX_PATH: "${{ env.QT_ROOT_DIR }}/lib/cmake"
                   WORKSPACE_DIR: ${{ github.workspace }}
               
             - name: Build
