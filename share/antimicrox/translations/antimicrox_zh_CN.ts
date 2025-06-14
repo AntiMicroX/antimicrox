@@ -1465,7 +1465,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最后按下的键盘/鼠标按键：</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="193"/>
@@ -1624,7 +1624,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="278"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="238"/>
@@ -1665,7 +1665,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="125"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定重置前设备的校准吗？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
