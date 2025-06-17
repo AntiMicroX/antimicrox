@@ -14,8 +14,6 @@ jobs:
                 image: ubuntu-24.04
               - name: Ubuntu 22-04
                 image: ubuntu-22.04
-              - name: Ubuntu 20-04
-                image: ubuntu-20.04
         name: Build deb package ${{ matrix.name }}
         runs-on: ${{ matrix.image }}
 
@@ -55,7 +53,7 @@ jobs:
     build-appimage:
         # Version of ubuntu building this appimage, it shouldn't be the latest verion of ubuntu to avoid breaking compatibility with older systems
         name: Build AppImage package
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
 
         steps:
 
