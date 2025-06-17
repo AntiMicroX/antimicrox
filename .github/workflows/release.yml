@@ -139,7 +139,7 @@ jobs:
 
     build-windows-packages:
         name: Create Windows packages
-        runs-on: windows-2019
+        runs-on: windows-2022
         defaults:
             run:
                 shell: msys2 {0}
@@ -155,6 +155,7 @@ jobs:
                       mingw-w64-x86_64-ninja
                       mingw-w64-x86_64-nsis
                       mingw-w64-x86_64-openssl
+                      mingw-w64-x86_64-cmake
                   msystem: mingw64
                   release: false
             # mingw-w64-x86_64-SDL2 not installed above because of: https://github.com/AntiMicroX/antimicrox/issues/465
