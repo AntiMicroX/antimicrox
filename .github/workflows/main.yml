@@ -41,8 +41,8 @@ jobs:
                       build-type: Debug
                       experimental: true
                       qt-packages: "qttools5-dev qttools5-dev-tools"
-                    - name: Ubuntu 20-04 GCC  (for AppImage comp)
-                      image: ubuntu-20.04
+                    - name: Ubuntu 22-04 GCC  (for AppImage comp)
+                      image: ubuntu-22.04
                       cc: gcc
                       cxx: g++
                       build-type: Debug
