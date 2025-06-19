@@ -17,6 +17,7 @@ Categories=Game;Qt;Utility;
 MimeType=application/x-amgp;
 Keywords=game;controller;keyboard;joystick;mouse;
 Actions=run-in-tray;
+StartupWMClass=antimicrox
 
 [Desktop Action run-in-tray]
 Name=Open in system tray only
