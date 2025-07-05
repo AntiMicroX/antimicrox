@@ -2984,7 +2984,7 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished">Percentuale per modificare le coordinate di un quadrato analogico e confinare i valori ad un cerchio.</translation>
+        <translation type="unfinished">Percentuale per modificare le coordinate di un quadrato analogico e confinare i valori ad un cerchio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
