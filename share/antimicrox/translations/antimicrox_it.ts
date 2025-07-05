@@ -6,7 +6,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="20"/>
         <source>About</source>
-        <translation>A proposito</translation>
+        <translation>Informazioni</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
@@ -269,8 +269,8 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation>Seleziona la finestra. Clicca la finestra giusta
-e il percorso al file dell&apos;applicazione riempirà il campo. </translation>
+        <translation>Seleziona la finestra. Clicca la finestra dell&apos;applicazione
+ed il percorso del file dell&apos;applicazione verrà inserito nel modulo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
@@ -2984,7 +2984,7 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation>Percentuale per modificare le coordinate di un analogico quadrato per confinare i valori ad un cerchio.</translation>
+        <translation type="unfinished">Percentuale per modificare le coordinate di un quadrato analogico e confinare i valori ad un cerchio.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
@@ -4579,7 +4579,7 @@ Per favore collega un joystick e scegli l&apos;opzione &quot;Aggiorna i joystick
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="293"/>
         <source>&amp;About</source>
-        <translation>A proposito</translation>
+        <translation>&amp;Informazioni</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="296"/>
@@ -4985,7 +4985,7 @@ rotella:</translation>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
         <translation>Imposta la velocità usata per il movimento orizzontale della rotella
-del mouse a seconda del numero di tacche al secondo simulate. </translation>
+del mouse a seconda del numero di tacche al secondo simulate.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="381"/>
@@ -5641,7 +5641,7 @@ lsmod | grep uinput</translation>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
         <translation>Impossibile aprire il file di dispositivo uinput.
-Per favore controlla di avere i permessi di scrittura sul dispositivo.</translation>
+Per favore controlla di avere i permessi di scrittura sul dispositivo</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="495"/>
