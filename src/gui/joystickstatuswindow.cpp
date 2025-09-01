@@ -302,6 +302,8 @@ JoystickStatusWindow::JoystickStatusWindow(InputDevice *joystick, QWidget *paren
     connect(this, &JoystickStatusWindow::finished, this, &JoystickStatusWindow::restoreButtonStates);
 }
 
+void JoystickStatusWindow::reject() { this->deleteLater(); }
+
 JoystickStatusWindow::~JoystickStatusWindow() { delete ui; }
 
 void JoystickStatusWindow::restoreButtonStates(int code)
