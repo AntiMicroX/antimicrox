@@ -4360,7 +4360,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="106"/>
         <source>Auto Profile functionality is incompatible with Wayland session &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;more info&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Функция Авто-Профиля несовместима с сеансом Wayland &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;Подробнее&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="155"/>
@@ -4609,7 +4609,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="742"/>
         <source>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Функция Авто-Профиля позволяет автоматически переключать активный профиль на основе активного окна приложения.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>
