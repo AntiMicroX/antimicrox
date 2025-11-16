@@ -197,7 +197,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Copyright: 2013 - 2016 {2013 ?} {2022?} {2013 ?}</translation>
+        <translation>Copyright: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
@@ -250,7 +250,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="25"/>
         <source>Pro&amp;file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro&amp;filo:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="40"/>
@@ -280,17 +280,17 @@ ed il percorso del file dell&apos;applicazione verrà inserito nel modulo.</tran
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Classe:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
         <source>T&amp;itle:  </source>
-        <translation type="unfinished"></translation>
+        <translation>T&amp;itolo:  </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="113"/>
         <source>set partial title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">imposta titolo parziale</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="124"/>
@@ -305,7 +305,7 @@ ed il percorso del file dell&apos;applicazione verrà inserito nel modulo.</tran
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="163"/>
         <source>De&amp;vices:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispositi&amp;vi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="179"/>
@@ -634,7 +634,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="757"/>
         <source>Executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eseguibile:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="767"/>
@@ -644,7 +644,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="778"/>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Argomenti:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="821"/>
@@ -827,7 +827,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="140"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[NO TASTO]</translation>
+        <translation>[NESSUN TASTO]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="302"/>
@@ -843,7 +843,7 @@ del profilo predefinito.</translation>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nessuno slot controllato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
@@ -859,39 +859,39 @@ del profilo predefinito.</translation>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slot corrente sconosciuto</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Click on chosen slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fare clic sullo slot scelto prima di unirti</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="538"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="640"/>
         <source>Not enough slots</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Non ci sono abbastanza slot</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="539"/>
         <source>It&apos;s impossible to join slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Impossibile unirsi allo slot. Aggiungi almeno un altro slot.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="542"/>
         <source>Not selected slots</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nessuno slot selezionato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="543"/>
         <source>It&apos;s impossible to join slots. Select at least two slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Impossibile unirsi allo slot. Seleziona almeno due slot prima di unirti</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="546"/>
         <source>Only keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Solo slot per tastiera</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="547"/>
@@ -906,7 +906,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Not selected slot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slot non selezionato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
@@ -936,7 +936,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1039"/>
         <source>Empty execution path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Percorso di esecuzione vuoto</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1040"/>
@@ -1071,7 +1071,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nota: questa finestra è utile per la compatibilità all&apos;indietro con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1414,7 +1414,7 @@ interpretare il rilascio o la pressione di un&apos;asse.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
         <source>Vibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Vibrazione</translation>
     </message>
 </context>
 <context>
@@ -1462,12 +1462,12 @@ interpretare il rilascio o la pressione di un&apos;asse.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>Collegare il tastierino numerico</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ultimo pulsante tastiera/mouse:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="193"/>
@@ -1510,7 +1510,7 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="320"/>
         <source>No button</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun pulsante</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="329"/>
@@ -1518,22 +1518,22 @@ mentre questo tasto viene usato.</translation>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="397"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="477"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>Ultimo pulsante</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="330"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Per modificare le impostazioni dell&apos;ultimo pulsante, è necessario che almeno uno sia assegnato dalla tastiera al gamepad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="340"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Per modificare le impostazioni turbo dell&apos;ultimo pulsante, è necessario che almeno uno sia assegnato dalla tastiera al gamepad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="390"/>
         <source>No choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuna scelta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
@@ -1558,7 +1558,7 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="496"/>
         <source>Index %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Indice %1</translation>
     </message>
 </context>
 <context>
@@ -1576,7 +1576,7 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="94"/>
         <source>Steps</source>
-        <translation type="unfinished"></translation>
+        <translation>Incrementi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="113"/>
@@ -1603,19 +1603,19 @@ mentre questo tasto viene usato.</translation>
         <location filename="../../../src/gui/calibration.ui" line="190"/>
         <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">guadagno</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="155"/>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">compensazione</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="248"/>
@@ -1632,7 +1632,7 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="238"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristino delle impostazioni</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="271"/>
@@ -1663,12 +1663,12 @@ mentre questo tasto viene usato.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="108"/>
         <location filename="../../../src/gui/calibration.cpp" line="405"/>
         <source>Calibration was not saved for the preset. Do you really want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La calibrazione non è stata salvata. Vuoi davvero continuare?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="125"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vuoi davvero ripristinare la calibrazione del dispositivo corrente?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
@@ -3019,12 +3019,11 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation>Modifica tasto che è attivo mentre l&apos;analogico è attivo.
+        <translation type="unfinished">Modifica tasto che è attivo mentre l&apos;analogico è attivo.
 
 Questo tasto è utile per assegnare zone con tasti
 di modificatore che possono essere usate per
-assegnare funzionalità cammina/corri ad un 
-analogico.</translation>
+assegnare funzionalità cammina/corri ad un analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
