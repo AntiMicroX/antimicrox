@@ -393,7 +393,7 @@ ed il percorso del file dell&apos;applicazione verrà inserito nel modulo.</tran
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="83"/>
         <source>&amp;Class:</source>
-        <translation type="unfinished">&amp;Classe:</translation>
+        <translation>&amp;Classe:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="100"/>
@@ -1184,7 +1184,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished">Nota: questa finestra è utile per la compatibilità all&apos;indietro con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
+        <translation>Nota: questa finestra è utile per la retrocompatibilità con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1570,12 +1570,12 @@ interpretare il rilascio o la pressione di un&apos;asse.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished">Ricorda, non funzionerà se non si dispone di una tastiera collegata al computer o se non è incorporato come nei PC desktop</translation>
+        <translation>Ricorda, non funzionerà se non si dispone del tastierino collegato al computer o se non è incorporato come nei PC desktop</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation>Collegare il tastierino numerico</translation>
+        <translation>Utilizza il tastierino numerico</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
@@ -1716,14 +1716,14 @@ mentre questo tasto viene usato.</translation>
         <location filename="../../../src/gui/calibration.ui" line="190"/>
         <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
-        <translation type="unfinished">guadagno</translation>
+        <translation>guadagno</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="155"/>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation type="unfinished">compensazione</translation>
+        <translation>compensazione</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
@@ -1776,12 +1776,12 @@ mentre questo tasto viene usato.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="108"/>
         <location filename="../../../src/gui/calibration.cpp" line="405"/>
         <source>Calibration was not saved for the preset. Do you really want to continue?</source>
-        <translation type="unfinished">La calibrazione non è stata salvata. Vuoi davvero continuare?</translation>
+        <translation>La calibrazione non è stata salvata. Vuoi davvero continuare?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="125"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished">Vuoi davvero ripristinare la calibrazione del dispositivo corrente?</translation>
+        <translation>Vuoi davvero ripristinare la calibrazione del dispositivo corrente?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
@@ -3519,7 +3519,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
         <source>NumPad</source>
-        <translation type="unfinished">TastNum</translation>
+        <translation>TastNum</translation>
     </message>
 </context>
 <context>
@@ -4034,7 +4034,7 @@ assegnare funzioni ai tasti o disattiva il nascondimento dei tasti vuoti.</trans
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="155"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the default directory that the program should use in file dialogs when loading a profile or saving a new profile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specifica la cartella predefinita che il programma deve usare nelle finestre di dialogo file mentre si carica un profilo o se ne salva uno nuovo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specifica la cartella predefinita che il programma userà nelle finestre di dialogo per carica un profilo o salvare di nuovi.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="182"/>
@@ -4049,7 +4049,7 @@ assegnare funzioni ai tasti o disattiva il nascondimento dei tasti vuoti.</trans
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="225"/>
         <source>Gamepad Poll Rate:</source>
-        <translation>Velocità di polling del gamepad:</translation>
+        <translation>Velocità di verifica del gamepad:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="232"/>
@@ -4059,19 +4059,18 @@ events from gamepads. Defaults to 10 ms.
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
 before using AntiMicroX unattended.</source>
-        <translation>Cambia la velocità di polling che il programma usa per
+        <translation>Cambia la velocità di verifica usata dal programma per
 scoprire nuovi eventi dai gamepad. Predefinito: 10 ms.
 
-Ridurre la velocità di polling potrebbe causare un consumo
-di CPU maggiore quindi per favore esamina l&apos;impostazione
-che userai.</translation>
+Ridurre tale velocità potrebbe causare un consumo di 
+CPU maggiore, quindi, testa le impostazione che userai.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="246"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
-        <translation>Nascondi finestra principale quando il tasto chiusura della
-finestra principale viene cliccato invece di uscire dal programma.</translation>
+        <translation>Nascondi la finestra principale invece di uscire dal programma
+quando il tasto chiusura della finestra viene cliccato.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="250"/>
@@ -4130,7 +4129,7 @@ la finestra di dialogo di modifica per i tasti gamepad.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="297"/>
         <source>Hide Empty Buttons</source>
-        <translation>Nascondi tasti vuoti</translation>
+        <translation>Nascondi i tasti non usati</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="304"/>
@@ -4144,7 +4143,7 @@ precedente sessione.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="309"/>
         <source>Auto Load Last Opened Profile</source>
-        <translation>Auto-carica l&apos;ultimo profilo aperto</translation>
+        <translation>Carica in automatico l&apos;ultimo profilo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="319"/>
@@ -4171,12 +4170,12 @@ il programma si apre la prima volta.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricorda, non funzionerà se non si dispone del tastierino collegato al computer o se non è incorporato come nei PC desktop</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="349"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizza il tastierino numerico</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="356"/>
@@ -4222,7 +4221,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="623"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX è stato tradotto in molte lingue da collaboratori. Di base, il programma sceglierà una traduzione adatta basandosi sulle impostazioni della lingua del tuo sistema. Tuttavia, puoi far caricare ad AntiMicroX una lingua differente a seconda di quella che scegli nella lista qui sotto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX è stato tradotto in molte lingue dai collaboratori. Il programma sceglierà la traduzione da utilizzare basandosi sulle impostazioni della lingua di sistema. Tuttavia, puoi fargli caricare una lingua differente scegliendola tra quelle disponibili nella lista sottostante.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="658"/>
@@ -4303,7 +4302,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1302"/>
         <source>Log File:</source>
-        <translation type="unfinished"></translation>
+        <translation>File di log:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1321"/>
@@ -4313,7 +4312,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1358"/>
         <source>Log Level:</source>
-        <translation type="unfinished"></translation>
+        <translation>Livello di log:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1372"/>
@@ -4588,7 +4587,7 @@ se non hanno già disattivato tale opzione in Windows.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="728"/>
         <source>Select Default Profile Directory</source>
-        <translation>Seleziona la cartella del profilo predefinito</translation>
+        <translation>Seleziona la cartella predefinita del profilo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1474"/>
@@ -5383,7 +5382,7 @@ grandezza dello schermo.</translation>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="41"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Premere un tasto della tastiera per vedere come viene rilevato dall&apos;applicazione. La finestra mostrerà il valore nativo del tasto nel sistema, il valore originale fornito da Qt (se possibile) e il valore personalizzato utilizzato da AntiMicroX.&lt;/p&gt;&lt;p&gt;Il valore del tasto AntiMicroX e quello Qt saranno solitamente gli stessi. AntiMicroX cerca di utilizzare i valori dei tasti definiti in Qt quando possibile. Controlla la pagina &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; per un elenco dei valori definiti da Qt. Se scopri che un tasto non è supportato in modo nativo da questo programma, segnalaci il problema sulla &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;pagina GitHub&lt;/span&gt;&lt;/a&gt; di AntiMicroX, in modo che il programma possa essere modificato per supportarlo nativamente. Ad oggi, ai valori sconosciuti viene aggiunto un prefisso personalizzato in modo che possano comunque essere utilizzati; purtroppo, ciò implica che il profilo non sarà più portatile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="99"/>
@@ -5555,7 +5554,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="207"/>
         <source>Unknown log level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Livello di log sconosciuto: </translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="225"/>
@@ -5735,7 +5734,7 @@ Vuoi distribuire questa modifica su tutti i set?</translation>
     <message>
         <location filename="../../../src/mousedialog/springmoderegionpreview.cpp" line="42"/>
         <source>Spring Mode Preview</source>
-        <translation type="unfinished">Anteprima modalità fonte</translation>
+        <translation type="unfinished">Anteprima Spring Mode</translation>
     </message>
 </context>
 <context>
@@ -5745,8 +5744,8 @@ Vuoi distribuire questa modifica su tutti i set?</translation>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
-        <translation type="unfinished">Impossibile trovare un file valido per il dispositivo uinput.
-Per favore controlla di aver caricato il modulo uinput.
+        <translation>Impossibile trovare un dispositivo uinput valido.
+Controlla di aver caricato il modulo uinput.
 lsmod | grep uinput</translation>
     </message>
     <message>
@@ -6485,7 +6484,7 @@ Per favore controlla di avere i permessi di scrittura sul dispositivo</translati
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="133"/>
         <source>Alt Gr</source>
-        <translation type="unfinished">Alt Gr</translation>
+        <translation>Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
@@ -6843,7 +6842,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="988"/>
         <source>Others</source>
-        <translation type="unfinished">Altri</translation>
+        <translation>Altri</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1002"/>
@@ -7203,7 +7202,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="88"/>
         <source>Enable logging. Levels (from the least strict): warn,info,verbose,debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita i log. Livelli (dal meno rigoroso): avviso, info, dettagliato, debug</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="89"/>
