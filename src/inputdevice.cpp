@@ -571,6 +571,12 @@ void InputDevice::setActiveSetNumber(int index)
 
 int InputDevice::getActiveSetNumber() { return active_set; }
 
+QString InputDevice::getActiveSetName()
+{
+    SetJoystick *pActiveSet = getActiveSetJoystick();
+    return pActiveSet ? pActiveSet->getName() : QString{};
+}
+
 SetJoystick *InputDevice::getActiveSetJoystick() { return getJoystick_sets().value(active_set); }
 
 int InputDevice::getNumberButtons() { return getActiveSetJoystick()->getNumberButtons(); }
