@@ -181,10 +181,79 @@ For example, to select set 0 for input device 0 with dbus-send:
 dbus-send --print-reply --dest=io.github.antimicrox /InputDevice/0 io.github.antimicrox.InputDevice.setActiveSetNumber int32:0
 ```
 
-Remember that set numbers are 0-based in D-Bus, but 1-based in the UI.
+### Objects
 
-Use [D-Spy](https://gitlab.gnome.org/GNOME/d-spy) to see the available methods
-and to test the D-Bus interface.
+AntiMicroX provides InputDevice objects with paths `/InputDevice/<N>`, where
+`<N>` is the device index.
+
+To find a device of interest, enumerate those objects and use `getSDLName` and
+`getDescription` to identify the device.
+
+### Interfaces
+
+InputDevice objects support the [io.github.antimicrox.InputDevice](other/io.github.antimicrox.inputdevice.xml) interface.
+
+#### Method: io.github.antimicrox.InputDevice.getSDLName()
+
+`getSDLName()` provides the human-readable name of the device, such as "Microsoft Xbox 360 Controller" or "HORIPAD FPS for Nintendo Switch".
+
+#### Method: io.github.antimicrox.InputDevice.getDescription()
+
+`getDescription()` provides a detailed description of the device:
+
+```
+Index:            1
+  UniqueID:         030081b85e0400008e020000100100001118654
+  GUID:             030081b85e0400008e02000010010000
+  VendorID:         1118
+  ProductID:        654
+  Serial:
+  Product Version:  272
+  Name:             Xbox 360 Controller
+  Game Controller: Yes
+  # of RawAxes:    6
+  # of Axes:       6
+  # of RawButtons: 21
+  # of Buttons:    21
+  # of Hats:       0
+  Accelerometer:   0
+  Gyroscope:       0
+```
+
+This includes:
+
+* The controller's `UniqueID` assigned by AntiMicroX
+* The controller's `GUID` assigned by SDL
+* The controller's USB `VendorID`, `ProductID`, `Serial`, `ProductVersion`, and
+  `Name`
+* Whether the device is a `Game Controller`
+* The controller's input features: `# of RawAxes`, `# of Axes`,
+  `# of RawButtons`, `# of Buttons`, `# of Hats`, `Accelerometer`, and
+  `Gysroscope`
+
+#### Method: io.github.antimicrox.InputDevice.getActiveSetNumber()
+
+`getActiveSetNumber()` returns the current set number for this device.
+
+API set indices are 0-based, but they are displayed in the UI with 1-based
+labels.
+
+#### Method: io.github.antimicrox.InputDevice.getActiveSetName()
+
+`getActiveSetName()` returns the name of the current set for this device.
+
+This is empty if the set was not given a name.  In that case, AntiMicroX
+displays a default name: `Set <N>` with a 1-based index.
+
+#### Method: io.github.antimicrox.InputDevice.setActiveSetNumber()
+
+`setActiveSetNumber()` changes the active set for this device to the set
+specified, as a 0-based index.
+
+### Test
+
+Use [D-Spy](https://gitlab.gnome.org/GNOME/d-spy) to inspect and test the D-Bus
+interface.
 
 ## Wiki
 
