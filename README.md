@@ -5,9 +5,10 @@
 3. [Installation](#installation)
 4. [Wiki](#wiki)
 5. [Command Line](#command-line) 
-6. [Testing Under Linux](#testing-under-linux)  
-7. [AntiMicroX Profiles](#antimicrox-profiles)
-8. [Support](#support)  
+6. [D-Bus](#d-bus)
+7. [Testing Under Linux](#testing-under-linux)
+8. [AntiMicroX Profiles](#antimicrox-profiles)
+9. [Support](#support)
 
 ## ❗Looking for a new maintainer❗
 
@@ -168,6 +169,22 @@ Run `antimicrox --help` or read `man antimicrox` for command-line parameters.
   <code>alias antimicrox='flatpak run io.github.antimicrox.antimicrox'</code><br>
   fo file <code>~/.bashrc</code>
 </details>
+
+## D-Bus
+
+AntiMicroX provides a D-Bus service, io.github.antimicrox. You can control some
+aspects of AntiMicroX using D-Bus, such as selecting the current control set.
+
+For example, to select set 0 for input device 0 with dbus-send:
+
+```
+dbus-send --print-reply --dest=io.github.antimicrox /InputDevice/0 io.github.antimicrox.InputDevice.setActiveSetNumber int32:0
+```
+
+Remember that set numbers are 0-based in D-Bus, but 1-based in the UI.
+
+Use [D-Spy](https://gitlab.gnome.org/GNOME/d-spy) to see the available methods
+and to test the D-Bus interface.
 
 ## Wiki
 
