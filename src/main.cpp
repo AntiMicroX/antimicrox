@@ -66,6 +66,10 @@
         #include "x11extras.h"
     #endif
 
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        #include <QDBusConnection>
+    #endif
+
 static void termSignalTermHandler(int signal)
 {
     Q_UNUSED(signal)
@@ -599,6 +603,16 @@ int main(int argc, char *argv[])
     joypad_worker->moveToThread(inputEventThread);
     PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
     inputEventThread->start(QThread::HighPriority);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    QString dbusServiceName = QStringLiteral("io.github.antimicrox");
+    if (!connection.registerService(dbusServiceName))
+    {
+        qWarning("Failed to register service %s on session bus. "
+                 "Is the name already in use?",
+                 qUtf8Printable(dbusServiceName));
+    }
+#endif
 
     int app_result = antimicrox.exec();
 
