@@ -14,6 +14,7 @@ finish-args:
   - --socket=wayland
   # Gamepads
   - --device=all
+  - --own-name=io.github.antimicrox
   # Fixes https://github.com/AntiMicroX/antimicrox/issues/70 until
   # https://github.com/flatpak/xdg-desktop-portal-gtk/issues/191 is fixed
   - --filesystem=home

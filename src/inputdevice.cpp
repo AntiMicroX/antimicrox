@@ -35,6 +35,10 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include "inputdeviceadaptor.h"
+#endif
+
 InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent)
     : QObject(parent)
     , m_calibrations(this)
@@ -51,9 +55,31 @@ InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSetti
     keyRepeatRate = 0;
     rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;
     m_settings = settings;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    // Provide D-Bus interface
+    new InputDeviceAdaptor{this};
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
+    if(!connection.registerObject(objectPath, this))
+    {
+        qWarning("Failed to register input device object at path %s on session bus",
+            qUtf8Printable(objectPath));
+    }
+    else
+    {
+        qInfo("Registered input device object at path %s on session bus",
+            qUtf8Printable(objectPath));
+    }
+#endif
 }
 
-InputDevice::~InputDevice() {}
+InputDevice::~InputDevice()
+{
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
+    connection.unregisterObject(objectPath);
+}
 
 int InputDevice::getJoyNumber() { return joyNumber; }
 
