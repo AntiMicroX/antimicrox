@@ -35,7 +35,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
     #include "inputdeviceadaptor.h"
 #endif
 
@@ -56,7 +56,7 @@ InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSetti
     rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;
     m_settings = settings;
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
     // Provide D-Bus interface
     new InputDeviceAdaptor{this};
     QDBusConnection connection = QDBusConnection::sessionBus();

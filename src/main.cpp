@@ -56,10 +56,6 @@
 #include <iostream>
 #include <stdexcept>
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    #include <QDBusConnection>
-#endif
-
 #ifdef Q_OS_UNIX
     #include <signal.h>
     #include <unistd.h>
@@ -68,6 +64,10 @@
 
     #ifdef WITH_X11
         #include "x11extras.h"
+    #endif
+
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        #include <QDBusConnection>
     #endif
 
 static void termSignalTermHandler(int signal)
@@ -603,7 +603,7 @@ int main(int argc, char *argv[])
     joypad_worker->moveToThread(inputEventThread);
     PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
     inputEventThread->start(QThread::HighPriority);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
     QDBusConnection connection = QDBusConnection::sessionBus();
     QString dbusServiceName = QStringLiteral("io.github.antimicrox");
     if(!connection.registerService(dbusServiceName))
