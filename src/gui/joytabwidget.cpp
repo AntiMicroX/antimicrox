@@ -1321,49 +1321,41 @@ void JoyTabWidget::changeCurrentSet(int index)
 void JoyTabWidget::changeSetOne()
 {
     m_joystick->setActiveSetNumber(0);
-    changeCurrentSet(0);
 }
 
 void JoyTabWidget::changeSetTwo()
 {
     m_joystick->setActiveSetNumber(1);
-    changeCurrentSet(1);
 }
 
 void JoyTabWidget::changeSetThree()
 {
     m_joystick->setActiveSetNumber(2);
-    changeCurrentSet(2);
 }
 
 void JoyTabWidget::changeSetFour()
 {
     m_joystick->setActiveSetNumber(3);
-    changeCurrentSet(3);
 }
 
 void JoyTabWidget::changeSetFive()
 {
     m_joystick->setActiveSetNumber(4);
-    changeCurrentSet(4);
 }
 
 void JoyTabWidget::changeSetSix()
 {
     m_joystick->setActiveSetNumber(5);
-    changeCurrentSet(5);
 }
 
 void JoyTabWidget::changeSetSeven()
 {
     m_joystick->setActiveSetNumber(6);
-    changeCurrentSet(6);
 }
 
 void JoyTabWidget::changeSetEight()
 {
     m_joystick->setActiveSetNumber(7);
-    changeCurrentSet(7);
 }
 
 void JoyTabWidget::showStickAssignmentDialog()
