@@ -11,6 +11,9 @@
 		<method name="getActiveSetNumber">
 			<arg name="index" type="i" direction="out"/>
 		</method>
+		<method name="getActiveSetName">
+			<arg name="name" type="s" direction="out"/>
+		</method>
 		<method name="setActiveSetNumber">
 			<arg name="index" type="i" direction="in"/>
 		</method>

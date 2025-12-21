@@ -65,6 +65,7 @@ class InputDevice : public QObject
     int getJoyNumber();
     int getRealJoyNumber();
     int getActiveSetNumber();
+    QString getActiveSetName();
     SetJoystick *getActiveSetJoystick();
     SetJoystick *getSetJoystick(int index);
     void removeControlStick(int index);
