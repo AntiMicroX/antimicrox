@@ -61,9 +61,7 @@ InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSetti
 
 InputDevice::~InputDevice()
 {
-    QDBusConnection connection = QDBusConnection::sessionBus();
-    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
-    connection.unregisterObject(objectPath);
+    unregisterDBusObject();
 }
 
 int InputDevice::getJoyNumber() { return joyNumber; }
@@ -1762,6 +1760,15 @@ void InputDevice::registerDBusObject()
         qInfo("Registered input device object at path %s on session bus",
             qUtf8Printable(objectPath));
     }
+#endif
+}
+
+void InputDevice::unregisterDBusObject()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
+    connection.unregisterObject(objectPath);
 #endif
 }
 
