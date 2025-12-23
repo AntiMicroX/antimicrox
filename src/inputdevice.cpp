@@ -56,22 +56,7 @@ InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSetti
     rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;
     m_settings = settings;
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
-    // Provide D-Bus interface
-    new InputDeviceAdaptor{this};
-    QDBusConnection connection = QDBusConnection::sessionBus();
-    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
-    if(!connection.registerObject(objectPath, this))
-    {
-        qWarning("Failed to register input device object at path %s on session bus",
-            qUtf8Printable(objectPath));
-    }
-    else
-    {
-        qInfo("Registered input device object at path %s on session bus",
-            qUtf8Printable(objectPath));
-    }
-#endif
+    registerDBusObject();
 }
 
 InputDevice::~InputDevice()
@@ -1760,6 +1745,25 @@ QList<bool> &InputDevice::getButtonstatesLocal() { return buttonstates; }
 QList<int> &InputDevice::getAxesstatesLocal() { return axesstates; }
 
 QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
+
+void InputDevice::registerDBusObject()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+    new InputDeviceAdaptor{this};
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
+    if(!connection.registerObject(objectPath, this))
+    {
+        qWarning("Failed to register input device object at path %s on session bus",
+            qUtf8Printable(objectPath));
+    }
+    else
+    {
+        qInfo("Registered input device object at path %s on session bus",
+            qUtf8Printable(objectPath));
+    }
+#endif
+}
 
 SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
 
