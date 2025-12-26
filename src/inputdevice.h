@@ -65,6 +65,7 @@ class InputDevice : public QObject
     int getJoyNumber();
     int getRealJoyNumber();
     int getActiveSetNumber();
+    QString getActiveSetName();
     SetJoystick *getActiveSetJoystick();
     SetJoystick *getSetJoystick(int index);
     void removeControlStick(int index);
@@ -267,6 +268,12 @@ class InputDevice : public QObject
     QList<bool> &getButtonstatesLocal();
     QList<int> &getAxesstatesLocal();
     QList<int> &getDpadstatesLocal();
+
+    // When D-Bus is supported, register this object on D-Bus.  (Does nothing in
+    // builds without D-Bus support.)
+    void registerDBusObject();
+    // Unregister the object in D-Bus builds
+    void unregisterDBusObject();
 
     SDL_Joystick *m_joyhandle;
     QMap<int, SetJoystick *> joystick_sets;

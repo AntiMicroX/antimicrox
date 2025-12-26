@@ -1,0 +1,21 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+	"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/io/github/antimicrox/inputdevice">
+	<interface name="io.github.antimicrox.InputDevice">
+		<method name="getSDLName">
+			<arg name="name" type="s" direction="out"/>
+		</method>
+		<method name="getDescription">
+			<arg name="name" type="s" direction="out"/>
+		</method>
+		<method name="getActiveSetNumber">
+			<arg name="index" type="i" direction="out"/>
+		</method>
+		<method name="getActiveSetName">
+			<arg name="name" type="s" direction="out"/>
+		</method>
+		<method name="setActiveSetNumber">
+			<arg name="index" type="i" direction="in"/>
+		</method>
+	</interface>
+</node>
