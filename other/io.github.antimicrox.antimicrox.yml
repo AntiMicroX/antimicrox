@@ -10,7 +10,7 @@ finish-args:
   - --talk-name=org.kde.StatusNotifierWatcher
   # X11 + XShm access
   - --share=ipc
-  - --socket=fallback-x11
+  - --socket=x11
   - --socket=wayland
   # Gamepads
   - --device=all
