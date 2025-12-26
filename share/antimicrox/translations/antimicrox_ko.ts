@@ -4492,12 +4492,13 @@ per seconds.</source>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
         <source>You can help with translating AntiMicroX. Just click here: &lt;a
                           href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX 번역에 참여하세요. 여기를 클릭하세요: &lt;a
+                          href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;바로가기&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="742"/>
         <source>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</source>
-        <translation type="unfinished"></translation>
+        <translation>자동 프로필 기능을 사용하면 활성 애플리케이션 창에 따라 활성 프로필을 자동으로 전환할 수 있습니다.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>

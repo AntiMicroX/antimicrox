@@ -38,12 +38,29 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>«pktiuk» (із серпня 2020 року) — Просто хочу запевнитись, що це дуже корисне програмне забезпечення не буде закинуто. Я вирішив продовжувати підтримувати цей проєкт і зробити його максимально доступним для широкого загалу.
+
+«juliagoda» (з березня 2018 року до 2020 року) — Бажаючи пограти у свої улюблені старі ігри, які не підтримують ґеймпади, мною було знайдено цей проєкт (який дозволяє призначати кнопки клавіатури й миші до ґеймпада) найбільш доцільним і новим. Але через поганий вибір подібних застосунків у інтернеті, а також через те, що він не компілювався належним чином, у мене виникла ідея врятувати проєкт. Однак, коли роботу було закінчено (достатньо для того, щоб насолоджуватися грою), з’явилася ідея поділитися цим кодом з іншими. Звісно, усю інформація про програмістів-попередників буде збережено.
+
+«Ryochan7» (з 30 грудня 2012 року до 2017 року) — Я працював над AntiMicro у свій вільний час. Те, що спочатку з’явилося як форк QJoyPad і спосіб навчитися подієвому програмуванню обернулося в дещо значно більше, ніж спочатку планувалося. Хоча я витратив багато часу на вивчення нових технік, більше дізнався про стезю емуляції клавомиші й витрачав свої п’ятницеві ночі б’ючи головою свою клавіатуру, зрештою це був веселий і збагачувальний досвід.
+
+Для мене потреба в цій програмі виникла через те, що подібні програми на Windows не забезпечують нативну підтримку гри з контролером із деякими іграми. Проте деякі альтернативи існували на Linux, але нічого такого, щоб я вважав достатньо гарним у плані функціональності або ігровому керуванні для того, щоб справді насолодитися іграми, у які я хотів пограти з емуляцією клавомиші. QJoyPad була основною програмою, яку я використовував у минуломи, проте вона сильно застаріла й не надавала деякий простий функціонал, який я вважаю важливим. Проєкт уже був мертвий і не оновлювався кілька років, тому я вирішив зробити власний. 
+
+З цього моменту я намагався визначити, що інші програми роблять правильно й потім удосконалювати це. Також у процесі я виявив деякі хитрі трюки й дізнався про те, як нативне керування ґеймпадом реалізовано в деяких іграх більше, ніж мені взагалі було потрібно. Хоча досі є місця, у яких програму треба покращити, але я вважаю, що вона забезпечує найкращий досвід ігрового керування для старіших ігор і деяких новіших, якщо вони не забезпечують нативну підтримку контролерів.
+
+Розробка цієї програми більше не пріоритетна для мене. Здебільшого через те, що контролер Steam дуже добре підходить для гри в ПК-ігри, якщо порівнювати це з використанням контролера Xbox 360. Проте схоже, що поки ще є причини для існування цієї програми.
+
+---
+
+Станом на 24 травня 2016 року цей проєкт переміщено на https://github.com/AntiMicro/antimicro. 
+Крім того, керування проєктом перейшло від Тревіса (Ryochan7) до організації AntiMicro, оскільки в Тревіса з’явилися інші зацікавлення й пріорітети.
+Потім проєкт було продовжено juliagoda в 2018 році як antimicroX. 
+Пізніше проєкт ще раз було переміщено на https://github.com/AntiMicroX/antimicrox, а його обслуговування продовжено організацією AntiMicroX, створеною pktiuk.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished"></translation>
+        <translation>Авторські права: 2013–2022 рр.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="325"/>
@@ -197,7 +214,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="339"/>
         <source>About Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Про розробку</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
@@ -4061,7 +4078,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="623"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX перекладено на багато різних мов. Усталено, що ця програма вибере мову згідно мовних налаштувань вашої системи. Проте ви змінити мову AntiMicroX, вибравши її зі списку нижче.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="658"/>
