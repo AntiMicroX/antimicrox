@@ -153,6 +153,8 @@ void InputDevice::setActiveSetNumber(int index)
         QList<JoyControlStick::JoyStickDirections> stickstates;
         QList<int> vdpadstates;
 
+        resetButtonDownCount();
+
         // Grab current states for all elements in old set
         SetJoystick *current_set = getJoystick_sets().value(active_set);
         SetJoystick *old_set = current_set;
@@ -552,6 +554,9 @@ void InputDevice::setActiveSetNumber(int index)
         activatePossibleDPadEvents();
         activatePossibleVDPadEvents();
         activatePossibleButtonEvents();
+
+        // The set has changed; propagate to UI
+        propogateSetChange(index);
     } else
     {
         DEBUG() << "Set is not changed";
@@ -1131,9 +1136,7 @@ void InputDevice::resetButtonDownCount()
  */
 void InputDevice::enableSetConnections(SetJoystick *setstick)
 {
-    connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::resetButtonDownCount);
     connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::setActiveSetNumber);
-    connect(setstick, &SetJoystick::setChangeActivated, this, &InputDevice::propogateSetChange);
     connect(setstick, &SetJoystick::setAssignmentButtonChanged, this, &InputDevice::changeSetButtonAssociation);
 
     connect(setstick, &SetJoystick::setAssignmentAxisChanged, this, &InputDevice::changeSetAxisButtonAssociation);

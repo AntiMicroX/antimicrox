@@ -79,7 +79,6 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
         device->setActiveSetNumber(0);
     }
 
-    device->resetButtonDownCount();
     if (this->reader != nullptr)
     {
         this->reader->deleteLater();
@@ -137,7 +136,6 @@ void JoyTabWidgetHelper::reInitDevice()
     }
 
     device->transferReset();
-    device->resetButtonDownCount();
     device->reInitButtons();
 
     device->establishPropertyUpdatedConnection();
