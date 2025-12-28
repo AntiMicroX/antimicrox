@@ -27,6 +27,8 @@ class QKeyEvent;
 class QEvent;
 class QWidget;
 
+/// @brief Button widget used for detecting pressed buttons it is used mainly in advanced button mapping window (this button
+/// with text '...' is spawned when insert button is pressed)
 class SimpleKeyGrabberButton : public QPushButton
 {
     Q_OBJECT
