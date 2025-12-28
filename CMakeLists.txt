@@ -534,6 +534,12 @@ if (Qt6_FOUND OR NOT Qt5_FOUND)
 
     QT_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
     QT_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+
+    if(UNIX)
+        find_package(Qt6 ${QT_REQUIRED_VERSION} COMPONENTS DBus REQUIRED)
+        QT_ADD_DBUS_ADAPTOR(antimicrox_FORMS_HEADERS other/io.github.antimicrox.inputdevice.xml inputdevice.h InputDevice)
+        LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::DBus)
+    endif()
 else()
     find_package(Qt5 ${QT_REQUIRED_VERSION} 
         COMPONENTS Core Widgets Gui Network LinguistTools Concurrent

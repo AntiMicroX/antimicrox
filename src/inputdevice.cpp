@@ -35,6 +35,10 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+    #include "inputdeviceadaptor.h"
+#endif
+
 InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSettings *settings, QObject *parent)
     : QObject(parent)
     , m_calibrations(this)
@@ -51,9 +55,11 @@ InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSetti
     keyRepeatRate = 0;
     rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;
     m_settings = settings;
+
+    registerDBusObject();
 }
 
-InputDevice::~InputDevice() {}
+InputDevice::~InputDevice() { unregisterDBusObject(); }
 
 int InputDevice::getJoyNumber() { return joyNumber; }
 
@@ -564,6 +570,12 @@ void InputDevice::setActiveSetNumber(int index)
 }
 
 int InputDevice::getActiveSetNumber() { return active_set; }
+
+QString InputDevice::getActiveSetName()
+{
+    SetJoystick *pActiveSet = getActiveSetJoystick();
+    return pActiveSet ? pActiveSet->getName() : QString{};
+}
 
 SetJoystick *InputDevice::getActiveSetJoystick() { return getJoystick_sets().value(active_set); }
 
@@ -1728,6 +1740,31 @@ QList<bool> &InputDevice::getButtonstatesLocal() { return buttonstates; }
 QList<int> &InputDevice::getAxesstatesLocal() { return axesstates; }
 
 QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
+
+void InputDevice::registerDBusObject()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+    new InputDeviceAdaptor{this};
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
+    if (!connection.registerObject(objectPath, this))
+    {
+        qWarning("Failed to register input device object at path %s on session bus", qUtf8Printable(objectPath));
+    } else
+    {
+        qInfo("Registered input device object at path %s on session bus", qUtf8Printable(objectPath));
+    }
+#endif
+}
+
+void InputDevice::unregisterDBusObject()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
+    connection.unregisterObject(objectPath);
+#endif
+}
 
 SDL_Joystick *InputDevice::getJoyHandle() const { return m_joyhandle; }
 
