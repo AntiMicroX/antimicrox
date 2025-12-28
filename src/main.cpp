@@ -30,7 +30,6 @@
 #include "localantimicroserver.h"
 #include "mainwindow.h"
 #include "setjoystick.h"
-#include "simplekeygrabberbutton.h"
 
 #include "eventhandlerfactory.h"
 #include "logger.h"
@@ -38,10 +37,8 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
-#include <QException>
 #include <QLibraryInfo>
 #include <QLocalSocket>
-#include <QMainWindow>
 #include <QMap>
 #include <QMapIterator>
 #include <QMessageBox>
@@ -58,7 +55,6 @@
 
 #ifdef Q_OS_UNIX
     #include <signal.h>
-    #include <unistd.h>
 
     #include <execinfo.h>
 
