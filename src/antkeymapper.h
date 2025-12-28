@@ -56,18 +56,6 @@ class AntKeyMapper : public QObject
 
     QtKeyMapperBase *internalMapper;
     QtKeyMapperBase *nativeKeyMapper;
-
-#ifdef Q_OS_WIN
-    QtWinKeyMapper winMapper;
-#else
-    #if defined(WITH_XTEST)
-    QtX11KeyMapper x11Mapper;
-    #endif
-
-    #if defined(WITH_UINPUT)
-    QtUInputKeyMapper uinputMapper;
-    #endif
-#endif
 };
 
 #endif // ANTKEYMAPPER_H
