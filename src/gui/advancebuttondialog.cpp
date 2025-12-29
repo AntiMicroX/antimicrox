@@ -25,7 +25,6 @@
 #include "joybuttontypes/joybutton.h"
 #include "joytabwidget.h"
 #include "simplekeygrabberbutton.h"
-//#include "logger.h"
 
 #include <cmath>
 
@@ -43,7 +42,6 @@
 #include <QTimer>
 #include <QToolButton>
 #include <QtGlobal>
-//#include <QTest>
 
 AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent)
     : QDialog(parent, Qt::Window)
@@ -1399,8 +1397,6 @@ void AdvanceButtonDialog::populateSetSelectionComboBox()
             ui->setSelectionComboBox->insertItems(currentIndex, setChoices);
             currentIndex += 3;
         }
-
-        originset++;
     }
 }
 
