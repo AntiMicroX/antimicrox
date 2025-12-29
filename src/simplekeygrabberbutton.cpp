@@ -78,7 +78,7 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
         grabNextAction = grabbingWheel = false;
         emit buttonCodeChanged(controlcode);
-    } else if (grabNextAction && (event->type() == static_cast<QEvent::Type>(7)))
+    } else if (grabNextAction && (event->type() == QEvent::KeyRelease))
     {
         QKeyEvent *keyEve = static_cast<QKeyEvent *>(event);
         int tempcode = keyEve->nativeScanCode();
