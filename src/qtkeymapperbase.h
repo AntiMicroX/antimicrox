@@ -22,6 +22,22 @@
 #include <QHash>
 #include <QObject>
 
+/**
+ * @brief Base class for platform-specific Qt key mappers.
+ *
+ * QtKeyMapperBase provides an abstract API for mapping between Qt key
+ * constants (Qt::Key_*) and platform-specific virtual key codes (for
+ * example X11 keysyms). Subclasses implement the mapping population
+ * and character information routines and use the provided hash tables
+ * to perform lookups.
+ *
+ * Typical usage:
+ *  - Subclasses populate mappings by implementing populateMappingHashes()
+ *    and populateCharKeyInformation(), usually from the constructor.
+ *  - Call returnVirtualKey() to obtain a platform virtual key for a
+ *    Qt key.
+ *  - Call returnQtKey() to obtain the Qt key for a platform virtual key.
+ */
 class QtKeyMapperBase : public QObject
 {
     Q_OBJECT
@@ -29,22 +45,60 @@ class QtKeyMapperBase : public QObject
   public:
     explicit QtKeyMapperBase(QObject *parent = nullptr);
 
+    /**
+     * @brief Information about a printable character key.
+     *
+     * Contains the required Qt modifiers to produce the character and the
+     * platform virtual keycode that generates it.
+     */
     typedef struct _charKeyInformation
     {
-        Qt::KeyboardModifiers modifiers;
-        int virtualkey;
+        Qt::KeyboardModifiers modifiers; /**< Required modifiers (Shift/AltGr/etc.) */
+        int virtualkey;                  /**< Platform-specific virtual keycode */
     } charKeyInformation;
 
+    /**
+     * @brief Get platform virtual key for a given Qt key.
+     * @param qkey Qt::Key_* value (may include custom prefixes)
+     * @return Platform virtual key code, or 0 if unmapped.
+     */
     virtual int returnVirtualKey(int qkey);
+
+    /**
+     * @brief Get Qt key for a given platform virtual key.
+     * @param key Platform virtual key code
+     * @param scancode Optional scancode (unused by default)
+     * @return Qt::Key_* value, or 0 if unmapped.
+     */
     virtual int returnQtKey(int key, int scancode = 0);
+
+    /**
+     * @brief Check whether the given Qt key is a modifier key.
+     * @param qkey Qt key value
+     * @return true if the key is a modifier (Shift, Control, Alt, Meta)
+     */
     virtual bool isModifier(int qkey);
+
+    /**
+     * @brief Get key information (virtual key + modifiers) for a character.
+     * @param value Unicode character to query
+     * @return charKeyInformation with modifier flags and virtual key; if not
+     *         found, a struct with virtualkey == 0 and NoModifier is returned.
+     */
     charKeyInformation getCharKeyInformation(QChar value);
+
+    /**
+     * @brief Identifier string for this mapper implementation.
+     * @return Identifier (e.g. "xtest").
+     */
     QString getIdentifier();
 
+    /** Prefix values for constructing custom key values. */
     static const int customQtKeyPrefix = 0x10000000;
     static const int customKeyPrefix = 0x20000000;
     static const int nativeKeyPrefix = 0x60000000;
 
+    /** Synthetic/custom key values used within the codebase. */
     enum
     {
         AntKey_Shift_R = Qt::Key_Shift | customQtKeyPrefix,
@@ -83,12 +137,25 @@ class QtKeyMapperBase : public QObject
     };
 
   protected:
+    /**
+     * @brief Populate the Qt <-> platform virtual key mappings.
+     * Implementations must fill `qtKeyToVirtKeyHash` (Qt -> VK) and
+     * `virtKeyToQtKeyHash` (VK -> Qt).
+     */
     virtual void populateMappingHashes() = 0;
+
+    /**
+     * @brief Populate `virtkeyToCharKeyInfo` with character -> VK+modifier info.
+     */
     virtual void populateCharKeyInformation() = 0;
 
+    /** Map from Qt key to platform virtual key */
     QHash<int, int> qtKeyToVirtKeyHash;
+    /** Map from platform virtual key to Qt key */
     QHash<int, int> virtKeyToQtKeyHash;
+    /** Unicode code point -> charKeyInformation (VK + modifiers) */
     QHash<int, charKeyInformation> virtkeyToCharKeyInfo; // Unicode representation -> VK+Modifier information
+    /** Short identifier for this mapper (set by subclasses) */
     QString identifier;
 };
 

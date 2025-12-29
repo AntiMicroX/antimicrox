@@ -33,16 +33,51 @@
     #endif
 #endif
 
+/**
+ * @brief Singleton facade for platform key mapping selection.
+ *
+ * AntKeyMapper chooses and exposes an appropriate platform-specific
+ * key mapper implementation (a subclass of `QtKeyMapperBase`) based on
+ * the selected event generator (e.g. "xtest", "uinput" or "sendinput").
+ * It provides convenient wrappers to translate between Qt keys and
+ * platform virtual keys and to query whether a native mapper is
+ * available.
+ */
 class AntKeyMapper : public QObject
 {
     Q_OBJECT
 
   public:
+    /**
+     * @brief Obtain the singleton instance.
+     * @param handler Name of the backend handler to use (must be one of
+     *                the supported event generators). If an instance does
+     *                not yet exist it will be created using this handler.
+     * @return Pointer to the global AntKeyMapper instance.
+     */
     static AntKeyMapper *getInstance(QString handler = "");
     void deleteInstance();
 
+    /**
+     * @brief Translate a Qt key to a platform virtual key code.
+     * @param qkey Qt::Key_* value
+     * @return Platform virtual key (or 0 if no mapping exists)
+     */
     int returnVirtualKey(int qkey);
+
+    /**
+     * @brief Translate a platform virtual key to a Qt key.
+     * @param key Platform virtual key code
+     * @param scancode Optional scancode used by some backends
+     * @return Qt::Key_* value (or 0 if no mapping exists)
+     */
     int returnQtKey(int key, int scancode = 0);
+
+    /**
+     * @brief Check if a given Qt key is treated as a modifier key.
+     * @param qkey Qt key value
+     * @return true if the key is a modifier (Shift, Control, Alt, Meta)
+     */
     bool isModifierKey(int qkey);
     QtKeyMapperBase *getNativeKeyMapper() const;
     QtKeyMapperBase *getKeyMapper() const;
@@ -54,8 +89,8 @@ class AntKeyMapper : public QObject
   private:
     explicit AntKeyMapper(QString handler = "", QObject *parent = nullptr);
 
-    QtKeyMapperBase *internalMapper;
-    QtKeyMapperBase *nativeKeyMapper;
+    QtKeyMapperBase *internalMapper;  /**< Active mapper used by the app */
+    QtKeyMapperBase *nativeKeyMapper; /**< Optional native mapper for low-level queries */
 };
 
 #endif // ANTKEYMAPPER_H
