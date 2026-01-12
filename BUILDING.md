@@ -2,18 +2,21 @@
 
 Most of these packages are already built and available on [Release Page](https://github.com/AntiMicroX/antimicrox/releases), but if you want, you can also build AntiMicroX by yourself.
 
-- [Building AntiMicroX](#building-antimicrox)
-  - [Build Dependencies](#build-dependencies)
-  - [Basic building](#basic-building)
-    - [MSVC building tips](#msvc-building-tips)
-    - [Build Options for CMake](#build-options-for-cmake)
-    - [Universal Options](#universal-options)
-    - [Linux Options](#linux-options)
-  - [Building DEB package](#building-deb-package)
-  - [Building RPM package](#building-rpm-package)
-  - [Building AppImage](#building-appimage)
-  - [Building Flatpak](#building-flatpak)
-  - [Building Windows installer](#building-windows-installer)
+The simplest way is to use devcontainer (Docker required) which sets up proper build environment for you (tested only with Linux host).
+
+There is also more classical way of building using cmake described below:
+
+- [Build Dependencies](#build-dependencies)
+- [Basic building](#basic-building)
+  - [MSVC building tips](#msvc-building-tips)
+  - [Build Options for CMake](#build-options-for-cmake)
+  - [Universal Options](#universal-options)
+  - [Linux Options](#linux-options)
+- [Building DEB package](#building-deb-package)
+- [Building RPM package](#building-rpm-package)
+- [Building AppImage](#building-appimage)
+- [Building Flatpak](#building-flatpak)
+- [Building Windows installer](#building-windows-installer)
 
 ## Build Dependencies
 

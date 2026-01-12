@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "C++",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "gcc -v",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+
+	// Enable GUI in docker
+	"containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "XAUTHORITY": "/tmp/.Xauthority"
+    },
+	"mounts": [
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=${localEnv:XAUTHORITY},target=/tmp/.Xauthority,type=bind",
+
+		// 1. Mount the input devices
+        "source=/dev/input,target=/dev/input,type=bind",
+        
+        // 2. Mount the udev database (Required for SDL to "see" the devices)
+        "source=/run/udev,target=/run/udev,type=bind"
+      ],
+    "runArgs": [
+        "--net=host"
+    ],
+	// To ensure access to hardware
+	"privileged": true
+}
