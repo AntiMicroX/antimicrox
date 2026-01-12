@@ -127,7 +127,7 @@ void X11Extras::setCustomDisplay(QString displayString) { GlobalVariables::X11Ex
 
 /**
  * @brief Return root window for a given X display
- * @param Screen number. If no value is passed, uses screen 1.
+ * @param screen number. If no value is passed, uses screen 1.
  * @return XID of the window
  */
 unsigned long X11Extras::appRootWindow(int screen)
@@ -138,7 +138,7 @@ unsigned long X11Extras::appRootWindow(int screen)
 /**
  * @brief Get appropriate alias for a known KeySym string that might be blank
  *     or contain invalid characters when returned from X.
- * @param QString representation of a KeySym string
+ * @param xcodestring representation of a KeySym string
  * @return Alias string or a blank QString if no alias was found
  */
 QString X11Extras::getDisplayString(QString xcodestring)
@@ -454,8 +454,8 @@ bool X11Extras::windowIsViewable(Display *display, Window window)
  * @brief Go through a window's properties and search for an Atom
  *     from a defined list. If an Atom is found in a window's properties,
  *     that window should be considered relevant and one that should be grabbed.
- * @param Display*
- * @param Window
+ * @param display*
+ * @param window
  * @return If a window has a relevant Atom in its properties.
  */
 bool X11Extras::isWindowRelevant(Display *display, Window window)
