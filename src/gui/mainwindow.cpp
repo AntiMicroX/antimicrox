@@ -1664,27 +1664,6 @@ void MainWindow::checkAutoProfileWatcherTimer()
 #endif
 }
 
-/**
- * @brief TODO: Check if method is save to remove.
- */
-void MainWindow::updateMenuOptions()
-{
-    int index = ui->tabWidget->currentIndex();
-    if (index >= 0)
-    {
-        JoyTabWidget *joyTab = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(index)); // static_cast
-        InputDevice *joystick = joyTab->getJoystick();
-
-        if (qobject_cast<GameController *>(joystick) != nullptr)
-        {
-            ui->actionStick_Pad_Assign->setEnabled(false);
-        } else
-        {
-            ui->actionStick_Pad_Assign->setEnabled(true);
-        }
-    }
-}
-
 void MainWindow::showBatteryLevel(SDL_JoystickPowerLevel powerLevSDL, QString batteryLev, QString percent,
                                   InputDevice *device)
 {

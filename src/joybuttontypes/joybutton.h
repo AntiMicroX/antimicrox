@@ -272,8 +272,7 @@ class JoyButton : public QObject
 
     double getTotalSlotDistance(JoyButtonSlot *slot);
 
-    bool distanceEvent(); // JoyButtonEvents class
-    bool checkForDelaySequence();
+    bool distanceEvent();                            // JoyButtonEvents class
     void clearAssignedSlots(bool signalEmit = true); // JoyButtonSlots class
     void releaseSlotEvent();                         // JoyButtonEvents class
     void checkForPressedSetChange();

@@ -68,7 +68,6 @@ class GameControllerMappingDialog : public QDialog
     void dpadAssign(int dpad, int buttonindex);
     void buttonRelease(int buttonindex);
     void axisRelease(int axis, int value);
-    void dpadRelease(int dpad, int buttonindex);
     void saveChanges();
     void discardMapping(QAbstractButton *button);
     void enableButtonEvents(int code);

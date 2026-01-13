@@ -486,7 +486,6 @@ void GameControllerMappingDialog::enableDeviceConnections()
     connect(device, &InputDevice::rawAxisActivated, this, &GameControllerMappingDialog::axisAssign);
     connect(device, &InputDevice::rawAxisReleased, this, &GameControllerMappingDialog::axisRelease);
     connect(device, &InputDevice::rawDPadButtonClick, this, &GameControllerMappingDialog::dpadAssign);
-    connect(device, &InputDevice::rawDPadButtonRelease, this, &GameControllerMappingDialog::dpadRelease);
 }
 
 void GameControllerMappingDialog::disableDeviceConnections()
@@ -591,18 +590,6 @@ void GameControllerMappingDialog::axisRelease(int axis, int value)
  * @param buttonindex
  */
 void GameControllerMappingDialog::buttonRelease(int buttonindex) { Q_UNUSED(buttonindex); }
-
-/**
- * @brief TODO: Possibly remove. This was used for decrementing a reference
- *   count.
- * @param dpad
- * @param buttonindex
- */
-void GameControllerMappingDialog::dpadRelease(int dpad, int buttonindex)
-{
-    Q_UNUSED(dpad);
-    Q_UNUSED(buttonindex);
-}
 
 void GameControllerMappingDialog::populateAxisDeadZoneComboBox()
 {
