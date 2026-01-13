@@ -145,7 +145,6 @@ class MainWindow : public QMainWindow
     void propogateMappingUpdate(QString mapping, InputDevice *device);
     void autoprofileLoad(AutoProfileInfo *info); // MainConfiguration class
     void checkAutoProfileWatcherTimer();         // MainConfiguration class
-    void updateMenuOptions();
 
   private:
     /**

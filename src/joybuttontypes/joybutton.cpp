@@ -3942,37 +3942,6 @@ void JoyButton::keyPressEvent()
     }
 }
 
-/**
- * @brief TODO: CHECK IF METHOD WOULD BE USEFUL. CURRENTLY NOT USED.
- * @return Result
- */
-bool JoyButton::checkForDelaySequence()
-{
-    bool result = false;
-    QListIterator<JoyButtonSlot *> tempiter(*getAssignedSlots());
-
-    // Move iterator to start of cycle.
-    if (previousCycle != nullptr)
-        tempiter.findNext(previousCycle);
-
-    while (tempiter.hasNext())
-    {
-        JoyButtonSlot *slot = tempiter.next();
-
-        if ((slot->getSlotMode() == JoyButtonSlot::JoyPause) || (slot->getSlotMode() == JoyButtonSlot::JoyRelease))
-        {
-            result = true;
-            tempiter.toBack();
-        } else if (slot->getSlotMode() == JoyButtonSlot::JoyCycle)
-        {
-            result = false;
-            tempiter.toBack();
-        }
-    }
-
-    return result;
-}
-
 SetJoystick *JoyButton::getParentSet() { return m_parentSet; }
 
 void JoyButton::checkForPressedSetChange()
