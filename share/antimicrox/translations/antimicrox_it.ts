@@ -1077,7 +1077,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1039"/>
         <source>Empty execution path</source>
-        <translation type="unfinished">Percorso di esecuzione vuoto</translation>
+        <translation>Percorso di esecuzione vuoto</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1040"/>
@@ -1197,12 +1197,12 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation>Assegnazioni analogico/pad</translation>
+        <translation>Assegnazioni Joystick/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="41"/>
         <source>Sticks</source>
-        <translation>Analogici</translation>
+        <translation>Joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="46"/>
@@ -1212,7 +1212,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation>Nota: questa finestra è utile per la retrocompatibilità con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
+        <translation type="unfinished">Nota: questa finestra è utile per la retrocompatibilità con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1223,7 +1223,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="124"/>
         <source>Stick 1</source>
-        <translation>Analogico 1</translation>
+        <translation>Joystick 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="134"/>
@@ -1257,7 +1257,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="246"/>
         <source>Stick 2</source>
-        <translation>Analogico 2</translation>
+        <translation>Joystick 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
@@ -1319,27 +1319,27 @@ del profilo predefinito.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="432"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="433"/>
         <source>Button %1</source>
-        <translation>Tasto %1</translation>
+        <translation>Pulsante %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="764"/>
         <source>Move stick 1 along the X axis</source>
-        <translation>Muovere analogico 1 lungo l&apos;asse X</translation>
+        <translation>Muovere joystick 1 lungo l&apos;asse X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation>Muovere analogico 1 lungo l&apos;asse Y</translation>
+        <translation>Muovere joystick 1 lungo l&apos;asse Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="814"/>
         <source>Move stick 2 along the X axis</source>
-        <translation>Muovere analogico 2 lungo l&apos;asse X</translation>
+        <translation>Muovere joystick 2 lungo l&apos;asse X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="830"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation>Muovere analogico 2 lungo l&apos;asse Y</translation>
+        <translation>Muovere joystick 2 lungo l&apos;asse Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="869"/>
@@ -1431,7 +1431,7 @@ del profilo predefinito.</translation>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
         <translation>Imposta il valore da usare come limite per un&apos;asse. Utile
-per un analogico consumato.</translation>
+per un joystick consumato.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="388"/>
@@ -1871,13 +1871,13 @@ Può richiedere fino a %1 secondi.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
-        <translation>Muovi diverse volte la levetta fino al massimo in tutte le direzioni e indietro verso il centro.
+        <translation>Muovi diverse volte il joystick fino al massimo in tutte le direzioni e rilasciala al centro.
 Può richiedere fino a %1 secondi.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="737"/>
         <source>Calibrating stick</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrazione joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="638"/>
@@ -1890,7 +1890,7 @@ Può richiedere fino a %1 secondi.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
-        <translation>Muovi diverse volte la levetta compiendo giri completi.
+        <translation>Muovi diverse volte il joystick compiendo giri completi.
 Può richiedere fino a %1 secondi.</translation>
     </message>
     <message>
@@ -2316,32 +2316,32 @@ corrispondente alla zona diagonale del DPad.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation>Click analogico sinistro</translation>
+        <translation>Click sinistro del joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation>Click analogico destro</translation>
+        <translation>Click destro del joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation>Analogico sinistro X</translation>
+        <translation>Joystick X sinistra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation>Analogico sinistro Y</translation>
+        <translation>Joystick Y sinistra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="202"/>
         <source>Right Stick X</source>
-        <translation>Analogico destro X</translation>
+        <translation>Joystick X destra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="207"/>
         <source>Right Stick Y</source>
-        <translation>Analogico destro Y</translation>
+        <translation>Joystick Y destra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
@@ -2443,9 +2443,9 @@ corrispondente alla zona diagonale del DPad.</translation>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation>Scartare mappatura di questo controller?
+        <translation>Elimiare la mappatura di questo controller?
 
-Scartandola, il controller tornerà ad essere un joystick una volta aggiornati tutti i joystick.</translation>
+Eliminandola, il controller verrà ripristinato come joystick al prossimo aggiornamento di tutti i joystick.</translation>
     </message>
 </context>
 <context>
@@ -2866,7 +2866,7 @@ Scartandola, il controller tornerà ad essere un joystick una volta aggiornati t
         <location filename="../../../src/joycontrolstick.cpp" line="811"/>
         <location filename="../../../src/joycontrolstick.cpp" line="816"/>
         <source>Stick</source>
-        <translation>Analogico</translation>
+        <translation>Joystick analogico</translation>
     </message>
 </context>
 <context>
@@ -3054,7 +3054,7 @@ Scartandola, il controller tornerà ad essere un joystick una volta aggiornati t
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="336"/>
         <source>Stick Mode:</source>
-        <translation>Modalità analogico:</translation>
+        <translation>Assetto analogico:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="349"/>
@@ -3071,17 +3071,17 @@ the cardinal directions of the stick. Useful for menus.
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
         <translation>Standard: analogico a 8 regioni con due tasti direzionali attivi
-quando l&apos;analogico è in una regione diagonale.
+quando il joystick è in una regione diagonale.
 
 8 direzioni: analogico a 8 regioni con ogni direzione che ha un
 tasto dedicato. Solo un tasto alla volta viene premuto.
 Utile per i giochi come Rogue.
 
 4 direzioni cardinali: analogico a 4 regioni con regioni corrispondenti
-alla direzione cardinale dell&apos;analogico. Utile per i menu.
+alla direzione cardinale del joystick. Utile per i menu.
 
 4 direzioni diagonali: analogico a 4 regioni con ogni regione
-corrispondente alla zona diagonale dell&apos;analogico.</translation>
+corrispondente alla zona diagonale del joystick.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
@@ -3096,19 +3096,19 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>Modifier Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Area di modifica:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="681"/>
         <source>Dead zone value to use for an analog stick.</source>
-        <translation>Valore zona morta da usare per un analogico.</translation>
+        <translation>Valore zona morta per un joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="605"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="659"/>
         <source>Value when an analog stick is considered moved 100%.</source>
-        <translation>Valore in cui un analogico viene considerato spostato al 100%.</translation>
+        <translation>Valore in cui un joystick analogico viene considerato spostato al 100%.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="417"/>
@@ -3119,13 +3119,13 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="467"/>
         <source>Square Stick:</source>
-        <translation>Analogico quadrato:</translation>
+        <translation>Joystick analogico:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished">Percentuale per modificare le coordinate di un quadrato analogico e confinare i valori ad un cerchio</translation>
+        <translation>Percentuale per modificare le coordinate di un joystick arcade e confinarle in un cerchio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
@@ -3135,7 +3135,7 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
         <source>Stick Delay:</source>
-        <translation>Ritardo analogico:</translation>
+        <translation>Ritardo joystick:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="433"/>
@@ -3160,11 +3160,11 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished">Modifica tasto che è attivo mentre l&apos;analogico è attivo.
+        <translation>Modifica tasto che è attivo mentre l&apos;analogico è attivo.
 
-Questo tasto è utile per assegnare zone con tasti
-di modificatore che possono essere usate per
-assegnare funzionalità cammina/corri ad un analogico.</translation>
+Questo tasto è utile per creare zone con
+modificatori che attivano camminata/corsa
+ad un joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
@@ -3204,7 +3204,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="827"/>
         <source>Specify the name of an analog stick.</source>
-        <translation type="unfinished">Specifica il nome di un analogico.</translation>
+        <translation>Assegna un nome al joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="836"/>
@@ -3683,7 +3683,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1621"/>
         <source>Stick/Pad Assign</source>
-        <translation>Assegna analogico/pad</translation>
+        <translation>Imposta Joystick/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="435"/>
