@@ -32,7 +32,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="170"/>
         <source>Info</source>
-        <translation>Information</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="195"/>
@@ -182,7 +182,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Medverkande</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
@@ -327,9 +327,8 @@ p, li { white-space: pre-wrap; }
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation>Välj Fönster. Klicka på lämplig applikationsfönster
-och applikationssökvägen kommer att fyllas i
-i formuläret.</translation>
+        <translation>Välj Fönster. Klicka på önskat programfönster så fylls
+sökvägen till programfilen automatiskt i formuläret.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
