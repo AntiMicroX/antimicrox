@@ -5203,7 +5203,7 @@ using typical gamepad analog sticks.</source>
 ratón más allá del que produciría la curva de aceleración.
 La aceleración se añade en función de la rapidez con la que se
 mueve un eje.al sondear el mando. Esto se hace para solventar
-algunos de los problemas que produce el rango de entrada
+algunas de las incidencias que produce el rango de entrada
 tan limitado de las típicas palancas analógicas de los mandos.</translation>
     </message>
     <message>
