@@ -27,7 +27,18 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can see full list of contributors &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Originariamente sviluppato da Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Successivamente mantenuto dal gruppo AntiMicro su &lt;/span&gt;&lt;a href=&quot;https://github.com/AntiMicro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/AntiMicro&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Poi da juliagoda su &lt;/span&gt;&lt;a href=&quot;https://github.com/juliagoda&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/juliagoda&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;Ora mantenuto su &lt;/span&gt;&lt;a href=&quot;https://github.com/AntiMicroX/antimicrox&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/AntiMicroX/antimicrox&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt; by &lt;/span&gt;&lt;a href=&quot;https://github.com/pktiuk&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;pktiuk&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collaboratori:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Puoi vedere l&apos;elenco completo dei collaboratori qui &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="170"/>
@@ -290,7 +301,24 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;pktiuk&quot; (dal mese di agosto 2020): voglio solo assicurarmi che questo software molto utile non venga abbandonato, ho deciso di continuare a fornire supporto per questo progetto e renderlo il più accessibile possibile.
+
+&quot;juliagoda&quot; (dal marzo 2018 fino al 2020): volendo solo giocare ai miei vecchi titoli preferiti che non supportavano i gamepad, ho trovato questo progetto (che mappa i tasti della tastiera e pulsanti del mouse su gamepad collegati su Linux) come il più adatto e recente. Ma a causa delle scarse scelte di tali applicazioni su internet e poiché non si compilava correttamente, ho deciso di salvare il progetto. Tuttavia, una volta terminato il mio lavoro (sufficiente per godermi i giochi), ho pensato di condividere questo codice con gli altri. Ovviamente tutte le informazioni sui programmatori passati saranno conservate.
+
+&quot;Ryochan7&quot; (dal 30 dicembre 2012 fino al 2017): ho lavorato su AntiMicro nel mio tempo libero. Quello che è iniziato originariamente come un fork di QJoyPad e un modo per imparare la programmazione event-driven appropriata si è trasformato in qualcosa di molto più grande di quanto avessi inteso originariamente. Sebbene abbia passato molto tempo imparando nuove tecniche, scoprendo di più sul dominio dell&apos;emulazione KB+M e passando i venerdì sera sbattendo la testa sulla tastiera, è stata un&apos;esperienza divertente che, nel complesso, mi ha anche arricchito.
+
+Il bisogno di questo programma è nato dal fatto che utilizzavo programmi simili su Windows per giocare a diversi giochi che non fornivano supporto nativo per i controller. Sebbene esistessero alcune alternative su Linux, non c&apos;era davvero nulla che ritenessi abbastanza buono in termini di funzionalità o controlli in gioco per godermi davvero i giochi che volevo usando l&apos;emulazione KB+M. QJoyPad era il principale programma che avevo usato in passato sebbene fosse molto datato e non fornisse alcune funzionalità di base che pensavo fossero essenziali. Il progetto era morto poiché non era stato aggiornato da diversi anni, quindi ho deciso di crearne uno mio.
+
+Da allora, ho cercato di scoprire cosa facessero bene gli altri programmi per poi migliorarli. Ho anche scoperto alcuni trucchi interessanti lungo il cammino e ho imparato più di quanto abbia mai voluto sapere davvero su come i controlli nativi del gamepad sono implementati in alcuni giochi. Sebbene ci siano sicuramente aree in cui questo programma potrebbe migliorare, ritengo che offra la migliore esperienza di controllo in gioco per giocare a giochi più vecchi e alcuni più recenti che non forniscono supporto nativo per i controller.
+
+Lo sviluppo di questo programma non è più una priorità per me. Questo è principalmente dovuto al fatto che lo Steam Controller funziona abbastanza bene per giocare su PC rispetto all&apos;uso di un controller Xbox 360. Tuttavia, sembra che ci sia ancora buoni motivi per cui questo programma debba ancora esistere.
+
+---
+
+A partire dal 24 maggio 2016, questo progetto è stato trasferito su [https://github.com/AntiMicro/antimicro](https://github.com/AntiMicro/antimicro). 
+Inoltre, la gestione del progetto è passata da Travis (Ryochan7) all&apos;organizzazione AntiMicro a causa di altri interessi e priorità di Travis.
+Successivamente, il progetto è stato continuato dal 2018 da juliagoda sul progetto antimicroX. 
+In seguito il progetto è stato trasferito nuovamente a [https://github.com/AntiMicroX/antimicrox](https://github.com/AntiMicroX/antimicrox) e la sua manutenzione è proseguita dall&apos;organizzazione AntiMicroX creata da pktiuk.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
@@ -664,7 +692,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="570"/>
         <source>&amp;Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modifica la velocità del mouse:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="625"/>
@@ -956,7 +984,7 @@ del profilo predefinito.</translation>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished">Nessuno slot controllato</translation>
+        <translation>Nessuno slot controllato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
@@ -1009,12 +1037,12 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="547"/>
         <source>It&apos;s only possible to join simple and mix keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>E&apos; possibile unire solo slot tastiera semplici e misti</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="641"/>
         <source>It&apos;s impossible to split slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Non è possibile dividere gli slot. Aggiungi almeno un altro slot.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
@@ -1024,37 +1052,37 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Select your slot before splitting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona il tuo slot prima di dividere.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Too many mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Troppi slot misti</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Select one mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona uno slot misto.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>Only mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>Solo slot misti</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>It&apos;s only possible to split mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>E&apos; possibile dividere solo slot misti.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1039"/>
         <source>Empty execution path</source>
-        <translation type="unfinished">Percorso di esecuzione vuoto</translation>
+        <translation>Percorso di esecuzione vuoto</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1040"/>
         <source>Line for execution file path is empty. Fill the first line before you are going to add a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>La riga del percorso del file eseguibile è vuota. Riempila prima di aggiungere slot.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1042"/>
@@ -1064,7 +1092,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file specificato non esiste o non è eseguibile. Effettua una verifica</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
@@ -1169,12 +1197,12 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation>Assegnazioni analogico/pad</translation>
+        <translation>Assegnazioni Joystick/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="41"/>
         <source>Sticks</source>
-        <translation>Analogici</translation>
+        <translation>Joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="46"/>
@@ -1184,7 +1212,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation>Nota: questa finestra è utile per la retrocompatibilità con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
+        <translation type="unfinished">Nota: questa finestra è utile per la retrocompatibilità con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1195,7 +1223,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="124"/>
         <source>Stick 1</source>
-        <translation>Analogico 1</translation>
+        <translation>Joystick 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="134"/>
@@ -1229,7 +1257,7 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="246"/>
         <source>Stick 2</source>
-        <translation>Analogico 2</translation>
+        <translation>Joystick 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
@@ -1291,27 +1319,27 @@ del profilo predefinito.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="432"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="433"/>
         <source>Button %1</source>
-        <translation>Tasto %1</translation>
+        <translation>Pulsante %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="764"/>
         <source>Move stick 1 along the X axis</source>
-        <translation>Muovere analogico 1 lungo l&apos;asse X</translation>
+        <translation>Muovere joystick 1 lungo l&apos;asse X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation>Muovere analogico 1 lungo l&apos;asse Y</translation>
+        <translation>Muovere joystick 1 lungo l&apos;asse Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="814"/>
         <source>Move stick 2 along the X axis</source>
-        <translation>Muovere analogico 2 lungo l&apos;asse X</translation>
+        <translation>Muovere joystick 2 lungo l&apos;asse X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="830"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation>Muovere analogico 2 lungo l&apos;asse Y</translation>
+        <translation>Muovere joystick 2 lungo l&apos;asse Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="869"/>
@@ -1403,7 +1431,7 @@ del profilo predefinito.</translation>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
         <translation>Imposta il valore da usare come limite per un&apos;asse. Utile
-per un analogico consumato.</translation>
+per un joystick consumato.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="388"/>
@@ -1418,7 +1446,7 @@ per un analogico consumato.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="416"/>
         <source>Haptic Trigger:</source>
-        <translation type="unfinished"></translation>
+        <translation>Grilletto aptico:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="523"/>
@@ -1517,12 +1545,12 @@ interpretare il rilascio o la pressione di un&apos;asse.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
         <source>Rigid</source>
-        <translation type="unfinished"></translation>
+        <translation>Rigido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
         <source>Rigid Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Gradiente rigido</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
@@ -1661,12 +1689,12 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="478"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Gli slot per il pulsante non possono essere svuotati, perché non è stato impostato alcun pulsante della tastiera per il gamepad. Mappa almeno un pulsante della tastiera al gamepad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="488"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation>Come ultimo pulsante del gamepad è stato impostato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="496"/>
@@ -1679,12 +1707,12 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Modulo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="71"/>
         <source>Input to calibrate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfaccia da calibrare:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="94"/>
@@ -1786,12 +1814,12 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
         <source>Accelerometer calibration sets the neutral controller orientation.</source>
-        <translation type="unfinished"></translation>
+        <translation>La calibrazione dell&apos;accelerometro imposta l&apos;orientamento neutro del controller.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="282"/>
         <source>Gyroscope calibration corrects the sensor offset. This prevents cursor movement while the controller is at rest.</source>
-        <translation type="unfinished"></translation>
+        <translation>La calibrazione del giroscopio corregge l&apos;offset del sensore. Questo impedisce il movimento del cursore quando il controller è fermo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="456"/>
@@ -1801,12 +1829,12 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
         <source>Offset calibration completed. Click &quot;Continue calibration&quot; to continue with gain calibration.</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrazione offset completata. Clicca &quot;Continua calibrazione&quot; per procedere con la regolazione del guadagno.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="636"/>
         <source>Hold the controller in the desired neutral position and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tieni il controller in posizione neutra e premi continua.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="637"/>
@@ -1843,13 +1871,13 @@ Può richiedere fino a %1 secondi.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
-        <translation>Muovi diverse volte la levetta fino al massimo in tutte le direzioni e indietro verso il centro.
+        <translation>Muovi diverse volte il joystick fino al massimo in tutte le direzioni e rilasciala al centro.
 Può richiedere fino a %1 secondi.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="737"/>
         <source>Calibrating stick</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrazione joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="638"/>
@@ -1862,7 +1890,7 @@ Può richiedere fino a %1 secondi.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
-        <translation>Muovi diverse volte la levetta compiendo giri completi.
+        <translation>Muovi diverse volte il joystick compiendo giri completi.
 Può richiedere fino a %1 secondi.</translation>
     </message>
     <message>
@@ -1870,7 +1898,7 @@ Può richiedere fino a %1 secondi.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="674"/>
         <location filename="../../../src/gui/calibration.cpp" line="722"/>
         <source>Calibration was saved for the preset. Do you really want to reset settings?</source>
-        <translation type="unfinished"></translation>
+        <translation>La calibrazione è stata salvata per il profilo. Vuoi davvero ripristinare le impostazioni?</translation>
     </message>
 </context>
 <context>
@@ -2238,7 +2266,7 @@ corrispondente alla zona diagonale del DPad.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox utilizza le &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;API Game Controller&lt;/span&gt;&lt;/a&gt; fornite da SDL 2 per astrarre i vari gamepad in uno standard unificato. Per assegnare un pulsante, evidenzia la cella di mappatura nella riga corrispondente qui sotto. Premi quindi un pulsante o muovi un asse sul tuo gamepad e la cella si aggiornerà con il pulsante o asse fisico che verrà utilizzato.&lt;/p&gt;&lt;p&gt;antimicrox userà la mappatura che specifichi per salvare una stringa di mapping che verrà caricata in SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
@@ -2288,32 +2316,32 @@ corrispondente alla zona diagonale del DPad.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation>Click analogico sinistro</translation>
+        <translation>Click sinistro del joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation>Click analogico destro</translation>
+        <translation>Click destro del joystick</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
         <source>Left Stick X</source>
-        <translation>Analogico sinistro X</translation>
+        <translation>Joystick X sinistra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="197"/>
         <source>Left Stick Y</source>
-        <translation>Analogico sinistro Y</translation>
+        <translation>Joystick Y sinistra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="202"/>
         <source>Right Stick X</source>
-        <translation>Analogico destro X</translation>
+        <translation>Joystick X destra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="207"/>
         <source>Right Stick Y</source>
-        <translation>Analogico destro Y</translation>
+        <translation>Joystick Y destra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
@@ -2415,9 +2443,9 @@ corrispondente alla zona diagonale del DPad.</translation>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation>Scartare mappatura di questo controller?
+        <translation>Elimiare la mappatura di questo controller?
 
-Scartandola, il controller tornerà ad essere un joystick una volta aggiornati tutti i joystick.</translation>
+Eliminandola, il controller verrà ripristinato come joystick al prossimo aggiornamento di tutti i joystick.</translation>
     </message>
 </context>
 <context>
@@ -2503,7 +2531,7 @@ Scartandola, il controller tornerà ad essere un joystick una volta aggiornati t
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
         <source>Shock</source>
-        <translation type="unfinished"></translation>
+        <translation>Shock</translation>
     </message>
 </context>
 <context>
@@ -2838,7 +2866,7 @@ Scartandola, il controller tornerà ad essere un joystick una volta aggiornati t
         <location filename="../../../src/joycontrolstick.cpp" line="811"/>
         <location filename="../../../src/joycontrolstick.cpp" line="816"/>
         <source>Stick</source>
-        <translation>Analogico</translation>
+        <translation>Joystick analogico</translation>
     </message>
 </context>
 <context>
@@ -3026,7 +3054,7 @@ Scartandola, il controller tornerà ad essere un joystick una volta aggiornati t
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="336"/>
         <source>Stick Mode:</source>
-        <translation>Modalità analogico:</translation>
+        <translation>Assetto analogico:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="349"/>
@@ -3043,17 +3071,17 @@ the cardinal directions of the stick. Useful for menus.
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
         <translation>Standard: analogico a 8 regioni con due tasti direzionali attivi
-quando l&apos;analogico è in una regione diagonale.
+quando il joystick è in una regione diagonale.
 
 8 direzioni: analogico a 8 regioni con ogni direzione che ha un
 tasto dedicato. Solo un tasto alla volta viene premuto.
 Utile per i giochi come Rogue.
 
 4 direzioni cardinali: analogico a 4 regioni con regioni corrispondenti
-alla direzione cardinale dell&apos;analogico. Utile per i menu.
+alla direzione cardinale del joystick. Utile per i menu.
 
 4 direzioni diagonali: analogico a 4 regioni con ogni regione
-corrispondente alla zona diagonale dell&apos;analogico.</translation>
+corrispondente alla zona diagonale del joystick.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
@@ -3068,19 +3096,19 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>Modifier Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Area di modifica:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="681"/>
         <source>Dead zone value to use for an analog stick.</source>
-        <translation>Valore zona morta da usare per un analogico.</translation>
+        <translation>Valore zona morta per un joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="605"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="659"/>
         <source>Value when an analog stick is considered moved 100%.</source>
-        <translation>Valore in cui un analogico viene considerato spostato al 100%.</translation>
+        <translation>Valore in cui un joystick analogico viene considerato spostato al 100%.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="417"/>
@@ -3091,13 +3119,13 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="467"/>
         <source>Square Stick:</source>
-        <translation>Analogico quadrato:</translation>
+        <translation>Joystick analogico:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished">Percentuale per modificare le coordinate di un quadrato analogico e confinare i valori ad un cerchio</translation>
+        <translation>Percentuale per modificare le coordinate di un joystick arcade e confinarle in un cerchio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
@@ -3107,7 +3135,7 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
         <source>Stick Delay:</source>
-        <translation>Ritardo analogico:</translation>
+        <translation>Ritardo joystick:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="433"/>
@@ -3132,11 +3160,11 @@ corrispondente alla zona diagonale dell&apos;analogico.</translation>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished">Modifica tasto che è attivo mentre l&apos;analogico è attivo.
+        <translation>Modifica tasto che è attivo mentre l&apos;analogico è attivo.
 
-Questo tasto è utile per assegnare zone con tasti
-di modificatore che possono essere usate per
-assegnare funzionalità cammina/corri ad un analogico.</translation>
+Questo tasto è utile per creare zone con
+modificatori che attivano camminata/corsa
+ad un joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
@@ -3176,7 +3204,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="827"/>
         <source>Specify the name of an analog stick.</source>
-        <translation>Specifica il nome di un analogico.</translation>
+        <translation>Assegna un nome al joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="836"/>
@@ -3655,7 +3683,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1621"/>
         <source>Stick/Pad Assign</source>
-        <translation>Assegna analogico/pad</translation>
+        <translation>Imposta Joystick/Pad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="435"/>
