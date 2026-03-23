@@ -7,7 +7,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install \
     g++ cmake extra-cmake-modules ninja-build \
     qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-tools-dev \
-    libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
+    libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext \
+    clang-format
 
 # Install xeyes for testing dev environment
 RUN apt-get install -y --no-install-recommends x11-apps
