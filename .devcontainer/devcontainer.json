@@ -28,7 +28,6 @@
     },
 	"mounts": [
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-        "source=${localEnv:XAUTHORITY},target=/tmp/.Xauthority,type=bind",
 
 		// 1. Mount the input devices
         "source=/dev/input,target=/dev/input,type=bind",
