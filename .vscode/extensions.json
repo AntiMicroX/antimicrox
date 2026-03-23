@@ -3,7 +3,7 @@
         "cschlosser.doxdocgen",
         "ms-vscode.cmake-tools",
         "ms-vscode.cpptools",
-        "tonka3000.qtvsctools",
+        "theqtcompany.qt",
         "xaver.clang-format",
     ]
 }
