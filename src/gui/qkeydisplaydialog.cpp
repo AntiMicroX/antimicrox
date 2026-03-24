@@ -97,7 +97,7 @@ void QKeyDisplayDialog::keyReleaseEvent(QKeyEvent *event)
 
 #else
 
-    if (QApplication::platformName() == QStringLiteral("xcb"))
+    if (QApplication::platformName() == QStringLiteral("xcb") || QApplication::platformName() == QStringLiteral("wayland"))
     {
         finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
     } else

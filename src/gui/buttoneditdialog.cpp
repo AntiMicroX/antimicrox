@@ -259,20 +259,20 @@ void ButtonEditDialog::keyReleaseEvent(QKeyEvent *event)
         } else
         {
             // Not running on xcb platform.
-            finalvirtual = controlcode;
+            finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
 
     #else
         finalvirtual = 0;
         checkalias = 0;
-        if (QApplication::platformName() == QStringLiteral("xcb"))
+        if (QApplication::platformName() == QStringLiteral("xcb") ||
+            QApplication::platformName() == QStringLiteral("wayland"))
         {
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(event->key());
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         } else
         {
-            // Not running on xcb platform.
             finalvirtual = controlcode;
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }

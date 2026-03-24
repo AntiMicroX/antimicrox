@@ -122,13 +122,13 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
 #else
-        if (QApplication::platformName() == QStringLiteral("xcb"))
+        if (QApplication::platformName() == QStringLiteral("xcb") ||
+            QApplication::platformName() == QStringLiteral("wayland"))
         {
             finalvirtual = AntKeyMapper::getInstance()->returnVirtualKey(keyEve->key());
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         } else
         {
-            // Not running on xcb platform.
             finalvirtual = tempcode;
             checkalias = AntKeyMapper::getInstance()->returnQtKey(finalvirtual);
         }
