@@ -734,13 +734,27 @@ if(WIN32)
     
 
     if(CHECK_FOR_UPDATES)
-        message("Searching for SSL DLL-s.")
-        find_path(LIBCRYPTO_DLL_DIR "libcrypto-1_1-x64.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
-        find_path(LIBSSL_DLL_DIR "libssl-1_1-x64.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
-        list(APPEND DLL_FILES
-        "${LIBCRYPTO_DLL_DIR}/libcrypto-1_1-x64.dll"
-        "${LIBSSL_DLL_DIR}/libssl-1_1-x64.dll"
+        message("Searching for SSL DLLs.")
+
+        find_file(LIBCRYPTO_DLL_FILE
+            NAMES libcrypto-1_1-x64.dll libcrypto-3-x64.dll libcrypto-1_1.dll libcrypto-3.dll
+            HINTS "${SDL2_LIBRARY_DIRS}/../bin" "${CMAKE_INSTALL_PREFIX}/bin" "$ENV{PATH}"
         )
+
+        find_file(LIBSSL_DLL_FILE
+            NAMES libssl-1_1-x64.dll libssl-3-x64.dll libssl-1_1.dll libssl-3.dll
+            HINTS "${SDL2_LIBRARY_DIRS}/../bin" "${CMAKE_INSTALL_PREFIX}/bin" "$ENV{PATH}"
+        )
+
+        if(LIBCRYPTO_DLL_FILE AND LIBSSL_DLL_FILE)
+            list(APPEND DLL_FILES
+                "${LIBCRYPTO_DLL_FILE}"
+                "${LIBSSL_DLL_FILE}"
+            )
+        else()
+            message(WARNING "CHECK_FOR_UPDATES is enabled, but required OpenSSL DLL(s) were not found. "
+                            "Package will be built without libcrypto/libssl files.")
+        endif()
     endif(CHECK_FOR_UPDATES)
 
     install(FILES ${DLL_FILES} TYPE BIN )
@@ -862,7 +876,7 @@ if(WIN32 AND NOT UNIX)
         set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/src/images\\\\antimicrox.ico")
         set(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
         set(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
-        set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\antimicrox.exe")
+        set(CPACK_NSIS_INSTALLED_ICON_NAME "bin/antimicrox.exe")
 
         set(CPACK_NSIS_DISPLAY_NAME "AntiMicroX")
         set(CPACK_NSIS_PACKAGE_NAME "AntiMicroX")
