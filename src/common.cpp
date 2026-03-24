@@ -216,6 +216,7 @@ void log_system_config()
               << ")";
     VERBOSE() << QString("Host OS: %1 Version: %2 Architecture: %3")
                      .arg(QSysInfo::productType(), QSysInfo::productVersion(), QSysInfo::currentCpuArchitecture());
+    VERBOSE() << "Platform name: " << QApplication::platformName();
 }
 
 QWaitCondition waitThisOut;
