@@ -149,7 +149,7 @@ void JoyGyroscopeSensor::applyCalibration()
 JoySensorDirection JoyGyroscopeSensor::calculateSensorDirection()
 {
     double distance = calculateDistance();
-    if (distance < m_dead_zone)
+    if (distance <= m_dead_zone)
         return SENSOR_CENTERED;
 
     double range = sin(M_PI / 4 - m_diagonal_range / 2);

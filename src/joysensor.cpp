@@ -334,7 +334,7 @@ double JoySensor::calculateXDistanceFromDeadZone(double x, double y, double z) c
     if (discriminant <= 0)
         return std::min(abs(x), m_max_zone);
     else
-        return std::min(abs(x) - sqrt(discriminant), m_max_zone);
+        return std::max(0.0, std::min(abs(x) - sqrt(discriminant), m_max_zone));
 }
 
 /**
@@ -366,7 +366,7 @@ double JoySensor::calculateYDistanceFromDeadZone(double x, double y, double z) c
     if (discriminant <= 0)
         return std::min(abs(y), m_max_zone);
     else
-        return std::min(abs(y) - sqrt(discriminant), m_max_zone);
+        return std::max(0.0, std::min(abs(y) - sqrt(discriminant), m_max_zone));
 }
 
 /**
@@ -398,7 +398,7 @@ double JoySensor::calculateZDistanceFromDeadZone(double x, double y, double z) c
     if (discriminant <= 0)
         return std::min(abs(z), m_max_zone);
     else
-        return std::min(abs(z) - sqrt(discriminant), m_max_zone);
+        return std::max(0.0, std::min(abs(z) - sqrt(discriminant), m_max_zone));
 }
 
 /**
