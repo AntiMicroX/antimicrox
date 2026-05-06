@@ -7,7 +7,7 @@
 - Fix key assignment dialog for Wayland
 - Fix Windows package building
 - Fix AppImage dependencies
-- Fix joystick status window defer deletion upon close [pull 1229](https://github.com/AntiMicroX/antimicrox/pull/1229)
+- Fix joystick status window defer deletion upon close (by [xobs](https://github.com/xobs) ) [pull 1229](https://github.com/AntiMicroX/antimicrox/pull/1229)
 - Fix use warning log level by default as stated in man
 - Fix Fedora 42 build [pull 1126](https://github.com/AntiMicroX/antimicrox/pull/1126)
 
@@ -32,7 +32,7 @@
 
 **Fixed bugs:**
 
-- Fix appId on Wayland [pull 1100](https://github.com/AntiMicroX/antimicrox/pull/1100)
+- Fix appId on Wayland (by [ReillyBrogan](https://github.com/ReillyBrogan)) [pull 1100](https://github.com/AntiMicroX/antimicrox/pull/1100)
 - Wrong install dependencies on a Debian build with QT6 [\#1104](https://github.com/AntiMicroX/antimicrox/issues/1104)
 
 **Notable changes:**
