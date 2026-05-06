@@ -1947,12 +1947,12 @@ este botão estiver sendo usado.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Giroscópio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Acelerômetro</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="87"/>
@@ -1973,7 +1973,7 @@ este botão estiver sendo usado.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
         <source>Accelerometer calibration sets the neutral controller orientation.</source>
-        <translation type="unfinished"></translation>
+        <translation>A calibração do acelerômetro define a posição neutral do controle.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="282"/>
@@ -1983,7 +1983,7 @@ este botão estiver sendo usado.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="456"/>
         <source>Calibration completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibração completa.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
@@ -1993,35 +1993,38 @@ este botão estiver sendo usado.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="636"/>
         <source>Hold the controller in the desired neutral position and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantenha o controle na posição neutra desejada e clique em continuar.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="637"/>
         <source>Calibrating accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrando acelerômetro</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="656"/>
         <source>Collecting accelerometer data...
 Please hold the controller still.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Coletando dados do acelerômetro...
+Por favor mantenha o controle parado.
+Isso pode levar até %1 segundos .</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="683"/>
         <source>Place the controller at rest, e.g. put it on the desk, and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deixe o controle parado, por exemplo sobre uma mesa, e clique em continuar.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="685"/>
         <source>Calibrating gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrando giroscópio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="704"/>
         <source>Collecting gyroscope data...
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Coletando dados do giroscópio...
+Isso pode levar até %1 segundos.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
@@ -2210,7 +2213,7 @@ Isso pode levar até %1 segundos.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="51"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (horizontal invertida)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="56"/>
@@ -2220,27 +2223,27 @@ Isso pode levar até %1 segundos.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="61"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (horizontal e vertical invertidas)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="66"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>Setas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="71"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclas: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclado numérico</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="81"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="93"/>
@@ -2250,7 +2253,7 @@ Isso pode levar até %1 segundos.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="255"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nome:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="131"/>
@@ -2271,12 +2274,12 @@ Isso pode levar até %1 segundos.</translation>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="207"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo para que uma mudança de direção entre em efeito.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="213"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="265"/>
@@ -2286,12 +2289,12 @@ Isso pode levar até %1 segundos.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="274"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do mouse</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="121"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="106"/>
@@ -2330,12 +2333,12 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="14"/>
         <source>Default Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Perfil padrão</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="23"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Perfil:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="38"/>
@@ -2368,12 +2371,12 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="70"/>
         <source>0.00 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>0.00 ms</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="84"/>
         <source>Profile Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do perfil:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="34"/>
@@ -2416,22 +2419,22 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
@@ -2491,12 +2494,12 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="212"/>
         <source>Left Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Gatilho esquerdo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="217"/>
         <source>Right Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Gatilho direito</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
@@ -2541,37 +2544,37 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
         <source>5000</source>
-        <translation type="unfinished"></translation>
+        <translation>5000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="334"/>
         <source>10000</source>
-        <translation type="unfinished"></translation>
+        <translation>10000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="339"/>
         <source>15000</source>
-        <translation type="unfinished"></translation>
+        <translation>15000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="344"/>
         <source>20000</source>
-        <translation type="unfinished"></translation>
+        <translation>20000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="349"/>
         <source>25000</source>
-        <translation type="unfinished"></translation>
+        <translation>25000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="354"/>
         <source>30000</source>
-        <translation type="unfinished"></translation>
+        <translation>30000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="359"/>
         <source>32000</source>
-        <translation type="unfinished"></translation>
+        <translation>32000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
@@ -2581,7 +2584,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="448"/>
         <source>Discard Controller Mapping?</source>
-        <translation type="unfinished"></translation>
+        <translation>Descartar mapeamento de controle?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="449"/>
@@ -2898,27 +2901,27 @@ If discarded, the controller will be reverted to a joystick once you refresh all
         <location filename="../../../src/joybuttonslot.cpp" line="122"/>
         <location filename="../../../src/joybuttonslot.cpp" line="174"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="127"/>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Cima</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="131"/>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="135"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Esquerda</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="139"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Direita</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="179"/>
@@ -3060,42 +3063,42 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="58"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (horizontal invertida)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="67"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (vertical invertida)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="76"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (horizontal e vertical invertidas)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="85"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>Setas</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="94"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclas: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="103"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclado numérico</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="112"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="125"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="133"/>
@@ -3115,7 +3118,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="162"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do mouse</translation>
     </message>
 </context>
 <context>
@@ -3128,7 +3131,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="107"/>
@@ -3142,12 +3145,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="172"/>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Distância:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="274"/>
@@ -3157,27 +3160,27 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="293"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (normal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="298"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (horizontal invertida)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="303"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (vertical invertida)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="308"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mouse (horizontal e vertical invertidas)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="313"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>Setas</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="318"/>
