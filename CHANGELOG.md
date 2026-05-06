@@ -1,5 +1,33 @@
 # Changelog
 
+## [3.6.0](https://github.com/AntiMicroX/antimicrox/tree/3.6.0) (2026-05-06)
+
+**Fixed bugs:**
+
+- Fix key assignment dialog for Wayland
+- Fix Windows package building
+- Fix AppImage dependencies
+- Fix joystick status window defer deletion upon close [pull 1229](https://github.com/AntiMicroX/antimicrox/pull/1229)
+- Fix use warning log level by default as stated in man
+- Fix Fedora 42 build [pull 1126](https://github.com/AntiMicroX/antimicrox/pull/1126)
+
+**Implemented enhancements:**
+
+- Provide InputDevice IPC via D-Bus (by [dabigjhall](https://github.com/dabigjhall)) [\#1256](https://github.com/AntiMicroX/antimicrox/issues/1256) 
+- Simplify usage of setActiveSetNumber in inputdevice [pull 1260](https://github.com/AntiMicroX/antimicrox/pull/1260)
+
+**Notable changes:**
+
+- New translations: Danish, Slovak, Czech
+- Update translations for: Spanish, Chinese (Simplified), Swedish, Portuguese (Brazil), Italian, Russian, Ukrainian, Tamil, Indonesian, Persian, Korean, Finnish [\#1258](https://github.com/AntiMicroX/antimicrox/issues/1258)
+- Create devcontainer config for AntiMicroX
+- Drop usage of Ubuntu 20.04 Runner
+- Bump windows CI runner to 2022 version
+- Sync flatpak config with file from https://github.com/flathub/io.github.antimicrox.antimicrox
+- Remove funding from repository
+- Docstring cleanup and update: https://antimicrox.github.io/doxygen/
+- General code and docs cleanup
+
 ## [3.5.1](https://github.com/AntiMicroX/antimicrox/tree/3.5.1) (2025-01-27)
 
 **Fixed bugs:**
