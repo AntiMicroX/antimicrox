@@ -86,10 +86,18 @@ void AboutDialog::fillInfoTextBrowser()
     // Read Changelog text from resource and put text in text box.
     QResource changelogFile(":/CHANGELOG.md");
     QFile temp(changelogFile.absoluteFilePath());
-    temp.open(QIODevice::Text | QIODevice::ReadOnly);
-    QTextStream changelogStream(&temp);
-    QString changelogText = changelogStream.readAll();
-    temp.close();
+    QString changelogText;
+
+    if (temp.open(QIODevice::Text | QIODevice::ReadOnly))
+    {
+        QTextStream changelogStream(&temp);
+        changelogText = changelogStream.readAll();
+        temp.close();
+    } else
+    {
+        qWarning() << "Unable to open changelog resource:" << temp.fileName();
+    }
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     ui->changelogText->setMarkdown(changelogText);
     ui->changelogText->setTextInteractionFlags(ui->changelogText->textInteractionFlags() | Qt::LinksAccessibleByMouse);

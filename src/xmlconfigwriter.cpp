@@ -66,8 +66,14 @@ void XMLConfigWriter::write(InputDeviceXml *joystickXml)
 
     if (!configFile->isOpen())
     {
-        configFile->open(QFile::WriteOnly | QFile::Text);
-        xml->setDevice(configFile);
+        if (configFile->open(QFile::WriteOnly | QFile::Text))
+        {
+            xml->setDevice(configFile);
+        } else
+        {
+            writerError = true;
+            writerErrorString = tr("Could not write to profile at %1.").arg(configFile->fileName());
+        }
     } else
     {
         writerError = true;

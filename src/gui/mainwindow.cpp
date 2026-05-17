@@ -21,16 +21,15 @@
 #include "ui_mainwindow.h"
 
 #include "aboutdialog.h"
+#include "advancestickassignmentdialog.h"
 #include "antimicrosettings.h"
 #include "autoprofileinfo.h"
-#include "commandlineutility.h"
-#include "inputdevice.h"
-//#include "autoprofilewatcher.h"
-#include "advancestickassignmentdialog.h"
 #include "calibration.h"
+#include "commandlineutility.h"
 #include "common.h"
 #include "dpadpushbutton.h"
 #include "gamecontrollermappingdialog.h"
+#include "inputdevice.h"
 #include "joyaxiswidget.h"
 #include "joybuttonwidget.h"
 #include "joycontrolstickbuttonpushbutton.h"
@@ -1834,11 +1833,17 @@ void MainWindow::convertGUIDtoUniqueID(InputDevice *currentDevice, QString contr
 
     switch (exec)
     {
-    case QMessageBox::Yes:
-
+    case QMessageBox::Yes: {
         QFile data(m_settings->value(controlEntryLastSelectedGUID).toString());
-        data.open(QIODevice::Text | QIODevice::ReadOnly);
-        QString dataText = data.readAll();
+        QString dataText;
+
+        if (!data.open(QIODevice::Text | QIODevice::ReadOnly))
+        {
+            qWarning() << "Unable to open profile for GUID conversion:" << data.fileName();
+            return;
+        }
+
+        dataText = data.readAll();
 
         QRegularExpression re(currentDevice->getGUIDString());
         QString replacementText(currentDevice->getUniqueIDString());
@@ -1857,6 +1862,7 @@ void MainWindow::convertGUIDtoUniqueID(InputDevice *currentDevice, QString contr
         newData.close();
 
         break;
+    }
     }
 }
 

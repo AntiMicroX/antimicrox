@@ -179,8 +179,7 @@ JoyControlStickEditDialog::JoyControlStickEditDialog(JoyControlStick *stick, boo
             &QSlider::setValue);
     connect(ui->modifierZoneSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), stick,
             &JoyControlStick::setModifierZone);
-    connect(ui->modifierZoneInvertedCheckBox, &QCheckBox::stateChanged, stick,
-            [stick](int state) { stick->setModifierZoneInverted(state == Qt::Checked); });
+    connect(ui->modifierZoneInvertedCheckBox, &QCheckBox::toggled, stick, &JoyControlStick::setModifierZoneInverted);
 }
 
 // for tests
