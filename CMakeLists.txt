@@ -75,7 +75,7 @@ if(WIN32)
     option(PORTABLE_WIN "Compile app for portability" OFF)
 endif(WIN32)
 
-option(USE_QT6_BY_DEFAULT "Use Qt6 if available (if not available fallback to QT5)" OFF)
+option(USE_QT6_BY_DEFAULT "Use Qt6 if available (if not available fallback to QT5)" ON)
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 option(TRANS_REMOVE_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
