@@ -83,7 +83,7 @@ static void termSignalIntHandler(int signal)
 static void termSignalSegfaultHandler(int signal)
 {
     if (signal == SIGSEGV)
-        ERROR() << "Received SIGSEGV (segmentation fault)";
+        ERROR() << "Received: SIGSEGV (segmentation fault)";
     else if (signal == SIGABRT)
         ERROR() << "Received SIGABRT (abort)";
     else
