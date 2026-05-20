@@ -34,13 +34,13 @@ jobs:
                       build-type: Debug
                       experimental: false
                       qt-packages: "qt6-base-dev qt6-tools-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-l10n-tools linguist-qt6"
-                    - name: Ubuntu 22-04 Clang QT5
+                    - name: Ubuntu 22-04 Clang QT6
                       image: ubuntu-22.04
                       cc: clang
                       cxx: clang++
                       build-type: Debug
                       experimental: true
-                      qt-packages: "qttools5-dev qttools5-dev-tools"
+                      qt-packages: "qt6-base-dev qt6-tools-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-l10n-tools linguist-qt6"
                     - name: Ubuntu 22-04 GCC  (for AppImage comp)
                       image: ubuntu-22.04
                       cc: gcc
@@ -76,7 +76,7 @@ jobs:
                 include:
                     - name: WinServer2022 MinGW QT5
                       image: windows-2022
-                      qt-version: "5.15.2"
+                      qt-version: "5.15"
                       shell: msys2 {0}
                       cmake-args: -G Ninja
                       build-type: Debug
@@ -84,7 +84,7 @@ jobs:
                       experimental: false
                     - name: WinServer2022 MinGW QT6
                       image: windows-2022
-                      qt-version: "6.7"
+                      qt-version: "6.10"
                       shell: msys2 {0}
                       cmake-args: -G Ninja
                       build-type: Debug
@@ -92,7 +92,7 @@ jobs:
                       experimental: false
                     - name: WinServer2022 MSVC QT5
                       image: windows-2022
-                      qt-version: "5.15.2"
+                      qt-version: "5.15"
                       shell: cmd
                       cmake-args: -G "Visual Studio 17 2022" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
                       build-type: Debug
@@ -100,11 +100,11 @@ jobs:
                       experimental: false
                     - name: WinServer2022 MSVC QT6
                       image: windows-2022
-                      qt-version: "6.7"
+                      qt-version: "6.10"
                       shell: cmd
                       cmake-args: -G "Visual Studio 17 2022" "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
                       build-type: Debug
-                      qt-arch: "win64_msvc2019_64"
+                      qt-arch: "win64_msvc2022_64"
                       experimental: false
         name: ${{ matrix.name }} ${{ matrix.build-type }}
         runs-on: ${{ matrix.image }}
