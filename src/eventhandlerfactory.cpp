@@ -21,6 +21,7 @@
 
 #include "eventhandlers/baseeventhandler.h"
 
+#include <QApplication>
 #include <QDebug>
 #include <QHash>
 
@@ -45,27 +46,38 @@ EventHandlerFactory *EventHandlerFactory::instance = nullptr;
 
 EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent)
     : QObject(parent)
+    , eventHandler(nullptr)
 {
+    VERBOSE() << "EventHandlerFactory: requested handler=" << handler;
+
 #ifdef WITH_UINPUT
-
     if (handler == "uinput")
+    {
+        VERBOSE() << "EventHandlerFactory: initializing uinput handler.";
         eventHandler = new UInputEventHandler(this);
-
+    }
 #endif
 
 #ifdef WITH_XTEST
-
     if (handler == "xtest")
+    {
+        VERBOSE() << "EventHandlerFactory: initializing xtest handler.";
         eventHandler = new XTestEventHandler(this);
-
+    }
 #endif
 
 #if defined(Q_OS_WIN)
     if (handler == "sendinput")
     {
+        VERBOSE() << "EventHandlerFactory: initializing sendinput handler.";
         eventHandler = new WinSendInputEventHandler(this);
     }
 #endif
+
+    if (eventHandler == nullptr)
+    {
+        WARN() << "EventHandlerFactory: no event handler created for handler identifier" << handler;
+    }
 }
 
 EventHandlerFactory *EventHandlerFactory::getInstance(QString handler)
@@ -92,12 +104,20 @@ void EventHandlerFactory::deleteInstance()
     }
 }
 
-BaseEventHandler *EventHandlerFactory::handler() { return eventHandler; }
+BaseEventHandler *EventHandlerFactory::handler()
+{
+    if (instance == nullptr)
+    {
+        ERROR() << "EventHandlerFactory: No instance exists when handler() was called.Closing application.";
+        qApp->quit();
+    }
+    return eventHandler;
+}
 
 QString EventHandlerFactory::fallBackIdentifier()
 {
 #if defined(Q_OS_UNIX)
-    static QString temp = "xtest";
+    static QString temp = QString();
     static bool identifier_obtained = false;
     if (identifier_obtained)
         return temp;
@@ -105,11 +125,13 @@ QString EventHandlerFactory::fallBackIdentifier()
 
     bool compiled_with_x11 = false;
     bool compiled_with_uinput = false;
-    #if defined(WITH_XTEST)
-    compiled_with_x11 = true;
-    #endif
     #if defined(WITH_UINPUT)
     compiled_with_uinput = true;
+    temp = "uinput";
+    #endif
+    #if defined(WITH_XTEST)
+    compiled_with_x11 = true;
+    temp = "xtest";
     #endif
 
     if (detected_xdg_session == "wayland")
