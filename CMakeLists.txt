@@ -516,17 +516,21 @@ set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
 
 if(USE_QT6_BY_DEFAULT)
     find_package(Qt6 COMPONENTS Core)
+    set(Use_QT6 TRUE)
     if(NOT Qt6_FOUND)
         message("QT6 not found. Falling back to QT5.")
+        set(Use_QT6 FALSE)
     endif()
 else()
     find_package(Qt5 COMPONENTS Core)
+    set(Use_QT6 FALSE)
     if(NOT Qt5_FOUND)
         message("QT5 not found. Falling back to QT6.")
+        set(Use_QT6 TRUE)
     endif()
 endif()
 
-if (Qt6_FOUND OR NOT Qt5_FOUND)
+if (Use_QT6)
     find_package(Qt6 ${QT_REQUIRED_VERSION} 
         COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
         REQUIRED)
