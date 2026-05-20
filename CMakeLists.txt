@@ -104,6 +104,10 @@ if(UNIX)
         message("Cannot use XTest without X11. Disabling XTest support.")
     endif(WITH_XTEST AND NOT WITH_X11)
 
+    if(NOT WITH_X11 AND NOT WITH_UINPUT)
+        message(FATAL_ERROR "No system is defined for simulating events. At least one of WITH_X11 or WITH_UINPUT must be enabled.")
+    endif(NOT WITH_X11 AND NOT WITH_UINPUT)
+
     if(WITH_XTEST)
         message("XTest support allowed for simulating events.")
     endif(WITH_XTEST)
