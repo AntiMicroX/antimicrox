@@ -296,7 +296,7 @@ doldurulmuş olacak.</translation>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="124"/>
         <source>Application:    </source>
-        <translation>Uyuglama:    </translation>
+        <translation>Uygulama:    </translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="149"/>
