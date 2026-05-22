@@ -674,8 +674,8 @@ if(UNIX)
     ecm_install_icons(ICONS share/icons/application/128x128/apps/128-apps-io.github.antimicrox.antimicrox.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
     ecm_install_icons(ICONS share/icons/application/scalable/apps/sc-apps-io.github.antimicrox.antimicrox.svg DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
 
-    ecm_install_icons(ICONS share/icons/breeze_themed/48-apps-antimicrox_trayicon.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons THEME breeze)
-    ecm_install_icons(ICONS src/images/48-apps-antimicrox_trayicon.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
+    ecm_install_icons(ICONS share/icons/breeze_themed/48-apps-io.github.antimicrox.antimicrox.trayicon.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons THEME breeze)
+    ecm_install_icons(ICONS src/images/48-apps-io.github.antimicrox.antimicrox.trayicon.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons)
 
     install(FILES CHANGELOG.md DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/doc/antimicrox")
     install(FILES other/io.github.antimicrox.antimicrox.desktop DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
