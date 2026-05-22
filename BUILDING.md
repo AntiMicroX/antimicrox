@@ -261,11 +261,11 @@ Create AppImage file
 ## Building Flatpak
 
 The command builds the package into the `build` folder and installs the created flatpak.
-The Flathub manifest can be located in [Flathub's Github repo](https://github.com/flathub/io.github.antimicrox.antimicrox).
+The up to date Flathub manifest can be located in [Flathub's Github repo](https://github.com/flathub/io.github.antimicrox.antimicrox).
 
 ```bash
-flatpak install flathub org.kde.Platform//5.11 org.kde.Sdk//5.11
-flatpak-builder --user --install build/ other/io.github.antimicrox.antimicrox.yml --force-clean
+flatpak install flathub org.kde.Platform//6.10 org.kde.Sdk//6.10
+flatpak-builder --user --install build-flatpak/ other/io.github.antimicrox.antimicrox.yml --force-clean
 ```
 
 ## Building Windows installer

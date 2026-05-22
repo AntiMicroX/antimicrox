@@ -2,7 +2,7 @@
 
 app-id: io.github.antimicrox.antimicrox
 runtime: org.kde.Platform
-runtime-version: '6.8'
+runtime-version: '6.10'
 sdk: org.kde.Sdk
 command: antimicrox
 finish-args:
@@ -14,9 +14,6 @@ finish-args:
   - --socket=wayland
   # Gamepads
   - --device=all
-  # Permission to claim this service name in the D-Bus session bus.
-  # See `--own-name` in `flatpak run`: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-run
-  - --own-name=io.github.antimicrox
   # Fixes https://github.com/AntiMicroX/antimicrox/issues/70 until
   # https://github.com/flatpak/xdg-desktop-portal-gtk/issues/191 is fixed
   - --filesystem=home
@@ -25,10 +22,13 @@ modules:
   - name: antimicrox
     buildsystem: cmake
     config-opts:
-      - -DANTIMICROX_PKG_VERSION=flatpak
+      - -DANTIMICROX_PKG_VERSION=flatpak-localbuild
       - -DINSTALL_UINPUT_UDEV_RULES=OFF
+      - -DWITH_X11=OFF
     sources:
-      - type: git
-        url: https://github.com/AntiMicroX/antimicrox.git
+      # - type: git
+      #   url: https://github.com/AntiMicroX/antimicrox.git
         # tag: 3.x.x
         # commit: 7939b51173826959736fc18773b0610460d9d504
+      - type: dir
+        path: ../
