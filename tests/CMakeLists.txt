@@ -22,3 +22,7 @@ set(GUIS_SRCS testaboutdialog.cpp
 add_executable(GuiTests ${GUIS_SRCS})
 #target_link_libraries( GuiTests antilib Qt5::Test )
 ADD_TEST(NAME GuiTests COMMAND GuiTests)
+
+add_executable(TestJoySensorDead testjoysensordead.cpp)
+target_link_libraries(TestJoySensorDead antilib Qt5::Test)
+ADD_TEST(NAME TestJoySensorDead COMMAND TestJoySensorDead)
