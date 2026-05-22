@@ -4,7 +4,7 @@
   <id>io.github.antimicrox.antimicrox</id>
   <name>AntiMicroX</name>
   <summary>Graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros</summary>
-  <developer id="pktiuk">
+  <developer id="io.github.pktiuk">
     <name>pktiuk</name>
   </developer>
   <metadata_license>CC0-1.0</metadata_license>
@@ -46,6 +46,7 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="3.6.1" date="2026-05-22" type="stable"/>
     <release version="3.6.0" date="2026-05-06" type="stable"/>
     <release version="3.5.1" date="2025-01-27" type="stable"/>
     <release version="3.5.0" date="2024-10-31" type="stable"/>

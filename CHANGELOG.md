@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.6.1](https://github.com/AntiMicroX/antimicrox/tree/3.6.1) (2026-05-22)
+
+Just a minor release mainly tackling issues related to flatpak package on X11.
+
+**Fixed bugs:**
+
+- Fix crash on X11 systems for builds with disabled flag `WITH_X11` [#1308](https://github.com/AntiMicroX/antimicrox/issues/1308) (linked with [#1201](https://github.com/AntiMicroX/antimicrox/issues/1201))
+- Tray icon rendering as blank for Flatpak [flathub/io.github.antimicrox.antimicrox#10](https://github.com/flathub/io.github.antimicrox.antimicrox/issues/10) (fixed by [razzeee](https://github.com/razzeee))
+
+**Notable changes:**
+
+- Bump used QT and SDL2 versions in used in release builds
+- Default build uses QT6 since now
+- Some compilation warning fixes
+- Update translations
+
 ## [3.6.0](https://github.com/AntiMicroX/antimicrox/tree/3.6.0) (2026-05-06)
 
 **Fixed bugs:**
