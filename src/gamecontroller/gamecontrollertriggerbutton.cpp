@@ -34,3 +34,8 @@ GameControllerTriggerButton::GameControllerTriggerButton(JoyAxis *axis, int inde
 }
 
 QString GameControllerTriggerButton::getXmlName() { return GlobalVariables::GameControllerTriggerButton::xmlName; }
+
+double GameControllerTriggerButton::getMouseSpeedModifier(JoyButtonSlot *slot)
+{
+    return calculateMouseSpeedModifier(slot->getSlotCode(), getMouseDistanceFromDeadZone());
+}

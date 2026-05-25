@@ -21,6 +21,8 @@
 
 #include "joybuttontypes/joyaxisbutton.h"
 
+#include <QtGlobal>
+
 class QXmlStreamReader;
 class SetJoystick;
 class JoyAxis;
@@ -34,6 +36,16 @@ class GameControllerTriggerButton : public JoyAxisButton
                                          QObject *parent = nullptr);
 
     virtual QString getXmlName();
+    static double calculateMouseSpeedModifier(int slotCode, double distance)
+    {
+        double targetModifier = slotCode * 0.01;
+        double boundedDistance = qBound(0.0, distance, 1.0);
+
+        return 1.0 + ((targetModifier - 1.0) * boundedDistance);
+    }
+
+  protected:
+    virtual double getMouseSpeedModifier(JoyButtonSlot *slot) override;
 };
 
 #endif // GAMECONTROLLERBUTTON_H

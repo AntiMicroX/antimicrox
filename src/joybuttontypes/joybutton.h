@@ -25,6 +25,7 @@
 #include "springmousemoveinfo.h"
 
 #include <QDeadlineTimer>
+#include <QHash>
 #include <QQueue>
 #include <QReadWriteLock>
 #include <QRunnable>
@@ -281,16 +282,19 @@ class JoyButton : public QObject
     void localBuildActiveZoneSummaryString();
 
     static bool hasFutureSpringEvents(QList<JoyButton *> *pendingMouseButtons);
+    static void updateMouseSpeedModifier();
     static int timeBetweenMiniSlots;
     static int allSlotTimeBetweenSlots;
 
     virtual double getCurrentSpringDeadCircle();
+    virtual double getMouseSpeedModifier(JoyButtonSlot *slot);
 
     TurboMode currentTurboMode;
 
     QString buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList);
 
     static QList<JoyButtonSlot *> mouseSpeedModList; // JoyButtonSlots class
+    static QHash<JoyButtonSlot *, JoyButton *> mouseSpeedModButtons;
     static QList<mouseCursorInfo> cursorXSpeeds;
     static QList<mouseCursorInfo> cursorYSpeeds;
     static QList<PadderCommon::springModeInfo> springXSpeeds;

@@ -46,6 +46,7 @@ JoyButtonSlot *JoyButton::lastActiveKey = nullptr;
 
 // Keep track of active Mouse Speed Mod slots.
 QList<JoyButtonSlot *> JoyButton::mouseSpeedModList;
+QHash<JoyButtonSlot *, JoyButton *> JoyButton::mouseSpeedModButtons;
 
 // Lists used for cursor mode calculations.
 QList<JoyButton::mouseCursorInfo> JoyButton::cursorXSpeeds;
@@ -893,8 +894,9 @@ void JoyButton::addEachSlotToActives(JoyButtonSlot *slot, int &i, bool &delaySeq
 
         qDebug() << i << ": It's a JoyMouseSpeedMod with code: " << tempcode << " and name: " << slot->getSlotString();
 
-        GlobalVariables::JoyButton::mouseSpeedModifier = tempcode * 0.01;
         mouseSpeedModList.append(slot);
+        mouseSpeedModButtons.insert(slot, this);
+        updateMouseSpeedModifier();
         getActiveSlotsLocal().append(slot);
 
         break;
@@ -1003,6 +1005,7 @@ void JoyButton::mouseEvent()
 
     if ((buttonslot != nullptr) || !mouseEventQueue.isEmpty())
     {
+        updateMouseSpeedModifier();
         updateMouseParams(true, true, 0.0);
 
         QQueue<JoyButtonSlot *> tempQueue;
@@ -2947,6 +2950,23 @@ double JoyButton::getAccelerationDistance() { return this->getDistanceFromDeadZo
  */
 double JoyButton::getMouseDistanceFromDeadZone() { return this->getDistanceFromDeadZone(); }
 
+double JoyButton::getMouseSpeedModifier(JoyButtonSlot *slot) { return slot->getSlotCode() * 0.01; }
+
+void JoyButton::updateMouseSpeedModifier()
+{
+    double modifier = GlobalVariables::JoyButton::DEFAULTMOUSESPEEDMOD;
+
+    for (JoyButtonSlot *slot : qAsConst(mouseSpeedModList))
+    {
+        JoyButton *button = mouseSpeedModButtons.value(slot, nullptr);
+
+        if (button != nullptr)
+            modifier *= button->getMouseSpeedModifier(slot);
+    }
+
+    GlobalVariables::JoyButton::mouseSpeedModifier = modifier;
+}
+
 double JoyButton::getTotalSlotDistance(JoyButtonSlot *slot)
 {
     double tempDistance = 0.0;
@@ -3245,16 +3265,14 @@ void JoyButton::releaseEachSlot(bool &changeRepeatState, int &references, int te
         slot->getMouseInterval()->restart();
     } else if (mode == JoyButtonSlot::JoyMouseSpeedMod)
     {
-        int queueLength = mouseSpeedModList.length();
+        mouseSpeedModButtons.remove(slot);
 
         if (!mouseSpeedModList.isEmpty())
         {
             mouseSpeedModList.removeAll(slot);
-            queueLength -= 1;
         }
 
-        if (queueLength <= 0)
-            GlobalVariables::JoyButton::mouseSpeedModifier = GlobalVariables::JoyButton::DEFAULTMOUSESPEEDMOD;
+        updateMouseSpeedModifier();
     } else if (mode == JoyButtonSlot::JoySetChange)
     {
         currentSetChangeSlot = slot;
