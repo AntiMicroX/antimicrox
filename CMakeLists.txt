@@ -134,7 +134,7 @@ set(antimicrox_SOURCES
         src/antkeymapper.cpp
         src/applaunchhelper.cpp
         src/autoprofileinfo.cpp
-        src/axisvaluebox.cpp
+        src/gui/axisvaluebox.cpp
         src/commandlineutility.cpp
         src/common.cpp
         src/dpadcontextmenu.cpp
@@ -183,13 +183,13 @@ set(antimicrox_SOURCES
         src/inputdevice.cpp
         src/inputdevicebitarraystatus.cpp
         src/inputdevicecalibration.cpp
-        src/joyaccelerometersensor.cpp
+        src/sensors/joyaccelerometersensor.cpp
         src/joyaxis.cpp
         src/joyaxiscontextmenu.cpp
-        src/joybuttoncontextmenu.cpp
-        src/joybuttonmousehelper.cpp
-        src/joybuttonslot.cpp
-        src/joybuttonstatusbox.cpp
+        src/gui/joybuttoncontextmenu.cpp
+        src/gui/joybuttonmousehelper.cpp
+        src/gui/joybuttonslot.cpp
+        src/gui/joybuttonstatusbox.cpp
         src/joybuttontypes/joybutton.cpp
         src/joybuttontypes/joyaccelerometerbutton.cpp
         src/joybuttontypes/joyaxisbutton.cpp
@@ -205,14 +205,14 @@ set(antimicrox_SOURCES
         src/joycontrolstickpushbutton.cpp
         src/joycontrolstickstatusbox.cpp
         src/joydpad.cpp
-        src/joygyroscopesensor.cpp
-        src/joysensor.cpp
-        src/joysensorbuttonpushbutton.cpp
-        src/joysensorcontextmenu.cpp
-        src/joysensorfactory.cpp
-        src/joysensorpreset.cpp
-        src/joysensorpushbutton.cpp
-        src/joysensorstatusbox.cpp
+        src/sensors/joygyroscopesensor.cpp
+        src/sensors/joysensor.cpp
+        src/sensors/joysensorbuttonpushbutton.cpp
+        src/sensors/joysensorcontextmenu.cpp
+        src/sensors/joysensorfactory.cpp
+        src/sensors/joysensorpreset.cpp
+        src/sensors/joysensorpushbutton.cpp
+        src/sensors/joysensorstatusbox.cpp
         src/joystick.cpp
         src/keyboard/virtualkeyboardmousewidget.cpp
         src/keyboard/virtualkeypushbutton.cpp
@@ -233,11 +233,11 @@ set(antimicrox_SOURCES
         src/pt1filter.cpp
         src/qtkeymapperbase.cpp
         src/sdleventreader.cpp
-        src/sensorpushbuttongroup.cpp
+        src/gui/sensorpushbuttongroup.cpp
         src/setjoystick.cpp
-        src/simplekeygrabberbutton.cpp
+        src/gui/simplekeygrabberbutton.cpp
         src/statisticsestimator.cpp
-        src/stickpushbuttongroup.cpp
+        src/gui/stickpushbuttongroup.cpp
         src/uihelpers/advancebuttondialoghelper.cpp
         src/uihelpers/buttoneditdialoghelper.cpp
         src/uihelpers/dpadcontextmenuhelper.cpp
@@ -265,7 +265,7 @@ set(antimicrox_HEADERS
         src/antkeymapper.h
         src/applaunchhelper.h
         src/autoprofileinfo.h
-        src/axisvaluebox.h
+        src/gui/axisvaluebox.h
         src/commandlineutility.h
         src/dpadcontextmenu.h
         src/dpadpushbutton.h
@@ -316,13 +316,13 @@ set(antimicrox_HEADERS
         src/inputdevice.h
         src/inputdevicebitarraystatus.h
         src/inputdevicecalibration.h
-        src/joyaccelerometersensor.h
+        src/sensors/joyaccelerometersensor.h
         src/joyaxis.h
         src/joyaxiscontextmenu.h
-        src/joybuttoncontextmenu.h
-        src/joybuttonmousehelper.h
-        src/joybuttonslot.h
-        src/joybuttonstatusbox.h
+        src/gui/joybuttoncontextmenu.h
+        src/gui/joybuttonmousehelper.h
+        src/gui/joybuttonslot.h
+        src/gui/joybuttonstatusbox.h
         src/joybuttontypes/joybutton.h
         src/joybuttontypes/joyaccelerometerbutton.h
         src/joybuttontypes/joyaxisbutton.h
@@ -338,16 +338,16 @@ set(antimicrox_HEADERS
         src/joycontrolstickpushbutton.h
         src/joycontrolstickstatusbox.h
         src/joydpad.h
-        src/joygyroscopesensor.h
-        src/joysensor.h
-        src/joysensorbuttonpushbutton.h
-        src/joysensorcontextmenu.h
-        src/joysensordirection.h
-        src/joysensorfactory.h
-        src/joysensorpreset.h
-        src/joysensorpushbutton.h
-        src/joysensorstatusbox.h
-        src/joysensortype.h
+        src/sensors/joygyroscopesensor.h
+        src/sensors/joysensor.h
+        src/sensors/joysensorbuttonpushbutton.h
+        src/sensors/joysensorcontextmenu.h
+        src/sensors/joysensordirection.h
+        src/sensors/joysensorfactory.h
+        src/sensors/joysensorpreset.h
+        src/sensors/joysensorpushbutton.h
+        src/sensors/joysensorstatusbox.h
+        src/sensors/joysensortype.h
         src/joystick.h
         src/keyboard/virtualkeyboardmousewidget.h
         src/keyboard/virtualkeypushbutton.h
@@ -368,11 +368,11 @@ set(antimicrox_HEADERS
         src/pt1filter.h
         src/qtkeymapperbase.h
         src/sdleventreader.h
-        src/sensorpushbuttongroup.h
+        src/gui/sensorpushbuttongroup.h
         src/setjoystick.h
-        src/simplekeygrabberbutton.h
+        src/gui/simplekeygrabberbutton.h
         src/statisticsestimator.h
-        src/stickpushbuttongroup.h
+        src/gui/stickpushbuttongroup.h
         src/uihelpers/advancebuttondialoghelper.h
         src/uihelpers/buttoneditdialoghelper.h
         src/uihelpers/dpadcontextmenuhelper.h
@@ -605,6 +605,7 @@ include_directories(
         "${CMAKE_CURRENT_BINARY_DIR}/src"
         ${PROJECT_SOURCE_DIR}
         "${PROJECT_SOURCE_DIR}/src"
+        "${PROJECT_SOURCE_DIR}/src/sensors"
         "${PROJECT_SOURCE_DIR}/src/gui"
         ${SDL2_INCLUDE_DIRS}
 )
