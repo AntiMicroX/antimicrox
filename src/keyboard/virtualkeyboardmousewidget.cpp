@@ -47,7 +47,6 @@
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QWidget>
-//#include <QDebug>
 
 QHash<QString, QString> VirtualKeyboardMouseWidget::topRowKeys = QHash<QString, QString>();
 
@@ -476,7 +475,7 @@ QVBoxLayout *VirtualKeyboardMouseWidget::setupKeyboardNumPadLayout()
     tempGridLayout->addWidget(createNewKey("KP_2"), 1, 2, 1, 1);
     tempGridLayout->addWidget(createNewKey("KP_3"), 1, 3, 1, 1);
     tempGridLayout->addWidget(createNewKey("KP_0"), 2, 1, 1, 2);
-    tempGridLayout->addWidget(createNewKey("KP_Delete"), 2, 3, 1, 1);
+    tempGridLayout->addWidget(createNewKey("KP_Decimal"), 2, 3, 1, 1);
 
     tempHBoxLayout->addLayout(tempGridLayout);
     tempHBoxLayout->addWidget(createNewKey("KP_Enter"));
