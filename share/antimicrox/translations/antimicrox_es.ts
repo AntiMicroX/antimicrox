@@ -1775,7 +1775,7 @@ se utiliza este botón.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
-        <source>Before you open window with advanced settings, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choose a key</source>
         <translation>Antes de abrir la ventana con la configuración avanzada, debe elegir una tecla</translation>
     </message>
     <message>

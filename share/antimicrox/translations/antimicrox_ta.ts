@@ -1679,7 +1679,7 @@ this button is being used.</source>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
-        <source>Before you open window with advanced settings, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choose a key</source>
         <translation>மேம்பட்ட அமைப்புகளுடன் சாளரத்தைத் திறப்பதற்கு முன், நீங்கள் ஒரு விசையை தேர்வு செய்ய வேண்டும்</translation>
     </message>
     <message>

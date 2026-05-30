@@ -1837,7 +1837,7 @@ este botão estiver sendo usado.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
-        <source>Before you open window with advanced settings, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choose a key</source>
         <translation>Antes de abrir a janela com as configurações avançadas, você precisa escolher uma tecla</translation>
     </message>
     <message>

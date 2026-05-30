@@ -1538,7 +1538,7 @@ gdy przycisk jest wciśnięty.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
-        <source>Before you open window with advanced settings, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choose a key</source>
         <translation>Zanim otworzysz okno z zaawansowanymi ustawieniami, musisz wybrać klawisz</translation>
     </message>
     <message>

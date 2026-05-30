@@ -388,7 +388,7 @@ void ButtonEditDialog::openAdvancedDialog()
         } else
         {
             QMessageBox::information(this, tr("No choice"),
-                                     tr("Before you open window with advanced settings, you have to choice a key"));
+                                     tr("Before you open window with advanced settings, you have to choose a key"));
         }
 
     } else
