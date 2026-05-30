@@ -1659,7 +1659,7 @@ this button is being used.</source>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
-        <source>Before you open window with advanced settings, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choose a key</source>
         <translation>请先绑定一个按键再进入高级选项</translation>
     </message>
     <message>

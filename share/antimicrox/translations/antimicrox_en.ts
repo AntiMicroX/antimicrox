@@ -1538,8 +1538,8 @@ this button is being used.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
-        <source>Before you open window with advanced settings, you have to choice a key</source>
-        <translation>Before you open window with advanced settings, you have to choice a key</translation>
+        <source>Before you open window with advanced settings, you have to choose a key</source>
+        <translation>Before you open window with advanced settings, you have to choose a key</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="398"/>

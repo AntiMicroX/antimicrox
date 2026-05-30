@@ -1575,7 +1575,7 @@ this button is being used.</source>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
-        <source>Before you open window with advanced settings, you have to choice a key</source>
+        <source>Before you open window with advanced settings, you have to choose a key</source>
         <translation>Bevor du ein Fenster mit den erweiterten Einstellungen öffnest, musst du einen Schlüssel wählen</translation>
     </message>
     <message>
