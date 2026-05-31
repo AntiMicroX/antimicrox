@@ -35,6 +35,7 @@ private slots:
     void testVersion();
     void infoTextBrowserEmpty();
     void changelogPlainEmpty();
+    void changelogOpensExternalLinks();
     void textBrowserDevsEmpty();
     void licenseInfoEmpty();
     void creditsInfoEmpty();
@@ -58,8 +59,16 @@ void TestAboutDialog::infoTextBrowserEmpty()
 
 void TestAboutDialog::changelogPlainEmpty()
 {
-    QPlainTextEdit* changelogText = aboutDialog.findChild<QPlainTextEdit*>("changelogText");
+    QTextBrowser* changelogText = aboutDialog.findChild<QTextBrowser*>("changelogText");
+    QVERIFY2(changelogText != nullptr, "changelogText is missing");
     QVERIFY2(!changelogText->toPlainText().isEmpty(), "changelogText is empty");
+}
+
+void TestAboutDialog::changelogOpensExternalLinks()
+{
+    QTextBrowser* changelogText = aboutDialog.findChild<QTextBrowser*>("changelogText");
+    QVERIFY2(changelogText != nullptr, "changelogText is missing");
+    QVERIFY2(changelogText->openExternalLinks(), "changelogText should open external links outside the text browser");
 }
 
 void TestAboutDialog::textBrowserDevsEmpty()
