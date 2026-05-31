@@ -104,6 +104,7 @@ void AboutDialog::fillInfoTextBrowser()
 #else
     ui->changelogText->setPlainText(changelogText);
 #endif
+    ui->changelogText->setOpenExternalLinks(true);
 }
 
 void AboutDialog::changeEvent(QEvent *event)
