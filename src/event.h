@@ -30,7 +30,7 @@ void sendKeybEvent(JoyButtonSlot *slot, bool pressed = true);
 void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring = 0,
                      int *const mousePosX = 0, int *const mousePos = 0);
 
-int X11KeySymToKeycode(QString key);
+int X11KeySymToKeycode(const QString &key);
 QString keycodeToKeyString(int keycode, int alias = 0);
 int X11KeyCodeToX11KeySym(int keycode);
 QString keysymToKeyString(int keysym, int alias = 0);

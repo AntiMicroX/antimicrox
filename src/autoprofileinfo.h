@@ -40,10 +40,10 @@ class AutoProfileInfo : public QObject
     void setUniqueID(QString guid);
     QString getUniqueID() const;
 
-    void setProfileLocation(QString profileLocation);
+    void setProfileLocation(const QString &profileLocation);
     QString getProfileLocation() const;
 
-    void setExe(QString exe);
+    void setExe(const QString &exe);
     QString getExe() const;
 
     void setWindowClass(QString windowClass);

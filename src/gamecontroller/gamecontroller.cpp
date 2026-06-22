@@ -32,6 +32,7 @@
 #include <QRegularExpression>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <utility>
 
 GameController::GameController(SDL_GameController *controller, int deviceIndex, AntiMicroSettings *settings,
                                int counterUniques, QObject *parent)
@@ -319,7 +320,10 @@ bool GameController::isGameController() { return true; }
 //    return InputDevice::isRelevantGUID(tempGUID);
 //}
 
-bool GameController::isRelevantUniqueID(QString tempUniqueID) { return InputDevice::isRelevantUniqueID(tempUniqueID); }
+bool GameController::isRelevantUniqueID(QString tempUniqueID)
+{
+    return InputDevice::isRelevantUniqueID(std::move(tempUniqueID));
+}
 
 void GameController::rawButtonEvent(int index, bool pressed)
 {

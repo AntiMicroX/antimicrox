@@ -157,8 +157,8 @@ extern MouseHelper mouseHelperObj;
 
 QString preferredProfileDir(AntiMicroSettings *settings);
 QStringList arguments(const int &argc, char **argv);
-QStringList parseArgumentsString(QString tempString);
-void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QString language);
+QStringList parseArgumentsString(const QString &tempString);
+void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, const QString &language);
 void lockInputDevices();
 void unlockInputDevices();
 

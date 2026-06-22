@@ -76,15 +76,15 @@ class EventHandlerFactory : public QObject
     Q_OBJECT
 
   public:
-    static EventHandlerFactory *getInstance(QString handler = "");
+    static EventHandlerFactory *getInstance(const QString &handler = "");
     void deleteInstance();
     BaseEventHandler *handler();
     static QString fallBackIdentifier();
     static QStringList buildEventGeneratorList();
-    static QString handlerDisplayName(QString handler);
+    static QString handlerDisplayName(const QString &handler);
 
   protected:
-    explicit EventHandlerFactory(QString handler, QObject *parent = nullptr);
+    explicit EventHandlerFactory(const QString &handler, QObject *parent = nullptr);
 
     BaseEventHandler *eventHandler;
     static EventHandlerFactory *instance;

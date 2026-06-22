@@ -55,7 +55,7 @@ class AntKeyMapper : public QObject
      *                not yet exist it will be created using this handler.
      * @return Pointer to the global AntKeyMapper instance.
      */
-    static AntKeyMapper *getInstance(QString handler = "");
+    static AntKeyMapper *getInstance(const QString &handler = "");
     void deleteInstance();
 
     /**
@@ -87,7 +87,7 @@ class AntKeyMapper : public QObject
     static AntKeyMapper *_instance;
 
   private:
-    explicit AntKeyMapper(QString handler = "", QObject *parent = nullptr);
+    explicit AntKeyMapper(const QString &handler = "", QObject *parent = nullptr);
 
     QtKeyMapperBase *internalMapper;  /**< Active mapper used by the app */
     QtKeyMapperBase *nativeKeyMapper; /**< Optional native mapper for low-level queries */

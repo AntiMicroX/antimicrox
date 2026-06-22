@@ -20,14 +20,15 @@
 
 #include <QDebug>
 #include <QFileInfo>
+#include <utility>
 
 AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation, QString exe, bool active, bool partialTitle,
                                  QObject *parent)
     : QObject(parent)
 {
-    setUniqueID(uniqueID);
-    setProfileLocation(profileLocation);
-    setExe(exe);
+    setUniqueID(std::move(uniqueID));
+    setProfileLocation(std::move(profileLocation));
+    setExe(std::move(exe));
     setActive(active);
     setDefaultState(false);
     setPartialState(partialTitle);
@@ -36,8 +37,8 @@ AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation, QStr
 AutoProfileInfo::AutoProfileInfo(QString uniqueID, QString profileLocation, bool active, bool partialTitle, QObject *parent)
     : QObject(parent)
 {
-    setUniqueID(uniqueID);
-    setProfileLocation(profileLocation);
+    setUniqueID(std::move(uniqueID));
+    setProfileLocation(std::move(profileLocation));
     setActive(active);
     setDefaultState(false);
     setPartialState(partialTitle);
@@ -53,11 +54,11 @@ AutoProfileInfo::AutoProfileInfo(QObject *parent)
 
 AutoProfileInfo::~AutoProfileInfo() {}
 
-void AutoProfileInfo::setUniqueID(QString uniqueID) { this->uniqueID = uniqueID; }
+void AutoProfileInfo::setUniqueID(QString uniqueID) { this->uniqueID = std::move(uniqueID); }
 
 QString AutoProfileInfo::getUniqueID() const { return uniqueID; }
 
-void AutoProfileInfo::setProfileLocation(QString profileLocation)
+void AutoProfileInfo::setProfileLocation(const QString &profileLocation)
 {
     QFileInfo info(profileLocation);
 
@@ -72,7 +73,7 @@ void AutoProfileInfo::setProfileLocation(QString profileLocation)
 
 QString AutoProfileInfo::getProfileLocation() const { return profileLocation; }
 
-void AutoProfileInfo::setExe(QString exe)
+void AutoProfileInfo::setExe(const QString &exe)
 {
     if (!exe.isEmpty())
     {
@@ -96,11 +97,11 @@ void AutoProfileInfo::setExe(QString exe)
 
 QString AutoProfileInfo::getExe() const { return exe; }
 
-void AutoProfileInfo::setWindowClass(QString windowClass) { this->windowClass = windowClass; }
+void AutoProfileInfo::setWindowClass(QString windowClass) { this->windowClass = std::move(windowClass); }
 
 QString AutoProfileInfo::getWindowClass() const { return windowClass; }
 
-void AutoProfileInfo::setWindowName(QString winName) { this->windowName = winName; }
+void AutoProfileInfo::setWindowName(QString winName) { this->windowName = std::move(winName); }
 
 QString AutoProfileInfo::getWindowName() const { return windowName; }
 
@@ -116,7 +117,7 @@ void AutoProfileInfo::setDefaultState(bool value) { this->defaultState = value; 
  */
 bool AutoProfileInfo::isCurrentDefault() { return defaultState; }
 
-void AutoProfileInfo::setDeviceName(QString name) { this->deviceName = name; }
+void AutoProfileInfo::setDeviceName(QString name) { this->deviceName = std::move(name); }
 
 QString AutoProfileInfo::getDeviceName() const
 {

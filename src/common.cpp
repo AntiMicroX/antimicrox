@@ -87,7 +87,7 @@ QStringList arguments(const int &argc, char **argv)
     return list;
 }
 
-QStringList parseArgumentsString(QString tempString)
+QStringList parseArgumentsString(const QString &tempString)
 {
     bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
@@ -122,7 +122,7 @@ QStringList parseArgumentsString(QString tempString)
  * @param Application translator
  * @param Language code
  */
-void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, QString language)
+void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, const QString &language)
 { // Remove application specific translation strings
     qApp->removeTranslator(translator);
 

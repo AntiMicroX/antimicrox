@@ -43,7 +43,7 @@ static QStringList buildEventGeneratorList()
     return temp;
 }
 
-AntKeyMapper::AntKeyMapper(QString handler, QObject *parent)
+AntKeyMapper::AntKeyMapper(const QString &handler, QObject *parent)
     : QObject(parent)
 {
     internalMapper = nullptr;
@@ -77,7 +77,7 @@ AntKeyMapper::AntKeyMapper(QString handler, QObject *parent)
 #endif
 }
 
-AntKeyMapper *AntKeyMapper::getInstance(QString handler)
+AntKeyMapper *AntKeyMapper::getInstance(const QString &handler)
 {
     if (_instance == nullptr)
     {

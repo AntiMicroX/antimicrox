@@ -162,7 +162,7 @@ void GameControllerSet::readConfig(QXmlStreamReader *xml)
     }
 }
 
-void GameControllerSet::getElemFromXml(QString elemName, QXmlStreamReader *xml)
+void GameControllerSet::getElemFromXml(const QString &elemName, QXmlStreamReader *xml)
 {
     int index = xml->attributes().value("index").toString().toInt();
 

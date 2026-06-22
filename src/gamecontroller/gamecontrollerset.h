@@ -48,7 +48,7 @@ class GameControllerSet : public SetJoystick
     void applyHapticTrigger();
 
   private:
-    void getElemFromXml(QString elemName, QXmlStreamReader *xml);
+    void getElemFromXml(const QString &elemName, QXmlStreamReader *xml);
     void resetSticks();
 };
 

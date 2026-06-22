@@ -44,7 +44,7 @@ QHash<QString, QString> handlerDisplayNames = buildDisplayNames();
 
 EventHandlerFactory *EventHandlerFactory::instance = nullptr;
 
-EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent)
+EventHandlerFactory::EventHandlerFactory(const QString &handler, QObject *parent)
     : QObject(parent)
     , eventHandler(nullptr)
 {
@@ -80,7 +80,7 @@ EventHandlerFactory::EventHandlerFactory(QString handler, QObject *parent)
     }
 }
 
-EventHandlerFactory *EventHandlerFactory::getInstance(QString handler)
+EventHandlerFactory *EventHandlerFactory::getInstance(const QString &handler)
 {
     if (instance == nullptr)
     {
@@ -169,7 +169,7 @@ QStringList EventHandlerFactory::buildEventGeneratorList()
     return temp;
 }
 
-QString EventHandlerFactory::handlerDisplayName(QString handler)
+QString EventHandlerFactory::handlerDisplayName(const QString &handler)
 {
     QString handlerDispName = QString();
 

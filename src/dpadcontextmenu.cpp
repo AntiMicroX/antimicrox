@@ -79,7 +79,7 @@ void DPadContextMenu::buildMenu()
     connect(action, &QAction::triggered, this, &DPadContextMenu::openMouseSettingsDialog);
 }
 
-void DPadContextMenu::generateActionPreset(QAction *action, QString actionText, int currentPreset, int &presetMode,
+void DPadContextMenu::generateActionPreset(QAction *action, const QString &actionText, int currentPreset, int &presetMode,
                                            QActionGroup *presetGroup)
 {
     action = this->addAction(actionText);
@@ -93,8 +93,8 @@ void DPadContextMenu::generateActionPreset(QAction *action, QString actionText, 
     presetMode++;
 }
 
-void DPadContextMenu::generateActionMode(QActionGroup *modesGroup, QAction *action, QString actionText, int currentPreset,
-                                         int presetMode)
+void DPadContextMenu::generateActionMode(QActionGroup *modesGroup, QAction *action, const QString &actionText,
+                                         int currentPreset, int presetMode)
 {
     action = this->addAction(actionText);
     action->setCheckable(true);

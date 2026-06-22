@@ -99,7 +99,7 @@ void fakeAbsMouseCoordinates(double springX, double springY, int width, int heig
 /**
  * @brief detects executor for selected file (for .py files python, for .exe "" etc)
  */
-QString detectedScriptExt(QString file)
+QString detectedScriptExt(const QString &file)
 {
     QFileInfo fileinfo(file);
     QFile inputFile(file);
@@ -591,7 +591,7 @@ void sendSpringEvent(PadderCommon::springModeInfo *fullSpring, PadderCommon::spr
     }
 }
 
-int X11KeySymToKeycode(QString key)
+int X11KeySymToKeycode(const QString &key)
 {
     int tempcode = 0;
 
