@@ -33,7 +33,7 @@ class SlotItemListWidget : public QListWidget
     void insertItems(int row, QList<QListWidgetItem *> items);
 
   protected:
-    virtual void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
 };
 
 #endif // SLOTITEMLISTWIDGET_H

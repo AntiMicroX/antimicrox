@@ -39,8 +39,8 @@ class AxisValueBox : public QWidget
     int getMaxAxValue();
 
   protected:
-    virtual void resizeEvent(QResizeEvent *event);
-    virtual void paintEvent(QPaintEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
 
   public slots:
     void setThrottle(int throttle);

@@ -59,7 +59,7 @@ class AddEditAutoProfileDialog : public QDialog
     QList<QString> const &getReservedUniques();
 
   protected:
-    virtual void accept();
+    void accept() override;
 
   signals:
     void captureFinished();

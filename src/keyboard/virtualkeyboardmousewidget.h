@@ -74,7 +74,7 @@ class VirtualKeyboardMouseWidget : public QTabWidget
     void addFButtonToOthers(int qt_keycode, QString keycode_text);
     QPushButton *createOtherKeysMenu();
 
-    virtual void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
   signals:
     void selectionFinished();

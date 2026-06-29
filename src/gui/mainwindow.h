@@ -72,9 +72,9 @@ class MainWindow : public QMainWindow
     bool isKeypadUnlocked();
 
   protected:
-    virtual void showEvent(QShowEvent *event);
-    virtual void changeEvent(QEvent *event);
-    virtual void closeEvent(QCloseEvent *event);
+    void showEvent(QShowEvent *event) override;
+    void changeEvent(QEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
     bool eventFilter(QObject *obj, QEvent *event) override;
 

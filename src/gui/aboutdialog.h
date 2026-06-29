@@ -40,7 +40,7 @@ class AboutDialog : public QDialog
 
   protected:
     void fillInfoTextBrowser();
-    virtual void changeEvent(QEvent *event);
+    void changeEvent(QEvent *event) override;
     void retranslateUi();
 };
 

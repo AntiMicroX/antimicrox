@@ -42,7 +42,7 @@ class JoyGyroscopeSensor : public JoySensor
     virtual void reset() override;
 
   protected:
-    virtual void populateButtons();
+    void populateButtons() override;
     virtual JoySensorDirection calculateSensorDirection() override;
     virtual void applyCalibration() override;
 };

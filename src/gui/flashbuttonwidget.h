@@ -38,7 +38,7 @@ class FlashButtonWidget : public QPushButton
     bool isDisplayingNames();
 
   protected:
-    virtual void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
     virtual QString generateLabel() = 0;
     virtual void retranslateUi();
     bool ifDisplayNames();

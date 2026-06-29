@@ -56,8 +56,8 @@ class ButtonEditDialog : public QDialog
                              Qt::ConnectionType connTypeForAll);
 
   protected:
-    virtual void keyReleaseEvent(QKeyEvent *event);
-    virtual void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
 
   private:
     void setupVirtualKeyboardMouseTabWidget();

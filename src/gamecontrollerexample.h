@@ -47,7 +47,7 @@ class GameControllerExample : public QWidget
     static const int MAXBUTTONINDEX = 20;
 
   protected:
-    virtual void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
 
   signals:
     void indexUpdated(int index);

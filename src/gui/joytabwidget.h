@@ -76,7 +76,7 @@ class JoyTabWidget : public QWidget
     InputDevice *getJoystick();
 
   protected:
-    virtual void changeEvent(QEvent *event);
+    void changeEvent(QEvent *event) override;
     void removeCurrentButtons();
     void retranslateUi();
     void disconnectMainComboBoxEvents();

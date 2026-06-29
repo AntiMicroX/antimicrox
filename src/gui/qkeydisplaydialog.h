@@ -37,8 +37,8 @@ class QKeyDisplayDialog : public QDialog
     ~QKeyDisplayDialog();
 
   protected:
-    virtual void keyPressEvent(QKeyEvent *event);
-    virtual void keyReleaseEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
 
   private:
     Ui::QKeyDisplayDialog *ui;

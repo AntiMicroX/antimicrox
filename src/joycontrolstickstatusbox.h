@@ -37,11 +37,11 @@ class JoyControlStickStatusBox : public QWidget
 
     JoyControlStick *getStick() const;
 
-    virtual int heightForWidth(int width) const;
-    QSize sizeHint() const;
+    int heightForWidth(int width) const override;
+    QSize sizeHint() const override;
 
   protected:
-    virtual void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
     void drawEightWayBox();
     void drawFourWayCardinalBox();
     void drawFourWayDiagonalBox();

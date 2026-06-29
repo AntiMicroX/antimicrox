@@ -50,8 +50,8 @@ class SimpleKeyGrabberButton : public QPushButton
     bool isGrabbing();
 
   protected:
-    virtual void keyPressEvent(QKeyEvent *event);
-    virtual bool eventFilter(QObject *obj, QEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
   signals:
     void buttonCodeChanged(int value);

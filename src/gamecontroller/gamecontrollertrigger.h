@@ -33,22 +33,22 @@ class GameControllerTrigger : public JoyAxis
   public:
     explicit GameControllerTrigger(int index, int originset, SetJoystick *parentSet, QObject *parent = nullptr);
 
-    virtual QString getXmlName(); // GameControllerTriggerXml class
-    virtual QString getPartialName(bool forceFullFormat, bool displayNames);
+    QString getXmlName() override; // GameControllerTriggerXml class
+    QString getPartialName(bool forceFullFormat, bool displayNames) override;
 
-    virtual int getDefaultDeadZone();
-    virtual int getDefaultMaxZone();
-    virtual ThrottleTypes getDefaultThrottle();
+    int getDefaultDeadZone() override;
+    int getDefaultMaxZone() override;
+    ThrottleTypes getDefaultThrottle() override;
 
     static const ThrottleTypes DEFAULTTHROTTLE;
 
-    virtual bool hasHapticTrigger() const override;
-    virtual HapticTriggerPs5 *getHapticTrigger() const override;
-    virtual void setHapticTriggerMode(HapticTriggerModePs5 mode) override;
+    bool hasHapticTrigger() const override;
+    HapticTriggerPs5 *getHapticTrigger() const override;
+    void setHapticTriggerMode(HapticTriggerModePs5 mode) override;
 
   public slots:
-    virtual void reset();
-    virtual void reset(int index);
+    void reset() override;
+    void reset(int index) override;
 
   protected:
     void correctJoystickThrottle();

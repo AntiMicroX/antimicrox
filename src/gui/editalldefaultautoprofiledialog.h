@@ -41,7 +41,7 @@ class EditAllDefaultAutoProfileDialog : public QDialog
     AntiMicroSettings *getSettings() const;
 
   protected:
-    virtual void accept();
+    void accept() override;
 
   private:
     Ui::EditAllDefaultAutoProfileDialog *ui;
