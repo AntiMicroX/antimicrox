@@ -1012,13 +1012,11 @@ void AdvanceButtonDialog::insertExecuteSlot(QListWidgetItem *item, QStringList &
 {
     int index = ui->slotListWidget->row(item);
     QString execSlotName, argsExecSlot;
-    QFile execFile;
-    QFileInfo execSlotNameInfo;
 
     if (prevExecAndArgs.empty()) // the first time when we choose script
     {
-        execSlotName = ui->execLineEdit->text();
-        argsExecSlot = ui->execArgumentsLineEdit->text();
+        execSlotName = ui->execLineEdit->text().trimmed();
+        argsExecSlot = ui->execArgumentsLineEdit->text().trimmed();
     } else // when we want to apply changes to many slots at once
     {
         execSlotName = prevExecAndArgs.first();
@@ -1027,36 +1025,55 @@ void AdvanceButtonDialog::insertExecuteSlot(QListWidgetItem *item, QStringList &
             argsExecSlot = prevExecAndArgs.last();
     }
 
-    execFile.setFileName(execSlotName);
-    execSlotNameInfo.setFile(execSlotName);
-
     SimpleKeyGrabberButton *execbutton = item->data(Qt::UserRole).value<SimpleKeyGrabberButton *>();
 
     if (execSlotName.isEmpty())
-        QMessageBox::warning(
-            this, tr("Empty execution path"),
-            tr("Line for execution file path is empty. Fill the first line before you are going to add a slot."));
-    else if (!execSlotNameInfo.exists())
-        QMessageBox::warning(this, tr("File doesn't exist"),
-                             tr("There is no such file locally, that could be executed. Check the file on your system"));
-    else
     {
-        prevExecAndArgs.clear();
-        execbutton->setValue(execSlotName, JoyButtonSlot::JoyExecute);
-        prevExecAndArgs << execSlotName;
+        QMessageBox::warning(this, tr("Empty command"),
+                             tr("Enter an executable path or command before adding an Execute slot."));
+        return;
+    }
 
-        if (!argsExecSlot.isEmpty())
+    QFileInfo execSlotNameInfo(execSlotName);
+    if (!execSlotNameInfo.exists())
+    {
+        QStringList commandParts = PadderCommon::parseArgumentsString(execSlotName);
+        if (commandParts.isEmpty())
         {
-            execbutton->getValue()->setExtraData(QVariant(argsExecSlot));
-            prevExecAndArgs << argsExecSlot;
+            QMessageBox::warning(this, tr("Invalid command"), tr("The Execute command could not be parsed."));
+            return;
         }
 
-        QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
-                                  Q_ARG(JoyButtonSlot *, execbutton->getValue()), Q_ARG(int, index));
+        execSlotName = commandParts.takeFirst();
 
-        execbutton->setToolTip(execSlotName);
-        updateSlotsScrollArea(0);
+        QStringList inlineArguments;
+        for (const QString &argument : commandParts)
+            inlineArguments.append(QStringLiteral("\"%1\"").arg(argument));
+
+        if (!inlineArguments.isEmpty())
+        {
+            QString inlineArgumentsString = inlineArguments.join(QLatin1Char(' '));
+            argsExecSlot = argsExecSlot.isEmpty()
+                               ? inlineArgumentsString
+                               : inlineArgumentsString + QLatin1Char(' ') + argsExecSlot;
+        }
     }
+
+    prevExecAndArgs.clear();
+    execbutton->setValue(execSlotName, JoyButtonSlot::JoyExecute);
+    prevExecAndArgs << execSlotName;
+
+    if (!argsExecSlot.isEmpty())
+    {
+        execbutton->getValue()->setExtraData(QVariant(argsExecSlot));
+        prevExecAndArgs << argsExecSlot;
+    }
+
+    QMetaObject::invokeMethod(&helper, "setAssignedSlot", Qt::BlockingQueuedConnection,
+                              Q_ARG(JoyButtonSlot *, execbutton->getValue()), Q_ARG(int, index));
+
+    execbutton->setToolTip(execSlotName);
+    updateSlotsScrollArea(0);
 }
 
 void AdvanceButtonDialog::performStatsWidgetRefresh(QListWidgetItem *item)
@@ -1611,7 +1628,7 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
         break;
 
     case 4:
-        ui->slotTypeHelpLabel->setText(tr("Execute program when slot is activated."));
+        ui->slotTypeHelpLabel->setText(tr("Execute a program or command when slot is activated."));
         break;
 
     case 5:
