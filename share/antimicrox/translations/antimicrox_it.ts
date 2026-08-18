@@ -3179,7 +3179,11 @@ ad un joystick analogico.</translation>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Soglia alla quale viene attivato il pulsante di modifica.
+
+Questo pulsante è utile per assegnare zone con
+tasti di modifica che possono essere utilizzate per assegnare 
+la funzionalità di camminata/cosa a un joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="770"/>
@@ -3188,12 +3192,16 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definisce se i pulsanti di modifica si attivano quando il joystick si trova all&apos;interno o all&apos;esterno del valore di soglia.
+
+Questo pulsante è utile per assegnare zone con
+tasti di modifica utilizzabili per associare la funzionalità 
+di camminata/corsa a un joystick analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="777"/>
         <source>Invert Modifier Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverti zona di modifica</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
@@ -3325,7 +3333,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="41"/>
         <source>Pitch Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclinazione verso il basso</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
@@ -3400,7 +3408,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
         <source>Pitch (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclinazione (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
@@ -3415,7 +3423,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
         <source>Presets:</source>
-        <translation>Preimpostazioni:</translation>
+        <translation type="unfinished">Preimpostazioni:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
@@ -3426,7 +3434,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="394"/>
         <source>Dead zone value to use for an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valore zona morta da usare per un sensore analogico.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
@@ -3437,12 +3445,12 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="449"/>
         <source>Value when an analog sensor is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valore col quale un sensore analogico viene considerato spostato al 100%.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation>Raggio diagonale:</translation>
+        <translation type="unfinished">Intervallo diagonale:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
@@ -3484,7 +3492,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
         <source>Roll (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rollio (°/s)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="79"/>
@@ -3754,7 +3762,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="729"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi davvero ripristinare le impostazioni dei pulsanti del joystick?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1650"/>
@@ -3949,12 +3957,12 @@ assegnare funzioni ai tasti o disattiva il nascondimento dei tasti vuoti.</trans
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="63"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Basso</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="68"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Medio</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="74"/>
@@ -4208,12 +4216,12 @@ il programma si apre la prima volta.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="356"/>
         <source>Show low battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra la notifica per batteria bassa</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="363"/>
         <source>Show empty battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra la notifica per batteria scarica</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="386"/>
@@ -4274,48 +4282,49 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="683"/>
         <source>日本語</source>
-        <translation type="unfinished"></translation>
+        <translation>Giapponese</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="688"/>
         <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation>Russo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="693"/>
         <source>српски / srpski</source>
-        <translation type="unfinished"></translation>
+        <translation>Serbo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="698"/>
         <source>简体中文</source>
-        <translation type="unfinished"></translation>
+        <translation>Cinese semplificato</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="703"/>
         <source>Español</source>
-        <translation type="unfinished"></translation>
+        <translation>Spagnolo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="708"/>
         <source>українська</source>
-        <translation type="unfinished"></translation>
+        <translation>Ucraino</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="713"/>
         <source>Polski</source>
-        <translation type="unfinished"></translation>
+        <translation>Polacco</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
         <source>You can help with translating AntiMicroX. Just click here: &lt;a
                           href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Puoi aiutarci a tradurre AntiMicroX. Ti basta cliccare qui: &lt;a
+                          href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="742"/>
         <source>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</source>
-        <translation type="unfinished"></translation>
+        <translation>La funzionalità Profilo Automatico consente di cambiare automaticamente il profilo in uso in base alla finestra dell&apos;applicazione attiva.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>
@@ -4670,12 +4679,12 @@ Per favore collega un joystick e scegli l&apos;opzione &quot;Aggiorna i joystick
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
         <source>&amp;App</source>
-        <translation>App</translation>
+        <translation>&amp;App</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="224"/>
         <source>&amp;Options</source>
-        <translation>Opzioni</translation>
+        <translation>&amp;Opzioni</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="235"/>
@@ -5603,7 +5612,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
         <location filename="../../../src/commandlineutility.cpp" line="273"/>
         <location filename="../../../src/commandlineutility.cpp" line="312"/>
         <source>Controller identifier is not a valid value.</source>
-        <translation>L&apos;identificatore controller non è un valore valido.</translation>
+        <translation>L&apos;identificatore del controller non è un valore valido.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="342"/>
