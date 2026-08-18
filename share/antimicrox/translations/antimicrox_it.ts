@@ -7229,12 +7229,12 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="84"/>
         <source>Start joysticks on a specific set. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia joystick con un set specifico. Il valore può essere l&apos;indice, il nome o GUID del controller</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="86"/>
         <source>number value</source>
-        <translation type="unfinished"></translation>
+        <translation>valore numerico</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="88"/>
@@ -7244,12 +7244,12 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="89"/>
         <source>log-type</source>
-        <translation type="unfinished"></translation>
+        <translation>tipo di log</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="90"/>
         <source>Choose a file for logs writing</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli un file per il salvataggio dei log</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="91"/>
@@ -7259,7 +7259,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="93"/>
         <source>Choose between using XTest support and uinput support for event generation. Use only if you have enabled xtest and uinput options on Linux or vmulti on Windows. Default: xtest.</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli tra l&apos;utilizzo del supporto XTest o uinput per la generazione di eventi. Utilizzare solo se le opzioni xtest e uinput su Linux o vmulti su Windows sono abilitate. Predefinito: xtest.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="97"/>
@@ -7269,7 +7269,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="99"/>
         <source>Print information about joysticks detected by SDL. Use only if you have sdl library. You can check your controller index, name or even GUID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra informazioni sui joystick rilevati da SDL. Utilizzare solo se si dispone della libreria SDL. È possibile controllare indice, nome e GUID del controller.</translation>
     </message>
 </context>
 </TS>
