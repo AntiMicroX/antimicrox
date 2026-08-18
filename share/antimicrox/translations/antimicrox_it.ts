@@ -1207,12 +1207,12 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="46"/>
         <source>DPads</source>
-        <translation>DPad</translation>
+        <translation>Dpad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished">Nota: questa finestra è utile per la retrocompatibilità con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di mappatura controller gioco.</translation>
+        <translation>Nota: questa finestra è utile per la retrocompatibilità con i profili realizzati prima di antimicro 2.0. Dalla versione 2.0, è preferibile usare la finestra di Mappatura controller di gioco.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1262,12 +1262,12 @@ del profilo predefinito.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
         <source>Number of Physical DPads: %1</source>
-        <translation>Numero di DPad fisici: %1</translation>
+        <translation>Numero di Dpad fisici: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="402"/>
         <source>Virtual DPad 1</source>
-        <translation>DPad virtuale 1</translation>
+        <translation>Dpad virtuale 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="498"/>
@@ -1871,7 +1871,7 @@ Può richiedere fino a %1 secondi.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
-        <translation>Muovi diverse volte il joystick fino al massimo in tutte le direzioni e rilasciala al centro.
+        <translation>Muovi più volte la manopola del joystick fino al massimo in tutte le direzioni e riportala al centro.
 Può richiedere fino a %1 secondi.</translation>
     </message>
     <message>
@@ -1890,7 +1890,7 @@ Può richiedere fino a %1 secondi.</translation>
         <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
-        <translation>Muovi diverse volte il joystick compiendo giri completi.
+        <translation>Muovi più volte la manopola del joystick compiendo giri completi.
 Può richiedere fino a %1 secondi.</translation>
     </message>
     <message>
@@ -2089,7 +2089,7 @@ Può richiedere fino a %1 secondi.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation>Modalità DPad:</translation>
+        <translation>Modalità Dpad:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="255"/>
@@ -2109,7 +2109,7 @@ Può richiedere fino a %1 secondi.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation>Ritardo DPad:</translation>
+        <translation>Ritardo Dpad:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
@@ -2125,7 +2125,7 @@ Può richiedere fino a %1 secondi.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="265"/>
         <source>Specify the name of a dpad.</source>
-        <translation>Specifica il nome di un DPad.</translation>
+        <translation>Specifica il nome di un Dpad.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="274"/>
@@ -2151,18 +2151,18 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation>Standard: DPad a 8 regioni con due tasti direzionali attivi
-quando il DPad è in una regione diagonale.
+        <translation>Standard: Dpad a 8 regioni con due tasti direzionali attivi
+quando il Dpad è in una regione diagonale.
 
-8 direzioni: DPad a 8 regioni con ogni direzione che ha un
+8 direzioni: Dpad a 8 regioni con ogni direzione che ha un
 tasto dedicato. Solo un tasto alla volta viene premuto.
 Utile per i giochi come Rogue.
 
-4 direzioni cardinali: DPad a 4 regioni con regioni corrispondenti
-alla direzione cardinale del DPad. Utile per i menu.
+4 direzioni cardinali: Dpad a 4 regioni con regioni corrispondenti
+alla direzione cardinale del Dpad. Utile per i menu.
 
-4 direzioni diagonali: DPad a 4 regioni con ogni regione
-corrispondente alla zona diagonale del DPad.</translation>
+4 direzioni diagonali: Dpad a 4 regioni con ogni regione
+corrispondente alla zona diagonale del Dpad.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="126"/>
@@ -2253,7 +2253,7 @@ corrispondente alla zona diagonale del DPad.</translation>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="51"/>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="57"/>
         <source>DPad</source>
-        <translation>DPad</translation>
+        <translation>Dpad</translation>
     </message>
 </context>
 <context>
@@ -2356,22 +2356,22 @@ corrispondente alla zona diagonale del DPad.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="222"/>
         <source>DPad Up</source>
-        <translation>DPad su</translation>
+        <translation>Dpad su</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="227"/>
         <source>DPad Left</source>
-        <translation>DPad sinistra</translation>
+        <translation>Dpad sinistra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="232"/>
         <source>DPad Down</source>
-        <translation>DPad giù</translation>
+        <translation>Dpad giù</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="237"/>
         <source>DPad Right</source>
-        <translation>DPad destra</translation>
+        <translation>Dpad destra</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
@@ -3096,7 +3096,7 @@ corrispondente alla zona diagonale del joystick.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>Modifier Zone:</source>
-        <translation type="unfinished">Area di modifica:</translation>
+        <translation>Area di modifica:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
@@ -3274,7 +3274,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joydpad.cpp" line="95"/>
         <location filename="../../../src/joydpad.cpp" line="100"/>
         <source>DPad</source>
-        <translation>DPad</translation>
+        <translation>Dpad</translation>
     </message>
 </context>
 <context>
@@ -3788,7 +3788,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2128"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2180"/>
         <source>DPads</source>
-        <translation>DPad</translation>
+        <translation>Dpad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2333"/>
@@ -5762,7 +5762,7 @@ Vuoi distribuire questa modifica su tutti i set?</translation>
     <message>
         <location filename="../../../src/mousedialog/springmoderegionpreview.cpp" line="42"/>
         <source>Spring Mode Preview</source>
-        <translation type="unfinished">Anteprima Spring Mode</translation>
+        <translation>Anteprima Spring Mode</translation>
     </message>
 </context>
 <context>
@@ -6406,7 +6406,7 @@ Per favore controlla di avere i permessi di scrittura sul dispositivo</translati
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished">Finestra proprietà catturate</translation>
+        <translation>Proprietà della finestra catturata</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="29"/>
@@ -6463,7 +6463,7 @@ Per favore controlla di avere i permessi di scrittura sul dispositivo</translati
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation>VDPad</translation>
+        <translation>VDpad</translation>
     </message>
 </context>
 <context>
