@@ -655,6 +655,33 @@ target_include_directories(antimicrox PUBLIC
         ${SDL2_INCLUDE_DIRS}/SDL2
         )
 
+option(ENABLE_CLANG_TIDY "Run clang-tidy during C++ compilation." OFF)
+option(ENABLE_CLANG_TIDY_FIXES "Enable clang-tidy automatic fixes when running during compilation." OFF)
+set(CLANG_TIDY_EXECUTABLE "clang-tidy" CACHE STRING "Path to the clang-tidy executable")
+
+if(ENABLE_CLANG_TIDY AND NOT COMPILER_IS_MSVC)
+    set(_clang_tidy_args "${CLANG_TIDY_EXECUTABLE}")
+    if(ENABLE_CLANG_TIDY_FIXES)
+        list(APPEND _clang_tidy_args "-fix" "-fix-errors")
+    endif()
+
+    if(NOT CMAKE_VERSION VERSION_LESS "3.12")
+        list(JOIN _clang_tidy_args ";" _clang_tidy_command)
+    else()
+        set(_clang_tidy_command "${_clang_tidy_args}")
+    endif()
+
+    set(CMAKE_CXX_CLANG_TIDY "${_clang_tidy_command}")
+    if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.20")
+        set(CMAKE_LANG_CLANG_TIDY "${_clang_tidy_command}")
+    endif()
+    message(STATUS "clang-tidy enabled: ${_clang_tidy_command}")
+    if(ENABLE_CLANG_TIDY_FIXES)
+        message(STATUS "clang-tidy automatic fixes are enabled.")
+    endif()
+    message(STATUS "Use -DCMAKE_EXPORT_COMPILE_COMMANDS=1 to generate a compile commands database for manual clang-tidy runs.")
+endif()
+
 ###############################
 # INSTALL
 ###############################
