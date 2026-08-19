@@ -424,14 +424,22 @@ int main(int argc, char *argv[])
 
     installSignalHandlers();
 
-    QString transPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+    QString transPath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 
     if (QDir(transPath).entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries).count() == 0)
     {
-        qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicrox/translations");
+        const bool qtLoaded = qtTranslator.load(QString("qt_").append(targetLang), "/app/share/antimicrox/translations");
+        if (!qtLoaded)
+        {
+            qWarning() << "Failed to load Qt translation for" << targetLang << "from /app/share/antimicrox/translations";
+        }
     } else
     {
-        qtTranslator.load(QString("qt_").append(targetLang), transPath);
+        const bool qtLoaded = qtTranslator.load(QString("qt_").append(targetLang), transPath);
+        if (!qtLoaded)
+        {
+            qWarning() << "Failed to load Qt translation for" << targetLang << "from" << transPath;
+        }
     }
 
 #endif
@@ -441,11 +449,23 @@ int main(int argc, char *argv[])
 
     if (QDir("/app/share/antimicrox").entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries).count() > 0)
     {
-        myappTranslator.load(QString("antimicrox_").append(targetLang), "app/share/antimicrox/translations");
+        const bool myAppLoaded =
+            myappTranslator.load(QString("antimicrox_").append(targetLang), "app/share/antimicrox/translations");
+        if (!myAppLoaded)
+        {
+            qWarning() << "Failed to load antimicrox translation for" << targetLang
+                       << "from /app/share/antimicrox/translations";
+        }
     } else
     {
-        myappTranslator.load(QString("antimicrox_").append(targetLang),
-                             QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
+        const bool myAppLoaded =
+            myappTranslator.load(QString("antimicrox_").append(targetLang),
+                                 QApplication::applicationDirPath().append("/../share/antimicrox/translations"));
+        if (!myAppLoaded)
+        {
+            qWarning() << "Failed to load antimicrox translation for" << targetLang << "from"
+                       << QApplication::applicationDirPath().append("/../share/antimicrox/translations");
+        }
     }
 
     antimicrox.installTranslator(&myappTranslator);
