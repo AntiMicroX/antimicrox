@@ -27,7 +27,18 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can see full list of contributors &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;開発者: Travis Nickles &amp;lt;nickles.travis@gmail.com&amp;gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;その後、AntiMicro グループによりメンテナンス: &lt;/span&gt;&lt;a href=&quot;https://github.com/AntiMicro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/AntiMicro&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;続いて juliagoda によりメンテナンス: &lt;/span&gt;&lt;a href=&quot;https://github.com/juliagoda&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/juliagoda&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;現在のメンテナンス場所: &lt;/span&gt;&lt;a href=&quot;https://github.com/AntiMicroX/antimicrox&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/AntiMicroX/antimicrox&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt; メンテナー: &lt;/span&gt;&lt;a href=&quot;https://github.com/pktiuk&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;pktiuk&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Cantarell&apos;; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;コントリビューター:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;コントリビューターの一覧は&lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;こちら&lt;/span&gt;&lt;/a&gt;で確認できます&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="170"/>
@@ -150,7 +161,120 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Version 3, 29 June 2007&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;http://fsf.org/&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Preamble&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Developers that use the GNU GPL protect your rights with two steps:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;(1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;For the developers&apos; and authors&apos; protection, the GPL clearly explains that there is no warranty for this free software. For both users&apos; and authors&apos; sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users&apos; freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The precise terms and conditions for copying, distribution and modification follow.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;0. Definitions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;This License&amp;quot; refers to version 3 of the GNU General Public License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;Copyright&amp;quot; also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;The Program&amp;quot; refers to any copyrightable work licensed under this License. Each licensee is addressed as &amp;quot;you&amp;quot;. &amp;quot;Licensees&amp;quot; and &amp;quot;recipients&amp;quot; may be individuals or organizations.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To &amp;quot;modify&amp;quot; a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a &amp;quot;modified version&amp;quot; of the earlier work or a work &amp;quot;based on&amp;quot; the earlier work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;covered work&amp;quot; means either the unmodified Program or a work based on the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To &amp;quot;propagate&amp;quot; a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;To &amp;quot;convey&amp;quot; a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;An interactive user interface displays &amp;quot;Appropriate Legal Notices&amp;quot; to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;1. Source Code.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The &amp;quot;source code&amp;quot; for a work means the preferred form of the work for making modifications to it. &amp;quot;Object code&amp;quot; means any non-source form of a work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;Standard Interface&amp;quot; means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The &amp;quot;System Libraries&amp;quot; of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A &amp;quot;Major Component&amp;quot;, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The &amp;quot;Corresponding Source&amp;quot; for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work&apos;s System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The Corresponding Source for a work in source code form is that same work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;2. Basic Permissions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;3. Protecting Users&apos; Legal Rights From Anti-Circumvention Law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work&apos;s users, your or third parties&apos; legal rights to forbid circumvention of technological measures.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;4. Conveying Verbatim Copies.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may convey verbatim copies of the Program&apos;s source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;5. Conveying Modified Source Versions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;a) The work must carry prominent notices stating that you modified it, and giving a relevant date.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to &amp;quot;keep intact all notices&amp;quot;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an &amp;quot;aggregate&amp;quot; if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation&apos;s users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;6. Conveying Non-Source Forms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;User Product&amp;quot; is either (1) a &amp;quot;consumer product&amp;quot;, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, &amp;quot;normally used&amp;quot; refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;Installation Information&amp;quot; for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;7. Additional Terms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&amp;quot;Additional permissions&amp;quot; are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;d) Limiting the use for publicity purposes of names of licensors or authors of the material; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;All other non-permissive additional terms are considered &amp;quot;further restrictions&amp;quot; within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;8. Termination.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;9. Acceptance Not Required for Having Copies.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;10. Automatic Licensing of Downstream Recipients.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;An &amp;quot;entity transaction&amp;quot; is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party&apos;s predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;11. Patents.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A &amp;quot;contributor&amp;quot; is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor&apos;s &amp;quot;contributor version&amp;quot;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A contributor&apos;s &amp;quot;essential patent claims&amp;quot; are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, &amp;quot;control&amp;quot; includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor&apos;s essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;In the following three paragraphs, a &amp;quot;patent license&amp;quot; is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To &amp;quot;grant&amp;quot; such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. &amp;quot;Knowingly relying&amp;quot; means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient&apos;s use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;A patent license is &amp;quot;discriminatory&amp;quot; if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;12. No Surrender of Others&apos; Freedom.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;13. Use with the GNU Affero General Public License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;14. Revised Versions of this License.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License &amp;quot;or any later version&amp;quot; applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy&apos;s public statement of acceptance of a version permanently authorizes you to choose that version for the Program.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;15. Disclaimer of Warranty.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;16. Limitation of Liability.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="325"/>
@@ -177,7 +301,24 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>「pktiuk」(2020年8月から) この非常に便利なソフトウェアが放置されないようにしたいと思い、このプロジェクトのサポートを続け、できるだけ多くの人が使えるようにすることにしました。
+
+「juliagoda」(2018年3月から2020年まで) ゲームパッドに対応していないお気に入りの古いゲームを遊びたくて、最も適切で新しいプロジェクトとしてこのプロジェクト (Linux で接続したゲームパッドにキーボードのキーやマウスのボタンを割り当てるもの) を見つけました。しかし、この種のアプリケーションはインターネット上に選択肢が少なく、正しくコンパイルもできなかったため、プロジェクトを救うことにしました。作業を終えて (ゲームを楽しめる程度に)、このコードを他の人と共有しようと考えました。もちろん、過去の開発者に関する情報はすべて残しています。
+
+「Ryochan7」(2012年12月30日から2017年まで) 私は空き時間に AntiMicro の開発をしてきました。QJoyPad のフォークとして、またイベント駆動プログラミングを学ぶ手段として始めたものが、当初の想定よりもはるかに大きなものになりました。新しい技術の習得やキーボード/マウスのエミュレーションについての理解、そして金曜の夜にキーボードに頭を打ちつけることに多くの時間を費やしましたが、全体として楽しく実りある経験でした。
+
+このプログラムが必要になったのは、コントローラーにネイティブ対応していないゲームを遊ぶために、Windows で同様のプログラムを使っていたことがきっかけです。Linux にもいくつか代替手段はありましたが、キーボード/マウスのエミュレーションで遊びたいゲームを本当に楽しめるほど、機能やゲーム内の操作性が十分なものはないと感じていました。以前は主に QJoyPad を使っていましたが、かなり古くなっており、不可欠だと思う基本的な機能もいくつか欠けていました。プロジェクトは何年も更新されておらず終わっていたので、自分で作ることにしました。
+
+それ以来、他のプログラムの優れた点を見つけ、それを改善しようとしてきました。その過程でいくつかの便利な技も見つけ、一部のゲームでネイティブのゲームパッド操作がどのように実装されているかについて、知りたかった以上のことを学びました。このプログラムにはまだ改善できる点もありますが、コントローラーにネイティブ対応していない古いゲーム (と一部の新しいゲーム) を遊ぶうえで、最高のゲーム内操作体験を提供していると思います。
+
+このプログラムの開発は、私にとって以前ほど優先度の高いものではなくなりました。主な理由は、PC ゲームを遊ぶ用途では、Xbox 360 コントローラーと比べて Steam コントローラーがかなりうまく機能するからです。とはいえ、このプログラムにはまだしばらく存在する理由がありそうです。
+
+---
+
+2016年5月24日をもって、このプロジェクトは https://github.com/AntiMicro/antimicro に移転しました。
+また、Travis が他の関心事や優先事項を持つようになったため、プロジェクトの管理は Travis (Ryochan7) から AntiMicro 組織に移りました。
+その後、2018年からは juliagoda によって antimicroX プロジェクトとして継続されました。
+さらにその後、プロジェクトは再び https://github.com/AntiMicroX/antimicrox に移転し、pktiuk が作成した AntiMicroX 組織によってメンテナンスが続けられています。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
@@ -517,17 +658,17 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="315"/>
         <source>Delete a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットを削除します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="369"/>
         <source>Clear all currently assigned slots.</source>
-        <translation type="unfinished"></translation>
+        <translation>現在割り当てられているスロットをすべてクリアします。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="455"/>
         <source>Specify the duration of an inserted Pause or Hold slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>挿入する一時停止または保持スロットの長さを指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="486"/>
@@ -537,18 +678,18 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="570"/>
         <source>&amp;Mouse Speed Mod:</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス速度補正(&amp;M):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="625"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="644"/>
         <source>Specify the range past an axis dead zone in which a sequence of actions will execute.</source>
-        <translation type="unfinished"></translation>
+        <translation>アクションのシーケンスを実行する、軸のデッドゾーンを超えた範囲を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="628"/>
         <source>Distance: </source>
-        <translation type="unfinished"></translation>
+        <translation>距離: </translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="589"/>
@@ -559,22 +700,22 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="235"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス補正</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="245"/>
         <source>Press Time</source>
-        <translation type="unfinished"></translation>
+        <translation>押下時間</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="210"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>遅延</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="220"/>
         <source>Execute</source>
-        <translation type="unfinished"></translation>
+        <translation>実行</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="230"/>
@@ -584,27 +725,27 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="255"/>
         <source>Set Change</source>
-        <translation type="unfinished"></translation>
+        <translation>セット変更</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="260"/>
         <source>Text Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>テキスト入力</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="335"/>
         <source>Join</source>
-        <translation type="unfinished"></translation>
+        <translation>結合</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="352"/>
         <source>Split</source>
-        <translation type="unfinished"></translation>
+        <translation>分割</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="403"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>プレースホルダー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="510"/>
@@ -615,32 +756,32 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="586"/>
         <source>Set the percentage that mouse speeds will be modified by.</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス速度を変更する割合を設定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="683"/>
         <source>Auto Reset Cycle After</source>
-        <translation type="unfinished"></translation>
+        <translation>サイクルを自動リセットするまでの時間</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="715"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="757"/>
         <source>Executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>実行ファイル:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="767"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="778"/>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>引数:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="821"/>
@@ -652,32 +793,32 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="888"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>モード:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="898"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Normal: Repeatedly press and release a button by the chosen rate.&lt;/p&gt;&lt;p&gt;Gradient: Modify the button press and button release delay based on how far an axis has been moved. The rate will remain the same.&lt;/p&gt;&lt;p&gt;Pulse: Modify how many times a button is pressed and released per second. The button delay will remain the same.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ノーマル: 選択したレートでボタンの押下と解放を繰り返します。&lt;/p&gt;&lt;p&gt;グラデーション: 軸の移動量に応じてボタンの押下と解放の間隔を変更します。レートは変わりません。&lt;/p&gt;&lt;p&gt;パルス: 1秒あたりのボタンの押下と解放の回数を変更します。ボタンの間隔は変わりません。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="902"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>ノーマル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="907"/>
         <source>Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>グラデーション</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="912"/>
         <source>Pulse</source>
-        <translation type="unfinished"></translation>
+        <translation>パルス</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="966"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>遅延:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="991"/>
@@ -687,138 +828,138 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1061"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>レート:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1068"/>
         <source>10.0/s</source>
-        <translation type="unfinished"></translation>
+        <translation>10.0/秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1100"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1372"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>無効</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1105"/>
         <source>Select Set 1 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 1 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1110"/>
         <source>Select Set 1 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 1 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1115"/>
         <source>Select Set 1 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 1 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1120"/>
         <source>Select Set 2 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 2 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1125"/>
         <source>Select Set 2 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 2 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1130"/>
         <source>Select Set 2 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 2 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1135"/>
         <source>Select Set 3 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 3 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1140"/>
         <source>Select Set 3 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 3 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1145"/>
         <source>Select Set 3 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 3 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1150"/>
         <source>Select Set 4 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 4 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1155"/>
         <source>Select Set 4 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 4 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1160"/>
         <source>Select Set 4 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 4 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1165"/>
         <source>Select Set 5 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 5 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1170"/>
         <source>Select Set 5 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 5 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1175"/>
         <source>Select Set 5 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 5 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1180"/>
         <source>Select Set 6 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 6 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1185"/>
         <source>Select Set 6 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 6 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1190"/>
         <source>Select Set 6 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 6 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1195"/>
         <source>Select Set 7 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 7 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1200"/>
         <source>Select Set 7 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 7 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1205"/>
         <source>Select Set 7 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 7 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1210"/>
         <source>Select Set 8 One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 8 を選択 (一方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1215"/>
         <source>Select Set 8 Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 8 を選択 (双方向)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="1220"/>
         <source>Select Set 8 While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>セット 8 を選択 (押している間)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="140"/>
@@ -828,126 +969,126 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="302"/>
         <source>sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="303"/>
         <source>/sec.</source>
-        <translation type="unfinished"></translation>
+        <translation>/秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>Not checked slots</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットが未チェックです</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="381"/>
         <source>To delete slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットを削除するには、少なくとも1つ選択する必要があります</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="433"/>
         <source>To insert slots, you need to select at least one</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットを挿入するには、少なくとも1つ選択する必要があります</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Unknown current slot</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のスロットが不明です</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="535"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="637"/>
         <source>Click on chosen slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>結合する前に、対象のスロットをクリックしてください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="538"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="640"/>
         <source>Not enough slots</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットが不足しています</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="539"/>
         <source>It&apos;s impossible to join slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットを結合できません。他のスロットを少なくとも1つ追加してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="542"/>
         <source>Not selected slots</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットが選択されていません</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="543"/>
         <source>It&apos;s impossible to join slots. Select at least two slots before joining them</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットを結合できません。結合する前に少なくとも2つのスロットを選択してください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="546"/>
         <source>Only keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>キーボードスロットのみ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="547"/>
         <source>It&apos;s only possible to join simple and mix keyboard slots</source>
-        <translation type="unfinished"></translation>
+        <translation>結合できるのは、単純キーボードスロットと複合キーボードスロットのみです</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="641"/>
         <source>It&apos;s impossible to split slots. Add at least one other slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットを分割できません。他のスロットを少なくとも1つ追加してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Not selected slot</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットが選択されていません</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="644"/>
         <source>Select your slot before splitting.</source>
-        <translation type="unfinished"></translation>
+        <translation>分割する前にスロットを選択してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Too many mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>複合スロットが多すぎます</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="647"/>
         <source>Select one mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>複合スロットを1つ選択してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>Only mix slots</source>
-        <translation type="unfinished"></translation>
+        <translation>複合スロットのみ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="650"/>
         <source>It&apos;s only possible to split mix slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>分割できるのは複合スロットのみです。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1039"/>
         <source>Empty execution path</source>
-        <translation type="unfinished"></translation>
+        <translation>実行パスが空です</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1040"/>
         <source>Line for execution file path is empty. Fill the first line before you are going to add a slot.</source>
-        <translation type="unfinished"></translation>
+        <translation>実行ファイルのパスが空です。スロットを追加する前に1行目を入力してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1042"/>
         <source>File doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルが存在しません</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1043"/>
         <source>There is no such file locally, that could be executed. Check the file on your system</source>
-        <translation type="unfinished"></translation>
+        <translation>実行できるファイルがローカルに見つかりません。システム上のファイルを確認してください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
@@ -958,88 +1099,88 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1381"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1418"/>
         <source>Select Set %1</source>
-        <translation type="unfinished"></translation>
+        <translation>セット %1 を選択</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1390"/>
         <source>One Way</source>
-        <translation type="unfinished"></translation>
+        <translation>一方向</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1391"/>
         <source>Two Way</source>
-        <translation type="unfinished"></translation>
+        <translation>双方向</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1392"/>
         <source>While Held</source>
-        <translation type="unfinished"></translation>
+        <translation>押している間</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1543"/>
         <source>Choose Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>実行ファイルを選択</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1599"/>
         <source>Slots past a Cycle action will be executed on the next button press. Multiple cycles can be added in order to create partitions in a sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>サイクルアクション以降のスロットは、次にボタンを押したときに実行されます。複数のサイクルを追加して、シーケンスを区切ることができます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1605"/>
         <source>Delays the time that the next slot is activated by the time specified. Slots activated before the delay will remain active after the delay time has passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>次のスロットが有効になるまでの時間を、指定した時間だけ遅らせます。遅延の前に有効になったスロットは、遅延時間の経過後も有効なままです。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1612"/>
         <source>Distance action specifies that the slots afterwards will only be executed when an axis is moved a certain range past the designated dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>距離アクション以降のスロットは、軸が指定のデッドゾーンを一定範囲超えて動かされたときにのみ実行されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1622"/>
         <source>Insert a hold action. Slots after the action will only be executed if the button is held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>保持アクションを挿入します。このアクション以降のスロットは、指定した時間を超えてボタンが押されたときにのみ実行されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1627"/>
         <source>Chose a profile to load when this slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>このスロットが有効になったときに読み込むプロファイルを選択します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1631"/>
         <source>Mouse mod action will modify all mouse speed settings by a specified percentage while the action is being processed. This can be useful for slowing down the mouse while sniping.</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス補正アクションは、アクションの処理中にすべてのマウス速度設定を指定した割合で変更します。狙撃時にマウスを遅くしたい場合などに便利です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1642"/>
         <source>Specify the time that keys past this slot should be held down.</source>
-        <translation type="unfinished"></translation>
+        <translation>このスロット以降のキーを押し続ける時間を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1647"/>
         <source>Insert a release action. Slots after the action will only be executed after a button release if the button was held past the interval specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>解放アクションを挿入します。このアクション以降のスロットは、指定した時間を超えて押されたボタンが離されたときにのみ実行されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1653"/>
         <source>Change to selected set once slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットが有効になったら、選択したセットに切り替えます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1657"/>
         <source>Full string will be typed when a slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットが有効になると、文字列全体が入力されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1618"/>
         <source>Execute program when slot is activated.</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットが有効になったときにプログラムを実行します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="728"/>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1488"/>
         <source>Choose Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルを選択</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1488"/>
@@ -1052,7 +1193,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="20"/>
         <source>Stick/Pad Assignment</source>
-        <translation type="unfinished"></translation>
+        <translation>スティック/パッドの割り当て</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="41"/>
@@ -1067,7 +1208,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="85"/>
         <source>Note: This window is meant for backwards compatibility with profiles made before antimicro 2.0. Since version 2.0, use of the Game Controller Mapping window is preferred.</source>
-        <translation type="unfinished"></translation>
+        <translation>注意: このウィンドウは、antimicro 2.0 より前に作成されたプロファイルとの後方互換性のためのものです。バージョン 2.0 以降は、ゲームコントローラーのマッピングウィンドウの使用を推奨します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
@@ -1179,22 +1320,22 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="764"/>
         <source>Move stick 1 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>スティック 1 を X 軸方向に動かしてください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="780"/>
         <source>Move stick 1 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>スティック 1 を Y 軸方向に動かしてください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="814"/>
         <source>Move stick 2 along the X axis</source>
-        <translation type="unfinished"></translation>
+        <translation>スティック 2 を X 軸方向に動かしてください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="830"/>
         <source>Move stick 2 along the Y axis</source>
-        <translation type="unfinished"></translation>
+        <translation>スティック 2 を Y 軸方向に動かしてください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="869"/>
@@ -1202,7 +1343,7 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="991"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.cpp" line="1054"/>
         <source>Press a button or move an axis</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタンを押すか軸を動かしてください</translation>
     </message>
 </context>
 <context>
@@ -1216,61 +1357,61 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="635"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="636"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="87"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="637"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="92"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="638"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="97"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="639"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー: ↑ | ↓</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="102"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="640"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー: ← | →</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="107"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="641"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="112"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="642"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="643"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="122"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="644"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="127"/>
@@ -1278,29 +1419,30 @@ of the all default profile option.</source>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="654"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="660"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="176"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="277"/>
         <source>Set the value to use as the limit for an axis. Useful for a
 worn out analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>軸の上限として使用する値を設定します。
+摩耗したアナログスティックに便利です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="388"/>
         <source>Negative Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>マイナス側ハーフスロットル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="408"/>
         <source>Positive Half Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>プラス側ハーフスロットル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="416"/>
         <source>Haptic Trigger:</source>
-        <translation type="unfinished"></translation>
+        <translation>ハプティックトリガー:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="523"/>
@@ -1310,7 +1452,7 @@ worn out analog stick.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="533"/>
         <source>Specify the name of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>軸の名前を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="542"/>
@@ -1321,7 +1463,7 @@ worn out analog stick.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="206"/>
         <location filename="../../../src/gui/axiseditdialog.ui" line="261"/>
         <source>Set the value of the dead zone for an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>軸のデッドゾーンの値を設定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="52"/>
@@ -1331,12 +1473,12 @@ worn out analog stick.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="193"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>デッドゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="309"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>最大ゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="342"/>
@@ -1348,27 +1490,28 @@ worn out analog stick.</source>
         <location filename="../../../src/gui/axiseditdialog.ui" line="374"/>
         <source>Throttle setting that determines the behavior of how to
 interpret an axis hold or release.</source>
-        <translation type="unfinished"></translation>
+        <translation>軸を保持したとき、または離したときの
+解釈方法を決めるスロットル設定です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="393"/>
         <source>Negative Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>マイナス側スロットル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="398"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>ノーマル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="403"/>
         <source>Positive Throttle</source>
-        <translation type="unfinished"></translation>
+        <translation>プラス側スロットル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="477"/>
         <source>Current Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>現在の値:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="606"/>
@@ -1393,22 +1536,22 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="661"/>
         <source>Click</source>
-        <translation type="unfinished"></translation>
+        <translation>クリック</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
         <source>Rigid</source>
-        <translation type="unfinished"></translation>
+        <translation>固い</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
         <source>Rigid Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>固いグラデーション</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="664"/>
         <source>Vibration</source>
-        <translation type="unfinished"></translation>
+        <translation>振動</translation>
     </message>
 </context>
 <context>
@@ -1416,7 +1559,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="44"/>
@@ -1426,7 +1569,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="70"/>
         <source>Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>プレースホルダー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="99"/>
@@ -1436,12 +1579,12 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="96"/>
         <source>Enables a key press or release to only occur when a controller button is pressed.</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーのボタンが押されたときにのみ、キーの押下または解放が行われるようにします。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="124"/>
         <source>Enables rapid key presses and releases. Turbo controller.</source>
-        <translation type="unfinished"></translation>
+        <translation>キーの高速な押下と解放を有効にします。連射コントローラーです。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="127"/>
@@ -1451,22 +1594,22 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished"></translation>
+        <translation>このようなテンキーがコンピューターに接続されていない場合や、デスクトップPCのように内蔵されていない場合は動作しないことに注意してください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="153"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキーを追加</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="186"/>
         <source>Last keyboard/mouse button:</source>
-        <translation type="unfinished"></translation>
+        <translation>最後のキーボード/マウスボタン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="193"/>
         <source>Slots</source>
-        <translation type="unfinished"></translation>
+        <translation>スロット</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="223"/>
@@ -1476,7 +1619,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="233"/>
         <source>Specify the name of a button.</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタンの名前を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="250"/>
@@ -1487,7 +1630,8 @@ interpret an axis hold or release.</source>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="260"/>
         <source>Specify the action that will be performed in game while
 this button is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>このボタンを使用したときに
+ゲーム内で実行されるアクションを指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="287"/>
@@ -1498,12 +1642,12 @@ this button is being used.</source>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="62"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="509"/>
         <source>Choose your keyboard key</source>
-        <translation type="unfinished"></translation>
+        <translation>キーボードのキーを選択してください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="320"/>
         <source>No button</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタンなし</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="329"/>
@@ -1511,47 +1655,47 @@ this button is being used.</source>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="397"/>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="477"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>最後のボタン</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="330"/>
         <source>To change settings for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>最後のボタンの設定を変更するには、キーボードからゲームパッドへの割り当てが少なくとも1つ必要です</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="340"/>
         <source>To change settings of turbo for last button, it must be at least one assignment from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>最後のボタンの連射設定を変更するには、キーボードからゲームパッドへの割り当てが少なくとも1つ必要です</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="390"/>
         <source>No choice</source>
-        <translation type="unfinished"></translation>
+        <translation>選択なし</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="391"/>
         <source>Before you open window with advanced settings, you have to choose a key</source>
-        <translation type="unfinished"></translation>
+        <translation>詳細設定ウィンドウを開く前に、キーを選択する必要があります</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="398"/>
         <source>To open advanced dialog, it&apos;s needed to map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>詳細設定ダイアログを開くには、キーボードのボタンを少なくとも1つゲームパッドに割り当てる必要があります</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="478"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームパッドにキーボードのボタンが設定されていないため、ボタンのスロットをクリアできませんでした。キーボードのボタンを少なくとも1つゲームパッドに割り当ててください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="488"/>
         <source>As last gamepad button has been set</source>
-        <translation type="unfinished"></translation>
+        <translation>最後に設定されたゲームパッドのボタンとして</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.cpp" line="496"/>
         <source>Index %1</source>
-        <translation type="unfinished"></translation>
+        <translation>インデックス %1</translation>
     </message>
 </context>
 <context>
@@ -1559,22 +1703,22 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>フォーム</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="71"/>
         <source>Input to calibrate:</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーションする入力:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="94"/>
         <source>Steps</source>
-        <translation type="unfinished"></translation>
+        <translation>手順</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="113"/>
         <source>Z</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Z</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="120"/>
@@ -1584,7 +1728,7 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.ui" line="197"/>
         <location filename="../../../src/gui/calibration.ui" line="211"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>テキストラベル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
@@ -1596,14 +1740,14 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.ui" line="190"/>
         <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲイン</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="155"/>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation type="unfinished"></translation>
+        <translation>オフセット</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
@@ -1615,17 +1759,17 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.cpp" line="457"/>
         <location filename="../../../src/gui/calibration.cpp" line="585"/>
         <source>Start calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーションを開始</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="278"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>閉じる</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="238"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>設定をリセット</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="271"/>
@@ -1635,117 +1779,122 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーション</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>ジャイロスコープ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="74"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度センサー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="87"/>
         <source>Selected device doesn&apos;t have any inputs to calibrate.</source>
-        <translation type="unfinished"></translation>
+        <translation>選択したデバイスにはキャリブレーションできる入力がありません。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="108"/>
         <location filename="../../../src/gui/calibration.cpp" line="405"/>
         <source>Calibration was not saved for the preset. Do you really want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーションがプリセットに保存されていません。本当に続行しますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="125"/>
         <source>Do you really want to reset calibration of current device?</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のデバイスのキャリブレーションを本当にリセットしますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="277"/>
         <source>Accelerometer calibration sets the neutral controller orientation.</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度センサーのキャリブレーションでは、コントローラーの基準となる向きを設定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="282"/>
         <source>Gyroscope calibration corrects the sensor offset. This prevents cursor movement while the controller is at rest.</source>
-        <translation type="unfinished"></translation>
+        <translation>ジャイロスコープのキャリブレーションでは、センサーのオフセットを補正します。これにより、コントローラーを静止させているときのカーソルの移動を防ぎます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="456"/>
         <source>Calibration completed.</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーションが完了しました。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="526"/>
         <source>Offset calibration completed. Click &quot;Continue calibration&quot; to continue with gain calibration.</source>
-        <translation type="unfinished"></translation>
+        <translation>オフセットのキャリブレーションが完了しました。「キャリブレーションを続行」をクリックして、ゲインのキャリブレーションに進んでください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="636"/>
         <source>Hold the controller in the desired neutral position and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーを基準にしたい位置で保持し、続行を押してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="637"/>
         <source>Calibrating accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度センサーをキャリブレーション中</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="656"/>
         <source>Collecting accelerometer data...
 Please hold the controller still.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度センサーのデータを収集中...
+コントローラーを動かさないでください。
+最大 %1 秒かかる場合があります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="683"/>
         <source>Place the controller at rest, e.g. put it on the desk, and press continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーを机の上に置くなどして静止させ、続行を押してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="685"/>
         <source>Calibrating gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>ジャイロスコープをキャリブレーション中</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="704"/>
         <source>Collecting gyroscope data...
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>ジャイロスコープのデータを収集中...
+最大 %1 秒かかる場合があります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="734"/>
         <source>Now move the stick several times to the maximum in different direction and back to center.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>スティックをさまざまな方向に最大まで何回か倒し、中央に戻してください。
+最大 %1 秒かかる場合があります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="737"/>
         <source>Calibrating stick</source>
-        <translation type="unfinished"></translation>
+        <translation>スティックをキャリブレーション中</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="638"/>
         <location filename="../../../src/gui/calibration.cpp" line="686"/>
         <location filename="../../../src/gui/calibration.cpp" line="738"/>
         <source>Continue calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーションを続行</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="766"/>
         <source>Now move the stick in full circles for several times.
 This can take up to %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>スティックで何回か大きく円を描いてください。
+最大 %1 秒かかる場合があります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="627"/>
         <location filename="../../../src/gui/calibration.cpp" line="674"/>
         <location filename="../../../src/gui/calibration.cpp" line="722"/>
         <source>Calibration was saved for the preset. Do you really want to reset settings?</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーションはプリセットに保存されています。本当に設定をリセットしますか？</translation>
     </message>
 </context>
 <context>
@@ -1753,24 +1902,24 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャしたウィンドウのプロパティ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウの情報</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>クラス:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="55"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>テキストラベル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
@@ -1780,17 +1929,17 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>パス:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="105"/>
         <source>Match By Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>プロパティで照合</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="120"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>クラス</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="127"/>
@@ -1800,17 +1949,17 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="136"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>パス</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="147"/>
         <source>Full Path</source>
-        <translation type="unfinished"></translation>
+        <translation>フルパス</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="152"/>
         <source>File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル名</translation>
     </message>
 </context>
 <context>
@@ -1818,62 +1967,62 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (通常)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="53"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平反転)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="54"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="55"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平 + 垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="56"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="57"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="59"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="65"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>標準</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="67"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>8方向</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="69"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (上下左右)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="71"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (斜め)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="76"/>
@@ -1886,7 +2035,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="27"/>
@@ -1896,83 +2045,83 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="46"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (通常)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="51"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="56"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="61"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平 + 垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="66"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="71"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="81"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="93"/>
         <source>Dpad Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>十字キーモード:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="255"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名前(&amp;N):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="131"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (上下左右)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="136"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (斜め)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>十字キーの遅延:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="207"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>方向の変更が反映されるまでの時間です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="213"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="265"/>
         <source>Specify the name of a dpad.</source>
-        <translation type="unfinished"></translation>
+        <translation>十字キーの名前を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="274"/>
@@ -1982,7 +2131,7 @@ This can take up to %1 seconds.</source>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="121"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>標準</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="106"/>
@@ -1998,12 +2147,23 @@ the cardinal directions of the dpad. Useful for menus.
 
 4 Way Diagonal: 4 region dpad with each region corresponding
 to a diagonal zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>標準: 8つの領域を持つ十字キー。斜めの領域では
+2つの方向ボタンが同時に有効になります。
+
+8方向: 8つの領域を持つ十字キー。各方向に専用の
+ボタンがあり、一度に有効になるボタンは1つだけです。
+ローグライクゲームに便利です。
+
+4方向 (上下左右): 4つの領域を持つ十字キー。各領域は
+十字キーの上下左右に対応します。メニュー操作に便利です。
+
+4方向 (斜め): 4つの領域を持つ十字キー。各領域は
+斜めのゾーンに対応します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="126"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>8方向</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="454"/>
@@ -2021,7 +2181,7 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="14"/>
         <source>Default Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルトのプロファイル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="23"/>
@@ -2031,17 +2191,17 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.ui" line="38"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>参照</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.cpp" line="58"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>設定を開く</translation>
     </message>
     <message>
         <location filename="../../../src/gui/editalldefaultautoprofiledialog.cpp" line="85"/>
         <source>Profile file path is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルのパスが無効です。</translation>
     </message>
 </context>
 <context>
@@ -2049,17 +2209,17 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="20"/>
         <source>Extra Profile Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>追加のプロファイル設定</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="45"/>
         <source>Key Press Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>キー押下時間:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="70"/>
         <source>0.00 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>0.00 ミリ秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/extraprofilesettingsdialog.ui" line="84"/>
@@ -2097,12 +2257,12 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="20"/>
         <source>Game Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームコントローラーのマッピング</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox は、SDL 2 が提供する &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; を使用して、さまざまなゲームパッドを統一された規格に抽象化します。ボタンを割り当てるには、下の該当するボタン行のマッピングセルを選択してください。その後ゲームパッドのボタンを押すか軸を動かすと、使用される物理ボタンまたは軸でセルが更新されます。&lt;/p&gt;&lt;p&gt;antimicrox は指定されたマッピングを使用して、SDL に読み込まれるマッピング文字列を保存します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
@@ -2127,37 +2287,37 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Back</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
         <source>Left Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>左ショルダー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="177"/>
         <source>Right Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>右ショルダー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="182"/>
         <source>Left Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>左スティック押し込み</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="187"/>
         <source>Right Stick Click</source>
-        <translation type="unfinished"></translation>
+        <translation>右スティック押し込み</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="192"/>
@@ -2212,22 +2372,22 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="242"/>
         <source>Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>マッピング</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="256"/>
         <source>SDL 2 Game Controller Mapping String</source>
-        <translation type="unfinished"></translation>
+        <translation>SDL 2 ゲームコントローラーのマッピング文字列</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="307"/>
         <source>Last Axis Event:</source>
-        <translation type="unfinished"></translation>
+        <translation>最後の軸イベント:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="321"/>
         <source>Current Axis Detection Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>現在の軸検出デッドゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
@@ -2267,19 +2427,21 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
         <source>Game Controller Mapping (%1) (#%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームコントローラーのマッピング (%1) (#%2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="448"/>
         <source>Discard Controller Mapping?</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーのマッピングを破棄しますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="449"/>
         <source>Discard mapping for this controller?
 
 If discarded, the controller will be reverted to a joystick once you refresh all joysticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>このコントローラーのマッピングを破棄しますか？
+
+破棄すると、すべてのジョイスティックを更新したときに、コントローラーはジョイスティックに戻ります。</translation>
     </message>
 </context>
 <context>
@@ -2287,37 +2449,37 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Back</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
         <source>Guide</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="102"/>
         <source>LS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>左スティック押し込み</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="103"/>
         <source>RS Click</source>
-        <translation type="unfinished"></translation>
+        <translation>右スティック押し込み</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="104"/>
         <source>L Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>左ショルダー</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="105"/>
         <source>R Shoulder</source>
-        <translation type="unfinished"></translation>
+        <translation>右ショルダー</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="108"/>
@@ -2365,7 +2527,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
         <source>Shock</source>
-        <translation type="unfinished"></translation>
+        <translation>衝撃</translation>
     </message>
 </context>
 <context>
@@ -2373,7 +2535,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joyaccelerometersensor.cpp" line="63"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度センサー</translation>
     </message>
 </context>
 <context>
@@ -2391,12 +2553,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="66"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>マイナス</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="70"/>
         <source>Positive</source>
-        <translation type="unfinished"></translation>
+        <translation>プラス</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaxisbutton.cpp" line="74"/>
@@ -2416,58 +2578,58 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="67"/>
         <source>Mouse (Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="77"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="87"/>
         <source>Mouse (Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="97"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="107"/>
         <source>Arrows: Up | Down</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー: ↑ | ↓</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="117"/>
         <source>Arrows: Left | Right</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー: ← | →</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="127"/>
         <source>Keys: W | S</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: W | S</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="137"/>
         <source>Keys: A | D</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: A | D</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="147"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="157"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="166"/>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="394"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="177"/>
@@ -2491,17 +2653,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="250"/>
         <source>Processing turbo for #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>#%1 の連射を処理中 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="257"/>
         <source>Finishing turbo for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタン #%1 の連射を終了中 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="311"/>
         <source>Distance change for button #%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタン #%1 の距離を変更 - %2</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1608"/>
@@ -2522,17 +2684,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1709"/>
         <source>[Set %1 1W]</source>
-        <translation type="unfinished"></translation>
+        <translation>[セット %1 一方向]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1714"/>
         <source>[Set %1 2W]</source>
-        <translation type="unfinished"></translation>
+        <translation>[セット %1 双方向]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1721"/>
         <source>[Set %1 WH]</source>
-        <translation type="unfinished"></translation>
+        <translation>[セット %1 押している間]</translation>
     </message>
 </context>
 <context>
@@ -2550,17 +2712,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="54"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>クリア</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="60"/>
         <source>Set Select</source>
-        <translation type="unfinished"></translation>
+        <translation>セットを選択</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="61"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>無効</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="74"/>
@@ -2580,7 +2742,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="87"/>
         <source>Set %1 WH</source>
-        <translation type="unfinished"></translation>
+        <translation>セット %1 押している間</translation>
     </message>
 </context>
 <context>
@@ -2614,17 +2776,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="179"/>
         <source>LB</source>
-        <translation type="unfinished"></translation>
+        <translation>左</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="182"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>中</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="185"/>
         <source>RB</source>
-        <translation type="unfinished"></translation>
+        <translation>右</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="203"/>
@@ -2634,57 +2796,57 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="217"/>
         <source>Hold</source>
-        <translation type="unfinished"></translation>
+        <translation>保持</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="227"/>
         <source>Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>サイクル</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="231"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>距離</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="242"/>
         <source>Release</source>
-        <translation type="unfinished"></translation>
+        <translation>放す</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="253"/>
         <source>Mouse Mod</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス補正</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="263"/>
         <source>Press Time</source>
-        <translation type="unfinished"></translation>
+        <translation>押下時間</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="278"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>遅延</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="293"/>
         <source>Load %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 を読み込み</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="300"/>
         <source>Set Change %1</source>
-        <translation type="unfinished"></translation>
+        <translation>セット変更 %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="313"/>
         <source>[Text] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[テキスト] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="326"/>
         <source>[Exec] %1</source>
-        <translation type="unfinished"></translation>
+        <translation>[実行] %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="348"/>
@@ -2746,62 +2908,62 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="49"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (通常)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="58"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="67"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="76"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平 + 垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="85"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="94"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="103"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="112"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="125"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>標準</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="133"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>8方向</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="142"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (上下左右)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="151"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (斜め)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="162"/>
@@ -2814,7 +2976,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
@@ -2838,7 +3000,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="172"/>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>距離:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="274"/>
@@ -2848,47 +3010,47 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="293"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (通常)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="298"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="303"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="308"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平 + 垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="313"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="318"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="323"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="328"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="336"/>
         <source>Stick Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>スティックモード:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="349"/>
@@ -2904,51 +3066,62 @@ the cardinal directions of the stick. Useful for menus.
 
 4 Way Diagonal: 4 region stick with each region corresponding
 to a diagonal zone of the stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>標準: 8つの領域を持つスティック。斜めの領域では
+2つの方向ボタンが同時に有効になります。
+
+8方向: 8つの領域を持つスティック。各方向に専用の
+ボタンがあり、一度に有効になるボタンは1つだけです。
+ローグライクゲームに便利です。
+
+4方向 (上下左右): 4つの領域を持つスティック。各領域は
+スティックの上下左右に対応します。メニュー操作に便利です。
+
+4方向 (斜め): 4つの領域を持つスティック。各領域は
+スティックの斜めのゾーンに対応します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="374"/>
         <source>4 Way Cardinal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (上下左右)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="379"/>
         <source>4 Way Diagonal</source>
-        <translation type="unfinished"></translation>
+        <translation>4方向 (斜め)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="531"/>
         <source>Modifier Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>モディファイアゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="566"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="681"/>
         <source>Dead zone value to use for an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>アナログスティックに使用するデッドゾーンの値です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="605"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="659"/>
         <source>Value when an analog stick is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>アナログスティックが100%倒されたとみなす値です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="417"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="754"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished"></translation>
+        <translation>各斜め領域が占める範囲 (度) です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="467"/>
         <source>Square Stick:</source>
-        <translation type="unfinished"></translation>
+        <translation>四角形スティック:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished"></translation>
+        <translation>四角形スティックの座標を円の範囲に収めるために補正する割合</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
@@ -2958,23 +3131,23 @@ to a diagonal zone of the stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
         <source>Stick Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>スティックの遅延:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="433"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="538"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>方向の変更が反映されるまでの時間です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="544"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="410"/>
         <source>Modifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>モディファイア:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="517"/>
@@ -2983,12 +3156,16 @@ to a diagonal zone of the stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>スティックが有効な間に有効になるボタンを編集します。
+
+このボタンは、モディファイアキーでゾーンを割り当てて
+アナログスティックに歩く/走るの機能を
+割り当てるのに便利です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>プッシュボタン</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="630"/>
@@ -2998,7 +3175,11 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>モディファイアボタンが有効になるしきい値です。
+
+このボタンは、モディファイアキーでゾーンを割り当てて
+アナログスティックに歩く/走るの機能を
+割り当てるのに便利です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="770"/>
@@ -3007,12 +3188,16 @@ functionality to an analog stick.</source>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>スティックがしきい値の内側と外側のどちらにあるときにモディファイアボタンを有効にするかを指定します。
+
+このボタンは、モディファイアキーでゾーンを割り当てて
+アナログスティックに歩く/走るの機能を
+割り当てるのに便利です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="777"/>
         <source>Invert Modifier Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>モディファイアゾーンを反転</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
@@ -3023,7 +3208,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="827"/>
         <source>Specify the name of an analog stick.</source>
-        <translation type="unfinished"></translation>
+        <translation>アナログスティックの名前を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="836"/>
@@ -3033,37 +3218,37 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="364"/>
         <source>Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>標準</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="146"/>
         <source>Bearing:</source>
-        <translation type="unfinished"></translation>
+        <translation>方位:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="198"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>% セーフゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="369"/>
         <source>Eight Way</source>
-        <translation type="unfinished"></translation>
+        <translation>8方向</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="503"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>デッドゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="510"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>最大ゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="474"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished"></translation>
+        <translation>斜めの範囲:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="598"/>
@@ -3083,7 +3268,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="61"/>
         <source>Modifier</source>
-        <translation type="unfinished"></translation>
+        <translation>モディファイア</translation>
     </message>
 </context>
 <context>
@@ -3139,32 +3324,32 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="37"/>
         <source>Pitch Up</source>
-        <translation type="unfinished"></translation>
+        <translation>ピッチ上</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="41"/>
         <source>Pitch Down</source>
-        <translation type="unfinished"></translation>
+        <translation>ピッチ下</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="45"/>
         <source>Yaw Left</source>
-        <translation type="unfinished"></translation>
+        <translation>ヨー左</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="49"/>
         <source>Yaw Right</source>
-        <translation type="unfinished"></translation>
+        <translation>ヨー右</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="53"/>
         <source>Roll Left</source>
-        <translation type="unfinished"></translation>
+        <translation>ロール左</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joygyroscopebutton.cpp" line="57"/>
         <source>Roll Right</source>
-        <translation type="unfinished"></translation>
+        <translation>ロール右</translation>
     </message>
 </context>
 <context>
@@ -3172,7 +3357,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joygyroscopesensor.cpp" line="57"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>ジャイロスコープ</translation>
     </message>
 </context>
 <context>
@@ -3198,7 +3383,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3214,22 +3399,22 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
         <source>Acceleration (m/s^2):</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度 (m/s^2):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
         <source>Pitch (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>ピッチ (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
         <source>Roll (°):</source>
-        <translation type="unfinished"></translation>
+        <translation>ロール (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>% セーフゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
@@ -3239,61 +3424,61 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>デッドゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="394"/>
         <source>Dead zone value to use for an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>アナログセンサーに使用するデッドゾーンの値です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
         <source>Max Zone:</source>
-        <translation type="unfinished"></translation>
+        <translation>最大ゾーン:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="449"/>
         <source>Value when an analog sensor is considered moved 100%.</source>
-        <translation type="unfinished"></translation>
+        <translation>アナログセンサーが100%動かされたとみなす値です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished"></translation>
+        <translation>斜めの範囲:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="495"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished"></translation>
+        <translation>各斜め領域が占める範囲 (度) です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
         <source>Sensor Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>センサーの遅延:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="556"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>方向の変更が反映されるまでの時間です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished"></translation>
+        <translation>名前(&amp;M):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="616"/>
         <source>Specify the name of an analog sensor.</source>
-        <translation type="unfinished"></translation>
+        <translation>アナログセンサーの名前を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
@@ -3303,17 +3488,17 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
         <source>Roll (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>ロール (°/秒)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="79"/>
         <source>Pitch (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>ピッチ (°/秒)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="80"/>
         <source>Yaw (°/s)</source>
-        <translation type="unfinished"></translation>
+        <translation>ヨー (°/秒)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
@@ -3331,42 +3516,42 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="218"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (通常)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="227"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="230"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス (水平 + 垂直反転)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="233"/>
         <source>Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation>矢印キー</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="236"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished"></translation>
+        <translation>キー: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
         <source>NumPad</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキー</translation>
     </message>
 </context>
 <context>
@@ -3384,7 +3569,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="98"/>
         <source>Battery level of controller</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーのバッテリー残量</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="109"/>
@@ -3396,7 +3581,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="111"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1596"/>
         <source>Remove configuration from recent list.</source>
-        <translation type="unfinished"></translation>
+        <translation>最近使ったリストから設定を削除します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="116"/>
@@ -3408,7 +3593,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="118"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1599"/>
         <source>Load configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>設定ファイルを読み込みます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="124"/>
@@ -3420,7 +3605,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="126"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1602"/>
         <source>Save changes to configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>変更を設定ファイルに保存します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="131"/>
@@ -3432,7 +3617,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="133"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1605"/>
         <source>Save changes to a new configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>変更を新しい設定ファイルに保存します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="322"/>
@@ -3502,13 +3687,13 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1621"/>
         <source>Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>スティック/パッドの割り当て</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="435"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1620"/>
         <source>Controller Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーのマッピング</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="444"/>
@@ -3520,19 +3705,19 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="452"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1625"/>
         <source>Names</source>
-        <translation type="unfinished"></translation>
+        <translation>名前</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="454"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1626"/>
         <source>Toggle button name displaying.</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタン名の表示を切り替えます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="460"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1628"/>
         <source>Pref</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="462"/>
@@ -3551,12 +3736,12 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="468"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1632"/>
         <source>Revert changes to the configuration. Reload configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>設定の変更を元に戻し、設定ファイルを再読み込みします。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="532"/>
         <source>Open Config</source>
-        <translation type="unfinished"></translation>
+        <translation>設定を開く</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="532"/>
@@ -3573,25 +3758,25 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="729"/>
         <source>Do you really want to reset buttons settings for joystick?</source>
-        <translation type="unfinished"></translation>
+        <translation>ジョイスティックのボタン設定を本当にリセットしますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1650"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1711"/>
         <source>Save Profile Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルの変更を保存しますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1653"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1715"/>
         <source>Changes to the new profile have not been saved. Would you like to save or discard the current profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>新しいプロファイルの変更は保存されていません。現在のプロファイルを保存しますか、それとも破棄しますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1657"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1719"/>
         <source>Changes to the profile &quot;%1&quot; have not been saved. Would you like to save or discard changes to the current profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイル「%1」の変更は保存されていません。現在のプロファイルの変更を保存しますか、それとも破棄しますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1990"/>
@@ -3601,7 +3786,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2063"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>センサー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2128"/>
@@ -3613,7 +3798,8 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2333"/>
         <source>No buttons have been assigned. Please use Quick Set to assign keys
 to buttons or disable hiding empty buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタンが割り当てられていません。クイックセットを使用してボタンにキーを割り当てるか、
+空のボタンを隠す設定を無効にしてください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2504"/>
@@ -3630,19 +3816,19 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2539"/>
         <source>Copy Set Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>セットの割り当てをコピー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2540"/>
         <source>Are you sure you want to copy the assignments and device properties from %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 から割り当てとデバイスのプロパティをコピーしてもよろしいですか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="639"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="807"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="819"/>
         <source>Save Config</source>
-        <translation type="unfinished"></translation>
+        <translation>設定を保存</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1560"/>
@@ -3669,7 +3855,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="50"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>詳細</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="64"/>
@@ -3691,7 +3877,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="91"/>
         <source>Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>番号:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="118"/>
@@ -3706,17 +3892,17 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="172"/>
         <source>Hats:</source>
-        <translation type="unfinished"></translation>
+        <translation>ハット:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="199"/>
         <source>Sensors:</source>
-        <translation type="unfinished"></translation>
+        <translation>センサー:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="244"/>
         <source>Battery:</source>
-        <translation type="unfinished"></translation>
+        <translation>バッテリー:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="257"/>
@@ -3747,67 +3933,67 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="469"/>
         <source>Hats</source>
-        <translation type="unfinished"></translation>
+        <translation>ハット</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="490"/>
         <source>Sensors</source>
-        <translation type="unfinished"></translation>
+        <translation>センサー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="50"/>
         <source>%1 (#%2) Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (#%2) のプロパティ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="58"/>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>空</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="63"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>低</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="68"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>中</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="74"/>
         <source>Full</source>
-        <translation type="unfinished"></translation>
+        <translation>満充電</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="84"/>
         <source>Wired</source>
-        <translation type="unfinished"></translation>
+        <translation>有線</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="89"/>
         <source>Different: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>その他: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="101"/>
         <source>Accelerometer + Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度センサー + ジャイロスコープ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="103"/>
         <source>Accelerometer</source>
-        <translation type="unfinished"></translation>
+        <translation>加速度センサー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="105"/>
         <source>Gyroscope</source>
-        <translation type="unfinished"></translation>
+        <translation>ジャイロスコープ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="107"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="124"/>
@@ -3817,7 +4003,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="177"/>
         <source>Hat %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ハット %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="291"/>
@@ -3835,7 +4021,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="29"/>
         <source>Edit Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>設定の編集</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="70"/>
@@ -3845,7 +4031,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="75"/>
         <source>Controller Mappings</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーのマッピング</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="80"/>
@@ -3855,7 +4041,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="85"/>
         <source>Auto Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>自動プロファイル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="90"/>
@@ -3870,27 +4056,27 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="106"/>
         <source>Auto Profile functionality is incompatible with Wayland session &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;more info&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>自動プロファイル機能は Wayland セッションと互換性がありません &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/issues/303&quot;&gt;詳細&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="155"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Specify the default directory that the program should use in file dialogs when loading a profile or saving a new profile.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;プロファイルの読み込みや新しいプロファイルの保存時に、ファイルダイアログで使用するデフォルトのディレクトリを指定します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="182"/>
         <source>Recent Profile Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>最近使ったプロファイルの数:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="189"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of profiles that can be placed in recent profile list. 0 will result in the program not enforcing a limit on the number of profiles displayed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最近使ったプロファイルのリストに表示できるプロファイルの数です。0 にすると、表示されるプロファイルの数に制限がなくなります。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="225"/>
         <source>Gamepad Poll Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームパッドのポーリングレート:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="232"/>
@@ -3900,23 +4086,29 @@ events from gamepads. Defaults to 10 ms.
 Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
 before using AntiMicroX unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームパッドの新しいイベントを検出するために使用する
+ポーリングレートを変更します。デフォルトは 10 ミリ秒です。
+
+ポーリングレートの値を小さくすると、CPU 使用率が
+上がる可能性があります。AntiMicroX を放置して使う前に、
+設定をテストしてください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="246"/>
         <source>Hide main window when the main window close button is
 clicked instead of quitting the program.</source>
-        <translation type="unfinished"></translation>
+        <translation>メインウィンドウの閉じるボタンをクリックしたときに、
+プログラムを終了せずにメインウィンドウを隠します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="250"/>
         <source>Close To Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>閉じるとトレイに格納</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="257"/>
         <source>Have Windows start AntiMicroX at system startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>システム起動時に Windows で AntiMicroX を起動します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="260"/>
@@ -3928,19 +4120,23 @@ clicked instead of quitting the program.</source>
         <source>Display recent profiles for all controllers
 as a single list in the tray menu. Defaults
 to using sub-menus.</source>
-        <translation type="unfinished"></translation>
+        <translation>すべてのコントローラーの最近使ったプロファイルを
+トレイメニューに1つのリストとして表示します。
+デフォルトではサブメニューを使用します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="272"/>
         <source>Single Profile List in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>トレイにプロファイルを1つのリストで表示</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="279"/>
         <source>Have the program minimize to the taskbar.
 By default, the program minimizes to the system
 tray if available.</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムをタスクバーに最小化します。
+デフォルトでは、システムトレイが利用可能な場合は
+システムトレイに最小化します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="284"/>
@@ -3953,40 +4149,45 @@ tray if available.</source>
 buttons that have no slots assigned to them.
 The Quick Set dialog window will have to be used
 to bring up the edit dialog for gamepad buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation>このオプションを有効にすると、スロットが割り当てられて
+いないボタンがすべて非表示になります。ゲームパッドの
+ボタンの編集ダイアログを開くには、クイックセット
+ダイアログを使用する必要があります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="297"/>
         <source>Hide Empty Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>空のボタンを隠す</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="304"/>
         <source>When the program is launched, open the last
 known profile that was opened during the
 previous session.</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムの起動時に、前回のセッションで
+最後に開いていたプロファイルを開きます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="309"/>
         <source>Auto Load Last Opened Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>最後に開いたプロファイルを自動で読み込む</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="319"/>
         <source>Only show the system tray icon when the program
 first launches.</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムの初回起動時に
+システムトレイアイコンのみを表示します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="323"/>
         <source>Launch in Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>トレイで起動</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="330"/>
         <source>Associate .amgp files with AntiMicroX in Windows Explorer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows エクスプローラーで .amgp ファイルを AntiMicroX に関連付けます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="333"/>
@@ -3996,33 +4197,34 @@ first launches.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="343"/>
         <source>Remember, it won&apos;t work if you don&apos;t have such keypad connected to computer or if it&apos;s not embedded like in desktop PCs</source>
-        <translation type="unfinished"></translation>
+        <translation>このようなテンキーがコンピューターに接続されていない場合や、デスクトップPCのように内蔵されていない場合は動作しないことに注意してください</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="349"/>
         <source>Attach the numeric keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>テンキーを追加</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="356"/>
         <source>Show low battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>バッテリー残量低下の通知を表示</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="363"/>
         <source>Show empty battery notification</source>
-        <translation type="unfinished"></translation>
+        <translation>バッテリー切れの通知を表示</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="386"/>
         <source>Key Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>キーリピート</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="392"/>
         <source>Active keys will be repeatedly pressed when this
 option is enabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>このオプションを有効にすると、
+押されているキーが繰り返し入力されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="396"/>
@@ -4034,124 +4236,127 @@ option is enabled.</source>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="415"/>
         <source>Specifies how much time should elapse before key repeating
 begins.</source>
-        <translation type="unfinished"></translation>
+        <translation>キーリピートが始まるまでの
+時間を指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="480"/>
         <source>Specifies how many times key presses will be performed
 per seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>1秒あたりにキーを押す回数を
+指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="623"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX has been translated into many different languages by contributors. By default, the program will choose an appropriate translation based on your system&apos;s locale setting. However, you can make AntiMicroX load a different translation depending on the language that you choose from the list below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntiMicroX はコントリビューターによって多くの言語に翻訳されています。デフォルトでは、システムのロケール設定に基づいて適切な翻訳が選択されます。ただし、下のリストから言語を選択して、別の翻訳を読み込むこともできます。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="658"/>
         <source>Português do Brasil</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Português do Brasil</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="668"/>
         <source>Français</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Français</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="673"/>
         <source>Deutsch</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deutsch</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="678"/>
         <source>Italiano</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Italiano</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="683"/>
         <source>日本語</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">日本語</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="688"/>
         <source>Русский</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Русский</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="693"/>
         <source>српски / srpski</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">српски / srpski</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="698"/>
         <source>简体中文</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简体中文</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="703"/>
         <source>Español</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Español</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="708"/>
         <source>українська</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">українська</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="713"/>
         <source>Polski</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Polski</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
         <source>You can help with translating AntiMicroX. Just click here: &lt;a
                           href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;link&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX の翻訳に協力できます。こちらをクリックしてください: &lt;a
+                          href=&quot;https://hosted.weblate.org/projects/antimicrox/&quot;&gt;リンク&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="742"/>
         <source>Auto Profile functionality allows you to automatically switch active profile based on the active application window.</source>
-        <translation type="unfinished"></translation>
+        <translation>自動プロファイル機能を使うと、アクティブなアプリケーションウィンドウに応じてアクティブなプロファイルを自動的に切り替えられます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>
         <source>History Si&amp;ze:</source>
-        <translation type="unfinished"></translation>
+        <translation>履歴のサイズ(&amp;Z):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1022"/>
         <source>Weight Modi&amp;fier:</source>
-        <translation type="unfinished"></translation>
+        <translation>重み係数(&amp;F):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1302"/>
         <source>Log File:</source>
-        <translation type="unfinished"></translation>
+        <translation>ログファイル:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1321"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note Unspecified log file allows printing logs in console output&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;注意: ログファイルを指定しない場合、ログはコンソールに出力されます&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1358"/>
         <source>Log Level:</source>
-        <translation type="unfinished"></translation>
+        <translation>ログレベル:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1372"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>なし</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1377"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>エラー</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1382"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>警告</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1387"/>
@@ -4161,17 +4366,17 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1392"/>
         <source>Verbose</source>
-        <translation type="unfinished"></translation>
+        <translation>詳細</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1397"/>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>デバッグ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1453"/>
         <source>Note: To see the change of log level in console output (not in log file), application restart is required</source>
-        <translation type="unfinished"></translation>
+        <translation>注意: コンソール出力 (ログファイルではありません) でログレベルの変更を反映するには、アプリケーションの再起動が必要です</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1507"/>
@@ -4181,7 +4386,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="861"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>クラス</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="866"/>
@@ -4191,7 +4396,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="871"/>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラム</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="959"/>
@@ -4199,22 +4404,25 @@ per seconds.</source>
 while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within AntiMicroX to be more
 precise.</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX の実行中は、Windows の「ポインターの精度を高める」
+設定を無効にします。「ポインターの精度を高める」を無効にすると、
+AntiMicroX でのマウスの動きがより正確に
+なります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="965"/>
         <source>Disable Enhance Pointer Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>ポインターの精度を高める設定を無効化</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="975"/>
         <source>Smoothing</source>
-        <translation type="unfinished"></translation>
+        <translation>スムージング</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1055"/>
         <source>Refresh Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>リフレッシュレート:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1062"/>
@@ -4224,12 +4432,16 @@ editing this setting as it will cause the program to use
 more CPU power. Setting this value too low can cause
 system instability. Please test the setting before using
 it unattended.</source>
-        <translation type="unfinished"></translation>
+        <translation>リフレッシュレートは、マウスイベント間の経過時間です。
+この設定を変更すると CPU 使用率が上がるため、
+慎重に変更してください。値を小さくしすぎると
+システムが不安定になる可能性があります。放置して
+使う前に設定をテストしてください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1076"/>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリング</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1090"/>
@@ -4241,12 +4453,14 @@ it unattended.</source>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリングモードで指定した画面を使用します。Linux では
+デフォルトでプライマリ画面を、Windows ではデフォルトで
+利用可能なすべての画面を使用します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1134"/>
         <source>Accel Numerator:</source>
-        <translation type="unfinished"></translation>
+        <translation>加速の分子:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1147"/>
@@ -4258,12 +4472,12 @@ is to use all available screens.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1171"/>
         <source>Accel Denominator:</source>
-        <translation type="unfinished"></translation>
+        <translation>加速の分母:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1202"/>
         <source>Accel Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>加速のしきい値:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1246"/>
@@ -4271,44 +4485,49 @@ is to use all available screens.</source>
 changed by a different process, particularly when quitting
 an older game, then you might want to reset the acceleration
 values used by the virtual mouse.</source>
-        <translation type="unfinished"></translation>
+        <translation>仮想マウスの加速値が別のプロセスによって変更された場合
+(特に古いゲームを終了したときなど)、仮想マウスで
+使用する加速値をリセットすると
+よいでしょう。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1252"/>
         <source>Reset Acceleration</source>
-        <translation type="unfinished"></translation>
+        <translation>加速をリセット</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="405"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>遅延:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="145"/>
         <source>Pro&amp;file Directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルのディレクトリ(&amp;F):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="447"/>
         <source> ms</source>
-        <translation type="unfinished"></translation>
+        <translation> ミリ秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="470"/>
         <source>Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>レート:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="506"/>
         <source> times/s</source>
-        <translation type="unfinished"></translation>
+        <translation> 回/秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="537"/>
         <source>Below is a list of the custom mappings that have been saved. You can use the following table to delete mappings or have mappings temporarily disabled. You can also disable mappings that are included with SDL; just insert a new row with the appropriate joystick GUID and check disable.
 
 Settings will not take affect until you either refresh all joysticks or unplug that particular joystick.</source>
-        <translation type="unfinished"></translation>
+        <translation>保存されているカスタムマッピングの一覧です。この表を使って、マッピングを削除したり一時的に無効にしたりできます。SDL に含まれているマッピングを無効にすることもできます。該当するジョイスティックの GUID を持つ新しい行を挿入し、無効にチェックを入れてください。
+
+設定は、すべてのジョイスティックを更新するか、該当するジョイスティックを取り外すまで反映されません。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="574"/>
@@ -4318,12 +4537,12 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="579"/>
         <source>Mapping String</source>
-        <translation type="unfinished"></translation>
+        <translation>マッピング文字列</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="584"/>
         <source>Disable?</source>
-        <translation type="unfinished"></translation>
+        <translation>無効?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="604"/>
@@ -4346,7 +4565,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="754"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="846"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>有効</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="779"/>
@@ -4357,7 +4576,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="787"/>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1067"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>すべて</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="851"/>
@@ -4372,7 +4591,7 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="876"/>
         <source>Default?</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルト?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="594"/>
@@ -4388,44 +4607,46 @@ Settings will not take affect until you either refresh all joysticks or unplug t
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="120"/>
         <source>AutoProfile (disabled in Wayland)</source>
-        <translation type="unfinished"></translation>
+        <translation>自動プロファイル (Wayland では無効)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="253"/>
         <source>Also, Windows users who want to use a low value should also check the
 &quot;Disable Enhance Pointer Precision&quot; checkbox if you haven&apos;t disabled
 the option in Windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>また、小さい値を使いたい Windows ユーザーは、Windows でこのオプションを
+無効にしていない場合、「ポインターの精度を高める設定を無効化」
+チェックボックスもオンにしてください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="728"/>
         <source>Select Default Profile Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルトのプロファイルディレクトリを選択</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1474"/>
         <source>Are you sure you want to delete the profile?</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルを削除してもよろしいですか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1842"/>
         <source>Save Log File As</source>
-        <translation type="unfinished"></translation>
+        <translation>ログファイルを名前を付けて保存</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1842"/>
         <source>Log Files (*.log)</source>
-        <translation type="unfinished"></translation>
+        <translation>ログファイル (*.log)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1867"/>
         <source>Do you really want to reset setting?</source>
-        <translation type="unfinished"></translation>
+        <translation>設定を本当にリセットしますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1891"/>
         <source>Would you like to reset mappings too?</source>
-        <translation type="unfinished"></translation>
+        <translation>マッピングもリセットしますか？</translation>
     </message>
 </context>
 <context>
@@ -4445,17 +4666,17 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="167"/>
         <source>If events are not seen by a game, please click here to run this application as Administrator.</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームがイベントを認識しない場合は、ここをクリックしてこのアプリケーションを管理者として実行してください。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>ボタンを更新</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
         <source>&amp;App</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリ(&amp;A)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="224"/>
@@ -4465,7 +4686,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="235"/>
         <source>He&amp;lp</source>
-        <translation type="unfinished"></translation>
+        <translation>ヘルプ(&amp;L)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="254"/>
@@ -4514,92 +4735,92 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="305"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt について(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="308"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="317"/>
         <source>&amp;Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>プロパティ(&amp;P)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="320"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="329"/>
         <source>&amp;Key Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>キーチェッカー(&amp;K)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="332"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="349"/>
         <source>&amp;GitHub Page</source>
-        <translation type="unfinished"></translation>
+        <translation>GitHub ページ(&amp;G)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="352"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="361"/>
         <source>S&amp;ettings</source>
-        <translation type="unfinished"></translation>
+        <translation>設定(&amp;E)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="364"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="373"/>
         <source>&amp;Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>スティック/パッドの割り当て(&amp;S)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="376"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="385"/>
         <source>&amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiki(&amp;W)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="388"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="397"/>
         <source>&amp;Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>問題報告(&amp;I)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="400"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="409"/>
         <source>&amp;Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーション(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="412"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="337"/>
@@ -4621,75 +4842,78 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.cpp" line="582"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="586"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルを開く</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1402"/>
         <source>Run as Administrator?</source>
-        <translation type="unfinished"></translation>
+        <translation>管理者として実行しますか？</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1403"/>
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+        <translation>このプログラムを管理者として実行してもよろしいですか？
+
+一部のゲームは管理者として実行されます。その場合、antimicro も管理者として実行しない限り、antimicro が生成したイベントはそれらのゲームで使用されません。これは、Windows Vista 以降のユーザーアカウント制御 (UAC) のオプションによる権限の問題が原因です。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1424"/>
         <source>Failed to elevate program</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムの昇格に失敗しました</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1425"/>
         <source>Failed to restart this program as the Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>このプログラムを管理者として再起動できませんでした</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1698"/>
         <source>%1 battery</source>
-        <translation type="unfinished"></translation>
+        <translation>バッテリー %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1700"/>
         <source>Battery level is less than %1</source>
-        <translation type="unfinished"></translation>
+        <translation>バッテリー残量が %1 未満です</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1702"/>
         <source>Device number: %1
 Device name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>デバイス番号: %1
+デバイス名: %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1728"/>
         <source>Update to %1 available</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 へのアップデートがあります</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1851"/>
         <source>Reading old profile</source>
-        <translation type="unfinished"></translation>
+        <translation>古いプロファイルを読み込み中</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1852"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
-        <translation type="unfinished"></translation>
+        <translation>このプロファイルはコントローラーの GUID 番号を使用しています。同一のゲームコントローラーで使用できるように、このファイルの GUID 番号を UniqueID に変更しますか？このような古いファイルは、バージョン 2.25 以降の antimicrox では読み込めません</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="443"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>元に戻す(&amp;R)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1089"/>
         <source>Calibration couldn&apos;t be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>キャリブレーションを開けませんでした</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1090"/>
         <source>You must connect at least one controller to open the window</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウを開くには、少なくとも1つのコントローラーを接続する必要があります</translation>
     </message>
 </context>
 <context>
@@ -4697,7 +4921,7 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="259"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>マウスの設定 - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="272"/>
@@ -4710,7 +4934,7 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="250"/>
         <source>Mouse Settings - </source>
-        <translation type="unfinished"></translation>
+        <translation>マウスの設定 - </translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="255"/>
@@ -4781,7 +5005,14 @@ from the center of the screen depending on how
 much you move an axis. The mouse cursor will
 be returned to the center of the screen when the
 axis is moved back to the dead zone.</source>
-        <translation type="unfinished"></translation>
+        <translation>カーソルモードでは、軸の移動量やボタンの押下に
+応じて、マウスカーソルを現在の位置から
+相対的に画面上で移動させます。
+
+スプリングモードでは、軸の移動量に応じて
+マウスカーソルを画面の中央から移動させます。
+軸がデッドゾーンに戻ると、マウスカーソルは
+画面の中央に戻ります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="53"/>
@@ -4791,7 +5022,7 @@ axis is moved back to the dead zone.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="58"/>
         <source>Spring</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリング</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="76"/>
@@ -4801,59 +5032,60 @@ axis is moved back to the dead zone.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="109"/>
         <source>Enhanced Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>精度の向上</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="728"/>
         <source>Linear</source>
-        <translation type="unfinished"></translation>
+        <translation>リニア</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="119"/>
         <source>Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>二次</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="124"/>
         <source>Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>三次</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="129"/>
         <source>Quadratic Extreme</source>
-        <translation type="unfinished"></translation>
+        <translation>二次 (極端)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="134"/>
         <source>Power Function</source>
-        <translation type="unfinished"></translation>
+        <translation>べき関数</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="139"/>
         <source>Easing Quadratic</source>
-        <translation type="unfinished"></translation>
+        <translation>イージング (二次)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="144"/>
         <source>Easing Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>イージング (三次)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="177"/>
         <source>Mouse Speed Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>マウス速度の設定</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="192"/>
         <source>Enable to change the horizontal and vertical speed
 boxes at the same time.</source>
-        <translation type="unfinished"></translation>
+        <translation>有効にすると、水平と垂直の速度を
+同時に変更します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="196"/>
         <source>Change Together</source>
-        <translation type="unfinished"></translation>
+        <translation>同時に変更</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="516"/>
@@ -4863,52 +5095,61 @@ produce. Acceleration is added based on how quickly an axis is
 moved in one gamepad poll. This is meant to help work around
 some of the issues of the very limited input range available
 using typical gamepad analog sticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>加速カーブによる加速に加えて、マウスの動きに
+さらに加速を追加するオプションです。加速は、
+ゲームパッドの1回のポーリングで軸がどれだけ速く
+動かされたかに基づいて追加されます。一般的な
+ゲームパッドのアナログスティックの非常に限られた
+入力範囲による問題を回避するためのものです。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="524"/>
         <source>Delta Acceleration</source>
-        <translation type="unfinished"></translation>
+        <translation>デルタ加速</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="543"/>
         <source>&amp;Multiplier:</source>
-        <translation type="unfinished"></translation>
+        <translation>倍率(&amp;M):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="616"/>
         <source>Mi&amp;n
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>最小
+しきい値(&amp;N):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">1 = 20 pps</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
         <source>Wheel Hori.
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>ホイール
+水平速度:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="329"/>
         <source>Set the speed used for horizontal mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>1秒あたりのシミュレートするノッチ数で、
+マウスホイールの水平方向の速度を設定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="381"/>
         <source>Set the speed used for vertical mouse wheel movement
 according to number of simulated notches per second.</source>
-        <translation type="unfinished"></translation>
+        <translation>1秒あたりのシミュレートするノッチ数で、
+マウスホイールの垂直方向の速度を設定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="410"/>
         <source>Sensitivit&amp;y:</source>
-        <translation type="unfinished"></translation>
+        <translation>感度(&amp;Y):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="423"/>
@@ -4916,23 +5157,26 @@ according to number of simulated notches per second.</source>
 the factor to use for curve sensitivity. When the value
 is above 1.0, the mouse movement will be accelerated
 faster at the low end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>べき関数の加速カーブ用です。カーブの感度に
+使用する係数を指定します。値が 1.0 を超えると、
+軸の低い範囲でマウスの動きが
+より速く加速されます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="452"/>
         <source>Easing Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>イージングの時間:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="695"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="553"/>
         <source>Highest value to accelerate mouse movement by</source>
-        <translation type="unfinished"></translation>
+        <translation>マウスの動きを加速する最大値</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
@@ -4942,74 +5186,76 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="576"/>
         <source>Start %:</source>
-        <translation type="unfinished"></translation>
+        <translation>開始 %:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="586"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
-        <translation type="unfinished"></translation>
+        <translation>基本倍率のこの割合から加速が始まります</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="627"/>
         <source>Minimum amount of axis travel required for acceleration to begin</source>
-        <translation type="unfinished"></translation>
+        <translation>加速が始まるのに必要な軸の最小移動量</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="647"/>
         <source>Max
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>最大
+しきい値:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="658"/>
         <source>Maximum axis travel before acceleration has reached the multiplier value</source>
-        <translation type="unfinished"></translation>
+        <translation>加速が倍率の値に達するまでの軸の最大移動量</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="680"/>
         <source>E&amp;xtra Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>追加時間(&amp;X):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="715"/>
         <source>Curve:</source>
-        <translation type="unfinished"></translation>
+        <translation>カーブ:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="733"/>
         <source>Ease Out Sine</source>
-        <translation type="unfinished"></translation>
+        <translation>イーズアウト (サイン)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="738"/>
         <source>Ease Out Quad</source>
-        <translation type="unfinished"></translation>
+        <translation>イーズアウト (二次)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="743"/>
         <source>Ease Out Cubic</source>
-        <translation type="unfinished"></translation>
+        <translation>イーズアウト (三次)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="831"/>
         <source>Release Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>解放半径:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="864"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリング領域を、相対でないスプリングによって
+設定されたマウス位置に対する相対位置にします。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="868"/>
         <source>Relative</source>
-        <translation type="unfinished"></translation>
+        <translation>相対</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="891"/>
         <source>Mouse Status</source>
-        <translation type="unfinished"></translation>
+        <translation>マウスの状態</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
@@ -5020,7 +5266,7 @@ mouse position set by a non-relative spring.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">0 (0 pps)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
@@ -5053,32 +5299,54 @@ Easing Quadratic: Axis high end is gradually accelerated over a period of time u
 
 Easing Cubic: Axis high end is gradually accelerated over
 a period of time using a Cubic curve.</source>
-        <translation type="unfinished"></translation>
+        <translation>精度の向上: 軸の低い範囲ではマウスをゆっくり、
+高い範囲では速く動かす3段階のカーブです。
+
+リニア: 軸に比例してマウスが動きます。
+
+二次: 低い範囲ではマウスがゆっくり加速します。
+
+三次: 二次よりもさらにゆっくり加速します。
+
+二次 (極端): 軸の移動量が 95% に達すると
+マウスの速度が 1.5 倍になります。
+
+べき関数: よりカスタマイズしたカーブを設定できます。
+
+イージング (二次): 二次カーブを使用して、軸の高い範囲を一定時間かけて徐々に加速します。
+
+イージング (三次): 三次カーブを使用して、軸の高い範囲を
+一定時間かけて徐々に加速します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="221"/>
         <source>Hori&amp;zontal
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>水平
+速度(&amp;Z):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="266"/>
         <source>&amp;Vertical
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>垂直
+速度(&amp;V):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
         <source>Wheel Vert.
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>ホイール
+垂直速度:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="465"/>
         <source>Specifies the amount of time (in seconds) that will
 be required before the mouse is fully accelerated
 after reaching the high end of an axis.</source>
-        <translation type="unfinished"></translation>
+        <translation>軸の高い範囲に達してから、マウスが完全に
+加速されるまでに必要な時間 (秒) を
+指定します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="589"/>
@@ -5093,36 +5361,42 @@ after reaching the high end of an axis.</source>
         <source>Extend the time that extra acceleration is applied. Axis travel
 will be taken into account. A slower flick will decrease the
 actual time that extra acceleration will be applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>追加の加速が適用される時間を延長します。軸の移動量が
+考慮されます。ゆっくり弾くと、追加の加速が実際に
+適用される時間は短くなります。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="763"/>
         <source>Spring Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリングの設定</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="773"/>
         <source>Spring Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリングの幅:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="786"/>
         <source>Changes the width of the region that the cursor
 can move in spring mode. 0 will use the entire width
 of your screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリングモードでカーソルが移動できる領域の
+幅を変更します。0 にすると画面の幅全体を
+使用します。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="802"/>
         <source>Spring Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリングの高さ:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="815"/>
         <source>Changes the height of the region that the cursor
 can move in spring mode. 0 will use the entire height
 of your screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリングモードでカーソルが移動できる領域の
+高さを変更します。0 にすると画面の高さ全体を
+使用します。</translation>
     </message>
     <message numerus="yes">
         <location filename="../../../src/gui/mousesettingsdialog.cpp" line="191"/>
@@ -5143,7 +5417,7 @@ of your screen.</source>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="41"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a key on your keyboard to see how the key is detected by this application. The window will show the system native key value, the original value given by Qt (if applicable), and the custom value used by AntiMicroX.&lt;/p&gt;&lt;p&gt;The AntiMicroX key value and the Qt key value will usually be the same. AntiMicroX tries to use the key values defined in Qt when possible. Check the page &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; for a list of values defined by Qt. If you discover that a key is not natively supported by this program, please report the problem to AntiMicroX&apos;s &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub page&lt;/span&gt;&lt;/a&gt; so that the program can be edited to support it directly. As it is, a custom prefix is added to unknown values so they can still be used; the main problem is that the profile will no longer be portable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;キーボードのキーを押すと、このアプリケーションがそのキーをどのように検出するかを確認できます。ウィンドウには、システムのネイティブキー値、Qt が提供する元の値 (該当する場合)、AntiMicroX が使用する独自の値が表示されます。&lt;/p&gt;&lt;p&gt;AntiMicroX のキー値と Qt のキー値は通常同じです。AntiMicroX は可能な限り Qt で定義されたキー値を使用します。Qt で定義された値の一覧は &lt;a href=&quot;http://doc.qt.io/qt-5/qt.html#Key-enum&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://doc.qt.io/qt-5/qt.html#Key-enum&lt;/span&gt;&lt;/a&gt; を参照してください。このプログラムでネイティブにサポートされていないキーを見つけた場合は、直接サポートできるよう AntiMicroX の &lt;a href=&quot;https://github.com/AntiMicroX/antimicrox/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;GitHub ページ&lt;/span&gt;&lt;/a&gt; に問題を報告してください。現状では、不明な値には独自のプレフィックスが付けられるため使用は可能ですが、プロファイルの移植性がなくなるという問題があります。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="99"/>
@@ -5170,7 +5444,7 @@ of your screen.</source>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="158"/>
         <source>antimicro Key Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicroX キー値:</translation>
     </message>
 </context>
 <context>
@@ -5178,37 +5452,37 @@ of your screen.</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="141"/>
         <source>Super</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Super</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="142"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>メニュー</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="143"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>ミュート</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="144"/>
         <source>Vol+</source>
-        <translation type="unfinished"></translation>
+        <translation>音量+</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="145"/>
         <source>Vol-</source>
-        <translation type="unfinished"></translation>
+        <translation>音量-</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="146"/>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>再生/一時停止</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="147"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>再生</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="148"/>
@@ -5218,17 +5492,17 @@ of your screen.</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="149"/>
         <source>Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>前へ</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="150"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>次へ</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="151"/>
         <source>Mail</source>
-        <translation type="unfinished"></translation>
+        <translation>メール</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="152"/>
@@ -5250,7 +5524,9 @@ of your screen.</source>
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>元の設定 (以前は %1 に保存されていました) を次の場所にコピーしました:
+%2
+ 元のディレクトリは削除しても、そのまま残しても構いません。</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="209"/>
@@ -5260,27 +5536,32 @@ Original configs are stored in
  but their new location is: 
 %2
 You can migrate manually by renaming old directory and renaming file to antimicrox_settings.ini.</source>
-        <translation type="unfinished"></translation>
+        <translation>設定の移行中に問題が発生しました。
+元の設定は次の場所に保存されています: 
+%1
+ 新しい場所は次のとおりです: 
+%2
+古いディレクトリの名前を変更し、ファイル名を antimicrox_settings.ini に変更すると、手動で移行できます。</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="603"/>
         <source>Quitting Program</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムを終了しています</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="108"/>
         <source># of joysticks found: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>見つかったジョイスティックの数: %1</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="110"/>
         <source>List Joysticks:</source>
-        <translation type="unfinished"></translation>
+        <translation>ジョイスティックの一覧:</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>---------------</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">---------------</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="118"/>
@@ -5290,94 +5571,95 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/main.cpp" line="499"/>
         <source>Attempting to use fallback option %1 for event generation.</source>
-        <translation type="unfinished"></translation>
+        <translation>イベント生成にフォールバックオプション %1 を使用しようとしています。</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="525"/>
         <source>Failed to open event generator. Exiting.</source>
-        <translation type="unfinished"></translation>
+        <translation>イベントジェネレーターを開けませんでした。終了します。</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="551"/>
         <source>Using %1 as the event generator.</source>
-        <translation type="unfinished"></translation>
+        <translation>イベントジェネレーターとして %1 を使用します。</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="953"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>最後のボタン</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="954"/>
         <source>There isn&apos;t a last button pressed from gamepad in data. Did you set at least one button from gamepad for keyboard?</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームパッドで最後に押されたボタンのデータがありません。ゲームパッドのボタンを少なくとも1つキーボードに割り当てましたか？</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="225"/>
         <source>Specified contradicting flags: --show and --hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>矛盾するフラグが指定されました: --show と --hidden</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="235"/>
         <source>Profile location %1 is not an XML file.</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルの場所 %1 は XML ファイルではありません。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="246"/>
         <source>Profile location %1 does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルの場所 %1 は存在しません。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="273"/>
         <location filename="../../../src/commandlineutility.cpp" line="312"/>
         <source>Controller identifier is not a valid value.</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーの識別子が有効な値ではありません。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="342"/>
         <source>An invalid set number &apos;%1&apos; was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>無効なセット番号「%1」が指定されました。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="364"/>
         <source>Controller identifier &apos;%s&apos; is not a valid value.</source>
-        <translation type="unfinished"></translation>
+        <translation>コントローラーの識別子「%s」は有効な値ではありません。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="369"/>
         <source>No set number was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>セット番号が指定されていません。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="180"/>
         <source>An invalid event generator was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>無効なイベントジェネレーターが指定されました。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="186"/>
         <source>No event generator string was specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>イベントジェネレーターの文字列が指定されていません。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="207"/>
         <source>Unknown log level: </source>
-        <translation type="unfinished"></translation>
+        <translation>不明なログレベル:</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="218"/>
         <source>No log file specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>ログファイルが指定されていません。</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="712"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished"></translation>
+        <translation>xinput のバージョンは 2.0 以上である必要があります。マウスの加速は変更されません。</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="483"/>
         <source>Unable to open uinput files, this may cause problems with generating events.
 To check possible solutions please visit: </source>
-        <translation type="unfinished"></translation>
+        <translation>uinput ファイルを開けません。イベントの生成に問題が発生する可能性があります。
+考えられる解決策については、次を参照してください:</translation>
     </message>
 </context>
 <context>
@@ -5390,7 +5672,7 @@ To check possible solutions please visit: </source>
     <message>
         <location filename="../../../src/gui/quicksetdialog.ui" line="23"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please press a button or move an axis on %1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;).&lt;br/&gt;A dialog window will then appear which will&lt;br/&gt;allow you to make an assignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;%1 (&lt;span style=&quot; font-weight:600;&quot;&gt;%2&lt;/span&gt;) のボタンを押すか軸を動かしてください。&lt;br/&gt;その後ダイアログウィンドウが表示され、&lt;br/&gt;割り当てを行うことができます。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/quicksetdialog.cpp" line="48"/>
@@ -5404,14 +5686,16 @@ To check possible solutions please visit: </source>
     <message>
         <location filename="../../../src/gui/setaxisthrottledialog.ui" line="14"/>
         <source>Throttle Change</source>
-        <translation type="unfinished"></translation>
+        <translation>スロットルの変更</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setaxisthrottledialog.ui" line="20"/>
         <source>The throttle setting for Axis %1 has been changed.
 
 Would you like to distribute this throttle change to all sets?</source>
-        <translation type="unfinished"></translation>
+        <translation>軸 %1 のスロットル設定が変更されました。
+
+このスロットルの変更をすべてのセットに適用しますか？</translation>
     </message>
 </context>
 <context>
@@ -5432,7 +5716,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="14"/>
         <source>Set Name Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>セット名の設定</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="60"/>
@@ -5477,7 +5761,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="100"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名前</translation>
     </message>
 </context>
 <context>
@@ -5493,7 +5777,7 @@ Would you like to distribute this throttle change to all sets?</source>
     <message>
         <location filename="../../../src/mousedialog/springmoderegionpreview.cpp" line="42"/>
         <source>Spring Mode Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>スプリングモードのプレビュー</translation>
     </message>
 </context>
 <context>
@@ -5503,18 +5787,21 @@ Would you like to distribute this throttle change to all sets?</source>
         <source>Could not find a valid uinput device file.
 Please check that you have the uinput module loaded.
 lsmod | grep uinput</source>
-        <translation type="unfinished"></translation>
+        <translation>有効な uinput デバイスファイルが見つかりませんでした。
+uinput モジュールが読み込まれているか確認してください。
+lsmod | grep uinput</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="314"/>
         <source>Could not open uinput device file
 Please check that you have permission to write to the device</source>
-        <translation type="unfinished"></translation>
+        <translation>uinput デバイスファイルを開けませんでした
+デバイスへの書き込み権限があるか確認してください</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="495"/>
         <source>Using uinput device file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>uinput デバイスファイル %1 を使用します</translation>
     </message>
 </context>
 <context>
@@ -5888,7 +6175,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="248"/>
         <source>Shift_L</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Shift_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="249"/>
@@ -5910,18 +6197,18 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="252"/>
         <source>Ctrl_L</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="253"/>
         <location filename="../../../src/uinputhelper.cpp" line="294"/>
         <source>Super_L</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Super_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="254"/>
         <source>Alt_L</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alt_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="255"/>
@@ -5931,22 +6218,22 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="256"/>
         <source>Alt_R</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alt_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="257"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>メニュー</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="258"/>
         <source>Ctrl_R</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ctrl_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="259"/>
         <source>Shift_R</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Shift_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
@@ -5976,7 +6263,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="266"/>
         <source>Ins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ins</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="267"/>
@@ -6021,62 +6308,62 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="278"/>
         <source>KP_Enter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="280"/>
         <source>KP_1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="281"/>
         <source>KP_2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="282"/>
         <source>KP_3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="283"/>
         <source>KP_4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="284"/>
         <source>KP_5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="285"/>
         <source>KP_6</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="286"/>
         <source>KP_7</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="287"/>
         <source>KP_8</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="288"/>
         <source>KP_9</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="289"/>
         <source>KP_0</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="291"/>
         <source>SCLK</source>
-        <translation type="unfinished"></translation>
+        <translation>ScrLk</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="292"/>
@@ -6086,42 +6373,42 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="295"/>
         <source>Super_R</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Super_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="296"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>ミュート</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="297"/>
         <source>VolDn</source>
-        <translation type="unfinished"></translation>
+        <translation>音量-</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="298"/>
         <source>VolUp</source>
-        <translation type="unfinished"></translation>
+        <translation>音量+</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="299"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>再生</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="300"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>停止</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="301"/>
         <source>Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>前へ</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="302"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>次へ</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="327"/>
@@ -6134,24 +6421,24 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="14"/>
         <source>Captured Window Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャしたウィンドウのプロパティ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="29"/>
         <source>Information About Window</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウの情報</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="43"/>
         <source>Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>クラス:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="55"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>テキストラベル</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="62"/>
@@ -6161,17 +6448,17 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="81"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>パス:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="106"/>
         <source>Match By Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>プロパティで照合</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="121"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>クラス</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="128"/>
@@ -6181,7 +6468,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="135"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>パス</translation>
     </message>
 </context>
 <context>
@@ -6191,7 +6478,7 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation type="unfinished"></translation>
+        <translation>仮想十字キー</translation>
     </message>
 </context>
 <context>
@@ -6240,7 +6527,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="133"/>
         <source>Alt Gr</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
@@ -6313,37 +6600,37 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="148"/>
         <source>ESC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ESC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="149"/>
         <source>PRTSC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">PRTSC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="150"/>
         <source>SCLK</source>
-        <translation type="unfinished"></translation>
+        <translation>ScrLk</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="151"/>
         <source>INS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">INS</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="152"/>
         <source>PGUP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">PGUP</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="153"/>
         <source>DEL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DEL</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="154"/>
         <source>PGDN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">PGDN</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
@@ -6399,7 +6686,8 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
         <source>NUM
 LK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">NUM
+LK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="167"/>
@@ -6435,12 +6723,12 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>
         <source>Super (L)</source>
-        <translation type="unfinished"></translation>
+        <translation>Super (左)</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="177"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>メニュー</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="178"/>
@@ -6516,25 +6804,25 @@ LK</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="533"/>
         <source>Wheel Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>ホイール上</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="537"/>
         <source>Wheel Left</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>ホイール左</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="541"/>
         <source>Wheel Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>ホイール右</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="545"/>
         <source>Wheel Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished"></translation>
+        <translation>ホイール下</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="554"/>
@@ -6586,18 +6874,18 @@ LK</source>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="906"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="926"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>最後のボタン</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="907"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="927"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲームパッドにキーボードのボタンが設定されていないため、ボタンのスロットをクリアできませんでした。キーボードのボタンを少なくとも1つゲームパッドに割り当ててください</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="988"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>その他</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1002"/>
@@ -6637,12 +6925,12 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1038"/>
         <source>Browser Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザ: 停止</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1043"/>
         <source>Calc</source>
-        <translation type="unfinished"></translation>
+        <translation>電卓</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1048"/>
@@ -6760,7 +7048,7 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualmousepushbutton.cpp" line="54"/>
         <source>INVALID</source>
-        <translation type="unfinished"></translation>
+        <translation>無効</translation>
     </message>
 </context>
 <context>
@@ -6769,12 +7057,12 @@ LK</source>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="14"/>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="79"/>
         <source>Capture Application</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーションをキャプチャ</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="23"/>
         <source>After pressing the &quot;Capture Application&quot; button, please select the application window that you want to have a profile associated with. The active application will be captured after the selected number of seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>「アプリケーションをキャプチャ」ボタンを押した後、プロファイルを関連付けたいアプリケーションのウィンドウを選択してください。指定した秒数が経過すると、アクティブなアプリケーションがキャプチャされます。</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="38"/>
@@ -6802,7 +7090,7 @@ LK</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="303"/>
         <source>AntiMicro Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>AntiMicro プロファイル</translation>
     </message>
 </context>
 <context>
@@ -6810,7 +7098,7 @@ LK</source>
     <message>
         <location filename="../../../src/x11extras.cpp" line="159"/>
         <source>ESC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ESC</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="160"/>
@@ -6825,17 +7113,17 @@ LK</source>
     <message>
         <location filename="../../../src/x11extras.cpp" line="162"/>
         <source>DEL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DEL</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="163"/>
         <source>Return</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Return</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="164"/>
         <source>KP_Enter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="165"/>
@@ -6845,27 +7133,27 @@ LK</source>
     <message>
         <location filename="../../../src/x11extras.cpp" line="166"/>
         <source>Alt Gr</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="622"/>
         <source>xinput extension was not found. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished"></translation>
+        <translation>xinput 拡張機能が見つかりませんでした。マウスの加速は変更されません。</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="629"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished"></translation>
+        <translation>xinput のバージョンは 2.0 以上である必要があります。マウスの加速は変更されません。</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="660"/>
         <source>PtrFeedbackClass was not found for virtual pointer.No change to mouse acceleration will occur for device with id=%1</source>
-        <translation type="unfinished"></translation>
+        <translation>仮想ポインターの PtrFeedbackClass が見つかりませんでした。id=%1 のデバイスのマウスの加速は変更されません</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="667"/>
         <source>Changing mouse acceleration for device with id=%1</source>
-        <translation type="unfinished"></translation>
+        <translation>id=%1 のデバイスのマウスの加速を変更しています</translation>
     </message>
 </context>
 <context>
@@ -6873,7 +7161,7 @@ LK</source>
     <message>
         <location filename="../../../src/xmlconfigreader.cpp" line="140"/>
         <source>Could not write updated profile XML to file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>更新したプロファイルの XML をファイル %1 に書き込めませんでした。</translation>
     </message>
 </context>
 <context>
@@ -6881,7 +7169,7 @@ LK</source>
     <message>
         <location filename="../../../src/xmlconfigwriter.cpp" line="74"/>
         <source>Could not write to profile at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 のプロファイルに書き込めませんでした。</translation>
     </message>
 </context>
 <context>
@@ -6889,7 +7177,7 @@ LK</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="57"/>
         <source>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</source>
-        <translation type="unfinished"></translation>
+        <translation>キーボードのボタンやマウス操作をゲームパッドに割り当てるためのグラフィカルなプログラムです。ゲームパッドに対応していないゲームを遊ぶのに便利です。</translation>
     </message>
 </context>
 <context>
@@ -6897,92 +7185,92 @@ LK</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="65"/>
         <source>Launch program in system tray only.</source>
-        <translation type="unfinished"></translation>
+        <translation>システムトレイのみでプログラムを起動します。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="67"/>
         <source>Launch program with the tray menu disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>トレイメニューを無効にしてプログラムを起動します</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="69"/>
         <source>Launch program without the main window displayed</source>
-        <translation type="unfinished"></translation>
+        <translation>メインウィンドウを表示せずにプログラムを起動します</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="70"/>
         <source>Show app window when hidden. (Used for unhiding window of already running app instance).</source>
-        <translation type="unfinished"></translation>
+        <translation>隠れているアプリのウィンドウを表示します。(すでに実行中のアプリのウィンドウを再表示するために使用します。)</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="73"/>
         <source>Launch program with the configuration file selected as the default for selected controllers, or change active profile of running app. Defaults to all controllers</source>
-        <translation type="unfinished"></translation>
+        <translation>選択した設定ファイルを、選択したコントローラーのデフォルトにしてプログラムを起動するか、実行中のアプリのアクティブなプロファイルを変更します。デフォルトはすべてのコントローラーです</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="76"/>
         <source>location</source>
-        <translation type="unfinished"></translation>
+        <translation>場所</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="78"/>
         <source>Apply configuration file to a specific controller. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>設定ファイルを特定のコントローラーに適用します。値にはコントローラーのインデックス、名前、または GUID を指定できます</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="80"/>
         <source>value</source>
-        <translation type="unfinished"></translation>
+        <translation>値</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="81"/>
         <source>Unload currently enabled profile(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>現在有効なプロファイルを解除します</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="82"/>
         <source>value(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>値</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="84"/>
         <source>Start joysticks on a specific set. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>ジョイスティックを特定のセットで開始します。値にはコントローラーのインデックス、名前、または GUID を指定できます</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="86"/>
         <source>number value</source>
-        <translation type="unfinished"></translation>
+        <translation>数値</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="88"/>
         <source>Enable logging. Levels (from the least strict): warn,info,verbose,debug</source>
-        <translation type="unfinished"></translation>
+        <translation>ログを有効にします。レベル (詳細度の低い順): warn,info,verbose,debug</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="89"/>
         <source>log-type</source>
-        <translation type="unfinished"></translation>
+        <translation>ログの種類</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="90"/>
         <source>Choose a file for logs writing</source>
-        <translation type="unfinished"></translation>
+        <translation>ログを書き込むファイルを選択します</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="91"/>
         <source>filename</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル名</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="93"/>
         <source>Choose between using XTest support and uinput support for event generation. Use only if you have enabled xtest and uinput options on Linux or vmulti on Windows. Default: xtest.</source>
-        <translation type="unfinished"></translation>
+        <translation>イベント生成に XTest と uinput のどちらを使用するかを選択します。Linux で xtest と uinput のオプションを、Windows で vmulti を有効にしている場合にのみ使用してください。デフォルト: xtest。</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="97"/>
         <source>event-generation-type</source>
-        <translation type="unfinished"></translation>
+        <translation>イベント生成の種類</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="99"/>
