@@ -62,7 +62,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 
                 if (button != nullptr)
                 {
-                    joyButtonXml = new JoyButtonXml(button);
+                    joyButtonXml = new JoyButtonXml(*button);
                     joyButtonXml->readConfig(xml);
                 } else
                     xml->skipCurrentElement();
@@ -73,7 +73,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 
                 if (axis != nullptr)
                 {
-                    joyAxisXml = new JoyAxisXml(axis);
+                    joyAxisXml = new JoyAxisXml(*axis);
                     joyAxisXml->readConfig(xml);
                 } else
                     xml->skipCurrentElement();
@@ -84,7 +84,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 
                 if (dpad != nullptr)
                 {
-                    JoyDPadXml<JoyDPad> *joydpadXml = new JoyDPadXml<JoyDPad>(dpad);
+                    JoyDPadXml<JoyDPad> *joydpadXml = new JoyDPadXml<JoyDPad>(*dpad);
                     joydpadXml->readConfig(xml);
                 } else
                     xml->skipCurrentElement();
@@ -121,7 +121,7 @@ void SetJoystickXml::readConfig(QXmlStreamReader *xml)
 
                 if (vdpad != nullptr)
                 {
-                    JoyDPadXml<VDPad> *joydpadXml = new JoyDPadXml<VDPad>(vdpad);
+                    JoyDPadXml<VDPad> *joydpadXml = new JoyDPadXml<VDPad>(*vdpad);
                     joydpadXml->readConfig(xml);
                 } else
                     xml->skipCurrentElement();
@@ -168,7 +168,7 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         QListIterator<VDPad *> vdpad(vdpadsList);
         while (vdpad.hasNext())
         {
-            JoyDPadXml<VDPad> *joydpadXml = new JoyDPadXml<VDPad>(vdpad.next());
+            JoyDPadXml<VDPad> *joydpadXml = new JoyDPadXml<VDPad>(*vdpad.next());
             joydpadXml->writeConfig(xml);
             delete joydpadXml;
             joydpadXml = nullptr;
@@ -179,7 +179,7 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         while (axis.hasNext())
         {
             JoyAxis *axisCur = axis.next();
-            JoyAxisXml *joyAxisXml = new JoyAxisXml(axisCur);
+            JoyAxisXml *joyAxisXml = new JoyAxisXml(*axisCur);
 
             if (!axisCur->isPartControlStick() && axisCur->hasControlOfButtons())
             {
@@ -194,7 +194,7 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
         QListIterator<JoyDPad *> dpad(dpadsList);
         while (dpad.hasNext())
         {
-            JoyDPadXml<JoyDPad> *joydpadXml = new JoyDPadXml<JoyDPad>(dpad.next());
+            JoyDPadXml<JoyDPad> *joydpadXml = new JoyDPadXml<JoyDPad>(*dpad.next());
             joydpadXml->writeConfig(xml);
             delete joydpadXml;
             joydpadXml = nullptr;
@@ -207,7 +207,7 @@ void SetJoystickXml::writeConfig(QXmlStreamWriter *xml)
             JoyButton *buttonCurr = button.next();
             if ((buttonCurr != nullptr) && !buttonCurr->isPartVDPad())
             {
-                JoyButtonXml *joyButtonXml = new JoyButtonXml(buttonCurr);
+                JoyButtonXml *joyButtonXml = new JoyButtonXml(*buttonCurr);
                 joyButtonXml->writeConfig(xml);
                 delete joyButtonXml;
                 joyButtonXml = nullptr;
