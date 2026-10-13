@@ -706,15 +706,17 @@ void JoySensor::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoySensorButton *button = m_buttons.value(static_cast<JoySensorDirection>(index));
-                QPointer<JoyButtonXml> joyButtonXml = new JoyButtonXml(button);
 
                 if (button != nullptr)
+                {
+                    QPointer<JoyButtonXml> joyButtonXml = new JoyButtonXml(*button);
                     joyButtonXml->readConfig(xml);
-                else
+                    if (!joyButtonXml.isNull())
+                        delete joyButtonXml;
+                } else
+                {
                     xml->skipCurrentElement();
-
-                if (!joyButtonXml.isNull())
-                    delete joyButtonXml;
+                }
             } else if ((xml->name().toString() == "sensorDelay") && xml->isStartElement())
             {
                 QString temptext = xml->readElementText();
@@ -757,7 +759,7 @@ void JoySensor::writeConfig(QXmlStreamWriter *xml) const
 
         for (const auto &button : m_buttons)
         {
-            JoyButtonXml *joyButtonXml = new JoyButtonXml(button);
+            JoyButtonXml *joyButtonXml = new JoyButtonXml(*button);
             joyButtonXml->writeConfig(xml);
             delete joyButtonXml;
             joyButtonXml = nullptr;
