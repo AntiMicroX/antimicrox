@@ -102,6 +102,31 @@ bool XMLConfigReader::read()
         xml->raiseError(tr("Could not open profile %1.\n%2").arg(configFile->fileName(), configFile->errorString()));
         return true;
     }
+    // Validate the complete document before InputDeviceXml can reset or mutate
+    // mappings. Keep this streaming to avoid buffering the whole profile.
+    {
+        QXmlStreamReader validation(configFile);
+        while (!validation.atEnd())
+            validation.readNext();
+        if (validation.hasError() || configFile->error() != QFile::NoError)
+        {
+            const QString details = configFile->error() != QFile::NoError ? configFile->errorString()
+                                                                          : tr("XML error at line %1, column %2: %3")
+                                                                                .arg(validation.lineNumber())
+                                                                                .arg(validation.columnNumber())
+                                                                                .arg(validation.errorString());
+            configFile->close();
+            xml->raiseError(tr("Could not read profile %1.\n%2").arg(configFile->fileName(), details));
+            return true;
+        }
+    }
+    if (!configFile->seek(0))
+    {
+        const QString details = configFile->errorString();
+        configFile->close();
+        xml->raiseError(tr("Could not read profile %1.\n%2").arg(configFile->fileName(), details));
+        return true;
+    }
     xml->setDevice(configFile);
     bool error = false;
     xml->readNextStartElement();

@@ -1,9 +1,9 @@
 # Profile file-access regression tests
 
-These 14 cases compile the production `XMLConfigReader` and test missing/deleted
+These 29 cases compile the production `XMLConfigReader` and test missing/deleted
 profiles, absent input, directory paths, file selection, repeated reads, error
 recovery and release of the previous file object. QtTest also reports two
-setup/teardown checks, for 16 passes per run.
+setup/teardown checks, for 31 passes per run.
 
 ```sh
 cmake -S tests/profilereader -B build-profile-reader
@@ -19,7 +19,14 @@ retained text report on Windows.
 The reader's historical boolean convention is preserved: `read()` returns true
 on failure. GUI callers inspect `hasError()`, so both surfaces must agree.
 Failed file access must not invoke device parsing or reload the previous file.
-A successful retry must clear the previous error.
+A successful retry must clear the previous error. Malformed or truncated XML must
+be rejected before device parsing starts, while UTF-8 BOM, UTF-16 and declared
+Latin-1 profiles must still load.
+
+Preflight validation reads the complete XML stream and then rewinds the open
+file for the existing parser/migration path. This adds a parsing pass while
+keeping memory bounded by the streaming parser. It does not lock the file
+against concurrent external edits or add schema validation.
 
 Device XML parsing and legacy migration are controlled collaborators in this
 suite, linked in place of their SDL-dependent implementations. The reader has

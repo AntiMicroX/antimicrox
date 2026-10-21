@@ -57,6 +57,11 @@ class TestXmlConfigReader : public QObject
   private slots:
     void init();
     void cleanup();
+    void malformedProfile_data();
+    void malformedProfile();
+    void retryAfterMalformedProfile();
+    void encodedProfile_data();
+    void encodedProfile();
     void invalidSetup_data();
     void invalidSetup();
     void validProfile_data();
@@ -233,6 +238,81 @@ void TestXmlConfigReader::changingFilenameReleasesPreviousFile()
     QVERIFY(previous.isNull());
     QCOMPARE(reader.getFileName(), m_path + ".missing");
     QCOMPARE(reader.getConfigFile()->fileName(), m_path + ".missing");
+}
+void TestXmlConfigReader::malformedProfile_data()
+{
+    QTest::addColumn<QByteArray>("contents");
+    for (const QByteArray &root : {QByteArray("joystick"), QByteArray("gamecontroller")})
+    {
+        const QByteArray prefix = "<" + root + " configversion=\"19\"><profilename>Changed</profilename>";
+        QTest::newRow((root + "-truncated").constData()) << prefix + "<sets>";
+        QTest::newRow((root + "-mismatched").constData()) << prefix + "</wrong>";
+        QTest::newRow((root + "-undefined-entity").constData())
+            << prefix + "<description>&missing;</description></" + root + ">";
+        QTest::newRow((root + "-trailing-junk").constData()) << prefix + "</" + root + ">junk";
+        QTest::newRow((root + "-multiple-roots").constData()) << prefix + "</" + root + "><" + root + "/>";
+    }
+    QTest::newRow("empty-file") << QByteArray();
+}
+void TestXmlConfigReader::malformedProfile()
+{
+    QFETCH(QByteArray, contents);
+    writeProfile(m_path, contents);
+    XMLConfigReader reader;
+    reader.setJoystick(&m_device);
+    reader.setFileName(m_path);
+    verifyFailure(reader);
+    QFile file(m_path);
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    QCOMPARE(file.readAll(), contents);
+    QVERIFY(!reader.getConfigFile()->isOpen());
+}
+void TestXmlConfigReader::retryAfterMalformedProfile()
+{
+    writeProfile(m_path, "<joystick configversion=\"19\"><profilename>Changed</profilename><sets>");
+    XMLConfigReader reader;
+    reader.setJoystick(&m_device);
+    reader.setFileName(m_path);
+    verifyFailure(reader);
+    writeProfile(m_path);
+    QVERIFY(!reader.read());
+    QVERIFY(!reader.hasError());
+    QVERIFY(reader.getErrorString().isEmpty());
+    QCOMPARE(m_device.profileName, QString("Loaded"));
+}
+void TestXmlConfigReader::encodedProfile_data()
+{
+    QTest::addColumn<QByteArray>("contents");
+    QTest::addColumn<QString>("name");
+    const QString name = QString::fromUtf8("Caf\xc3\xa9 \xf0\x9f\x8e\xae");
+    const QString body = "<joystick configversion=\"19\"><profilename>" + name + "</profilename></joystick>";
+    QTest::newRow("utf8-bom") << QByteArray("\xef\xbb\xbf") + body.toUtf8() << name;
+    const QString utf16 = "<?xml version=\"1.0\" encoding=\"UTF-16\"?>" + body;
+    QByteArray bytes("\xff\xfe");
+    for (QChar character : utf16)
+    {
+        bytes.append(char(character.unicode() & 0xff));
+        bytes.append(char(character.unicode() >> 8));
+    }
+    QTest::newRow("utf16-le") << bytes << name;
+    const QString latin_name = QString::fromUtf8("Caf\xc3\xa9");
+    const QString latin_xml = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><joystick configversion=\"19\">"
+                              "<profilename>" +
+                              latin_name + "</profilename></joystick>";
+    QTest::newRow("latin1-declaration") << latin_xml.toLatin1() << latin_name;
+}
+void TestXmlConfigReader::encodedProfile()
+{
+    QFETCH(QByteArray, contents);
+    QFETCH(QString, name);
+    writeProfile(m_path, contents);
+    XMLConfigReader reader;
+    reader.setJoystick(&m_device);
+    reader.setFileName(m_path);
+    QVERIFY(!reader.read());
+    QVERIFY(!reader.hasError());
+    QCOMPARE(m_device.profileName, name);
+    QCOMPARE(m_device.reads, 1);
 }
 QTEST_GUILESS_MAIN(TestXmlConfigReader)
 #include "testxmlconfigreader.moc"
