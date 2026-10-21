@@ -22,6 +22,7 @@
 #include "common.h"
 #include "event.h"
 #include "eventhandlerfactory.h"
+#include "profilemigration.h"
 
 #include <QDebug>
 #include <QXmlStreamReader>
@@ -60,33 +61,23 @@ QString XMLConfigMigration::migrate()
     if (requiresMigration())
     {
         QString initialData = readConfigToString();
+        if (initialData.isEmpty())
+            return QString();
         reader->clear();
         reader->addData(initialData);
 
         if ((fileVersion >= 2) && (fileVersion <= 5))
         {
             tempXmlString = version0006Migration();
-            fileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
+            if (!tempXmlString.isEmpty())
+                fileVersion = PadderCommon::LATESTCONFIGFILEVERSION;
         }
     }
 
     return tempXmlString;
 }
 
-QString XMLConfigMigration::readConfigToString()
-{
-    QString tempXmlString = QString();
-    QXmlStreamWriter writer(&tempXmlString);
-    writer.setAutoFormatting(true);
-
-    while (!reader->atEnd())
-    {
-        writer.writeCurrentToken(*reader);
-        reader->readNext();
-    }
-
-    return tempXmlString;
-}
+QString XMLConfigMigration::readConfigToString() { return ProfileMigration::readCompleteXml(*reader); }
 
 QString XMLConfigMigration::version0006Migration()
 {
@@ -174,6 +165,12 @@ QString XMLConfigMigration::version0006Migration()
         reader->readNext();
     }
 
+    writer.writeEndDocument();
+    if (reader->hasError() || writer.hasError())
+    {
+        reader->raiseError(tr("Could not convert profile XML."));
+        return QString();
+    }
     return tempXmlString;
 }
 
