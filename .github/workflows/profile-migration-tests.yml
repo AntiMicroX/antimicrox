@@ -1,0 +1,80 @@
+name: Profile migration regression tests
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: profile-migration-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    migration-tests:
+        timeout-minutes: 15
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - os: ubuntu-22.04
+                      major: 5
+                      packages: qtbase5-dev
+                    - os: ubuntu-22.04
+                      major: 6
+                      packages: qt6-base-dev
+                    - os: windows-2022
+                      major: 5
+                      qt: '5.15.2'
+                      arch: win64_msvc2019_64
+                    - os: windows-2022
+                      major: 6
+                      qt: '6.10.0'
+                      arch: win64_msvc2022_64
+        name: Profile migration (${{ matrix.os }}, Qt ${{ matrix.major }})
+        steps:
+            - uses: actions/checkout@v4
+            - name: Install Qt (Linux)
+              if: runner.os == 'Linux'
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y cmake ninja-build ${{ matrix.packages }}
+            - name: Install Qt (Windows)
+              if: runner.os == 'Windows'
+              uses: jurplel/install-qt-action@v4
+              with:
+                  version: ${{ matrix.qt }}
+                  host: windows
+                  target: desktop
+                  arch: ${{ matrix.arch }}
+                  cache: true
+            - name: Configure (Linux)
+              if: runner.os == 'Linux'
+              run: >-
+                  cmake -S tests/profilemigration -B build-profile-migration -G Ninja
+                  -DCMAKE_BUILD_TYPE=Debug
+                  -DQT_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt${{ matrix.major }}
+            - name: Configure (Windows)
+              if: runner.os == 'Windows'
+              run: >-
+                  cmake -S tests/profilemigration -B build-profile-migration -A x64
+                  -DQT_DIR="$env:QT_ROOT_DIR/lib/cmake/Qt${{ matrix.major }}"
+            - name: Build
+              run: cmake --build build-profile-migration --config Debug --parallel 2
+            - name: Test (Linux)
+              if: runner.os == 'Linux'
+              run: ctest --test-dir build-profile-migration --output-on-failure
+            - name: Test (Windows)
+              if: runner.os == 'Windows'
+              run: |
+                  ctest --test-dir build-profile-migration -C Debug --verbose --output-on-failure
+                  $testExitCode = $LASTEXITCODE
+                  if (Test-Path build-profile-migration/profile-migration-results.txt) {
+                      Get-Content build-profile-migration/profile-migration-results.txt
+                  }
+                  exit $testExitCode
