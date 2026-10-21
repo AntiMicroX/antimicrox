@@ -270,6 +270,18 @@ flatpak-builder --user --install build-flatpak/ other/io.github.antimicrox.antim
 
 ## Building Windows installer
 
+The startup-shortcut regression tests can run independently of the application and SDL.
+They require Qt Core and Qt Test and use temporary directories, leaving your real Startup folder untouched:
+
+```sh
+cmake -S tests/startupshortcut -B build-startup
+cmake --build build-startup --config Debug
+ctest --test-dir build-startup -C Debug --output-on-failure
+```
+
+On Windows these tests exercise real `.lnk` files; on Unix they exercise Qt's symbolic-link equivalent.
+The Windows CI runs the tests with Qt 5 and Qt 6.
+
 In case of building Windows package you will need [NSIS](https://nsis.sourceforge.io/Download).
 
 ```

@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.16)
+project(StartupShortcutTests LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+enable_testing()
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Test)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Test)
+add_executable(StartupShortcutTests teststartupshortcut.cpp)
+target_include_directories(StartupShortcutTests PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../src")
+target_link_libraries(StartupShortcutTests PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Test)
+add_test(NAME StartupShortcutTests COMMAND StartupShortcutTests)
+set_tests_properties(StartupShortcutTests PROPERTIES TIMEOUT 30)

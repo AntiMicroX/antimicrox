@@ -32,6 +32,7 @@
     #include "x11extras.h"
 #elif defined Q_OS_WIN
     #include "eventhandlerfactory.h"
+    #include "startupshortcut.h"
     #include "winextras.h"
     #include <QSysInfo>
 #endif
@@ -552,25 +553,19 @@ void MainSettingsDialog::saveNewSettings()
     saveAutoProfileSettings();
 #endif
 
-    settings->getLock()->lock();
-
 #ifdef Q_OS_WIN
-    QFile tempFile(RUNATSTARTUPLOCATION);
-
-    if (ui->launchAtWinStartupCheckBox->isChecked() && !tempFile.exists())
+    if (!StartupShortcut::setEnabled(qApp->applicationFilePath(), RUNATSTARTUPLOCATION,
+                                     ui->launchAtWinStartupCheckBox->isChecked()))
     {
-        if (tempFile.open(QFile::WriteOnly))
-        {
-            QFile currentAppLocation(qApp->applicationFilePath());
-            currentAppLocation.link(QFileInfo(tempFile).absoluteFilePath());
-        }
-    } else if (tempFile.exists() && QFileInfo(tempFile).isWritable())
-    {
-        tempFile.remove();
+        QMessageBox::warning(this, tr("Windows Startup"),
+                             tr("Could not update the Windows Startup shortcut. Check the contents and write "
+                                "permissions of your Startup folder."));
     }
 
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 #endif
+
+    settings->getLock()->lock();
 
     if (ui->traySingleProfileListCheckBox->isChecked())
     {
