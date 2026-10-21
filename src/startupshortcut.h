@@ -12,13 +12,16 @@ namespace StartupShortcut {
 inline bool setEnabled(const QString &applicationPath, const QString &shortcutPath, bool enabled)
 {
     const QFileInfo shortcut(shortcutPath);
-    const bool present = shortcut.exists() || shortcut.isSymLink();
+    // Qt 5 on Windows reports isSymLink() for any .lnk path, even an absent one.
+    // A readable target distinguishes a real shortcut from an empty placeholder.
+    const bool link = !shortcut.symLinkTarget().isEmpty();
+    const bool present = shortcut.exists() || link;
 
     if (!enabled)
         return !present || QFile::remove(shortcutPath);
 
     // Preserve existing shortcuts, including any arguments configured by the user.
-    if (shortcut.isSymLink())
+    if (link)
         return true;
 
     if (!QFileInfo(applicationPath).isFile())

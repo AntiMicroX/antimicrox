@@ -92,7 +92,7 @@ void TestStartupShortcut::disableRemovesOnlyShortcut()
     QVERIFY(QFile::link(m_application, m_shortcut));
     QVERIFY(StartupShortcut::setEnabled(m_application, m_shortcut, false));
     QVERIFY(!QFileInfo(m_shortcut).exists());
-    QVERIFY(!QFileInfo(m_shortcut).isSymLink());
+    QVERIFY(!QDir(QFileInfo(m_shortcut).absolutePath()).entryList().contains(QFileInfo(m_shortcut).fileName()));
     QCOMPARE(contents(m_application), QByteArray("application contents"));
 }
 
