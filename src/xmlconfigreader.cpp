@@ -18,19 +18,10 @@
 
 #include "xmlconfigreader.h"
 
-#include "common.h"
 #include "globalvariables.h"
-#include "inputdevice.h"
-#include "joystick.h"
 #include "xml/inputdevicexml.h"
 #include "xmlconfigmigration.h"
-#include "xmlconfigwriter.h"
 
-#include "common.h"
-#include "gamecontroller/gamecontroller.h"
-
-#include <QDebug>
-#include <QDir>
 #include <QFile>
 #include <QStringList>
 #include <QXmlStreamReader>
@@ -72,16 +63,12 @@ void XMLConfigReader::setJoystick(InputDevice *joystick) { m_joystick = joystick
  */
 void XMLConfigReader::setFileName(QString filename)
 {
-    QFile *temp = new QFile(filename);
-
-    if (temp->exists())
-    {
-        configFile = temp;
-    } else
-    {
-        delete temp;
-        temp = nullptr;
-    }
+    // Detach the stream before releasing its previous device, including when
+    // the newly selected path does not exist yet.
+    xml->clear();
+    delete configFile;
+    fileName = filename;
+    configFile = new QFile(filename);
 }
 
 /**
@@ -96,81 +83,86 @@ void XMLConfigReader::configJoystick(InputDevice *joystick)
 
 bool XMLConfigReader::read()
 {
-    bool error = false;
-
-    if ((configFile != nullptr) && configFile->exists() && (m_joystick != nullptr))
+    xml->clear();
+    if (configFile == nullptr || configFile->fileName().isEmpty())
     {
-        xml->clear();
+        xml->raiseError(tr("No profile filename was specified."));
+        return true;
+    }
+    if (m_joystick == nullptr)
+    {
+        xml->raiseError(tr("No input device was specified for profile %1.").arg(configFile->fileName()));
+        return true;
+    }
 
-        if (!configFile->isOpen())
+    // Reopen on every read so retries see the current file and start at byte 0.
+    configFile->close();
+    if (!configFile->open(QFile::ReadOnly | QFile::Text))
+    {
+        xml->raiseError(tr("Could not open profile %1.\n%2").arg(configFile->fileName(), configFile->errorString()));
+        return true;
+    }
+    xml->setDevice(configFile);
+    bool error = false;
+    xml->readNextStartElement();
+
+    if (!deviceTypes.contains(xml->name().toString()))
+    {
+        xml->raiseError("Root node is not a joystick or controller");
+    } else if (xml->name().toString() == GlobalVariables::Joystick::xmlName)
+    {
+        XMLConfigMigration migration(xml);
+
+        if (migration.requiresMigration())
         {
-            if (configFile->open(QFile::ReadOnly | QFile::Text))
-                xml->setDevice(configFile);
-            else
-                WARN() << "Could not open file: " << configFile->fileName();
-        }
+            QString migrationString = migration.migrate();
 
-        xml->readNextStartElement();
-
-        if (!deviceTypes.contains(xml->name().toString()))
-        {
-            xml->raiseError("Root node is not a joystick or controller");
-        } else if (xml->name().toString() == GlobalVariables::Joystick::xmlName)
-        {
-            XMLConfigMigration migration(xml);
-
-            if (migration.requiresMigration())
+            if (migrationString.length() > 0)
             {
-                QString migrationString = migration.migrate();
+                xml->clear();                                     // Remove QFile from reader and clear state
+                xml->addData(migrationString);                    // Add converted XML string to reader
+                xml->readNextStartElement();                      // Skip joystick root node
+                configFile->close();                              // Close current config file
+                configFile->open(QFile::WriteOnly | QFile::Text); // Write converted XML to file
 
-                if (migrationString.length() > 0)
+                if (configFile->isOpen())
                 {
-                    xml->clear();                                     // Remove QFile from reader and clear state
-                    xml->addData(migrationString);                    // Add converted XML string to reader
-                    xml->readNextStartElement();                      // Skip joystick root node
-                    configFile->close();                              // Close current config file
-                    configFile->open(QFile::WriteOnly | QFile::Text); // Write converted XML to file
-
-                    if (configFile->isOpen())
-                    {
-                        configFile->write(migrationString.toLocal8Bit());
-                        configFile->close();
-                    } else
-                    {
-                        xml->raiseError(tr("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
-                    }
+                    configFile->write(migrationString.toLocal8Bit());
+                    configFile->close();
+                } else
+                {
+                    xml->raiseError(tr("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
                 }
             }
         }
-
-        while (!xml->atEnd())
-        {
-            if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
-            {
-                InputDeviceXml *joystick_xml = new InputDeviceXml(m_joystick);
-                joystick_xml->readConfig(xml);
-                joystick_xml->deleteLater();
-            } else
-            {
-                // If none of the above, skip the element
-                xml->skipCurrentElement();
-            }
-
-            xml->readNextStartElement();
-        }
-
-        if (configFile->isOpen())
-            configFile->close();
-
-        if (xml->hasError() && (xml->error() != QXmlStreamReader::PrematureEndOfDocumentError))
-        {
-            error = true;
-        } else if (xml->hasError() && (xml->error() == QXmlStreamReader::PrematureEndOfDocumentError))
-        {
-            xml->clear();
-        }
     }
 
+    while (!xml->atEnd())
+    {
+        if (xml->isStartElement() && deviceTypes.contains(xml->name().toString()))
+        {
+            InputDeviceXml *joystick_xml = new InputDeviceXml(m_joystick);
+            joystick_xml->readConfig(xml);
+            joystick_xml->deleteLater();
+        } else
+        {
+            // If none of the above, skip the element
+            xml->skipCurrentElement();
+        }
+
+        xml->readNextStartElement();
+    }
+
+    if (configFile->isOpen())
+        configFile->close();
+
+    if (xml->hasError() && (xml->error() != QXmlStreamReader::PrematureEndOfDocumentError))
+    {
+        error = true;
+    } else if (xml->hasError() && (xml->error() == QXmlStreamReader::PrematureEndOfDocumentError))
+    {
+        xml->clear();
+    }
     return error;
 }
 
