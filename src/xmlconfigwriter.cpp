@@ -18,13 +18,10 @@
 
 #include "xmlconfigwriter.h"
 
-#include "common.h"
-#include "inputdevice.h"
 #include "xml/inputdevicexml.h"
 
-#include <QDebug>
-#include <QDir>
 #include <QFile>
+#include <QSaveFile>
 #include <QXmlStreamWriter>
 
 XMLConfigWriter::XMLConfigWriter(QObject *parent)
@@ -63,32 +60,39 @@ XMLConfigWriter::~XMLConfigWriter()
 void XMLConfigWriter::write(InputDeviceXml *joystickXml)
 {
     writerError = false;
+    writerErrorString.clear();
 
-    if (!configFile->isOpen())
-    {
-        if (configFile->open(QFile::WriteOnly | QFile::Text))
-        {
-            xml->setDevice(configFile);
-        } else
-        {
-            writerError = true;
-            writerErrorString = tr("Could not write to profile at %1.").arg(configFile->fileName());
-        }
-    } else
+    if (configFile == nullptr || joystickXml == nullptr)
     {
         writerError = true;
-        writerErrorString = tr("Could not write to profile at %1.").arg(configFile->fileName());
+        writerErrorString = tr("Could not write to profile at %1.").arg(fileName);
+        return;
     }
 
-    if (!writerError)
+    QSaveFile output(configFile->fileName());
+    // Never fall back to truncating the existing profile in place.
+    output.setDirectWriteFallback(false);
+    if (!output.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        xml->writeStartDocument();
-        joystickXml->writeConfig(xml);
-        xml->writeEndDocument();
+        writerError = true;
+        writerErrorString = tr("Could not write to profile at %1.\n%2").arg(fileName, output.errorString());
+        return;
     }
 
-    if (configFile->isOpen())
-        configFile->close();
+    xml->setDevice(&output);
+    xml->writeStartDocument();
+    joystickXml->writeConfig(xml);
+    xml->writeEndDocument();
+    if (xml->hasError())
+        output.cancelWriting();
+    // Do not leave a pointer to the scoped output device in the stream writer.
+    xml->setDevice(nullptr);
+
+    if (!output.commit())
+    {
+        writerError = true;
+        writerErrorString = tr("Could not write to profile at %1.\n%2").arg(fileName, output.errorString());
+    }
 }
 
 /**
@@ -96,9 +100,9 @@ void XMLConfigWriter::write(InputDeviceXml *joystickXml)
  */
 void XMLConfigWriter::setFileName(QString filename)
 {
-    QFile *temp = new QFile(filename);
+    delete configFile;
     fileName = filename;
-    configFile = temp;
+    configFile = new QFile(filename);
 }
 
 bool XMLConfigWriter::hasError() { return writerError; }
