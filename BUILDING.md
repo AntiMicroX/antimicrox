@@ -101,6 +101,28 @@ Run built binaries
 ./bin/antimicrox
 ```
 
+### Running profile XML regression tests
+
+The profile reader tests use SDL virtual controllers, so no physical gamepad is
+required. Install the build dependencies above, including Qt Test (provided by
+the Qt base development packages), and use SDL 2.0.14 or newer:
+
+```bash
+cmake -S . -B build-tests -DWITH_TESTS=ON -DCMAKE_BUILD_TYPE=Debug
+cmake --build build-tests --target ProfileXmlTests --parallel 2
+ctest --test-dir build-tests --output-on-failure
+```
+
+CTest selects Qt's offscreen platform for headless execution. The suite checks
+invalid or unsupported gamepad profile indices, continued loading after rejected
+elements, both legacy and current trigger indices, valid D-pad settings, and
+parser lifetime across repeated loads. Unsupported entries are skipped as whole
+XML subtrees; supported mappings later in the set remain usable.
+
+The test target compiles production sources separately from the application.
+`WITH_TESTS` remains off for normal builds. The older GUI test sketches are not
+part of this regression suite.
+
 #### MSVC building tips
 
 Recent versions of Visual Studio (2017+) have support for cmake projects. Under Visual Studio 2022, building AntiMicroX is quite straight forward.
