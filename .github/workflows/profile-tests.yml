@@ -27,7 +27,7 @@ jobs:
                       packages: qttools5-dev qttools5-dev-tools
                     - qt: 6
                       prefer-qt6: 'ON'
-                      packages: qt6-base-dev qt6-tools-dev qt6-tools-dev-tools
+                      packages: qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools
         name: Profile reader (Qt ${{ matrix.qt }})
         steps:
             - uses: actions/checkout@v4
