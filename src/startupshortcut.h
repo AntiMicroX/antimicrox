@@ -3,6 +3,7 @@
 #ifndef STARTUPSHORTCUT_H
 #define STARTUPSHORTCUT_H
 
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 
@@ -12,16 +13,21 @@ namespace StartupShortcut {
 inline bool setEnabled(const QString &applicationPath, const QString &shortcutPath, bool enabled)
 {
     const QFileInfo shortcut(shortcutPath);
-    // Qt 5 on Windows reports isSymLink() for any .lnk path, even an absent one.
-    // A readable target distinguishes a real shortcut from an empty placeholder.
+    // Qt 5 may hide malformed .lnk files from exists() and report absent paths as
+    // links. Directory entries and an open file give us the actual placeholder.
+    const QStringList entries = QDir(shortcut.absolutePath()).entryList(QDir::AllEntries | QDir::Hidden | QDir::System);
+#ifdef Q_OS_WIN
+    const bool present = entries.contains(shortcut.fileName(), Qt::CaseInsensitive);
+#else
+    const bool present = entries.contains(shortcut.fileName());
+#endif
     const bool link = !shortcut.symLinkTarget().isEmpty();
-    const bool present = shortcut.exists() || link;
 
     if (!enabled)
         return !present || QFile::remove(shortcutPath);
 
     // Preserve existing shortcuts, including any arguments configured by the user.
-    if (link)
+    if (present && link)
         return true;
 
     if (!QFileInfo(applicationPath).isFile())
@@ -31,7 +37,11 @@ inline bool setEnabled(const QString &applicationPath, const QString &shortcutPa
     {
         // Earlier versions created an empty .lnk before calling QFile::link().
         // Only repair that placeholder; preserve other files and directories.
-        if (!shortcut.isFile() || shortcut.size() != 0 || !QFile::remove(shortcutPath))
+        QFile placeholder(shortcutPath);
+        if (shortcut.isDir() || !placeholder.open(QIODevice::ReadOnly) || placeholder.size() != 0)
+            return false;
+        placeholder.close();
+        if (!QFile::remove(shortcutPath))
             return false;
     }
 

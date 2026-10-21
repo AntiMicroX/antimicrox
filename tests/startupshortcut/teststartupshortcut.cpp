@@ -138,8 +138,9 @@ void TestStartupShortcut::missingApplicationPreservesPlaceholder()
 {
     writeFile(m_shortcut, "");
     QVERIFY(!StartupShortcut::setEnabled(m_directory.filePath("missing.exe"), m_shortcut, true));
-    QVERIFY(QFileInfo(m_shortcut).isFile());
-    QCOMPARE(QFileInfo(m_shortcut).size(), qint64(0));
+    QFile placeholder(m_shortcut);
+    QVERIFY(placeholder.open(QIODevice::ReadOnly));
+    QCOMPARE(placeholder.size(), qint64(0));
 }
 
 QTEST_GUILESS_MAIN(TestStartupShortcut)
