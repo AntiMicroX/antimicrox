@@ -41,4 +41,10 @@ jobs:
             - name: Build
               run: cmake --build build-startup --config Debug --parallel 2
             - name: Test
-              run: ctest --test-dir build-startup -C Debug --output-on-failure
+              run: |
+                  ctest --test-dir build-startup -C Debug --verbose --output-on-failure
+                  $testExitCode = $LASTEXITCODE
+                  if (Test-Path build-startup/startup-shortcut-results.txt) {
+                      Get-Content build-startup/startup-shortcut-results.txt
+                  }
+                  exit $testExitCode
