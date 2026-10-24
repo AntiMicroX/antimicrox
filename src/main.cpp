@@ -441,7 +441,7 @@ int main(int argc, char *argv[])
 
     if (QDir("/app/share/antimicrox").entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries).count() > 0)
     {
-        myappTranslator.load(QString("antimicrox_").append(targetLang), "app/share/antimicrox/translations");
+        myappTranslator.load(QString("antimicrox_").append(targetLang), "/app/share/antimicrox/translations");
     } else
     {
         myappTranslator.load(QString("antimicrox_").append(targetLang),
