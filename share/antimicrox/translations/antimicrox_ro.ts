@@ -6724,12 +6724,12 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="174"/>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="unfinished">&lt;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="175"/>
         <source>:</source>
-        <translation>:</translation>
+        <translation type="unfinished">:</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>

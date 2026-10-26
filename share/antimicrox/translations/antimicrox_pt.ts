@@ -271,7 +271,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
