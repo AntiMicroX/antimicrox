@@ -412,7 +412,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
@@ -2169,7 +2169,7 @@ Cela peut prendre jusqu&apos;à %1 secondes.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="166"/>
         <source>DPad Delay:</source>
-        <translation type="unfinished">Retard DPad&#xa0;:</translation>
+        <translation>Retard DPad&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="173"/>
@@ -2330,7 +2330,7 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="36"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;antimicrox makes use of the &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt;&lt;/a&gt; provided by SDL 2 in order to abstract various gamepads to fit a unified standard. In order to make a button assignment, please highlight the mapping cell for the appropriate button row below. You can then press a button or move an axis on your gamepad and the cell will update with the physical button or axis that will be used.&lt;/p&gt;&lt;p&gt;antimicrox will use the mapping that you specify to save a mapping string that will be loaded into SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntimicroX utilise le &lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt; &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;/a&gt;fourni par SDL 2 afin d&apos;abstraire diverses manettes de jeu pour s&apos;adapter à un standard unifié. Pour effectuer une assignation de bouton, veuillez sélectionner la case correspondante au bouton approprié, puis appuyez sur un bouton ou déplacez un axe sur votre manette et la case se mettra à jour avec le bouton ou l&apos;axe qui sera utilisé.&lt;/p&gt;&lt;p&gt;AntimicroX utilisera l&apos;assignation que vous avez spécifié pour enregistrer une chaîne d&apos;assignation qui sera chargée dans SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;AntimicroX utilise le &lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Game Controller API&lt;/span&gt; &lt;a href=&quot;https://wiki.libsdl.org/CategoryGameController&quot;&gt;&lt;/a&gt;fourni par SDL 2 afin d&apos;abstraire diverses manettes de jeu pour s&apos;adapter à un standard unifié. Pour effectuer une assignation de bouton, veuillez sélectionner la case correspondante au bouton approprié, puis appuyez sur un bouton ou déplacez un axe sur votre manette et la case se mettra à jour avec le bouton ou l&apos;axe qui sera utilisé.&lt;/p&gt;&lt;p&gt;AntimicroX utilisera l&apos;assignation que vous avez spécifié pour enregistrer une chaîne d&apos;assignation qui sera chargée dans SDL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
@@ -2575,27 +2575,27 @@ S&apos;il est annulé, le contrôleur redeviendra un joystick une fois tous les 
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="38"/>
         <source>Up</source>
-        <translation type="unfinished">Haut</translation>
+        <translation>Haut</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="42"/>
         <source>Down</source>
-        <translation type="unfinished">Bas</translation>
+        <translation>Bas</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="46"/>
         <source>Left</source>
-        <translation type="unfinished">Gauche</translation>
+        <translation>Gauche</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="50"/>
         <source>Right</source>
-        <translation type="unfinished">Droite</translation>
+        <translation>Droite</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
         <source>Shock</source>
-        <translation type="unfinished">Secousse</translation>
+        <translation>Secousse</translation>
     </message>
 </context>
 <context>
@@ -3439,7 +3439,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="63"/>
         <location filename="../../../src/joybuttontypes/joysensorbutton.cpp" line="67"/>
         <source>Button</source>
-        <translation type="unfinished">Bouton</translation>
+        <translation>Bouton</translation>
     </message>
 </context>
 <context>
@@ -3447,7 +3447,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/joysensorcontextmenu.cpp" line="64"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Configurations de la Souris</translation>
+        <translation>Configurations de la Souris</translation>
     </message>
 </context>
 <context>
@@ -3455,7 +3455,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialogue</translation>
+        <translation>Dialogue</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3466,7 +3466,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
@@ -3486,17 +3486,17 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished">% Zone sûre&#xa0;:</translation>
+        <translation>% Zone sûre&#xa0;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
         <source>Presets:</source>
-        <translation type="unfinished">Pré-réglages :</translation>
+        <translation>Pré-réglages :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished">Zone morte :</translation>
+        <translation>Zone morte :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
@@ -3507,7 +3507,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Zone maximale :</translation>
+        <translation>Zone maximale :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
@@ -3518,13 +3518,13 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished">Valeur de diagonale&#x202f;:</translation>
+        <translation>Valeur de diagonale&#x202f;:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="495"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished">Zone (en degrés) occupée par chaque région diagonale.</translation>
+        <translation>Zone (en degrés) occupée par chaque région diagonale.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
@@ -3535,12 +3535,12 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="556"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished">Temps écoulé avant qu&apos;un changement de direction ne soit pris en compte.</translation>
+        <translation>Temps écoulé avant qu&apos;un changement de direction ne soit pris en compte.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
@@ -3555,7 +3555,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Configurations de la Souris</translation>
+        <translation>Configurations de la Souris</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
@@ -3575,12 +3575,12 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
         <source>Set</source>
-        <translation type="unfinished">Configuration</translation>
+        <translation>Configuration</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
         <source>Set %1</source>
-        <translation type="unfinished">Configuration %1</translation>
+        <translation>Configuration %1</translation>
     </message>
 </context>
 <context>
@@ -3588,37 +3588,37 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="218"/>
         <source>None</source>
-        <translation type="unfinished">Aucun</translation>
+        <translation>Aucun</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Souris (Normal)</translation>
+        <translation>Souris (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished">Souris (Horizontal Inversé)</translation>
+        <translation>Souris (Horizontal Inversé)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="227"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished">Souris (Vertical Inversé)</translation>
+        <translation>Souris (Vertical Inversé)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="230"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished">Souris (Vertical et Horizontal Inversés)</translation>
+        <translation>Souris (Vertical et Horizontal Inversés)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="233"/>
         <source>Arrows</source>
-        <translation type="unfinished">Flèches</translation>
+        <translation>Flèches</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="236"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Touches&#xa0;: W | A | S | D</translation>
+        <translation>Touches&#xa0;: W | A | S | D</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
@@ -4046,7 +4046,7 @@ ou désactiver le masquage des boutons vides.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="89"/>
         <source>Different: %1</source>
-        <translation type="unfinished">Différent : %1</translation>
+        <translation>Différent : %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="101"/>
@@ -4066,7 +4066,7 @@ ou désactiver le masquage des boutons vides.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="107"/>
         <source>None</source>
-        <translation type="unfinished">Aucun</translation>
+        <translation>Aucun</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="124"/>
@@ -4201,7 +4201,7 @@ barre des tâches. Par défaut, les sous-menus sont utilisés.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="272"/>
         <source>Single Profile List in Tray</source>
-        <translation type="unfinished">Liste de profils unique dans la barre de tâches</translation>
+        <translation>Liste de profils unique dans la barre de tâches</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="279"/>
@@ -4401,7 +4401,7 @@ par seconde.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1022"/>
         <source>Weight Modi&amp;fier:</source>
-        <translation type="unfinished">Modi&amp;ficateur de poids :</translation>
+        <translation>Modi&amp;ficateur de poids :</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1302"/>
@@ -4529,7 +4529,7 @@ avant de l&apos;utiliser sans surveillance.</translation>
         <source>Utilize the specified screen for spring mode. On Linux, the
 default is to use the primary screen. On Windows, the default
 is to use all available screens.</source>
-        <translation type="unfinished">Utilisez l&apos;écran spécifié pour le mode ressort. Sous Linux, la
+        <translation>Utilisez l&apos;écran spécifié pour le mode ressort. Sous Linux, la
 valeur par défaut est l&apos;écran principal. Sous Windows, la valeur
 par défaut est d&apos;utiliser tous les écrans disponibles.</translation>
     </message>
@@ -4683,7 +4683,7 @@ Les paramètres ne prennent effet que lors de la prochaine réactualisation des 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="120"/>
         <source>AutoProfile (disabled in Wayland)</source>
-        <translation type="unfinished">Profil auto (désactivé dans Wayland)</translation>
+        <translation>Profil auto (désactivé dans Wayland)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="253"/>
@@ -5049,12 +5049,12 @@ Nom du périphérique&#xa0;: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="113"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Configurations de la Souris</translation>
+        <translation>Configurations de la Souris</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation type="unfinished">Configuration %1</translation>
+        <translation>Configuration %1</translation>
     </message>
 </context>
 <context>
@@ -5733,7 +5733,7 @@ Vous pouvez manuellement migrer en renommant l&apos;ancien dossier et en renomma
     <message>
         <location filename="../../../src/x11extras.cpp" line="712"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished">La version de xinput doit être au moins 2.0. Aucun changement d&apos;accélération de la souris ne sera effectué.</translation>
+        <translation>La version de xinput doit être au moins 2.0. Aucun changement d&apos;accélération de la souris ne sera effectué.</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="483"/>
@@ -5785,7 +5785,7 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1021"/>
         <source>Set %1: %2</source>
-        <translation type="unfinished">Configuration %1&#xa0;: %2</translation>
+        <translation>Configuration %1&#xa0;: %2</translation>
     </message>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1023"/>
@@ -5803,42 +5803,42 @@ Faut-il appliquer cette valeur d&apos;accélération à tous les réglages ?</tr
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="60"/>
         <source>Set 1</source>
-        <translation type="unfinished">Configuration 1</translation>
+        <translation>Configuration 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="65"/>
         <source>Set 2</source>
-        <translation type="unfinished">Configuration 2</translation>
+        <translation>Configuration 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="70"/>
         <source>Set 3</source>
-        <translation type="unfinished">Configuration 3</translation>
+        <translation>Configuration 3</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="75"/>
         <source>Set 4</source>
-        <translation type="unfinished">Configuration 4</translation>
+        <translation>Configuration 4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="80"/>
         <source>Set 5</source>
-        <translation type="unfinished">Configuration 5</translation>
+        <translation>Configuration 5</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="85"/>
         <source>Set 6</source>
-        <translation type="unfinished">Configuration 6</translation>
+        <translation>Configuration 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="90"/>
         <source>Set 7</source>
-        <translation type="unfinished">Configuration 7</translation>
+        <translation>Configuration 7</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="95"/>
         <source>Set 8</source>
-        <translation type="unfinished">Configuration 8</translation>
+        <translation>Configuration 8</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="100"/>
@@ -5891,7 +5891,7 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="173"/>
         <source>a</source>
-        <translation type="unfinished">q</translation>
+        <translation>q</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="174"/>
@@ -5951,7 +5951,7 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="185"/>
         <source>m</source>
-        <translation type="unfinished">,</translation>
+        <translation>,</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="186"/>
@@ -5971,7 +5971,7 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="189"/>
         <source>q</source>
-        <translation type="unfinished">a</translation>
+        <translation>a</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="190"/>
@@ -6001,7 +6001,7 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="195"/>
         <source>w</source>
-        <translation type="unfinished">z</translation>
+        <translation>z</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="196"/>
@@ -6016,7 +6016,7 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="198"/>
         <source>z</source>
-        <translation type="unfinished">w</translation>
+        <translation>w</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="200"/>
@@ -6962,7 +6962,7 @@ NUM</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="907"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="927"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished">Les emplacements pour les boutons n’ont pas pu être nettoyés, car il n’y avait pas de bouton défini du clavier pour le contrôleur. Mettez en correspondance au moins un bouton du clavier avec le contrôleur.</translation>
+        <translation>Les emplacements pour les boutons n’ont pas pu être nettoyés, car il n’y avait pas de bouton défini du clavier pour le contrôleur. Mettez en correspondance au moins un bouton du clavier avec le contrôleur.</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="988"/>
