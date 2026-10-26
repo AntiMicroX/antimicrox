@@ -348,32 +348,32 @@ Mai târziu, proiectul a fost mutat din nou pe https://github.com/AntiMicroX/ant
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
         <source>Program Version %1</source>
-        <translation></translation>
+        <translation>Versiune program %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation></translation>
+        <translation>Program compilat pe %1 la %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="58"/>
         <source>Built Against SDL %1</source>
-        <translation></translation>
+        <translation>Creat folosind SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="59"/>
         <source>Running With SDL %1</source>
-        <translation></translation>
+        <translation>Se rulează cu SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="61"/>
         <source>Using Qt %1</source>
-        <translation></translation>
+        <translation>Se utilizează Qt %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="73"/>
@@ -410,8 +410,9 @@ Mai târziu, proiectul a fost mutat din nou pe https://github.com/AntiMicroX/ant
         <source>Select Window. Click on the appropriate application
 window and the application file path will be populated
 in the form.</source>
-        <translation>Selectare fereastră. Clic pe fereastra aplicației dorite
-și locația fișierului aplicației va fi adăugată în formular.</translation>
+        <translation>Selectare fereastră. Clic pe fereastra aplicației
+dorite și locația fișierului aplicației va fi adăugată
+în formular.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
@@ -1783,7 +1784,7 @@ acest buton este în uz.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished">Calibrare</translation>
+        <translation>Calibrare</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
@@ -2688,17 +2689,17 @@ Dacă se renunță, controllerul va redeveni joystick la reîmprospătarea joyst
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1709"/>
         <source>[Set %1 1W]</source>
-        <translation type="unfinished">[Set %1 1W]</translation>
+        <translation>[Set %1 1dir]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1714"/>
         <source>[Set %1 2W]</source>
-        <translation type="unfinished">[Set %1 2W]</translation>
+        <translation>[Set %1 2dir]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1721"/>
         <source>[Set %1 WH]</source>
-        <translation type="unfinished">[Set %1 WH]</translation>
+        <translation>[Set %1 î.t.a]</translation>
     </message>
 </context>
 <context>
@@ -2736,17 +2737,17 @@ Dacă se renunță, controllerul va redeveni joystick la reîmprospătarea joyst
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="85"/>
         <source>Set %1 1W</source>
-        <translation type="unfinished">Set %1 1W</translation>
+        <translation>Set %1 1dir</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="86"/>
         <source>Set %1 2W</source>
-        <translation type="unfinished">Set %1 2W</translation>
+        <translation>Set %1 2dir</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="87"/>
         <source>Set %1 WH</source>
-        <translation type="unfinished">Set %1 WH</translation>
+        <translation>Set %1 î.t.a</translation>
     </message>
 </context>
 <context>
@@ -3227,7 +3228,7 @@ funcționalitate de mers/alergat unui stick analogic.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="146"/>
         <source>Bearing:</source>
-        <translation type="unfinished">Rulment:</translation>
+        <translation>Unghi:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="198"/>
@@ -3846,7 +3847,7 @@ taste cu butoane sau a dezactiva butoane goale ascunse.</translation>
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation type="unfinished">Joystick</translation>
+        <translation>Joystick</translation>
     </message>
 </context>
 <context>
@@ -5113,7 +5114,7 @@ limitată oferită de stick-uri analogice obișnuite.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="524"/>
         <source>Delta Acceleration</source>
-        <translation type="unfinished">Delta accelerație</translation>
+        <translation>Delta accelerație</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="543"/>
@@ -5381,7 +5382,7 @@ reduce durata pe care este aplicată accelerația suplimentară.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="773"/>
         <source>Spring Width:</source>
-        <translation>Lățime elastic</translation>
+        <translation>Lățime elastic:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="786"/>
@@ -5632,7 +5633,7 @@ Poți migra manual redenumind folderul vechi și redenumind fișierul „antimic
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="364"/>
         <source>Controller identifier &apos;%s&apos; is not a valid value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificatorul de controller &apos;%s&apos; nu este o valoare validă.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="369"/>
@@ -6170,7 +6171,7 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="245"/>
         <source>;</source>
-        <translation>ș</translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="246"/>
@@ -6488,7 +6489,7 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation type="unfinished">VDPad</translation>
+        <translation>VDPad</translation>
     </message>
 </context>
 <context>
@@ -6542,12 +6543,12 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
         <source>`</source>
-        <translation>„</translation>
+        <translation>`</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="136"/>
         <source>~</source>
-        <translation>”</translation>
+        <translation>~</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="137"/>
@@ -6563,17 +6564,17 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="139"/>
         <source>[</source>
-        <translation>ă</translation>
+        <translation>[</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="140"/>
         <source>]</source>
-        <translation>î</translation>
+        <translation>]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="141"/>
         <source>\</source>
-        <translation>â</translation>
+        <translation>\</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="142"/>
@@ -6583,12 +6584,12 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="143"/>
         <source>;</source>
-        <translation>ș</translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="144"/>
         <source>&apos;</source>
-        <translation>ț</translation>
+        <translation>&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="145"/>
@@ -6630,7 +6631,7 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="152"/>
         <source>PGUP</source>
-        <translation>PGSUS</translation>
+        <translation>PGUP</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="153"/>
@@ -6640,7 +6641,7 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="154"/>
         <source>PGDN</source>
-        <translation>PGJOS</translation>
+        <translation>PGDN</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
@@ -6723,12 +6724,12 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="174"/>
         <source>&lt;</source>
-        <translation type="unfinished">&lt;</translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="175"/>
         <source>:</source>
-        <translation type="unfinished">:</translation>
+        <translation>:</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>
