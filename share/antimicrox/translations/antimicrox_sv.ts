@@ -270,7 +270,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
@@ -1011,7 +1011,7 @@ för alla standardprofiler.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1381"/>
@@ -1396,7 +1396,7 @@ sliten analog styrspak.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="309"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Max Zone:</translation>
+        <translation>Max Zone:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="342"/>
@@ -1419,7 +1419,7 @@ tolkas.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="398"/>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="403"/>
@@ -1434,12 +1434,12 @@ tolkas.</translation>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="606"/>
         <source>Set</source>
-        <translation type="unfinished">Set</translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="619"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="652"/>
@@ -1477,7 +1477,7 @@ tolkas.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="44"/>
@@ -1507,7 +1507,7 @@ tolkas.</translation>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation type="unfinished">Turbo</translation>
+        <translation>Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
@@ -1646,12 +1646,12 @@ den här knappen används.</translation>
         <location filename="../../../src/gui/calibration.ui" line="197"/>
         <location filename="../../../src/gui/calibration.ui" line="211"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="141"/>
@@ -1670,7 +1670,7 @@ den här knappen används.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="248"/>
@@ -1837,7 +1837,7 @@ Det kan ta upp till %1 sekunder.</translation>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
@@ -1885,7 +1885,7 @@ Det kan ta upp till %1 sekunder.</translation>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Mouse (Normal)</translation>
+        <translation>Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="53"/>
@@ -1953,7 +1953,7 @@ Det kan ta upp till %1 sekunder.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="27"/>
@@ -1963,7 +1963,7 @@ Det kan ta upp till %1 sekunder.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="46"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Mouse (Normal)</translation>
+        <translation>Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="51"/>
@@ -2034,7 +2034,7 @@ Det kan ta upp till %1 sekunder.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="213"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="265"/>
@@ -2086,12 +2086,12 @@ en diagonal zon.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="454"/>
         <source>Set</source>
-        <translation type="unfinished">Set</translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="464"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -2195,12 +2195,12 @@ en diagonal zon.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
@@ -2425,12 +2425,12 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="38"/>
         <source>Up</source>
-        <translation type="unfinished">Up</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="42"/>
         <source>Down</source>
-        <translation type="unfinished">Down</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="46"/>
@@ -2440,7 +2440,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="50"/>
         <source>Right</source>
-        <translation type="unfinished">Right</translation>
+        <translation>Right</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
@@ -2625,7 +2625,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="47"/>
         <source>Turbo</source>
-        <translation type="unfinished">Turbo</translation>
+        <translation>Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="54"/>
@@ -2645,7 +2645,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="74"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="85"/>
@@ -2674,12 +2674,12 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="127"/>
         <source>Up</source>
-        <translation type="unfinished">Up</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="131"/>
         <source>Down</source>
-        <translation type="unfinished">Down</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="135"/>
@@ -2689,7 +2689,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="139"/>
         <source>Right</source>
-        <translation type="unfinished">Right</translation>
+        <translation>Right</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="179"/>
@@ -2790,14 +2790,14 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="57"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="81"/>
         <source>Up</source>
-        <translation type="unfinished">Up</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="69"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
         <source>Down</source>
-        <translation type="unfinished">Down</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="73"/>
@@ -2811,7 +2811,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="61"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="65"/>
         <source>Right</source>
-        <translation type="unfinished">Right</translation>
+        <translation>Right</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joycontrolstickbutton.cpp" line="98"/>
@@ -2826,7 +2826,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="49"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Mouse (Normal)</translation>
+        <translation>Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="58"/>
@@ -2894,7 +2894,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
@@ -2908,7 +2908,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="159"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="224"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
@@ -2928,7 +2928,7 @@ Om den förkastas återställs handkontrollen till en styrspak när du uppdatera
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="293"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Mouse (Normal)</translation>
+        <translation>Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="298"/>
@@ -3044,7 +3044,7 @@ en diagonal zon på styrspaken.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
@@ -3060,7 +3060,7 @@ en diagonal zon på styrspaken.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="544"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="410"/>
@@ -3161,7 +3161,7 @@ gång-/springfunktioner till en analog spak.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="510"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Max Zone:</translation>
+        <translation>Max Zone:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="474"/>
@@ -3171,12 +3171,12 @@ gång-/springfunktioner till en analog spak.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="598"/>
         <source>Set</source>
-        <translation type="unfinished">Set</translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="611"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -3206,14 +3206,14 @@ gång-/springfunktioner till en analog spak.</translation>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="51"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="67"/>
         <source>Up</source>
-        <translation type="unfinished">Up</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="59"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="71"/>
         <source>Down</source>
-        <translation type="unfinished">Down</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="63"/>
@@ -3227,7 +3227,7 @@ gång-/springfunktioner till en analog spak.</translation>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="51"/>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="59"/>
         <source>Right</source>
-        <translation type="unfinished">Right</translation>
+        <translation>Right</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joydpadbutton.cpp" line="90"/>
@@ -3301,7 +3301,7 @@ gång-/springfunktioner till en analog spak.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3312,7 +3312,7 @@ gång-/springfunktioner till en analog spak.</translation>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
@@ -3353,7 +3353,7 @@ gång-/springfunktioner till en analog spak.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Max Zone:</translation>
+        <translation>Max Zone:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
@@ -3386,7 +3386,7 @@ gång-/springfunktioner till en analog spak.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
@@ -3421,12 +3421,12 @@ gång-/springfunktioner till en analog spak.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="221"/>
         <source>Set</source>
-        <translation type="unfinished">Set</translation>
+        <translation>Set</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -3439,7 +3439,7 @@ gång-/springfunktioner till en analog spak.</translation>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
         <source>Mouse (Normal)</source>
-        <translation type="unfinished">Mouse (Normal)</translation>
+        <translation>Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
@@ -3729,7 +3729,7 @@ till knappar eller inaktivera att tomma knappar döljs.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2507"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2531"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2539"/>
@@ -3752,7 +3752,7 @@ till knappar eller inaktivera att tomma knappar döljs.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1560"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1566"/>
         <source>Set</source>
-        <translation type="unfinished">Set</translation>
+        <translation>Set</translation>
     </message>
 </context>
 <context>
@@ -4392,7 +4392,7 @@ alla tillgängliga skärmar som standard.</translation>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1178"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1209"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1171"/>
@@ -4574,7 +4574,7 @@ inaktiverats i Windows.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="23"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished">AntiMicroX</translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
@@ -4846,7 +4846,7 @@ Enhetsnamn: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="272"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4859,7 +4859,7 @@ Enhetsnamn: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="255"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4872,7 +4872,7 @@ Enhetsnamn: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="296"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4885,7 +4885,7 @@ Enhetsnamn: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="280"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -4898,7 +4898,7 @@ Enhetsnamn: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -5093,7 +5093,7 @@ snabbare vid en axels lägre värden.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="470"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="695"/>
         <source> s</source>
-        <translation type="unfinished"> s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="553"/>
@@ -5276,7 +5276,7 @@ efter att axelns högre värde har nåtts.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="661"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="847"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="690"/>
@@ -5631,7 +5631,7 @@ Vill du sprida den här gasändringen till alla uppsättningar?</translation>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1023"/>
         <source>Set %1</source>
-        <translation type="unfinished">Set %1</translation>
+        <translation>Set %1</translation>
     </message>
 </context>
 <context>
@@ -6037,7 +6037,7 @@ Kontrollera att du har behörighet att skriva till enheten</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="236"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="237"/>
@@ -6161,7 +6161,7 @@ Kontrollera att du har behörighet att skriva till enheten</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
         <source>Up</source>
-        <translation type="unfinished">Up</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="262"/>
@@ -6171,12 +6171,12 @@ Kontrollera att du har behörighet att skriva till enheten</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="263"/>
         <source>Down</source>
-        <translation type="unfinished">Down</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="264"/>
         <source>Right</source>
-        <translation type="unfinished">Right</translation>
+        <translation>Right</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="265"/>
@@ -6361,7 +6361,7 @@ Kontrollera att du har behörighet att skriva till enheten</translation>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="62"/>
@@ -6603,7 +6603,7 @@ Kontrollera att du har behörighet att skriva till enheten</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="164"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
@@ -6656,12 +6656,12 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="178"/>
         <source>Up</source>
-        <translation type="unfinished">Up</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="179"/>
         <source>Down</source>
-        <translation type="unfinished">Down</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="180"/>
@@ -6671,7 +6671,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="181"/>
         <source>Right</source>
-        <translation type="unfinished">Right</translation>
+        <translation>Right</translation>
     </message>
 </context>
 <context>
@@ -6703,7 +6703,7 @@ LK</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="512"/>
         <source>Up</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Up</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="520"/>
@@ -6751,13 +6751,13 @@ LK</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="554"/>
         <source>Down</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Down</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="571"/>
         <source>Right</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Right</translation>
+        <translation>Right</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="584"/>
