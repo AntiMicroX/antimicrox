@@ -1722,7 +1722,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished">Kalibrasi</translation>
+        <translation>Kalibrasi</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
@@ -3785,7 +3785,7 @@ ke tombol controller atau nonaktifkan penyembunyian tombol kosong.</translation>
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation type="unfinished">Joystick</translation>
+        <translation>Joystick</translation>
     </message>
 </context>
 <context>
@@ -6416,7 +6416,7 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation type="unfinished">DPad Virtual</translation>
+        <translation>DPad Virtual</translation>
     </message>
 </context>
 <context>
