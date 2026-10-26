@@ -353,7 +353,7 @@ In seguito il progetto è stato trasferito nuovamente a [https://github.com/Anti
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
@@ -1783,7 +1783,7 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation>Calibrazione</translation>
+        <translation type="unfinished">Calibrazione</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
@@ -2688,17 +2688,17 @@ Eliminandola, il controller verrà ripristinato come joystick al prossimo aggior
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1709"/>
         <source>[Set %1 1W]</source>
-        <translation>[Set %1 1DIREZ]</translation>
+        <translation>[Set %1 1W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1714"/>
         <source>[Set %1 2W]</source>
-        <translation>[Set %1 2DIREZ]</translation>
+        <translation>[Set %1 2W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1721"/>
         <source>[Set %1 WH]</source>
-        <translation>[Set %1 PREMENDO]</translation>
+        <translation>[Set %1 WH]</translation>
     </message>
 </context>
 <context>
@@ -2736,12 +2736,12 @@ Eliminandola, il controller verrà ripristinato come joystick al prossimo aggior
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="85"/>
         <source>Set %1 1W</source>
-        <translation>Set %1 1DIREZ</translation>
+        <translation>Set %1 1W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="86"/>
         <source>Set %1 2W</source>
-        <translation>Set %1 2DIREZ</translation>
+        <translation>Set %1 2W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="87"/>
@@ -3846,7 +3846,7 @@ assegnare funzioni ai tasti o disattiva il nascondimento dei tasti vuoti.</trans
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation>Joystick</translation>
+        <translation type="unfinished">Joystick</translation>
     </message>
 </context>
 <context>
@@ -3977,7 +3977,7 @@ assegnare funzioni ai tasti o disattiva il nascondimento dei tasti vuoti.</trans
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="89"/>
         <source>Different: %1</source>
-        <translation type="unfinished">Differenza: %1</translation>
+        <translation>Differenza: %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="101"/>
@@ -4334,7 +4334,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1022"/>
         <source>Weight Modi&amp;fier:</source>
-        <translation type="unfinished">Modi&amp;fica peso:</translation>
+        <translation>Modi&amp;fica peso:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1302"/>
@@ -4424,7 +4424,7 @@ puntatore&quot;permetterà movimenti del mouse più precisi nel programma.</tran
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="975"/>
         <source>Smoothing</source>
-        <translation type="unfinished">Fluidità</translation>
+        <translation>Fluidità</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1055"/>
