@@ -411,7 +411,8 @@ In seguito il progetto è stato trasferito nuovamente a [https://github.com/Anti
 window and the application file path will be populated
 in the form.</source>
         <translation>Seleziona la finestra. Clicca la finestra dell&apos;applicazione
-ed il percorso del file dell&apos;applicazione verrà inserito nel modulo.</translation>
+ed il percorso del file dell&apos;applicazione verrà inserito 
+nel modulo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
@@ -4096,10 +4097,11 @@ Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
 before using AntiMicroX unattended.</source>
         <translation>Cambia la velocità di verifica usata dal programma per
-scoprire nuovi eventi dai gamepad. Predefinito: 10 ms.
+scoprire nuovi eventi dai gamepad. Predefinita: 10 ms.
 
 Ridurre tale velocità potrebbe causare un consumo di 
-CPU maggiore, quindi, testa le impostazione che userai.</translation>
+CPU maggiore, quindi, prova le impostazione che userai
+prima di utilizzare AntiMicroX in modalità automatica.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="246"/>
@@ -4414,7 +4416,8 @@ will allow mouse movement within AntiMicroX to be more
 precise.</source>
         <translation>Disabilita l&apos;impostazione di Windows &quot;Aumenta precisione puntatore&quot;
 mentre AntiMicroX è in esecuzione. Disattivare &quot;Aumenta precisione 
-puntatore&quot;permetterà movimenti del mouse più precisi nel programma.</translation>
+puntatore&quot; permetterà movimenti del mouse più precisi nel 
+programma.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="965"/>
@@ -4674,7 +4677,7 @@ Per favore collega un joystick e scegli l&apos;opzione &quot;Aggiorna i joystick
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna pulsante</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
