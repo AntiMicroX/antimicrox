@@ -26,12 +26,12 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-JoyAxisXml::JoyAxisXml(JoyAxis *axis, QObject *parent)
+JoyAxisXml::JoyAxisXml(JoyAxis &axis, QObject *parent)
     : QObject(parent)
+    , m_joyAxis(axis)
 {
-    m_joyAxis = axis;
-    joyButtonXmlNAxis = new JoyButtonXml(axis->getNAxisButton());
-    joyButtonXmlPAxis = new JoyButtonXml(axis->getPAxisButton());
+    joyButtonXmlNAxis = new JoyButtonXml(*m_joyAxis.getNAxisButton());
+    joyButtonXmlPAxis = new JoyButtonXml(*m_joyAxis.getPAxisButton());
 }
 
 JoyAxisXml::~JoyAxisXml()
@@ -44,15 +44,15 @@ JoyAxisXml::~JoyAxisXml()
 
 void JoyAxisXml::readConfig(QXmlStreamReader *xml)
 {
-    if (xml->isStartElement() && (xml->name().toString() == m_joyAxis->getXmlName()))
+    if (xml->isStartElement() && (xml->name().toString() == m_joyAxis.getXmlName()))
     {
         xml->readNextStartElement();
 
-        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != m_joyAxis->getXmlName())))
+        while (!xml->atEnd() && (!xml->isEndElement() && (xml->name().toString() != m_joyAxis.getXmlName())))
         {
             bool found = readMainConfig(xml);
 
-            if (!found && (xml->name().toString() == m_joyAxis->getNAxisButton()->getXmlName()) && xml->isStartElement())
+            if (!found && (xml->name().toString() == m_joyAxis.getNAxisButton()->getXmlName()) && xml->isStartElement())
             {
                 found = true;
                 readButtonConfig(xml);
@@ -68,23 +68,23 @@ void JoyAxisXml::readConfig(QXmlStreamReader *xml)
 
 void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 {
-    bool currentlyDefault = m_joyAxis->isDefault();
+    bool currentlyDefault = m_joyAxis.isDefault();
 
-    xml->writeStartElement(m_joyAxis->getXmlName());
-    xml->writeAttribute("index", QString::number(m_joyAxis->getRealJoyIndex()));
+    xml->writeStartElement(m_joyAxis.getXmlName());
+    xml->writeAttribute("index", QString::number(m_joyAxis.getRealJoyIndex()));
 
     if (!currentlyDefault)
     {
-        if (m_joyAxis->getDeadZone() != GlobalVariables::JoyAxis::AXISDEADZONE)
-            xml->writeTextElement("deadZone", QString::number(m_joyAxis->getDeadZone()));
+        if (m_joyAxis.getDeadZone() != GlobalVariables::JoyAxis::AXISDEADZONE)
+            xml->writeTextElement("deadZone", QString::number(m_joyAxis.getDeadZone()));
 
-        if (m_joyAxis->getMaxZoneValue() != GlobalVariables::JoyAxis::AXISMAXZONE)
-            xml->writeTextElement("maxZone", QString::number(m_joyAxis->getMaxZoneValue()));
+        if (m_joyAxis.getMaxZoneValue() != GlobalVariables::JoyAxis::AXISMAXZONE)
+            xml->writeTextElement("maxZone", QString::number(m_joyAxis.getMaxZoneValue()));
     }
 
     xml->writeStartElement("throttle");
 
-    switch (m_joyAxis->getThrottle())
+    switch (m_joyAxis.getThrottle())
     {
     case -2:
         xml->writeCharacters("negativehalf");
@@ -109,9 +109,9 @@ void JoyAxisXml::writeConfig(QXmlStreamWriter *xml)
 
     xml->writeEndElement();
 
-    if (m_joyAxis->hasHapticTrigger())
+    if (m_joyAxis.hasHapticTrigger())
     {
-        HapticTriggerPs5 *haptic = m_joyAxis->getHapticTrigger();
+        HapticTriggerPs5 *haptic = m_joyAxis.getHapticTrigger();
         xml->writeTextElement("hapticTrigger", HapticTriggerPs5::to_string(haptic->get_mode()));
     }
 
@@ -136,7 +136,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 
         qDebug() << "From xml config dead zone is: " << tempchoice;
 
-        m_joyAxis->setDeadZone(tempchoice);
+        m_joyAxis.setDeadZone(tempchoice);
     } else if ((xml->name().toString() == "maxZone") && xml->isStartElement())
     {
         found = true;
@@ -145,7 +145,7 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 
         qDebug() << "From xml config max zone is: " << tempchoice;
 
-        m_joyAxis->setMaxZoneValue(tempchoice);
+        m_joyAxis.setMaxZoneValue(tempchoice);
     } else if ((xml->name().toString() == "throttle") && xml->isStartElement())
     {
         found = true;
@@ -155,35 +155,34 @@ bool JoyAxisXml::readMainConfig(QXmlStreamReader *xml)
 
         if (temptext == "negativehalf")
         {
-            m_joyAxis->setThrottle(static_cast<int>(JoyAxis::NegativeHalfThrottle));
+            m_joyAxis.setThrottle(static_cast<int>(JoyAxis::NegativeHalfThrottle));
         } else if (temptext == "negative")
         {
-            m_joyAxis->setThrottle(static_cast<int>(JoyAxis::NegativeThrottle));
+            m_joyAxis.setThrottle(static_cast<int>(JoyAxis::NegativeThrottle));
         } else if (temptext == "normal")
         {
-            m_joyAxis->setThrottle(static_cast<int>(JoyAxis::NormalThrottle));
+            m_joyAxis.setThrottle(static_cast<int>(JoyAxis::NormalThrottle));
         } else if (temptext == "positive")
         {
-            m_joyAxis->setThrottle(static_cast<int>(JoyAxis::PositiveThrottle));
+            m_joyAxis.setThrottle(static_cast<int>(JoyAxis::PositiveThrottle));
         } else if (temptext == "positivehalf")
         {
-            m_joyAxis->setThrottle(static_cast<int>(JoyAxis::PositiveHalfThrottle));
+            m_joyAxis.setThrottle(static_cast<int>(JoyAxis::PositiveHalfThrottle));
         }
 
-        InputDevice *device = m_joyAxis->getParentSet()->getInputDevice();
+        InputDevice *device = m_joyAxis.getParentSet()->getInputDevice();
 
-        if (!device->hasCalibrationThrottle(m_joyAxis->getIndex()))
+        if (!device->hasCalibrationThrottle(m_joyAxis.getIndex()))
         {
-            device->setCalibrationStatus(m_joyAxis->getIndex(),
-                                         static_cast<JoyAxis::ThrottleTypes>(m_joyAxis->getThrottle()));
+            device->setCalibrationStatus(m_joyAxis.getIndex(), static_cast<JoyAxis::ThrottleTypes>(m_joyAxis.getThrottle()));
         }
 
-        m_joyAxis->setCurrentRawValue(m_joyAxis->getCurrentThrottledDeadValue());
-        m_joyAxis->updateCurrentThrottledValue(m_joyAxis->calculateThrottledValue(m_joyAxis->getCurrentRawValue()));
+        m_joyAxis.setCurrentRawValue(m_joyAxis.getCurrentThrottledDeadValue());
+        m_joyAxis.updateCurrentThrottledValue(m_joyAxis.calculateThrottledValue(m_joyAxis.getCurrentRawValue()));
     } else if ((xml->name().toString() == "hapticTrigger") && xml->isStartElement())
     {
         found = true;
-        m_joyAxis->setHapticTriggerMode(HapticTriggerPs5::from_string(xml->readElementText()));
+        m_joyAxis.setHapticTriggerMode(HapticTriggerPs5::from_string(xml->readElementText()));
     }
 
     return found;
