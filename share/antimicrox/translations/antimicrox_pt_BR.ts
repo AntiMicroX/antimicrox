@@ -1942,7 +1942,7 @@ este botão estiver sendo usado.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished">Calibragem</translation>
+        <translation>Calibragem</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
