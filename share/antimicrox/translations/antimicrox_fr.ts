@@ -11,7 +11,7 @@
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="116"/>
         <source>Version</source>
-        <translation></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="148"/>
@@ -422,7 +422,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="58"/>
         <source>Built Against SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Built Against SDL %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="59"/>
@@ -2317,7 +2317,7 @@ une zone diagonale.</translation>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="51"/>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="57"/>
         <source>DPad</source>
-        <translation></translation>
+        <translation>DPad</translation>
     </message>
 </context>
 <context>
@@ -2335,22 +2335,22 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
@@ -2360,12 +2360,12 @@ une zone diagonale.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation></translation>
+        <translation>Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
@@ -2930,7 +2930,7 @@ S&apos;il est annulé, le contrôleur redeviendra un joystick une fois tous les 
         <location filename="../../../src/joycontrolstick.cpp" line="811"/>
         <location filename="../../../src/joycontrolstick.cpp" line="816"/>
         <source>Stick</source>
-        <translation></translation>
+        <translation>Stick</translation>
     </message>
 </context>
 <context>
@@ -3350,7 +3350,7 @@ attribuer une fonctionnalité marcher/courir à un stick analogique.</translatio
         <location filename="../../../src/joydpad.cpp" line="95"/>
         <location filename="../../../src/joydpad.cpp" line="100"/>
         <source>DPad</source>
-        <translation></translation>
+        <translation>DPad</translation>
     </message>
 </context>
 <context>
@@ -4608,7 +4608,7 @@ Les paramètres ne prennent effet que lors de la prochaine réactualisation des 
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="574"/>
         <source>GUID</source>
-        <translation></translation>
+        <translation>GUID</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="579"/>
@@ -4912,7 +4912,7 @@ précision du pointeur» si l&apos;option n&apos;est pas désactivée dans Windo
         <location filename="../../../src/gui/mainwindow.cpp" line="1511"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="1524"/>
         <source>(%1)</source>
-        <translation></translation>
+        <translation>(%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="582"/>
@@ -5515,7 +5515,7 @@ le curseur peut se déplacer en mode &quot;ressort&quot;.
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="142"/>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="165"/>
         <source>0x00000000</source>
-        <translation></translation>
+        <translation>0x00000000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="135"/>
@@ -6560,7 +6560,7 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation></translation>
+        <translation>VDPad</translation>
     </message>
 </context>
 <context>
@@ -6614,38 +6614,38 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
         <source>`</source>
-        <translation></translation>
+        <translation>`</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="136"/>
         <source>~</source>
-        <translation></translation>
+        <translation>~</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="137"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="168"/>
         <source>-</source>
-        <translation></translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="138"/>
         <source>=</source>
-        <translation></translation>
+        <translation>=</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="139"/>
         <source>[</source>
-        <translation></translation>
+        <translation>[</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="140"/>
         <source>]</source>
-        <translation></translation>
+        <translation>]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="141"/>
         <source>\</source>
-        <translation></translation>
+        <translation>\</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="142"/>
@@ -6655,29 +6655,29 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="143"/>
         <source>;</source>
-        <translation></translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="144"/>
         <source>&apos;</source>
-        <translation></translation>
+        <translation>&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="145"/>
         <source>,</source>
-        <translation></translation>
+        <translation>,</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="146"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="171"/>
         <source>.</source>
-        <translation></translation>
+        <translation>.</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="147"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="166"/>
         <source>/</source>
-        <translation></translation>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="148"/>
@@ -6717,52 +6717,52 @@ Vérifiez que vous avez le droit d&apos;écrire sur le périphérique</translati
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
         <source>1</source>
-        <translation></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="156"/>
         <source>2</source>
-        <translation></translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="157"/>
         <source>3</source>
-        <translation></translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
         <source>4</source>
-        <translation></translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="159"/>
         <source>5</source>
-        <translation></translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="160"/>
         <source>6</source>
-        <translation></translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="161"/>
         <source>7</source>
-        <translation></translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="162"/>
         <source>8</source>
-        <translation></translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="163"/>
         <source>9</source>
-        <translation></translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="164"/>
         <source>0</source>
-        <translation></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
@@ -6775,12 +6775,12 @@ NUM</translation>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="167"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="173"/>
         <source>*</source>
-        <translation></translation>
+        <translation>*</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="169"/>
         <source>+</source>
-        <translation></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="170"/>
@@ -6795,12 +6795,12 @@ NUM</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="174"/>
         <source>&lt;</source>
-        <translation></translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="175"/>
         <source>:</source>
-        <translation></translation>
+        <translation>:</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>
@@ -6810,7 +6810,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="177"/>
         <source>Menu</source>
-        <translation></translation>
+        <translation>Menu</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="178"/>

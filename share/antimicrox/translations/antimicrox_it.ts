@@ -411,7 +411,8 @@ In seguito il progetto è stato trasferito nuovamente a [https://github.com/Anti
 window and the application file path will be populated
 in the form.</source>
         <translation>Seleziona la finestra. Clicca la finestra dell&apos;applicazione
-ed il percorso del file dell&apos;applicazione verrà inserito nel modulo.</translation>
+ed il percorso del file dell&apos;applicazione verrà inserito 
+nel modulo.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/addeditautoprofiledialog.ui" line="74"/>
@@ -4096,10 +4097,11 @@ Reducing the poll rate value could cause the application to
 use more CPU power so please test the setting that you use
 before using AntiMicroX unattended.</source>
         <translation>Cambia la velocità di verifica usata dal programma per
-scoprire nuovi eventi dai gamepad. Predefinito: 10 ms.
+scoprire nuovi eventi dai gamepad. Predefinita: 10 ms.
 
 Ridurre tale velocità potrebbe causare un consumo di 
-CPU maggiore, quindi, testa le impostazione che userai.</translation>
+CPU maggiore, quindi, prova le impostazione che userai
+prima di utilizzare AntiMicroX in modalità automatica.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="246"/>
@@ -4413,7 +4415,9 @@ while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within AntiMicroX to be more
 precise.</source>
         <translation>Disabilita l&apos;impostazione di Windows &quot;Aumenta precisione puntatore&quot;
-mentre AntiMicroX è in esecuzione. Disattivare &quot;Aumenta precisione puntatore&quot; permetterà movimenti del mouse più precisi nel programma.</translation>
+mentre AntiMicroX è in esecuzione. Disattivare &quot;Aumenta precisione 
+puntatore&quot; permetterà movimenti del mouse più precisi nel 
+programma.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="965"/>
@@ -4673,7 +4677,7 @@ Per favore collega un joystick e scegli l&apos;opzione &quot;Aggiorna i joystick
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation>Aggiorna pulsante</translation>
+        <translation type="unfinished">»</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
@@ -4737,92 +4741,92 @@ Per favore collega un joystick e scegli l&apos;opzione &quot;Aggiorna i joystick
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="305"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni su &amp;Qt</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="308"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="317"/>
         <source>&amp;Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Proprietà</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="320"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="329"/>
         <source>&amp;Key Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Controllo tasti</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="332"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="349"/>
         <source>&amp;GitHub Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagina &amp;GitHub</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="352"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="361"/>
         <source>S&amp;ettings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impo&amp;stazioni</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="364"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="373"/>
         <source>&amp;Stick/Pad Assign</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Assegnazione stick/pad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="376"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="385"/>
         <source>&amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wiki</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="388"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="397"/>
         <source>&amp;Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Segnalazioni</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="400"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="409"/>
         <source>&amp;Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>Cali&amp;brazione</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="412"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="337"/>
@@ -4851,12 +4855,14 @@ Per favore collega un joystick e scegli l&apos;opzione &quot;Aggiorna i joystick
         <source>Are you sure that you want to run this program as Adminstrator?
 
 Some games run as Administrator which will cause events generated by antimicro to not be used by those games unless antimicro is also run as the Adminstrator. This is due to permission problems caused by User Account Control (UAC) options in Windows Vista and later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi davvero eseguire questo programma come amministratore?
+
+Alcuni giochi vengono eseguiti come amministratore: in tal caso non useranno gli eventi generati da antimicro, a meno che anche antimicro non venga eseguito come amministratore. Ciò è dovuto a problemi di autorizzazione causati dalle opzioni di Controllo account utente (UAC) di Windows Vista e versioni successive.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1698"/>
         <source>%1 battery</source>
-        <translation type="unfinished"></translation>
+        <translation>Batteria al %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1700"/>
@@ -4873,17 +4879,17 @@ Nome dispositivo: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1728"/>
         <source>Update to %1 available</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento a %1 disponibile</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1851"/>
         <source>Reading old profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Lettura di un vecchio profilo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1852"/>
         <source>This profile uses controllers&apos; GUID numbers. Would you like to change GUID numbers to UniqueID in this file for use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo profilo usa i numeri GUID dei controller. Vuoi sostituire i numeri GUID con UniqueID in questo file per usarlo con controller identici? Questo tipo di file vecchio non può essere caricato in antimicrox dalla versione 2.25</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="443"/>
@@ -4893,7 +4899,7 @@ Nome dispositivo: %2</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1089"/>
         <source>Calibration couldn&apos;t be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile aprire la calibrazione</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="1090"/>
@@ -5097,23 +5103,29 @@ produce. Acceleration is added based on how quickly an axis is
 moved in one gamepad poll. This is meant to help work around
 some of the issues of the very limited input range available
 using typical gamepad analog sticks.</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni per aggiungere accelerazione al movimento del mouse
+oltre a quella prodotta dalla curva di accelerazione.
+L&apos;accelerazione viene aggiunta in base alla velocità con cui un asse
+viene mosso in un singolo rilevamento del gamepad. Serve ad aggirare
+alcuni problemi dovuti alla gamma di input molto limitata
+degli stick analogici dei gamepad comuni.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="524"/>
         <source>Delta Acceleration</source>
-        <translation type="unfinished"></translation>
+        <translation>Accelerazione delta</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="543"/>
         <source>&amp;Multiplier:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Moltiplicatore:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="616"/>
         <source>Mi&amp;n
 Threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Soglia
+mi&amp;nima:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
@@ -5145,7 +5157,7 @@ del mouse a seconda del numero di tacche al secondo simulate.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="410"/>
         <source>Sensitivit&amp;y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensi&amp;bilità:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="423"/>
@@ -5210,7 +5222,7 @@ massima:</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="680"/>
         <source>E&amp;xtra Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Durata e&amp;xtra:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="715"/>
@@ -5324,13 +5336,15 @@ una curva cubica.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="221"/>
         <source>Hori&amp;zontal
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocità
+ori&amp;zzontale:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="266"/>
         <source>&amp;Vertical
 Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocità
+&amp;verticale:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="370"/>
@@ -5445,7 +5459,7 @@ grandezza dello schermo.</translation>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="158"/>
         <source>antimicro Key Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valore tasto AntiMicroX:</translation>
     </message>
 </context>
 <context>
@@ -5525,7 +5539,9 @@ grandezza dello schermo.</translation>
         <source>Your original settings (previously stored in %1) have been copied to
 %2
  If you want you can delete the original directory or leave it as it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni originali (salvate in precedenza in %1) sono state copiate in
+%2
+ Se vuoi, puoi eliminare la cartella originale o lasciarla così com&apos;è.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="209"/>
@@ -5535,7 +5551,12 @@ Original configs are stored in
  but their new location is: 
 %2
 You can migrate manually by renaming old directory and renaming file to antimicrox_settings.ini.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un problema durante la migrazione delle impostazioni.
+Le configurazioni originali sono salvate in 
+%1
+ ma la nuova posizione è: 
+%2
+Puoi eseguire la migrazione manualmente rinominando la vecchia cartella e rinominando il file in antimicrox_settings.ini.</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="603"/>
@@ -5580,12 +5601,12 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="953"/>
         <source>Last button</source>
-        <translation type="unfinished"></translation>
+        <translation>Ultimo pulsante</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="954"/>
         <source>There isn&apos;t a last button pressed from gamepad in data. Did you set at least one button from gamepad for keyboard?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nei dati non risulta alcun ultimo pulsante premuto sul gamepad. Hai assegnato almeno un pulsante del gamepad alla tastiera?</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="207"/>
@@ -5595,7 +5616,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="225"/>
         <source>Specified contradicting flags: --show and --hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni in conflitto specificate: --show e --hidden</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="235"/>
@@ -5641,7 +5662,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="218"/>
         <source>No log file specified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun file di log specificato.</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="712"/>
@@ -5652,7 +5673,8 @@ You can migrate manually by renaming old directory and renaming file to antimicr
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="483"/>
         <source>Unable to open uinput files, this may cause problems with generating events.
 To check possible solutions please visit: </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile aprire i file uinput, ciò può causare problemi nella generazione degli eventi.
+Per le possibili soluzioni visita:</translation>
     </message>
 </context>
 <context>
@@ -6873,7 +6895,7 @@ NUM</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="907"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="927"/>
         <source>Slots for button couldn&apos;t be cleared, because there was not any set button from keyboard for gamepad. Map at least one button from keyboard to gamepad</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile svuotare gli slot del pulsante, perché non è stato impostato alcun pulsante della tastiera per il gamepad. Mappa almeno un pulsante della tastiera al gamepad</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="988"/>
@@ -7170,7 +7192,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="57"/>
         <source>Graphical program used to map keyboard buttons and mouse controls to a gamepad. Useful for playing games with no gamepad support.</source>
-        <translation type="unfinished"></translation>
+        <translation>Programma grafico per mappare tasti della tastiera e comandi del mouse su un gamepad. Utile per giocare a giochi senza supporto per gamepad.</translation>
     </message>
 </context>
 <context>
@@ -7193,22 +7215,22 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="70"/>
         <source>Show app window when hidden. (Used for unhiding window of already running app instance).</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra la finestra dell&apos;applicazione se nascosta. (Serve a mostrare di nuovo la finestra di un&apos;istanza già in esecuzione.)</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="73"/>
         <source>Launch program with the configuration file selected as the default for selected controllers, or change active profile of running app. Defaults to all controllers</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia il programma con il file di configurazione scelto come predefinito per i controller selezionati, oppure cambia il profilo attivo dell&apos;applicazione in esecuzione. Predefinito: tutti i controller</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="76"/>
         <source>location</source>
-        <translation type="unfinished"></translation>
+        <translation>percorso</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="78"/>
         <source>Apply configuration file to a specific controller. Value can be a controller index, name, or GUID</source>
-        <translation type="unfinished"></translation>
+        <translation>Applica il file di configurazione a un controller specifico. Il valore può essere l&apos;indice, il nome o il GUID del controller</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="80"/>
@@ -7218,7 +7240,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="81"/>
         <source>Unload currently enabled profile(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Scarica i profili attualmente attivi</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="82"/>
@@ -7263,7 +7285,7 @@ NUM</translation>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="97"/>
         <source>event-generation-type</source>
-        <translation type="unfinished"></translation>
+        <translation>tipo-generazione-eventi</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="99"/>
