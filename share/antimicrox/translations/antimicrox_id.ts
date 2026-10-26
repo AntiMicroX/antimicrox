@@ -293,32 +293,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
         <source>Program Version %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="58"/>
         <source>Built Against SDL %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="59"/>
         <source>Running With SDL %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="61"/>
         <source>Using Qt %1</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="73"/>
@@ -518,12 +518,12 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="76"/>
         <source>Toggle</source>
-        <translation>Toggle</translation>
+        <translation type="unfinished">Toggle</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="81"/>
         <source>Turbo</source>
-        <translation>Turbo</translation>
+        <translation type="unfinished">Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="86"/>
@@ -641,7 +641,7 @@ opsi profil default untuk semua perangkat.</translation>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="589"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="647"/>
         <source>%</source>
-        <translation>%</translation>
+        <translation type="unfinished">%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="235"/>
@@ -691,13 +691,13 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="403"/>
         <source>Placeholder</source>
-        <translation>Placeholder</translation>
+        <translation type="unfinished">Placeholder</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="510"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="534"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="586"/>
@@ -722,7 +722,7 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="767"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished">...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="778"/>
@@ -739,7 +739,7 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="888"/>
         <source>Mode:</source>
-        <translation>Mode:</translation>
+        <translation type="unfinished">Mode:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="898"/>
@@ -749,7 +749,7 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="902"/>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="907"/>
@@ -759,7 +759,7 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="912"/>
         <source>Pulse</source>
-        <translation>Pulse</translation>
+        <translation type="unfinished">Pulse</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="966"/>
@@ -1039,7 +1039,7 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1265"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="1381"/>
@@ -1160,12 +1160,12 @@ opsi profil default untuk semua perangkat.</translation>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="101"/>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="358"/>
         <source>%1 (Joystick %2)</source>
-        <translation>%1 (Joystick %2)</translation>
+        <translation type="unfinished">%1 (Joystick %2)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="124"/>
         <source>Stick 1</source>
-        <translation>Stick 1</translation>
+        <translation type="unfinished">Stick 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="134"/>
@@ -1199,7 +1199,7 @@ opsi profil default untuk semua perangkat.</translation>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="246"/>
         <source>Stick 2</source>
-        <translation>Stick 2</translation>
+        <translation type="unfinished">Stick 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancestickassignmentdialog.ui" line="371"/>
@@ -1303,7 +1303,7 @@ opsi profil default untuk semua perangkat.</translation>
         <location filename="../../../src/gui/axiseditdialog.ui" line="77"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="635"/>
         <source>Mouse (Horizontal)</source>
-        <translation>Mouse (Horizontal)</translation>
+        <translation type="unfinished">Mouse (Horizontal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="82"/>
@@ -1351,13 +1351,13 @@ opsi profil default untuk semua perangkat.</translation>
         <location filename="../../../src/gui/axiseditdialog.ui" line="117"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="643"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation>NumPad: KP_8 | KP_2</translation>
+        <translation type="unfinished">NumPad: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="122"/>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="644"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation>NumPad: KP_4 | KP_6</translation>
+        <translation type="unfinished">NumPad: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="127"/>
@@ -1445,7 +1445,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="398"/>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="unfinished">Normal</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.ui" line="403"/>
@@ -1465,7 +1465,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="619"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="652"/>
@@ -1485,7 +1485,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="662"/>
         <source>Rigid</source>
-        <translation>Rigid</translation>
+        <translation type="unfinished">Rigid</translation>
     </message>
     <message>
         <location filename="../../../src/gui/axiseditdialog.cpp" line="663"/>
@@ -1503,7 +1503,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="23"/>
         <source>Dialog</source>
-        <translation>Dialog</translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="44"/>
@@ -1513,12 +1513,12 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="70"/>
         <source>Placeholder</source>
-        <translation>Placeholder</translation>
+        <translation type="unfinished">Placeholder</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="99"/>
         <source>Toggle</source>
-        <translation>Toggle</translation>
+        <translation type="unfinished">Toggle</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="96"/>
@@ -1533,7 +1533,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="127"/>
         <source>Turbo</source>
-        <translation>Turbo</translation>
+        <translation type="unfinished">Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="150"/>
@@ -1661,7 +1661,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="113"/>
         <source>Z</source>
-        <translation>Z</translation>
+        <translation type="unfinished">Z</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="120"/>
@@ -1671,31 +1671,31 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.ui" line="197"/>
         <location filename="../../../src/gui/calibration.ui" line="211"/>
         <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <translation type="unfinished">TextLabel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
-        <translation>X</translation>
+        <translation type="unfinished">X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="141"/>
         <location filename="../../../src/gui/calibration.ui" line="190"/>
         <location filename="../../../src/gui/calibration.ui" line="204"/>
         <source>gain</source>
-        <translation>gain</translation>
+        <translation type="unfinished">gain</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="155"/>
         <location filename="../../../src/gui/calibration.ui" line="169"/>
         <location filename="../../../src/gui/calibration.ui" line="176"/>
         <source>offset</source>
-        <translation>offset</translation>
+        <translation type="unfinished">offset</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
-        <translation>Y</translation>
+        <translation type="unfinished">Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="248"/>
@@ -1862,7 +1862,7 @@ Proses ini dapat memerlukan waktu hingga %1 detik.</translation>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <translation type="unfinished">TextLabel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/capturedwindowinfodialog.ui" line="62"/>
@@ -1910,7 +1910,7 @@ Proses ini dapat memerlukan waktu hingga %1 detik.</translation>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="52"/>
         <source>Mouse (Normal)</source>
-        <translation>Mouse (Normal)</translation>
+        <translation type="unfinished">Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="53"/>
@@ -1940,7 +1940,7 @@ Proses ini dapat memerlukan waktu hingga %1 detik.</translation>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="58"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation type="unfinished">NumPad</translation>
     </message>
     <message>
         <location filename="../../../src/dpadcontextmenu.cpp" line="59"/>
@@ -1978,7 +1978,7 @@ Proses ini dapat memerlukan waktu hingga %1 detik.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="17"/>
         <source>Dialog</source>
-        <translation>Dialog</translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="27"/>
@@ -1988,7 +1988,7 @@ Proses ini dapat memerlukan waktu hingga %1 detik.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="46"/>
         <source>Mouse (Normal)</source>
-        <translation>Mouse (Normal)</translation>
+        <translation type="unfinished">Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="51"/>
@@ -2018,7 +2018,7 @@ Proses ini dapat memerlukan waktu hingga %1 detik.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="76"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation type="unfinished">NumPad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.ui" line="81"/>
@@ -2116,7 +2116,7 @@ sesuai dengan zona diagonal.</translation>
     <message>
         <location filename="../../../src/gui/dpadeditdialog.cpp" line="464"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -2192,7 +2192,7 @@ sesuai dengan zona diagonal.</translation>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="51"/>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="57"/>
         <source>DPad</source>
-        <translation>DPad</translation>
+        <translation type="unfinished">DPad</translation>
     </message>
 </context>
 <context>
@@ -2210,22 +2210,22 @@ sesuai dengan zona diagonal.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation>A</translation>
+        <translation type="unfinished">A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation>B</translation>
+        <translation type="unfinished">B</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation>X</translation>
+        <translation type="unfinished">X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation>Y</translation>
+        <translation type="unfinished">Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
@@ -2240,7 +2240,7 @@ sesuai dengan zona diagonal.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation>Guide</translation>
+        <translation type="unfinished">Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
@@ -2335,37 +2335,37 @@ sesuai dengan zona diagonal.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
         <source>5000</source>
-        <translation>5000</translation>
+        <translation type="unfinished">5000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="334"/>
         <source>10000</source>
-        <translation>10000</translation>
+        <translation type="unfinished">10000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="339"/>
         <source>15000</source>
-        <translation>15000</translation>
+        <translation type="unfinished">15000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="344"/>
         <source>20000</source>
-        <translation>20000</translation>
+        <translation type="unfinished">20000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="349"/>
         <source>25000</source>
-        <translation>25000</translation>
+        <translation type="unfinished">25000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="354"/>
         <source>30000</source>
-        <translation>30000</translation>
+        <translation type="unfinished">30000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="359"/>
         <source>32000</source>
-        <translation>32000</translation>
+        <translation type="unfinished">32000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
@@ -2397,7 +2397,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
         <source>Guide</source>
-        <translation>Guide</translation>
+        <translation type="unfinished">Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
@@ -2521,7 +2521,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="67"/>
         <source>Mouse (Horizontal)</source>
-        <translation>Mouse (Horizontal)</translation>
+        <translation type="unfinished">Mouse (Horizontal)</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="77"/>
@@ -2561,12 +2561,12 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="147"/>
         <source>NumPad: KP_8 | KP_2</source>
-        <translation>NumPad: KP_8 | KP_2</translation>
+        <translation type="unfinished">NumPad: KP_8 | KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="157"/>
         <source>NumPad: KP_4 | KP_6</source>
-        <translation>NumPad: KP_4 | KP_6</translation>
+        <translation type="unfinished">NumPad: KP_4 | KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/joyaxiscontextmenu.cpp" line="166"/>
@@ -2645,12 +2645,12 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="42"/>
         <source>Toggle</source>
-        <translation>Toggle</translation>
+        <translation type="unfinished">Toggle</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="47"/>
         <source>Turbo</source>
-        <translation>Turbo</translation>
+        <translation type="unfinished">Turbo</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="54"/>
@@ -2670,7 +2670,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="74"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="85"/>
@@ -2694,7 +2694,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
         <location filename="../../../src/joybuttonslot.cpp" line="122"/>
         <location filename="../../../src/joybuttonslot.cpp" line="174"/>
         <source>Mouse</source>
-        <translation>Mouse</translation>
+        <translation type="unfinished">Mouse</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="127"/>
@@ -2805,7 +2805,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
         <location filename="../../../src/joycontrolstick.cpp" line="811"/>
         <location filename="../../../src/joycontrolstick.cpp" line="816"/>
         <source>Stick</source>
-        <translation>Stick</translation>
+        <translation type="unfinished">Stick</translation>
     </message>
 </context>
 <context>
@@ -2851,7 +2851,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="49"/>
         <source>Mouse (Normal)</source>
-        <translation>Mouse (Normal)</translation>
+        <translation type="unfinished">Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="58"/>
@@ -2881,7 +2881,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="103"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation type="unfinished">NumPad</translation>
     </message>
     <message>
         <location filename="../../../src/joycontrolstickcontextmenu.cpp" line="112"/>
@@ -2919,12 +2919,12 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation>Dialog</translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
         <source>X:</source>
-        <translation>X:</translation>
+        <translation type="unfinished">X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="107"/>
@@ -2933,12 +2933,12 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="159"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="224"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
         <source>Y:</source>
-        <translation>Y:</translation>
+        <translation type="unfinished">Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="172"/>
@@ -2953,7 +2953,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="293"/>
         <source>Mouse (Normal)</source>
-        <translation>Mouse (Normal)</translation>
+        <translation type="unfinished">Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="298"/>
@@ -2983,7 +2983,7 @@ Jika dibuang, controller akan dikembalikan menjadi joystick setelah Anda menyega
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="323"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation type="unfinished">NumPad</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="328"/>
@@ -3069,7 +3069,7 @@ sesuai dengan zona diagonal stick.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
         <source>%</source>
-        <translation>%</translation>
+        <translation type="unfinished">%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
@@ -3090,7 +3090,7 @@ sesuai dengan zona diagonal stick.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="410"/>
         <source>Modifier:</source>
-        <translation>Modifier:</translation>
+        <translation type="unfinished">Modifier:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="517"/>
@@ -3108,7 +3108,7 @@ pada stick analog.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="524"/>
         <source>PushButton</source>
-        <translation>PushButton</translation>
+        <translation type="unfinished">PushButton</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="630"/>
@@ -3201,7 +3201,7 @@ pada stick analog.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.cpp" line="611"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -3211,7 +3211,7 @@ pada stick analog.</translation>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="55"/>
         <location filename="../../../src/joybuttontypes/joycontrolstickmodifierbutton.cpp" line="61"/>
         <source>Modifier</source>
-        <translation>Modifier</translation>
+        <translation type="unfinished">Modifier</translation>
     </message>
 </context>
 <context>
@@ -3221,7 +3221,7 @@ pada stick analog.</translation>
         <location filename="../../../src/joydpad.cpp" line="95"/>
         <location filename="../../../src/joydpad.cpp" line="100"/>
         <source>DPad</source>
-        <translation>DPad</translation>
+        <translation type="unfinished">DPad</translation>
     </message>
 </context>
 <context>
@@ -3326,7 +3326,7 @@ pada stick analog.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation>Dialog</translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3337,7 +3337,7 @@ pada stick analog.</translation>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
@@ -3347,12 +3347,12 @@ pada stick analog.</translation>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="198"/>
         <source>Pitch (°):</source>
-        <translation>Pitch (°):</translation>
+        <translation type="unfinished">Pitch (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="211"/>
         <source>Roll (°):</source>
-        <translation>Roll (°):</translation>
+        <translation type="unfinished">Roll (°):</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
@@ -3464,7 +3464,7 @@ pada stick analog.</translation>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
         <source>Mouse (Normal)</source>
-        <translation>Mouse (Normal)</translation>
+        <translation type="unfinished">Mouse (Normal)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
@@ -3494,7 +3494,7 @@ pada stick analog.</translation>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
         <source>NumPad</source>
-        <translation>NumPad</translation>
+        <translation type="unfinished">NumPad</translation>
     </message>
 </context>
 <context>
@@ -3582,49 +3582,49 @@ pada stick analog.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="333"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1608"/>
         <source>Set 1</source>
-        <translation>Set 1</translation>
+        <translation type="unfinished">Set 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="337"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1609"/>
         <source>Set 2</source>
-        <translation>Set 2</translation>
+        <translation type="unfinished">Set 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="341"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1610"/>
         <source>Set 3</source>
-        <translation>Set 3</translation>
+        <translation type="unfinished">Set 3</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="345"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1611"/>
         <source>Set 4</source>
-        <translation>Set 4</translation>
+        <translation type="unfinished">Set 4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="349"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1612"/>
         <source>Set 5</source>
-        <translation>Set 5</translation>
+        <translation type="unfinished">Set 5</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="353"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1613"/>
         <source>Set 6</source>
-        <translation>Set 6</translation>
+        <translation type="unfinished">Set 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="357"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1614"/>
         <source>Set 7</source>
-        <translation>Set 7</translation>
+        <translation type="unfinished">Set 7</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="361"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="1615"/>
         <source>Set 8</source>
-        <translation>Set 8</translation>
+        <translation type="unfinished">Set 8</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="427"/>
@@ -3748,13 +3748,13 @@ ke tombol controller atau nonaktifkan penyembunyian tombol kosong.</translation>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2504"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2528"/>
         <source>Set %1: %2</source>
-        <translation>Set %1: %2</translation>
+        <translation type="unfinished">Set %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2507"/>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2531"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joytabwidget.cpp" line="2539"/>
@@ -3815,7 +3815,7 @@ ke tombol controller atau nonaktifkan penyembunyian tombol kosong.</translation>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="284"/>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="320"/>
         <source>%1</source>
-        <translation>%1</translation>
+        <translation type="unfinished">%1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="91"/>
@@ -3856,7 +3856,7 @@ ke tombol controller atau nonaktifkan penyembunyian tombol kosong.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="277"/>
         <source>GUID:</source>
-        <translation>GUID:</translation>
+        <translation type="unfinished">GUID:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="313"/>
@@ -3946,7 +3946,7 @@ ke tombol controller atau nonaktifkan penyembunyian tombol kosong.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="177"/>
         <source>Hat %1</source>
-        <translation>Hat %1</translation>
+        <translation type="unfinished">Hat %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="291"/>
@@ -3989,7 +3989,7 @@ ke tombol controller atau nonaktifkan penyembunyian tombol kosong.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="90"/>
         <source>Mouse</source>
-        <translation>Mouse</translation>
+        <translation type="unfinished">Mouse</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="95"/>
@@ -4294,17 +4294,17 @@ per detik.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1387"/>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="unfinished">Info</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1392"/>
         <source>Verbose</source>
-        <translation>Verbose</translation>
+        <translation type="unfinished">Verbose</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1397"/>
         <source>Debug</source>
-        <translation>Debug</translation>
+        <translation type="unfinished">Debug</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1453"/>
@@ -4344,7 +4344,7 @@ per detik.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="871"/>
         <source>Program</source>
-        <translation>Program</translation>
+        <translation type="unfinished">Program</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="959"/>
@@ -4416,7 +4416,7 @@ adalah menggunakan semua layar yang tersedia.</translation>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1178"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1209"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1171"/>
@@ -4476,7 +4476,7 @@ Pengaturan tidak akan berlaku sampai Anda menyegarkan semua joystick atau mencab
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="574"/>
         <source>GUID</source>
-        <translation>GUID</translation>
+        <translation type="unfinished">GUID</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="579"/>
@@ -4498,7 +4498,7 @@ Pengaturan tidak akan berlaku sampai Anda menyegarkan semua joystick atau mencab
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="653"/>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="1786"/>
         <source>Default</source>
-        <translation>Default</translation>
+        <translation type="unfinished">Default</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="663"/>
@@ -4535,7 +4535,7 @@ Pengaturan tidak akan berlaku sampai Anda menyegarkan semua joystick atau mencab
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="876"/>
         <source>Default?</source>
-        <translation>Default?</translation>
+        <translation type="unfinished">Default?</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="594"/>
@@ -4546,7 +4546,7 @@ Pengaturan tidak akan berlaku sampai Anda menyegarkan semua joystick atau mencab
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="923"/>
         <source>Edit</source>
-        <translation>Edit</translation>
+        <translation type="unfinished">Edit</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.cpp" line="120"/>
@@ -4598,7 +4598,7 @@ di Windows.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="23"/>
         <source>AntiMicroX</source>
-        <translation>AntiMicroX</translation>
+        <translation type="unfinished">AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
@@ -4641,7 +4641,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="257"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished">Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="269"/>
@@ -4652,7 +4652,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="272"/>
         <source>Ctrl+U</source>
-        <translation>Ctrl+U</translation>
+        <translation type="unfinished">Ctrl+U</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="281"/>
@@ -4664,7 +4664,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
         <location filename="../../../src/gui/mainwindow.ui" line="284"/>
         <location filename="../../../src/gui/mainwindow.ui" line="340"/>
         <source>Ctrl+H</source>
-        <translation>Ctrl+H</translation>
+        <translation type="unfinished">Ctrl+H</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="293"/>
@@ -4674,7 +4674,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="296"/>
         <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
+        <translation type="unfinished">Ctrl+A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="305"/>
@@ -4684,7 +4684,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="308"/>
         <source>Ctrl+T</source>
-        <translation>Ctrl+T</translation>
+        <translation type="unfinished">Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="317"/>
@@ -4694,7 +4694,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="320"/>
         <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
+        <translation type="unfinished">Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="329"/>
@@ -4704,7 +4704,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="332"/>
         <source>Ctrl+K</source>
-        <translation>Ctrl+K</translation>
+        <translation type="unfinished">Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="349"/>
@@ -4714,7 +4714,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="352"/>
         <source>Ctrl+G</source>
-        <translation>Ctrl+G</translation>
+        <translation type="unfinished">Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="361"/>
@@ -4724,7 +4724,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="364"/>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="373"/>
@@ -4734,17 +4734,17 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="376"/>
         <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
+        <translation type="unfinished">Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="385"/>
         <source>&amp;Wiki</source>
-        <translation>&amp;Wiki</translation>
+        <translation type="unfinished">&amp;Wiki</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="388"/>
         <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
+        <translation type="unfinished">Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="397"/>
@@ -4754,7 +4754,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="400"/>
         <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
+        <translation type="unfinished">Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="409"/>
@@ -4764,7 +4764,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="412"/>
         <source>Ctrl+C</source>
-        <translation>Ctrl+C</translation>
+        <translation type="unfinished">Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="337"/>
@@ -4780,7 +4780,7 @@ Harap sambungkan joystick, lalu pilih opsi &quot;Perbarui Joystick&quot; di menu
         <location filename="../../../src/gui/mainwindow.cpp" line="1511"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="1524"/>
         <source>(%1)</source>
-        <translation>(%1)</translation>
+        <translation type="unfinished">(%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="582"/>
@@ -4870,7 +4870,7 @@ Nama perangkat: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mouseaxissettingsdialog.cpp" line="272"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -4883,7 +4883,7 @@ Nama perangkat: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousebuttonsettingsdialog.cpp" line="255"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -4896,7 +4896,7 @@ Nama perangkat: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousecontrolsticksettingsdialog.cpp" line="296"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -4909,7 +4909,7 @@ Nama perangkat: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousedpadsettingsdialog.cpp" line="280"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -4922,7 +4922,7 @@ Nama perangkat: %2</translation>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -4984,7 +4984,7 @@ digerakkan kembali ke zona mati.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="114"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="728"/>
         <source>Linear</source>
-        <translation>Linear</translation>
+        <translation type="unfinished">Linear</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="119"/>
@@ -5066,7 +5066,7 @@ Threshold:</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
-        <translation>1 = 20 pps</translation>
+        <translation type="unfinished">1 = 20 pps</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
@@ -5122,7 +5122,7 @@ lebih cepat pada bagian bawah sumbu.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
         <source>x</source>
-        <translation>x</translation>
+        <translation type="unfinished">x</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="576"/>
@@ -5200,18 +5200,18 @@ posisi mouse yang ditetapkan oleh pegas nonrelatif.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
         <source>X:</source>
-        <translation>X:</translation>
+        <translation type="unfinished">X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation>0 (0 pps)</translation>
+        <translation type="unfinished">0 (0 pps)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
         <source>Y:</source>
-        <translation>Y:</translation>
+        <translation type="unfinished">Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="354"/>
@@ -5292,7 +5292,7 @@ setelah mencapai bagian atas sumbu.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="661"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="847"/>
         <source>%</source>
-        <translation>%</translation>
+        <translation type="unfinished">%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="690"/>
@@ -5360,7 +5360,7 @@ layar Anda.</translation>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="99"/>
         <source>Event Handler:</source>
-        <translation>Event Handler:</translation>
+        <translation type="unfinished">Event Handler:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="112"/>
@@ -5372,7 +5372,7 @@ layar Anda.</translation>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="142"/>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="165"/>
         <source>0x00000000</source>
-        <translation>0x00000000</translation>
+        <translation type="unfinished">0x00000000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="135"/>
@@ -5390,12 +5390,12 @@ layar Anda.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="141"/>
         <source>Super</source>
-        <translation>Super</translation>
+        <translation type="unfinished">Super</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="142"/>
         <source>Menu</source>
-        <translation>Menu</translation>
+        <translation type="unfinished">Menu</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="143"/>
@@ -5405,12 +5405,12 @@ layar Anda.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="144"/>
         <source>Vol+</source>
-        <translation>Vol+</translation>
+        <translation type="unfinished">Vol+</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="145"/>
         <source>Vol-</source>
-        <translation>Vol-</translation>
+        <translation type="unfinished">Vol-</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="146"/>
@@ -5450,7 +5450,7 @@ layar Anda.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="153"/>
         <source>Media</source>
-        <translation>Media</translation>
+        <translation type="unfinished">Media</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="154"/>
@@ -5499,12 +5499,12 @@ Anda dapat melakukan migrasi secara manual dengan mengganti nama direktori lama 
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>---------------</source>
-        <translation>---------------</translation>
+        <translation type="unfinished">---------------</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="118"/>
         <source>Joystick %1:</source>
-        <translation>Joystick %1:</translation>
+        <translation type="unfinished">Joystick %1:</translation>
     </message>
     <message>
         <location filename="../../../src/main.cpp" line="499"/>
@@ -5641,12 +5641,12 @@ Apakah Anda ingin menerapkan perubahan throttle ini ke semua set?</translation>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1021"/>
         <source>Set %1: %2</source>
-        <translation>Set %1: %2</translation>
+        <translation type="unfinished">Set %1: %2</translation>
     </message>
     <message>
         <location filename="../../../src/setjoystick.cpp" line="1023"/>
         <source>Set %1</source>
-        <translation>Set %1</translation>
+        <translation type="unfinished">Set %1</translation>
     </message>
 </context>
 <context>
@@ -5659,42 +5659,42 @@ Apakah Anda ingin menerapkan perubahan throttle ini ke semua set?</translation>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="60"/>
         <source>Set 1</source>
-        <translation>Set 1</translation>
+        <translation type="unfinished">Set 1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="65"/>
         <source>Set 2</source>
-        <translation>Set 2</translation>
+        <translation type="unfinished">Set 2</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="70"/>
         <source>Set 3</source>
-        <translation>Set 3</translation>
+        <translation type="unfinished">Set 3</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="75"/>
         <source>Set 4</source>
-        <translation>Set 4</translation>
+        <translation type="unfinished">Set 4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="80"/>
         <source>Set 5</source>
-        <translation>Set 5</translation>
+        <translation type="unfinished">Set 5</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="85"/>
         <source>Set 6</source>
-        <translation>Set 6</translation>
+        <translation type="unfinished">Set 6</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="90"/>
         <source>Set 7</source>
-        <translation>Set 7</translation>
+        <translation type="unfinished">Set 7</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="95"/>
         <source>Set 8</source>
-        <translation>Set 8</translation>
+        <translation type="unfinished">Set 8</translation>
     </message>
     <message>
         <location filename="../../../src/gui/setnamesdialog.ui" line="100"/>
@@ -5707,7 +5707,7 @@ Apakah Anda ingin menerapkan perubahan throttle ini ke semua set?</translation>
     <message>
         <location filename="../../../src/simplekeygrabberbutton.cpp" line="184"/>
         <source>Mouse</source>
-        <translation>Mouse</translation>
+        <translation type="unfinished">Mouse</translation>
     </message>
 </context>
 <context>
@@ -5747,431 +5747,431 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="173"/>
         <source>a</source>
-        <translation>a</translation>
+        <translation type="unfinished">a</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="174"/>
         <source>b</source>
-        <translation>b</translation>
+        <translation type="unfinished">b</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="175"/>
         <source>c</source>
-        <translation>c</translation>
+        <translation type="unfinished">c</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="176"/>
         <source>d</source>
-        <translation>d</translation>
+        <translation type="unfinished">d</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="177"/>
         <source>e</source>
-        <translation>e</translation>
+        <translation type="unfinished">e</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="178"/>
         <source>f</source>
-        <translation>f</translation>
+        <translation type="unfinished">f</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="179"/>
         <source>g</source>
-        <translation>g</translation>
+        <translation type="unfinished">g</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="180"/>
         <source>h</source>
-        <translation>h</translation>
+        <translation type="unfinished">h</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="181"/>
         <source>i</source>
-        <translation>i</translation>
+        <translation type="unfinished">i</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="182"/>
         <source>j</source>
-        <translation>j</translation>
+        <translation type="unfinished">j</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="183"/>
         <source>k</source>
-        <translation>k</translation>
+        <translation type="unfinished">k</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="184"/>
         <source>l</source>
-        <translation>l</translation>
+        <translation type="unfinished">l</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="185"/>
         <source>m</source>
-        <translation>m</translation>
+        <translation type="unfinished">m</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="186"/>
         <source>n</source>
-        <translation>n</translation>
+        <translation type="unfinished">n</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="187"/>
         <source>o</source>
-        <translation>o</translation>
+        <translation type="unfinished">o</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="188"/>
         <source>p</source>
-        <translation>p</translation>
+        <translation type="unfinished">p</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="189"/>
         <source>q</source>
-        <translation>q</translation>
+        <translation type="unfinished">q</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="190"/>
         <source>r</source>
-        <translation>r</translation>
+        <translation type="unfinished">r</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="191"/>
         <source>s</source>
-        <translation>s</translation>
+        <translation type="unfinished">s</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="192"/>
         <source>t</source>
-        <translation>t</translation>
+        <translation type="unfinished">t</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="193"/>
         <source>u</source>
-        <translation>u</translation>
+        <translation type="unfinished">u</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="194"/>
         <source>v</source>
-        <translation>v</translation>
+        <translation type="unfinished">v</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="195"/>
         <source>w</source>
-        <translation>w</translation>
+        <translation type="unfinished">w</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="196"/>
         <source>x</source>
-        <translation>x</translation>
+        <translation type="unfinished">x</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="197"/>
         <source>y</source>
-        <translation>y</translation>
+        <translation type="unfinished">y</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="198"/>
         <source>z</source>
-        <translation>z</translation>
+        <translation type="unfinished">z</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="200"/>
         <source>Esc</source>
-        <translation>Esc</translation>
+        <translation type="unfinished">Esc</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="201"/>
         <source>F1</source>
-        <translation>F1</translation>
+        <translation type="unfinished">F1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="202"/>
         <source>F2</source>
-        <translation>F2</translation>
+        <translation type="unfinished">F2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="203"/>
         <source>F3</source>
-        <translation>F3</translation>
+        <translation type="unfinished">F3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="204"/>
         <source>F4</source>
-        <translation>F4</translation>
+        <translation type="unfinished">F4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="205"/>
         <source>F5</source>
-        <translation>F5</translation>
+        <translation type="unfinished">F5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="206"/>
         <source>F6</source>
-        <translation>F6</translation>
+        <translation type="unfinished">F6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="207"/>
         <source>F7</source>
-        <translation>F7</translation>
+        <translation type="unfinished">F7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="208"/>
         <source>F8</source>
-        <translation>F8</translation>
+        <translation type="unfinished">F8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="209"/>
         <source>F9</source>
-        <translation>F9</translation>
+        <translation type="unfinished">F9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="210"/>
         <source>F10</source>
-        <translation>F10</translation>
+        <translation type="unfinished">F10</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="211"/>
         <source>F11</source>
-        <translation>F11</translation>
+        <translation type="unfinished">F11</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="212"/>
         <source>F12</source>
-        <translation>F12</translation>
+        <translation type="unfinished">F12</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="213"/>
         <source>F13</source>
-        <translation>F13</translation>
+        <translation type="unfinished">F13</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="214"/>
         <source>F14</source>
-        <translation>F14</translation>
+        <translation type="unfinished">F14</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="215"/>
         <source>F15</source>
-        <translation>F15</translation>
+        <translation type="unfinished">F15</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="216"/>
         <source>F16</source>
-        <translation>F16</translation>
+        <translation type="unfinished">F16</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="217"/>
         <source>F17</source>
-        <translation>F17</translation>
+        <translation type="unfinished">F17</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="218"/>
         <source>F18</source>
-        <translation>F18</translation>
+        <translation type="unfinished">F18</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="219"/>
         <source>F19</source>
-        <translation>F19</translation>
+        <translation type="unfinished">F19</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="220"/>
         <source>F20</source>
-        <translation>F20</translation>
+        <translation type="unfinished">F20</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="221"/>
         <source>F21</source>
-        <translation>F21</translation>
+        <translation type="unfinished">F21</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="222"/>
         <source>F22</source>
-        <translation>F22</translation>
+        <translation type="unfinished">F22</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="223"/>
         <source>F23</source>
-        <translation>F23</translation>
+        <translation type="unfinished">F23</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="224"/>
         <source>F24</source>
-        <translation>F24</translation>
+        <translation type="unfinished">F24</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="226"/>
         <source>`</source>
-        <translation>`</translation>
+        <translation type="unfinished">`</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="227"/>
         <source>1</source>
-        <translation>1</translation>
+        <translation type="unfinished">1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="228"/>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="unfinished">2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="229"/>
         <source>3</source>
-        <translation>3</translation>
+        <translation type="unfinished">3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="230"/>
         <source>4</source>
-        <translation>4</translation>
+        <translation type="unfinished">4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="231"/>
         <source>5</source>
-        <translation>5</translation>
+        <translation type="unfinished">5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="232"/>
         <source>6</source>
-        <translation>6</translation>
+        <translation type="unfinished">6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="233"/>
         <source>7</source>
-        <translation>7</translation>
+        <translation type="unfinished">7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="234"/>
         <source>8</source>
-        <translation>8</translation>
+        <translation type="unfinished">8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="235"/>
         <source>9</source>
-        <translation>9</translation>
+        <translation type="unfinished">9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="236"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="237"/>
         <location filename="../../../src/uinputhelper.cpp" line="276"/>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="unfinished">-</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="238"/>
         <source>=</source>
-        <translation>=</translation>
+        <translation type="unfinished">=</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="239"/>
         <source>BackSpace</source>
-        <translation>BackSpace</translation>
+        <translation type="unfinished">BackSpace</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="240"/>
         <source>Tab</source>
-        <translation>Tab</translation>
+        <translation type="unfinished">Tab</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="241"/>
         <source>[</source>
-        <translation>[</translation>
+        <translation type="unfinished">[</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="242"/>
         <source>]</source>
-        <translation>]</translation>
+        <translation type="unfinished">]</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="243"/>
         <source>\</source>
-        <translation>\</translation>
+        <translation type="unfinished">\</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="244"/>
         <source>CapsLock</source>
-        <translation>CapsLock</translation>
+        <translation type="unfinished">CapsLock</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="245"/>
         <source>;</source>
-        <translation>;</translation>
+        <translation type="unfinished">;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="246"/>
         <source>&apos;</source>
-        <translation>&apos;</translation>
+        <translation type="unfinished">&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="247"/>
         <source>Enter</source>
-        <translation>Enter</translation>
+        <translation type="unfinished">Enter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="248"/>
         <source>Shift_L</source>
-        <translation>Shift_L</translation>
+        <translation type="unfinished">Shift_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="249"/>
         <source>,</source>
-        <translation>,</translation>
+        <translation type="unfinished">,</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="250"/>
         <location filename="../../../src/uinputhelper.cpp" line="293"/>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="unfinished">.</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="251"/>
         <location filename="../../../src/uinputhelper.cpp" line="274"/>
         <source>/</source>
-        <translation>/</translation>
+        <translation type="unfinished">/</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="252"/>
         <source>Ctrl_L</source>
-        <translation>Ctrl_L</translation>
+        <translation type="unfinished">Ctrl_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="253"/>
         <location filename="../../../src/uinputhelper.cpp" line="294"/>
         <source>Super_L</source>
-        <translation>Super_L</translation>
+        <translation type="unfinished">Super_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="254"/>
         <source>Alt_L</source>
-        <translation>Alt_L</translation>
+        <translation type="unfinished">Alt_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="255"/>
         <source>Space</source>
-        <translation>Space</translation>
+        <translation type="unfinished">Space</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="256"/>
         <source>Alt_R</source>
-        <translation>Alt_R</translation>
+        <translation type="unfinished">Alt_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="257"/>
         <source>Menu</source>
-        <translation>Menu</translation>
+        <translation type="unfinished">Menu</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="258"/>
         <source>Ctrl_R</source>
-        <translation>Ctrl_R</translation>
+        <translation type="unfinished">Ctrl_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="259"/>
         <source>Shift_R</source>
-        <translation>Shift_R</translation>
+        <translation type="unfinished">Shift_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
@@ -6196,112 +6196,112 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="265"/>
         <source>PrtSc</source>
-        <translation>PrtSc</translation>
+        <translation type="unfinished">PrtSc</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="266"/>
         <source>Ins</source>
-        <translation>Ins</translation>
+        <translation type="unfinished">Ins</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="267"/>
         <source>Del</source>
-        <translation>Del</translation>
+        <translation type="unfinished">Del</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="268"/>
         <source>Home</source>
-        <translation>Home</translation>
+        <translation type="unfinished">Home</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="269"/>
         <source>End</source>
-        <translation>End</translation>
+        <translation type="unfinished">End</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="270"/>
         <source>PgUp</source>
-        <translation>PgUp</translation>
+        <translation type="unfinished">PgUp</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="271"/>
         <source>PgDn</source>
-        <translation>PgDn</translation>
+        <translation type="unfinished">PgDn</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="273"/>
         <source>NumLock</source>
-        <translation>NumLock</translation>
+        <translation type="unfinished">NumLock</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="275"/>
         <source>*</source>
-        <translation>*</translation>
+        <translation type="unfinished">*</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="277"/>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="278"/>
         <source>KP_Enter</source>
-        <translation>KP_Enter</translation>
+        <translation type="unfinished">KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="280"/>
         <source>KP_1</source>
-        <translation>KP_1</translation>
+        <translation type="unfinished">KP_1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="281"/>
         <source>KP_2</source>
-        <translation>KP_2</translation>
+        <translation type="unfinished">KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="282"/>
         <source>KP_3</source>
-        <translation>KP_3</translation>
+        <translation type="unfinished">KP_3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="283"/>
         <source>KP_4</source>
-        <translation>KP_4</translation>
+        <translation type="unfinished">KP_4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="284"/>
         <source>KP_5</source>
-        <translation>KP_5</translation>
+        <translation type="unfinished">KP_5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="285"/>
         <source>KP_6</source>
-        <translation>KP_6</translation>
+        <translation type="unfinished">KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="286"/>
         <source>KP_7</source>
-        <translation>KP_7</translation>
+        <translation type="unfinished">KP_7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="287"/>
         <source>KP_8</source>
-        <translation>KP_8</translation>
+        <translation type="unfinished">KP_8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="288"/>
         <source>KP_9</source>
-        <translation>KP_9</translation>
+        <translation type="unfinished">KP_9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="289"/>
         <source>KP_0</source>
-        <translation>KP_0</translation>
+        <translation type="unfinished">KP_0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="291"/>
         <source>SCLK</source>
-        <translation>SCLK</translation>
+        <translation type="unfinished">SCLK</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="292"/>
@@ -6311,7 +6311,7 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="295"/>
         <source>Super_R</source>
-        <translation>Super_R</translation>
+        <translation type="unfinished">Super_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="296"/>
@@ -6321,12 +6321,12 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="297"/>
         <source>VolDn</source>
-        <translation>VolDn</translation>
+        <translation type="unfinished">VolDn</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="298"/>
         <source>VolUp</source>
-        <translation>VolUp</translation>
+        <translation type="unfinished">VolUp</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="299"/>
@@ -6376,7 +6376,7 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="74"/>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="93"/>
         <source>TextLabel</source>
-        <translation>TextLabel</translation>
+        <translation type="unfinished">TextLabel</translation>
     </message>
     <message>
         <location filename="../../../src/gui/unixwindowinfodialog.ui" line="62"/>
@@ -6429,7 +6429,7 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="126"/>
         <source>Tab</source>
-        <translation>Tab</translation>
+        <translation type="unfinished">Tab</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="127"/>
@@ -6465,198 +6465,198 @@ Pastikan Anda memiliki izin untuk menulis ke perangkat tersebut</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="133"/>
         <source>Alt Gr</source>
-        <translation>Alt Gr</translation>
+        <translation type="unfinished">Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
         <source>`</source>
-        <translation>`</translation>
+        <translation type="unfinished">`</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="136"/>
         <source>~</source>
-        <translation>~</translation>
+        <translation type="unfinished">~</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="137"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="168"/>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="unfinished">-</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="138"/>
         <source>=</source>
-        <translation>=</translation>
+        <translation type="unfinished">=</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="139"/>
         <source>[</source>
-        <translation>[</translation>
+        <translation type="unfinished">[</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="140"/>
         <source>]</source>
-        <translation>]</translation>
+        <translation type="unfinished">]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="141"/>
         <source>\</source>
-        <translation>\</translation>
+        <translation type="unfinished">\</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="142"/>
         <source>Caps</source>
-        <translation>Caps</translation>
+        <translation type="unfinished">Caps</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="143"/>
         <source>;</source>
-        <translation>;</translation>
+        <translation type="unfinished">;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="144"/>
         <source>&apos;</source>
-        <translation>&apos;</translation>
+        <translation type="unfinished">&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="145"/>
         <source>,</source>
-        <translation>,</translation>
+        <translation type="unfinished">,</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="146"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="171"/>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="unfinished">.</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="147"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="166"/>
         <source>/</source>
-        <translation>/</translation>
+        <translation type="unfinished">/</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="148"/>
         <source>ESC</source>
-        <translation>ESC</translation>
+        <translation type="unfinished">ESC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="149"/>
         <source>PRTSC</source>
-        <translation>PRTSC</translation>
+        <translation type="unfinished">PRTSC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="150"/>
         <source>SCLK</source>
-        <translation>SCLK</translation>
+        <translation type="unfinished">SCLK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="151"/>
         <source>INS</source>
-        <translation>INS</translation>
+        <translation type="unfinished">INS</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="152"/>
         <source>PGUP</source>
-        <translation>PGUP</translation>
+        <translation type="unfinished">PGUP</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="153"/>
         <source>DEL</source>
-        <translation>DEL</translation>
+        <translation type="unfinished">DEL</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="154"/>
         <source>PGDN</source>
-        <translation>PGDN</translation>
+        <translation type="unfinished">PGDN</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
         <source>1</source>
-        <translation>1</translation>
+        <translation type="unfinished">1</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="156"/>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="unfinished">2</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="157"/>
         <source>3</source>
-        <translation>3</translation>
+        <translation type="unfinished">3</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
         <source>4</source>
-        <translation>4</translation>
+        <translation type="unfinished">4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="159"/>
         <source>5</source>
-        <translation>5</translation>
+        <translation type="unfinished">5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="160"/>
         <source>6</source>
-        <translation>6</translation>
+        <translation type="unfinished">6</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="161"/>
         <source>7</source>
-        <translation>7</translation>
+        <translation type="unfinished">7</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="162"/>
         <source>8</source>
-        <translation>8</translation>
+        <translation type="unfinished">8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="163"/>
         <source>9</source>
-        <translation>9</translation>
+        <translation type="unfinished">9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="164"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished">0</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
         <source>NUM
 LK</source>
-        <translation>NUM
+        <translation type="unfinished">NUM
 LK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="167"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="173"/>
         <source>*</source>
-        <translation>*</translation>
+        <translation type="unfinished">*</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="169"/>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="170"/>
         <source>Enter</source>
-        <translation>Enter</translation>
+        <translation type="unfinished">Enter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="172"/>
         <source>Del</source>
-        <translation>Del</translation>
+        <translation type="unfinished">Del</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="174"/>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="unfinished">&lt;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="175"/>
         <source>:</source>
-        <translation>:</translation>
+        <translation type="unfinished">:</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>
@@ -6666,7 +6666,7 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="177"/>
         <source>Menu</source>
-        <translation>Menu</translation>
+        <translation type="unfinished">Menu</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="178"/>
@@ -6695,13 +6695,13 @@ LK</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="71"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="97"/>
         <source>Keyboard</source>
-        <translation>Keyboard</translation>
+        <translation type="unfinished">Keyboard</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="72"/>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="98"/>
         <source>Mouse</source>
-        <translation>Mouse</translation>
+        <translation type="unfinished">Mouse</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="609"/>
@@ -6784,7 +6784,7 @@ LK</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="586"/>
         <source>Mouse 8</source>
         <comment>Mouse</comment>
-        <translation>Mouse 8</translation>
+        <translation type="unfinished">Mouse 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="593"/>
@@ -6796,7 +6796,7 @@ LK</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="595"/>
         <source>Mouse 9</source>
         <comment>Mouse</comment>
-        <translation>Mouse 9</translation>
+        <translation type="unfinished">Mouse 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="728"/>
@@ -6873,72 +6873,72 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1048"/>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation type="unfinished">Email</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1053"/>
         <source>F13</source>
-        <translation>F13</translation>
+        <translation type="unfinished">F13</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1054"/>
         <source>F14</source>
-        <translation>F14</translation>
+        <translation type="unfinished">F14</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1055"/>
         <source>F15</source>
-        <translation>F15</translation>
+        <translation type="unfinished">F15</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1056"/>
         <source>F16</source>
-        <translation>F16</translation>
+        <translation type="unfinished">F16</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1057"/>
         <source>F17</source>
-        <translation>F17</translation>
+        <translation type="unfinished">F17</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1058"/>
         <source>F18</source>
-        <translation>F18</translation>
+        <translation type="unfinished">F18</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1059"/>
         <source>F19</source>
-        <translation>F19</translation>
+        <translation type="unfinished">F19</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1060"/>
         <source>F20</source>
-        <translation>F20</translation>
+        <translation type="unfinished">F20</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1061"/>
         <source>F21</source>
-        <translation>F21</translation>
+        <translation type="unfinished">F21</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1062"/>
         <source>F22</source>
-        <translation>F22</translation>
+        <translation type="unfinished">F22</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1063"/>
         <source>F23</source>
-        <translation>F23</translation>
+        <translation type="unfinished">F23</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1064"/>
         <source>F24</source>
-        <translation>F24</translation>
+        <translation type="unfinished">F24</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1066"/>
         <source>Media</source>
-        <translation>Media</translation>
+        <translation type="unfinished">Media</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1071"/>
@@ -7005,7 +7005,7 @@ LK</translation>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="38"/>
         <source>Timer:</source>
-        <translation>Timer:</translation>
+        <translation type="unfinished">Timer:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/winappprofiletimerdialog.ui" line="55"/>
@@ -7036,12 +7036,12 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="159"/>
         <source>ESC</source>
-        <translation>ESC</translation>
+        <translation type="unfinished">ESC</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="160"/>
         <source>Tab</source>
-        <translation>Tab</translation>
+        <translation type="unfinished">Tab</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="161"/>
@@ -7051,27 +7051,27 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="162"/>
         <source>DEL</source>
-        <translation>DEL</translation>
+        <translation type="unfinished">DEL</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="163"/>
         <source>Return</source>
-        <translation>Return</translation>
+        <translation type="unfinished">Return</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="164"/>
         <source>KP_Enter</source>
-        <translation>KP_Enter</translation>
+        <translation type="unfinished">KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="165"/>
         <source>Backspace</source>
-        <translation>Backspace</translation>
+        <translation type="unfinished">Backspace</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="166"/>
         <source>Alt Gr</source>
-        <translation>Alt Gr</translation>
+        <translation type="unfinished">Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="622"/>
