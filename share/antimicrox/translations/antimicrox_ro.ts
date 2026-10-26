@@ -348,32 +348,32 @@ Mai târziu, proiectul a fost mutat din nou pe https://github.com/AntiMicroX/ant
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
         <source>Program Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="58"/>
         <source>Built Against SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="59"/>
         <source>Running With SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="61"/>
         <source>Using Qt %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="73"/>
@@ -1783,7 +1783,7 @@ acest buton este în uz.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation>Calibrare</translation>
+        <translation type="unfinished">Calibrare</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
@@ -2688,17 +2688,17 @@ Dacă se renunță, controllerul va redeveni joystick la reîmprospătarea joyst
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1709"/>
         <source>[Set %1 1W]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[Set %1 1W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1714"/>
         <source>[Set %1 2W]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[Set %1 2W]</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joybutton.cpp" line="1721"/>
         <source>[Set %1 WH]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[Set %1 WH]</translation>
     </message>
 </context>
 <context>
@@ -2736,17 +2736,17 @@ Dacă se renunță, controllerul va redeveni joystick la reîmprospătarea joyst
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="85"/>
         <source>Set %1 1W</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Set %1 1W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="86"/>
         <source>Set %1 2W</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Set %1 2W</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttoncontextmenu.cpp" line="87"/>
         <source>Set %1 WH</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Set %1 WH</translation>
     </message>
 </context>
 <context>
@@ -3846,7 +3846,7 @@ taste cu butoane sau a dezactiva butoane goale ascunse.</translation>
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation>Joystick</translation>
+        <translation type="unfinished">Joystick</translation>
     </message>
 </context>
 <context>
@@ -6488,7 +6488,7 @@ Verifică dacă ai permisiune de scriere pe dispozitiv</translation>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation>VDPad</translation>
+        <translation type="unfinished">VDPad</translation>
     </message>
 </context>
 <context>
