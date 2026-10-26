@@ -506,32 +506,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="51"/>
         <source>Program Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
         <source>Program Compiled on %1 at %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="58"/>
         <source>Built Against SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="59"/>
         <source>Running With SDL %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="61"/>
         <source>Using Qt %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="73"/>
@@ -1942,7 +1942,7 @@ este botão estiver sendo usado.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation>Calibragem</translation>
+        <translation type="unfinished">Calibragem</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
