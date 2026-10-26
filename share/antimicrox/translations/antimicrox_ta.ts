@@ -1784,7 +1784,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished">அளவுத்திருத்தம்</translation>
+        <translation>அளவுத்திருத்தம்</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
@@ -3847,7 +3847,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation type="unfinished">இயக்குப்பிடி</translation>
+        <translation>இயக்குப்பிடி</translation>
     </message>
 </context>
 <context>
@@ -6488,7 +6488,7 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation type="unfinished">Vdpad</translation>
+        <translation>Vdpad</translation>
     </message>
 </context>
 <context>
