@@ -161,7 +161,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -776,7 +776,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="767"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="778"/>
@@ -1718,7 +1718,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="113"/>
         <source>Z</source>
-        <translation type="unfinished">Z</translation>
+        <translation>Z</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="120"/>
@@ -2287,17 +2287,17 @@ to a diagonal zone.</source>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation type="unfinished">Back</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation type="unfinished">Guide</translation>
+        <translation>Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
@@ -2449,17 +2449,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
-        <translation type="unfinished">Back</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
         <source>Guide</source>
-        <translation type="unfinished">Guide</translation>
+        <translation>Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="102"/>
@@ -4254,57 +4254,57 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="658"/>
         <source>Português do Brasil</source>
-        <translation type="unfinished">Português do Brasil</translation>
+        <translation>Português do Brasil</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="668"/>
         <source>Français</source>
-        <translation type="unfinished">Français</translation>
+        <translation>Français</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="673"/>
         <source>Deutsch</source>
-        <translation type="unfinished">Deutsch</translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="678"/>
         <source>Italiano</source>
-        <translation type="unfinished">Italiano</translation>
+        <translation>Italiano</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="683"/>
         <source>日本語</source>
-        <translation type="unfinished">日本語</translation>
+        <translation>日本語</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="688"/>
         <source>Русский</source>
-        <translation type="unfinished">Русский</translation>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="693"/>
         <source>српски / srpski</source>
-        <translation type="unfinished">српски / srpski</translation>
+        <translation>српски / srpski</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="698"/>
         <source>简体中文</source>
-        <translation type="unfinished">简体中文</translation>
+        <translation>简体中文</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="703"/>
         <source>Español</source>
-        <translation type="unfinished">Español</translation>
+        <translation>Español</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="708"/>
         <source>українська</source>
-        <translation type="unfinished">українська</translation>
+        <translation>українська</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="713"/>
         <source>Polski</source>
-        <translation type="unfinished">Polski</translation>
+        <translation>Polski</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
@@ -4740,7 +4740,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="308"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished">Ctrl+T</translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="317"/>
@@ -4750,7 +4750,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="320"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished">Ctrl+P</translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="329"/>
@@ -4760,7 +4760,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="332"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished">Ctrl+K</translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="349"/>
@@ -4770,7 +4770,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="352"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished">Ctrl+G</translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="361"/>
@@ -4780,7 +4780,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="364"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished">Ctrl+S</translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="373"/>
@@ -4790,7 +4790,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="376"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished">Ctrl+X</translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="385"/>
@@ -4800,7 +4800,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="388"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished">Ctrl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="397"/>
@@ -4810,7 +4810,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="400"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished">Ctrl+I</translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="409"/>
@@ -4820,7 +4820,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="412"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished">Ctrl+C</translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="337"/>
@@ -5123,7 +5123,7 @@ Threshold:</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished">1 = 20 pps</translation>
+        <translation>1 = 20 pps</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
@@ -5266,7 +5266,7 @@ mouse position set by a non-relative spring.</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation type="unfinished">0 (0 pps)</translation>
+        <translation>0 (0 pps)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
@@ -5452,7 +5452,7 @@ of your screen.</source>
     <message>
         <location filename="../../../src/winextras.cpp" line="141"/>
         <source>Super</source>
-        <translation type="unfinished">Super</translation>
+        <translation>Super</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="142"/>
@@ -5561,7 +5561,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>---------------</source>
-        <translation type="unfinished">---------------</translation>
+        <translation>---------------</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="118"/>
@@ -6175,7 +6175,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="248"/>
         <source>Shift_L</source>
-        <translation type="unfinished">Shift_L</translation>
+        <translation>Shift_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="249"/>
@@ -6197,18 +6197,18 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="252"/>
         <source>Ctrl_L</source>
-        <translation type="unfinished">Ctrl_L</translation>
+        <translation>Ctrl_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="253"/>
         <location filename="../../../src/uinputhelper.cpp" line="294"/>
         <source>Super_L</source>
-        <translation type="unfinished">Super_L</translation>
+        <translation>Super_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="254"/>
         <source>Alt_L</source>
-        <translation type="unfinished">Alt_L</translation>
+        <translation>Alt_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="255"/>
@@ -6218,7 +6218,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="256"/>
         <source>Alt_R</source>
-        <translation type="unfinished">Alt_R</translation>
+        <translation>Alt_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="257"/>
@@ -6228,12 +6228,12 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="258"/>
         <source>Ctrl_R</source>
-        <translation type="unfinished">Ctrl_R</translation>
+        <translation>Ctrl_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="259"/>
         <source>Shift_R</source>
-        <translation type="unfinished">Shift_R</translation>
+        <translation>Shift_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
@@ -6263,7 +6263,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="266"/>
         <source>Ins</source>
-        <translation type="unfinished">Ins</translation>
+        <translation>Ins</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="267"/>
@@ -6308,57 +6308,57 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="278"/>
         <source>KP_Enter</source>
-        <translation type="unfinished">KP_Enter</translation>
+        <translation>KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="280"/>
         <source>KP_1</source>
-        <translation type="unfinished">KP_1</translation>
+        <translation>KP_1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="281"/>
         <source>KP_2</source>
-        <translation type="unfinished">KP_2</translation>
+        <translation>KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="282"/>
         <source>KP_3</source>
-        <translation type="unfinished">KP_3</translation>
+        <translation>KP_3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="283"/>
         <source>KP_4</source>
-        <translation type="unfinished">KP_4</translation>
+        <translation>KP_4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="284"/>
         <source>KP_5</source>
-        <translation type="unfinished">KP_5</translation>
+        <translation>KP_5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="285"/>
         <source>KP_6</source>
-        <translation type="unfinished">KP_6</translation>
+        <translation>KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="286"/>
         <source>KP_7</source>
-        <translation type="unfinished">KP_7</translation>
+        <translation>KP_7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="287"/>
         <source>KP_8</source>
-        <translation type="unfinished">KP_8</translation>
+        <translation>KP_8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="288"/>
         <source>KP_9</source>
-        <translation type="unfinished">KP_9</translation>
+        <translation>KP_9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="289"/>
         <source>KP_0</source>
-        <translation type="unfinished">KP_0</translation>
+        <translation>KP_0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="291"/>
@@ -6373,7 +6373,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="295"/>
         <source>Super_R</source>
-        <translation type="unfinished">Super_R</translation>
+        <translation>Super_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="296"/>
@@ -6527,7 +6527,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="133"/>
         <source>Alt Gr</source>
-        <translation type="unfinished">Alt Gr</translation>
+        <translation>Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
@@ -6600,12 +6600,12 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="148"/>
         <source>ESC</source>
-        <translation type="unfinished">ESC</translation>
+        <translation>ESC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="149"/>
         <source>PRTSC</source>
-        <translation type="unfinished">PRTSC</translation>
+        <translation>PRTSC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="150"/>
@@ -6615,22 +6615,22 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="151"/>
         <source>INS</source>
-        <translation type="unfinished">INS</translation>
+        <translation>INS</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="152"/>
         <source>PGUP</source>
-        <translation type="unfinished">PGUP</translation>
+        <translation>PGUP</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="153"/>
         <source>DEL</source>
-        <translation type="unfinished">DEL</translation>
+        <translation>DEL</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="154"/>
         <source>PGDN</source>
-        <translation type="unfinished">PGDN</translation>
+        <translation>PGDN</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
@@ -6686,7 +6686,7 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
         <source>NUM
 LK</source>
-        <translation type="unfinished">NUM
+        <translation>NUM
 LK</translation>
     </message>
     <message>
@@ -7098,7 +7098,7 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="159"/>
         <source>ESC</source>
-        <translation type="unfinished">ESC</translation>
+        <translation>ESC</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="160"/>
@@ -7113,17 +7113,17 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="162"/>
         <source>DEL</source>
-        <translation type="unfinished">DEL</translation>
+        <translation>DEL</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="163"/>
         <source>Return</source>
-        <translation type="unfinished">Return</translation>
+        <translation>Return</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="164"/>
         <source>KP_Enter</source>
-        <translation type="unfinished">KP_Enter</translation>
+        <translation>KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="165"/>
@@ -7133,7 +7133,7 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="166"/>
         <source>Alt Gr</source>
-        <translation type="unfinished">Alt Gr</translation>
+        <translation>Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="622"/>
