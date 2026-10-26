@@ -1784,7 +1784,7 @@ mentre questo tasto viene usato.</translation>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished">Calibrazione</translation>
+        <translation>Calibrazione</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
@@ -3847,7 +3847,7 @@ assegnare funzioni ai tasti o disattiva il nascondimento dei tasti vuoti.</trans
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation type="unfinished">Joystick</translation>
+        <translation>Joystick</translation>
     </message>
 </context>
 <context>
@@ -6493,7 +6493,7 @@ Per favore controlla di avere i permessi di scrittura sul dispositivo</translati
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation type="unfinished">VDpad</translation>
+        <translation>VDpad</translation>
     </message>
 </context>
 <context>
