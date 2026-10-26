@@ -1970,7 +1970,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
         <source>Calibration</source>
-        <translation type="unfinished">보정</translation>
+        <translation>보정</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="68"/>
@@ -4033,7 +4033,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation type="unfinished">조이스틱</translation>
+        <translation>조이스틱</translation>
     </message>
 </context>
 <context>
@@ -6673,7 +6673,7 @@ Please check that you have permission to write to the device</source>
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation type="unfinished">가상 십자 패드</translation>
+        <translation>가상 십자 패드</translation>
     </message>
 </context>
 <context>
