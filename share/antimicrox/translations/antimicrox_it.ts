@@ -6472,7 +6472,7 @@ Per favore controlla di avere i permessi di scrittura sul dispositivo</translati
         <location filename="../../../src/vdpad.cpp" line="97"/>
         <location filename="../../../src/vdpad.cpp" line="102"/>
         <source>VDPad</source>
-        <translation>VDpad</translation>
+        <translation type="unfinished">VDpad</translation>
     </message>
 </context>
 <context>
