@@ -4413,8 +4413,7 @@ while AntiMicroX is running. Disabling &quot;Enhanced Pointer Precision&quot;
 will allow mouse movement within AntiMicroX to be more
 precise.</source>
         <translation>Disabilita l&apos;impostazione di Windows &quot;Aumenta precisione puntatore&quot;
-mentre AntiMicroX è in esecuzione. Disattivare &quot;Aumenta precisione 
-puntatore&quot;permetterà movimenti del mouse più precisi nel programma.</translation>
+mentre AntiMicroX è in esecuzione. Disattivare &quot;Aumenta precisione puntatore&quot; permetterà movimenti del mouse più precisi nel programma.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="965"/>
@@ -4674,7 +4673,7 @@ Per favore collega un joystick e scegli l&apos;opzione &quot;Aggiorna i joystick
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="189"/>
         <source>Update Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna pulsante</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="217"/>
