@@ -353,7 +353,7 @@ In seguito il progetto è stato trasferito nuovamente a [https://github.com/Anti
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
@@ -3180,7 +3180,7 @@ ad un joystick analogico.</translation>
 This button is useful for assigning zones with
 modifier keys that can be used to assign walk/run
 functionality to an analog stick.</source>
-        <translation type="unfinished">Soglia alla quale viene attivato il pulsante di modifica.
+        <translation>Soglia alla quale viene attivato il pulsante di modifica.
 
 Questo pulsante è utile per assegnare zone con
 tasti di modifica che possono essere utilizzate per assegnare 
@@ -3968,7 +3968,7 @@ assegnare funzioni ai tasti o disattiva il nascondimento dei tasti vuoti.</trans
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="74"/>
         <source>Full</source>
-        <translation type="unfinished">Completo</translation>
+        <translation>Completo</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="84"/>
@@ -4331,7 +4331,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="996"/>
         <source>History Si&amp;ze:</source>
-        <translation type="unfinished">Dimensione cron&amp;ologia:</translation>
+        <translation>Dimensione cron&amp;ologia:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1022"/>
@@ -4381,7 +4381,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1397"/>
         <source>Debug</source>
-        <translation type="unfinished">Debug</translation>
+        <translation>Debug</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1453"/>
