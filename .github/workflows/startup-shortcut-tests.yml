@@ -1,0 +1,50 @@
+name: Startup shortcut regression tests
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: startup-shortcut-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    shortcut-tests:
+        runs-on: windows-2022
+        timeout-minutes: 15
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - qt: '5.15.2'
+                      arch: win64_msvc2019_64
+                    - qt: '6.10.0'
+                      arch: win64_msvc2022_64
+        name: Startup shortcut (Qt ${{ matrix.qt }})
+        steps:
+            - uses: actions/checkout@v4
+            - uses: jurplel/install-qt-action@v4
+              with:
+                  version: ${{ matrix.qt }}
+                  host: windows
+                  target: desktop
+                  arch: ${{ matrix.arch }}
+                  cache: true
+            - name: Configure
+              run: cmake -S tests/startupshortcut -B build-startup -A x64
+            - name: Build
+              run: cmake --build build-startup --config Debug --parallel 2
+            - name: Test
+              run: |
+                  ctest --test-dir build-startup -C Debug --verbose --output-on-failure
+                  $testExitCode = $LASTEXITCODE
+                  if (Test-Path build-startup/startup-shortcut-results.txt) {
+                      Get-Content build-startup/startup-shortcut-results.txt
+                  }
+                  exit $testExitCode
