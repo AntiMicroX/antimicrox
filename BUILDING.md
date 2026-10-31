@@ -268,6 +268,28 @@ flatpak install flathub org.kde.Platform//6.10 org.kde.Sdk//6.10
 flatpak-builder --user --install build-flatpak/ other/io.github.antimicrox.antimicrox.yml --force-clean
 ```
 
+## Profile writer regression tests
+
+These standalone tests compile the production `XMLConfigWriter` with a controlled
+serializer in place of the SDL/device implementation. They exercise file replacement,
+UTF-8 output, injected stream errors, cancellation, commit failure, retries, and invalid
+inputs without physical controllers or a desktop session. Qt Core and Qt Test are required.
+
+```sh
+cmake -S tests/profilewriter -B build-profile-writer
+cmake --build build-profile-writer --config Debug
+ctest --test-dir build-profile-writer -C Debug --output-on-failure
+```
+
+The QtTest text log is saved as `build-profile-writer/profile-writer-results.txt`.
+CI runs the suite with Qt 5 and Qt 6 on Linux and Windows. This suite does not replace
+full device/profile round-trip or interactive testing.
+
+Normal profile saves use a temporary file in the destination directory, then commit
+the replacement. The directory must permit temporary-file creation; the writer reports
+a failure rather than falling back to an in-place overwrite. Automatic migration of
+older profiles is handled separately by the profile reader.
+
 ## Building Windows installer
 
 In case of building Windows package you will need [NSIS](https://nsis.sourceforge.io/Download).
