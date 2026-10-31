@@ -1,0 +1,47 @@
+name: Profile XML regression tests
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: profile-tests-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    profile-tests:
+        runs-on: ubuntu-22.04
+        timeout-minutes: 20
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - qt: 5
+                      prefer-qt6: 'OFF'
+                      packages: qttools5-dev qttools5-dev-tools
+                    - qt: 6
+                      prefer-qt6: 'ON'
+                      packages: qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools
+        name: Profile reader (Qt ${{ matrix.qt }})
+        steps:
+            - uses: actions/checkout@v4
+            - name: Install dependencies
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y cmake ninja-build extra-cmake-modules libsdl2-dev ${{ matrix.packages }}
+            - name: Configure
+              run: >-
+                  cmake -S . -B build-tests -G Ninja
+                  -DWITH_TESTS=ON -DCMAKE_BUILD_TYPE=Debug
+                  -DUSE_QT6_BY_DEFAULT=${{ matrix.prefer-qt6 }}
+                  -DWITH_X11=OFF -DWITH_XTEST=OFF -DAPPDATA=OFF
+            - name: Build regression tests
+              run: cmake --build build-tests --target ProfileXmlTests --parallel 2
+            - name: Run regression tests
+              run: ctest --test-dir build-tests --output-on-failure
