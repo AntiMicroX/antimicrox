@@ -22,6 +22,7 @@
 #include "globalvariables.h"
 #include "inputdevice.h"
 #include "joystick.h"
+#include "profilemigration.h"
 #include "xml/inputdevicexml.h"
 #include "xmlconfigmigration.h"
 #include "xmlconfigwriter.h"
@@ -125,19 +126,17 @@ bool XMLConfigReader::read()
 
                 if (migrationString.length() > 0)
                 {
-                    xml->clear();                                     // Remove QFile from reader and clear state
-                    xml->addData(migrationString);                    // Add converted XML string to reader
-                    xml->readNextStartElement();                      // Skip joystick root node
-                    configFile->close();                              // Close current config file
-                    configFile->open(QFile::WriteOnly | QFile::Text); // Write converted XML to file
-
-                    if (configFile->isOpen())
+                    configFile->close();
+                    QString migrationError;
+                    if (ProfileMigration::save(configFile->fileName(), migrationString, migrationError))
                     {
-                        configFile->write(migrationString.toLocal8Bit());
-                        configFile->close();
+                        xml->clear();
+                        xml->addData(migrationString);
+                        xml->readNextStartElement();
                     } else
                     {
-                        xml->raiseError(tr("Could not write updated profile XML to file %1.").arg(configFile->fileName()));
+                        xml->raiseError(tr("Could not write updated profile XML to file %1.\n%2")
+                                            .arg(configFile->fileName(), migrationError));
                     }
                 }
             }
