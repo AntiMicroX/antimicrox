@@ -188,7 +188,9 @@ As of May 24, 2016, this project has moved to https://github.com/AntiMicro/antim
 Additionally, project management has passed from Travis (Ryochan7) to the AntiMicro organization due to Travis having other interests and priorities.
 As next, project has been continued since 2018 by juliagoda on antimicroX project. 
 Later project has been once more moved to https://github.com/AntiMicroX/antimicrox and it&apos;s its maintenance is continued by organisation AntiMicroX created by pktiuk.</source>
-        <translation type="unfinished"></translation>
+        <translation>AboutDialog&quot;pktiuk&quot; (desde Agosto de 2020)  Quero me certificar de que este software, tão útil, não vai ser abandonado, e decidi continuar provendo suporte para o projeto, tentando torná-lo o mais amplamente acessível que puder.
+
+&quot;juliagoda&quot; (desde Março, 2018 até 2020)  Enquanto tentava jogar meu jogos antigos favoritos, que não aceitam controles e gamepads, eu encontrei este projeto (que mapeia teclas do teclado e botões do mouse a botões de gamepads no Linux), como o mais recente e adequado. Mas, por conta de poucas opções de aplicações parecidas, e pelo fato de esta não compilar corretamente, eu decidi resgatar o projeto. Entretanto, quanto terminei meu trabalho (o suficiente para jogar) eu pensei sobre compartilhar o código com outros. Claro que todas as informações sobre programadores anteriores vão ser mantidas.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="133"/>
