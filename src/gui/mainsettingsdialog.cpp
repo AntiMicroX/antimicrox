@@ -1662,10 +1662,21 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
 
     if (info->isCurrentDefault())
     {
-        if (!info->getUniqueID().isEmpty() && !info->getExe().isEmpty())
+        // A default profile is picked for a device when no application
+        // profile matches, so it doesn't need an executable or window.
+        if (!info->getUniqueID().isEmpty())
         {
             defaultAutoProfiles.insert(info->getUniqueID(), info);
             defaultList.append(info);
+
+            // Keep it in the device table like defaults loaded from settings.
+            QList<AutoProfileInfo *> tempDevProfileList = deviceAutoProfiles.value(info->getUniqueID());
+            tempDevProfileList.append(info);
+            deviceAutoProfiles.insert(info->getUniqueID(), tempDevProfileList);
+        } else
+        {
+            WARN() << "Unable to add default autoprofile because no device is selected";
+            return;
         }
     } else
     {
