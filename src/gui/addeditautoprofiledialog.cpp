@@ -429,7 +429,6 @@ void AddEditAutoProfileDialog::check_executable_file()
  */
 void AddEditAutoProfileDialog::accept()
 {
-    QString errorString = QString();
     try
     {
         check_profile_file();
@@ -446,6 +445,8 @@ void AddEditAutoProfileDialog::accept()
         msgBox.setText(e.what());
         msgBox.setStandardButtons(QMessageBox::Close);
         msgBox.exec();
+        // Keep the dialog open so the user can fix the form.
+        return;
     }
 
     QDialog::accept();
