@@ -169,13 +169,25 @@ void GameControllerSet::getElemFromXml(const QString &elemName, QXmlStreamReader
     if (elemName == "button")
     {
         JoyButton *button = getJoyButton(index - 1);
-        JoyButtonXml *joyButtonXml = new JoyButtonXml(button, this);
-        readConf(joyButtonXml, xml);
+        if (button != nullptr)
+        {
+            JoyButtonXml *joyButtonXml = new JoyButtonXml(*button, this);
+            readConf(joyButtonXml, xml);
+        } else
+        {
+            xml->skipCurrentElement();
+        }
     } else if (elemName == "dpad")
     {
         GameControllerDPad *vdpad = qobject_cast<GameControllerDPad *>(getVDPad(index - 1));
-        JoyDPadXml<GameControllerDPad> *dpadXml = new JoyDPadXml<GameControllerDPad>(vdpad);
-        readConf(dpadXml, xml);
+        if (vdpad != nullptr)
+        {
+            JoyDPadXml<GameControllerDPad> *dpadXml = new JoyDPadXml<GameControllerDPad>(*vdpad);
+            readConf(dpadXml, xml);
+        } else
+        {
+            xml->skipCurrentElement();
+        }
 
         // if (!dpadXml.isNull()) delete dpadXml;
     } else if (elemName == "trigger")
@@ -188,27 +200,51 @@ void GameControllerSet::getElemFromXml(const QString &elemName, QXmlStreamReader
         // for older profiles
         case 0:
             axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
-            triggerAxisXml = new JoyAxisXml(axis, this);
-            readConf(triggerAxisXml, xml);
+            if (axis != nullptr)
+            {
+                triggerAxisXml = new JoyAxisXml(*axis, this);
+                readConf(triggerAxisXml, xml);
+            } else
+            {
+                xml->skipCurrentElement();
+            }
             break;
 
         // for older profiles
         case 1:
             axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
-            triggerAxisXml = new JoyAxisXml(axis, this);
-            readConf(triggerAxisXml, xml);
+            if (axis != nullptr)
+            {
+                triggerAxisXml = new JoyAxisXml(*axis, this);
+                readConf(triggerAxisXml, xml);
+            } else
+            {
+                xml->skipCurrentElement();
+            }
             break;
 
         case 4:
             axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERLEFT));
-            triggerAxisXml = new JoyAxisXml(axis, this);
-            readConf(triggerAxisXml, xml);
+            if (axis != nullptr)
+            {
+                triggerAxisXml = new JoyAxisXml(*axis, this);
+                readConf(triggerAxisXml, xml);
+            } else
+            {
+                xml->skipCurrentElement();
+            }
             break;
 
         case 5:
             axis = qobject_cast<GameControllerTrigger *>(getJoyAxis(SDL_CONTROLLER_AXIS_TRIGGERRIGHT));
-            triggerAxisXml = new JoyAxisXml(axis, this);
-            readConf(triggerAxisXml, xml);
+            if (axis != nullptr)
+            {
+                triggerAxisXml = new JoyAxisXml(*axis, this);
+                readConf(triggerAxisXml, xml);
+            } else
+            {
+                xml->skipCurrentElement();
+            }
             break;
         }
     } else if (elemName == "stick")
