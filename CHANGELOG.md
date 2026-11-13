@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.6.2](https://github.com/AntiMicroX/antimicrox/tree/3.6.2) (2026-11-13)
+
+Patch release with bug fixes, code cleanup, and translation updates.
+
+**Fixed bugs:**
+
+- Fix crash caused by constructing JoyXml objects after pointer check [#1362](https://github.com/AntiMicroX/antimicrox/pull/1362)
+- Fix use of absolute Flatpak translation path at startup
+- Fix invalid translations marked as finished in the translation files
+- Fix missing dot in numeric keyboard
+
+**Notable changes:**
+
+- Enable compiling with clang-tidy (optional)
+- Code cleanup with clang-tidy and virtual functions
+- Organize header files into logical groupings
+- New translations: Arabic, Hungarian, Chinese (Traditional), Hakka (Traditional)
+- Update translations for: French, German, Italian, Japanese, Russian, Swedish, Romanian, Tamil, Indonesian, Portuguese, Portuguese (Brazil), Korean, Breton
+
 ## [3.6.1](https://github.com/AntiMicroX/antimicrox/tree/3.6.1) (2026-05-22)
 
 Just a minor release mainly tackling issues related to flatpak package on X11.
