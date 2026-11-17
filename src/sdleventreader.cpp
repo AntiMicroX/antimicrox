@@ -22,7 +22,7 @@
 #include "common.h"
 #include "globalvariables.h"
 #include "inputdevice.h"
-//#include "logger.h"
+// #include "logger.h"
 
 #include <SDL2/SDL.h>
 
@@ -64,11 +64,11 @@ void SDLEventReader::initSDL()
     // Passing SDL_INIT_SENSOR here triggers bug libsdl-org/SDL#4276 on windows
     // with v2.0.20. However, sensors works without in Linux and Windows so
     // skip it.
-    //#if SDL_VERSION_ATLEAST(2, 0, 14)
+    // #if SDL_VERSION_ATLEAST(2, 0, 14)
     //    SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK | SDL_INIT_SENSOR);
-    //#else
+    // #else
     SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK);
-    //#endif
+    // #endif
     SDL_JoystickEventState(SDL_ENABLE);
 
     sdlIsOpen = true;

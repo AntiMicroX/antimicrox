@@ -16,7 +16,7 @@
  */
 
 #include <qt_windows.h>
-//#include <QDebug>
+// #include <QDebug>
 #include <QHashIterator>
 
 #include "qtwinkeymapper.h"

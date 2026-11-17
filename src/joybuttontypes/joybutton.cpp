@@ -28,7 +28,7 @@
 #include "eventhandlerfactory.h"
 
 #include <QDebug>
-//#include <QThread>
+// #include <QThread>
 #include <QSharedPointer>
 #include <QStringList>
 #include <QXmlStreamReader>
