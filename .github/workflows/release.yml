@@ -10,8 +10,8 @@ jobs:
           fail-fast: false
           matrix: 
             include:
-              # - name: Ubuntu 26-04
-              #   image: ubuntu-26.04
+              - name: Ubuntu 26-04
+                image: ubuntu-26.04
               - name: Ubuntu 24-04
                 image: ubuntu-24.04
               - name: Ubuntu 22-04
