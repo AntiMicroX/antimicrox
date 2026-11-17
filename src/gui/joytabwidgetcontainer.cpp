@@ -111,8 +111,6 @@ void JoyTabWidgetContainer::disableFlashes(InputDevice *joystick)
 
 void JoyTabWidgetContainer::enableFlashes(InputDevice *joystick)
 {
-    connect(
-        joystick, &InputDevice::clicked, this, [this, joystick] { flash(joystick); }, Qt::QueuedConnection);
-    connect(
-        joystick, &InputDevice::released, this, [this, joystick] { unflash(joystick); }, Qt::QueuedConnection);
+    connect(joystick, &InputDevice::clicked, this, [this, joystick] { flash(joystick); }, Qt::QueuedConnection);
+    connect(joystick, &InputDevice::released, this, [this, joystick] { unflash(joystick); }, Qt::QueuedConnection);
 }

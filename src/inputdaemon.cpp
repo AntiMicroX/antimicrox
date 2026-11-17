@@ -675,23 +675,22 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
     {
         if (Logger::isDebugEnabled())
         {
-            const QMap<Uint32, QString> STRING_MAP = {
-                {SDL_JOYBUTTONDOWN, "SDL_JOYBUTTONDOWN"},
-                {SDL_JOYBUTTONUP, "SDL_JOYBUTTONUP"},
-                {SDL_JOYAXISMOTION, "SDL_JOYAXISMOTION"},
-                {SDL_JOYHATMOTION, "SDL_JOYHATMOTION"},
-                {SDL_CONTROLLERAXISMOTION, "SDL_CONTROLLERAXISMOTION"},
-                {SDL_CONTROLLERBUTTONDOWN, "SDL_CONTROLLERBUTTONDOWN"},
-                {SDL_CONTROLLERBUTTONUP, "SDL_CONTROLLERBUTTONUP"},
-                {SDL_JOYDEVICEREMOVED, "SDL_JOYDEVICEREMOVED"},
-                {SDL_JOYDEVICEADDED, "SDL_JOYDEVICEADDED"},
-                {SDL_CONTROLLERDEVICEREMOVED, "SDL_CONTROLLERDEVICEREMOVED"},
-                {SDL_CONTROLLERDEVICEADDED, "SDL_CONTROLLERDEVICEADDED"},
+            const QMap<Uint32, QString> STRING_MAP = {{SDL_JOYBUTTONDOWN, "SDL_JOYBUTTONDOWN"},
+                                                      {SDL_JOYBUTTONUP, "SDL_JOYBUTTONUP"},
+                                                      {SDL_JOYAXISMOTION, "SDL_JOYAXISMOTION"},
+                                                      {SDL_JOYHATMOTION, "SDL_JOYHATMOTION"},
+                                                      {SDL_CONTROLLERAXISMOTION, "SDL_CONTROLLERAXISMOTION"},
+                                                      {SDL_CONTROLLERBUTTONDOWN, "SDL_CONTROLLERBUTTONDOWN"},
+                                                      {SDL_CONTROLLERBUTTONUP, "SDL_CONTROLLERBUTTONUP"},
+                                                      {SDL_JOYDEVICEREMOVED, "SDL_JOYDEVICEREMOVED"},
+                                                      {SDL_JOYDEVICEADDED, "SDL_JOYDEVICEADDED"},
+                                                      {SDL_CONTROLLERDEVICEREMOVED, "SDL_CONTROLLERDEVICEREMOVED"},
+                                                      {SDL_CONTROLLERDEVICEADDED, "SDL_CONTROLLERDEVICEADDED"},
 #if SDL_VERSION_ATLEAST(2, 0, 14)
-                {SDL_CONTROLLERSENSORUPDATE, "SDL_CONTROLLERSENSORUPDATE"},
-                {SDL_CONTROLLERTOUCHPADDOWN, "SDL_CONTROLLERTOUCHPADDOWN"},
-                {SDL_CONTROLLERTOUCHPADMOTION, "SDL_CONTROLLERTOUCHPADMOTION"},
-                {SDL_CONTROLLERTOUCHPADUP, "SDL_CONTROLLERTOUCHPADUP"}
+                                                      {SDL_CONTROLLERSENSORUPDATE, "SDL_CONTROLLERSENSORUPDATE"},
+                                                      {SDL_CONTROLLERTOUCHPADDOWN, "SDL_CONTROLLERTOUCHPADDOWN"},
+                                                      {SDL_CONTROLLERTOUCHPADMOTION, "SDL_CONTROLLERTOUCHPADMOTION"},
+                                                      {SDL_CONTROLLERTOUCHPADUP, "SDL_CONTROLLERTOUCHPADUP"}
 #endif
             };
 

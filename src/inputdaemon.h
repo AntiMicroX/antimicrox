@@ -20,7 +20,7 @@
 #define INPUTDAEMONTHREAD_H
 
 #include "gamecontroller/gamecontroller.h"
-//#include "fakeclasses/xbox360wireless.h"
+// #include "fakeclasses/xbox360wireless.h"
 #include <SDL2/SDL_events.h>
 
 class InputDevice;

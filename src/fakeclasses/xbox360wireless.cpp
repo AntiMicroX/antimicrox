@@ -20,7 +20,7 @@
 #define MAKE_CONTROLLER_ID(nVID, nPID) (unsigned int)(nVID << 16 | nPID)
 
 #include "xbox360wireless.h"
-//#include "SDL-mirror/src/joystick/SDL_sysjoystick.h"
+// #include "SDL-mirror/src/joystick/SDL_sysjoystick.h"
 
 Xbox360Wireless::Xbox360Wireless()
 {
