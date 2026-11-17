@@ -1,5 +1,6 @@
 # Build directories
 
+build*
 build/
 builds/
 build-dir/
