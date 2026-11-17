@@ -23,3 +23,6 @@ src/CHANGELOG.md
 !.vscode/qt5.natvis.json
 !.vscode/snippets.md
 
+# Dev container personal overrides
+.devcontainer/personal/
+

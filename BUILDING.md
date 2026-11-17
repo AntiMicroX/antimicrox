@@ -2,7 +2,7 @@
 
 Most of these packages are already built and available on [Release Page](https://github.com/AntiMicroX/antimicrox/releases), but if you want, you can also build AntiMicroX by yourself.
 
-The simplest way is to use devcontainer (Docker required) which sets up proper build environment for you (tested only with Linux host).
+The simplest way is to use devcontainer (Docker required) which sets up proper build environment for you (tested only with Linux host). See [.devcontainer/README.md](.devcontainer/README.md) for details.
 
 There is also more classical way of building using cmake described below:
 
