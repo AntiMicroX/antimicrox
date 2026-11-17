@@ -663,7 +663,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
@@ -2048,7 +2048,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="141"/>
@@ -2774,7 +2774,7 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="102"/>
@@ -3091,17 +3091,17 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="179"/>
         <source>LB</source>
-        <translation type="unfinished">LB</translation>
+        <translation>LB</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="182"/>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="185"/>
         <source>RB</source>
-        <translation type="unfinished">RB</translation>
+        <translation>RB</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttonslot.cpp" line="203"/>
@@ -5429,7 +5429,7 @@ Threshold:</source>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished">1 = 20 pps</translation>
+        <translation>1 = 20 pps</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
@@ -7149,7 +7149,7 @@ LK</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="586"/>
         <source>Mouse 8</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Mouse 8</translation>
+        <translation>Mouse 8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="593"/>
@@ -7161,7 +7161,7 @@ LK</translation>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="595"/>
         <source>Mouse 9</source>
         <comment>Mouse</comment>
-        <translation type="unfinished">Mouse 9</translation>
+        <translation>Mouse 9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="728"/>
@@ -7426,7 +7426,7 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="164"/>
         <source>KP_Enter</source>
-        <translation type="unfinished">KP_Enter</translation>
+        <translation>KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="165"/>
@@ -7436,7 +7436,7 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="166"/>
         <source>Alt Gr</source>
-        <translation type="unfinished">Alt Gr</translation>
+        <translation>Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="622"/>

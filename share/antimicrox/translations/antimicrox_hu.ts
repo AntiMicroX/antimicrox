@@ -161,7 +161,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;17. Interpretation of Sections 15 and 16.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -328,7 +328,7 @@ Később a projekt ismét költözött a https://github.com/AntiMicroX/antimicro
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="87"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished">AntiMicroX</translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="339"/>
@@ -338,7 +338,7 @@ Később a projekt ismét költözött a https://github.com/AntiMicroX/antimicro
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Copyright: 2013 - 2022</translation>
+        <translation>Copyright: 2013 - 2022</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
@@ -700,7 +700,7 @@ alapértelmezett profil helyett.</translation>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="589"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="647"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="235"/>
@@ -756,7 +756,7 @@ alapértelmezett profil helyett.</translation>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="510"/>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="534"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="586"/>
@@ -781,7 +781,7 @@ alapértelmezett profil helyett.</translation>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="767"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.ui" line="778"/>
@@ -1723,7 +1723,7 @@ amikor ezt a gombot használják.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="113"/>
         <source>Z</source>
-        <translation type="unfinished">Z</translation>
+        <translation>Z</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="120"/>
@@ -1738,7 +1738,7 @@ amikor ezt a gombot használják.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="141"/>
@@ -1757,7 +1757,7 @@ amikor ezt a gombot használják.</translation>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="248"/>
@@ -2236,7 +2236,7 @@ egy átlós zónának felel meg.</translation>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="40"/>
         <location filename="../../../src/gui/extraprofilesettingsdialog.cpp" line="56"/>
         <source>s</source>
-        <translation type="unfinished">s</translation>
+        <translation>s</translation>
     </message>
 </context>
 <context>
@@ -2254,7 +2254,7 @@ egy átlós zónának felel meg.</translation>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="51"/>
         <location filename="../../../src/gamecontroller/gamecontrollerdpad.cpp" line="57"/>
         <source>DPad</source>
-        <translation type="unfinished">DPad</translation>
+        <translation>DPad</translation>
     </message>
 </context>
 <context>
@@ -2272,37 +2272,37 @@ egy átlós zónának felel meg.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="137"/>
         <source>A</source>
-        <translation type="unfinished">A</translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="142"/>
         <source>B</source>
-        <translation type="unfinished">B</translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="147"/>
         <source>X</source>
-        <translation type="unfinished">X</translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="152"/>
         <source>Y</source>
-        <translation type="unfinished">Y</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="157"/>
         <source>Back</source>
-        <translation type="unfinished">Back</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="162"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="167"/>
         <source>Guide</source>
-        <translation type="unfinished">Guide</translation>
+        <translation>Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="172"/>
@@ -2397,37 +2397,37 @@ egy átlós zónának felel meg.</translation>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="329"/>
         <source>5000</source>
-        <translation type="unfinished">5000</translation>
+        <translation>5000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="334"/>
         <source>10000</source>
-        <translation type="unfinished">10000</translation>
+        <translation>10000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="339"/>
         <source>15000</source>
-        <translation type="unfinished">15000</translation>
+        <translation>15000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="344"/>
         <source>20000</source>
-        <translation type="unfinished">20000</translation>
+        <translation>20000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="349"/>
         <source>25000</source>
-        <translation type="unfinished">25000</translation>
+        <translation>25000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="354"/>
         <source>30000</source>
-        <translation type="unfinished">30000</translation>
+        <translation>30000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.ui" line="359"/>
         <source>32000</source>
-        <translation type="unfinished">32000</translation>
+        <translation>32000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/gamecontrollermappingdialog.cpp" line="134"/>
@@ -2454,17 +2454,17 @@ Elvetés esetén a kontroller az összes joystick frissítése után ismét joys
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="99"/>
         <source>Back</source>
-        <translation type="unfinished">Back</translation>
+        <translation>Back</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="100"/>
         <source>Guide</source>
-        <translation type="unfinished">Guide</translation>
+        <translation>Guide</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="101"/>
         <source>Start</source>
-        <translation type="unfinished">Start</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../../../src/gamecontroller/gamecontrollerset.cpp" line="102"/>
@@ -2986,7 +2986,7 @@ Elvetés esetén a kontroller az összes joystick frissítése után ismét joys
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="211"/>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="107"/>
@@ -2995,12 +2995,12 @@ Elvetés esetén a kontroller az összes joystick frissítése után ismét joys
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="159"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="224"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="185"/>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="172"/>
@@ -3131,7 +3131,7 @@ a kar egy átlós zónájának felel meg.</translation>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="598"/>
@@ -3283,7 +3283,7 @@ funkció rendelhető egy analóg karhoz.</translation>
         <location filename="../../../src/joydpad.cpp" line="95"/>
         <location filename="../../../src/joydpad.cpp" line="100"/>
         <source>DPad</source>
-        <translation type="unfinished">DPad</translation>
+        <translation>DPad</translation>
     </message>
 </context>
 <context>
@@ -3399,7 +3399,7 @@ funkció rendelhető egy analóg karhoz.</translation>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
@@ -3847,7 +3847,7 @@ a gombokhoz, vagy kapcsolja ki az üres gombok elrejtését.</translation>
     <message>
         <location filename="../../../src/joystick.cpp" line="49"/>
         <source>Joystick</source>
-        <translation type="unfinished">Joystick</translation>
+        <translation>Joystick</translation>
     </message>
 </context>
 <context>
@@ -3877,7 +3877,7 @@ a gombokhoz, vagy kapcsolja ki az üres gombok elrejtését.</translation>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="284"/>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="320"/>
         <source>%1</source>
-        <translation type="unfinished">%1</translation>
+        <translation>%1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="91"/>
@@ -3918,7 +3918,7 @@ a gombokhoz, vagy kapcsolja ki az üres gombok elrejtését.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="277"/>
         <source>GUID:</source>
-        <translation type="unfinished">GUID:</translation>
+        <translation>GUID:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="313"/>
@@ -4008,7 +4008,7 @@ a gombokhoz, vagy kapcsolja ki az üres gombok elrejtését.</translation>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="177"/>
         <source>Hat %1</source>
-        <translation type="unfinished">Hat %1</translation>
+        <translation>Hat %1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="291"/>
@@ -4249,57 +4249,57 @@ másodpercenként.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="658"/>
         <source>Português do Brasil</source>
-        <translation type="unfinished">Português do Brasil</translation>
+        <translation>Português do Brasil</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="668"/>
         <source>Français</source>
-        <translation type="unfinished">Français</translation>
+        <translation>Français</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="673"/>
         <source>Deutsch</source>
-        <translation type="unfinished">Deutsch</translation>
+        <translation>Deutsch</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="678"/>
         <source>Italiano</source>
-        <translation type="unfinished">Italiano</translation>
+        <translation>Italiano</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="683"/>
         <source>日本語</source>
-        <translation type="unfinished">日本語</translation>
+        <translation>日本語</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="688"/>
         <source>Русский</source>
-        <translation type="unfinished">Русский</translation>
+        <translation>Русский</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="693"/>
         <source>српски / srpski</source>
-        <translation type="unfinished">српски / srpski</translation>
+        <translation>српски / srpski</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="698"/>
         <source>简体中文</source>
-        <translation type="unfinished">简体中文</translation>
+        <translation>简体中文</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="703"/>
         <source>Español</source>
-        <translation type="unfinished">Español</translation>
+        <translation>Español</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="708"/>
         <source>українська</source>
-        <translation type="unfinished">українська</translation>
+        <translation>українська</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="713"/>
         <source>Polski</source>
-        <translation type="unfinished">Polski</translation>
+        <translation>Polski</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="721"/>
@@ -4406,7 +4406,7 @@ másodpercenként.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="871"/>
         <source>Program</source>
-        <translation type="unfinished">Program</translation>
+        <translation>Program</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="959"/>
@@ -4477,7 +4477,7 @@ az összes elérhető képernyő kerül felhasználásra.</translation>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1178"/>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1209"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1171"/>
@@ -4513,7 +4513,7 @@ virtuális egér gyorsítási értékeit.</translation>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="447"/>
         <source> ms</source>
-        <translation type="unfinished"> ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="470"/>
@@ -4537,7 +4537,7 @@ A beállítások csak az összes joystick frissítése vagy az adott joystick ki
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="574"/>
         <source>GUID</source>
-        <translation type="unfinished">GUID</translation>
+        <translation>GUID</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="579"/>
@@ -4659,7 +4659,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="23"/>
         <source>AntiMicroX</source>
-        <translation type="unfinished">AntiMicroX</translation>
+        <translation>AntiMicroX</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="79"/>
@@ -4702,7 +4702,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="257"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished">Ctrl+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="269"/>
@@ -4713,7 +4713,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="272"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished">Ctrl+U</translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="281"/>
@@ -4725,7 +4725,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
         <location filename="../../../src/gui/mainwindow.ui" line="284"/>
         <location filename="../../../src/gui/mainwindow.ui" line="340"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished">Ctrl+H</translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="293"/>
@@ -4735,7 +4735,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="296"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished">Ctrl+A</translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="305"/>
@@ -4745,7 +4745,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="308"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished">Ctrl+T</translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="317"/>
@@ -4755,7 +4755,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="320"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished">Ctrl+P</translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="329"/>
@@ -4765,7 +4765,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="332"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished">Ctrl+K</translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="349"/>
@@ -4775,7 +4775,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="352"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished">Ctrl+G</translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="361"/>
@@ -4785,7 +4785,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="364"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished">Ctrl+S</translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="373"/>
@@ -4795,17 +4795,17 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="376"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished">Ctrl+X</translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="385"/>
         <source>&amp;Wiki</source>
-        <translation type="unfinished">&amp;Wiki</translation>
+        <translation>&amp;Wiki</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="388"/>
         <source>Ctrl+W</source>
-        <translation type="unfinished">Ctrl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="397"/>
@@ -4815,7 +4815,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="400"/>
         <source>Ctrl+I</source>
-        <translation type="unfinished">Ctrl+I</translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="409"/>
@@ -4825,7 +4825,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="412"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished">Ctrl+C</translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="337"/>
@@ -4841,7 +4841,7 @@ ha a Windowsban nem tiltották le ezt a beállítást.</translation>
         <location filename="../../../src/gui/mainwindow.cpp" line="1511"/>
         <location filename="../../../src/gui/mainwindow.cpp" line="1524"/>
         <source>(%1)</source>
-        <translation type="unfinished">(%1)</translation>
+        <translation>(%1)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.cpp" line="582"/>
@@ -5130,7 +5130,7 @@ küszöb:</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="247"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="292"/>
         <source>1 = 20 pps</source>
-        <translation type="unfinished">1 = 20 pps</translation>
+        <translation>1 = 20 pps</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="318"/>
@@ -5188,7 +5188,7 @@ gyorsabban gyorsul.</translation>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
         <source>x</source>
-        <translation type="unfinished">x</translation>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="576"/>
@@ -5267,18 +5267,18 @@ rugó által beállított egérpozícióhoz képest legyen relatív.</translatio
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation type="unfinished">0 (0 pps)</translation>
+        <translation>0 (0 pps)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="354"/>
@@ -5361,7 +5361,7 @@ elérte a tengely felső tartományát.</translation>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="661"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="847"/>
         <source>%</source>
-        <translation type="unfinished">%</translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="690"/>
@@ -5441,7 +5441,7 @@ magassága használatos.</translation>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="142"/>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="165"/>
         <source>0x00000000</source>
-        <translation type="unfinished">0x00000000</translation>
+        <translation>0x00000000</translation>
     </message>
     <message>
         <location filename="../../../src/gui/qkeydisplaydialog.ui" line="135"/>
@@ -5459,7 +5459,7 @@ magassága használatos.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="141"/>
         <source>Super</source>
-        <translation type="unfinished">Super</translation>
+        <translation>Super</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="142"/>
@@ -5514,7 +5514,7 @@ magassága használatos.</translation>
     <message>
         <location filename="../../../src/winextras.cpp" line="152"/>
         <source>Home</source>
-        <translation type="unfinished">Home</translation>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../../../src/winextras.cpp" line="153"/>
@@ -5568,7 +5568,7 @@ Kézzel is áttelepítheti a régi könyvtár átnevezésével, valamint a fájl
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="111"/>
         <source>---------------</source>
-        <translation type="unfinished">---------------</translation>
+        <translation>---------------</translation>
     </message>
     <message>
         <location filename="../../../src/applaunchhelper.cpp" line="118"/>
@@ -5816,406 +5816,406 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="173"/>
         <source>a</source>
-        <translation type="unfinished">a</translation>
+        <translation>a</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="174"/>
         <source>b</source>
-        <translation type="unfinished">b</translation>
+        <translation>b</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="175"/>
         <source>c</source>
-        <translation type="unfinished">c</translation>
+        <translation>c</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="176"/>
         <source>d</source>
-        <translation type="unfinished">d</translation>
+        <translation>d</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="177"/>
         <source>e</source>
-        <translation type="unfinished">e</translation>
+        <translation>e</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="178"/>
         <source>f</source>
-        <translation type="unfinished">f</translation>
+        <translation>f</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="179"/>
         <source>g</source>
-        <translation type="unfinished">g</translation>
+        <translation>g</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="180"/>
         <source>h</source>
-        <translation type="unfinished">h</translation>
+        <translation>h</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="181"/>
         <source>i</source>
-        <translation type="unfinished">i</translation>
+        <translation>i</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="182"/>
         <source>j</source>
-        <translation type="unfinished">j</translation>
+        <translation>j</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="183"/>
         <source>k</source>
-        <translation type="unfinished">k</translation>
+        <translation>k</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="184"/>
         <source>l</source>
-        <translation type="unfinished">l</translation>
+        <translation>l</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="185"/>
         <source>m</source>
-        <translation type="unfinished">m</translation>
+        <translation>m</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="186"/>
         <source>n</source>
-        <translation type="unfinished">n</translation>
+        <translation>n</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="187"/>
         <source>o</source>
-        <translation type="unfinished">o</translation>
+        <translation>o</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="188"/>
         <source>p</source>
-        <translation type="unfinished">p</translation>
+        <translation>p</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="189"/>
         <source>q</source>
-        <translation type="unfinished">q</translation>
+        <translation>q</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="190"/>
         <source>r</source>
-        <translation type="unfinished">r</translation>
+        <translation>r</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="191"/>
         <source>s</source>
-        <translation type="unfinished">s</translation>
+        <translation>s</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="192"/>
         <source>t</source>
-        <translation type="unfinished">t</translation>
+        <translation>t</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="193"/>
         <source>u</source>
-        <translation type="unfinished">u</translation>
+        <translation>u</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="194"/>
         <source>v</source>
-        <translation type="unfinished">v</translation>
+        <translation>v</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="195"/>
         <source>w</source>
-        <translation type="unfinished">w</translation>
+        <translation>w</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="196"/>
         <source>x</source>
-        <translation type="unfinished">x</translation>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="197"/>
         <source>y</source>
-        <translation type="unfinished">y</translation>
+        <translation>y</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="198"/>
         <source>z</source>
-        <translation type="unfinished">z</translation>
+        <translation>z</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="200"/>
         <source>Esc</source>
-        <translation type="unfinished">Esc</translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="201"/>
         <source>F1</source>
-        <translation type="unfinished">F1</translation>
+        <translation>F1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="202"/>
         <source>F2</source>
-        <translation type="unfinished">F2</translation>
+        <translation>F2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="203"/>
         <source>F3</source>
-        <translation type="unfinished">F3</translation>
+        <translation>F3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="204"/>
         <source>F4</source>
-        <translation type="unfinished">F4</translation>
+        <translation>F4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="205"/>
         <source>F5</source>
-        <translation type="unfinished">F5</translation>
+        <translation>F5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="206"/>
         <source>F6</source>
-        <translation type="unfinished">F6</translation>
+        <translation>F6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="207"/>
         <source>F7</source>
-        <translation type="unfinished">F7</translation>
+        <translation>F7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="208"/>
         <source>F8</source>
-        <translation type="unfinished">F8</translation>
+        <translation>F8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="209"/>
         <source>F9</source>
-        <translation type="unfinished">F9</translation>
+        <translation>F9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="210"/>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="211"/>
         <source>F11</source>
-        <translation type="unfinished">F11</translation>
+        <translation>F11</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="212"/>
         <source>F12</source>
-        <translation type="unfinished">F12</translation>
+        <translation>F12</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="213"/>
         <source>F13</source>
-        <translation type="unfinished">F13</translation>
+        <translation>F13</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="214"/>
         <source>F14</source>
-        <translation type="unfinished">F14</translation>
+        <translation>F14</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="215"/>
         <source>F15</source>
-        <translation type="unfinished">F15</translation>
+        <translation>F15</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="216"/>
         <source>F16</source>
-        <translation type="unfinished">F16</translation>
+        <translation>F16</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="217"/>
         <source>F17</source>
-        <translation type="unfinished">F17</translation>
+        <translation>F17</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="218"/>
         <source>F18</source>
-        <translation type="unfinished">F18</translation>
+        <translation>F18</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="219"/>
         <source>F19</source>
-        <translation type="unfinished">F19</translation>
+        <translation>F19</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="220"/>
         <source>F20</source>
-        <translation type="unfinished">F20</translation>
+        <translation>F20</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="221"/>
         <source>F21</source>
-        <translation type="unfinished">F21</translation>
+        <translation>F21</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="222"/>
         <source>F22</source>
-        <translation type="unfinished">F22</translation>
+        <translation>F22</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="223"/>
         <source>F23</source>
-        <translation type="unfinished">F23</translation>
+        <translation>F23</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="224"/>
         <source>F24</source>
-        <translation type="unfinished">F24</translation>
+        <translation>F24</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="226"/>
         <source>`</source>
-        <translation type="unfinished">`</translation>
+        <translation>`</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="227"/>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="228"/>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="229"/>
         <source>3</source>
-        <translation type="unfinished">3</translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="230"/>
         <source>4</source>
-        <translation type="unfinished">4</translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="231"/>
         <source>5</source>
-        <translation type="unfinished">5</translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="232"/>
         <source>6</source>
-        <translation type="unfinished">6</translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="233"/>
         <source>7</source>
-        <translation type="unfinished">7</translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="234"/>
         <source>8</source>
-        <translation type="unfinished">8</translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="235"/>
         <source>9</source>
-        <translation type="unfinished">9</translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="236"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="237"/>
         <location filename="../../../src/uinputhelper.cpp" line="276"/>
         <source>-</source>
-        <translation type="unfinished">-</translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="238"/>
         <source>=</source>
-        <translation type="unfinished">=</translation>
+        <translation>=</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="239"/>
         <source>BackSpace</source>
-        <translation type="unfinished">BackSpace</translation>
+        <translation>BackSpace</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="240"/>
         <source>Tab</source>
-        <translation type="unfinished">Tab</translation>
+        <translation>Tab</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="241"/>
         <source>[</source>
-        <translation type="unfinished">[</translation>
+        <translation>[</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="242"/>
         <source>]</source>
-        <translation type="unfinished">]</translation>
+        <translation>]</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="243"/>
         <source>\</source>
-        <translation type="unfinished">\</translation>
+        <translation>\</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="244"/>
         <source>CapsLock</source>
-        <translation type="unfinished">CapsLock</translation>
+        <translation>CapsLock</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="245"/>
         <source>;</source>
-        <translation type="unfinished">;</translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="246"/>
         <source>&apos;</source>
-        <translation type="unfinished">&apos;</translation>
+        <translation>&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="247"/>
         <source>Enter</source>
-        <translation type="unfinished">Enter</translation>
+        <translation>Enter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="248"/>
         <source>Shift_L</source>
-        <translation type="unfinished">Shift_L</translation>
+        <translation>Shift_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="249"/>
         <source>,</source>
-        <translation type="unfinished">,</translation>
+        <translation>,</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="250"/>
         <location filename="../../../src/uinputhelper.cpp" line="293"/>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation>.</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="251"/>
         <location filename="../../../src/uinputhelper.cpp" line="274"/>
         <source>/</source>
-        <translation type="unfinished">/</translation>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="252"/>
         <source>Ctrl_L</source>
-        <translation type="unfinished">Ctrl_L</translation>
+        <translation>Ctrl_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="253"/>
         <location filename="../../../src/uinputhelper.cpp" line="294"/>
         <source>Super_L</source>
-        <translation type="unfinished">Super_L</translation>
+        <translation>Super_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="254"/>
         <source>Alt_L</source>
-        <translation type="unfinished">Alt_L</translation>
+        <translation>Alt_L</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="255"/>
@@ -6225,7 +6225,7 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="256"/>
         <source>Alt_R</source>
-        <translation type="unfinished">Alt_R</translation>
+        <translation>Alt_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="257"/>
@@ -6235,12 +6235,12 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="258"/>
         <source>Ctrl_R</source>
-        <translation type="unfinished">Ctrl_R</translation>
+        <translation>Ctrl_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="259"/>
         <source>Shift_R</source>
-        <translation type="unfinished">Shift_R</translation>
+        <translation>Shift_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="261"/>
@@ -6265,112 +6265,112 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="265"/>
         <source>PrtSc</source>
-        <translation type="unfinished">PrtSc</translation>
+        <translation>PrtSc</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="266"/>
         <source>Ins</source>
-        <translation type="unfinished">Ins</translation>
+        <translation>Ins</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="267"/>
         <source>Del</source>
-        <translation type="unfinished">Del</translation>
+        <translation>Del</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="268"/>
         <source>Home</source>
-        <translation type="unfinished">Home</translation>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="269"/>
         <source>End</source>
-        <translation type="unfinished">End</translation>
+        <translation>End</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="270"/>
         <source>PgUp</source>
-        <translation type="unfinished">PgUp</translation>
+        <translation>PgUp</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="271"/>
         <source>PgDn</source>
-        <translation type="unfinished">PgDn</translation>
+        <translation>PgDn</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="273"/>
         <source>NumLock</source>
-        <translation type="unfinished">NumLock</translation>
+        <translation>NumLock</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="275"/>
         <source>*</source>
-        <translation type="unfinished">*</translation>
+        <translation>*</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="277"/>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="278"/>
         <source>KP_Enter</source>
-        <translation type="unfinished">KP_Enter</translation>
+        <translation>KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="280"/>
         <source>KP_1</source>
-        <translation type="unfinished">KP_1</translation>
+        <translation>KP_1</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="281"/>
         <source>KP_2</source>
-        <translation type="unfinished">KP_2</translation>
+        <translation>KP_2</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="282"/>
         <source>KP_3</source>
-        <translation type="unfinished">KP_3</translation>
+        <translation>KP_3</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="283"/>
         <source>KP_4</source>
-        <translation type="unfinished">KP_4</translation>
+        <translation>KP_4</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="284"/>
         <source>KP_5</source>
-        <translation type="unfinished">KP_5</translation>
+        <translation>KP_5</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="285"/>
         <source>KP_6</source>
-        <translation type="unfinished">KP_6</translation>
+        <translation>KP_6</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="286"/>
         <source>KP_7</source>
-        <translation type="unfinished">KP_7</translation>
+        <translation>KP_7</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="287"/>
         <source>KP_8</source>
-        <translation type="unfinished">KP_8</translation>
+        <translation>KP_8</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="288"/>
         <source>KP_9</source>
-        <translation type="unfinished">KP_9</translation>
+        <translation>KP_9</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="289"/>
         <source>KP_0</source>
-        <translation type="unfinished">KP_0</translation>
+        <translation>KP_0</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="291"/>
         <source>SCLK</source>
-        <translation type="unfinished">SCLK</translation>
+        <translation>SCLK</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="292"/>
@@ -6380,7 +6380,7 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="295"/>
         <source>Super_R</source>
-        <translation type="unfinished">Super_R</translation>
+        <translation>Super_R</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="296"/>
@@ -6498,7 +6498,7 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="126"/>
         <source>Tab</source>
-        <translation type="unfinished">Tab</translation>
+        <translation>Tab</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="127"/>
@@ -6534,43 +6534,43 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="133"/>
         <source>Alt Gr</source>
-        <translation type="unfinished">Alt Gr</translation>
+        <translation>Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="135"/>
         <source>`</source>
-        <translation type="unfinished">`</translation>
+        <translation>`</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="136"/>
         <source>~</source>
-        <translation type="unfinished">~</translation>
+        <translation>~</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="137"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="168"/>
         <source>-</source>
-        <translation type="unfinished">-</translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="138"/>
         <source>=</source>
-        <translation type="unfinished">=</translation>
+        <translation>=</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="139"/>
         <source>[</source>
-        <translation type="unfinished">[</translation>
+        <translation>[</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="140"/>
         <source>]</source>
-        <translation type="unfinished">]</translation>
+        <translation>]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="141"/>
         <source>\</source>
-        <translation type="unfinished">\</translation>
+        <translation>\</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="142"/>
@@ -6580,152 +6580,152 @@ Ellenőrizze, hogy van-e írási jogosultsága az eszközhöz</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="143"/>
         <source>;</source>
-        <translation type="unfinished">;</translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="144"/>
         <source>&apos;</source>
-        <translation type="unfinished">&apos;</translation>
+        <translation>&apos;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="145"/>
         <source>,</source>
-        <translation type="unfinished">,</translation>
+        <translation>,</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="146"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="171"/>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation>.</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="147"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="166"/>
         <source>/</source>
-        <translation type="unfinished">/</translation>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="148"/>
         <source>ESC</source>
-        <translation type="unfinished">ESC</translation>
+        <translation>ESC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="149"/>
         <source>PRTSC</source>
-        <translation type="unfinished">PRTSC</translation>
+        <translation>PRTSC</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="150"/>
         <source>SCLK</source>
-        <translation type="unfinished">SCLK</translation>
+        <translation>SCLK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="151"/>
         <source>INS</source>
-        <translation type="unfinished">INS</translation>
+        <translation>INS</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="152"/>
         <source>PGUP</source>
-        <translation type="unfinished">PGUP</translation>
+        <translation>PGUP</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="153"/>
         <source>DEL</source>
-        <translation type="unfinished">DEL</translation>
+        <translation>DEL</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="154"/>
         <source>PGDN</source>
-        <translation type="unfinished">PGDN</translation>
+        <translation>PGDN</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="155"/>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="156"/>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="157"/>
         <source>3</source>
-        <translation type="unfinished">3</translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="158"/>
         <source>4</source>
-        <translation type="unfinished">4</translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="159"/>
         <source>5</source>
-        <translation type="unfinished">5</translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="160"/>
         <source>6</source>
-        <translation type="unfinished">6</translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="161"/>
         <source>7</source>
-        <translation type="unfinished">7</translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="162"/>
         <source>8</source>
-        <translation type="unfinished">8</translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="163"/>
         <source>9</source>
-        <translation type="unfinished">9</translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="164"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="165"/>
         <source>NUM
 LK</source>
-        <translation type="unfinished">NUM
+        <translation>NUM
 LK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="167"/>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="173"/>
         <source>*</source>
-        <translation type="unfinished">*</translation>
+        <translation>*</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="169"/>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="170"/>
         <source>Enter</source>
-        <translation type="unfinished">Enter</translation>
+        <translation>Enter</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="172"/>
         <source>Del</source>
-        <translation type="unfinished">Del</translation>
+        <translation>Del</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="174"/>
         <source>&lt;</source>
-        <translation type="unfinished">&lt;</translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="175"/>
         <source>:</source>
-        <translation type="unfinished">:</translation>
+        <translation>:</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="176"/>
@@ -6947,62 +6947,62 @@ LK</translation>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1053"/>
         <source>F13</source>
-        <translation type="unfinished">F13</translation>
+        <translation>F13</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1054"/>
         <source>F14</source>
-        <translation type="unfinished">F14</translation>
+        <translation>F14</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1055"/>
         <source>F15</source>
-        <translation type="unfinished">F15</translation>
+        <translation>F15</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1056"/>
         <source>F16</source>
-        <translation type="unfinished">F16</translation>
+        <translation>F16</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1057"/>
         <source>F17</source>
-        <translation type="unfinished">F17</translation>
+        <translation>F17</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1058"/>
         <source>F18</source>
-        <translation type="unfinished">F18</translation>
+        <translation>F18</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1059"/>
         <source>F19</source>
-        <translation type="unfinished">F19</translation>
+        <translation>F19</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1060"/>
         <source>F20</source>
-        <translation type="unfinished">F20</translation>
+        <translation>F20</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1061"/>
         <source>F21</source>
-        <translation type="unfinished">F21</translation>
+        <translation>F21</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1062"/>
         <source>F22</source>
-        <translation type="unfinished">F22</translation>
+        <translation>F22</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1063"/>
         <source>F23</source>
-        <translation type="unfinished">F23</translation>
+        <translation>F23</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1064"/>
         <source>F24</source>
-        <translation type="unfinished">F24</translation>
+        <translation>F24</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1066"/>
@@ -7105,12 +7105,12 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="159"/>
         <source>ESC</source>
-        <translation type="unfinished">ESC</translation>
+        <translation>ESC</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="160"/>
         <source>Tab</source>
-        <translation type="unfinished">Tab</translation>
+        <translation>Tab</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="161"/>
@@ -7120,27 +7120,27 @@ LK</translation>
     <message>
         <location filename="../../../src/x11extras.cpp" line="162"/>
         <source>DEL</source>
-        <translation type="unfinished">DEL</translation>
+        <translation>DEL</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="163"/>
         <source>Return</source>
-        <translation type="unfinished">Return</translation>
+        <translation>Return</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="164"/>
         <source>KP_Enter</source>
-        <translation type="unfinished">KP_Enter</translation>
+        <translation>KP_Enter</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="165"/>
         <source>Backspace</source>
-        <translation type="unfinished">Backspace</translation>
+        <translation>Backspace</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="166"/>
         <source>Alt Gr</source>
-        <translation type="unfinished">Alt Gr</translation>
+        <translation>Alt Gr</translation>
     </message>
     <message>
         <location filename="../../../src/x11extras.cpp" line="622"/>

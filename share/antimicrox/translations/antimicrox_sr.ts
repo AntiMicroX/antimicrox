@@ -197,7 +197,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="383"/>
         <source>Copyright: 2013 - 2022</source>
-        <translation type="unfinished">Ауторска права: 2013 - 2022. {2013 ?} {2013 ?}</translation>
+        <translation>Ауторска права: 2013 - 2022. {2013 ?} {2013 ?}</translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.ui" line="180"/>
@@ -212,7 +212,7 @@ Later project has been once more moved to https://github.com/AntiMicroX/antimicr
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="53"/>
         <source>Compiled from packaging: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../src/gui/aboutdialog.cpp" line="55"/>
@@ -827,7 +827,7 @@ of the all default profile option.</source>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="140"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[Без тастера]</translation>
+        <translation>[Без тастера]</translation>
     </message>
     <message>
         <location filename="../../../src/gui/advancebuttondialog.cpp" line="302"/>
@@ -1482,7 +1482,7 @@ interpret an axis hold or release.</source>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="223"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished">Назив:</translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/buttoneditdialog.ui" line="233"/>
@@ -1596,12 +1596,12 @@ this button is being used.</source>
         <location filename="../../../src/gui/calibration.ui" line="197"/>
         <location filename="../../../src/gui/calibration.ui" line="211"/>
         <source>TextLabel</source>
-        <translation type="unfinished">Текст-натпис</translation>
+        <translation>Текст-натпис</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="127"/>
         <source>X</source>
-        <translation type="unfinished">4</translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="141"/>
@@ -1620,7 +1620,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="162"/>
         <source>Y</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="248"/>
@@ -1642,7 +1642,7 @@ this button is being used.</source>
     <message>
         <location filename="../../../src/gui/calibration.ui" line="271"/>
         <source>Save</source>
-        <translation type="unfinished">Сачувај</translation>
+        <translation>Сачувај</translation>
     </message>
     <message>
         <location filename="../../../src/gui/calibration.cpp" line="48"/>
@@ -2369,12 +2369,12 @@ If discarded, the controller will be reverted to a joystick once you refresh all
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="46"/>
         <source>Left</source>
-        <translation type="unfinished">Лево</translation>
+        <translation>Лево</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="50"/>
         <source>Right</source>
-        <translation type="unfinished">Десно</translation>
+        <translation>Десно</translation>
     </message>
     <message>
         <location filename="../../../src/joybuttontypes/joyaccelerometerbutton.cpp" line="54"/>
@@ -2973,7 +2973,7 @@ to a diagonal zone of the stick.</source>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="481"/>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="726"/>
         <source>Percentage to modify a square stick coordinates to confine values to a circle</source>
-        <translation type="unfinished">Постотак промене квадратних координата управљача за ограничавање вредности у кружници</translation>
+        <translation>Постотак промене квадратних координата управљача за ограничавање вредности у кружници</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="484"/>
@@ -3047,7 +3047,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="804"/>
         <source>Na&amp;me:</source>
         <oldsource>Name:</oldsource>
-        <translation type="unfinished">Назив:</translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joycontrolstickeditdialog.ui" line="827"/>
@@ -3219,7 +3219,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorcontextmenu.cpp" line="64"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Поставке миша</translation>
+        <translation>Поставке миша</translation>
     </message>
 </context>
 <context>
@@ -3227,7 +3227,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Прозорче</translation>
+        <translation>Прозорче</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="107"/>
@@ -3238,7 +3238,7 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="243"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="282"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="172"/>
@@ -3258,17 +3258,17 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="269"/>
         <source>% Safe Zone:</source>
-        <translation type="unfinished">% Безбедна област:</translation>
+        <translation>% Безбедна област:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="318"/>
         <source>Presets:</source>
-        <translation type="unfinished">Поставке:</translation>
+        <translation>Поставке:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="362"/>
         <source>Dead Zone:</source>
-        <translation type="unfinished">Мртва област:</translation>
+        <translation>Мртва област:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="369"/>
@@ -3279,7 +3279,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="417"/>
         <source>Max Zone:</source>
-        <translation type="unfinished">Највиша област:</translation>
+        <translation>Највиша област:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="424"/>
@@ -3290,13 +3290,13 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="472"/>
         <source>Diagonal Range:</source>
-        <translation type="unfinished">Дијагонални опсег:</translation>
+        <translation>Дијагонални опсег:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="479"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="495"/>
         <source>The area (in degrees) that each diagonal region occupies.</source>
-        <translation type="unfinished">Област (у степенима) коју свака област на дијагонали заузима.</translation>
+        <translation>Област (у степенима) коју свака област на дијагонали заузима.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="515"/>
@@ -3307,17 +3307,17 @@ functionality to an analog stick.</source>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="522"/>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="556"/>
         <source>Time lapsed before a direction change is taken into effect.</source>
-        <translation type="unfinished">Кашњење пре но промена смера приметно наступи.</translation>
+        <translation>Кашњење пре но промена смера приметно наступи.</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="562"/>
         <source> s</source>
-        <translation type="unfinished"> с</translation>
+        <translation> с</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="606"/>
         <source>Na&amp;me:</source>
-        <translation type="unfinished">Назив:</translation>
+        <translation>Назив:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="616"/>
@@ -3327,7 +3327,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.ui" line="625"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Поставке миша</translation>
+        <translation>Поставке миша</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="78"/>
@@ -3352,7 +3352,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/gui/joysensoreditdialog.cpp" line="231"/>
         <source>Set %1</source>
-        <translation type="unfinished">Скуп %1</translation>
+        <translation>Скуп %1</translation>
     </message>
 </context>
 <context>
@@ -3360,7 +3360,7 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="218"/>
         <source>None</source>
-        <translation type="unfinished">Ништа</translation>
+        <translation>Ништа</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="221"/>
@@ -3370,27 +3370,27 @@ functionality to an analog stick.</source>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="224"/>
         <source>Mouse (Inverted Horizontal)</source>
-        <translation type="unfinished">Миш (обрнуто водоравно)</translation>
+        <translation>Миш (обрнуто водоравно)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="227"/>
         <source>Mouse (Inverted Vertical)</source>
-        <translation type="unfinished">Миш (обрнуто усправно)</translation>
+        <translation>Миш (обрнуто усправно)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="230"/>
         <source>Mouse (Inverted Horizontal + Vertical)</source>
-        <translation type="unfinished">Миш (обрнуто водоравно и усправно)</translation>
+        <translation>Миш (обрнуто водоравно и усправно)</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="233"/>
         <source>Arrows</source>
-        <translation type="unfinished">Стрелице</translation>
+        <translation>Стрелице</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="236"/>
         <source>Keys: W | A | S | D</source>
-        <translation type="unfinished">Тастери: Њ | А | С | Д</translation>
+        <translation>Тастери: Њ | А | С | Д</translation>
     </message>
     <message>
         <location filename="../../../src/joysensorpreset.cpp" line="239"/>
@@ -3752,7 +3752,7 @@ to buttons or disable hiding empty buttons.</source>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="257"/>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="79"/>
         <source>Unknown</source>
-        <translation type="unfinished">Непознато</translation>
+        <translation>Непознато</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.ui" line="277"/>
@@ -3837,7 +3837,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="107"/>
         <source>None</source>
-        <translation type="unfinished">Ништа</translation>
+        <translation>Ништа</translation>
     </message>
     <message>
         <location filename="../../../src/gui/joystickstatuswindow.cpp" line="124"/>
@@ -3895,7 +3895,7 @@ to buttons or disable hiding empty buttons.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="95"/>
         <source>Advanced</source>
-        <translation type="unfinished">Напредно</translation>
+        <translation>Напредно</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="106"/>
@@ -4189,7 +4189,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1372"/>
         <source>None</source>
-        <translation type="unfinished">Ништа</translation>
+        <translation>Ништа</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1377"/>
@@ -4204,7 +4204,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1387"/>
         <source>Info</source>
-        <translation type="unfinished">Подаци</translation>
+        <translation>Подаци</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1392"/>
@@ -4224,7 +4224,7 @@ per seconds.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1507"/>
         <source>Reset</source>
-        <translation type="unfinished">Поништи</translation>
+        <translation>Поништи</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="861"/>
@@ -4304,7 +4304,7 @@ is to use all available screens.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1134"/>
         <source>Accel Numerator:</source>
-        <translation type="unfinished">Бројилац убрзања:</translation>
+        <translation>Бројилац убрзања:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1147"/>
@@ -4316,12 +4316,12 @@ is to use all available screens.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1171"/>
         <source>Accel Denominator:</source>
-        <translation type="unfinished">Именилац убрзања:</translation>
+        <translation>Именилац убрзања:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1202"/>
         <source>Accel Threshold:</source>
-        <translation type="unfinished">Праг убрзања:</translation>
+        <translation>Праг убрзања:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="1246"/>
@@ -4352,7 +4352,7 @@ values used by the virtual mouse.</source>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="447"/>
         <source> ms</source>
-        <translation type="unfinished"> мс</translation>
+        <translation> мс</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainsettingsdialog.ui" line="470"/>
@@ -4541,7 +4541,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="257"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished">Ctrl+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="269"/>
@@ -4552,7 +4552,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="272"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished">Ctrl+U</translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="281"/>
@@ -4564,7 +4564,7 @@ the option in Windows.</source>
         <location filename="../../../src/gui/mainwindow.ui" line="284"/>
         <location filename="../../../src/gui/mainwindow.ui" line="340"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished">Ctrl+H</translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="293"/>
@@ -4574,7 +4574,7 @@ the option in Windows.</source>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="296"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished">Ctrl+A</translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mainwindow.ui" line="305"/>
@@ -4814,12 +4814,12 @@ Device name: %2</source>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="113"/>
         <source>Mouse Settings</source>
-        <translation type="unfinished">Поставке миша</translation>
+        <translation>Поставке миша</translation>
     </message>
     <message>
         <location filename="../../../src/mousedialog/mousesensorsettingsdialog.cpp" line="123"/>
         <source>Set %1</source>
-        <translation type="unfinished">Скуп %1</translation>
+        <translation>Скуп %1</translation>
     </message>
 </context>
 <context>
@@ -4991,7 +4991,7 @@ according to number of simulated notches per second.</source>
 the factor to use for curve sensitivity. When the value
 is above 1.0, the mouse movement will be accelerated
 faster at the low end of an axis.</source>
-        <translation type="unfinished">За кривуљу убрзавања Нај-функције. Одређује
+        <translation>За кривуљу убрзавања Нај-функције. Одређује
 чинилац код постављања осетљивости кривуље. За
 вредност изнад 1.0, покрети миша ће се више
 убрзавати у крајњем доњем положају осе.</translation>
@@ -5015,7 +5015,7 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="556"/>
         <source>x</source>
-        <translation type="unfinished">x</translation>
+        <translation>x</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="576"/>
@@ -5025,7 +5025,7 @@ faster at the low end of an axis.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="586"/>
         <source>Acceleration begins at this percentage of the base multiplier</source>
-        <translation type="unfinished">Убрзање почиње након оволико процената од основног чиниоца</translation>
+        <translation>Убрзање почиње након оволико процената од основног чиниоца</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="627"/>
@@ -5072,13 +5072,13 @@ Threshold:</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="831"/>
         <source>Release Radius:</source>
-        <translation type="unfinished">Пречник пуштања:</translation>
+        <translation>Пречник пуштања:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="864"/>
         <source>Specifies that the spring area will be relative to the
 mouse position set by a non-relative spring.</source>
-        <translation type="unfinished">Одређује да ће „скоковито“ подручје бити
+        <translation>Одређује да ће „скоковито“ подручје бити
 релативно у односу на положај миша постављен
 не-релативним скоком.</translation>
     </message>
@@ -5095,18 +5095,18 @@ mouse position set by a non-relative spring.</source>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="899"/>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="906"/>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="924"/>
         <source>0 (0 pps)</source>
-        <translation type="unfinished">0 (0 тачака/сек)</translation>
+        <translation>0 (0 тачака/сек)</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="917"/>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <location filename="../../../src/gui/mousesettingsdialog.ui" line="354"/>
@@ -5436,18 +5436,18 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="235"/>
         <source>Profile location %1 is not an XML file.</source>
-        <translation type="unfinished">Путања до профила „%1“ није ИксМЛ датотека.</translation>
+        <translation>Путања до профила „%1“ није ИксМЛ датотека.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="246"/>
         <source>Profile location %1 does not exist.</source>
-        <translation type="unfinished">Путања до профила „%1“ не постоји.</translation>
+        <translation>Путања до профила „%1“ не постоји.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="273"/>
         <location filename="../../../src/commandlineutility.cpp" line="312"/>
         <source>Controller identifier is not a valid value.</source>
-        <translation type="unfinished">Означивач контролера нема ваљану вредност.</translation>
+        <translation>Означивач контролера нема ваљану вредност.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="342"/>
@@ -5462,17 +5462,17 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="369"/>
         <source>No set number was specified.</source>
-        <translation type="unfinished">Није одређен број скупа.</translation>
+        <translation>Није одређен број скупа.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="180"/>
         <source>An invalid event generator was specified.</source>
-        <translation type="unfinished">Одређен је неважећи стваралац догађаја.</translation>
+        <translation>Одређен је неважећи стваралац догађаја.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="186"/>
         <source>No event generator string was specified.</source>
-        <translation type="unfinished">Није одређен назив ствараоца догађаја.</translation>
+        <translation>Није одређен назив ствараоца догађаја.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="218"/>
@@ -5482,7 +5482,7 @@ You can migrate manually by renaming old directory and renaming file to antimicr
     <message>
         <location filename="../../../src/x11extras.cpp" line="712"/>
         <source>xinput version must be at least 2.0. No mouse acceleration changes will occur.</source>
-        <translation type="unfinished">Издање проширење „xinput“ је старије од издања 2.0. Нису могуће измене брзина при руковању мишем.</translation>
+        <translation>Издање проширење „xinput“ је старије од издања 2.0. Нису могуће измене брзина при руковању мишем.</translation>
     </message>
     <message>
         <location filename="../../../src/eventhandlers/uinputeventhandler.cpp" line="483"/>
@@ -5833,62 +5833,62 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="213"/>
         <source>F13</source>
-        <translation type="unfinished">Ф13</translation>
+        <translation>Ф13</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="214"/>
         <source>F14</source>
-        <translation type="unfinished">Ф14</translation>
+        <translation>Ф14</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="215"/>
         <source>F15</source>
-        <translation type="unfinished">Ф15</translation>
+        <translation>Ф15</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="216"/>
         <source>F16</source>
-        <translation type="unfinished">Ф16</translation>
+        <translation>Ф16</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="217"/>
         <source>F17</source>
-        <translation type="unfinished">Ф17</translation>
+        <translation>Ф17</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="218"/>
         <source>F18</source>
-        <translation type="unfinished">Ф18</translation>
+        <translation>Ф18</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="219"/>
         <source>F19</source>
-        <translation type="unfinished">Ф19</translation>
+        <translation>Ф19</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="220"/>
         <source>F20</source>
-        <translation type="unfinished">Ф20</translation>
+        <translation>Ф20</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="221"/>
         <source>F21</source>
-        <translation type="unfinished">Ф21</translation>
+        <translation>Ф21</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="222"/>
         <source>F22</source>
-        <translation type="unfinished">Ф22</translation>
+        <translation>Ф22</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="223"/>
         <source>F23</source>
-        <translation type="unfinished">Ф23</translation>
+        <translation>Ф23</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="224"/>
         <source>F24</source>
-        <translation type="unfinished">Ф24</translation>
+        <translation>Ф24</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="226"/>
@@ -6195,7 +6195,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="291"/>
         <source>SCLK</source>
-        <translation type="unfinished">SCLK</translation>
+        <translation>SCLK</translation>
     </message>
     <message>
         <location filename="../../../src/uinputhelper.cpp" line="292"/>
@@ -6442,7 +6442,7 @@ Please check that you have permission to write to the device</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="150"/>
         <source>SCLK</source>
-        <translation type="unfinished">SCLK</translation>
+        <translation>SCLK</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="151"/>
@@ -6537,12 +6537,12 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="170"/>
         <source>Enter</source>
-        <translation type="unfinished">Унеси</translation>
+        <translation>Унеси</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="172"/>
         <source>Del</source>
-        <translation type="unfinished">Бриши</translation>
+        <translation>Бриши</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeypushbutton.cpp" line="174"/>
@@ -6702,7 +6702,7 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="802"/>
         <source>[NO KEY]</source>
-        <translation type="unfinished">[Без тастера]</translation>
+        <translation>[Без тастера]</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="906"/>
@@ -6774,62 +6774,62 @@ LK</source>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1053"/>
         <source>F13</source>
-        <translation type="unfinished">Ф13</translation>
+        <translation>Ф13</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1054"/>
         <source>F14</source>
-        <translation type="unfinished">Ф14</translation>
+        <translation>Ф14</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1055"/>
         <source>F15</source>
-        <translation type="unfinished">Ф15</translation>
+        <translation>Ф15</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1056"/>
         <source>F16</source>
-        <translation type="unfinished">Ф16</translation>
+        <translation>Ф16</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1057"/>
         <source>F17</source>
-        <translation type="unfinished">Ф17</translation>
+        <translation>Ф17</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1058"/>
         <source>F18</source>
-        <translation type="unfinished">Ф18</translation>
+        <translation>Ф18</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1059"/>
         <source>F19</source>
-        <translation type="unfinished">Ф19</translation>
+        <translation>Ф19</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1060"/>
         <source>F20</source>
-        <translation type="unfinished">Ф20</translation>
+        <translation>Ф20</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1061"/>
         <source>F21</source>
-        <translation type="unfinished">Ф21</translation>
+        <translation>Ф21</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1062"/>
         <source>F22</source>
-        <translation type="unfinished">Ф22</translation>
+        <translation>Ф22</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1063"/>
         <source>F23</source>
-        <translation type="unfinished">Ф23</translation>
+        <translation>Ф23</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1064"/>
         <source>F24</source>
-        <translation type="unfinished">Ф24</translation>
+        <translation>Ф24</translation>
     </message>
     <message>
         <location filename="../../../src/keyboard/virtualkeyboardmousewidget.cpp" line="1066"/>
@@ -7021,7 +7021,7 @@ LK</source>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="65"/>
         <source>Launch program in system tray only.</source>
-        <translation type="unfinished">Покреће програм само у обавештајној зони.</translation>
+        <translation>Покреће програм само у обавештајној зони.</translation>
     </message>
     <message>
         <location filename="../../../src/commandlineutility.cpp" line="67"/>
