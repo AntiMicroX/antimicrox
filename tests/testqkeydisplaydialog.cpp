@@ -59,26 +59,25 @@ ui->antimicroKeyLabel->text() == QString("0x%1").arg(AntKeyMapper::getInstance()
 
 */
 
-class TestQKeyDisplayDialog: public QObject
+class TestQKeyDisplayDialog : public QObject
 {
     Q_OBJECT
 
-public:
-    TestQKeyDisplayDialog(QObject* parent = 0);
+  public:
+    TestQKeyDisplayDialog(QObject *parent = 0);
 
-private slots:
+  private slots:
 
-private:
+  private:
     QKeyDisplayDialog qkeydisplaydialog;
 };
 
-TestQKeyDisplayDialog::TestQKeyDisplayDialog(QObject* parent) :
-    QObject(parent),
-    QKeyDisplayDialog()
+TestQKeyDisplayDialog::TestQKeyDisplayDialog(QObject *parent)
+    : QObject(parent)
+    , QKeyDisplayDialog()
 {
     QTestEventLoop::instance().enterLoop(1);
 }
 
 // QTEST_MAIN(TestQKeyDisplayDialog)
 #include "testqkeydisplaydialog.moc"
-

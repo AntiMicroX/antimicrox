@@ -21,7 +21,6 @@
 
 #include <QtTest/QtTest>
 
-
 /*
 
     AutoProfileInfo* getAutoProfile() const; // if not empty then
@@ -30,8 +29,9 @@
     3) winClassLineEdit must be equal to getAutoProfile()->getWindowClass()
     4) if getAutoProfile()->isPartialState() then should be setPartialCheckBox->checked()
     5) if getAutoProfile()->isCurrentDefault() then should be asDefaultCheckBox->checked()
-    6) if getAutoProfile()->getWindowName() is not empty then should be winNameLineEdit->text() == getAutoProfile()->getWindowName()
-    7) if getAutoProfile()->getExe() is not empty then should be applicationLineEdit->text() == getAutoProfile()->getExe()
+    6) if getAutoProfile()->getWindowName() is not empty then should be winNameLineEdit->text() ==
+   getAutoProfile()->getWindowName() 7) if getAutoProfile()->getExe() is not empty then should be applicationLineEdit->text()
+   == getAutoProfile()->getExe()
 
     //QString getOriginalGUID() const;
     QString getOriginalUniqueID() const;
@@ -59,8 +59,9 @@
     winClassLineEdit not disabled
     winNameLineEdit not disabled
     applicationLineEdit not disabled
-    buttonBox Ok disabled if profileLineEdit is empty and doesn't exist and devicesComboBox first element is empty and winClassLineEdit is empty
-    buttonBox Ok enabled if profileLineEdit isn't empty and exist and devicesComboBox first element is not empty and winClassLineEdit is not empty
+    buttonBox Ok disabled if profileLineEdit is empty and doesn't exist and devicesComboBox first element is empty and
+   winClassLineEdit is empty buttonBox Ok enabled if profileLineEdit isn't empty and exist and devicesComboBox first element
+   is not empty and winClassLineEdit is not empty
 
     test keyClick on profileBrowsePushButton
     test keyClick on detectWinPropsSelectWindowPushButton
@@ -75,26 +76,24 @@
     test mouseClick on selectWindowPushButton
 */
 
-
-class TestAddEditAutoProfileDialog: public QObject
+class TestAddEditAutoProfileDialog : public QObject
 {
     Q_OBJECT
 
-public:
-    TestAddEditAutoProfileDialog(QObject* parent = 0);
+  public:
+    TestAddEditAutoProfileDialog(QObject *parent = 0);
     void checkAutoProfile();
     void checkOriginalUniqueIDs();
 
+  private slots:
 
-private slots:
-
-private:
+  private:
     AddEditAutoProfileDialog addEditAutoProfileDialog;
 };
 
-TestAddEditAutoProfileDialog::TestAddEditAutoProfileDialog(QObject* parent) :
-    QObject(parent),
-    addEditAutoProfileDialog()
+TestAddEditAutoProfileDialog::TestAddEditAutoProfileDialog(QObject *parent)
+    : QObject(parent)
+    , addEditAutoProfileDialog()
 {
     QTestEventLoop::instance().enterLoop(1);
 }

@@ -104,26 +104,25 @@ connect(button, &JoyButton::clicked, this, [this, button] {
 
 */
 
-class TestQuickSetDialog: public QObject
+class TestQuickSetDialog : public QObject
 {
     Q_OBJECT
 
-public:
-    TestQuickSetDialog(QObject* parent = 0);
+  public:
+    TestQuickSetDialog(QObject *parent = 0);
 
-private slots:
+  private slots:
 
-private:
+  private:
     QuickSetDialog quicksetdialog;
 };
 
-TestQuickSetDialog::TestQuickSetDialog(QObject* parent) :
-    QObject(parent),
-    QuickSetDialog()
+TestQuickSetDialog::TestQuickSetDialog(QObject *parent)
+    : QObject(parent)
+    , QuickSetDialog()
 {
     QTestEventLoop::instance().enterLoop(1);
 }
 
 // QTEST_MAIN(TestQuickSetDialog)
 #include "testquicksetdialog.moc"
-

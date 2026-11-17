@@ -93,28 +93,25 @@ window->title() == Set + stick->getStickName()
 
 */
 
-
-class TestJoyControlStickEditDialog: public QObject
+class TestJoyControlStickEditDialog : public QObject
 {
     Q_OBJECT
 
-public:
-    TestJoyControlStickEditDialog(QObject* parent = 0);
+  public:
+    TestJoyControlStickEditDialog(QObject *parent = 0);
 
-private slots:
+  private slots:
 
-private:
+  private:
     JoyControlStickEditDialog axisEditDialog;
 };
 
-TestJoyControlStickEditDialog::TestJoyControlStickEditDialog(QObject* parent) :
-    QObject(parent),
-    JoyControlStickEditDialog()
+TestJoyControlStickEditDialog::TestJoyControlStickEditDialog(QObject *parent)
+    : QObject(parent)
+    , JoyControlStickEditDialog()
 {
     QTestEventLoop::instance().enterLoop(1);
 }
 
 // QTEST_MAIN(TestJoyControlStickEditDialog)
 #include "testjoycontrolstickeditdialog.moc"
-
-
