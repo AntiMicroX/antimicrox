@@ -74,7 +74,8 @@ if clicked "Clear all" button then there should be only one slot that is empty
 
 if clicked "Delete" button and if current slot is not first, then should be destroyed
 
-if clicked "Delete" burron on first slot, but there are other slots, then first slot is the second one, previous first slot is destroyed
+if clicked "Delete" burron on first slot, but there are other slots, then first slot is the second one, previous first slot
+is destroyed
 
 if clicked "Delete" button on first slot and there aren't any other slots, then the first slot is not destroyed but is empty
 
@@ -104,7 +105,8 @@ if clicked "Clear all" button then there should be only one slot that is empty
 
 if clicked "Delete" button and if current slot is not first, then should be destroyed
 
-if clicked "Delete" burron on first slot, but there are other slots, then first slot is the second one, previous first slot is destroyed
+if clicked "Delete" burron on first slot, but there are other slots, then first slot is the second one, previous first slot
+is destroyed
 
 if clicked "Delete" button on first slot and there aren't any other slots, then the first slot is not destroyed but is empty
 
@@ -128,29 +130,29 @@ enum SlotTypeComboIndex {
 
 if SlotTypeComboIndex::KBMouseSlot == 0, SlotTypeComboIndex::CycleSlot == 1 itd
 
-if slot->getSlotMode() == JoyButtonSlot::JoySetChange then ui->slotSetChangeComboBox->findData(QVariant(slot->getSlotCode())) >= 0
+if slot->getSlotMode() == JoyButtonSlot::JoySetChange then ui->slotSetChangeComboBox->findData(QVariant(slot->getSlotCode()))
+>= 0
 
 close/cancel button cannot be disabled
 
 */
 
-
-class TestAdvanceButtonDialog: public QObject
+class TestAdvanceButtonDialog : public QObject
 {
     Q_OBJECT
 
-public:
-    TestAdvanceButtonDialog(QObject* parent = 0);
+  public:
+    TestAdvanceButtonDialog(QObject *parent = 0);
 
-private slots:
+  private slots:
 
-private:
+  private:
     AdvanceButtonDialog advanceButtonDialog;
 };
 
-TestAdvanceButtonDialog::TestAdvanceButtonDialog(QObject* parent) :
-    QObject(parent),
-    advanceButtonDialog()
+TestAdvanceButtonDialog::TestAdvanceButtonDialog(QObject *parent)
+    : QObject(parent)
+    , advanceButtonDialog()
 {
     QTestEventLoop::instance().enterLoop(1);
 }

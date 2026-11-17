@@ -22,10 +22,11 @@
 #include <QtTest/QtTest>
 
 /*
-if slotSummaryLabel->text() == tr("[NO KEY]") and lastJoyButton is nullptr lastJoyButton->getSlotsString().replace("&", "&&") == tr("[NO KEY]") then advancedPushButton should be disabled
+if slotSummaryLabel->text() == tr("[NO KEY]") and lastJoyButton is nullptr lastJoyButton->getSlotsString().replace("&", "&&")
+== tr("[NO KEY]") then advancedPushButton should be disabled
 
-if slotSummaryLabel->text() != tr("[NO KEY]") and lastJoyButton is not nullptr and lastJoyButton->getSlotsString().replace("&", "&&") != tr("[NO KEY]") then
-advancedPushButton should be enabled
+if slotSummaryLabel->text() != tr("[NO KEY]") and lastJoyButton is not nullptr and
+lastJoyButton->getSlotsString().replace("&", "&&") != tr("[NO KEY]") then advancedPushButton should be enabled
 
 toggleCheckBox should be checked if lastJoyButton->getToggleState()
 
@@ -58,23 +59,22 @@ getOtherKeysMenu()-actions()
 if AntKeyMapper::getInstance()->returnQtKey(oneFromListAction) != 0
 */
 
-
-class TestButtonEditDialog: public QObject
+class TestButtonEditDialog : public QObject
 {
     Q_OBJECT
 
-public:
-    TestButtonEditDialog(QObject* parent = 0);
+  public:
+    TestButtonEditDialog(QObject *parent = 0);
 
-private slots:
+  private slots:
 
-private:
+  private:
     ButtonEditDialog buttonEditDialog;
 };
 
-TestButtonEditDialog::TestButtonEditDialog(QObject* parent) :
-    QObject(parent),
-    buttonEditDialog()
+TestButtonEditDialog::TestButtonEditDialog(QObject *parent)
+    : QObject(parent)
+    , buttonEditDialog()
 {
     QTestEventLoop::instance().enterLoop(1);
 }

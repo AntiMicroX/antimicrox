@@ -27,14 +27,15 @@ resetBtn should be disabled when stick->wasCalibrated()
 Calibration->findChildren<QProgressBar*>() count is equal to 2
 startButton cannot be disabled
 cancelBtn cannot be disabled
-saveBtn is enabled when ui->steps->text() == tr("\n---Calibration done!---\n") && stick->setCalibrationSummary != ui->Information->text() || this->text != stick->setCalibrationSummary
-saveBtn is disabled when ui->steps->text() != tr("\n---Calibration done!---\n") && stick->setCalibrationSummary == ui->Information->text() || this->text == stick->setCalibrationSummary
-controllersBox->count() == this->joysticks->count
+saveBtn is enabled when ui->steps->text() == tr("\n---Calibration done!---\n") && stick->setCalibrationSummary !=
+ui->Information->text() || this->text != stick->setCalibrationSummary saveBtn is disabled when ui->steps->text() !=
+tr("\n---Calibration done!---\n") && stick->setCalibrationSummary == ui->Information->text() || this->text ==
+stick->setCalibrationSummary controllersBox->count() == this->joysticks->count
 
 int currContrBoxIndex = ui->controllersBox->currentIndex();
-QList<JoyControlStick*> sticksList = joysticks->value(currContrBoxIndex)->getSetJoystick(currContrBoxIndex)->getSticks().values();
-QList<JoyControlStick*> currStick(sticksList);
-ui->axesBox->count == currStick->count
+QList<JoyControlStick*> sticksList =
+joysticks->value(currContrBoxIndex)->getSetJoystick(currContrBoxIndex)->getSticks().values(); QList<JoyControlStick*>
+currStick(sticksList); ui->axesBox->count == currStick->count
 
 // test for other controllers and sticks too at the same time
 
@@ -48,7 +49,8 @@ if ui->stickStatusBoxWidget->getStick == ui->axesBox at 0
 // ACTIONS
 
 
-if there are ui->axesBox->count > 1 choose the next one and check if ui->stickStatusBoxWidget->getStick == ui->axesBox at 0 &&
+if there are ui->axesBox->count > 1 choose the next one and check if ui->stickStatusBoxWidget->getStick == ui->axesBox at 0
+&&
 
 joyAxisX = controlstick->getAxisX();
 joyAxisY = controlstick->getAxisY();
@@ -80,32 +82,31 @@ int Calibration::calibratedDeadZone(int center, int deadzone)
 void Calibration::summarizeValues(int &numbFromList, const int &mappednumb)
 void Calibration::getMinVal(int &numbFromList, const int &mappednumb)
 void Calibration::getMaxVal(int &numbFromList, const int &mappednumb)
-void Calibration::setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int &min_axis_val_y)
-void Calibration::restoreCalValues() -> if all local variables are default again
+void Calibration::setQuadraticZoneCalibrated(int &max_axis_val_x, int &min_axis_val_x, int &max_axis_val_y, int
+&min_axis_val_y) void Calibration::restoreCalValues() -> if all local variables are default again
 
 
 */
 
-class TestCalibration: public QObject
+class TestCalibration : public QObject
 {
     Q_OBJECT
 
-public:
-    TestCalibration(QObject* parent = 0);
+  public:
+    TestCalibration(QObject *parent = 0);
 
-private slots:
+  private slots:
 
-private:
+  private:
     TestCalibration calibrationDialog;
 };
 
-TestCalibration::TestCalibration(QObject* parent) :
-    QObject(parent),
-    Calibration()
+TestCalibration::TestCalibration(QObject *parent)
+    : QObject(parent)
+    , Calibration()
 {
     QTestEventLoop::instance().enterLoop(1);
 }
 
 // QTEST_MAIN(TestAdvanceButtonDialog)
 #include "testcalibration.moc"
-
