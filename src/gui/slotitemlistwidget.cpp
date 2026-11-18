@@ -30,15 +30,6 @@ SlotItemListWidget::SlotItemListWidget(QWidget *parent)
 {
 }
 
-void SlotItemListWidget::insertItems(int row, QList<QListWidgetItem *> items)
-{
-    for (auto el : items)
-    {
-        insertItem(row, el);
-        row++;
-    }
-}
-
 void SlotItemListWidget::keyPressEvent(QKeyEvent *event)
 {
     bool propogate = true;
