@@ -47,8 +47,6 @@ class VirtualKeyboardMouseWidget : public QTabWidget
                                         QWidget *parent = nullptr);
     explicit VirtualKeyboardMouseWidget(bool isNumKeypad, QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
-    bool is_numlock_activated(); // RealSystemInfo class
-    bool isLaptop();             // RealSystemInfo class
 
     InputDevice *getJoystick() const;
     ButtonEditDialogHelper *getHelper() const;

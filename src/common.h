@@ -156,7 +156,6 @@ extern bool editingBindings;
 extern MouseHelper mouseHelperObj;
 
 QString preferredProfileDir(AntiMicroSettings *settings);
-QStringList arguments(const int &argc, char **argv);
 QStringList parseArgumentsString(const QString &tempString);
 void reloadTranslations(QTranslator *translator, QTranslator *appTranslator, const QString &language);
 void lockInputDevices();

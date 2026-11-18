@@ -49,7 +49,6 @@ class X11Extras : public QObject
 
     ~X11Extras();
 
-    unsigned long appRootWindow(int screen = -1);
     Display *display();
     QString getDisplayString(QString xcodestring);
     int getApplicationPid(Window window);
@@ -69,8 +68,6 @@ class X11Extras : public QObject
     struct ptrInformation getPointInformation(QString pointerName);
 
     static void setCustomDisplay(QString displayString);
-
-    const char *getEnvVariable(const char *var) const;
 
     static X11Extras *getInstance();
     static void deleteInstance();
