@@ -1964,34 +1964,6 @@ void JoyControlStick::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
     }
 }
 
-bool JoyControlStick::hasSameButtonsMouseCurve()
-{
-    bool result = true;
-
-    QHash<JoyStickDirections, JoyControlStickButton *> temphash = getApplicableButtons();
-    auto iter = temphash.cbegin();
-
-    if (iter == temphash.cend())
-        return result;
-
-    JoyControlStickButton *button = iter.value();
-    JoyButton::JoyMouseCurve initialCurve = button->getMouseCurve();
-
-    while (++iter != temphash.cend())
-    {
-        button = iter.value();
-        JoyButton::JoyMouseCurve temp = button->getMouseCurve();
-
-        if (temp != initialCurve)
-        {
-            result = false;
-            break;
-        }
-    }
-
-    return result;
-}
-
 JoyButton::JoyMouseCurve JoyControlStick::getButtonsPresetMouseCurve()
 {
     JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
@@ -2425,11 +2397,6 @@ void JoyControlStick::determineFourWayDiagonalEvent(JoyControlStickButton *&even
  * @brief Find the current stick direction based on a Standard mode stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirection()
-{
-    return determineStandardModeDirection(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-}
-
 JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirection(int axisXValue, int axisYValue)
 {
     JoyStickDirections result = StickCentered;
@@ -2480,11 +2447,6 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineStandardModeDirect
  * @brief Find the current stick direction based on a Eight Way mode stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::determineEightWayModeDirection()
-{
-    return determineStandardModeDirection(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-}
-
 JoyControlStick::JoyStickDirections JoyControlStick::determineEightWayModeDirection(int axisXValue, int axisYValue)
 {
     return determineStandardModeDirection(axisXValue, axisYValue);
@@ -2495,11 +2457,6 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineEightWayModeDirect
  *     stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDirection()
-{
-    return determineFourWayCardinalDirection(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-}
-
 JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDirection(int axisXValue, int axisYValue)
 {
     JoyStickDirections result = StickCentered;
@@ -2534,11 +2491,6 @@ JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayCardinalDir
  *     stick.
  * @return Current direction the stick is positioned.
  */
-JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayDiagonalDirection()
-{
-    return determineFourWayDiagonalDirection(axisX->getCurrentRawValue(), axisY->getCurrentRawValue());
-}
-
 JoyControlStick::JoyStickDirections JoyControlStick::determineFourWayDiagonalDirection(int axisXValue, int axisYValue)
 {
     JoyStickDirections result = StickCentered;
