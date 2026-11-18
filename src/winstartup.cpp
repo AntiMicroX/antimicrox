@@ -1,8 +1,9 @@
 #include "winstartup.h"
 
+#include <windows.h>
+
 #include <sddl.h>
 #include <taskschd.h>
-#include <windows.h>
 
 #include <QCoreApplication>
 #include <QDir>

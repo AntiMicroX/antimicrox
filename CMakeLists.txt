@@ -598,7 +598,7 @@ if(UNIX)
 #        set(SDL2_LIBRARIES SDL2::SDL2)
 #    endif()
 elseif (WIN32)
-    list(APPEND WIN_LIBS "psapi" "taskschd" "ole32" "oleaut32" "advapi32")
+    list(APPEND WIN_LIBS "psapi" "taskschd" "uuid" "ole32" "oleaut32" "advapi32")
 endif(UNIX)
 
 
