@@ -1688,11 +1688,6 @@ void JoyButton::buildActiveZoneSummaryString()
     emit activeZoneChanged();
 }
 
-/**
- * @brief Generate active zone string but do not notify any other object.
- */
-void JoyButton::localBuildActiveZoneSummaryString() { lockForWritedString(activeZoneString, getActiveZoneSummary()); }
-
 QString JoyButton::buildActiveZoneSummary(QList<JoyButtonSlot *> &tempList)
 {
     QString newlabel = QString();

@@ -277,7 +277,6 @@ class JoyButton : public QObject
     void checkForPressedSetChange();
     void checkTurboCondition(JoyButtonSlot *slot);
     void vdpadPassEvent(bool pressed, bool ignoresets = false); // JoyButtonEvents class
-    void localBuildActiveZoneSummaryString();
 
     static bool hasFutureSpringEvents(QList<JoyButton *> *pendingMouseButtons);
     static int timeBetweenMiniSlots;

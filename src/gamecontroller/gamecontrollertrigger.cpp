@@ -114,17 +114,6 @@ QString GameControllerTrigger::getPartialName(bool forceFullFormat, bool display
     return label;
 }
 
-void GameControllerTrigger::correctJoystickThrottle()
-{
-    if (this->throttle != static_cast<int>(PositiveHalfThrottle))
-    {
-        this->setThrottle(static_cast<int>(PositiveHalfThrottle));
-
-        setCurrentRawValue(currentThrottledDeadValue);
-        currentThrottledValue = calculateThrottledValue(currentRawValue);
-    }
-}
-
 int GameControllerTrigger::getDefaultDeadZone() { return GlobalVariables::GameControllerTrigger::AXISDEADZONE; }
 
 int GameControllerTrigger::getDefaultMaxZone() { return GlobalVariables::GameControllerTrigger::AXISMAXZONE; }
