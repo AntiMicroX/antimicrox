@@ -9,6 +9,7 @@
 #include <QTest>
 #include <QUuid>
 #include <QXmlStreamReader>
+#include <string>
 #include <windows.h>
 
 #include <sddl.h>
@@ -163,7 +164,7 @@ class WindowsStartupTest : public QObject
     void failedRegistrationRestoresShortcut()
     {
         QVERIFY(QFile::link(m_executable, m_shortcut));
-        WinStartup startup(m_executable, m_shortcut, m_task_name + QStringLiteral(":invalid"));
+        WinStartup startup(QString(), m_shortcut, m_task_name);
         QString error;
         WinStartup::Mode mode;
         QVERIFY2(startup.read(mode, error), qPrintable(error));
