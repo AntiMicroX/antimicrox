@@ -11,6 +11,8 @@
 #include <QXmlStreamReader>
 #include <windows.h>
 
+#include <taskschd.h>
+
 class WindowsStartupTest : public QObject
 {
     Q_OBJECT
@@ -21,13 +23,39 @@ class WindowsStartupTest : public QObject
     QString m_shortcut;
     QString m_executable;
 
-    QByteArray queryTask()
+    QString queryTask()
     {
-        QProcess process;
-        process.start(QStringLiteral("schtasks.exe"), {"/Query", "/TN", m_task_name, "/XML"});
-        if (!process.waitForFinished() || process.exitCode() != 0)
-            return QByteArray();
-        return process.readAllStandardOutput();
+        QString xml;
+        HRESULT initialized = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+        if (FAILED(initialized) && initialized != RPC_E_CHANGED_MODE)
+            return xml;
+
+        ITaskService *service = nullptr;
+        ITaskFolder *folder = nullptr;
+        IRegisteredTask *task = nullptr;
+        BSTR definition = nullptr;
+        BSTR root = SysAllocString(L"\\");
+        BSTR name = SysAllocString(reinterpret_cast<const wchar_t *>(m_task_name.utf16()));
+        VARIANT empty;
+        VariantInit(&empty);
+        if (SUCCEEDED(CoCreateInstance(CLSID_TaskScheduler, nullptr, CLSCTX_INPROC_SERVER, IID_ITaskService,
+                                       reinterpret_cast<void **>(&service))) &&
+            SUCCEEDED(service->Connect(empty, empty, empty, empty)) && SUCCEEDED(service->GetFolder(root, &folder)) &&
+            SUCCEEDED(folder->GetTask(name, &task)) && SUCCEEDED(task->get_Xml(&definition)))
+            xml = QString::fromWCharArray(definition, SysStringLen(definition));
+
+        SysFreeString(definition);
+        SysFreeString(name);
+        SysFreeString(root);
+        if (task)
+            task->Release();
+        if (folder)
+            folder->Release();
+        if (service)
+            service->Release();
+        if (SUCCEEDED(initialized))
+            CoUninitialize();
+        return xml;
     }
 
   private slots:
@@ -70,7 +98,7 @@ class WindowsStartupTest : public QObject
         QCOMPARE(mode, WinStartup::Mode::Administrator);
         QVERIFY2(startup.write(WinStartup::Mode::Administrator, error), qPrintable(error));
 
-        const QByteArray xml = queryTask();
+        const QString xml = queryTask();
         QVERIFY(!xml.isEmpty());
         QXmlStreamReader reader(xml);
         QMap<QString, QStringList> fields;
@@ -114,6 +142,9 @@ class WindowsStartupTest : public QObject
         QVERIFY(QFile::link(m_executable, m_shortcut));
         WinStartup startup(m_executable, m_shortcut, m_task_name + QStringLiteral(":invalid"));
         QString error;
+        WinStartup::Mode mode;
+        QVERIFY2(startup.read(mode, error), qPrintable(error));
+        QCOMPARE(mode, WinStartup::Mode::Normal);
         QVERIFY(!startup.write(WinStartup::Mode::Administrator, error));
         QVERIFY(!error.isEmpty());
         QCOMPARE(QFileInfo(m_shortcut).symLinkTarget(), m_executable);
