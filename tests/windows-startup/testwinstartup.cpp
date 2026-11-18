@@ -133,7 +133,7 @@ class WindowsStartupTest : public QObject
             {
                 const QString name = reader.name().toString();
                 if (QStringList({"UserId", "RunLevel", "LogonType", "Command", "WorkingDirectory", "ExecutionTimeLimit",
-                                 "DisallowStartIfOnBatteries", "StopIfGoingOnBatteries"})
+                                 "DisallowStartIfOnBatteries", "StopIfGoingOnBatteries", "Priority"})
                         .contains(name))
                     fields[name].append(reader.readElementText());
             }
@@ -149,6 +149,7 @@ class WindowsStartupTest : public QObject
         QCOMPARE(fields["ExecutionTimeLimit"], QStringList({"PT0S"}));
         QCOMPARE(fields["DisallowStartIfOnBatteries"], QStringList({"false"}));
         QCOMPARE(fields["StopIfGoingOnBatteries"], QStringList({"false"}));
+        QCOMPARE(fields["Priority"], QStringList({"5"}));
 
         QVERIFY2(startup.write(WinStartup::Mode::Normal, error), qPrintable(error));
         QVERIFY(QFileInfo::exists(m_shortcut));

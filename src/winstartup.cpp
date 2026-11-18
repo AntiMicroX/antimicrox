@@ -75,7 +75,7 @@ bool taskError(HRESULT result, QString &error)
     error = QStringLiteral("0x%1").arg(static_cast<quint32>(result), 8, 16, QLatin1Char('0'));
     if (message)
     {
-        error += QStringLiteral(" — ") + QString::fromWCharArray(message).trimmed();
+        error += QStringLiteral(": ") + QString::fromWCharArray(message).trimmed();
         LocalFree(message);
     }
     return true;
@@ -150,6 +150,8 @@ QString taskXml(const QString &user_sid, const QString &executable)
     writer.writeTextElement(QStringLiteral("DisallowStartIfOnBatteries"), QStringLiteral("false"));
     writer.writeTextElement(QStringLiteral("StopIfGoingOnBatteries"), QStringLiteral("false"));
     writer.writeTextElement(QStringLiteral("ExecutionTimeLimit"), QStringLiteral("PT0S"));
+    // Task Scheduler defaults to priority 7 (below normal); 5 matches a normally launched process.
+    writer.writeTextElement(QStringLiteral("Priority"), QStringLiteral("5"));
     writer.writeEndElement();
     writer.writeStartElement(QStringLiteral("Actions"));
     writer.writeAttribute(QStringLiteral("Context"), QStringLiteral("User"));
@@ -245,7 +247,8 @@ bool WinStartup::write(Mode mode, QString &error) const
             error = QCoreApplication::translate("WinStartup", "Could not create the Windows startup shortcut.");
     }
 
-    if (error.isEmpty())
+    // Only touch the scheduler when a task must be created or removed, so normal startup never needs it.
+    if (error.isEmpty() && (mode == Mode::Administrator || current == Mode::Administrator))
     {
         HRESULT result;
         if (mode == Mode::Administrator)
