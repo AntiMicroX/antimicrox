@@ -77,16 +77,6 @@ QString preferredProfileDir(AntiMicroSettings *settings)
     return lookupDir;
 }
 
-QStringList arguments(const int &argc, char **argv)
-{
-    QStringList list = QStringList();
-
-    for (int a = 0; a < argc; ++a)
-        list << QString::fromLocal8Bit(argv[a]);
-
-    return list;
-}
-
 QStringList parseArgumentsString(const QString &tempString)
 {
     bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));

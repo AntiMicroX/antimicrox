@@ -28,12 +28,6 @@
 #include "virtualmousepushbutton.h"
 #include <QtDebug>
 
-#ifdef WITH_X11
-    #include "x11extras.h"
-#endif
-
-#include <SDL2/SDL_power.h>
-
 #include <QFont>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -104,27 +98,6 @@ VirtualKeyboardMouseWidget::VirtualKeyboardMouseWidget(bool isNumKeypad, QWidget
 
     QTimer::singleShot(0, this, SLOT(setButtonFontSizes()));
 }
-
-/*bool VirtualKeyboardMouseWidget::is_numlock_activated()
-{
-#if defined(WITH_X11)
-    Display *dpy = XOpenDisplay(X11Extras::getInstance()->getEnvVariable("DISPLAY"));
-    XKeyboardState x;
-    XGetKeyboardControl(dpy, &x);
-    XCloseDisplay(dpy);
-    return x.led_mask & 2;
-#endif
-
-    return false;
-}
-
-bool VirtualKeyboardMouseWidget::isLaptop()
-{
-    int secs, pct;
-
-    if (SDL_GetPowerInfo(&secs, &pct) == SDL_POWERSTATE_UNKNOWN) return false;
-    else return true;
-}*/
 
 void VirtualKeyboardMouseWidget::setupVirtualKeyboardLayout()
 {

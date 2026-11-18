@@ -98,18 +98,6 @@ void X11Extras::deleteInstance()
     }
 }
 
-const char *X11Extras::getEnvVariable(const char *var) const
-{
-    const char *val = ::getenv(var);
-    if (val == 0)
-    {
-        return "";
-    } else
-    {
-        return val;
-    }
-}
-
 /**
  * @brief Get display instance
  * @return Display struct
@@ -122,16 +110,6 @@ Display *X11Extras::display() { return _display; }
 void X11Extras::closeDisplay() { freeDisplay(); }
 
 void X11Extras::setCustomDisplay(QString displayString) { GlobalVariables::X11Extras::_customDisplayString = displayString; }
-
-/**
- * @brief Return root window for a given X display
- * @param screen number. If no value is passed, uses screen 1.
- * @return XID of the window
- */
-unsigned long X11Extras::appRootWindow(int screen)
-{
-    return (screen == -1) ? XDefaultRootWindow(display()) : XRootWindowOfScreen(XScreenOfDisplay(display(), screen));
-}
 
 /**
  * @brief Get appropriate alias for a known KeySym string that might be blank
