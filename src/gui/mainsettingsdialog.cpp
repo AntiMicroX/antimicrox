@@ -302,7 +302,6 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
             &MainSettingsDialog::mappingsTableItemChanged);
     connect(ui->mappingDeletePushButton, &QPushButton::clicked, this, &MainSettingsDialog::deleteMappingRow);
     connect(ui->mappngInsertPushButton, &QPushButton::clicked, this, &MainSettingsDialog::insertMappingRow);
-    disconnect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &MainSettingsDialog::saveNewSettings);
     connect(ui->profileOpenDirPushButton, &QPushButton::clicked, this, &MainSettingsDialog::selectDefaultProfileDir);
     connect(ui->activeCheckBox, &QCheckBox::toggled, ui->autoProfileTableWidget, &QTableWidget::setEnabled);
