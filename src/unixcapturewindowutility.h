@@ -27,7 +27,6 @@ class UnixCaptureWindowUtility : public QObject
 
   public:
     explicit UnixCaptureWindowUtility(QObject *parent = nullptr);
-    QString getTargetPath() const;
     bool hasFailed() const;
     long getTargetWindow() const;
 

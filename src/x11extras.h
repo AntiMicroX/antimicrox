@@ -51,7 +51,6 @@ class X11Extras : public QObject
 
     unsigned long appRootWindow(int screen = -1);
     Display *display();
-    bool hasValidDisplay();
     QString getDisplayString(QString xcodestring);
     int getApplicationPid(Window window);
     QString getApplicationLocation(int pid);
@@ -75,8 +74,6 @@ class X11Extras : public QObject
 
     static X11Extras *getInstance();
     static void deleteInstance();
-
-    QHash<QString, QString> const &getKnownAliases();
 
   protected:
     explicit X11Extras(QObject *parent = nullptr);

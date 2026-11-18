@@ -83,7 +83,6 @@ class SetJoystick : public SetJoystickXml
 
     void setName(QString name);
     QString getName() const;
-    QString getSetLabel();
 
     void raiseAxesDeadZones(int deadZone = 0);                          // SetAxis class
     void currentAxesDeadZones(QList<int> *axesDeadZones);               // SetAxis class
@@ -91,7 +90,6 @@ class SetJoystick : public SetJoystickXml
     void setAxisThrottle(int axisNum, JoyAxis::ThrottleTypes throttle); // SetAxis class
     QList<JoyButton *> const &getLastClickedButtons() const;
     void removeAllBtnFromQueue();
-    int getCountBtnInList(QString partialName);
     bool isSetEmpty();
 
   protected:

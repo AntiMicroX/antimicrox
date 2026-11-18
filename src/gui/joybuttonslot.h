@@ -102,8 +102,6 @@ class JoyButtonSlot : public QObject
     void setSlotCode(int code, int alias);
     int getSlotCodeAlias() const;
     void setPreviousDistance(double distance);
-    double getPreviousDistance() const;
-    double getDistance() const;
     bool isModifierKey();
 
     bool isEasingActive() const;

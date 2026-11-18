@@ -89,7 +89,6 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     double getDistanceFromDeadZone(int axisXValue, int axisYValue);                // JoyControlStickAxes class
     double getAbsoluteRawDistance();                                               // JoyControlStickAxes class
     double getAbsoluteRawDistance(int axisXValue, int axisYValue);                 // JoyControlStickAxes class
-    double getNormalizedAbsoluteDistance();                                        // JoyControlStickAxes class
     double calculateBearing();                                                     // JoyControlStickAxes class
     double calculateBearing(int axisXValue, int axisYValue);                       // JoyControlStickAxes class
     double calculateMouseDirectionalDistance(JoyControlStickButton *button);       // JoyControlStickAxes class

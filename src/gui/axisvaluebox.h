@@ -33,9 +33,7 @@ class AxisValueBox : public QWidget
 
     int getDeadZone();
     int getMaxZone();
-    int getJoyValue();
     int getThrottle();
-    int getMinAxValue();
     int getMaxAxValue();
 
   protected:

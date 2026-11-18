@@ -580,11 +580,3 @@ void UInputEventHandler::testAndAppend(bool tested, QList<unsigned int> &tempLis
         write_uinput_event(keyboardFileHandler, EV_KEY, key, 1, false);
     }
 }
-
-int UInputEventHandler::getKeyboardFileHandler() { return keyboardFileHandler; }
-
-int UInputEventHandler::getMouseFileHandler() { return mouseFileHandler; }
-
-int UInputEventHandler::getSpringMouseFileHandler() { return springMouseFileHandler; }
-
-const QString UInputEventHandler::getUinputDeviceLocation() { return uinputDeviceLocation; }

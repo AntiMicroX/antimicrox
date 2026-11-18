@@ -78,7 +78,6 @@ class GameController : public InputDevice
     void setCounterUniques(int counter) override;
 
     QString getBindStringForAxis(int index, bool trueIndex = true);
-    QString getBindStringForButton(int index, bool trueIndex = true);
 
     SDL_GameControllerButtonBind getBindForAxis(int index);
     SDL_GameControllerButtonBind getBindForButton(int index);

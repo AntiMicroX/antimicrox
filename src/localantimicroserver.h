@@ -34,8 +34,6 @@ class LocalAntiMicroServer : public QObject
   public:
     explicit LocalAntiMicroServer(QObject *parent = nullptr);
 
-    QLocalServer *getLocalServer() const;
-
   signals:
     void clientdisconnect();
     void showHiddenWindow();

@@ -158,13 +158,3 @@ JoyControlStickButtonPushButton *StickPushButtonGroup::getDownButton() const { r
 JoyControlStickButtonPushButton *StickPushButtonGroup::getLeftButton() const { return leftButton; }
 
 JoyControlStickButtonPushButton *StickPushButtonGroup::getRightButton() const { return rightButton; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getUpLeftButton() const { return upLeftButton; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getUpRightButton() const { return upRightButton; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getDownLeftButton() const { return downLeftButton; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getDownRightButton() const { return downRightButton; }
-
-JoyControlStickPushButton *StickPushButtonGroup::getStickWidget() const { return stickWidget; }

@@ -44,13 +44,6 @@ class StickPushButtonGroup : public QGridLayout
     JoyControlStickButtonPushButton *getLeftButton() const;
     JoyControlStickButtonPushButton *getRightButton() const;
 
-    JoyControlStickButtonPushButton *getUpLeftButton() const;
-    JoyControlStickButtonPushButton *getUpRightButton() const;
-    JoyControlStickButtonPushButton *getDownLeftButton() const;
-    JoyControlStickButtonPushButton *getDownRightButton() const;
-
-    JoyControlStickPushButton *getStickWidget() const;
-
   protected:
     void generateButtons();
 

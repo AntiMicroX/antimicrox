@@ -1276,8 +1276,6 @@ void InputDevice::setKeyRepeatRate(int rate)
     }
 }
 
-bool InputDevice::isKeyRepeatEnabled() { return keyRepeatEnabled; }
-
 int InputDevice::getKeyRepeatDelay()
 {
     int tempKeyRepeatDelay = GlobalVariables::InputDevice::DEFAULTKEYREPEATDELAY;
@@ -1319,8 +1317,6 @@ void InputDevice::setProfileName(QString value)
 }
 
 QString InputDevice::getProfileName() { return profileName; }
-
-int InputDevice::getButtonDownCount() { return buttonDownCount; }
 
 QString InputDevice::getDescription()
 {
@@ -1641,16 +1637,6 @@ bool InputDevice::elementsHaveNames()
 //    return result;
 //}
 
-bool InputDevice::isEmptyUniqueID(QString tempUniqueID)
-{
-    bool result = false;
-
-    if (tempUniqueID.contains(GlobalVariables::InputDevice::emptyUniqueID))
-        result = true;
-
-    return result;
-}
-
 /**
  * @brief Check if GUID passed matches the expected GUID for a device.
  *     Needed for xinput GUID abstraction.
@@ -1705,8 +1691,6 @@ void InputDevice::setRawAxisDeadZone(int deadZone)
     }
 }
 
-int InputDevice::getRawAxisDeadZone() { return rawAxisDeadZone; }
-
 void InputDevice::rawAxisEvent(int index, int value) { emit rawAxisMoved(index, value); }
 
 void InputDevice::convertToUniqueMappSett(QSettings *sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett)
@@ -1732,8 +1716,6 @@ void InputDevice::convertToUniqueMappSett(QSettings *sett, QString gUIDmappGroup
 QMap<int, SetJoystick *> &InputDevice::getJoystick_sets() { return joystick_sets; }
 
 QHash<int, JoyAxis::ThrottleTypes> &InputDevice::getCali() { return cali; }
-
-SDL_JoystickID *InputDevice::getJoystickID() { return &joystickID; }
 
 QList<bool> &InputDevice::getButtonstatesLocal() { return buttonstates; }
 

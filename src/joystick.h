@@ -58,7 +58,6 @@ class Joystick : public InputDevice
 
     void setCounterUniques(int counter) override;
 
-    SDL_Joystick *getJoyhandle() const;
     virtual QString getXmlName() const override;
 
   private:

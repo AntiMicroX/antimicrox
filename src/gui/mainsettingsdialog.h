@@ -46,17 +46,6 @@ class MainSettingsDialog : public QDialog
 
     AntiMicroSettings *getSettings() const;
 
-    QMap<QString, AutoProfileInfo *> *getDefaultAutoProfiles(); // Default profiles assigned to a specific device
-    QMap<QString, QList<AutoProfileInfo *>> *
-    getDeviceAutoProfiles(); // Profiles assigned with an association with an application
-    QMap<QString, QList<AutoProfileInfo *>> *getExeAutoProfiles();
-
-    QList<AutoProfileInfo *> *getDefaultList();
-    QList<AutoProfileInfo *> *getProfileList();
-
-    AutoProfileInfo *getAllDefaultProfile() const;
-    QList<InputDevice *> *getConnectedDevices() const;
-
   protected:
     void fillControllerMappingsTable();                                                       // MainSettingsMapping class
     void insertTempControllerMapping(QHash<QString, QList<QVariant>> &hash, QString newGUID); // MainSettingsMapping class

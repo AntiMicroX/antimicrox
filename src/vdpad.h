@@ -50,7 +50,6 @@ class VDPad : public JoyDPad
     JoyButton *getDownButton() const;
     JoyButton *getLeftButton() const;
     JoyButton *getRightButton() const;
-    bool getPendingVDPadEvent() const;
 
   public slots:
     void activatePendingEvent();

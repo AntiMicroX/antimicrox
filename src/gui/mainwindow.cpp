@@ -1783,11 +1783,7 @@ bool MainWindow::getGraphicalStatus() { return m_graphical; }
 
 void MainWindow::setTranslator(QTranslator *translator) { m_translator = translator; }
 
-QTranslator *MainWindow::getTranslator() const { return m_translator; }
-
 void MainWindow::setAppTranslator(QTranslator *translator) { m_appTranslator = translator; }
-
-QTranslator *MainWindow::getAppTranslator() const { return m_appTranslator; }
 
 void MainWindow::retranslateUi() { ui->retranslateUi(this); }
 

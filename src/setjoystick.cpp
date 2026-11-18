@@ -530,19 +530,6 @@ void SetJoystick::removeAllBtnFromQueue()
         lastClickedButtons.clear();
 }
 
-int SetJoystick::getCountBtnInList(QString partialName)
-{
-    int count = 0;
-
-    foreach (const JoyButton *joyBtn, getLastClickedButtons())
-    {
-        if (joyBtn->getPartialName(false, true) == partialName)
-            count++;
-    }
-
-    return count;
-}
-
 void SetJoystick::propogateSetButtonRelease(int button)
 {
     JoyButton *jButton = qobject_cast<JoyButton *>(sender());
@@ -1011,18 +998,6 @@ void SetJoystick::copyAssignments(SetJoystick *destSet)
         if (sourceButton && destButton)
             sourceButton->copyAssignments(destButton);
     }
-}
-
-QString SetJoystick::getSetLabel()
-{
-    QString temp = QString();
-
-    if (!m_name.isEmpty())
-        temp = tr("Set %1: %2").arg(m_index + 1).arg(m_name);
-    else
-        temp = tr("Set %1").arg(m_index + 1);
-
-    return temp;
 }
 
 void SetJoystick::establishPropertyUpdatedConnection()

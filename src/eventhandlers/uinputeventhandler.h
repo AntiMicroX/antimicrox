@@ -54,11 +54,6 @@ class UInputEventHandler : public BaseEventHandler
 
     virtual void sendTextEntryEvent(QString maintext) override;
 
-    int getKeyboardFileHandler();
-    int getMouseFileHandler();
-    int getSpringMouseFileHandler();
-    const QString getUinputDeviceLocation();
-
   protected:
     int openUInputHandle();
     void setKeyboardEvents(int filehandle);

@@ -206,7 +206,3 @@ int VirtualKeyPushButton::getQkeyalias() const { return qkeyalias; }
 QString VirtualKeyPushButton::getXcodestring() const { return xcodestring; }
 
 QString VirtualKeyPushButton::getDisplayString() const { return displayString; }
-
-bool VirtualKeyPushButton::getCurrentlyActive() const { return currentlyActive; }
-
-bool VirtualKeyPushButton::getOnCurrentButton() const { return onCurrentButton; }

@@ -104,13 +104,6 @@ void Logger::setCurrentStream(QTextStream *stream)
     instance->outputStream = stream;
 }
 
-QTextStream *Logger::getCurrentStream()
-{
-    Q_ASSERT(instance != nullptr);
-
-    return instance->outputStream;
-}
-
 /**
  * @brief Flushes output stream and closes stream if requested.
  * @param closeStream Whether to close the current stream. Defaults to true.

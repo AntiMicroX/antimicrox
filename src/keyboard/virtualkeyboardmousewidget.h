@@ -52,12 +52,7 @@ class VirtualKeyboardMouseWidget : public QTabWidget
 
     InputDevice *getJoystick() const;
     ButtonEditDialogHelper *getHelper() const;
-    QWidget *getKeyboardTab() const;
-    QWidget *getMouseTab() const;
-    QPushButton *getNoneButton() const;
-    QPushButton *getMouseSettingsPushButton() const;
     QMenu *getOtherKeysMenu() const;
-    QuickSetDialog *getCurrentQuickDialog() const;
 
     static QHash<QString, QString> topRowKeys;
 

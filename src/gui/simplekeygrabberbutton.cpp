@@ -310,8 +310,6 @@ void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jb
 
 JoyButtonSlot *SimpleKeyGrabberButton::getValue() { return &buttonslot; }
 
-JoyButtonSlot &SimpleKeyGrabberButton::getValueNonPointer() { return buttonslot; }
-
 void SimpleKeyGrabberButton::setValue(JoyButtonSlot *jbS) { buttonslot = jbS; }
 
 void SimpleKeyGrabberButton::refreshButtonLabel()
@@ -319,7 +317,5 @@ void SimpleKeyGrabberButton::refreshButtonLabel()
     setText(buttonslot.getSlotString());
     updateGeometry();
 }
-
-bool SimpleKeyGrabberButton::isEdited() { return edited; }
 
 bool SimpleKeyGrabberButton::isGrabbing() { return grabNextAction; }

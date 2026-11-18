@@ -34,7 +34,6 @@ class XMLConfigMigration : public QObject
     QString migrate();
 
     const QXmlStreamReader *getReader();
-    int getFileVersion() const;
 
   private:
     QString readConfigToString();

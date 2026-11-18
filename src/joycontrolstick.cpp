@@ -31,7 +31,6 @@
 #include <QStringList>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-// #include <QtTest/QTest>
 
 #include <math.h>
 
@@ -702,23 +701,6 @@ double JoyControlStick::getAbsoluteRawDistance(int axisXValue, int axisYValue)
     int square_dist = (axis1Value * axis1Value) + (axis2Value * axis2Value);
 
     return sqrt(square_dist);
-}
-
-double JoyControlStick::getNormalizedAbsoluteDistance()
-{
-    int axis1Value = axisX->getCurrentRawValue();
-    int axis2Value = axisY->getCurrentRawValue();
-
-    int square_dist = (axis1Value * axis1Value) + (axis2Value * axis2Value);
-
-    double distance = sqrt(square_dist) / static_cast<double>(maxZone);
-
-    if (distance > 1.0)
-        distance = 1.0;
-    else if (distance < 0.0)
-        distance = 0.0;
-
-    return distance;
 }
 
 double JoyControlStick::getRadialDistance(int axisXValue, int axisYValue)

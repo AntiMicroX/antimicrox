@@ -186,8 +186,6 @@ void AxisValueBox::setMaxZone(JoyAxis *axis, int maxZone)
 
 int AxisValueBox::getMaxZone() { return m_maxZone; }
 
-int AxisValueBox::getJoyValue() { return joyValue; }
-
 int AxisValueBox::getThrottle() { return m_throttle; }
 
 void AxisValueBox::resizeEvent(QResizeEvent *event)
@@ -286,5 +284,3 @@ void AxisValueBox::paintEvent(QPaintEvent *event)
 }
 
 int AxisValueBox::getMaxAxValue() { return GlobalVariables::JoyAxis::AXISMAX; }
-
-int AxisValueBox::getMinAxValue() { return GlobalVariables::JoyAxis::AXISMIN; }

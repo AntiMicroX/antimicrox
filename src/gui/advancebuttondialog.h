@@ -41,7 +41,6 @@ class AdvanceButtonDialog : public QDialog
     AdvanceButtonDialog(QWidget *parent = 0);
     ~AdvanceButtonDialog();
 
-    int getOldRow() const;
     JoyButton *getButton() const;
     AdvanceButtonDialogHelper const &getHelper();
 

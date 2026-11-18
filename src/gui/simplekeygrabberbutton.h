@@ -44,9 +44,7 @@ class SimpleKeyGrabberButton : public QPushButton
     void setValues(QString value, QList<JoyButtonSlot *> *jbtn,
                    JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyMix);
     JoyButtonSlot *getValue();
-    JoyButtonSlot &getValueNonPointer();
     void setValue(JoyButtonSlot *jbS);
-    bool isEdited();
     bool isGrabbing();
 
   protected:

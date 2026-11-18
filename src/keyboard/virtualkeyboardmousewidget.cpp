@@ -1143,14 +1143,4 @@ InputDevice *VirtualKeyboardMouseWidget::getJoystick() const { return joystick; 
 
 ButtonEditDialogHelper *VirtualKeyboardMouseWidget::getHelper() const { return helper; }
 
-QWidget *VirtualKeyboardMouseWidget::getKeyboardTab() const { return keyboardTab; }
-
-QWidget *VirtualKeyboardMouseWidget::getMouseTab() const { return mouseTab; }
-
-QPushButton *VirtualKeyboardMouseWidget::getNoneButton() const { return noneButton; }
-
-QPushButton *VirtualKeyboardMouseWidget::getMouseSettingsPushButton() const { return mouseSettingsPushButton; }
-
 QMenu *VirtualKeyboardMouseWidget::getOtherKeysMenu() const { return otherKeysMenu; }
-
-QuickSetDialog *VirtualKeyboardMouseWidget::getCurrentQuickDialog() const { return currentQuickDialog; }

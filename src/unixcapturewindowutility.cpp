@@ -116,12 +116,6 @@ void UnixCaptureWindowUtility::attemptWindowCapture()
 }
 
 /**
- * @brief Get the saved path for a window
- * @return Program path
- */
-QString UnixCaptureWindowUtility::getTargetPath() const { return targetPath; }
-
-/**
  * @brief Check if attemptWindowCapture failed to obtain an application
  * @return Error status
  */
