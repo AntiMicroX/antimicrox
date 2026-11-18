@@ -57,45 +57,6 @@
 
 #endif
 
-// TODO: Implement function for determining final mouse pointer position
-// based around a fixed bounding box resolution.
-void fakeAbsMouseCoordinates(double springX, double springY, int width, int height, int &finalx, int &finaly, int screen)
-{
-    int screenWidth = 0;
-    int screenHeight = 0;
-    int screenMidwidth = 0;
-    int screenMidheight = 0;
-
-    int destSpringWidth = 0;
-    int destSpringHeight = 0;
-    int destMidWidth = 0;
-    int destMidHeight = 0;
-
-    QRect deskRect = QGuiApplication::screens().at(screen)->geometry();
-
-    screenWidth = deskRect.width();
-    screenHeight = deskRect.height();
-
-    screenMidwidth = screenWidth / 2;
-    screenMidheight = screenHeight / 2;
-
-    if ((width >= 2) && (height >= 2))
-    {
-        destSpringWidth = qMin(width, screenWidth);
-        destSpringHeight = qMin(height, screenHeight);
-    } else
-    {
-        destSpringWidth = screenWidth;
-        destSpringHeight = screenHeight;
-    }
-
-    destMidWidth = destSpringWidth / 2;
-    destMidHeight = destSpringHeight / 2;
-
-    finalx = (screenMidwidth + (springX * destMidWidth) + deskRect.x());
-    finaly = (screenMidheight + (springY * destMidHeight) + deskRect.y());
-}
-
 /**
  * @brief detects executor for selected file (for .py files python, for .exe "" etc)
  */
@@ -192,93 +153,6 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
 
 // Create the relative mouse event used by the operating system.
 void sendevent(int code1, int code2) { EventHandlerFactory::getInstance()->handler()->sendMouseEvent(code1, code2); }
-
-// TODO: Re-implement spring event generation to simplify the process
-// and reduce overhead. Refactor old function to only be used when an absmouse
-// position must be faked.
-void sendSpringEventRefactor(PadderCommon::springModeInfo *fullSpring, PadderCommon::springModeInfo *relativeSpring,
-                             int *const mousePosX, int *const mousePosY)
-{
-    Q_UNUSED(relativeSpring)
-    Q_UNUSED(mousePosX)
-    Q_UNUSED(mousePosY)
-    PadderCommon::mouseHelperObj.mouseTimer.stop();
-
-    if (fullSpring != nullptr)
-    {
-        int xmovecoor = 0;
-        int ymovecoor = 0;
-
-        double displacementX = 0.0;
-        double displacementY = 0.0;
-
-        PadderCommon::mouseHelperObj.mouseTimer.stop();
-        BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
-
-        if ((fullSpring->screen >= -1) && (fullSpring->screen >= QGuiApplication::screens().count()))
-        {
-            fullSpring->screen = -1;
-        }
-
-        int springWidth = fullSpring->width;
-        int springHeight = fullSpring->height;
-
-        if ((springWidth >= 2) && (springHeight >= 2))
-        {
-            displacementX = fullSpring->displacementX;
-            displacementY = fullSpring->displacementY;
-        } else
-        {
-            displacementX = fullSpring->displacementX;
-            displacementY = fullSpring->displacementY;
-        }
-
-        if (relativeSpring && (relativeSpring->width >= 2) && (relativeSpring->height >= 2))
-        {
-            int pivotX = 0;
-            int pivotY = 0;
-
-            if (PadderCommon::mouseHelperObj.pivotPoint[0] != -1)
-                pivotX = PadderCommon::mouseHelperObj.pivotPoint[0];
-
-            if (PadderCommon::mouseHelperObj.pivotPoint[1] != -1)
-                pivotY = PadderCommon::mouseHelperObj.pivotPoint[1];
-
-            if ((pivotX >= 0) && (pivotY >= 0))
-            {
-                // Find a use for this routine in this context.
-                int destRelativeWidth = relativeSpring->width;
-                int destRelativeHeight = relativeSpring->height;
-                int xRelativeMoovCoor = 0;
-                int yRelativeMoovCoor = 0;
-
-                if (relativeSpring->displacementX >= -1.0)
-                    xRelativeMoovCoor = (relativeSpring->displacementX * destRelativeWidth) / 2;
-
-                if (relativeSpring->displacementY >= -1.0)
-                    yRelativeMoovCoor = (relativeSpring->displacementY * destRelativeHeight) / 2;
-
-                xmovecoor += xRelativeMoovCoor;
-                ymovecoor += yRelativeMoovCoor;
-            }
-        }
-
-        if (handler->getIdentifier() == "xtest")
-        {
-            fakeAbsMouseCoordinates(displacementX, displacementY, springWidth, springHeight, xmovecoor, ymovecoor,
-                                    fullSpring->screen);
-        } else if (handler->getIdentifier() == "uinput")
-        {
-            fakeAbsMouseCoordinates(displacementX, displacementY, springWidth, springHeight, xmovecoor, ymovecoor,
-                                    fullSpring->screen);
-        }
-    } else
-    {
-        PadderCommon::mouseHelperObj.springMouseMoving = false;
-        PadderCommon::mouseHelperObj.pivotPoint[0] = -1;
-        PadderCommon::mouseHelperObj.pivotPoint[1] = -1;
-    }
-}
 
 // TODO: Change to only use this routine when using a relative mouse
 // pointer to fake absolute mouse moves. Otherwise, don't worry about
