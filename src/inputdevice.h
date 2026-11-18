@@ -150,7 +150,6 @@ class InputDevice : public QObject
 
     // bool isEmptyGUID(QString tempGUID);
     // bool isRelevantGUID(QString tempGUID);
-    bool isRelevantUniqueID(QString tempUniqueID);
 
     void setRawAxisDeadZone(int deadZone);   // InputDeviceAxis class
     void rawAxisEvent(int index, int value); // InputDeviceAxis class

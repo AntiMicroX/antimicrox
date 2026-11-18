@@ -63,10 +63,8 @@
 #include <QMapIterator>
 #include <QMessageBox>
 #include <QPointer>
-#include <QRegularExpression>
 #include <QResource>
 #include <QShowEvent>
-#include <QTextStream>
 #include <QTranslator>
 #include <QUrl>
 
@@ -1817,49 +1815,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     }
 
     return false;
-}
-
-void MainWindow::convertGUIDtoUniqueID(InputDevice *currentDevice, QString controlEntryLastSelectedGUID)
-{
-    int exec = QMessageBox::information(
-        this, tr("Reading old profile"),
-        tr("This profile uses controllers' GUID numbers. Would you like to change GUID numbers to UniqueID in this file for "
-           "use in identical gamecontrollers? Such old file cannot be loaded in antimicrox since version 2.25"),
-        QMessageBox::Yes, QMessageBox::No);
-
-    switch (exec)
-    {
-    case QMessageBox::Yes: {
-        QFile data(m_settings->value(controlEntryLastSelectedGUID).toString());
-        QString dataText;
-
-        if (!data.open(QIODevice::Text | QIODevice::ReadOnly))
-        {
-            qWarning() << "Unable to open profile for GUID conversion:" << data.fileName();
-            return;
-        }
-
-        dataText = data.readAll();
-
-        QRegularExpression re(currentDevice->getGUIDString());
-        QString replacementText(currentDevice->getUniqueIDString());
-
-        dataText.replace(re, replacementText);
-
-        QFile newData(m_settings->value(controlEntryLastSelectedGUID).toString());
-
-        if (newData.open(QFile::WriteOnly | QFile::Truncate))
-        {
-            QTextStream out(&newData);
-            out << dataText;
-        } else
-            WARN() << "Could not open file: " << newData.fileName();
-
-        newData.close();
-
-        break;
-    }
-    }
 }
 
 void MainWindow::checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice *> *joysticks)

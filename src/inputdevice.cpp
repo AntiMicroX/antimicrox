@@ -1652,16 +1652,6 @@ bool InputDevice::elementsHaveNames()
 //    return result;
 //}
 
-bool InputDevice::isRelevantUniqueID(QString tempUniqueID)
-{
-    bool result = false;
-
-    if (tempUniqueID == getUniqueIDString())
-        result = true;
-
-    return result;
-}
-
 QString InputDevice::getRawGUIDString() const { return getGUIDString(); }
 
 QString InputDevice::getRawVendorString() const { return getVendorString(); }

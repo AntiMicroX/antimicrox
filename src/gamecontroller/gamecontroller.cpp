@@ -292,11 +292,6 @@ bool GameController::isGameController() { return true; }
 //    return InputDevice::isRelevantGUID(tempGUID);
 //}
 
-bool GameController::isRelevantUniqueID(QString tempUniqueID)
-{
-    return InputDevice::isRelevantUniqueID(std::move(tempUniqueID));
-}
-
 void GameController::rawButtonEvent(int index, bool pressed)
 {
     bool knownbutton = getRawbuttons().contains(index);
