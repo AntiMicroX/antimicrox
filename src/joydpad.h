@@ -61,7 +61,6 @@ class JoyDPad : public QObject
     JoyButton::JoyMouseMovementMode getButtonsPresetMouseMode();
 
     void setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve);
-    bool hasSameButtonsMouseCurve();
     JoyButton::JoyMouseCurve getButtonsPresetMouseCurve();
 
     void setButtonsSpringWidth(int value);

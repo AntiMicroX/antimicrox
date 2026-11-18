@@ -615,17 +615,6 @@ void JoyAxis::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
     naxisbutton->setMouseCurve(mouseCurve);
 }
 
-bool JoyAxis::hasSameButtonsMouseCurve()
-{
-    bool result = true;
-    if (paxisbutton->getMouseCurve() != naxisbutton->getMouseCurve())
-    {
-        result = false;
-    }
-
-    return result;
-}
-
 JoyButton::JoyMouseCurve JoyAxis::getButtonsPresetMouseCurve()
 {
     JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;

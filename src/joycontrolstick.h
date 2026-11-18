@@ -132,7 +132,6 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     JoyButton::JoyMouseMovementMode getButtonsPresetMouseMode();
 
     void setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve);
-    bool hasSameButtonsMouseCurve();
     JoyButton::JoyMouseCurve getButtonsPresetMouseCurve();
 
     void setButtonsSpringWidth(int value);
@@ -199,19 +198,15 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
                                        JoyControlStickButton *&eventbutton2); // JoyControlStickEvent class
     void determineFourWayDiagonalEvent(JoyControlStickButton *&eventbutton3); // JoyControlStickEvent class
 
-    JoyControlStick::JoyStickDirections determineStandardModeDirection(); // JoyControlStickAxes class
     JoyControlStick::JoyStickDirections determineStandardModeDirection(int axisXValue,
                                                                        int axisYValue); // JoyControlStickAxes class
 
-    JoyControlStick::JoyStickDirections determineEightWayModeDirection(); // JoyControlStickAxes class
     JoyControlStick::JoyStickDirections determineEightWayModeDirection(int axisXValue,
                                                                        int axisYValue); // JoyControlStickAxes class
 
-    JoyControlStick::JoyStickDirections determineFourWayCardinalDirection(); // JoyControlStickAxes class
     JoyControlStick::JoyStickDirections determineFourWayCardinalDirection(int axisXValue,
                                                                           int axisYValue); // JoyControlStickAxes class
 
-    JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection(); // JoyControlStickAxes class
     JoyControlStick::JoyStickDirections determineFourWayDiagonalDirection(int axisXValue,
                                                                           int axisYValue); // JoyControlStickAxes class
 

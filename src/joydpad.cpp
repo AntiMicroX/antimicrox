@@ -312,33 +312,6 @@ void JoyDPad::setButtonsMouseCurve(JoyButton::JoyMouseCurve mouseCurve)
     }
 }
 
-bool JoyDPad::hasSameButtonsMouseCurve()
-{
-    bool result = true;
-
-    QHash<int, JoyDPadButton *> temphash = getApplicableButtons();
-    auto iter = temphash.cbegin();
-
-    if (iter == temphash.cend())
-        return result;
-
-    JoyDPadButton *button = iter.value();
-    JoyButton::JoyMouseCurve initialCurve = button->getMouseCurve();
-
-    while (++iter != temphash.cend())
-    {
-        button = iter.value();
-        JoyButton::JoyMouseCurve temp = button->getMouseCurve();
-        if (temp != initialCurve)
-        {
-            result = false;
-            break;
-        }
-    }
-
-    return result;
-}
-
 JoyButton::JoyMouseCurve JoyDPad::getButtonsPresetMouseCurve()
 {
     JoyButton::JoyMouseCurve resultCurve = JoyButton::LinearCurve;
