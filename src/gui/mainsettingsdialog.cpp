@@ -33,6 +33,7 @@
 #elif defined Q_OS_WIN
     #include "eventhandlerfactory.h"
     #include "winextras.h"
+    #include "winstartup.h"
     #include <QSysInfo>
 #endif
 
@@ -54,10 +55,6 @@
 #include <QTranslator>
 #include <QVariant>
 #include <QWidget>
-
-static const QString RUNATSTARTUPREGKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
-static const QString RUNATSTARTUPLOCATION(QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicrox.lnk")
-                                              .arg(QString::fromUtf8(qgetenv("AppData"))));
 
 MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice *> *devices, QWidget *parent)
     : QDialog(parent, Qt::Dialog)
@@ -140,14 +137,23 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
 #ifdef Q_OS_WIN
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 
-    QFile tempFile(RUNATSTARTUPLOCATION);
-    if (tempFile.exists())
+    WinStartup startup(qApp->applicationFilePath());
+    WinStartup::Mode startup_mode;
+    QString startup_error;
+    bool startup_read = startup.read(startup_mode, startup_error);
+    ui->launchAtWinStartupCheckBox->setChecked(startup_mode != WinStartup::Mode::Disabled);
+    ui->runAsAdminAtStartupCheckBox->setChecked(startup_mode == WinStartup::Mode::Administrator);
+    ui->launchAtWinStartupCheckBox->setEnabled(startup_read);
+    ui->runAsAdminAtStartupCheckBox->setEnabled(startup_read && ui->launchAtWinStartupCheckBox->isChecked());
+    connect(ui->launchAtWinStartupCheckBox, &QCheckBox::toggled, ui->runAsAdminAtStartupCheckBox, &QCheckBox::setEnabled);
+    if (!startup_read)
     {
-        ui->launchAtWinStartupCheckBox->setChecked(true);
+        ui->launchAtWinStartupCheckBox->setToolTip(startup_error);
     }
 
 #else
     ui->launchAtWinStartupCheckBox->setVisible(false);
+    ui->runAsAdminAtStartupCheckBox->setVisible(false);
 
     // TODO #115
     ui->keyRepeatGroupBox->setVisible(false);
@@ -296,7 +302,8 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
             &MainSettingsDialog::mappingsTableItemChanged);
     connect(ui->mappingDeletePushButton, &QPushButton::clicked, this, &MainSettingsDialog::deleteMappingRow);
     connect(ui->mappngInsertPushButton, &QPushButton::clicked, this, &MainSettingsDialog::insertMappingRow);
-    connect(this, &MainSettingsDialog::accepted, this, &MainSettingsDialog::saveNewSettings);
+    disconnect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &MainSettingsDialog::saveNewSettings);
     connect(ui->profileOpenDirPushButton, &QPushButton::clicked, this, &MainSettingsDialog::selectDefaultProfileDir);
     connect(ui->activeCheckBox, &QCheckBox::toggled, ui->autoProfileTableWidget, &QTableWidget::setEnabled);
     connect(ui->activeCheckBox, &QCheckBox::toggled, this, &MainSettingsDialog::autoProfileButtonsActiveState);
@@ -506,6 +513,21 @@ void MainSettingsDialog::syncMappingSettings()
 
 void MainSettingsDialog::saveNewSettings()
 {
+#ifdef Q_OS_WIN
+    if (ui->launchAtWinStartupCheckBox->isEnabled())
+    {
+        WinStartup::Mode startup_mode = WinStartup::Mode::Disabled;
+        if (ui->launchAtWinStartupCheckBox->isChecked())
+            startup_mode =
+                ui->runAsAdminAtStartupCheckBox->isChecked() ? WinStartup::Mode::Administrator : WinStartup::Mode::Normal;
+        QString error;
+        if (!WinStartup(qApp->applicationFilePath()).write(startup_mode, error))
+        {
+            QMessageBox::warning(this, tr("Could not update Windows startup"), error);
+            return;
+        }
+    }
+#endif
     syncMappingSettings();
 
     settings->getLock()->lock();
@@ -555,20 +577,6 @@ void MainSettingsDialog::saveNewSettings()
     settings->getLock()->lock();
 
 #ifdef Q_OS_WIN
-    QFile tempFile(RUNATSTARTUPLOCATION);
-
-    if (ui->launchAtWinStartupCheckBox->isChecked() && !tempFile.exists())
-    {
-        if (tempFile.open(QFile::WriteOnly))
-        {
-            QFile currentAppLocation(qApp->applicationFilePath());
-            currentAppLocation.link(QFileInfo(tempFile).absoluteFilePath());
-        }
-    } else if (tempFile.exists() && QFileInfo(tempFile).isWritable())
-    {
-        tempFile.remove();
-    }
-
     BaseEventHandler *handler = EventHandlerFactory::getInstance()->handler();
 #endif
 
@@ -720,6 +728,7 @@ void MainSettingsDialog::saveNewSettings()
 
     settings->sync();
     settings->getLock()->unlock();
+    accept();
 }
 
 void MainSettingsDialog::selectDefaultProfileDir()
@@ -1923,6 +1932,7 @@ void MainSettingsDialog::resetGeneralSett()
     ui->closeToTrayCheckBox->setChecked(false);
     ui->attachNumKeypadCheckbox->setChecked(false);
     ui->launchAtWinStartupCheckBox->setChecked(false);
+    ui->runAsAdminAtStartupCheckBox->setChecked(false);
     ui->traySingleProfileListCheckBox->setChecked(false);
     ui->minimizeTaskbarCheckBox->setChecked(false);
     ui->hideEmptyCheckBox->setChecked(false);
