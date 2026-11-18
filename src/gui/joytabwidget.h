@@ -64,7 +64,6 @@ class JoyTabWidget : public QWidget
 
     bool isDisplayingNames();
     bool discardUnsavedProfileChanges();
-    bool static changesNotSaved();
 
     int getCurrentConfigIndex(); // JoyTabSettings class
 
@@ -218,7 +217,6 @@ class JoyTabWidget : public QWidget
 
     InputDevice *m_joystick;
     bool displayingNames;
-    static bool changedNotSaved;
     AntiMicroSettings *m_settings;
     int comboBoxIndex = 0;
     bool hideEmptyButtons = false;

@@ -66,8 +66,6 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-bool JoyTabWidget::changedNotSaved = false;
-
 JoyTabWidget::JoyTabWidget(InputDevice *joystick, AntiMicroSettings *settings, QWidget *parent)
     : QWidget(parent)
     , m_joystick(joystick)
@@ -1541,8 +1539,6 @@ void JoyTabWidget::displayProfileEditNotification()
     int currentIndex = configBox->currentIndex();
     configBox->setItemIcon(currentIndex,
                            PadderCommon::loadIcon("document-save-as", ":/images/actions/document_save_as.png"));
-
-    changedNotSaved = true;
 }
 
 void JoyTabWidget::removeProfileEditNotification()
@@ -1554,8 +1550,6 @@ void JoyTabWidget::removeProfileEditNotification()
             configBox->setItemIcon(i, QIcon());
         }
     }
-
-    changedNotSaved = false;
 }
 
 void JoyTabWidget::retranslateUi()
@@ -1722,8 +1716,6 @@ bool JoyTabWidget::discardUnsavedProfileChanges()
 
     return discarded;
 }
-
-bool JoyTabWidget::changesNotSaved() { return changedNotSaved; }
 
 void JoyTabWidget::disconnectMainComboBoxEvents()
 {
