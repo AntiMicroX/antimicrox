@@ -200,5 +200,3 @@ QString const &XMLConfigReader::getFileName() { return fileName; }
 const QFile *XMLConfigReader::getConfigFile() { return configFile; }
 
 const InputDevice *XMLConfigReader::getJoystick() { return m_joystick; }
-
-QStringList const &XMLConfigReader::getDeviceTypes() { return deviceTypes; }

@@ -15,13 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <qt_windows.h>
-// #include <QDebug>
+#include <QDebug>
 #include <QHashIterator>
 
 #include "qtwinkeymapper.h"
 #include "winextras.h"
-#include <QDebug>
+#include <qt_windows.h>
 
 static QHash<unsigned int, unsigned int> initDynamicKeyMapping()
 {

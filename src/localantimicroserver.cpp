@@ -105,5 +105,3 @@ void LocalAntiMicroServer::checkForMessages(QLocalSocket *socket)
         }
     }
 }
-
-QLocalServer *LocalAntiMicroServer::getLocalServer() const { return localServer; }

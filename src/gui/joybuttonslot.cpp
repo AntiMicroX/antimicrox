@@ -358,10 +358,6 @@ QString JoyButtonSlot::getSlotString()
 
 void JoyButtonSlot::setPreviousDistance(double distance) { previousDistance = distance; }
 
-double JoyButtonSlot::getPreviousDistance() const { return previousDistance; }
-
-double JoyButtonSlot::getDistance() const { return m_distance; }
-
 bool JoyButtonSlot::isModifierKey()
 {
     bool modifier = false;

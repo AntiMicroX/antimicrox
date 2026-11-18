@@ -521,8 +521,6 @@ void JoyAxis::setControlStick(JoyControlStick *stick)
 
 bool JoyAxis::isPartControlStick() { return (m_stick != nullptr); }
 
-JoyControlStick *JoyAxis::getControlStick() { return m_stick; }
-
 void JoyAxis::removeControlStick(bool performRelease)
 {
     if (m_stick != nullptr)

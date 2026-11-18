@@ -19,8 +19,6 @@
 #include <linux/input.h>
 #include <linux/uinput.h>
 
-// #include <QDebug>
-
 #include <QChar>
 #include <QList>
 #include <QListIterator>

@@ -1656,8 +1656,6 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
     }
 }
 
-int AdvanceButtonDialog::getOldRow() const { return oldRow; }
-
 JoyButton *AdvanceButtonDialog::getButton() const { return m_button; }
 
 AdvanceButtonDialogHelper const &AdvanceButtonDialog::getHelper() { return helper; }

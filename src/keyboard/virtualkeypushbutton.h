@@ -37,8 +37,6 @@ class VirtualKeyPushButton : public QPushButton
     QString getDisplayString() const;
     int getKeycode() const;
     int getQkeyalias() const;
-    bool getCurrentlyActive() const;
-    bool getOnCurrentButton() const;
 
     static QHash<QString, QString> knownAliases;
 

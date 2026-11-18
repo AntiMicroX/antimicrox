@@ -45,7 +45,6 @@ class AutoProfileWatcher : public QObject
     static void disconnectWindowTimer();
     static AutoProfileWatcher *getAutoProfileWatcherInstance();
     QList<AutoProfileInfo *> *getCustomDefaults();
-    AutoProfileInfo *getDefaultAllProfile();
     // bool isGUIDLocked(QString guid);
     bool isUniqueIDLocked(QString uniqueID);
     QHash<QString, QList<AutoProfileInfo *>> const &getAppProfileAssignments();

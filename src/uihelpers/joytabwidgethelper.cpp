@@ -54,11 +54,7 @@ JoyTabWidgetHelper::~JoyTabWidgetHelper()
     }
 }
 
-bool JoyTabWidgetHelper::hasReader() { return (this->reader != nullptr); }
-
 XMLConfigReader *JoyTabWidgetHelper::getReader() { return this->reader; }
-
-bool JoyTabWidgetHelper::hasWriter() { return (this->writer != nullptr); }
 
 XMLConfigWriter *JoyTabWidgetHelper::getWriter() { return this->writer; }
 

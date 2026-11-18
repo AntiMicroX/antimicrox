@@ -242,34 +242,6 @@ QString GameController::getBindStringForAxis(int index, bool)
     return temp;
 }
 
-QString GameController::getBindStringForButton(int index, bool trueIndex)
-{
-    QString temp = QString();
-
-    SDL_GameControllerButtonBind bind =
-        SDL_GameControllerGetBindForButton(controller, static_cast<SDL_GameControllerButton>(index));
-
-    int offset = trueIndex ? 0 : 1;
-    int bindInt = static_cast<int>(bind.bindType);
-
-    switch (bindInt)
-    {
-    case SDL_CONTROLLER_BINDTYPE_BUTTON:
-        temp.append(QString("Button %1").arg(bind.value.button + offset));
-        break;
-
-    case SDL_CONTROLLER_BINDTYPE_AXIS:
-        temp.append(QString("Axis %1").arg(bind.value.axis + offset));
-        break;
-
-    case SDL_CONTROLLER_BINDTYPE_HAT:
-        temp.append(QString("Hat %1.%2").arg(bind.value.hat.hat + offset).arg(bind.value.hat.hat_mask));
-        break;
-    }
-
-    return temp;
-}
-
 SDL_GameControllerButtonBind GameController::getBindForAxis(int index)
 {
     return SDL_GameControllerGetBindForAxis(controller, static_cast<SDL_GameControllerAxis>(index));

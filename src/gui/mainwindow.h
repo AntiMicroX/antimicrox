@@ -62,10 +62,8 @@ class MainWindow : public QMainWindow
     bool getGraphicalStatus();
 
     void setTranslator(QTranslator *translator);
-    QTranslator *getTranslator() const;
 
     void setAppTranslator(QTranslator *translator);
-    QTranslator *getAppTranslator() const;
 
     QMap<int, QList<QAction *>> const &getProfileActions();
 

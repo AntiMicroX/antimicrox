@@ -48,10 +48,7 @@ class QuickSetDialog : public QDialog
 
     JoyButton *getLastPressedButton() const;
     InputDevice *getJoystick() const;
-    QDialog *getCurrentButtonDialog() const;
-    const char *getInvokeString() const;
     ButtonEditDialogHelper *getHelper() const;
-    JoyButtonSlot::JoySlotInputAction getMode() const;
 
   private slots:
     void showAxisButtonDialog(JoyAxisButton *joybtn);                   // QuickSetDialogAxisBtn class

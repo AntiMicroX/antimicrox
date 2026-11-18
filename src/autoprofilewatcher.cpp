@@ -602,8 +602,6 @@ QList<AutoProfileInfo *> *AutoProfileWatcher::getCustomDefaults()
     return temp;
 }
 
-AutoProfileInfo *AutoProfileWatcher::getDefaultAllProfile() { return allDefaultInfo; }
-
 bool AutoProfileWatcher::isUniqueIDLocked(QString uniqueID) { return getUniqeIDSetLocal().contains(uniqueID); }
 
 QHash<QString, QList<AutoProfileInfo *>> const &AutoProfileWatcher::getAppProfileAssignments()

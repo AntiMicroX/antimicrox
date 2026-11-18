@@ -35,9 +35,7 @@ class SDLEventReader : public QObject
 
     bool isSDLOpen();
 
-    QMap<SDL_JoystickID, InputDevice *> *getJoysticks() const;
     AntiMicroSettings *getSettings() const;
-    QTimer const &getPollRateTimer();
 
   protected:
     void initSDL();

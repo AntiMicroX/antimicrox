@@ -92,7 +92,6 @@ class JoyAxis : public QObject
     void setControlStick(JoyControlStick *stick);
     void removeControlStick(bool performRelease = true);
     bool isPartControlStick();
-    JoyControlStick *getControlStick();
     bool hasControlOfButtons();
     void removeVDPads();
 

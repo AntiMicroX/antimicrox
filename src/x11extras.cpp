@@ -116,8 +116,6 @@ const char *X11Extras::getEnvVariable(const char *var) const
  */
 Display *X11Extras::display() { return _display; }
 
-bool X11Extras::hasValidDisplay() { return (_display != nullptr); }
-
 /**
  * @brief CURRENTLY NOT USED
  */
@@ -807,5 +805,3 @@ QPoint X11Extras::getPos()
     QPoint currentPoint(mouseEvent.xbutton.x_root, mouseEvent.xbutton.y_root);
     return currentPoint;
 }
-
-QHash<QString, QString> const &X11Extras::getKnownAliases() { return knownAliases; }

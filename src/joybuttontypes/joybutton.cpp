@@ -2031,8 +2031,6 @@ QString JoyButton::getSlotsString()
 
 void JoyButton::setCustomName(QString name) { customName = name; }
 
-QString JoyButton::getCustomName() { return customName; }
-
 /**
  * @brief Create new JoyButtonSlot with data provided and append the new slot
  *     an existing to the assignment list.

@@ -70,7 +70,6 @@ class InputDevice : public QObject
     SetJoystick *getSetJoystick(int index);
     void removeControlStick(int index);
     bool isActive();
-    int getButtonDownCount();
 
     virtual QString getXmlName() const = 0;
     virtual QString getName() = 0;
@@ -127,7 +126,6 @@ class InputDevice : public QObject
     void setKeyRepeatDelay(int delay);
     void setKeyRepeatRate(int rate);
 
-    bool isKeyRepeatEnabled();
     int getKeyRepeatDelay();
     int getKeyRepeatRate();
 
@@ -151,12 +149,10 @@ class InputDevice : public QObject
     void convertToUniqueMappSett(QSettings *sett, QString gUIDmappGroupSett, QString uniqueIDGroupSett);
 
     // bool isEmptyGUID(QString tempGUID);
-    bool isEmptyUniqueID(QString tempUniqueID);
     // bool isRelevantGUID(QString tempGUID);
     bool isRelevantUniqueID(QString tempUniqueID);
 
     void setRawAxisDeadZone(int deadZone);   // InputDeviceAxis class
-    int getRawAxisDeadZone();                // InputDeviceAxis class
     void rawAxisEvent(int index, int value); // InputDeviceAxis class
     bool elementsHaveNames();
 
@@ -176,7 +172,6 @@ class InputDevice : public QObject
     void enableSetConnections(SetJoystick *setstick);
 
     QHash<int, JoyAxis::ThrottleTypes> &getCali();
-    SDL_JoystickID *getJoystickID();
 
     int rawAxisDeadZone;
     int keyPressTime; // unsigned

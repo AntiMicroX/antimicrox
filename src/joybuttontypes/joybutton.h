@@ -158,7 +158,6 @@ class JoyButton : public QObject
     int getCycleResetTime(); // unsigned
     int getSpringDeadCircleMultiplier();
 
-    QString getCustomName();
     QString getActionName();
     QString getButtonName();
 

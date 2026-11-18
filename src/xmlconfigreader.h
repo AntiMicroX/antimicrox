@@ -47,7 +47,6 @@ class XMLConfigReader : public QObject
     QString const &getFileName();
     const QFile *getConfigFile();
     const InputDevice *getJoystick();
-    QStringList const &getDeviceTypes();
 
   protected:
     void initDeviceTypes();

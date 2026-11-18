@@ -83,7 +83,6 @@ class Logger : public QObject
     static void setCurrentLogFile(QString filename);
     static QString getCurrentLogFile();
     bool isWritingToFile();
-    static QTextStream *getCurrentStream();
 
     /**
      * @brief Get the Instance of logger

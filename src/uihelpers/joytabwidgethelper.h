@@ -33,10 +33,8 @@ class JoyTabWidgetHelper : public QObject
     explicit JoyTabWidgetHelper(InputDevice *device, QObject *parent = nullptr);
     ~JoyTabWidgetHelper();
 
-    bool hasReader();
     XMLConfigReader *getReader();
 
-    bool hasWriter();
     XMLConfigWriter *getWriter();
 
     bool hasError();
