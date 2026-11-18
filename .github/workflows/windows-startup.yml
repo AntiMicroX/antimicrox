@@ -50,8 +50,8 @@ jobs:
                   CMAKE_PREFIX_PATH: '${{ env.QT_ROOT_DIR }}/lib/cmake'
             - name: Test startup transitions on Windows
               run: |
-                  export PATH="$(cygpath -u "$QT_ROOT_DIR")/bin:$PATH"
-                  ctest --test-dir startup-tests --output-on-failure
+                  export PATH="$PATH:$(cygpath -u "$QT_ROOT_DIR")/bin"
+                  ctest --test-dir startup-tests --output-on-failure || { cat startup-tests/test-results.txt; exit 1; }
             - name: Install SDL2
               if: matrix.qt == '6.10'
               run: |

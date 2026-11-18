@@ -112,7 +112,7 @@ class WindowsStartupTest : public QObject
     void failedRegistrationRestoresShortcut()
     {
         QVERIFY(QFile::link(m_executable, m_shortcut));
-        WinStartup startup(m_executable, m_shortcut, m_task_name + QStringLiteral("\\MissingFolder\\Task"));
+        WinStartup startup(m_executable, m_shortcut, m_task_name + QStringLiteral(":invalid"));
         QString error;
         QVERIFY(!startup.write(WinStartup::Mode::Administrator, error));
         QVERIFY(!error.isEmpty());

@@ -11,4 +11,4 @@ add_executable(testwinstartup testwinstartup.cpp ../../src/winstartup.cpp)
 target_include_directories(testwinstartup PRIVATE ../../src)
 target_link_libraries(testwinstartup PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Test
     taskschd uuid ole32 oleaut32 advapi32)
-add_test(NAME WindowsStartup COMMAND testwinstartup)
+add_test(NAME WindowsStartup COMMAND testwinstartup -o test-results.txt,txt)
