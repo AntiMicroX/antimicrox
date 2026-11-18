@@ -11,6 +11,8 @@
 #include <QXmlStreamReader>
 #include <windows.h>
 
+#include <sddl.h>
+
 #include <taskschd.h>
 
 class WindowsStartupTest : public QObject
@@ -22,6 +24,27 @@ class WindowsStartupTest : public QObject
     QString m_task_name;
     QString m_shortcut;
     QString m_executable;
+
+    QString accountSid(const QString &account)
+    {
+        if (account.startsWith("S-1-"))
+            return account;
+        DWORD sid_size = 0;
+        DWORD domain_size = 0;
+        SID_NAME_USE type;
+        const wchar_t *name = reinterpret_cast<const wchar_t *>(account.utf16());
+        LookupAccountNameW(nullptr, name, nullptr, &sid_size, nullptr, &domain_size, &type);
+        QByteArray sid(static_cast<int>(sid_size), 0);
+        std::wstring domain(domain_size, L'\0');
+        if (!LookupAccountNameW(nullptr, name, sid.data(), &sid_size, &domain[0], &domain_size, &type))
+            return QString();
+        wchar_t *text = nullptr;
+        if (!ConvertSidToStringSidW(sid.data(), &text))
+            return QString();
+        const QString result = QString::fromWCharArray(text);
+        LocalFree(text);
+        return result;
+    }
 
     QString queryTask()
     {
@@ -120,7 +143,7 @@ class WindowsStartupTest : public QObject
         QCOMPARE(fields["Command"], QStringList({QDir::toNativeSeparators(m_executable)}));
         QCOMPARE(fields["WorkingDirectory"], QStringList({QDir::toNativeSeparators(m_directory.path())}));
         QCOMPARE(fields["UserId"].size(), 2);
-        QCOMPARE(fields["UserId"].first(), fields["UserId"].last());
+        QCOMPARE(accountSid(fields["UserId"].first()), accountSid(fields["UserId"].last()));
         QVERIFY(fields["UserId"].first().startsWith("S-1-"));
         QCOMPARE(fields["ExecutionTimeLimit"], QStringList({"PT0S"}));
         QCOMPARE(fields["DisallowStartIfOnBatteries"], QStringList({"false"}));
