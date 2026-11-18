@@ -51,8 +51,6 @@ class GameControllerTrigger : public JoyAxis
     void reset(int index) override;
 
   protected:
-    void correctJoystickThrottle();
-
     HapticTriggerPs5 *m_haptic_trigger;
 };
 
