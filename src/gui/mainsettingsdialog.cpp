@@ -1063,6 +1063,8 @@ void MainSettingsDialog::clearAutoProfileData() {}
 
 void MainSettingsDialog::fillGUIDComboBox()
 {
+    const QString previousGUID = ui->devicesComboBox->currentData().toString();
+
     ui->devicesComboBox->clear();
     ui->devicesComboBox->addItem(tr("All"), QVariant("all"));
     QList<QString> guids = deviceAutoProfiles.keys();
@@ -1087,6 +1089,12 @@ void MainSettingsDialog::fillGUIDComboBox()
         {
             ui->devicesComboBox->addItem(guid, QVariant(guid));
         }
+    }
+
+    int restoredIndex = ui->devicesComboBox->findData(previousGUID);
+    if (restoredIndex >= 0)
+    {
+        ui->devicesComboBox->setCurrentIndex(restoredIndex);
     }
 }
 
@@ -1483,38 +1491,48 @@ void MainSettingsDialog::openDeleteAutoProfileConfirmDialog()
         if (selectedRow >= 0)
         {
             QTableWidgetItem *item = ui->autoProfileTableWidget->item(selectedRow, 7);
+            if (item == nullptr)
+                return;
+
             AutoProfileInfo *info = item->data(Qt::UserRole).value<AutoProfileInfo *>();
+            if (info == nullptr || info == allDefaultProfile)
+                return;
+
+            const QString guid = info->getUniqueID();
+            if (deviceAutoProfiles.contains(guid))
+            {
+                QList<AutoProfileInfo *> temp = deviceAutoProfiles.value(guid);
+                temp.removeAll(info);
+
+                if (!temp.isEmpty())
+                {
+                    deviceAutoProfiles.insert(guid, temp);
+                } else
+                {
+                    deviceAutoProfiles.remove(guid);
+                }
+            }
 
             if (info->isCurrentDefault())
             {
-                if (info->getUniqueID() == "all")
+                if (defaultAutoProfiles.value(guid) == info)
                 {
-                    allDefaultProfile->deleteLater();
-                    allDefaultProfile = nullptr;
-                } else if (defaultAutoProfiles.contains(info->getUniqueID()))
-                {
-                    defaultAutoProfiles.remove(info->getUniqueID());
-                    defaultList.removeAll(info);
-                    delete info;
-                    info = nullptr;
+                    defaultAutoProfiles.remove(guid);
                 }
+
+                defaultList.removeAll(info);
             } else
             {
-                if (deviceAutoProfiles.contains(info->getUniqueID()))
-                {
-                    QList<AutoProfileInfo *> temp = deviceAutoProfiles.value(info->getUniqueID());
-                    temp.removeAll(info);
-                    deviceAutoProfiles.insert(info->getUniqueID(), temp);
-                }
-
                 profileList.removeAll(info);
-
-                delete info;
-                info = nullptr;
             }
-        }
 
-        ui->autoProfileTableWidget->removeRow(selectedRow);
+            delete info;
+            info = nullptr;
+
+            fillGUIDComboBox();
+            changeDeviceForProfileTable(ui->devicesComboBox->currentIndex());
+            changeAutoProfileButtonsState();
+        }
     }
 }
 
@@ -1560,22 +1578,24 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
 
     // Delete pointers to object that might be misplaced
     // due to an association change.
-    QString oldGUID = dialog->getOriginalUniqueID();
+    const QString oldGUID = dialog->getOriginalUniqueID();
+    const QString newGUID = info->getUniqueID();
+    const bool validDeviceDefault = info->isCurrentDefault() && !newGUID.isEmpty() && (newGUID.toLower() != "all");
 
-    if (oldGUID != info->getUniqueID())
+    if (defaultAutoProfiles.value(oldGUID) == info && (oldGUID != newGUID || !validDeviceDefault))
     {
-        if (defaultAutoProfiles.value(oldGUID) == info)
-        {
-            defaultAutoProfiles.remove(oldGUID);
-        }
-
-        if (info->isCurrentDefault())
-        {
-            defaultAutoProfiles.insert(info->getUniqueID(), info);
-        }
+        defaultAutoProfiles.remove(oldGUID);
     }
 
-    if ((oldGUID != info->getUniqueID()) && deviceAutoProfiles.contains(oldGUID))
+    if (validDeviceDefault)
+    {
+        defaultAutoProfiles.insert(newGUID, info);
+    } else if (info->isCurrentDefault())
+    {
+        info->setDefaultState(false);
+    }
+
+    if ((oldGUID != newGUID) && deviceAutoProfiles.contains(oldGUID))
     {
         QList<AutoProfileInfo *> temp = deviceAutoProfiles.value(oldGUID);
         temp.removeAll(info);
@@ -1587,30 +1607,9 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
         {
             deviceAutoProfiles.remove(oldGUID);
         }
-
-        if (deviceAutoProfiles.contains(info->getUniqueID()))
-        {
-            QList<AutoProfileInfo *> temp2 = deviceAutoProfiles.value(oldGUID);
-
-            if (!temp2.contains(info))
-            {
-                temp2.append(info);
-                deviceAutoProfiles.insert(info->getUniqueID(), temp2);
-            }
-        } else if (info->getUniqueID().toLower() != "all")
-        {
-            QList<AutoProfileInfo *> temp2;
-            temp2.append(info);
-            deviceAutoProfiles.insert(info->getUniqueID(), temp2);
-        }
-    } else if ((oldGUID != info->getUniqueID()) && (info->getUniqueID().toLower() != "all"))
-    {
-        QList<AutoProfileInfo *> temp;
-        temp.append(info);
-        deviceAutoProfiles.insert(info->getUniqueID(), temp);
     }
 
-    if (!info->isCurrentDefault())
+    if (!validDeviceDefault)
     {
         defaultList.removeAll(info);
 
@@ -1628,20 +1627,15 @@ void MainSettingsDialog::transferEditsToCurrentTableRow(AddEditAutoProfileDialog
         }
     }
 
-    if (deviceAutoProfiles.contains(info->getUniqueID()))
+    if (!newGUID.isEmpty() && (newGUID.toLower() != "all"))
     {
-        QList<AutoProfileInfo *> temp2 = deviceAutoProfiles.value(info->getUniqueID());
+        QList<AutoProfileInfo *> temp2 = deviceAutoProfiles.value(newGUID);
 
         if (!temp2.contains(info))
         {
             temp2.append(info);
-            deviceAutoProfiles.insert(info->getUniqueID(), temp2);
+            deviceAutoProfiles.insert(newGUID, temp2);
         }
-    } else
-    {
-        QList<AutoProfileInfo *> temp2;
-        temp2.append(info);
-        deviceAutoProfiles.insert(info->getUniqueID(), temp2);
     }
 
     fillGUIDComboBox();
@@ -1657,6 +1651,7 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
     {
         WARN() << "Unable to add autoprofile with ID:" << info->getUniqueID()
                << " because it already exists and belongs to default autoprofiles";
+        info->deleteLater();
         return;
     }
 
@@ -1664,7 +1659,7 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
     {
         // A default profile is picked for a device when no application
         // profile matches, so it doesn't need an executable or window.
-        if (!info->getUniqueID().isEmpty())
+        if (!info->getUniqueID().isEmpty() && (info->getUniqueID().toLower() != "all"))
         {
             defaultAutoProfiles.insert(info->getUniqueID(), info);
             defaultList.append(info);
@@ -1675,7 +1670,8 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
             deviceAutoProfiles.insert(info->getUniqueID(), tempDevProfileList);
         } else
         {
-            WARN() << "Unable to add default autoprofile because no device is selected";
+            WARN() << "Unable to add default autoprofile because no specific device is selected";
+            info->deleteLater();
             return;
         }
     } else
@@ -1697,6 +1693,8 @@ void MainSettingsDialog::addNewAutoProfile(AddEditAutoProfileDialog *dialog)
         } else
         {
             WARN() << "Unable to add because neither ID, nor Executable is defined";
+            info->deleteLater();
+            return;
         }
     }
 
