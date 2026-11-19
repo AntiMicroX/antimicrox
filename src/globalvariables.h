@@ -53,7 +53,6 @@ class JoyButton
     static const double DEFAULTEASINGDURATION;
     static const double MINIMUMEASINGDURATION;
     static const double MAXIMUMEASINGDURATION;
-    static const double DEFAULTWEIGHTMODIFIER;
     static const double MAXIMUMWEIGHTMODIFIER;
     static const double DEFAULTEXTRACCELVALUE;
     static const double DEFAULTMINACCELTHRESHOLD;
@@ -63,8 +62,6 @@ class JoyButton
 
     // Define default values for many properties.
     static const int ENABLEDTURBODEFAULT;
-    static const int DEFAULTKEYREPEATDELAY; // unsigned
-    static const int DEFAULTKEYREPEATRATE;  // unsigned
     static const int DEFAULTTURBOINTERVAL;
     static const int DEFAULTMOUSESPEEDX;
     static const int DEFAULTMOUSESPEEDY;
@@ -75,10 +72,8 @@ class JoyButton
     static const int DEFAULTWHEELX;
     static const int DEFAULTWHEELY;
     static const int DEFAULTCYCLERESET;
-    static const int DEFAULTMOUSEHISTORYSIZE;
     static const int MAXIMUMMOUSEHISTORYSIZE;
     static const int MAXIMUMMOUSEREFRESHRATE;
-    static const int DEFAULTIDLEMOUSEREFRESHRATE;
     static const int MINCYCLERESETTIME;
     static const int MAXCYCLERESETTIME;
     static const int DEFAULTSPRINGRELEASERADIUS;
@@ -92,8 +87,6 @@ class JoyButton
 class AntimicroSettings
 {
   public:
-    static const bool defaultDisabledWinEnhanced;
-    static const bool defaultAssociateProfiles;
     static const int defaultSpringScreen;
     static const int defaultSDLGamepadPollRate;
 };
@@ -104,8 +97,6 @@ class InputDevice
     static const int NUMBER_JOYSETS;
     static const int DEFAULTKEYPRESSTIME;
     static const int RAISEDDEADZONE;
-    static const int DEFAULTKEYREPEATDELAY;
-    static const int DEFAULTKEYREPEATRATE;
 
     // static QRegularExpression emptyGUID;
     static QRegularExpression emptyUniqueID;
