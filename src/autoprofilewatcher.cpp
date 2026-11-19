@@ -376,7 +376,7 @@ void AutoProfileWatcher::syncProfileAssignment()
         QString windowName = settings->value(QString("DefaultAutoProfile-%1/WindowName").arg(uniqueID), "").toString();
 
         // need to change when it's needed to add windowClass, title and partial name
-        if (!uniqueID.isEmpty() && !profile.isEmpty())
+        if (!uniqueID.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
 

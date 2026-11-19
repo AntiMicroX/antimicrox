@@ -841,7 +841,7 @@ void MainSettingsDialog::populateAutoProfiles()
         QString windowName = settings->value(QString("DefaultAutoProfile-%1/WindowName").arg(guid), "").toString();
         QString exe = settings->value(QString("DefaultAutoProfile-%1/Exe").arg(guid), "").toString();
 
-        if (!guid.isEmpty() && !profile.isEmpty() && !deviceName.isEmpty())
+        if (!guid.isEmpty())
         {
             bool profileActive = active == "1" ? true : false;
             if (!defaultAutoProfiles.contains(guid) && guid != "all")
