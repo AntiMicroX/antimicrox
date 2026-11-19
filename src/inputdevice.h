@@ -122,13 +122,6 @@ class InputDevice : public QObject
     bool isDeviceEdited();
     void revertProfileEdited();
 
-    void setKeyRepeatStatus(bool enabled);
-    void setKeyRepeatDelay(int delay);
-    void setKeyRepeatRate(int rate);
-
-    int getKeyRepeatDelay();
-    int getKeyRepeatRate();
-
     QString getProfileName();
     bool hasCalibrationThrottle(int axisNum);
     JoyAxis::ThrottleTypes getCalibrationThrottle(int axisNum);
@@ -278,10 +271,6 @@ class InputDevice : public QObject
     int buttonDownCount;
     SDL_JoystickID joystickID;
     bool deviceEdited;
-
-    bool keyRepeatEnabled;
-    int keyRepeatDelay;
-    int keyRepeatRate;
 
     QList<bool> buttonstates;
     QList<int> axesstates;

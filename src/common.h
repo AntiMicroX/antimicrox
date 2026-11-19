@@ -152,7 +152,6 @@ const QString sdlVersionCompiled = ([] {
 extern QWaitCondition waitThisOut;
 extern QMutex sdlWaitMutex;
 extern QMutex inputDaemonMutex;
-extern bool editingBindings;
 extern MouseHelper mouseHelperObj;
 
 QString preferredProfileDir(AntiMicroSettings *settings);

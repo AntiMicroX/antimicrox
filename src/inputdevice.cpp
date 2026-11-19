@@ -50,9 +50,6 @@ InputDevice::InputDevice(SDL_Joystick *joystick, int deviceIndex, AntiMicroSetti
     keyPressTime = 0;
     m_joyhandle = joystick;
     deviceEdited = false;
-    keyRepeatEnabled = false;
-    keyRepeatDelay = 0;
-    keyRepeatRate = 0;
     rawAxisDeadZone = GlobalVariables::InputDevice::RAISEDDEADZONE;
     m_settings = settings;
 
@@ -1256,48 +1253,6 @@ void InputDevice::establishPropertyUpdatedConnection()
 void InputDevice::disconnectPropertyUpdatedConnection()
 {
     disconnect(this, &InputDevice::propertyUpdated, this, &InputDevice::profileEdited);
-}
-
-void InputDevice::setKeyRepeatStatus(bool enabled) { keyRepeatEnabled = enabled; }
-
-void InputDevice::setKeyRepeatDelay(int delay)
-{
-    if ((delay >= 250) && (delay <= 1000))
-    {
-        keyRepeatDelay = delay;
-    }
-}
-
-void InputDevice::setKeyRepeatRate(int rate)
-{
-    if ((rate >= 20) && (rate <= 200))
-    {
-        keyRepeatRate = rate;
-    }
-}
-
-int InputDevice::getKeyRepeatDelay()
-{
-    int tempKeyRepeatDelay = GlobalVariables::InputDevice::DEFAULTKEYREPEATDELAY;
-
-    if (keyRepeatDelay != 0)
-    {
-        tempKeyRepeatDelay = keyRepeatDelay;
-    }
-
-    return tempKeyRepeatDelay;
-}
-
-int InputDevice::getKeyRepeatRate()
-{
-    int tempKeyRepeatRate = GlobalVariables::InputDevice::DEFAULTKEYREPEATRATE;
-
-    if (keyRepeatRate != 0)
-    {
-        tempKeyRepeatRate = keyRepeatRate;
-    }
-
-    return tempKeyRepeatRate;
 }
 
 void InputDevice::setProfileName(QString value)

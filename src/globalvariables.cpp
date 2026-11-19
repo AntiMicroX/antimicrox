@@ -29,8 +29,6 @@ const QString GlobalVariables::JoyButton::xmlName = "button";
 const int GlobalVariables::JoyButton::ENABLEDTURBODEFAULT = 100;
 const double GlobalVariables::JoyButton::DEFAULTMOUSESPEEDMOD = 1.0;
 double GlobalVariables::JoyButton::mouseSpeedModifier = GlobalVariables::JoyButton::DEFAULTMOUSESPEEDMOD;
-const int GlobalVariables::JoyButton::DEFAULTKEYREPEATDELAY = 600; // 600 ms
-const int GlobalVariables::JoyButton::DEFAULTKEYREPEATRATE = 40;   // 40 ms. 25 times per second
 const bool GlobalVariables::JoyButton::DEFAULTTOGGLE = false;
 const int GlobalVariables::JoyButton::DEFAULTTURBOINTERVAL = 0;
 const bool GlobalVariables::JoyButton::DEFAULTUSETURBO = false;
@@ -52,13 +50,10 @@ const double GlobalVariables::JoyButton::MAXIMUMEASINGDURATION = 5.0;
 const int GlobalVariables::JoyButton::MINCYCLERESETTIME = 10;
 const int GlobalVariables::JoyButton::MAXCYCLERESETTIME = 60000;
 
-const int GlobalVariables::JoyButton::DEFAULTMOUSEHISTORYSIZE = 10;
-const double GlobalVariables::JoyButton::DEFAULTWEIGHTMODIFIER = 0.2;
 const int GlobalVariables::JoyButton::MAXIMUMMOUSEHISTORYSIZE = 100;
 const double GlobalVariables::JoyButton::MAXIMUMWEIGHTMODIFIER = 1.0;
 const int GlobalVariables::JoyButton::MAXIMUMMOUSEREFRESHRATE = 16;
 int GlobalVariables::JoyButton::IDLEMOUSEREFRESHRATE = (5 * 20);
-const int GlobalVariables::JoyButton::DEFAULTIDLEMOUSEREFRESHRATE = 100;
 const double GlobalVariables::JoyButton::DEFAULTEXTRACCELVALUE = 2.0;
 const double GlobalVariables::JoyButton::DEFAULTMINACCELTHRESHOLD = 10.0;
 const double GlobalVariables::JoyButton::DEFAULTMAXACCELTHRESHOLD = 100.0;
@@ -88,8 +83,6 @@ int GlobalVariables::JoyButton::gamepadRefreshRate = 10;
 
 // ---- ANTIMICROSETTINGS --- //
 
-const bool GlobalVariables::AntimicroSettings::defaultDisabledWinEnhanced = false;
-const bool GlobalVariables::AntimicroSettings::defaultAssociateProfiles = true;
 const int GlobalVariables::AntimicroSettings::defaultSpringScreen = -1;
 const int GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate = 10; // unsigned
 
@@ -98,8 +91,6 @@ const int GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate = 10; //
 const int GlobalVariables::InputDevice::NUMBER_JOYSETS = 8;
 const int GlobalVariables::InputDevice::DEFAULTKEYPRESSTIME = 100;
 const int GlobalVariables::InputDevice::RAISEDDEADZONE = 20000;
-const int GlobalVariables::InputDevice::DEFAULTKEYREPEATDELAY = 660; // 660 ms
-const int GlobalVariables::InputDevice::DEFAULTKEYREPEATRATE = 40;   // 40 ms. 25 times per second
 
 // QRegularExpression GlobalVariables::InputDevice::emptyGUID("^[0]+$");
 QRegularExpression GlobalVariables::InputDevice::emptyUniqueID("^[0]+$");
