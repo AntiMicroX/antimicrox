@@ -1,28 +1,28 @@
-Closes #...
+## Summary
+<!-- What does this PR do and why? Without filling this form this PR will not be reviewed -->
 
-## Proposed changes 
+## Related issues
 
-- 
-- 
-- 
+Closes #
 
-----
+## Changes
 
+-
 
-<!-- 
-    Please, go through these steps before you submit a PR.
+## Verification of code
 
-    Make sure that your PR is not a duplicate.
+- [ ] I built the code and checked it on my machine.
 
-    If not, then make sure that:
+<!-- Put some screenshots and examples here if relevant  -->
 
-    - You have done your changes in a separate branch.
+## AI assistance
+<!-- Check exactly one -->
 
-    - You have a descriptive, semantic commit messages with a short title (first line). E.g. `fix(calibration): fix calibration dialog buttons`
+- [ ] I wrote this code manually or with a minor AI assistance
+- [ ] I used AI to write this PR with my guidance
+- [ ] I vibecoded this PR (just told an agent to solve issue without additianal guidance) 
 
-    - Provide a description of your changes, with screenshots if possible
+**Tools / models (if used):** <!-- e.g. Claude Code (Sonnet), Copilot, Cursor -->
+**How they were used:** <!-- e.g. generated code, wrote tests, drafted docs, reviewed -->
 
-    - Put closes #XXXX in your comment to auto-close the issue that your PR fixes (if such).
-    
-    - When merging, don't forget to squash commits! -->
-
+- [ ] I have reviewed and understand all AI-generated changes
