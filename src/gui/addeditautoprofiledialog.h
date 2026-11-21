@@ -100,6 +100,7 @@ class AddEditAutoProfileDialog : public QDialog
 
     void check_profile_file();
     void check_executable_file();
+    bool canBeDeviceDefault();
 };
 
 #endif // ADDEDITAUTOPROFILEDIALOG_H

@@ -375,7 +375,7 @@ void AddEditAutoProfileDialog::checkForDefaultStatus()
     status = status ? status : (ui->winClassLineEdit->text().length() > 0);
     status = status ? status : (ui->winNameLineEdit->text().length() > 0);
 
-    if (status)
+    if (status || !canBeDeviceDefault())
     {
         ui->asDefaultCheckBox->setChecked(false);
         ui->asDefaultCheckBox->setEnabled(false);
@@ -383,6 +383,22 @@ void AddEditAutoProfileDialog::checkForDefaultStatus()
     {
         ui->asDefaultCheckBox->setEnabled(true);
     }
+}
+
+/**
+ * @brief A controller default needs a specific device which doesn't
+ * have a default profile yet. "all" is handled by the main default profile.
+ */
+bool AddEditAutoProfileDialog::canBeDeviceDefault()
+{
+    int index = ui->devicesComboBox->currentIndex();
+    if (index <= 0)
+        return false;
+
+    QVariant data = ui->devicesComboBox->itemData(index);
+    // The "Current (...)" entry has no device attached and keeps the original ID.
+    QString uniqueID = data.isNull() ? originalUniqueID : data.value<InputDevice *>()->getUniqueIDString();
+    return !getReservedUniques().contains(uniqueID);
 }
 
 /**
@@ -429,13 +445,15 @@ void AddEditAutoProfileDialog::check_executable_file()
  */
 void AddEditAutoProfileDialog::accept()
 {
-    QString errorString = QString();
     try
     {
         check_profile_file();
 
         bool is_window_specified = !(ui->applicationLineEdit->text().isEmpty() && ui->winClassLineEdit->text().isEmpty() &&
                                      ui->winNameLineEdit->text().isEmpty());
+        if (ui->asDefaultCheckBox->isChecked() && !canBeDeviceDefault())
+            throw std::runtime_error(
+                tr("Select a controller without a default profile to set this one as its default.").toStdString());
         if (!is_window_specified && !ui->asDefaultCheckBox->isChecked())
             throw std::runtime_error(tr("No window matching property was specified.").toStdString());
         check_executable_file();
@@ -446,6 +464,8 @@ void AddEditAutoProfileDialog::accept()
         msgBox.setText(e.what());
         msgBox.setStandardButtons(QMessageBox::Close);
         msgBox.exec();
+        // Keep the dialog open so the user can fix the form.
+        return;
     }
 
     QDialog::accept();
@@ -463,14 +483,8 @@ QList<QString> const &AddEditAutoProfileDialog::getReservedUniques() { return re
 
 void AddEditAutoProfileDialog::checkDefaultCheckbox(const QString &text)
 {
-    if (text == "all")
-    {
-        ui->asDefaultCheckBox->setChecked(false);
-        ui->asDefaultCheckBox->setDisabled(true);
-    } else
-    {
-        ui->asDefaultCheckBox->setDisabled(false);
-    }
+    Q_UNUSED(text);
+    checkForDefaultStatus();
 }
 
 #ifdef Q_OS_WIN
