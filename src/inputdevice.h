@@ -127,12 +127,10 @@ class InputDevice : public QObject
     JoyAxis::ThrottleTypes getCalibrationThrottle(int axisNum);
     void setCalibrationThrottle(int axisNum, JoyAxis::ThrottleTypes throttle);
     void setCalibrationStatus(int axisNum, JoyAxis::ThrottleTypes throttle);
-    void removeCalibrationStatus(int axisNum);
 
     void sendLoadProfileRequest(QString location);
     AntiMicroSettings *getSettings();
 
-    void activatePossiblePendingEvents();
     void activatePossibleControlStickEvents(); // InputDeviceStick class
     void activatePossibleAxisEvents();         // InputDeviceAxis class
     void activatePossibleSensorEvents();

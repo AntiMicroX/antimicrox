@@ -141,16 +141,4 @@ QBitArray InputDeviceBitArrayStatus::generateFinalBitArray()
     return aggregateBitArray;
 }
 
-void InputDeviceBitArrayStatus::clearStatusValues()
-{
-    for (int i = 0; i < axesStatus.size(); i++)
-        axesStatus.replace(i, false);
-
-    for (int i = 0; i < hatButtonStatus.size(); i++)
-        hatButtonStatus.replace(i, false);
-
-    getButtonStatusLocal().fill(false);
-    m_sensor_status.fill(false);
-}
-
 QBitArray &InputDeviceBitArrayStatus::getButtonStatusLocal() { return buttonStatus; }

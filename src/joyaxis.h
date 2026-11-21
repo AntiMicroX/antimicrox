@@ -65,7 +65,6 @@ class JoyAxis : public QObject
     virtual QString getPartialName(bool forceFullFormat = false, bool displayNames = false);
     virtual QString getXmlName(); // JoyAxisXml class
 
-    void setIndex(int index);
     int getIndex();
     int getRealJoyIndex();
 
@@ -144,9 +143,6 @@ class JoyAxis : public QObject
     // Don't use direct assignment but copying from a current axis.
     void copyRawValues(JoyAxis *srcAxis);
     void copyThrottledValues(JoyAxis *srcAxis);
-
-    void setExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve);
-    JoyButton::JoyExtraAccelerationCurve getExtraAccelerationCurve();
 
     virtual void eventReset(); // JoyAxisEvent class
 

@@ -98,9 +98,7 @@ class JoyButton : public QObject
     void joyEvent(bool pressed, bool ignoresets = false);          // JoyButtonEvents class
     void queuePendingEvent(bool pressed, bool ignoresets = false); // JoyButtonEvents class
     void activatePendingEvent();                                   // JoyButtonEvents class
-    void setJoyNumber(int index);
-    void clearPendingEvent(); // JoyButtonEvents class
-    void setCustomName(QString name);
+    void clearPendingEvent();                                      // JoyButtonEvents class
     void setUpdateInitAccel(bool state);
     void removeVDPad();
     void setIgnoreEventState(bool ignore); // JoyButtonEvents class
@@ -370,7 +368,6 @@ class JoyButton : public QObject
 
     virtual void reset();
     virtual void reset(int index);
-    virtual void resetProperties();
     virtual void clearSlotsEventReset(bool clearSignalEmit = true); // JoyButtonEvents class
     virtual void eventReset();                                      // JoyButtonEvents class
     virtual void mouseEvent();                                      // JoyButtonEvents class

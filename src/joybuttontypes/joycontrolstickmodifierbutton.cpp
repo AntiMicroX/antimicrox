@@ -87,8 +87,6 @@ void JoyControlStickModifierButton::setChangeSetCondition(SetChangeCondition con
     Q_UNUSED(passive);
 }
 
-JoyControlStick *JoyControlStickModifierButton::getStick() const { return stick; }
-
 /**
  * @brief Set the turbo mode that the button should use
  * @param Mode that should be used
