@@ -29,14 +29,14 @@ class JoyButtonXml : public QObject
     Q_OBJECT
 
   public:
-    explicit JoyButtonXml(JoyButton *joyButton, QObject *parent = nullptr);
+    explicit JoyButtonXml(JoyButton &joyButton, QObject *parent = nullptr);
 
     virtual bool readButtonConfig(QXmlStreamReader *xml);
     virtual void readConfig(QXmlStreamReader *xml);
     virtual void writeConfig(QXmlStreamWriter *xml);
 
   private:
-    JoyButton *m_joyButton;
+    JoyButton &m_joyButton;
 };
 
 #endif // JOYBUTTONXML_H

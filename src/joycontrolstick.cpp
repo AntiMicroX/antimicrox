@@ -1026,19 +1026,21 @@ void JoyControlStick::readConfig(QXmlStreamReader *xml)
             {
                 int index = xml->attributes().value("index").toString().toInt();
                 JoyControlStickButton *button = buttons.value(static_cast<JoyStickDirections>(index));
-                QPointer<JoyButtonXml> joyButtonXml = new JoyButtonXml(button);
 
                 if (button != nullptr)
+                {
+                    QPointer<JoyButtonXml> joyButtonXml = new JoyButtonXml(*button);
                     joyButtonXml->readConfig(xml);
-                else
+                    if (!joyButtonXml.isNull())
+                        delete joyButtonXml;
+                } else
+                {
                     xml->skipCurrentElement();
-
-                if (!joyButtonXml.isNull())
-                    delete joyButtonXml;
+                }
             } else if ((xml->name().toString() == GlobalVariables::JoyControlStickModifierButton::xmlName) &&
                        xml->isStartElement())
             {
-                JoyButtonXml *joyButtonXml = new JoyButtonXml(modifierButton);
+                JoyButtonXml *joyButtonXml = new JoyButtonXml(*modifierButton);
                 joyButtonXml->readConfig(xml);
             } else if ((xml->name().toString() == "stickDelay") && xml->isStartElement())
             {
@@ -1115,7 +1117,7 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
         while (iter.hasNext())
         {
             JoyControlStickButton *button = iter.next().value();
-            JoyButtonXml *joyButtonXml = new JoyButtonXml(button);
+            JoyButtonXml *joyButtonXml = new JoyButtonXml(*button);
             joyButtonXml->writeConfig(xml);
             delete joyButtonXml;
             joyButtonXml = nullptr;
@@ -1123,7 +1125,7 @@ void JoyControlStick::writeConfig(QXmlStreamWriter *xml)
 
         if (!modifierButton->isDefault())
         {
-            JoyButtonXml *joyButtonXmlModif = new JoyButtonXml(modifierButton);
+            JoyButtonXml *joyButtonXmlModif = new JoyButtonXml(*modifierButton);
             joyButtonXmlModif->writeConfig(xml);
         }
 

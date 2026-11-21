@@ -31,7 +31,7 @@ class JoyAxisXml : public QObject
     Q_OBJECT
 
   public:
-    explicit JoyAxisXml(JoyAxis *axis, QObject *parent = nullptr);
+    explicit JoyAxisXml(JoyAxis &axis, QObject *parent = nullptr);
     ~JoyAxisXml();
 
     virtual void readConfig(QXmlStreamReader *xml);
@@ -41,7 +41,7 @@ class JoyAxisXml : public QObject
     virtual bool readButtonConfig(QXmlStreamReader *xml);
 
   private:
-    JoyAxis *m_joyAxis;
+    JoyAxis &m_joyAxis;
     QPointer<JoyButtonXml> joyButtonXmlNAxis;
     QPointer<JoyButtonXml> joyButtonXmlPAxis;
 };
