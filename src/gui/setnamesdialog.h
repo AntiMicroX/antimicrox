@@ -36,8 +36,6 @@ class SetNamesDialog : public QDialog
     explicit SetNamesDialog(InputDevice *device, QWidget *parent = nullptr);
     ~SetNamesDialog();
 
-    InputDevice *getDevice() const;
-
   private:
     Ui::SetNamesDialog *ui;
 

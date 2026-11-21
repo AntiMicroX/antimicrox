@@ -49,25 +49,6 @@ JoyControlStickButtonPushButton::JoyControlStickButtonPushButton(JoyControlStick
 
 JoyControlStickButton *JoyControlStickButtonPushButton::getButton() { return button; }
 
-void JoyControlStickButtonPushButton::setButton(JoyControlStickButton *button)
-{
-    disableFlashes();
-    if (this->button != nullptr)
-    {
-        disconnect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
-        disconnect(this->button, &JoyControlStickButton::activeZoneChanged, this,
-                   &JoyControlStickButtonPushButton::refreshLabel);
-    }
-
-    this->button = button;
-    refreshLabel();
-    enableFlashes();
-
-    connect(button, &JoyControlStickButton::propertyUpdated, this, &JoyControlStickButtonPushButton::refreshLabel);
-    connect(button, &JoyControlStickButton::activeZoneChanged, this, &JoyControlStickButtonPushButton::refreshLabel,
-            Qt::QueuedConnection);
-}
-
 void JoyControlStickButtonPushButton::disableFlashes()
 {
     if (button != nullptr)

@@ -73,10 +73,6 @@ void FlashButtonWidget::toggleNameDisplay()
     refreshLabel();
 }
 
-void FlashButtonWidget::setDisplayNames(bool display) { m_displayNames = display; }
-
-bool FlashButtonWidget::isDisplayingNames() { return m_displayNames; }
-
 void FlashButtonWidget::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);

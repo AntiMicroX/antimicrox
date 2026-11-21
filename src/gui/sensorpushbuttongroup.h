@@ -39,8 +39,6 @@ class SensorPushButtonGroup : public QGridLayout
                                    QWidget *parent = nullptr);
     JoySensor *getSensor() const;
 
-    bool ifDisplayNames() const;
-
   signals:
     void buttonSlotChanged();
 

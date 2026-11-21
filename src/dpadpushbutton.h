@@ -31,7 +31,6 @@ class DPadPushButton : public FlashButtonWidget
   public:
     explicit DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent = nullptr);
 
-    JoyDPad *getDPad() const;
     void tryFlash();
 
   protected:

@@ -1112,8 +1112,4 @@ void VirtualKeyboardMouseWidget::nullifyDialogPointer()
     }
 }
 
-InputDevice *VirtualKeyboardMouseWidget::getJoystick() const { return joystick; }
-
-ButtonEditDialogHelper *VirtualKeyboardMouseWidget::getHelper() const { return helper; }
-
 QMenu *VirtualKeyboardMouseWidget::getOtherKeysMenu() const { return otherKeysMenu; }

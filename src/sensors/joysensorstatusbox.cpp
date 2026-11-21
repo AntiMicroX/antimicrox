@@ -63,11 +63,6 @@ void JoySensorStatusBox::setSensor(JoySensor *sensor)
     update();
 }
 
-/**
- * @brief Get the visualized sensor object
- */
-JoySensor *JoySensorStatusBox::getSensor() const { return m_sensor; }
-
 QSize JoySensorStatusBox::sizeHint() const { return QSize(-1, -1); }
 
 void JoySensorStatusBox::paintEvent(QPaintEvent *event)

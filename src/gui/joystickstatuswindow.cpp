@@ -342,5 +342,3 @@ void JoystickStatusWindow::updateGyroscopeValues(float valueX, float valueY, flo
     m_gyro_axes[1]->setValue(JoySensor::radToDeg(valueY) * 1000);
     m_gyro_axes[2]->setValue(JoySensor::radToDeg(valueZ) * 1000);
 }
-
-InputDevice *JoystickStatusWindow::getJoystick() const { return joystick; }

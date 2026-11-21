@@ -160,8 +160,6 @@ void AxisValueBox::setDeadZone(JoyAxis *axis, int deadZone)
     update();
 }
 
-int AxisValueBox::getDeadZone() { return m_deadZone; }
-
 void AxisValueBox::setMaxZone(int maxZone)
 {
     if ((maxZone >= GlobalVariables::JoyAxis::AXISMIN) && (maxZone <= GlobalVariables::JoyAxis::AXISMAX))
@@ -183,10 +181,6 @@ void AxisValueBox::setMaxZone(JoyAxis *axis, int maxZone)
 
     update();
 }
-
-int AxisValueBox::getMaxZone() { return m_maxZone; }
-
-int AxisValueBox::getThrottle() { return m_throttle; }
 
 void AxisValueBox::resizeEvent(QResizeEvent *event)
 {

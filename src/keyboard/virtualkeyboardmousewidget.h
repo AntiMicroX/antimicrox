@@ -48,8 +48,6 @@ class VirtualKeyboardMouseWidget : public QTabWidget
     explicit VirtualKeyboardMouseWidget(bool isNumKeypad, QWidget *parent = nullptr);
     bool isKeyboardTabVisible();
 
-    InputDevice *getJoystick() const;
-    ButtonEditDialogHelper *getHelper() const;
     QMenu *getOtherKeysMenu() const;
 
     static QHash<QString, QString> topRowKeys;

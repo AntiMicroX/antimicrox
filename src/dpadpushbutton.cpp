@@ -39,8 +39,6 @@ DPadPushButton::DPadPushButton(JoyDPad *dpad, bool displayNames, QWidget *parent
     connect(dpad, &JoyDPad::dpadNameChanged, this, &DPadPushButton::refreshLabel);
 }
 
-JoyDPad *DPadPushButton::getDPad() const { return dpad; }
-
 QString DPadPushButton::generateLabel()
 {
     QString temp = QString();

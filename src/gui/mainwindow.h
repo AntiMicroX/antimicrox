@@ -67,8 +67,6 @@ class MainWindow : public QMainWindow
 
     QMap<int, QList<QAction *>> const &getProfileActions();
 
-    bool isKeypadUnlocked();
-
   protected:
     void showEvent(QShowEvent *event) override;
     void changeEvent(QEvent *event) override;

@@ -38,7 +38,6 @@ class EditAllDefaultAutoProfileDialog : public QDialog
     ~EditAllDefaultAutoProfileDialog();
 
     AutoProfileInfo *getAutoProfile() const;
-    AntiMicroSettings *getSettings() const;
 
   protected:
     void accept() override;

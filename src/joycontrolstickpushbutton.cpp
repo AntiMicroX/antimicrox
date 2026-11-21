@@ -40,8 +40,6 @@ JoyControlStickPushButton::JoyControlStickPushButton(JoyControlStick *stick, boo
     connect(stick, &JoyControlStick::stickNameChanged, this, &JoyControlStickPushButton::refreshLabel);
 }
 
-JoyControlStick *JoyControlStickPushButton::getStick() const { return stick; }
-
 /**
  * @brief Generate the string that will be displayed on the button
  * @return Display string

@@ -148,15 +148,3 @@ void SpringModeRegionPreview::setSpringHeight(int height)
         move(0, 0);
     }
 }
-
-void SpringModeRegionPreview::setSpringSize(int width, int height)
-{
-    int tempwidth = adjustSpringSizeWidth(width);
-    int tempheight = adjustSpringSizeHeight(height);
-
-    int cw = (QGuiApplication::primaryScreen()->virtualGeometry().width() / 2) - (tempwidth / 2);
-    int ch = (QGuiApplication::primaryScreen()->virtualGeometry().height() / 2) - (height / 2);
-
-    resize(tempwidth, tempheight);
-    move(cw, ch);
-}

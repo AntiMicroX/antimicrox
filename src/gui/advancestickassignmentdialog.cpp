@@ -1226,5 +1226,3 @@ void AdvanceStickAssignmentDialog::quickAssignVDPadRightJbtn(JoyButton *joybtn)
     if (index > 0)
         ui->vdpadRightComboBox->setCurrentIndex(index);
 }
-
-Joystick *AdvanceStickAssignmentDialog::getJoystick() const { return joystick; }

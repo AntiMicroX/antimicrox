@@ -36,8 +36,6 @@ JoyButtonStatusBox::JoyButtonStatusBox(JoyButton *button, QWidget *parent)
     connect(button, &JoyButton::released, this, &JoyButtonStatusBox::unflash);
 }
 
-JoyButton *JoyButtonStatusBox::getJoyButton() const { return button; }
-
 bool JoyButtonStatusBox::isButtonFlashing() { return isflashing; }
 
 void JoyButtonStatusBox::flash()

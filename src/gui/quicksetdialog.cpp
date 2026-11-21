@@ -470,7 +470,3 @@ void QuickSetDialog::restoreButtonsStates(SetJoystick *currentset)
 }
 
 JoyButton *QuickSetDialog::getLastPressedButton() const { return lastButton; }
-
-InputDevice *QuickSetDialog::getJoystick() const { return joystick; }
-
-ButtonEditDialogHelper *QuickSetDialog::getHelper() const { return helper; }

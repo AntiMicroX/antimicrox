@@ -37,7 +37,6 @@ class JoySensorStatusBox : public QWidget
     explicit JoySensorStatusBox(QWidget *parent = nullptr);
 
     void setSensor(JoySensor *sensor);
-    JoySensor *getSensor() const;
 
     virtual QSize sizeHint() const override;
 

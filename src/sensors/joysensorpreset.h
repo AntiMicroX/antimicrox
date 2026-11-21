@@ -44,7 +44,6 @@ class JoySensorPreset : public QObject
     Preset currentPreset();
     QString getPresetName(Preset);
     void setSensorPreset(Preset);
-    JoySensorIoThreadHelper &getHelper();
 
   private:
     JoySensor *m_sensor;
