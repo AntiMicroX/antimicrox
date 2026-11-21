@@ -64,7 +64,6 @@ class ButtonEditDialog : public QDialog
 
     ButtonEditDialogHelper helper;
     Ui::ButtonEditDialog *ui;
-    ButtonEditDialogHelper &getHelperLocal();
 
     QElapsedTimer buttonEventInterval;
     InputDevice *joystick;

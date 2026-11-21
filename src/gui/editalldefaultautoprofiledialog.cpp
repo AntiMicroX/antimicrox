@@ -97,5 +97,3 @@ void EditAllDefaultAutoProfileDialog::accept()
         msgBox.exec();
     }
 }
-
-AntiMicroSettings *EditAllDefaultAutoProfileDialog::getSettings() const { return settings; }

@@ -61,8 +61,6 @@ VirtualMousePushButton::VirtualMousePushButton(QString displayText, int code, Jo
 
 int VirtualMousePushButton::getMouseCode() const { return code; }
 
-JoyButtonSlot::JoySlotInputAction VirtualMousePushButton::getMouseMode() const { return mode; }
-
 void VirtualMousePushButton::createTempSlot()
 {
     JoyButtonSlot *tempslot = new JoyButtonSlot(this->code, this->mode, this);

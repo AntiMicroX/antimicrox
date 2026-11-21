@@ -31,7 +31,6 @@ class JoySensorPushButton : public FlashButtonWidget
   public:
     explicit JoySensorPushButton(JoySensor *sensor, bool displayNames, QWidget *parent = nullptr);
 
-    JoySensor *getSensor() const;
     void tryFlash();
 
   protected:

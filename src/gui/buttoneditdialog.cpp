@@ -625,5 +625,3 @@ void ButtonEditDialog::invokeMethodLastBtn(JoyButton *lastJoyBtn, ButtonEditDial
 JoyButton *ButtonEditDialog::getLastJoyButton() { return lastJoyButton; }
 
 void ButtonEditDialog::setUpLastJoyButton(JoyButton *newButton) { lastJoyButton = newButton; }
-
-ButtonEditDialogHelper &ButtonEditDialog::getHelperLocal() { return helper; }

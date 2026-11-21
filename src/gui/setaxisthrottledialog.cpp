@@ -42,5 +42,3 @@ SetAxisThrottleDialog::SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent)
 SetAxisThrottleDialog::~SetAxisThrottleDialog() { delete ui; }
 
 void SetAxisThrottleDialog::propogateThrottleChange() { emit initiateSetAxisThrottleChange(); }
-
-JoyAxis *SetAxisThrottleDialog::getAxis() const { return axis; }

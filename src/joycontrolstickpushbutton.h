@@ -31,7 +31,6 @@ class JoyControlStickPushButton : public FlashButtonWidget
   public:
     explicit JoyControlStickPushButton(JoyControlStick *stick, bool displayNames, QWidget *parent = nullptr);
 
-    JoyControlStick *getStick() const;
     void tryFlash();
 
   protected:

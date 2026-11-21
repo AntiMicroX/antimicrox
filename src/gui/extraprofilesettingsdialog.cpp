@@ -55,5 +55,3 @@ void ExtraProfileSettingsDialog::changeDeviceKeyPress(int value)
     device->setDeviceKeyPressTime(temppress);
     ui->pressValueLabel->setText(QString::number(temppress / 1000.0, 'g', 3).append("").append(tr("s")));
 }
-
-InputDevice *ExtraProfileSettingsDialog::getDevice() const { return device; }

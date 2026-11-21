@@ -41,9 +41,6 @@ class AdvanceButtonDialog : public QDialog
     AdvanceButtonDialog(QWidget *parent = 0);
     ~AdvanceButtonDialog();
 
-    JoyButton *getButton() const;
-    AdvanceButtonDialogHelper const &getHelper();
-
   protected:
     void connectButtonEvents(SimpleKeyGrabberButton *button); // AdvanceBtnDlgAssign class
     void appendBlankKeyGrabber();                             // AdvanceBtnDlgAssign class
@@ -55,7 +52,6 @@ class AdvanceButtonDialog : public QDialog
     void populateAutoResetInterval();                // AdvanceBtnDlgAssign class
     void disconnectTimeBoxesEvents();                // AdvanceBtnDlgAssign class
     void connectTimeBoxesEvents();                   // AdvanceBtnDlgAssign class
-    void resetTimeBoxes();                           // AdvanceBtnDlgAssign class
     void populateSetSelectionComboBox();
     void populateSlotSetSelectionComboBox();
     void findTurboModeComboIndex();

@@ -36,8 +36,6 @@ class SetAxisThrottleDialog : public QDialog
     explicit SetAxisThrottleDialog(JoyAxis *axis, QWidget *parent = nullptr);
     ~SetAxisThrottleDialog();
 
-    JoyAxis *getAxis() const;
-
   signals:
     void initiateSetAxisThrottleChange();
 

@@ -34,8 +34,6 @@ class FlashButtonWidget : public QPushButton
     explicit FlashButtonWidget(bool displayNames, QWidget *parent = nullptr);
 
     bool isButtonFlashing();
-    void setDisplayNames(bool display);
-    bool isDisplayingNames();
 
   protected:
     void paintEvent(QPaintEvent *event) override;

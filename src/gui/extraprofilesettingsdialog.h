@@ -36,8 +36,6 @@ class ExtraProfileSettingsDialog : public QDialog
     explicit ExtraProfileSettingsDialog(InputDevice *device, QWidget *parent = nullptr);
     ~ExtraProfileSettingsDialog();
 
-    InputDevice *getDevice() const;
-
   private:
     Ui::ExtraProfileSettingsDialog *ui;
 

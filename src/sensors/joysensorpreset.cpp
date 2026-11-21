@@ -364,8 +364,3 @@ void JoySensorPreset::setSensorPreset(Preset preset)
     m_helper.setPendingSlots(&tempHash);
     QMetaObject::invokeMethod(&m_helper, "setFromPendingSlots", Qt::BlockingQueuedConnection);
 }
-
-/**
- * @brief Get the internal JoySensorIoThreadHelper
- */
-JoySensorIoThreadHelper &JoySensorPreset::getHelper() { return m_helper; }

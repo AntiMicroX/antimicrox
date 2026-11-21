@@ -71,8 +71,6 @@ void JoyControlStickStatusBox::setStick(JoyControlStick *stick)
     update();
 }
 
-JoyControlStick *JoyControlStickStatusBox::getStick() const { return m_stick; }
-
 int JoyControlStickStatusBox::heightForWidth(int width) const { return width; }
 
 QSize JoyControlStickStatusBox::sizeHint() const { return QSize(-1, -1); }

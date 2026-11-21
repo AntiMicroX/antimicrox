@@ -150,8 +150,6 @@ double JoyButtonSlot::getMouseDistance() { return m_distance; }
 
 QElapsedTimer *JoyButtonSlot::getMouseInterval() { return &mouseInterval; }
 
-void JoyButtonSlot::restartMouseInterval() { mouseInterval.restart(); }
-
 QString JoyButtonSlot::getXmlName() { return GlobalVariables::JoyButtonSlot::xmlName; }
 
 QString JoyButtonSlot::getSlotString()
@@ -355,8 +353,6 @@ QString JoyButtonSlot::getSlotString()
 
     return newlabel;
 }
-
-void JoyButtonSlot::setPreviousDistance(double distance) { previousDistance = distance; }
 
 bool JoyButtonSlot::isModifierKey()
 {

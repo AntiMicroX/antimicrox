@@ -31,9 +31,6 @@ class AxisValueBox : public QWidget
   public:
     explicit AxisValueBox(QWidget *parent = nullptr);
 
-    int getDeadZone();
-    int getMaxZone();
-    int getThrottle();
     int getMaxAxValue();
 
   protected:

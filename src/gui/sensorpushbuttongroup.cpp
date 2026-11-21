@@ -114,5 +114,3 @@ void SensorPushButtonGroup::toggleNameDisplay()
 
     m_sensor_widget->toggleNameDisplay();
 }
-
-bool SensorPushButtonGroup::ifDisplayNames() const { return m_display_names; }

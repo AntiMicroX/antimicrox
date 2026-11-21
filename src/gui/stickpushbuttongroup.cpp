@@ -148,13 +148,3 @@ void StickPushButtonGroup::toggleNameDisplay()
 
     stickWidget->toggleNameDisplay();
 }
-
-bool StickPushButtonGroup::ifDisplayNames() const { return displayNames; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getUpButton() const { return upButton; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getDownButton() const { return downButton; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getLeftButton() const { return leftButton; }
-
-JoyControlStickButtonPushButton *StickPushButtonGroup::getRightButton() const { return rightButton; }

@@ -38,9 +38,6 @@ class DPadEditDialog : public QDialog
     explicit DPadEditDialog(JoyDPad *dpad, QWidget *parent = nullptr);
     ~DPadEditDialog();
 
-    JoyDPad *getDPad() const;
-    DPadEditDialogHelper const &getHelper();
-
   protected:
     void selectCurrentPreset();
 

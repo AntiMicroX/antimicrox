@@ -39,7 +39,6 @@ class SpringModeRegionPreview : public QWidget
   public slots:
     void setSpringWidth(int width);
     void setSpringHeight(int height);
-    void setSpringSize(int width, int height);
 };
 
 #endif // SPRINGMODEREGIONPREVIEW_H

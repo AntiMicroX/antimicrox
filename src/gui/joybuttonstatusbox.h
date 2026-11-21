@@ -31,7 +31,6 @@ class JoyButtonStatusBox : public QPushButton
 
   public:
     explicit JoyButtonStatusBox(JoyButton *button, QWidget *parent = nullptr);
-    JoyButton *getJoyButton() const;
     bool isButtonFlashing();
 
   private slots:

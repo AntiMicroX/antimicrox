@@ -35,8 +35,6 @@ class JoyControlStickStatusBox : public QWidget
 
     void setStick(JoyControlStick *stick);
 
-    JoyControlStick *getStick() const;
-
     int heightForWidth(int width) const override;
     QSize sizeHint() const override;
 

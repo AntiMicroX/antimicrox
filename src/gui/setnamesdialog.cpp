@@ -60,5 +60,3 @@ void SetNamesDialog::saveSetNameChanges()
         device->getSetJoystick(i)->setName(setNameText);
     }
 }
-
-InputDevice *SetNamesDialog::getDevice() const { return device; }

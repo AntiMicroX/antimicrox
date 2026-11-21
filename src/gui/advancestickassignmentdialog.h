@@ -41,8 +41,6 @@ class AdvanceStickAssignmentDialog : public QDialog
     AdvanceStickAssignmentDialog(QWidget *parent = nullptr);
     ~AdvanceStickAssignmentDialog();
 
-    Joystick *getJoystick() const;
-
   signals:
     void stickConfigurationChanged();
     void vdpadConfigurationChanged();

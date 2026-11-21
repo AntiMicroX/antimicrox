@@ -96,12 +96,10 @@ class JoyButtonSlot : public QObject
     void setDistance(double distance);
     double getMouseDistance();
     QElapsedTimer *getMouseInterval();
-    void restartMouseInterval();
     QString getXmlName();
     QString getSlotString();
     void setSlotCode(int code, int alias);
     int getSlotCodeAlias() const;
-    void setPreviousDistance(double distance);
     bool isModifierKey();
 
     bool isEasingActive() const;

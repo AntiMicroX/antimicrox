@@ -1309,19 +1309,6 @@ void AdvanceButtonDialog::setButtonCycleReset(bool enabled)
     }
 }
 
-void AdvanceButtonDialog::resetTimeBoxes()
-{
-    disconnectTimeBoxesEvents();
-
-    ui->actionMinutesComboBox->setCurrentIndex(0);
-    ui->actionSecondsComboBox->setCurrentIndex(0);
-    ui->actionTenthsComboBox->setCurrentIndex(1);
-    ui->actionHundredthsComboBox->setCurrentIndex(0);
-
-    updateActionTimeLabel();
-    connectTimeBoxesEvents();
-}
-
 void AdvanceButtonDialog::disconnectTimeBoxesEvents()
 {
     disconnect(ui->actionSecondsComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
@@ -1655,9 +1642,5 @@ void AdvanceButtonDialog::changeSlotHelpText(int index)
         break;
     }
 }
-
-JoyButton *AdvanceButtonDialog::getButton() const { return m_button; }
-
-AdvanceButtonDialogHelper const &AdvanceButtonDialog::getHelper() { return helper; }
 
 AdvanceButtonDialogHelper &AdvanceButtonDialog::getHelperLocal() { return helper; }

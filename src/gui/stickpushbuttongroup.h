@@ -37,13 +37,6 @@ class StickPushButtonGroup : public QGridLayout
                                   QWidget *parent = nullptr);
     JoyControlStick *getStick() const;
 
-    bool ifDisplayNames() const;
-
-    JoyControlStickButtonPushButton *getUpButton() const;
-    JoyControlStickButtonPushButton *getDownButton() const;
-    JoyControlStickButtonPushButton *getLeftButton() const;
-    JoyControlStickButtonPushButton *getRightButton() const;
-
   protected:
     void generateButtons();
 

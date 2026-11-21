@@ -41,8 +41,6 @@ class JoystickStatusWindow : public QDialog
     explicit JoystickStatusWindow(InputDevice *joystick, QWidget *parent = nullptr);
     ~JoystickStatusWindow();
 
-    InputDevice *getJoystick() const;
-
   private:
     void reject();
     Ui::JoystickStatusWindow *ui;

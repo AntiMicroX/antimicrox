@@ -36,7 +36,6 @@ class VirtualMousePushButton : public QPushButton
                                     QWidget *parent = nullptr);
 
     int getMouseCode() const;
-    JoyButtonSlot::JoySlotInputAction getMouseMode() const;
 
   signals:
     void mouseSlotCreated(JoyButtonSlot *tempslot);

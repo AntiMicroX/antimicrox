@@ -39,11 +39,6 @@ JoySensorPushButton::JoySensorPushButton(JoySensor *sensor, bool displayNames, Q
 }
 
 /**
- * @brief Get the underlying JoySensor object.
- */
-JoySensor *JoySensorPushButton::getSensor() const { return m_sensor; }
-
-/**
  * @brief Generate the string that will be displayed on the button
  * @return Display string
  */
