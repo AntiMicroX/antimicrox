@@ -279,13 +279,3 @@ void VDPad::activatePendingEvent()
         pendingVDPadEvent = false;
     }
 }
-
-void VDPad::clearPendingEvent() { pendingVDPadEvent = false; }
-
-JoyButton *VDPad::getUpButton() const { return upButton; }
-
-JoyButton *VDPad::getDownButton() const { return downButton; }
-
-JoyButton *VDPad::getLeftButton() const { return leftButton; }
-
-JoyButton *VDPad::getRightButton() const { return rightButton; }

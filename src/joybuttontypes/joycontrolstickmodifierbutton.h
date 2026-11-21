@@ -46,8 +46,6 @@ class JoyControlStickModifierButton : public JoyGradientButton
     virtual double getAccelerationDistance();
     virtual double getLastAccelerationDistance();
 
-    JoyControlStick *getStick() const;
-
   private:
     JoyControlStick *stick;
 };

@@ -720,8 +720,6 @@ double JoyControlStick::getRadialDistance(int axisXValue, int axisYValue)
     return distance;
 }
 
-void JoyControlStick::setIndex(int index) { this->index = index; }
-
 int JoyControlStick::getIndex() { return index; }
 
 int JoyControlStick::getRealJoyIndex() { return index + 1; }
@@ -823,8 +821,6 @@ int JoyControlStick::getModifierZone() const { return m_modifier_zone; }
  * @returns True if the modifier zone is inverted, false otherwise
  */
 bool JoyControlStick::getModifierZoneInverted() const { return m_modifier_zone_inverted; }
-
-int JoyControlStick::getCurrentlyAssignedSet() { return originset; }
 
 void JoyControlStick::reset()
 {
@@ -1805,26 +1801,6 @@ JoyAxis *JoyControlStick::getAxisX() { return axisX; }
 
 JoyAxis *JoyControlStick::getAxisY() { return axisY; }
 
-void JoyControlStick::replaceXAxis(JoyAxis *axis)
-{
-    if (axis->getParentSet() == axisY->getParentSet())
-    {
-        axisX->removeControlStick();
-        this->axisX = axis;
-        this->axisX->setControlStick(this);
-    }
-}
-
-void JoyControlStick::replaceYAxis(JoyAxis *axis)
-{
-    if (axis->getParentSet() == axisX->getParentSet())
-    {
-        axisY->removeControlStick();
-        this->axisY = axis;
-        this->axisY->setControlStick(this);
-    }
-}
-
 void JoyControlStick::replaceAxes(JoyAxis *axisX, JoyAxis *axisY)
 {
     if (axisX->getParentSet() == axisY->getParentSet())
@@ -2773,8 +2749,6 @@ void JoyControlStick::activatePendingEvent()
         pendingStickEvent = false;
     }
 }
-
-void JoyControlStick::clearPendingEvent() { pendingStickEvent = false; }
 
 void JoyControlStick::setButtonsExtraAccelerationStatus(bool enabled)
 {

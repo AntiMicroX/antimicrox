@@ -44,12 +44,6 @@ class VDPad : public JoyDPad
 
     void queueJoyEvent(bool ignoresets = false);
     bool hasPendingEvent();
-    void clearPendingEvent();
-
-    JoyButton *getUpButton() const;
-    JoyButton *getDownButton() const;
-    JoyButton *getLeftButton() const;
-    JoyButton *getRightButton() const;
 
   public slots:
     void activatePendingEvent();

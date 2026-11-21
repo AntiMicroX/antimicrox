@@ -50,16 +50,12 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
         FourWayDiagonal
     };
 
-    void joyEvent(bool ignoresets = false); // JoyControlStickEvent class
-    void setIndex(int index);
-    void replaceXAxis(JoyAxis *axis);                 // JoyControlStickAxes class
-    void replaceYAxis(JoyAxis *axis);                 // JoyControlStickAxes class
+    void joyEvent(bool ignoresets = false);           // JoyControlStickEvent class
     void replaceAxes(JoyAxis *axisX, JoyAxis *axisY); // JoyControlStickAxes class
     void releaseButtonEvents();                       // JoyControlStickEvent class
     void copyAssignments(JoyControlStick *destStick);
     void queueJoyEvent(bool ignoresets); // JoyControlStickEvent class
     void activatePendingEvent();         // JoyControlStickEvent class
-    void clearPendingEvent();            // JoyControlStickEvent class
 
     bool inDeadZone();
     bool hasSlotsAssigned();
@@ -78,7 +74,6 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     int getMaxZone();
     int getModifierZone() const;
     bool getModifierZoneInverted() const;
-    int getCurrentlyAssignedSet();
     int getXCoordinate();
     int getYCoordinate();
     int getCircleXCoordinate();

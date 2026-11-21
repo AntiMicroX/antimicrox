@@ -38,7 +38,6 @@ class InputDeviceBitArrayStatus : public QObject
     void changeSensorStatus(int sensorIndex, bool value);
 
     QBitArray generateFinalBitArray();
-    void clearStatusValues();
 
   private:
     QBitArray &getButtonStatusLocal();

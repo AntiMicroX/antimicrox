@@ -1339,12 +1339,6 @@ void InputDevice::setCalibrationStatus(int axisNum, JoyAxis::ThrottleTypes throt
         getCali().insert(axisNum, throttle);
 }
 
-void InputDevice::removeCalibrationStatus(int axisNum)
-{
-    if (getCali().contains(axisNum))
-        getCali().remove(axisNum);
-}
-
 void InputDevice::sendLoadProfileRequest(QString location)
 {
     if (!location.isEmpty())
@@ -1380,15 +1374,6 @@ bool InputDevice::isKnownController()
     }
 
     return result;
-}
-
-void InputDevice::activatePossiblePendingEvents()
-{
-    activatePossibleControlStickEvents();
-    activatePossibleAxisEvents();
-    activatePossibleDPadEvents();
-    activatePossibleVDPadEvents();
-    activatePossibleButtonEvents();
 }
 
 void InputDevice::activatePossibleControlStickEvents()

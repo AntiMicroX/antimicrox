@@ -363,8 +363,6 @@ int JoyButton::getJoyNumber() { return m_index_sdl; }
  */
 int JoyButton::getRealJoyNumber() const { return m_index_sdl + 1; }
 
-void JoyButton::setJoyNumber(int index) { m_index_sdl = index; }
-
 void JoyButton::setToggle(bool toggle)
 {
     if (toggle != m_toggle)
@@ -2023,8 +2021,6 @@ QString JoyButton::getSlotsString()
 
     return label;
 }
-
-void JoyButton::setCustomName(QString name) { customName = name; }
 
 /**
  * @brief Create new JoyButtonSlot with data provided and append the new slot
@@ -4286,13 +4282,6 @@ void JoyButton::checkTurboCondition(JoyButtonSlot *slot)
         break;
     }
     }
-}
-
-void JoyButton::resetProperties()
-{
-    qDebug() << "all current slots and previous slots ale cleared";
-
-    resetAllProperties();
 }
 
 void JoyButton::resetAllProperties()

@@ -312,8 +312,6 @@ HapticTriggerPs5 *JoyAxis::getHapticTrigger() const { return nullptr; }
  */
 void JoyAxis::setHapticTriggerMode(HapticTriggerModePs5) {}
 
-void JoyAxis::setIndex(int index) { m_index = index; }
-
 int JoyAxis::getIndex() { return m_index; }
 
 void JoyAxis::createDeskEvent(bool ignoresets)
@@ -863,24 +861,6 @@ int JoyAxis::getProperReleaseValue()
     }
 
     return value;
-}
-
-void JoyAxis::setExtraAccelerationCurve(JoyButton::JoyExtraAccelerationCurve curve)
-{
-    paxisbutton->setExtraAccelerationCurve(curve);
-    naxisbutton->setExtraAccelerationCurve(curve);
-}
-
-JoyButton::JoyExtraAccelerationCurve JoyAxis::getExtraAccelerationCurve()
-{
-    JoyButton::JoyExtraAccelerationCurve result = JoyButton::LinearAccelCurve;
-
-    if (paxisbutton->getExtraAccelerationCurve() == naxisbutton->getExtraAccelerationCurve())
-    {
-        result = paxisbutton->getExtraAccelerationCurve();
-    }
-
-    return result;
 }
 
 void JoyAxis::copyRawValues(JoyAxis *srcAxis)
