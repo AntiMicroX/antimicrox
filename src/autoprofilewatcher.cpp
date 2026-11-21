@@ -88,6 +88,10 @@ void AutoProfileWatcher::runAppCheck()
     if (!appProfileAssignments.isEmpty())
     {
         appLocation = findAppLocation();
+        if (!appLocation.isEmpty())
+        {
+            baseAppFileName = QFileInfo(appLocation).fileName();
+        }
     }
 #else
     // In Windows, get program location no matter what.

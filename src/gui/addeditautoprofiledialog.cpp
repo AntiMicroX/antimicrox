@@ -394,7 +394,7 @@ void AddEditAutoProfileDialog::check_profile_file()
     {
         QFileInfo profileFileName(ui->profileLineEdit->text());
 
-        if (!profileFileName.exists())
+        if (!profileFileName.exists() || !profileFileName.isFile() || !profileFileName.isReadable())
         {
             throw std::runtime_error(tr("Profile file path is invalid.").toStdString());
         }
@@ -411,14 +411,21 @@ void AddEditAutoProfileDialog::check_executable_file()
         QString exeFileName = ui->applicationLineEdit->text();
         QFileInfo info(exeFileName);
 
-        if (info.isAbsolute() && (!info.exists() || !info.isExecutable()))
+        if (info.isAbsolute() && (!info.exists() || !info.isFile() || !info.isExecutable()))
         {
             throw std::runtime_error(tr("Program path is invalid or not executable.").toStdString());
         }
 #ifdef Q_OS_WIN
-        else if (!info.isAbsolute() && (info.fileName() != exeFileName || info.suffix() != "exe"))
+        else if (!info.isAbsolute() && !(info.exists() && info.isFile() && info.isExecutable()) &&
+                 (info.fileName() != exeFileName || info.suffix().compare("exe", Qt::CaseInsensitive) != 0))
         {
             throw std::runtime_error(tr("File is not an .exe file.").toStdString());
+        }
+#else
+        else if (!info.isAbsolute() && !(info.exists() && info.isFile() && info.isExecutable()) &&
+                 (info.fileName() != exeFileName || exeFileName.trimmed().isEmpty()))
+        {
+            throw std::runtime_error(tr("Program path is invalid or not executable.").toStdString());
         }
 #endif
     }

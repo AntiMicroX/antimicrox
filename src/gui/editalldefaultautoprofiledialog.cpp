@@ -79,7 +79,7 @@ void EditAllDefaultAutoProfileDialog::accept()
     {
         QFileInfo profileInfo(ui->profileLineEdit->text());
 
-        if (!profileInfo.exists())
+        if (!profileInfo.exists() || !profileInfo.isFile() || !profileInfo.isReadable())
         {
             validForm = false;
             errorString = tr("Profile file path is invalid.");
