@@ -157,6 +157,7 @@ jobs:
                   arch: ${{ matrix.qt-arch }}
                   dir: "${{ github.workspace }}/qt/"
                   install-deps: "true"
+                  cache: "true"
               
             - name: Configure CMake
               run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -B "${{ github.workspace }}/build" ${{ matrix.cmake-args }}
