@@ -62,7 +62,7 @@ void AutoProfileInfo::setProfileLocation(const QString &profileLocation)
 {
     QFileInfo info(profileLocation);
 
-    if ((profileLocation != this->profileLocation) && info.exists() && info.isReadable())
+    if ((profileLocation != this->profileLocation) && info.exists() && info.isFile() && info.isReadable())
     {
         this->profileLocation = profileLocation;
     } else if (profileLocation.isEmpty())
@@ -79,12 +79,18 @@ void AutoProfileInfo::setExe(const QString &exe)
     {
         QFileInfo info(exe);
 
-        if ((exe != this->exe) && info.exists() && info.isExecutable())
+        if ((exe != this->exe) && info.exists() && info.isFile() && info.isExecutable())
         {
             this->exe = exe;
         }
 #ifdef Q_OS_WIN
-        else if (exe != this->exe && info.suffix() == "exe")
+        else if ((exe != this->exe) && !info.isAbsolute() && (info.fileName() == exe) &&
+                 (info.suffix().compare("exe", Qt::CaseInsensitive) == 0))
+        {
+            this->exe = exe;
+        }
+#else
+        else if ((exe != this->exe) && !info.isAbsolute() && (info.fileName() == exe) && !exe.trimmed().isEmpty())
         {
             this->exe = exe;
         }
