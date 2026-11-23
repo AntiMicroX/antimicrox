@@ -34,10 +34,6 @@ class MouseAxisSettingsDialog : public MouseSettingsDialog
   public:
     explicit MouseAxisSettingsDialog(JoyAxis *axis, QWidget *parent = nullptr);
 
-    JoyAxis *getAxis() const;
-    SpringModeRegionPreview *getSpringPreviewWidget() const;
-    MouseAxisSettingsDialogHelper const &getHelper();
-
   protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();

@@ -46,8 +46,6 @@ void JoyControlStickEditDialogHelper::setPendingSlots(QHash<JoyControlStick::Joy
     }
 }
 
-void JoyControlStickEditDialogHelper::clearPendingSlots() { pendingSlots.clear(); }
-
 void JoyControlStickEditDialogHelper::setFromPendingSlots()
 {
     if (!getPendingSlots().isEmpty())

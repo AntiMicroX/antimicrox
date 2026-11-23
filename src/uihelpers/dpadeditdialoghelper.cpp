@@ -46,8 +46,6 @@ void DPadEditDialogHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirection
     }
 }
 
-void DPadEditDialogHelper::clearPendingSlots() { pendingSlots.clear(); }
-
 void DPadEditDialogHelper::setFromPendingSlots()
 {
     if (!getPendingSlots().isEmpty())

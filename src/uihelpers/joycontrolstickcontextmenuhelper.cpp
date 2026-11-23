@@ -48,8 +48,6 @@ void JoyControlStickContextMenuHelper::setPendingSlots(
     }
 }
 
-void JoyControlStickContextMenuHelper::clearPendingSlots() { pendingSlots.clear(); }
-
 void JoyControlStickContextMenuHelper::setFromPendingSlots()
 {
     if (!getPendingSlots().isEmpty())

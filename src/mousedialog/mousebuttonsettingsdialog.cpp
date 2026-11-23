@@ -287,10 +287,4 @@ void MouseButtonSettingsDialog::updateExtraAccelerationCurve(int index)
     }
 }
 
-JoyButton *MouseButtonSettingsDialog::getButton() const { return button; }
-
-SpringModeRegionPreview *MouseButtonSettingsDialog::getSpringPreviewWidget() const { return springPreviewWidget; }
-
-MouseButtonSettingsDialogHelper const &MouseButtonSettingsDialog::getHelper() { return helper; }
-
 MouseButtonSettingsDialogHelper &MouseButtonSettingsDialog::getHelperLocal() { return helper; }

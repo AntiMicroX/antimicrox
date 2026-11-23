@@ -47,8 +47,6 @@ void DPadContextMenuHelper::setPendingSlots(QHash<JoyDPadButton::JoyDPadDirectio
     }
 }
 
-void DPadContextMenuHelper::clearPendingSlots() { pendingSlots.clear(); }
-
 void DPadContextMenuHelper::setFromPendingSlots()
 {
     if (!getPendingSlots().isEmpty())

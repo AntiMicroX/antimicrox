@@ -30,5 +30,3 @@ MouseDpadSettingsDialogHelper::MouseDpadSettingsDialogHelper(JoyDPad *dpad, QObj
 
     this->dpad = dpad;
 }
-
-JoyDPad *MouseDpadSettingsDialogHelper::getDPad() const { return dpad; }

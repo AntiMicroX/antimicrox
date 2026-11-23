@@ -52,5 +52,3 @@ void MouseButtonSettingsDialogHelper::updateAccelExtraDuration(double value) { b
 void MouseButtonSettingsDialogHelper::updateReleaseSpringRadius(int value) { button->setSpringDeadCircleMultiplier(value); }
 
 void MouseButtonSettingsDialogHelper::updateSpringRelativeStatus(bool value) { button->setSpringRelativeStatus(value); }
-
-JoyButton *MouseButtonSettingsDialogHelper::getButton() const { return button; }

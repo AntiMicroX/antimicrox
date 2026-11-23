@@ -34,10 +34,6 @@ class MouseButtonSettingsDialog : public MouseSettingsDialog
   public:
     explicit MouseButtonSettingsDialog(JoyButton *button, QWidget *parent = nullptr);
 
-    JoyButton *getButton() const;
-    SpringModeRegionPreview *getSpringPreviewWidget() const;
-    MouseButtonSettingsDialogHelper const &getHelper();
-
   protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();

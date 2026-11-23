@@ -30,7 +30,6 @@ class DPadContextMenuHelper : public QObject
   public:
     explicit DPadContextMenuHelper(JoyDPad *dpad, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> *tempSlots);
-    void clearPendingSlots();
     QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> const &getPendingSlots();
 
   public slots:

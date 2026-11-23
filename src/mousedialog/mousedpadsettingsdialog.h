@@ -34,10 +34,6 @@ class MouseDPadSettingsDialog : public MouseSettingsDialog
   public:
     explicit MouseDPadSettingsDialog(JoyDPad *dpad, QWidget *parent = nullptr);
 
-    JoyDPad *getDPad() const;
-    SpringModeRegionPreview *getSpringPreviewWidget() const;
-    MouseDpadSettingsDialogHelper const &getHelper();
-
   protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
@@ -65,8 +61,6 @@ class MouseDPadSettingsDialog : public MouseSettingsDialog
     void updateExtraAccelerationCurve(int index);
 
   private:
-    MouseDpadSettingsDialogHelper &getHelperLocal();
-
     JoyDPad *dpad;
     SpringModeRegionPreview *springPreviewWidget;
     MouseDpadSettingsDialogHelper helper;
