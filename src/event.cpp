@@ -131,7 +131,6 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
         {
             argumentsTempList.prepend(slot->getTextData());
         }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
         QProcess process;
         process.setProgram(process_executor);
         process.setArguments(argumentsTempList);
@@ -139,10 +138,6 @@ void sendevent(JoyButtonSlot *slot, bool pressed)
         process.setWorkingDirectory(QFileInfo(slot->getTextData()).absoluteDir().path());
 
         bool success = process.startDetached(&pid);
-#else
-        bool success = QProcess::startDetached(process_executor, argumentsTempList,
-                                               QFileInfo(slot->getTextData()).absoluteDir().path(), &pid);
-#endif
         if (success)
             qInfo() << "Command: " << slot->getTextData() << " " << argumentsString
                     << " executed successfully with pid: " << pid;

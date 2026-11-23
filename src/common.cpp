@@ -80,11 +80,7 @@ QString preferredProfileDir(AntiMicroSettings *settings)
 QStringList parseArgumentsString(const QString &tempString)
 {
     bool inside = (!tempString.isEmpty() && tempString.at(0) == QChar('"'));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     QStringList tempList = tempString.split(QRegularExpression("\""), Qt::SkipEmptyParts);
-#else
-    QStringList tempList = tempString.split(QRegularExpression("\""), QString::SkipEmptyParts);
-#endif
     QStringList finalList = QStringList();
     QStringListIterator iter(tempList);
 
@@ -95,11 +91,7 @@ QStringList parseArgumentsString(const QString &tempString)
         if (inside)
             finalList.append(temp);
         else
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
             finalList.append(temp.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts));
-#else
-            finalList.append(temp.split(QRegularExpression("\\s+"), QString::SkipEmptyParts));
-#endif
         inside = !inside;
     }
 

@@ -62,9 +62,7 @@
         #include "x11extras.h"
     #endif
 
-    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        #include <QDBusConnection>
-    #endif
+    #include <QDBusConnection>
 
 static void termSignalTermHandler(int signal)
 {
@@ -345,11 +343,7 @@ int main(int argc, char *argv[])
         mainWindow.removeJoyTabs();
         QObject::connect(&antimicrox, &QApplication::aboutToQuit, joypad_worker.data(), &InputDaemon::quit);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
         QTimer::singleShot(50, &antimicrox, &QApplication::quit);
-#else
-        QTimer::singleShot(50, &antimicrox, SLOT(quit()));
-#endif
 
         int result = antimicrox.exec();
 
@@ -599,7 +593,7 @@ int main(int argc, char *argv[])
     joypad_worker->moveToThread(inputEventThread);
     PadderCommon::mouseHelperObj.moveToThread(inputEventThread);
     inputEventThread->start(QThread::HighPriority);
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
     QDBusConnection connection = QDBusConnection::sessionBus();
     QString dbusServiceName = QStringLiteral("io.github.antimicrox");
     if (!connection.registerService(dbusServiceName))

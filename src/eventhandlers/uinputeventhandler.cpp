@@ -38,9 +38,7 @@ static const QString keyboardDeviceName = PadderCommon::keyboardDeviceName;
 static const QString springMouseDeviceName = PadderCommon::springMouseDeviceName;
 
 #ifdef WITH_X11
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-        #include <QApplication>
-    #endif
+    #include <QApplication>
 
     #include <x11extras.h>
 #endif
@@ -91,20 +89,12 @@ bool UInputEventHandler::init()
 
     if (result)
     {
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-
         if (QApplication::platformName() == QStringLiteral("xcb"))
         {
-    #endif
-
             // Some time needs to elapse after device creation before changing
             // pointer settings. Otherwise, settings will not take effect.
             QTimer::singleShot(2000, this, SLOT(x11ResetMouseAccelerationChange()));
-
-    #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
         }
-
-    #endif
     }
 
 #endif

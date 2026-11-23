@@ -352,13 +352,8 @@ bool WinExtras::elevateAntiMicro()
     char *tempfile = ba.data();
     tempverb[5] = '\0';
     tempfile[antiProgramLocation.length()] = '\0';
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     sei.lpVerb = convertCharArrayToLPCWSTR(tempverb);
     sei.lpFile = convertCharArrayToLPCWSTR(tempfile);
-#else
-    sei.lpVerb = tempverb;
-    sei.lpFile = tempfile;
-#endif
     sei.hwnd = NULL;
     sei.nShow = SW_NORMAL;
     BOOL result = ShellExecuteEx(&sei);

@@ -35,7 +35,7 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
     #include "inputdeviceadaptor.h"
 #endif
 
@@ -1655,7 +1655,7 @@ QList<int> &InputDevice::getDpadstatesLocal() { return dpadstates; }
 
 void InputDevice::registerDBusObject()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
     new InputDeviceAdaptor{this};
     QDBusConnection connection = QDBusConnection::sessionBus();
     QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
@@ -1671,7 +1671,7 @@ void InputDevice::registerDBusObject()
 
 void InputDevice::unregisterDBusObject()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) && defined(Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
     QDBusConnection connection = QDBusConnection::sessionBus();
     QString objectPath = QStringLiteral("/InputDevice/%1").arg(joyNumber);
     connection.unregisterObject(objectPath);
