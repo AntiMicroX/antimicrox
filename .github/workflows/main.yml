@@ -26,14 +26,14 @@ jobs:
                       cxx: g++
                       build-type: Debug
                       experimental: false
-                      qt-packages: "qt6-base-dev qt6-tools-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-l10n-tools linguist-qt6"
+                      qt-packages: "qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools linguist-qt6"
                     - name: Ubuntu 24-04 Clang QT6 (Used by AppImage)
                       image: ubuntu-24.04
                       cc: clang
                       cxx: clang++
                       build-type: Debug
                       experimental: true
-                      qt-packages: "qt6-base-dev qt6-tools-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-l10n-tools linguist-qt6"
+                      qt-packages: "qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools linguist-qt6"
 
         name: ${{ matrix.name }} ${{ matrix.build-type }}
         runs-on: ${{ matrix.image }}
