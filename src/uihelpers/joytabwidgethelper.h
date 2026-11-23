@@ -41,8 +41,6 @@ class JoyTabWidgetHelper : public QObject
     InputDevice *device;
     XMLConfigReader *reader;
     XMLConfigWriter *writer;
-    bool errorOccurred;
-    QString lastErrorString;
 
   public slots:
     bool readConfigFile(QString filepath);

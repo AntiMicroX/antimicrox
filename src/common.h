@@ -149,7 +149,6 @@ const QString sdlVersionCompiled = ([] {
     return QString("%1.%2.%3").arg(compver.major).arg(compver.minor).arg(compver.patch);
 })();
 
-extern QWaitCondition waitThisOut;
 extern QMutex sdlWaitMutex;
 extern QMutex inputDaemonMutex;
 extern MouseHelper mouseHelperObj;

@@ -93,7 +93,6 @@ const int GlobalVariables::InputDevice::DEFAULTKEYPRESSTIME = 100;
 const int GlobalVariables::InputDevice::RAISEDDEADZONE = 20000;
 
 // QRegularExpression GlobalVariables::InputDevice::emptyGUID("^[0]+$");
-QRegularExpression GlobalVariables::InputDevice::emptyUniqueID("^[0]+$");
 
 // ---- JOYAXIS ---- //
 
@@ -120,7 +119,6 @@ const int GlobalVariables::HapticTriggerPs5::FREQUENCY = 32;
 // ---- X11EXTRAS ---- //
 
 const QString GlobalVariables::X11Extras::mouseDeviceName = PadderCommon::mouseDeviceName;
-const QString GlobalVariables::X11Extras::keyboardDeviceName = PadderCommon::keyboardDeviceName;
 const QString GlobalVariables::X11Extras::xtestMouseDeviceName = QString("Virtual core XTEST pointer");
 
 QString GlobalVariables::X11Extras::_customDisplayString = QString("");

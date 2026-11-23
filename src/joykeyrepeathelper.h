@@ -44,7 +44,6 @@ class JoyKeyRepeatHelper : public QObject
   protected:
     QTimer keyRepeatTimer;
     JoyButtonSlot *lastActiveKey;
-    int keyRepeatDelay;
     int keyRepeatRate;
 };
 

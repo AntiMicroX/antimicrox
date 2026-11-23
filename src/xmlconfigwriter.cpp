@@ -34,7 +34,6 @@ XMLConfigWriter::XMLConfigWriter(QObject *parent)
     xml->setAutoFormatting(true);
     configFile = nullptr;
     m_joystick = nullptr;
-    m_joystickXml = nullptr;
     writerError = false;
 }
 

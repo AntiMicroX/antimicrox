@@ -36,7 +36,6 @@ JoyTabWidgetHelper::JoyTabWidgetHelper(InputDevice *device, QObject *parent)
     this->device = device;
     this->reader = nullptr;
     this->writer = nullptr;
-    this->errorOccurred = false;
 }
 
 JoyTabWidgetHelper::~JoyTabWidgetHelper()

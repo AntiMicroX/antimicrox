@@ -201,7 +201,6 @@ void log_system_config()
     VERBOSE() << "Platform name: " << QApplication::platformName();
 }
 
-QWaitCondition waitThisOut;
 QMutex sdlWaitMutex;
 QMutex inputDaemonMutex;
 MouseHelper mouseHelperObj;
