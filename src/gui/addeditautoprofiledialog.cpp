@@ -436,7 +436,6 @@ void AddEditAutoProfileDialog::check_executable_file()
  */
 void AddEditAutoProfileDialog::accept()
 {
-    QString errorString = QString();
     try
     {
         check_profile_file();
