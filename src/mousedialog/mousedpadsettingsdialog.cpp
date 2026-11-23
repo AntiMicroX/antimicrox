@@ -306,8 +306,6 @@ void MouseDPadSettingsDialog::calculateExtraAccelerationCurve()
 
 void MouseDPadSettingsDialog::updateExtraAccelerationCurve(int index)
 {
-    JoyButton::JoyExtraAccelerationCurve temp = JoyButton::LinearAccelCurve;
-
     if (index > 0)
     {
         InputDevice *device = dpad->getParentSet()->getInputDevice();
@@ -315,7 +313,7 @@ void MouseDPadSettingsDialog::updateExtraAccelerationCurve(int index)
         PadderCommon::lockInputDevices();
         QMetaObject::invokeMethod(device, "haltServices", Qt::BlockingQueuedConnection);
 
-        temp = getExtraAccelCurveForIndex(index);
+        JoyButton::JoyExtraAccelerationCurve temp = getExtraAccelCurveForIndex(index);
         dpad->setButtonsExtraAccelerationCurve(temp);
 
         PadderCommon::unlockInputDevices();

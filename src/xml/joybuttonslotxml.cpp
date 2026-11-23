@@ -113,8 +113,6 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
                 qDebug() << "It it start element? :" << (xml->isStartElement() ? "yes" : "no");
             }
 
-            i = 0;
-
             if (xml->name().toString() == "mode" && xml->readElementText() == "mix")
             {
                 qDebug() << "slot text data for joy mix is: " << slotMixString;
@@ -122,11 +120,6 @@ void JoyButtonSlotXml::readConfig(QXmlStreamReader *xml)
                 m_joyBtnSlot->setSlotMode(JoyButtonSlot::JoyMix);
                 m_joyBtnSlot->setTextData(slotMixString);
                 m_joyBtnSlot->setSlotCode(-1);
-
-                profile = QString();
-                tempStringData = QString();
-                extraStringData = QString();
-                slotMixString = QString();
 
                 xml->readNextStartElement();
             }

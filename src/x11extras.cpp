@@ -634,8 +634,6 @@ void X11Extras::x11ResetMouseAccelerationChange(QString pointerName)
                 qInfo() << tr("PtrFeedbackClass was not found for virtual pointer."
                               "No change to mouse acceleration will occur for device with id=%1")
                                .arg(device->device_id);
-
-                result = false;
             } else
             {
                 qInfo() << tr("Changing mouse acceleration for device with id=%1").arg(device->device_id);
@@ -710,10 +708,7 @@ struct X11Extras::ptrInformation X11Extras::getPointInformation(QString pointerN
 
             checkFeedback(temp, num_feedbacks, feedback_id);
 
-            if (feedback_id <= -1)
-            {
-                result = false;
-            } else
+            if (feedback_id > -1)
             {
                 XPtrFeedbackState *tempPtrFeedback = reinterpret_cast<XPtrFeedbackState *>(temp);
                 tempInfo.id = feedback_id;
