@@ -264,7 +264,7 @@ The command builds the package into the `build` folder and installs the created 
 The up to date Flathub manifest can be located in [Flathub's Github repo](https://github.com/flathub/io.github.antimicrox.antimicrox).
 
 ```bash
-flatpak install flathub org.kde.Platform//6.10 org.kde.Sdk//6.10
+flatpak install flathub org.kde.Platform//6.12 org.kde.Sdk//6.12
 flatpak-builder --user --install build-flatpak/ other/io.github.antimicrox.antimicrox.yml --force-clean
 ```
 
