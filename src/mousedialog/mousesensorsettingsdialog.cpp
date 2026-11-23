@@ -61,11 +61,6 @@ MouseSensorSettingsDialog::MouseSensorSettingsDialog(JoySensor *sensor, QWidget 
 }
 
 /**
- * @brief Gets the underlying JoySensor object
- */
-JoySensor *MouseSensorSettingsDialog::getSensor() const { return m_sensor; }
-
-/**
  * @brief Get the maximum mouse speed used by the buttons of the associated
  *  sensor and set the UI values to it.
  */

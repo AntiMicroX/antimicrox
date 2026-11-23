@@ -30,8 +30,6 @@ class MouseAxisSettingsDialogHelper : public QObject
   public:
     explicit MouseAxisSettingsDialogHelper(JoyAxis *axis, QObject *parent = nullptr);
 
-    JoyAxis *getAxis() const;
-
   public slots:
     void updateExtraAccelerationStatus(bool checked);
     void updateExtraAccelerationMultiplier(double value);

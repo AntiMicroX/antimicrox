@@ -58,10 +58,6 @@ XMLConfigReader *JoyTabWidgetHelper::getReader() { return this->reader; }
 
 XMLConfigWriter *JoyTabWidgetHelper::getWriter() { return this->writer; }
 
-bool JoyTabWidgetHelper::hasError() { return errorOccurred; }
-
-QString JoyTabWidgetHelper::getErrorString() { return lastErrorString; }
-
 /**
  * @brief XML read entry point for the GUI
  */
@@ -90,13 +86,6 @@ bool JoyTabWidgetHelper::readConfigFile(QString filepath)
     result = !this->reader->hasError();
     VERBOSE() << "Loading config file: " << filepath << (result ? " succeeded." : " failed.");
     return result;
-}
-
-bool JoyTabWidgetHelper::readConfigFileWithRevert(QString filepath)
-{
-    device->revertProfileEdited();
-
-    return readConfigFile(filepath);
 }
 
 /**
@@ -135,10 +124,4 @@ void JoyTabWidgetHelper::reInitDevice()
     device->reInitButtons();
 
     device->establishPropertyUpdatedConnection();
-}
-
-void JoyTabWidgetHelper::reInitDeviceWithRevert()
-{
-    device->revertProfileEdited();
-    reInitDevice();
 }

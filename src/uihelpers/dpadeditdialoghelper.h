@@ -30,7 +30,6 @@ class DPadEditDialogHelper : public QObject
   public:
     explicit DPadEditDialogHelper(JoyDPad *dpad, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> *tempSlots);
-    void clearPendingSlots();
     QHash<JoyDPadButton::JoyDPadDirections, JoyButtonSlot *> const &getPendingSlots();
 
   public slots:

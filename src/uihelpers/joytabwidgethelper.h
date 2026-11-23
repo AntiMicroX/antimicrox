@@ -37,9 +37,6 @@ class JoyTabWidgetHelper : public QObject
 
     XMLConfigWriter *getWriter();
 
-    bool hasError();
-    QString getErrorString();
-
   protected:
     InputDevice *device;
     XMLConfigReader *reader;
@@ -49,10 +46,8 @@ class JoyTabWidgetHelper : public QObject
 
   public slots:
     bool readConfigFile(QString filepath);
-    bool readConfigFileWithRevert(QString filepath);
     bool writeConfigFile(QString filepath);
     void reInitDevice();
-    void reInitDeviceWithRevert();
 };
 
 #endif // JOYTABWIDGETHELPER_H

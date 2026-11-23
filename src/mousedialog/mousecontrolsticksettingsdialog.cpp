@@ -362,10 +362,4 @@ void MouseControlStickSettingsDialog::updateExtraAccelerationCurve(int index)
     }
 }
 
-JoyControlStick *MouseControlStickSettingsDialog::getStick() const { return stick; }
-
-SpringModeRegionPreview *MouseControlStickSettingsDialog::getSpringPreviewWidget() const { return springPreviewWidget; }
-
-MouseControlStickSettingsDialogHelper const &MouseControlStickSettingsDialog::getHelper() { return helper; }
-
 MouseControlStickSettingsDialogHelper &MouseControlStickSettingsDialog::getHelperLocal() { return helper; }

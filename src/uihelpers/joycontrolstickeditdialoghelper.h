@@ -33,7 +33,6 @@ class JoyControlStickEditDialogHelper : public QObject
   public:
     explicit JoyControlStickEditDialogHelper(JoyControlStick *stick, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> *tempSlots);
-    void clearPendingSlots();
     QHash<JoyControlStick::JoyStickDirections, JoyButtonSlot *> const &getPendingSlots();
 
   public slots:

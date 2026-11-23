@@ -376,10 +376,4 @@ void MouseAxisSettingsDialog::calculateExtraAccelerationCurve()
     }
 }
 
-JoyAxis *MouseAxisSettingsDialog::getAxis() const { return axis; }
-
-SpringModeRegionPreview *MouseAxisSettingsDialog::getSpringPreviewWidget() const { return springPreviewWidget; }
-
-MouseAxisSettingsDialogHelper const &MouseAxisSettingsDialog::getHelper() { return helper; }
-
 MouseAxisSettingsDialogHelper &MouseAxisSettingsDialog::getHelperLocal() { return helper; }

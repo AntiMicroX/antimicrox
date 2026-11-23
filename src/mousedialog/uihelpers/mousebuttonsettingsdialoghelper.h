@@ -30,8 +30,6 @@ class MouseButtonSettingsDialogHelper : public QObject
   public:
     explicit MouseButtonSettingsDialogHelper(JoyButton *button, QObject *parent = nullptr);
 
-    JoyButton *getButton() const;
-
   public slots:
     void updateExtraAccelerationStatus(bool checked);
     void updateExtraAccelerationMultiplier(double value);

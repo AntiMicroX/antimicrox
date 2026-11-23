@@ -33,8 +33,6 @@ class MouseSensorSettingsDialog : public MouseSettingsDialog
   public:
     explicit MouseSensorSettingsDialog(JoySensor *sensor, QWidget *parent = 0);
 
-    JoySensor *getSensor() const;
-
   protected:
     void calculateMouseSpeedPreset();
     void calculateWheelSpeedPreset();

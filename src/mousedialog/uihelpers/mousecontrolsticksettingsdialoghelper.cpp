@@ -64,5 +64,3 @@ void MouseControlStickSettingsDialogHelper::updateReleaseSpringRadius(int value)
 {
     stick->setButtonsSpringDeadCircleMultiplier(value);
 }
-
-JoyControlStick *MouseControlStickSettingsDialogHelper::getStick() const { return stick; }

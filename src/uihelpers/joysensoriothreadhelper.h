@@ -35,7 +35,6 @@ class JoySensorIoThreadHelper : public QObject
   public:
     explicit JoySensorIoThreadHelper(JoySensor *sensor, QObject *parent = nullptr);
     void setPendingSlots(QHash<JoySensorDirection, JoyButtonSlot *> *tempSlots);
-    void clearPendingSlots();
 
   public slots:
     void setFromPendingSlots();

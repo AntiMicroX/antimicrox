@@ -48,11 +48,6 @@ void JoySensorIoThreadHelper::setPendingSlots(QHash<JoySensorDirection, JoyButto
 }
 
 /**
- * @brief Clears pending slot values
- */
-void JoySensorIoThreadHelper::clearPendingSlots() { m_pending_slots.clear(); }
-
-/**
  * @brief Applies pending slot values to the buttons
  *  Should be called via QMetaObject::invokeMethod
  */

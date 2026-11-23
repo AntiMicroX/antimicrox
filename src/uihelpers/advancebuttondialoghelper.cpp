@@ -80,7 +80,3 @@ void AdvanceButtonDialogHelper::removeAssignedSlot(int index)
     }
     button->removeAssignedSlot(index);
 }
-
-void AdvanceButtonDialogHelper::onlyReset() { button->eventReset(); }
-
-void AdvanceButtonDialogHelper::onlyRemoveAssignedSlot(int index) { button->removeAssignedSlot(index); }

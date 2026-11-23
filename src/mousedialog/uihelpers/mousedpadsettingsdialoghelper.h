@@ -30,8 +30,6 @@ class MouseDpadSettingsDialogHelper : public QObject
   public:
     explicit MouseDpadSettingsDialogHelper(JoyDPad *dpad, QObject *parent = nullptr);
 
-    JoyDPad *getDPad() const;
-
   private:
     JoyDPad *dpad;
 };

@@ -34,10 +34,6 @@ class MouseControlStickSettingsDialog : public MouseSettingsDialog
   public:
     explicit MouseControlStickSettingsDialog(JoyControlStick *stick, QWidget *parent = 0);
 
-    JoyControlStick *getStick() const;
-    SpringModeRegionPreview *getSpringPreviewWidget() const;
-    MouseControlStickSettingsDialogHelper const &getHelper();
-
   protected:
     void selectCurrentMouseModePreset();
     void calculateSpringPreset();
