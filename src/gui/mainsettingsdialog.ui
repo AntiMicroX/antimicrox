@@ -262,6 +262,16 @@ clicked instead of quitting the program.</string>
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="runAsAdminAtStartupCheckBox">
+           <property name="toolTip">
+            <string>Start with administrator privileges at sign-in. Run AntiMicroX as administrator once to change this setting.</string>
+           </property>
+           <property name="text">
+            <string>Run As Administrator At Windows Startup</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="traySingleProfileListCheckBox">
            <property name="toolTip">
             <string>Display recent profiles for all controllers
@@ -1524,22 +1534,6 @@ values used by the virtual mouse.</string>
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>MainSettingsDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>

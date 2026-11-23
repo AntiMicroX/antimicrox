@@ -1,0 +1,73 @@
+name: Windows startup tests and preview
+
+on:
+    workflow_dispatch:
+    push:
+        paths:
+            - 'src/winstartup.*'
+            - 'src/gui/mainsettingsdialog.*'
+            - 'tests/windows-startup/**'
+            - '.github/workflows/windows-startup.yml'
+
+permissions:
+    contents: read
+
+jobs:
+    windows-startup:
+        runs-on: windows-2022
+        strategy:
+            fail-fast: false
+            matrix:
+                qt: ['5.15', '6.10']
+                include:
+                    - qt: '5.15'
+                      arch: win64_mingw81
+                    - qt: '6.10'
+                      arch: win64_mingw
+        defaults:
+            run:
+                shell: msys2 {0}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: msys2/setup-msys2@v2
+              with:
+                  msystem: mingw64
+                  release: false
+                  install: >-
+                      mingw-w64-x86_64-toolchain
+                      mingw-w64-x86_64-ninja
+                      mingw-w64-x86_64-cmake
+            - uses: jurplel/install-qt-action@v4
+              with:
+                  version: '${{ matrix.qt }}'
+                  host: windows
+                  target: desktop
+                  arch: '${{ matrix.arch }}'
+                  dir: '${{ github.workspace }}/qt/'
+            - name: Build startup tests
+              run: cmake -S tests/windows-startup -B startup-tests -G Ninja && cmake --build startup-tests
+              env:
+                  CMAKE_PREFIX_PATH: '${{ env.QT_ROOT_DIR }}/lib/cmake'
+            - name: Test startup transitions on Windows
+              run: |
+                  export PATH="$PATH:$(cygpath -u "$QT_ROOT_DIR")/bin"
+                  ctest --test-dir startup-tests --output-on-failure || { cat startup-tests/test-results.txt; exit 1; }
+            - name: Install SDL2
+              if: matrix.qt == '6.10'
+              run: |
+                  curl --fail -L -o SDL2.pkg.tar.zst https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-SDL2-2.32.10-1-any.pkg.tar.zst
+                  pacman --noconfirm -U SDL2.pkg.tar.zst
+            - name: Build portable preview
+              if: matrix.qt == '6.10'
+              run: |
+                  cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DPORTABLE_WIN=ON -DANTIMICROX_PKG_VERSION="Administrator startup preview ${{ github.sha }}"
+                  cmake --build build --target package --parallel 4
+              env:
+                  CMAKE_PREFIX_PATH: '${{ env.QT_ROOT_DIR }}/lib/cmake'
+            - name: Upload Windows preview
+              if: matrix.qt == '6.10'
+              uses: actions/upload-artifact@v4
+              with:
+                  name: antimicrox-windows-admin-startup
+                  path: build/antimicrox*.zip
+                  if-no-files-found: error
