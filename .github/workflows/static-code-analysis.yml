@@ -35,7 +35,7 @@ jobs:
 
             # Project must be built before codeql can run its analysis
             - name: Install Dependencies
-              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+              run: sudo apt-get update && sudo apt-get install extra-cmake-modules qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 
             - name: Configure CMake
               run: cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -B ${{ github.workspace }}/build
@@ -66,7 +66,7 @@ jobs:
             # Download Infer and install at workflow run to ensure latest version
             - name: Install Dependencies
               run: |
-                  sudo apt-get update && sudo apt-get install extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+                  sudo apt-get update && sudo apt-get install extra-cmake-modules qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
                   curl -sSL "https://github.com/facebook/infer/releases/download/v1.1.0/infer-linux64-v1.1.0.tar.xz" | sudo tar -C /opt -xJ && sudo ln -s "/opt/infer-linux64-v1.1.0/bin/infer" /usr/local/bin/infer
 
             # Project must be built before infer can run its analysis, must export the compile_commands.json file
