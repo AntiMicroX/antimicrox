@@ -58,7 +58,6 @@ class BaseEventHandler : public QObject
     virtual QString getName() = 0;
     virtual QString getIdentifier() = 0;
     virtual void printPostMessages();
-    QString getErrorString();
 
   protected:
     QString lastErrorString;

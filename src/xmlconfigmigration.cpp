@@ -176,5 +176,3 @@ QString XMLConfigMigration::version0006Migration()
 
     return tempXmlString;
 }
-
-const QXmlStreamReader *XMLConfigMigration::getReader() { return reader; }

@@ -35,12 +35,9 @@ class SDLEventReader : public QObject
 
     bool isSDLOpen();
 
-    AntiMicroSettings *getSettings() const;
-
   protected:
     void initSDL();
     void closeSDL();
-    void clearEvents();
     int eventStatus();
 
   signals:
@@ -54,7 +51,6 @@ class SDLEventReader : public QObject
     void stop();
     void refresh();
     void updatePollRate(int tempPollRate); // (unsigned)
-    void resetJoystickMap();
     void quit();
     void closeDevices();
     void haltServices();
