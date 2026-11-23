@@ -75,7 +75,6 @@ if(WIN32)
     option(PORTABLE_WIN "Compile app for portability" OFF)
 endif(WIN32)
 
-option(USE_QT6_BY_DEFAULT "Use Qt6 if available (if not available fallback to QT5)" ON)
 option(UPDATE_TRANSLATIONS "Call lupdate to update translation files from source." OFF)
 option(TRANS_REMOVE_OBSOLETE "Add -noobsolete option to lupdate command to get rid of old text entries" OFF)
 option(ATTACH_FAKE_CLASSES "Fake classes can be used in application to tests functionalities" OFF)
@@ -515,49 +514,22 @@ endif(UNIX)
 ###############################
 
 #QT
-set(QT_REQUIRED_VERSION 5.10)
+set(QT_REQUIRED_VERSION 6.0)
 set(CMAKE_AUTOMOC TRUE) # required by moc preprocessor used in QT
 
-if(USE_QT6_BY_DEFAULT)
-    find_package(Qt6 COMPONENTS Core)
-    set(Use_QT6 TRUE)
-    if(NOT Qt6_FOUND)
-        message("QT6 not found. Falling back to QT5.")
-        set(Use_QT6 FALSE)
-    endif()
-else()
-    find_package(Qt5 COMPONENTS Core)
-    set(Use_QT6 FALSE)
-    if(NOT Qt5_FOUND)
-        message("QT5 not found. Falling back to QT6.")
-        set(Use_QT6 TRUE)
-    endif()
+find_package(Qt6 ${QT_REQUIRED_VERSION}
+    COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
+    REQUIRED)
+
+QT_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
+QT_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
+
+if(UNIX)
+    find_package(Qt6 ${QT_REQUIRED_VERSION} COMPONENTS DBus REQUIRED)
+    QT_ADD_DBUS_ADAPTOR(antimicrox_FORMS_HEADERS other/io.github.antimicrox.inputdevice.xml inputdevice.h InputDevice)
+    LIST(APPEND QT_LIBS Qt6::DBus)
 endif()
-
-if (Use_QT6)
-    find_package(Qt6 ${QT_REQUIRED_VERSION} 
-        COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
-        REQUIRED)
-    find_package(QT NAMES Qt6 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
-
-    QT_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
-    QT_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
-
-    if(UNIX)
-        find_package(Qt6 ${QT_REQUIRED_VERSION} COMPONENTS DBus REQUIRED)
-        QT_ADD_DBUS_ADAPTOR(antimicrox_FORMS_HEADERS other/io.github.antimicrox.inputdevice.xml inputdevice.h InputDevice)
-        LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::DBus)
-    endif()
-else()
-    find_package(Qt5 ${QT_REQUIRED_VERSION} 
-        COMPONENTS Core Widgets Gui Network LinguistTools Concurrent
-        REQUIRED)
-    find_package(QT NAMES Qt5 REQUIRED) # used to get version number in QT_VERSION_MAJOR and QT_VERSION
-
-    QT5_WRAP_UI(antimicrox_FORMS_HEADERS ${antimicrox_FORMS})
-    QT5_ADD_RESOURCES(antimicrox_RESOURCES_RCC ${antimicrox_RESOURCES})
-endif()
-message("Found QT: ${QT_VERSION}")
+message("Found QT: ${Qt6_VERSION}")
 
 add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -575,11 +547,11 @@ endif(WITH_X11)
 # LINKER LIBRARIES
 ###############################
 
-LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Core)
-LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Gui)
-LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Widgets)
-LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Concurrent)
-LIST(APPEND QT_LIBS Qt${QT_VERSION_MAJOR}::Network)
+LIST(APPEND QT_LIBS Qt6::Core)
+LIST(APPEND QT_LIBS Qt6::Gui)
+LIST(APPEND QT_LIBS Qt6::Widgets)
+LIST(APPEND QT_LIBS Qt6::Concurrent)
+LIST(APPEND QT_LIBS Qt6::Network)
 
 if(UNIX)
     if(WITH_X11)
@@ -751,22 +723,16 @@ if(WIN32)
     find_path(PTHREAD_DLL_DIR "libwinpthread-1.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
     find_path(LIBCPP_DLL_DIR "libstdc++-6.dll" HINTS "${SDL2_LIBRARY_DIRS}/../bin")
     list(APPEND DLL_FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Core.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Gui.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Concurrent.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Network.dll"
-        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt${QT_VERSION_MAJOR}Widgets.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt6Core.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt6Gui.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt6Concurrent.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt6Network.dll"
+        "${CMAKE_CURRENT_BINARY_DIR}/bin/Qt6Widgets.dll"
         "${SDL2_DLL_LOCATION_DIR}/SDL2.dll"
         "${GCC_DLL}/libgcc_s_seh-1.dll"
         "${PTHREAD_DLL_DIR}/libwinpthread-1.dll"
         "${LIBCPP_DLL_DIR}/libstdc++-6.dll"
         )
-
-    if(QT_VERSION_MAJOR EQUAL 5)
-        list(APPEND DLL_FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/bin/libEGL.dll"
-            )
-    endif(QT_VERSION_MAJOR EQUAL 5)
     
 
     if(CHECK_FOR_UPDATES)
@@ -796,7 +762,7 @@ if(WIN32)
     install(FILES ${DLL_FILES} TYPE BIN )
 
     # Required platform plugin
-    get_target_property(QtCore_LOCATION Qt${QT_VERSION_MAJOR}::Core LOCATION)
+    get_target_property(QtCore_LOCATION Qt6::Core LOCATION)
     get_filename_component(QT_DLL_DIR ${QtCore_LOCATION} PATH)
     install(FILES
         ${QT_DLL_DIR}/../plugins/platforms/qwindows.dll
@@ -878,12 +844,7 @@ endif()
 
 # Building .deb package
 if(CPACK_GENERATOR STREQUAL "DEB")
-    if(QT_VERSION_MAJOR EQUAL 5)
-        # TODO use regular, not dev packages
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5widgets5 (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libc6")
-    else()
-        set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6widgets6 (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libc6")
-    endif(QT_VERSION_MAJOR EQUAL 5)
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6widgets6 (>= ${QT_REQUIRED_VERSION}), libsdl2-2.0-0 (>= ${SDL_REQUIRED_VERSION}), libc6")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "pktiuk <kotiuk@zohomail.eu>")
     set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "AntiMicroX is a graphical program used to map gamepad buttons to keyboard, mouse, scripts and macros.
 

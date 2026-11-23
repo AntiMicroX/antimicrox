@@ -8,7 +8,7 @@ set(CMAKE_AUTOMOC ON)
 # to always look for includes there:
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt5Test REQUIRED)
+find_package(Qt6Test REQUIRED)
 
 set(GUIS_SRCS testaboutdialog.cpp
         testaddeditautoprofiledialog.cpp
@@ -20,5 +20,5 @@ set(GUIS_SRCS testaboutdialog.cpp
         testqkeydisplaydialog.cpp
         )
 add_executable(GuiTests ${GUIS_SRCS})
-#target_link_libraries( GuiTests antilib Qt5::Test )
+#target_link_libraries( GuiTests antilib Qt6::Test )
 ADD_TEST(NAME GuiTests COMMAND GuiTests)

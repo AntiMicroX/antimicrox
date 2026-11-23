@@ -391,11 +391,7 @@ void AdvanceButtonDialog::deleteSlot(bool showWarning)
 
             changeTurboForSequences();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
             QTimer::singleShot(0, &helper, [this, index]() { (&helper)->removeAssignedSlot(index); });
-#else
-            QMetaObject::invokeMethod(&helper, "removeAssignedSlot", Qt::BlockingQueuedConnection, Q_ARG(int, index));
-#endif
 
             index = qMax(0, index - 1);
             performStatsWidgetRefresh(ui->slotListWidget->item(index));

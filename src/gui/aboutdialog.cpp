@@ -98,12 +98,8 @@ void AboutDialog::fillInfoTextBrowser()
         qWarning() << "Unable to open changelog resource:" << temp.fileName();
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     ui->changelogText->setMarkdown(changelogText);
     ui->changelogText->setTextInteractionFlags(ui->changelogText->textInteractionFlags() | Qt::LinksAccessibleByMouse);
-#else
-    ui->changelogText->setPlainText(changelogText);
-#endif
     ui->changelogText->setOpenExternalLinks(true);
 }
 

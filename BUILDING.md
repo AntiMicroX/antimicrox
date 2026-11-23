@@ -28,12 +28,11 @@ installed on your system in order to build this program:
 - `cmake`
 - `extra-cmake-modules`
 - QT libraries:
-  - For QT6: `qt6-base-dev`, `qt6-tools-dev-tools` `libqt6core5compat6-dev` `qt6-tools-dev`
-  - For QT5: `qttools5-dev` and `qttools5-dev-tools` (`qt5-tools` on distros based on Arch Linux)
+  - `qt6-base-dev`, `qt6-tools-dev-tools`, `qt6-tools-dev`
 - `libsdl2-dev` (`sdl2` on distros based on Arch Linux) (SDL2)
 - `libxi-dev` (`libxi` on distros based on Arch Linux) (Optional. Needed to compile with X11 and uinput support)
 - `libxtst-dev` (`libxtst` on distros based on Arch Linux) (Optional. Needed to compile with XTest support)
-- `libx11-dev` (`libx11` on distros based on Arch Linux) (Needed to compile with Qt5 support)
+- `libx11-dev` (`libx11` on distros based on Arch Linux)
 - `itstool` (extracts messages from XML files and outputs PO template files, then merges translations from MO files to create translated XML files)
 - `gettext`
 
@@ -54,13 +53,7 @@ sudo dnf install git make cmake gcc cmake extra-cmake-modules qt6-qttools-devel 
 One-liner for installing above dependencies:  
 
 ```bash
-sudo apt install g++ cmake extra-cmake-modules qt6-base-dev qt6-tools-dev-tools libqt6core5compat6-dev qt6-tools-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
-```
-
-QT5 Variant:
-
-```bash
-sudo apt install g++ cmake extra-cmake-modules qttools5-dev qttools5-dev-tools libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
+sudo apt install g++ cmake extra-cmake-modules qt6-base-dev qt6-tools-dev-tools qt6-tools-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build
 ```
 
 </details>
@@ -104,9 +97,9 @@ Run built binaries
 #### MSVC building tips
 
 Recent versions of Visual Studio (2017+) have support for cmake projects. Under Visual Studio 2022, building AntiMicroX is quite straight forward.
-- Ensure you have compatable versions of [Qt](https://www.qt.io/download) (5.9 works as of writing,) and [SDL2-devel](https://github.com/libsdl-org/SDL/releases/) installed.
+- Ensure you have compatable versions of [Qt](https://www.qt.io/download) (Qt 6) and [SDL2-devel](https://github.com/libsdl-org/SDL/releases/) installed.
 - Open antimicrox as a local folder in VS22. It should pick up the `CMakeLists.txt` and offer an option to open the CMake settings editor. If it doesn't, right click on `CMakeLists.txt` in the solution explorer and select `CMake settings for antimicrox`.
-- In the `Command arguments` section, add an argument to tell CMake where to find your Qt; E.g.: `"-DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2017_64\lib\cmake"`. As of writing, Qt's msvc2017 works properly through vs22.
+- In the `Command arguments` section, add an argument to tell CMake where to find your Qt; E.g.: `"-DCMAKE_PREFIX_PATH=C:\Qt\6.x\msvc2022_64\lib\cmake"`.
 - Under the `Cmake variables and cache` section, click the link labeled `Save and generate cmake cache to load variables.
 - If the CMake generation fails due to SDL2, find the variables named `SDL2_PATH`, `SDL2_INCLUDE_DIR`, and `SDL2_DLL_LOCATION_DIR` in the list view, and set them properly. You may also need to move the headers in the SDL2 include dir inside a folder named `SDL2` to match their include paths on other systems.
 - At this point you should be able to save your changes to regenerate the cmake cache, which will then allow you to build `antimicrox.exe` through Visual Studio.
