@@ -37,16 +37,10 @@ class XMLConfigReader : public QObject
   public:
     explicit XMLConfigReader(QObject *parent = nullptr);
     ~XMLConfigReader();
-    void setJoystick(InputDevice *joystick);
     void setFileName(QString filename);
     const QString getErrorString();
     bool hasError();
     bool read();
-
-    const QXmlStreamReader *getXml();
-    QString const &getFileName();
-    const QFile *getConfigFile();
-    const InputDevice *getJoystick();
 
   protected:
     void initDeviceTypes();

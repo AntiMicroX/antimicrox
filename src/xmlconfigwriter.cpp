@@ -104,11 +104,3 @@ void XMLConfigWriter::setFileName(QString filename)
 bool XMLConfigWriter::hasError() { return writerError; }
 
 const QString XMLConfigWriter::getErrorString() { return writerErrorString; }
-
-const QXmlStreamWriter *XMLConfigWriter::getXml() { return xml; }
-
-QString const &XMLConfigWriter::getFileName() { return fileName; }
-
-const QFile *XMLConfigWriter::getConfigFile() { return configFile; }
-
-const InputDevice *XMLConfigWriter::getJoystick() { return m_joystick; }

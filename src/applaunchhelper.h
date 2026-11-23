@@ -36,8 +36,6 @@ class AppLaunchHelper : public QObject
 
     void printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks);
 
-    AntiMicroSettings *getSettings() const;
-
   protected:
     void enablePossibleMouseSmoothing();
     void establishMouseTimerConnections();

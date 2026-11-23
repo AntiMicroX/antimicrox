@@ -109,8 +109,6 @@ Display *X11Extras::display() { return _display; }
  */
 void X11Extras::closeDisplay() { freeDisplay(); }
 
-void X11Extras::setCustomDisplay(QString displayString) { GlobalVariables::X11Extras::_customDisplayString = displayString; }
-
 /**
  * @brief Get appropriate alias for a known KeySym string that might be blank
  *     or contain invalid characters when returned from X.

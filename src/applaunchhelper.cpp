@@ -176,5 +176,3 @@ void AppLaunchHelper::changeMouseThread(QThread *thread)
 }
 
 void AppLaunchHelper::establishMouseTimerConnections() { JoyButton::establishMouseTimerConnections(); }
-
-AntiMicroSettings *AppLaunchHelper::getSettings() const { return settings; }

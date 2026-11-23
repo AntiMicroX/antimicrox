@@ -67,8 +67,6 @@ class X11Extras : public QObject
     struct ptrInformation getPointInformation();
     struct ptrInformation getPointInformation(QString pointerName);
 
-    static void setCustomDisplay(QString displayString);
-
     static X11Extras *getInstance();
     static void deleteInstance();
 

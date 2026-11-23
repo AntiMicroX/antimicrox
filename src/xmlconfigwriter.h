@@ -37,11 +37,6 @@ class XMLConfigWriter : public QObject
     bool hasError();
     const QString getErrorString();
 
-    const QXmlStreamWriter *getXml();
-    QString const &getFileName();
-    const QFile *getConfigFile();
-    const InputDevice *getJoystick();
-
   public slots:
     void write(InputDeviceXml *joystickXml);
 

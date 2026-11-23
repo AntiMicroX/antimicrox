@@ -65,8 +65,6 @@ XMLConfigReader::~XMLConfigReader()
     }
 }
 
-void XMLConfigReader::setJoystick(InputDevice *joystick) { m_joystick = joystick; }
-
 /**
  * @brief Sets the filename of the to be read XML file
  */
@@ -192,11 +190,3 @@ void XMLConfigReader::initDeviceTypes()
     deviceTypes.append(GlobalVariables::Joystick::xmlName);
     deviceTypes.append(GlobalVariables::GameController::xmlName);
 }
-
-const QXmlStreamReader *XMLConfigReader::getXml() { return xml; }
-
-QString const &XMLConfigReader::getFileName() { return fileName; }
-
-const QFile *XMLConfigReader::getConfigFile() { return configFile; }
-
-const InputDevice *XMLConfigReader::getJoystick() { return m_joystick; }

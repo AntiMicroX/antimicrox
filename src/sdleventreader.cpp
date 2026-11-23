@@ -156,17 +156,6 @@ void SDLEventReader::secondaryRefresh()
     initSDL();
 }
 
-void SDLEventReader::clearEvents()
-{
-    if (sdlIsOpen)
-    {
-        SDL_Event event;
-        while (SDL_PollEvent(&event) > 0)
-        {
-        }
-    }
-}
-
 bool SDLEventReader::isSDLOpen() { return sdlIsOpen; }
 
 int SDLEventReader::eventStatus()
@@ -212,8 +201,6 @@ void SDLEventReader::updatePollRate(int tempPollRate)
             pollRateTimer.start();
     }
 }
-
-void SDLEventReader::resetJoystickMap() { joysticks = nullptr; }
 
 void SDLEventReader::quit()
 {
@@ -272,5 +259,3 @@ void SDLEventReader::loadSdlMappingsFromDatabase()
     }
 #endif
 }
-
-AntiMicroSettings *SDLEventReader::getSettings() const { return settings; }

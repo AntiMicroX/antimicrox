@@ -33,8 +33,6 @@ class XMLConfigMigration : public QObject
     bool requiresMigration();
     QString migrate();
 
-    const QXmlStreamReader *getReader();
-
   private:
     QString readConfigToString();
     QString version0006Migration();
