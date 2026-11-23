@@ -50,7 +50,6 @@ class XMLConfigReader : public QObject
 
   private:
     QXmlStreamReader *xml;
-    QString fileName;
     QFile *configFile;
     InputDevice *m_joystick;
     QStringList deviceTypes;

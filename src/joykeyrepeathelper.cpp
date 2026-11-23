@@ -49,20 +49,6 @@ void JoyKeyRepeatHelper::setLastActiveKey(JoyButtonSlot *slot) { lastActiveKey =
 
 JoyButtonSlot *JoyKeyRepeatHelper::getLastActiveKey() { return lastActiveKey; }
 
-/*void JoyKeyRepeatHelper::setKeyRepeatDelay(unsigned int repeatDelay)
-{
-    if (repeatDelay > 0)
-    {
-        keyRepeatDelay = repeatDelay;
-    }
-}
-
-unsigned int JoyKeyRepeatHelper::getKeyRepeatDelay()
-{
-    return keyRepeatDelay;
-}
-*/
-
 void JoyKeyRepeatHelper::setKeyRepeatRate(int repeatRate)
 {
     if (repeatRate > 0)

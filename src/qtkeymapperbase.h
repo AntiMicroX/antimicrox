@@ -103,7 +103,6 @@ class QtKeyMapperBase : public QObject
     {
         AntKey_Shift_R = Qt::Key_Shift | customQtKeyPrefix,
         AntKey_Control_R = Qt::Key_Control | customQtKeyPrefix,
-        AntKey_Shift_Lock = 0xffe6 | customKeyPrefix, // XK_Shift_Lock | 0x20000000
         AntKey_Meta_R = Qt::Key_Meta | customQtKeyPrefix,
         AntKey_Alt_R = Qt::Key_Alt | customQtKeyPrefix,
         AntKey_KP_Divide = Qt::Key_Slash | customQtKeyPrefix,
@@ -112,7 +111,6 @@ class QtKeyMapperBase : public QObject
         AntKey_KP_Add = Qt::Key_Plus | customQtKeyPrefix,
         AntKey_KP_Decimal = Qt::Key_Period | customQtKeyPrefix,
         AntKey_KP_Insert = Qt::Key_Insert | customQtKeyPrefix,
-        AntKey_Delete = Qt::Key_Delete | customQtKeyPrefix,
         AntKey_KP_Delete = 0xff9f | customKeyPrefix,
         AntKey_KP_End = Qt::Key_End | customQtKeyPrefix,
         AntKey_KP_Down = Qt::Key_Down | customQtKeyPrefix,

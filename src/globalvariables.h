@@ -99,7 +99,6 @@ class InputDevice
     static const int RAISEDDEADZONE;
 
     // static QRegularExpression emptyGUID;
-    static QRegularExpression emptyUniqueID;
 };
 
 class JoyAxis
@@ -132,7 +131,6 @@ class X11Extras
 {
   public:
     static const QString mouseDeviceName;
-    static const QString keyboardDeviceName;
     static const QString xtestMouseDeviceName;
 
     static QString _customDisplayString;

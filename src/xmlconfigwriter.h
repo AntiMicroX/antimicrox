@@ -45,7 +45,6 @@ class XMLConfigWriter : public QObject
     QString fileName;
     QFile *configFile;
     InputDevice *m_joystick;
-    InputDeviceXml *m_joystickXml;
     bool writerError;
     QString writerErrorString;
 };

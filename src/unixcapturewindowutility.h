@@ -37,7 +37,6 @@ class UnixCaptureWindowUtility : public QObject
     void attemptWindowCapture();
 
   private:
-    QString targetPath;
     bool failed;
     long targetWindow;
 };
