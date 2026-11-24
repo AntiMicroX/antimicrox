@@ -565,21 +565,6 @@ void JoyControlStickEditDialog::selectCurrentPreset()
     }
 }
 
-void JoyControlStickEditDialog::updateMouseMode(int index)
-{
-    PadderCommon::inputDaemonMutex.lock();
-
-    if (index == 1)
-    {
-        stick->setButtonsMouseMode(JoyButton::MouseCursor);
-    } else if (index == 2)
-    {
-        stick->setButtonsMouseMode(JoyButton::MouseSpring);
-    }
-
-    PadderCommon::inputDaemonMutex.unlock();
-}
-
 void JoyControlStickEditDialog::openMouseSettingsDialog()
 {
     ui->mouseSettingsPushButton->setEnabled(false);

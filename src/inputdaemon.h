@@ -61,7 +61,6 @@ class InputDaemon : public QObject
     void convertMappingsToUnique(QSettings *sett, QString guidString, QString uniqueIdString);
 
   signals:
-    void joystickRefreshed(InputDevice *joystick);
     void joysticksRefreshed(QMap<SDL_JoystickID, InputDevice *> *joysticks);
     void complete(InputDevice *joystick);
     void complete();
@@ -74,7 +73,6 @@ class InputDaemon : public QObject
     void run();
     void quit();
     void refresh();
-    void refreshJoystick(InputDevice *joystick);
     void refreshJoysticks();
     void startWorker();
     void refreshMapping(QString mapping, InputDevice *device);

@@ -972,7 +972,6 @@ void JoyTabWidget::changeJoyConfig(int index)
 void JoyTabWidget::saveSettings()
 {
     qInfo() << "Saving config settings: " << configBox->currentText() << " for controller: " << m_joystick->getSDLName();
-    QString filename = "";
     QString lastfile = "";
 
     m_settings->getLock()->lock();
@@ -1001,7 +1000,7 @@ void JoyTabWidget::saveSettings()
     // Output currently selected profile as first profile on the list
     if (index != 0)
     {
-        filename = lastfile = configBox->itemData(index).toString();
+        QString filename = lastfile = configBox->itemData(index).toString();
         QString profileText = configBox->itemText(index);
         if (!identifier.isEmpty())
         {
@@ -1039,7 +1038,7 @@ void JoyTabWidget::saveSettings()
     {
         if (i != index)
         {
-            filename = configBox->itemData(i).toString();
+            QString filename = configBox->itemData(i).toString();
             QString profileText = configBox->itemText(i);
             if (!identifier.isEmpty())
             {
@@ -2543,8 +2542,6 @@ void JoyTabWidget::openGameControllerMappingWindow()
 }
 
 void JoyTabWidget::propogateMappingUpdate(QString mapping, InputDevice *device) { emit mappingUpdated(mapping, device); }
-
-void JoyTabWidget::refreshHelperThread() { tabHelper.moveToThread(m_joystick->thread()); }
 
 void JoyTabWidget::changeEvent(QEvent *event)
 {

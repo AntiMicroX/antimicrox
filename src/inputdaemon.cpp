@@ -294,13 +294,6 @@ void InputDaemon::refresh()
     stopped = false;
 }
 
-void InputDaemon::refreshJoystick(InputDevice *joystick)
-{
-    joystick->reset();
-
-    emit joystickRefreshed(joystick);
-}
-
 void InputDaemon::quit()
 {
     stopped = true;
@@ -818,11 +811,12 @@ void InputDaemon::firstInputPass(QQueue<SDL_Event> *sdlEventQueue)
                 else if (event.csensor.sensor == SDL_SENSOR_GYRO)
                     sensor_type = GYROSCOPE;
                 else
+                {
                     qWarning() << "Unknown sensor type: " << event.csensor.sensor;
+                    break;
+                }
 
-                JoySensor *sensor = nullptr;
-                if (sensor_type == ACCELEROMETER || sensor_type == GYROSCOPE)
-                    sensor = set->getSensor(sensor_type);
+                JoySensor *sensor = set->getSensor(sensor_type);
 
                 if (sensor != nullptr)
                 {

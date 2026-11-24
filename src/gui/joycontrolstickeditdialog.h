@@ -55,7 +55,6 @@ class JoyControlStickEditDialog : public QDialog
     void implementModes(int index);
 
     void refreshStickStats(int x, int y);
-    void updateMouseMode(int index);
 
     void checkMaxZone(int value);
     void openMouseSettingsDialog();

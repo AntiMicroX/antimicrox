@@ -301,51 +301,6 @@ void MainWindow::alterConfigFromSettings()
 
 void MainWindow::fillButtons() { fillButtonsMap(m_joysticks); }
 
-void MainWindow::makeJoystickTabs()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-    removeJoyTabs();
-
-    // Make temporary QMap with devices inserted using the device index as the
-    // key rather than joystick ID.
-    QMap<SDL_JoystickID, InputDevice *> temp;
-    QMapIterator<SDL_JoystickID, InputDevice *> iterTemp(*m_joysticks);
-
-    while (iterTemp.hasNext())
-    {
-        iterTemp.next();
-
-        InputDevice *joystick = iterTemp.value();
-        temp.insert(joystick->getJoyNumber(), joystick);
-    }
-
-    QMapIterator<SDL_JoystickID, InputDevice *> iter(temp);
-
-    while (iter.hasNext())
-    {
-        iter.next();
-
-        InputDevice *joystick = iter.value();
-        JoyTabWidget *tabwidget = new JoyTabWidget(joystick, m_settings, this);
-        QString joytabName = joystick->getSDLName();
-        joytabName.append(" ").append(tr("(%1)").arg(joystick->getName()));
-        ui->tabWidget->addTab(tabwidget, joytabName);
-    }
-
-    if (m_joysticks != nullptr)
-    {
-        ui->tabWidget->setCurrentIndex(0);
-        ui->stackedWidget->setCurrentIndex(1);
-    }
-}
-
-void MainWindow::fillButtonsID(InputDevice *joystick)
-{
-    int joyindex = joystick->getJoyNumber();
-    JoyTabWidget *tabwidget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(joyindex)); // static_cast
-    tabwidget->refreshButtons();
-}
-
 void MainWindow::fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks)
 {
     ui->stackedWidget->setCurrentIndex(0);
@@ -1714,41 +1669,6 @@ void MainWindow::updateButtonPressed()
 
 #endif
 
-/**
- * @brief Select appropriate tab that has a device with the specified GUID.
- * @param GUID of joystick device.
- */
-void MainWindow::selectControllerJoyTab(QString GUID)
-{
-    if (!GUID.isEmpty())
-    {
-        InputDevice *device = nullptr;
-        QMapIterator<SDL_JoystickID, InputDevice *> deviceIter(*m_joysticks);
-
-        while (deviceIter.hasNext())
-        {
-            deviceIter.next();
-            InputDevice *tempDevice = deviceIter.value();
-
-            if (tempDevice && (GUID == tempDevice->getStringIdentifier()))
-            {
-                device = tempDevice;
-                deviceIter.toBack();
-            }
-        }
-
-        if (device != nullptr)
-        {
-            qDebug() << "InputDevice was not a null pointer in selectControllerJoyTab of GUID";
-
-            ui->tabWidget->setCurrentIndex(device->getJoyNumber());
-        } else
-        {
-            qDebug() << "InputDevice was a NULL POINTER in selectControllerJoyTab of GUID";
-        }
-    }
-}
-
 void MainWindow::changeWindowStatus()
 { // Check flags to see if user requested for the main window and the tray icon
     // to not be displayed.
@@ -1784,18 +1704,6 @@ void MainWindow::setTranslator(QTranslator *translator) { m_translator = transla
 void MainWindow::setAppTranslator(QTranslator *translator) { m_appTranslator = translator; }
 
 void MainWindow::retranslateUi() { ui->retranslateUi(this); }
-
-void MainWindow::refreshTabHelperThreads()
-{
-    for (int i = 0; i < ui->tabWidget->count(); i++)
-    {
-        JoyTabWidget *widget = qobject_cast<JoyTabWidget *>(ui->tabWidget->widget(i));
-        if (widget != nullptr)
-        {
-            widget->refreshHelperThread();
-        }
-    }
-}
 
 QMap<int, QList<QAction *>> const &MainWindow::getProfileActions() { return profileActions; }
 

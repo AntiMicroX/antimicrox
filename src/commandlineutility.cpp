@@ -282,11 +282,10 @@ void CommandLineUtility::parseArgsUnload(const QCommandLineParser &parser)
 
     QStringList parserVals = QStringList() << parser.values("unload");
     QListIterator<QString> profileForUnload(parserVals);
-    QString unloadedProfText = QString();
 
     if (profileForUnload.hasNext())
     {
-        unloadedProfText = profileForUnload.next();
+        QString unloadedProfText = profileForUnload.next();
 
         // A value has been passed. Attempt
         // to validate the value.
@@ -321,11 +320,10 @@ void CommandLineUtility::parseArgsStartSet(const QCommandLineParser &parser)
 {
     QStringList parserValues = QStringList() << parser.values("startSet");
     QListIterator<QString> profileForStartset(parserValues);
-    QString startSetText = QString();
 
     if (profileForStartset.hasNext())
     {
-        startSetText = profileForStartset.next();
+        QString startSetText = profileForStartset.next();
 
         bool validNumber = false;
         int tempNumber = startSetText.toInt(&validNumber);

@@ -471,7 +471,6 @@ int main(int argc, char *argv[])
     }
 
     bool status = true;
-    QString eventGeneratorIdentifier = QString();
     AntKeyMapper *keyMapper = nullptr;
     EventHandlerFactory *factory = EventHandlerFactory::getInstance(cmdutility.getEventGenerator());
 
@@ -480,8 +479,7 @@ int main(int argc, char *argv[])
         status = false;
     } else
     {
-        eventGeneratorIdentifier = factory->handler()->getIdentifier();
-        keyMapper = AntKeyMapper::getInstance(eventGeneratorIdentifier);
+        keyMapper = AntKeyMapper::getInstance(factory->handler()->getIdentifier());
         status = factory->handler()->init();
         factory->handler()->printPostMessages();
     }
@@ -508,8 +506,7 @@ int main(int argc, char *argv[])
             status = false;
         } else
         {
-            eventGeneratorIdentifier = factory->handler()->getIdentifier();
-            keyMapper = AntKeyMapper::getInstance(eventGeneratorIdentifier);
+            keyMapper = AntKeyMapper::getInstance(factory->handler()->getIdentifier());
             status = factory->handler()->init();
             factory->handler()->printPostMessages();
         }
@@ -522,7 +519,6 @@ int main(int argc, char *argv[])
 
         deleteInputDevices(joysticks);
         delete joysticks;
-        joysticks = nullptr;
 
         delete localServer;
         localServer = nullptr;
@@ -561,7 +557,6 @@ int main(int argc, char *argv[])
     AppLaunchHelper mainAppHelper(&settings, mainWindow->getGraphicalStatus());
 
     QObject::connect(mainWindow, &MainWindow::joystickRefreshRequested, joypad_worker.data(), &InputDaemon::refresh);
-    QObject::connect(joypad_worker.data(), &InputDaemon::joystickRefreshed, mainWindow, &MainWindow::fillButtonsID);
     QObject::connect(joypad_worker.data(), &InputDaemon::joysticksRefreshed, mainWindow, &MainWindow::fillButtonsMap);
 
     QObject::connect(&antimicrox, &QApplication::aboutToQuit, localServer, &LocalAntiMicroServer::close);

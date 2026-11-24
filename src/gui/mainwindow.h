@@ -90,9 +90,7 @@ class MainWindow : public QMainWindow
   public slots:
     void checkEachTenMinutesBattery(QMap<SDL_JoystickID, InputDevice *> *joysticks);
     void fillButtons();
-    void makeJoystickTabs();
     void alterConfigFromSettings(); // MainConfiguration class
-    void fillButtonsID(InputDevice *joystick);
     void fillButtonsMap(QMap<SDL_JoystickID, InputDevice *> *joysticks);
     void startJoystickRefresh();
     void hideWindow();
@@ -101,11 +99,9 @@ class MainWindow : public QMainWindow
     void removeJoyTabs();
     void quitProgram();
     void changeWindowStatus();
-    void refreshTabHelperThreads();
     void testMappingUpdateNow(int index, InputDevice *device);
     void removeJoyTab(SDL_JoystickID deviceID);
     void addJoyTab(InputDevice *device);
-    void selectControllerJoyTab(QString GUID);
     void handleInstanceDisconnect();
 
   private slots:

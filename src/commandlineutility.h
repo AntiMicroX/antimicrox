@@ -113,7 +113,6 @@ class CommandLineUtility : public QObject
     QString getEventGenerator();
     QString getCurrentLogFile();
 
-    QList<int> *getJoyStartSetNumberList();
     QList<ControllerOptionsInfo> const &getControllerOptionsList();
 
     Logger::LogLevel getCurrentLogLevel();
