@@ -20,7 +20,6 @@ src/CHANGELOG.md
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-!.vscode/qt5.natvis.json
 !.vscode/snippets.md
 
 # Dev container personal overrides

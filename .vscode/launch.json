@@ -11,8 +11,7 @@
             "program": "${workspaceFolder}/build/bin/antimicrox",
             "coreDumpPath": "${input:coreFileName}",
             "cwd": "${workspaceFolder}",
-            "MIMode": "gdb",
-            "visualizerFile": "${workspaceFolder}/.vscode/qt5.natvis.xml"
+            "MIMode": "gdb"
         },
         {
             "name": "(gdb) Launch",
@@ -38,7 +37,6 @@
                     "text": "-gdb-set follow-fork-mode child"
                 }
             ],
-            "visualizerFile": "${workspaceFolder}/.vscode/qt5.natvis.xml",
             "showDisplayString": true,
         }
     ],
