@@ -73,7 +73,6 @@ class QuickSetDialog : public QDialog
     Ui::QuickSetDialog *ui;
 
     InputDevice *joystick;
-    QDialog *currentButtonDialog;
     ButtonEditDialogHelper *helper;
     JoyButton *lastButton;
 

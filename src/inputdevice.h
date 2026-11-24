@@ -170,14 +170,11 @@ class InputDevice : public QObject
 
   signals:
     void setChangeActivated(int index);
-    void setAxisThrottleActivated(int index); // InputDeviceAxis class
     void clicked(int index);
     void released(int index);
 
     void rawButtonClick(int index);                       // InputDeviceButton class
     void rawButtonRelease(int index);                     // InputDeviceButton class
-    void rawAxisButtonClick(int axis, int buttonindex);   // InputDeviceAxisBtn class
-    void rawAxisButtonRelease(int axis, int buttonindex); // InputDeviceAxisBtn class
     void rawDPadButtonClick(int dpad, int buttonindex);   // InputDeviceHat class
     void rawDPadButtonRelease(int dpad, int buttonindex); // InputDeviceHat class
     void rawAxisActivated(int axis, int value);           // InputDeviceAxis class

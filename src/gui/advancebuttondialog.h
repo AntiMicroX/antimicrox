@@ -126,7 +126,6 @@ class AdvanceButtonDialog : public QDialog
         TextEntry
     };
 
-    int oldRow;
     JoyButton *m_button;
     AdvanceButtonDialogHelper helper;
     QReadWriteLock joinLock;

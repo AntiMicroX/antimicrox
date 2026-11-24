@@ -57,7 +57,6 @@ AdvanceButtonDialog::AdvanceButtonDialog(JoyButton *button, QWidget *parent)
     // ui->splitSlotButton->hide();
 
     m_button = button;
-    oldRow = 0;
     int interval = m_button->getTurboInterval() / 10;
 
     getHelperLocal().moveToThread(button->thread());
@@ -346,7 +345,6 @@ void AdvanceButtonDialog::connectButtonEvents(SimpleKeyGrabberButton *button)
             {
                 ui->slotListWidget->setCurrentRow(i);
                 leave = true;
-                oldRow = i;
             }
         }
     });

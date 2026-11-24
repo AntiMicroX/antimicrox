@@ -43,7 +43,6 @@ QuickSetDialog::QuickSetDialog(InputDevice *joystick, QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 
     this->joystick = joystick;
-    this->currentButtonDialog = nullptr;
 
     setWindowTitle(tr("Quick Set %1").arg(joystick->getName()));
 

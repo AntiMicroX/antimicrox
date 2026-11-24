@@ -40,8 +40,6 @@ VirtualKeyPushButton::VirtualKeyPushButton(QString xcodestring, QWidget *parent)
     this->qkeyalias = 0;
     this->xcodestring = "";
     this->displayString = "";
-    this->currentlyActive = false;
-    this->onCurrentButton = false;
 
     int temp = 0;
     if (!xcodestring.isEmpty())

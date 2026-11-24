@@ -334,11 +334,8 @@ class JoyButton : public QObject
   signals:
     void clicked(int index);
     void released(int index);
-    void keyChanged(int keycode);
-    void mouseChanged(int mousecode);
     void setChangeActivated(int index);
     void setAssignmentChanged(int current_button, int associated_set, int mode);
-    void finishedPause();
     void turboChanged(bool state);
     void toggleChanged(bool state);
     void turboIntervalChanged(int interval);
@@ -523,7 +520,7 @@ class JoyButton : public QObject
     void findJoySlotsEnd(QListIterator<JoyButtonSlot *> *slotiter);
     void changeStatesQueue(bool currentReleased);
     void countActiveSlots(int tempcode, int &references, JoyButtonSlot *slot, QHash<int, int> &activeSlotsHash,
-                          bool &changeRepeatState, bool activeSlotHashWindows = false); // JoyButtonSlots class
+                          bool &changeRepeatState); // JoyButtonSlots class
     void releaseMoveSlots(QList<JoyButton::mouseCursorInfo> &cursorSpeeds, JoyButtonSlot *slot,
                           QList<int> &indexesToRemove); // JoyButtonSlots class
     void setSpringDeadCircle(double &springDeadCircle, int mouseDirection);
@@ -552,8 +549,6 @@ class JoyButton : public QObject
     bool isDown;
     bool toggleActiveState;
     bool m_useTurbo;
-    bool lastUnlessInList;
-    bool m_ignoresets;
     bool ignoreEvents; // JoyButtonEvents class
     bool whileHeldStatus;
     bool updateLastMouseDistance;     // Should lastMouseDistance be updated. Set after mouse event.
@@ -605,7 +600,6 @@ class JoyButton : public QObject
     QTimer slotSetChangeTimer;
     static QTimer staticMouseEventTimer; // JoyButtonEvents class
 
-    QString customName;
     QString actionName;
     QString activeZoneString;
 

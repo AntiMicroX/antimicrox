@@ -43,7 +43,6 @@ class AdvanceStickAssignmentDialog : public QDialog
 
   signals:
     void stickConfigurationChanged();
-    void vdpadConfigurationChanged();
 
   private slots:
     void refreshStickConfiguration(JoyControlStick *stick1, JoyControlStick *stick2);
