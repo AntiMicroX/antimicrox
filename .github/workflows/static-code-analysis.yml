@@ -25,11 +25,11 @@ jobs:
 
         steps:
             - name: Clone Repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
             # Initialize CodeQl with language parameters
             - name: Initialize CodeQL
-              uses: github/codeql-action/init@v3
+              uses: github/codeql-action/init@v4
               with:
                   languages: "cpp"
 
@@ -45,7 +45,7 @@ jobs:
 
             # Run codeql analysis
             - name: Run CodeQL
-              uses: github/codeql-action/analyze@v3
+              uses: github/codeql-action/analyze@v4
 
     infer-analysis:
         # Infer is a static analysis tool, it produces a list of potential bugs.
@@ -61,7 +61,7 @@ jobs:
 
         steps:
             - name: Clone Repository
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
             # Download Infer and install at workflow run to ensure latest version
             - name: Install Dependencies
@@ -82,7 +82,7 @@ jobs:
 
             # Upload result to build artifacts
             - name: Upload Results
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
                   name: report
                   path: infer-out/report.txt

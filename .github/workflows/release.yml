@@ -20,7 +20,7 @@ jobs:
         runs-on: ${{ matrix.image }}
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Install Dependencies with QT6
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules qt6-base-dev qt6-l10n-tools qt6-tools-dev-tools qt6-tools-dev libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext
@@ -41,7 +41,7 @@ jobs:
 
             # Upload generated files to release
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v3.0
+              uses: AButler/upload-release-assets@v4.0.0
               with:
                   files: ${{ github.workspace }}/build/*.deb
                   repo-token: ${{ github.token }}
@@ -71,7 +71,7 @@ jobs:
                 sudo cmake --install .
                 sudo cp /usr/local/lib/libSDL2-2.0.so.0 /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0
 
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Prepare files needed to create AppImage
               run: |
@@ -103,7 +103,7 @@ jobs:
 
             # Upload generated files to release
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v3.0
+              uses: AButler/upload-release-assets@v4.0.0
               with:
                   files: ./build/AntiMicroX*.AppImage;./build/AntiMicroX*.zsync
                   repo-token: ${{ github.token }}
@@ -127,7 +127,7 @@ jobs:
 
             # Upload generated files to release
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v3.0
+              uses: AButler/upload-release-assets@v4.0.0
               with:
                   files: ./build/AntiMicroX*.AppImage
                   repo-token: ${{ github.token }}
@@ -140,7 +140,7 @@ jobs:
                 shell: msys2 {0}
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Install Dependencies
               uses: msys2/setup-msys2@v2
@@ -187,7 +187,7 @@ jobs:
               run: cmake --build '${{ github.workspace }}'/build --target package --parallel 8
 
             - name: Upload binaries to release
-              uses: AButler/upload-release-assets@v3.0
+              uses: AButler/upload-release-assets@v4.0.0
               with:
                   files: build/antimicrox*.exe;build/antimicrox*.zip
                   repo-token: ${{ github.token }}
