@@ -229,7 +229,6 @@ class JoyControlStick : public QObject, public JoyStickDirectionsType
     double calculateEightWayDiagonalDistance(int axisXValue, int axisYValue);             // JoyControlStickAxes class
 
     QHash<JoyStickDirections, JoyControlStickButton *> getApplicableButtons();
-    void clearPendingAxisEvents(); // JoyControlStickEvent class
 
   signals:
     void moved(int xaxis, int yaxis);

@@ -59,7 +59,6 @@ class JoyTabWidget : public QWidget
     void setCurrentConfig(int index);             // JoyTabSettings class
     void unloadConfig();                          // JoyTabSettings class
     void checkHideEmptyOption();
-    void refreshHelperThread();
     void convToUniqueIDControllerGroupSett(QSettings *sett, QString guidControllerSett, QString uniqueControllerSett);
 
     bool isDisplayingNames();
@@ -90,7 +89,6 @@ class JoyTabWidget : public QWidget
 
   signals:
     void joystickConfigChanged(int index); // JoyTabSettings class
-    void joystickAxisRefreshLabels(int axisIndex);
     void namesDisplayChanged(bool status);
     void forceTabUnflash(JoyTabWidget *tabWidget);
     void mappingUpdated(QString mapping, InputDevice *device);
@@ -212,7 +210,6 @@ class JoyTabWidget : public QWidget
     QWidget *page_6;
     QWidget *page_7;
     QWidget *page_8;
-    QPushButton *pushButton;
     QSpacerItem *verticalSpacer_3;
 
     InputDevice *m_joystick;

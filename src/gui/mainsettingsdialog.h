@@ -44,8 +44,6 @@ class MainSettingsDialog : public QDialog
     explicit MainSettingsDialog(AntiMicroSettings *settings, QList<InputDevice *> *devices, QWidget *parent = nullptr);
     ~MainSettingsDialog();
 
-    AntiMicroSettings *getSettings() const;
-
   protected:
     void fillControllerMappingsTable();                                                       // MainSettingsMapping class
     void insertTempControllerMapping(QHash<QString, QList<QVariant>> &hash, QString newGUID); // MainSettingsMapping class
@@ -53,7 +51,6 @@ class MainSettingsDialog : public QDialog
     void populateAutoProfiles();                                                              // MainSettingsProfile class
     void fillAutoProfilesTable(QString guid);                                                 // MainSettingsProfile class
     void fillAllAutoProfilesTable();                                                          // MainSettingsProfile class
-    void clearAutoProfileData();                                                              // MainSettingsProfile class
     void changePresetLanguage();                                                              // MainSettingsLang class
     void fillSpringScreenPresets();                                                           // MainSettingsMouse class
     void refreshExtraMouseInfo();                                                             // MainSettingsMouse class

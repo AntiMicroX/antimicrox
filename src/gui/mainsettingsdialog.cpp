@@ -55,7 +55,6 @@
 #include <QVariant>
 #include <QWidget>
 
-static const QString RUNATSTARTUPREGKEY("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run");
 static const QString RUNATSTARTUPLOCATION(QString("%0\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\antimicrox.lnk")
                                               .arg(QString::fromUtf8(qgetenv("AppData"))));
 
@@ -352,12 +351,11 @@ void MainSettingsDialog::fillControllerMappingsTable()
     while (iter.hasNext())
     {
         QString tempkey = iter.next();
-        QString tempGUID = QString();
 
         if (tempkey.contains("Disable"))
         {
             bool disableGameController = settings->value(tempkey, false).toBool();
-            tempGUID = tempkey.remove("Disable");
+            QString tempGUID = tempkey.remove("Disable");
             insertTempControllerMapping(tempHash, tempGUID);
 
             if (tempHash.contains(tempGUID))
@@ -371,7 +369,7 @@ void MainSettingsDialog::fillControllerMappingsTable()
             QString mappingString = settings->value(tempkey, QString()).toString();
             if (!mappingString.isEmpty())
             {
-                tempGUID = tempkey;
+                QString tempGUID = tempkey;
                 insertTempControllerMapping(tempHash, tempGUID);
 
                 if (tempHash.contains(tempGUID))
@@ -1058,8 +1056,6 @@ void MainSettingsDialog::fillAutoProfilesTable(QString guid)
         }
     }
 }
-
-void MainSettingsDialog::clearAutoProfileData() {}
 
 void MainSettingsDialog::fillGUIDComboBox()
 {
@@ -1853,8 +1849,6 @@ void MainSettingsDialog::selectLogFile()
     if (!newLogFile.isEmpty())
         ui->logFilePathEdit->setText(newLogFile);
 }
-
-AntiMicroSettings *MainSettingsDialog::getSettings() const { return settings; }
 
 void MainSettingsDialog::on_resetBtn_clicked()
 {
