@@ -40,7 +40,7 @@ jobs:
         continue-on-error: ${{ matrix.experimental }}
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Install Dependencies
               run: sudo apt-get update && sudo apt-get install extra-cmake-modules libsdl2-dev libxi-dev libxtst-dev libx11-dev itstool gettext ninja-build ${{ matrix.qt-packages }}
@@ -84,7 +84,7 @@ jobs:
                 shell:  ${{ matrix.shell }}
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Install Dependencies (msys2)
               if: startsWith(matrix.shell, 'msys2')
@@ -108,7 +108,7 @@ jobs:
               
             - name: Install MSVC
               if: startsWith(matrix.shell, 'cmd')
-              uses: TheMrMilchmann/setup-msvc-dev@v3
+              uses: TheMrMilchmann/setup-msvc-dev@v4
               with:
                 arch: x64
                 toolset: 14
@@ -118,7 +118,7 @@ jobs:
             # https://github.com/jurplel/install-qt-action/issues/302
             # https://github.com/jurplel/install-qt-action/issues/304
             - name: Setup Python
-              uses: actions/setup-python@v6
+              uses: actions/setup-python@v7
               with:
                   python-version: "3.14"
 
