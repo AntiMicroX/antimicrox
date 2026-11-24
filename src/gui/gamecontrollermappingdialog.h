@@ -74,7 +74,6 @@ class GameControllerMappingDialog : public QDialog
     void obliterate();
     void changeButtonDisplay();
     void changeAxisDeadZone(int index);
-    void updateLastAxisLineEdit(JoyAxis *tempAxis, int value);
     void updateLastAxisLineEditRaw(int index, int value);
 
   private:
@@ -83,7 +82,6 @@ class GameControllerMappingDialog : public QDialog
 
     InputDevice *device;
     AntiMicroSettings *settings;
-    int buttonGrabs;
     QList<int> eventTriggerAxes;
     GameControllerMappingDialogHelper helper;
     int currentDeadZoneValue;

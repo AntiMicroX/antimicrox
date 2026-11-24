@@ -213,7 +213,6 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 
                 if (!isButtonPressed)
                 {
-                    m_ignoresets = ignoresets;
                     isButtonPressed = !isButtonPressed;
 
                     ignoreSetQueue.enqueue(ignoresets);
@@ -228,7 +227,6 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 
                 if (!toggleActiveState)
                 {
-                    m_ignoresets = ignoresets;
                     isButtonPressed = !isButtonPressed;
 
                     ignoreSetQueue.enqueue(ignoresets);
@@ -236,7 +234,6 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 }
             } else
             {
-                m_ignoresets = ignoresets;
                 isButtonPressed = isDown = pressed;
 
                 ignoreSetQueue.enqueue(ignoresets);
@@ -2257,6 +2254,7 @@ bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, bool updateActiveStri
 
 bool JoyButton::insertAssignedSlot(JoyButtonSlot *newSlot, int index, bool updateActiveString)
 {
+    Q_UNUSED(updateActiveString);
     bool permitSlot = true;
     JoyButtonSlot *slot = new JoyButtonSlot(newSlot, this);
 
@@ -3002,7 +3000,6 @@ void JoyButton::clearAssignedSlots(bool signalEmit)
             }
 
             slot->deleteLater();
-            slot = nullptr;
         }
     }
 
@@ -3170,7 +3167,7 @@ void JoyButton::releaseEachSlot(bool &changeRepeatState, int &references, int te
 {
     if (mode == JoyButtonSlot::JoyKeyboard)
     {
-        countActiveSlots(tempcode, references, slot, GlobalVariables::JoyButton::activeKeys, changeRepeatState, true);
+        countActiveSlots(tempcode, references, slot, GlobalVariables::JoyButton::activeKeys, changeRepeatState);
 
         if ((lastActiveKey == slot) && (references <= 0))
             lastActiveKey = nullptr;
@@ -3252,7 +3249,7 @@ void JoyButton::releaseEachSlot(bool &changeRepeatState, int &references, int te
 }
 
 void JoyButton::countActiveSlots(int tempcode, int &references, JoyButtonSlot *slot, QHash<int, int> &activeSlotsHash,
-                                 bool &changeRepeatState, bool activeSlotHashWindows)
+                                 bool &changeRepeatState)
 {
     changeRepeatState = false;
     references = activeSlotsHash.value(tempcode, 1) - 1;
@@ -4307,7 +4304,6 @@ void JoyButton::resetAllProperties()
     sensitivity = GlobalVariables::JoyButton::DEFAULTSENSITIVITY;
     setSelection = GlobalVariables::JoyButton::DEFAULTSETSELECTION;
     setSelectionCondition = DEFAULTSETCONDITION;
-    m_ignoresets = false;
     ignoreEvents = false;
     whileHeldStatus = false;
     buttonName.clear();

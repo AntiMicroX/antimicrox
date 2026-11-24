@@ -40,7 +40,6 @@ class SimpleKeyGrabberButton : public QPushButton
                   JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard); // (.., unsigned)
     void setValue(int value, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyKeyboard);
     void setValue(QString value, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyLoadProfile);
-    void setValues(QString value, JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyMix);
     void setValues(QString value, QList<JoyButtonSlot *> *jbtn,
                    JoyButtonSlot::JoySlotInputAction mode = JoyButtonSlot::JoyMix);
     JoyButtonSlot *getValue();
@@ -60,7 +59,6 @@ class SimpleKeyGrabberButton : public QPushButton
   private:
     bool grabNextAction;
     bool grabbingWheel;
-    bool edited;
     JoyButtonSlot buttonslot;
 };
 

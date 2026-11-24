@@ -92,7 +92,6 @@ class JoyButtonSlot : public QObject
     void setSlotMode(JoySlotInputAction selectedMode);
     JoySlotInputAction getSlotMode() const;
     QString movementString();
-    void setMouseSpeed(int value);
     void setDistance(double distance);
     double getMouseDistance();
     QElapsedTimer *getMouseInterval();
@@ -138,7 +137,6 @@ class JoyButtonSlot : public QObject
     JoySlotInputAction m_mode;
     QList<JoyButtonSlot *> *mix_slots;
     double m_distance;
-    double previousDistance;
     QElapsedTimer mouseInterval;
     QElapsedTimer easingTime;
     bool easingActive;

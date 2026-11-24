@@ -40,7 +40,6 @@ class JoySensorEditDialog : public QDialog
 
   private:
     Ui::JoySensorEditDialog *m_ui;
-    bool m_keypad_unlocked;
 
     JoySensor *m_sensor;
     JoySensorPreset m_preset;

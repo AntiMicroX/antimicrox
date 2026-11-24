@@ -108,7 +108,6 @@ GameControllerMappingDialog::GameControllerMappingDialog(InputDevice *device, An
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    buttonGrabs = 0;
     usingGameController = false;
 
     this->device = device;
@@ -608,25 +607,6 @@ void GameControllerMappingDialog::changeAxisDeadZone(int index)
     {
         QMetaObject::invokeMethod(&helper, "raiseDeadZones", Qt::BlockingQueuedConnection, Q_ARG(int, value));
         currentDeadZoneValue = value;
-    }
-}
-
-void GameControllerMappingDialog::updateLastAxisLineEdit(JoyAxis *tempAxis, int value)
-{
-    if (abs(value) >= 2000)
-    {
-        QString axisText = QString();
-
-        if (device->isGameController())
-        {
-            GameController *controller = qobject_cast<GameController *>(device);
-            axisText = QString("%1: %2").arg(controller->getBindStringForAxis(tempAxis->getIndex(), true)).arg(value);
-        } else
-        {
-            axisText = QString("Axis %1: %2").arg(tempAxis->getRealJoyIndex()).arg(value);
-        }
-
-        ui->lastAxisEventLineEdit->setText(axisText);
     }
 }
 

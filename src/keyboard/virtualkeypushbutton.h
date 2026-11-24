@@ -55,8 +55,6 @@ class VirtualKeyPushButton : public QPushButton
     int qkeyalias;
     QString xcodestring;
     QString displayString;
-    bool currentlyActive;
-    bool onCurrentButton;
 };
 
 #endif // VIRTUALKEYPUSHBUTTON_H

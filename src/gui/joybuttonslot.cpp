@@ -34,7 +34,6 @@ JoyButtonSlot::JoyButtonSlot(QObject *parent)
     qkeyaliasCode = 0;
     m_mode = JoyKeyboard;
     m_distance = 0.0;
-    previousDistance = 0.0;
     easingActive = false;
     mix_slots = nullptr;
 }
@@ -405,7 +404,6 @@ void JoyButtonSlot::copyAssignments(const JoyButtonSlot &slot)
     }
 
     m_distance = slot.m_distance;
-    previousDistance = slot.previousDistance;
 
     easingTime = QElapsedTimer();
     if (slot.easingTime.isValid())

@@ -40,7 +40,6 @@ SimpleKeyGrabberButton::SimpleKeyGrabberButton(QWidget *parent)
 {
     grabNextAction = false;
     grabbingWheel = false;
-    edited = false;
     this->installEventFilter(this);
 }
 
@@ -72,7 +71,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
         buttonslot.setSlotCode(controlcode);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMouseButton);
         refreshButtonLabel();
-        edited = true;
         releaseMouse();
         releaseKeyboard();
 
@@ -149,14 +147,12 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             controlcode = 0;
             setText("");
             valueUpdated = true;
-            edited = true;
         } else if ((checkalias > 0) && (finalvirtual > 0))
         {
             buttonslot.setSlotCode(finalvirtual, checkalias);
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
             setText(keysymToKeyString(finalvirtual, checkalias).toUpper());
 
-            edited = true;
             valueUpdated = true;
         } else if (virtualactual > 0)
         {
@@ -164,7 +160,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
             buttonslot.setSlotMode(JoyButtonSlot::JoyKeyboard);
             setText(keysymToKeyString(virtualactual).toUpper());
 
-            edited = true;
             valueUpdated = true;
         }
 
@@ -204,7 +199,6 @@ bool SimpleKeyGrabberButton::eventFilter(QObject *obj, QEvent *event)
 
             grabNextAction = false;
             grabbingWheel = false;
-            edited = true;
             releaseMouse();
             releaseKeyboard();
             buttonslot.setSlotCode(controlcode);
@@ -232,7 +226,6 @@ void SimpleKeyGrabberButton::setValue(int value, int alias, JoyButtonSlot::JoySl
 {
     buttonslot.setSlotCode(value, alias);
     buttonslot.setSlotMode(mode);
-    edited = true;
 
     setText(buttonslot.getSlotString());
 }
@@ -241,7 +234,6 @@ void SimpleKeyGrabberButton::setValue(int value, JoyButtonSlot::JoySlotInputActi
 {
     buttonslot.setSlotCode(value);
     buttonslot.setSlotMode(mode);
-    edited = true;
 
     setText(buttonslot.getSlotString());
 }
@@ -255,29 +247,9 @@ void SimpleKeyGrabberButton::setValue(QString value, JoyButtonSlot::JoySlotInput
     case JoyButtonSlot::JoyExecute: {
         buttonslot.setTextData(value);
         buttonslot.setSlotMode(mode);
-        edited = true;
         break;
     }
     case JoyButtonSlot::JoyMix: {
-        break;
-    }
-    default: {
-        break;
-    }
-    }
-
-    setText(buttonslot.getSlotString());
-}
-
-void SimpleKeyGrabberButton::setValues(QString value, JoyButtonSlot::JoySlotInputAction mode)
-{
-    switch (mode)
-    {
-    case JoyButtonSlot::JoyMix: {
-        // buttonslot.setSlotCode(-1);
-        buttonslot.setTextData(value);
-        buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
-        edited = true;
         break;
     }
     default: {
@@ -297,7 +269,6 @@ void SimpleKeyGrabberButton::setValues(QString value, QList<JoyButtonSlot *> *jb
         buttonslot.setTextData(value);
         buttonslot.setSlotMode(JoyButtonSlot::JoyMix);
         buttonslot.setMixSlots(jbtn);
-        edited = true;
         break;
     }
     default: {

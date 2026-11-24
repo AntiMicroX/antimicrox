@@ -122,8 +122,6 @@ class SetJoystick : public SetJoystickXml
     void setAxisReleased(int setindex, int axis, int value);                                   // SetAxis class
     void setStickButtonClick(int setindex, int stick, int button);                             // SetStick class
     void setStickButtonRelease(int setindex, int stick, int button);                           // SetStick class
-    void setSensorActivated(int setindex, JoySensorType type, int value);
-    void setSensorReleased(int setindex, JoySensorType, int value);
     void setSensorButtonClick(int setindex, JoySensorType type, JoySensorDirection direction);
     void setSensorButtonRelease(int setindex, JoySensorType type, JoySensorDirection direction);
     void setDPadButtonClick(int setindex, int dpad, int button);   // SetHat class
