@@ -60,16 +60,16 @@ jobs:
             fail-fast: false
             matrix:
                 include:
-                    - name: WinServer2022 MinGW QT6
-                      image: windows-2022
+                    - name: WinServer2025 MinGW QT6
+                      image: windows-2025
                       qt-version: "6.10"
                       shell: msys2 {0}
                       cmake-args: -G Ninja
                       build-type: Debug
                       qt-arch: "win64_mingw"
                       experimental: false
-                    - name: WinServer2022 MSVC QT6
-                      image: windows-2022
+                    - name: WinServer2025 MSVC QT6
+                      image: windows-2025
                       qt-version: "6.10"
                       shell: cmd
                       cmake-args: -G Ninja "-DSDL2_PATH=%WORKSPACE_DIR%/sdl2/" "-DSDL2_LIBRARY=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.lib" "-DSDL2_INCLUDE_DIR=%WORKSPACE_DIR%/sdl2/" "-DSDL2_DLL_LOCATION_DIR=%WORKSPACE_DIR%/sdl2/lib/x64/SDL2.dll"
